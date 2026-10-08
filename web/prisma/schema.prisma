@@ -1,0 +1,559 @@
+// Schema do MentorIA — Missão Oficial CBMPE.
+// Duas partes: (1) CONTEÚDO — semeado a partir de /content, somente leitura em runtime;
+// (2) USUÁRIO — plano, atividades, tempo, cadernos e métricas.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ───────────────────────── Enums ─────────────────────────
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum ExamBlock {
+  I
+  II
+  III
+}
+
+enum HoursBand {
+  LEVE // 14–21 h/sem
+  MODERADO // 22–28 h/sem
+  AVANCADO // > 28 h/sem
+}
+
+enum ForeignLanguage {
+  EN
+  ES
+}
+
+enum ContentSource {
+  ESTRATEGIA // aula do Estratégia (diretriz aponta página)
+  LEGAL_PUBLICO // texto legal público (diretriz aponta dispositivo/artigos)
+  AUTHORED // material complementar autoral do MentorIA (PDF próprio) que preenche lacunas do edital
+}
+
+enum AulaKind {
+  THEORY
+  PRACTICE // somente questões (ex.: Português Aula 14, provas comentadas)
+}
+
+enum EditalFit {
+  YES
+  PARTIAL
+  NO
+}
+
+enum GapSeverity {
+  HIGH
+  MEDIUM
+  LOW
+}
+
+enum ActivityScope {
+  AULA
+  FINAL // revisão geral / caderno misto das semanas finais
+}
+
+enum ActivityType {
+  TEORIA
+  REVISAO
+  FIXACAO
+  QUESTOES
+}
+
+enum ActivityStatus {
+  PENDING
+  IN_PROGRESS
+  DONE
+  SKIPPED
+}
+
+enum WeekKind {
+  CONTENT
+  FINAL_REVIEW
+}
+
+enum PlanStatus {
+  ACTIVE
+  ARCHIVED
+}
+
+enum BizuSet {
+  TEORIA
+  REVISAO
+}
+
+enum QuestionStatus {
+  DRAFT
+  APPROVED
+  FLAGGED
+  RETIRED
+}
+
+enum TimeSource {
+  TIMER
+  MANUAL
+}
+
+enum QuizKind {
+  CADERNO // 25 questões / 60 min, atrelado a atividade Questões
+  SIMULADO_BLOCO // revisão final: bloco inteiro
+}
+
+enum ReportStatus {
+  OPEN
+  RESOLVED
+  DISMISSED
+}
+
+// ───────────────────── CONTEÚDO (semeado) ─────────────────────
+
+model Subject {
+  id                   String           @id // slug: "dir-administrativo"
+  name                 String
+  block                ExamBlock
+  examQuestions        Int // nº de questões na prova (peso)
+  languageGroup        String? // "lingua-estrangeira" p/ Inglês/Espanhol (mutuamente exclusivos)
+  foreignLanguage      ForeignLanguage?
+  sortOrder            Int
+  estrategiaSection    String? // nome da pasta/curso no Estratégia
+  materialCompleteness Float            @default(1) // fatia do edital que o material cobre (estimativa)
+
+  aulas      Aula[]
+  gaps       Gap[]
+  planLinks  PlanSubject[]
+  activities Activity[]
+  questions  Question[]
+}
+
+model Aula {
+  id             String        @id // "dir-administrativo/a00"
+  subjectId      String
+  number         Int
+  title          String
+  shortTitle     String
+  kind           AulaKind      @default(THEORY)
+  source         ContentSource @default(ESTRATEGIA)
+  edital         EditalFit     @default(YES)
+  selectable     Boolean       @default(true) // false: fora do edital ou aula de prática já vinculada a outras
+  totalPages     Int
+  theoryPages    Int
+  segmentCount   Int
+  commentedPages Int           @default(0)
+  listPages      Int           @default(0)
+  commentedRuns  Json // [[ini, fim], ...] páginas da seção de questões comentadas
+  practiceLinks  Json // [{theme, startPage, endPage, sourceAula}] vindos de aulas de prática
+  printedOffset  Int           @default(0) // página impressa = página PDF + offset
+  incidence      Float         @default(0) // proxy de incidência em prova (normalizada na disciplina)
+  note           String?
+  // material autoral (source = AUTHORED): caminho do PDF servido pelo app, ex.: "complementos/leg-pe-decreto-50014.pdf"
+  materialPath   String?
+
+  subject    Subject    @relation(fields: [subjectId], references: [id])
+  topics     Topic[]
+  segments   Segment[]
+  questions  Question[]
+  activities Activity[]
+
+  @@unique([subjectId, number])
+  @@index([subjectId])
+}
+
+model Gap {
+  id        String      @id
+  subjectId String
+  item      String
+  evidence  String
+  severity  GapSeverity
+  remedy    String
+  // true quando um material complementar do MentorIA já preenche a lacuna (resolution explica qual)
+  resolved   Boolean @default(false)
+  resolution String?
+
+  subject Subject @relation(fields: [subjectId], references: [id])
+}
+
+model Topic {
+  id          String  @id // "dir-administrativo/a00/t012"
+  aulaId      String
+  parentId    String?
+  level       Int
+  title       String
+  pdfPage     Int
+  printedPage Int?
+  sortOrder   Int
+  verified    Boolean @default(false) // título confirmado por busca textual no PDF
+  auto        Boolean @default(false) // subtítulo detectado por fonte (não veio do índice .xlsx)
+
+  aula      Aula       @relation(fields: [aulaId], references: [id])
+  parent    Topic?     @relation("TopicTree", fields: [parentId], references: [id])
+  children  Topic[]    @relation("TopicTree")
+  questions Question[]
+
+  @@index([aulaId, sortOrder])
+}
+
+// Trecho de teoria de ~1 h (10–17 págs.), unidade das atividades Teoria/Revisão/Questões.
+model Segment {
+  id              String  @id // "dir-administrativo/a00/s01"
+  aulaId          String
+  sortOrder       Int
+  startPage       Int
+  endPage         Int
+  startPrinted    Int?
+  endPrinted      Int?
+  pages           Int
+  load            Float // soma ponderada de densidade (alvo ≈ 12)
+  startTopic      String?
+  startsMidTopic  Boolean @default(false)
+  stopBeforeTopic String? // null = último trecho da teoria (ou corte no meio de tópico)
+  endsMidTopic    Boolean @default(false)
+  endTopic        String?
+  endsTheory      Boolean @default(false)
+  topicsCovered   Json // títulos de tópicos que começam no trecho
+  estMinutes      Int     @default(60)
+
+  aula       Aula              @relation(fields: [aulaId], references: [id])
+  bizu       Bizu?
+  questions  Question[]
+  activities ActivitySegment[]
+  notes      Note[]
+
+  @@unique([aulaId, sortOrder])
+}
+
+model Bizu {
+  id        String @id @default(cuid())
+  segmentId String @unique
+  summary   String // markdown em palavras próprias (nunca verbatim do Estratégia)
+  version   Int    @default(1)
+
+  segment Segment    @relation(fields: [segmentId], references: [id])
+  items   BizuItem[]
+}
+
+// Itens Certo/Errado de fixação rápida.
+model BizuItem {
+  id          String  @id @default(cuid())
+  bizuId      String
+  set         BizuSet // TEORIA ou REVISAO (conjuntos diferentes)
+  statement   String
+  isTrue      Boolean
+  explanation String
+  sortOrder   Int
+
+  bizu    Bizu         @relation(fields: [bizuId], references: [id])
+  answers BizuAnswer[]
+
+  @@index([bizuId, set])
+}
+
+model Question {
+  id          String         @id // "dir-administrativo/a00/s01/q007"
+  subjectId   String
+  aulaId      String
+  segmentId   String
+  topicId     String?
+  topic       String? // assunto da questão (texto livre; usado nos "pontos de atenção")
+  support     String? // texto-base (interpretação, charge, código etc.)
+  statement   String
+  explanation String // comentário/justificativa
+  difficulty  Int            @default(2) // 1 fácil · 2 média · 3 difícil
+  pattern     String // padrão AOCP usado (assertivas, lei-seca, calculo, interpretacao…)
+  pageRef     Int? // página PDF de referência (para revisão)
+  status      QuestionStatus @default(DRAFT)
+  batch       String? // lote de geração (rastreabilidade)
+
+  subject  Subject          @relation(fields: [subjectId], references: [id])
+  aula     Aula             @relation(fields: [aulaId], references: [id])
+  segment  Segment          @relation(fields: [segmentId], references: [id])
+  topicRef Topic?           @relation(fields: [topicId], references: [id])
+  options  QuestionOption[]
+  answers  QuizAnswer[]
+  reports  QuestionReport[]
+
+  @@index([segmentId, status])
+  @@index([subjectId, status])
+}
+
+model QuestionOption {
+  id         String  @id @default(cuid())
+  questionId String
+  label      String // "A".."E"
+  text       String
+  isCorrect  Boolean
+
+  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@unique([questionId, label])
+}
+
+// ───────────────────── USUÁRIO ─────────────────────
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String?
+  passwordHash String
+  role         Role     @default(USER)
+  createdAt    DateTime @default(now())
+
+  sessions     Session[]
+  profile      Profile?
+  plans        Plan[]
+  timeLogs     TimeLog[]
+  notes        Note[]
+  quizSessions QuizSession[]
+  bizuAnswers  BizuAnswer[]
+  reports      QuestionReport[]
+  invite       Invite?
+}
+
+// Sessão opaca: o cookie guarda um token aleatório; aqui fica apenas o hash SHA-256 dele.
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  tokenHash String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Invite {
+  id           String    @id @default(cuid())
+  code         String    @unique
+  email        String? // opcional: restringe a um e-mail
+  makeAdmin    Boolean   @default(false)
+  createdAt    DateTime  @default(now())
+  usedAt       DateTime?
+  usedByUserId String?   @unique
+
+  usedBy User? @relation(fields: [usedByUserId], references: [id])
+}
+
+model Profile {
+  userId          String           @id
+  examDate        DateTime         @db.Date
+  hoursBand       HoursBand?
+  hoursPerWeek    Int? // valor efetivo escolhido (14–50)
+  foreignLanguage ForeignLanguage?
+  estrategiaUrl   String? // link do curso do aluno no Estratégia
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Plan {
+  id        String     @id @default(cuid())
+  userId    String
+  version   Int        @default(1)
+  status    PlanStatus @default(ACTIVE)
+  startDate DateTime   @db.Date
+  examDate  DateTime   @db.Date
+  params    Json // H, banda, semanas, capacidade, seed do sorteio
+  coverage  Json // cobertura por disciplina + lista "ficou de fora"
+  warnings  Json // avisos do planejador (lacunas do material, tempo curto…)
+  createdAt DateTime   @default(now())
+
+  user     User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subjects PlanSubject[]
+  weeks    Week[]
+
+  @@index([userId, status])
+}
+
+model PlanSubject {
+  planId     String
+  subjectId  String
+  level      Int // 0 iniciante … 3 domina
+  diagnostic Json // respostas do formulário
+
+  plan    Plan    @relation(fields: [planId], references: [id], onDelete: Cascade)
+  subject Subject @relation(fields: [subjectId], references: [id])
+
+  @@id([planId, subjectId])
+}
+
+model Week {
+  id            String   @id @default(cuid())
+  planId        String
+  index         Int // 1..N
+  startDate     DateTime @db.Date
+  targetMinutes Int
+  kind          WeekKind @default(CONTENT)
+
+  plan       Plan       @relation(fields: [planId], references: [id], onDelete: Cascade)
+  activities Activity[]
+
+  @@unique([planId, index])
+}
+
+model Activity {
+  id             String         @id @default(cuid())
+  planId         String
+  weekId         String
+  sortOrder      Int
+  type           ActivityType
+  subjectId      String
+  aulaId         String
+  plannedMinutes Int            @default(60)
+  status         ActivityStatus @default(PENDING)
+  completedAt    DateTime?
+  key            String // chave estável vinda do planejador ("aula#T1")
+  scope          ActivityScope  @default(AULA)
+  // Fixação: faixas de páginas da seção de questões comentadas [{start,end,sourceAula?}]
+  fixRanges      Json?
+  // Questões: quantidade e limite do caderno (mixed = sorteia de vários trechos da disciplina)
+  quizQuestions  Int?           @default(25)
+  quizLimitSec   Int?           @default(3600)
+  quizMixed      Boolean        @default(false)
+  // dia da semana planejado: 0 = segunda … 6 = domingo (nulo em planos antigos)
+  dayIndex       Int?
+
+  week        Week              @relation(fields: [weekId], references: [id], onDelete: Cascade)
+  subject     Subject           @relation(fields: [subjectId], references: [id])
+  aula        Aula              @relation(fields: [aulaId], references: [id])
+  segments    ActivitySegment[]
+  refs        ActivityRef[]     @relation("ActivityRefFrom")
+  refBy       ActivityRef[]     @relation("ActivityRefTo")
+  timeLogs    TimeLog[]
+  quizzes     QuizSession[]
+  bizuAnswers BizuAnswer[]
+
+  @@unique([planId, key])
+  @@index([weekId, sortOrder])
+  @@index([planId, type, status])
+}
+
+// Quais segmentos de teoria a atividade cobre (Teoria: 1; Revisão: até 3; Questões: 1+).
+model ActivitySegment {
+  activityId String
+  segmentId  String
+
+  activity Activity @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  segment  Segment  @relation(fields: [segmentId], references: [id])
+
+  @@id([activityId, segmentId])
+}
+
+// Revisão/Questões sempre atreladas a Teoria(s) anterior(es).
+model ActivityRef {
+  activityId    String // a atividade que referencia (Revisão/Questões)
+  refActivityId String // a Teoria referenciada
+
+  activity    Activity @relation("ActivityRefFrom", fields: [activityId], references: [id], onDelete: Cascade)
+  refActivity Activity @relation("ActivityRefTo", fields: [refActivityId], references: [id], onDelete: Cascade)
+
+  @@id([activityId, refActivityId])
+}
+
+model TimeLog {
+  id         String     @id @default(cuid())
+  userId     String
+  activityId String?
+  seconds    Int
+  startedAt  DateTime
+  endedAt    DateTime?
+  source     TimeSource
+  note       String?
+  createdAt  DateTime   @default(now())
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  activity Activity? @relation(fields: [activityId], references: [id], onDelete: SetNull)
+
+  @@index([userId, startedAt])
+  @@index([activityId])
+}
+
+// "Meu resumo" do aluno por segmento (usado na Revisão).
+model Note {
+  userId    String
+  segmentId String
+  text      String
+  updatedAt DateTime @updatedAt
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  segment Segment @relation(fields: [segmentId], references: [id])
+
+  @@id([userId, segmentId])
+}
+
+model QuizSession {
+  id            String    @id @default(cuid())
+  userId        String
+  activityId    String?
+  kind          QuizKind  @default(CADERNO)
+  limitSeconds  Int       @default(3600)
+  startedAt     DateTime  @default(now())
+  finishedAt    DateTime?
+  autoSubmitted Boolean   @default(false)
+  score         Int? // acertos
+  total         Int       @default(25)
+
+  user     User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  activity Activity?    @relation(fields: [activityId], references: [id], onDelete: SetNull)
+  answers  QuizAnswer[]
+
+  @@index([userId, startedAt])
+}
+
+model QuizAnswer {
+  id           String    @id @default(cuid())
+  sessionId    String
+  questionId   String
+  position     Int
+  chosenLabel  String? // null = em branco
+  isCorrect    Boolean?
+  secondsSpent Int       @default(0)
+  flagged      Boolean   @default(false)
+  answeredAt   DateTime?
+
+  session  QuizSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  question Question    @relation(fields: [questionId], references: [id])
+
+  @@unique([sessionId, position])
+  @@index([questionId])
+}
+
+model BizuAnswer {
+  id         String   @id @default(cuid())
+  userId     String
+  bizuItemId String
+  activityId String?
+  answer     Boolean
+  isCorrect  Boolean
+  answeredAt DateTime @default(now())
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  item     BizuItem  @relation(fields: [bizuItemId], references: [id])
+  activity Activity? @relation(fields: [activityId], references: [id], onDelete: SetNull)
+
+  @@index([userId, bizuItemId])
+}
+
+model QuestionReport {
+  id         String       @id @default(cuid())
+  userId     String
+  questionId String
+  reason     String
+  status     ReportStatus @default(OPEN)
+  createdAt  DateTime     @default(now())
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@index([questionId, status])
+}
