@@ -1,0 +1,68 @@
+PROGRESSO DO COLABORADOR — branch bizus-exatas
+Disciplinas: Informática, Estatística, Matemática, Física, Química
+Etapa 1 (Bizu: resumo + itens C/E + pointers, stage "bizu", status DRAFT)
+
+ESTADO: etapa 1 CONCLUÍDA em todas as disciplinas da branch.
+(validate_content.py --coverage --stage bizu --subject <disc>)
+
+  Informática   92/92 trechos com bizu  (a06 s07-s12, a07 a a14 feitos nesta rodada)
+  Estatística   76/76
+  Matemática    76/76  (a13-a17 feitos nesta rodada)
+  Física        41/41  (a17 feito nesta rodada)
+  Química       79/79  (a10-a23 feitos nesta rodada)
+
+Todos os arquivos passam em `validate_content.py` (esquema, C/E certos e errados,
+pointers dentro do trecho, originalidade) e `pytest pipeline/tests -q` = 45 passed.
+
+NÃO FEITO (fora do escopo desta rodada)
+- Etapa 2 (questões AOCP) — só existem as questões que já estavam no repositório.
+  Cobertura de questões: Informática 1 trecho, Estatística 1, Matemática 2, Física 2,
+  Química 1 (ver `--coverage`).
+
+PONTOS PARA REVISÃO HUMANA
+1. Física a17 e Matemática a13-a14 foram escritos SEM acesso ao PDF do material
+   (o PDF não estava disponível no ambiente nessa fase). Conferir contra o Estratégia:
+   conteúdo, pageRef dos pointers e fatos. Os demais trechos foram escritos lendo o
+   texto extraído das páginas.
+2. Padrão de correção de originalidade: ao reescrever para passar nos 10-gramas, alguns
+   resumos ficaram mais enxutos. Vale uma leitura rápida de Informática a09-a14, onde o
+   material é muito tabular (menus, atalhos).
+3. Atalhos do PowerPoint (a10) e do Writer (a09) seguem as tabelas do próprio material
+   em português (PowerPoint PT-BR: Ctrl+O = Novo, Ctrl+A = Abrir, Ctrl+B = Salvar,
+   Ctrl+N/I/S = negrito/itálico/sublinhado, Ctrl+L/U = localizar/substituir).
+
+PROBLEMAS ENCONTRADOS NO MATERIAL (para o Valério avaliar)
+- Informática a12 (Windows), pág. 10 e 11: o texto diz que o Windows 11 foi lançado em
+  "outubro de 2021" e, duas páginas depois, em "junho de 2021". O bizu usa outubro de 2021
+  (data de lançamento oficial; junho/2021 foi o anúncio).
+- Informática a11 (Impress), págs. 19-23: as tabelas dos menus Arquivo/Editar/Exibir/Inserir/
+  Formatar/Apresentação de slides/Ferramentas/Janela/Ajuda são só imagem — o texto extraído traz
+  apenas os títulos e a incidência em prova. O bizu cobre esses menus pelo que o texto das
+  págs. 10-11, 14-17, 24 e 25 informa (barra lateral, slide mestre e atalhos) e por conhecimento
+  geral do LibreOffice; vale conferir os menus nas imagens do PDF.
+- Informática a10, pág. 57: a tabela da guia Revisão do PowerPoint cita "O Word vai verificar
+  a ortografia" (erro de copiar/colar do material). Bizu escrito com "PowerPoint".
+- Informática a12, pág. 186: a lista de atalhos tem teclas faltando no texto extraído (as
+  teclas F2, F3, F4, F5, F6, F10, F11 aparecem sem a sequência). Os atalhos usados no bizu
+  foram os que estavam legíveis.
+- Informática a14, pág. 120 ("Desafio de Configuração"): o gabarito está "de ponta-cabeça"
+  no PDF e o texto extraído ficou truncado.
+
+SEGMENTAÇÃO / ESTRUTURA (nenhum arquivo de estrutura foi alterado)
+- Informática a10 s01: os "headings" detectados incluem frases longas em caixa alta
+  (observações do professor) como se fossem tópicos; sugere-se `dropHeadings` em
+  content/overrides/informatica.json.
+- Informática a12 e a14: vários tópicos aparecem com a primeira letra truncada
+  ("NTRODUÇÃO AO", "REA DE RABALHO", "ARDWARE") por causa de versalete no PDF; só cosmético.
+- Informática a13 s01 tem 13 págs e a12 s13 / s15 têm 17 págs (teto): ok, mas s13/s15 ficaram
+  no limite.
+
+SOBRE OS PDFs TEMPORÁRIOS
+Os PDFs necessários foram enviados pelo Valério na branch descartável `docs-temp`. Nada de
+`docs/` ou `pipeline/.cache` foi versionado na `bizus-exatas`. Terminado o trabalho, a
+`docs-temp` pode ser apagada:
+  git push origin --delete docs-temp
+  git branch -D docs-temp
+Observação: apagar a branch NÃO remove o conteúdo do histórico do Git no servidor
+(commits continuam acessíveis por hash até o GC do GitHub); como os PDFs têm marca d'água
+com nome/CPF, trate o repositório como privado.
