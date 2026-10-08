@@ -1,0 +1,539 @@
+{
+  "aula": "estatistica/a10",
+  "batch": "w2-bizu-estatistica",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "estatistica/a10/s01",
+      "bizu": {
+        "summary": [
+          "**Distribuição uniforme contínua** em [a, b]: a f.d.p. é **constante** em todo o intervalo, **f(x) = 1/(b − a)**, e zero fora dele. Todos os subintervalos de mesmo tamanho têm a mesma probabilidade.",
+          "**Probabilidade de um intervalo**: **P(m < X < n) = (n − m)/(b − a)**, a razão entre o comprimento do trecho e o comprimento total (área de retângulo). Ex.: uniforme em [8, 14], P(X > 12) = 2/6 = 1/3.",
+          "**F.d.a.**: **F(x) = (x − a)/(b − a)** para a < x < b; vale 0 antes de a e 1 depois de b.",
+          "**Esperança**: **E(X) = (a + b)/2**, o ponto médio do intervalo; a média coincide com a mediana.",
+          "**Variância**: **V(X) = (b − a)²/12**. Atenção ao 12 no denominador, que é o diferencial desta distribuição.",
+          "**Determinar a e b a partir de média e variância**: com média 4 e variância 12, a + b = 8 e (b − a)² = 144, logo b − a = 12, a = −2 e b = 10; P(X < 7) = 9/12 = 0,75.",
+          "**Reconhecimento**: expressões como \"escolhido ao acaso em um intervalo\", \"qualquer valor entre … é igualmente provável\" indicam uniforme contínua."
+        ],
+        "teoria": [
+          {
+            "statement": "Na distribuição uniforme contínua em [a, b], a f.d.p. vale 1/(b − a) em todo o intervalo.",
+            "isTrue": true,
+            "explanation": "A altura constante garante que a área do retângulo (b − a)·k seja 1."
+          },
+          {
+            "statement": "A variância de uma uniforme contínua em [a, b] é (b − a)²/2.",
+            "isTrue": false,
+            "explanation": "O denominador correto é 12: V(X) = (b − a)²/12."
+          },
+          {
+            "statement": "Em uma uniforme em [0, 50], P(X > 20) = 0,6.",
+            "isTrue": true,
+            "explanation": "(50 − 20)/(50 − 0) = 30/50 = 0,6."
+          },
+          {
+            "statement": "A esperança de uma uniforme contínua em [a, b] é a média aritmética de a e b.",
+            "isTrue": true,
+            "explanation": "E(X) = (a + b)/2, ponto central do intervalo."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A f.d.a. de uma uniforme em [a, b], para a < x < b, é (x − a)/(b − a).",
+            "isTrue": true,
+            "explanation": "Corresponde à área do retângulo entre a e x."
+          },
+          {
+            "statement": "Em uma uniforme em [0, 1], P(U > 1/10) = 0,1.",
+            "isTrue": false,
+            "explanation": "P(U > 0,1) = (1 − 0,1)/1 = 0,9."
+          },
+          {
+            "statement": "Uma uniforme contínua com média 4 e variância 12 está definida no intervalo [−2, 10].",
+            "isTrue": true,
+            "explanation": "(a + b)/2 = 4 e (b − a)² = 144 levem a a = −2 e b = 10."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "F.d.p. constante da uniforme",
+            "pageRef": 4
+          },
+          {
+            "topic": "Probabilidade de intervalo",
+            "pageRef": 5
+          },
+          {
+            "topic": "F.d.a. da uniforme",
+            "pageRef": 6
+          },
+          {
+            "topic": "Esperança e variância",
+            "pageRef": 9
+          },
+          {
+            "topic": "Cálculo de a e b por média e variância",
+            "pageRef": 11
+          }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a10/s02",
+      "bizu": {
+        "summary": [
+          "**Distribuição exponencial**: modela o **tempo até um evento** com **taxa de ocorrência (ou de falha) constante λ**, como vida útil de lâmpada. F.d.p.: **f(x) = λ·e^(−λx)** para x ≥ 0, e zero para x < 0.",
+          "**Probabilidades**: **P(X > a) = e^(−λa)**; **P(a < X < b) = e^(−λa) − e^(−λb)**; **F(x) = P(X < x) = 1 − e^(−λx)**.",
+          "**Confiabilidade**: a função de sobrevivência (probabilidade de o sistema durar mais que x) é o complemento da f.d.a.: **e^(−λx)**.",
+          "**Esperança e variância**: **E(X) = 1/λ** e **V(X) = 1/λ²**. O desvio padrão é igual à média, então o **coeficiente de variação é 1**.",
+          "**Unidades**: x e λ devem estar na **mesma unidade de tempo**. Se λ é por dia e a pergunta é em horas, converta (6 h = 1/4 de dia).",
+          "**Falta de memória**: **P(X > t + s | X > s) = P(X > t)**. O tempo já decorrido sem o evento não altera a probabilidade do tempo restante.",
+          "**Relação com Poisson**: se o número de ocorrências por intervalo é Poisson(λ), o **tempo entre ocorrências sucessivas** é exponencial com a mesma taxa λ.",
+          "**Achar λ pela média**: média de 30 minutos → λ = 1/30 e P(X < 20) = 1 − e^(−20/30)."
+        ],
+        "teoria": [
+          {
+            "statement": "Na distribuição exponencial, a esperança é 1/λ e o desvio padrão também é 1/λ.",
+            "isTrue": true,
+            "explanation": "A variância é 1/λ², cuja raiz coincide com a média; o coeficiente de variação é igual a 1."
+          },
+          {
+            "statement": "Na exponencial, P(X > a) = 1 − e^(−λa).",
+            "isTrue": false,
+            "explanation": "A expressão corresponde a P(X < a); P(X > a) = e^(−λa)."
+          },
+          {
+            "statement": "A distribuição exponencial é sem memória: P(X > t + s | X > s) = P(X > t).",
+            "isTrue": true,
+            "explanation": "A taxa de falha constante faz o passado não influenciar o futuro."
+          },
+          {
+            "statement": "Em x e λ da exponencial, as unidades de tempo podem ser diferentes, pois o cálculo converte automaticamente.",
+            "isTrue": false,
+            "explanation": "É preciso compatibilizar as unidades antes de calcular λ·x."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Se as ocorrências por intervalo seguem Poisson de taxa λ, o tempo entre eventos consecutivos segue exponencial de parâmetro λ.",
+            "isTrue": true,
+            "explanation": "É a ligação clássica entre Poisson (contagem) e exponencial (tempo de espera)."
+          },
+          {
+            "statement": "Para uma exponencial com média 30 minutos, P(X < 20) = 1 − e^(−2/3).",
+            "isTrue": true,
+            "explanation": "λ = 1/30 e 1 − e^(−20/30) = 1 − e^(−2/3)."
+          },
+          {
+            "statement": "A f.d.p. da exponencial é definida para qualquer x real.",
+            "isTrue": false,
+            "explanation": "Só assume valores para x ≥ 0, pois o tempo não é negativo."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "F.d.p. e taxa de falha constante",
+            "pageRef": 13
+          },
+          {
+            "topic": "Probabilidade de intervalo e F.d.a.",
+            "pageRef": 14
+          },
+          {
+            "topic": "Compatibilizar unidades",
+            "pageRef": 16
+          },
+          {
+            "topic": "Esperança, variância e coeficiente de variação",
+            "pageRef": 18
+          },
+          {
+            "topic": "Relação com Poisson e falta de memória",
+            "pageRef": 19
+          }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a10/s03",
+      "bizu": {
+        "summary": [
+          "**Mínimo de exponenciais independentes**: segue exponencial com parâmetro igual à **soma dos parâmetros**. Se Var(V) = Var(W) = 1, então λ = 1 para cada, e o mínimo tem λ = 2 e média 1/2.",
+          "**Mistura de populações** (Teorema da Probabilidade Total): quando objetos de tipos A e B, com exponenciais distintas, são sorteados, **P(C) = P(C|A)·P(A) + P(C|B)·P(B)**, com P(A) e P(B) as proporções de cada tipo.",
+          "**Distribuição gama**: tem parâmetros α e β; média α/β e variância α/β². Com **α = 1 e β = λ**, a gama **reduz-se à exponencial**.",
+          "**Soma de n exponenciais independentes e idênticas** segue gama com α = n e β = λ; a variância da soma é n/λ².",
+          "**Diferença de duas exponenciais iid**: não é exponencial; resulta na distribuição de **Laplace**, simétrica em torno de zero, com pico agudo e caudas mais pesadas que a normal.",
+          "**Weibull**: generaliza a exponencial; sua f.d.a. é 1 − e^(−(z/λ)^k), e a exponencial aparece como transformação de uma Weibull.",
+          "**Cuidado**: multiplicar por constante ou somar exponenciais **não** mantém uma exponencial (2V + 2W tem variância 8, mas não é exponencial)."
+        ],
+        "teoria": [
+          {
+            "statement": "O mínimo de duas variáveis exponenciais independentes é também exponencial, com parâmetro igual à soma dos parâmetros.",
+            "isTrue": true,
+            "explanation": "A probabilidade de ambas excederem t é e^(−λ₁t)·e^(−λ₂t) = e^(−(λ₁+λ₂)t)."
+          },
+          {
+            "statement": "A distribuição exponencial é um caso particular da gama, quando α = 1.",
+            "isTrue": true,
+            "explanation": "Com α = 1 e β = λ a f.d.p. gama vira λ·e^(−λx)."
+          },
+          {
+            "statement": "A diferença entre duas exponenciais independentes e idênticas segue distribuição exponencial.",
+            "isTrue": false,
+            "explanation": "A diferença assume valores negativos e segue a distribuição de Laplace."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Para componentes de tipos diferentes com exponenciais distintas, a probabilidade global é obtida pelo teorema da probabilidade total.",
+            "isTrue": true,
+            "explanation": "Pondera-se a probabilidade de cada tipo pela proporção desse tipo no total."
+          },
+          {
+            "statement": "A soma de n exponenciais independentes de mesmo parâmetro λ segue exponencial de parâmetro nλ.",
+            "isTrue": false,
+            "explanation": "A soma segue gama (α = n, β = λ); a exponencial com parâmetro somado é o mínimo, não a soma."
+          },
+          {
+            "statement": "A distribuição de Laplace apresenta pico agudo e caudas mais pesadas que a normal.",
+            "isTrue": true,
+            "explanation": "É formada pela união de duas caudas exponenciais."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Teorema da probabilidade total com exponenciais",
+            "pageRef": 25
+          },
+          {
+            "topic": "Exponencial como caso da gama",
+            "pageRef": 27
+          },
+          {
+            "topic": "Distribuição de Laplace",
+            "pageRef": 28
+          },
+          {
+            "topic": "Weibull",
+            "pageRef": 29
+          },
+          {
+            "topic": "Soma de exponenciais",
+            "pageRef": 30
+          }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a10/s04",
+      "bizu": {
+        "summary": [
+          "**Distribuição normal (gaussiana)** N(μ, σ²): f.d.p. em forma de **sino**, definida em toda a reta real. Os **parâmetros μ (média) e σ² (variância) são independentes**.",
+          "**Simetria**: em torno de μ; **média = mediana = moda = μ**. Logo, P(X > μ + k) = P(X < μ − k) e P(μ < X < μ + k) = P(μ − k < X < μ).",
+          "**Efeito da variância**: quanto **maior σ²**, mais achatada a curva (pico baixo, caudas largas); quanto **menor σ²**, mais alta e concentrada.",
+          "**Pontos de inflexão**: ocorrem exatamente em **μ − σ** e **μ + σ**.",
+          "**Normal padrão Z ~ N(0, 1)**: média 0 e variância 1. Suas probabilidades vêm de tabelas.",
+          "**Tabela de P(0 < Z < z)**: P(Z > z) = 0,5 − P(0 < Z < z). Por simetria, P(−z < Z < 0) = P(0 < Z < z) e P(Z < −z) = P(Z > z). Para z = 1,96: P(0 < Z < 1,96) = 0,475.",
+          "**Probabilidades em módulo**: **P(|Z| < z) = 2·P(0 < Z < z)**; **P(|Z| > z) = 1 − 2·P(0 < Z < z)**. Com z = 1,96: 0,95 e 0,05.",
+          "**Tabela acumulada**: outro formato lista P(Z < z) diretamente; nesse caso, P(0 < Z < z) = P(Z < z) − 0,5."
+        ],
+        "teoria": [
+          {
+            "statement": "Na distribuição normal, a média, a mediana e a moda coincidem.",
+            "isTrue": true,
+            "explanation": "A curva é simétrica em torno de μ e unimodal."
+          },
+          {
+            "statement": "Quanto menor a variância de uma normal, mais achatada é a curva.",
+            "isTrue": false,
+            "explanation": "Variância menor concentra a distribuição, deixando a curva mais alta e estreita; a variância maior é que achata."
+          },
+          {
+            "statement": "Os pontos de inflexão da curva normal ocorrem em μ − σ e μ + σ.",
+            "isTrue": true,
+            "explanation": "É a distância de um desvio padrão à média em que a concavidade muda."
+          },
+          {
+            "statement": "Na normal padrão, P(|Z| < 1,96) é aproximadamente 0,95.",
+            "isTrue": true,
+            "explanation": "2 × P(0 < Z < 1,96) = 2 × 0,475 = 0,95."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Para a normal padrão, P(Z > z) = 0,5 − P(0 < Z < z), com z positivo.",
+            "isTrue": true,
+            "explanation": "Metade da área (0,5) fica à direita da média."
+          },
+          {
+            "statement": "A distribuição normal padrão tem média 1 e variância 0.",
+            "isTrue": false,
+            "explanation": "A normal padrão tem média 0 e variância 1."
+          },
+          {
+            "statement": "Pela simetria da normal padrão, P(Z ≥ 2) = 1 − P(Z ≤ −2).",
+            "isTrue": false,
+            "explanation": "Por simetria, P(Z ≥ 2) = P(Z ≤ −2). A expressão 1 − P(Z ≤ −2) equivale a P(Z > −2)."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "F.d.p. e parâmetros da normal",
+            "pageRef": 32
+          },
+          {
+            "topic": "Efeito da variância; simetria",
+            "pageRef": 33
+          },
+          {
+            "topic": "Pontos de inflexão",
+            "pageRef": 35
+          },
+          {
+            "topic": "Tabela da normal padrão",
+            "pageRef": 38
+          },
+          {
+            "topic": "Probabilidades em módulo |Z|",
+            "pageRef": 39
+          },
+          {
+            "topic": "Tabela acumulada",
+            "pageRef": 41
+          }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a10/s05",
+      "bizu": {
+        "summary": [
+          "**Padronização**: para uma normal qualquer N(μ, σ²), calcule **z = (x − μ)/σ**. Probabilidades de X viram probabilidades de Z (normal padrão): P(X < 7) com μ = 1 e σ = 3 é P(Z < 2) = 0,9772.",
+          "**Intervalos com dois limites**: padronize **cada extremo**. Assim, P(4 < X < 7) com μ = 1 e σ = 3 vira o trecho de Z entre 1 e 2, calculado como a diferença entre as áreas de 0 a 2 e de 0 a 1 da tabela.",
+          "**Intervalos simétricos** em torno da média, P(μ − k < X < μ + k), exigem apenas um z (o outro é o seu oposto).",
+          "**Valor de x a partir da probabilidade**: ache z na tabela e use **x = μ + z·σ**. Ex.: P(X < x) = 0,8 → P(0 < Z < z) = 0,3 → z ≈ 0,84.",
+          "**Regra empírica 68–95–99,7**: P(μ ± σ) ≈ 68%, P(μ ± 2σ) ≈ 95% e P(μ ± 3σ) ≈ 99,7%. Os valores tabelados são 0,6826, 0,9544 e 0,9973.",
+          "**Exemplo**: média 100 e desvio 10; P(X > 110) corresponde a P(Z > 1), cerca de 16% (a metade de 32%).",
+          "**Extremos**: valores como P(Z < −0,42) = 0,338 vêm da tabela acumulada; P(3475 < X < 3600) = 0,5 − 0,338 = 0,162."
+        ],
+        "teoria": [
+          {
+            "statement": "A padronização de uma normal N(μ, σ²) é feita por z = (x − μ)/σ.",
+            "isTrue": true,
+            "explanation": "Subtrai-se a média e divide-se pelo desvio padrão para obter N(0, 1)."
+          },
+          {
+            "statement": "A regra empírica indica que cerca de 95% dos valores de uma normal ficam entre μ − σ e μ + σ.",
+            "isTrue": false,
+            "explanation": "A faixa μ ± σ contém cerca de 68%; 95% corresponde a μ ± 2σ."
+          },
+          {
+            "statement": "Para encontrar x tal que P(X < x) = 0,95 em uma normal de média 2500 e desvio 1500, usa-se z = 1,64 e x = 2500 + 1,64·1500.",
+            "isTrue": true,
+            "explanation": "Inverte-se a padronização: x = μ + zσ = 4960."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Em uma normal com média 100 e desvio padrão 10, P(90 < X < 110) é aproximadamente 68%.",
+            "isTrue": true,
+            "explanation": "O intervalo é μ ± σ, que reúne cerca de 68% da distribuição."
+          },
+          {
+            "statement": "Em P(4 < X < 7) para N(1, 9), basta padronizar apenas o valor 7.",
+            "isTrue": false,
+            "explanation": "É preciso padronizar os dois extremos: z = 1 e z = 2."
+          },
+          {
+            "statement": "A probabilidade de uma normal ficar a até 3 desvios padrão da média é de aproximadamente 99,7%.",
+            "isTrue": true,
+            "explanation": "É a terceira faixa da regra empírica."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Fórmula de padronização",
+            "pageRef": 42
+          },
+          {
+            "topic": "Intervalos com dois extremos",
+            "pageRef": 43
+          },
+          {
+            "topic": "Cálculo de x a partir de probabilidade",
+            "pageRef": 44
+          },
+          {
+            "topic": "Regra empírica 68–95–99,7",
+            "pageRef": 46
+          },
+          {
+            "topic": "Exercícios de aplicação",
+            "pageRef": 49
+          }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a10/s06",
+      "bizu": {
+        "summary": [
+          "**Soma de normais independentes** é normal, com **média = soma das médias** e **variância = soma das variâncias**. Somar, subtrair, multiplicar ou dividir uma normal por constante também resulta em normal: se X ~ N(3, 4), Y = 2X − 6 tem E(Y) = 0 e Var(Y) = 16.",
+          "**Teorema Central do Limite (TCL)**: para variáveis **independentes e identicamente distribuídas** (de qualquer distribuição), a soma tende a uma **normal** quando n cresce, com **E(Y) = n·μ** e **V(Y) = n·σ²**.",
+          "**Exemplo**: 100 variáveis com média 3 e variância 4 → soma com média 300 e variância 400.",
+          "**TCL sem distribuição idêntica**: mesmo com distribuições diferentes a soma é aproximadamente normal, sob condições razoáveis.",
+          "**Binomial → normal**: X ~ B(n, p) pode ser aproximada por normal com **μ = n·p** e **σ² = n·p·q**, quando n é grande. Regra prática: n·mín(p, q) > 5 (melhor > 15).",
+          "**Correção de continuidade**: como a binomial é discreta, estenda o intervalo em **0,5 de cada lado**: P(20 ≤ X ≤ 30) ≈ P(19,5 < Y < 30,5). Para n = 50 e p = 0,5 dá 0,8812, contra 0,8811 exato.",
+          "**Exemplo de uso**: 144 pessoas e p = 0,1 → μ = 14,4 e σ² = 12,96 (σ = 3,6); depois padronize os limites já corrigidos."
+        ],
+        "teoria": [
+          {
+            "statement": "A soma de variáveis normais independentes é normal, com média e variância iguais, respectivamente, à soma das médias e das variâncias.",
+            "isTrue": true,
+            "explanation": "Propriedade da família normal."
+          },
+          {
+            "statement": "O Teorema Central do Limite afirma que a soma de variáveis independentes e identicamente distribuídas tende a uma distribuição normal quando n cresce.",
+            "isTrue": true,
+            "explanation": "Vale para qualquer distribuição de origem com média e variância finitas."
+          },
+          {
+            "statement": "Na aproximação normal da binomial, a variância da normal é n·p.",
+            "isTrue": false,
+            "explanation": "A variância é n·p·q; a média é n·p."
+          },
+          {
+            "statement": "A correção de continuidade amplia em 0,5 cada extremo do intervalo [a, b] da binomial ao aproximar pela normal.",
+            "isTrue": true,
+            "explanation": "P(a ≤ X ≤ b) ≈ P(a − 0,5 < Y < b + 0,5)."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Para 64 variáveis binomiais independentes B(12; 0,25), a soma tem média 192 e variância 144.",
+            "isTrue": true,
+            "explanation": "Cada B(12; 0,25) tem média 3 e variância 2,25; multiplicando por 64: 192 e 144."
+          },
+          {
+            "statement": "Se X é normal com média 3 e variância 4, Y = 2X − 6 tem variância 8.",
+            "isTrue": false,
+            "explanation": "Var(Y) = 2²·4 = 16; a constante −6 não altera a variância."
+          },
+          {
+            "statement": "A aproximação normal da binomial é melhor quando n·p e n·q são grandes.",
+            "isTrue": true,
+            "explanation": "A regra prática pede n·mín(p, q) maior que 5, preferivelmente maior que 15."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Soma de normais",
+            "pageRef": 51
+          },
+          {
+            "topic": "Transformações lineares da normal",
+            "pageRef": 52
+          },
+          {
+            "topic": "Teorema Central do Limite",
+            "pageRef": 54
+          },
+          {
+            "topic": "Aproximação da binomial pela normal",
+            "pageRef": 56
+          },
+          {
+            "topic": "Correção de continuidade",
+            "pageRef": 59
+          }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a10/s07",
+      "bizu": {
+        "summary": [
+          "**Qui-quadrado (χ²) com k graus de liberdade**: soma dos **quadrados de k variáveis normais padrão independentes**. É sempre **positivo (x ≥ 0)** e **assimétrico à direita**; quanto maior k, mais simétrico, tendendo à normal.",
+          "**Momentos do χ²**: **E = k** e **Var = 2k**. É caso particular da gama (α = k/2, β = 1/2); com k = 2, resulta numa exponencial.",
+          "**t de Student**: T = Z/√(χ²ₖ/k), com Z normal padrão e χ² independentes. Único parâmetro: **k graus de liberdade**. Curva em sino, simétrica, média, mediana e moda iguais a 0.",
+          "**Variância da t**: k/(k − 2) (para k > 2), **sempre maior que 1**. A t tem **caudas mais pesadas** que a normal e **se aproxima da normal** quando k (ou o tamanho da amostra) cresce.",
+          "**Tabela t**: linhas = graus de liberdade; colunas = probabilidades acumuladas. Pela simetria, P(T < −t) = P(T > t). Ex.: 5 g.l. e P(T < t) = 0,9 → t = 1,48.",
+          "**F de Snedecor**: razão entre dois χ² independentes divididos pelos respectivos graus de liberdade, F = (χ²ₖ₁/k₁)/(χ²ₖ₂/k₂). Tem **dois parâmetros**: k₁ (numerador) e k₂ (denominador). Sempre positiva e assimétrica.",
+          "**Relações**: o quadrado de uma t com k g.l. é uma **F(1, k)**. As tabelas de F são separadas por probabilidade (ex.: P(F > f) = 0,05, com f = 3,33 para 5 e 10 g.l.).",
+          "**Exemplo de reconhecimento**: soma de n quadrados de normais padrão é χ² com n g.l.; o quociente (Σ Xᵢ²/k)/(Σ Yᵢ²/m) é F(k, m)."
+        ],
+        "teoria": [
+          {
+            "statement": "A distribuição qui-quadrado com k graus de liberdade tem esperança k e variância 2k.",
+            "isTrue": true,
+            "explanation": "Resultado padrão da soma de k normais padrão ao quadrado."
+          },
+          {
+            "statement": "A distribuição qui-quadrado pode assumir valores negativos.",
+            "isTrue": false,
+            "explanation": "É soma de quadrados, portanto sempre não negativa."
+          },
+          {
+            "statement": "A distribuição t de Student é simétrica em torno de zero e tem caudas mais pesadas que a normal padrão.",
+            "isTrue": true,
+            "explanation": "Sua variância k/(k − 2) é maior que 1."
+          },
+          {
+            "statement": "A distribuição F de Snedecor tem apenas um parâmetro, o número de graus de liberdade.",
+            "isTrue": false,
+            "explanation": "Tem dois: graus de liberdade do numerador e do denominador."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "À medida que os graus de liberdade aumentam, a distribuição t de Student se aproxima da normal padrão.",
+            "isTrue": true,
+            "explanation": "A variância k/(k − 2) tende a 1."
+          },
+          {
+            "statement": "O quadrado de uma variável t de Student com k graus de liberdade segue uma distribuição F com 1 grau no numerador e k no denominador.",
+            "isTrue": true,
+            "explanation": "T² = Z²/(χ²ₖ/k), em que Z² é χ² com 1 g.l."
+          },
+          {
+            "statement": "Quanto menor o número de graus de liberdade, mais simétrica é a distribuição qui-quadrado.",
+            "isTrue": false,
+            "explanation": "Com mais graus de liberdade ela fica mais simétrica e se aproxima da normal."
+          },
+          {
+            "statement": "A distribuição qui-quadrado com 2 graus de liberdade corresponde a uma exponencial.",
+            "isTrue": true,
+            "explanation": "É a gama com α = 1 e β = 1/2, ou seja, exponencial com λ = 1/2."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Definição do qui-quadrado",
+            "pageRef": 63
+          },
+          {
+            "topic": "Qui-quadrado como caso da gama; média e variância",
+            "pageRef": 65
+          },
+          {
+            "topic": "Definição da t de Student",
+            "pageRef": 68
+          },
+          {
+            "topic": "Variância da t e aproximação da normal",
+            "pageRef": 69
+          },
+          {
+            "topic": "Definição da F de Snedecor",
+            "pageRef": 73
+          },
+          {
+            "topic": "Relação T² e F",
+            "pageRef": 74
+          }
+        ]
+      }
+    }
+  ]
+}

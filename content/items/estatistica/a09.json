@@ -1,0 +1,327 @@
+{
+  "aula": "estatistica/a09",
+  "batch": "w2-bizu-estatistica",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "estatistica/a09/s01",
+      "bizu": {
+        "summary": [
+          "**Variável discreta × contínua**: a discreta assume valores enumeráveis (nº de caras, face do dado); a **contínua** assume qualquer valor de um intervalo (tempo, peso, temperatura), em quantidade não enumerável.",
+          "**Função densidade de probabilidade (f.d.p.) f(x)**: descreve a distribuição da variável contínua. Condições: **f(x) ≥ 0** e **área total sob a curva = 1** (probabilidade do espaço amostral).",
+          "**Probabilidade de um intervalo** = **área sob f(x)** entre a e b: P(a < X < b) = ∫ f(x) dx de a até b. Quando o gráfico é figura simples, use geometria (retângulo = base × altura; triângulo = base × altura / 2; trapézio = (B + b) × altura / 2).",
+          "**Integral definida**: ache a primitiva F(x), calcule **F(b) − F(a)** e **não** F(b − a). Regras: ∫xⁿ dx = xⁿ⁺¹/(n + 1) (n ≠ −1); ∫a dx = a·x; ∫eˣ dx = eˣ; constantes multiplicativas saem da integral.",
+          "**Probabilidade pontual nula**: P(X = x) = 0 em variável contínua. Logo, **tanto faz usar < ou ≤** nos extremos do intervalo.",
+          "**F.d.p. por partes**: pode haver fórmulas diferentes em intervalos diferentes; integre cada pedaço separadamente e some.",
+          "**Constante da f.d.p.**: para achar k (ou α) em f(x) dada, imponha que a integral em todo o intervalo vale 1. Uma f.d.p. linear pode ser tratada como reta (triângulo ou trapézio) para calcular áreas sem integrar."
+        ],
+        "teoria": [
+          {
+            "statement": "Em uma variável aleatória contínua, a probabilidade de a variável ser exatamente igual a um valor específico é zero.",
+            "isTrue": true,
+            "explanation": "A probabilidade corresponde a uma área; um ponto tem área nula."
+          },
+          {
+            "statement": "A área total sob a curva de uma função densidade de probabilidade é igual a 100%.",
+            "isTrue": true,
+            "explanation": "Representa a probabilidade de todo o espaço amostral, igual a 1."
+          },
+          {
+            "statement": "Para calcular P(0,5 < X < 0,6) com F(x) = x³, calcula-se F(0,6 − 0,5).",
+            "isTrue": false,
+            "explanation": "O correto é F(0,6) − F(0,5) = 0,216 − 0,125 = 0,091."
+          },
+          {
+            "statement": "A f.d.p. de uma variável contínua pode assumir valores negativos, desde que a integral total seja 1.",
+            "isTrue": false,
+            "explanation": "É condição que f(x) ≥ 0 em todo o domínio."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Em variáveis contínuas, P(X ≤ 2) é igual a P(X < 2).",
+            "isTrue": true,
+            "explanation": "Como P(X = 2) = 0, a igualdade não altera a probabilidade."
+          },
+          {
+            "statement": "Para determinar a constante de uma f.d.p., impõe-se que a integral de f(x) em todo o seu domínio seja igual a 1.",
+            "isTrue": true,
+            "explanation": "É a condição de normalização da densidade."
+          },
+          {
+            "statement": "A integral de uma constante a em relação a x é a/x.",
+            "isTrue": false,
+            "explanation": "∫a dx = a·x."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Variável discreta × contínua",
+            "pageRef": 4
+          },
+          {
+            "topic": "Condições da f.d.p. e área igual a 1",
+            "pageRef": 5
+          },
+          {
+            "topic": "Áreas pela geometria",
+            "pageRef": 6
+          },
+          {
+            "topic": "Integrais básicas",
+            "pageRef": 7
+          },
+          {
+            "topic": "Integral definida F(b) − F(a)",
+            "pageRef": 9
+          },
+          {
+            "topic": "F.d.p. definida por partes",
+            "pageRef": 11
+          }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a09/s02",
+      "bizu": {
+        "summary": [
+          "**Função de distribuição acumulada (f.d.a.)**: **F(x) = P(X ≤ x)**. Na variável contínua é a **integral da f.d.p.** desde o extremo inferior até x.",
+          "**Propriedades da f.d.a.**: **não decrescente**; 0 ≤ F(x) ≤ 1; vale 0 para x menor ou igual ao extremo inferior e **1 para x maior ou igual ao extremo superior**.",
+          "**Cálculo**: F(x) = G(x) − G(x_I), em que G é a primitiva da f.d.p. e x_I, o extremo inferior. Em f.d.p. por partes, **acumule**: a parcela de cada intervalo soma-se ao valor de F no fim do intervalo anterior.",
+          "**Derivada**: a f.d.p. é a derivada da f.d.a. (f(x) = F′(x)).",
+          "**Mediana**: valor x_Md que divide a distribuição ao meio, **F(x_Md) = 0,5**. Somar, subtrair, multiplicar ou dividir a variável por uma constante faz a mediana sofrer a mesma operação (Md(2X) = 2·Md(X)).",
+          "**Moda**: valor em que a f.d.p. é **máxima**. Se f for crescente no intervalo, a moda é o maior valor; se decrescente, o menor. Em parábola com concavidade para cima, teste os extremos (pode haver duas modas).",
+          "**Achar a moda com derivada**: derive f(x) e iguale a zero. Para f(x) = 12x²(1 − x), f′ = 24x − 36x² = 0 → x = 2/3. Derivadas úteis: (xᵃ)′ = a·xᵃ⁻¹, constante → 0, (eˣ)′ = eˣ, soma → soma das derivadas."
+        ],
+        "teoria": [
+          {
+            "statement": "A função de distribuição acumulada de uma variável contínua é não decrescente e assume valores entre 0 e 1.",
+            "isTrue": true,
+            "explanation": "Probabilidades acumuladas só aumentam e não excedem 1."
+          },
+          {
+            "statement": "A mediana de uma variável contínua é o valor x tal que F(x) = 0,5.",
+            "isTrue": true,
+            "explanation": "Metade da probabilidade fica abaixo da mediana."
+          },
+          {
+            "statement": "Para qualquer valor x acima do extremo superior da variável, a f.d.a. é igual a 0.",
+            "isTrue": false,
+            "explanation": "Acima do extremo superior toda a probabilidade já foi acumulada: F(x) = 1."
+          },
+          {
+            "statement": "Se Md(X) é a mediana de X, então Md(X + 3) = Md(X) + 3.",
+            "isTrue": true,
+            "explanation": "A mediana é um valor da distribuição e se desloca junto com ela."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A moda de uma variável contínua é o ponto onde a f.d.p. atinge seu valor máximo.",
+            "isTrue": true,
+            "explanation": "É o ponto de maior densidade."
+          },
+          {
+            "statement": "Para uma f.d.p. estritamente decrescente em [a, b], a moda é o maior valor do intervalo.",
+            "isTrue": false,
+            "explanation": "Sendo decrescente, o máximo da densidade ocorre no menor valor, x = a."
+          },
+          {
+            "statement": "Se f(x) = 2/x³ em [1, ∞), a f.d.a. é F(x) = 1 − 1/x².",
+            "isTrue": true,
+            "explanation": "A primitiva é −x⁻²; subtraindo o valor em x = 1 resulta 1 − 1/x²."
+          },
+          {
+            "statement": "Em f.d.p. definida por partes, a f.d.a. de cada intervalo é calculada sem considerar o que foi acumulado antes.",
+            "isTrue": false,
+            "explanation": "A f.d.a. é cumulativa: soma-se o valor acumulado ao fim do intervalo anterior."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Definição da f.d.a.",
+            "pageRef": 16
+          },
+          {
+            "topic": "Características da f.d.a.",
+            "pageRef": 17
+          },
+          {
+            "topic": "F.d.a. por partes",
+            "pageRef": 19
+          },
+          {
+            "topic": "Mediana",
+            "pageRef": 22
+          },
+          {
+            "topic": "Moda",
+            "pageRef": 23
+          },
+          {
+            "topic": "Derivadas para achar a moda",
+            "pageRef": 25
+          }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a09/s03",
+      "bizu": {
+        "summary": [
+          "**Esperança contínua**: **E(X) = ∫ x·f(x) dx**, no intervalo da variável. Em f.d.p. por partes, calcule uma integral para cada trecho e some.",
+          "**Propriedades da esperança** (valem como no caso discreto): E(X ± Y) = E(X) ± E(Y); E(k·X) = k·E(X); E(k) = k; se X e Y são independentes, E(X·Y) = E(X)·E(Y).",
+          "**Simetria**: em distribuição simétrica e unimodal, **média = mediana = moda**. Verifique que o intervalo é simétrico em torno do ponto, não só a fórmula.",
+          "**Variância**: **V(X) = E(X²) − [E(X)]²**, em que E(X²) = ∫ x²·f(x) dx (segundo momento).",
+          "**Propriedades da variância**: **V(X + k) = V(X)**; **V(k·X) = k²·V(X)**; se X e Y independentes, **V(X + Y) = V(X) + V(Y)**. Desvio padrão = √variância. Ex.: V(3X) = 9·V(X).",
+          "**Covariância**: **Cov(X, Y) = E(XY) − E(X)·E(Y)**. Propriedades: simétrica; Cov(X, X) = V(X); Cov(k, X) = 0; Cov(kX, Y) = k·Cov(X, Y); linear na soma.",
+          "**Variância de soma/diferença sem independência**: **V(X ± Y) = V(X) + V(Y) ± 2·Cov(X, Y)**.",
+          "**Correlação**: **ρ = Cov(X, Y)/(σx·σy)**. Ex.: variâncias 8 e 2, covariância 3 → ρ = 3/(√8·√2) = 3/4."
+        ],
+        "teoria": [
+          {
+            "statement": "A variância de uma variável aleatória é E(X²) − [E(X)]², seja ela discreta ou contínua.",
+            "isTrue": true,
+            "explanation": "A expressão é geral; muda apenas o cálculo de E(X²), por soma ou por integral."
+          },
+          {
+            "statement": "Somar uma constante k a uma variável aleatória aumenta sua variância em k.",
+            "isTrue": false,
+            "explanation": "V(X + k) = V(X): a variância mede dispersão e não se altera com translação."
+          },
+          {
+            "statement": "V(k·X) = k²·V(X).",
+            "isTrue": true,
+            "explanation": "A constante, ao sair da variância, é elevada ao quadrado."
+          },
+          {
+            "statement": "Se X é variável contínua com E(X) = 1 e E(X²) = 4, então V(X) = 3.",
+            "isTrue": true,
+            "explanation": "V(X) = 4 − 1² = 3."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Cov(X, X) = V(X).",
+            "isTrue": true,
+            "explanation": "A covariância de uma variável consigo mesma é sua variância."
+          },
+          {
+            "statement": "V(X + Y) = V(X) + V(Y) vale para quaisquer X e Y, mesmo dependentes.",
+            "isTrue": false,
+            "explanation": "No caso geral há o termo 2·Cov(X, Y); a soma simples exige independência (covariância nula)."
+          },
+          {
+            "statement": "O coeficiente de correlação é a covariância dividida pelo produto dos desvios padrão.",
+            "isTrue": true,
+            "explanation": "ρ = Cov(X, Y)/(σx·σy)."
+          },
+          {
+            "statement": "Em uma distribuição simétrica com apenas uma moda, a média coincide com a mediana e com a moda.",
+            "isTrue": true,
+            "explanation": "Propriedade das distribuições simétricas unimodais."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Esperança por integral",
+            "pageRef": 28
+          },
+          {
+            "topic": "Propriedades da esperança",
+            "pageRef": 30
+          },
+          {
+            "topic": "Simetria: média = mediana = moda",
+            "pageRef": 31
+          },
+          {
+            "topic": "Variância e segundo momento",
+            "pageRef": 35
+          },
+          {
+            "topic": "Propriedades da variância",
+            "pageRef": 36
+          },
+          {
+            "topic": "Covariância e correlação",
+            "pageRef": 39
+          }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a09/s04",
+      "bizu": {
+        "summary": [
+          "**Desigualdades de probabilidade** estimam um limite para a probabilidade conhecendo apenas a **média e a variância** da variável (qualquer distribuição).",
+          "**Chebyshev**: **P(|X − μ| ≥ δ) ≤ σ²/δ²**, para qualquer δ > 0. Em desvios padrão (δ = k·σ): **P(|X − μ| ≥ k·σ) ≤ 1/k²**.",
+          "**Complementar**: P(|X − μ| < δ) ≥ 1 − σ²/δ². Ex.: fábrica com μ = 1000 e σ² = 200; P(X < 900 ou X > 1100) ≤ 200/100² = 0,02, e a chance de ficar entre 900 e 1100 é de pelo menos 0,98.",
+          "**Uso para achar variância**: com P(|X − 20| ≥ 5) ≤ 0,0625, tem-se σ²/25 = 0,0625, então σ² = 1,5625 e σ = 1,25.",
+          "**Chebyshev é um limite superior**: não dá a probabilidade exata, só garante que ela não excede o valor.",
+          "**Desigualdade unilateral (Cantelli)**: **P(X − μ ≥ δ) ≤ σ²/(σ² + δ²)**. Aplica-se a um só lado da média.",
+          "**Aplicação**: com E(X) = 1 e E(X²) = 4, σ² = 3; P(X > 4) corresponde a δ = 3 e é no máximo 3/(3 + 9) = 0,25.",
+          "**Dica de prova**: determine primeiro μ, σ² e δ (a distância ao centro, em módulo) e depois substitua na fórmula."
+        ],
+        "teoria": [
+          {
+            "statement": "A desigualdade de Chebyshev afirma que P(|X − μ| ≥ δ) é no máximo σ²/δ².",
+            "isTrue": true,
+            "explanation": "É um limite superior válido para qualquer distribuição com média e variância finitas."
+          },
+          {
+            "statement": "A desigualdade de Chebyshev fornece o valor exato da probabilidade de a variável se afastar da média.",
+            "isTrue": false,
+            "explanation": "Fornece apenas uma cota superior (≤), não o valor exato."
+          },
+          {
+            "statement": "Pelo teorema de Chebyshev, a probabilidade de um valor estar a 2 ou mais desvios padrão da média é no máximo 1/4.",
+            "isTrue": true,
+            "explanation": "1/k² com k = 2."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A desigualdade unilateral considera P(X − μ ≥ δ) ≤ σ²/(σ² + δ²).",
+            "isTrue": true,
+            "explanation": "Limite para a cauda de um só lado."
+          },
+          {
+            "statement": "Com μ = 1000 e σ² = 200, a probabilidade de a produção ficar fora do intervalo (900, 1100) é no máximo 0,2.",
+            "isTrue": false,
+            "explanation": "δ = 100 e σ²/δ² = 200/10000 = 0,02."
+          },
+          {
+            "statement": "Pelo teorema de Chebyshev, a probabilidade de uma variável ficar a menos de 2 desvios padrão da média é de pelo menos 75%.",
+            "isTrue": true,
+            "explanation": "A probabilidade de afastar-se 2σ ou mais é no máximo 1/4, então a complementar é de pelo menos 3/4."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Desigualdade de Chebyshev",
+            "pageRef": 42
+          },
+          {
+            "topic": "Aplicação numérica (fábrica)",
+            "pageRef": 43
+          },
+          {
+            "topic": "Determinação da variância",
+            "pageRef": 45
+          },
+          {
+            "topic": "Desigualdade unilateral",
+            "pageRef": 46
+          },
+          {
+            "topic": "Aplicação com E(X) e E(X²)",
+            "pageRef": 48
+          }
+        ]
+      }
+    }
+  ]
+}

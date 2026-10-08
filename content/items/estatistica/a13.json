@@ -1,0 +1,233 @@
+{
+  "aula": "estatistica/a13",
+  "batch": "w2-bizu-estatistica",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "estatistica/a13/s01",
+      "bizu": {
+        "summary": [
+          "**Regressão linear múltipla**: uma variável dependente Y e **duas ou mais variáveis independentes** X₁, X₂, …, Xₖ. Modelo: Y = α + β₁X₁ + … + βₖXₖ + ε. Na simples, a equação descreve uma reta; na múltipla, um plano ou hiperplano.",
+          "**Pressupostos do erro** (iguais aos da simples): **E(εᵢ) = 0**; **Var(εᵢ) = σ²** constante (**homocedasticidade**); **erros não correlacionados** (Corr(εᵢ, εⱼ) = 0 para i ≠ j); e, para os testes, normalidade dos erros.",
+          "**Forma matricial**: **y = Xβ + ε**. y é o vetor-coluna (n × 1) dos valores observados; X é a matriz das variáveis explicativas, cuja **primeira coluna é só de 1** (representa o intercepto); β é o vetor dos parâmetros; ε, o vetor dos erros.",
+          "**Estimador de mínimos quadrados**: **β̂ = (XᵀX)⁻¹ Xᵀy**, em que Xᵀ é a transposta de X e (XᵀX)⁻¹, a inversa de XᵀX.",
+          "**Valores ajustados e resíduos**: ŷ = Xβ̂ e e = y − ŷ.",
+          "**Dimensões**: com n observações e p parâmetros (incluindo o intercepto), X é n × p; XᵀX é p × p e Xᵀy é p × 1. Multiplicar uma matriz 3 × 5 por uma 5 × 3 resulta em 3 × 3.",
+          "**Dica de prova**: raramente se exige o cálculo completo (inversa de matriz); é comum já fornecerem (XᵀX)⁻¹ e Xᵀy para multiplicar. Atenção à **ordem** das multiplicações.",
+          "**Exemplo da aula**: o modelo ajustado foi Y = −0,5 + 2·x₁ − 0,5·x₂ + ε (5 observações e 3 parâmetros)."
+        ],
+        "teoria": [
+          {
+            "statement": "Na regressão linear múltipla há uma variável dependente e duas ou mais variáveis independentes.",
+            "isTrue": true,
+            "explanation": "É o que diferencia a regressão múltipla da simples."
+          },
+          {
+            "statement": "Na forma matricial y = Xβ + ε, a primeira coluna da matriz X é formada por zeros.",
+            "isTrue": false,
+            "explanation": "A primeira coluna contém só valores 1, que correspondem ao intercepto."
+          },
+          {
+            "statement": "O estimador de mínimos quadrados do vetor de parâmetros é β̂ = (XᵀX)⁻¹Xᵀy.",
+            "isTrue": true,
+            "explanation": "É o resultado da minimização da soma dos quadrados dos resíduos em forma matricial."
+          },
+          {
+            "statement": "A homocedasticidade exige que a variância do erro seja constante para todos os valores das variáveis explicativas.",
+            "isTrue": true,
+            "explanation": "Var(εᵢ) = σ² para todo i."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Um dos pressupostos do modelo é que os erros tenham média zero.",
+            "isTrue": true,
+            "explanation": "E(εᵢ) = 0."
+          },
+          {
+            "statement": "No estimador β̂ = (XᵀX)⁻¹Xᵀy, a ordem dos fatores na multiplicação de matrizes é indiferente.",
+            "isTrue": false,
+            "explanation": "A multiplicação de matrizes não é comutativa; a ordem indicada deve ser respeitada."
+          },
+          {
+            "statement": "Com 3 parâmetros estimados (intercepto e duas variáveis), a matriz XᵀX tem dimensão 3 × 3.",
+            "isTrue": true,
+            "explanation": "XᵀX é p × p, com p = 3."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Regressão múltipla × simples",
+            "pageRef": 3
+          },
+          {
+            "topic": "Pressupostos sobre os erros",
+            "pageRef": 4
+          },
+          {
+            "topic": "Forma matricial do modelo",
+            "pageRef": 5
+          },
+          {
+            "topic": "Estimador β̂ = (XᵀX)⁻¹Xᵀy",
+            "pageRef": 6
+          },
+          {
+            "topic": "Exemplo numérico resolvido",
+            "pageRef": 7
+          },
+          {
+            "topic": "Questão com multiplicação de matrizes",
+            "pageRef": 11
+          }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a13/s02",
+      "bizu": {
+        "summary": [
+          "**Equação estimada**: Ŷ = a + b₁X₁ + b₂X₂. O intercepto a é o valor estimado de Y quando todas as variáveis valem zero; b₁ e b₂ são **efeitos parciais** (efeito de uma variável mantendo a outra constante).",
+          "**Decomposição da variação**: **SQT = SQM + SQR** (total = modelo + resíduos). **R² = SQM/SQT = 1 − SQR/SQT**. Exemplo: SQM = 60.000 e SQR = 15.000 → SQT = 75.000 e R² = 0,80.",
+          "**Graus de liberdade** (p = número de parâmetros, incluindo o intercepto): **total = n − 1**; **modelo = p − 1**; **resíduos = n − p**. Vale gl_total = gl_resíduos + gl_modelo. Se a fórmula usa k variáveis explicativas: gl_resíduos = n − k − 1.",
+          "**R² nunca diminui** ao incluir variáveis; a inclusão excessiva consome graus de liberdade. Por isso usa-se o **R² ajustado**: **R²_aj = 1 − (1 − R²)(n − 1)/(n − p)**.",
+          "**Quadrados médios**: **QMM = SQM/(p − 1)**, **QMR = SQR/(n − p)** e **QMT = SQT/(n − 1)**.",
+          "**Teste F global**: H₀: β₁ = β₂ = … = βₖ = 0 (nenhuma variável explica Y). **F* = QMM/QMR**, que segue **F com p − 1 e n − p graus de liberdade**. Se F* > F_crítico, rejeita-se H₀.",
+          "**Estimador da variância dos erros**: **σ̂² = SQR/(n − p) = QMR** (não viesado). O estimador de máxima verossimilhança divide por n (é viesado).",
+          "**Exemplo de tabela F**: com 5 observações e 3 parâmetros, o teste global usa 2 g.l. no numerador e 2 no denominador, e o valor crítico tabelado é 19,00 (a 5%). Se F* ficar abaixo disso, não se rejeita H₀."
+        ],
+        "teoria": [
+          {
+            "statement": "Na regressão múltipla, o coeficiente de determinação é R² = SQM/SQT.",
+            "isTrue": true,
+            "explanation": "É a fração da variação total explicada pelo modelo."
+          },
+          {
+            "statement": "Em um modelo com p parâmetros e n observações, os graus de liberdade dos resíduos são n − 1.",
+            "isTrue": false,
+            "explanation": "Os graus de liberdade dos resíduos são n − p; n − 1 é o total."
+          },
+          {
+            "statement": "A estatística F do teste global da regressão múltipla é QMM/QMR, com p − 1 e n − p graus de liberdade.",
+            "isTrue": true,
+            "explanation": "Compara a variação explicada pelo modelo com a variação residual, ambas por grau de liberdade."
+          },
+          {
+            "statement": "O R² ajustado é utilizado porque o R² tende a aumentar sempre que variáveis são incluídas no modelo.",
+            "isTrue": true,
+            "explanation": "O ajuste considera os graus de liberdade gastos pelas variáveis adicionais."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O estimador não viesado da variância dos erros é a soma dos quadrados dos resíduos dividida por n − p.",
+            "isTrue": true,
+            "explanation": "Ajustar pelos graus de liberdade corrige o viés de dividir por n."
+          },
+          {
+            "statement": "Com SQM = 60.000 e SQR = 15.000, o coeficiente de determinação é 0,25.",
+            "isTrue": false,
+            "explanation": "SQT = 75.000 e R² = 60.000/75.000 = 0,80."
+          },
+          {
+            "statement": "Se F* é maior que o valor crítico tabelado, rejeita-se a hipótese de que todos os coeficientes angulares são nulos.",
+            "isTrue": true,
+            "explanation": "F* grande indica que o modelo explica mais variação que o acaso."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Efeitos parciais e equação estimada",
+            "pageRef": 13
+          },
+          {
+            "topic": "SQT = SQM + SQR e R²",
+            "pageRef": 14
+          },
+          {
+            "topic": "Graus de liberdade e R² ajustado",
+            "pageRef": 15
+          },
+          {
+            "topic": "Quadrados médios e estatística F",
+            "pageRef": 17
+          },
+          {
+            "topic": "Estimadores da variância dos erros",
+            "pageRef": 19
+          },
+          {
+            "topic": "Exemplo completo de ANOVA da regressão",
+            "pageRef": 21
+          }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a13/s03",
+      "bizu": {
+        "summary": [
+          "**Problema da especificação**: escolher a forma matemática (função) e as **variáveis** que compõem o modelo de regressão. Um modelo mal especificado produz estimativas inadequadas.",
+          "**Formas funcionais possíveis**: linear (Y = α + βX), exponencial (Y = αβˣ), logarítmica (Y = α + β·log X), quadrática (Y = α + βX + γX²), entre outras.",
+          "**Como escolher**: pelo **conhecimento teórico prévio** do fenômeno ou pela **análise gráfica** dos dados (diagrama de dispersão). O R² de cada ajuste ajuda, mas não substitui o critério teórico.",
+          "**Variável omitida** (subespecificação): se o modelo correto tem X₃ e ela é excluída, o estimador de b₁ passa a ter esperança **E(b₁) = β₁ + θ₁·β₃**, ou seja, fica **viesado**, absorvendo o efeito de X₃ (quando X₃ é correlacionada com X₁).",
+          "**Termo omitido vai para o erro**: se um termo quadrático (experiência²) é omitido, ele passa a fazer parte do **termo de erro**, e o erro deixa de ter média zero, violando o pressuposto.",
+          "**Resumo**: especificar bem significa incluir as variáveis relevantes e usar a forma funcional adequada; omitir variáveis relevantes gera viés e erro contaminado."
+        ],
+        "teoria": [
+          {
+            "statement": "O problema da especificação consiste em definir a forma matemática do modelo e as variáveis independentes que o compõem.",
+            "isTrue": true,
+            "explanation": "Inclui a escolha tanto da função quanto dos regressores."
+          },
+          {
+            "statement": "A forma funcional do modelo de regressão deve ser escolhida exclusivamente pelo valor de R², sem considerar conhecimento prévio ou gráficos.",
+            "isTrue": false,
+            "explanation": "A escolha costuma se apoiar em conhecimento a priori do fenômeno ou na análise gráfica dos dados."
+          },
+          {
+            "statement": "Ao omitir uma variável relevante, o estimador dos demais coeficientes pode ficar viesado.",
+            "isTrue": true,
+            "explanation": "O efeito da variável excluída é incorporado ao coeficiente das incluídas, como em E(b₁) = β₁ + θ₁β₃."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Um termo quadrático omitido do modelo passa a integrar o termo de erro.",
+            "isTrue": true,
+            "explanation": "O que não é modelado é absorvido pelo erro, prejudicando seus pressupostos."
+          },
+          {
+            "statement": "Um modelo logarítmico Y = α + β·log X é um exemplo de forma funcional alternativa à linear.",
+            "isTrue": true,
+            "explanation": "A escolha da função faz parte do problema da especificação."
+          },
+          {
+            "statement": "A omissão de variáveis relevantes não afeta as propriedades do estimador de mínimos quadrados.",
+            "isTrue": false,
+            "explanation": "A omissão pode gerar viés nos coeficientes estimados."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Definição do problema da especificação",
+            "pageRef": 30
+          },
+          {
+            "topic": "Escolha da forma funcional",
+            "pageRef": 31
+          },
+          {
+            "topic": "Variável omitida e viés",
+            "pageRef": 32
+          },
+          {
+            "topic": "Termo omitido absorvido pelo erro",
+            "pageRef": 33
+          }
+        ]
+      }
+    }
+  ]
+}

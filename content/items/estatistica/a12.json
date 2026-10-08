@@ -1,0 +1,265 @@
+{
+  "aula": "estatistica/a12",
+  "batch": "w2-bizu-estatistica",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "estatistica/a12/s01",
+      "bizu": {
+        "summary": [
+          "**Correlação linear** mede a força da relação entre duas variáveis. O **diagrama de dispersão** (pontos x, y) sugere o tipo: pontos crescendo juntos = correlação positiva; um sobe e outro desce = negativa; sem padrão = nula; pontos exatamente em uma reta = perfeita.",
+          "**Coeficiente de correlação de Pearson (r)**: **r = Σ(Xᵢ − X̄)(Yᵢ − Ȳ) / √[Σ(Xᵢ − X̄)² · Σ(Yᵢ − Ȳ)²]**, o mesmo que S_XY/√(S_XX·S_YY).",
+          "**Fórmulas alternativas** (sem calcular desvios): numerador **ΣXᵢYᵢ − n·X̄·Ȳ**; denominadores **ΣXᵢ² − n·X̄²** e **ΣYᵢ² − n·Ȳ²**. Equivale a r = [n·ΣXY − ΣX·ΣY]/√{[n·ΣX² − (ΣX)²]·[n·ΣY² − (ΣY)²]}.",
+          "**Intervalo**: **−1 ≤ r ≤ 1**. **r > 0**: correlação positiva; **r < 0**: negativa; **r = ±1**: perfeita (pontos sobre uma reta); **r ≈ 0**: ausência de relação **linear**.",
+          "**Interpretação**: r = 0,9927 indica correlação positiva forte; r = −0,9918, negativa forte; r = 0,1132, praticamente nula. Um r próximo de 0 não impede relação não linear.",
+          "**Exemplo prático**: com somas de quadrados 5,00 e 5,20 e soma de produtos 5,00, r = 5/√(5·5,2) ≈ 0,98, relação linear intensa.",
+          "**Numerador da correlação** é a soma dos produtos dos desvios: tem o mesmo sinal da covariância, e o sinal de r vem dele."
+        ],
+        "teoria": [
+          {
+            "statement": "O coeficiente de correlação linear de Pearson assume valores entre −1 e 1.",
+            "isTrue": true,
+            "explanation": "É um coeficiente normalizado: o valor absoluto de r nunca excede 1."
+          },
+          {
+            "statement": "Se r = 1, os pontos do diagrama de dispersão estão todos sobre uma reta decrescente.",
+            "isTrue": false,
+            "explanation": "r = 1 indica reta perfeita crescente; a reta decrescente corresponde a r = −1."
+          },
+          {
+            "statement": "Um coeficiente de correlação próximo de zero indica ausência de relação linear entre as variáveis.",
+            "isTrue": true,
+            "explanation": "Pode haver outro tipo de relação (não linear), que r não captura."
+          },
+          {
+            "statement": "O numerador do coeficiente de Pearson pode ser calculado por ΣXᵢYᵢ − n·X̄·Ȳ.",
+            "isTrue": true,
+            "explanation": "É a forma desenvolvida de Σ(Xᵢ − X̄)(Yᵢ − Ȳ)."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O sinal do coeficiente de correlação é o sinal da soma dos produtos dos desvios Σ(Xᵢ − X̄)(Yᵢ − Ȳ).",
+            "isTrue": true,
+            "explanation": "O denominador é sempre positivo."
+          },
+          {
+            "statement": "Um valor de r igual a −0,99 indica correlação negativa fraca.",
+            "isTrue": false,
+            "explanation": "Valor próximo de −1 é correlação negativa forte."
+          },
+          {
+            "statement": "O coeficiente de correlação mede a força de qualquer tipo de relação entre as variáveis, inclusive curvilíneas.",
+            "isTrue": false,
+            "explanation": "O coeficiente de Pearson mede apenas a relação linear."
+          }
+        ],
+        "pointers": [
+          { "topic": "Diagrama de dispersão e tipos de correlação", "pageRef": 3 },
+          { "topic": "Fórmula de Pearson", "pageRef": 7 },
+          { "topic": "Fórmulas alternativas", "pageRef": 8 },
+          { "topic": "Correlação positiva e negativa perfeitas", "pageRef": 10 },
+          { "topic": "Correlação nula", "pageRef": 12 },
+          { "topic": "Exemplo numérico", "pageRef": 13 }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a12/s02",
+      "bizu": {
+        "summary": [
+          "**Correlação parcial**: mede a relação entre X e Y **controlando o efeito de uma terceira variável Z**. Fórmula: **r_XY·Z = (r_XY − r_XZ·r_YZ) / √[(1 − r_XZ²)(1 − r_YZ²)]**.",
+          "**Exemplo**: r_XY = 0,6, r_XZ = 0,5 e r_YZ = 0,7 → numerador 0,6 − 0,35 = 0,25 e denominador √(0,75·0,51) ≈ 0,6185; correlação parcial ≈ 0,404. O valor menor que 0,6 mostra o efeito de Z.",
+          "**Autocorrelação**: relação de uma variável **consigo mesma em momentos diferentes** (série temporal e sua defasagem), em vez de duas variáveis distintas.",
+          "**Invariância a deslocamentos**: somar constantes a X e/ou Y **não altera r** (os desvios em relação às médias permanecem iguais). Ex.: r(X + 3, Y + 5) = r(X, Y); também r(X − 200, Y − 300) = r(X, Y).",
+          "**Multiplicação por constantes de mesmo sinal**: não altera r (nem o sinal). Ex.: r(2X, 2Y) = r(−2X, −2Y) = r(X, Y).",
+          "**Multiplicação por constantes de sinais contrários**: **inverte o sinal** de r: r(2X, −2Y) = −r(X, Y), mantendo o módulo.",
+          "**Uso em prova**: transformações lineares (X − 200, Y/10…) simplificam as contas, pois r da variável transformada coincide com r da original, quando os sinais das constantes de escala forem iguais."
+        ],
+        "teoria": [
+          {
+            "statement": "Somar uma constante a uma das variáveis não altera o coeficiente de correlação de Pearson.",
+            "isTrue": true,
+            "explanation": "Os desvios em relação à média permanecem os mesmos."
+          },
+          {
+            "statement": "Multiplicar X por 2 e Y por −2 mantém o valor do coeficiente de correlação, inclusive o sinal.",
+            "isTrue": false,
+            "explanation": "Constantes de sinais contrários invertem o sinal de r, preservando o módulo."
+          },
+          {
+            "statement": "A correlação parcial entre X e Y controla a influência de uma terceira variável Z.",
+            "isTrue": true,
+            "explanation": "Mostra o que resta da relação entre X e Y depois de descontar o efeito de Z."
+          },
+          {
+            "statement": "A autocorrelação mede a relação entre duas variáveis diferentes medidas no mesmo instante.",
+            "isTrue": false,
+            "explanation": "A autocorrelação compara uma variável com ela mesma em instantes diferentes."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Multiplicar ambas as variáveis por −2 não altera o coeficiente de correlação.",
+            "isTrue": true,
+            "explanation": "As constantes têm o mesmo sinal, então r preserva valor e sinal."
+          },
+          {
+            "statement": "Com r_XY = 0,6, r_XZ = 0,5 e r_YZ = 0,7, a correlação parcial é maior que 0,6.",
+            "isTrue": false,
+            "explanation": "Vale cerca de 0,404, menor que 0,6, pois parte da relação era explicada por Z."
+          },
+          {
+            "statement": "Se r(X, Y) = 0,984, então r(X − 200, Y − 300) também vale 0,984.",
+            "isTrue": true,
+            "explanation": "A subtração de constantes não afeta o coeficiente."
+          }
+        ],
+        "pointers": [
+          { "topic": "Correlação parcial", "pageRef": 19 },
+          { "topic": "Exemplo da correlação parcial", "pageRef": 20 },
+          { "topic": "Autocorrelação", "pageRef": 20 },
+          { "topic": "Efeito da soma de constantes", "pageRef": 22 },
+          { "topic": "Multiplicação por constantes", "pageRef": 25 },
+          { "topic": "Constantes de sinais contrários", "pageRef": 28 }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a12/s03",
+      "bizu": {
+        "summary": [
+          "**Regressão linear simples** explica uma variável **dependente Y** por uma **independente X**: **Yᵢ = α + β·Xᵢ + εᵢ**. A parte α + βX é o valor esperado: E(Y|X) = α + βX. ε é o **erro aleatório**.",
+          "**Pressupostos sobre o erro**: **E(ε) = 0**; **Var(ε) = σ²** constante (**homocedasticidade**); erros **independentes** (Cov(εᵢ, εⱼ) = 0); para inferência, costuma-se supor erros normais (não precisam seguir a normal **padrão**, apenas ter média 0 e variância σ²).",
+          "**Método dos mínimos quadrados ordinários (MQO)**: escolhe a e b que **minimizam Σ(Yᵢ − a − bXᵢ)²** (soma dos quadrados dos resíduos). Obtém-se derivando em relação a a e b e igualando a zero.",
+          "**Inclinação**: **b = S_XY/S_XX = Σ(Xᵢ − X̄)(Yᵢ − Ȳ) / Σ(Xᵢ − X̄)² = (ΣXᵢYᵢ − n·X̄·Ȳ)/(ΣXᵢ² − n·X̄²)**.",
+          "**Intercepto**: **a = Ȳ − b·X̄**. A reta ajustada **passa pelo ponto das médias (X̄, Ȳ)**. A soma dos resíduos é zero.",
+          "**Previsão**: Ŷ = a + b·X. Ex.: com a = 2 e b = 0,8, o valor para t = 13 é 12,4. Com a = −4 e b = 1,6, X = 10 dá 12.",
+          "**Variância de a**: depende de σ², do tamanho da amostra, da média de X e da dispersão de X: Var(a) = σ²[1/n + X̄²/S_XX].",
+          "**Reta pela origem** (α = 0): **b = ΣXᵢYᵢ / ΣXᵢ²**. Nesse caso, a **soma dos resíduos não é necessariamente zero**."
+        ],
+        "teoria": [
+          {
+            "statement": "No modelo de regressão linear simples, o erro aleatório tem média zero e variância constante.",
+            "isTrue": true,
+            "explanation": "São pressupostos do modelo (homocedasticidade e E(ε) = 0)."
+          },
+          {
+            "statement": "No modelo de regressão linear simples, o erro aleatório obrigatoriamente segue a distribuição normal padrão.",
+            "isTrue": false,
+            "explanation": "Exige-se média 0 e variância σ² (constante); não necessariamente variância 1."
+          },
+          {
+            "statement": "A reta de regressão obtida por mínimos quadrados passa pelo ponto (X̄, Ȳ).",
+            "isTrue": true,
+            "explanation": "De a = Ȳ − bX̄ conclui-se Ȳ = a + bX̄."
+          },
+          {
+            "statement": "O estimador da inclinação é b = S_XY/S_XX.",
+            "isTrue": true,
+            "explanation": "Razão entre a soma dos produtos dos desvios e a soma dos quadrados dos desvios de X."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O método dos mínimos quadrados minimiza a soma dos quadrados dos resíduos.",
+            "isTrue": true,
+            "explanation": "É a definição do MQO."
+          },
+          {
+            "statement": "O intercepto estimado é a = X̄ − b·Ȳ.",
+            "isTrue": false,
+            "explanation": "O intercepto é a = Ȳ − b·X̄."
+          },
+          {
+            "statement": "Em uma regressão pela origem, o coeficiente angular é ΣXY/ΣX².",
+            "isTrue": true,
+            "explanation": "Com α = 0, minimiza-se Σ(Y − bX)²."
+          },
+          {
+            "statement": "Em uma regressão que passa pela origem, a soma dos resíduos é sempre igual a zero.",
+            "isTrue": false,
+            "explanation": "Sem intercepto, não há garantia de que os resíduos somem zero."
+          }
+        ],
+        "pointers": [
+          { "topic": "Variável dependente e independente", "pageRef": 30 },
+          { "topic": "Modelo Y = α + βX + ε e pressupostos", "pageRef": 32 },
+          { "topic": "Mínimos quadrados: condições de primeira ordem", "pageRef": 34 },
+          { "topic": "Estimador de b", "pageRef": 35 },
+          { "topic": "Estimador do intercepto a", "pageRef": 36 },
+          { "topic": "Previsões com a reta", "pageRef": 41 },
+          { "topic": "Reta passando pela origem", "pageRef": 43 }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a12/s04",
+      "bizu": {
+        "summary": [
+          "**Estimativa por máxima verossimilhança (EMV)**: com erros normais, maximizar a log-verossimilhança leva a estimadores de α e β **iguais aos de mínimos quadrados**.",
+          "**Análise de variância da regressão**: compara o modelo de regressão com o modelo sem X (apenas média). **Graus de liberdade**: **modelo = 1**, **resíduos = n − 2**, **total = n − 1**.",
+          "**Somas de quadrados**: **SQT = Σ(Yᵢ − Ȳ)²** (total); **SQM = Σ(Ŷᵢ − Ȳ)²** (explicada pelo modelo) **= b²·S_XX = b·S_XY**; **SQR = Σ(Yᵢ − Ŷᵢ)²** (resíduos). Vale **SQT = SQM + SQR**.",
+          "**Coeficiente de determinação**: **R² = SQM/SQT = 1 − SQR/SQT**, com 0 ≤ R² ≤ 1. É a fração da variação de Y explicada pelo modelo; na regressão simples, **R² = r²**.",
+          "**Quadrados médios**: **QMM = SQM/1** e **QMR = SQR/(n − 2)**. O QMR é a estimativa da **variância residual σ²**.",
+          "**R² ajustado**: corrige R² pelos graus de liberdade (penaliza a inclusão de variáveis): R²_aj = 1 − [SQR/(n − k)]/[SQT/(n − 1)], com k o número de parâmetros.",
+          "**Estatística F**: para testar H₀: β = 0 contra H₁: β ≠ 0, **F* = QMM/QMR**, que segue **F de Snedecor com 1 e n − 2 g.l.** sob H₀. F* grande leva a rejeitar H₀.",
+          "**Exemplo de tabela ANOVA**: SQT = 1000 e SQM = 900 → R² = 0,9 e r = √0,9 em módulo."
+        ],
+        "teoria": [
+          {
+            "statement": "Na regressão linear simples, os graus de liberdade dos resíduos são n − 2.",
+            "isTrue": true,
+            "explanation": "Dois parâmetros (α e β) são estimados a partir de n observações."
+          },
+          {
+            "statement": "A soma dos quadrados totais é a soma da soma dos quadrados do modelo com a dos resíduos.",
+            "isTrue": true,
+            "explanation": "SQT = SQM + SQR."
+          },
+          {
+            "statement": "O coeficiente de determinação R² pode assumir valores negativos na regressão linear simples.",
+            "isTrue": false,
+            "explanation": "R² = SQM/SQT, sempre entre 0 e 1."
+          },
+          {
+            "statement": "A estatística F* = QMM/QMR, sob H₀: β = 0, segue F de Snedecor com 1 e n − 2 graus de liberdade.",
+            "isTrue": true,
+            "explanation": "O numerador tem 1 g.l. (modelo) e o denominador, n − 2 (resíduos)."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O quadrado médio dos resíduos é uma estimativa da variância dos erros σ².",
+            "isTrue": true,
+            "explanation": "QMR = SQR/(n − 2)."
+          },
+          {
+            "statement": "Quando R² está próximo de zero, o modelo de regressão explica grande parte da variação de Y.",
+            "isTrue": false,
+            "explanation": "R² próximo de 1 indica grande parte explicada; próximo de 0 indica pouca explicação."
+          },
+          {
+            "statement": "Com SQT = 1000 e SQM = 900, o coeficiente de determinação é 0,9.",
+            "isTrue": true,
+            "explanation": "R² = 900/1000."
+          },
+          {
+            "statement": "Na regressão linear simples, o coeficiente de determinação é igual ao quadrado do coeficiente de correlação de Pearson.",
+            "isTrue": true,
+            "explanation": "R² = r² quando há uma única variável explicativa."
+          }
+        ],
+        "pointers": [
+          { "topic": "Estimativa por máxima verossimilhança", "pageRef": 46 },
+          { "topic": "Graus de liberdade da regressão", "pageRef": 48 },
+          { "topic": "Somas de quadrados SQT, SQM e SQR", "pageRef": 49 },
+          { "topic": "Coeficiente de determinação", "pageRef": 52 },
+          { "topic": "Quadrados médios e R² ajustado", "pageRef": 54 },
+          { "topic": "Estatística F e tabela ANOVA", "pageRef": 55 }
+        ]
+      }
+    }
+  ]
+}
