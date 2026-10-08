@@ -1,0 +1,193 @@
+{
+  "aula": "matematica/a14",
+  "batch": "w2-bizu-matematica",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "matematica/a14/s01",
+      "bizu": {
+        "summary": [
+          "**Sequência numérica**: lista ordenada de números, em que a **ordem importa**. Pode ser **finita** ou **infinita**; cada termo ocupa uma posição a₁, a₂, a₃, …",
+          "**Lei de formação**: regra que gera os termos. Pode ser dada pelo **termo geral** aₙ = f(n) (calcula qualquer termo direto pela posição) ou por **recorrência** (cada termo depende dos anteriores).",
+          "**Sequência recorrente**: o enunciado dá o(s) primeiro(s) termo(s) e a regra que liga um termo ao anterior. Exemplo: a₁ = 2 e aₙ₊₁ = aₙ + 3.",
+          "**Sequência de Fibonacci**: 1, 1, 2, 3, 5, 8, 13, … em que **cada termo, a partir do terceiro, é a soma dos dois anteriores**: Fₙ = Fₙ₋₁ + Fₙ₋₂.",
+          "**Termos de sequência × índice**: a posição n é sempre um **número natural não nulo**; não existe termo de posição fracionária ou negativa.",
+          "**Dica de prova**: para achar o termo seguinte, verifique se a diferença ou a razão entre termos consecutivos é constante; senão, teste uma lei de recorrência."
+        ],
+        "teoria": [
+          {
+            "statement": "Em uma sequência numérica a ordem dos termos é relevante: as sequências (1, 2, 3) e (3, 2, 1) são diferentes.",
+            "isTrue": true,
+            "explanation": "Diferentemente de um conjunto, em uma sequência a posição de cada termo faz parte da sua definição."
+          },
+          {
+            "statement": "Na sequência de Fibonacci (1, 1, 2, 3, 5, 8, …), cada termo, a partir do terceiro, é o produto dos dois anteriores.",
+            "isTrue": false,
+            "explanation": "Cada termo é a soma dos dois anteriores: Fₙ = Fₙ₋₁ + Fₙ₋₂."
+          },
+          {
+            "statement": "Uma sequência definida por recorrência precisa informar o termo inicial e a regra que relaciona um termo ao anterior.",
+            "isTrue": true,
+            "explanation": "Sem o(s) termo(s) inicial(is) a regra recorrente não determina a sequência."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O termo geral aₙ = 3n + 1 permite calcular o 10º termo sem conhecer os anteriores.",
+            "isTrue": true,
+            "explanation": "O termo geral é função da posição n: a₁₀ = 3·10 + 1 = 31."
+          },
+          {
+            "statement": "A posição n de um termo pode ser qualquer número real positivo.",
+            "isTrue": false,
+            "explanation": "A posição é um número natural não nulo (1, 2, 3, …)."
+          },
+          {
+            "statement": "Na sequência definida por a₁ = 2 e aₙ₊₁ = aₙ + 3, o terceiro termo é 8.",
+            "isTrue": true,
+            "explanation": "a₂ = 2 + 3 = 5 e a₃ = 5 + 3 = 8."
+          }
+        ],
+        "pointers": [
+          { "topic": "Conceito de sequência e lei de formação", "pageRef": 3 },
+          { "topic": "Sequência de Fibonacci", "pageRef": 6 },
+          { "topic": "Sequências recorrentes", "pageRef": 8 },
+          { "topic": "Termo geral e posição dos termos", "pageRef": 4 }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a14/s02",
+      "bizu": {
+        "summary": [
+          "**Progressão aritmética (PA)**: sequência em que a diferença entre cada termo e o anterior é **constante**, chamada **razão r** (r = aₙ₊₁ − aₙ).",
+          "**Classificação**: r > 0 → PA **crescente**; r < 0 → **decrescente**; r = 0 → **constante**.",
+          "**Termo geral**: **aₙ = a₁ + (n − 1)·r**; mais geral: **aₙ = aₘ + (n − m)·r**.",
+          "**PA de 3 termos**: use (x − r, x, x + r). O termo central é a **média aritmética** dos vizinhos: **b = (a + c)/2**. Vale para qualquer termo central de três consecutivos.",
+          "**Termos equidistantes dos extremos**: a₁ + aₙ = a₂ + aₙ₋₁ = … (soma constante). Em PA de número ímpar de termos, o termo central é a média dos extremos.",
+          "**Interpolação**: inserir k meios aritméticos entre a e b gera PA com k + 2 termos e razão **r = (b − a)/(k + 1)**.",
+          "**Soma dos n primeiros termos**: **Sₙ = (a₁ + aₙ)·n / 2** (média dos extremos vezes n)."
+        ],
+        "teoria": [
+          {
+            "statement": "Em uma PA, a razão é obtida subtraindo-se de qualquer termo o termo anterior.",
+            "isTrue": true,
+            "explanation": "r = aₙ₊₁ − aₙ é constante em toda PA."
+          },
+          {
+            "statement": "O termo geral de uma PA é aₙ = a₁ + n·r.",
+            "isTrue": false,
+            "explanation": "O termo geral é aₙ = a₁ + (n − 1)·r; para n = 1 deve resultar a₁."
+          },
+          {
+            "statement": "Se três números a, b, c estão em PA, então b é a média aritmética de a e c.",
+            "isTrue": true,
+            "explanation": "b − a = c − b implica 2b = a + c."
+          },
+          {
+            "statement": "A soma dos n primeiros termos de uma PA é Sₙ = (a₁ + aₙ)·n / 2.",
+            "isTrue": true,
+            "explanation": "É a soma dos extremos multiplicada pelo número de termos e dividida por 2 (pares equidistantes têm soma constante)."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Uma PA com razão negativa é crescente.",
+            "isTrue": false,
+            "explanation": "Razão negativa corresponde a PA decrescente; crescente exige r > 0."
+          },
+          {
+            "statement": "Interpolando k meios aritméticos entre a e b, a razão da PA obtida é (b − a)/(k + 1).",
+            "isTrue": true,
+            "explanation": "A PA terá k + 2 termos, portanto k + 1 intervalos iguais entre a e b."
+          },
+          {
+            "statement": "Em uma PA finita, a soma de dois termos equidistantes dos extremos é igual à soma do primeiro com o último.",
+            "isTrue": true,
+            "explanation": "a₁ + aₙ = a₂ + aₙ₋₁ = …, propriedade usada na dedução da fórmula da soma."
+          },
+          {
+            "statement": "Para representar uma PA de três termos com soma conhecida, convém usar (x, x + r, x + 2r).",
+            "isTrue": false,
+            "explanation": "O artifício mais prático é (x − r, x, x + r), pois a soma passa a ser 3x e elimina r da soma."
+          }
+        ],
+        "pointers": [
+          { "topic": "Conceito de PA e razão", "pageRef": 10 },
+          { "topic": "Termo geral da PA", "pageRef": 11 },
+          { "topic": "PA de três termos", "pageRef": 13 },
+          { "topic": "Interpolação aritmética", "pageRef": 16 },
+          { "topic": "Soma dos n primeiros termos", "pageRef": 17 }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a14/s03",
+      "bizu": {
+        "summary": [
+          "**Progressão geométrica (PG)**: sequência em que **cada termo, a partir do segundo, é o anterior multiplicado por uma constante q**, a **razão** (q = aₙ₊₁ / aₙ).",
+          "**Classificação**: q > 1 e a₁ > 0 → **crescente**; 0 < q < 1 e a₁ > 0 → **decrescente**; q = 1 → **constante**; q < 0 → **alternante** (oscilante); q = 0 → estacionária a partir do 2º termo.",
+          "**Termo geral**: **aₙ = a₁·q^(n−1)**; mais geral: **aₙ = aₘ·q^(n−m)**.",
+          "**PG de 3 termos**: use (x/q, x, x·q). O termo central ao quadrado é o produto dos vizinhos: **b² = a·c** (**média geométrica**).",
+          "**Interpolação geométrica**: inserir k meios geométricos entre a e b dá PG de k + 2 termos com **q^(k+1) = b/a**.",
+          "**Soma dos n primeiros termos** (q ≠ 1): **Sₙ = a₁·(qⁿ − 1)/(q − 1)**. Com q = 1: Sₙ = n·a₁.",
+          "**Soma infinita** (convergente, **|q| < 1**): **S = a₁ / (1 − q)**. Se |q| ≥ 1 a soma infinita não converge.",
+          "**Produto dos n primeiros termos**: **Pₙ² = (a₁·aₙ)ⁿ**, ou seja, |Pₙ| = √((a₁·aₙ)ⁿ)."
+        ],
+        "teoria": [
+          {
+            "statement": "Em uma PG, a razão é obtida dividindo-se qualquer termo pelo termo anterior.",
+            "isTrue": true,
+            "explanation": "q = aₙ₊₁ / aₙ é constante em uma PG com termos não nulos."
+          },
+          {
+            "statement": "O termo geral de uma PG é aₙ = a₁ + (n − 1)·q.",
+            "isTrue": false,
+            "explanation": "Na PG os termos se multiplicam: aₙ = a₁·q^(n−1). A fórmula com soma é a da PA."
+          },
+          {
+            "statement": "Uma PG com razão negativa é alternante, pois os sinais dos termos se alternam.",
+            "isTrue": true,
+            "explanation": "Multiplicar sucessivamente por um número negativo inverte o sinal a cada termo."
+          },
+          {
+            "statement": "A soma de infinitos termos de uma PG converge para a₁/(1 − q) quando |q| < 1.",
+            "isTrue": true,
+            "explanation": "A série geométrica é convergente se, e somente se, o módulo da razão é menor que 1."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Se a, b, c formam uma PG de termos positivos, então b é a média geométrica de a e c, isto é, b² = a·c.",
+            "isTrue": true,
+            "explanation": "b/a = c/b implica b² = a·c."
+          },
+          {
+            "statement": "Para q ≠ 1, a soma dos n primeiros termos de uma PG é Sₙ = a₁·(qⁿ − 1)/(q − 1).",
+            "isTrue": true,
+            "explanation": "É a fórmula padrão da soma finita da PG."
+          },
+          {
+            "statement": "A soma infinita de uma PG de razão 2 e primeiro termo 1 é igual a −1.",
+            "isTrue": false,
+            "explanation": "Como |q| = 2 > 1, a série diverge; a fórmula a₁/(1 − q) só se aplica quando |q| < 1."
+          },
+          {
+            "statement": "Interpolando k meios geométricos entre a e b, a razão q satisfaz q^(k+1) = b/a.",
+            "isTrue": true,
+            "explanation": "A PG terá k + 2 termos, e o último é a₁·q^(k+1)."
+          }
+        ],
+        "pointers": [
+          { "topic": "Conceito e classificação da PG", "pageRef": 21 },
+          { "topic": "Termo geral da PG", "pageRef": 24 },
+          { "topic": "PG de três termos", "pageRef": 25 },
+          { "topic": "Interpolação geométrica", "pageRef": 27 },
+          { "topic": "Soma finita e infinita", "pageRef": 29 },
+          { "topic": "Produto dos n primeiros termos", "pageRef": 35 }
+        ]
+      }
+    }
+  ]
+}

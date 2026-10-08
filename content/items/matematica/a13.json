@@ -1,0 +1,234 @@
+{
+  "aula": "matematica/a13",
+  "batch": "w2-bizu-matematica",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "matematica/a13/s01",
+      "bizu": {
+        "summary": [
+          "**Definição**: log_b(a) = x ⇔ b^x = a. Condições de existência: **a > 0**, **b > 0** e **b ≠ 1**. a é o logaritmando, b é a base e x é o logaritmo.",
+          "**Consequências da definição**: log_b(1) = 0; log_b(b) = 1; log_b(b^n) = n; **b^(log_b a) = a**; se log_b(x) = log_b(y), então x = y.",
+          "**Bases especiais**: **logaritmo decimal** (base 10, escreve-se log x) e **logaritmo natural** (base e ≈ 2,718, escreve-se ln x). Quando a base não aparece, em log subentende-se base 10.",
+          "**Logaritmo do produto**: log_b(x·y) = log_b x + log_b y (x e y positivos). **Logaritmo do quociente**: log_b(x/y) = log_b x − log_b y.",
+          "**Logaritmo da potência**: log_b(x^n) = n·log_b x. Também vale log_(b^m)(x) = (1/m)·log_b x: expoente na **base** divide, expoente no **logaritmando** multiplica.",
+          "**Pegadinha**: **não existe** propriedade para log(x + y) nem para log(x − y); log(x + y) **não** é log x + log y.",
+          "**Cologaritmo**: colog_b(a) = −log_b(a) = log_b(1/a)."
+        ],
+        "teoria": [
+          {
+            "statement": "Para que log_b(a) exista no conjunto dos números reais, é necessário que a > 0, b > 0 e b ≠ 1.",
+            "isTrue": true,
+            "explanation": "Essas são as condições de existência do logaritmo: logaritmando positivo e base positiva diferente de 1."
+          },
+          {
+            "statement": "A igualdade log(x + y) = log x + log y é válida para quaisquer x e y positivos.",
+            "isTrue": false,
+            "explanation": "A soma de logaritmos corresponde ao logaritmo do produto: log x + log y = log(x·y). Não há propriedade para log(x + y)."
+          },
+          {
+            "statement": "O logaritmo de 1 em qualquer base válida é igual a zero.",
+            "isTrue": true,
+            "explanation": "Como b^0 = 1 para qualquer base b > 0, b ≠ 1, tem-se log_b(1) = 0."
+          },
+          {
+            "statement": "Quando a base não está escrita, o logaritmo é natural, isto é, de base e.",
+            "isTrue": false,
+            "explanation": "Por convenção, log sem base indica o logaritmo decimal (base 10); o natural é indicado por ln."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "log_b(x/y) é igual a log_b x menos log_b y, para x e y positivos.",
+            "isTrue": true,
+            "explanation": "É a propriedade do logaritmo do quociente."
+          },
+          {
+            "statement": "log_b(x^n) é igual a (log_b x)^n.",
+            "isTrue": false,
+            "explanation": "O expoente do logaritmando desce multiplicando: log_b(x^n) = n·log_b x."
+          },
+          {
+            "statement": "Se log_b(x) = log_b(y), com base válida, então x = y.",
+            "isTrue": true,
+            "explanation": "A função logarítmica é injetora; logaritmos iguais, na mesma base, implicam logaritmandos iguais."
+          }
+        ],
+        "pointers": [
+          { "topic": "Definição e condições de existência", "pageRef": 4 },
+          { "topic": "Consequências da definição", "pageRef": 7 },
+          { "topic": "Bases especiais (decimal e natural)", "pageRef": 8 },
+          { "topic": "Logaritmo do produto e do quociente", "pageRef": 9 },
+          { "topic": "Logaritmo da potência e expoente na base", "pageRef": 10 }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a13/s02",
+      "bizu": {
+        "summary": [
+          "**Mudança de base**: log_b(a) = log_c(a) / log_c(b), com c > 0 e c ≠ 1. Permite escrever todos os logaritmos de um problema numa **mesma base** conveniente.",
+          "**Inverso**: log_b(a) = 1 / log_a(b). Logo, log_b(a)·log_a(b) = 1 (com a e b positivos e diferentes de 1).",
+          "**Regra da cadeia**: log_b(a)·log_a(c) = log_b(c).",
+          "**Expoente na base e no logaritmando**: log_(b^m)(a^n) = (n/m)·log_b(a).",
+          "**Uso prático**: ao receber valores como log 2 ≈ 0,30 e log 3 ≈ 0,48, **decomponha o número em fatores primos** e aplique produto/potência para obter outros logaritmos (por exemplo, log 6 = log 2 + log 3).",
+          "**Equações logarítmicas**: resolva restringindo antes o **domínio** (logaritmando > 0, base válida); depois iguale logaritmandos ou passe à forma exponencial. **Verifique as raízes** no domínio ao final."
+        ],
+        "teoria": [
+          {
+            "statement": "Pela mudança de base, log_b(a) = log_c(a) / log_c(b), em que c é qualquer base válida.",
+            "isTrue": true,
+            "explanation": "É a fórmula de mudança de base, que mantém o logaritmando no numerador e a base antiga no denominador."
+          },
+          {
+            "statement": "log_2(5)·log_5(2) é igual a 2.",
+            "isTrue": false,
+            "explanation": "log_b(a) e log_a(b) são inversos; o produto é igual a 1."
+          },
+          {
+            "statement": "Ao resolver uma equação logarítmica, é obrigatório conferir se as raízes obtidas satisfazem as condições de existência.",
+            "isTrue": true,
+            "explanation": "Raízes que tornem algum logaritmando negativo ou nulo (ou a base inválida) devem ser descartadas."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "log_b(a) é o inverso multiplicativo de log_a(b), com a e b positivos e diferentes de 1.",
+            "isTrue": true,
+            "explanation": "log_b(a) = 1 / log_a(b), consequência direta da mudança de base."
+          },
+          {
+            "statement": "Na mudança de base, a nova base colocada no denominador é a do logaritmando original.",
+            "isTrue": false,
+            "explanation": "No denominador entra o logaritmo da base original: log_c(b); no numerador, o do logaritmando: log_c(a)."
+          },
+          {
+            "statement": "log_(b^m)(a^n) = (n/m)·log_b(a), com condições de existência satisfeitas.",
+            "isTrue": true,
+            "explanation": "O expoente do logaritmando multiplica e o expoente da base divide."
+          }
+        ],
+        "pointers": [
+          { "topic": "Fórmula de mudança de base", "pageRef": 15 },
+          { "topic": "Inverso e regra da cadeia", "pageRef": 17 },
+          { "topic": "Expoentes na base e no logaritmando", "pageRef": 19 },
+          { "topic": "Uso de logaritmos dados e fatoração", "pageRef": 21 },
+          { "topic": "Equações logarítmicas e domínio", "pageRef": 24 }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a13/s03",
+      "bizu": {
+        "summary": [
+          "**Função logarítmica**: f(x) = log_b(x), com **b > 0 e b ≠ 1**. É a **função inversa** da exponencial de mesma base.",
+          "**Domínio**: x > 0, isto é, **R\\*₊**. Quando o argumento é uma expressão g(x), o domínio exige **g(x) > 0**; se a base também variar, exige-se base positiva e diferente de 1.",
+          "**Imagem**: todos os reais (**R**). A função é sobrejetora no conjunto dos reais.",
+          "**Zero da função**: x = 1, pois log_b(1) = 0; o gráfico sempre passa por **(1, 0)**.",
+          "**Domínio de expressões**: para log_(x−2)(5 − x), por exemplo, exigem-se 5 − x > 0, x − 2 > 0 e x − 2 ≠ 1; o domínio é a **interseção** de todas as condições.",
+          "**Simetria com a exponencial**: o domínio da logarítmica é a imagem da exponencial, e vice-versa."
+        ],
+        "teoria": [
+          {
+            "statement": "O domínio de f(x) = log_b(x) é o conjunto dos números reais positivos.",
+            "isTrue": true,
+            "explanation": "O logaritmando precisa ser positivo, logo x > 0."
+          },
+          {
+            "statement": "A imagem da função logarítmica f(x) = log_b(x) é o conjunto dos reais positivos.",
+            "isTrue": false,
+            "explanation": "A imagem é todo o conjunto dos reais; o conjunto dos reais positivos é o domínio."
+          },
+          {
+            "statement": "O gráfico de f(x) = log_b(x) intercepta o eixo x no ponto (1, 0), qualquer que seja a base válida.",
+            "isTrue": true,
+            "explanation": "Como log_b(1) = 0 para qualquer base válida, a raiz é x = 1."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Para determinar o domínio de log_(x−2)(5 − x), basta exigir 5 − x > 0.",
+            "isTrue": false,
+            "explanation": "Também é preciso que a base seja positiva e diferente de 1 (x − 2 > 0 e x − 2 ≠ 1)."
+          },
+          {
+            "statement": "A função logarítmica de base b é a inversa da função exponencial de base b.",
+            "isTrue": true,
+            "explanation": "As funções são inversas: b^(log_b x) = x e log_b(b^x) = x."
+          },
+          {
+            "statement": "A função logarítmica possui valor para x = 0 se a base for maior que 1.",
+            "isTrue": false,
+            "explanation": "O zero não pertence ao domínio, qualquer que seja a base válida."
+          }
+        ],
+        "pointers": [
+          { "topic": "Definição da função logarítmica", "pageRef": 27 },
+          { "topic": "Domínio e condições da base", "pageRef": 27 },
+          { "topic": "Imagem da função", "pageRef": 33 },
+          { "topic": "Domínio de expressões com logaritmos", "pageRef": 29 }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a13/s04",
+      "bizu": {
+        "summary": [
+          "**Base maior que 1 (b > 1)**: função **crescente**; quanto maior x, maior o log. Para 0 < x < 1 o valor é **negativo**; para x > 1 é **positivo**.",
+          "**Base entre 0 e 1 (0 < b < 1)**: função **decrescente**; para 0 < x < 1 o valor é **positivo**; para x > 1 é **negativo**.",
+          "**Assíntota**: o eixo y (x = 0) é **assíntota vertical**; o gráfico fica sempre à direita dele e nunca o toca.",
+          "**Construção do gráfico**: marque o ponto (1, 0), o ponto (b, 1) e, se útil, (1/b, −1); ligue por curva suave respeitando a assíntota.",
+          "**Transformações**: log_b(x − h) desloca o gráfico h unidades para a **direita** (a assíntota passa a x = h); log_b(x) + k desloca k unidades **verticalmente**.",
+          "**Função logarítmica × exponencial**: os gráficos são **simétricos em relação à reta y = x** (bissetriz dos quadrantes ímpares), pois as funções são inversas.",
+          "**Desigualdades**: com b > 1, log_b x > log_b y ⇔ x > y (sentido mantido); com 0 < b < 1 o **sentido se inverte**."
+        ],
+        "teoria": [
+          {
+            "statement": "Se a base é maior que 1, a função logarítmica é crescente.",
+            "isTrue": true,
+            "explanation": "Para b > 1, valores maiores de x correspondem a logaritmos maiores."
+          },
+          {
+            "statement": "O gráfico de uma função logarítmica toca o eixo y em um único ponto.",
+            "isTrue": false,
+            "explanation": "O eixo y é assíntota vertical: o gráfico se aproxima dele, mas nunca o toca nem o cruza."
+          },
+          {
+            "statement": "Com a base entre 0 e 1, o logaritmo de um número maior que 1 é negativo.",
+            "isTrue": true,
+            "explanation": "Nesse caso a função é decrescente e passa por (1, 0); para x > 1 os valores ficam abaixo de zero."
+          },
+          {
+            "statement": "O gráfico de y = log_2(x − 3) é o de y = log_2(x) deslocado 3 unidades para a esquerda.",
+            "isTrue": false,
+            "explanation": "Subtrair 3 do argumento desloca o gráfico 3 unidades para a direita; a assíntota passa a ser x = 3."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Os gráficos de y = b^x e y = log_b(x) são simétricos em relação à reta y = x.",
+            "isTrue": true,
+            "explanation": "Funções inversas têm gráficos simétricos em relação à bissetriz dos quadrantes ímpares."
+          },
+          {
+            "statement": "Se 0 < b < 1, a desigualdade log_b x > log_b y equivale a x > y.",
+            "isTrue": false,
+            "explanation": "Para base entre 0 e 1 a função é decrescente, e o sentido da desigualdade se inverte: x < y."
+          },
+          {
+            "statement": "Para qualquer base válida, o gráfico da função logarítmica passa pelo ponto (b, 1).",
+            "isTrue": true,
+            "explanation": "log_b(b) = 1, logo (b, 1) pertence ao gráfico."
+          }
+        ],
+        "pointers": [
+          { "topic": "Crescimento e decrescimento conforme a base", "pageRef": 34 },
+          { "topic": "Construção do gráfico", "pageRef": 37 },
+          { "topic": "Assíntota e deslocamentos", "pageRef": 40 },
+          { "topic": "Logarítmica × exponencial (inversas)", "pageRef": 43 }
+        ]
+      }
+    }
+  ]
+}
