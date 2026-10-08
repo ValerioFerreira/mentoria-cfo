@@ -1,5 +1,5 @@
 MENTORIA / CFO-BM — AUDITORIA INTEGRAL: ESTADO E PRÓXIMOS PASSOS
-Atualizado em: 2026-10-08 (checkpoint 3 — auditorias concluídas e a maioria dos complementos criados)
+Atualizado em: 2026-10-08 (checkpoint 4 FINAL desta janela de uso — auditorias concluídas; 22 complementos criados; faltam 3 e toda a produção de questões)
 
 Este arquivo é a memória de trabalho da missão "auditoria integral, completação e otimização".
 Quem retomar o trabalho (outra sessão do Claude Code, outro agente ou o próprio usuário) deve ler este
@@ -102,8 +102,8 @@ Ordem obrigatória de reconstrução (raiz do repositório, PYTHONIOENCODING=utf
       Matemática: mat-geometria-analitica (11), mat-complementos-edital (13: simetrias, polinômios/racionais, divisibilidade,
       exponenciais, divisão proporcional) | Legislações PE: +leg-pe-lei-11817-penas, +leg-pe-lei-6783-lacunas
       Química: quim-aplicada-complementos ampliado (fogo, polímeros, gás ideal, proteção radiológica) | Inglês ampliado.
-      Biologia: bio-qualidade-vida e bio-biotec-ambiente — em redação por um agente (ver git log/status; se os arquivos
-      não existirem, criar conforme pipeline/briefs/complement.md).
+      Biologia: bio-qualidade-vida (16 págs.) e bio-biotec-ambiente (18 págs.). Ainda sem complemento (auditoria: parcial):
+      classificação/diversidade dos seres vivos, origem das células, funções vitais e adaptação.
     AINDA POR CRIAR (briefing em pipeline/briefs/complement.md; ids de lacuna em content/gaps.json):
       - Informática (inf-navegadores-cmd): navegadores (navegação privativa, cookies, histórico, atalhos), Prompt de
         Comando do Windows 11 (sem DELTREE; RD /S), instalação de periféricos (drivers, plug and play); opcional: gráficos
@@ -148,3 +148,29 @@ Ordem obrigatória de reconstrução (raiz do repositório, PYTHONIOENCODING=utf
 3) pipeline/.venv/Scripts/python -m pytest pipeline/tests -q   (tem de passar)
 4) Continuar a seção 5 na ordem. Limite de uso da sessão (plano Pro, janela de 5 h): trabalhar com no máximo
    3 agentes em paralelo; fazer commit a cada lote concluído.
+
+====================================================================================================
+8. CHECKPOINT FINAL DA PRIMEIRA JANELA DE USO (2026-10-08)
+====================================================================================================
+- Plano Pro: a janela de 5 h esgota com ~15 agentes de auditoria/redação. Janela seguinte: depois de 16:10 UTC de 08/10.
+- Estado do repositório: 13 disciplinas auditadas; 22 complementos mesclados no catálogo; pytest 41/41 (rodar para confirmar);
+  banco de questões ainda só com o piloto (30 questões, 2 bizus).
+- PRÓXIMO PASSO IMEDIATO (nesta ordem):
+    1) (cd pipeline && .venv/Scripts/python build_complements.py)  e  pipeline/.venv/Scripts/python pipeline/build_catalog.py
+       -> depois build_complements de novo (ver seção 2) e pytest.
+    2) Criar os 3 complementos que faltam (seção 5.2) — agente de Informática, de Estatística e de Espanhol.
+    3) Atualizar content/edital/*.json (status "complement") e rodar pipeline/edital_map.py.
+    4) Começar a PRODUÇÃO de bizus/questões (seção 5.4) por Legislações PE (13 trechos com complementos), seguindo
+       pipeline/briefs/content.md. Um agente por 1–3 aulas; no máximo 3 agentes simultâneos; validar cada arquivo.
+- Pendências de conteúdo declaradas pelos agentes (verificar antes de aprovar como APPROVED):
+    * Biologia: faixas do IDH, Vigitel 2023, Lei 9.433 art. 33 (consolidado), Leis 14.119/13.123/12.305, ADI 3.510,
+      CRISPR 2023 foram escritos de memória/notícia — conferir.
+    * Lei 8.112: estágio probatório = 36 meses (CF art. 41); o complemento cita o "Decreto 12.374/2025" — conferir o número;
+      licença-paternidade/gestante vigentes não detalhadas; aposentadoria/pensão fora do complemento.
+    * CE-PE: art. 171 §4º-B, art. 23 §5º, arts. 43 II x 61 I "a", art. 100 §13 (remissões estranhas) — conferir no Diário Oficial;
+      a Aula 18 do Estratégia está desatualizada (art. 101 agora tem 6 incisos: EC 70 e 71/2026).
+    * Penal Militar: vigência das súmulas do STJ não confirmada (STJ 172 pede cautela; STJ 47 desatualizada); art. 408 do CPM
+      remete ao art. 233 revogado; ADI 7555 conferida só pela anotação do texto consolidado.
+    * Física/Matemática: dados de tabela sem fonte primária (cosmologia, calor latente); nenhuma pendência de cálculo.
+    * Material do Estratégia com erros a avisar ao aluno: Inglês (a06 p.39/42, a05 p.24), Física a09 p.20, Informática a12 p.122
+      (DELTREE) e 161-162 (WordPad), Estatística a07/a08 (páginas duplicadas de outras aulas).
