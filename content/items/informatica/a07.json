@@ -1,0 +1,398 @@
+{
+  "aula": "informatica/a07",
+  "batch": "w2-bizu-informatica",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "informatica/a07/s01",
+      "bizu": {
+        "summary": [
+          "**LibreOffice** é uma suíte de escritório **gratuita e de código aberto (software livre)**, com formato nativo **Open Document Format (ODF)**, padrão aberto adotado por governos. O **Calc** é o programa de **planilhas** (equivalente ao Excel).",
+          "**Histórico**: a suíte descende do StarOffice (criado por Marco Boerries), que deu origem ao OpenOffice e, depois, ao LibreOffice, mantido pela comunidade (The Document Foundation). Por ser gratuito, não há pressão comercial por lançamentos como no Excel.",
+          "**Barra de título**: mostra o nome do arquivo; planilha nova recebe o nome \"Sem título X\". **Barra de menu**: Arquivo, Editar, Exibir, Inserir, Formatar, Estilos, Planilha, Dados, Ferramentas, Janela e Ajuda.",
+          "**Barras de ferramentas** (padrão e de formatação) trazem os comandos mais comuns. A **barra de fórmulas** contém a **caixa de nome**, o assistente de funções, o botão **Soma** (totaliza os números acima da célula; sem números acima, soma os da esquerda) e o botão **Função** (insere o sinal =).",
+          "**Planilha e guias**: o documento é um conjunto de planilhas (abas, \"Planilha1\", \"Planilha2\"…); renomeia-se pelo botão direito da guia > **Renomear planilha**.",
+          "**Barra de status**: exibe informações da planilha, zoom e resumo de soma/média da seleção.",
+          "**Menus principais**: **Arquivo** (abrir, salvar, exportar como PDF, imprimir, assinaturas digitais, assistentes), **Editar** (desfazer, copiar, registrar alterações, preenchimento), **Exibir**, **Inserir**, **Formatar**, **Estilos**, **Planilha** (inserir/excluir planilhas, linhas e colunas), **Dados** (classificar, filtros, validação) e **Ferramentas** (detetive, macros, opções)."
+        ],
+        "teoria": [
+          {
+            "statement": "O formato de arquivo nativo do LibreOffice é o Open Document Format (ODF), um padrão aberto.",
+            "isTrue": true,
+            "explanation": "Evita dependência de um fornecedor e é adotado por governos."
+          },
+          {
+            "statement": "O LibreOffice Calc é um software proprietário e pago.",
+            "isTrue": false,
+            "explanation": "O LibreOffice é gratuito e de código aberto (software livre)."
+          },
+          {
+            "statement": "Ao criar uma nova planilha no Calc, ela recebe provisoriamente o nome \"Sem título\" seguido de um número.",
+            "isTrue": true,
+            "explanation": "O nome definitivo surge ao salvar o arquivo."
+          },
+          {
+            "statement": "No Calc, para renomear uma planilha, usa-se o botão direito do mouse na guia da planilha e a opção Renomear planilha.",
+            "isTrue": true,
+            "explanation": "Também é possível pelo menu Planilha."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O botão Soma da barra de fórmulas do Calc soma os números acima da célula selecionada e, se não houver, os da esquerda.",
+            "isTrue": true,
+            "explanation": "O total é colocado na célula selecionada."
+          },
+          {
+            "statement": "O menu Dados do Calc concentra comandos como Classificar, Filtro e Validade.",
+            "isTrue": true,
+            "explanation": "São ferramentas de tratamento de dados."
+          },
+          {
+            "statement": "A barra de fórmulas do Calc exibe o nome do arquivo aberto.",
+            "isTrue": false,
+            "explanation": "O nome do arquivo aparece na barra de título."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Software livre e formato ODF",
+            "pageRef": 7
+          },
+          {
+            "topic": "Contexto histórico",
+            "pageRef": 10
+          },
+          {
+            "topic": "Barra de título e barra de menu",
+            "pageRef": 11
+          },
+          {
+            "topic": "Barras de ferramentas e de fórmulas",
+            "pageRef": 12
+          },
+          {
+            "topic": "Guia de planilhas",
+            "pageRef": 13
+          },
+          {
+            "topic": "Menus do Calc",
+            "pageRef": 15
+          }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a07/s02",
+      "bizu": {
+        "summary": [
+          "**Fórmulas** começam com **=** e combinam operadores, constantes, referências e funções. Operadores: **aritméticos** (+, −, *, /, %, ^), de **comparação** (=, >, <, >=, <=, <>), de **concatenação de texto** (&) e de **referência** (: intervalo; ; união; ! interseção).",
+          "**Precedência**: parênteses → potência (^) → multiplicação e divisão → adição e subtração. Assim, =4+5*2 resulta em 14, e =(4+5)*2, em 18.",
+          "**Constantes**: números ou textos digitados diretamente na fórmula (50; \"Receitas\"; uma data). Uma expressão ou resultado de fórmula não é constante.",
+          "**Referências de intervalo**: A1:C3 (bloco), 5:5 (linha inteira), 5:10 (linhas 5 a 10), H:H (coluna inteira), H:J (colunas H a J).",
+          "**Referência relativa** (A1): ajusta-se ao copiar a fórmula para outra célula. Ex.: =B2*C2 em D2, copiada para D3, vira =B3*C3.",
+          "**Referência absoluta** ($A$1): fixa linha e coluna; usada para valores únicos, como a cotação do dólar. **Mista** ($A1 ou A$1): fixa só a coluna ou só a linha. Ex.: =$B2*$C$7.",
+          "**Mover ou recortar** uma fórmula **não altera** suas referências; apenas **copiar** reajusta as relativas.",
+          "**Alça de preenchimento**: arrastar copia o conteúdo ou gera séries; ao selecionar dois valores numéricos e arrastar, o Calc continua a **progressão aritmética** baseada na diferença entre eles."
+        ],
+        "teoria": [
+          {
+            "statement": "No Calc, o resultado de =4+5*2 é 14, pois a multiplicação tem precedência sobre a adição.",
+            "isTrue": true,
+            "explanation": "5*2 = 10 e 4 + 10 = 14."
+          },
+          {
+            "statement": "Em uma referência absoluta como $B$2, linha e coluna são fixas quando a fórmula é copiada.",
+            "isTrue": true,
+            "explanation": "O cifrão trava a coluna e a linha."
+          },
+          {
+            "statement": "O operador & é usado no Calc para elevar um número a uma potência.",
+            "isTrue": false,
+            "explanation": "A potência é feita com ^; o & concatena textos."
+          },
+          {
+            "statement": "Ao copiar e colar uma fórmula com referência relativa, as referências permanecem inalteradas.",
+            "isTrue": false,
+            "explanation": "As referências relativas são ajustadas à nova posição."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A referência $B2 é mista: a coluna é fixa e a linha é relativa.",
+            "isTrue": true,
+            "explanation": "O cifrão antes da letra trava a coluna."
+          },
+          {
+            "statement": "Recortar e mover uma fórmula para outra célula altera suas referências relativas.",
+            "isTrue": false,
+            "explanation": "Mover ou recortar mantém as referências; só a cópia as ajusta."
+          },
+          {
+            "statement": "A referência H:J refere-se às colunas H, I e J.",
+            "isTrue": true,
+            "explanation": "É uma referência de intervalo de colunas."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Operadores de uma fórmula",
+            "pageRef": 20
+          },
+          {
+            "topic": "Precedência de operadores",
+            "pageRef": 22
+          },
+          {
+            "topic": "Constantes",
+            "pageRef": 23
+          },
+          {
+            "topic": "Referências de intervalos e relativas",
+            "pageRef": 24
+          },
+          {
+            "topic": "Alça de preenchimento",
+            "pageRef": 27
+          },
+          {
+            "topic": "Referências absolutas e mistas",
+            "pageRef": 28
+          }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a07/s03",
+      "bizu": {
+        "summary": [
+          "**Funções** recebem argumentos por **valor** (=RAIZ(81)) ou por **referência de célula** (=RAIZ(A1)). No Calc em português, argumentos são separados por **ponto e vírgula (;)**.",
+          "**ABS(número)**: valor absoluto. **ALEATÓRIO()**: número aleatório entre 0 e 1. **RAIZ(número)**: raiz quadrada. **FATORIAL(n)**: fatorial (incidência baixíssima).",
+          "**ARRED(número; dígitos)**: arredonda para o número de casas indicado; com dígitos **negativos** arredonda à esquerda da vírgula. Ex.: ARRED(112,954; −3) = 0, pois o múltiplo de 1000 mais próximo é zero.",
+          "**MOD(dividendo; divisor)**: devolve o **resto da divisão** (MOD(10;3) = 1). **MULT**: produto dos argumentos.",
+          "**PAR** e **ÍMPAR**: arredondam para o inteiro par/ímpar mais próximo **afastando-se do zero**. **PI()**: 3,14159… **POTÊNCIA(base; expoente)**: equivale ao operador ^.",
+          "**SOMA** (A1;A2;A3 ou A1:A3), **SOMAQUAD** (soma dos quadrados), **SOMASE(intervalo; critério; [intervalo_soma])** e **SOMASES** (vários critérios).",
+          "**TRUNCAR(número; dígitos)**: descarta as casas sem arredondar; **INT**: arredonda para baixo, para o menor inteiro. Ambas coincidem para positivos, mas diferem para negativos."
+        ],
+        "teoria": [
+          {
+            "statement": "No Calc, a função MOD retorna o resto da divisão entre dois números.",
+            "isTrue": true,
+            "explanation": "MOD(10;3) retorna 1."
+          },
+          {
+            "statement": "A função ARRED com dígitos negativos arredonda as casas decimais para a direita da vírgula.",
+            "isTrue": false,
+            "explanation": "Dígitos negativos arredondam à esquerda da vírgula (dezenas, centenas…)."
+          },
+          {
+            "statement": "A função SOMASE permite somar valores de um intervalo que atendem a um critério.",
+            "isTrue": true,
+            "explanation": "SOMASES generaliza para vários critérios."
+          },
+          {
+            "statement": "A função ÍMPAR arredonda um número positivo para o ímpar mais próximo na direção do zero.",
+            "isTrue": false,
+            "explanation": "Arredonda para o ímpar mais distante do zero (para cima nos positivos)."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A função TRUNCAR elimina a parte decimal sem arredondar o número.",
+            "isTrue": true,
+            "explanation": "Por isso TRUNCAR(−3,5) resulta em −3."
+          },
+          {
+            "statement": "A função MULT retorna a soma dos seus argumentos.",
+            "isTrue": false,
+            "explanation": "MULT retorna o produto dos argumentos."
+          },
+          {
+            "statement": "A fórmula =POTÊNCIA(5;2) é equivalente a =5^2.",
+            "isTrue": true,
+            "explanation": "Ambas calculam 5 ao quadrado."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Argumentos de funções",
+            "pageRef": 31
+          },
+          {
+            "topic": "ABS, ALEATÓRIO e ARRED",
+            "pageRef": 32
+          },
+          {
+            "topic": "MOD",
+            "pageRef": 35
+          },
+          {
+            "topic": "PAR, ÍMPAR e POTÊNCIA",
+            "pageRef": 37
+          },
+          {
+            "topic": "SOMA, SOMASE e SOMASES",
+            "pageRef": 38
+          },
+          {
+            "topic": "TRUNCAR e INT",
+            "pageRef": 40
+          }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a07/s04",
+      "bizu": {
+        "summary": [
+          "**CONT.NÚM** conta células com números; **CONT.VALORES** conta células não vazias; **CONT.SE(intervalo; critério)** conta as que atendem a um critério (ignora células em branco); **CONT.SES** usa vários critérios. Não confundir CONT.SE (quantidade) com SOMASE (soma).",
+          "**MED** devolve a **mediana** (valor central do conjunto ordenado); **MÉDIA**, a média aritmética; **MODO**, o valor mais frequente.",
+          "**MÍNIMO** e **MÁXIMO** (aceitam intervalos e valores avulsos); **MENOR(matriz; k)** e **MAIOR(matriz; k)** retornam o k-ésimo menor/maior.",
+          "**PROCV(valor; intervalo; coluna_de_retorno; [exatidão])**: busca o valor na **primeira coluna** da matriz e devolve o conteúdo da coluna indicada. Trabalhe só com a matriz informada: a 3ª coluna é a 3ª da matriz, não da planilha.",
+          "**Exatidão**: **VERDADEIRO** = aproximada; **FALSO** = exata. O argumento é opcional e, se omitido, assume-se **VERDADEIRO**. Ex.: =PROCV(\"TECLADO\"; B5:D10; 3; FALSO).",
+          "**PROCH(valor; intervalo; linha_de_retorno; [exatidão])**: busca na **linha do topo** e retorna o valor da mesma coluna na linha indicada (o H é de \"horizontal\")."
+        ],
+        "teoria": [
+          {
+            "statement": "No Calc, a função PROCV procura o valor na primeira coluna da matriz indicada.",
+            "isTrue": true,
+            "explanation": "E retorna o dado da coluna de retorno, na mesma linha."
+          },
+          {
+            "statement": "Se o último argumento do PROCV for omitido, o Calc assume correspondência exata.",
+            "isTrue": false,
+            "explanation": "Se omitido, assume-se VERDADEIRO (correspondência aproximada)."
+          },
+          {
+            "statement": "A função PROCH realiza a busca na linha do topo da tabela.",
+            "isTrue": true,
+            "explanation": "O H significa horizontal."
+          },
+          {
+            "statement": "A função CONT.SE soma os valores que atendem a um critério.",
+            "isTrue": false,
+            "explanation": "CONT.SE conta as células; quem soma é SOMASE."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A função MED retorna a mediana do conjunto de valores.",
+            "isTrue": true,
+            "explanation": "É o valor central do conjunto ordenado."
+          },
+          {
+            "statement": "A função MAIOR(A1:D3; 2) retorna o segundo maior valor do intervalo.",
+            "isTrue": true,
+            "explanation": "O argumento k indica a posição."
+          },
+          {
+            "statement": "Na função PROCV, a coluna de retorno é contada a partir da primeira coluna da planilha, e não da matriz.",
+            "isTrue": false,
+            "explanation": "A contagem é feita dentro da matriz informada (a 1ª coluna da matriz é a de busca)."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "CONT.NÚM, CONT.VALORES e CONT.SE",
+            "pageRef": 41
+          },
+          {
+            "topic": "MED, MÉDIA e MODO",
+            "pageRef": 43
+          },
+          {
+            "topic": "MÍNIMO, MÁXIMO, MENOR e MAIOR",
+            "pageRef": 44
+          },
+          {
+            "topic": "Função PROCV",
+            "pageRef": 46
+          },
+          {
+            "topic": "Exatidão no PROCV",
+            "pageRef": 48
+          },
+          {
+            "topic": "Função PROCH",
+            "pageRef": 49
+          }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a07/s05",
+      "bizu": {
+        "summary": [
+          "**Funções lógicas**: **E** (verdadeiro se todas as proposições forem verdadeiras), **OU** (verdadeiro se ao menos uma for), **NÃO** (inverte) e **SE(teste; se_verdadeiro; se_falso)**.",
+          "**Funções de texto**: **CONCATENAR** (une textos), **ESQUERDA(texto; k)**, **DIREITA(texto; k)**, **MAIÚSCULA**, **MINÚSCULA** e **PRI.MAIÚSCULA** (primeira letra de cada palavra).",
+          "**Funções de data e hora**: **HOJE()** (data atual, dinâmica, sem argumentos), **AGORA()** (data e hora), **DIA.DA.SEMANA(data)**, **ANO**, **MÊS** e **DIA**. Se se informar um número inteiro como data, ele é tratado como a quantidade de dias a partir da data-base.",
+          "**Atalhos úteis** (versão em português): **Ctrl+Home** vai à célula A1; **Ctrl+End** vai à última célula com dados; **Ctrl+PageUp/PageDown** alternam entre planilhas; **Ctrl+1** abre Formatar células; **Ctrl+Shift+1** aplica formato numérico com duas casas e separador de milhar.",
+          "**Ferramenta Detetive** (menu Ferramentas > Detetive): **rastreia precedentes** (células usadas pela fórmula) e **dependentes** (células que usam a célula selecionada). Em B7 = SOMA(A1;C1;E1;…), as células citadas são precedentes de B7.",
+          "**Dependente × precedente**: a célula que é referenciada por outra é precedente dela; a que referencia é dependente. Há cenários em cadeia (B8 = B7/25 depende de B7, que depende de várias outras)."
+        ],
+        "teoria": [
+          {
+            "statement": "No Calc, a função OU retorna verdadeiro quando pelo menos uma das proposições é verdadeira.",
+            "isTrue": true,
+            "explanation": "Só retorna falso se todas forem falsas."
+          },
+          {
+            "statement": "A função AGORA retorna apenas a data atual.",
+            "isTrue": false,
+            "explanation": "AGORA retorna data e hora; HOJE retorna só a data."
+          },
+          {
+            "statement": "A ferramenta Detetive permite rastrear precedentes e dependentes de uma célula.",
+            "isTrue": true,
+            "explanation": "Facilita a auditoria de fórmulas."
+          },
+          {
+            "statement": "No Calc, o atalho Ctrl+Home leva o cursor para a célula A1 da planilha atual.",
+            "isTrue": true,
+            "explanation": "Ctrl+End é o atalho que leva à última célula com dados."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A função PRI.MAIÚSCULA converte a primeira letra de cada palavra em maiúscula.",
+            "isTrue": true,
+            "explanation": "Os demais caracteres ficam em minúscula."
+          },
+          {
+            "statement": "A função ESQUERDA(B2; 3) retorna os três últimos caracteres do texto em B2.",
+            "isTrue": false,
+            "explanation": "Retorna os três primeiros; os últimos são obtidos com DIREITA."
+          },
+          {
+            "statement": "A função HOJE() é dinâmica e dispensa argumentos.",
+            "isTrue": true,
+            "explanation": "A data é obtida do sistema operacional."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Funções E, OU, NÃO e SE",
+            "pageRef": 50
+          },
+          {
+            "topic": "Funções de texto",
+            "pageRef": 52
+          },
+          {
+            "topic": "Funções de data e hora",
+            "pageRef": 55
+          },
+          {
+            "topic": "Lista de atalhos",
+            "pageRef": 57
+          },
+          {
+            "topic": "Ferramenta Detetive",
+            "pageRef": 61
+          }
+        ]
+      }
+    }
+  ]
+}
