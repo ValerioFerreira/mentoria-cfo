@@ -1,0 +1,386 @@
+{
+  "aula": "informatica/a14",
+  "batch": "w2-bizu-informatica",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "informatica/a14/s01",
+      "bizu": {
+        "summary": [
+          "**Computador** é a máquina que realiza **computações** (processamento automático de dados). É formado por **hardware** (parte física: tudo o que se vê e toca) e **software** (parte lógica: programas, sistema operacional, BIOS, navegadores, jogos).",
+          "**Arquitetura de Von Neumann**: modelo básico dos computadores, com **cinco partes** — **entrada, saída, memória, ULA (unidade lógica e aritmética) e unidade de controle**. Fluxo funcional: **entrada → processamento → saída**.",
+          "**Sistemas de numeração**: o ser humano usa a base **decimal (10)**; o computador, a **binária (2)** com os algarismos 0 e 1; existem ainda octal (8) e **hexadecimal (16)**, cujos algarismos vão de 0 a 9 e de A a F (A = 10 … F = 15).",
+          "**Binário → decimal**: soma das potências de 2 nas posições com bit 1 (…128, 64, 32, 16, 8, 4, 2, 1). Ex.: 1011 = 8+2+1 = **11**; 1111111 = **127**; 10011011 = **155**.",
+          "**Decimal → binário**: divisões sucessivas por 2 até o quociente zerar; o número binário é formado pelos **restos, lidos de baixo para cima**. Macete: subtrair a maior potência de 2 possível e marcar 1 nas posições usadas. Ex.: 156 = 10011100.",
+          "**Hexadecimal → decimal**: multiplica-se cada dígito pela potência de 16 da posição. Ex.: B2A(h) = 11·256 + 2·16 + 10 = **2858**. Decimal → hexadecimal: divisões sucessivas por 16 (ex.: 1069 = 42D(h))."
+        ],
+        "teoria": [
+          {
+            "statement": "O modelo de Von Neumann descreve um computador com entrada, saída, memória, unidade lógica e aritmética e unidade de controle.",
+            "isTrue": true,
+            "explanation": "Esse modelo é a base da arquitetura dos computadores."
+          },
+          {
+            "statement": "Os computadores usam internamente o sistema de numeração decimal, com dez algarismos.",
+            "isTrue": false,
+            "explanation": "Usam o sistema binário (base 2), com os algarismos 0 e 1."
+          },
+          {
+            "statement": "O número binário 1011 equivale ao decimal 11.",
+            "isTrue": true,
+            "explanation": "1·8 + 0·4 + 1·2 + 1·1 = 11."
+          },
+          {
+            "statement": "Hardware é a parte lógica do computador, como programas e sistema operacional.",
+            "isTrue": false,
+            "explanation": "Hardware é a parte física; a parte lógica é o software."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O número binário 1111111 é igual a 127 em decimal.",
+            "isTrue": true,
+            "explanation": "É a soma das potências de 2 de 2⁰ a 2⁶."
+          },
+          {
+            "statement": "No sistema hexadecimal, a letra A representa o valor 10 e a letra F, o valor 15.",
+            "isTrue": true,
+            "explanation": "A base 16 usa os algarismos 0 a 9 e as letras A a F."
+          },
+          {
+            "statement": "Para converter um decimal em binário, divide-se por 2 e lê-se a sequência dos restos de cima para baixo.",
+            "isTrue": false,
+            "explanation": "Os restos devem ser lidos de baixo para cima (do último ao primeiro)."
+          },
+          {
+            "statement": "A BIOS é um exemplo de software.",
+            "isTrue": true,
+            "explanation": "Fica gravada em memória não volátil da placa-mãe."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Conceitos básicos de hardware e software",
+            "pageRef": 3
+          },
+          {
+            "topic": "Exemplos de software",
+            "pageRef": 4
+          },
+          {
+            "topic": "Arquitetura de Von Neumann",
+            "pageRef": 5
+          },
+          {
+            "topic": "Conversão de base",
+            "pageRef": 7
+          },
+          {
+            "topic": "Binário para decimal",
+            "pageRef": 9
+          },
+          {
+            "topic": "Decimal para binário",
+            "pageRef": 10
+          },
+          {
+            "topic": "Hexadecimal",
+            "pageRef": 12
+          }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a14/s02",
+      "bizu": {
+        "summary": [
+          "**Unidades de medida** (alta incidência): **bit** é a menor unidade de informação (0 ou 1); **byte** = **8 bits**, o suficiente para representar um caractere. O código **ASCII** codifica 128 sinais (95 gráficos e 33 de controle).",
+          "**Múltiplos do byte** (ordem crescente): **KB, MB, GB, TB, PB** — cada degrau equivale a **1024** da unidade anterior. Mnemônico: *Byte-Kilo-Mega-Giga-Tera-Peta*.",
+          "**Bytes × bits**: em **armazenamento** (disco, RAM) usa-se **byte** (kilo = 1024); em **redes** usa-se **bit** por segundo (kilo = 1000), como 100 Mbps. Quando a prova só informa o prefixo, identifique se o contexto é armazenamento ou rede.",
+          "**Periféricos de E/S**: dispositivos ligados ao computador para entrada de dados (teclado, mouse, scanner), saída (monitor, impressora) ou ambos. Em operações intensas, o desempenho pode ser limitado pela E/S, e não pela CPU.",
+          "**Teclado**: unidade de entrada padrão; layouts **QWERTY** (padrão no Brasil, ABNT2) e DVORAK; conexão USB, sem fio, PS/2 (antigo). A tecla **AltGr** produz símbolos como ¹ ² ³ £ ¢ ¬ § ª º °.",
+          "**Apontadores**: **mouse** (principal), **touchpad/trackpad** (painel tátil, comum em notebooks), **trackball** (esfera, quase em desuso). São dispositivos de **entrada**.",
+          "**Scanner**: dispositivo de **entrada** que digitaliza documentos em imagem digital (tipos: de mão, de página e de mesa, o mais comum); com **OCR** converte imagem de texto em texto editável."
+        ],
+        "teoria": [
+          {
+            "statement": "Um byte é formado por 8 bits e pode representar um caractere.",
+            "isTrue": true,
+            "explanation": "O bit é a menor unidade de informação."
+          },
+          {
+            "statement": "Em medidas de armazenamento, o prefixo kilo equivale a 1000 bytes.",
+            "isTrue": false,
+            "explanation": "Em bytes, kilo equivale a 1024; em bits (redes), usa-se 1000."
+          },
+          {
+            "statement": "O scanner é um dispositivo de entrada que transforma documentos em papel em imagens digitais.",
+            "isTrue": true,
+            "explanation": "Com OCR, o texto da imagem pode ser reconhecido."
+          },
+          {
+            "statement": "O padrão de teclado mais usado no Brasil é o DVORAK.",
+            "isTrue": false,
+            "explanation": "O padrão é o QWERTY, no formato ABNT2."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A sequência crescente KB, MB, GB, TB e PB tem cada unidade 1024 vezes maior que a anterior.",
+            "isTrue": true,
+            "explanation": "Valem 1024 para bytes."
+          },
+          {
+            "statement": "Taxas de rede como 500 Mbps usam bits por segundo, e não bytes.",
+            "isTrue": true,
+            "explanation": "Já a capacidade de discos costuma ser dada em bytes."
+          },
+          {
+            "statement": "O touchpad é um dispositivo de saída usado em notebooks.",
+            "isTrue": false,
+            "explanation": "É um apontador, portanto dispositivo de entrada."
+          },
+          {
+            "statement": "O código ASCII usa 8 bits por caractere nas tabelas apresentadas e codifica 128 sinais.",
+            "isTrue": true,
+            "explanation": "São 95 sinais gráficos e 33 de controle."
+          },
+          {
+            "statement": "Periféricos de E/S permitem enviar dados ao computador ou receber informações processadas por ele.",
+            "isTrue": true,
+            "explanation": "São a interface entre o usuário e o sistema."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Unidades de medida: bit e byte",
+            "pageRef": 14
+          },
+          {
+            "topic": "ASCII",
+            "pageRef": 16
+          },
+          {
+            "topic": "Múltiplos do byte",
+            "pageRef": 17
+          },
+          {
+            "topic": "Bytes × bits em redes",
+            "pageRef": 18
+          },
+          {
+            "topic": "Periféricos de entrada e saída",
+            "pageRef": 19
+          },
+          {
+            "topic": "Teclado",
+            "pageRef": 21
+          },
+          {
+            "topic": "Apontadores (mouse, touchpad)",
+            "pageRef": 23
+          },
+          {
+            "topic": "Scanner",
+            "pageRef": 25
+          }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a14/s03",
+      "bizu": {
+        "summary": [
+          "**Mesa digitalizadora**: dispositivo de **entrada** com caneta; converte o traço analógico em **pares de coordenadas** digitais. **Webcam** e **microfone**: dispositivos de **entrada** (captam imagem e som), mesmo usados em videoconferência e VoIP.",
+          "**Drives**: equipamentos que manipulam discos removíveis; **entrada** ao ler e **saída** ao gravar (CD-ROM = só entrada; CD-RW = entrada e saída). **Drive ≠ driver**: o driver é o **software** que faz o sistema operacional se comunicar com o hardware.",
+          "**Modem** (modulador/demodulador): dispositivo de **entrada e saída** que converte sinais digitais em analógicos (e vice-versa) para trafegar, por exemplo, em linha telefônica; pode ser interno (dial-up), combinado com roteador ou portátil (3G/4G).",
+          "**Impressora**: dispositivo de **saída** (hard copy). **Matricial**: impacto com agulhas contra fita, permite várias vias (carbono). **Jato de tinta (deskjet)**: cartuchos, silenciosa, uso doméstico, baixo custo de aquisição e **alto custo por página**; cores **CMYK** (ciano, magenta, amarelo e preto). **Laser**: usa **toner** (pó) fixado por **fusor** (calor), melhor resolução e velocidade, menor custo por página.",
+          "**Plotter**: dispositivo de **saída** para desenhos em **grande formato** (plantas, mapas, CAD), com canetas, jato de tinta ou cortadores.",
+          "**Monitor**: saída padrão, recebe as imagens da **placa de vídeo**. Cores da luz (aditivas): **RGB** (vermelho, verde e azul), cerca de **16,7 milhões** de cores com 256 tons por ponto. **Dot pitch** menor = imagem mais nítida. **Resolução** = pixels na horizontal × vertical.",
+          "**Resoluções 16:9**: HD **1280×720**; Full HD **1920×1080**; 4K UHD **3840×2160**; 8K **7680×4320**. **Tipos**: **CRT** (canhão de elétrons e fósforo, volumoso), **plasma** (gases ionizados), **LCD/LED** (cristal líquido com luz de fundo) e **OLED** (diodos orgânicos autoemissivos)."
+        ],
+        "teoria": [
+          {
+            "statement": "A webcam é um dispositivo de entrada, pois captura imagens e as envia ao computador.",
+            "isTrue": true,
+            "explanation": "O uso em videoconferência não a torna dispositivo de saída."
+          },
+          {
+            "statement": "Driver é o equipamento físico que lê e grava discos removíveis, como o CD-ROM.",
+            "isTrue": false,
+            "explanation": "Esse equipamento é o drive; driver é o software de comunicação com o hardware."
+          },
+          {
+            "statement": "A impressora matricial forma os caracteres por impacto de agulhas contra uma fita.",
+            "isTrue": true,
+            "explanation": "É a única que permite várias vias com papel carbono."
+          },
+          {
+            "statement": "A resolução 1920 x 1080 corresponde ao padrão Full HD na proporção 16:9.",
+            "isTrue": true,
+            "explanation": "4K tem 3840 x 2160."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A impressora laser utiliza toner e um fusor que fixa o pó no papel com calor.",
+            "isTrue": true,
+            "explanation": "Tem menor custo por impressão que a jato de tinta."
+          },
+          {
+            "statement": "O monitor CRT forma a imagem por cristal líquido e luz de fundo de LED.",
+            "isTrue": false,
+            "explanation": "O CRT usa canhão de elétrons e fósforo; cristal líquido é do LCD."
+          },
+          {
+            "statement": "A impressora jato de tinta colorida trabalha com o padrão CMYK.",
+            "isTrue": true,
+            "explanation": "Ciano, magenta, amarelo e preto."
+          },
+          {
+            "statement": "O plotter é um dispositivo de saída usado em desenhos de grande formato.",
+            "isTrue": true,
+            "explanation": "É comum em engenharia e CAD."
+          },
+          {
+            "statement": "O modem é um dispositivo de saída que apenas imprime documentos.",
+            "isTrue": false,
+            "explanation": "Ele é de entrada e saída e converte sinais digitais em analógicos e vice-versa."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Mesa digitalizadora",
+            "pageRef": 26
+          },
+          {
+            "topic": "Drives e drivers",
+            "pageRef": 27
+          },
+          {
+            "topic": "Webcam e microfone",
+            "pageRef": 28
+          },
+          {
+            "topic": "Modem",
+            "pageRef": 30
+          },
+          {
+            "topic": "Impressoras",
+            "pageRef": 31
+          },
+          {
+            "topic": "Plotter",
+            "pageRef": 35
+          },
+          {
+            "topic": "Monitor, cores e resolução",
+            "pageRef": 36
+          },
+          {
+            "topic": "Tipos de monitor",
+            "pageRef": 38
+          }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a14/s04",
+      "bizu": {
+        "summary": [
+          "**Placa de vídeo**: dispositivo de **saída** que gera as imagens enviadas ao monitor; influencia resolução e tempo de formação da imagem. Pode ser **onboard** (integrada à placa-mãe) ou **offboard** (dedicada, com memória própria — importante para jogos e edição de vídeo).",
+          "**Tablet**: dispositivo de **entrada e saída** (tela sensível ao toque), que usa **memória flash**, capaz de retomar do ponto em que parou ao religar. **Caixas de som**: dispositivo de **saída** (reprodução de áudio).",
+          "**Placa-mãe (motherboard)**: principal placa do computador; interliga e alimenta CPU, memória, disco e demais componentes por meio dos **barramentos**. É a \"espinha dorsal\" do equipamento. A **ROM**, a **BIOS** e a RAM encaixam-se nela ou integram-se a ela.",
+          "**Firmware**: software de baixo nível gravado pelo fabricante em ROM, entre o hardware e o sistema operacional. **BIOS**: principal firmware da placa-mãe; verifica os componentes, detecta os dispositivos e inicia o sistema operacional.",
+          "**SETUP**: programa de configuração do equipamento (ordem de boot, data, velocidade de memória). **POST (Power-On Self Test)**: autoteste realizado ao ligar o computador para verificar se há os recursos mínimos de funcionamento.",
+          "**Boot**: processo de inicialização até carregar o SO. Sequência: POST → BIOS lê o **MBR** → carrega o **boot loader** → inicia o **kernel** → tela de logon. **EFI/UEFI** é o firmware moderno que sucede a BIOS.",
+          "**Bateria da placa-mãe (CR2032)**: mantém a **memória CMOS** (volátil), que guarda a configuração do SETUP (data, hora, ordem de boot) com o computador desligado."
+        ],
+        "teoria": [
+          {
+            "statement": "A placa de vídeo é responsável por gerar as imagens que aparecem no monitor.",
+            "isTrue": true,
+            "explanation": "Pode ser onboard ou offboard."
+          },
+          {
+            "statement": "As configurações do SETUP ficam gravadas na memória ROM e não precisam de bateria.",
+            "isTrue": false,
+            "explanation": "Ficam na CMOS, memória volátil mantida por uma pequena bateria."
+          },
+          {
+            "statement": "O POST é um conjunto de testes feito ao ligar a máquina para verificar o funcionamento do equipamento.",
+            "isTrue": true,
+            "explanation": "Ocorre antes de o sistema operacional ser carregado."
+          },
+          {
+            "statement": "A BIOS é um firmware gravado em memória ROM da placa-mãe.",
+            "isTrue": true,
+            "explanation": "Ela inicializa o hardware e carrega o sistema operacional."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O termo boot designa a inicialização do computador até o carregamento completo do sistema operacional.",
+            "isTrue": true,
+            "explanation": "EFI/UEFI substitui a BIOS tradicional."
+          },
+          {
+            "statement": "A placa-mãe é um dispositivo de periférico de entrada, usada para digitar dados.",
+            "isTrue": false,
+            "explanation": "Ela é a placa principal que conecta e alimenta os componentes."
+          },
+          {
+            "statement": "O tablet utiliza memória flash, o que permite retomar o trabalho do ponto em que parou após religá-lo.",
+            "isTrue": true,
+            "explanation": "Também reúne entrada (toque) e saída (tela)."
+          },
+          {
+            "statement": "Caixas de som são dispositivos de entrada de dados.",
+            "isTrue": false,
+            "explanation": "São dispositivos de saída, pois reproduzem áudio."
+          },
+          {
+            "statement": "O SETUP permite configurar parâmetros como a sequência de dispositivos de inicialização.",
+            "isTrue": true,
+            "explanation": "Os dados ficam armazenados na CMOS."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Placa de vídeo",
+            "pageRef": 40
+          },
+          {
+            "topic": "Tablet",
+            "pageRef": 41
+          },
+          {
+            "topic": "Caixas de som",
+            "pageRef": 43
+          },
+          {
+            "topic": "Placa-mãe",
+            "pageRef": 44
+          },
+          {
+            "topic": "BIOS e firmware",
+            "pageRef": 46
+          },
+          {
+            "topic": "SETUP e POST",
+            "pageRef": 47
+          },
+          {
+            "topic": "Processo de boot",
+            "pageRef": 48
+          },
+          {
+            "topic": "Bateria e CMOS",
+            "pageRef": 50
+          }
+        ]
+      }
+    }
+  ]
+}
