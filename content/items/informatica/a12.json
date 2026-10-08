@@ -1,0 +1,921 @@
+{
+  "aula": "informatica/a12",
+  "batch": "w2-bizu-informatica",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "informatica/a12/s01",
+      "bizu": {
+        "summary": [
+          "**Sistema operacional (SO)** gerencia memória, processos e dispositivos, executando vários programas ao mesmo tempo (**multitarefa**). O **kernel** é o núcleo do SO; falhas graves nele podem gerar a \"tela azul\". **Drivers** fazem o SO conversar com os periféricos.",
+          "**Windows 11**: lançado em **outubro de 2021**, com menu Iniciar e barra de tarefas **centralizados**, cantos arredondados, **Snap Layouts**, integração com Teams e OneDrive e requisitos de segurança como **TPM 2.0**. Mesma base do Windows 10.",
+          "**Linha do tempo**: Windows Vista → Windows 7 (2009) → Windows 8 → Windows 10 (julho de 2015) → Windows 11.",
+          "**Requisitos mínimos**: arquitetura de **64 bits** (não há mais suporte a 32 bits), processador de **1 GHz**, **4 GB de RAM** e **64 GB** de espaço livre.",
+          "**Novidades**: gerenciador de tarefas redesenhado (modo escuro, aba de eficiência), melhor desempenho em SSDs NVMe, inicialização rápida, widgets e Copilot.",
+          "**Edições**: **Home** (uso doméstico; exige conta Microsoft e internet na primeira configuração) e **Pro** (profissionais e pequenas empresas; adiciona **BitLocker**, Política de Grupo, Hyper-V e Área de Trabalho Remota). Há ainda Enterprise, Education (SE) e IoT."
+        ],
+        "teoria": [
+          {
+            "statement": "O Windows 11 não oferece versão de 32 bits, apenas de 64 bits.",
+            "isTrue": true,
+            "explanation": "Os requisitos mínimos incluem arquitetura de 64 bits, 4 GB de RAM e 64 GB de armazenamento."
+          },
+          {
+            "statement": "O BitLocker e a Política de Grupo estão disponíveis na edição Home do Windows 11.",
+            "isTrue": false,
+            "explanation": "Esses recursos são adicionados na edição Pro."
+          },
+          {
+            "statement": "O kernel é o núcleo do sistema operacional e controla funções críticas como memória e entrada e saída de dados.",
+            "isTrue": true,
+            "explanation": "Falhas graves nele podem travar o computador inteiro."
+          },
+          {
+            "statement": "Drivers são programas que permitem ao sistema operacional se comunicar com os dispositivos de hardware.",
+            "isTrue": true,
+            "explanation": "Hoje a instalação costuma ser automática."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A barra de tarefas e o menu Iniciar do Windows 11 vêm, por padrão, alinhados ao centro da tela.",
+            "isTrue": true,
+            "explanation": "É uma das mudanças visuais em relação ao Windows 10."
+          },
+          {
+            "statement": "O Windows 11 exige apenas 1 GB de memória RAM para ser instalado.",
+            "isTrue": false,
+            "explanation": "O mínimo exigido é de 4 GB de RAM."
+          },
+          {
+            "statement": "Snap Layouts é um recurso do Windows 11 para organizar janelas na tela.",
+            "isTrue": true,
+            "explanation": "Aparece ao passar o mouse sobre o botão de maximizar."
+          },
+          {
+            "statement": "A edição Home do Windows 11 pode exigir conta Microsoft e internet na configuração inicial.",
+            "isTrue": true,
+            "explanation": "A edição Pro é voltada a profissionais e pequenas empresas."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Contexto histórico e kernel",
+            "pageRef": 8
+          },
+          {
+            "topic": "Conceitos básicos do Windows 11",
+            "pageRef": 10
+          },
+          {
+            "topic": "Linha do tempo das versões",
+            "pageRef": 11
+          },
+          {
+            "topic": "Novidades",
+            "pageRef": 11
+          },
+          {
+            "topic": "Requisitos mínimos",
+            "pageRef": 13
+          },
+          {
+            "topic": "Versões (Home e Pro)",
+            "pageRef": 13
+          }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a12/s02",
+      "bizu": {
+        "summary": [
+          "**Área de trabalho (desktop)**: principal ponto de interação da interface gráfica; reúne ícones, atalhos, plano de fundo e barra de tarefas. No Windows 11, o design é minimalista, com transparências (acrílico) e animações suaves.",
+          "**Plano de fundo (papel de parede)** e **temas**: configurados em Configurações > Personalização; temas agrupam papel de parede, cores, sons e ponteiros do mouse. **Temas de contraste** (acessibilidade): Aquáticos, Deserto, Entardecer e Céu Noturno.",
+          "**Ícones**: representam arquivos, pastas e programas; podem ser personalizados (trocar imagem de pastas, atalhos com ícones diferentes).",
+          "**Atalho** é um arquivo com extensão **.lnk** que guarda apenas a **referência (caminho)** do objeto original, sem conter o conteúdo; é leve e depende de o destino existir. Apagar o atalho **não** apaga o arquivo original.",
+          "**Barra de tarefas**: faixa (geralmente na parte inferior, podendo ser movida) com botão **Iniciar**, ícones de aplicativos fixados e abertos, busca, visão de tarefas, área de notificação, hora e data; clicar no canto inferior direito minimiza tudo e mostra a área de trabalho.",
+          "**Widgets**: painéis com informações dinâmicas (clima, notícias, calendário, esportes, ações), acessados por botão na barra de tarefas ou por **Win+W**; o feed é alimentado pelo Microsoft Start. Herdam a ideia dos *Live Tiles* do Windows 10."
+        ],
+        "teoria": [
+          {
+            "statement": "Um atalho do Windows, com extensão .lnk, armazena apenas a referência ao caminho do arquivo original.",
+            "isTrue": true,
+            "explanation": "Por isso ocupa poucos kilobytes."
+          },
+          {
+            "statement": "Ao excluir o atalho de um arquivo, o arquivo original também é excluído.",
+            "isTrue": false,
+            "explanation": "Apagar o atalho não afeta o objeto ao qual ele aponta."
+          },
+          {
+            "statement": "O painel de Widgets do Windows 11 pode ser aberto pelo atalho Win+W.",
+            "isTrue": true,
+            "explanation": "Exibe clima, notícias, calendário e outros conteúdos."
+          },
+          {
+            "statement": "A barra de tarefas do Windows 11 só pode ficar na parte inferior da tela.",
+            "isTrue": false,
+            "explanation": "Ela costuma ficar embaixo, mas pode ser reposicionada em outras bordas."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Os temas de contraste do Windows 11 são voltados à acessibilidade, para pessoas com baixa visão ou sensibilidade à luz.",
+            "isTrue": true,
+            "explanation": "Ficam em Configurações > Acessibilidade."
+          },
+          {
+            "statement": "Um tema do Windows reúne papel de parede, cores, sons e ponteiros do mouse.",
+            "isTrue": true,
+            "explanation": "Podem ser baixados na Microsoft Store."
+          },
+          {
+            "statement": "Copiar um atalho para outro computador leva junto o conteúdo completo do arquivo original.",
+            "isTrue": false,
+            "explanation": "Só a referência é copiada; sem o destino, o atalho não abre nada."
+          },
+          {
+            "statement": "A área de trabalho é o ponto principal de interação com a interface gráfica do sistema.",
+            "isTrue": true,
+            "explanation": "Nela ficam ícones, atalhos e a barra de tarefas."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Interface gráfica e área de trabalho",
+            "pageRef": 14
+          },
+          {
+            "topic": "Tela e plano de fundo",
+            "pageRef": 16
+          },
+          {
+            "topic": "Temas de contraste",
+            "pageRef": 17
+          },
+          {
+            "topic": "Ícones",
+            "pageRef": 19
+          },
+          {
+            "topic": "Atalhos (.lnk)",
+            "pageRef": 22
+          },
+          {
+            "topic": "Barra de tarefas",
+            "pageRef": 24
+          },
+          {
+            "topic": "Widgets",
+            "pageRef": 26
+          }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a12/s03",
+      "bizu": {
+        "summary": [
+          "**Menu Iniciar** (altíssima incidência): painel central para aplicativos, configurações e arquivos; mostra **aplicativos fixados**, **recomendações** e a busca. Abre-se com a **tecla Windows** (ou Ctrl+Esc).",
+          "**Opções de energia** do Iniciar: **Suspender** (baixo consumo, trabalho mantido na RAM), **Hibernar** (salva o estado no disco e desliga), **Desligar** e **Reiniciar**.",
+          "**Caixa de pesquisa**: encontra aplicativos, arquivos, configurações e também faz buscas na web (integração com o Bing); a indexação e os locais pesquisados se ajustam nas configurações de pesquisa.",
+          "**Visão de tarefas**: mostra todas as janelas abertas e gerencia **áreas de trabalho virtuais** (cada uma pode ter nome e papel de parede próprios); alterna-se entre elas com **Ctrl+Win+setas**.",
+          "**Copilot**: assistente com **inteligência artificial** integrado ao Windows, que responde perguntas e executa ajustes por linguagem natural; sucede a **Cortana** (assistente de voz do Windows 10).",
+          "**Ícones fixados**: atalhos permanentes no Iniciar ou na barra de tarefas, visíveis mesmo com o programa fechado.",
+          "**Configurações rápidas** (ícones de rede, som e bateria): Wi-Fi, Bluetooth, volume, brilho, modo avião e economia de energia. **Hora/notificações**: relógio, data, calendário e central de notificações, no canto direito da barra."
+        ],
+        "teoria": [
+          {
+            "statement": "A suspensão mantém o trabalho aberto na memória RAM, com o computador em estado de baixo consumo.",
+            "isTrue": true,
+            "explanation": "A hibernação, por sua vez, grava o estado no disco."
+          },
+          {
+            "statement": "A tecla Windows, sozinha, abre o menu Iniciar do Windows 11.",
+            "isTrue": true,
+            "explanation": "Ctrl+Esc também abre o menu."
+          },
+          {
+            "statement": "A Visão de Tarefas permite criar e alternar entre múltiplas áreas de trabalho virtuais.",
+            "isTrue": true,
+            "explanation": "Cada desktop virtual pode ter nome e plano de fundo próprios."
+          },
+          {
+            "statement": "A Cortana é a assistente com inteligência artificial integrada ao Windows 11, que substituiu o Copilot.",
+            "isTrue": false,
+            "explanation": "A ordem é inversa: o Copilot sucedeu a Cortana, assistente do Windows 10."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Os ícones fixados permanecem visíveis na barra de tarefas mesmo quando o programa está fechado.",
+            "isTrue": true,
+            "explanation": "Permitem abrir o item com um clique."
+          },
+          {
+            "statement": "O painel de configurações rápidas permite ligar o modo avião e ajustar volume e brilho sem abrir o aplicativo Configurações.",
+            "isTrue": true,
+            "explanation": "É aberto pelos ícones de rede, som ou bateria."
+          },
+          {
+            "statement": "A caixa de pesquisa do Windows 11 localiza apenas arquivos locais, sem acesso à web.",
+            "isTrue": false,
+            "explanation": "Ela também realiza buscas na web, integrada ao Bing."
+          },
+          {
+            "statement": "Ctrl+Win+seta para a direita alterna entre áreas de trabalho virtuais.",
+            "isTrue": true,
+            "explanation": "A transição também é feita pela Visão de Tarefas."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Menu Iniciar",
+            "pageRef": 28
+          },
+          {
+            "topic": "Opções de energia",
+            "pageRef": 30
+          },
+          {
+            "topic": "Caixa de pesquisa",
+            "pageRef": 31
+          },
+          {
+            "topic": "Visão de tarefas",
+            "pageRef": 33
+          },
+          {
+            "topic": "Copilot",
+            "pageRef": 35
+          },
+          {
+            "topic": "Ícones fixados",
+            "pageRef": 37
+          },
+          {
+            "topic": "Configurações rápidas",
+            "pageRef": 38
+          },
+          {
+            "topic": "Hora e notificações",
+            "pageRef": 39
+          }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a12/s04",
+      "bizu": {
+        "summary": [
+          "**Janela** é a área retangular em que o Windows exibe cada programa (daí o nome). O **Explorador de Arquivos** do Windows 11 aceita **abas**: **Ctrl+T** abre nova aba e **Ctrl+W** fecha a aba atual.",
+          "**Barra de título**: no topo da janela, mostra o nome do aplicativo ou documento e os botões **Minimizar, Maximizar/Restaurar e Fechar**; arrastá-la move a janela. **Alt+F4** fecha o aplicativo ativo (sem aplicativo ativo, abre a janela de desligamento); **F10** ativa a barra de menus; **F2** renomeia o item selecionado.",
+          "**Faixa de opções** (altíssima incidência): no Explorador do Windows 11 virou uma **barra de comandos compacta** com Novo, Recortar, Copiar, Colar, Renomear, Compartilhar, Excluir, Classificar, Exibir e o botão **\"…\"** (Propriedades, Selecionar tudo, Abrir com). No Windows 10 e no Office, a faixa tem guias (Página Inicial, Compartilhar, Exibir).",
+          "**Excluir** envia o item para a **Lixeira** (recuperável). **Novo** cria pasta ou atalho no diretório atual.",
+          "**Barra de endereços**: mostra o caminho (path) da pasta atual; pode-se clicar nos segmentos ou digitar o caminho. **Alt+D** a seleciona; **Backspace** (ou botão Voltar) retorna à pasta anterior.",
+          "**Caixa de pesquisa** do Explorador: busca na pasta atual **e em suas subpastas**; para varrer tudo, seleciona-se a pasta de nível mais alto antes de digitar o termo. Permite filtros por tipo, data e tamanho e usa o índice do Windows."
+        ],
+        "teoria": [
+          {
+            "statement": "No Explorador de Arquivos do Windows 11, o atalho Ctrl+T abre uma nova aba e Ctrl+W fecha a aba atual.",
+            "isTrue": true,
+            "explanation": "Facilita trabalhar com várias pastas na mesma janela."
+          },
+          {
+            "statement": "O atalho Alt+F4 renomeia o arquivo selecionado.",
+            "isTrue": false,
+            "explanation": "Alt+F4 fecha o aplicativo ativo; renomear é a tecla F2."
+          },
+          {
+            "statement": "A barra de endereços do Explorador mostra o caminho da pasta atual e permite navegar clicando em cada nível.",
+            "isTrue": true,
+            "explanation": "Também pode-se digitar o caminho diretamente (Alt+D a seleciona)."
+          },
+          {
+            "statement": "Para pesquisar um termo em todas as subpastas, deve-se selecionar a pasta de nível mais alto que as contém antes de digitar na caixa de pesquisa.",
+            "isTrue": true,
+            "explanation": "A busca percorre a pasta selecionada e seus subníveis."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O botão Excluir da barra de comandos do Explorador envia o item para a Lixeira.",
+            "isTrue": true,
+            "explanation": "Por isso ele ainda pode ser recuperado."
+          },
+          {
+            "statement": "O botão Voltar do Explorador leva sempre à pasta pai (nível acima), e não à última pasta visitada.",
+            "isTrue": false,
+            "explanation": "Voltar retorna à pasta visitada anteriormente; subir um nível é outro botão."
+          },
+          {
+            "statement": "A barra de título exibe os botões minimizar, maximizar/restaurar e fechar.",
+            "isTrue": true,
+            "explanation": "Arrastá-la move a janela."
+          },
+          {
+            "statement": "O atalho Alt+D seleciona a barra de endereços no Explorador de Arquivos.",
+            "isTrue": true,
+            "explanation": "Depois basta digitar o caminho desejado."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Janelas e abas do Explorador",
+            "pageRef": 40
+          },
+          {
+            "topic": "Barra de título",
+            "pageRef": 41
+          },
+          {
+            "topic": "Faixa de opções",
+            "pageRef": 44
+          },
+          {
+            "topic": "Comandos da faixa",
+            "pageRef": 45
+          },
+          {
+            "topic": "Barra de endereços",
+            "pageRef": 46
+          },
+          {
+            "topic": "Caixa de pesquisa",
+            "pageRef": 49
+          }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a12/s05",
+      "bizu": {
+        "summary": [
+          "**Painel de navegação** (lado esquerdo): estrutura hierárquica de pastas, com **Acesso rápido**, OneDrive, **Este Computador** (pastas pessoais e unidades locais), Rede. A opção **Fixar no Acesso rápido** (menu de contexto) adiciona uma pasta ali.",
+          "**Pastas pessoais**: Área de Trabalho, **Downloads** (destino padrão dos arquivos baixados), Documentos, Imagens, Músicas e Vídeos.",
+          "**Painel de visualização** (lado direito, opcional): mostra uma **prévia do conteúdo** do arquivo (texto, imagens, PDFs, planilhas) sem abri-lo; depende de programas instalados para alguns formatos.",
+          "**Painel de detalhes**: exibe **metadados** do item (nome, tipo, tamanho, data de modificação, autor); em alguns casos é possível editar título, marcas e comentários.",
+          "**Alternância de janelas**: **Alt+Tab** mostra miniaturas das janelas abertas e permite escolher; **Alt+Esc** alterna entre elas sem a caixa de diálogo. **Win+Tab** abre a Visão de Tarefas.",
+          "**Snap Layouts**: ao passar o mouse no botão de maximizar (ou **Win+Z**) o Windows 11 oferece arranjos de 2, 3 ou 4 áreas; os atalhos **Win+setas** encaixam a janela nas bordas. **Snap Assist** sugere as demais janelas para preencher os espaços livres."
+        ],
+        "teoria": [
+          {
+            "statement": "O Painel de Visualização do Explorador mostra uma prévia do conteúdo do arquivo sem precisar abri-lo.",
+            "isTrue": true,
+            "explanation": "O Painel de Detalhes, por outro lado, mostra propriedades do arquivo."
+          },
+          {
+            "statement": "Alt+Tab fecha a janela ativa do Windows.",
+            "isTrue": false,
+            "explanation": "Alt+Tab alterna entre janelas abertas; fechar é Alt+F4."
+          },
+          {
+            "statement": "O Painel de Detalhes apresenta metadados do item selecionado, como tipo, tamanho e data de modificação.",
+            "isTrue": true,
+            "explanation": "Metadados são dados sobre o arquivo."
+          },
+          {
+            "statement": "Para fixar uma pasta no painel de navegação, usa-se a opção Fixar no Acesso rápido do menu de contexto.",
+            "isTrue": true,
+            "explanation": "A pasta passa a aparecer na seção Acesso rápido."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Snap Layouts são arranjos predefinidos de janelas, acessados passando o mouse sobre o botão maximizar ou com Win+Z.",
+            "isTrue": true,
+            "explanation": "Facilitam a multitarefa em telas grandes."
+          },
+          {
+            "statement": "A pasta Downloads é o local padrão para onde vão os arquivos baixados por navegadores e aplicativos.",
+            "isTrue": true,
+            "explanation": "Fica no painel de navegação, em Este Computador."
+          },
+          {
+            "statement": "A combinação Alt+Esc alterna entre janelas exibindo uma grade de miniaturas.",
+            "isTrue": false,
+            "explanation": "Alt+Esc alterna diretamente, sem exibir caixa de diálogo; a grade é do Alt+Tab."
+          },
+          {
+            "statement": "O Painel de Visualização aparece obrigatoriamente em toda janela do Explorador.",
+            "isTrue": false,
+            "explanation": "É um painel opcional, ativado pelo usuário."
+          },
+          {
+            "statement": "Win+seta para a esquerda encaixa a janela na metade esquerda da tela.",
+            "isTrue": true,
+            "explanation": "É um atalho do recurso Snap."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Painel de navegação",
+            "pageRef": 51
+          },
+          {
+            "topic": "Este Computador e pastas pessoais",
+            "pageRef": 52
+          },
+          {
+            "topic": "Acesso rápido",
+            "pageRef": 52
+          },
+          {
+            "topic": "Painel de visualização",
+            "pageRef": 54
+          },
+          {
+            "topic": "Painel de detalhes",
+            "pageRef": 56
+          },
+          {
+            "topic": "Alternância de janelas (Alt+Tab)",
+            "pageRef": 58
+          },
+          {
+            "topic": "Snap Layouts",
+            "pageRef": 60
+          }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a12/s06",
+      "bizu": {
+        "summary": [
+          "**Painel de Controle** (altíssima incidência): interface clássica de configuração do sistema, mantida no Windows 11 ao lado do app **Configurações**. Exibe-se por **categorias** ou por ícones (grandes/pequenos).",
+          "**Sistema e Segurança**: *Segurança e Manutenção* (alertas, UAC, solução de problemas), **Windows Defender Firewall**, *Sistema* (informações do computador), **Opções de Energia**, **Histórico de Arquivos** (backup de arquivos pessoais com versões), **Backup e Restauração (Windows 7)** (cópia completa do sistema), **Criptografia de Unidade de Disco BitLocker**, Ferramentas do Windows.",
+          "**Rede e Internet**: *Central de Rede e Compartilhamento* (conexões, redes públicas/privadas, compartilhamento) e *Opções da Internet* (página inicial, cookies, proxy, histórico, segurança).",
+          "**Hardware e Sons**: *Dispositivos e Impressoras* (inclui o **Gerenciador de Dispositivos**), *Reprodução Automática* (comportamento ao conectar mídias removíveis), *Som* e *Opções de Energia*.",
+          "**Programas**: *Programas e Recursos* (**desinstalar**, alterar, reparar, ativar/desativar recursos do Windows, ver atualizações instaladas) e *Programas Padrão* (qual programa abre cada tipo de arquivo).",
+          "**Contas de Usuário**: criar/excluir/modificar contas (administrador ou padrão), senha, imagem; *Gerenciador de Credenciais* (logins e senhas salvos); Mail (perfil do Outlook).",
+          "**Aparência e Personalização**: barra de tarefas e navegação, opções do Explorador de Arquivos, fontes. **Relógio e Região**: *Data e Hora* (fuso, sincronização) e *Região* (formatos de data, hora, moeda e números).",
+          "**Facilidade de Acesso**: alto contraste, narrador, **lupa**, teclado virtual, ajustes de mouse e teclado e **reconhecimento de fala**."
+        ],
+        "teoria": [
+          {
+            "statement": "O Painel de Controle do Windows 11 reúne configurações do sistema por categorias, como Sistema e Segurança e Hardware e Sons.",
+            "isTrue": true,
+            "explanation": "Convive com o aplicativo Configurações."
+          },
+          {
+            "statement": "A categoria Programas do Painel de Controle permite desinstalar, alterar e reparar programas instalados.",
+            "isTrue": true,
+            "explanation": "A opção chama-se Programas e Recursos."
+          },
+          {
+            "statement": "O Gerenciador de Credenciais é uma ferramenta da categoria Rede e Internet que administra apenas redes sem fio.",
+            "isTrue": false,
+            "explanation": "Fica em Contas de Usuário e guarda logins e senhas salvos de sites e do Windows."
+          },
+          {
+            "statement": "O Histórico de Arquivos faz backup automático de arquivos pessoais e mantém versões anteriores para restauração.",
+            "isTrue": true,
+            "explanation": "Fica em Sistema e Segurança."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A configuração do fuso horário e da sincronização do relógio fica na categoria Relógio e Região.",
+            "isTrue": true,
+            "explanation": "A opção Região altera formatos de data, moeda e números."
+          },
+          {
+            "statement": "A Reprodução Automática define o que o sistema faz quando uma mídia removível, como um pendrive, é conectada.",
+            "isTrue": true,
+            "explanation": "Fica em Hardware e Sons."
+          },
+          {
+            "statement": "O Windows Defender Firewall é configurado na categoria Contas de Usuário.",
+            "isTrue": false,
+            "explanation": "É uma opção de Sistema e Segurança."
+          },
+          {
+            "statement": "A Central de Facilidade de Acesso reúne recursos como lupa, narrador, alto contraste e teclado virtual.",
+            "isTrue": true,
+            "explanation": "Atende pessoas com deficiência visual, auditiva ou motora."
+          },
+          {
+            "statement": "Dispositivos e Impressoras, no Painel de Controle, dá acesso ao Gerenciador de Dispositivos.",
+            "isTrue": true,
+            "explanation": "Está na categoria Hardware e Sons."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Conceitos do Painel de Controle",
+            "pageRef": 62
+          },
+          {
+            "topic": "Sistema e Segurança",
+            "pageRef": 64
+          },
+          {
+            "topic": "Backup e criptografia (BitLocker)",
+            "pageRef": 65
+          },
+          {
+            "topic": "Rede e Internet",
+            "pageRef": 66
+          },
+          {
+            "topic": "Hardware e Sons",
+            "pageRef": 67
+          },
+          {
+            "topic": "Programas",
+            "pageRef": 69
+          },
+          {
+            "topic": "Contas de Usuário",
+            "pageRef": 70
+          },
+          {
+            "topic": "Aparência e Personalização",
+            "pageRef": 71
+          },
+          {
+            "topic": "Relógio e Região",
+            "pageRef": 72
+          },
+          {
+            "topic": "Facilidade de Acesso",
+            "pageRef": 73
+          }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a12/s07",
+      "bizu": {
+        "summary": [
+          "**Configurações** (altíssima incidência): aplicativo moderno que **substitui em grande parte o Painel de Controle**, organizado em categorias (Sistema, Bluetooth e dispositivos, Rede e Internet, Personalização, Aplicativos, Contas, Hora e idioma, Jogos, Acessibilidade, Privacidade e segurança, Windows Update). Abre-se com **Win+I**.",
+          "**Início**: configurações recomendadas e armazenamento em nuvem (espaço usado no OneDrive e acesso ao backup).",
+          "**Sistema > Tela**: várias telas (duplicar, estender), brilho, **Luz Noturna** (reduz luz azul), perfil de cor, **HDR**, resolução, escala e orientação.",
+          "**Sistema > Som**: dispositivos de **saída** (alto-falantes, fones) e de **entrada** (microfone), volume geral e **áudio mono** (junta os canais, útil para deficiência auditiva).",
+          "**Sistema > Notificações**: liga/desliga alertas globais ou por aplicativo; o modo **Não incomodar** silencia avisos visuais e sonoros.",
+          "**Sistema > Sobre**: nome do computador, processador, RAM, tipo de sistema e versão do Windows; permite renomear o PC. **Recursos opcionais**: Hyper-V, Telnet, subsistema do Windows para Linux."
+        ],
+        "teoria": [
+          {
+            "statement": "O atalho Win+I abre diretamente o aplicativo Configurações do Windows 11.",
+            "isTrue": true,
+            "explanation": "Alt+F4 fecha a janela ativa e Ctrl+C copia."
+          },
+          {
+            "statement": "O aplicativo Configurações foi eliminado do Windows 11, que voltou a usar somente o Painel de Controle.",
+            "isTrue": false,
+            "explanation": "Configurações é o painel moderno e substitui em grande parte o Painel de Controle."
+          },
+          {
+            "statement": "O recurso Luz Noturna, de Sistema > Tela, torna as cores da tela mais quentes para diminuir o excesso de luz azul, principalmente à noite.",
+            "isTrue": true,
+            "explanation": "É voltado ao conforto visual."
+          },
+          {
+            "statement": "A opção Sobre exibe dados do dispositivo, como processador, memória RAM e versão do Windows.",
+            "isTrue": true,
+            "explanation": "Também permite renomear o computador."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O modo Não Incomodar oculta alertas visuais e sonoros do sistema.",
+            "isTrue": true,
+            "explanation": "Pode ser definido em Sistema > Notificações."
+          },
+          {
+            "statement": "O áudio mono combina os canais esquerdo e direito em um só, auxiliando pessoas com deficiência auditiva.",
+            "isTrue": true,
+            "explanation": "Está em Sistema > Som."
+          },
+          {
+            "statement": "Em Sistema > Tela, define-se o fuso horário e o idioma do Windows.",
+            "isTrue": false,
+            "explanation": "Fuso e idioma ficam em Hora e idioma; Tela trata de monitores, brilho e resolução."
+          },
+          {
+            "statement": "Recursos opcionais, como Hyper-V e o subsistema do Windows para Linux, podem ser ativados em Sistema.",
+            "isTrue": true,
+            "explanation": "Ficam em Sistema > Recursos opcionais."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Conceitos e atalho Win+I",
+            "pageRef": 74
+          },
+          {
+            "topic": "Início",
+            "pageRef": 76
+          },
+          {
+            "topic": "Sistema",
+            "pageRef": 77
+          },
+          {
+            "topic": "Recursos opcionais e Sobre",
+            "pageRef": 78
+          },
+          {
+            "topic": "Tela",
+            "pageRef": 80
+          },
+          {
+            "topic": "Som",
+            "pageRef": 81
+          },
+          {
+            "topic": "Notificações",
+            "pageRef": 83
+          }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a12/s08",
+      "bizu": {
+        "summary": [
+          "**Energia**: *Modo de energia* (Equilibrado, Economia de energia, Desempenho máximo) e tempos para desligar a tela e **suspender**. **Suspender** = estado salvo na RAM (consumo mínimo, retoma rápido); **Hibernar** = estado salvo no disco, desliga por completo; **Desligar** = encerra tudo.",
+          "**Recuperação**: *Corrigir problemas sem redefinir o PC*, *Redefinir este PC* (reinstala o Windows, com opção de manter ou remover arquivos pessoais), *Voltar* a uma versão anterior e inicialização avançada. A **Limpeza de Disco** remove temporários e instalações antigas, mas não apaga o sistema atual.",
+          "**Área de Trabalho Remota**: permite acessar e controlar outro computador à distância; o PC remoto precisa permitir conexões, e o acesso é feito por um aplicativo de conexão, com autenticação.",
+          "**Área de Transferência**: o histórico guarda vários itens copiados e é aberto com **Win+V**; é possível **fixar** itens para que não sejam removidos do histórico e sincronizar com a nuvem.",
+          "**Bluetooth e dispositivos**: ativar/desativar Bluetooth, parear fones, teclados e mouses; gerenciar impressoras e scanners.",
+          "**Rede e Internet**: Wi-Fi, **Ethernet** (IP estático ou dinâmico, DNS), **VPN** (rede privada virtual, acesso seguro), modo avião e proxy.",
+          "**Personalização**: *Tela de fundo* (imagem, cor sólida, apresentação de slides), *Cores* (cor de destaque, transparência e **modo claro/escuro**), temas, tela de bloqueio, iniciar e barra de tarefas."
+        ],
+        "teoria": [
+          {
+            "statement": "O histórico da Área de Transferência do Windows é aberto com Win+V.",
+            "isTrue": true,
+            "explanation": "Itens fixados não são removidos para dar espaço a novos."
+          },
+          {
+            "statement": "A hibernação mantém o estado do sistema apenas na memória RAM, que continua consumindo energia.",
+            "isTrue": false,
+            "explanation": "Isso descreve a suspensão; a hibernação grava o estado no disco e desliga o computador."
+          },
+          {
+            "statement": "A Área de Trabalho Remota permite acessar e controlar outro computador pela rede.",
+            "isTrue": true,
+            "explanation": "O computador acessado precisa estar configurado para aceitar conexões."
+          },
+          {
+            "statement": "A alteração de modo claro ou escuro e das cores de destaque é feita em Configurações > Personalização > Cores.",
+            "isTrue": true,
+            "explanation": "A tela de fundo é outra opção da mesma categoria."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A VPN cria uma conexão segura com uma rede privada, útil para acesso remoto a redes corporativas.",
+            "isTrue": true,
+            "explanation": "Fica em Rede e Internet."
+          },
+          {
+            "statement": "A opção Redefinir este PC permite reinstalar o Windows mantendo ou removendo os arquivos pessoais.",
+            "isTrue": true,
+            "explanation": "Está em Sistema > Recuperação."
+          },
+          {
+            "statement": "A Limpeza de Disco exclui o sistema operacional atual para liberar espaço.",
+            "isTrue": false,
+            "explanation": "Ela remove arquivos temporários, caches e instalações antigas, mas não o sistema em uso."
+          },
+          {
+            "statement": "Em Ethernet é possível definir IP estático ou dinâmico e servidores DNS.",
+            "isTrue": true,
+            "explanation": "Vale para conexões cabeadas."
+          },
+          {
+            "statement": "Em Bluetooth e dispositivos é possível parear fones de ouvido, teclados e mouses sem fio.",
+            "isTrue": true,
+            "explanation": "Também se gerenciam impressoras e scanners."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Energia e suspensão",
+            "pageRef": 84
+          },
+          {
+            "topic": "Opções de energia: suspender, hibernar, desligar",
+            "pageRef": 85
+          },
+          {
+            "topic": "Recuperação",
+            "pageRef": 86
+          },
+          {
+            "topic": "Área de Trabalho Remota",
+            "pageRef": 88
+          },
+          {
+            "topic": "Área de Transferência",
+            "pageRef": 89
+          },
+          {
+            "topic": "Bluetooth e dispositivos",
+            "pageRef": 91
+          },
+          {
+            "topic": "Rede e Internet",
+            "pageRef": 92
+          },
+          {
+            "topic": "Personalização",
+            "pageRef": 93
+          }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a12/s09",
+      "bizu": {
+        "summary": [
+          "**Personalização > Tela de fundo**: o plano de fundo pode ser **imagem**, **cor sólida** ou **apresentação de slides** (álbum de imagens). Caminho: Iniciar > Configurações > Personalização > Tela de fundo.",
+          "**Cores**: modo **Claro, Escuro ou Personalizado**, cor de destaque (manual ou automática), **efeitos de transparência** (Iniciar, barra de tarefas e central de notificações semitranslúcidos).",
+          "**Tela de bloqueio**: imagem (Destaque do Windows, imagem fixa ou slides) e **status** da tela de bloqueio (um aplicativo exibe informações detalhadas, como clima).",
+          "**Fontes**: galeria das fontes instaladas, com estilos (negrito, itálico), família tipográfica e pré-visualização; permite instalar novas.",
+          "**Aplicativos instalados**: lista os programas, ordena por nome, data ou tamanho, mostra o espaço usado e permite **desinstalar**. Configurações avançadas: origem permitida para instalação (Microsoft Store ou qualquer lugar) e arquivamento de apps pouco usados.",
+          "**Aplicativos padrão**: define o programa que abre cada **tipo de arquivo** (.pdf, .jpg, .docx), **protocolo** (http, mailto) ou aplicativo. Caminho: Configurações > Aplicativos > Aplicativos padrão. *Inicialização* é a página dos programas que começam junto com o sistema.",
+          "**Contas**: *Suas informações* (nome, foto, vincular a conta Microsoft), *Opções de entrada* (PIN, senha, Windows Hello, chave de segurança), opções de pagamento, histórico de pedidos e família. Nova conta: Configurações > Contas > Família > Adicionar alguém."
+        ],
+        "teoria": [
+          {
+            "statement": "O plano de fundo do Windows 11 pode ser uma imagem, uma cor sólida ou uma apresentação de slides.",
+            "isTrue": true,
+            "explanation": "A opção fica em Configurações > Personalização > Tela de fundo."
+          },
+          {
+            "statement": "A associação de um tipo de arquivo, como .pdf, a um programa é feita em Configurações > Aplicativos > Aplicativos padrão.",
+            "isTrue": true,
+            "explanation": "Também é possível definir por protocolo, como http e mailto."
+          },
+          {
+            "statement": "A opção Efeitos de Transparência é configurada na categoria Contas.",
+            "isTrue": false,
+            "explanation": "Ela fica em Personalização > Cores."
+          },
+          {
+            "statement": "Os modos de cor do Windows 11 incluem Claro, Escuro e Personalizado.",
+            "isTrue": true,
+            "explanation": "No modo personalizado, sistema e aplicativos podem ter temas distintos."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A página Aplicativos instalados permite ordenar os programas por tamanho e desinstalá-los.",
+            "isTrue": true,
+            "explanation": "Mostra também o espaço ocupado por cada um."
+          },
+          {
+            "statement": "Em Aplicativos > Inicialização é definido o programa que abre cada tipo de arquivo.",
+            "isTrue": false,
+            "explanation": "Inicialização trata dos programas que iniciam com o sistema; a associação é feita em Aplicativos padrão."
+          },
+          {
+            "statement": "A tela de bloqueio pode exibir imagem do Destaque do Windows ou fotos do usuário em apresentação de slides.",
+            "isTrue": true,
+            "explanation": "Um aplicativo ainda pode mostrar seu status na tela de bloqueio."
+          },
+          {
+            "statement": "A página Fontes permite visualizar as fontes instaladas e seus estilos, como negrito e itálico.",
+            "isTrue": true,
+            "explanation": "Também permite instalar novas fontes."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Tela de fundo",
+            "pageRef": 95
+          },
+          {
+            "topic": "Cores",
+            "pageRef": 97
+          },
+          {
+            "topic": "Tela de bloqueio",
+            "pageRef": 98
+          },
+          {
+            "topic": "Fontes",
+            "pageRef": 99
+          },
+          {
+            "topic": "Aplicativos instalados",
+            "pageRef": 100
+          },
+          {
+            "topic": "Aplicativos padrão",
+            "pageRef": 101
+          },
+          {
+            "topic": "Contas",
+            "pageRef": 103
+          }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a12/s10",
+      "bizu": {
+        "summary": [
+          "**Opções de entrada (Windows Hello)**: login por **reconhecimento facial**, **impressão digital**, **PIN**, senha, chave de segurança e senha por imagem; o Windows Hello é um recurso de **autenticação biométrica**.",
+          "**Backup do Windows**: ligado à conta Microsoft, salva pastas, aplicativos lembrados, configurações e senhas para restaurar tudo ao trocar de PC ou reinstalar o sistema (*Lembrar meus aplicativos*, *Preferências*).",
+          "**Hora e idioma**: data e hora (automática ou manual, fuso horário, sincronização com servidor, horário de verão), **idioma e região** (idioma de exibição, formatos de moeda, data e hora) e digitação.",
+          "**Jogos (Win+G)**: **Xbox Game Bar** (sobreposição para gravar clipes, capturar tela e ver desempenho) e configurações de capturas.",
+          "**Acessibilidade (Win+U)**: tamanho do texto, efeitos visuais, ponteiro do mouse, **lupa**, temas de contraste, narrador, legendas, áudio mono e reconhecimento de fala.",
+          "**Lupa**: amplia partes da tela para pessoas com baixa visão; liga-se com **Win + sinal de mais** e desliga-se com **Win+Esc**; permite inverter cores e ler em voz alta (integração com o Narrador).",
+          "**Privacidade e segurança**: *Segurança do Windows* (antivírus, firewall, proteção contra ameaças), *Localizar meu dispositivo* (rastreio em caso de perda) e permissões de aplicativos (localização, câmera, microfone, contatos, calendário).",
+          "**Windows Update**: verifica atualizações de segurança, melhorias e drivers; pode-se pausar, ver histórico, definir horário de atividade e receber as atualizações mais recentes antecipadamente."
+        ],
+        "teoria": [
+          {
+            "statement": "O Windows Hello permite entrar no sistema por reconhecimento facial, impressão digital ou PIN.",
+            "isTrue": true,
+            "explanation": "É um recurso de autenticação biométrica do Windows."
+          },
+          {
+            "statement": "A Lupa do Windows é ativada com Win + sinal de mais e desativada com Win+Esc.",
+            "isTrue": true,
+            "explanation": "Serve para ampliar a tela em casos de baixa visão."
+          },
+          {
+            "statement": "O Windows Update serve para instalar o antivírus de terceiros escolhido pelo usuário.",
+            "isTrue": false,
+            "explanation": "Ele verifica e instala atualizações do Windows, como correções de segurança e drivers."
+          },
+          {
+            "statement": "O atalho Win+G abre a Xbox Game Bar, usada para gravar jogos e capturar a tela.",
+            "isTrue": true,
+            "explanation": "As configurações ficam na categoria Jogos."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Localizar meu dispositivo envia a localização para a conta Microsoft, ajudando a rastrear o aparelho perdido ou roubado.",
+            "isTrue": true,
+            "explanation": "Fica em Privacidade e segurança."
+          },
+          {
+            "statement": "O Backup do Windows está desvinculado da conta Microsoft e salva apenas arquivos locais.",
+            "isTrue": false,
+            "explanation": "Ele é ligado à conta Microsoft e restaura configurações, aplicativos e preferências em outro PC."
+          },
+          {
+            "statement": "Em Hora e idioma é possível ajustar o fuso horário e o formato regional de data e moeda.",
+            "isTrue": true,
+            "explanation": "A sincronização do relógio com servidor também ocorre ali."
+          },
+          {
+            "statement": "O atalho Win+U abre as configurações de Acessibilidade.",
+            "isTrue": true,
+            "explanation": "Ali estão lupa, narrador e temas de contraste."
+          },
+          {
+            "statement": "A Segurança do Windows concentra antivírus, firewall e proteção contra ameaças.",
+            "isTrue": true,
+            "explanation": "Fica em Privacidade e segurança."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Opções de entrada e Windows Hello",
+            "pageRef": 106
+          },
+          {
+            "topic": "Backup do Windows",
+            "pageRef": 108
+          },
+          {
+            "topic": "Hora e idioma",
+            "pageRef": 109
+          },
+          {
+            "topic": "Jogos",
+            "pageRef": 110
+          },
+          {
+            "topic": "Acessibilidade",
+            "pageRef": 111
+          },
+          {
+            "topic": "Lupa",
+            "pageRef": 112
+          },
+          {
+            "topic": "Privacidade e segurança",
+            "pageRef": 113
+          },
+          {
+            "topic": "Windows Update",
+            "pageRef": 115
+          }
+        ]
+      }
+    }
+  ]
+}
