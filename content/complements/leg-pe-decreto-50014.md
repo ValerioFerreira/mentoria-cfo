@@ -23,6 +23,24 @@ Para entender o decreto, primeiro entenda o problema que ele resolve:
 
 **Quando vale?** O decreto é de 22/12/2020 e entrou em vigor na data da publicação (Diário Oficial de 23/12/2020), mas produz efeitos **a partir de 27 de dezembro de 2020**, acompanhando a modulação da lei federal, que alcança as condutas praticadas **após 26 de dezembro de 2020**.
 
+> **Contexto que pode aparecer em prova (e confundir):** em maio de 2022, o **STF (ADI 6595)** declarou **inconstitucional a Lei Federal nº 13.967/2019** — a mesma que motivou o decreto —, por vício de iniciativa (o regime dos militares estaduais é matéria de iniciativa do governador) e por entender que a Constituição admite a prisão por transgressão militar (art. 5º, LXI, e art. 142, § 2º). A **Lei 14.751/2023** (art. 18, parágrafo único) também ressalva expressamente as **prisões disciplinares militares**. Mesmo assim, o **Decreto 50.014/2020 continua publicado sem revogação** no Alepe Legis, e é ele que o edital pede. Na prova, responda **pela letra do decreto**, a menos que o enunciado pergunte sobre a decisão do STF.
+
+### Antes de tudo: as penas do art. 28 da Lei 11.817/2000
+
+Para entender o decreto, você precisa ter na cabeça o rol de penas do Código (art. 28):
+
+| Inciso | Pena | Observação |
+|---|---|---|
+| I | **Repreensão** | a mais branda; não priva de liberdade |
+| II | **Detenção** | privação **relativa** de liberdade: recolhimento em dependência da OME (§ 4º, I) |
+| III | **Prisão** | privação **absoluta**: confinamento em local da OME ou em estabelecimento prisional militar (§ 4º, II) |
+| IV | **Licenciamento a bem da disciplina** | só praças **sem estabilidade**, após processo sumário (art. 30, § 1º) |
+| V | **Exclusão a bem da disciplina** | Aspirante e demais praças, **com ou sem** estabilidade (art. 30, § 2º) |
+
+- Detenção e prisão **não podem passar de 30 dias** (art. 28, § 4º).
+- Antes de qualquer pena, a autoridade pode usar a **advertência**: orientação **verbal**, **sem registro** na ficha (art. 28, § 3º). Advertência **não** é pena do rol.
+- As **medidas administrativas** do § 1º do art. 28 podem ser aplicadas **alternativa ou cumulativamente** com as penas — o decreto (arts. 5º e 6º) repete essa regra, que já estava no art. 38 da lei.
+
 ## O que o decreto regulamenta (arts. 1º e 2º)
 
 **Art. 1º — objeto.** Regulamenta os dispositivos da Lei nº 11.817/2000 sobre as penas disciplinares **com restrição e privação de liberdade**, em conformidade com o art. 18, VII, do Decreto-Lei nº 667/1969.
@@ -109,4 +127,4 @@ O art. 5º permite que as penas disciplinares sejam **substituídas** pelas **me
 
 ## Fontes
 
-Texto do Decreto Estadual nº 50.014, de 22 de dezembro de 2020, e da Lei Estadual nº 11.817, de 24 de julho de 2000, conforme publicados no portal Alepe Legis. Texto explicativo elaborado pelo MentorIA, em linguagem própria, com os dispositivos em ordem de estudo.
+Texto do Decreto Estadual nº 50.014, de 22 de dezembro de 2020, e da Lei Estadual nº 11.817, de 24 de julho de 2000, conforme publicados no portal Alepe Legis (decreto sem registro de alteração ou revogação, consulta em 10/2026); STF, ADI 6595 (julgada em maio de 2022). Texto explicativo elaborado pelo MentorIA, em linguagem própria, com os dispositivos em ordem de estudo.

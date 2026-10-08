@@ -1,0 +1,145 @@
+MENTORIA / CFO-BM — AUDITORIA INTEGRAL: ESTADO E PRÓXIMOS PASSOS
+Atualizado em: 2026-10-08 (checkpoint 2 — as 13 auditorias estruturais estão concluídas)
+
+Este arquivo é a memória de trabalho da missão "auditoria integral, completação e otimização".
+Quem retomar o trabalho (outra sessão do Claude Code, outro agente ou o próprio usuário) deve ler este
+arquivo, depois CLAUDE.md, e seguir a seção "O QUE FALTA".
+
+====================================================================================================
+1. OBJETIVO
+====================================================================================================
+(a) Reauditar edital × PDFs × indexação × segmentos, aula a aula, nas 13 disciplinas.
+(b) Corrigir erros de classificação de páginas, cortes de trechos e lacunas.
+(c) Completar o banco de bizus (resumo + C/E) e questões AOCP (5 alternativas) de TODOS os trechos.
+(d) Auditar o próprio banco (duplicatas, gabarito, erro conceitual/jurídico, originalidade).
+(e) Relatório final: cobertura, correções estruturais, questões, pendências humanas.
+
+====================================================================================================
+2. COMO O SISTEMA FUNCIONA (resumo)
+====================================================================================================
+PDFs (docs/, protegidos) -> pipeline/extract.py -> cache de texto por página (pipeline/.cache/pages)
+-> pipeline/segment.py (classifica páginas T/C/L/K/S/F/B/X, corta a teoria em trechos de 6-17 págs.)
+-> content/structure + content/segments -> pipeline/build_catalog.py -> content/catalog.json
+-> pipeline/build_complements.py (mescla os complementos autorais c01.. e atualiza gaps.json)
+-> web/prisma/seed.ts (carrega no Postgres) -> planejador (web/src/lib/planner).
+Bizus e questões: content/items/<disciplina>/<aNN|cNN>.json, validados por pipeline/validate_content.py.
+Ids de trecho são posicionais (<disc>/aNN/sNN): QUALQUER resegmentação muda os ids. Por isso a produção de
+questões só começa por disciplina depois que a estrutura dela está fechada.
+
+Ordem obrigatória de reconstrução (raiz do repositório, PYTHONIOENCODING=utf-8):
+  pipeline/.venv/Scripts/python pipeline/segment.py            (ou --subject <disc>)
+  pipeline/.venv/Scripts/python pipeline/build_catalog.py
+  (cd pipeline && .venv/Scripts/python build_complements.py)
+  pipeline/.venv/Scripts/python pipeline/edital_map.py
+  pipeline/.venv/Scripts/python -m pytest pipeline/tests -q
+  (em web/) npx prisma db seed
+
+====================================================================================================
+3. FERRAMENTAS CRIADAS NESTA MISSÃO
+====================================================================================================
+- pipeline/inspect_aula.py   inspeção de aula: mapa de páginas, tópicos, trechos, texto, --heads, --grep.
+- content/overrides/<disciplina>.json   correções manuais da auditoria por aula:
+      pages {"40-62": "COMMENTED"}  | headings [...] | dropHeadings [...] | cuts [pág...] | edital | kind | note
+  Tipos de página: THEORY COMMENTED LIST SUMMARY KEY FRONT BACK EXTRA(X = fora do escopo/duplicada/opcional).
+- pipeline/segment.py   agora aceita --subject, lê os overrides, ignora rótulos de questão como subtítulo,
+  classifica "Tema - Teoria" como teoria e "Exercícios/Resolução dos exercícios" como prática.
+- pipeline/validate_content.py   mais rígido (tópico/pageRef obrigatórios, mínimo de questões por trecho,
+  duplicatas entre arquivos, C/E repetidos) + modo --coverage (o que falta produzir, por disciplina).
+- pipeline/edital_map.py   liga o mapa edital->material (content/edital/*.json) aos ids de trecho.
+- pipeline/briefs/audit.md e pipeline/briefs/content.md   briefings dos agentes (auditoria / produção).
+- web/prisma/seed.ts e web/src/lib/data/planner-data.ts   desativam aulas e trechos órfãos após resegmentação.
+- pipeline/tests/test_content.py   novo teste: valida todos os content/items.
+
+====================================================================================================
+4. O QUE JÁ FOI FEITO
+====================================================================================================
+4.1 Erros globais de classificação corrigidos
+  - Rótulos de questão ("1.(CESPE/.../2010)", "QUESTÃO 11") reabriam a teoria dentro das seções de questões.
+  - Marcador "<Tema> - Teoria" era lido como resumo (Química Aula 17 inteira ficou fora do plano).
+  - "Exercícios", "Resolução dos exercícios", "Questões..." eram lidos como resumo (Fixação de Biologia zerada).
+  - Complemento de "funções do que/se" removido (falsa lacuna: Português Aula 05, págs. 69-81, tem teoria completa).
+
+4.2 Auditoria estrutural CONCLUÍDA nas 13 disciplinas (relatórios em content/audit/<disc>.md, mapas em
+    content/edital/<disc>.json, correções em content/overrides/<disc>.json).
+  Teoria em págs. / trechos, antes -> depois:
+    Português 802 -> 801 / 58 -> 60 | Inglês 313 -> 278 / 21 -> 23 | Espanhol 1279 -> 466 / 103 -> 36
+    Informática 1129 -> 1085 / 107 -> 91 | Matemática 898 -> 864 / 61 -> 74 | Estatística 1020 -> 916 / 71 -> 75
+    Física 501 -> 494 / 37 -> 39 | Química 1040 -> 896 / 87 -> 78 | Biologia 895 -> 828 / 63 -> 68
+    Dir. Constitucional 957 -> 930 / 82 -> 87 | Dir. Administrativo 749 -> 754 / 64 -> 69
+    Dir. Penal Militar 289 -> 287 / 30 -> 34 | Legislações PE 44 -> 40 / 4 -> 4
+  Cortes no meio de tópico: de ~110 para 6. Nenhum trecho acima de 17 págs. Nenhuma aula com teoria só de questões.
+
+4.3 Achados de maior impacto
+  - Lei 8.112/1990 (regime jurídico único) NÃO é ensinada pelo Estratégia (vacância, remoção, redistribuição,
+    substituição, PAD). edital_audit.py dava "COBERTO" por falso positivo (regex corrigida).
+  - Legislações PE (maior peso da prova, 10 questões): o Estratégia cobre só arts. 1-26 e 50-59 dos 190 da
+    Lei 11.817 e traz o Estatuto (Lei 6.783) em quadros-resumo.
+  - Óptica geométrica inteira ausente em Física.
+  - Inglês: Present/Past Perfect Continuous e "had better" ausentes.
+  - PDF do Estratégia tem páginas duplicadas (Estatística a08 págs. 4-12 = a10 págs. 4-12; a07 37-42 = a09 16-21).
+  - Erros no material do Estratégia a avisar ao aluno: Inglês a06 p.39/42, a05 p.24; Física a09 p.20 (eclipse);
+    Informática a12 p.122 (DELTREE) e 161-162 (WordPad no Windows 11 24H2).
+
+4.4 Complementos
+  Existentes e revisados: ECA, Juventude, Maria da Penha, Decreto 50.014, Lei 15.187, Lei 14.751, Inglês (ampliado,
+  peso 0,22), Figuras de linguagem, Formação de palavras, Química aplicada.
+  Criados (rascunhos promovidos): leg-pe-lei-11817-penas, leg-pe-lei-6783-lacunas.
+  Removido: port-que-se.
+  Lacunas registradas em content/gaps.json: 18 (as abertas aguardam complemento — ver seção 5).
+
+4.5 Banco de questões
+  Somente o piloto (Dir. Administrativo a00, 30 questões e 2 bizus, DRAFT). Todo o resto está por produzir.
+  `validate_content.py --coverage`: 738 trechos selecionáveis, 2 completos.
+
+====================================================================================================
+5. O QUE FALTA (em ordem)
+====================================================================================================
+5.1 (feito) Auditorias estruturais das 13 disciplinas.
+5.2 Criar os complementos autorais pedidos (todos autorizados pelo usuário em 2026-10-08), em content/complements/*.md
+    (front matter: id, subject, title, short, subtitle, weight, order, resolves; ver exemplos). Conteúdo original,
+    parafraseado do texto legal oficial; nunca copiar o Estratégia:
+      - Lei 8.112/1990 (gap da-lei-8112, prioridade alta)         - Óptica geométrica (fis-optica, alta)
+      - Física: tópicos do edital (fis-topicos-edital)            - Constituição do Estado de PE completa (dc-ce-pe)
+      - Direito constitucional intertemporal + histórico (dc-intertemporal)
+      - Informática: navegadores; Prompt de Comando e periféricos (inf-navegadores-cmd)
+      - Estatística: probabilidade geométrica; normas IBGE e amostragem (est-prob-geometrica, est-normas-amostragem)
+      - Espanhol: grau, heterográficos, verbos (esp-grau-heterograficos)
+      - Matemática: geometria analítica (mat-geometria-analitica, alta); simetrias, polinômios/racionais, divisibilidade e MDC
+        (mat-simetrias-polinomios-divisibilidade)
+      - Biologia: qualidade de vida e saúde (bio-qualidade-vida, alta); biotecnologia/ética (bio-biotec-etica);
+        serviços ecossistêmicos, legislação da água, saneamento (bio-ambiente-legislacao)
+      - Direito Penal Militar: súmulas + Parte Especial não ensinada (dpm-sumulas-especial)
+      - Química: já ampliado dentro de quim-aplicada-complementos (fogo, polímeros, gás ideal, proteção radiológica)
+    Briefing dos agentes redatores: pipeline/briefs/complement.md. Para validar um complemento sem mexer no catálogo:
+      (cd pipeline && .venv/Scripts/python build_complements.py --only <id> --no-merge)
+    A mesclagem no catálogo (sem --only/--no-merge) é feita uma vez, no fim.
+    Depois: rodar build_complements.py e atualizar gaps.json (resolves) e content/edital/<disc>.json.
+5.3 Regenerar tudo na ordem da seção 2 e rodar pytest.
+5.4 Produzir bizus e questões de TODOS os trechos, seguindo pipeline/briefs/content.md, por ondas:
+    Legislações PE -> Dir. Constitucional -> Dir. Administrativo -> Dir. Penal Militar -> Português -> Inglês/Espanhol
+    -> Informática -> Matemática, Estatística, Física, Química -> Biologia. Um arquivo por aula; validar cada um.
+    Acompanhar com:  pipeline/.venv/Scripts/python pipeline/validate_content.py --coverage
+5.5 Auditoria do banco (segunda passada): duplicatas, gabarito, erro conceitual/jurídico, C/E ambíguos.
+5.6 Planejador: conferir que nenhuma atividade aponta para trecho sem itens; rodar web/scripts/plan-demo.ts e
+    days-audit.ts; npm run typecheck, lint e test em web/. Ajustar mensagem "em produção" nos cadernos sem questões.
+5.7 Seed (npx prisma db seed) e verificação no navegador (itens DRAFT só aparecem com SERVE_DRAFT_QUESTIONS=true).
+5.8 Relatório final (A cobertura, B correções estruturais, C questões, D pendências) em content/audit/RELATORIO-FINAL.md.
+
+====================================================================================================
+6. PENDÊNCIAS QUE EXIGEM DECISÃO/VALIDAÇÃO HUMANA
+====================================================================================================
+- Lei de referência do "regime jurídico único" do edital de Dir. Administrativo (assumida: Lei 8.112/1990).
+- Decreto 50.014/2020 x ADI 6595 (STF declarou inconstitucional a Lei 13.967/2019 que motivou o decreto; o decreto
+  segue publicado): complemento orienta a responder pela letra do decreto — validar.
+- Lei 11.817: possíveis erros materiais nos arts. 37 e 58 (conferir no Diário Oficial).
+- Alterações recentes do ECA em 2025-2026 não verificadas; Lei Maria da Penha conferida até a Lei 15.438/2026.
+- Espanhol: promoção da a11 págs. 113-118 a teoria e a00 `partial` (confirmar).
+- Todo conteúdo gerado entra como DRAFT; a aprovação (APPROVED) é humana, em /admin/revisao.
+
+====================================================================================================
+7. COMO RETOMAR RAPIDAMENTE
+====================================================================================================
+1) git pull; ler este arquivo. 2) pipeline/.venv/Scripts/python pipeline/validate_content.py --coverage
+3) pipeline/.venv/Scripts/python -m pytest pipeline/tests -q   (tem de passar)
+4) Continuar a seção 5 na ordem. Limite de uso da sessão (plano Pro, janela de 5 h): trabalhar com no máximo
+   3 agentes em paralelo; fazer commit a cada lote concluído.

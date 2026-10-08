@@ -67,3 +67,18 @@ def test_incidence_sums_to_one_per_subject(catalog):
 def test_language_group_is_exclusive_pair(catalog):
     langs = [s["id"] for s in catalog["subjects"] if s.get("languageGroup") == "lingua-estrangeira"]
     assert sorted(langs) == ["lingua-espanhola", "lingua-inglesa"]
+
+
+def test_authored_items_pass_validator():
+    """Bizus e questões autorais: esquema, gabarito, mínimos e duplicatas (a originalidade só roda com o cache local)."""
+    import sys
+
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+    from validate_content import ITEMS_DIR, validate_file
+
+    seen: dict[str, list] = {}
+    problems = []
+    for f in sorted(ITEMS_DIR.glob("*/*.json")):
+        errs, _warns, _st = validate_file(f, seen.setdefault(f.parent.name, []))
+        problems += [f"{f.parent.name}/{f.name}: {e}" for e in errs]
+    assert not problems, "\n".join(problems[:30])

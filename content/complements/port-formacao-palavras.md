@@ -31,14 +31,14 @@ Pessoal, o item 16 do edital é "**Processos de formação de palavras**". Na pr
 
 **Famílias de palavras:** palavras com o **mesmo radical**: *pedra, pedreira, pedregulho, pedraria, apedrejar*.
 
-**Radicais gregos e latinos** (aparecem em palavras eruditas): *hidr(o)* (água) → hidrelétrica; *foto* (luz) → fotografia; *bio* (vida) → biologia; *geo* (terra); *tele* (longe); *aero* (ar); *cardio* (coração); *pirô/piro* (fogo) → **pirotecnia**.
+**Radicais gregos e latinos** (aparecem em palavras eruditas): *hidr(o)* (água) → hidrelétrica; *foto* (luz) → fotografia; *bio* (vida) → biologia; *geo* (terra); *tele* (longe); *aero* (ar); *cardio* (coração); *piro* (fogo) → **pirotecnia**.
 
 ## Processo 1: Derivação
 
 **Derivação** é o processo em que se forma uma palavra nova **a partir de uma já existente (primitiva)**, **sem juntar dois radicais**: acrescenta-se ou retira-se um afixo.
 
 ### Derivação prefixal (ou por prefixação)
-Acrescenta **somente prefixo**: **in**feliz, **des**leal, **re**fazer, **ante**sala, **super**homem, **in**capaz.
+Acrescenta **somente prefixo**: **in**feliz, **des**leal, **re**fazer, **pre**ver, **super**mercado, **in**capaz.
 
 ### Derivação sufixal (ou por sufixação)
 Acrescenta **somente sufixo**: feliz**mente**, pedr**eiro**, cantor**ia**, livr**aria**, chuv**oso**, pesc**aria**.
@@ -91,17 +91,17 @@ Os radicais se **fundem**, e **ao menos um perde elementos** (som ou sílaba): *
 |---|---|---|
 | **Hibridismo** | Composição (ou derivação) com elementos de **línguas diferentes** | *auto**móvel*** (grego + latim), *soci**ologia*** (latim + grego), *bi**cicleta*** (latim + grego), *abreugrafia* (nome + radical grego) |
 | **Onomatopeia** | **Imitação de um som** | *tique-taque, miau, zum-zum, cocoricó, atchim, pof* |
-| **Abreviação (redução)** | **Corte** de parte da palavra, sem mudar o sentido | *foto (fotografia), moto (motocicleta), pneu (pneumático), metrô (metropolitano), micro, drive* |
+| **Abreviação (redução)** | **Corte** de parte da palavra, sem mudar o sentido | *foto (fotografia), moto (motocicleta), pneu (pneumático), metrô (metropolitano), cine (cinema), micro (microcomputador)* |
 | **Siglas** | Formadas pelas **letras iniciais** de uma expressão | *CBMPE, INSS, PM, BM, CPF* (lidas **letra a letra**) |
 | **Acrônimo (ou sigla silabada)** | Sigla **lida como palavra** | *Detran, Fiocruz, Petrobras, Anac, Embratel* |
 | **Palavra-valise (cruzamento vocabular)** | **Fusão de duas palavras** em uma só, mantendo partes de cada | *portunhol (português + espanhol)*, *brasiguaio (brasileiro + paraguaio)*, *showmício (show + comício)* |
-| **Reduplicação** | **Repetição** de sílabas ou da palavra | *tatibitate, pisca-pisca, reco-reco, lenga-lenga, fofoca* |
+| **Reduplicação** | **Repetição** de sílabas ou da palavra | *tatibitate, pisca-pisca, reco-reco, lenga-lenga, quero-quero* |
 | **Neologismo** | Palavra **nova** criada ou incorporada | *deletar, tuitar, selfie* |
 | **Empréstimo (estrangeirismo)** | Palavra **importada de outra língua** | *abajur (fr.), futebol (ing.), chofer (fr.), pizza (it.)* |
 
 > **Sigla × acrônimo:** **sigla** é lida letra a letra (*PM*, *BM*, *INSS*); **acrônimo** é lido como **palavra** (*Detran*, *Anac*, *ONU*).
 
-## Como identificar em 4 passos
+## Como identificar em 5 passos
 
 1. **A palavra tem dois radicais?** Sim → **composição**. Ouça os dois radicais: inteiros = justaposição; fundidos = aglutinação.
 2. **Só um radical + afixos?** → **derivação**. Qual afixo?

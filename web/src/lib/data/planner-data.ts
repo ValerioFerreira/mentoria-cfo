@@ -34,8 +34,12 @@ export async function loadPlannerData(): Promise<PlannerData> {
     };
     aulasBySubject.set(a.subjectId, [...(aulasBySubject.get(a.subjectId) ?? []), item]);
   }
+  // ids de trecho são posicionais (s01…sN): após uma resegmentação com menos trechos, os antigos (sortOrder > N) ficam
+  // no banco por causa de atividades/questões antigas, mas não fazem mais parte da aula
+  const segCount = new Map(aulas.map((a) => [a.id, a.segmentCount]));
   const segments: SegmentsByAula = {};
   for (const s of segs) {
+    if (s.sortOrder > (segCount.get(s.aulaId) ?? 0)) continue;
     const lite: SegmentLite = { id: s.id, aula: s.aulaId, order: s.sortOrder, startPage: s.startPage, endPage: s.endPage, pages: s.pages, load: s.load };
     (segments[s.aulaId] ??= []).push(lite);
   }

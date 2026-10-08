@@ -3,21 +3,23 @@ id: ing-estruturas-complementares
 subject: lingua-inglesa
 title: Estruturas gramaticais complementares de Inglês
 short: Estruturas complementares
-subtitle: Orações adverbiais, condicionais, relativas, padrões verbais (to + infinitivo / -ing) e question tags
-weight: 0.15
+subtitle: Orações adverbiais, condicionais, relativas, padrões verbais, question tags, tempos perfeitos contínuos e had better
+weight: 0.22
 order: 1
 resolves: ing-estruturas
 ---
 
 ## O que este material cobre (e por quê)
 
-Pessoal, o edital de Inglês lista, além dos tempos verbais, estruturas que o curso principal trata **rapidamente ou não trata**. Este complemento fecha as lacunas, na seguinte ordem:
+Pessoal, o edital de Inglês lista estruturas que o curso principal trata **rapidamente ou não trata**. Este complemento fecha as lacunas, na seguinte ordem:
 
 1. **Orações adverbiais** (*adverbial clauses*): tempo, lugar, razão, modo, contraste, finalidade e resultado;
 2. **Orações condicionais**: *zero, first, second, third* e *mixed*;
 3. **Orações relativas**: *defining* e *non-defining*, e os pronomes relativos;
 4. **Padrões verbais**: verbo + *to + infinitive*, verbo + *bare infinitive*, verbo + *gerund (-ing)*;
-5. ***Question tags***.
+5. ***Question tags***;
+6. **Tempos perfeitos contínuos** (*present, past* e *future perfect continuous*) e quadro dos 12 tempos do edital;
+7. ***Had better*** e quadro de formas dos modais do edital.
 
 Os exemplos estão em inglês com tradução; as explicações, em português. Em prova, a banca cobra principalmente **qual conectivo escolher** e **qual tempo verbal vem em cada parte da frase**.
 
@@ -27,7 +29,7 @@ Os exemplos estão em inglês com tradução; as explicações, em português. E
 
 ### 1.1 Tempo (time)
 
-**Conectivos:** *when* (quando), *while* (enquanto), *as* (à medida que), *before* (antes de), *after* (depois de), *since* (desde que), *until/till* (até que), *as soon as* (assim que), *once* (uma vez que), *whenever* (sempre que), *by the time* (quando… já), *the moment* (no momento em que).
+**Conectivos:** *when* (quando), *while* (enquanto), *as* (à medida que), *before* (antes de), *after* (depois de), *since* (desde que), *until/till* (até que), *as soon as* (assim que), *once* (assim que, depois que), *whenever* (sempre que), *by the time* (quando… já), *the moment* (no momento em que).
 
 - ***When** I arrived, the firefighters were already there.* (Quando cheguei, os bombeiros já estavam lá.)
 - *She read a book **while** he was cooking.* (Ela leu um livro enquanto ele cozinhava.)
@@ -41,9 +43,10 @@ Os exemplos estão em inglês com tradução; as explicações, em português. E
 
 ### 1.2 Lugar (place)
 
-**Conectivos:** *where*, *wherever* (onde quer que), *everywhere*, *anywhere*, *somewhere*.
+**Conectivos:** *where* (onde), *wherever* (onde quer que), *everywhere* (em todo lugar que) e, informalmente, *anywhere* (em qualquer lugar que).
 
 - *Stay **where** you are.* (Fique onde você está.)
+- ***Everywhere** we went, people were helpful.* (Em todo lugar aonde fomos, as pessoas ajudaram.)
 - ***Wherever** you go, I'll follow you.* (Onde quer que você vá, eu o seguirei.)
 
 ### 1.3 Razão ou causa (reason)
@@ -166,7 +169,7 @@ Orações subordinadas que **modificam um substantivo** (o antecedente). São in
 | **whom** | pessoas (objeto) — formal | *The man **whom** I met was kind.* |
 | **which** | **coisas/animais** | *The truck **which** arrived first was from Recife.* |
 | **that** | pessoas ou coisas — **somente nas defining** | *The report **that** you wrote is excellent.* |
-| **whose** | **posse** (de quem) | *The woman **whose** car was stolen called the police.* |
+| **whose** | **posse** (cujo/cuja) — pessoas **e** coisas | *The woman **whose** car was stolen called the police.* · *a house **whose** roof collapsed* |
 | **where** | **lugar** | *This is the station **where** we trained.* |
 | **when** | **tempo** | *I remember the day **when** I graduated.* |
 | **why** | **razão** (depois de *reason*) | *That's the reason **why** I came.* |
@@ -183,6 +186,9 @@ Orações subordinadas que **modificam um substantivo** (o antecedente). São in
 
 - ***The students who passed** were happy.* (só **os** que passaram — restritiva)
 - ***The students, who passed**, were happy.* (todos passaram — explicativa)
+- ***Which* retomando a oração inteira** (só em non-defining, depois de vírgula): *He passed the exam, **which** surprised everyone.* (ele passou, **o que** surpreendeu a todos). Aqui não cabe *that* nem *what*.
+
+> **Atenção — *whom* não é "cujo":** *whom* é o pronome relativo de **pessoa na função de objeto** (ou depois de preposição: *to whom, with whom*). "Cujo/cuja" é sempre ***whose***.
 
 ### Quando o pronome pode ser omitido (defining)
 
@@ -220,12 +226,14 @@ Em inglês, o verbo que vem **depois de outro verbo** assume uma de três formas
 
 - *The captain **told** the men **to** leave.* · *My parents **allowed** me **to** go.*
 
+> **Detalhe cobrado — *allow, permit, advise, recommend*:** **com objeto**, usam *to + infinitive* (*They don't **allow us to smoke** here.*); **sem objeto**, usam **-ing** (*They don't **allow smoking** here.* · *The doctor **advised resting**.*).
+
 ### 4.2 Verbo + *bare infinitive* (infinitivo **sem** *to*)
 
 - Depois de **verbos modais**: *can, could, may, might, must, should, would, will, shall*: *You **must** leave.*
 - Depois de ***had better*** e ***would rather***: *You **had better** go.* / *I **would rather** stay.*
 - Depois de ***let*** e ***make*** (+ objeto): *She **let** me **go**.* / *They **made** him **repeat** the test.*
-- Depois de **verbos de percepção** (*see, hear, watch, feel, notice*) + objeto, para ação **completa**: *I **saw** him **cross** the street.*
+- Depois de **verbos de percepção** (*see, hear, watch, feel, notice*) + objeto, para ação **completa**: *I **saw** him **cross** the street.* (vi a travessia inteira). Com **-ing**, a ação é vista **em andamento**: *I **saw** him **crossing** the street.* (vi-o atravessando).
 - ***Help*** aceita as duas formas: *She **helped** me (to) carry the box.*
 
 > **Pegadinha nº 10 — voz passiva:** com *make*, o infinitivo **volta a ter *to***: ***He was made to repeat** the test.* (Ativa: *They made him repeat*.)
@@ -287,6 +295,7 @@ A *tag* é formada por **auxiliar (ou modal) + pronome sujeito**, e usa **o mesm
 | ***There is / there are*** | usa ***there*** | *There is a problem, **isn't there**?* |
 | **Pronomes indefinidos** (*everybody, somebody, nobody, no one, everyone*) | ***they*** | *Everybody came, **didn't they**?* |
 | ***Nothing, something, everything*** | ***it*** | *Nothing happened, **did it**?* |
+| ***This / that*** · ***these / those*** | ***it*** · ***they*** | *That's your truck, **isn't it**?* · *Those are new, **aren't they**?* |
 | **Palavras de sentido negativo** (*never, hardly, scarcely, seldom, rarely, nobody, nothing, few, little, barely*) | **tag afirmativa** | *He **never** smokes, **does he**?* · *You have **hardly** studied, **have you**?* |
 | ***Must*** (obrigação) | ***mustn't*** | *You must go, **mustn't you**?* |
 | ***Used to*** | ***didn't*** | *He used to live here, **didn't he**?* |
@@ -297,7 +306,117 @@ A *tag* é formada por **auxiliar (ou modal) + pronome sujeito**, e usa **o mesm
 - **Entonação descendente** (↘): você **já sabe** a resposta e só **busca confirmação** (*"It's cold today, isn't it?"*).
 - **Entonação ascendente** (↗): é uma **dúvida real**, uma pergunta de fato (*"You haven't seen my keys, have you?"*).
 
-> **Pegadinha nº 12 — *tag* com *have* principal:** no **inglês britânico**, *"You have a car, haven't you?"*; no **inglês americano**, *"You have a car, don't you?"*. Quando *have* é **auxiliar** (*have + particípio*), a *tag* é sempre com *have*: *You have finished, haven't you?*
+> **Pegadinha nº 12 — *tag* com *have* principal:** quando *have* é **verbo principal** (ter, possuir), o padrão atual — e o único no inglês americano — é usar ***do***: *"You have a car, **don't you**?"* (*haven't you?* ainda aparece no britânico mais tradicional). Quando *have* é **auxiliar** (*have + particípio*), a *tag* é sempre com *have*: *You have finished, **haven't you**?* · Com ***have got***: *You've got a car, **haven't you**?*
+
+## 6. Tempos perfeitos contínuos (*perfect continuous*)
+
+O curso principal ensina os tempos simples, os contínuos e os perfeitos, mas **não trata** o *present perfect continuous* nem o *past perfect continuous*, e mostra o *future perfect continuous* só na afirmativa. Os três seguem a mesma lógica — **have (no tempo certo) + been + verbo-ing** — e destacam a **duração** de uma ação até um ponto de referência.
+
+### 6.1 Present perfect continuous — *have/has + been + -ing*
+
+Usos:
+
+1. Ação que **começou no passado e continua até agora**, com foco na duração (*for, since, how long, all day, lately, recently*): *She **has been working** here **since** 2019.* (Ela trabalha aqui desde 2019.)
+2. Atividade **recém-encerrada com efeito visível agora**: *Your eyes are red. **Have** you **been crying**?* · *The ground is wet: it **has been raining**.*
+3. Ação repetida ao longo de um período até agora: *I**'ve been calling** you all morning.*
+
+| Forma | Estrutura | Exemplo |
+|---|---|---|
+| Afirmativa | sujeito + have/has + been + -ing | *They **have been training** for six hours.* |
+| Negativa | sujeito + haven't/hasn't + been + -ing | *He **hasn't been sleeping** well lately.* |
+| Interrogativa | Have/Has + sujeito + been + -ing? | ***Have** you **been waiting** long? — Yes, I have. / No, I haven't.* · ***How long have** you **been studying** English?* |
+
+**Simple × continuous (o contraste mais cobrado):**
+
+- *Present perfect simple* → **resultado, quantidade, ação concluída**: *I**'ve written** three reports today.*
+- *Present perfect continuous* → **duração, processo, a atividade em si**: *I**'ve been writing** reports all day.*
+- Com *how many / how much* usa-se o *simple*; com *how long*, em geral o *continuous*.
+
+> **Pegadinha nº 13 — verbos de estado:** verbos que indicam estado (*know, believe, understand, like, love, want, own, belong, seem*) **não** vão para o contínuo; usa-se o *present perfect simple*: ✔ *I **have known** him for ten years.* ✘ *I have been knowing him.*
+
+> **Pegadinha nº 14 — tradução de "há/faz... que":** "Moro aqui há cinco anos" é *I **have lived** / **have been living** here for five years* — **nunca** *I live here for five years* nem *I am living here since...*.
+
+### 6.2 Past perfect continuous — *had been + -ing*
+
+Indica a **duração de uma ação até um momento do passado** (em geral marcado por outro fato no *simple past*) ou a **causa** de uma situação passada.
+
+- *She **had been working** there for ten years when the company closed.* (Ela trabalhava lá havia dez anos quando a empresa fechou.)
+- *The streets were flooded because it **had been raining** all night.* (causa da situação passada)
+
+| Forma | Estrutura | Exemplo |
+|---|---|---|
+| Afirmativa | sujeito + had been + -ing | *We **had been waiting** for an hour.* |
+| Negativa | sujeito + hadn't been + -ing | *He **hadn't been driving** fast.* |
+| Interrogativa | Had + sujeito + been + -ing? | ***How long had** they **been fighting** the fire when the rain started?* |
+
+> **Past perfect × past perfect continuous:** *had + particípio* destaca a ação **concluída antes** de outra (*The fire **had spread** before we arrived.*); *had been + -ing* destaca **quanto tempo ela durou** (*The fire **had been burning** for hours before we arrived.*).
+
+### 6.3 Future perfect continuous — *will have been + -ing* (as formas que faltam)
+
+Mostra **quanto tempo uma ação terá durado** até um ponto do futuro: *By December, I **will have been studying** for this exam for a year.* É comum vir com *by + momento futuro* e *for + período*, mas o *for* não é obrigatório.
+
+| Forma | Estrutura | Exemplo |
+|---|---|---|
+| Afirmativa | sujeito + will have been + -ing | *In May, she **will have been serving** for 20 years.* |
+| Negativa | sujeito + won't have been + -ing | *By then, they **won't have been working** together for long.* |
+| Interrogativa | Will + sujeito + have been + -ing? | ***How long will** you **have been living** in Recife by 2030?* |
+
+### 6.4 Quadro dos 12 tempos do edital (verbo *work*)
+
+| Tempo | Afirmativa | Negativa | Interrogativa |
+|---|---|---|---|
+| Present simple | he works | he doesn't work | Does he work? |
+| Present continuous | he is working | he isn't working | Is he working? |
+| Present perfect simple | he has worked | he hasn't worked | Has he worked? |
+| Present perfect continuous | he has been working | he hasn't been working | Has he been working? |
+| Past simple | he worked | he didn't work | Did he work? |
+| Past continuous | he was working | he wasn't working | Was he working? |
+| Past perfect simple | he had worked | he hadn't worked | Had he worked? |
+| Past perfect continuous | he had been working | he hadn't been working | Had he been working? |
+| Future simple | he will work | he won't work | Will he work? |
+| Future continuous | he will be working | he won't be working | Will he be working? |
+| Future perfect simple | he will have worked | he won't have worked | Will he have worked? |
+| Future perfect continuous | he will have been working | he won't have been working | Will he have been working? |
+
+> **Macete:** negativa e interrogativa sempre se apoiam no **primeiro auxiliar** (*do/does/did, be, have/has/had, will*): o *not* vem logo depois dele e, na pergunta, ele passa para antes do sujeito.
+
+## 7. *Had better* e quadro dos modais do edital
+
+### 7.1 *Had better* — conselho forte, com tom de alerta
+
+*Had better* (contraído ***'d better***) + **infinitivo sem *to*** expressa um **conselho forte** ou um **aviso** sobre o **presente ou o futuro** — apesar do *had*, **não** se refere ao passado. Sugere que, se a pessoa não seguir o conselho, haverá alguma consequência ruim.
+
+- *You**'d better** call the fire brigade **now**.* (É melhor você chamar os bombeiros agora.)
+- *We**'d better** leave, or we'll miss the train.* (É melhor irmos, senão perderemos o trem.)
+
+| Forma | Estrutura | Exemplo |
+|---|---|---|
+| Afirmativa | sujeito + had better / 'd better + verbo | *You had better rest.* |
+| Negativa | sujeito + had better **not** + verbo | *You'd better **not** touch that wire.* |
+| Interrogativa (rara) | Had + sujeito + better + verbo? — mais comum na negativa: Hadn't + sujeito + better...? | ***Hadn't** we **better** wait for the captain?* |
+
+> **Pegadinha nº 15 — *had better*:** ✘ *had better **to** go* · ✘ *had **not** better go* · ✘ *have better go*. O **'d** aqui é ***had***, não *would* — não confunda com ***'d rather*** (*would rather* = preferir): *I'd rather stay* (prefiro ficar) × *I'd better stay* (é melhor eu ficar).
+
+> ***Should* × *had better*:** *should* é conselho geral e mais suave (*You should exercise more.*); *had better* vale para uma situação **específica e imediata**, com tom de alerta (*You'd better see a doctor about that cut.*).
+
+### 7.2 Quadro de formas dos modais pedidos no edital
+
+Lembrete: os modais **não** recebem *-s* na 3ª pessoa, **não** usam *do/does/did* e são seguidos de **infinitivo sem *to***. As exceções da lista são ***have to*** e ***need to*** (que se comportam como verbos comuns) e ***ought to***.
+
+| Modal | Ideia principal | Negativa | Interrogativa |
+|---|---|---|---|
+| **can** | habilidade, permissão, possibilidade | cannot / can't | *Can you swim?* |
+| **could** | habilidade no passado, pedido educado, possibilidade | couldn't | *Could you help me?* |
+| **should** | conselho, recomendação, expectativa | shouldn't | *Should I call him?* |
+| **may** | permissão (formal), possibilidade | may not | *May I come in?* |
+| **might** | possibilidade mais remota | might not / mightn't | *Might it rain?* (raro; prefere-se *Do you think it might rain?*) |
+| **must** | obrigação (vinda do falante), dedução quase certa | mustn't (= **proibição**) | *Must we wear the uniform?* |
+| **have to** | obrigação externa (regras, normas) | don't/doesn't have to (= **não é necessário**) | *Do you have to work today?* |
+| **would** | condicional, pedido educado, hábito passado | wouldn't | *Would you like some coffee?* |
+| **need** | necessidade | needn't (modal) / don't need to (verbo comum) | *Need I stay?* (formal) · *Do I need to stay?* |
+| **had better** | conselho forte, advertência | had better not | *Hadn't we better go?* |
+
+> **Pegadinha nº 16 — *mustn't* × *don't have to*:** *You **mustn't** smoke here* (é **proibido**) × *You **don't have to** come* (**não precisa**; é opcional). *Have to* tem passado e futuro (*had to*, *will have to*); *must* não tem.
 
 ## Como esse conteúdo costuma aparecer em prova
 
@@ -306,6 +425,8 @@ A *tag* é formada por **auxiliar (ou modal) + pronome sujeito**, e usa **o mesm
 3. **Identificar o tipo de relativa:** vírgulas indicam **non-defining** (sem *that*).
 4. **Forma do verbo:** "She suggested ___ to the beach." → **going** (*suggest* + *-ing*).
 5. ***Tag* correta:** "Nobody called, ___?" → ***did they***.
+6. **Simple × continuous:** "I ___ (wait) for two hours!" → ***have been waiting*** (duração até agora); "I ___ (write) three reports" → ***have written*** (quantidade/resultado).
+7. **Modal certo:** "You ___ smoke inside the station; it's forbidden." → ***mustn't*** (proibição; *don't have to* = não precisa).
 
 ## Resumo para revisar
 
@@ -314,6 +435,8 @@ A *tag* é formada por **auxiliar (ou modal) + pronome sujeito**, e usa **o mesm
 - **Relativas:** *who/whom* (pessoas), *which* (coisas), *that* (só defining), *whose* (posse), *where/when/why*; defining sem vírgula (omite objeto), non-defining com vírgula.
 - **Padrões verbais:** *want/decide/hope + to*; modais/*let/make* + infinitivo sem *to*; *enjoy/avoid/finish/suggest + -ing*; **depois de preposição, sempre -ing**; *stop/remember/try/regret* mudam de sentido.
 - ***Question tags*:** afirmativa → tag negativa (e vice-versa); *I am → aren't I*; *Let's → shall we*; *nobody → they*; palavras negativas → tag afirmativa.
+- **Perfect continuous:** *have/has been + -ing* (duração até agora; verbos de estado ficam no *simple*); *had been + -ing* (duração até um ponto do passado); *will have been + -ing* (duração até um ponto do futuro).
+- ***Had better*** + verbo sem *to* = conselho forte/aviso (presente/futuro); negativa *had better not*; *'d better* ≠ *'d rather*. *Mustn't* = proibição; *don't have to* = não precisa.
 
 ## Fontes
 

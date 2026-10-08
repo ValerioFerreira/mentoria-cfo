@@ -1,19 +1,19 @@
 ---
 id: quim-aplicada-complementos
 subject: quimica
-title: Química aplicada — siderurgia, FDS e água
-short: Siderurgia, FDS e água
-subtitle: Do minério ao aço, leitura da Ficha com Dados de Segurança e tratamento da água para consumo humano
-weight: 0.07
+title: Química aplicada — fogo, polímeros, siderurgia, FDS e água
+short: Fogo, polímeros, siderurgia, FDS e água
+subtitle: Química do fogo e da combustão, polímeros, do minério ao aço, Ficha com Dados de Segurança, tratamento da água, proteção radiológica e gases ideais
+weight: 0.10
 order: 1
-resolves: quim-aplicada
+resolves: quim-aplicada,quim-fogo-polimeros-gas
 ---
 
 ## O que este complemento cobre
 
-Pessoal, a parte de **Química Aplicada** do edital tem três itens que o curso principal toca de leve: **(4.6) Siderurgia**, **(5) Produtos químicos — substâncias perigosas e Fichas com Dados de Segurança (FDS)** e **(6) Água — propriedades físico-químicas e tratamento para consumo humano**. Os três são bem "de bombeiro": aço em incêndio, produtos perigosos em acidentes e a água como principal agente extintor e bem de consumo.
+Pessoal, a parte de **Química Aplicada** do edital tem itens que o curso principal toca de leve ou não ensina: **(4.3) Polímeros** (vinílicos, acrílicos, diênicos e propriedades), **(4.6) Siderurgia**, **(5) Aspectos químicos do fogo e da combustão**, **(5) Produtos químicos — substâncias perigosas e Fichas com Dados de Segurança (FDS)**, **(6) Água — propriedades físico-químicas e tratamento para consumo humano** e, no fim, duas revisões de itens que o curso principal não fecha: **proteção radiológica** (item 1.9) e **gás ideal** (item 1.7). Tudo é bem "de bombeiro": aço em incêndio, produtos perigosos em acidentes, a água como principal agente extintor e a química do próprio fogo.
 
-> **Como a banca cobra:** (1) **diferença de composição** entre ferro-gusa e aço; (2) **reações** do alto-forno; (3) **símbolos e seções da FDS**; (4) **incompatibilidades** entre produtos; (5) **etapas do tratamento da água** na ordem certa.
+> **Como a banca cobra:** (1) **diferença de composição** entre ferro-gusa e aço; (2) **reações** do alto-forno; (3) **símbolos e seções da FDS**; (4) **incompatibilidades** entre produtos; (5) **etapas do tratamento da água** na ordem certa; (6) **triângulo/tetraedro do fogo**, combustão completa × incompleta e métodos de extinção; (7) **monômero → polímero** (PVC, polietileno, acrílicos, borrachas); (8) **blindagem** por tipo de radiação.
 
 ## Parte 1 — Siderurgia
 
@@ -219,6 +219,190 @@ A **água potável** é a que atende ao **padrão de potabilidade** do Ministér
 
 > **Água de consumo em emergência:** em locais sem tratamento, a desinfecção caseira pode ser feita com **hipoclorito de sódio** (água sanitária própria para esse fim) ou por **fervura**; mas **filtrar antes** (para remover a turbidez) aumenta a eficácia da desinfecção.
 
+## Parte 4 — Aspectos químicos do fogo e da combustão
+
+### O que é o fogo
+
+**Combustão** é uma reação de **oxirredução exotérmica**: o **combustível** (agente redutor) reage com o **comburente** (agente oxidante, em geral o **O₂** do ar, com cerca de 21% em volume) e libera **calor** e **luz**. O **fogo** é a combustão **com chama**, mantida e visível.
+
+- **Triângulo do fogo:** **combustível + comburente + calor** (fonte de ignição). Faltando um lado, não há fogo.
+- **Tetraedro do fogo:** acrescenta a **reação em cadeia** como quarto elemento. A combustão com chama se autossustenta porque produz **radicais livres** (H•, OH•, O•) que mantêm a reação. Quebrar essa cadeia também apaga o fogo.
+
+| Elemento | O que é | Como é retirado |
+|---|---|---|
+| **Combustível** | Qualquer material que queime (sólido, líquido ou gás) | **Isolamento** (retirar ou separar o material) |
+| **Comburente** | O₂ do ar ou outro oxidante (nitratos, peróxidos, cloratos) | **Abafamento** (reduzir o O₂ abaixo de cerca de 13–15% já enfraquece a chama) |
+| **Calor** | Energia que inicia e mantém a reação (≥ ponto de ignição) | **Resfriamento** (absorver calor, como faz a água) |
+| **Reação em cadeia** | Radicais livres que realimentam a combustão | **Extinção química** (agentes que capturam radicais: pó químico, agentes halogenados/limpos) |
+
+### Combustão completa × incompleta
+
+- **Completa** (oxigênio em excesso): produz **CO₂ e H₂O**. Para um alcano: **CₙH₂ₙ₊₂ + (3n+1)/2 O₂ → n CO₂ + (n+1) H₂O** (exemplo: **CH₄ + 2 O₂ → CO₂ + 2 H₂O**). Chama azulada, mais quente.
+- **Incompleta** (pouco oxigênio): produz **CO** e/ou **C (fuligem)**, além de H₂O. Exemplos: **2 CH₄ + 3 O₂ → 2 CO + 4 H₂O** e **CH₄ + O₂ → C + 2 H₂O**. Chama amarela e esfumaçada; libera **menos** energia que a completa, e o **CO** é um gás **tóxico** (liga-se à hemoglobina e impede o transporte de O₂).
+
+> **Dica de prova:** a combustão **completa** libera **mais calor por mol** de combustível do que a incompleta; a incompleta forma **CO e fuligem**. Quanto mais **ricos em carbono** os compostos (aromáticos, alcenos), mais fuligem na queima.
+
+### Como queimam sólidos, líquidos e gases
+
+- **Gases:** misturam-se facilmente com o ar e queimam dentro dos **limites de inflamabilidade** (LII e LSI, ver Parte 2). Ex.: GLP, metano, acetileno, hidrogênio.
+- **Líquidos:** queimam os **vapores** que se formam acima da superfície. Quanto **menor o ponto de fulgor**, mais perigoso é o líquido.
+- **Sólidos:** o calor provoca **pirólise** (decomposição térmica que libera gases combustíveis); são esses gases que entram em chama. O que resta, em brasa, é a **combustão sem chama** (incandescente), típica de carvão e madeira.
+
+### Gases produzidos em incêndios
+
+| Gás | Origem comum | Perigo |
+|---|---|---|
+| **CO** | Combustão incompleta de qualquer material com carbono | **Asfixiante químico** (principal causa de morte por inalação) |
+| **CO₂** | Combustão completa | Desloca o O₂ em ambientes fechados (asfixia simples) |
+| **HCN** (gás cianídrico) | Queima de lã, seda, náilon, poliuretano, espumas | Tóxico (bloqueia a respiração celular) |
+| **HCl** | Queima de **PVC** | Irritante e **corrosivo** para vias aéreas e metais |
+| **SO₂** | Materiais com enxofre (borrachas, carvão) | Irritante respiratório; origem da chuva ácida |
+| **NOₓ** | Nitratos, altas temperaturas | Irritantes, tóxicos |
+
+### Transmissão de calor
+
+**Condução** (contato, em sólidos, como a barra de aço aquecida), **convecção** (movimento de fluidos quentes, que leva fumaça e gases para cima) e **irradiação** (ondas eletromagnéticas, que aquecem materiais a distância sem contato).
+
+### Fenômenos de incêndio em ambientes fechados
+
+- **Flashover** (ignição generalizada): o calor irradiado pelo teto e pelos gases quentes leva todos os materiais a liberarem gases de pirólise e entrarem em chama quase ao mesmo tempo.
+- **Backdraft** (explosão ambiental): um ambiente fechado, com fogo sem oxigênio e rico em gases combustíveis quentes, recebe **oxigênio novo** (porta ou janela aberta) e explode.
+- **BLEVE:** ruptura de um recipiente com líquido **superaquecido** sob pressão (por exemplo, botijão de GLP no fogo); o líquido vaporiza de súbito e, se for inflamável, forma uma bola de fogo.
+
+### Classes de incêndio e agentes extintores
+
+| Classe | Material | Agentes adequados | Observação |
+|---|---|---|---|
+| **A** | Sólidos comuns (madeira, papel, tecido), que deixam brasa | **Água**, espuma, pó ABC | Resfriamento é o método principal |
+| **B** | **Líquidos e gases inflamáveis** | Espuma, **pó químico**, **CO₂** | **Não usar jato de água** (espalha o líquido) |
+| **C** | Equipamentos **elétricos energizados** | **CO₂**, pó químico | Água só após desenergizar (a água comum conduz corrente) |
+| **D** | **Metais combustíveis** (Mg, Na, K, Al em pó, Ti) | Pó especial de classe D (cloreto de sódio, grafite) | **Água é perigosa** (reação libera H₂) |
+| **K** | Óleos e gorduras de cozinha | Agentes saponificantes (acetato de potássio) | Forma uma camada de sabão que isola |
+
+- **Água:** age por **resfriamento** (alto calor específico e calor latente de vaporização) e por **abafamento** (o vapor ocupa o lugar do ar).
+- **Pó químico:** **bicarbonato de sódio** (BC) ou **fosfato monoamônico** (ABC) interrompem a reação em cadeia; o NaHCO₃ também se decompõe liberando **CO₂**: **2 NaHCO₃ → Na₂CO₃ + H₂O + CO₂**.
+- **CO₂:** abafa e resfria (ao expandir); é gás **inerte**, não deixa resíduos; em ambientes fechados pode asfixiar.
+- **Espuma:** forma uma camada que isola o combustível do ar e **resfria**.
+
+## Parte 5 — Polímeros (macromoléculas)
+
+**Polímeros** são moléculas gigantes formadas pela repetição de unidades pequenas, os **monômeros**. A reação é a **polimerização**. O **grau de polimerização** (n) indica quantas unidades se repetem; as massas molares são muito altas (de dezenas de milhares a milhões).
+
+### Dois tipos de polimerização
+
+- **Adição:** monômeros com **dupla ligação C=C** se ligam sem perder átomos. A dupla "abre" e forma uma cadeia: **n CH₂=CHX → –(CH₂–CHX)ₙ–**. É o tipo dos polímeros **vinílicos, acrílicos e diênicos** do edital.
+- **Condensação:** os monômeros se unem **liberando uma molécula pequena** (em geral H₂O). Exemplos: **náilon** (poliamida), **poliéster/PET**, baquelite.
+
+### Polímeros vinílicos (derivados do etileno, CH₂=CH–X)
+
+| Polímero | Monômero (X) | Usos e características |
+|---|---|---|
+| **Polietileno (PE)** | eteno (X = H) | Sacos, filmes, garrafas; **PEBD** (cadeias ramificadas, flexível) e **PEAD** (cadeias lineares, mais rígido) |
+| **Polipropileno (PP)** | propeno (X = CH₃) | Embalagens, seringas, peças automotivas |
+| **PVC (policloreto de vinila)** | cloroeteno (X = Cl) | Tubos, conexões, fios; **na queima libera HCl** |
+| **Poliestireno (PS)** | estireno (X = fenil) | Copos descartáveis, isopor (expandido) |
+| **Teflon (PTFE)** | tetrafluoroeteno (CF₂=CF₂) | Antiaderente, muito resistente a calor e a produtos químicos |
+
+### Polímeros acrílicos
+
+São derivados do **ácido acrílico** e de compostos relacionados:
+
+- **Poliacrilonitrila (PAN)**, de **CH₂=CH–CN**: forma a **fibra acrílica**, conhecida como **"lã sintética"** (nome comercial Orlon), usada em agasalhos e mantas. Queima liberando **HCN**.
+- **Poli(metacrilato de metila) (PMMA)**, de CH₂=C(CH₃)–COOCH₃: o "**acrílico**" transparente (vidro acrílico, placas, lentes, para-brisas de aeronaves).
+
+### Polímeros diênicos (borrachas)
+
+Vêm de **dienos conjugados** (duas duplas alternadas com ligação simples entre elas). Na polimerização, as duplas se reorganizam e **sobra uma dupla em cada unidade**, o que dá elasticidade:
+
+| Polímero | Monômero | Observação |
+|---|---|---|
+| **Borracha natural** (poli-isopreno cis) | isopreno (2-metilbuta-1,3-dieno) | Látex da seringueira |
+| **Polibutadieno (BR)** | buta-1,3-dieno | Pneus |
+| **Neopreno** (policloropreno) | cloropreno (2-clorobuta-1,3-dieno) | Resistente a óleos e calor; mangueiras, luvas |
+| **SBR** (copolímero butadieno + estireno) | butadieno e estireno | Principal borracha sintética de pneus |
+
+**Vulcanização:** aquecimento da borracha com **enxofre** cria **pontes de enxofre** entre as cadeias; a borracha fica mais **resistente, elástica** e menos pegajosa.
+
+### Propriedades físico-químicas dos materiais poliméricos
+
+- **Termoplásticos:** amolecem ao aquecer e endurecem ao esfriar, podendo ser **remoldados e reciclados** (PE, PP, PVC, PS, PET, náilon). Cadeias lineares ou ramificadas.
+- **Termofixos (termorrígidos):** cadeias com **ligações cruzadas**; endurecem com o calor e **não voltam a amolecer** (baquelite, epóxi, melamina). Decompõem-se ao serem aquecidos demais.
+- **Elastômeros:** borrachas, com cadeias ligeiramente reticuladas, voltam ao tamanho original após esticar.
+- Em geral são **isolantes elétricos e térmicos**, de **baixa densidade**, resistentes à corrosão, mas **combustíveis** (queimam com fumaça densa e gases tóxicos) e pouco **biodegradáveis**.
+- **Ramificação e cristalinidade:** mais linear e organizada → mais **rígido, denso e de maior ponto de fusão**; mais ramificada → mais flexível.
+
+## Parte 6 — Proteção radiológica (complemento do item 1.9 do edital)
+
+As aulas de radioatividade explicam os tipos de emissão, mas o edital pede também **riscos associados às radiações ionizantes e princípios de proteção radiológica**.
+
+### Poder de penetração e blindagem
+
+| Radiação | Natureza | Penetração | Blindagem eficaz |
+|---|---|---|---|
+| **Alfa (α)** | núcleo de He (2 prótons + 2 nêutrons) | **Baixa** | Folha de papel, camada de pele (perigosa se **inalada ou ingerida**) |
+| **Beta (β)** | elétron (ou pósitron) | **Média** | Lâmina de alumínio, plástico, acrílico |
+| **Gama (γ) e raios X** | ondas eletromagnéticas de alta energia | **Alta** | **Chumbo**, concreto espesso, aço |
+| **Nêutrons** | partículas sem carga | Muito alta | Água, parafina, concreto (materiais **hidrogenados**) |
+
+### Os três pilares da proteção (tempo, distância, blindagem)
+
+1. **Tempo:** quanto **menor o tempo de exposição**, menor a dose.
+2. **Distância:** a intensidade cai com o **quadrado da distância** (dobrando a distância, a intensidade fica 4 vezes menor).
+3. **Blindagem:** interpor material adequado entre a fonte e a pessoa.
+
+Esses cuidados seguem o princípio **ALARA** ("tão baixo quanto razoavelmente exequível") e a lógica internacional de **justificação** (só se justifica a exposição se houver benefício), **otimização** e **limitação de dose**.
+
+### Grandezas e unidades
+
+- **Atividade** (desintegrações por segundo): **becquerel (Bq)**.
+- **Dose absorvida** (energia por massa): **gray (Gy)** = 1 J/kg.
+- **Dose equivalente/efetiva** (considera o dano biológico de cada radiação): **sievert (Sv)**.
+
+### Riscos e efeitos biológicos
+
+A radiação **ionizante** tem energia para arrancar elétrons e **quebrar ligações**, danificando moléculas (inclusive o **DNA**).
+
+- **Efeitos determinísticos:** têm **limiar de dose** e surgem em dias ou semanas (queimaduras, queda de cabelo, síndrome aguda da radiação). A gravidade aumenta com a dose.
+- **Efeitos estocásticos:** **sem limiar** definido; a **probabilidade** (não a gravidade) cresce com a dose (câncer, mutações hereditárias).
+- **Irradiação × contaminação:** na **irradiação** a pessoa é exposta à radiação de fora, sem carregar o material; na **contaminação** o material radioativo está sobre ou dentro do corpo (pele, roupa, inalação) e continua irradiando até ser removido.
+- **Limites usuais de dose** (norma da CNEN): trabalhadores, em média **20 mSv por ano** (período de 5 anos); público, **1 mSv por ano**.
+
+> **No atendimento de ocorrência:** isolar a área, manter o **máximo de distância** e o **menor tempo**, usar EPI e **dosímetro**, não tocar em fontes e comunicar a autoridade competente. Veículos e embalagens recebem o rótulo da **classe 7** (radioativos).
+
+## Parte 7 — Gás ideal e princípio de Avogadro (complemento do item 1.7 do edital)
+
+O curso principal usa o **volume molar** (22,4 L/mol nas CNTP), mas não desenvolve as leis dos gases. O edital cita **gás ideal** e **princípio de Avogadro**.
+
+### Variáveis de estado
+
+- **Pressão (P):** 1 atm = 760 mmHg ≈ 101,3 kPa ≈ 1,01 bar.
+- **Volume (V):** 1 L = 1 dm³ = 1.000 mL.
+- **Temperatura (T):** **sempre em kelvin** nas fórmulas: **T(K) = t(°C) + 273** (aproximadamente).
+- **Quantidade de matéria (n):** em mol.
+
+### Transformações de uma massa fixa de gás
+
+| Lei | Constante | Relação |
+|---|---|---|
+| **Boyle** (isotérmica) | T | **P·V = constante** (P↑ → V↓) |
+| **Charles** (isobárica) | P | **V/T = constante** (T↑ → V↑) |
+| **Gay-Lussac** (isocórica/isovolumétrica) | V | **P/T = constante** (T↑ → P↑) |
+| **Geral** | n | **P₁V₁/T₁ = P₂V₂/T₂** |
+
+### Equação de Clapeyron (gás ideal)
+
+**P · V = n · R · T**, com **R = 0,082 atm·L/(mol·K)** (pressão em atm, volume em L) ou **R ≈ 8,31 J/(mol·K)**. Como n = m/M, vale também **P·V = (m/M)·R·T**, que permite achar a **massa molar** de um gás.
+
+- **Princípio (hipótese) de Avogadro:** volumes iguais de quaisquer gases, nas **mesmas condições de P e T**, têm o **mesmo número de moléculas**. Daí o **volume molar**: nas **CNTP** (0 °C e 1 atm), **1 mol de gás ideal ocupa 22,4 L**.
+- **Densidade de um gás:** d = P·M / (R·T). Gás de maior massa molar é mais denso (por isso vapores mais pesados que o ar se acumulam em áreas baixas, ver Parte 2).
+- Um **gás real** se comporta como ideal a **baixa pressão e alta temperatura**.
+
+### Mistura de gases: Dalton
+
+- **Pressão parcial** do gás i: **Pᵢ = xᵢ · P_total**, em que **xᵢ = nᵢ/n_total** é a fração molar.
+- **Lei de Dalton:** **P_total = P₁ + P₂ + …** (soma das pressões parciais).
+- Ex.: no ar, com ≈ 21% de O₂ em mols, a pressão parcial do O₂ ao nível do mar é ≈ 0,21 atm. As pressões parciais são usadas na constante **K_p** do equilíbrio químico.
+
 ## Resumo para revisar
 
 - **Alto-forno:** minério (**Fe₂O₃**) + **coque** (C → CO, redutor) + **calcário** (fundente → **escória**). **Fe₂O₃ + 3 CO → 2 Fe + 3 CO₂**.
@@ -226,7 +410,11 @@ A **água potável** é a que atende ao **padrão de potabilidade** do Ministér
 - **Perigos químicos:** inflamável (PF ≤ 60 °C), combustível, oxidante, corrosivo, tóxico, reativo. **Ácido + cianeto/sulfeto = gás tóxico**; **hipoclorito + ácido = Cl₂**.
 - **FDS:** **16 seções**, seguindo a **NBR 14725/GHS**; palavras **Perigo** e **Atenção**; pictogramas losangulares com borda vermelha; **Hommel**: azul (saúde), vermelho (fogo), amarelo (reatividade), branco (específico).
 - **Água:** polar, calor específico alto (1 cal/g·°C), vaporização ≈ 540 cal/g. **Tratamento:** coagulação → floculação → decantação → filtração → desinfecção → pH → flúor. **Cloro residual mínimo: 0,2 mg/L**.
+- **Fogo:** combustível + comburente + calor (triângulo); com a **reação em cadeia**, tetraedro. Retirada: isolamento, abafamento, resfriamento, extinção química. Combustão completa → CO₂ + H₂O; incompleta → CO e fuligem. Classes A, B, C, D e K.
+- **Polímeros:** adição (C=C) × condensação (libera H₂O). **PE, PP, PVC, PS** (vinílicos); **PAN (lã sintética) e PMMA** (acrílicos); **borracha, BR, neopreno, SBR** (diênicos; vulcanização com S). Termoplástico amolece; termofixo não.
+- **Gases:** P·V = n·R·T (R = 0,082 atm·L/mol·K, T em kelvin); CNTP: 22,4 L/mol; Avogadro: mesmos V, P, T → mesmo n; Dalton: P_total = ΣPᵢ, Pᵢ = xᵢ·P.
+- **Proteção radiológica:** α (papel) < β (alumínio) < γ (chumbo/concreto); **tempo, distância, blindagem**; Bq, Gy, Sv; determinístico (limiar) × estocástico (sem limiar).
 
 ## Fontes
 
-Conteúdo clássico de Química Aplicada (siderurgia, segurança química e saneamento), em explicação, tabelas e equações elaboradas pelo MentorIA, em linguagem própria. Padrões de potabilidade conforme a Portaria GM/MS nº 888/2021 (Ministério da Saúde); estrutura da FDS conforme a ABNT NBR 14725 e o GHS.
+Conteúdo clássico de Química Aplicada (química do fogo, polímeros, siderurgia, segurança química, saneamento e proteção radiológica), em explicação, tabelas e equações elaboradas pelo MentorIA, em linguagem própria. Padrões de potabilidade conforme a Portaria GM/MS nº 888/2021 (Ministério da Saúde); estrutura da FDS conforme a ABNT NBR 14725 e o GHS.

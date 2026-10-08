@@ -137,7 +137,7 @@ Memorize a "escadinha" dos cinco direitos fundamentais do Título II:
 
 ### Prevenção (arts. 70 a 85)
 
-Dever de **todos** prevenir a ocorrência de ameaça ou violação dos direitos. Destaques: produtos e serviços **proibidos ou impróprios** (armas, munições, explosivos, bebidas alcoólicas, produtos cujos componentes possam causar dependência, fogos de artifício, bilhetes lotéricos); **diversões e espetáculos públicos** com classificação etária; e **viagens** — a criança só viaja desacompanhada dos pais ou responsável, para fora da comarca, **mediante autorização**, salvo exceções legais; **ao exterior**, exige autorização judicial ou dos pais, com firma reconhecida, conforme o caso.
+Dever de **todos** prevenir a ocorrência de ameaça ou violação dos direitos. Destaques: produtos e serviços **proibidos ou impróprios** (armas, munições, explosivos, bebidas alcoólicas, produtos cujos componentes possam causar dependência, fogos de artifício, bilhetes lotéricos); **diversões e espetáculos públicos** com classificação etária; e **viagens** — a criança ou o adolescente **menor de 16 anos** não viaja para fora da comarca onde reside **desacompanhado dos pais ou do responsável** sem **expressa autorização judicial** (art. 83, na redação da Lei 13.812/2019); a autorização é dispensada, por exemplo, para comarca contígua no mesmo Estado ou na mesma região metropolitana, ou quando vai acompanhado de ascendente ou colateral maior, até o terceiro grau, comprovado o parentesco, ou de pessoa maior autorizada expressamente pelo pai, pela mãe ou pelo responsável; **ao exterior** (art. 84), a autorização judicial é dispensada se viajar com **ambos os pais** ou com **um deles autorizado expressamente pelo outro**, com firma reconhecida.
 
 ### Política de atendimento (arts. 86 a 97)
 
@@ -161,7 +161,7 @@ Conjunto **articulado** de ações governamentais e não governamentais da **Uni
 | VIII | inclusão em **programa de acolhimento familiar** |
 | IX | **colocação em família substituta** |
 
-> **Macete:** as medidas **VII e VIII** (acolhimento) e **IX** (família substituta) são **provisórias e excepcionais** e **não implicam privação de liberdade**. Em caso de **risco iminente** ou **violação grave**, a criança é acolhida **antes** da decisão judicial, com comunicação à autoridade judiciária em até 24 horas.
+> **Macete:** o **acolhimento institucional (VII)** e o **acolhimento familiar (VIII)** são medidas **provisórias e excepcionais**, usadas como **transição** para a reintegração familiar ou, não sendo possível, para a **colocação em família substituta (IX)**, e **não implicam privação de liberdade** (art. 101, § 1º). Em caráter **excepcional e de urgência**, a entidade de acolhimento pode receber a criança **sem prévia determinação** da autoridade competente, comunicando o fato ao **Juiz da Infância e da Juventude em até 24 horas** (art. 93).
 
 Princípios de aplicação (art. 100): **condição da criança e do adolescente como sujeitos de direitos**, **proteção integral e prioritária**, **responsabilidade primária e solidária do poder público**, **interesse superior**, **privacidade**, **intervenção precoce e mínima**, **proporcionalidade e atualidade**, **responsabilidade parental**, **prevalência da família** e **obrigatoriedade da informação** e **oitiva obrigatória e participação**.
 
@@ -245,7 +245,8 @@ Antes de iniciado o procedimento judicial, o **Ministério Público** pode conce
 - **providenciar a medida estabelecida pela autoridade judiciária** para o adolescente autor de ato infracional;
 - **expedir notificações**; **requisitar certidões** de nascimento e de óbito;
 - **assessorar o Poder Executivo local** na elaboração da proposta orçamentária para planos e programas de atendimento;
-- **representar** contra programas de rádio e TV que violem a Constituição (art. 220, § 3º, II) e ao MP para ações de **perda ou suspensão do poder familiar**.
+- **representar** contra programas de rádio e TV que violem a Constituição (art. 220, § 3º, II) e ao MP para ações de **perda ou suspensão do poder familiar**;
+- desde a **Lei 14.344/2022 (Lei Henry Borel)**, também atuar nos casos de **violência doméstica e familiar contra a criança e o adolescente** (por exemplo, representar à autoridade judicial ou policial pelo **afastamento do agressor** do lar e requerer medidas protetivas).
 
 > **O que o Conselho Tutelar NÃO faz:** **não julga**, **não aplica medida socioeducativa** (isso é da autoridade judiciária) e **não decreta a perda do poder familiar** (apenas **representa** ao MP). Se a banca disser que o Conselho "aplica medidas socioeducativas", está errada.
 

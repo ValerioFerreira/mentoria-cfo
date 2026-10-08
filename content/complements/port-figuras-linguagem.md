@@ -61,8 +61,8 @@ Troca uma palavra por outra com a qual ela mantém **relação de proximidade (c
 
 > **Macete:** metonímia = **proximidade** (autor/obra, marca/produto, lugar/povo); sinédoque = **parte/todo e singular/plural**.
 
-### Antonomásia (ou perífrase)
-Substitui um **nome próprio** por uma expressão que o identifica por sua característica marcante: ***o Rei do Futebol*** (Pelé), ***a Cidade Maravilhosa*** (Rio de Janeiro), ***o Cavaleiro da Esperança***, ***o Bruxo do Cosme Velho*** (Machado de Assis), ***o Velho Chico*** (Rio São Francisco).
+### Antonomásia
+É a **perífrase aplicada a um nome próprio**: substitui o nome por uma expressão que identifica a pessoa ou o lugar por uma característica marcante: ***o Rei do Futebol*** (Pelé), ***a Cidade Maravilhosa*** (Rio de Janeiro), ***o Cavaleiro da Esperança***, ***o Bruxo do Cosme Velho*** (Machado de Assis), ***o Velho Chico*** (Rio São Francisco).
 
 ### Sinestesia
 Mistura de **sensações** de órgãos diferentes (visão, audição, olfato, paladar, tato) em uma só expressão: *voz **doce***, *cheiro **azedo***, *silêncio **escuro***, *cor **quente***, *som **áspero***, *aroma **colorido***.
@@ -78,9 +78,9 @@ Mistura de **sensações** de órgãos diferentes (visão, audição, olfato, pa
 | **Hipérbole** | **Exagero** intencional | *Já te disse **um milhão de vezes**!* · *Estou **morrendo** de fome.* |
 | **Gradação** | Sequência de ideias em ordem **crescente (clímax)** ou **decrescente (anticlímax)** | *Veio, **viu**, **venceu**.* · *Primeiro caiu uma gota, depois um fio, depois um **dilúvio**.* |
 | **Prosopopeia (personificação)** | Atribui **ações ou sentimentos humanos** a seres inanimados ou irracionais | *O vento **sussurrava** segredos.* · *A cidade **dormia**.* |
-| **Apóstrofe** | **Interpelação** de um ouvinte (real ou imaginário) | *Ó mar, quantas lágrimas de Portugal!* · *"Senhores, vamos ao que interessa!"* |
+| **Apóstrofe** | **Interpelação** de um ouvinte (real ou imaginário) | *Ó tempo, devolve-me os dias de folga!* · *"Senhores, vamos ao que interessa!"* |
 | **Lítotes** | Afirma algo **negando o contrário**, em tom de atenuação | *Ele **não é nada burro**.* (é inteligente) · *Não foi **pouco** o que sofreu.* |
-| **Perífrase** | Substitui um termo por uma **expressão equivalente** | *O **rei da selva** (leão)* |
+| **Perífrase** | Substitui um termo por uma **expressão que o descreve** (quando o termo é nome próprio, chama-se **antonomásia**) | *O **rei da selva** (leão)* · *o **astro-rei** (Sol)* |
 
 > **Atenção às trocas da banca:**
 > - **Paradoxo** exige que as ideias contraditórias **coexistam na mesma ideia ou expressão**; **antítese** apenas as coloca **lado a lado**.
@@ -96,7 +96,7 @@ Mistura de **sensações** de órgãos diferentes (visão, audição, olfato, pa
 | **Pleonasmo** | **Repetição** de uma ideia para **reforçá-la** (diferente do vício de linguagem) | *Vi com meus **próprios olhos**.* · *Chorou **lágrimas** amargas.* |
 | **Hipérbato (inversão)** | **Alteração da ordem direta** da frase | *"Ouviram do Ipiranga as margens plácidas..."* |
 | **Anacoluto** | **Quebra da estrutura sintática**: o termo inicial fica "solto" | ***Os jovens**, não lhes falta energia.* |
-| **Silepse** | **Concordância ideológica**, feita com o **sentido** e não com a forma (de **gênero, número ou pessoa**) | *Vossa Excelência está **cansado**.* (gênero) · *A turma estavam **conversando**.* (número) · *Os brasileiros **somos** solidários.* (pessoa) |
+| **Silepse** | **Concordância ideológica**, feita com o **sentido** e não com a forma (de **gênero, número ou pessoa**) | *Vossa Excelência está **cansado**.* (gênero) · *A turma chegou cedo; **estavam** ansiosos pela prova.* (número: o verbo distante concorda com a ideia de "os alunos") · *Os brasileiros **somos** solidários.* (pessoa) |
 | **Polissíndeto** | **Repetição** de conectivos (geralmente "e") | *E chora e sofre e grita e cai.* |
 | **Assíndeto** | **Ausência** de conectivos entre os elementos | *Chegou, viu, venceu.* |
 | **Anáfora** | **Repetição** de palavra ou expressão **no início** de frases/versos | *"**Não** me venha com desculpas. **Não** me procure mais."* |
@@ -110,7 +110,7 @@ Mistura de **sensações** de órgãos diferentes (visão, audição, olfato, pa
 | Figura | Definição | Exemplo |
 |---|---|---|
 | **Aliteração** | Repetição de **sons consonantais** | *"**Vozes veladas, veludosas vozes**..."* (repetição de **v**) |
-| **Assonância** | Repetição de **sons vocálicos** | *Sou um mulato nato no sábado…* (repetição de **a**) |
+| **Assonância** | Repetição de **sons vocálicos** | *A ave clara pairava na mata calada.* (repetição de **a**) |
 | **Onomatopeia** | Palavra que **imita um som** | *tic-tac, miau, boom, zum-zum, atchim* |
 | **Paronomásia** | Aproximação de palavras **parecidas no som, mas de sentidos diferentes** | *Quem **casa** quer **casa**.* · *Reze pelo **rei** e pela **lei**.* |
 

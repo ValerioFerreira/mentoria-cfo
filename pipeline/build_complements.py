@@ -56,6 +56,12 @@ code { font-family: monospace; background-color: #eef1f6; }
 """
 
 
+def unquote(v: str) -> str:
+    """Tira as aspas que envolvem o valor inteiro (mas não a aspa final de um título como Funções do "que" e do "se")."""
+    v = v.strip()
+    return v[1:-1] if len(v) > 1 and v[0] == v[-1] == '"' else v
+
+
 @dataclass
 class Doc:
     id: str
@@ -80,7 +86,7 @@ def parse(path: Path) -> Doc:
     for line in m.group(1).splitlines():
         if ":" in line and not line.startswith("#"):
             k, v = line.split(":", 1)
-            meta[k.strip()] = v.strip().strip('"')
+            meta[k.strip()] = unquote(v)
     body = m.group(2).strip()
     sources = ""
     sm = re.search(r"\n##\s+Fontes\s*\n(.*)$", body, re.S)
@@ -123,7 +129,7 @@ def build_pdf(doc: Doc, out: Path | None) -> None:
         if elpos.heading and (elpos.open_close & 1):
             heads.append((elpos.heading, (elpos.text or "").strip(), elpos.page))
 
-    tmp = fitz.DocumentWriter(str(out) if out else "pipeline/.cache/_tmp_complement.pdf")
+    tmp = fitz.DocumentWriter(str(out) if out else str(ROOT / "pipeline" / ".cache" / f"_tmp_{doc.id}.pdf"))
     pno, more = 0, 1
     while more:
         dev = tmp.begin_page(mediabox)
@@ -136,7 +142,7 @@ def build_pdf(doc: Doc, out: Path | None) -> None:
     doc.pages = pno
     doc.topics = [(h, t, p) for h, t, p in heads if h in (2, 3) and t]
     # rodapé com numeração
-    pdf = fitz.open(str(out) if out else "pipeline/.cache/_tmp_complement.pdf")
+    pdf = fitz.open(str(out) if out else str(ROOT / "pipeline" / ".cache" / f"_tmp_{doc.id}.pdf"))
     total = len(pdf)
     for i, page in enumerate(pdf, start=1):
         r = page.rect
@@ -246,11 +252,14 @@ def merge(docs: list[Doc]) -> None:
 
     # lacunas: o que os complementos resolvem fica registrado (a interface esconde as resolvidas)
     resolved = {g["id"]: g for g in gaps_doc["gaps"]}
+    by_gap: dict[str, list[str]] = {}
     for d in docs:
         for gid in [x.strip() for x in d_meta(d).get("resolves", "").split(",") if x.strip()]:
             if gid in resolved:
-                resolved[gid]["resolved"] = True
-                resolved[gid]["resolution"] = f"Complemento MentorIA: {d.title}"
+                by_gap.setdefault(gid, []).append(d.title)
+    for gid, titles in by_gap.items():
+        resolved[gid]["resolved"] = True
+        resolved[gid]["resolution"] = ("Complemento MentorIA: " if len(titles) == 1 else "Complementos MentorIA: ") + "; ".join(titles)
     gaps_doc["gaps"] = list(resolved.values())
     catalog["gaps"] = gaps_doc["gaps"]
     mc = {k: v for k, v in gaps_doc.get("materialCompleteness", {}).items() if k.startswith("_")}
@@ -272,7 +281,7 @@ def load_meta(path: Path) -> dict[str, str]:
     for line in (m.group(1) if m else "").splitlines():
         if ":" in line and not line.startswith("#"):
             k, v = line.split(":", 1)
-            out[k.strip()] = v.strip().strip('"')
+            out[k.strip()] = unquote(v)
     return out
 
 
@@ -280,6 +289,7 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--only")
     ap.add_argument("--no-pdf", action="store_true")
+    ap.add_argument("--no-merge", action="store_true", help="só gera PDFs (não toca catálogo/estrutura/segmentos/gaps): seguro com vários autores em paralelo")
     args = ap.parse_args()
     PDF_DIR.mkdir(parents=True, exist_ok=True)
     (ROOT / "pipeline" / ".cache").mkdir(exist_ok=True)
@@ -292,6 +302,9 @@ def main() -> int:
         docs.append(d)
         words = len(re.findall(r"\w+", d.body))
         sys.stdout.buffer.write(f"{d.id:34s} {d.pages:3d} págs  {words:5d} palavras  {len(segments_for(d))} segmento(s)\n".encode("utf-8"))
+    if args.no_merge:
+        print(f"{len(docs)} complemento(s) lidos (sem mesclar no catálogo)")
+        return 0
     merge(docs)
     print(f"{len(docs)} complemento(s) mesclados no catálogo")
     return 0

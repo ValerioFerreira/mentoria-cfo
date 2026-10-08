@@ -109,6 +109,13 @@ async function seedStructure() {
     segments += segs.length;
   }
 
+  // aulas que saíram do catálogo (ex.: complemento removido) ficam no banco — podem ter atividades de usuários — mas saem do plano
+  const gone = await db.aula.updateMany({
+    where: { id: { notIn: aulas.map(({ a }) => a.id) }, selectable: true },
+    data: { selectable: false, edital: "NO", incidence: 0, segmentCount: 0 },
+  });
+  if (gone.count) console.log(`aulas fora do catálogo desativadas: ${gone.count}`);
+
   await db.$transaction(
     catalog.gaps.map((g) => {
       const data = { subjectId: g.subject, item: g.item, evidence: g.evidence, severity: g.severity.toUpperCase() as "HIGH" | "MEDIUM" | "LOW", remedy: g.remedy, resolved: !!g.resolved, resolution: g.resolution ?? null };
@@ -169,7 +176,7 @@ async function seedItems() {
         }
         // questões que saíram do arquivo ficam RETIRED (não apagamos: podem ter respostas de usuários)
         const gone = await db.question.updateMany({
-          where: { segmentId: seg.id, batch: doc.batch, id: { notIn: [...keep] }, status: { not: "RETIRED" } },
+          where: { segmentId: seg.id, id: { notIn: [...keep] }, status: { not: "RETIRED" } },
           data: { status: "RETIRED" },
         });
         retired += gone.count;

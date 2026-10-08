@@ -190,7 +190,9 @@ Além disso: zelar pela conduta civil e profissional do pessoal, apresentar prop
 
 **Comandantes e chefes de órgãos de apoio** (art. 96): administrar com dedicação e zelo; baixar determinações e diretrizes no âmbito do órgão; propor soluções ao escalão imediatamente superior; apresentar relatórios; aprovar pareceres, estudos e laudos; supervisionar os recursos à disposição do órgão.
 
-**Comandantes e chefes de órgãos de execução** (art. 97): administrar as atividades da unidade; **cumprir e fazer cumprir** as diretrizes e ordens do escalão superior; **planejar, comandar e fiscalizar as ações operacionais**; pedir apoio ou reforço quando necessário; **comunicar imediatamente** ao escalão superior fatos de sua área; informar as principais ocorrências; publicar no **Boletim Interno (BI)** as ordens e fatos de interesse da unidade; zelar pela uniformidade da instrução e da administração; planejar e operar as comunicações; e elaborar documentos de avaliação das atividades operacionais.
+**Comandantes e chefes de órgãos de execução** (art. 97): administrar as atividades da unidade; **cumprir e fazer cumprir** as diretrizes e ordens do escalão superior; **planejar, comandar e fiscalizar as ações operacionais**; pedir apoio ou reforço quando necessário; **comunicar imediatamente** ao escalão superior fatos de sua área; informar as principais ocorrências; publicar no **Boletim Interno (BI)** as ordens e fatos de interesse da unidade; zelar pela uniformidade da instrução e da administração; planejar e operar as comunicações; elaborar documentos de avaliação das atividades operacionais; **comandar diretamente** as ações que, pela gravidade, vulto ou complexidade, o exigirem; preparar a proposta orçamentária da unidade; **encaminhar mensalmente** ao escalão superior o relatório de atividades; e avaliar o desempenho do pessoal sob seu comando.
+
+> **Pegadinha de periodicidade:** diretores setoriais e comandantes de território mandam relatório **anual** ao **Subcomandante Geral** (art. 95, IX); comandantes de órgãos de **execução** mandam relatório **mensal** ao **escalão superior** (art. 97, XIII). Diretores e comandantes de território também **emitem pareceres técnicos** e publicam no BI (art. 95, X e XII).
 
 ## Do pessoal (arts. 98 a 100)
 
@@ -225,6 +227,8 @@ Além disso: zelar pela conduta civil e profissional do pessoal, apresentar prop
 - **Revogação (art. 104):** revoga as disposições em contrário, **em especial** as Leis nº **12.153/2001** e nº **12.614/2004**.
 
 > **Datas que valem decorar:** lei de **12/12/2013**; efeitos desde **01/01/2014**; revogadas as leis de **2001 e 2004**.
+
+> **Atualização fora do texto da lei:** a **Lei Estadual nº 16.277/2017** criou novas OME no CBMPE — entre elas a **Diretoria de Ensino, Instrução e Pesquisa (DEIP)**, o **Centro de Atendimento ao Cidadão (CAC)**, o **Grupamento de Bombeiros de Fernando de Noronha (GBFN)**, do **8º ao 12º GB** e novos CAT (ZM 1 e 2, Agreste 1 a 3, Sertão 1 a 6) —, e o **Decreto nº 47.743/2019** trata da ativação de grupamentos e CAT. Essas normas **não alteraram a redação** da Lei 15.187/2013 (o Alepe Legis não registra atualização dela). Como o edital cobra a Lei 15.187, responda pela **redação dela** (7 GB, 5 CAT), salvo se o enunciado mencionar a lei de 2017.
 
 ## Resumo para revisar
 

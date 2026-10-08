@@ -19,7 +19,7 @@ END_MARKER = re.compile(
 COMMENTED_MARKER = re.compile(r"(quest[õo]es comentadas|exerc[íi]cios comentados|prova comentada|resolu[çc][ãa]o de (provas|quest))", re.IGNORECASE)
 # Frontmatter no início da aula (não é conteúdo de estudo).
 FRONTMATTER = re.compile(
-    r"^(apresenta[çc][ãa]o|como estudar|sobre o (professor|curso)|metodologia|cronograma|"
+    r"^(apresenta[çc][ãa]o|como estudar|sum[áa]rio|t[óo]picos da aula|sobre o (professor|curso)|metodologia|cronograma|"
     r"considera[çc][õo]es iniciais|abertura de curso|boas-vindas)",
     re.IGNORECASE,
 )

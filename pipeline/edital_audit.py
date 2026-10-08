@@ -87,7 +87,9 @@ ITEMS: dict[str, list[tuple[str, list[str]]]] = {
         ("Estado, governo e administração pública", [r"administracao publica", r"elementos do estado"]),
         ("Princípios do Direito Administrativo", [r"principio da legalidade", r"principio da impessoalidade", r"supremacia do interesse"]),
         ("Organização administrativa", [r"descentralizacao", r"desconcentracao", r"administracao indireta"]),
-        ("Agentes públicos / regime disciplinar / responsabilidade", [r"agentes publicos", r"provimento", r"vacancia", r"processo administrativo disciplinar", r"lei 8\.112"]),
+        ("Agentes públicos: espécies e classificação; cargo, emprego e função", [r"agentes publicos", r"cargo, emprego e funcao|cargos, empregos e funcoes"]),
+        # "agentes publicos", "provimento" e a mera citação da Lei 8.112 aparecem em toda aula; o RJU só conta com institutos próprios do estatuto
+        ("Regime jurídico único (Lei 8.112/1990): provimento, vacância, remoção, redistribuição, substituição, vantagens, regime disciplinar", [r"redistribuicao", r"vacancia", r"readaptacao", r"reversao", r"sindicancia"]),
         ("Poderes administrativos / poder de polícia", [r"poder de policia", r"poder hierarquico", r"poder disciplinar", r"poder regulamentar", r"abuso de poder"]),
         ("Ato administrativo", [r"ato administrativo", r"atributos do ato", r"anulacao e revogacao"]),
         ("Serviços públicos e delegação", [r"servicos publicos", r"concessao", r"permissao"]),

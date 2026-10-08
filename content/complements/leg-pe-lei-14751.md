@@ -11,7 +11,7 @@ resolves: leg-lei-14751
 
 ## Visão geral: o que é a "Lei Orgânica Nacional"
 
-Pessoal, esta é a lei **mais importante e mais cobrada** do bloco de legislação federal do edital. Ela cumpre uma tarefa que a Constituição deixava em aberto há décadas: criar **normas gerais para todas as PMs e todos os Corpos de Bombeiros Militares do país**.
+Pessoal, esta é a **única lei federal** do bloco de Legislações e o edital a cobra **inteira** (sem recorte de capítulos). Ela cumpre uma tarefa que a Constituição deixava em aberto há décadas: criar **normas gerais para todas as PMs e todos os Corpos de Bombeiros Militares do país**.
 
 - **Base constitucional:** art. 22, XXI, da CF — compete **privativamente à União** legislar sobre normas gerais de organização, efetivos, material bélico, garantias, convocação e mobilização das polícias militares e dos corpos de bombeiros militares.
 - **Data:** **12 de dezembro de 2023** (publicada no DOU de 13/12/2023). Entrou em vigor **na data da publicação** (art. 44).
@@ -77,7 +77,8 @@ A lei lista 20 diretrizes. As que mais caem:
 - **inteligência e contrainteligência**; **correições, inspeções e auditorias**; **polícia comunitária** para prevenção de conflitos;
 - **custodiar o militar condenado ou preso provisoriamente**, em órgão próprio ou, na ausência dele, em unidade militar;
 - os membros da PM são **autoridades de polícia administrativa, ostensiva, de preservação da ordem pública e de polícia judiciária militar** (§ 2º);
-- as funções constitucionais da PM só podem ser exercidas **pelos militares que a integram**, admitidos convênios e acordos de cooperação técnica nos casos autorizados em lei (§ 3º).
+- as funções constitucionais da PM só podem ser exercidas **pelos militares que a integram**, admitidos convênios e acordos de cooperação técnica nos casos autorizados em lei (§ 3º);
+- **polícia judiciária militar** é a atividade exercida no âmbito do **Código Penal Militar** e do **Código de Processo Penal Militar** (§ 4º; vale também para os bombeiros — art. 6º, § 6º).
 
 **Corpo de Bombeiros Militar (art. 6º — 27 incisos).** Em destaque:
 
@@ -90,7 +91,10 @@ A lei lista 20 diretrizes. As que mais caem:
 - **vistorias, licenciamento e fiscalização** de edificações, eventos e locais de concentração de público e **áreas de risco**; **privativamente**, a **segurança contra incêndio, pânico e emergência**;
 - **regulamentar, credenciar e fiscalizar** empresas, escolas e profissionais de segurança contra incêndio, brigadas e serviços civis e auxiliares de bombeiros.
 - **§ 5º — perícia administrativa:** feita **depois de liberado o local pelo perito criminal**, salvo manifesta impossibilidade de sua presença; fornece subsídios para o sistema de segurança contra incêndio, pânico e sinistros.
+- **§ 2º:** os bombeiros militares são **autoridades de polícia administrativa e de polícia judiciária militar** (nos termos do CPPM) — repare que a lista é menor que a da PM (que inclui polícia ostensiva e de preservação da ordem pública).
 - **§ 3º:** as competências do art. 6º são exercidas pelos **corpos de bombeiros orgânicos das PMs**, respeitadas as particularidades dessas polícias.
+- **§ 4º:** as funções constitucionais do CBM só são exercidas **pelos militares que o integram** (admitidos convênios nos casos autorizados em lei).
+- Outros incisos do art. 6º que podem cair: **emitir pareceres** sobre sinistros, riscos de colapso em estruturas e de incêndio florestal (V); **inteligência e contrainteligência** (XIV); **correições, inspeções e auditorias** (XV); **custodiar** o militar condenado ou preso provisoriamente (XIX); exercer o **poder hierárquico e disciplinar** na instituição (XXI); atender às **requisições do Judiciário e do MP** (XXII).
 
 > **Palavras que decidem a questão:** "**privativamente**" (prevenção/combate/perícia administrativa de incêndio; segurança contra incêndio, pânico e emergência; polícia judiciária militar) × "**prioritariamente**" (busca, salvamento e resgate). Se a banca trocar uma pela outra, a assertiva está errada.
 
@@ -156,11 +160,12 @@ A progressão na hierarquia é fundamentada no **valor moral e profissional**, *
 
 - Integrantes da instituição militar **não têm limite de idade** para o concurso do QOEM (§ 2º).
 - O **tempo de atividade militar e os cursos** da corporação contam **como título** no concurso e no processo seletivo interno (§ 3º).
-- Podem ser instituídos **Quadro de Oficial Temporário (QOT)** e **Quadro de Praça Temporário (QPT)**, por tempo determinado (§ 4º).
+- Podem ser instituídos **Quadro de Oficial Temporário (QOT)** e **Quadro de Praça Temporário (QPT)**, por tempo determinado (§ 4º), e **especialidades** dentro dos quadros (§ 5º), a critério das corporações.
+- O § 2º (sem limite de idade para o QOEM) foi **vetado e depois promulgado** com a derrubada do veto.
 
 ### Ensino (art. 16)
 
-As corporações mantêm **sistema de ensino militar** (colégios militares, graduação, pós-graduação). Cursos de **formação, adaptação e habilitação** são realizados em instituição de ensino militar; os de **aperfeiçoamento e especialização** podem ser feitos em unidades de ensino militar ou instituições públicas conveniadas. Os cursos também são **requisitos para promoção**:
+As corporações mantêm **sistema de ensino militar** (colégios militares, graduação, pós-graduação). Cursos de **formação, adaptação e habilitação** são realizados em instituição de ensino militar; os de **aperfeiçoamento e especialização** podem ser feitos em unidades de ensino militar ou instituições públicas conveniadas. Os cursos de formação, adaptação e habilitação têm **carga horária mínima** (§ 3º) e podem ser feitos em instituições militares federais, estaduais e do DF (§ 4º). Os cursos também são **requisitos para promoção**:
 
 | Quem | Curso | Para quê |
 |---|---|---|
@@ -175,6 +180,10 @@ As corporações mantêm **sistema de ensino militar** (colégios militares, gra
 ## Capítulo IV — Do material de segurança pública (art. 17)
 
 O material de segurança pública das instituições militares tem **as mesmas prerrogativas legais do material bélico** e se constitui de frotas operacionais e administrativas, armas, munições e apetrechos, entre eles **armamentos, munições, explosivos e propelentes, blindagens balísticas, equipamentos, armas e munições menos letais e produtos controlados de uso restrito**.
+
+- **Uso permitido** (§ 1º): a dotação é fixada por **ato do governo local**, por proposta do comando-geral, com comunicação ao órgão federal para registro.
+- **Uso restrito** (§ 2º): quantidade e tipo definidos no **planejamento estratégico** da corporação, nas condições de lei específica.
+- **Sigma** (§§ 3º e 4º): as armas **institucionais** e as **particulares** dos militares que constem de seus registros são cadastradas no **Sistema de Gerenciamento Militar de Armas (Sigma)**; a corporação certifica os requisitos de aquisição e porte e envia as informações ao Sigma.
 
 ## Capítulo V — Das garantias (art. 18)
 
@@ -195,15 +204,25 @@ São garantias das corporações e de seus membros **ativos, da reserva remunera
 - **tempo mínimo de 1 (um) ano de permanência na unidade militar**, ressalvada a transferência a pedido ou compulsória, justificada;
 - **regime disciplinar** regulado em **código de ética**, na forma de lei do ente federado, com penas disciplinares, assegurados **devido processo legal, ampla defesa e contraditório**;
 - **equipamentos de proteção individual** adequados; **ajuda de custo** (remoção para outro Município no interesse da administração); **diárias antecipadas** nos deslocamentos;
-- **atendimento prioritário** por MP, Defensoria, Judiciário, polícia judiciária e perícia quando vítima de infração penal, em serviço ou em razão dele; **precedência** em audiências, como testemunha, em serviço.
+- **atendimento prioritário** por MP, Defensoria, Judiciário, polícia judiciária e perícia quando vítima de infração penal, em serviço ou em razão dele; **precedência** em audiências, como testemunha, em serviço;
+- **remuneração com escalonamento vertical** entre postos e graduações, fixado em lei do ente (respeitado o teto do art. 37, XI, da CF), e **patente plena** aos oficiais e graduação às praças, na ativa, na reserva e na reforma;
+- **desconto em folha** das contribuições a entidades de classe e consignações de cooperativas; **carreiras** com acesso seletivo, gradual e sucessivo; **carga horária máxima** fixada em lei do ente (salvo situações excepcionais);
+- **transferência de ofício** para instituição de ensino congênere (LDB, art. 49, parágrafo único);
+- ao veterano da reserva remunerada, o **direito de expressão e manifestação** da Lei nº 7.524/1986;
+- **voluntariedade** na **reversão** ao serviço ativo do militar da reserva e **compulsoriedade** na **convocação** ao serviço ativo, nos termos da lei do ente.
+
+> **Atenção:** a garantia do **seguro de vida e de acidentes** (inciso XII) foi **vetada e depois promulgada**. Vários incisos do art. 18 foram vetados (XX a XXII, XXVIII e XXXV) — se a questão citar uma garantia que você não reconhece, desconfie.
 
 **Parágrafo único:** salvo as **prisões disciplinares militares**, os militares só podem ser presos **por ordem escrita da autoridade judiciária competente ou em flagrante delito**, com imediata comunicação ao chefe do órgão de direção superior da instituição.
 
-> **Conexão com o Decreto 50.014/2020:** a prisão disciplinar é a única exceção da regra acima, mas, no Estado, a privação de liberdade como sanção disciplinar foi afastada pela Lei 13.967/2019. Estude as duas normas juntas.
+> **Conexão com o Decreto 50.014/2020:** a lei nacional **ressalva as prisões disciplinares militares**. A Lei 13.967/2019, que as proibia, foi declarada **inconstitucional pelo STF (ADI 6595, 2022)**; em Pernambuco, porém, o Decreto 50.014/2020 (que afasta a privação de liberdade nas penas de detenção e prisão) segue publicado sem revogação. Estude as duas normas juntas e responda conforme a norma perguntada.
+
+> **Choques com o Estatuto de PE (Lei 6.783/1974):** a lei nacional fixa **estabilidade após 3 anos** (art. 18, XXVI), enquanto o texto do Estatuto pernambucano fala em estabilidade da praça com **10 anos** (art. 49); e a lei nacional usa a fronteira de **10 anos** para a candidatura (art. 22, como a CF, art. 14, § 8º), enquanto o Estatuto ainda fala em **5 anos** (art. 51). A lei nacional é norma geral posterior, mas o Estatuto não foi alterado nesses pontos: se a questão disser "segundo a Lei 14.751" ou "segundo o Estatuto", siga a norma citada.
 
 ## Capítulo VI — Vedações, direitos e inatividade (arts. 19 a 23)
 
-- **Art. 19 — vedações em atividade:** **participar de sociedade comercial**, **salvo como cotista, acionista e comanditário**, **sendo vedada a atividade gerencial ou administrativa** (exceto em licença para tratar de interesse particular); e **divulgar imagens de pessoas sob sua custódia sem prévia autorização judicial**.
+- **Art. 19 — vedações em atividade:** **participar de sociedade comercial**, **salvo como cotista, acionista e comanditário**, **sendo vedada a atividade gerencial ou administrativa** (exceto em licença para tratar de interesse particular); e **divulgar imagens de pessoas sob sua custódia sem prévia autorização judicial**. (Os incisos II a V foram vetados.)
+- **Arts. 20 e 21:** **vetados** — apesar de o título do capítulo falar em direitos, deveres, remuneração, inatividade e pensão, esses temas ficaram para a lei de cada ente.
 - **Art. 22 — elegibilidade do militar alistável:**
 
 | Situação | Consequência |
@@ -214,15 +233,18 @@ São garantias das corporações e de seus membros **ativos, da reserva remunera
 
 - **Art. 23 — precedência entre militares:** observa os arts. 17, 18 e 19 do **Estatuto dos Militares (Lei nº 6.880/1980)**, salvo precedência funcional prevista em lei.
 
+- **§ 1º:** o afastamento ou a agregação só são **remunerados nos prazos da legislação eleitoral**.
+- **§ 2º** (vetado e promulgado): no caso do inciso II, terminado o mandato, o **tempo de mandato conta para recalcular** a remuneração na inatividade, se ela não for integral.
+
 > **Decore:** a fronteira dos **10 anos de serviço** (menos de 10 = afastado; mais de 10 = agregado).
 
 ## Capítulo VII — Convocação, mobilização e emprego (arts. 24 a 28)
 
 - **Art. 24:** PMs e CBMs são **titulares da polícia ostensiva e da preservação da ordem pública** (PM) e **da defesa civil** (CBM), subordinados aos governadores. Em **situações extraordinárias** (CF, art. 144, § 6º), podem ser **convocados ou mobilizados pela União**, no todo ou em parte, pelo Ministério competente, nos casos de: **I — intervenção federal, estado de defesa ou estado de sítio**, precedendo o emprego das Forças Armadas; **II — apoio a órgãos federais** mediante convênio ou com anuência do governador.
 - **Art. 25:** em **caso de guerra**, podem ser mobilizados pela União e **integrarão a força terrestre designada**, que delimitará os aspectos operacionais e táticos do emprego, respeitadas suas missões específicas e constitucionais.
-- **Art. 26 — nas hipóteses do art. 24:** o **ato de convocação fixa prazo, local e condições**; o militar convocado que responder a inquérito ou processo por sua atuação no período será **representado pela Advocacia-Geral da União**; atos de polícia judiciária e processuais que exijam sua presença serão **prioritariamente remotos** (videoconferência); e a competência para processar e julgar crimes militares é regulada conforme o artigo.
+- **Art. 26 — nas hipóteses do art. 24:** o **ato de convocação fixa prazo, local e condições**; o militar convocado que responder a inquérito ou processo por sua atuação no período será **representado pela Advocacia-Geral da União**; atos de polícia judiciária e processuais que exijam sua presença serão **prioritariamente remotos** (videoconferência); e os crimes militares imputados ao convocado, **mesmo praticados em outra unidade da Federação**, são julgados pela **Justiça Militar do ente a que ele pertence**.
 - **Art. 27:** governadores podem celebrar **termos de parceria, convênios, consórcios e acordos de colaboração** com unidades **limítrofes** para atuação integrada em **regiões de fronteiras e divisas**, e com **não limítrofes** por **tempo determinado** e em **missões específicas** (CF, art. 241).
-- **Art. 28:** a **Inspetoria-Geral das Polícias Militares e dos Corpos de Bombeiros Militares (IGPM/BM)**, integrante do **Comando do Exército**, cuida dos estudos, registro de dados e assessoria no controle e coordenação, **no âmbito federal**, da condição de **força auxiliar e reserva do Exército**.
+- **Art. 28:** a **Inspetoria-Geral das Polícias Militares e dos Corpos de Bombeiros Militares (IGPM/BM)**, integrante do **Comando do Exército**, cuida dos estudos, registro de dados e assessoria no controle e coordenação, **no âmbito federal**, da condição de **força auxiliar e reserva do Exército**. Por meio dela, o Comando do Exército centraliza os assuntos das PMs e CBMs, faz **visitas de orientação técnica** e registra dados de organização, efetivos, armamento e frota (§ 1º). O **inspetor-geral** é **oficial-general da ativa** do Exército (§ 2º). O § 3º (vetado e promulgado) atribui ao **Ministério da Justiça e Segurança Pública** o controle da regularidade da legislação de **proteção social** dos militares.
 
 ## Capítulo VIII — Disposições finais (arts. 29 a 44)
 
@@ -232,16 +254,18 @@ São garantias das corporações e de seus membros **ativos, da reserva remunera
   - Compete a ele **indicar os nomes** para os cargos privativos, **promover as praças** e **apresentar ao governador a lista de promoção dos oficiais**; **certificar o direito ao porte de arma** e as hipóteses de suspensão e cassação.
   - Deve **divulgar publicamente relatório anual** sobre: representações recebidas e apuradas contra membros e sanções aplicadas; ocorrências atendidas; **letalidade e vitimização de policiais**; **letalidade e vitimização de civis**; e orçamento previsto e executado.
   - O **coronel nomeado** comandante-geral tem asseguradas, **enquanto permanecer no cargo**, as **prerrogativas de general de brigada** para fins de precedência e sinais de respeito.
-- **Art. 30:** o comandante-geral da **PM** regulamenta **protocolos operacionais**, a serem encaminhados aos **conselhos estaduais de segurança pública e defesa social** e atualizados periodicamente.
+- **Art. 30:** o comandante-geral da **PM** regulamenta **protocolos operacionais** de apoio ao militar, que devem prever as situações de emprego das unidades, a **cadeia de comando** e as responsabilidades de comandantes e supervisores, ser encaminhados aos **conselhos estaduais de segurança pública e defesa social** e ser atualizados periodicamente.
+- **Art. 31:** consideram-se **equivalentes** os cursos existentes na instituição na data da publicação da lei.
+- **Art. 32:** a remuneração dos militares do **DF, dos Territórios e dos ex-DF/ex-Territórios** é fixada em **lei federal**.
 - **Art. 33:** atuam de forma **ostensiva**, visivelmente identificados por **uniforme, armamento, viatura e equipamentos próprios** autorizados em lei, **ressalvadas as atividades sigilosas**.
 - **Art. 34:** o **Poder Executivo federal** editará **decreto** com **parâmetros mínimos** para: insígnias dos oficiais; divisas das praças; coloração do fardamento; carteira de identidade militar; **padrão e cor básica das viaturas**; e **núcleo comum curricular mínimo** dos cursos de formação, habilitação e aperfeiçoamento (com **direitos humanos e polícia comunitária**). Não haverá prazo para adoção, e as **fardas e cores históricas** serão preservadas.
 - **Art. 35 — símbolos:** exclusividade das denominações "brigada militar" e "força pública" (PM) e "bombeiros militares" e "corpo de bombeiros" (CBM). **Datas comemorativas nacionais: 21 de abril (polícias militares) e 2 de julho (corpos de bombeiros militares).** É **vedado** o uso de uniformes, símbolos e cores por qualquer instituição ou pessoa estranha.
 - **Art. 36:** as definições (segurança pública, ordem pública, poder de polícia, polícia ostensiva, defesa civil, segurança contra incêndio, busca, salvamento e resgate, polícia judiciária militar etc.) serão **regulamentadas em ato do Poder Executivo federal**, respeitadas as competências constitucionais e a auto-organização dos entes.
-- **Art. 37:** instituídos o **Conselho Nacional de Comandantes-Gerais de Polícia Militar (CNCGPM)** e o **Conselho Nacional de Comandantes-Gerais de Bombeiros Militares (CNCGBM)**, integrados por todos os comandantes-gerais.
-- **Art. 38:** as instituições devem promover **instâncias de participação social** e nomear representantes no **Conselho de Segurança Pública e Defesa Social** (Lei 13.675/2018).
-- **Art. 39:** a adoção do **requisito de escolaridade** para ingresso será processada em até **6 (seis) anos** a contar da publicação da lei.
-- **Art. 40 — regras de transição:** oficiais oriundos da carreira de praça e praças com supressão de graduações têm **180 dias** para optar entre permanecer no quadro ou ingressar no QOE / na nova carreira.
-- **Art. 41:** **permuta ou cessão** entre entes federados, a pedido, condicionada à autorização expressa dos comandantes-gerais, sem prejuízo de prerrogativas, direitos e vantagens do Estado de origem.
+- **Art. 37:** instituídos o **Conselho Nacional de Comandantes-Gerais de Polícia Militar (CNCGPM)** e o **Conselho Nacional de Comandantes-Gerais de Bombeiros Militares (CNCGBM)**, integrados por todos os comandantes-gerais, de **natureza oficial**; estrutura e funcionamento virão por **decreto** do Poder Executivo.
+- **Art. 38:** as instituições devem promover **instâncias de participação social** e nomear representantes no **Conselho de Segurança Pública e Defesa Social** (Lei 13.675/2018). Lá, o representante deve divulgar as informações pedidas (ressalvado o sigilo legal), apresentar procedimentos e protocolos, **apresentar o relatório anual** e pronunciar-se sobre assuntos de sua área.
+- **Art. 39:** a adoção do **requisito de escolaridade** para ingresso será processada em até **6 (seis) anos** a contar da publicação da lei. A instituição pode formar o militar em **curso superior próprio** com equivalência aos da LDB, que supre o requisito de ensino superior e o de **bacharel em direito ou em ciências policiais** do art. 15 (parágrafo único).
+- **Art. 40 — regras de transição** (vetado e promulgado): oficiais oriundos da carreira de praça e praças com supressão de graduações têm **180 dias** para optar entre permanecer no quadro ou ingressar no QOE / na nova carreira.
+- **Art. 41** (vetado e promulgado): **permuta ou cessão** entre entes federados, a pedido, condicionada à autorização expressa dos comandantes-gerais, sem prejuízo de prerrogativas, direitos e vantagens do Estado de origem.
 - **Art. 42:** altera a **Lei 13.675/2018** (inclui o **uso comedido e proporcional da força** como princípio — art. 4º, IX — e o **art. 4º-A**, que exige **exame de saúde e exame toxicológico com larga janela de detecção** como critério de ingresso).
 - **Art. 43:** revoga dispositivos do **Decreto-Lei nº 667/1969**.
 - **Art. 44:** vigência na **data da publicação**.
@@ -265,4 +289,4 @@ São garantias das corporações e de seus membros **ativos, da reserva remunera
 
 ## Fontes
 
-Texto da Lei Federal nº 14.751, de 12 de dezembro de 2023, conforme publicado no portal do Planalto (com as partes vetadas e promulgadas). Explicação, tabelas e macetes elaborados pelo MentorIA, em linguagem própria.
+Texto da Lei Federal nº 14.751, de 12 de dezembro de 2023, conforme publicado no portal do Planalto (com as partes vetadas e promulgadas), conferido em 10/2026; Lei Estadual nº 6.783/1974 (texto atualizado no Alepe Legis) para as comparações; STF, ADI 6595. Explicação, tabelas e macetes elaborados pelo MentorIA, em linguagem própria.

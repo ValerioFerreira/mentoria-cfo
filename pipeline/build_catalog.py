@@ -13,7 +13,7 @@ import re
 import sys
 
 sys.path.insert(0, os.path.dirname(__file__))
-from config import CONTENT_DIR, load_subjects  # noqa: E402
+from config import CONTENT_DIR, load_overrides, load_subjects  # noqa: E402
 from textutil import FRONTMATTER, norm  # noqa: E402
 
 PAGES_PER_FIXACAO_HOUR = 12
@@ -46,10 +46,18 @@ def practice_sections(aula: dict, mapping: dict[str, str]) -> list[dict]:
         (t for t in aula["topics"] if t["kind"] == "marker" and not t.get("auto")), key=lambda t: t["pdfPage"]
     )
     out = []
+    commented_themes = {norm(re.sub(r"^quest[õo]es comentadas\s*[-–]\s*", "", m["title"], flags=re.I))
+                        for m in markers if re.match(r"^quest[õo]es comentadas", m["title"], re.I)}
     for i, m in enumerate(markers):
-        if not re.match(r"^quest[õo]es comentadas", m["title"], re.I):
+        if re.match(r"^quest[õo]es comentadas", m["title"], re.I):
+            theme = re.sub(r"^quest[õo]es comentadas\s*[-–]\s*", "", m["title"], flags=re.I).strip()
+        elif re.match(r"^lista de quest[õo]es", m["title"], re.I):
+            # tema que só existe como lista (ex.: Compreensão textual na Aula 14 de Português): a lista vira a Fixação
+            theme = re.sub(r"^lista de quest[õo]es\s*[-–]\s*", "", m["title"], flags=re.I).strip()
+            if norm(theme) in commented_themes:
+                continue
+        else:
             continue
-        theme = re.sub(r"^quest[õo]es comentadas\s*[-–]\s*", "", m["title"], flags=re.I).strip()
         end = (markers[i + 1]["pdfPage"] - 1) if i + 1 < len(markers) else aula["totalPages"]
         target = next((v for k, v in mapping.items() if norm(k) == norm(theme)), None)
         out.append({"theme": theme, "startPage": m["pdfPage"], "endPage": end, "forAula": target})
@@ -57,7 +65,7 @@ def practice_sections(aula: dict, mapping: dict[str, str]) -> list[dict]:
 
 
 def main() -> int:
-    overrides = json.loads((CONTENT_DIR / "overrides.json").read_text(encoding="utf-8"))["aulas"]
+    overrides = load_overrides()
     gaps_doc = json.loads((CONTENT_DIR / "gaps.json").read_text(encoding="utf-8"))
     gaps = gaps_doc["gaps"]
     completeness = {k: v for k, v in gaps_doc.get("materialCompleteness", {}).items() if not k.startswith("_")}
@@ -69,6 +77,8 @@ def main() -> int:
         struct = json.loads((CONTENT_DIR / "structure" / f"{subj.id}.json").read_text(encoding="utf-8"))["aulas"]
         aulas = []
         for a in struct:
+            if a.get("source") == "authored":  # complementos: build_complements.py mescla depois (idempotente)
+                continue
             ov = overrides.get(a["id"], {})
             title = clean_title(a["title"])
             kind = ov.get("kind") or ("practice" if a["theoryPages"] == 0 else "theory")

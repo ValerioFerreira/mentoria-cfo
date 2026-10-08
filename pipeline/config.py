@@ -62,3 +62,16 @@ def aula_id(subject_id: str, aula_number: int) -> str:
 def pdf_key(folder_name: str, filename: str) -> str:
     """Chave estável do PDF no cache: '<prefixo-pasta>_<ordem>' (ex.: '02_004')."""
     return f"{folder_name[:2]}_{filename[:3]}"
+
+
+def load_overrides() -> dict[str, dict]:
+    """Ajustes manuais por aula: content/overrides.json + content/overrides/<disciplina>.json (auditoria por disciplina).
+    Chaves do arquivo por disciplina sobrepõem as do arquivo geral, aula a aula."""
+    out: dict[str, dict] = json.loads((CONTENT_DIR / "overrides.json").read_text(encoding="utf-8"))["aulas"]
+    out = {k: dict(v) for k, v in out.items()}
+    d = CONTENT_DIR / "overrides"
+    if d.exists():
+        for f in sorted(d.glob("*.json")):
+            for aula, ov in json.loads(f.read_text(encoding="utf-8")).get("aulas", {}).items():
+                out.setdefault(aula, {}).update(ov)
+    return out
