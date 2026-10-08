@@ -184,8 +184,13 @@ def segments_for(doc: Doc) -> list[dict]:
         if cur:
             groups.append(cur)
     out = []
+    prev_end = 0
     for i, g in enumerate(groups, start=1):
         start, end = g[0][1], g[-1][2]
+        # duas seções que começam na mesma página, em lados opostos do corte, não podem repetir essa página
+        start = max(start, prev_end + 1)
+        end = max(end, start)
+        prev_end = end
         pages = end - start + 1
         nxt = groups[i][0][0] if i < len(groups) else None
         out.append({

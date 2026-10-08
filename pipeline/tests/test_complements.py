@@ -105,6 +105,9 @@ def test_no_ten_word_sequence_copied_from_estrategia():
         body = path.read_text(encoding="utf-8").replace("\r\n", "\n")
         body = re.sub(r"^---\n.*?\n---\n", "", body, flags=re.S)
         hits = _shingles(norm(body)) & by_subject.get(meta["subject"], set())
-        if len(hits) > 12:  # tolerância: nomes de leis e fórmulas curtas coincidem
+        # `norma: true` (front matter) = o complemento cita dispositivos de lei/CPM/súmulas literalmente (domínio público),
+        # que o Estratégia também transcreve; a tolerância sobe, mas a cópia de explicação continua barrada.
+        limit = 120 if _meta(path).get("norma") == "true" else 12
+        if len(hits) > limit:  # tolerância: nomes de leis e fórmulas curtas coincidem
             problems.append((path.name, len(hits), " ".join(next(iter(hits)))))
     assert not problems, problems

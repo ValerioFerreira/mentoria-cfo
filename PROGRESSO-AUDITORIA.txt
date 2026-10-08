@@ -1,5 +1,5 @@
 MENTORIA / CFO-BM — AUDITORIA INTEGRAL: ESTADO E PRÓXIMOS PASSOS
-Atualizado em: 2026-10-08 (checkpoint 2 — as 13 auditorias estruturais estão concluídas)
+Atualizado em: 2026-10-08 (checkpoint 3 — auditorias concluídas e a maioria dos complementos criados)
 
 Este arquivo é a memória de trabalho da missão "auditoria integral, completação e otimização".
 Quem retomar o trabalho (outra sessão do Claude Code, outro agente ou o próprio usuário) deve ler este
@@ -95,32 +95,37 @@ Ordem obrigatória de reconstrução (raiz do repositório, PYTHONIOENCODING=utf
 5. O QUE FALTA (em ordem)
 ====================================================================================================
 5.1 (feito) Auditorias estruturais das 13 disciplinas.
-5.2 Criar os complementos autorais pedidos (todos autorizados pelo usuário em 2026-10-08), em content/complements/*.md
-    (front matter: id, subject, title, short, subtitle, weight, order, resolves; ver exemplos). Conteúdo original,
-    parafraseado do texto legal oficial; nunca copiar o Estratégia:
-      - Lei 8.112/1990 (gap da-lei-8112, prioridade alta)         - Óptica geométrica (fis-optica, alta)
-      - Física: tópicos do edital (fis-topicos-edital)            - Constituição do Estado de PE completa (dc-ce-pe)
-      - Direito constitucional intertemporal + histórico (dc-intertemporal)
-      - Informática: navegadores; Prompt de Comando e periféricos (inf-navegadores-cmd)
-      - Estatística: probabilidade geométrica; normas IBGE e amostragem (est-prob-geometrica, est-normas-amostragem)
-      - Espanhol: grau, heterográficos, verbos (esp-grau-heterograficos)
-      - Matemática: geometria analítica (mat-geometria-analitica, alta); simetrias, polinômios/racionais, divisibilidade e MDC
-        (mat-simetrias-polinomios-divisibilidade)
-      - Biologia: qualidade de vida e saúde (bio-qualidade-vida, alta); biotecnologia/ética (bio-biotec-etica);
-        serviços ecossistêmicos, legislação da água, saneamento (bio-ambiente-legislacao)
-      - Direito Penal Militar: súmulas + Parte Especial não ensinada (dpm-sumulas-especial)
-      - Química: já ampliado dentro de quim-aplicada-complementos (fogo, polímeros, gás ideal, proteção radiológica)
-    Briefing dos agentes redatores: pipeline/briefs/complement.md. Para validar um complemento sem mexer no catálogo:
-      (cd pipeline && .venv/Scripts/python build_complements.py --only <id> --no-merge)
-    A mesclagem no catálogo (sem --only/--no-merge) é feita uma vez, no fim.
-    Depois: rodar build_complements.py e atualizar gaps.json (resolves) e content/edital/<disc>.json.
+5.2 Complementos autorais (todos autorizados pelo usuário em 2026-10-08), em content/complements/*.md.
+    CRIADOS e mesclados no catálogo (20 complementos, testes passando):
+      Dir. Administrativo: da-lei-8112 (20 págs.) | Dir. Constitucional: dc-ce-pernambuco (18), dc-intertemporal-historico (6)
+      Dir. Penal Militar: dpm-sumulas-parte-especial (18) | Física: fis-optica-geometrica (14), fis-topicos-edital (14)
+      Matemática: mat-geometria-analitica (11), mat-complementos-edital (13: simetrias, polinômios/racionais, divisibilidade,
+      exponenciais, divisão proporcional) | Legislações PE: +leg-pe-lei-11817-penas, +leg-pe-lei-6783-lacunas
+      Química: quim-aplicada-complementos ampliado (fogo, polímeros, gás ideal, proteção radiológica) | Inglês ampliado.
+      Biologia: bio-qualidade-vida e bio-biotec-ambiente — em redação por um agente (ver git log/status; se os arquivos
+      não existirem, criar conforme pipeline/briefs/complement.md).
+    AINDA POR CRIAR (briefing em pipeline/briefs/complement.md; ids de lacuna em content/gaps.json):
+      - Informática (inf-navegadores-cmd): navegadores (navegação privativa, cookies, histórico, atalhos), Prompt de
+        Comando do Windows 11 (sem DELTREE; RD /S), instalação de periféricos (drivers, plug and play); opcional: gráficos
+        e filtros do Calc.
+      - Estatística (est-prob-geometrica, est-normas-amostragem): probabilidade geométrica; normas de apresentação
+        tabular do IBGE e tipos de amostragem.
+      - Espanhol (esp-grau-heterograficos): grau do substantivo, heterográficos, irregularidade verbal comum x própria,
+        verbos impessoais e pronominais, relativos.
+    Use `norma: true` no front matter do complemento quando ele cita dispositivos de lei literalmente (o teste de
+    originalidade tolera mais coincidência com o Estratégia nesses casos).
+    Depois de criar: (cd pipeline && .venv/Scripts/python build_complements.py --only <id> --no-merge) e, no fim, a
+    mesclagem completa (build_complements.py sem flags, ou --no-pdf).
+    Os status em content/edital/*.json ainda mostram "gap/partial" para itens que os novos complementos já cobrem:
+    atualizar (status "complement" + onde) antes do relatório final.
 5.3 Regenerar tudo na ordem da seção 2 e rodar pytest.
 5.4 Produzir bizus e questões de TODOS os trechos, seguindo pipeline/briefs/content.md, por ondas:
     Legislações PE -> Dir. Constitucional -> Dir. Administrativo -> Dir. Penal Militar -> Português -> Inglês/Espanhol
     -> Informática -> Matemática, Estatística, Física, Química -> Biologia. Um arquivo por aula; validar cada um.
     Acompanhar com:  pipeline/.venv/Scripts/python pipeline/validate_content.py --coverage
 5.5 Auditoria do banco (segunda passada): duplicatas, gabarito, erro conceitual/jurídico, C/E ambíguos.
-5.6 Planejador: conferir que nenhuma atividade aponta para trecho sem itens; rodar web/scripts/plan-demo.ts e
+5.6 Planejador (trechos curtos de aulas diferentes — Penal Militar a02+a03, a05+a06 — viram atividades isoladas; avaliar
+    juntar trechos curtos consecutivos entre aulas da mesma disciplina em blueprint.ts): conferir que nenhuma atividade aponta para trecho sem itens; rodar web/scripts/plan-demo.ts e
     days-audit.ts; npm run typecheck, lint e test em web/. Ajustar mensagem "em produção" nos cadernos sem questões.
 5.7 Seed (npx prisma db seed) e verificação no navegador (itens DRAFT só aparecem com SERVE_DRAFT_QUESTIONS=true).
 5.8 Relatório final (A cobertura, B correções estruturais, C questões, D pendências) em content/audit/RELATORIO-FINAL.md.
