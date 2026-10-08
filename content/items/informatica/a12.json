@@ -916,6 +916,505 @@
           }
         ]
       }
+    },
+    {
+      "id": "informatica/a12/s11",
+      "bizu": {
+        "summary": [
+          "**Arquivo** (altíssima incidência): unidade básica de armazenamento de dados (texto, imagem, vídeo, programa). Tem **nome + extensão** (.docx, .jpg, .mp4), separados por ponto; a extensão indica o formato e o programa associado. Remover a extensão gera aviso, pois pode impedir a abertura.",
+          "**Pastas e diretórios**: pasta = diretório; organização em **árvore** a partir da **raiz** (ex.: C:\\), com subpastas e arquivos. O **caminho (path)** é a sequência de pastas separadas por barra invertida (\\).",
+          "**Unidades**: A: e B: eram disquetes; **C:** costuma ser o disco do sistema; as demais (D:, E:...) não têm padrão fixo. O nome visível da unidade (rótulo) é só um apelido.",
+          "**Limite de nomes**: desde o Windows 95 aceitam-se nomes longos (antes, formato 8.3); no Windows 7 em diante o limite de **260 caracteres** passou a contar o caminho completo (removível por configuração no registro ou política de grupo).",
+          "**Caracteres inválidos em nomes** (nove): **\\ / : * ? \" < > |**. Não podem ser usados para nomear arquivos e pastas.",
+          "**Prompt de comando**: aberto com **Win+R** e digitando **cmd**. Exemplos: **cd** (muda/mostra o diretório atual), **dir** (lista), **copy**, **ren/rename** (renomeia), **type** (mostra conteúdo), **del** e **rd** (remove diretórios).",
+          "**Explorador de Arquivos**: aplicativo para navegar, organizar, copiar, mover, renomear, excluir e pesquisar; tem barra de endereços, painéis de navegação/visualização/detalhes, integração com **OneDrive** (Arquivos sob demanda) e pesquisa indexada pelo **Windows Search** (busca por nome, tipo, data e conteúdo indexado)."
+        ],
+        "teoria": [
+          {
+            "statement": "Os caracteres \\ / : * ? \" < > | não podem ser usados em nomes de arquivos e pastas no Windows.",
+            "isTrue": true,
+            "explanation": "Totalizam nove caracteres inválidos."
+          },
+          {
+            "statement": "A extensão de um arquivo, como .docx ou .jpg, indica o formato e o programa associado para abri-lo.",
+            "isTrue": true,
+            "explanation": "Removê-la pode inutilizar o arquivo."
+          },
+          {
+            "statement": "O comando cd do Prompt de comando é usado para renomear arquivos e diretórios.",
+            "isTrue": false,
+            "explanation": "cd muda ou exibe o diretório atual; renomear é ren/rename."
+          },
+          {
+            "statement": "A estrutura de pastas do Windows forma uma árvore, a partir de uma raiz como C:\\.",
+            "isTrue": true,
+            "explanation": "Diretório e pasta são termos equivalentes na interface gráfica."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O limite de 260 caracteres do Windows passou a considerar o caminho completo, e não só o nome do arquivo.",
+            "isTrue": true,
+            "explanation": "Desde o Windows 7 essa conta inclui pastas e subpastas."
+          },
+          {
+            "statement": "Ao trocar o rótulo de uma unidade de \"Disco Local\" para outro nome, o endereço real dessa unidade no sistema passa a ser diferente.",
+            "isTrue": false,
+            "explanation": "O rótulo é apenas um apelido; a letra da unidade é que define o caminho."
+          },
+          {
+            "statement": "O Prompt de comando pode ser aberto digitando cmd na caixa Executar (Win+R).",
+            "isTrue": true,
+            "explanation": "Os comandos baseiam-se em texto."
+          },
+          {
+            "statement": "O Explorador de Arquivos usa a indexação do Windows Search para acelerar as pesquisas.",
+            "isTrue": true,
+            "explanation": "A eficácia depende dos locais incluídos no índice."
+          },
+          {
+            "statement": "O ponto de interrogação pode ser usado em nomes de arquivos do Windows.",
+            "isTrue": false,
+            "explanation": "É um dos nove caracteres inválidos."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Arquivos e extensões",
+            "pageRef": 116
+          },
+          {
+            "topic": "Pastas e diretórios",
+            "pageRef": 118
+          },
+          {
+            "topic": "Nomes longos e limite de caracteres",
+            "pageRef": 119
+          },
+          {
+            "topic": "Caracteres inválidos",
+            "pageRef": 121
+          },
+          {
+            "topic": "Prompt de comando",
+            "pageRef": 122
+          },
+          {
+            "topic": "Explorador de Arquivos",
+            "pageRef": 123
+          },
+          {
+            "topic": "Pesquisa e indexação",
+            "pageRef": 125
+          }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a12/s12",
+      "bizu": {
+        "summary": [
+          "**Seleção**: clique = um item; **arrastar** desenha um retângulo; **Shift + clique** = intervalo contínuo; **Ctrl + clique** = itens isolados; **Ctrl+A** = tudo; **Esc** limpa; **F2** renomeia. Também há caixas de seleção de item (aba Exibir > Mostrar).",
+          "**Lixeira** (alta incidência): guarda temporariamente os itens excluídos (cada partição tem a sua e o tamanho é configurável); **não libera espaço** até ser esvaziada. Itens de **pendrive** e de **unidades de rede** são apagados direto, sem passar por ela.",
+          "**Excluir sem Lixeira**: **Shift+Del** ou a opção \"Não mover arquivos para a Lixeira\" nas propriedades. **Restaurar** devolve o item ao local original; **esvaziar** apaga definitivamente.",
+          "**Copiar/colar e mover/recortar**: **Ctrl+C / Ctrl+V** (copia), **Ctrl+X / Ctrl+V** (move), pela barra de comandos ou menu de contexto. **Arrastar**: na **mesma unidade = move**; para **outra unidade = copia**. Com **Ctrl** copia; com **Shift** move.",
+          "**Área de transferência (clipboard)**: memória temporária que guarda o que foi copiado/recortado; o histórico do Windows (**Win+V**) funciona no sistema todo, ao contrário do histórico do Office (limitado à suíte, até 24 itens).",
+          "**Enviar para**: menu de contexto (Mostrar mais opções) envia o arquivo a pendrive, HD externo ou cria **pasta compactada** (.zip).",
+          "**Criar e renomear**: Novo > Pasta (**Ctrl+Shift+N**); nome padrão \"Nova pasta\". **F2** renomeia. **Ctrl+Z** desfaz a última ação reversível; exclusões definitivas não são desfeitas.",
+          "**Localizar**: pesquisa por nome, tipo, data, tamanho e conteúdo; operadores: aspas (expressão exata), **NOT**, **OR** e **AND** (devem ficar em maiúsculas)."
+        ],
+        "teoria": [
+          {
+            "statement": "Ao arrastar um arquivo entre pastas da mesma unidade, o Windows move o arquivo por padrão.",
+            "isTrue": true,
+            "explanation": "Entre unidades diferentes, o padrão é copiar."
+          },
+          {
+            "statement": "Arquivos excluídos de um pendrive vão para a Lixeira do computador e podem ser restaurados.",
+            "isTrue": false,
+            "explanation": "Mídias removíveis e unidades de rede apagam definitivamente, sem Lixeira."
+          },
+          {
+            "statement": "Shift+Del exclui o item selecionado sem enviá-lo à Lixeira.",
+            "isTrue": true,
+            "explanation": "A exclusão é definitiva."
+          },
+          {
+            "statement": "Para selecionar arquivos não consecutivos, mantém-se a tecla Ctrl pressionada ao clicar em cada um.",
+            "isTrue": true,
+            "explanation": "Shift seleciona um intervalo contínuo."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O histórico da Área de Transferência do Windows, aberto com Win+V, funciona em praticamente todo o sistema.",
+            "isTrue": true,
+            "explanation": "O histórico do Office é restrito à suíte."
+          },
+          {
+            "statement": "Enviar um arquivo para a Lixeira libera imediatamente o espaço que ele ocupava no disco.",
+            "isTrue": false,
+            "explanation": "O espaço só é liberado quando a Lixeira é esvaziada."
+          },
+          {
+            "statement": "Ctrl+Shift+N cria uma nova pasta no local atual do Explorador.",
+            "isTrue": true,
+            "explanation": "O nome padrão é \"Nova pasta\"."
+          },
+          {
+            "statement": "Na pesquisa do Explorador, o operador OR localiza arquivos que contenham qualquer um dos termos.",
+            "isTrue": true,
+            "explanation": "AND exige todos os termos e NOT exclui o termo."
+          },
+          {
+            "statement": "Com Ctrl+Z é possível desfazer uma exclusão definitiva feita com Shift+Del.",
+            "isTrue": false,
+            "explanation": "Ações irreversíveis não entram na memória de desfazer."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Seleção de arquivos",
+            "pageRef": 126
+          },
+          {
+            "topic": "Lixeira",
+            "pageRef": 128
+          },
+          {
+            "topic": "Esvaziar e excluir definitivamente",
+            "pageRef": 129
+          },
+          {
+            "topic": "Copiar/colar e mover",
+            "pageRef": 131
+          },
+          {
+            "topic": "Arrastar: mesma unidade × outra unidade",
+            "pageRef": 132
+          },
+          {
+            "topic": "Área de transferência",
+            "pageRef": 133
+          },
+          {
+            "topic": "Enviar para",
+            "pageRef": 134
+          },
+          {
+            "topic": "Criar e renomear",
+            "pageRef": 135
+          },
+          {
+            "topic": "Localizar arquivos",
+            "pageRef": 136
+          }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a12/s13",
+      "bizu": {
+        "summary": [
+          "**Ferramentas do Windows**: menu único de utilitários administrativos (gerenciamento de disco, monitor de desempenho, agendador de tarefas, serviços etc.), que **substitui as Ferramentas Administrativas** do Painel de Controle; acesso pelo Iniciar ou pelo Painel.",
+          "**Desfragmentar e Otimizar Unidades**: no **HDD**, reagrupa blocos fragmentados de forma contígua (acesso mais rápido); no **SSD**, faz a *otimização* (comando **TRIM**), sem desfragmentar. Pode ser agendada.",
+          "**Limpeza de Disco**: remove arquivos temporários, caches, relatórios de erro, restos de atualização e Lixeira para **liberar espaço**; **não desfragmenta**. No Windows 11 integra-se ao **Sensor de Armazenamento**.",
+          "**Agendador de Tarefas**: executa programas, scripts ou avisos automaticamente por horário, evento ou condição (ex.: abrir programas todo dia, rodar backup); mantém histórico de execuções.",
+          "**Windows Defender Firewall**: controla o tráfego de entrada e saída por regras (programas, portas, protocolos, IPs). Não faz varredura de vírus (função do antivírus). **Perfis**: *Domínio* (rede corporativa), *Particular/Privado* (rede doméstica confiável) e *Público* (redes abertas, o mais restritivo).",
+          "**Gerenciador de Tarefas** (alta incidência; **Ctrl+Shift+Esc**): monitora processos, CPU, memória, disco, rede e GPU; **encerra tarefas** que não respondem; gerencia **aplicativos de inicialização**; abas: Processos, Desempenho, Histórico de aplicativos, Inicialização, Usuários, Detalhes e Serviços.",
+          "**Serviços do Windows** (**services.msc**): iniciar, parar, pausar e definir o tipo de inicialização (automático, manual, desativado). **Editor de Registro (regedit)**: edita o Registro, base hierárquica de configurações do sistema, aplicativos e hardware; alterações erradas podem impedir a inicialização."
+        ],
+        "teoria": [
+          {
+            "statement": "A ferramenta Desfragmentar e Otimizar Unidades reorganiza dados fragmentados em HDDs e, em SSDs, executa a otimização com o comando TRIM.",
+            "isTrue": true,
+            "explanation": "Seu benefício é o acesso mais eficiente aos arquivos."
+          },
+          {
+            "statement": "A Limpeza de Disco do Windows realiza a desfragmentação dos volumes de armazenamento.",
+            "isTrue": false,
+            "explanation": "Ela apenas remove arquivos desnecessários; a desfragmentação é outra ferramenta."
+          },
+          {
+            "statement": "O Windows Defender Firewall faz varreduras completas em busca de vírus no sistema.",
+            "isTrue": false,
+            "explanation": "Ele controla conexões de rede por regras; a varredura é função do antivírus."
+          },
+          {
+            "statement": "Ctrl+Shift+Esc abre o Gerenciador de Tarefas, usado também para encerrar programas que não respondem.",
+            "isTrue": true,
+            "explanation": "Ele mostra uso de CPU, memória, disco e rede."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O Agendador de Tarefas permite executar programas automaticamente em horários definidos.",
+            "isTrue": true,
+            "explanation": "Também reage a eventos e condições do sistema."
+          },
+          {
+            "statement": "O perfil de rede Público do firewall é o mais permissivo, pois a rede é considerada segura.",
+            "isTrue": false,
+            "explanation": "O perfil Público é o mais restritivo, por ser usado em redes não confiáveis."
+          },
+          {
+            "statement": "A tela de serviços do Windows é aberta com o comando services.msc.",
+            "isTrue": true,
+            "explanation": "Pode ser digitado em Win+R."
+          },
+          {
+            "statement": "O regedit é um utilitário de desfragmentação de discos rígidos.",
+            "isTrue": false,
+            "explanation": "É o Editor de Registro, que altera configurações do sistema."
+          },
+          {
+            "statement": "A aba Inicialização do Gerenciador de Tarefas ajuda a controlar quais aplicativos iniciam com o Windows.",
+            "isTrue": true,
+            "explanation": "Mostra também o impacto de cada um."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Ferramentas do Windows",
+            "pageRef": 138
+          },
+          {
+            "topic": "Desfragmentar e otimizar unidades",
+            "pageRef": 139
+          },
+          {
+            "topic": "Limpeza de disco",
+            "pageRef": 141
+          },
+          {
+            "topic": "Agendador de tarefas",
+            "pageRef": 143
+          },
+          {
+            "topic": "Windows Defender Firewall",
+            "pageRef": 145
+          },
+          {
+            "topic": "Perfis de rede do firewall",
+            "pageRef": 146
+          },
+          {
+            "topic": "Gerenciador de tarefas",
+            "pageRef": 149
+          },
+          {
+            "topic": "Serviços do Windows",
+            "pageRef": 151
+          },
+          {
+            "topic": "Editor de Registro",
+            "pageRef": 153
+          }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a12/s14",
+      "bizu": {
+        "summary": [
+          "**Softwares utilitários**: programas do Windows para tarefas do dia a dia (não de administração técnica do sistema, como as ferramentas administrativas): Bloco de Notas, Paint, WordPad, Calculadora, Ferramenta de Captura, OneDrive e Edge.",
+          "**Bloco de Notas**: editor de **texto simples (.txt)**, **sem formatação** (não tem negrito nem imagens); é o aplicativo padrão para arquivos .txt; muito usado para programação, anotações rápidas e configuração.",
+          "**Paint**: editor de **imagens** simples (lápis, pincel, balde de tinta, formas, texto, recorte, redimensionamento, rotação); lida com BMP, JPEG, PNG e GIF. O **Paint 3D** é a versão voltada a 2D e 3D.",
+          "**WordPad**: editor de texto com **mais recursos que o Bloco de Notas** e menos que o Word: fontes, negrito, itálico, sublinhado, imagens, listas e links; formatos RTF, DOCX, ODT e TXT. Não tem revisão gramatical nem numeração de páginas e pode ser descontinuado.",
+          "**Calculadora**: além do modo padrão, traz os modos **científico, programador e gráfico**, e ferramentas de conversão (unidades, moeda) e de cálculo entre datas.",
+          "**Ferramenta de Captura (Snipping Tool)**: captura tela inteira, janela ou área selecionada (também com temporizador) e permite anotar e compartilhar; atalho **Win+Shift+S**.",
+          "**OneDrive**: **nuvem da Microsoft** integrada ao Windows; sincroniza e faz backup de arquivos entre dispositivos ligados à mesma conta Microsoft. **Edge**: navegador padrão do Windows 10/11, baseado no **Chromium**, que substituiu o Internet Explorer."
+        ],
+        "teoria": [
+          {
+            "statement": "O Bloco de Notas cria e edita textos simples, sem formatação como negrito e sublinhado.",
+            "isTrue": true,
+            "explanation": "É o aplicativo padrão para arquivos .txt."
+          },
+          {
+            "statement": "O Paint é um editor de textos com recursos de formatação semelhantes ao Word.",
+            "isTrue": false,
+            "explanation": "O Paint é um editor de imagens; textos formatados ficam com o WordPad ou o Word."
+          },
+          {
+            "statement": "O WordPad oferece mais recursos de formatação que o Bloco de Notas e é compatível com formato RTF.",
+            "isTrue": true,
+            "explanation": "Ele tem negrito, itálico, sublinhado e imagens."
+          },
+          {
+            "statement": "O Microsoft Edge, navegador padrão do Windows 11, é baseado no motor Chromium.",
+            "isTrue": true,
+            "explanation": "Substituiu o Internet Explorer."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O OneDrive é a solução de nuvem da Microsoft embutida no Windows, que guarda e sincroniza arquivos entre aparelhos ligados à mesma conta.",
+            "isTrue": true,
+            "explanation": "Também faz backup automático de pastas e permite compartilhar arquivos."
+          },
+          {
+            "statement": "A Calculadora do Windows 11 só opera no modo padrão, sem recursos científicos.",
+            "isTrue": false,
+            "explanation": "Tem modos científico, programador e gráfico, além de conversores."
+          },
+          {
+            "statement": "A Ferramenta de Captura permite capturar a tela inteira, uma janela ou uma área selecionada.",
+            "isTrue": true,
+            "explanation": "Depois da captura é possível anotar e compartilhar a imagem."
+          },
+          {
+            "statement": "O Paint trabalha com formatos de imagem como BMP, JPEG, PNG e GIF.",
+            "isTrue": true,
+            "explanation": "É considerado um editor leve para ajustes simples."
+          },
+          {
+            "statement": "O Bloco de Notas permite inserir imagens e aplicar negrito no texto.",
+            "isTrue": false,
+            "explanation": "Ele trabalha apenas com texto simples."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Softwares utilitários",
+            "pageRef": 155
+          },
+          {
+            "topic": "Bloco de Notas",
+            "pageRef": 155
+          },
+          {
+            "topic": "Paint",
+            "pageRef": 158
+          },
+          {
+            "topic": "WordPad",
+            "pageRef": 161
+          },
+          {
+            "topic": "Calculadora",
+            "pageRef": 163
+          },
+          {
+            "topic": "Ferramenta de Captura",
+            "pageRef": 164
+          },
+          {
+            "topic": "OneDrive",
+            "pageRef": 166
+          },
+          {
+            "topic": "Microsoft Edge",
+            "pageRef": 168
+          }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a12/s15",
+      "bizu": {
+        "summary": [
+          "**Usuários e permissões**: contas locais ou Microsoft, tipo **padrão** ou **administrador**. O **UAC (Controle de Conta de Usuário)** pede confirmação antes de alterações críticas (controle deslizante com quatro níveis). No **NTFS** definem-se permissões de leitura, gravação, modificação e execução por arquivo/pasta.",
+          "**Windows Sandbox**: ambiente **isolado e temporário** (máquina virtual leve) para testar programas ou arquivos suspeitos; tudo é descartado ao fechar.",
+          "**Backup e Restauração**: cópias de arquivos e pastas (inclusive a pasta do usuário) em unidade externa ou rede, manuais ou agendadas; **Ponto de Restauração do Sistema** volta o Windows a um estado anterior **sem afetar arquivos pessoais**. A estratégia ideal é redundante, local + nuvem e frequente.",
+          "**Modo de Segurança**: inicialização com **apenas drivers e serviços essenciais**, para diagnosticar/remover problemas; o *Modo de segurança com rede* acrescenta os serviços de rede (o padrão **não** tem acesso à internet).",
+          "**Formatação**: prepara a unidade criando um sistema de arquivos (NTFS, exFAT, FAT32) e **apaga o conteúdo**; feita pelo Gerenciamento de Disco ou pelo Explorador. **Particionamento**: divide um disco físico em partições lógicas independentes (Gerenciamento de Disco, Diskpart); um HD pode ter várias partições.",
+          "**Sistemas de arquivos**: **NTFS** (padrão do Windows, permissões, criptografia EFS, compressão, arquivos enormes); **FAT32** (compatível com tudo, arquivos de até **4 GB**); **exFAT** (removíveis de grande capacidade, sem o limite de 4 GB). Ext2/Ext4 são do Linux. **BitLocker**: criptografa a unidade inteira (usa TPM, senha ou PIN).",
+          "**AppData**: pasta **oculta** do perfil do usuário (C:\\Users\\nome\\AppData) com configurações, caches e dados de aplicativos; subpastas **Local, LocalLow e Roaming**; acessa-se digitando **%appdata%** na barra de endereços.",
+          "**Atalhos do Windows**: **Win+E** Explorador, **Win+R** Executar, **Win+L** bloqueia, **Win+D** mostra a área de trabalho, **Win+I** Configurações, **Win+P** projetar, **Win+A** configurações rápidas, **Ctrl+Shift+Esc** Gerenciador de Tarefas, **Ctrl+Alt+Del** tela de segurança, **Del** envia à Lixeira, **Shift+Del** exclui definitivamente, **F11** tela cheia, **F5** atualiza."
+        ],
+        "teoria": [
+          {
+            "statement": "Um arquivo de vídeo de 8 GB não pode ser gravado em um pendrive formatado em FAT32, pois esse sistema limita arquivos a 4 GB.",
+            "isTrue": true,
+            "explanation": "O NTFS e o exFAT comportam arquivos muito maiores."
+          },
+          {
+            "statement": "O Modo de Segurança padrão do Windows carrega serviços de rede e permite acesso à internet.",
+            "isTrue": false,
+            "explanation": "Só a variação \"Modo de segurança com rede\" inclui os serviços de rede."
+          },
+          {
+            "statement": "O Windows Sandbox executa programas suspeitos em ambiente isolado, e as alterações são descartadas ao fechá-lo.",
+            "isTrue": true,
+            "explanation": "Funciona como uma máquina virtual leve."
+          },
+          {
+            "statement": "A pasta AppData é visível por padrão e guarda os documentos pessoais do usuário.",
+            "isTrue": false,
+            "explanation": "É uma pasta oculta, com configurações e dados de aplicativos."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A formatação de um disco cria um sistema de arquivos e apaga o conteúdo anterior da unidade.",
+            "isTrue": true,
+            "explanation": "Pode ser feita pelo Gerenciamento de Disco ou pelo Explorador."
+          },
+          {
+            "statement": "No Windows só é possível ter uma partição em cada disco rígido físico.",
+            "isTrue": false,
+            "explanation": "Um disco pode ser dividido em várias partições lógicas."
+          },
+          {
+            "statement": "O Ponto de Restauração do Sistema reverte o Windows a um estado anterior sem alterar arquivos pessoais.",
+            "isTrue": true,
+            "explanation": "Faz parte dos recursos de recuperação."
+          },
+          {
+            "statement": "O BitLocker criptografa a unidade inteira e pode usar o TPM, senha ou PIN para liberar o acesso.",
+            "isTrue": true,
+            "explanation": "Protege dados em caso de perda ou roubo do dispositivo."
+          },
+          {
+            "statement": "Ctrl+Shift+Esc abre a tela de segurança do Windows, e Ctrl+Alt+Del abre o Gerenciador de Tarefas diretamente.",
+            "isTrue": false,
+            "explanation": "É o inverso: Ctrl+Shift+Esc abre o Gerenciador direto; Ctrl+Alt+Del mostra a tela de segurança."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Usuários, permissões e UAC",
+            "pageRef": 170
+          },
+          {
+            "topic": "Windows Sandbox",
+            "pageRef": 172
+          },
+          {
+            "topic": "Backup e restauração",
+            "pageRef": 173
+          },
+          {
+            "topic": "Modo de segurança",
+            "pageRef": 176
+          },
+          {
+            "topic": "Formatação de disco",
+            "pageRef": 178
+          },
+          {
+            "topic": "Particionamento",
+            "pageRef": 180
+          },
+          {
+            "topic": "Sistemas de arquivos (NTFS, FAT32, exFAT)",
+            "pageRef": 182
+          },
+          {
+            "topic": "BitLocker",
+            "pageRef": 184
+          },
+          {
+            "topic": "AppData",
+            "pageRef": 185
+          },
+          {
+            "topic": "Lista de atalhos",
+            "pageRef": 186
+          }
+        ]
+      }
     }
   ]
 }
