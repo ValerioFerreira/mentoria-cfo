@@ -1,0 +1,394 @@
+{
+  "aula": "informatica/a13",
+  "batch": "w2-bizu-informatica",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "informatica/a13/s01",
+      "bizu": {
+        "summary": [
+          "**Nuvem** é uma **metáfora para a Internet**: o desenho de nuvem representa, em diagramas, a infraestrutura de rede (servidores, redes, data centers). **Computação em nuvem** = conjunto de recursos virtuais (processamento, armazenamento, software) acessados pela internet, normalmente com cobrança por uso.",
+          "**Principal vantagem: redução de custos** — a empresa não precisa manter um CPD próprio (servidores, refrigeração, equipe 24x7); a **responsabilidade** por manutenção, atualização, backup e escalonamento é, em regra, **do provedor**.",
+          "**Mobilidade e independência de plataforma**: o usuário acessa serviços e arquivos de qualquer lugar e dispositivo conectado, sem depender de instalar licenças no equipamento local.",
+          "**Cinco características essenciais (NIST)**: **autosserviço sob demanda**, **amplo acesso à rede**, **agrupamento de recursos**, **elasticidade rápida** e **serviço mensurado**.",
+          "**Serviço mensurado**: uso de recursos é monitorado, controlado e relatado automaticamente; permite **cobrança pelo consumo efetivo** (pague pelo que usar).",
+          "**Elasticidade rápida**: aumentar ou reduzir recursos quase instantaneamente conforme a demanda (ex.: pico da Black Friday). **Escalabilidade**: capacidade de crescer ou diminuir (vertical = mais CPU/memória num servidor; horizontal = mais servidores), em geral planejada a longo prazo.",
+          "**Amplo acesso à rede**: recursos disponíveis pela rede, acessados por mecanismos padronizados em celulares, tablets e computadores. **Agrupamento de recursos (resource pooling)**: o provedor atende vários clientes com a mesma infraestrutura (multi-tenant), com isolamento e realocação dinâmica.",
+          "**Autosserviço sob demanda**: o cliente provisiona recursos (máquina virtual, armazenamento) sozinho, por painel ou API, **sem intervenção humana do provedor**. Diferente da elasticidade, que é o ajuste automático à demanda."
+        ],
+        "teoria": [
+          {
+            "statement": "A computação em nuvem utiliza recursos de processamento e armazenamento de computadores interligados pela internet, acessíveis de qualquer lugar conectado.",
+            "isTrue": true,
+            "explanation": "A nuvem é uma metáfora para a internet."
+          },
+          {
+            "statement": "Na computação em nuvem, a manutenção, as atualizações e os backups ficam, em regra, sob responsabilidade do usuário.",
+            "isTrue": false,
+            "explanation": "Em regra são do provedor do serviço."
+          },
+          {
+            "statement": "O serviço mensurado permite cobrar o cliente conforme o consumo efetivo de recursos.",
+            "isTrue": true,
+            "explanation": "Modelo de pagamento por uso."
+          },
+          {
+            "statement": "A elasticidade rápida consiste em aumentar ou reduzir recursos de acordo com a demanda, quase de imediato.",
+            "isTrue": true,
+            "explanation": "A escalabilidade trata do crescimento planejado a longo prazo."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "No autosserviço sob demanda, o cliente precisa abrir chamado ao provedor para criar uma máquina virtual.",
+            "isTrue": false,
+            "explanation": "Ele provisiona sozinho, sem interação humana com o provedor."
+          },
+          {
+            "statement": "O agrupamento de recursos atende múltiplos clientes com a mesma infraestrutura física, isolando seus dados.",
+            "isTrue": true,
+            "explanation": "Chamado de modelo multi-tenant."
+          },
+          {
+            "statement": "O amplo acesso à rede permite usar a nuvem por celulares, tablets e computadores.",
+            "isTrue": true,
+            "explanation": "Os acessos ocorrem por mecanismos padronizados."
+          },
+          {
+            "statement": "Escalar verticalmente significa adicionar mais servidores ao sistema.",
+            "isTrue": false,
+            "explanation": "Isso é escalar horizontalmente; a vertical amplia CPU ou memória de um servidor."
+          },
+          {
+            "statement": "A principal vantagem apontada para a nuvem é a redução de custos de infraestrutura.",
+            "isTrue": true,
+            "explanation": "Evita manter CPD próprio e equipe dedicada."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Conceito de nuvem",
+            "pageRef": 6
+          },
+          {
+            "topic": "Nuvem como metáfora da internet",
+            "pageRef": 7
+          },
+          {
+            "topic": "Redução de custos",
+            "pageRef": 8
+          },
+          {
+            "topic": "Vantagens e mobilidade",
+            "pageRef": 9
+          },
+          {
+            "topic": "Serviços mensurados",
+            "pageRef": 11
+          },
+          {
+            "topic": "Elasticidade e escalabilidade",
+            "pageRef": 12
+          },
+          {
+            "topic": "Amplo acesso à rede",
+            "pageRef": 13
+          },
+          {
+            "topic": "Agrupamento de recursos",
+            "pageRef": 14
+          },
+          {
+            "topic": "Autosserviço sob demanda",
+            "pageRef": 15
+          }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a13/s02",
+      "bizu": {
+        "summary": [
+          "**Modelos de serviço** (altíssima incidência): **IaaS** (infraestrutura), **PaaS** (plataforma) e **SaaS** (software). Quanto mais para o SaaS, **mais responsabilidades do provedor**.",
+          "**IaaS**: provedor oferece infraestrutura (servidores virtuais, armazenamento, rede); o cliente controla **sistema operacional, aplicativos e máquinas virtuais**, mas não a infraestrutura física. Ex.: Amazon Web Services (EC2).",
+          "**PaaS**: plataforma para **desenvolver, testar e hospedar aplicações**; o cliente controla aplicações e suas configurações, não rede, servidores nem sistema operacional. Ex.: Google App Engine, Microsoft Azure.",
+          "**SaaS**: aplicativos prontos, acessados pelo **navegador**; o provedor gerencia tudo (rede, servidores, SO e aplicação). Ex.: Google Drive, OneDrive, iCloud, Salesforce, Gmail.",
+          "**Macete**: on-premises = o cliente gerencia tudo; IaaS = terceiriza rede, armazenamento e servidores; PaaS = terceiriza também o SO e as ferramentas de execução; SaaS = terceiriza tudo, inclusive o software.",
+          "**Outros \"aaS\"**: CaaS (comunicação: VoIP, mensagens, videoconferência), DevaaS (desenvolvimento), entre outros, menos cobrados.",
+          "**Nuvem pública**: serviços oferecidos ao público pela internet por terceiros, em infraestrutura compartilhada (multi-tenant), pagos por uso (com camadas gratuitas limitadas). **Nuvem privada**: infraestrutura dedicada a **uma única organização**, hospedada internamente ou por terceiro; mais controle e segurança.",
+          "**Nuvem híbrida**: combinação de duas ou mais nuvens (privada + pública, por exemplo) que permanecem entidades distintas, mas integradas, com **portabilidade de dados e aplicações**. **Nuvem comunitária**: infraestrutura compartilhada por organizações com **interesses em comum** (ex.: mesmas normas, setor)."
+        ],
+        "teoria": [
+          {
+            "statement": "No modelo SaaS, o cliente usa aplicativos prontos pela internet, e o provedor gerencia rede, servidores, sistema operacional e aplicação.",
+            "isTrue": true,
+            "explanation": "Gmail, Google Drive e OneDrive são exemplos."
+          },
+          {
+            "statement": "A plataforma Microsoft Azure é citada como exemplo clássico de IaaS, em que o cliente só recebe o software pronto.",
+            "isTrue": false,
+            "explanation": "O Azure é exemplo de PaaS (e oferece também IaaS); software pronto é SaaS."
+          },
+          {
+            "statement": "No IaaS, o cliente controla o sistema operacional e os aplicativos, mas não a infraestrutura física.",
+            "isTrue": true,
+            "explanation": "A Amazon Web Services é um exemplo."
+          },
+          {
+            "statement": "Na nuvem privada, a infraestrutura é compartilhada livremente com o público em geral.",
+            "isTrue": false,
+            "explanation": "Ela é dedicada a uma única organização."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A nuvem híbrida integra duas ou mais nuvens, como uma privada e uma pública, permitindo portabilidade de dados e aplicações.",
+            "isTrue": true,
+            "explanation": "Os ambientes seguem como entidades distintas."
+          },
+          {
+            "statement": "A nuvem comunitária é compartilhada por organizações com interesses ou requisitos semelhantes.",
+            "isTrue": true,
+            "explanation": "Funciona como um condomínio digital."
+          },
+          {
+            "statement": "O PaaS fornece uma plataforma para desenvolver e hospedar aplicações, sem que o cliente gerencie servidores e sistema operacional.",
+            "isTrue": true,
+            "explanation": "O cliente controla as aplicações implantadas."
+          },
+          {
+            "statement": "A nuvem pública é gratuita e ilimitada para qualquer usuário.",
+            "isTrue": false,
+            "explanation": "Em regra é paga por uso, embora ofereça camadas gratuitas com limites."
+          },
+          {
+            "statement": "Na ordem on-premises, IaaS, PaaS e SaaS, aumenta a parcela de gerenciamento feita pelo provedor.",
+            "isTrue": true,
+            "explanation": "No SaaS o provedor cuida de tudo."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "IaaS",
+            "pageRef": 19
+          },
+          {
+            "topic": "PaaS",
+            "pageRef": 21
+          },
+          {
+            "topic": "SaaS",
+            "pageRef": 22
+          },
+          {
+            "topic": "Comparação dos modelos de serviço",
+            "pageRef": 23
+          },
+          {
+            "topic": "Outros modelos (CaaS, DevaaS)",
+            "pageRef": 25
+          },
+          {
+            "topic": "Nuvem pública",
+            "pageRef": 26
+          },
+          {
+            "topic": "Nuvem privada",
+            "pageRef": 28
+          },
+          {
+            "topic": "Nuvem híbrida",
+            "pageRef": 29
+          },
+          {
+            "topic": "Nuvem comunitária",
+            "pageRef": 31
+          }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a13/s03",
+      "bizu": {
+        "summary": [
+          "**Armazenamento em nuvem** (alta incidência): guarda arquivos em **servidores na internet**, acessíveis de qualquer dispositivo; funciona como **backup online** e permite sincronização e compartilhamento. Exemplos: Google Drive, Dropbox, OneDrive e iCloud.",
+          "**Desvantagens**: depende de **conexão com a internet** e levanta preocupações de **privacidade** e conformidade com leis de proteção de dados (**LGPD** no Brasil, GDPR na Europa).",
+          "**Uso corporativo**: serviços de maior escala, como o S3 (Amazon), o Blob Storage (Azure) e o Cloud Storage (Google), ligados a rotinas de backup, recuperação de desastres e análise de dados.",
+          "**Google Drive**: **15 GB gratuitos** (compartilhados com Gmail e Fotos), integração com Documentos, Planilhas e Apresentações, criptografia, autenticação em dois fatores e recuperação de arquivos excluídos.",
+          "**Dropbox**: **2 GB gratuitos**, sincronização entre dispositivos e links de compartilhamento com senha e validade. **OneDrive**: **5 GB gratuitos**, da Microsoft, **pré-instalado no Windows** e integrado ao Microsoft 365. **iCloud**: **5 GB gratuitos**, da Apple, para iOS e macOS (o espaço gratuito é limitado).",
+          "**Azure**: plataforma de computação em nuvem da Microsoft (lançada em 2010), que oferece IaaS, PaaS, máquinas virtuais, bancos de dados e IA, concorrente de AWS e Google Cloud; exemplo clássico de nuvem em prova (criação de VMs)."
+        ],
+        "teoria": [
+          {
+            "statement": "O OneDrive, da Microsoft, já acompanha o Windows e se integra ao Explorador de Arquivos.",
+            "isTrue": true,
+            "explanation": "Dropbox e iCloud não vêm instalados por padrão no Windows."
+          },
+          {
+            "statement": "O iCloud oferece armazenamento gratuito ilimitado aos usuários da Apple.",
+            "isTrue": false,
+            "explanation": "O espaço gratuito é limitado (cerca de 5 GB), com planos pagos para mais capacidade."
+          },
+          {
+            "statement": "Um dos limites do armazenamento em nuvem é a dependência de conexão com a internet.",
+            "isTrue": true,
+            "explanation": "Também há preocupações com privacidade e com a LGPD."
+          },
+          {
+            "statement": "O Dropbox é um exemplo de aplicativo de armazenamento e sincronização de arquivos em nuvem.",
+            "isTrue": true,
+            "explanation": "Permite compartilhar arquivos por links."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O Google Drive oferece, gratuitamente, 15 GB de espaço compartilhado com outros serviços da Google.",
+            "isTrue": true,
+            "explanation": "Cerca de 15 GB gratuitos, divididos entre Drive, Gmail e Fotos."
+          },
+          {
+            "statement": "O VirtualBox é um serviço de armazenamento em nuvem da Oracle.",
+            "isTrue": false,
+            "explanation": "É um software de virtualização local; não é um serviço de armazenamento em nuvem."
+          },
+          {
+            "statement": "O Microsoft Azure é uma plataforma de computação em nuvem que permite criar máquinas virtuais e bancos de dados.",
+            "isTrue": true,
+            "explanation": "Concorre com AWS e Google Cloud."
+          },
+          {
+            "statement": "O iCloud, da Apple, atende principalmente aparelhos iOS e macOS e oferece cerca de 5 GB gratuitos.",
+            "isTrue": true,
+            "explanation": "Planos pagos ampliam a capacidade."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Armazenamento em nuvem",
+            "pageRef": 33
+          },
+          {
+            "topic": "Desafios: internet e LGPD",
+            "pageRef": 34
+          },
+          {
+            "topic": "Google Drive",
+            "pageRef": 34
+          },
+          {
+            "topic": "Dropbox",
+            "pageRef": 35
+          },
+          {
+            "topic": "OneDrive",
+            "pageRef": 36
+          },
+          {
+            "topic": "iCloud",
+            "pageRef": 37
+          },
+          {
+            "topic": "Comparação dos serviços",
+            "pageRef": 38
+          },
+          {
+            "topic": "Azure",
+            "pageRef": 39
+          }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a13/s04",
+      "bizu": {
+        "summary": [
+          "**Ferramentas colaborativas**: costumam funcionar na nuvem e deixam várias pessoas trabalharem juntas, ao mesmo tempo, no mesmo arquivo, dispensando o envio de anexos por e-mail.",
+          "**Benefícios**: compartilhamento de arquivos, desenvolvimento coletivo de tarefas, visão geral do andamento do trabalho e disponibilidade em qualquer lugar e hora. O uso **não é exclusivo** para fins profissionais (há muitos usuários domésticos).",
+          "**Trello**: gerenciamento de projetos em quadros com cartões, inspirado no método **Kanban**. **Asana**: gestão de projetos, metas, tarefas e cronogramas para equipes.",
+          "**Zoom**: videoconferência (reuniões com muitos participantes, compartilhamento de tela, gravação, quadro branco). **Microsoft Teams**: reuniões por vídeo, chat e edição colaborativa de Word, PowerPoint e OneNote, integrado ao Microsoft 365.",
+          "**Microsoft 365 / Google Workspace**: suítes de produtividade em nuvem com edição simultânea de documentos, e-mail, agenda e armazenamento corporativo.",
+          "**Modelos de serviço (resumo)**: IaaS = infraestrutura; PaaS = plataforma de desenvolvimento; SaaS = software pronto; CaaS = comunicação; BDaaS = análise de big data; DaaS = dados sob demanda; EaaS = serviços corporativos completos."
+        ],
+        "teoria": [
+          {
+            "statement": "Ferramentas colaborativas em nuvem permitem que várias pessoas editem o mesmo documento ao mesmo tempo.",
+            "isTrue": true,
+            "explanation": "Elimina a troca de anexos por e-mail."
+          },
+          {
+            "statement": "As ferramentas de colaboração têm uso exclusivo em ambientes profissionais, sendo inadequadas para usuários domésticos.",
+            "isTrue": false,
+            "explanation": "Muitos usuários são domésticos; o uso não é exclusivo para fins profissionais."
+          },
+          {
+            "statement": "O Trello organiza tarefas em cartões, inspirado no método Kanban.",
+            "isTrue": true,
+            "explanation": "É usado para gerenciar projetos online."
+          },
+          {
+            "statement": "O Microsoft Teams integra reuniões por vídeo, chat e edição colaborativa de documentos do Office.",
+            "isTrue": true,
+            "explanation": "Faz parte do Microsoft 365."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O Zoom é uma plataforma de videoconferência que permite compartilhar a tela e gravar reuniões.",
+            "isTrue": true,
+            "explanation": "Também oferece recursos como quadro branco."
+          },
+          {
+            "statement": "O Asana é um serviço de armazenamento de arquivos com 15 GB gratuitos.",
+            "isTrue": false,
+            "explanation": "O Asana é uma ferramenta de gestão de projetos e tarefas."
+          },
+          {
+            "statement": "Disponibilidade dos recursos em qualquer lugar e momento é um benefício das ferramentas de colaboração.",
+            "isTrue": true,
+            "explanation": "Decorre do uso da nuvem e da mobilidade."
+          },
+          {
+            "statement": "BDaaS, DaaS e CaaS são modelos de serviço de nuvem além de IaaS, PaaS e SaaS.",
+            "isTrue": true,
+            "explanation": "São menos cobrados em provas."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Ferramentas colaborativas",
+            "pageRef": 41
+          },
+          {
+            "topic": "Trello, Zoom e Teams",
+            "pageRef": 42
+          },
+          {
+            "topic": "Asana",
+            "pageRef": 42
+          },
+          {
+            "topic": "Resumo de definições",
+            "pageRef": 43
+          },
+          {
+            "topic": "Agrupamento e autosserviço",
+            "pageRef": 44
+          },
+          {
+            "topic": "Modelos aaS",
+            "pageRef": 45
+          },
+          {
+            "topic": "Quadro comparativo de armazenamento",
+            "pageRef": 46
+          },
+          {
+            "topic": "Ferramentas colaborativas (resumo)",
+            "pageRef": 47
+          }
+        ]
+      }
+    }
+  ]
+}
