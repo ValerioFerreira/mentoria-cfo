@@ -1,0 +1,259 @@
+{
+  "aula": "estatistica/c01",
+  "batch": "w1-estatistica",
+  "status": "DRAFT",
+  "segments": [
+    {
+      "id": "estatistica/c01/s01",
+      "bizu": {
+        "summary": [
+          "**Clássica × geométrica:** na **clássica**, o espaço amostral é **finito** e equiprovável (casos favoráveis ÷ casos possíveis). Na **geométrica**, o espaço é **contínuo** e “ao acaso” significa **distribuição uniforme**: **P(A) = medida(A) ÷ medida(Ω)**, em que a medida é **comprimento**, **área** ou **volume**.",
+          "**Uma dimensão** = **uniforme contínua** (razão de comprimentos). **Duas dimensões** = **razão de áreas**. Em círculos concêntricos, o π se cancela: compare os **quadrados dos raios**.",
+          "**Pegadinha:** pontos e linhas têm **probabilidade zero**, mas **podem ocorrer**; **P = 0 não implica impossível**. Fronteiras não alteram o resultado (P(X ≤ 3) = P(X < 3)). A probabilidade geométrica obedece aos **axiomas de Kolmogorov**.",
+          "**Modelos clássicos:** **encontro** (espera t em um intervalo T): **P = 1 − ((T − t) ÷ T)²** (15 min em 60 min: **7/16**); **vara quebrada em dois pontos** formando triângulo: **1/4**; **agulha de Buffon** (L ≤ d): **P = 2L ÷ (π · d)**. O **paradoxo de Bertrand** mostra que “ao acaso” precisa estar especificado.",
+          "**Normas do IBGE (1993):** **tabela** traz **dados numéricos**; **quadro** traz **texto** e é fechado nas laterais. **Elementos:** título (**o quê, onde, quando**), cabeçalho, coluna indicadora, corpo, **casa** (**nunca em branco**), **fonte** (obrigatória), **notas** (gerais) e **chamadas** (específicas).",
+          "**Construção da tabela:** **fechada em cima e embaixo** por traços horizontais; **aberta nas laterais** (sem traços verticais nas bordas); traços verticais entre colunas são **facultativos**; se ocupar mais de uma página, indica-se “**Continua**” e “**Conclusão**” e o cabeçalho é repetido.",
+          "**Sinais convencionais:** **−** (traço) = zero **não** resultante de arredondamento; **...** = dado **não disponível**; **..** = **não se aplica**; **?** = **dúvida**; **0** = zero por arredondamento de valor positivo; **x** = dado **omitido** para evitar a individualização (sigilo).",
+          "**Amostragem:** **população** (N), **amostra** (n), **censo**, **parâmetro** × **estatística**. **Erro amostral** diminui com n e só se mede em amostras **probabilísticas**; o **viés** (erro sistemático) **não** diminui aumentando n. Amostra **aleatória** = chance conhecida e positiva para todos.",
+          "**AAS:** todos com a mesma chance (com reposição: **N^n** amostras ordenadas; sem reposição: **C(N, n)**). **Sistemática:** **k = N ÷ n**, ponto de partida **sorteado** (ex.: N = 1.000, n = 50, partida 7 → 7, 27, 47, 67…); risco de **periodicidade**.",
+          "**Estratificada:** estratos **homogêneos por dentro** e diferentes entre si; sorteia-se **dentro de todos** os estratos. **Alocação:** **uniforme** (mesmo n em cada), **proporcional** (**nₕ = n · Nₕ ÷ N**) ou **ótima de Neyman** (proporcional a **Nₕ · σₕ**).",
+          "**Conglomerados:** grupos **heterogêneos por dentro** e parecidos entre si; sorteiam-se **alguns grupos** e observam-se **todos** (um estágio) ou **parte** (dois estágios) dos elementos. **Macete:** estrato = **todos** os grupos participam; conglomerado = **alguns** grupos são sorteados.",
+          "**Não probabilísticas** (sem erro amostral calculável): **conveniência**, **intencional**, **por cotas**, **bola de neve** e **voluntária**. **Tamanho da amostra** para proporção: **n₀ = z² · p(1 − p) ÷ E²**; com z = 1,96, p = 0,5 e E = 0,05, n₀ = 384,16, e arredonda-se **sempre para cima** (**385**)."
+        ],
+        "teoria": [
+          {
+            "statement": "Na probabilidade geométrica em uma dimensão, a probabilidade de um trecho do segmento é a razão entre comprimentos, o que equivale à distribuição uniforme contínua.",
+            "isTrue": true,
+            "explanation": "Se X é uniforme em (a, b), P(c ≤ X ≤ d) = (d − c) ÷ (b − a): é exatamente a razão de comprimentos da probabilidade geométrica."
+          },
+          {
+            "statement": "Em um espaço amostral contínuo, todo evento de probabilidade zero é impossível.",
+            "isTrue": false,
+            "explanation": "Um ponto sorteado em um segmento tem probabilidade zero e, mesmo assim, algum ponto é sorteado. O impossível tem probabilidade zero, mas a recíproca não vale."
+          },
+          {
+            "statement": "Segundo as normas do IBGE, nenhuma casa da tabela pode ficar em branco: cada uma recebe um número ou um sinal convencional.",
+            "isTrue": true,
+            "explanation": "Quando não há número, usa-se o sinal que explica o motivo (traço, três pontos, dois pontos, interrogação, zero ou x)."
+          },
+          {
+            "statement": "Na tabela, o sinal “x” indica que o dado é desconhecido.",
+            "isTrue": false,
+            "explanation": "O dado desconhecido ou indisponível é indicado por três pontos. O “x” indica dado omitido para evitar a individualização da informação (sigilo estatístico)."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Na amostragem por conglomerados, sorteiam-se grupos inteiros e, dentro deles, observam-se todos os elementos ou apenas parte deles.",
+            "isTrue": true,
+            "explanation": "Observar todos os elementos dos grupos sorteados é a amostragem em um estágio; observar uma subamostra é a de dois estágios."
+          },
+          {
+            "statement": "Na amostragem estratificada, sorteiam-se apenas alguns estratos e, dentro deles, observam-se todos os elementos.",
+            "isTrue": false,
+            "explanation": "Isso descreve conglomerados. Na estratificada, todos os estratos participam e o sorteio é feito dentro de cada um."
+          },
+          {
+            "statement": "Aumentar o tamanho da amostra reduz o erro amostral, mas não corrige o viés decorrente de um plano de amostragem falho.",
+            "isTrue": true,
+            "explanation": "O viés é erro sistemático (por exemplo, cadastro incompleto) e persiste mesmo com amostras maiores."
+          },
+          {
+            "statement": "A amostragem por cotas é probabilística, porque reserva um número de entrevistados para cada perfil.",
+            "isTrue": false,
+            "explanation": "Dentro de cada cota a escolha é do entrevistador, e não por sorteio. Por isso, a amostragem por cotas é não probabilística e não permite calcular o erro amostral."
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Definição de probabilidade geométrica",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 1,
+          "statement": "Na probabilidade geométrica, em que o espaço amostral é contínuo e o ponto é escolhido ao acaso (distribuição uniforme), a probabilidade de um evento A é dada por",
+          "support": null,
+          "options": [
+            "número de casos favoráveis dividido pelo número de casos possíveis, contados um a um.",
+            "razão entre a medida do espaço amostral e a medida de A.",
+            "razão entre a medida de A (comprimento, área ou volume) e a medida do espaço amostral.",
+            "produto das medidas de A e do espaço amostral.",
+            "diferença entre a medida do espaço amostral e a medida de A."
+          ],
+          "answer": "C",
+          "explanation": "Na probabilidade geométrica, P(A) = medida(A) ÷ medida(Ω), em que a medida é comprimento, área ou volume. A contagem de casos é a definição clássica, que exige espaço amostral finito."
+        },
+        {
+          "topic": "Razão de áreas: alvo circular",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 2,
+          "statement": "Um dardo é lançado ao acaso em um alvo circular de raio 10 cm, supondo-se que sempre acerte o alvo. O círculo central do alvo tem raio de 2 cm. A probabilidade de o dardo acertar o círculo central é de",
+          "support": null,
+          "options": [
+            "4%.",
+            "2%.",
+            "20%.",
+            "40%.",
+            "10%."
+          ],
+          "answer": "A",
+          "explanation": "A probabilidade é a razão entre as áreas: π · 2² ÷ π · 10² = 4 ÷ 100 = 0,04 = 4%. Em círculos concêntricos, o π se cancela e basta comparar os quadrados dos raios (2² ÷ 10²)."
+        },
+        {
+          "topic": "O problema do encontro",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 3,
+          "statement": "Duas pessoas combinam de se encontrar em um local entre 12h e 13h. Cada uma chega em um instante aleatório dessa hora e espera a outra por, no máximo, 15 minutos, indo embora em seguida. A probabilidade de que as duas se encontrem é de",
+          "support": null,
+          "options": [
+            "1/4.",
+            "3/8.",
+            "1/2.",
+            "9/16.",
+            "7/16."
+          ],
+          "answer": "E",
+          "explanation": "O espaço amostral é o quadrado [0, 60] × [0, 60]. Não se encontram quando |x − y| > 15, região formada por dois triângulos de catetos 45: área total 2 × (45 × 45 ÷ 2) = 2.025. Logo, P(encontro) = 1 − 2.025 ÷ 3.600 = 1 − 9/16 = 7/16. O valor 9/16 é a probabilidade de não se encontrarem."
+        },
+        {
+          "topic": "Probabilidade zero × impossível",
+          "pattern": "excecao",
+          "difficulty": 3,
+          "pageRef": 2,
+          "statement": "Em probabilidade geométrica, um ponto é escolhido ao acaso em um segmento de reta. A probabilidade de ele coincidir exatamente com um ponto determinado do segmento é igual a zero. Isso significa que",
+          "support": null,
+          "options": [
+            "o evento é impossível e nunca pode ocorrer.",
+            "o evento tem probabilidade nula, mas não é necessariamente impossível.",
+            "o evento é certo, pois o ponto sorteado precisa ser algum ponto.",
+            "o espaço amostral é finito e os eventos são equiprováveis.",
+            "a probabilidade deve ser recalculada, pois a medida do segmento é nula."
+          ],
+          "answer": "B",
+          "explanation": "Um ponto tem comprimento zero e, portanto, probabilidade zero. Mesmo assim, o ponto sorteado é algum ponto, e o evento pode ocorrer. Em espaços contínuos, “probabilidade zero” não implica “impossível” (a recíproca vale: impossível implica probabilidade zero)."
+        },
+        {
+          "topic": "Normas de apresentação tabular: construção",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 4,
+          "statement": "De acordo com as normas de apresentação tabular do IBGE, uma tabela deve ser",
+          "support": null,
+          "options": [
+            "fechada nas laterais por traços verticais e aberta em cima e embaixo.",
+            "delimitada por traços verticais nas laterais, com os dados centralizados.",
+            "apresentada sem título, desde que a fonte esteja indicada no rodapé.",
+            "fechada em cima e embaixo por traços horizontais e não delimitada à direita e à esquerda por traços verticais.",
+            "apresentada com células vazias sempre que o dado não existir."
+          ],
+          "answer": "D",
+          "explanation": "A tabela é fechada em cima e embaixo por traços horizontais e aberta nas laterais; é o quadro (conteúdo textual) que é fechado nas laterais. O título e a fonte são obrigatórios, e nenhuma célula pode ficar em branco."
+        },
+        {
+          "topic": "Sinais convencionais: traço",
+          "pattern": "conceito",
+          "difficulty": 3,
+          "pageRef": 4,
+          "statement": "Nas normas de apresentação tabular do IBGE, o sinal convencional traço (−), quando aparece em uma casa da tabela, é utilizado para indicar",
+          "support": null,
+          "options": [
+            "dado numérico igual a zero não resultante de arredondamento.",
+            "dado numérico não disponível.",
+            "dado omitido para evitar a individualização da informação.",
+            "dúvida quanto à exatidão do dado numérico.",
+            "que não se aplica dado numérico."
+          ],
+          "answer": "A",
+          "explanation": "O traço é zero verdadeiro, isto é, o fenômeno não ocorreu. Dado não disponível é indicado por três pontos; “não se aplica” por dois pontos; dúvida por interrogação; e dado omitido por sigilo, por “x”."
+        },
+        {
+          "topic": "Amostragem por conglomerados",
+          "pattern": "caso",
+          "difficulty": 3,
+          "pageRef": 7,
+          "statement": "Para pesquisar a satisfação dos moradores de uma cidade, sortearam-se 8 quarteirões e entrevistaram-se todos os moradores dos quarteirões sorteados. Essa técnica é denominada amostragem",
+          "support": null,
+          "options": [
+            "aleatória simples.",
+            "sistemática.",
+            "por conglomerados, em um estágio.",
+            "estratificada proporcional.",
+            "por cotas."
+          ],
+          "answer": "C",
+          "explanation": "Foram sorteados grupos naturais (quarteirões) e, neles, observados todos os elementos: é amostragem por conglomerados em um estágio. Na estratificada, todos os grupos participam do sorteio, e dentro de cada um sorteia-se uma parte."
+        },
+        {
+          "topic": "Amostragem sistemática",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 5,
+          "statement": "De uma população de 1.000 elementos ordenados, deseja-se uma amostra sistemática de 50 elementos, e o ponto de partida sorteado foi o elemento de número 7. O 4º elemento da amostra é o de número",
+          "support": null,
+          "options": [
+            "27.",
+            "47.",
+            "57.",
+            "87.",
+            "67."
+          ],
+          "answer": "E",
+          "explanation": "O intervalo de amostragem é k = 1.000 ÷ 50 = 20. A amostra é 7, 27, 47, 67, 87, … e o 4º elemento é o 67. Os números 27 e 47 são o 2º e o 3º, e 87 é o 5º."
+        },
+        {
+          "topic": "Estratificada proporcional",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 6,
+          "statement": "O efetivo de uma unidade é formado por 1.000 militares: 600 praças e 400 oficiais. Em uma amostra estratificada com alocação proporcional, de 100 militares, o número de praças e de oficiais sorteados será, respectivamente,",
+          "support": null,
+          "options": [
+            "50 e 50.",
+            "60 e 40.",
+            "40 e 60.",
+            "70 e 30.",
+            "80 e 20."
+          ],
+          "answer": "B",
+          "explanation": "Na alocação proporcional, nₕ = n · Nₕ ÷ N. Praças: 100 × 600 ÷ 1.000 = 60. Oficiais: 100 × 400 ÷ 1.000 = 40. A alocação de 50 e 50 seria a uniforme (igual em cada estrato)."
+        },
+        {
+          "topic": "Alocação ótima de Neyman",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 6,
+          "statement": "Dois estratos têm 500 elementos cada, com desvios-padrão de 10 e de 30, respectivamente. Em uma amostra de 200 elementos, com alocação ótima (de Neyman), o número de elementos sorteados em cada estrato é, respectivamente,",
+          "support": null,
+          "options": [
+            "100 e 100.",
+            "75 e 125.",
+            "40 e 160.",
+            "50 e 150.",
+            "25 e 175."
+          ],
+          "answer": "D",
+          "explanation": "Na alocação de Neyman, nₕ é proporcional a Nₕ · σₕ. As quantidades são 500 × 10 = 5.000 e 500 × 30 = 15.000, que somam 20.000. Então n₁ = 200 × 5.000 ÷ 20.000 = 50 e n₂ = 200 × 15.000 ÷ 20.000 = 150. A alocação de 100 e 100 é a uniforme."
+        },
+        {
+          "topic": "Tamanho da amostra para uma proporção",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 8,
+          "statement": "Para estimar uma proporção com 95% de confiança (z = 1,96), erro máximo de 5 pontos percentuais e no pior caso (p = 0,5), o tamanho mínimo da amostra, em uma população muito grande, é de",
+          "support": null,
+          "options": [
+            "196.",
+            "250.",
+            "385.",
+            "384.",
+            "1.537."
+          ],
+          "answer": "C",
+          "explanation": "n₀ = z² · p(1 − p) ÷ E² = 1,96² × 0,5 × 0,5 ÷ 0,05² = 0,9604 ÷ 0,0025 = 384,16. O tamanho da amostra é arredondado sempre para cima, e por isso o mínimo é 385 (384 seria insuficiente). O valor 1.537 corresponde a um erro de 2,5 pontos percentuais."
+        }
+      ]
+    }
+  ]
+}
