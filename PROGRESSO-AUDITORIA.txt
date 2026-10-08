@@ -256,3 +256,15 @@ Ordem obrigatória de reconstrução (raiz do repositório, PYTHONIOENCODING=utf
   a09: EC 138/2025 e EC 135/2024 nao usadas; acumulo de militares estaduais (p.38 x p.69); typos "inciso XXVIII" (XVIII). a10: EC 136/2026 e "EC/PEC 139/2026"; Sumula 347 "superada"; CNJ; Daniel Silveira/LSN; typo art. 52 VI (V); conferir HC 232.627/2025 (foro) e ADPF 982.
 - 2026-10-08: direito-constitucional a11-a13 com bizu. Duvidas (NAO usadas): a11 percentuais de emendas individuais/saude (EC 86 x EC 126/2022) omitidos; promulgacao de MP atribuida ao "Presidente do Senado" (e Mesa do Congresso); a12 "rainha", composicao dos Conselhos da Republica/Defesa em imagem; a13 EC 136/2025 (precatorios) usada com atribuicao - conferir; ADI 4357/7047/7064; STJ (quinto constitucional) debate; subteto 90,25% e IDC nao usados.
 - ESTADO ao fim da sessao: em andamento (agentes sem commit/push ate esse momento) - Constitucional a14-a18, Administrativo a00(s03-s05)-a02 e a03-a05. Pendentes: Administrativo a06-a09, Portugues (54), Ingles (23), Espanhol (36), Biologia (68). Conferir `validate_content.py --coverage --stage bizu --subject <disc>` para ver os trechos sem bizu.
+
+12. O QUE FALTA DA FATIA DE VALERIO (bizus), conferido em 2026-10-08 (apos push)
+Prontos: legislacoes-pe (9/9), direito-penal-militar (36/36), direito-constitucional a00-a16 (84/93).
+FALTAM (373 - 130 feitos = trechos sem bizu; comando para listar: validate_content.py --coverage --stage bizu --subject <disc>):
+- direito-constitucional: a17 (8 trechos) e a18 (1). [agente a14-a18 em andamento; a16 ja commitado]
+- direito-administrativo: a01 (7), a02 (5), a03 (4), a04 (5), a05 (13), a06 (5), a07 (5), a08 (4), a09 (16) = 64 trechos. [agentes a00-a02 e a03-a05 em andamento, sem commit ainda; a06-a09 ainda nao iniciados]
+- lingua-portuguesa: 54 trechos (a00 a a12) - nao iniciado.
+- lingua-inglesa: 23 trechos (a00 a a06) - nao iniciado.
+- lingua-espanhola: 36 trechos (a00 a a13) - nao iniciado.
+- biologia: 68 trechos (a00 a a2x) - nao iniciado.
+Se um agente em andamento nao tiver commitado, refazer o lote. Ordem sugerida para retomar: Constitucional a17-a18, Administrativo (conferir o que entrou), Portugues, Ingles, Espanhol, Biologia (lotes de 9-15 trechos, ate 3 agentes).
+Padrao que funcionou: agente sonnet por lote de ~12 trechos (~10 min), paraphrase + copied.py (scratchpad) para listar frases copiadas, commit por aula sem push, push pelo orquestrador.
