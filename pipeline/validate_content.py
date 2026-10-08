@@ -162,7 +162,9 @@ def validate_file(path: Path, subject_seen: list | None = None) -> tuple[list[st
             if len(opts) != 5 or any(not str(o).strip() for o in opts):
                 errors.append(f"{where}: precisa de exatamente 5 alternativas não vazias")
                 continue
-            if len({norm(o) for o in opts}) != 5:
+            # compara o texto literal: norm() descartaria sinais, pontuação e acentos, e "(−4, 1)" × "(4, 1)" ou
+            # "levantaos" × "levantáos" são alternativas distintas
+            if len({re.sub(r"\s+", " ", str(o).strip().casefold()) for o in opts}) != 5:
                 errors.append(f"{where}: alternativas repetidas")
             ans = q.get("answer")
             if ans not in LETTERS:
