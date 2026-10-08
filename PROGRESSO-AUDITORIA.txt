@@ -1,5 +1,6 @@
 MENTORIA / CFO-BM — AUDITORIA INTEGRAL: ESTADO E PRÓXIMOS PASSOS
-Atualizado em: 2026-10-08 (checkpoint 4 FINAL desta janela de uso — auditorias concluídas; 22 complementos criados; faltam 3 e toda a produção de questões)
+Atualizado em: 2026-10-08 (checkpoint 5 — 25 complementos criados; mapa do edital fechado; bancos de itens dos 29 trechos
+autorais (cNN) prontos; BLOQUEIO: os PDFs do Estratégia (docs/) não estão nesta máquina — ver seção 9)
 
 Este arquivo é a memória de trabalho da missão "auditoria integral, completação e otimização".
 Quem retomar o trabalho (outra sessão do Claude Code, outro agente ou o próprio usuário) deve ler este
@@ -88,8 +89,9 @@ Ordem obrigatória de reconstrução (raiz do repositório, PYTHONIOENCODING=utf
   Lacunas registradas em content/gaps.json: 18 (as abertas aguardam complemento — ver seção 5).
 
 4.5 Banco de questões
-  Somente o piloto (Dir. Administrativo a00, 30 questões e 2 bizus, DRAFT). Todo o resto está por produzir.
-  `validate_content.py --coverage`: 738 trechos selecionáveis, 2 completos.
+  (checkpoint 1) Somente o piloto (Dir. Administrativo a00, 30 questões e 2 bizus, DRAFT).
+  (checkpoint 5) `validate_content.py --coverage`: 761 trechos · 31 completos · 382 questões · 31 bizus · 247 itens C/E.
+  Os 31 completos = piloto da a00 (2 trechos) + TODOS os 29 trechos autorais (cNN), ver seção 9.
 
 ====================================================================================================
 5. O QUE FALTA (em ordem)
@@ -104,22 +106,18 @@ Ordem obrigatória de reconstrução (raiz do repositório, PYTHONIOENCODING=utf
       Química: quim-aplicada-complementos ampliado (fogo, polímeros, gás ideal, proteção radiológica) | Inglês ampliado.
       Biologia: bio-qualidade-vida (16 págs.) e bio-biotec-ambiente (18 págs.). Ainda sem complemento (auditoria: parcial):
       classificação/diversidade dos seres vivos, origem das células, funções vitais e adaptação.
-    AINDA POR CRIAR (briefing em pipeline/briefs/complement.md; ids de lacuna em content/gaps.json):
-      - Informática (inf-navegadores-cmd): navegadores (navegação privativa, cookies, histórico, atalhos), Prompt de
-        Comando do Windows 11 (sem DELTREE; RD /S), instalação de periféricos (drivers, plug and play); opcional: gráficos
-        e filtros do Calc.
-      - Estatística (est-prob-geometrica, est-normas-amostragem): probabilidade geométrica; normas de apresentação
-        tabular do IBGE e tipos de amostragem.
-      - Espanhol (esp-grau-heterograficos): grau do substantivo, heterográficos, irregularidade verbal comum x própria,
-        verbos impessoais e pronominais, relativos.
+    CRIADOS no checkpoint 5 (total: 25 complementos / 29 trechos autorais, mesclados em catalog/gaps/segments/structure):
+      - Informática: inf-navegadores-cmd-perifericos | Estatística: est-complementos-edital |
+        Espanhol: esp-grau-verbos-heterograficos.
+    (histórico) briefing em pipeline/briefs/complement.md; ids de lacuna em content/gaps.json.
     Use `norma: true` no front matter do complemento quando ele cita dispositivos de lei literalmente (o teste de
     originalidade tolera mais coincidência com o Estratégia nesses casos).
     Depois de criar: (cd pipeline && .venv/Scripts/python build_complements.py --only <id> --no-merge) e, no fim, a
     mesclagem completa (build_complements.py sem flags, ou --no-pdf).
-    Os status em content/edital/*.json ainda mostram "gap/partial" para itens que os novos complementos já cobrem:
-    atualizar (status "complement" + onde) antes do relatório final.
+    (feito no checkpoint 5) content/edital/*.json atualizado: 82 itens em 11 disciplinas passaram a "complement" (nota
+    "[Resolvido por complemento]"); `pipeline/edital_map.py` reporta 0 problemas.
 5.3 Regenerar tudo na ordem da seção 2 e rodar pytest.
-5.4 Produzir bizus e questões de TODOS os trechos, seguindo pipeline/briefs/content.md, por ondas:
+5.4 (PARCIAL — ver seção 9) Produzir bizus e questões de TODOS os trechos, seguindo pipeline/briefs/content.md, por ondas:
     Legislações PE -> Dir. Constitucional -> Dir. Administrativo -> Dir. Penal Militar -> Português -> Inglês/Espanhol
     -> Informática -> Matemática, Estatística, Física, Química -> Biologia. Um arquivo por aula; validar cada um.
     Acompanhar com:  pipeline/.venv/Scripts/python pipeline/validate_content.py --coverage
@@ -174,3 +172,47 @@ Ordem obrigatória de reconstrução (raiz do repositório, PYTHONIOENCODING=utf
     * Física/Matemática: dados de tabela sem fonte primária (cosmologia, calor latente); nenhuma pendência de cálculo.
     * Material do Estratégia com erros a avisar ao aluno: Inglês (a06 p.39/42, a05 p.24), Física a09 p.20, Informática a12 p.122
       (DELTREE) e 161-162 (WordPad), Estatística a07/a08 (páginas duplicadas de outras aulas).
+
+====================================================================================================
+9. CHECKPOINT 5 (2026-10-08) — O QUE MUDOU NESTA SESSÃO E O QUE ESTÁ BLOQUEADO
+====================================================================================================
+9.1 Entregas (nada foi commitado ainda — aguardando decisão do usuário)
+  - web/package.json: "typecheck" = "next typegen && tsc --noEmit" (CI falhava em checkout limpo: PageProps/LayoutProps).
+  - pipeline/validate_content.py: alternativas repetidas agora comparam o texto literal (norm() só guardava [a-z0-9] e
+    acusava falsos duplicados em espanhol/matemática).
+  - 3 complementos novos + PDFs em web/public/complementos/ e mesclagem (25 complementos, 29 trechos autorais).
+  - content/edital/*.json: 82 itens -> "complement"; edital_map.py com 0 problemas.
+  - content/items/ (todos DRAFT, validados, sem aviso de "alternativa correta mais longa"), cobrindo os 29 trechos autorais:
+      legislacoes-pe c01-c05 (52 q) | direito-constitucional c01-c05 (60 q; c04 tem 2 trechos) | direito-administrativo c01
+      (24 q, 2 trechos) | direito-penal-militar c01 (21 q, 2 trechos) | lingua-portuguesa c01-c02 (15 q) | lingua-inglesa c01
+      (14) | informatica c01 (14) | estatistica c01 (11) | lingua-espanhola c01 (14) | matematica c01-c02 (28) |
+      fisica c01-c02 (30) | quimica c01 (20) | biologia c01 (21) e c02 (28, 2 trechos).
+  - Verificação final: validate_content.py --quiet OK; pytest 43 passed / 1 skipped; web: typecheck, lint e 90 testes OK;
+    edital_map.py 0 problemas. `--coverage`: 761 trechos · 31 completos · 382 questões · 31 bizus · 247 itens C/E.
+  - Restrição de renderização descoberta: BizuSummary (web/src/components/bizu.tsx) só renderiza **negrito**; itálico, crase e
+    listas aparecem como texto cru. C/E e questões são texto puro. O resumo do bizu deve ter 6–14 itens só com **negrito**.
+
+9.2 BLOQUEIO: os PDFs do Estratégia (docs/ e indice_topicos_curso.xlsx) NÃO estão nesta máquina
+  Faltam bizus/questões de 730 trechos (as aulas do Estratégia: a00..aNN de todas as disciplinas, inclusive Legislações PE
+  a01/a02). O briefing exige LER as páginas do trecho (para parafrasear e preencher pageRef), então não dá para produzi-las
+  sem o material. Também dependem dele: (1) o teste de originalidade de 10 palavras (pipeline/.cache/pages precisa existir; hoje
+  test_no_ten_word_sequence_copied_from_estrategia fica "skipped"), que NÃO foi aplicado aos 3 complementos novos nem aos itens
+  autorais; (2) reexecutar extract/headings/index_validate/segment/build_catalog/edital_audit.
+  Para destravar: colocar docs/ na raiz (está no .gitignore; nunca versionar), rodar xlsx_index.py e extract.py, e então
+  seguir a seção 5.4 pela ordem de ondas (começando por Legislações PE a01/a02 e Dir. Constitucional).
+
+9.3 Ainda não feito (independe dos PDFs)
+  - Seed/verificação no navegador (5.7): exige Postgres (npx prisma dev -n cfo-bm -d) — não foi executado.
+  - Planejador (5.6): juntar trechos curtos de aulas diferentes ainda é decisão em aberto; as mensagens "em produção" já existem na UI.
+  - Segunda passada de auditoria do banco (5.5) e relatório final content/audit/RELATORIO-FINAL.md (5.8).
+
+9.4 Pontos para revisão humana nos itens/complementos novos (antes de aprovar como APPROVED)
+  - Todos os itens são DRAFT; aprovar apenas em /admin/revisao.
+  - Biologia: faixas do IDH, ADI 3.510, CRISPR 2023, Lei 9.433 — conferir. Atenção: o complemento lista 6 instrumentos da PNRH
+    (incluindo "compensação a municípios", dispositivo que foi vetado na Lei 9.433); os itens NÃO cobram a contagem. Números
+    datados (Vigitel, Mapa da Fome, linhas do Banco Mundial, STF 40 g) ficaram fora das questões de propósito.
+  - Direito: EC 70/71 de 2026 (CE-PE art. 101) só aparecem no texto de bizu; Maria da Penha art. 16-A/12-D não foram usados
+    em questões; Decreto 50.014 × ADI 6595; remissões estranhas do CE-PE (art. 171 §4º-B, art. 23 §5º, 43 II × 61 I "a").
+  - Física/Química: tabelas (calor latente, rigidez dielétrica, composição do universo, Portaria GM/MS 888/2021) são valores usuais;
+    cálculos foram conferidos em Python (08/10/2026).
+  - Línguas: pontos que o complemento marca como "a conferir" foram evitados nas questões.
