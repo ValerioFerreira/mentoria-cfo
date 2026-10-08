@@ -82,3 +82,35 @@ def test_authored_items_pass_validator():
         errs, _warns, _st = validate_file(f, seen.setdefault(f.parent.name, []))
         problems += [f"{f.parent.name}/{f.name}: {e}" for e in errs]
     assert not problems, "\n".join(problems[:30])
+
+
+def _bizu_doc(pointers):
+    ce = lambda n, t: {"statement": f"Afirmação autoral número {n} sobre o tema do trecho, escrita com palavras próprias.", "isTrue": t, "explanation": f"Explicação autoral {n} do porquê o item está certo ou errado."}  # noqa: E731
+    return {
+        "aula": "legislacoes-pe/a01", "batch": "teste", "status": "DRAFT", "stage": "bizu",
+        "segments": [{"id": "legislacoes-pe/a01/s01", "bizu": {
+            "summary": [f"**Tópico autoral {i}** com redação própria e sem relação com o material de origem." for i in range(7)],
+            "teoria": [ce(1, True), ce(2, False), ce(3, True)], "revisao": [ce(4, False), ce(5, True), ce(6, False)],
+            "pointers": pointers}}],
+    }
+
+
+def test_bizu_stage_needs_pointers_and_no_questions(tmp_path):
+    import sys
+
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+    from validate_content import validate_file
+
+    good = _bizu_doc([{"topic": f"Ponto {i}", "pageRef": 5 + i} for i in range(4)])
+    f = tmp_path / "a01.json"
+    f.write_text(json.dumps(good), encoding="utf-8")
+    errs, _, _ = validate_file(f)
+    assert not errs, errs
+
+    bad = _bizu_doc([{"topic": "Só um", "pageRef": 5}])
+    f.write_text(json.dumps(bad), encoding="utf-8")
+    assert any("pointers" in e for e in validate_file(f)[0])
+
+    out = _bizu_doc([{"topic": f"Ponto {i}", "pageRef": 99} for i in range(4)])
+    f.write_text(json.dumps(out), encoding="utf-8")
+    assert any("fora do trecho" in e for e in validate_file(f)[0])

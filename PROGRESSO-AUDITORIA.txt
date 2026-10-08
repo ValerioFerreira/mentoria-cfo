@@ -216,3 +216,19 @@ Ordem obrigatória de reconstrução (raiz do repositório, PYTHONIOENCODING=utf
   - Física/Química: tabelas (calor latente, rigidez dielétrica, composição do universo, Portaria GM/MS 888/2021) são valores usuais;
     cálculos foram conferidos em Python (08/10/2026).
   - Línguas: pontos que o complemento marca como "a conferir" foram evitados nas questões.
+
+====================================================================================================
+10. DECISÃO DE 2026-10-08: PRODUÇÃO EM DUAS ETAPAS E EM DUAS FRENTES (FONTE DA VERDADE DO PLANO ATUAL)
+====================================================================================================
+- ETAPA 1 (agora): só BIZU de cada trecho (resumo + C/E + pointers) — pipeline/briefs/bizu.md, arquivos com "stage": "bizu".
+  ETAPA 2 (depois que os 761 trechos tiverem bizu): QUESTÕES AOCP nos mesmos arquivos — pipeline/briefs/content.md.
+  Validador: validate_content.py --coverage --stage bizu mostra o que falta do bizu; sem --stage mostra bizu + questões.
+- DIVISÃO (cada frente escreve só em content/items/<suas disciplinas>/):
+    Valério + Claude (esta máquina): legislacoes-pe, direito-penal-militar, direito-constitucional, direito-administrativo,
+      lingua-portuguesa, lingua-inglesa, lingua-espanhola, biologia  = 373 trechos  (branch: bizus-juridicas-linguas)
+    Colaborador: informatica, estatistica, matematica, fisica, quimica = 357 trechos (branch: bizus-exatas)
+  Instruções completas do colaborador: INSTRUCOES-COLABORADOR.md. Estado do colaborador: PROGRESSO-COLABORADOR.txt (criado por ele).
+- MERGE: PR de cada branch para main (diretórios disjuntos). Depois, etapa 2 com a mesma divisão.
+- Os PDFs (docs/) são copiados para a máquina do colaborador POR FORA do Git (marca d'água com nome/CPF; nunca versionar).
+- Arquivos congelados para as duas frentes durante as etapas 1 e 2: content/segments, structure, catalog.json, gaps.json,
+  overrides, edital, complements e todo o código. Mudanças nesses arquivos só do lado de Valério, em commit separado na main.

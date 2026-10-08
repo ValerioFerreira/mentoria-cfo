@@ -7,7 +7,12 @@ Regras (falha = erro; aviso = revisar):
   pageRef dentro do trecho, padrões AOCP conhecidos e ORIGINALIDADE (sem trechos longos copiados do material).
 
 Uso:  python pipeline/validate_content.py [content/items/.../a00.json ...]   (sem args: valida tudo)
-      python pipeline/validate_content.py --coverage [--subject <disc>]    (trechos sem bizu/questões, por disciplina)
+      python pipeline/validate_content.py --coverage [--stage bizu|full] [--subject <disc>]
+          (trechos sem bizu/questões, por disciplina; --stage bizu ignora as questões)
+
+Etapas de produção: um arquivo pode ter "stage": "bizu" (só resumo + C/E + pointers; sem questões) e, depois, passar a
+"full" (campo removido) quando as questões forem acrescentadas aos mesmos trechos. Na etapa bizu o validador exige
+bizu.pointers (≥ 4 pontos-chave com pageRef dentro do trecho) para a 2ª etapa não precisar reler o trecho inteiro.
 """
 from __future__ import annotations
 
@@ -91,6 +96,10 @@ def validate_file(path: Path, subject_seen: list | None = None) -> tuple[list[st
         errors.append(f"status inválido: {doc.get('status')!r}")
     if not str(doc.get("batch", "")).strip():
         errors.append("batch ausente")
+    stage = doc.get("stage", "full")
+    if stage not in ("bizu", "full"):
+        errors.append(f"stage inválido: {stage!r} (use \"bizu\" ou omita)")
+    bizu_only = stage == "bizu"
 
     stats = {"segments": 0, "questions": 0, "bizuItems": 0}
     seen_stmt: list[tuple[str, set]] = []
@@ -121,6 +130,7 @@ def validate_file(path: Path, subject_seen: list | None = None) -> tuple[list[st
             errors.append(f"{sid}: trecho de outra aula")
         lo, hi = segs[sid]["startPage"], segs[sid]["endPage"]
 
+        seg_bizu_only = bizu_only or seg.get("stage") == "bizu"  # "stage": "bizu" vale no arquivo ou só no trecho
         bizu = seg.get("bizu")
         if not bizu:
             errors.append(f"{sid}: trecho sem bizu")
@@ -151,8 +161,24 @@ def validate_file(path: Path, subject_seen: list | None = None) -> tuple[list[st
                     seen_ce.add(key)
                     check_text(f"{sid} bizu.{kind}[{i}]", it.get("statement", "") + " " + it.get("explanation", ""))
 
+        if bizu:
+            ptrs = bizu.get("pointers")
+            if ptrs is not None or (seg_bizu_only and not authored):
+                ptrs = ptrs or []
+                if seg_bizu_only and len(ptrs) < 4:
+                    errors.append(f"{sid}: bizu.pointers precisa de ≥ 4 pontos-chave {{topic, pageRef}} (tem {len(ptrs)})")
+                for pi, ptr in enumerate(ptrs):
+                    pr_ = ptr.get("pageRef") if isinstance(ptr, dict) else None
+                    if not str(ptr.get("topic", "")).strip() if isinstance(ptr, dict) else True:
+                        errors.append(f"{sid}: bizu.pointers[{pi}] sem topic")
+                    elif not isinstance(pr_, int) or not (lo - 1 <= pr_ <= hi + 1):
+                        errors.append(f"{sid}: bizu.pointers[{pi}].pageRef {pr_!r} fora do trecho {lo}–{hi}")
+
         qs = seg.get("questions", [])
-        if len(qs) < min_questions(segs[sid]["pages"]):
+        if seg_bizu_only:
+            if qs:
+                errors.append(f"{sid}: arquivo em etapa bizu não deve ter questões (remova \"stage\" ao acrescentá-las)")
+        elif len(qs) < min_questions(segs[sid]["pages"]):
             errors.append(f"{sid}: só {len(qs)} questões (mínimo {min_questions(segs[sid]['pages'])} para {segs[sid]['pages']} págs.)")
         for qi, q in enumerate(qs):
             n_q += 1
@@ -230,10 +256,10 @@ def validate_file(path: Path, subject_seen: list | None = None) -> tuple[list[st
     return errors, warns, stats
 
 
-def coverage(subject: str | None) -> int:
+def coverage(subject: str | None, stage: str = "full") -> int:
     """Trechos de aulas selecionáveis sem arquivo de itens / sem bizu / abaixo do mínimo de questões."""
     catalog = json.loads((CONTENT_DIR / "catalog.json").read_text(encoding="utf-8"))
-    total = {"seg": 0, "ok": 0, "q": 0, "ce": 0, "bizu": 0}
+    total = {"seg": 0, "ok": 0, "q": 0, "ce": 0, "bizu": 0, "qok": 0}
     missing_all = 0
     for s in catalog["subjects"]:
         if subject and s["id"] != subject:
@@ -246,7 +272,7 @@ def coverage(subject: str | None) -> int:
         selectable = {a["id"] for a in s["aulas"] if a["selectable"]}
         want = [g for g in segs.values() if g["aula"] in selectable]
         missing, thin = [], []
-        q = ce = bz = 0
+        q = ce = bz = qok = 0
         for g in want:
             it = have.get(g["id"])
             if not it:
@@ -257,7 +283,9 @@ def coverage(subject: str | None) -> int:
             if it.get("bizu"):
                 bz += 1
                 ce += len(it["bizu"].get("teoria", [])) + len(it["bizu"].get("revisao", []))
-            if not it.get("bizu") or nq < min_questions(g["pages"]):
+            if nq >= min_questions(g["pages"]):
+                qok += 1
+            if not it.get("bizu") or (stage == "full" and nq < min_questions(g["pages"])):
                 thin.append(f"{g['id'].split('/', 1)[1]}({nq}q{'' if it.get('bizu') else ', sem bizu'})")
         stale = sorted(set(have) - set(segs))
         ok = len(want) - len(missing) - len(thin)
@@ -266,15 +294,16 @@ def coverage(subject: str | None) -> int:
         total["q"] += q
         total["ce"] += ce
         total["bizu"] += bz
+        total["qok"] += qok
         missing_all += len(missing) + len(thin) + len(stale)
-        print(f"{s['id']:24s} trechos {len(want):4d} · completos {ok:4d} · questões {q:5d} · bizus {bz:4d} · C/E {ce:5d}")
+        print(f"{s['id']:24s} trechos {len(want):4d} · completos {ok:4d} · bizus {bz:4d} · com questões {qok:4d} · questões {q:5d} · C/E {ce:5d}")
         if missing:
             print(f"   sem itens ({len(missing)}): {', '.join(missing[:60])}{' …' if len(missing) > 60 else ''}")
         if thin:
             print(f"   incompletos ({len(thin)}): {', '.join(thin[:40])}")
         if stale:
             print(f"   ITENS ÓRFÃOS (trecho não existe mais): {', '.join(stale)}")
-    print(f"TOTAL trechos {total['seg']} · completos {total['ok']} · questões {total['q']} · bizus {total['bizu']} · C/E {total['ce']}")
+    print(f"TOTAL trechos {total['seg']} · completos {total['ok']} · bizus {total['bizu']} · com questões {total['qok']} · questões {total['q']} · C/E {total['ce']}")
     return 1 if missing_all else 0
 
 
@@ -282,11 +311,12 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("files", nargs="*")
     ap.add_argument("--coverage", action="store_true")
+    ap.add_argument("--stage", choices=["bizu", "full"], default="full", help="com --coverage: bizu = só exige o bizu (ignora questões)")
     ap.add_argument("--subject")
     ap.add_argument("--quiet", action="store_true", help="não lista avisos")
     args = ap.parse_args()
     if args.coverage:
-        return coverage(args.subject)
+        return coverage(args.subject, args.stage)
     files = [Path(a) for a in args.files] or sorted(ITEMS_DIR.glob(f"{args.subject or '*'}/*.json"))
     bad = 0
     by_subject: dict[str, list] = collections.defaultdict(list)
