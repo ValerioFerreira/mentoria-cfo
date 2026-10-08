@@ -381,6 +381,302 @@
           }
         ]
       }
+    },
+    {
+      "id": "informatica/a14/s05",
+      "bizu": {
+        "summary": [
+          "**Chipset**: conjunto de chips controladores da placa-mãe, que **define suas capacidades** (tipo, velocidade e quantidade de memória, barramentos, vídeo, disco). Divide-se tradicionalmente em **ponte norte** (processador, memória, vídeo) e **ponte sul** (periféricos, discos, USB).",
+          "**Barramento**: conjunto de linhas condutoras por onde trafegam dados, endereços e sinais de controle entre componentes. Tipos: **local** (CPU–memória/cache), **slot** (placas de expansão), **porta** (dispositivos externos: USB, HDMI, PS/2) e **soquete** (encaixe do processador: LGA, PGA).",
+          "**Serial × paralelo**: serial envia um bit por vez; paralelo envia vários bits simultaneamente (tende a ter problemas de sincronismo em altas frequências, por isso o mercado migrou para o serial).",
+          "**Evolução dos slots**: ISA (8/16 bits) → EISA (32 bits) → VLB → **PCI** (Plug and Play, sem compatibilidade com ISA) → **AGP** (exclusivo para placas de vídeo 3D) → **PCI Express (PCIe)**, serial por **lanes**, que substituiu PCI e AGP e hoje liga placas de vídeo e SSDs.",
+          "**USB**: barramento **serial**, bidirecional e universal, com **Plug and Play** e **Hot Swap**; fornece alimentação de **5 V**. Um controlador pode suportar até **127 dispositivos** (com hubs). Versões: 1.1 (12 Mbps), **2.0 (480 Mbps)**, **3.0 (5 Gbps)**, 3.1 (10 Gbps), 3.2 (20 Gbps). Conectores tipos A, B e C. Modos de transferência: interrupção (teclado/mouse), isocrônico (áudio/vídeo) e bulk (grandes volumes).",
+          "**Interfaces de armazenamento**: **IDE = ATA = PATA** (paralelo); **SATA** (serial, sucessor: 150, 300 e 600 MB/s nas versões I, II e III); **SCSI** (paralelo, servidores, até 16 dispositivos, hot swap); **SAS** (serial, sucessor do SCSI, aceita HD SATA, mas HD SAS não funciona em SATA)."
+        ],
+        "teoria": [
+          {
+            "statement": "O chipset da placa-mãe é um conjunto de circuitos que define as capacidades de memória, barramentos e processamento suportadas.",
+            "isTrue": true,
+            "explanation": "É dividido em ponte norte e ponte sul."
+          },
+          {
+            "statement": "O barramento USB é paralelo e exige desligar o computador para conectar um novo dispositivo.",
+            "isTrue": false,
+            "explanation": "O USB é serial e permite Hot Swap, ligando e desligando com a máquina ligada."
+          },
+          {
+            "statement": "O barramento PCI Express substituiu o PCI e o AGP, e suporta placas aceleradoras gráficas.",
+            "isTrue": true,
+            "explanation": "Usa interconexões seriais chamadas lanes."
+          },
+          {
+            "statement": "Na ordem de taxas do USB, a versão 2.0 é mais rápida que a 3.0.",
+            "isTrue": false,
+            "explanation": "USB 3.0 (5 Gbps) é bem mais rápido que o 2.0 (480 Mbps)."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "IDE, ATA e PATA se referem ao mesmo padrão paralelo de conexão de discos.",
+            "isTrue": true,
+            "explanation": "O SATA é o sucessor, de transmissão serial."
+          },
+          {
+            "statement": "O SATA III alcança taxa de 600 MB/s.",
+            "isTrue": true,
+            "explanation": "SATA I tem 150 MB/s e SATA II, 300 MB/s."
+          },
+          {
+            "statement": "Um HD SAS funciona normalmente em interface SATA, pois os conectores são iguais.",
+            "isTrue": false,
+            "explanation": "A compatibilidade é só em um sentido: HD SATA funciona em SAS, mas HD SAS não funciona em SATA."
+          },
+          {
+            "statement": "O soquete é o barramento específico para encaixar o processador na placa-mãe.",
+            "isTrue": true,
+            "explanation": "Exemplos: LGA e PGA."
+          },
+          {
+            "statement": "O USB pode fornecer alimentação elétrica de 5 V aos dispositivos conectados.",
+            "isTrue": true,
+            "explanation": "É uma das vantagens do padrão."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Chipset (pontes norte e sul)",
+            "pageRef": 52
+          },
+          {
+            "topic": "Barramentos: tipos e transmissão serial/paralela",
+            "pageRef": 54
+          },
+          {
+            "topic": "ISA, EISA e VLB",
+            "pageRef": 56
+          },
+          {
+            "topic": "PCI",
+            "pageRef": 59
+          },
+          {
+            "topic": "AGP",
+            "pageRef": 60
+          },
+          {
+            "topic": "PCI Express",
+            "pageRef": 61
+          },
+          {
+            "topic": "USB",
+            "pageRef": 63
+          },
+          {
+            "topic": "IDE/ATA e SATA",
+            "pageRef": 65
+          },
+          {
+            "topic": "SCSI e SAS",
+            "pageRef": 67
+          }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a14/s06",
+      "bizu": {
+        "summary": [
+          "**CPU/processador/microprocessador**: controla os componentes e executa o processamento de dados. Não confundir CPU com **gabinete**. Processadores modernos têm vários núcleos; cada **núcleo** (core) funciona como uma CPU.",
+          "**Clock**: frequência de trabalho do processador, medida em **hertz** (ciclos por segundo; GHz hoje). Mais clock → mais instruções por segundo, mas o desempenho também depende de núcleos, cache e arquitetura (um dual-core não é simplesmente \"o dobro\" do single-core).",
+          "**Multicore**: dois ou mais núcleos no mesmo chip dividem tarefas; por isso, hoje, processador e CPU não são tecnicamente sinônimos.",
+          "**Resfriamento (cooler)**: dissipador + ventoinha retiram o calor gerado; o processador realiza bilhões de cálculos por segundo. Fabricantes principais: **Intel** e **AMD**.",
+          "**Arquitetura**: **RISC** (conjunto reduzido de instruções simples) e **CISC** (conjunto complexo, instruções que fazem mais por vez). **Palavra** é a unidade de dados da arquitetura; processadores **x64** processam 64 bits (8 bytes) por ciclo.",
+          "**Unidade de Controle (UC)**: \"guarda de trânsito\" que coordena o fluxo e comanda o **ciclo de instrução: buscar, decodificar e executar**.",
+          "**ULA (Unidade Lógica e Aritmética)**: realiza operações aritméticas (soma, subtração…) e lógicas (AND, OR, XOR, NOT). **Registradores**: pequenas memórias **voláteis**, dentro da CPU, as **mais rápidas** de todas; guardam resultados temporários e informações de controle (ex.: contador de instruções)."
+        ],
+        "teoria": [
+          {
+            "statement": "Um processador multicore tem dois ou mais núcleos de processamento no mesmo chip.",
+            "isTrue": true,
+            "explanation": "Por isso processador e CPU não são sinônimos exatos."
+          },
+          {
+            "statement": "Um processador de 2 GHz com dois núcleos é, necessariamente, exatamente duas vezes mais rápido que o de um núcleo e mesmo clock.",
+            "isTrue": false,
+            "explanation": "O desempenho depende de vários fatores; o dobro de núcleos não implica dobro de velocidade."
+          },
+          {
+            "statement": "A unidade de controle executa as operações aritméticas e lógicas do processador.",
+            "isTrue": false,
+            "explanation": "Essa é a função da ULA; a UC coordena o fluxo e o ciclo buscar-decodificar-executar."
+          },
+          {
+            "statement": "Os registradores são as memórias mais rápidas do computador e ficam dentro da CPU.",
+            "isTrue": true,
+            "explanation": "Guardam resultados temporários e informações de controle."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O ciclo de instrução da CPU compreende as etapas buscar, decodificar e executar.",
+            "isTrue": true,
+            "explanation": "É coordenado pela unidade de controle."
+          },
+          {
+            "statement": "A arquitetura RISC se caracteriza por um conjunto complexo e extenso de instruções.",
+            "isTrue": false,
+            "explanation": "Essa descrição é a da CISC; RISC usa um conjunto reduzido de instruções."
+          },
+          {
+            "statement": "O clock é a frequência com que o processador executa suas operações, medida em hertz.",
+            "isTrue": true,
+            "explanation": "Hoje se mede em gigahertz."
+          },
+          {
+            "statement": "Processadores x64 conseguem processar blocos de 64 bits por ciclo de clock.",
+            "isTrue": true,
+            "explanation": "Equivale a 8 bytes."
+          },
+          {
+            "statement": "A CPU é o gabinete onde ficam instalados os componentes do computador.",
+            "isTrue": false,
+            "explanation": "A CPU é o processador, acoplado à placa-mãe; o gabinete é a caixa que abriga o hardware."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "CPU e microprocessador",
+            "pageRef": 69
+          },
+          {
+            "topic": "Histórico dos processadores",
+            "pageRef": 70
+          },
+          {
+            "topic": "Clock",
+            "pageRef": 71
+          },
+          {
+            "topic": "Núcleos",
+            "pageRef": 73
+          },
+          {
+            "topic": "Resfriamento",
+            "pageRef": 74
+          },
+          {
+            "topic": "Famílias de processadores",
+            "pageRef": 75
+          },
+          {
+            "topic": "RISC e CISC",
+            "pageRef": 76
+          },
+          {
+            "topic": "Tamanho da palavra",
+            "pageRef": 77
+          },
+          {
+            "topic": "Unidade de controle e ciclo de instrução",
+            "pageRef": 79
+          },
+          {
+            "topic": "ULA",
+            "pageRef": 81
+          },
+          {
+            "topic": "Registradores",
+            "pageRef": 82
+          }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a14/s07",
+      "bizu": {
+        "summary": [
+          "**Memória** é o componente que armazena dados e programas; divide-se em **primária** (acessada diretamente pelo processador) e **secundária**. **Volátil** perde o conteúdo sem energia; **não volátil** o mantém.",
+          "**Memória primária**: **RAM, ROM e cache**. Exemplos de **secundária**: HD, SSD, pendrive, CD/DVD (não são primárias).",
+          "**RAM (Random Access Memory)**: memória **principal**, **volátil**, de **leitura e escrita**; guarda programas e dados em execução e é indispensável para o funcionamento enquanto o computador está ligado.",
+          "**Módulos**: **SIMM** e **DIMM** são tipos de pentes de RAM (DIMM é o usado hoje, sob a forma DDR-SDRAM-DIMM).",
+          "**DRAM (dinâmica)**: usa transistor + capacitor e precisa de **atualização (refresh)** constante; mais barata e densa, é a RAM comum. Versões **DDR** (DDR2, DDR3, DDR4…) aumentam a taxa de transferência e reduzem o consumo, mas **não são compatíveis entre si** na mesma placa-mãe.",
+          "**SRAM (estática)**: não precisa de refresh, **mais rápida** e econômica em energia, porém **muito mais cara** e com menor densidade — por isso é usada em **cache**, e não como RAM principal."
+        ],
+        "teoria": [
+          {
+            "statement": "A memória RAM é volátil e permite leitura e escrita de dados.",
+            "isTrue": true,
+            "explanation": "Perde o conteúdo quando o computador é desligado."
+          },
+          {
+            "statement": "O HD e o pendrive são exemplos de memória primária.",
+            "isTrue": false,
+            "explanation": "São memórias secundárias; as primárias são RAM, ROM e cache."
+          },
+          {
+            "statement": "Em uma mesma placa-mãe é possível misturar módulos de memória DDR de gerações diferentes, pois são compatíveis.",
+            "isTrue": false,
+            "explanation": "Gerações DDR distintas não são compatíveis entre si."
+          },
+          {
+            "statement": "SIMM e DIMM são tipos de módulos de memória RAM.",
+            "isTrue": true,
+            "explanation": "Não são cache nem firmware."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A SRAM é mais rápida que a DRAM, porém mais cara e menos densa.",
+            "isTrue": true,
+            "explanation": "Por isso é usada em memórias cache."
+          },
+          {
+            "statement": "A DRAM precisa ter seus dados atualizados frequentemente porque usa capacitores.",
+            "isTrue": true,
+            "explanation": "É o processo de refresh."
+          },
+          {
+            "statement": "Memória volátil é aquela que mantém os dados armazenados mesmo sem energia elétrica.",
+            "isTrue": false,
+            "explanation": "Volátil perde o conteúdo sem energia; não volátil o mantém."
+          },
+          {
+            "statement": "A memória primária é aquela que o processador acessa diretamente.",
+            "isTrue": true,
+            "explanation": "Inclui RAM, ROM e cache."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Unidade de memória",
+            "pageRef": 83
+          },
+          {
+            "topic": "Memória primária",
+            "pageRef": 84
+          },
+          {
+            "topic": "Memória RAM",
+            "pageRef": 85
+          },
+          {
+            "topic": "Módulos SIMM e DIMM",
+            "pageRef": 86
+          },
+          {
+            "topic": "DRAM",
+            "pageRef": 87
+          },
+          {
+            "topic": "DDR",
+            "pageRef": 88
+          },
+          {
+            "topic": "SRAM",
+            "pageRef": 89
+          }
+        ]
+      }
     }
   ]
 }
