@@ -1,0 +1,927 @@
+{
+  "aula": "matematica/a17",
+  "batch": "w2-bizu-matematica",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "matematica/a17/s01",
+      "bizu": {
+        "summary": [
+          "**Grau e radiano**: 1° é 1/360 da circunferência (herança dos babilônios); o SI adota o **radiano**. **1 rad** é o ângulo central cujo arco tem comprimento igual ao raio. A volta completa mede **2π rad = 360°**.",
+          "**Conversão** por regra de três: θ_graus/360° = θ_rad/(2π). Exemplos: 60° = π/3 rad; 5π/6 rad = 150°. O radiano é adimensional, e muitas vezes o \"rad\" é omitido.",
+          "**Triângulo retângulo**: o lado oposto ao ângulo reto é a **hipotenusa**; os outros dois são **catetos**. O cateto adjacente a um ângulo é o que está \"ao lado\" dele (o outro é o oposto).",
+          "**Seno** = cateto oposto / hipotenusa. **Cosseno** = cateto adjacente / hipotenusa. **Tangente** = cateto oposto / cateto adjacente = **sen/cos**.",
+          "**Razões dependem só do ângulo**: triângulos retângulos semelhantes (mesmos ângulos) dão o mesmo seno, cosseno e tangente, pois seus lados são proporcionais.",
+          "**Complementares**: no triângulo retângulo, o seno de um ângulo agudo é o cosseno do outro.",
+          "**Catetos em função da hipotenusa a e do ângulo θ**: cateto oposto = **a·sen θ**; cateto adjacente = **a·cos θ**. Útil nos problemas com projeções.",
+          "**Método de questão**: identifique oposto, adjacente e hipotenusa; use Pitágoras para a medida que falta e depois monte a razão pedida."
+        ],
+        "teoria": [
+          {
+            "statement": "Um ângulo de 2π rad equivale a uma volta completa, isto é, 360°.",
+            "isTrue": true,
+            "explanation": "O comprimento da circunferência é 2π vezes o raio, e 1 rad corresponde ao arco de comprimento igual ao raio."
+          },
+          {
+            "statement": "No triângulo retângulo, o cosseno de um ângulo agudo é a razão entre o cateto oposto e a hipotenusa.",
+            "isTrue": false,
+            "explanation": "Essa razão é o seno; o cosseno usa o cateto adjacente sobre a hipotenusa."
+          },
+          {
+            "statement": "A tangente de um ângulo é igual à razão entre seu seno e seu cosseno.",
+            "isTrue": true,
+            "explanation": "(b/a)/(c/a) = b/c, que é cateto oposto sobre adjacente."
+          },
+          {
+            "statement": "Em triângulos retângulos semelhantes, o seno de um ângulo correspondente muda conforme o tamanho do triângulo.",
+            "isTrue": false,
+            "explanation": "Por serem semelhantes, as razões entre lados correspondentes se mantêm; o seno depende apenas do ângulo."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Em um triângulo retângulo de hipotenusa a, o cateto adjacente a um ângulo θ mede a·cos θ.",
+            "isTrue": true,
+            "explanation": "Vem de cos θ = cateto adjacente / hipotenusa."
+          },
+          {
+            "statement": "Um ângulo de π/3 rad corresponde a 30°.",
+            "isTrue": false,
+            "explanation": "π/3 rad = 180°/3 = 60°; 30° equivale a π/6 rad."
+          },
+          {
+            "statement": "Num triângulo retângulo de catetos 10 e 24, o seno do maior ângulo agudo é 12/13.",
+            "isTrue": true,
+            "explanation": "A hipotenusa é 26; o maior ângulo opõe-se ao cateto 24, logo sen = 24/26 = 12/13."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Graus e radianos",
+            "pageRef": 8
+          },
+          {
+            "topic": "Conversão graus ↔ radianos",
+            "pageRef": 9
+          },
+          {
+            "topic": "Seno de um ângulo",
+            "pageRef": 11
+          },
+          {
+            "topic": "Cosseno de um ângulo",
+            "pageRef": 13
+          },
+          {
+            "topic": "Tangente e relação com seno/cosseno",
+            "pageRef": 15
+          },
+          {
+            "topic": "Catetos em função de hipotenusa e ângulo",
+            "pageRef": 17
+          }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a17/s02",
+      "bizu": {
+        "summary": [
+          "**Valores notáveis** (decorar): sen 0° = 0, sen 30° = 1/2, sen 45° = √2/2, sen 60° = √3/2, sen 90° = 1; cos é o espelho: 1, √3/2, √2/2, 1/2, 0. **tan 30° = √3/3, tan 45° = 1, tan 60° = √3**, tan 0° = 0 e **tan 90° não existe** (cosseno zero).",
+          "**Origem**: 45° vem do triângulo retângulo isósceles (hipotenusa l√2); 30° e 60° vêm da altura do triângulo equilátero (h = l√3/2).",
+          "**Ciclo trigonométrico**: círculo de **raio 1** centrado na origem. Para o raio que forma o ângulo θ com o eixo x, o ponto é **(cos θ, sen θ)**: o cosseno é a projeção no eixo x e o seno, no eixo y.",
+          "**Orientação**: o sentido **positivo** é o anti-horário; ângulos negativos são medidos no sentido horário.",
+          "**Sinais por quadrante**: I (+,+); II: seno positivo e cosseno negativo; III: ambos negativos; IV: seno negativo e cosseno positivo. Fronteiras: 90°, 180° e 270°.",
+          "**Ângulos fora de 0°–360°**: descarte voltas completas (divida por 360° e fique com o resto). Ex.: 1935° = 5 voltas + 135°.",
+          "**Exemplos**: sen 135° = √2/2 e cos 135° = −√2/2; sen 240° = −√3/2 e cos 240° = −1/2; sen 330° = −1/2 e cos 330° = √3/2."
+        ],
+        "teoria": [
+          {
+            "statement": "No ciclo trigonométrico, o cosseno de um ângulo é a projeção do raio correspondente no eixo horizontal.",
+            "isTrue": true,
+            "explanation": "O ponto do ciclo tem coordenadas (cos θ, sen θ), por haver triângulo retângulo de hipotenusa 1."
+          },
+          {
+            "statement": "Um ângulo do terceiro quadrante tem seno positivo e cosseno negativo.",
+            "isTrue": false,
+            "explanation": "No terceiro quadrante x e y são negativos, então seno e cosseno são ambos negativos."
+          },
+          {
+            "statement": "A tangente de 90° vale 1.",
+            "isTrue": false,
+            "explanation": "cos 90° = 0, e a divisão por zero faz tan 90° não existir."
+          },
+          {
+            "statement": "O sentido positivo de medição dos ângulos no ciclo trigonométrico é o anti-horário.",
+            "isTrue": true,
+            "explanation": "Ângulos negativos são medidos no sentido horário."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "sen 30° = cos 60° = 1/2.",
+            "isTrue": true,
+            "explanation": "Valores notáveis; 30° e 60° são complementares."
+          },
+          {
+            "statement": "O seno de 1935° é igual ao seno de 135°, pois 1935° = 5·360° + 135°.",
+            "isTrue": true,
+            "explanation": "Voltas completas não alteram o ponto no ciclo; sen 135° = √2/2."
+          },
+          {
+            "statement": "cos 240° é igual a +1/2.",
+            "isTrue": false,
+            "explanation": "240° está no terceiro quadrante, onde o cosseno é negativo: cos 240° = −1/2."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Valores notáveis de seno, cosseno e tangente",
+            "pageRef": 18
+          },
+          {
+            "topic": "Dedução dos valores de 30°, 45° e 60°",
+            "pageRef": 19
+          },
+          {
+            "topic": "Definição do ciclo trigonométrico",
+            "pageRef": 21
+          },
+          {
+            "topic": "Ângulos positivos e negativos",
+            "pageRef": 23
+          },
+          {
+            "topic": "Sinais por quadrante e voltas completas",
+            "pageRef": 28
+          }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a17/s03",
+      "bizu": {
+        "summary": [
+          "**Redução ao 1º quadrante**: dado y entre 0° e 360°, encontre x no 1º quadrante com o mesmo módulo de seno e cosseno. **II quadrante**: y = 180° − x; **III**: y = 180° + x; **IV**: y = 360° − x.",
+          "**Se y estiver fora de 0°–360°**, retire as voltas completas antes de reduzir.",
+          "**Método prático em 4 passos**: (1) identificar o quadrante; (2) reduzir ao 1º quadrante; (3) calcular seno/cosseno do ângulo reduzido; (4) aplicar o **sinal** do quadrante original.",
+          "**Pegadinha clássica**: ângulos em radianos como 5π/6 ou 13π/6. Reduza-os do mesmo modo (π − x, π + x, 2π − x) e some ou subtraia múltiplos de 2π.",
+          "**Tangente no ciclo**: é o valor lido no eixo das tangentes (reta vertical tangente em x = 1). É **positiva** nos quadrantes I e III e **negativa** em II e IV. Aplica-se também a redução ao 1º quadrante.",
+          "**Cotangente, secante e cossecante**: **cotg = cos/sen = 1/tan**; **sec = 1/cos**; **cossec = 1/sen**.",
+          "**Simplificações típicas**: tan·cotg = 1; tan θ · cotg θ / cos θ = sec θ."
+        ],
+        "teoria": [
+          {
+            "statement": "Para um ângulo y do terceiro quadrante, o correspondente x do primeiro quadrante satisfaz y = 180° + x.",
+            "isTrue": true,
+            "explanation": "No terceiro quadrante o ângulo excede 180° pelo valor de x."
+          },
+          {
+            "statement": "A tangente é negativa nos quadrantes I e III.",
+            "isTrue": false,
+            "explanation": "A tangente é positiva em I e III e negativa em II e IV."
+          },
+          {
+            "statement": "A secante de um ângulo é o inverso do seno desse ângulo.",
+            "isTrue": false,
+            "explanation": "sec θ = 1/cos θ; o inverso do seno é a cossecante."
+          },
+          {
+            "statement": "Para obter o cosseno de 330°, reduz-se ao primeiro quadrante com x = 360° − 330° = 30° e mantém-se o sinal positivo.",
+            "isTrue": true,
+            "explanation": "No quarto quadrante o cosseno é positivo; logo cos 330° = cos 30° = √3/2."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "cos(5π/6) = −√3/2.",
+            "isTrue": true,
+            "explanation": "5π/6 está no segundo quadrante e se reduz a π/6; o cosseno é negativo nesse quadrante."
+          },
+          {
+            "statement": "A cotangente de um ângulo é igual ao inverso da sua tangente.",
+            "isTrue": true,
+            "explanation": "cotg θ = cos θ/sen θ = 1/tan θ."
+          },
+          {
+            "statement": "Para um ângulo do quarto quadrante, o correspondente do primeiro quadrante é y − 180°.",
+            "isTrue": false,
+            "explanation": "No quarto quadrante, y = 360° − x, ou seja, x = 360° − y."
+          },
+          {
+            "statement": "tan 1665° tem o mesmo valor que tan 45°.",
+            "isTrue": true,
+            "explanation": "1665° = 4 voltas + 225°; 225° reduz-se a 45° no terceiro quadrante, onde a tangente é positiva."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Redução ao primeiro quadrante",
+            "pageRef": 30
+          },
+          {
+            "topic": "Voltas completas e arcos em radianos",
+            "pageRef": 32
+          },
+          {
+            "topic": "Método prático (4 passos)",
+            "pageRef": 35
+          },
+          {
+            "topic": "Tangente no ciclo trigonométrico",
+            "pageRef": 40
+          },
+          {
+            "topic": "Cotangente, secante e cossecante",
+            "pageRef": 43
+          }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a17/s04",
+      "bizu": {
+        "summary": [
+          "**Lei dos cossenos**: a² = b² + c² − 2bc·cos Â (e permutações). Dá um lado conhecendo os outros dois e o ângulo entre eles. Para Â = 90° recai em Pitágoras; para ângulos obtusos o cosseno é negativo e o termo soma.",
+          "**Lei dos senos**: a/sen Â = b/sen B̂ = c/sen Ĉ. Relaciona cada lado ao seno do ângulo oposto.",
+          "**Área do paralelogramo**: A = a·b·sen α (dois lados consecutivos e o ângulo entre eles).",
+          "**Área do triângulo**: A = (1/2)·a·b·sen α, dados dois lados e o ângulo entre eles.",
+          "**Cofunção**: sen θ = cos(90° − θ); cos θ = sen(90° − θ); tan θ = cotg(90° − θ). Em radianos, 90° é π/2. Para ângulos que somam 90°, o seno de um é o cosseno do outro.",
+          "**Paridade**: **seno é ímpar** (sen(−θ) = −sen θ); **cosseno é par** (cos(−θ) = cos θ); tangente e cotangente são ímpares.",
+          "**Relação fundamental**: **sen²θ + cos²θ = 1**. Daí cos θ = ± √(1 − sen²θ), com o sinal definido pelo quadrante. Também: **tan²θ + 1 = sec²θ** e **cotg²θ + 1 = cossec²θ**.",
+          "**Truque clássico**: dada sen x − cos x = k, eleve ao quadrado e use a relação fundamental para obter sen x · cos x = (1 − k²)/2."
+        ],
+        "teoria": [
+          {
+            "statement": "Na lei dos cossenos, a² = b² + c² − 2bc·cos Â, o ângulo Â é o oposto ao lado a.",
+            "isTrue": true,
+            "explanation": "O lado calculado é sempre o oposto ao ângulo cujo cosseno aparece."
+          },
+          {
+            "statement": "A função seno é par, pois sen(−θ) = sen θ.",
+            "isTrue": false,
+            "explanation": "O seno é ímpar: sen(−θ) = −sen θ. É o cosseno que é par."
+          },
+          {
+            "statement": "A área de um triângulo com dois lados a e b e ângulo α entre eles é (1/2)·a·b·sen α.",
+            "isTrue": true,
+            "explanation": "Equivale a base × altura / 2, com altura b·sen α."
+          },
+          {
+            "statement": "Para qualquer ângulo θ, sen θ = cos(90° − θ).",
+            "isTrue": true,
+            "explanation": "É a identidade da cofunção."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Se sen x = 1/3 e x está no segundo quadrante, então cos x = −2√2/3.",
+            "isTrue": true,
+            "explanation": "cos² x = 1 − 1/9 = 8/9; no segundo quadrante o cosseno é negativo."
+          },
+          {
+            "statement": "A lei dos senos afirma que a/sen Â = b/sen B̂ = c/sen Ĉ.",
+            "isTrue": true,
+            "explanation": "Cada lado dividido pelo seno do ângulo oposto dá a mesma constante."
+          },
+          {
+            "statement": "A identidade tan²θ + 1 = cossec²θ é válida para todo θ em que as funções existem.",
+            "isTrue": false,
+            "explanation": "A identidade correta é tan²θ + 1 = sec²θ; cotg²θ + 1 = cossec²θ."
+          },
+          {
+            "statement": "A área de um paralelogramo de lados 20 m e 30 m com ângulo de 120° entre eles é 300√3 m².",
+            "isTrue": true,
+            "explanation": "A = 20·30·sen 120° = 600·(√3/2) = 300√3."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Lei dos cossenos",
+            "pageRef": 44
+          },
+          {
+            "topic": "Lei dos senos",
+            "pageRef": 46
+          },
+          {
+            "topic": "Áreas do paralelogramo e do triângulo",
+            "pageRef": 47
+          },
+          {
+            "topic": "Identidades da cofunção",
+            "pageRef": 49
+          },
+          {
+            "topic": "Identidades par/ímpar",
+            "pageRef": 53
+          },
+          {
+            "topic": "Identidades pitagóricas",
+            "pageRef": 56
+          }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a17/s05",
+      "bizu": {
+        "summary": [
+          "**Soma**: sen(a + b) = sen a·cos b + sen b·cos a; **cos(a + b) = cos a·cos b − sen a·sen b**; tan(a + b) = (tan a + tan b)/(1 − tan a·tan b).",
+          "**Diferença** (troque b por −b): sen(a − b) = sen a·cos b − sen b·cos a; **cos(a − b) = cos a·cos b + sen a·sen b**; tan(a − b) = (tan a − tan b)/(1 + tan a·tan b). Note a **inversão de sinal no cosseno**.",
+          "**Arco duplo** (a = b = θ): **sen 2θ = 2·sen θ·cos θ**; **cos 2θ = cos²θ − sen²θ = 2cos²θ − 1 = 1 − 2sen²θ**; tan 2θ = 2tan θ/(1 − tan²θ).",
+          "**Arco metade**: sen(θ/2) = ±√[(1 − cos θ)/2]; cos(θ/2) = ±√[(1 + cos θ)/2]; tan(θ/2) = ±√[(1 − cos θ)/(1 + cos θ)]. O sinal depende do quadrante de θ/2. Baixa incidência em provas.",
+          "**Transformação da soma em produto**: sen A + sen B = 2·sen[(A+B)/2]·cos[(A−B)/2]; sen A − sen B = 2·sen[(A−B)/2]·cos[(A+B)/2]; cos A + cos B = 2·cos[(A+B)/2]·cos[(A−B)/2]; cos A − cos B = −2·sen[(A+B)/2]·sen[(A−B)/2]. Incidência muito baixa.",
+          "**Dica de prova**: em expressões do tipo (sen a + cos a)(sen b + cos b), reagrupe para reconhecer cos(a − b) e sen(a + b).",
+          "**Atenção**: sen(a + b) **não** é sen a + sen b; e cos 2θ **não** é 2·cos θ."
+        ],
+        "teoria": [
+          {
+            "statement": "cos(a + b) = cos a·cos b − sen a·sen b.",
+            "isTrue": true,
+            "explanation": "É a identidade do cosseno da soma, em que os produtos entram com sinal negativo."
+          },
+          {
+            "statement": "sen 2θ = 2·sen θ, para qualquer θ.",
+            "isTrue": false,
+            "explanation": "A identidade correta é sen 2θ = 2·sen θ·cos θ."
+          },
+          {
+            "statement": "cos 2θ pode ser escrito como 1 − 2·sen²θ.",
+            "isTrue": true,
+            "explanation": "Combinando cos2θ = cos²θ − sen²θ com cos²θ = 1 − sen²θ."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Na identidade do cosseno da diferença de dois arcos, os produtos cos a·cos b e sen a·sen b aparecem somados.",
+            "isTrue": true,
+            "explanation": "Ao trocar b por −b, o sinal do termo com senos muda: cos(a − b) = cos a·cos b + sen a·sen b."
+          },
+          {
+            "statement": "sen(a + b) = sen a + sen b.",
+            "isTrue": false,
+            "explanation": "A forma correta é sen a·cos b + sen b·cos a."
+          },
+          {
+            "statement": "Se sen k = 1/√5 com k no primeiro quadrante, então cos k = 2/√5 e sen 2k = 4/5.",
+            "isTrue": true,
+            "explanation": "cos² k = 1 − 1/5 = 4/5; sen 2k = 2·(1/√5)·(2/√5) = 4/5."
+          },
+          {
+            "statement": "A tangente de (a − b) é (tan a − tan b)/(1 − tan a·tan b).",
+            "isTrue": false,
+            "explanation": "Na diferença, o denominador é 1 + tan a·tan b."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Soma e subtração de arcos",
+            "pageRef": 60
+          },
+          {
+            "topic": "Arco duplo",
+            "pageRef": 64
+          },
+          {
+            "topic": "Cos 2θ nas três formas",
+            "pageRef": 65
+          },
+          {
+            "topic": "Arco metade",
+            "pageRef": 68
+          },
+          {
+            "topic": "Soma em produto",
+            "pageRef": 71
+          }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a17/s06",
+      "bizu": {
+        "summary": [
+          "**Equações trigonométricas** costumam ser reduzidas, com identidades, a um de três modelos: sen α = sen β, cos α = cos β ou tg α = tg β.",
+          "**Equação sen α = sen β**: na primeira volta há dois arcos de mesmo seno, **congruentes** (α = β) ou **suplementares** (α = π − β). Solução geral: **α = β + 2kπ** ou **α = π − β + 2kπ**, com k inteiro.",
+          "**Procedimento**: escreva o lado direito como seno de um arco notável (ex.: 1/2 = sen π/6) e aplique as duas famílias de soluções.",
+          "**Quando o argumento é múltiplo** (sen 2x = ...), resolva para 2x e **divida tudo por 2**, inclusive o 2kπ (que vira kπ).",
+          "**Equação com cos² ou mistura de funções**: use cos²x = 1 − sen²x para ter só seno, resolva a equação do 2º grau em sen x e depois use sen α = sen β.",
+          "**Intervalo restrito**: depois de escrever a solução geral, **atribua valores a k** e mantenha só as soluções dentro do intervalo pedido. Ex.: sen x = 1/2 em (0, 2π] → π/6 e 5π/6, soma π.",
+          "**Cuidado**: soluções do tipo x = x₀ + 2kπ e x = π − x₀ + 2kπ são **duas séries** distintas, e esquecer a segunda é erro comum."
+        ],
+        "teoria": [
+          {
+            "statement": "As soluções de sen α = sen β são α = β + 2kπ ou α = π − β + 2kπ, com k inteiro.",
+            "isTrue": true,
+            "explanation": "Na primeira volta os arcos de mesmo seno são congruentes ou suplementares; soma-se 2kπ para as demais voltas."
+          },
+          {
+            "statement": "A equação sen x = 1/2 tem uma única solução em [0, 2π].",
+            "isTrue": false,
+            "explanation": "Há duas: π/6 e 5π/6, pois o seno é positivo no primeiro e no segundo quadrantes."
+          },
+          {
+            "statement": "Ao resolver sen 2x = sen π/7, divide-se por 2 inclusive o termo 2kπ, que se torna kπ.",
+            "isTrue": true,
+            "explanation": "Isolar x exige dividir toda a solução geral por 2."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Se sen x = sen β, os arcos x = β e x = π − β têm o mesmo seno.",
+            "isTrue": true,
+            "explanation": "Arcos suplementares possuem o mesmo seno."
+          },
+          {
+            "statement": "A soma das raízes de sen x = 1/2 no intervalo [0, 2π] é π.",
+            "isTrue": true,
+            "explanation": "π/6 + 5π/6 = π."
+          },
+          {
+            "statement": "A solução de sen x = sen β é apenas x = β + 2kπ.",
+            "isTrue": false,
+            "explanation": "Falta a série x = π − β + 2kπ."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Os três modelos de equação",
+            "pageRef": 75
+          },
+          {
+            "topic": "Solução geral de sen α = sen β",
+            "pageRef": 76
+          },
+          {
+            "topic": "Argumento múltiplo (sen 2x)",
+            "pageRef": 77
+          },
+          {
+            "topic": "Equação reduzida a seno (2cos²x = 1 − sen x)",
+            "pageRef": 78
+          },
+          {
+            "topic": "Soluções em um intervalo",
+            "pageRef": 80
+          }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a17/s07",
+      "bizu": {
+        "summary": [
+          "**Equação cos α = cos β**: na primeira volta, os arcos de mesmo cosseno são **congruentes** (α = β) ou **replementares** (α = 2π − β). Solução geral: **α = ± β + 2kπ**, k inteiro.",
+          "**Exemplos**: cos x = cos π/4 → x = ± π/4 + 2kπ. Para cos 2x = cos π/4, resulta 2x = ± π/4 + 2kπ e **x = ± π/8 + kπ**.",
+          "**Equações com cos²**: 4cos²2x = 2 → cos 2x = ± √2/2; trate cada sinal separadamente e una as soluções.",
+          "**Cosseno a partir de seno**: use a cofunção, sen θ = cos(π/2 − θ), para chegar a cos α = cos β.",
+          "**Equação tg α = tg β**: os arcos de mesma tangente diferem por múltiplos de π. Solução geral: **α = β + kπ**, k inteiro (o período da tangente é π).",
+          "**Exemplo**: tg 2x = √3 → 2x = π/3 + kπ → x = π/6 + kπ/2.",
+          "**Equação sen²x = cos²x**: divida por cos²x (cos x ≠ 0) para obter tg²x = 1, ou seja, tg x = 1 ou tg x = −1; as soluções são x = π/4 + kπ ou x = 3π/4 + kπ."
+        ],
+        "teoria": [
+          {
+            "statement": "As soluções de cos α = cos β são α = ± β + 2kπ, k inteiro.",
+            "isTrue": true,
+            "explanation": "Arcos de mesmo cosseno são congruentes ou replementares (simétricos em relação ao eixo x)."
+          },
+          {
+            "statement": "A solução geral de tg α = tg β é α = β + 2kπ.",
+            "isTrue": false,
+            "explanation": "A tangente tem período π, então a solução geral é α = β + kπ."
+          },
+          {
+            "statement": "Para resolver cos 2x = cos π/4, obtém-se x = ± π/8 + kπ.",
+            "isTrue": true,
+            "explanation": "2x = ± π/4 + 2kπ; dividindo por 2, x = ± π/8 + kπ."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A equação sen²x = cos²x equivale a tg x = 1 ou tg x = −1.",
+            "isTrue": true,
+            "explanation": "Dividindo por cos²x, tem-se tg²x = 1."
+          },
+          {
+            "statement": "Os arcos que possuem o mesmo cosseno são suplementares (α = π − β).",
+            "isTrue": false,
+            "explanation": "Suplementares têm o mesmo seno. Para o mesmo cosseno, os arcos são congruentes ou replementares (2π − β)."
+          },
+          {
+            "statement": "A equação tg 2x = √3 tem solução x = π/6 + kπ/2, k inteiro.",
+            "isTrue": true,
+            "explanation": "tg π/3 = √3; 2x = π/3 + kπ dá x = π/6 + kπ/2."
+          },
+          {
+            "statement": "Em tg x = √3, as soluções x = π/3 + kπ incluem tanto ângulos do 1º quanto do 3º quadrante.",
+            "isTrue": true,
+            "explanation": "A tangente é positiva em I e III, e a série com período π os contempla."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Equação cos α = cos β",
+            "pageRef": 82
+          },
+          {
+            "topic": "Equações com cos 2x e cos²",
+            "pageRef": 84
+          },
+          {
+            "topic": "Soluções em intervalo (cosseno)",
+            "pageRef": 87
+          },
+          {
+            "topic": "Equação tg α = tg β",
+            "pageRef": 88
+          },
+          {
+            "topic": "Equações que se reduzem a tangente",
+            "pageRef": 91
+          }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a17/s08",
+      "bizu": {
+        "summary": [
+          "**Seis modelos de inequação**: sen x > a, sen x < a, cos x > a, cos x < a, tg x > a e tg x < a (a real). Lembre que −1 ≤ sen x ≤ 1 e −1 ≤ cos x ≤ 1.",
+          "**Método**: desenhe o ciclo, marque a no **eixo dos senos** e trace a reta horizontal; ela corta o ciclo em dois pontos. Os arcos pedidos formam o trecho do ciclo **acima** (sen x > a) ou **abaixo** (sen x < a) dessa reta.",
+          "**sen x > √2/2** (1ª volta): **π/4 < x < 3π/4**. Na solução geral, some 2kπ nos dois extremos.",
+          "**sen x ≥ a** inclui os extremos (desigualdade ≤ nos limites); com \"maior que\" os extremos ficam fora.",
+          "**sen x < √3/2** (1ª volta): 0 ≤ x < π/3 ou 2π/3 < x ≤ 2π. O intervalo se parte em duas faixas quando a região fica abaixo da reta.",
+          "**Argumento ou expressão composta**: isole o seno (2 sen x − 1 > 0 → sen x > 1/2 → π/6 + 2kπ < x < 5π/6 + 2kπ).",
+          "**Inequação com sen²x < 3/4**: vira −√3/2 < sen x < √3/2; resolva as duas condições e tome a **interseção** no ciclo."
+        ],
+        "teoria": [
+          {
+            "statement": "Na primeira volta, a solução de sen x > √2/2 é π/4 < x < 3π/4.",
+            "isTrue": true,
+            "explanation": "Entre os arcos π/4 e 3π/4 o seno supera √2/2."
+          },
+          {
+            "statement": "Para resolver sen x > a, representa-se a no eixo dos cossenos do ciclo trigonométrico.",
+            "isTrue": false,
+            "explanation": "O valor a deve ser marcado no eixo dos senos (vertical)."
+          },
+          {
+            "statement": "Se a desigualdade é sen x ≥ a, os arcos em que sen x = a pertencem à solução.",
+            "isTrue": true,
+            "explanation": "O sinal ≥ inclui a igualdade, portanto os extremos entram no conjunto."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A inequação 2 sen x − 1 > 0 tem solução π/6 + 2kπ < x < 5π/6 + 2kπ, com k inteiro.",
+            "isTrue": true,
+            "explanation": "Equivale a sen x > 1/2, cujos arcos de fronteira são π/6 e 5π/6."
+          },
+          {
+            "statement": "Em 0 ≤ x ≤ 2π, a solução de sen x < √3/2 é um único intervalo.",
+            "isTrue": false,
+            "explanation": "São duas faixas: 0 ≤ x < π/3 e 2π/3 < x ≤ 2π."
+          },
+          {
+            "statement": "A inequação sen²x < 3/4 equivale a −√3/2 < sen x < √3/2.",
+            "isTrue": true,
+            "explanation": "|sen x| < √3/2 resulta nas duas condições simultâneas."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Os seis modelos de inequação",
+            "pageRef": 95
+          },
+          {
+            "topic": "sen x > a: método do ciclo",
+            "pageRef": 96
+          },
+          {
+            "topic": "Inequação 2 sen x − 1 > 0",
+            "pageRef": 99
+          },
+          {
+            "topic": "sen x < a",
+            "pageRef": 100
+          },
+          {
+            "topic": "sen²x < 3/4 (interseção de condições)",
+            "pageRef": 103
+          }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a17/s09",
+      "bizu": {
+        "summary": [
+          "**Método para cos x > a**: marque a no **eixo dos cossenos** (horizontal) e trace a vertical por esse ponto; ela corta o ciclo em dois pontos. Os arcos à **direita** da reta têm cosseno maior que a; à **esquerda**, menor.",
+          "**cos x > 1/2** (1ª volta): **0 ≤ x < π/3 ou 5π/3 < x ≤ 2π**. Na forma geral: −π/3 + 2kπ < x < π/3 + 2kπ.",
+          "**cos x < √2/2**: **π/4 < x < 7π/4** (1ª volta), mais 2kπ nos extremos.",
+          "**Desigualdade não estrita** (≥, ≤) inclui os extremos.",
+          "**Argumento múltiplo**: em 2cos 2x > 1, faça y = 2x; resolva cos y > 1/2 e volte a x dividindo por 2 (inclusive 2kπ → kπ). Depois restrinja o intervalo atribuindo valores a k.",
+          "**Cos x ≤ −√2/2 ou cos x ≥ √2/2** (cos²x ≥ 1/2): as duas faixas se juntam na forma compacta −π/4 + kπ ≤ x ≤ π/4 + kπ.",
+          "**Dica**: a cada faixa de solução do cosseno há uma simétrica em relação ao eixo x; conferir um ponto de teste evita trocar o lado da desigualdade."
+        ],
+        "teoria": [
+          {
+            "statement": "Na primeira volta, a solução de cos x > 1/2 é 0 ≤ x < π/3 ou 5π/3 < x ≤ 2π.",
+            "isTrue": true,
+            "explanation": "O cosseno só supera 1/2 perto do eixo x positivo, entre −π/3 e π/3."
+          },
+          {
+            "statement": "No ciclo, os arcos com cosseno maior que a ficam à esquerda da reta vertical traçada por a no eixo dos cossenos.",
+            "isTrue": false,
+            "explanation": "Cosseno maior significa x maior, isto é, os arcos à direita da reta."
+          },
+          {
+            "statement": "A solução de cos x < √2/2 na primeira volta é π/4 < x < 7π/4.",
+            "isTrue": true,
+            "explanation": "Os arcos de cosseno √2/2 são π/4 e 7π/4; entre eles o cosseno é menor."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Na inequação 2cos 2x > 1, depois de resolver cos y > 1/2 com y = 2x, deve-se dividir os extremos e o termo 2kπ por 2.",
+            "isTrue": true,
+            "explanation": "Isso leva a −π/6 + kπ < x < π/6 + kπ."
+          },
+          {
+            "statement": "A solução de cos²x ≥ 1/2 pode ser escrita como −π/4 + kπ ≤ x ≤ π/4 + kπ.",
+            "isTrue": true,
+            "explanation": "Reúne as faixas de cos x ≥ √2/2 e cos x ≤ −√2/2, que se repetem a cada π."
+          },
+          {
+            "statement": "Em cos x ≤ 1/2, os arcos em que cos x = 1/2 não fazem parte da solução.",
+            "isTrue": false,
+            "explanation": "Como o sinal é ≤, a igualdade pertence à solução."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "cos x > a: método do ciclo",
+            "pageRef": 105
+          },
+          {
+            "topic": "Solução geral de cos x > 1/2",
+            "pageRef": 107
+          },
+          {
+            "topic": "Argumento múltiplo (2cos 2x > 1)",
+            "pageRef": 109
+          },
+          {
+            "topic": "cos x < a",
+            "pageRef": 111
+          },
+          {
+            "topic": "cos²x ≥ 1/2 e forma compacta",
+            "pageRef": 114
+          }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a17/s10",
+      "bizu": {
+        "summary": [
+          "**Método para tg x > a**: marque a no **eixo das tangentes** (reta vertical tangente ao ciclo em x = 1); o prolongamento do raio até essa reta dá o valor da tangente. Dois arcos têm tangente a (diferentes por π).",
+          "**tg x > √3/3** (1ª volta): π/6 < x < π/2 ou 7π/6 < x < 3π/2. Como o período é π, as duas faixas resumem-se em **π/6 + kπ < x < π/2 + kπ**.",
+          "**tg x ≥ a** inclui o arco de tangente a, mas **nunca** inclui π/2 + kπ, onde a tangente não existe.",
+          "**tg x > 1**: π/4 + kπ < x < π/2 + kπ.",
+          "**tg x < a**: faixas à esquerda do arco fronteira, até −π/2 + kπ. Para tg x < 1: **−π/2 + kπ < x < π/4 + kπ**.",
+          "**tg x ≤ 0**: −π/2 + kπ < x ≤ kπ (de modo equivalente, π/2 + kπ < x ≤ π + kπ). Os valores π/2 + kπ ficam sempre fora.",
+          "**Conferência**: use um ponto de teste (por exemplo, x = 0 em tg x < 1) para verificar o lado correto da desigualdade."
+        ],
+        "teoria": [
+          {
+            "statement": "A solução geral de tg x > √3/3 pode ser escrita como π/6 + kπ < x < π/2 + kπ, com k inteiro.",
+            "isTrue": true,
+            "explanation": "Como o período da tangente é π, as duas faixas da volta completa se reduzem a uma só expressão."
+          },
+          {
+            "statement": "Em uma inequação do tipo tg x ≥ a, o valor x = π/2 + kπ pertence à solução.",
+            "isTrue": false,
+            "explanation": "A tangente não é definida em π/2 + kπ; esses valores nunca entram na solução."
+          },
+          {
+            "statement": "A tangente de um arco é lida no eixo das tangentes, reta vertical tangente ao ciclo no ponto (1, 0).",
+            "isTrue": true,
+            "explanation": "É o prolongamento do raio até essa reta que representa o valor de tg x."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A solução de tg x < 1 é −π/2 + kπ < x < π/4 + kπ.",
+            "isTrue": true,
+            "explanation": "Entre −π/2 e π/4 a tangente é menor que 1, e o padrão se repete a cada π."
+          },
+          {
+            "statement": "A inequação tg x > 1 tem como solução π/4 + 2kπ < x < π/2 + 2kπ.",
+            "isTrue": false,
+            "explanation": "O período da tangente é π, e a solução geral é π/4 + kπ < x < π/2 + kπ."
+          },
+          {
+            "statement": "A tangente é negativa em x tal que π/2 + kπ < x < π + kπ.",
+            "isTrue": true,
+            "explanation": "Esses arcos estão nos quadrantes II (e IV, ao somar π), onde tg < 0."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "tg x > a: eixo das tangentes",
+            "pageRef": 116
+          },
+          {
+            "topic": "Solução tg x > √3/3 e forma resumida",
+            "pageRef": 119
+          },
+          {
+            "topic": "tg x > 1",
+            "pageRef": 120
+          },
+          {
+            "topic": "tg x < a",
+            "pageRef": 121
+          },
+          {
+            "topic": "tg x ≤ 0 e exclusão de π/2 + kπ",
+            "pageRef": 123
+          }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a17/s11",
+      "bizu": {
+        "summary": [
+          "**Função seno**: f(x) = sen x, domínio ℝ, **imagem [−1, 1]**, **período 2π**, função **ímpar**. Vale 0 em 0, π e 2π, 1 em π/2 e −1 em 3π/2.",
+          "**Função cosseno**: imagem [−1, 1], período 2π, função **par**. Vale 1 em 0 e 2π, 0 em π/2 e 3π/2 e −1 em π.",
+          "**Função tangente**: domínio ℝ **exceto x = π/2 + kπ**, imagem ℝ, **período π**, função ímpar. Cuidado: seu domínio não é ℝ e sua imagem não é [−1, 1].",
+          "**Forma geral**: f(x) = **a**·sen(**b**x + **c**) + **d** (ou com cos). **a** altera a **amplitude** (= |a|), **b** altera o **período**, **c** é a translação **horizontal** e **d** é a translação **vertical**.",
+          "**Período** de a·sen(bx + c) + d: **p = 2π/|b|**. Dobrar b reduz o período à metade.",
+          "**Translação horizontal**: sen(x − π/4) desloca o gráfico π/4 para a direita; cos(x + π/4), π/4 para a esquerda. Em cos(2x − π/2) = cos[2(x − π/4)], o deslocamento é **π/4**, não π/2: fatore o b.",
+          "**Translação vertical**: d > 0 sobe, d < 0 desce. **d é a média** entre o valor máximo e o mínimo; a amplitude é metade da diferença entre máximo e mínimo.",
+          "**Valores extremos**: em f(x) = −4cos(x − π/2) + 1, máx. = 5 e mín. = −3, amplitude 4."
+        ],
+        "teoria": [
+          {
+            "statement": "A função tangente tem período π e domínio formado pelos reais x ≠ π/2 + kπ.",
+            "isTrue": true,
+            "explanation": "A tangente repete-se a cada π e não existe onde o cosseno é zero."
+          },
+          {
+            "statement": "A imagem da função tangente é o intervalo [−1, 1].",
+            "isTrue": false,
+            "explanation": "A imagem da tangente é todo o conjunto dos reais; [−1, 1] é a imagem do seno e do cosseno."
+          },
+          {
+            "statement": "Em f(x) = a·sen(bx + c) + d, o período é 2π/|b|.",
+            "isTrue": true,
+            "explanation": "O coeficiente b comprime ou estica o gráfico horizontalmente."
+          },
+          {
+            "statement": "A função cosseno é ímpar, pois cos(−x) = −cos x.",
+            "isTrue": false,
+            "explanation": "O cosseno é par: cos(−x) = cos x."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Em f(x) = 3·sen(2x) + 1, a amplitude é 3 e o período é π.",
+            "isTrue": true,
+            "explanation": "Amplitude = |a| = 3; período = 2π/2 = π."
+          },
+          {
+            "statement": "O gráfico de cos(2x − π/2) é o de cos 2x deslocado π/2 para a direita.",
+            "isTrue": false,
+            "explanation": "Fatorando, cos[2(x − π/4)]: o deslocamento é π/4 para a direita."
+          },
+          {
+            "statement": "O coeficiente d de f(x) = a·sen(bx + c) + d é a média entre o valor máximo e o mínimo da função.",
+            "isTrue": true,
+            "explanation": "O gráfico oscila simetricamente em torno da reta y = d."
+          },
+          {
+            "statement": "Em f(x) = −4cos(x − π/2) + 1, os valores máximo e mínimo são 5 e −3.",
+            "isTrue": true,
+            "explanation": "O cosseno varia entre −1 e 1; −4·(−1) + 1 = 5 e −4·1 + 1 = −3."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Função seno e período",
+            "pageRef": 128
+          },
+          {
+            "topic": "Função cosseno",
+            "pageRef": 129
+          },
+          {
+            "topic": "Função tangente: domínio e período",
+            "pageRef": 131
+          },
+          {
+            "topic": "Amplitude",
+            "pageRef": 134
+          },
+          {
+            "topic": "Alteração do período",
+            "pageRef": 136
+          },
+          {
+            "topic": "Translação horizontal",
+            "pageRef": 137
+          },
+          {
+            "topic": "Translação vertical",
+            "pageRef": 139
+          }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a17/s12",
+      "bizu": {
+        "summary": [
+          "**Frequência** de a·sen(bx + c) + d é o **inverso do período**: F = 1/p = |b|/(2π). Se o período está em segundos, a frequência está em **hertz (Hz)**. Ex.: S(t) = S₀·sen(80πt) tem período 1/40 s e frequência 40 Hz.",
+          "**Valores máximo e mínimo** de a·sen(bx + c) + d: **d + |a|** e **d − |a|**. O valor mínimo do seno e do cosseno é −1 e o máximo, +1 (em um domínio restrito, avalie os extremos do intervalo).",
+          "**Expressões quadráticas em seno**: em 4sen²x + 12 sen x + 9 = (2 sen x + 3)², o máximo ocorre com sen x = 1 (valor 25).",
+          "**Combinação A·sen x + B·cos x**: tem máximo **√(A² + B²)** e mínimo **−√(A² + B²)**. Ex.: sen x + 2√2·cos x varia até 3.",
+          "**Funções inversas**: seno, cosseno e tangente, como definidas em ℝ, não são injetoras nem sobrejetoras, então as inversas usam domínios restritos.",
+          "**arcsen**: [−1, 1] → [−π/2, π/2] (\"o arco cujo seno é x\"). **arccos**: [−1, 1] → [0, π]. **arctg**: ℝ → ]−π/2, π/2[ (intervalo aberto).",
+          "**Atenção ao contradomínio**: arcsen(1/2) = π/6 (e não 5π/6); arccos(−1/2) = 2π/3, sempre dentro do intervalo da função inversa."
+        ],
+        "teoria": [
+          {
+            "statement": "A frequência de uma função trigonométrica periódica é o inverso do seu período.",
+            "isTrue": true,
+            "explanation": "F = 1/p; com p em segundos, F é dada em hertz."
+          },
+          {
+            "statement": "O valor máximo de f(x) = A·sen x + B·cos x é A + B.",
+            "isTrue": false,
+            "explanation": "O máximo é √(A² + B²), alcançado quando o ângulo tem a fase adequada."
+          },
+          {
+            "statement": "A função arco-tangente tem domínio ℝ e imagem no intervalo aberto ]−π/2, π/2[.",
+            "isTrue": true,
+            "explanation": "Os extremos ±π/2 não são assumidos, pois a tangente não existe neles."
+          },
+          {
+            "statement": "O valor máximo de 3·sen(2x) + 1 é 4.",
+            "isTrue": true,
+            "explanation": "O máximo é d + |a| = 1 + 3."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A função arco-cosseno tem imagem [0, π].",
+            "isTrue": true,
+            "explanation": "É o intervalo escolhido para tornar o cosseno injetor e inversível."
+          },
+          {
+            "statement": "A função S(t) = S₀·sen(80πt), com t em segundos, tem frequência de 80 Hz.",
+            "isTrue": false,
+            "explanation": "O período é 2π/80π = 1/40 s, então F = 40 Hz."
+          },
+          {
+            "statement": "O valor máximo de sen x + 2√2·cos x é 3.",
+            "isTrue": true,
+            "explanation": "√(1² + (2√2)²) = √9 = 3."
+          },
+          {
+            "statement": "arcsen(1/2) pode ser tanto π/6 quanto 5π/6, porque ambos têm seno 1/2.",
+            "isTrue": false,
+            "explanation": "A função arcsen devolve um único valor, dentro de [−π/2, π/2]: π/6."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Frequência e hertz",
+            "pageRef": 144
+          },
+          {
+            "topic": "Valores máximo e mínimo",
+            "pageRef": 145
+          },
+          {
+            "topic": "A·sen x + B·cos x",
+            "pageRef": 147
+          },
+          {
+            "topic": "Função arco-seno",
+            "pageRef": 148
+          },
+          {
+            "topic": "Arco-cosseno e arco-tangente",
+            "pageRef": 149
+          }
+        ]
+      }
+    }
+  ]
+}

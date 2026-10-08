@@ -1,0 +1,336 @@
+{
+  "aula": "matematica/a16",
+  "batch": "w2-bizu-matematica",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "matematica/a16/s01",
+      "bizu": {
+        "summary": [
+          "**Poliedro**: sólido limitado por um número finito de **polígonos** (faces). **Face** = polígono; **aresta** = encontro de duas faces (segmento entre dois vértices); **vértice** = ponto onde as arestas se encontram. Exemplo: o cubo possui **6 faces, 12 arestas e 8 vértices**, valores que são pedidos com frequência.",
+          "**Poliedro convexo**: qualquer segmento com extremos em suas faces fica inteiramente dentro dele. O estudo da aula concentra-se nos convexos.",
+          "**Relação de Euler** (poliedro convexo): **V + F = A + 2**. Serve para achar o elemento que falta: com 6 faces e 6 vértices, A = 10; com V = 6 e A = 12, F = 8.",
+          "**Poliedros de Platão**: todas as faces têm o mesmo número de arestas, de cada vértice parte o mesmo número de arestas e vale Euler (são convexos). Existem só cinco: **tetraedro (4 faces), hexaedro (6), octaedro (8), dodecaedro (12) e icosaedro (20)**.",
+          "**Poliedros regulares**: faces são polígonos regulares iguais. Todo regular é de Platão, mas **nem todo de Platão é regular**. Dados: tetraedro V = 4, A = 6; cubo V = 8, A = 12; octaedro V = 6, A = 12; dodecaedro V = 20, A = 30; icosaedro V = 12, A = 30.",
+          "**Prisma**: poliedro convexo com **duas bases paralelas** (polígonos iguais) e faces laterais em forma de **paralelogramos** (retângulos, se o prisma é reto). Nome vem da base (quadrangular, pentagonal…).",
+          "**Área total do prisma**: A = A_lateral + 2·A_base. **Volume**: **V = A_base · H**.",
+          "**Paralelepípedo** (dimensões a, b, c): **A = 2(ab + bc + ac)** e **V = abc**. **Cubo** (aresta a): **A = 6a²** e **V = a³**. Lembre-se: 1 m³ = 1000 litros."
+        ],
+        "teoria": [
+          {
+            "statement": "Em todo poliedro convexo, a soma do número de vértices com o de faces excede em duas unidades o número de arestas.",
+            "isTrue": true,
+            "explanation": "É a relação de Euler (V + F = A + 2); no cubo, 8 + 6 = 12 + 2."
+          },
+          {
+            "statement": "Um poliedro convexo com 6 vértices e 12 arestas tem 6 faces.",
+            "isTrue": false,
+            "explanation": "6 + F = 12 + 2 resulta em F = 8 (é o octaedro)."
+          },
+          {
+            "statement": "Existem exatamente cinco poliedros de Platão: tetraedro, hexaedro, octaedro, dodecaedro e icosaedro.",
+            "isTrue": true,
+            "explanation": "Esses são os únicos que cumprem as condições de Platão e têm 4, 6, 8, 12 e 20 faces."
+          },
+          {
+            "statement": "O volume de um paralelepípedo de dimensões a, b e c é 2(ab + bc + ac).",
+            "isTrue": false,
+            "explanation": "Essa é a área total; o volume é o produto abc."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Todo poliedro regular é um poliedro de Platão.",
+            "isTrue": true,
+            "explanation": "As faces regulares têm o mesmo número de arestas, de cada vértice partem arestas em igual quantidade e todo regular é convexo."
+          },
+          {
+            "statement": "A área total de um cubo de aresta a é 6a².",
+            "isTrue": true,
+            "explanation": "O cubo tem 6 faces quadradas de área a² cada."
+          },
+          {
+            "statement": "As faces laterais de um prisma são sempre triângulos.",
+            "isTrue": false,
+            "explanation": "No prisma as faces laterais são paralelogramos (retângulos, se o prisma é reto); triângulos são faces laterais de pirâmides."
+          },
+          {
+            "statement": "O volume de qualquer prisma é o produto da área da base pela altura.",
+            "isTrue": true,
+            "explanation": "V = A_base · H, valendo para qualquer polígono na base."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Elementos do poliedro: face, aresta, vértice",
+            "pageRef": 4
+          },
+          {
+            "topic": "Relação de Euler",
+            "pageRef": 6
+          },
+          {
+            "topic": "Poliedros de Platão",
+            "pageRef": 7
+          },
+          {
+            "topic": "Poliedros regulares",
+            "pageRef": 9
+          },
+          {
+            "topic": "Prisma e áreas",
+            "pageRef": 12
+          },
+          {
+            "topic": "Volume do prisma e do paralelepípedo",
+            "pageRef": 16
+          }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a16/s02",
+      "bizu": {
+        "summary": [
+          "**Princípio de Cavalieri**: dois sólidos, de mesma altura, em que todo plano paralelo a um plano dado produz **seções de áreas iguais**, têm **volumes iguais**. Vale para qualquer sólido, não só para prismas.",
+          "**Pirâmide**: poliedro com **uma única base** (polígono) e faces laterais **triangulares** que se encontram no vértice da pirâmide.",
+          "**Área total da pirâmide**: A = A_lateral + A_base (sem multiplicar a base por 2, ao contrário do prisma).",
+          "**Volume da pirâmide**: **V = A_base · H / 3**. A divisão por 3 é a diferença para o prisma: uma pirâmide ocupa um terço do prisma de mesma base e altura.",
+          "**Pirâmide regular de base hexagonal**: base com área 3L²√3/2; para a área lateral, ache a altura da face triangular (apótema da pirâmide) com Pitágoras usando a altura H e o apótema da base.",
+          "**Tronco de pirâmide**: parte da pirâmide entre a base e um plano paralelo a ela. Seu volume é **V(pirâmide maior) − V(pirâmide menor)**, ou V = h_t/3 · (B + √(B·b) + b), com B e b áreas das bases.",
+          "**Pirâmides semelhantes**: a pirâmide menor é semelhante à maior; razões de alturas e de arestas são iguais, a razão de áreas é o quadrado e a de volumes é o cubo."
+        ],
+        "teoria": [
+          {
+            "statement": "O volume de uma pirâmide é igual a um terço do produto da área da base pela altura.",
+            "isTrue": true,
+            "explanation": "V = A_base·H/3."
+          },
+          {
+            "statement": "A área total de uma pirâmide é a área lateral somada ao dobro da área da base.",
+            "isTrue": false,
+            "explanation": "A pirâmide tem uma única base; a área total é A_lateral + A_base (o dobro vale para prismas e cilindros)."
+          },
+          {
+            "statement": "Pelo princípio de Cavalieri, sólidos de mesma altura cujas seções paralelas a um plano têm sempre áreas iguais possuem volumes iguais.",
+            "isTrue": true,
+            "explanation": "É o enunciado do princípio, aplicável a quaisquer sólidos."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "As faces laterais de uma pirâmide são triângulos.",
+            "isTrue": true,
+            "explanation": "Cada aresta da base se une ao vértice da pirâmide formando um triângulo."
+          },
+          {
+            "statement": "O volume de um tronco de pirâmide pode ser obtido subtraindo o volume da pirâmide menor do volume da pirâmide maior.",
+            "isTrue": true,
+            "explanation": "O tronco é o que resta da pirâmide maior quando se retira a pirâmide menor cortada pelo plano paralelo."
+          },
+          {
+            "statement": "Uma pirâmide e um prisma de mesma base e mesma altura têm o mesmo volume.",
+            "isTrue": false,
+            "explanation": "O volume da pirâmide é um terço do volume do prisma."
+          },
+          {
+            "statement": "Em uma pirâmide quadrangular de base com 12 cm de perímetro e altura 8 cm, o volume é 24 cm³.",
+            "isTrue": true,
+            "explanation": "O lado da base é 3 cm, A_base = 9 cm² e V = 9·8/3 = 24 cm³."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Princípio de Cavalieri",
+            "pageRef": 18
+          },
+          {
+            "topic": "Quadro-resumo de prismas",
+            "pageRef": 20
+          },
+          {
+            "topic": "Pirâmide: elementos e área",
+            "pageRef": 21
+          },
+          {
+            "topic": "Volume da pirâmide",
+            "pageRef": 24
+          },
+          {
+            "topic": "Tronco de pirâmide",
+            "pageRef": 25
+          },
+          {
+            "topic": "Problema de tronco e pirâmide menor",
+            "pageRef": 27
+          }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a16/s03",
+      "bizu": {
+        "summary": [
+          "**Corpos redondos** (cilindro, cone e esfera) não têm faces, arestas nem vértices. Cilindro e cone podem ser **retos** (eixo perpendicular à base) ou **oblíquos**; as questões usam os retos.",
+          "**Cilindro circular reto**: planificado, a lateral é um retângulo de lados 2πR e h. **A_lateral = 2πRh**; **A_total = 2πR(h + R)**; **V = πR²h**.",
+          "**Cone reto**: a lateral planificada é um setor de raio igual à geratriz g. **A_lateral = πRg**; **A_total = πR(g + R)**; **V = πR²h/3**, um terço do cilindro de mesma base e altura.",
+          "**Relação no cone**: g² = R² + h² (Pitágoras entre raio, altura e geratriz).",
+          "**Tronco de cone**: obtido ao cortar o cone por plano paralelo à base. **V = V(cone maior) − V(cone menor)**, ou V = π·h_t/3 · (R² + R·r + r²), com R e r os raios das bases.",
+          "**Esfera**: **A = 4πR²** e **V = 4πR³/3**. O diâmetro é o dobro do raio: converta antes de substituir.",
+          "**Cuidado**: a questão frequentemente dá o diâmetro (ex.: diâmetro 6 → R = 3). Use o valor de π exigido e confira a unidade de saída."
+        ],
+        "teoria": [
+          {
+            "statement": "A área lateral de um cilindro circular reto de raio R e altura h é 2πRh.",
+            "isTrue": true,
+            "explanation": "A lateral planificada é um retângulo de lados 2πR (comprimento da base) e h."
+          },
+          {
+            "statement": "O volume de um cone é πR²h, igual ao de um cilindro de mesma base e altura.",
+            "isTrue": false,
+            "explanation": "O cone ocupa um terço do cilindro: V = πR²h/3."
+          },
+          {
+            "statement": "A área da superfície de uma esfera de raio R é 4πR².",
+            "isTrue": true,
+            "explanation": "Fórmula da área superficial da esfera."
+          },
+          {
+            "statement": "Em um cone reto, a área lateral é πRg, em que g é a geratriz.",
+            "isTrue": true,
+            "explanation": "A lateral é um setor de raio g cujo arco mede 2πR; sua área vale πRg."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O volume de uma esfera de raio R é 4πR³/3.",
+            "isTrue": true,
+            "explanation": "Fórmula do volume da esfera."
+          },
+          {
+            "statement": "Em uma esfera de diâmetro 6 cm, o raio vale 6 cm.",
+            "isTrue": false,
+            "explanation": "O raio é metade do diâmetro: 3 cm."
+          },
+          {
+            "statement": "A área total de um cilindro reto é 2πR(h + R).",
+            "isTrue": true,
+            "explanation": "Soma a lateral 2πRh com as duas bases 2πR²."
+          },
+          {
+            "statement": "O volume de um tronco de cone é a soma dos volumes do cone maior e do cone menor.",
+            "isTrue": false,
+            "explanation": "O volume do tronco é a diferença entre o cone maior e o menor retirado."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Cilindro: áreas",
+            "pageRef": 29
+          },
+          {
+            "topic": "Volume do cilindro",
+            "pageRef": 31
+          },
+          {
+            "topic": "Cone: área lateral e total",
+            "pageRef": 33
+          },
+          {
+            "topic": "Volume do cone",
+            "pageRef": 35
+          },
+          {
+            "topic": "Tronco de cone",
+            "pageRef": 36
+          },
+          {
+            "topic": "Esfera: área e volume",
+            "pageRef": 41
+          }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a16/s04",
+      "bizu": {
+        "summary": [
+          "**Sólido inscrito**: está dentro do outro, tangenciando suas faces (ou com vértices na superfície). O sólido externo é o **circunscrito**. A **esfera** é a figura principal nessas questões.",
+          "**Método geral**: faça um **corte** que contenha os elementos relevantes (centro, vértices, pontos de tangência), obtenha uma figura plana, e use **Pitágoras, semelhança de triângulos ou trigonometria**.",
+          "**Esfera inscrita no cubo**: o diâmetro da esfera é a **aresta** do cubo: **2R = a**.",
+          "**Esfera circunscrita ao cubo**: o diâmetro da esfera é a **diagonal do cubo**: **2R = a√3**.",
+          "**Esfera dentro de cilindro equilátero** (altura igual ao diâmetro da base): a esfera tem o mesmo raio da base do cilindro, **R = r**.",
+          "**Esfera circunscrita ao cilindro**: com raio r da base e altura H, **(2R)² = (2r)² + H²**.",
+          "**Esfera inscrita em pirâmide ou cone**: use a **semelhança** entre o triângulo da seção que contém o centro e o triângulo maior (por exemplo, no cone: (H − R)/√(r² + H²) = R/r, com r o raio da base e H a altura).",
+          "**Volume restante**: quando se pede o que sobra, calcule V(sólido externo) − V(esfera). Ex.: cone de altura 8 e raio 6 contém esfera de raio 3, que deixa 60π de volume livre."
+        ],
+        "teoria": [
+          {
+            "statement": "Quando uma esfera está inscrita em um cubo, seu diâmetro é igual à aresta do cubo.",
+            "isTrue": true,
+            "explanation": "A esfera tangencia as faces opostas, portanto 2R = a."
+          },
+          {
+            "statement": "O diâmetro de uma esfera circunscrita a um cubo de aresta a é igual a a√2.",
+            "isTrue": false,
+            "explanation": "Ele coincide com a diagonal do cubo, que mede a√3; a√2 é a diagonal de uma face."
+          },
+          {
+            "statement": "Se uma esfera está inscrita em um cilindro equilátero, o raio dela é igual ao raio da base desse cilindro.",
+            "isTrue": true,
+            "explanation": "A altura é igual ao diâmetro da base, e a esfera toca a lateral e as duas bases; logo R = r."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Em problemas de inscrição de sólidos, uma boa estratégia é fazer um corte que evidencie as dimensões em uma figura plana.",
+            "isTrue": true,
+            "explanation": "A seção transversal permite usar Pitágoras, semelhança e trigonometria."
+          },
+          {
+            "statement": "Um cilindro inscrito em uma esfera de raio R, com base de raio r e altura H, satisfaz R = r + H.",
+            "isTrue": false,
+            "explanation": "A relação vem de Pitágoras: (2R)² = (2r)² + H²."
+          },
+          {
+            "statement": "Uma esfera de área superficial 36π cm² inscrita em um cubo implica cubo com aresta de 6 cm.",
+            "isTrue": true,
+            "explanation": "4πR² = 36π dá R = 3 cm e a = 2R = 6 cm."
+          },
+          {
+            "statement": "Na esfera inscrita em um cone, a semelhança de triângulos é usada para relacionar o raio da esfera à altura e ao raio do cone.",
+            "isTrue": true,
+            "explanation": "Na seção que contém o eixo, formam-se triângulos retângulos semelhantes que ligam R, H e o raio da base."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Inscrito × circunscrito e método do corte",
+            "pageRef": 43
+          },
+          {
+            "topic": "Esfera inscrita e circunscrita ao cubo",
+            "pageRef": 44
+          },
+          {
+            "topic": "Esfera inscrita na pirâmide",
+            "pageRef": 46
+          },
+          {
+            "topic": "Esfera inscrita no cilindro equilátero",
+            "pageRef": 49
+          },
+          {
+            "topic": "Esfera circunscrita ao cilindro",
+            "pageRef": 50
+          },
+          {
+            "topic": "Esfera inscrita no cone",
+            "pageRef": 53
+          }
+        ]
+      }
+    }
+  ]
+}
