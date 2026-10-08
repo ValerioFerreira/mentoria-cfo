@@ -1,0 +1,385 @@
+{
+  "aula": "matematica/a11",
+  "batch": "w2-bizu-matematica",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "matematica/a11/s01",
+      "bizu": {
+        "summary": [
+          "**Função do 2º grau (quadrática)**: f: R -> R com lei **f(x) = y = ax^2 + bx + c**, a, b, c reais e **a diferente de zero**. O grau é dado pelo maior expoente de x.",
+          "Se a = 0, resta y = bx + c, uma função do 1º grau; por isso a condição a diferente de zero **descaracteriza** a quadrática quando violada. **b e c podem ser zero**.",
+          "**Identificação dos coeficientes**: a acompanha x^2, b acompanha x e c é o termo independente, mesmo com a lei fora de ordem. y = 4 - 3x + (7/4)x^2 tem a = 7/4, b = -3, c = 4; y = -x^2 + 7 tem b = 0; y = 9x^2 tem b = 0 e c = 0.",
+          "**Parâmetro no coeficiente**: f(x) = (d - 5)x^2 + 6x + 7 é do 2º grau se, e somente se, d - 5 for diferente de zero, isto é, **d diferente de 5**.",
+          "**Valor numérico e inversão**: substitui-se x na lei. R(x) = -5x^2 + 65x - 60 para x = 8 dá 140. Se f(x) = x^2 - 5 vale 20, então x^2 = 25 e x = 5 ou x = -5 (**duas soluções**).",
+          "**Raízes (adiantamento)**: valores de x que anulam f(x). Em x^2 - 3x - 4 = 0 as raízes são -1 e 4.",
+          "Em f(x) = x^2 + 7x + c com f(2) = 4, tem-se c = -14 e **c^2 = 196**; atenção ao que a questão pergunta (c ou c^2).",
+          "O **gráfico da função quadrática é uma parábola**. Para esboçá-la, arbitram-se valores de x e calculam-se os de y: y = x^2 + 2x - 3 e y = -x^2 + x + 2 são exemplos usados. Na prova, o esboço é feito pela análise dos coeficientes."
+        ],
+        "teoria": [
+          {
+            "statement": "Na função quadrática f(x) = ax^2 + bx + c, o coeficiente a deve ser diferente de zero.",
+            "isTrue": true,
+            "explanation": "Sem o termo em x^2 a função seria de primeiro grau."
+          },
+          {
+            "statement": "Se o coeficiente a for igual a zero, a função continua sendo quadrática, pois b e c podem ser diferentes de zero.",
+            "isTrue": false,
+            "explanation": "Com a = 0, a lei vira y = bx + c, função do 1º grau."
+          },
+          {
+            "statement": "O gráfico de uma função do segundo grau é uma parábola.",
+            "isTrue": true,
+            "explanation": "A parábola é a curva característica da função quadrática."
+          },
+          {
+            "statement": "Na função y = -x^2 + 7, o coeficiente b vale 7.",
+            "isTrue": false,
+            "explanation": "Não há termo em x; logo, b = 0. O valor 7 é o coeficiente c."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A lei f(x) = (d - 5)x^2 + 6x + 7 define uma função do segundo grau se, e somente se, d for diferente de 5.",
+            "isTrue": true,
+            "explanation": "O coeficiente que acompanha x^2 é d - 5 e precisa ser diferente de zero."
+          },
+          {
+            "statement": "Na função y = 4 - 3x + (7/4)x^2, o coeficiente a vale 4.",
+            "isTrue": false,
+            "explanation": "a acompanha x^2, ou seja, 7/4; o 4 é o termo independente c."
+          },
+          {
+            "statement": "Os coeficientes b e c de uma função quadrática podem ser nulos, sem que a função deixe de ser do segundo grau.",
+            "isTrue": true,
+            "explanation": "Apenas o coeficiente a é proibido de ser zero; y = 9x^2 é quadrática."
+          },
+          {
+            "statement": "Em f(x) = x^2 - 5, a equação f(x) = 20 possui duas soluções reais, x = 5 e x = -5.",
+            "isTrue": true,
+            "explanation": "x^2 = 25 admite as raízes de sinais opostos 5 e -5."
+          },
+          {
+            "statement": "O grau de uma função polinomial é definido pelo seu maior coeficiente numérico.",
+            "isTrue": false,
+            "explanation": "O grau é o maior expoente da variável x, e não o maior coeficiente."
+          }
+        ],
+        "pointers": [
+          { "topic": "Definição da função quadrática e condição a diferente de zero", "pageRef": 3 },
+          { "topic": "Exemplos de identificação de a, b e c", "pageRef": 4 },
+          { "topic": "Parâmetro no coeficiente a", "pageRef": 5 },
+          { "topic": "Valor numérico na função", "pageRef": 6 },
+          { "topic": "Raízes como f(x) = 0 (introdução)", "pageRef": 7 },
+          { "topic": "Cálculo de c a partir de f(2)", "pageRef": 8 },
+          { "topic": "Gráfico: construção por pontos", "pageRef": 9 },
+          { "topic": "Parábola completa", "pageRef": 11 }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a11/s02",
+      "bizu": {
+        "summary": [
+          "**Coeficiente a (concavidade)**: é o que acompanha x^2. **a > 0**: concavidade voltada **para cima**; **a < 0**: concavidade voltada **para baixo**. Vale para qualquer letra usada no lugar de a.",
+          "**Coeficiente c (eixo y)**: termo independente. A parábola **intercepta o eixo y no ponto de ordenada c** (em x = 0, y = c). c pode ser positivo, negativo ou nulo (a nunca).",
+          "**Coeficiente b (inclinação ao cruzar o eixo y)**: **b > 0**, a parábola está **crescendo** ao passar pelo eixo y; **b < 0**, está **decrescendo**; **b = 0**, não cresce nem decresce (o vértice fica sobre o eixo y).",
+          "Exemplos: y = x^2 + 2x - 3 (a > 0, c = -3, b > 0); y = x^2 - 4x + 2 (a > 0, c = 2, b < 0); y = -4x^2 + 4 (a < 0, c = 4, b = 0); y = -x^2 + x + 2 (a < 0, c = 2, b > 0).",
+          "**Técnica de prova**: ao relacionar função e esboço, elimine alternativas pela concavidade (a), depois pelo ponto em que corta o eixo y (c) e por último pelo comportamento ao cruzar y (b).",
+          "Funções de 1º grau e constantes têm gráficos retilíneos; apenas leis com termo em x^2 geram parábolas. Para parábola com concavidade para cima, escolha uma quadrática com a > 0.",
+          "Para f(x) = -(x + 1)^2 + 1, desenvolvendo, obtém-se -x^2 - 2x: a = -1 (concavidade para baixo), c = 0 (passa pela origem) e b = -2 (decrescendo ao cruzar y).",
+          "Uma parábola côncava para baixo e crescente no ponto em que cruza o eixo y indica a < 0 e b > 0. Uma parábola côncava para cima, decrescente ao cruzar y e que corta o eixo y em -2 indica a > 0, b < 0 e c < 0."
+        ],
+        "teoria": [
+          {
+            "statement": "O coeficiente a da função quadrática determina a concavidade da parábola: para cima se a > 0 e para baixo se a < 0.",
+            "isTrue": true,
+            "explanation": "A concavidade depende apenas do sinal do coeficiente de x^2."
+          },
+          {
+            "statement": "O coeficiente c é o que determina a concavidade da parábola.",
+            "isTrue": false,
+            "explanation": "A concavidade é determinada por a. O coeficiente c indica onde a parábola corta o eixo y."
+          },
+          {
+            "statement": "A parábola y = ax^2 + bx + c corta o eixo y no ponto de ordenada c.",
+            "isTrue": true,
+            "explanation": "Para x = 0, y = c."
+          },
+          {
+            "statement": "Se b é negativo, a parábola está crescendo no ponto em que cruza o eixo y.",
+            "isTrue": false,
+            "explanation": "b negativo indica que a parábola está decrescendo ao passar pelo eixo y; crescendo indica b positivo."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Se b = 0, a parábola não cresce nem decresce ao passar pelo eixo y.",
+            "isTrue": true,
+            "explanation": "Nesse caso o vértice está sobre o eixo y, como em y = -4x^2 + 4."
+          },
+          {
+            "statement": "A parábola de y = -x^2 + x + 2 tem concavidade voltada para cima.",
+            "isTrue": false,
+            "explanation": "O coeficiente a é -1, negativo; portanto, a concavidade é para baixo."
+          },
+          {
+            "statement": "A função f(x) = -(x + 1)^2 + 1, desenvolvida, possui a = -1, b = -2 e c = 0.",
+            "isTrue": true,
+            "explanation": "-(x^2 + 2x + 1) + 1 = -x^2 - 2x; a parábola passa pela origem."
+          },
+          {
+            "statement": "Em uma função quadrática, o coeficiente c não pode ser nulo.",
+            "isTrue": false,
+            "explanation": "Apenas a não pode ser nulo. Com c = 0, a parábola passa pela origem."
+          },
+          {
+            "statement": "Uma parábola com concavidade para baixo e crescente ao cruzar o eixo y corresponde a coeficientes a negativo e b positivo.",
+            "isTrue": true,
+            "explanation": "Concavidade para baixo implica a < 0; crescendo ao cruzar y implica b > 0."
+          }
+        ],
+        "pointers": [
+          { "topic": "Coeficiente a e concavidade", "pageRef": 12 },
+          { "topic": "Coeficiente c e interseção com o eixo y", "pageRef": 13 },
+          { "topic": "Coeficiente b e comportamento ao cruzar o eixo y", "pageRef": 15 },
+          { "topic": "Exemplo com b negativo", "pageRef": 16 },
+          { "topic": "Exemplo com b nulo", "pageRef": 17 },
+          { "topic": "Resumo dos três coeficientes", "pageRef": 19 },
+          { "topic": "Questão sobre concavidade para cima", "pageRef": 20 },
+          { "topic": "Eliminar alternativas por a, c e b", "pageRef": 22 },
+          { "topic": "Lei a partir do esboço", "pageRef": 24 },
+          { "topic": "Sinais de a, b e c a partir do gráfico", "pageRef": 27 }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a11/s03",
+      "bizu": {
+        "summary": [
+          "**Raízes (zeros) da função quadrática**: valores de x tais que f(x) = 0, isto é, as soluções de ax^2 + bx + c = 0. No gráfico, correspondem às abscissas dos cruzamentos da **parábola com o eixo x**. Calculam-se por Bhaskara, com Δ = b^2 - 4ac.",
+          "**Δ > 0**: duas raízes **reais e distintas** (a parábola corta o eixo x em dois pontos). Ex.: 2x^2 + 5x + 2 tem Δ = 9 e raízes -1/2 e -2.",
+          "**Δ = 0**: duas raízes **reais e iguais**, x1 = x2 = -b/2a (a parábola toca o eixo x em um único ponto). Ex.: -3x^2 + 6x - 3 tem Δ = 0 e raiz 1.",
+          "**Δ < 0**: **não há raízes reais**; a parábola não intercepta o eixo x. Ex.: x^2 - x + 1 tem Δ = -3.",
+          "**Combinação de a e Δ**: a define se a concavidade é para cima ou para baixo e Δ define quantas vezes o eixo x é tocado; juntos geram os seis esboços possíveis.",
+          "Zeros de 3x^2 + 6x - 9: Δ = 144 e raízes -3 e 1.",
+          "**Condição para raízes reais e iguais**: Δ = 0. Em 2x^2 - 12x + 3k = 0, o coeficiente c é todo o termo 3k, então 144 - 24k = 0 e k = 6.",
+          "Para f(x) = x^2 + 16: a > 0, c = 16 e Δ = -64 < 0; a parábola tem concavidade para cima, corta y em 16 e **não toca o eixo x**."
+        ],
+        "teoria": [
+          {
+            "statement": "As raízes de uma função quadrática correspondem às abscissas dos pontos em que a parábola intercepta o eixo x.",
+            "isTrue": true,
+            "explanation": "No ponto de interseção com o eixo x, f(x) = 0."
+          },
+          {
+            "statement": "Quando o discriminante é negativo, a parábola corta o eixo x em dois pontos distintos.",
+            "isTrue": false,
+            "explanation": "Com Δ < 0 não há raízes reais, logo a parábola não intercepta o eixo x."
+          },
+          {
+            "statement": "Com Δ = 0, a função quadrática apresenta duas raízes reais iguais, dadas por -b/2a.",
+            "isTrue": true,
+            "explanation": "Como a raiz quadrada de zero é zero, x1 = x2 = -b/2a."
+          },
+          {
+            "statement": "Quando a > 0 e a função não tem raízes reais, a parábola situa-se inteiramente abaixo do eixo x.",
+            "isTrue": false,
+            "explanation": "Com concavidade para cima e sem tocar o eixo x, a parábola fica inteiramente acima dele (como em x^2 + 16)."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Se Δ > 0, a função quadrática tem duas raízes reais distintas.",
+            "isTrue": true,
+            "explanation": "x1 = (-b + raiz(Δ))/2a e x2 = (-b - raiz(Δ))/2a são diferentes."
+          },
+          {
+            "statement": "A função f(x) = -3x^2 + 6x - 3 não possui raízes reais.",
+            "isTrue": false,
+            "explanation": "Δ = 36 - 36 = 0; há duas raízes iguais, x1 = x2 = 1."
+          },
+          {
+            "statement": "A função f(x) = x^2 + 16 tem Δ negativo, e seu gráfico não toca o eixo x.",
+            "isTrue": true,
+            "explanation": "Δ = 0 - 64 = -64 < 0."
+          },
+          {
+            "statement": "A condição para que 2x^2 - 12x + 3k = 0 tenha raízes reais e iguais é Δ = 0, o que leva a k = 6.",
+            "isTrue": true,
+            "explanation": "(-12)^2 - 4 x 2 x 3k = 144 - 24k = 0, logo k = 6."
+          },
+          {
+            "statement": "Quando o discriminante é positivo, as duas raízes da função quadrática são iguais.",
+            "isTrue": false,
+            "explanation": "Raízes iguais ocorrem com Δ = 0; com Δ > 0 as raízes são distintas."
+          }
+        ],
+        "pointers": [
+          { "topic": "Raízes como f(x) = 0 e fórmula de Bhaskara", "pageRef": 28 },
+          { "topic": "Δ maior que zero: duas raízes reais distintas", "pageRef": 29 },
+          { "topic": "Δ igual a zero: raízes reais iguais", "pageRef": 30 },
+          { "topic": "Δ menor que zero: sem raízes reais", "pageRef": 31 },
+          { "topic": "Resumo dos casos de Δ", "pageRef": 32 },
+          { "topic": "Esboços combinando a e Δ", "pageRef": 33 },
+          { "topic": "Zeros da função em questão de concurso", "pageRef": 34 },
+          { "topic": "Parâmetro k para Δ = 0", "pageRef": 35 },
+          { "topic": "Parábola de x^2 + 16", "pageRef": 36 }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a11/s04",
+      "bizu": {
+        "summary": [
+          "**Forma fatorada**: **y = a(x - x1)(x - x2)**, em que x1 e x2 são as raízes e a é o coeficiente dominante. É útil quando o gráfico mostra as raízes.",
+          "Montagem pelo gráfico: raízes -1 e 3 dão y = a(x + 1)(x - 3). Se o ponto (2; -9) pertence à parábola, -9 = a(3)(-1) e a = 3, logo y = 3(x + 1)(x - 3) = 3x^2 - 6x - 9.",
+          "Com raízes 0 e 4 e o ponto (1; 3): y = a x (x - 4), 3 = -3a e a = -1, ou seja, y = -x^2 + 4x, e f(0,5) = 1,75. O mesmo resultado sai pela forma geral (c = 0 e um sistema em a e b).",
+          "**Soma e produto das raízes**: **S = x1 + x2 = -b/a** e **P = x1 . x2 = c/a**. Permitem achar as raízes sem Bhaskara quando são números \"bonitos\".",
+          "x^2 - 5x + 6: S = 5 e P = 6, raízes 2 e 3. 2x^2 + 6x - 8: S = -3 e P = -4, raízes 1 e -4.",
+          "Soma e produto **nem sempre são mais rápidos**: se as raízes não são inteiras simples (soma -14/3 e produto 5/3, por exemplo), é melhor usar Bhaskara.",
+          "**Vértice da parábola**: ponto onde ela muda de sentido (de decrescente para crescente, ou vice-versa). É o assunto mais cobrado da aula.",
+          "**a > 0**: concavidade para cima e o vértice é **ponto de mínimo**. **a < 0**: concavidade para baixo e o vértice é **ponto de máximo**."
+        ],
+        "teoria": [
+          {
+            "statement": "A forma fatorada da função quadrática é y = a(x - x1)(x - x2), em que x1 e x2 são as raízes.",
+            "isTrue": true,
+            "explanation": "Conhecidas as raízes, basta determinar o coeficiente a (por exemplo, com um ponto do gráfico)."
+          },
+          {
+            "statement": "Na forma fatorada y = a(x - x1)(x - x2), o coeficiente a é sempre igual a 1.",
+            "isTrue": false,
+            "explanation": "a é o coeficiente dominante e pode assumir qualquer valor real não nulo; é calculado com um ponto da parábola."
+          },
+          {
+            "statement": "A soma das raízes de uma função quadrática vale -b/a e o produto vale c/a.",
+            "isTrue": true,
+            "explanation": "São as relações usadas para encontrar as raízes sem Bhaskara, por tentativa de dois números."
+          },
+          {
+            "statement": "Se o coeficiente a é positivo, o vértice da parábola é um ponto de máximo.",
+            "isTrue": false,
+            "explanation": "Com a > 0 a concavidade é para cima, e o vértice é ponto de mínimo."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Para x^2 - 5x + 6, as raízes somam 5 e têm produto 6, logo são 2 e 3.",
+            "isTrue": true,
+            "explanation": "S = -b/a = 5 e P = c/a = 6; os números 2 e 3 satisfazem as duas condições."
+          },
+          {
+            "statement": "A determinação das raízes por soma e produto é sempre mais rápida que a fórmula de Bhaskara.",
+            "isTrue": false,
+            "explanation": "Quando as raízes não são números simples, a busca por soma e produto é trabalhosa e Bhaskara é preferível."
+          },
+          {
+            "statement": "A forma fatorada y = a(x + 1)(x - 3) corresponde a uma parábola de raízes 1 e -3.",
+            "isTrue": false,
+            "explanation": "Os fatores x + 1 e x - 3 se anulam em x = -1 e x = 3; as raízes são -1 e 3."
+          },
+          {
+            "statement": "Se o coeficiente a é negativo, o vértice da parábola é um ponto de máximo.",
+            "isTrue": true,
+            "explanation": "A concavidade é para baixo, e o vértice é o ponto mais alto da curva."
+          },
+          {
+            "statement": "O vértice é o ponto em que a parábola muda de sentido, passando de decrescente a crescente ou de crescente a decrescente.",
+            "isTrue": true,
+            "explanation": "É o ponto de mínimo (a > 0) ou de máximo (a < 0)."
+          }
+        ],
+        "pointers": [
+          { "topic": "Forma fatorada y = a(x - x1)(x - x2)", "pageRef": 38 },
+          { "topic": "Cálculo de a com ponto da parábola", "pageRef": 39 },
+          { "topic": "Questão resolvida de duas maneiras", "pageRef": 40 },
+          { "topic": "Soma e produto das raízes", "pageRef": 43 },
+          { "topic": "Exemplo com raízes 2 e 3", "pageRef": 44 },
+          { "topic": "Quando Bhaskara é melhor", "pageRef": 46 },
+          { "topic": "Vértice como ponto em que a parábola muda de sentido", "pageRef": 47 },
+          { "topic": "Ponto de mínimo e de máximo conforme o sinal de a", "pageRef": 48 }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a11/s05",
+      "bizu": {
+        "summary": [
+          "**Coordenadas do vértice**: V = (xv ; yv). Elas devem ser **decoradas**: **xv = -b/2a** e **yv = -Δ/4a**, com Δ = b^2 - 4ac.",
+          "**xv é o ponto médio das raízes** (xv = (x1 + x2)/2). A reta vertical que passa por xv é o **eixo de simetria**, que divide a parábola em duas partes simétricas.",
+          "**yv** também pode ser obtido **substituindo xv na lei** da função. Em y = x^2 + 2x - 5: xv = -1 e yv = -6. Em y = -2x^2 + 3: V = (0; 3).",
+          "**Atenção ao que cada eixo representa**: lucro, temperatura ou altura ficam no eixo y, e o valor máximo ou mínimo é **yv**; quantidade, tempo ou preço ficam no eixo x, e o ponto em que ocorre o máximo é **xv**.",
+          "Lucro L(x) = -x^2 + 12x - 3 (x em milhares de revistas): o lucro máximo ocorre em xv = 6 mil, ou seja, 6.000 revistas. Temperatura f(t) = -t^2 + 40t - 230: máxima é yv = 170. Altura S(t) = 30t - t^2: máxima é yv = 225 m.",
+          "O domínio prático pode restringir x (não existe venda negativa), mas o vértice continua dando o máximo quando está dentro do domínio.",
+          "**Dado o vértice**: se P(4; 13) é máximo de y = -x^2 + mx + n, então xv = 4 dá m = 8; yv = 13 dá n = -3; logo m + n = 5.",
+          "**Crescimento e decrescimento**: f(x) = x^2 - 5x + 4 tem xv = 5/2, é decrescente até 5/2 e crescente a partir daí.",
+          "**Valor máximo conhecido**: y = -x^2 + 3x + m - 2 com máximo -3/4 (yv = -3/4) leva a m = -1; observe que o termo independente é c = m - 2."
+        ],
+        "teoria": [
+          {
+            "statement": "A abscissa do vértice de uma parábola é dada por xv = -b/2a.",
+            "isTrue": true,
+            "explanation": "É o ponto médio das raízes e a posição do eixo de simetria."
+          },
+          {
+            "statement": "A ordenada do vértice é dada por yv = Δ/4a, sem sinal negativo.",
+            "isTrue": false,
+            "explanation": "A fórmula é yv = -Δ/4a."
+          },
+          {
+            "statement": "Se a > 0, o valor mínimo da função é a ordenada do vértice, yv.",
+            "isTrue": true,
+            "explanation": "Com concavidade para cima, o vértice é o ponto mais baixo da parábola."
+          },
+          {
+            "statement": "Para saber quantas unidades devem ser vendidas para obter lucro máximo em L(x) = -x^2 + 12x - 3, calcula-se a ordenada do vértice, yv.",
+            "isTrue": false,
+            "explanation": "A quantidade vendida está no eixo x, por isso se calcula xv. A ordenada yv daria o valor do lucro máximo."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A abscissa do vértice é o ponto médio das duas raízes da função quadrática.",
+            "isTrue": true,
+            "explanation": "xv = (x1 + x2)/2 = -b/2a."
+          },
+          {
+            "statement": "Em L(x) = -x^2 + 12x - 3, o lucro máximo ocorre quando x = 12.",
+            "isTrue": false,
+            "explanation": "xv = -12/(2 x (-1)) = 6. Com x em milhares, o lucro máximo ocorre com 6.000 unidades."
+          },
+          {
+            "statement": "A altura máxima atingida por um corpo cuja altura é S(t) = 30t - t^2 corresponde à ordenada do vértice, que vale 225.",
+            "isTrue": true,
+            "explanation": "yv = -(900 - 0)/(4 x (-1)) = 225."
+          },
+          {
+            "statement": "A função f(x) = x^2 - 5x + 4 é decrescente até x = 5/2 e crescente depois desse valor.",
+            "isTrue": true,
+            "explanation": "a > 0 e xv = 5/2: o vértice é um ponto de mínimo, e a função muda de decrescente para crescente nele."
+          },
+          {
+            "statement": "O eixo de simetria da parábola é a reta horizontal que passa pelo vértice.",
+            "isTrue": false,
+            "explanation": "O eixo de simetria é a reta vertical x = xv, paralela ao eixo y."
+          }
+        ],
+        "pointers": [
+          { "topic": "Coordenadas do vértice (V)", "pageRef": 49 },
+          { "topic": "xv como ponto médio das raízes e eixo de simetria", "pageRef": 50 },
+          { "topic": "Dedução de yv", "pageRef": 51 },
+          { "topic": "Fórmulas a decorar", "pageRef": 52 },
+          { "topic": "Exemplos de vértice", "pageRef": 53 },
+          { "topic": "Lucro máximo: usar xv", "pageRef": 55 },
+          { "topic": "Temperatura máxima: usar yv", "pageRef": 58 },
+          { "topic": "Altura máxima: usar yv", "pageRef": 59 },
+          { "topic": "Vértice dado e incógnitas m e n", "pageRef": 60 },
+          { "topic": "Intervalos de crescimento e decrescimento", "pageRef": 61 },
+          { "topic": "Valor máximo dado e parâmetro m", "pageRef": 63 }
+        ]
+      }
+    }
+  ]
+}

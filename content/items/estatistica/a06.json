@@ -1,0 +1,365 @@
+{
+  "aula": "estatistica/a06",
+  "batch": "w2-bizu-estatistica",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "estatistica/a06/s01",
+      "bizu": {
+        "summary": [
+          "**Teoria da Probabilidade** estuda **experimentos aleatórios**: resultado incerto, mas com padrão conhecido, e que podem ser **repetidos indefinidamente sob condições inalteradas**.",
+          "**Espaço amostral (U ou Ω)** = conjunto de todos os resultados possíveis; cada resultado é um **ponto amostral**. Ex.: um dado → {1,...,6}; duas moedas → 4 pontos.",
+          "**Evento** = qualquer subconjunto do espaço amostral. **Evento simples (elementar)**: um único ponto, n(A) = 1. **Evento impossível**: conjunto vazio, n = 0. **Evento certo**: coincide com U, n(A) = n(U).",
+          "**Definição clássica**: **P(A) = n(A) / n(U)** = casos favoráveis / casos totais.",
+          "Condição crucial: todos os pontos do espaço amostral devem ser **igualmente prováveis**. Com moeda viciada, por exemplo, a definição clássica **não** pode ser usada.",
+          "Em muitas questões, n(A) e n(U) vêm da **análise combinatória**: combinação (ordem não importa) ou arranjo (ordem importa).",
+          "Se o numerador e o denominador seguem o **mesmo critério** (ambos com ordem ou ambos sem ordem), **o resultado é o mesmo**: P = C(5,2)/C(11,2) = A(5,2)/A(11,2).",
+          "Exemplo: sortear 1 dentre 25 alunos, dos quais 6 torcem pelo Vasco → P = 6/25 = 24%. Cuidado para definir bem o universo (n(U)) antes de contar os favoráveis."
+        ],
+        "teoria": [
+          {
+            "statement": "O espaço amostral de um experimento aleatório é o conjunto de todos os resultados possíveis desse experimento.",
+            "isTrue": true,
+            "explanation": "Também chamado de universo; cada elemento é um ponto amostral."
+          },
+          {
+            "statement": "A definição clássica de probabilidade pode ser aplicada a qualquer experimento, mesmo quando os resultados não são igualmente prováveis.",
+            "isTrue": false,
+            "explanation": "A condição crucial é a equiprobabilidade dos pontos do espaço amostral; sem ela, usa-se a definição frequentista."
+          },
+          {
+            "statement": "Todo subconjunto do espaço amostral ao qual se atribui uma probabilidade é chamado de evento.",
+            "isTrue": true,
+            "explanation": "Evento é qualquer subconjunto do espaço amostral."
+          },
+          {
+            "statement": "Um evento certo é aquele representado pelo conjunto vazio, pois não contém nenhum ponto amostral.",
+            "isTrue": false,
+            "explanation": "O conjunto vazio representa o evento impossível. O evento certo coincide com todo o espaço amostral."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Para aplicar a Teoria da Probabilidade como estudada, o experimento deve poder ser repetido indefinidamente sob condições inalteradas.",
+            "isTrue": true,
+            "explanation": "Experimentos que não podem ser repetidos (como uma moeda que cai no bueiro) fogem a essa condição."
+          },
+          {
+            "statement": "No lançamento de dois dados, o evento \"a soma das faces é 13\" é um evento certo.",
+            "isTrue": false,
+            "explanation": "A soma máxima é 12; o evento é impossível, com n = 0."
+          },
+          {
+            "statement": "Ao calcular a probabilidade clássica de escolher 2 elementos, pode-se usar arranjos ou combinações, desde que o mesmo critério seja aplicado nos casos favoráveis e nos casos totais.",
+            "isTrue": true,
+            "explanation": "A razão A(n1,2)/A(n2,2) é igual a C(n1,2)/C(n2,2)."
+          },
+          {
+            "statement": "Um evento simples ou elementar é aquele em que n(A) = 0.",
+            "isTrue": false,
+            "explanation": "No evento elementar há um único ponto amostral, n(A) = 1; n(A) = 0 é o evento impossível."
+          }
+        ],
+        "pointers": [
+          { "topic": "Experimento aleatório e padrão de resultados", "pageRef": 4 },
+          { "topic": "Espaço amostral e ponto amostral", "pageRef": 4 },
+          { "topic": "Evento e tipos (simples, impossível, certo)", "pageRef": 5 },
+          { "topic": "Definição clássica P = n(A)/n(U)", "pageRef": 8 },
+          { "topic": "Condição de equiprobabilidade", "pageRef": 9 },
+          { "topic": "Uso de combinação em probabilidade", "pageRef": 13 },
+          { "topic": "Arranjo x combinação dão o mesmo resultado", "pageRef": 14 }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a06/s02",
+      "bizu": {
+        "summary": [
+          "**Probabilidade frequentista (empírica)**: se um evento ocorre n vezes em N repetições, a frequência relativa é f = n/N. Quanto maior N, mais f se aproxima da probabilidade: **P = lim (n/N) quando N tende ao infinito**.",
+          "Essa definição serve para eventos **não equiprováveis** (moeda desequilibrada, taxa de tijolos danificados) em que a clássica falha. Frequência observada não é exatamente igual à probabilidade com poucas repetições.",
+          "**União A ∪ B**: ocorre A **ou** B (ou ambos). **Interseção A ∩ B**: ocorrem A **e** B.",
+          "**Eventos exaustivos**: A ∪ B = U. **Mutuamente excludentes (disjuntos)**: A ∩ B = ∅, e então P(A ∩ B) = 0.",
+          "**Para a união de dois eventos quaisquer**, soma-se as duas probabilidades e tira-se a da interseção, para não contá-la duas vezes: **P(A ∪ B) = P(B) + P(A) − P(B ∩ A)**.",
+          "**Eventos excludentes**: a interseção vale zero e fica só a soma, **P(B ∪ A) = P(B) + P(A)**.",
+          "**União de três eventos**: soma das três, menos as três interseções duas a duas, mais a interseção tripla: **P(A∪B∪C) = P(C) + P(B) + P(A) − P(B∩C) − P(A∩C) − P(A∩B) + P(A∩B∩C)**. Alternativa prática: preencher o **diagrama de Venn** começando pela interseção tripla.",
+          "No Venn, a parte exclusiva de cada interseção dupla é P(A∩B) − P(A∩B∩C); \"consome apenas uma marca\" = soma das regiões que pertencem a um só conjunto."
+        ],
+        "teoria": [
+          {
+            "statement": "À medida que o número de repetições de um experimento aumenta, a frequência relativa de um evento tende a se aproximar da sua probabilidade.",
+            "isTrue": true,
+            "explanation": "No limite de infinitas repetições, a frequência relativa e a probabilidade se igualam."
+          },
+          {
+            "statement": "Com 100 repetições de um experimento, a frequência relativa de um evento é necessariamente igual à sua probabilidade.",
+            "isTrue": false,
+            "explanation": "A frequência observada pode diferir da probabilidade; só no limite (N tendendo ao infinito) elas coincidem."
+          },
+          {
+            "statement": "A probabilidade da união de dois eventos quaisquer é P(A) + P(B) − P(A ∩ B).",
+            "isTrue": true,
+            "explanation": "A interseção é subtraída para não ser contada duas vezes."
+          },
+          {
+            "statement": "Se dois eventos são mutuamente excludentes, a probabilidade da interseção deles é 1.",
+            "isTrue": false,
+            "explanation": "A interseção de eventos mutuamente excludentes é vazia, de modo que sua probabilidade é 0."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Dois eventos são exaustivos quando a união deles é igual ao espaço amostral.",
+            "isTrue": true,
+            "explanation": "A ∪ B = U."
+          },
+          {
+            "statement": "Eventos mutuamente excludentes podem ocorrer simultaneamente.",
+            "isTrue": false,
+            "explanation": "A ocorrência de um impede a do outro; a interseção é vazia."
+          },
+          {
+            "statement": "Na probabilidade da união de três eventos, somam-se as probabilidades individuais, subtraem-se as interseções dois a dois e soma-se a interseção dos três.",
+            "isTrue": true,
+            "explanation": "Os sinais alternam: +, −, +."
+          },
+          {
+            "statement": "Na fórmula da união de três eventos, a probabilidade da interseção dos três eventos também é subtraída.",
+            "isTrue": false,
+            "explanation": "A interseção tripla é somada, pois foi subtraída vezes demais nas interseções duas a duas."
+          },
+          {
+            "statement": "A definição frequentista pode ser usada para uma moeda desequilibrada, em que a definição clássica não se aplica.",
+            "isTrue": true,
+            "explanation": "Observando-se, por exemplo, uma coroa a cada 4 lançamentos em muitas repetições, estima-se P = 1/4."
+          }
+        ],
+        "pointers": [
+          { "topic": "Frequência relativa e definição frequentista", "pageRef": 16 },
+          { "topic": "Convergência da frequência para a probabilidade", "pageRef": 17 },
+          { "topic": "União e interseção de eventos; Diagrama de Venn", "pageRef": 19 },
+          { "topic": "Eventos exaustivos e mutuamente excludentes", "pageRef": 20 },
+          { "topic": "Fórmula da probabilidade da união", "pageRef": 21 },
+          { "topic": "União de eventos excludentes", "pageRef": 22 },
+          { "topic": "União de três eventos", "pageRef": 25 },
+          { "topic": "Uso do diagrama de Venn em três conjuntos", "pageRef": 26 }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a06/s03",
+      "bizu": {
+        "summary": [
+          "**Evento complementar**: Ā é formado por todos os pontos de U que não estão em A. Vale n(A) + n(Ā) = n(U), logo **P(Ā) = 1 − P(A)**. Muito útil em \"pelo menos um\" e \"não\".",
+          "O teorema vale também para eventos compostos: **P(complementar da união) = 1 − P(A ∪ B)** e **P(complementar da interseção) = 1 − P(A ∩ B)**.",
+          "**Leis de De Morgan**: **Ā ∩ B̄ = complementar de (A ∪ B)**, \"nem A nem B\" → **P = 1 − P(A ∪ B)**. **Ā ∪ B̄ = complementar de (A ∩ B)**, \"não A ou não B\" → **P = 1 − P(A ∩ B)**. Vale também para três eventos (complementar da união tripla e da interseção tripla).",
+          "**Axiomas de Kolmogorov**: (1) **P(A) ≥ 0**; (2) **P(U) = 1**; (3) se A e B são mutuamente excludentes, **P(A ∪ B) = P(A) + P(B)**.",
+          "Propriedades deduzidas: evento impossível tem probabilidade 0 (**mas probabilidade 0 não implica evento impossível**); evento certo tem probabilidade 1 (mas probabilidade 1 não implica evento certo).",
+          "**0 ≤ P(A) ≤ 1** para qualquer evento.",
+          "**P(A − B) = P(A) − P(A ∩ B)**: probabilidade de ocorrer A e não ocorrer B.",
+          "**Se A ⊆ B, então P(A) ≤ P(B)**. A fórmula da união geral e o complementar também decorrem dos axiomas.",
+          "Armadilha: a soma das probabilidades de eventos só vale para eventos mutuamente excludentes; com interseção não nula, a soma simples falha."
+        ],
+        "teoria": [
+          {
+            "statement": "A probabilidade do evento complementar é dada por P(Ā) = 1 − P(A).",
+            "isTrue": true,
+            "explanation": "n(A) + n(Ā) = n(U); dividindo por n(U), P(A) + P(Ā) = 1."
+          },
+          {
+            "statement": "Para eventos quaisquer A1, ..., An de um mesmo espaço amostral, a probabilidade da união é sempre a soma das probabilidades de cada evento.",
+            "isTrue": false,
+            "explanation": "A soma simples só vale para eventos mutuamente excludentes; havendo interseção, ela precisa ser descontada."
+          },
+          {
+            "statement": "A probabilidade de não ocorrer nem A nem B é igual a 1 − P(A ∪ B).",
+            "isTrue": true,
+            "explanation": "\"Nem A nem B\" é Ā ∩ B̄, que é o complementar da união."
+          },
+          {
+            "statement": "A probabilidade de \"não ocorrer A ou não ocorrer B\" é igual a 1 − P(A ∪ B).",
+            "isTrue": false,
+            "explanation": "Ā ∪ B̄ é o complementar da INTERSEÇÃO: P = 1 − P(A ∩ B)."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Se um evento é impossível, sua probabilidade é nula; porém, um evento de probabilidade nula não é necessariamente impossível.",
+            "isTrue": true,
+            "explanation": "Há eventos possíveis de probabilidade zero, como obter cara em todos os infinitos lançamentos de uma moeda."
+          },
+          {
+            "statement": "Todo evento cuja probabilidade vale 1 é, necessariamente, o evento certo, ou seja, coincide com todo o espaço amostral.",
+            "isTrue": false,
+            "explanation": "O evento certo tem probabilidade 1, mas o inverso não vale necessariamente."
+          },
+          {
+            "statement": "A probabilidade de ocorrer A e não ocorrer B é P(A) − P(A ∩ B).",
+            "isTrue": true,
+            "explanation": "Retira-se de A a parte comum com B."
+          },
+          {
+            "statement": "Se o evento A está contido no evento B, então P(A) é maior ou igual a P(B).",
+            "isTrue": false,
+            "explanation": "Se A ⊆ B, então P(A) ≤ P(B)."
+          },
+          {
+            "statement": "Pelos axiomas de Kolmogorov, nenhuma probabilidade é negativa e a probabilidade do espaço amostral é igual a 1.",
+            "isTrue": true,
+            "explanation": "Axiomas: P(A) ≥ 0, P(U) = 1 e aditividade para eventos mutuamente excludentes."
+          }
+        ],
+        "pointers": [
+          { "topic": "Teorema do evento complementar", "pageRef": 29 },
+          { "topic": "Complementar da união e da interseção", "pageRef": 31 },
+          { "topic": "Nem A nem B: interseção dos complementares", "pageRef": 32 },
+          { "topic": "União dos complementares = complementar da interseção", "pageRef": 33 },
+          { "topic": "Extensão para três eventos", "pageRef": 34 },
+          { "topic": "Axiomas de Kolmogorov", "pageRef": 38 },
+          { "topic": "Probabilidade nula x evento impossível", "pageRef": 38 },
+          { "topic": "Propriedades: 0 ≤ P ≤ 1, P(A-B), inclusão", "pageRef": 39 }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a06/s04",
+      "bizu": {
+        "summary": [
+          "**Probabilidade condicional** P(B|A) = probabilidade de B **sabendo que A ocorreu**. O universo se reduz ao evento A (evento **a priori**, já ocorrido); B é o evento **a posteriori**.",
+          "**Fórmula**: **P(B|A) = P(A ∩ B) / P(A)**, com P(A) > 0. Em tabelas: n(A ∩ B) / n(A).",
+          "Quando o evento a posteriori está contido no a priori, a interseção é o próprio evento: P(X|E) = P(X)/P(E).",
+          "**Complementar condicional**: **P(Ē|H) = 1 − P(E|H)**; o evento a priori não muda.",
+          "**Teorema da multiplicação**: **P(A ∩ B) = P(B|A) · P(A)** (ou P(A|B) · P(B)). Para três eventos: **P(A∩B∩C) = P(A) · P(B|A) · P(C|A∩B)**.",
+          "Árvores de probabilidades: multiplica-se ao longo de um caminho (E) e somam-se os caminhos alternativos (OU).",
+          "**Independência**: A e B são independentes quando a ocorrência de um não altera a probabilidade do outro: **P(B|A) = P(B)**. Equivale a **P(A ∩ B) = P(A) · P(B)** (propriedade de \"ida e volta\").",
+          "Se A e B são independentes, **seus complementares também são**: P(B|Ā) = P(B), P(B̄|A) = P(B̄), P(B̄|Ā) = P(B̄). Exemplo: dois lançamentos de dado.",
+          "Com eventos independentes, \"**pelo menos um**\" = 1 − produto das probabilidades de **nenhum** ocorrer; a união é P(A) + P(B) − P(A)·P(B)."
+        ],
+        "teoria": [
+          {
+            "statement": "A probabilidade condicional de B dado A é P(A ∩ B) dividida por P(A).",
+            "isTrue": true,
+            "explanation": "O denominador é o evento que se sabe ter ocorrido (universo reduzido)."
+          },
+          {
+            "statement": "A probabilidade condicional P(B|A) é calculada dividindo-se P(A ∩ B) por P(B).",
+            "isTrue": false,
+            "explanation": "O divisor é a probabilidade do evento a priori, isto é, do evento A (aquele que se sabe ter ocorrido)."
+          },
+          {
+            "statement": "Dois eventos A e B são independentes quando P(A ∩ B) = P(A) · P(B), e essa igualdade também permite concluir a independência.",
+            "isTrue": true,
+            "explanation": "A relação é de \"ida e volta\": independência implica o produto, e o produto implica independência."
+          },
+          {
+            "statement": "Se A e B são independentes, então A e o complementar de B são eventos dependentes.",
+            "isTrue": false,
+            "explanation": "Os complementares herdam a independência: se A e B são independentes, A e B̄ também são."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Para três eventos, P(A ∩ B ∩ C) = P(A) · P(B|A) · P(C|A ∩ B).",
+            "isTrue": true,
+            "explanation": "É a extensão do teorema da multiplicação."
+          },
+          {
+            "statement": "A fórmula P(A ∪ B) = P(A) + P(B) − P(A) · P(B) vale para quaisquer eventos A e B.",
+            "isTrue": false,
+            "explanation": "Ela só vale quando A e B são independentes; no caso geral, subtrai-se P(A ∩ B)."
+          },
+          {
+            "statement": "A probabilidade de ocorrer pelo menos um de vários eventos independentes pode ser obtida subtraindo-se de 1 o produto das probabilidades de que cada um não ocorra.",
+            "isTrue": true,
+            "explanation": "É o uso do evento complementar: \"pelo menos um\" é o complemento de \"nenhum\"."
+          },
+          {
+            "statement": "O complementar de uma probabilidade condicional é P(Ē|H) = 1 − P(E), sem condicionar ao evento H.",
+            "isTrue": false,
+            "explanation": "O condicionamento permanece: P(Ē|H) = 1 − P(E|H)."
+          }
+        ],
+        "pointers": [
+          { "topic": "Probabilidade condicional e universo reduzido", "pageRef": 43 },
+          { "topic": "Eventos a priori e a posteriori; complementar condicional", "pageRef": 44 },
+          { "topic": "Questões de probabilidade condicional com tabelas", "pageRef": 46 },
+          { "topic": "Teorema da multiplicação", "pageRef": 49 },
+          { "topic": "Multiplicação para três eventos", "pageRef": 50 },
+          { "topic": "Árvore de probabilidades (urnas)", "pageRef": 52 },
+          { "topic": "Independência de eventos e complementares", "pageRef": 53 },
+          { "topic": "Interseção de independentes e \"pelo menos um\"", "pageRef": 54 }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a06/s05",
+      "bizu": {
+        "summary": [
+          "**Independência de três eventos** exige que o produto das probabilidades valha **dois a dois** (A,B), (A,C), (B,C) **e também para os três juntos**, isto é, a interseção tripla tem probabilidade igual ao produto das três individuais.",
+          "Atenção às recíprocas: **o produto triplo sozinho não garante** independência; eventos **independentes dois a dois** podem não ser independentes entre si; e se A⊥B e B⊥C, **não se conclui** que A⊥C.",
+          "Para n eventos independentes: **P(A1∩...∩An) = P(A1) · ... · P(An)** (a recíproca também não vale).",
+          "**Teorema da probabilidade total**: se o evento I ocorre dentro de grupos A, B, C (que cobrem todos os casos), então **P(I) = P(I|A)·P(A) + P(I|B)·P(B) + P(I|C)·P(C)**. Cada condicional é ponderada pela participação do grupo.",
+          "Com dois grupos complementares: **P(I) = P(I|A)·P(A) + P(I|Ā)·P(Ā)**.",
+          "Exemplo da aula: grupos A, B e C com 50%, 30% e 20% dos clientes e inadimplência de 1%, 5% e 10% → P(I) = 0,005 + 0,015 + 0,02 = 4%.",
+          "**Teorema de Bayes**: inverte os eventos a priori e a posteriori — conhecidas P(I|Ai) e P(Ai), obtém-se **P(A|I) = P(I|A)·P(A) / [P(I|A)·P(A) + P(I|B)·P(B) + P(I|C)·P(C)]**. O denominador é a probabilidade total.",
+          "No exemplo: P(A|I) = (0,01 × 0,5)/0,04 = 12,5%.",
+          "Reconhecimento: dados do tipo \"P(evento | grupo)\" e pergunta \"P(grupo | evento)\" → Bayes; pergunta sobre o evento em geral → probabilidade total."
+        ],
+        "teoria": [
+          {
+            "statement": "Para que três eventos A, B e C sejam independentes, é necessário que valham o produto das probabilidades dois a dois e também o produto das três probabilidades na interseção tripla.",
+            "isTrue": true,
+            "explanation": "Todas as combinações devem satisfazer a regra do produto."
+          },
+          {
+            "statement": "Quando a interseção de três eventos tem probabilidade igual ao produto das três probabilidades individuais, é garantido que os eventos são independentes.",
+            "isTrue": false,
+            "explanation": "A recíproca não vale: o produto triplo, sozinho, não garante a independência."
+          },
+          {
+            "statement": "Eventos independentes dois a dois não são necessariamente independentes quando considerados os três em conjunto.",
+            "isTrue": true,
+            "explanation": "É preciso verificar também a regra do produto para a interseção dos três."
+          },
+          {
+            "statement": "Sabendo-se que o par (A, B) é independente e que o par (B, C) também é, conclui-se que o par (A, C) é independente.",
+            "isTrue": false,
+            "explanation": "A independência não é transitiva: nada se pode afirmar sobre A e C só com essas informações."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O teorema de Bayes permite obter P(A|I) a partir de P(I|A) e das probabilidades dos grupos, com a probabilidade total de I no denominador.",
+            "isTrue": true,
+            "explanation": "P(A|I) = P(I|A)·P(A) / P(I), com P(I) dado pela probabilidade total."
+          },
+          {
+            "statement": "A probabilidade total de um evento I é obtida somando-se as probabilidades condicionais P(I|A), P(I|B) e P(I|C), sem ponderar pela participação de cada grupo.",
+            "isTrue": false,
+            "explanation": "Cada probabilidade condicional deve ser multiplicada pela probabilidade do respectivo grupo: P(I|A)·P(A) + ..."
+          },
+          {
+            "statement": "Em uma carteira com três grupos de clientes que representam 50%, 30% e 20% do total, e inadimplência de 1%, 5% e 10% em cada um, a probabilidade de um cliente qualquer ser inadimplente é de 4%.",
+            "isTrue": true,
+            "explanation": "Ponderando cada taxa pela participação do grupo: 20% de 10% mais 30% de 5% mais 50% de 1% resulta em 2% + 1,5% + 0,5% = 4%."
+          },
+          {
+            "statement": "No mesmo exemplo, sabendo-se que um cliente é inadimplente, a probabilidade de ele pertencer ao grupo de 50% é de 1%.",
+            "isTrue": false,
+            "explanation": "Por Bayes, P(A|I) = (0,01×0,5)/0,04 = 12,5%; 1% é apenas a inadimplência condicional do grupo A."
+          }
+        ],
+        "pointers": [
+          { "topic": "Independência de três eventos", "pageRef": 59 },
+          { "topic": "Recíprocas que não valem (produto triplo, 2 a 2, transitividade)", "pageRef": 60 },
+          { "topic": "Independência de n eventos", "pageRef": 61 },
+          { "topic": "Questão FGV sobre independência e transitividade", "pageRef": 62 },
+          { "topic": "Teorema da probabilidade total", "pageRef": 63 },
+          { "topic": "Probabilidade total com dois ou n grupos", "pageRef": 64 },
+          { "topic": "Teorema de Bayes: dedução e fórmula", "pageRef": 66 },
+          { "topic": "Aplicações de Bayes e resumo das fórmulas", "pageRef": 68 }
+        ]
+      }
+    }
+  ]
+}

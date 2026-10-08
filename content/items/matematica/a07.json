@@ -1,0 +1,309 @@
+{
+  "aula": "matematica/a07",
+  "batch": "w2-bizu-matematica",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "matematica/a07/s01",
+      "bizu": {
+        "summary": [
+          "Em **juros compostos**, os montantes de cada período formam uma **progressão geométrica crescente** de razão **q = 1 + i**.",
+          "**Montante composto**: **M = C x (1 + i)^t**. A taxa entra na forma unitária e deve estar na **mesma unidade de tempo** do prazo (taxa mensal, tempo em meses).",
+          "**Juros compostos**: calcula-se primeiro o montante e depois **J = M - C**. Também existe a forma direta **J = C x [(1 + i)^t - 1]**, obtida colocando C em evidência.",
+          "**Macete do quadrado de 1,0x**: dobra-se o algarismo decimal e depois eleva-se ao quadrado, escrevendo os dois resultados lado a lado. 1,05^2 = 1,1025; 1,04^2 = 1,0816; 1,08^2 = 1,1664. Vale para taxas de 1% a 9% com expoente 2.",
+          "**Taxa desconhecida**: isola-se (1 + i)^t = M/C e extrai-se a raiz com o dado fornecido. De R$ 5.000 para R$ 8.640 em 3 anos: (1 + i)^3 = 1,728, logo 1 + i = 1,2 e i = 20% ao ano.",
+          "**Pagamentos intermediários**: capitaliza-se o saldo até a data do pagamento, subtrai-se a parcela paga e capitaliza-se o novo saldo pelo tempo restante. Consignado de R$ 100.000 a 3% ao mês: 106.090 - 46.000 = 60.090, que rende até 65.661,96 no 5º mês.",
+          "**Conversão de unidades do tempo**: se o prazo é de um bimestre e a taxa é mensal, t = 2 meses. 2.000 a 10% ao mês por um bimestre: M = 2.420 e J = 420.",
+          "Comparando com o regime simples para o mesmo caso (3% ao mês, mesmos pagamentos), a segunda parcela composta (65.661,96) é maior que a simples (65.400), pois o prazo é maior que 1 mês."
+        ],
+        "teoria": [
+          {
+            "statement": "No regime de juros compostos, o montante é dado por M = C x (1 + i)^t.",
+            "isTrue": true,
+            "explanation": "É a fórmula do montante composto, com taxa unitária e tempo na mesma unidade da taxa."
+          },
+          {
+            "statement": "No regime de juros compostos, os juros são calculados pela fórmula J = C x i x t.",
+            "isTrue": false,
+            "explanation": "Essa é a fórmula dos juros simples. Nos compostos, J = M - C = C x [(1 + i)^t - 1]."
+          },
+          {
+            "statement": "Em juros compostos, a sequência dos montantes de cada período é uma progressão geométrica de razão 1 + i.",
+            "isTrue": true,
+            "explanation": "O montante de cada período é o anterior multiplicado por (1 + i); por isso o crescimento é exponencial."
+          },
+          {
+            "statement": "Capitalizar um capital a 5% ao mês durante dois meses, em juros compostos, equivale a multiplicá-lo por 1,10.",
+            "isTrue": false,
+            "explanation": "O fator é (1,05)^2 = 1,1025. O fator 1,10 seria obtido com soma de taxas, como nos juros simples."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Os juros compostos de uma operação podem ser obtidos diretamente por J = C x [(1 + i)^t - 1].",
+            "isTrue": true,
+            "explanation": "Resulta de J = M - C = C x (1 + i)^t - C, com C em evidência."
+          },
+          {
+            "statement": "Pelo macete de dobrar o algarismo decimal e elevá-lo ao quadrado, obtém-se 1,07 ao quadrado igual a 1,1449.",
+            "isTrue": true,
+            "explanation": "Dobro de 07 é 14; 07 ao quadrado é 49; juntos formam 1,1449."
+          },
+          {
+            "statement": "Quando se paga parte da dívida no meio do prazo, os juros do período restante continuam incidindo sobre o saldo devedor antes do pagamento.",
+            "isTrue": false,
+            "explanation": "Após o pagamento, o novo capital é o saldo devedor menos a parcela paga, e os juros do tempo restante incidem sobre esse novo saldo."
+          },
+          {
+            "statement": "Em questões de saldo devedor com pagamento intermediário, o novo capital para o prazo restante é o saldo capitalizado até a data menos o valor pago.",
+            "isTrue": true,
+            "explanation": "Por exemplo, 106.090 menos 46.000 resulta em 60.090, que será capitalizado pelos meses restantes."
+          },
+          {
+            "statement": "Na fórmula do montante composto, a taxa e o tempo podem estar em unidades diferentes, desde que a taxa esteja na forma unitária.",
+            "isTrue": false,
+            "explanation": "Além de unitária, a taxa precisa estar na mesma unidade de tempo do prazo (por exemplo, taxa mensal com prazo em meses)."
+          }
+        ],
+        "pointers": [
+          { "topic": "Montante composto e observações sobre unidade e forma unitária", "pageRef": 3 },
+          { "topic": "Juros compostos: J = M - C e forma direta", "pageRef": 4 },
+          { "topic": "Macete do quadrado de 1,0x", "pageRef": 6 },
+          { "topic": "Cálculo da taxa a partir de M, C e t", "pageRef": 8 },
+          { "topic": "Saldo devedor com pagamento intermediário", "pageRef": 9 },
+          { "topic": "Aluguel a juros compostos por dois meses", "pageRef": 11 },
+          { "topic": "Conversão do bimestre em meses", "pageRef": 13 },
+          { "topic": "Empréstimo com pagamento parcial e quitação", "pageRef": 14 }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a07/s02",
+      "bizu": {
+        "summary": [
+          "**Taxa efetiva**: aquela cuja unidade de tempo **coincide** com a do **período de capitalização**. Ex.: 5% ao mês capitalizados mensalmente. Quando a taxa vem escrita só com a unidade de tempo (8% ao trimestre), é efetiva por definição.",
+          "**Taxa nominal**: a unidade de tempo da taxa **não coincide** com a do período de capitalização. Ex.: 10% ao bimestre capitalizados mensalmente; 12% ao ano capitalizados bimestralmente; 15% ao semestre capitalizados anualmente.",
+          "Nas fórmulas de juros compostos **nunca se usa a taxa nominal**. Antes, ela é convertida em taxa efetiva.",
+          "Regra de ouro: **\"quem manda é o período de capitalização\"**. A taxa nominal é passada, por simples divisão ou multiplicação, para a unidade do período de capitalização.",
+          "Conversões: 10% a.b. capitalizados mensalmente = 5% a.m.; 12% a.s. capitalizados bimestralmente = 4% a.b.; 15% a.s. capitalizados anualmente = 30% a.a.; 12% a.a. capitalizados bimestralmente = 2% a.b.; 40% a.a. capitalizados trimestralmente = 10% a.t.",
+          "O **tempo também é convertido** para a unidade da capitalização: 2 anos com capitalização bimestral são 12 bimestres; 6 meses com capitalização trimestral são 2 trimestres.",
+          "Exemplo: R$ 10.000 a 12% ao ano com capitalização bimestral por 2 anos: M = 10.000 x 1,02^12, aproximadamente R$ 12.700, superior a R$ 12.000.",
+          "Exemplo com taxa nominal e saque no meio: 12% ao ano capitalizados bimestralmente (2% ao bimestre) e saque após 4 meses (2 bimestres); o restante continua rendendo por mais 3 bimestres."
+        ],
+        "teoria": [
+          {
+            "statement": "Uma taxa é efetiva quando seu período de referência é o mesmo período em que os juros são capitalizados.",
+            "isTrue": true,
+            "explanation": "Exemplo: 5% ao mês capitalizados mensalmente, que se escreve simplesmente 5% ao mês."
+          },
+          {
+            "statement": "A taxa de 12% ao ano com capitalização bimestral é uma taxa efetiva.",
+            "isTrue": false,
+            "explanation": "A unidade da taxa (ano) é diferente da unidade da capitalização (bimestre); trata-se de taxa nominal."
+          },
+          {
+            "statement": "A taxa nominal de 12% ao ano com capitalização bimestral corresponde a uma taxa efetiva de 2% ao bimestre.",
+            "isTrue": true,
+            "explanation": "O ano tem 6 bimestres; 12%/6 = 2% ao bimestre."
+          },
+          {
+            "statement": "Nos cálculos de juros compostos, a taxa nominal pode ser inserida diretamente na fórmula do montante.",
+            "isTrue": false,
+            "explanation": "A taxa nominal deve ser convertida em efetiva antes; a fórmula exige taxa e capitalização na mesma unidade."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Para converter uma taxa nominal em efetiva, usa-se a unidade do período de capitalização como referência.",
+            "isTrue": true,
+            "explanation": "É a regra \"quem manda é o período de capitalização\"."
+          },
+          {
+            "statement": "A taxa de 10% ao bimestre com capitalização mensal equivale a uma taxa efetiva de 10% ao mês.",
+            "isTrue": false,
+            "explanation": "Um bimestre tem 2 meses; a taxa efetiva mensal é 10%/2 = 5% ao mês."
+          },
+          {
+            "statement": "Uma taxa informada apenas com a unidade de tempo, como 8% ao trimestre, é considerada efetiva.",
+            "isTrue": true,
+            "explanation": "Quando não há menção à capitalização, subentende-se que o período de capitalização coincide com a unidade da taxa."
+          },
+          {
+            "statement": "A taxa de 15% ao semestre capitalizada anualmente corresponde a 7,5% ao ano efetivo.",
+            "isTrue": false,
+            "explanation": "Um ano tem 2 semestres; a conversão é multiplicar: 15% x 2 = 30% ao ano."
+          },
+          {
+            "statement": "Em uma aplicação de 2 anos com capitalização bimestral, o número de períodos de capitalização considerado na fórmula é 12.",
+            "isTrue": true,
+            "explanation": "O tempo deve ser convertido para a unidade da capitalização: 2 anos x 6 bimestres por ano = 12 bimestres."
+          }
+        ],
+        "pointers": [
+          { "topic": "Taxa efetiva", "pageRef": 15 },
+          { "topic": "Taxa nominal e exemplos", "pageRef": 16 },
+          { "topic": "Quem manda é o período de capitalização", "pageRef": 16 },
+          { "topic": "Conversões de taxa nominal para efetiva", "pageRef": 17 },
+          { "topic": "Investimento com saque e taxa nominal bimestral", "pageRef": 19 },
+          { "topic": "Conversão do tempo para a unidade de capitalização", "pageRef": 22 },
+          { "topic": "Taxa nominal anual com capitalização trimestral", "pageRef": 23 }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a07/s03",
+      "bizu": {
+        "summary": [
+          "**Taxas equivalentes**: taxas em unidades de tempo diferentes que, aplicadas ao mesmo capital e ao mesmo prazo no regime composto, produzem o mesmo montante.",
+          "Ao contrário dos juros simples, no regime composto **taxas equivalentes NÃO são proporcionais entre si**.",
+          "Método: capitaliza-se a taxa da unidade menor até a unidade maior: **(1 + i menor)^n = (1 + i maior)**, em que n é a quantidade de períodos menores contida em um período maior. 5% ao mês: 1,05^2 = 1,1025, logo equivale a 10,25% ao bimestre.",
+          "**Fórmula geral**: i procurada = (1 + i do enunciado)^(n procurado / n enunciado) - 1. A taxa do enunciado deve ser efetiva.",
+          "Exemplos: 16% ao semestre = 34,56% ao ano; 33,10% ao trimestre = 10% ao mês (1,1^3 = 1,331); 14,49% ao quadrimestre = 7% ao bimestre (raiz de 1,1449 = 1,07).",
+          "Para passar de uma unidade maior para uma menor, extrai-se raiz do fator (potência fracionária): a raiz quadrada equivale à potência 1/2. A taxa bimestral de 5,0625% corresponde a 2,5% ao mês.",
+          "Se o enunciado traz **taxa nominal**, primeiro converte-se em efetiva e depois se calcula a equivalente: 6% ao semestre capitalizados mensalmente = 1% ao mês, e 1,01^3 dá cerca de 3,03% ao trimestre.",
+          "10% ao ano capitalizados semestralmente = 5% ao semestre, e a taxa bimestral equivalente é raiz cúbica de 1,05 menos 1, cerca de 1,64% ao bimestre.",
+          "5% ao mês equivale a (1,05)^12 - 1, ou seja, cerca de 79,59% ao ano. 15% ao ano capitalizados quadrimestralmente = 5% ao quadrimestre, o que dá taxa efetiva anual de cerca de 15,76%."
+        ],
+        "teoria": [
+          {
+            "statement": "No regime de juros compostos, as taxas equivalentes não são proporcionais.",
+            "isTrue": true,
+            "explanation": "A equivalência é obtida por potenciação, e não por multiplicação ou divisão simples."
+          },
+          {
+            "statement": "No regime composto, a taxa de 5% ao mês equivale a 10% ao bimestre.",
+            "isTrue": false,
+            "explanation": "(1,05)^2 = 1,1025, ou seja, 10,25% ao bimestre. A conta de 10% seria a da proporcionalidade dos juros simples."
+          },
+          {
+            "statement": "A taxa mensal equivalente a uma taxa bimestral é aquela que satisfaz (1 + i mensal)^2 = 1 + i bimestral.",
+            "isTrue": true,
+            "explanation": "A taxa mensal é capitalizada por 2 meses (1 bimestre) e deve reproduzir o fator bimestral."
+          },
+          {
+            "statement": "A taxa de 15% ao ano capitalizada quadrimestralmente tem taxa efetiva anual de exatamente 15%.",
+            "isTrue": false,
+            "explanation": "A taxa efetiva quadrimestral é 5%, e a anual equivalente é 1,05^3 - 1, cerca de 15,76%."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Para obter a taxa anual equivalente a uma taxa mensal, eleva-se (1 + i mensal) a 12 e subtrai-se 1.",
+            "isTrue": true,
+            "explanation": "Um ano tem 12 meses, e a capitalização mensal repetida 12 vezes gera o fator anual."
+          },
+          {
+            "statement": "Para obter a taxa mensal equivalente a uma taxa trimestral, divide-se a taxa trimestral por 3.",
+            "isTrue": false,
+            "explanation": "Divide-se o expoente: extrai-se a raiz cúbica de (1 + i trimestral) e subtrai-se 1."
+          },
+          {
+            "statement": "Se o enunciado fornece uma taxa nominal, ela deve ser convertida em efetiva antes de se calcular a taxa equivalente.",
+            "isTrue": true,
+            "explanation": "A fórmula da taxa equivalente exige que a taxa de partida seja efetiva."
+          },
+          {
+            "statement": "A taxa de 16% ao semestre equivale, no regime composto, a 32% ao ano.",
+            "isTrue": false,
+            "explanation": "O fator anual é 1,16^2 = 1,3456, ou seja, 34,56% ao ano."
+          },
+          {
+            "statement": "A taxa de 33,10% ao trimestre equivale, no regime composto, a 10% ao mês.",
+            "isTrue": true,
+            "explanation": "1,1^3 = 1,331, o que corresponde a 33,10% de variação em 3 meses."
+          }
+        ],
+        "pointers": [
+          { "topic": "Definição de taxas equivalentes e não proporcionalidade", "pageRef": 24 },
+          { "topic": "Exemplo 5% ao mês para bimestre", "pageRef": 25 },
+          { "topic": "Exemplos de equivalência (semestre-ano, trimestre-mês)", "pageRef": 26 },
+          { "topic": "Equivalência com taxa nominal (conversão prévia)", "pageRef": 27 },
+          { "topic": "Fórmula geral da taxa equivalente", "pageRef": 29 },
+          { "topic": "Taxa semestral efetiva com capitalização bimestral", "pageRef": 30 },
+          { "topic": "Taxa mensal para anual com dado auxiliar", "pageRef": 31 },
+          { "topic": "Taxa bimestral para mensal por raiz", "pageRef": 32 },
+          { "topic": "Taxa efetiva anual a partir da nominal quadrimestral", "pageRef": 34 }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a07/s04",
+      "bizu": {
+        "summary": [
+          "Quando o prazo tem **parte inteira e parte fracionária** (ex.: 4 meses e 15 dias com taxa mensal), usam-se duas convenções para o montante: a **exponencial** e a **linear**.",
+          "**Convenção exponencial**: capitalização **composta em todo o período**, inclusive na parte fracionária. M = C x (1 + i)^t, com t fracionário (4 meses e 15 dias = 4,5 meses). A banca fornece o valor da potência.",
+          "**Convenção linear**: capitalização **composta na parte inteira** e **juros simples na parte fracionária**. M = C x (1 + i)^t1 x (1 + i x t2), em que t1 é a parte inteira e t2 a fração.",
+          "A fração do tempo é convertida para a unidade da taxa: 15 dias = 0,5 mês; 3 meses = 0,25 ano; 12 dias = 12/30 do mês.",
+          "Exemplo com C = 100 e 10% ao mês por 4,5 meses: exponencial dá 153,56 e linear dá 157,73. Para uma fração de período, o regime simples rende mais, e por isso a **convenção linear costuma resultar em montante maior**.",
+          "Exemplo de linear: dívida de V por 2 anos e meio a 10% ao ano: 1,21V x 1,05, cerca de 1,27V, ou seja, juros de aproximadamente 0,27V.",
+          "Questões inversas: os juros simples da parte fracionária informam o montante da parte inteira; dividindo-se por (1 + i)^t1, recupera-se o capital inicial.",
+          "**Tabela financeira do fator de acumulação** (1 + i)^t: localiza-se a taxa e o número de períodos, e a tabela devolve a potência. Por exemplo, 1,07^9 = 1,8385.",
+          "Antes de consultar a tabela, converta a taxa nominal em efetiva e o tempo para a unidade da capitalização. 6% ao trimestre capitalizados mensalmente = 2% ao mês, e 8 meses dão 1,02^8, cerca de 1,1717.",
+          "Algumas tabelas trazem o fator inverso 1/(1 + i)^t. Nesse caso, inverte-se o valor lido: 1/0,5568 dá aproximadamente 1,7959 para 1,05^12."
+        ],
+        "teoria": [
+          {
+            "statement": "Na convenção exponencial, aplica-se capitalização composta a todo o período, inclusive à parte fracionária do tempo.",
+            "isTrue": true,
+            "explanation": "O montante é M = C x (1 + i)^t com t fracionário, como em 1,1 elevado a 4,5."
+          },
+          {
+            "statement": "Na convenção linear, a parte fracionária do prazo é capitalizada em regime composto.",
+            "isTrue": false,
+            "explanation": "Na convenção linear, a parte inteira usa juros compostos e a fracionária usa juros simples."
+          },
+          {
+            "statement": "A fórmula do montante pela convenção linear é M = C x (1 + i)^t1 x (1 + i x t2), com t1 inteiro e t2 fracionário.",
+            "isTrue": true,
+            "explanation": "Reúne os dois passos: composto para t1 e simples para t2."
+          },
+          {
+            "statement": "Em uma taxa anual, um prazo fracionário de 3 meses deve ser convertido para 0,3 ano.",
+            "isTrue": false,
+            "explanation": "3 meses são 3/12 = 0,25 ano."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Com taxa mensal e prazo de 4 meses e 15 dias, a convenção exponencial emprega o expoente 4,5.",
+            "isTrue": true,
+            "explanation": "15 dias são meio mês, e o tempo precisa estar na mesma unidade da taxa."
+          },
+          {
+            "statement": "Para prazos com parte fracionária, as convenções linear e exponencial produzem sempre o mesmo montante.",
+            "isTrue": false,
+            "explanation": "O resultado difere: no exemplo de 4,5 meses a 10% ao mês, o linear dá 157,73 e o exponencial dá 153,56."
+          },
+          {
+            "statement": "Em uma tabela de fator de acumulação de capitais, entra-se com a taxa e o número de períodos para obter o valor de (1 + i)^t.",
+            "isTrue": true,
+            "explanation": "Evita calcular a potência manualmente quando o prazo é grande."
+          },
+          {
+            "statement": "Se a tabela fornecida for do fator 1/(1 + i)^t, o valor lido pode ser usado diretamente como (1 + i)^t.",
+            "isTrue": false,
+            "explanation": "É preciso inverter o valor lido. Por exemplo, 1/0,5568 dá cerca de 1,7959."
+          },
+          {
+            "statement": "Se a taxa fornecida for nominal, ela deve ser convertida em efetiva antes de se consultar a tabela financeira.",
+            "isTrue": true,
+            "explanation": "A potência da tabela deve corresponder à taxa efetiva e ao número de períodos de capitalização."
+          }
+        ],
+        "pointers": [
+          { "topic": "Parte inteira e fracionária do tempo", "pageRef": 35 },
+          { "topic": "Convenção exponencial", "pageRef": 35 },
+          { "topic": "Convenção linear", "pageRef": 36 },
+          { "topic": "Fórmula direta da convenção linear", "pageRef": 37 },
+          { "topic": "Questão de juros pela convenção linear em anos", "pageRef": 38 },
+          { "topic": "Questão inversa para achar o capital inicial", "pageRef": 39 },
+          { "topic": "Fator de acumulação de capitais", "pageRef": 42 },
+          { "topic": "Uso da tabela financeira", "pageRef": 43 },
+          { "topic": "Pagamento extra e tabela para dois prazos", "pageRef": 46 },
+          { "topic": "Tabela com fator inverso", "pageRef": 49 }
+        ]
+      }
+    }
+  ]
+}

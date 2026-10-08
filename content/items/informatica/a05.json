@@ -1,0 +1,96 @@
+{
+  "aula": "informatica/a05",
+  "batch": "w2-bizu-informatica",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "informatica/a05/s01",
+      "bizu": {
+        "summary": [
+          "**Backup** (becape) = cópia de segurança que permite recuperar informações de forma confiável e tempestiva após corrupção, desastre, furto ou exclusão acidental. Protege principalmente a **integridade** e a disponibilidade dos dados.",
+          "**Local do backup**: **on-site** (na própria instituição) ou **off-site** (local geograficamente remoto). O off-site é preferível, pois um desastre no local principal não atinge a cópia.",
+          "**Escolha da mídia**: considere volume de dados, tempo de leitura/escrita, tempo de restauração e custo. Opções: pendrive, fitas, cartões, HD externo e nuvem. **Memória RAM não serve**, pois é volátil. A **nuvem** é o meio mais indicado atualmente, por redundância e segurança física, e o backup pode ser criptografado.",
+          "**Fita x disco**: a fita é indicada para grandes volumes por longo prazo e baixo custo, mas a gravação é sequencial e a recuperação é lenta; o disco grava aleatoriamente e restaura mais rápido, sendo melhor para arquivos individuais.",
+          "**Atributo de arquivamento** (bit archive, flag archive): marca de cada arquivo, representada pela letra **A**, indicando que ele **ainda não sofreu backup**. É ligado (bit = 1, atributo marcado) sempre que o arquivo é criado ou modificado e desligado (bit = 0, desmarcado) quando o backup o arquiva. Os outros atributos citados são R (somente leitura), H (oculto) e S (sistema).",
+          "**Backup completo (total, normal, full)**: copia **todos** os dados selecionados, independentemente do atributo, e **desmarca** o atributo. Vantagens: operação simples e restauração rápida (basta o último completo). Desvantagens: maior tempo de execução e espaço. Costuma ser feito periodicamente, em geral aos domingos, e combinado com incrementais ou diferenciais.",
+          "**Backup incremental**: copia apenas o que foi criado ou modificado desde o último backup completo ou incremental e **desmarca** o atributo. É o mais rápido e o que menos ocupa espaço, mas a restauração é mais lenta e complexa: exige o último completo mais **todos** os incrementais subsequentes.",
+          "Atenção: dizer que o incremental copia o que mudou desde o último backup de qualquer tipo só vale em arranjos sem diferencial, pois o diferencial não desmarca o atributo.",
+          "**Backup diferencial** (incremental cumulativo): copia o que foi criado ou modificado desde o último backup completo ou incremental e **NÃO desmarca** o atributo. Por isso cada diferencial repete o conteúdo do anterior: ocupa mais espaço e tempo que o incremental, mas a restauração é mais rápida (último completo + último diferencial).",
+          "Pegadinha: muitas questões definem o diferencial como cópia do que mudou desde o último backup completo (definição válida em arranjos só com completo e diferencial). A definição mais genérica cita o último completo ou incremental.",
+          "**Backup de cópia**: copia os arquivos selecionados, mas **não altera** o atributo de arquivamento; usado em situações emergenciais entre outros backups. **Backup diário**: copia os arquivos modificados **na data** da execução, usando apenas a data como critério, e também não altera o atributo.",
+          "**Práticas recomendadas**: definir periodicidade, manter várias cópias em mídias e locais diferentes (ao menos uma off-site), agendar backups, **testar restaurações** e simular desastres, documentar procedimentos, usar criptografia, monitorar espaço e integridade, e conscientizar usuários."
+        ],
+        "teoria": [
+          {
+            "statement": "O backup completo copia todos os dados selecionados independentemente do atributo de arquivamento e, em seguida, desmarca esse atributo.",
+            "isTrue": true,
+            "explanation": "Por não depender do atributo, o completo permite restauração rápida, bastando o último backup completo."
+          },
+          {
+            "statement": "O backup incremental copia os arquivos novos ou modificados e mantém o atributo de arquivamento marcado após a cópia.",
+            "isTrue": false,
+            "explanation": "O incremental desmarca o atributo (bit 1 para 0). Quem o mantém marcado é o backup diferencial."
+          },
+          {
+            "statement": "No backup diferencial, o atributo de arquivamento não é desmarcado, de modo que cada novo diferencial volta a copiar os arquivos já copiados pelo diferencial anterior.",
+            "isTrue": true,
+            "explanation": "Por isso o diferencial acumula alterações e ocupa mais espaço que o incremental."
+          },
+          {
+            "statement": "Para restaurar dados com a combinação de um backup completo e vários incrementais, basta recuperar o último backup incremental.",
+            "isTrue": false,
+            "explanation": "É preciso restaurar o último completo e, em sequência, todos os incrementais subsequentes até o momento da falha."
+          },
+          {
+            "statement": "Quando se afirma que o atributo de arquivamento está marcado, isso indica que o arquivo ainda não sofreu backup, pois o bit archive vale 1.",
+            "isTrue": true,
+            "explanation": "O atributo A é ligado quando o arquivo é criado ou modificado e desligado depois do backup que o arquiva."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Em um arranjo com backup completo e diferenciais, a restauração exige apenas o último completo e o último diferencial, sendo mais rápida que a do incremental.",
+            "isTrue": true,
+            "explanation": "Em contrapartida, o diferencial leva mais tempo para ser criado do que o incremental."
+          },
+          {
+            "statement": "O backup incremental é o que demanda maior tempo de execução e maior espaço de armazenamento entre todos os tipos de backup.",
+            "isTrue": false,
+            "explanation": "O incremental é o mais rápido e o que menos espaço ocupa, por copiar apenas o que mudou desde o último incremental ou completo."
+          },
+          {
+            "statement": "Os backups de cópia e diário não alteram o atributo de arquivamento dos arquivos.",
+            "isTrue": true,
+            "explanation": "Por isso não interferem na sequência de backups completo, incremental ou diferencial."
+          },
+          {
+            "statement": "O backup diário seleciona os arquivos que estão com o atributo de arquivamento marcado.",
+            "isTrue": false,
+            "explanation": "O backup diário usa como critério apenas a data: copia os arquivos modificados no dia da execução."
+          },
+          {
+            "statement": "Armazenar o backup em local geograficamente remoto (off-site) é, em regra, mais recomendável que mantê-lo apenas no local do sistema original.",
+            "isTrue": true,
+            "explanation": "Assim, um desastre no local principal não destrói simultaneamente os dados e suas cópias."
+          }
+        ],
+        "pointers": [
+          { "topic": "Conceito de backup e riscos de perda de dados", "pageRef": 4 },
+          { "topic": "On-site x off-site e escolha da mídia (nuvem, RAM)", "pageRef": 5 },
+          { "topic": "Atributo de arquivamento (bit archive)", "pageRef": 6 },
+          { "topic": "Atributo marcado e desmarcado", "pageRef": 7 },
+          { "topic": "Backup completo", "pageRef": 8 },
+          { "topic": "Backup incremental", "pageRef": 10 },
+          { "topic": "Restauração do incremental", "pageRef": 11 },
+          { "topic": "Definição de incremental em arranjos com diferencial", "pageRef": 12 },
+          { "topic": "Backup diferencial", "pageRef": 13 },
+          { "topic": "Comparativo incremental x diferencial", "pageRef": 14 },
+          { "topic": "Definições incompletas de diferencial nas provas", "pageRef": 15 },
+          { "topic": "Backup de cópia e backup diário", "pageRef": 17 },
+          { "topic": "Práticas recomendadas de backup", "pageRef": 19 }
+        ]
+      }
+    }
+  ]
+}

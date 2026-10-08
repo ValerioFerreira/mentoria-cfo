@@ -1,0 +1,243 @@
+{
+  "aula": "matematica/a09",
+  "batch": "w2-bizu-matematica",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "matematica/a09/s01",
+      "bizu": {
+        "summary": [
+          "**Par ordenado** (a, b): a **ordem importa**, ou seja, (a, b) é diferente de (b, a). Já no par comum {a, b} = {b, a}.",
+          "**Plano cartesiano**: dois eixos perpendiculares que se cruzam na **origem O**. O ponto P(xP, yP) tem **abscissa** xP (eixo horizontal Ox, eixo das abscissas) e **ordenada** yP (eixo vertical Oy, eixo das ordenadas). Se y = 0, o ponto está sobre Ox; se x = 0, sobre Oy.",
+          "Os eixos dividem o plano em **quatro quadrantes**, numerados em sentido **anti-horário**.",
+          "**Produto cartesiano** A x B = {(x, y) | x pertence a A e y pertence a B}: um conjunto de pares ordenados, com o primeiro elemento vindo de A e o segundo de B. Com A = {1, 2, 3} e B = {4, 5}, o 1 forma par com o 4 e com o 5, o 2 e o 3 também: são 6 pares ao todo.",
+          "**n(A x B) = n(A) . n(B)**: o número de pares é o produto das quantidades de elementos. O produto cartesiano **não é comutativo** (A x B é diferente de B x A em geral, pois os pares mudam de ordem).",
+          "Produto cartesiano com o **conjunto vazio** resulta em vazio: A x ∅ = ∅, ∅ x A = ∅ e ∅ x ∅ = ∅.",
+          "No plano, o produto cartesiano é representado por **pontos**. Para intervalos reais, como [0, 2] x [3, 5], a região correspondente é um **retângulo preenchido, incluindo as bordas** (se os intervalos tiverem mesmo comprimento, um quadrado). [0, 5] x [-1, 2] é um retângulo.",
+          "**Relação binária de A em B** é **qualquer subconjunto de A x B**. Os pares selecionados por uma regra, como y = x + 2, formam uma relação: {(2,4), (3,5)}. Para verificar se um conjunto de pares é relação, confira se cada primeiro elemento pertence a A e cada segundo pertence a B.",
+          "Nos diagramas de setas, **A é o conjunto de partida** (valores de x) e **B é o conjunto de chegada** (valores de y).",
+          "**Número de relações** de A em B = 2^(n(A) . n(B)) (inclui a relação vazia); **relações não vazias** = 2^(n(A) . n(B)) - 1. Com n(P) = 2 e n(Q) = 3, são 2^6 - 1 = 63.",
+          "Antecipação: a função é um tipo particular de relação, portanto **existem relações que não são funções**."
+        ],
+        "teoria": [
+          {
+            "statement": "Em um par ordenado, a ordem dos elementos é relevante: (1, 2) é diferente de (2, 1).",
+            "isTrue": true,
+            "explanation": "Já no par não ordenado representado com chaves, {1, 2} = {2, 1}."
+          },
+          {
+            "statement": "A abscissa de um ponto do plano cartesiano é a sua coordenada vertical.",
+            "isTrue": false,
+            "explanation": "A abscissa é a coordenada x (horizontal, eixo Ox); a ordenada é a coordenada y (vertical, eixo Oy)."
+          },
+          {
+            "statement": "O número de elementos do produto cartesiano A x B é igual ao produto de n(A) por n(B).",
+            "isTrue": true,
+            "explanation": "Cada elemento de A forma um par com cada elemento de B: {1, 2, 3} x {4, 5} tem 3 x 2 = 6 pares."
+          },
+          {
+            "statement": "Para quaisquer conjuntos A e B, o produto A x B é sempre igual ao produto B x A.",
+            "isTrue": false,
+            "explanation": "Os pares têm o primeiro elemento em A em um caso e em B no outro; em geral, A x B é diferente de B x A."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Relação binária de A em B é todo subconjunto do produto cartesiano A x B.",
+            "isTrue": true,
+            "explanation": "Qualquer seleção de pares de A x B, por uma regra ou por listagem, constitui uma relação de A em B."
+          },
+          {
+            "statement": "Um conjunto de pares ordenados é uma relação de A em B quando o primeiro elemento de cada par pertence a B e o segundo pertence a A.",
+            "isTrue": false,
+            "explanation": "O primeiro elemento deve pertencer ao conjunto de partida A, e o segundo ao conjunto de chegada B."
+          },
+          {
+            "statement": "Se A tem 3 elementos e B tem 2, existem 2 elevado a 6, ou seja, 64 relações de A em B, incluindo a vazia.",
+            "isTrue": true,
+            "explanation": "A x B tem 6 elementos e o número de subconjuntos é 2^6 = 64; excluída a vazia, restam 63."
+          },
+          {
+            "statement": "O produto cartesiano de qualquer conjunto A pelo conjunto vazio é o próprio conjunto vazio.",
+            "isTrue": true,
+            "explanation": "Não há segundo elemento disponível para formar pares, logo A x ∅ = ∅."
+          },
+          {
+            "statement": "Toda relação binária de A em B é também uma função.",
+            "isTrue": false,
+            "explanation": "Toda função é relação, mas nem toda relação é função; a função exige condições adicionais sobre as imagens."
+          }
+        ],
+        "pointers": [
+          { "topic": "Par ordenado e plano cartesiano", "pageRef": 3 },
+          { "topic": "Eixos, origem, abscissa e ordenada", "pageRef": 4 },
+          { "topic": "Quadrantes e definição de produto cartesiano", "pageRef": 5 },
+          { "topic": "Número de elementos de A x B", "pageRef": 7 },
+          { "topic": "A x B diferente de B x A", "pageRef": 8 },
+          { "topic": "Produto cartesiano de intervalos como região do plano", "pageRef": 10 },
+          { "topic": "Produto cartesiano com conjunto vazio e relação binária", "pageRef": 12 },
+          { "topic": "Relação como subconjunto (exemplo y = x + 2)", "pageRef": 13 },
+          { "topic": "Conjunto de partida e de chegada nos diagramas", "pageRef": 16 },
+          { "topic": "Número de relações de A em B", "pageRef": 17 }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a09/s02",
+      "bizu": {
+        "summary": [
+          "**Função** é uma relação com características especiais. O conjunto de partida é o **domínio**, o de chegada é o **contradomínio**, e a **imagem Im(f)** é o conjunto dos elementos do contradomínio em que efetivamente chega uma seta. A imagem pode ser menor que o contradomínio. Notação: **f: A -> B**.",
+          "**Condições para ser função**: (1) **todo elemento do domínio** tem imagem (não pode \"sobrar\" elemento em A, embora possa sobrar em B); (2) cada elemento do domínio tem **uma única imagem** (uma só seta saindo). Dois elementos do domínio **podem** ter a mesma imagem.",
+          "**Lei de correspondência**: regra que associa cada x à sua imagem f(x). Uma função é definida por **domínio, contradomínio e lei**. Em f(x) = 5x, f(1) = 5 e o ponto (1, 5) pertence a f.",
+          "**Representação gráfica**: marcam-se os pontos (x, f(x)). Com domínio real, o gráfico é contínuo. Tipos básicos: constante (reta horizontal), 1º grau (reta), 2º grau (parábola), exponencial, logarítmica e modular.",
+          "**Teste da reta vertical**: um gráfico representa uma função se toda reta vertical o intersecta em, no máximo, um ponto. Se alguma vertical o toca em dois pontos, um x tem duas imagens e não é função.",
+          "**Domínio** (maior conjunto em que a lei faz sentido): (1) se há **denominador com x**, exclui-se o valor que o anula (f(x) = 1/x tem domínio R - {0}); (2) se há **raiz de índice par** com x no radicando, o radicando deve ser **maior ou igual a zero** (raiz(x + 1) exige x ≥ -1).",
+          "Quando as duas restrições aparecem: f(x) = raiz(-2x + 1)/(x + 3) exige x ≤ 1/2 e x ≠ -3. Já em raiz(x^2 + 2x + 1) = raiz((x + 1)^2), o radicando nunca é negativo, e o domínio é todo R.",
+          "**Função injetora**: elementos distintos do domínio têm imagens distintas (f(x1) = f(x2) implica x1 = x2). Nos diagramas, cada elemento de B recebe no máximo uma seta. f(x) = x^2 de R em R **não** é injetora, pois f(2) = f(-2) = 4. A função de 1º grau é injetora.",
+          "**Teste da reta horizontal**: se toda reta horizontal toca o gráfico em no máximo um ponto, a função é injetora. **Não confundir**: vertical testa se é função; horizontal testa se é injetora."
+        ],
+        "teoria": [
+          {
+            "statement": "Numa função, nenhum elemento do domínio pode ter duas imagens diferentes.",
+            "isTrue": true,
+            "explanation": "É a segunda condição: nos diagramas, uma única seta parte de cada elemento do domínio."
+          },
+          {
+            "statement": "Em uma função, pode haver elementos do domínio sem nenhuma imagem correspondente, desde que sobrem elementos no contradomínio.",
+            "isTrue": false,
+            "explanation": "Todo elemento do domínio precisa ter imagem. Sobrar elementos é permitido apenas no contradomínio."
+          },
+          {
+            "statement": "Dois elementos distintos do domínio podem ter a mesma imagem sem que a relação deixe de ser função.",
+            "isTrue": true,
+            "explanation": "O que é proibido é um mesmo elemento do domínio ter duas imagens; a repetição de imagens é permitida (e só impede a injetividade)."
+          },
+          {
+            "statement": "O conjunto dos números reais pode ser o domínio da função f(x) = 1/x.",
+            "isTrue": false,
+            "explanation": "Para x = 0 não há imagem. O domínio é R - {0}."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O domínio da função f(x) = raiz(x + 1) é formado pelos reais x tais que x ≥ -1.",
+            "isTrue": true,
+            "explanation": "Em raiz de índice par o radicando deve ser maior ou igual a zero: x + 1 ≥ 0."
+          },
+          {
+            "statement": "Para verificar se o gráfico de uma relação representa uma função, traçam-se retas horizontais e conta-se quantos pontos de interseção existem.",
+            "isTrue": false,
+            "explanation": "O teste das retas verticais é que verifica se um gráfico é de função; as horizontais testam a injetividade."
+          },
+          {
+            "statement": "A função f: R -> R dada por f(x) = x^2 não é injetora.",
+            "isTrue": true,
+            "explanation": "f(2) = f(-2) = 4: elementos distintos do domínio compartilham a mesma imagem."
+          },
+          {
+            "statement": "O conjunto imagem de uma função é sempre igual ao seu contradomínio.",
+            "isTrue": false,
+            "explanation": "A imagem contém só os elementos do contradomínio efetivamente atingidos; pode ser menor, como em {2, 4, 6, 8} contra {2, 4, 6, 8, 10}."
+          },
+          {
+            "statement": "O domínio de f(x) = raiz(-2x + 1)/(x + 3) é o conjunto dos reais x tais que x ≤ 1/2 e x ≠ -3.",
+            "isTrue": true,
+            "explanation": "O radicando exige -2x + 1 ≥ 0, ou seja, x ≤ 1/2, e o denominador exige x + 3 diferente de zero."
+          }
+        ],
+        "pointers": [
+          { "topic": "Domínio, contradomínio e imagem", "pageRef": 19 },
+          { "topic": "Condições para uma relação ser função", "pageRef": 20 },
+          { "topic": "Lei de correspondência", "pageRef": 21 },
+          { "topic": "Imagem de função com domínio finito", "pageRef": 22 },
+          { "topic": "Representação gráfica da função", "pageRef": 23 },
+          { "topic": "Tipos de função e seus gráficos", "pageRef": 24 },
+          { "topic": "Reta vertical para identificar função", "pageRef": 25 },
+          { "topic": "Domínio com denominador", "pageRef": 27 },
+          { "topic": "Domínio com raiz de índice par", "pageRef": 28 },
+          { "topic": "Restrições combinadas no domínio", "pageRef": 29 },
+          { "topic": "Função injetora e reta horizontal", "pageRef": 31 }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a09/s03",
+      "bizu": {
+        "summary": [
+          "**Função sobrejetora**: o contradomínio é **igual à imagem** (todo elemento de B recebe seta). Não é obrigatório ser injetora. Em f: R -> R, o domínio é R por definição; já a imagem só será R se f for sobrejetora.",
+          "**Função bijetora**: é **ao mesmo tempo injetora e sobrejetora**. Em questões com várias alternativas verdadeiras, marca-se a mais completa (bijetora).",
+          "**Funções monotônicas**: **estritamente crescente** (x1 < x2 implica f(x1) < f(x2)) e **estritamente decrescente** (x1 < x2 implica f(x1) > f(x2)). Se há trechos constantes, a função é monotônica **não decrescente** (ou **não crescente**); é comum chamá-las apenas \"crescente\" ou \"decrescente\".",
+          "**Função par**: **f(x) = f(-x)** para todo x do domínio; o gráfico é **simétrico em relação ao eixo Oy**. Ex.: f(x) = x^2. Uma função par definida em R **não é injetora**, pois x e -x têm a mesma imagem.",
+          "**Função ímpar**: **f(x) = -f(-x)**, ou seja, f(-x) = -f(x); o gráfico é **simétrico em relação à origem**. Ex.: f(x) = x. Para testar, troca-se x por -x: p(x) = 5x^3 + 3x^5 é ímpar e q(x) = 4x^2 + 2x^4 é par.",
+          "**Função composta**: h(x) = g(f(x)) = (g o f)(x), lida \"g composta com f\". Aplica-se primeiro f e depois g; para calcular, substitui-se o x de g pela expressão de f. Com g(x) = x^2 e f(x) = 3x, g(f(x)) = 9x^2.",
+          "**A composição não é comutativa** em geral: f o g é diferente de g o f. Com f(x) = x + 1 e g(x) = x^2, f(g(x)) = x^2 + 1, mas g(f(x)) = (x + 1)^2.",
+          "**Função inversa**: f^(-1) leva os elementos de B de volta a A. Só existe se **f for bijetora** (não é preciso que seja \"positiva\"). Notação: f^(-1), e não 1/f.",
+          "**Como obter a inversa** (dois passos): (1) troca-se f(x) por x e x por f^(-1)(x); (2) isola-se f^(-1)(x). f(x) = x + 1 tem inversa x - 1; f(x) = (1 + x)/x tem inversa 1/(x - 1); y = 3x - 5 tem inversa (x + 5)/3, e f^(-1)(-3) = 2/3."
+        ],
+        "teoria": [
+          {
+            "statement": "Uma função é sobrejetora quando seu conjunto imagem coincide com o contradomínio.",
+            "isTrue": true,
+            "explanation": "Todos os elementos do contradomínio recebem ao menos uma seta."
+          },
+          {
+            "statement": "Uma função é bijetora quando é injetora ou sobrejetora, bastando uma das duas propriedades.",
+            "isTrue": false,
+            "explanation": "A bijetora exige as duas propriedades simultaneamente: injetora e sobrejetora."
+          },
+          {
+            "statement": "Uma função par tem gráfico que se reflete sobre o eixo das ordenadas, coincidindo consigo mesmo.",
+            "isTrue": true,
+            "explanation": "Como f(x) = f(-x), pontos de abscissas opostas têm a mesma ordenada."
+          },
+          {
+            "statement": "Uma função é ímpar quando f(x) = f(-x) para todo x do domínio.",
+            "isTrue": false,
+            "explanation": "Essa é a condição da função par. A função ímpar satisfaz f(x) = -f(-x), com gráfico simétrico em relação à origem."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Para uma função ser invertível, é necessário que seja bijetora.",
+            "isTrue": true,
+            "explanation": "Só a bijetora permite que cada elemento de B volte a um único elemento de A; não há exigência de a função ser positiva."
+          },
+          {
+            "statement": "A composição de funções é comutativa: f o g sempre coincide com g o f.",
+            "isTrue": false,
+            "explanation": "Em geral, f(g(x)) e g(f(x)) diferem. Com f(x) = x + 1 e g(x) = x^2, obtêm-se x^2 + 1 e (x + 1)^2."
+          },
+          {
+            "statement": "Uma função é estritamente crescente quando, para x1 < x2, vale f(x1) < f(x2).",
+            "isTrue": true,
+            "explanation": "A imagem aumenta sempre que x aumenta; se houver trechos constantes, a função é apenas não decrescente."
+          },
+          {
+            "statement": "Toda função sobrejetora é necessariamente injetora.",
+            "isTrue": false,
+            "explanation": "As propriedades são independentes: existem funções apenas sobrejetoras, apenas injetoras e bijetoras (ambas)."
+          },
+          {
+            "statement": "A função p(x) = 5x^3 + 3x^5 é ímpar.",
+            "isTrue": true,
+            "explanation": "p(-x) = -5x^3 - 3x^5 = -p(x)."
+          }
+        ],
+        "pointers": [
+          { "topic": "Função sobrejetora", "pageRef": 34 },
+          { "topic": "Função bijetora", "pageRef": 36 },
+          { "topic": "Funções monotônicas (crescente e decrescente)", "pageRef": 38 },
+          { "topic": "Monotônica não crescente", "pageRef": 40 },
+          { "topic": "Função par e simetria em Oy", "pageRef": 41 },
+          { "topic": "Função ímpar e simetria na origem", "pageRef": 42 },
+          { "topic": "Teste de paridade em polinômios", "pageRef": 43 },
+          { "topic": "Função composta", "pageRef": 44 },
+          { "topic": "Composição não comutativa", "pageRef": 45 },
+          { "topic": "Função inversa exige bijetora", "pageRef": 47 },
+          { "topic": "Método de obtenção da inversa", "pageRef": 48 }
+        ]
+      }
+    }
+  ]
+}

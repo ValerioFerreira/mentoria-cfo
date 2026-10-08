@@ -1,0 +1,385 @@
+{
+  "aula": "matematica/a03",
+  "batch": "w2-bizu-matematica",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "matematica/a03/s01",
+      "bizu": {
+        "summary": [
+          "**Múltiplos**: os múltiplos de 7 têm a forma 7k (k inteiro). Todo número tem infinitos múltiplos.",
+          "**Número primo**: natural maior que 1 com **exatamente dois divisores naturais** (o 1 e ele mesmo). Há infinitos primos. Convém decorar os quinze primeiros (do 2 ao 47): 2, 3, 5, 7, 11, 13, 17, 19 e seguintes, passando por 23, 29, 31, 37, 41 e 43.",
+          "**MMC** = o menor múltiplo comum a todos os números considerados. Método prático: **decomposição simultânea em fatores primos**, dividindo pelos primos (2, 3, 5, 7...) enquanto algum número for divisível; o MMC é o produto dos primos usados. MMC(5; 10; 15; 20; 50) = 300.",
+          "**Atalhos do MMC**: se um número é múltiplo de outro, o menor pode sair do cálculo (MMC(40; 30; 15) = MMC(40; 30)). Se um número é múltiplo de todos os outros, **ele próprio é o MMC** (MMC(3; 6; 12) = 12).",
+          "**Fração** é um número racional que representa uma divisão: o **numerador** é o dividendo e o **denominador** é o divisor. Frações como 2/6 e 1/3 são **equivalentes** (representam o mesmo número).",
+          "Fração **irredutível**: numerador e denominador são **primos entre si**, isto é, sem fatores primos em comum. 14/15 e 2/7 são irredutíveis; 14/84 e 3/6 não são.",
+          "**Simplificar** é dividir numerador e denominador pelo mesmo número até não ser mais possível, ou decompor em fatores primos e cortar os comuns. 84/120 = 42/60 = 21/30 = 7/10.",
+          "**Soma e subtração de frações**: transformam-se todas em frações equivalentes com o **mesmo denominador**, que é o **MMC dos denominadores**; depois operam-se apenas os numeradores. 2/3 + 1/5 + 7/10 = 47/30.",
+          "Ao final, verifique se o resultado pode ser simplificado: 44/60 - 40/60 = 4/60 = 1/15."
+        ],
+        "teoria": [
+          {
+            "statement": "Um número primo é um natural maior que 1 que possui apenas dois divisores naturais: o número 1 e ele mesmo.",
+            "isTrue": true,
+            "explanation": "É a definição de número primo; por isso 2, 3, 5, 7 e 11 são primos, enquanto 4, 6 e 9 não são."
+          },
+          {
+            "statement": "O número 1 é primo, pois é divisível por 1 e por ele mesmo.",
+            "isTrue": false,
+            "explanation": "Primos são naturais maiores que 1 com dois divisores distintos. O 1 tem um único divisor natural."
+          },
+          {
+            "statement": "Para somar frações com denominadores diferentes, transformam-se as parcelas em frações equivalentes cujo denominador comum é o MMC dos denominadores.",
+            "isTrue": true,
+            "explanation": "Com o mesmo denominador, soma-se apenas o numerador. Usar o MMC dá o menor denominador comum possível."
+          },
+          {
+            "statement": "A fração 14/84 é irredutível, porque 14 é menor que 84.",
+            "isTrue": false,
+            "explanation": "14 e 84 têm fatores primos comuns (2 e 7), logo a fração pode ser simplificada. Irredutível é a fração cujos termos são primos entre si."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Se um dos números é múltiplo de todos os demais, esse número é o MMC do conjunto.",
+            "isTrue": true,
+            "explanation": "Por exemplo, MMC(120; 60; 15) = 120, pois 120 já é múltiplo de 60 e de 15."
+          },
+          {
+            "statement": "As frações 2/6 e 1/3 representam números diferentes, porque seus termos são diferentes.",
+            "isTrue": false,
+            "explanation": "São frações equivalentes: dividindo numerador e denominador de 2/6 por 2, obtém-se 1/3."
+          },
+          {
+            "statement": "Uma fração a/b é irredutível quando a e b são primos entre si.",
+            "isTrue": true,
+            "explanation": "Se não existe fator primo comum aos dois termos, nenhuma simplificação é possível."
+          },
+          {
+            "statement": "Para somar duas frações, soma-se numerador com numerador e denominador com denominador, mesmo que os denominadores sejam diferentes.",
+            "isTrue": false,
+            "explanation": "O denominador comum é mantido (e obtido pelo MMC); somam-se somente os numeradores. Assim, 1/2 + 1/3 não é 2/5."
+          },
+          {
+            "statement": "No cálculo de MMC(40; 30; 15), pode-se desconsiderar o 15, pois 30 é múltiplo de 15.",
+            "isTrue": true,
+            "explanation": "Todo múltiplo comum de 40 e 30 já é múltiplo de 15, de modo que MMC(40; 30; 15) = MMC(40; 30)."
+          }
+        ],
+        "pointers": [
+          { "topic": "Múltiplos e números primos", "pageRef": 5 },
+          { "topic": "MMC por decomposição simultânea", "pageRef": 6 },
+          { "topic": "Atalhos para calcular o MMC", "pageRef": 7 },
+          { "topic": "Conceito de fração e fração equivalente", "pageRef": 9 },
+          { "topic": "Fração irredutível e primos entre si", "pageRef": 10 },
+          { "topic": "Simplificação de frações", "pageRef": 11 },
+          { "topic": "Soma e subtração de frações com MMC", "pageRef": 12 },
+          { "topic": "Simplificar o resultado da soma/subtração", "pageRef": 13 }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a03/s02",
+      "bizu": {
+        "summary": [
+          "**Multiplicação de frações**: multiplicam-se numeradores entre si e denominadores entre si. Convém **simplificar antes** (em cruz) para chegar direto à fração irredutível.",
+          "**Divisão de frações**: mantém-se a primeira fração e **inverte-se a segunda**, passando a multiplicar. (3/4) dividido por (9/20) = 3/4 x 20/9 = 5/3.",
+          "**Comparação de frações**: leva-se ao mesmo denominador (MMC) e comparam-se os numeradores, ou divide-se numerador por denominador e comparam-se os decimais. Ex.: 3/8 < 2/5 < 5/12.",
+          "Em problemas, a palavra **\"de\"** indica **multiplicação**: 1/3 de 6 pedaços = 1/3 x 6 = 2. A expressão \"metade de 1/3 de...\" encadeia produtos.",
+          "**Obtenção do todo a partir da parte**: se a fração p/q do todo vale V, o todo vale (q/p) x V, o \"**inverte e multiplica**\". Se 2/3 equivalem a 200 g, o todo tem 300 g.",
+          "O recurso funciona porque divide V por p (valor de uma parte) e multiplica por q (todas as partes).",
+          "**Fração complementar**: o que falta para chegar ao inteiro. 1 - a/b = (b - a)/b. Se comeu 5/8, resta 3/8.",
+          "**Frações do restante**: cada nova fração incide sobre o que sobrou. Entrada de 1/3 deixa 2/3; se financia 3/4 desse restante, sobra 1/4 de 2/3 = 1/6 do valor total.",
+          "Para quantidades consumidas em etapas, **somam-se as frações consumidas** e usa-se a complementar para o que resta (69/120 consumidos deixam 51/120)."
+        ],
+        "teoria": [
+          {
+            "statement": "Dividir uma fração por outra equivale a multiplicar a primeira pela inversa da segunda.",
+            "isTrue": true,
+            "explanation": "É a regra \"conserva a primeira e inverte a segunda\": 3/4 dividido por 9/20 = 3/4 x 20/9."
+          },
+          {
+            "statement": "Para multiplicar duas frações é obrigatório antes reduzi-las ao mesmo denominador.",
+            "isTrue": false,
+            "explanation": "Na multiplicação basta multiplicar numerador por numerador e denominador por denominador. O denominador comum é necessário apenas para somar, subtrair e comparar."
+          },
+          {
+            "statement": "Em problemas com frações, a palavra \"de\" indica uma multiplicação.",
+            "isTrue": true,
+            "explanation": "Por exemplo, 2/5 de 120 funcionários é 2/5 x 120 = 48."
+          },
+          {
+            "statement": "Se alguém consome 5/8 de uma barra, a fração da barra que resta é 3/8.",
+            "isTrue": true,
+            "explanation": "A fração complementar é 1 - 5/8 = 8/8 - 5/8 = 3/8."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Se 2/3 de um reservatório correspondem a 120 litros, o reservatório inteiro comporta 180 litros.",
+            "isTrue": true,
+            "explanation": "Inverte-se a fração e multiplica-se: 3/2 x 120 = 180."
+          },
+          {
+            "statement": "Para obter o todo a partir de 2/3 dele, multiplica-se o valor da parte por 2/3.",
+            "isTrue": false,
+            "explanation": "Multiplicar por 2/3 daria uma quantidade menor que a parte. É preciso inverter a fração e multiplicar por 3/2."
+          },
+          {
+            "statement": "Duas frações podem ser comparadas dividindo-se o numerador pelo denominador de cada uma e comparando os decimais obtidos.",
+            "isTrue": true,
+            "explanation": "Essa é uma alternativa à redução ao mesmo denominador: 3/8 = 0,375, 2/5 = 0,4 e 5/12 = 0,4166..."
+          },
+          {
+            "statement": "Se, depois de uma entrada, uma pessoa financia 3/4 do valor restante, a parcela não financiada equivale a 3/4 desse restante.",
+            "isTrue": false,
+            "explanation": "A parte não financiada é a complementar de 3/4, ou seja, 1/4 do valor restante."
+          }
+        ],
+        "pointers": [
+          { "topic": "Multiplicação de frações com simplificação prévia", "pageRef": 15 },
+          { "topic": "Divisão de frações (inverte a segunda)", "pageRef": 16 },
+          { "topic": "Comparação de frações", "pageRef": 19 },
+          { "topic": "A palavra \"de\" como multiplicação", "pageRef": 20 },
+          { "topic": "Todo a partir da parte: inverte e multiplica", "pageRef": 23 },
+          { "topic": "Fração complementar", "pageRef": 25 },
+          { "topic": "Problema de entrada e financiamento", "pageRef": 26 },
+          { "topic": "Soma de frações consumidas e restante", "pageRef": 27 }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a03/s03",
+      "bizu": {
+        "summary": [
+          "**Modelagem**: quando há um valor desconhecido, atribui-se uma **incógnita** ao total (T, M, A...) e traduz-se cada informação do texto em fração da incógnita.",
+          "**Etapas sucessivas**: o que resta é o total menos o já usado. Se resolveu T/3, restam 2T/3; se na etapa seguinte resolveu 2/3 do restante, resolveu 4T/9; ao todo foram 7T/9, e faltam 2T/9.",
+          "Igualando a parte que falta ao valor numérico dado (2T/9 = 100), encontra-se o total (T = 450). Depois, responde-se exatamente ao que a pergunta pede (muitas vezes é uma parte, e não o total).",
+          "**Dízima periódica** surge de uma divisão cujas casas decimais se repetem indefinidamente. O **período** é a porção que se repete e é indicado por um traço sobre ela. Em 5,77898989..., o período é 89.",
+          "**Dízima periódica simples → fração**: 0,AAA... = A/9; 0,ABAB... = AB/99; 0,ABCABC... = ABC/999. Usam-se tantos algarismos 9 quanto forem os algarismos do período.",
+          "**Dízima composta** (com parte não periódica depois da vírgula): separa-se a parte que não se repete e escreve-se o resto como (1/10^k) multiplicado por uma dízima simples. Ex.: 0,55333... = 0,55 + (1/100) x (3/9) = 498/900.",
+          "**0,999... = 1** exatamente (9/9), e não uma aproximação.",
+          "A fração obtida pode não ser irredutível; as alternativas podem trazer uma fração equivalente (182/300 = 546/900)."
+        ],
+        "teoria": [
+          {
+            "statement": "A dízima periódica 0,333... pode ser escrita como a fração 3/9.",
+            "isTrue": true,
+            "explanation": "Em 0,AAA..., o período A vai ao numerador e o denominador é 9."
+          },
+          {
+            "statement": "A dízima 0,4545... é igual à fração 4/9.",
+            "isTrue": false,
+            "explanation": "O período tem dois algarismos (45); portanto o denominador é 99: 0,4545... = 45/99."
+          },
+          {
+            "statement": "O número 0,999... é exatamente igual a 1.",
+            "isTrue": true,
+            "explanation": "0,999... = 0,9 com período = 9/9 = 1. Não se trata de aproximação."
+          },
+          {
+            "statement": "Se Rejane resolveu 1/3 das questões de um livro de T questões, ainda restam T/3 questões.",
+            "isTrue": false,
+            "explanation": "O que resta é a fração complementar: T - T/3 = 2T/3."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Na dízima 5,77898989..., o período é 89.",
+            "isTrue": true,
+            "explanation": "O período é a porção que se repete indefinidamente; 5,77 não se repete, e depois dele aparece 89 repetido."
+          },
+          {
+            "statement": "Uma dízima do tipo 0,ABCABC... equivale à fração ABC/99.",
+            "isTrue": false,
+            "explanation": "Para período de três algarismos, o denominador é 999: 0,ABCABC... = ABC/999."
+          },
+          {
+            "statement": "Em uma dízima composta, como 0,55333..., separa-se a parte que não se repete (0,55) da parte periódica antes de converter em fração.",
+            "isTrue": true,
+            "explanation": "A parte periódica é reescrita como (1/100) x 0,333..., e então se aplica a regra da dízima simples."
+          },
+          {
+            "statement": "Toda dízima periódica é um número irracional.",
+            "isTrue": false,
+            "explanation": "Dízimas periódicas podem ser escritas como fração de inteiros; logo, são racionais."
+          },
+          {
+            "statement": "Em 0,553333..., o trecho 55 não se repete e o período é 3.",
+            "isTrue": true,
+            "explanation": "Apenas o algarismo 3 aparece indefinidamente após o 0,55."
+          }
+        ],
+        "pointers": [
+          { "topic": "Modelagem de problemas com incógnita", "pageRef": 28 },
+          { "topic": "Frações do restante em etapas", "pageRef": 29 },
+          { "topic": "Problema de frações encadeadas com divisão em três pessoas", "pageRef": 30 },
+          { "topic": "Definição de dízima e de período", "pageRef": 33 },
+          { "topic": "Regra dos noves para dízima simples", "pageRef": 33 },
+          { "topic": "Dízima composta: separar a parte não periódica", "pageRef": 34 },
+          { "topic": "0,999... é igual a 1", "pageRef": 35 },
+          { "topic": "Fração equivalente nas alternativas", "pageRef": 36 }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a03/s04",
+      "bizu": {
+        "summary": [
+          "**Razão** entre A e B (com B diferente de zero) é a divisão A/B, também escrita A:B. Compara dois números e diz quantas vezes A é maior que B. A **ordem importa**: 10 adultos para 5 crianças dá 2; crianças para adultos dá 0,5.",
+          "**Proporção** é a **igualdade entre razões**: A/B = C/D (lê-se \"A está para B como C está para D\"). Na forma A/B = C/D, **A e D ocupam as pontas (extremos)** e **B e C ficam no centro (meios)**.",
+          "**Multiplicação cruzada**: meios multiplicados dão o mesmo que extremos multiplicados (B x C = A x D). É a ferramenta para achar a incógnita de uma proporção.",
+          "Os meios podem ser rearranjados entre si (e os extremos também) sem mudar a proporção, o que facilita as contas.",
+          "**Cuidado com a parte e o todo**: a razão entre duas partes não é a razão entre uma parte e o total. Se a razão (com deficiência)/(sem deficiência) é 1/3, a razão (com deficiência)/(total) é 1/4.",
+          "**Propriedade da soma**: se a/b = c/d, então a/b = c/d = (a+c)/(b+d); vale também com mais de duas razões (a+c+e)/(b+d+f). Útil quando se conhece a soma dos numeradores.",
+          "**Propriedade da subtração**: a/b = c/d = (a-c)/(b-d). Boa para eliminar uma incógnita (em (x+1)/10 = (x-4)/5, o numerador da diferença é 5).",
+          "Em ambas, **a mesma operação feita com os numeradores é feita com os denominadores**; é possível usar apenas algumas das razões da cadeia.",
+          "Se A/B = 3, escreve-se A = 3B e substitui-se em outras razões: (2A - B)/(2A) = 5/6."
+        ],
+        "teoria": [
+          {
+            "statement": "Em uma proporção A/B = C/D, o produto dos meios (B e C) é igual ao produto dos extremos (A e D).",
+            "isTrue": true,
+            "explanation": "É a multiplicação cruzada: B x C = A x D."
+          },
+          {
+            "statement": "A razão entre A e B é sempre igual à razão entre B e A.",
+            "isTrue": false,
+            "explanation": "Uma é o inverso da outra. Com 10 adultos e 5 crianças, a razão adultos/crianças é 2, e a razão crianças/adultos é 0,5."
+          },
+          {
+            "statement": "Proporção é a igualdade entre duas ou mais razões.",
+            "isTrue": true,
+            "explanation": "Exemplo de notação: A/B = C/D."
+          },
+          {
+            "statement": "Se a razão entre pessoas com deficiência e pessoas sem deficiência é de 1/3, então 1/3 da população tem deficiência.",
+            "isTrue": false,
+            "explanation": "A razão é entre uma parte e outra parte. Com C = 1 e S = 3, o total é 4, e a fração com deficiência é 1/4."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Se a/b = c/d, então a/b também é igual a (a + c)/(b + d).",
+            "isTrue": true,
+            "explanation": "É a propriedade fundamental da soma, válida inclusive para proporções com mais de duas razões."
+          },
+          {
+            "statement": "Se a/b = c/d, então a/b = (a + c)/(b - d).",
+            "isTrue": false,
+            "explanation": "A mesma operação deve ser aplicada a numeradores e denominadores: soma com soma (a + c)/(b + d), ou subtração com subtração (a - c)/(b - d)."
+          },
+          {
+            "statement": "Na proporção 5/10 = 20/40, os números 10 e 20 são os meios, e 5 e 40 são os extremos.",
+            "isTrue": true,
+            "explanation": "Nos extremos estão o primeiro numerador e o último denominador; nos meios, o primeiro denominador e o segundo numerador."
+          },
+          {
+            "statement": "A propriedade da subtração das proporções é útil para eliminar a incógnita quando os numeradores têm a mesma parte variável.",
+            "isTrue": true,
+            "explanation": "Em (x+1)/10 = (x-4)/5, subtrair os numeradores faz o x desaparecer, resultando em 5/5 = 1."
+          },
+          {
+            "statement": "A razão A/B é definida somente quando A é diferente de zero.",
+            "isTrue": false,
+            "explanation": "A condição é B diferente de zero, pois B é o divisor."
+          }
+        ],
+        "pointers": [
+          { "topic": "Razão e ordem dos termos", "pageRef": 40 },
+          { "topic": "Uso de incógnita em razões", "pageRef": 42 },
+          { "topic": "Proporção: meios e extremos", "pageRef": 44 },
+          { "topic": "Multiplicação cruzada e rearranjo de meios/extremos", "pageRef": 45 },
+          { "topic": "Razão entre partes versus parte e todo", "pageRef": 48 },
+          { "topic": "Propriedade fundamental da soma", "pageRef": 49 },
+          { "topic": "Propriedade fundamental da subtração", "pageRef": 50 }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a03/s05",
+      "bizu": {
+        "summary": [
+          "**Escala** é a razão entre a **medida representada** (no desenho) e a **medida real**. Costuma ser escrita A:B. Em 1:50.000, **cada unidade do mapa vale 50.000 dessa mesma unidade** na realidade (cm do mapa = 50.000 cm reais).",
+          "Resolve-se escala por multiplicação cruzada e **converte-se a unidade só no final** (cm para m: divide por 100). Maquete 1:24 com 20 cm representa 480 cm = 4,8 m.",
+          "**Velocidade média** = distância percorrida / tempo. Com km e h obtém-se km/h; com m e s obtém-se m/s.",
+          "**Conversões**: de **km/h para m/s divide-se por 3,6**; de **m/s para km/h multiplica-se por 3,6**. Assim 72 km/h = 20 m/s.",
+          "Com velocidade **constante**, ela coincide com a velocidade média do trajeto. Se o tempo vier em minutos, converta para horas antes (30 min = 0,5 h).",
+          "Problemas de **trem e túnel**: para atravessar completamente o túnel, o trem percorre o **comprimento do túnel mais o seu próprio comprimento**. Igualando as velocidades das duas situações, obtém-se o comprimento do trem.",
+          "Em **perseguição**, o perseguidor percorre a distância inicial mais a distância percorrida pelo perseguido, no mesmo tempo; as velocidades constantes permitem montar duas equações.",
+          "**Vazão** = volume / tempo (l/h, ml/min...). A unidade depende das unidades de volume e de tempo usadas.",
+          "Para torneiras funcionando juntas, **a vazão conjunta é a soma das vazões individuais**. Com enchimento em 4 h e 6 h: 1/4 + 1/6 = 5/12 do recipiente por hora, logo 12/5 h = 2 h 24 min.",
+          "Para achar o tempo de uma torneira desconhecida: 1/t = 1/(tempo conjunto) - soma das demais vazões (em fração do recipiente por hora)."
+        ],
+        "teoria": [
+          {
+            "statement": "A escala é a razão entre a medida representada no desenho e a medida real do objeto.",
+            "isTrue": true,
+            "explanation": "Escala = medida representada / medida real; costuma ser escrita na forma A:B."
+          },
+          {
+            "statement": "Em um mapa na escala 1:50.000, cada centímetro do mapa corresponde a 50.000 metros reais.",
+            "isTrue": false,
+            "explanation": "A escala relaciona unidades iguais: 1 cm do mapa corresponde a 50.000 cm reais (500 m)."
+          },
+          {
+            "statement": "Para converter uma velocidade de km/h para m/s, divide-se o valor por 3,6.",
+            "isTrue": true,
+            "explanation": "Como 1 km = 1000 m e 1 h = 3600 s, a razão é 1000/3600 = 1/3,6."
+          },
+          {
+            "statement": "Para converter uma velocidade de m/s para km/h, divide-se o valor por 3,6.",
+            "isTrue": false,
+            "explanation": "No sentido m/s para km/h, multiplica-se por 3,6 (20 m/s = 72 km/h)."
+          },
+          {
+            "statement": "Vazão é a razão entre um volume e o tempo em que esse volume escoa.",
+            "isTrue": true,
+            "explanation": "Vazão = volume / tempo, em unidades como l/h ou ml/min."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Quando duas ou mais torneiras enchem um mesmo recipiente ao mesmo tempo, a vazão conjunta é a soma das vazões individuais.",
+            "isTrue": true,
+            "explanation": "É a base para montar a equação nos problemas de torneiras: V/t conjunto = V/t1 + V/t2 + ..."
+          },
+          {
+            "statement": "Se uma torneira enche um tanque em 4 horas e outra, em 6 horas, funcionando juntas elas levam 10 horas.",
+            "isTrue": false,
+            "explanation": "Juntas elas são mais rápidas que a mais rápida sozinha: 1/4 + 1/6 = 5/12, e o tempo é 12/5 h = 2 h 24 min."
+          },
+          {
+            "statement": "Para atravessar completamente um túnel, um trem percorre uma distância igual ao comprimento do túnel somado ao comprimento do próprio trem.",
+            "isTrue": true,
+            "explanation": "A travessia só termina quando a traseira do trem sai do túnel."
+          },
+          {
+            "statement": "A velocidade média é calculada multiplicando-se a distância percorrida pelo tempo gasto.",
+            "isTrue": false,
+            "explanation": "Velocidade média = distância percorrida dividida pelo tempo."
+          },
+          {
+            "statement": "Um veículo a 72 km/h move-se a 20 m/s.",
+            "isTrue": true,
+            "explanation": "Dividindo 72 por 3,6, obtém-se 20 m/s."
+          }
+        ],
+        "pointers": [
+          { "topic": "Escala como razão e interpretação de 1:50.000", "pageRef": 51 },
+          { "topic": "Escala: exemplos de cálculo e conversão final", "pageRef": 52 },
+          { "topic": "Velocidade média", "pageRef": 53 },
+          { "topic": "Conversão km/h e m/s (fator 3,6)", "pageRef": 54 },
+          { "topic": "Velocidade constante e tempo em minutos", "pageRef": 55 },
+          { "topic": "Trem atravessando túnel", "pageRef": 57 },
+          { "topic": "Perseguição com velocidades constantes", "pageRef": 59 },
+          { "topic": "Vazão e unidades", "pageRef": 60 },
+          { "topic": "Soma das vazões das torneiras", "pageRef": 61 },
+          { "topic": "Torneira desconhecida e níveis em duas caixas", "pageRef": 63 }
+        ]
+      }
+    }
+  ]
+}
+

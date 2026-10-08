@@ -1,0 +1,451 @@
+{
+  "aula": "estatistica/a07",
+  "batch": "w2-bizu-estatistica",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "estatistica/a07/s01",
+      "bizu": {
+        "summary": [
+          "**Estatística inferencial**: tira conclusões sobre a população a partir de uma amostra. A característica numérica da população é o **parâmetro populacional**; a medida correspondente na amostra é a **estatística (estimativa)**; a conclusão sobre a população é a **inferência**.",
+          "Como a estatística depende da amostra sorteada, ela varia de amostra para amostra: por isso é uma **variável aleatória**.",
+          "**Variável aleatória (v.a.)** = função que associa um número real a cada ponto do espaço amostral. Seus valores são incertos (variável de valor certo não é aleatória), mas seguem um padrão que permite atribuir probabilidades. Notação: P(X = x) ou P(x).",
+          "**Discreta**: valores **enumeráveis** (contáveis), mesmo que infinitos (ex.: número de carros num pedágio). **Contínua**: qualquer valor de um intervalo; a probabilidade de um valor exato é **zero**, e só se atribuem probabilidades a **intervalos**. A infinitude, sozinha, não distingue as duas.",
+          "**Função de probabilidade** (discreta): atribui a cada valor x a probabilidade P(X = x). Condições: **P(X = x) ≥ 0** e **Σ P(X = x) = 1**.",
+          "Quando a função traz uma constante k, **iguale a soma das probabilidades a 1** e resolva (ex.: P(x) = x/k para x = 1 a 4 → k = 10).",
+          "**Distribuição de probabilidade** = conjunto dos pares (x, P(x)), em tabela ou **gráfico de barras** (com espaço entre as barras). O histograma (sem espaço) é para variáveis contínuas agrupadas.",
+          "Variáveis **independentes e identicamente distribuídas (i.i.d.)**: mutuamente independentes e com a mesma distribuição, isto é, os mesmos pares (x, P(x)). Probabilidades iguais com valores diferentes não bastam."
+        ],
+        "teoria": [
+          {
+            "statement": "Em uma variável aleatória contínua, a probabilidade de ela assumir exatamente um valor específico é zero, e as probabilidades são atribuídas a intervalos de valores.",
+            "isTrue": true,
+            "explanation": "Valores isolados têm probabilidade nula nas variáveis contínuas; calcula-se, por exemplo, a probabilidade entre 1,95 L e 2,05 L."
+          },
+          {
+            "statement": "Uma variável aleatória discreta só pode assumir uma quantidade finita de valores.",
+            "isTrue": false,
+            "explanation": "Os valores precisam ser enumeráveis, mas podem ser infinitos, como o número de carros que chegam a um pedágio (1, 2, 3, ...)."
+          },
+          {
+            "statement": "A função de probabilidade de uma variável aleatória discreta atribui a cada valor uma probabilidade não negativa, e a soma de todas elas é 1.",
+            "isTrue": true,
+            "explanation": "Decorre dos axiomas: P ≥ 0 e P(U) = 1."
+          },
+          {
+            "statement": "A distribuição de probabilidade de uma variável discreta é representada por um histograma, em que as barras são justapostas, sem espaço entre elas.",
+            "isTrue": false,
+            "explanation": "Para variáveis discretas usa-se gráfico de barras, com espaço entre elas; o histograma, sem espaço, é para variáveis contínuas."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Variáveis aleatórias independentes e identicamente distribuídas são mutuamente independentes e possuem a mesma distribuição de probabilidade.",
+            "isTrue": true,
+            "explanation": "Mesma distribuição significa os mesmos valores possíveis com as mesmas probabilidades."
+          },
+          {
+            "statement": "Variáveis que têm as mesmas probabilidades associadas, mas que assumem valores possíveis diferentes, são identicamente distribuídas.",
+            "isTrue": false,
+            "explanation": "É preciso coincidir tanto os valores quanto as probabilidades; valores distintos já bastam para que as distribuições difiram."
+          },
+          {
+            "statement": "Uma variável cujo valor é conhecido com certeza antes do experimento não é uma variável aleatória.",
+            "isTrue": true,
+            "explanation": "Os valores de uma variável aleatória são incertos, ainda que obedeçam a um padrão."
+          },
+          {
+            "statement": "O número de carros que chegam a um pedágio é uma variável aleatória contínua, porque pode assumir infinitos valores.",
+            "isTrue": false,
+            "explanation": "O que distingue a discreta da contínua não é a infinitude, mas a possibilidade de enumerar os valores; carros são contados, logo a variável é discreta."
+          },
+          {
+            "statement": "Quando a função de probabilidade traz uma constante desconhecida, esta pode ser obtida igualando-se a 1 a soma das probabilidades de todos os valores.",
+            "isTrue": true,
+            "explanation": "Isso decorre de P(U) = 1."
+          }
+        ],
+        "pointers": [
+          { "topic": "Inferência estatística, parâmetro e estatística", "pageRef": 4 },
+          { "topic": "Definição de variável aleatória", "pageRef": 5 },
+          { "topic": "Discretas x contínuas e probabilidade em intervalos", "pageRef": 6 },
+          { "topic": "Função de probabilidade e suas condições", "pageRef": 9 },
+          { "topic": "Cálculo de constante na função de probabilidade", "pageRef": 11 },
+          { "topic": "Distribuição de probabilidade (tabela e gráfico de barras)", "pageRef": 13 },
+          { "topic": "Gráfico de barras x histograma", "pageRef": 14 },
+          { "topic": "Variáveis independentes e identicamente distribuídas", "pageRef": 15 }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a07/s02",
+      "bizu": {
+        "summary": [
+          "**Esperança matemática** (valor esperado, expectância, média) de uma v.a. X: **E(X) = Σ x · P(X = x)**. Notação alternativa: μ_X.",
+          "Se os resultados são equiprováveis, a esperança é a média aritmética dos valores: moeda 0/1 → 0,5; dado → 3,5.",
+          "Em problemas de decisão, calcule a esperança de cada alternativa (lucro × probabilidade de cada cenário) e escolha o **maior valor esperado**.",
+          "**Propriedade i**: **E(k · X) = k · E(X)** (vale também para divisão por constante).",
+          "**Propriedade ii**: **E(X ± k) = E(X) ± k**.",
+          "**Propriedade iii**: **E(X ± Y) = E(X) ± E(Y)** para **quaisquer** variáveis, independentes ou não; estende-se a várias variáveis.",
+          "**Propriedade iv**: **E(k) = k** (a esperança de uma constante é ela mesma).",
+          "**Propriedade v**: se X e Y são **independentes**, **E(X · Y) = E(X) · E(Y)**. Não é de \"ida e volta\": o produto das esperanças igual à esperança do produto não garante independência.",
+          "Exemplo combinado: E(3X + Y/4 − 2Z + 1) = 3·E(X) + E(Y)/4 − 2·E(Z) + 1."
+        ],
+        "teoria": [
+          {
+            "statement": "A esperança da soma de duas variáveis aleatórias é a soma das esperanças, quer as variáveis sejam independentes ou não.",
+            "isTrue": true,
+            "explanation": "E(X + Y) = E(X) + E(Y) não exige independência."
+          },
+          {
+            "statement": "A esperança do produto de duas variáveis aleatórias quaisquer é sempre igual ao produto das esperanças.",
+            "isTrue": false,
+            "explanation": "Essa igualdade exige que as variáveis sejam independentes."
+          },
+          {
+            "statement": "Somando-se uma constante k a todos os valores de uma variável aleatória, a esperança também é somada de k.",
+            "isTrue": true,
+            "explanation": "E(X + k) = E(X) + k."
+          },
+          {
+            "statement": "Se todos os valores de uma variável aleatória são multiplicados por 2, a sua esperança permanece inalterada.",
+            "isTrue": false,
+            "explanation": "E(2X) = 2 · E(X): a esperança também dobra."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A esperança de uma constante k é a própria constante k.",
+            "isTrue": true,
+            "explanation": "Se todos os valores são iguais a k, a média é k."
+          },
+          {
+            "statement": "Se E(X · Y) = E(X) · E(Y), pode-se concluir que X e Y são independentes.",
+            "isTrue": false,
+            "explanation": "A propriedade não é de ida e volta: a igualdade pode ocorrer sem que haja independência."
+          },
+          {
+            "statement": "Para o lançamento de um dado equilibrado com faces de 1 a 6, a esperança do resultado é 3,5.",
+            "isTrue": true,
+            "explanation": "Cada face tem probabilidade 1/6; a soma dos produtos dá 21/6 = 3,5."
+          },
+          {
+            "statement": "A esperança de uma variável discreta é obtida somando-se os valores possíveis, sem ponderá-los pelas respectivas probabilidades.",
+            "isTrue": false,
+            "explanation": "Cada valor deve ser multiplicado pela sua probabilidade antes de somar: E(X) = Σ x · P(x)."
+          }
+        ],
+        "pointers": [
+          { "topic": "Esperança: definição e fórmula", "pageRef": 17 },
+          { "topic": "Cálculo com tabela de distribuição", "pageRef": 18 },
+          { "topic": "Escolha da estratégia de maior valor esperado", "pageRef": 19 },
+          { "topic": "Questões de esperança com distribuições", "pageRef": 20 },
+          { "topic": "Propriedade E(kX) = kE(X)", "pageRef": 22 },
+          { "topic": "Propriedade E(X ± k) = E(X) ± k", "pageRef": 24 },
+          { "topic": "E(X ± Y) e E(k)", "pageRef": 24 },
+          { "topic": "E(XY) para variáveis independentes (sem ida e volta)", "pageRef": 25 }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a07/s03",
+      "bizu": {
+        "summary": [
+          "**Moda** de uma v.a. = valor com **maior probabilidade**. É um **valor da variável** (eixo horizontal do gráfico de barras), e não a probabilidade; a coluna mais alta indica a moda.",
+          "Pode haver mais de uma moda (bimodal, trimodal, multimodal). Se todos os resultados são equiprováveis (moeda ou dado equilibrados), a distribuição é **amodal**.",
+          "**Propriedades da moda**: **Mo(kX) = k · Mo(X)** e **Mo(X ± k) = Mo(X) ± k**.",
+          "**Mediana** de uma v.a. = valor que divide a distribuição ao meio: P(X ≤ Md) ≥ 50% e P(X ≥ Md) ≥ 50%. Quando a mediana está entre dois valores, adota-se a **média aritmética** deles (ex.: entre 4 e 5, Md = 4,5).",
+          "**Propriedades da mediana** (iguais às da moda): **Md(kX) = k · Md(X)** e **Md(X ± k) = Md(X) ± k**. Ex.: se Md(R) = 80 e U = R/10 − 7, então Md(U) = 8 − 7 = 1.",
+          "Comparação entre média, moda e mediana indica a **assimetria**. **Simétrica**: média = mediana = moda.",
+          "**Positivamente assimétrica** (cauda mais longa à direita): **moda < mediana < média**. **Negativamente assimétrica** (cauda à esquerda): **moda > mediana > média** (relações apresentadas na aula).",
+          "Resumo das três medidas: esperança (ponderação por probabilidades), moda (maior probabilidade) e mediana (50%)."
+        ],
+        "teoria": [
+          {
+            "statement": "A moda de uma variável aleatória é o valor da variável que tem a maior probabilidade, e não o valor dessa probabilidade.",
+            "isTrue": true,
+            "explanation": "No gráfico de barras, a moda está no eixo horizontal, sob a coluna mais alta."
+          },
+          {
+            "statement": "A moda de uma variável aleatória é a maior probabilidade atribuída a algum de seus valores.",
+            "isTrue": false,
+            "explanation": "A maior probabilidade é um número entre 0 e 1; a moda é o valor da variável a que ela se associa."
+          },
+          {
+            "statement": "O lançamento de um dado equilibrado produz uma distribuição amodal, pois todas as faces são equiprováveis.",
+            "isTrue": true,
+            "explanation": "Sem um valor mais provável que os demais, não há moda."
+          },
+          {
+            "statement": "Somando-se uma constante k a todos os valores de uma variável aleatória, a sua mediana não se altera.",
+            "isTrue": false,
+            "explanation": "Md(X + k) = Md(X) + k: a mediana é deslocada da mesma constante."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Segundo a aula, em uma distribuição positivamente assimétrica (cauda direita mais longa), vale moda < mediana < média.",
+            "isTrue": true,
+            "explanation": "Os valores altos puxam a média para a direita da mediana e esta fica à direita da moda."
+          },
+          {
+            "statement": "Segundo a aula, em uma distribuição negativamente assimétrica, a média é maior que a moda.",
+            "isTrue": false,
+            "explanation": "Nesse caso vale moda > mediana > média, isto é, a média fica abaixo da moda."
+          },
+          {
+            "statement": "Se dois valores distintos de uma variável aleatória têm a mesma probabilidade máxima, a distribuição é bimodal.",
+            "isTrue": true,
+            "explanation": "Há duas modas, como as faces 5 e 6 do dado viciado do exemplo (25% cada)."
+          },
+          {
+            "statement": "A mediana de uma variável aleatória discreta é, necessariamente, um dos valores que a variável pode assumir.",
+            "isTrue": false,
+            "explanation": "Quando a mediana está entre dois valores, adota-se a média deles, que pode não ser um valor possível (ex.: 4,5)."
+          },
+          {
+            "statement": "Multiplicando-se todos os valores de uma variável aleatória por uma constante k, tanto a moda quanto a mediana ficam multiplicadas por k.",
+            "isTrue": true,
+            "explanation": "Mo(kX) = k·Mo(X) e Md(kX) = k·Md(X)."
+          }
+        ],
+        "pointers": [
+          { "topic": "Moda de v.a. (valor mais provável)", "pageRef": 27 },
+          { "topic": "Moda no gráfico de barras; bimodal e amodal", "pageRef": 28 },
+          { "topic": "Propriedades da moda", "pageRef": 29 },
+          { "topic": "Mediana: definição de pelo menos 50%", "pageRef": 31 },
+          { "topic": "Mediana entre dois valores (média dos dois)", "pageRef": 32 },
+          { "topic": "Propriedades da mediana", "pageRef": 33 },
+          { "topic": "Assimetria positiva e relações entre média, mediana e moda", "pageRef": 35 },
+          { "topic": "Assimetria negativa e resumo das medidas", "pageRef": 36 }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a07/s04",
+      "bizu": {
+        "summary": [
+          "**Desvio** = x − μ. A soma dos desvios em relação à média é sempre zero, então elevam-se os desvios ao quadrado.",
+          "**Variância** = média dos quadrados dos desvios. Para uma v.a.: **σ² = Σ (x − μ)² · P(X = x) = E[(X − μ)²]**. Notações: σ², V(X), Var(X).",
+          "**Fórmula prática**: **σ² = E(X²) − [E(X)]²**, em que **E(X²) = Σ x² · P(X = x)** (segundo momento). A variância é o segundo momento central.",
+          "Passos: (i) média μ = E(X); (ii) μ²; (iii) x² · P(x); (iv) soma dos passos iii = E(X²); (v) **subtrair** (iv) − (ii). Cuidado para não parar em E(X²), que **não** é a variância.",
+          "Dado equilibrado: μ = 3,5; E(X²) = 91/6; σ² = 91/6 − 49/4 = 35/12.",
+          "**Desvio padrão** = **raiz quadrada da variância** (σ, D(X) ou DP(X)); volta à unidade da variável e é a medida de dispersão que permite avaliar a homogeneidade do grupo.",
+          "**Variância amostral** (estimativa para a população): **s² = Σ (x − x̄)² / (n − 1)**, com x̄ = Σx/n. A diferença para a populacional é o divisor n − 1 no lugar de N.",
+          "Exemplo da aula: conjunto {1, 1, 1, 1, 3, 7, 7}, média 3, soma dos quadrados dos desvios 48 → σ² = 48/7 (populacional) e s² = 48/6 = 8 (amostral)."
+        ],
+        "teoria": [
+          {
+            "statement": "Obtém-se a variância de uma variável aleatória calculando o valor esperado do quadrado da diferença entre a variável e a sua média.",
+            "isTrue": true,
+            "explanation": "σ² = E[(X − μ)²], o que equivale a ponderar cada (x − μ)² pela probabilidade P(x)."
+          },
+          {
+            "statement": "Uma forma de calcular a variância é somar E(X²) com o quadrado de E(X).",
+            "isTrue": false,
+            "explanation": "A variância é a DIFERENÇA: σ² = E(X²) − [E(X)]²."
+          },
+          {
+            "statement": "O valor de E(X²) calculado sozinho, sem subtrair o quadrado da média, já corresponde à variância da variável.",
+            "isTrue": false,
+            "explanation": "E(X²) é o segundo momento; a variância exige subtrair o quadrado da média."
+          },
+          {
+            "statement": "O desvio padrão é a raiz quadrada da variância e é expresso na mesma unidade da variável.",
+            "isTrue": true,
+            "explanation": "Por isso é mais fácil de interpretar do que a variância (que fica na unidade ao quadrado)."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A variância amostral é calculada dividindo-se a soma dos quadrados dos desvios por n, tal como na variância populacional.",
+            "isTrue": false,
+            "explanation": "Na amostral o divisor é n − 1, usado para estimar a variância da população."
+          },
+          {
+            "statement": "Para o lançamento de um dado equilibrado, a variância do resultado vale 35/12.",
+            "isTrue": true,
+            "explanation": "σ² = 91/6 − (3,5)² = 91/6 − 49/4 = 35/12."
+          },
+          {
+            "statement": "Somando-se os desvios de todos os elementos em relação à média, obtém-se a variância.",
+            "isTrue": false,
+            "explanation": "Essa soma é sempre zero; por isso os desvios são elevados ao quadrado antes de serem ponderados."
+          },
+          {
+            "statement": "Dentre as medidas descritivas, o desvio padrão é a indicada para avaliar a homogeneidade de um grupo.",
+            "isTrue": true,
+            "explanation": "Média, mediana e moda são medidas de posição; o desvio padrão mede a dispersão."
+          },
+          {
+            "statement": "O segundo momento de uma variável aleatória é E(X²), enquanto a variância é o segundo momento central.",
+            "isTrue": true,
+            "explanation": "O momento central é calculado em torno da média: E[(X − μ)²]."
+          }
+        ],
+        "pointers": [
+          { "topic": "Desvios e por que elevar ao quadrado", "pageRef": 43 },
+          { "topic": "Variância como esperança dos quadrados dos desvios", "pageRef": 44 },
+          { "topic": "Fórmula E(X²) − [E(X)]²", "pageRef": 45 },
+          { "topic": "Passo a passo e cuidado com E(X²)", "pageRef": 46 },
+          { "topic": "Questões de variância com tabela", "pageRef": 47 },
+          { "topic": "Desvio padrão", "pageRef": 51 },
+          { "topic": "Variância e desvio padrão amostrais (n-1)", "pageRef": 52 },
+          { "topic": "Exemplo amostral com {1,1,1,1,3,7,7}", "pageRef": 53 }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a07/s05",
+      "bizu": {
+        "summary": [
+          "**Propriedades da variância** (valem para discretas e contínuas): **V(X ± k) = V(X)**; **V(kX) = k² · V(X)**; **V(k) = 0** (variância de constante é zero).",
+          "**Desvio padrão**: **D(X ± k) = D(X)**; **D(kX) = |k| · D(X)** (o módulo de k, pois a raiz é sempre positiva); D(k) = 0.",
+          "**Variáveis independentes**: **V(X + Y) = V(X) + V(Y)** e também **V(X − Y) = V(X) + V(Y)** (a diferença também soma as variâncias). A recíproca não vale: a igualdade pode ocorrer sem independência.",
+          "Para Y = a + bX: E(Y) = a + b·E(X) e V(Y) = b² · V(X).",
+          "**Covariância** mede a relação entre duas v.a.: **Cov(X,Y) = E[(X − μ_X)(Y − μ_Y)] = E(XY) − E(X)·E(Y)**. **Positiva** → variam no mesmo sentido; **negativa** → sentidos opostos. A covariância amostral divide por n − 1.",
+          "**Coeficiente de correlação**: **ρ(X,Y) = Cov(X,Y) / (σ_X · σ_Y)**, sempre em **[−1, 1]**. Indica a força e a direção da relação **linear**.",
+          "**ρ = 1**: relação linear perfeita positiva (Y = aX + b, com a > 0). **ρ = −1**: perfeita negativa (a < 0). Quanto mais próximo de ±1, mais forte; próximo de 0, fraca.",
+          "**Independentes** → **Cov = 0 e ρ = 0**. A volta **não vale** em geral (Cov = 0 sem independência é possível); exceção: para **variáveis binárias**, covariância nula garante independência.",
+          "Passos para a covariância: multiplicar x·y, obter E(XY), calcular E(X)·E(Y) e subtrair."
+        ],
+        "teoria": [
+          {
+            "statement": "Multiplicando-se uma variável aleatória por uma constante k, a variância fica multiplicada por k ao quadrado.",
+            "isTrue": true,
+            "explanation": "V(kX) = k² · V(X)."
+          },
+          {
+            "statement": "Para qualquer constante k, o desvio padrão de kX é igual a k vezes o desvio padrão de X.",
+            "isTrue": false,
+            "explanation": "D(kX) = |k| · D(X): para k negativo o resultado é −k·D(X), pois o desvio padrão não é negativo."
+          },
+          {
+            "statement": "Se X e Y são independentes, a variância de X − Y é igual à soma das variâncias de X e de Y.",
+            "isTrue": true,
+            "explanation": "Com Cov(X,Y) = 0, V(X − Y) = V(X) + V(Y)."
+          },
+          {
+            "statement": "A variância da soma de duas variáveis aleatórias quaisquer é sempre a soma das suas variâncias.",
+            "isTrue": false,
+            "explanation": "Isso só vale para variáveis independentes (ou, mais precisamente, de covariância nula)."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O coeficiente de correlação entre duas variáveis aleatórias assume valores no intervalo de −1 a 1.",
+            "isTrue": true,
+            "explanation": "ρ = Cov(X,Y)/(σ_X · σ_Y) ∈ [−1, 1]."
+          },
+          {
+            "statement": "Se a covariância entre duas variáveis aleatórias quaisquer é nula, elas são necessariamente independentes.",
+            "isTrue": false,
+            "explanation": "Independência implica covariância nula, mas a recíproca não vale em geral."
+          },
+          {
+            "statement": "Para variáveis binárias, isto é, que assumem apenas dois valores, a covariância nula garante a independência.",
+            "isTrue": true,
+            "explanation": "É a exceção apontada à regra de que Cov = 0 não implica independência."
+          },
+          {
+            "statement": "Quando ρ = −1, existe uma relação linear perfeita da forma Y = aX + b com a positivo.",
+            "isTrue": false,
+            "explanation": "ρ = −1 corresponde a uma relação linear perfeita negativa: a < 0. É ρ = 1 que exige a > 0."
+          },
+          {
+            "statement": "A covariância entre X e Y pode ser calculada como E(X·Y) − E(X)·E(Y).",
+            "isTrue": true,
+            "explanation": "É a forma prática da definição E[(X − μ_X)(Y − μ_Y)]."
+          }
+        ],
+        "pointers": [
+          { "topic": "Variância de X ± k e de kX", "pageRef": 54 },
+          { "topic": "Desvio padrão de kX (módulo de k)", "pageRef": 56 },
+          { "topic": "Variância de constante e de soma de independentes", "pageRef": 57 },
+          { "topic": "Resumo das propriedades da variância", "pageRef": 58 },
+          { "topic": "Covariância: conceito e fórmulas", "pageRef": 62 },
+          { "topic": "Coeficiente de correlação", "pageRef": 64 },
+          { "topic": "Correlação perfeita e independência", "pageRef": 66 },
+          { "topic": "Resumo de covariância e correlação", "pageRef": 67 }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a07/s06",
+      "bizu": {
+        "summary": [
+          "**Propriedades da covariância**: (i) **simétrica**: Cov(X,Y) = Cov(Y,X); (ii) **Cov(X,X) = V(X)** e, portanto, **ρ(X,X) = 1**; (iii) **Cov(k,X) = 0** (com constante, também ρ = 0).",
+          "(iv) **Cov(X ± a, Y ± b) = Cov(X,Y)**: somar ou subtrair constantes não altera covariância nem correlação.",
+          "(v) a covariância se distribui sobre a soma: **Cov(X + Y, Z) = Cov(Y,Z) + Cov(X,Z)**; na diferença, subtrai-se a covariância de Y com Z da covariância de X com Z.",
+          "(vi) **Cov(kX, lY) = k · l · Cov(X,Y)**. Se só uma variável é multiplicada, a covariância fica multiplicada por k; se as duas pela mesma constante, por k².",
+          "**Correlação e constantes**: **ρ(kX, lY) = ρ(X,Y) se k·l > 0** e **−ρ(X,Y) se k·l < 0**. O módulo da correlação não muda ao multiplicar por constantes. Ex.: ρ(X, 6 − 2X) = −1.",
+          "**Variância da soma**: **V(X + Y) = V(Y) + V(X) + 2·Cov(Y,X)**; **da diferença**: **V(X − Y) = V(Y) + V(X) − 2·Cov(Y,X)** (analogia com os produtos notáveis). Com independência, a covariância é nula e ambas valem a soma das duas variâncias.",
+          "Geral: **V(kX + lY) = k²·V(X) + l²·V(Y) + 2·k·l·Cov(X,Y)**. Para três variáveis: soma das variâncias mais o dobro de cada covariância (cada par uma vez).",
+          "**Coeficiente de variação**: **CV = σ/μ**, adimensional, usado para comparar dispersão entre variáveis de **médias distintas**; não se compara só pelo desvio padrão.",
+          "**Variância relativa**: **VR = CV² = σ²/μ²**. Ex.: X com μ = 100 e σ = 20 tem CV = 0,2; Y com μ = 10 e σ = 5 tem CV = 0,5; logo Y é relativamente mais dispersa."
+        ],
+        "teoria": [
+          {
+            "statement": "A variância da soma de duas variáveis aleatórias é V(X) + V(Y) + 2·Cov(X,Y).",
+            "isTrue": true,
+            "explanation": "A fórmula é análoga ao produto notável (x + y)²."
+          },
+          {
+            "statement": "Na variância da diferença X − Y, soma-se o dobro da covariância às variâncias de X e de Y.",
+            "isTrue": false,
+            "explanation": "Na diferença, desconta-se duas vezes a covariância: V(Y) + V(X) − 2·Cov(Y,X)."
+          },
+          {
+            "statement": "A covariância entre kX e lY é igual ao produto k · l pela covariância entre X e Y.",
+            "isTrue": true,
+            "explanation": "Cov(kX, lY) = k·l·Cov(X,Y)."
+          },
+          {
+            "statement": "A covariância entre X + a e Y + b é igual a Cov(X,Y) + a·b.",
+            "isTrue": false,
+            "explanation": "Somar constantes não altera a covariância: Cov(X + a, Y + b) = Cov(X,Y)."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A covariância de uma variável com ela mesma é igual à sua variância.",
+            "isTrue": true,
+            "explanation": "Cov(X,X) = E(X²) − [E(X)]² = V(X)."
+          },
+          {
+            "statement": "Multiplicando-se X por k e Y por l, com k e l diferentes de zero, o coeficiente de correlação nunca muda de sinal.",
+            "isTrue": false,
+            "explanation": "Se k·l < 0, a correlação muda de sinal; se k·l > 0, permanece a mesma."
+          },
+          {
+            "statement": "A covariância entre uma constante e uma variável aleatória é nula.",
+            "isTrue": true,
+            "explanation": "Cov(k,X) = k·E(X) − k·E(X) = 0."
+          },
+          {
+            "statement": "A variância relativa é igual ao coeficiente de variação, sem elevar ao quadrado.",
+            "isTrue": false,
+            "explanation": "VR = CV² = σ²/μ²."
+          },
+          {
+            "statement": "Se duas variáveis aleatórias têm correlação linear negativa, a variância da soma delas é menor que a soma das variâncias.",
+            "isTrue": true,
+            "explanation": "Com Cov < 0, V(X + Y) = V(X) + V(Y) + 2Cov(X,Y) < V(X) + V(Y)."
+          }
+        ],
+        "pointers": [
+          { "topic": "Simetria, Cov(X,X) = V(X) e ρ(X,X) = 1", "pageRef": 71 },
+          { "topic": "Cov(k,X) e soma de constantes", "pageRef": 72 },
+          { "topic": "Cov(X+Y, Z)", "pageRef": 73 },
+          { "topic": "Cov(kX, lY) e correlação com constantes", "pageRef": 75 },
+          { "topic": "Sinal de ρ conforme kl", "pageRef": 76 },
+          { "topic": "Resumo das propriedades da covariância e questão FGV", "pageRef": 77 },
+          { "topic": "Variância da soma e da diferença", "pageRef": 79 },
+          { "topic": "V(kX + lY) e mais de duas variáveis", "pageRef": 80 },
+          { "topic": "Coeficiente de variação e variância relativa", "pageRef": 83 }
+        ]
+      }
+    }
+  ]
+}

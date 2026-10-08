@@ -1,0 +1,437 @@
+{
+  "aula": "estatistica/a04",
+  "batch": "w2-bizu-estatistica",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "estatistica/a04/s01",
+      "bizu": {
+        "summary": [
+          "**Medidas de dispersão (variabilidade)** mostram o quanto os dados variam. Conjuntos com a **mesma média** podem ter dispersões muito diferentes; a média sozinha não indica homogeneidade.",
+          "**Dispersão absoluta** (mesma unidade dos dados, ou o quadrado dela): amplitude total, amplitude interquartílica (e desvio quartílico), desvio médio, variância e desvio-padrão. **Dispersão relativa**: coeficiente de variação e variância relativa. Média, mediana e moda são medidas de **posição**, e não de dispersão.",
+          "**Amplitude total**: **AT = x_máx − x_mín**. É simples, mas **instável**: só usa os extremos, é muito afetada por valor discrepante e tende a crescer com o tamanho da amostra. Serve bem para visão rápida (ex.: variação de temperatura no dia).",
+          "Em **tabela de frequências sem classes**, o mínimo e o máximo são tomados independentemente das frequências. **Em classes**: AT = L_sup (da última) − l_inf (da primeira) ou, pelo segundo método, PM da última − PM da primeira (resultado menor, pois desconsidera os extremos).",
+          "**Propriedades da AT**: somando ou subtraindo uma constante c dos valores, a amplitude **não muda**; multiplicando ou dividindo por c, a amplitude fica **multiplicada ou dividida por c**.",
+          "**Amplitude interquartílica**: **AIQ = Q3 − Q1**. **Desvio quartílico** (amplitude semi-interquartílica): **DQ = (Q3 − Q1) / 2**. Cuidado: as fórmulas são parecidas e podem ser confundidas.",
+          "Q1 deixa 25% dos dados abaixo e 75% acima; Q3 deixa 75% abaixo e 25% acima; **Q3 não é a mediana** (a mediana é Q2).",
+          "AIQ e DQ têm as **mesmas propriedades da amplitude total**: invariantes à soma de constante e multiplicados por c na multiplicação por c."
+        ],
+        "teoria": [
+          {
+            "statement": "Dois conjuntos de dados podem ter a mesma média aritmética e, ainda assim, apresentar graus de dispersão bastante diferentes.",
+            "isTrue": true,
+            "explanation": "A média indica posição central, mas não revela o quanto os valores se afastam dela."
+          },
+          {
+            "statement": "A amplitude total é considerada uma medida estável de dispersão porque leva em conta todos os valores do conjunto.",
+            "isTrue": false,
+            "explanation": "Ela usa apenas o maior e o menor valor, sendo instável e sensível a valores discrepantes."
+          },
+          {
+            "statement": "Subtraindo-se uma constante de todos os valores de um conjunto, a amplitude total permanece a mesma.",
+            "isTrue": true,
+            "explanation": "O deslocamento dos valores não altera a diferença entre o maior e o menor."
+          },
+          {
+            "statement": "Multiplicando-se todos os valores de um conjunto por uma constante c, a amplitude interquartílica não se altera.",
+            "isTrue": false,
+            "explanation": "A amplitude interquartílica (e o desvio quartílico) também fica multiplicada por c."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Entre as medidas de dispersão absoluta estão a variância e o desvio-padrão, enquanto o coeficiente de variação e a variância relativa são medidas de dispersão relativa.",
+            "isTrue": true,
+            "explanation": "As medidas de dispersão relativa são o coeficiente de variação e a variância relativa."
+          },
+          {
+            "statement": "Em uma distribuição em classes, a diferença entre os pontos médios da última e da primeira classe produz amplitude maior que a diferença entre o limite superior da última e o limite inferior da primeira.",
+            "isTrue": false,
+            "explanation": "O método dos pontos médios desconsidera os extremos das classes extremas e, por isso, fornece um valor menor."
+          },
+          {
+            "statement": "Em tabelas de frequências sem intervalos de classe, os valores mínimo e máximo usados na amplitude total são escolhidos sem considerar as frequências a eles associadas.",
+            "isTrue": true,
+            "explanation": "Só importa quais são o menor e o maior valor da variável, não quantas vezes ocorrem."
+          },
+          {
+            "statement": "Somando-se uma constante a todos os valores de um conjunto, o desvio quartílico permanece inalterado.",
+            "isTrue": true,
+            "explanation": "Q3 e Q1 se deslocam igualmente, e a diferença entre eles não muda."
+          },
+          {
+            "statement": "O terceiro quartil coincide com a mediana, pois ambos dividem a série ao meio.",
+            "isTrue": false,
+            "explanation": "A mediana equivale ao segundo quartil; Q3 deixa 75% dos dados abaixo dele."
+          }
+        ],
+        "pointers": [
+          { "topic": "Necessidade das medidas de dispersão (mesma média, dispersões diferentes)", "pageRef": 3 },
+          { "topic": "Dispersão absoluta x relativa; posição x dispersão", "pageRef": 4 },
+          { "topic": "Amplitude total e suas limitações", "pageRef": 6 },
+          { "topic": "AT para dados agrupados sem classes", "pageRef": 8 },
+          { "topic": "AT para dados em classes (dois métodos)", "pageRef": 9 },
+          { "topic": "Propriedades da amplitude total", "pageRef": 11 },
+          { "topic": "Amplitude interquartílica e desvio quartílico", "pageRef": 13 },
+          { "topic": "Propriedades da AIQ e do desvio quartílico", "pageRef": 15 }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a04/s02",
+      "bizu": {
+        "summary": [
+          "**Desvio** = distância com sinal entre uma observação e uma medida descritiva: **d = x − x̄** (em relação à média) ou **d = x − Md** (em relação à mediana).",
+          "Desvios pequenos em torno de uma medida indicam observações concentradas (baixa variabilidade); desvios grandes indicam dados dispersos (alta variabilidade).",
+          "Desvio **negativo** = observação abaixo da medida; **positivo** = acima; nulo = igual a ela.",
+          "**Propriedade 1**: somando os desvios com seus sinais, tomados a partir da **média**, o resultado é **zero**: Σ(x_i − x̄) = 0.",
+          "**Propriedade 2**: a **soma dos quadrados** dos desvios em relação a um número a é **mínima quando a = média**.",
+          "**Propriedade 3**: a **soma dos módulos** dos desvios é **mínima quando a = mediana**. Com n par, também é mínima para qualquer valor entre os dois termos centrais.",
+          "Pegadinhas clássicas: a soma dos desvios é nula em relação à **média** (não à moda nem à mediana, em geral); e a soma dos desvios absolutos em relação à média só seria zero se todos os valores fossem iguais."
+        ],
+        "teoria": [
+          {
+            "statement": "A soma algébrica dos desvios de todos os valores em relação à média aritmética é sempre igual a zero.",
+            "isTrue": true,
+            "explanation": "Os desvios positivos e negativos se compensam: Σ(x_i − x̄) = Σx_i − n·x̄ = 0."
+          },
+          {
+            "statement": "A soma dos módulos dos desvios é mínima quando eles são calculados em relação à média aritmética.",
+            "isTrue": false,
+            "explanation": "O mínimo da soma dos módulos ocorre em relação à mediana; em relação à média é a soma dos QUADRADOS que é mínima."
+          },
+          {
+            "statement": "O desvio de uma observação em relação à média é obtido subtraindo-se a média do valor observado.",
+            "isTrue": true,
+            "explanation": "d = x − x̄."
+          },
+          {
+            "statement": "Tomando-se os módulos dos desvios em torno da média, o total obtido é sempre zero, qualquer que seja o conjunto.",
+            "isTrue": false,
+            "explanation": "Só a soma algébrica (com sinais) é nula. Os módulos somam zero apenas se todos os valores forem iguais, ou seja, se não houver dispersão."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A soma dos quadrados dos desvios em relação a um número a é a menor possível quando a é a média aritmética dos valores.",
+            "isTrue": true,
+            "explanation": "É a 2ª propriedade dos desvios."
+          },
+          {
+            "statement": "Em um conjunto com número par de elementos, a soma dos desvios absolutos é mínima para qualquer valor situado entre os dois termos centrais.",
+            "isTrue": true,
+            "explanation": "A mediana, nesse caso, pode ser qualquer valor entre os termos centrais, e todos geram o mesmo valor mínimo."
+          },
+          {
+            "statement": "Desvios pequenos em relação à média indicam que os dados estão dispersos, ou seja, que a variabilidade é grande.",
+            "isTrue": false,
+            "explanation": "Desvios pequenos significam observações concentradas em torno da média e baixa variabilidade."
+          },
+          {
+            "statement": "A soma dos desvios em relação à moda é sempre nula.",
+            "isTrue": false,
+            "explanation": "A soma é nula em relação à média; só seria nula em relação à moda se a moda coincidisse com a média."
+          },
+          {
+            "statement": "O desvio de uma observação em relação à média é negativo quando essa observação é menor que a média.",
+            "isTrue": true,
+            "explanation": "d = x − x̄ resulta em número negativo quando x < x̄."
+          }
+        ],
+        "pointers": [
+          { "topic": "Conceito de desvio: observação menos medida", "pageRef": 17 },
+          { "topic": "Soma dos desvios absolutos em relação à média (exemplo)", "pageRef": 18 },
+          { "topic": "1ª propriedade: soma algébrica dos desvios é nula", "pageRef": 19 },
+          { "topic": "2ª propriedade: soma dos quadrados mínima na média", "pageRef": 20 },
+          { "topic": "3ª propriedade: soma dos módulos mínima na mediana", "pageRef": 22 },
+          { "topic": "Caso de n par: qualquer valor entre os termos centrais", "pageRef": 23 },
+          { "topic": "Resumo das três propriedades", "pageRef": 25 },
+          { "topic": "Questão FCC: média, mediana e moda como referência", "pageRef": 26 }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a04/s03",
+      "bizu": {
+        "summary": [
+          "**Desvio médio (absoluto)** mede a dispersão em torno da média usando **módulos** dos desvios, já que a soma dos desvios com sinal é sempre zero.",
+          "**Dados não agrupados**: **Dm = Σ |x_i − x̄| / n**.",
+          "**Dados em tabela de frequências**: **Dm = Σ ( |x_i − x̄| · f_i ) / Σ f_i**. Primeiro calcula-se a média ponderada; depois, os módulos dos desvios multiplicados pelas frequências.",
+          "**Dados em classes**: mesma fórmula, assumindo que os valores coincidem com os **pontos médios** das classes.",
+          "É mais robusto que a amplitude total e a interquartílica porque considera **todos** os valores. O inconveniente é a operação de módulo, que dificulta o estudo matemático de suas propriedades.",
+          "**Propriedade 1**: somando ou subtraindo uma constante dos valores, o desvio médio **não muda**.",
+          "**Propriedade 2**: multiplicando ou dividindo os valores por uma constante, o desvio médio fica **multiplicado ou dividido** por ela.",
+          "Interpretação: Dm pequeno = dados próximos da média; Dm grande = dados espalhados. Exemplo da aula: {1, 2, 3, 5, 9} tem média 4 e Dm = 2,4."
+        ],
+        "teoria": [
+          {
+            "statement": "O desvio médio é a média dos valores absolutos dos desvios em relação à média aritmética.",
+            "isTrue": true,
+            "explanation": "Dm = Σ|x_i − x̄| / n."
+          },
+          {
+            "statement": "Para medir a dispersão média em torno da média, basta somar os desvios com sinal e dividir por n, pois essa soma é um bom indicador de variabilidade.",
+            "isTrue": false,
+            "explanation": "A soma dos desvios com sinal é sempre zero e nada informa; por isso usa-se o módulo (desvio médio) ou o quadrado (variância)."
+          },
+          {
+            "statement": "O desvio médio é mais robusto que a amplitude total porque considera todos os valores do conjunto, e não apenas os extremos.",
+            "isTrue": true,
+            "explanation": "Todos os desvios entram no cálculo."
+          },
+          {
+            "statement": "Somando-se uma constante c a todos os valores de um conjunto, o desvio médio aumenta em c.",
+            "isTrue": false,
+            "explanation": "O desvio médio mede afastamentos em relação à média; o deslocamento dos valores não o altera."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Para dados agrupados em classes, o desvio médio é calculado admitindo-se que todos os valores de uma classe coincidem com o ponto médio dessa classe.",
+            "isTrue": true,
+            "explanation": "É a mesma convenção adotada no cálculo da média."
+          },
+          {
+            "statement": "Em uma tabela de frequências, o desvio médio é a soma de |x_i − x̄|·f_i dividida pelo número de linhas da tabela.",
+            "isTrue": false,
+            "explanation": "O divisor é a soma das frequências (n), e não o número de linhas."
+          },
+          {
+            "statement": "Multiplicando-se todos os valores de um conjunto por uma constante positiva c, o desvio médio também fica multiplicado por c.",
+            "isTrue": true,
+            "explanation": "Os afastamentos em relação à média se ampliam na mesma proporção."
+          },
+          {
+            "statement": "A principal vantagem do desvio médio é a facilidade para estudar suas propriedades matemáticas, por causa da operação de módulo.",
+            "isTrue": false,
+            "explanation": "O módulo é justamente o inconveniente: por suas características matemáticas, dificulta o estudo das propriedades."
+          }
+        ],
+        "pointers": [
+          { "topic": "Ideia do desvio médio e o problema da soma nula", "pageRef": 27 },
+          { "topic": "Fórmula Dm = soma dos módulos / n e vantagens", "pageRef": 28 },
+          { "topic": "Exemplo com conjunto {1, 2, 3, 5, 9}", "pageRef": 29 },
+          { "topic": "Desvio médio para dados agrupados por valor", "pageRef": 31 },
+          { "topic": "Exemplo com quantidade de filhos", "pageRef": 32 },
+          { "topic": "Desvio médio para dados em classes", "pageRef": 33 },
+          { "topic": "1ª propriedade: constante somada", "pageRef": 37 },
+          { "topic": "2ª propriedade: constante multiplicada", "pageRef": 38 }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a04/s04",
+      "bizu": {
+        "summary": [
+          "**Variância** = média dos **quadrados dos desvios** em relação à média. Quanto maior, mais dispersos os dados. Considera todos os valores (por isso é estável) e complementa as medidas de tendência central.",
+          "**Populacional**: **σ² = Σ(x_i − μ)² / n**. **Amostral**: **s² = Σ(x_i − x̄)² / (n − 1)**. A amostral usa **n − 1** porque é melhor estimador do parâmetro e porque só n − 1 desvios são independentes (a soma deles é zero).",
+          "Para amostras grandes (n > 30), usar n ou n − 1 dá resultados muito próximos.",
+          "**Fórmula prática**: **σ² = média dos quadrados − quadrado da média**. Para a amostra, multiplica-se por **n/(n − 1)**: s² = [média dos quadrados − (média)²] · n/(n − 1). Também: s² = σ² · n/(n − 1).",
+          "**Tabela de frequências**: σ² = Σ[(X_i − μ)² · f_i] / n; s² = Σ[(X_i − x̄)² · f_i] / (n − 1). **Em classes**, trocam-se X_i pelos pontos médios.",
+          "A variância é **sempre ≥ 0** e é **zero** quando todos os valores são iguais. Sua unidade é o **quadrado** da unidade dos dados (kg → kg²); por isso tem pouco uso descritivo, mas é central na inferência.",
+          "**Propriedade 1**: somando ou subtraindo uma constante c dos valores, a variância **não se altera**.",
+          "**Propriedade 2**: multiplicando ou dividindo os valores por c, a variância fica multiplicada ou dividida pelo **quadrado** de c.",
+          "Exemplo clássico: {5, 10, 15, 20, 25} tem soma dos quadrados dos desvios 250, logo σ² = 50 e s² = 62,5."
+        ],
+        "teoria": [
+          {
+            "statement": "A variância populacional pode ser calculada como a média dos quadrados dos valores menos o quadrado da média.",
+            "isTrue": true,
+            "explanation": "σ² = média(x²) − (média)²; para amostras, multiplica-se o resultado por n/(n − 1)."
+          },
+          {
+            "statement": "Na variância amostral, a soma dos quadrados dos desvios é dividida por n, como na variância populacional.",
+            "isTrue": false,
+            "explanation": "Na variância amostral o divisor é n − 1."
+          },
+          {
+            "statement": "Se os dados de uma variável estão em quilogramas, a variância dessa variável é expressa em quilogramas ao quadrado.",
+            "isTrue": true,
+            "explanation": "Como é calculada a partir de quadrados de desvios, a unidade também fica ao quadrado."
+          },
+          {
+            "statement": "Multiplicando-se todos os valores de um conjunto por 5, a variância fica multiplicada por 5.",
+            "isTrue": false,
+            "explanation": "A variância fica multiplicada pelo quadrado da constante, isto é, por 25."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A variância de um conjunto é igual a zero quando todos os seus elementos são iguais.",
+            "isTrue": true,
+            "explanation": "Todos os desvios são nulos e, portanto, a soma dos quadrados dos desvios também é zero."
+          },
+          {
+            "statement": "A variância pode assumir valores negativos quando a maior parte dos desvios em relação à média é negativa.",
+            "isTrue": false,
+            "explanation": "Como é média de quadrados, a variância é sempre maior ou igual a zero."
+          },
+          {
+            "statement": "Somando-se uma constante a todos os valores de uma variável, a variância não se altera.",
+            "isTrue": true,
+            "explanation": "Os desvios em relação à média permanecem os mesmos."
+          },
+          {
+            "statement": "A variância amostral é igual à variância populacional multiplicada por n/(n − 1).",
+            "isTrue": true,
+            "explanation": "Trocar n por n − 1 no divisor equivale a multiplicar por n/(n − 1)."
+          },
+          {
+            "statement": "Para amostras grandes (n > 30), a escolha entre dividir por n ou por n − 1 produz resultados muito diferentes.",
+            "isTrue": false,
+            "explanation": "Para amostras grandes a diferença entre os dois divisores é pequena."
+          }
+        ],
+        "pointers": [
+          { "topic": "Definição de variância e simbologia populacional x amostral", "pageRef": 39 },
+          { "topic": "Divisor n-1, estimador e fórmula da média dos quadrados", "pageRef": 40 },
+          { "topic": "Resumo das fórmulas e propriedades básicas", "pageRef": 41 },
+          { "topic": "Variância para dados não agrupados (exemplos)", "pageRef": 42 },
+          { "topic": "Variância para dados agrupados sem classes", "pageRef": 44 },
+          { "topic": "Variância para dados em classes", "pageRef": 46 },
+          { "topic": "1ª propriedade: soma de constante", "pageRef": 48 },
+          { "topic": "2ª propriedade: multiplicação resulta em c ao quadrado", "pageRef": 49 }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a04/s05",
+      "bizu": {
+        "summary": [
+          "**Desvio-padrão** = **raiz quadrada da variância**. Populacional: σ = raiz[Σ(x_i − μ)² / n]. Amostral: s = raiz[Σ(x_i − x̄)² / (n − 1)].",
+          "É uma das medidas de variabilidade mais usadas e é expresso **na mesma unidade dos dados** (ao contrário da variância).",
+          "É sempre **≥ 0** e é **zero** quando todos os elementos são iguais.",
+          "Serve para comparar a variabilidade de dois conjuntos quando as **médias são aproximadamente iguais** e as **unidades são as mesmas**.",
+          "Com tabela de frequências: s = raiz{Σ[(X_i − x̄)² · f_i] / (n − 1)}. Em classes, usam-se os pontos médios dos intervalos.",
+          "Exemplo da aula: {1, 2, 3, 5, 9} tem média 4, soma dos quadrados dos desvios 40 e s = raiz(40/4) = raiz de 10, aproximadamente 3,16.",
+          "**Propriedade 1**: somando ou subtraindo uma constante c, o desvio-padrão **não muda**.",
+          "**Propriedade 2**: multiplicando ou dividindo os valores por c, o desvio-padrão fica multiplicado ou dividido por **c** (e não por c²).",
+          "Se a variância é zero, o desvio-padrão também é zero. Isso **não** implica média, mediana ou moda iguais a zero."
+        ],
+        "teoria": [
+          {
+            "statement": "O desvio-padrão é a raiz quadrada da variância e é expresso na mesma unidade dos dados originais.",
+            "isTrue": true,
+            "explanation": "Essa é a principal vantagem prática do desvio-padrão sobre a variância."
+          },
+          {
+            "statement": "O desvio-padrão é expresso na unidade dos dados elevada ao quadrado.",
+            "isTrue": false,
+            "explanation": "Quem tem unidade ao quadrado é a variância; o desvio-padrão volta à unidade original."
+          },
+          {
+            "statement": "Se cada observação for aumentada em c unidades, o desvio-padrão do conjunto continua com o mesmo valor.",
+            "isTrue": true,
+            "explanation": "Os afastamentos em relação à média continuam os mesmos."
+          },
+          {
+            "statement": "Multiplicando-se todos os valores por uma constante c, o desvio-padrão fica multiplicado por c ao quadrado.",
+            "isTrue": false,
+            "explanation": "É a variância que fica multiplicada por c²; o desvio-padrão fica multiplicado por c."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Em uma série em que todos os n dados têm o mesmo valor x diferente de zero, o desvio-padrão é igual a zero.",
+            "isTrue": true,
+            "explanation": "Todos os desvios são nulos, logo a variância e o desvio-padrão são zero."
+          },
+          {
+            "statement": "Se a variância de um conjunto de dados é zero, a média desse conjunto também é zero.",
+            "isTrue": false,
+            "explanation": "Variância nula indica apenas que todos os valores são iguais; esse valor comum pode ser qualquer número."
+          },
+          {
+            "statement": "O desvio-padrão amostral utiliza o divisor n − 1 sob a raiz quadrada.",
+            "isTrue": true,
+            "explanation": "s = raiz[Σ(x_i − x̄)² / (n − 1)]."
+          },
+          {
+            "statement": "O desvio-padrão permite comparar sem restrições a variabilidade de conjuntos expressos em unidades diferentes, como quilogramas e centímetros.",
+            "isTrue": false,
+            "explanation": "Para comparar conjuntos com unidades ou médias muito distintas é preciso uma medida relativa, como o coeficiente de variação."
+          }
+        ],
+        "pointers": [
+          { "topic": "Definição e fórmulas do desvio-padrão", "pageRef": 50 },
+          { "topic": "Desvio-padrão ≥ 0 e igual a zero quando valores iguais", "pageRef": 51 },
+          { "topic": "Questões: série de valores iguais; variância zero", "pageRef": 52 },
+          { "topic": "Desvio-padrão para dados não agrupados", "pageRef": 53 },
+          { "topic": "Desvio-padrão para dados agrupados por valor", "pageRef": 57 },
+          { "topic": "Desvio-padrão em classes e comparação com o desvio médio", "pageRef": 59 },
+          { "topic": "1ª propriedade: soma de constante", "pageRef": 60 },
+          { "topic": "2ª propriedade: multiplicação por constante", "pageRef": 61 }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a04/s06",
+      "bizu": {
+        "summary": [
+          "**Coeficiente de variação (CV)** é a dispersão relativa: **CV = (desvio-padrão / média) × 100%**. Populacional: σ/μ; amostral: s/x̄.",
+          "Permite comparar a variabilidade de conjuntos com **unidades diferentes** (kg x cm) ou **médias muito diferentes**, pois é **adimensional** (percentual).",
+          "Regras empíricas da aula: **CV < 15%** = baixa dispersão; **15% a 30%** = média dispersão; **CV > 30%** = elevada dispersão.",
+          "**Quanto menor o CV, mais homogêneos os dados.** Distribuição **homogênea** quando CV < 30%; **heterogênea** quando CV > 30%.",
+          "Cuidado ao comparar: pode haver desvio-padrão absoluto maior em um grupo e dispersão **relativa** maior em outro (ex.: DP de 810 com média de 1.800 dá CV de 45%; DP de 705 com média de 1.500 dá 47%).",
+          "**Variância relativa (VR)** = **quadrado do coeficiente de variação**: **VR = σ² / μ²** (ou s² / x̄²). Também é **adimensional**, pois numerador e denominador têm a mesma unidade.",
+          "Em questões, o caminho usual é: CV dá o desvio-padrão (σ = CV · média); o quadrado do desvio-padrão dá a variância; a variância e a média dão a média dos quadrados (σ² + média²).",
+          "Ao excluir ou incluir elementos, recalcule soma e soma dos quadrados para obter a nova média e a nova variância antes da variância relativa."
+        ],
+        "teoria": [
+          {
+            "statement": "O coeficiente de variação é o quociente entre o desvio-padrão e a média, geralmente expresso em porcentagem.",
+            "isTrue": true,
+            "explanation": "CV = (σ/μ) × 100% para populações e (s/x̄) × 100% para amostras."
+          },
+          {
+            "statement": "O coeficiente de variação mantém a unidade de medida da variável analisada, como o desvio-padrão.",
+            "isTrue": false,
+            "explanation": "O CV é adimensional (um percentual), o que permite comparar conjuntos com unidades diferentes."
+          },
+          {
+            "statement": "Quanto menor o coeficiente de variação de um conjunto, mais homogêneos são os seus dados.",
+            "isTrue": true,
+            "explanation": "Menor dispersão relativa significa dados mais concentrados em torno da média."
+          },
+          {
+            "statement": "De acordo com as regras empíricas da aula, um coeficiente de variação de 20% indica elevada dispersão.",
+            "isTrue": false,
+            "explanation": "CV entre 15% e 30% é classificado como média dispersão; elevada é acima de 30%."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A variância relativa é o quadrado do coeficiente de variação, isto é, o quociente entre a variância e o quadrado da média.",
+            "isTrue": true,
+            "explanation": "VR = (σ/μ)² = σ²/μ²."
+          },
+          {
+            "statement": "A variância relativa é expressa na unidade da variável ao quadrado, assim como a variância absoluta.",
+            "isTrue": false,
+            "explanation": "Numerador e denominador têm a mesma unidade (ao quadrado) e se cancelam; a variância relativa é adimensional."
+          },
+          {
+            "statement": "O coeficiente de variação é adequado para comparar a dispersão de variáveis medidas em unidades diferentes.",
+            "isTrue": true,
+            "explanation": "Por ser relativo à média e adimensional, elimina o efeito da unidade de medida."
+          },
+          {
+            "statement": "Uma distribuição com coeficiente de variação de 25% é classificada como heterogênea.",
+            "isTrue": false,
+            "explanation": "Pela classificação da aula, é homogênea a distribuição com CV abaixo de 30%; heterogênea, acima de 30%."
+          }
+        ],
+        "pointers": [
+          { "topic": "Definição do coeficiente de variação e interpretação empírica", "pageRef": 62 },
+          { "topic": "Exemplo: salários de homens x mulheres", "pageRef": 63 },
+          { "topic": "Questão FCC com CV e variância de duas subpopulações", "pageRef": 64 },
+          { "topic": "Uso do CV para obter o desvio-padrão", "pageRef": 67 },
+          { "topic": "Variância relativa: definição", "pageRef": 69 },
+          { "topic": "Cálculo da variância relativa (exemplo)", "pageRef": 70 },
+          { "topic": "Questão-modelo com exclusão de elementos", "pageRef": 71 }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,428 @@
+{
+  "aula": "estatistica/a02",
+  "batch": "w2-bizu-estatistica",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "estatistica/a02/s01",
+      "bizu": {
+        "summary": [
+          "**Separatrizes** dividem uma série ordenada em partes com o mesmo número de elementos: **mediana** (2 partes de 50%), **quartis** (4 partes de 25%), **quintis** (5 partes de 20%), **decis** (10 partes de 10%) e **percentis** (100 partes de 1%). A aula não aprofunda os quintis.",
+          "**Mediana (Md)** é, ao mesmo tempo, medida de posição, de tendência central e separatriz. Também aparece representada por x com til.",
+          "**Dados não agrupados**: primeiro **ordene** os valores (rol). Com **n ímpar**, a mediana é o termo central, de posição **(n + 1) / 2**.",
+          "Com **n par** há dois termos centrais, nas posições **n/2** e **n/2 + 1**. Por **convenção**, a mediana é a **média aritmética** deles; na verdade, qualquer valor entre os dois centrais divide a série em duas metades iguais.",
+          "A mediana só coincide com um elemento do conjunto quando **n é ímpar**; com n par, o valor obtido pela convenção pode não pertencer à série.",
+          "A mediana depende da **posição** e não dos valores de todos os elementos: é pouco sensível a valores extremos (discrepantes). A **média** é muito afetada por eles — trocar o maior valor por um número gigantesco muda a média, mas não a mediana.",
+          "**Dados agrupados por valor (sem classes)**: monte a coluna de **frequência acumulada**. Se n é ímpar, a mediana é o valor da primeira acumulada **igual ou superior** a (n + 1)/2; se n é par, acha-se os valores das primeiras acumuladas ≥ n/2 e ≥ n/2 + 1 e tira-se a média deles.",
+          "Com **frequências relativas**, a mediana é o valor em que a **relativa acumulada** ultrapassa (ou alcança) **50%**."
+        ],
+        "teoria": [
+          {
+            "statement": "Em um conjunto ordenado com n elementos, sendo n ímpar, a mediana é o termo que ocupa a posição (n + 1) / 2.",
+            "isTrue": true,
+            "explanation": "É o único termo com o mesmo número de elementos de cada lado; com n = 501, por exemplo, é o 251º."
+          },
+          {
+            "statement": "Em um conjunto com quantidade par de elementos, a mediana sempre coincide com um dos elementos do conjunto.",
+            "isTrue": false,
+            "explanation": "Com n par a convenção usa a média dos dois termos centrais, que pode resultar em um valor fora do conjunto (ex.: média de 8 e 9 = 8,5)."
+          },
+          {
+            "statement": "Substituir o maior valor de um conjunto por um número muito maior altera a média aritmética, mas não altera a mediana (se a posição central não mudar).",
+            "isTrue": true,
+            "explanation": "A mediana depende da posição central e não dos valores extremos, ao passo que a média incorpora todos os valores."
+          },
+          {
+            "statement": "A mediana é mais afetada por valores discrepantes do que a média aritmética.",
+            "isTrue": false,
+            "explanation": "É o contrário: a média é fortemente influenciada por valores extremos; a mediana, não."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Quando n é par, por convenção a mediana é a média aritmética dos termos que ocupam as posições n/2 e n/2 + 1.",
+            "isTrue": true,
+            "explanation": "Qualquer valor entre os dois termos centrais serviria, mas adota-se a média deles."
+          },
+          {
+            "statement": "Os quintis dividem a série ordenada em cinco partes, cada uma contendo 25% dos valores.",
+            "isTrue": false,
+            "explanation": "Cinco partes iguais correspondem a 20% dos valores cada; 25% é a fração dos quartis."
+          },
+          {
+            "statement": "Em uma tabela de frequências com n ímpar, a mediana é o valor associado à primeira frequência acumulada igual ou superior à posição (n + 1) / 2.",
+            "isTrue": true,
+            "explanation": "Com n = 49, procura-se a primeira acumulada maior ou igual a 25."
+          },
+          {
+            "statement": "Para determinar a mediana de dados brutos, não é necessário ordená-los, bastando localizar o elemento do meio na ordem em que foram coletados.",
+            "isTrue": false,
+            "explanation": "A ordenação (rol) é a etapa prévia indispensável: a mediana é o termo central da série ORDENADA."
+          }
+        ],
+        "pointers": [
+          { "topic": "Separatrizes: mediana, quartis, quintis, decis, percentis", "pageRef": 3 },
+          { "topic": "Mediana: posição (n+1)/2 para n ímpar", "pageRef": 4 },
+          { "topic": "Mediana com n par: média dos termos n/2 e n/2+1", "pageRef": 5 },
+          { "topic": "Mediana pode ser qualquer valor entre os centrais (convenção)", "pageRef": 6 },
+          { "topic": "Mediana x média diante de valores extremos", "pageRef": 8 },
+          { "topic": "Mediana de dados agrupados por valor (frequência acumulada)", "pageRef": 12 },
+          { "topic": "Regra geral para tabela de frequências (n ímpar ou par)", "pageRef": 13 },
+          { "topic": "Mediana com frequência relativa acumulada (50%)", "pageRef": 16 }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a02/s02",
+      "bizu": {
+        "summary": [
+          "**Mediana em classes**: não importa se n é par ou ímpar; usa-se um único procedimento. Primeiro monte a coluna de frequência acumulada e ache a **classe mediana**: a primeira em que a acumulada é **igual ou superior a Σf/2**.",
+          "**Fórmula**: **Md = l_inf + [ (Σf/2 − fac_ant) / f_i ] × h**, em que l_inf é o limite inferior da classe mediana, fac_ant a frequência acumulada da classe ANTERIOR, f_i a frequência simples da classe mediana e h a amplitude dessa classe.",
+          "A fórmula nasce da **interpolação linear** (semelhança de triângulos entre os pontos da reta de frequência acumulada). Ela também vale com frequências em porcentagem (Σf = 100%, metade = 50%).",
+          "Interpretação: metade dos valores está abaixo de Md e metade acima. Os valores mínimo e máximo da distribuição **não bastam** para determinar a mediana.",
+          "A fórmula da mediana é a base de quartis, decis e percentis: muda-se só o termo Σf/2.",
+          "**Propriedade 1**: somando (ou subtraindo) uma constante c de todos os valores, a mediana também é somada (ou subtraída) de c.",
+          "**Propriedade 2**: multiplicando (ou dividindo) todos os valores por uma constante c, a mediana também fica multiplicada (ou dividida) por c.",
+          "**Propriedade 3**: a soma dos **desvios absolutos** (em módulo) em relação a um número a é **mínima quando a é a mediana**; com n par, vale para qualquer valor entre os dois termos centrais."
+        ],
+        "teoria": [
+          {
+            "statement": "Para dados agrupados em classes, a classe mediana é a primeira cuja frequência acumulada é igual ou superior à metade da soma das frequências.",
+            "isTrue": true,
+            "explanation": "Compara-se Σf/2 com a coluna de frequências acumuladas, de cima para baixo, até alcançar ou ultrapassar esse valor."
+          },
+          {
+            "statement": "Na interpolação da mediana em classes, o termo fac_ant corresponde à frequência simples da própria classe mediana.",
+            "isTrue": false,
+            "explanation": "fac_ant é a frequência ACUMULADA até a classe que vem antes da classe mediana; a frequência simples da classe mediana é f_i."
+          },
+          {
+            "statement": "Somando-se uma constante c a todos os valores de um conjunto, a mediana do novo conjunto também fica acrescida de c.",
+            "isTrue": true,
+            "explanation": "Propriedade 1 da mediana: a posição central não muda e o valor acompanha a constante."
+          },
+          {
+            "statement": "Multiplicando-se todos os valores de um conjunto por uma constante c, a mediana permanece inalterada.",
+            "isTrue": false,
+            "explanation": "A mediana fica multiplicada por c, como a média."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A soma dos desvios absolutos de uma série em relação a um número a é mínima quando a coincide com a mediana.",
+            "isTrue": true,
+            "explanation": "É a 3ª propriedade da mediana; com n par, qualquer valor entre os termos centrais também gera o mínimo."
+          },
+          {
+            "statement": "O cálculo da mediana por interpolação em classes exige fórmulas diferentes para n par e para n ímpar.",
+            "isTrue": false,
+            "explanation": "Em dados agrupados em classes adota-se um único procedimento, com Σf/2, independentemente da paridade de n."
+          },
+          {
+            "statement": "Conhecer apenas o menor e o maior valor de uma distribuição não é suficiente para determinar sua mediana.",
+            "isTrue": true,
+            "explanation": "A mediana depende da distribuição das frequências, e não apenas dos extremos."
+          },
+          {
+            "statement": "Na fórmula da mediana em classes, h representa a amplitude total da distribuição.",
+            "isTrue": false,
+            "explanation": "h é a amplitude do intervalo da classe mediana (diferença entre seus limites)."
+          },
+          {
+            "statement": "A fórmula da mediana para dados agrupados em classes é obtida pelo método da interpolação linear.",
+            "isTrue": true,
+            "explanation": "Admite-se que as observações se distribuem uniformemente na classe, o que leva a uma relação de proporcionalidade."
+          }
+        ],
+        "pointers": [
+          { "topic": "Classe mediana e frequências acumuladas", "pageRef": 18 },
+          { "topic": "Fórmula da mediana para dados em classes", "pageRef": 19 },
+          { "topic": "Interpretação do resultado (50% abaixo, 50% acima)", "pageRef": 20 },
+          { "topic": "Interpolação linear", "pageRef": 21 },
+          { "topic": "Mediana com frequências em porcentagem", "pageRef": 25 },
+          { "topic": "1ª propriedade: soma de constante", "pageRef": 28 },
+          { "topic": "2ª propriedade: multiplicação por constante", "pageRef": 29 },
+          { "topic": "3ª propriedade: desvios absolutos mínimos na mediana", "pageRef": 30 }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a02/s03",
+      "bizu": {
+        "summary": [
+          "**Quartis** são três valores (Q1, Q2, Q3) que dividem a série em quatro partes de 25%. Q1 deixa 25% abaixo; **Q2 = mediana** (50%); Q3 deixa 75% abaixo e 25% acima.",
+          "**Quintis** (5 partes), **decis** (10) e **percentis** (100) seguem a mesma lógica. A fórmula dos quartis é a da mediana com o termo Σf/2 trocado por **k · Σf / 4** (k = 1, 2, 3).",
+          "**Dados não agrupados**: ordene, calcule a posição **P(Qk) = k · n / 4**, tome a posição **mais próxima** no rol e leia o valor. Para Q2, use o procedimento da mediana ((n+1)/2 se ímpar; média das posições n/2 e n/2+1 se par).",
+          "A aproximação da posição faz com que a fórmula k·n/4 aplicada a Q2 nem sempre reproduza a mediana convencionada — por isso Q2 é tratado como mediana.",
+          "**Dados agrupados sem classes**: posição = **k · Σf / 4**; olhe a coluna de frequência acumulada e escolha a **primeira acumulada igual ou superior** à posição; o valor da variável nessa linha é o quartil.",
+          "**Dados agrupados em classes**: posição k · Σf / 4, identificar a classe correspondente e aplicar **Qk = l_inf + [ (k·Σf/4 − fac_ant) / f_Qk ] × h**, com os elementos tomados da classe do quartil."        ],
+        "teoria": [
+          {
+            "statement": "O segundo quartil (Q2) coincide com a mediana da distribuição.",
+            "isTrue": true,
+            "explanation": "Q2 separa 50% dos elementos abaixo e 50% acima, exatamente como a mediana."
+          },
+          {
+            "statement": "Existem quatro quartis, Q1, Q2, Q3 e Q4, que dividem a série em quatro partes iguais.",
+            "isTrue": false,
+            "explanation": "Para dividir em quatro partes bastam três separadores: Q1, Q2 e Q3."
+          },
+          {
+            "statement": "Para dados não agrupados, a posição do quartil de ordem k é obtida, de forma aproximada, por k · n / 4, com k = 1, 2 ou 3.",
+            "isTrue": true,
+            "explanation": "Após ordenar, identifica-se a posição mais próxima do resultado e lê-se o valor nessa posição."
+          },
+          {
+            "statement": "Na fórmula do quartil para dados em classes, o termo Σf/2 da mediana é mantido, sem alteração, para qualquer valor de k.",
+            "isTrue": false,
+            "explanation": "O termo é substituído por k · Σf / 4, em que k indica a ordem do quartil."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O terceiro quartil deixa 75% dos elementos abaixo dele e 25% acima.",
+            "isTrue": true,
+            "explanation": "Q3 corresponde à separação dos primeiros 75% da série ordenada."
+          },
+          {
+            "statement": "Em dados agrupados sem classes, o quartil é o valor associado à última frequência acumulada menor que a posição k · Σf / 4.",
+            "isTrue": false,
+            "explanation": "Escolhe-se a primeira frequência acumulada IGUAL OU SUPERIOR à posição calculada."
+          },
+          {
+            "statement": "Em um rol com 16 valores, a posição de Q3 é a 12ª.",
+            "isTrue": true,
+            "explanation": "P(Q3) = 3 · 16 / 4 = 12."
+          },
+          {
+            "statement": "Para dados em classes, o quartil é lido diretamente na tabela de frequências acumuladas, sem necessidade de interpolação.",
+            "isTrue": false,
+            "explanation": "Depois de localizar a classe do quartil, aplica-se a fórmula de interpolação com l_inf, fac_ant, f e h dessa classe."
+          },
+          {
+            "statement": "No cálculo de um quartil para dados em classes, h é a amplitude da classe em que o quartil se encontra.",
+            "isTrue": true,
+            "explanation": "Todos os elementos da fórmula (l_inf, f, h) são tirados da classe do quartil considerado; fac_ant vem da classe anterior."
+          }
+        ],
+        "pointers": [
+          { "topic": "Quartis: Q1, Q2 e Q3; Q2 = mediana", "pageRef": 33 },
+          { "topic": "Quartil para dados não agrupados: posição k·n/4", "pageRef": 34 },
+          { "topic": "Exemplo de Q1, Q2 e Q3 com 16 valores", "pageRef": 35 },
+          { "topic": "Quartil para dados agrupados sem classes", "pageRef": 36 },
+          { "topic": "Tratamento de Q2 como mediana", "pageRef": 37 },
+          { "topic": "Quartil para dados em classes: fórmula", "pageRef": 40 },
+          { "topic": "Exemplo numérico com Q1, Q2 e Q3 em classes", "pageRef": 41 }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a02/s04",
+      "bizu": {
+        "summary": [
+          "**Decis** são nove valores (D1 a D9) que dividem a série em dez partes de 10%. **D5 coincide com a mediana**; D1 separa os primeiros 10% e D9 os primeiros 90% (ou os últimos 10%).",
+          "A fórmula é a da mediana com Σf/2 trocado por **k · Σf / 10**, com k de 1 a 9.",
+          "**Dados não agrupados**: ordene, calcule a posição **k · n / 10**, tome a posição mais próxima do rol e leia o valor. Ex.: com n = 10, D8 ocupa a 8ª posição.",
+          "**Dados agrupados sem classes**: posição **k · Σf / 10**; escolha a primeira frequência acumulada **igual ou superior** à posição e leia o valor da variável.",
+          "**Dados agrupados em classes**: **Dk = l_inf + [ (k·Σf/10 − fac_ant) / f_Dk ] × h**, com os dados da classe do decil (limite inferior, frequência simples, amplitude) e a acumulada da classe anterior.",
+          "Se a posição cai logo na primeira classe, fac_ant = 0 (não há classe anterior).",
+          "O resultado do decil em classes sempre fica dentro dos limites da classe em que ele foi localizado."
+        ],
+        "teoria": [
+          {
+            "statement": "Os decis são nove valores que dividem a série ordenada em dez partes com a mesma quantidade de elementos.",
+            "isTrue": true,
+            "explanation": "D1, D2, ..., D9 separam a série em partes de 10% cada."
+          },
+          {
+            "statement": "O quinto decil (D5) coincide com o primeiro quartil.",
+            "isTrue": false,
+            "explanation": "D5 separa 50% dos elementos e, por isso, coincide com a mediana (Q2)."
+          },
+          {
+            "statement": "Para dados não agrupados, a posição do decil de ordem k é, de forma aproximada, k · n / 10.",
+            "isTrue": true,
+            "explanation": "Depois da ordenação, usa-se a posição mais próxima do resultado."
+          },
+          {
+            "statement": "O nono decil (D9) deixa 10% dos elementos abaixo dele e 90% acima.",
+            "isTrue": false,
+            "explanation": "D9 deixa 90% abaixo e 10% acima."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Em um conjunto ordenado com 10 elementos, o oitavo decil ocupa a 8ª posição do rol.",
+            "isTrue": true,
+            "explanation": "P(D8) = 8 · 10 / 10 = 8."
+          },
+          {
+            "statement": "Para dados agrupados em classes, a fórmula do decil usa o termo k · Σf / 100.",
+            "isTrue": false,
+            "explanation": "Para decis o termo é k · Σf / 10; é o percentil que usa k · Σf / 100."
+          },
+          {
+            "statement": "O segundo quartil, o quinto decil e a mediana representam o mesmo ponto de divisão da distribuição.",
+            "isTrue": true,
+            "explanation": "Todos separam 50% dos elementos abaixo e 50% acima."
+          },
+          {
+            "statement": "Em dados agrupados sem intervalos de classe, o decil é o valor da variável correspondente à primeira frequência acumulada igual ou superior à posição k · Σf / 10.",
+            "isTrue": true,
+            "explanation": "É o mesmo critério usado para quartis e percentis."
+          }
+        ],
+        "pointers": [
+          { "topic": "Decis: D1 a D9 e D5 = mediana", "pageRef": 44 },
+          { "topic": "Decil para dados não agrupados: posição k·n/10", "pageRef": 44 },
+          { "topic": "Exemplo de D1 e D8 em um rol", "pageRef": 45 },
+          { "topic": "Decil para dados agrupados sem classes", "pageRef": 46 },
+          { "topic": "Decil para dados em classes: fórmula", "pageRef": 49 },
+          { "topic": "Exemplo de D1, D2 e D7 em classes", "pageRef": 51 }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a02/s05",
+      "bizu": {
+        "summary": [
+          "**Percentis** são 99 valores (P1 a P99) que dividem a série em cem partes de 1%. **P50 = mediana**; P1 separa o primeiro 1% e P99 os primeiros 99% (ou o último 1%).",
+          "A fórmula é a da mediana com Σf/2 trocado por **k · Σf / 100**, com k de 1 a 99.",
+          "**Dados não agrupados**: ordene; posição **k · n / 100**; aproxime para a posição mais próxima e leia o valor. Ex.: com n = 11, P27 tem posição 2,97, que se aproxima da 3ª.",
+          "**Dados agrupados sem classes**: posição **k · Σf / 100**; escolha o valor associado à primeira frequência acumulada igual ou superior à posição.",
+          "**Dados agrupados em classes**: **Pk = l_inf + [ (k·Σf/100 − fac_ant) / f_Pk ] × h**, usando limite inferior, frequência simples e amplitude da classe do percentil e a acumulada da classe anterior.",
+          "Interpretação: o valor de Pk deixa k% das observações abaixo dele. Ex.: P45 deixa 45% abaixo.",
+          "Com frequências em porcentagem, trabalha-se com Σf = 100% e a posição passa a ser o próprio percentual k (ex.: P75 = onde a acumulada atinge 75%)."        ],
+        "teoria": [
+          {
+            "statement": "Existem 99 percentis, que dividem a série ordenada em cem partes com a mesma quantidade de elementos.",
+            "isTrue": true,
+            "explanation": "P1, P2, ..., P99 separam a série em partes de 1% cada."
+          },
+          {
+            "statement": "O percentil 50 coincide com o terceiro quartil.",
+            "isTrue": false,
+            "explanation": "P50 separa metade dos elementos e coincide com a mediana (Q2); o Q3 corresponde ao percentil 75."
+          },
+          {
+            "statement": "Para dados não agrupados, a posição do percentil de ordem k é, de forma aproximada, k · n / 100.",
+            "isTrue": true,
+            "explanation": "Após ordenar, toma-se a posição mais próxima e lê-se o valor."
+          },
+          {
+            "statement": "Na fórmula do percentil para dados em classes, o termo k · Σf / 100 substitui o Σf/2 da fórmula da mediana.",
+            "isTrue": true,
+            "explanation": "É a única alteração em relação à fórmula da mediana."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O percentil 99 deixa apenas 1% das observações abaixo dele.",
+            "isTrue": false,
+            "explanation": "P99 deixa 99% das observações abaixo e 1% acima."
+          },
+          {
+            "statement": "Em um rol de 11 valores, a posição calculada para o percentil 27 é 2,97, que se aproxima da 3ª posição.",
+            "isTrue": true,
+            "explanation": "27 × 11 / 100 = 2,97, e a posição mais próxima do rol é 3."
+          },
+          {
+            "statement": "O cálculo de um percentil só é possível quando a soma das frequências é um múltiplo de 100.",
+            "isTrue": false,
+            "explanation": "A soma das frequências pode ser qualquer valor; a posição k · Σf / 100 pode ser fracionária e é tratada por aproximação ou interpolação."
+          },
+          {
+            "statement": "Em uma distribuição com frequências em porcentagem, o percentil 75 é encontrado na classe em que a frequência acumulada atinge ou ultrapassa 75%.",
+            "isTrue": true,
+            "explanation": "Localiza-se a classe e aplica-se a interpolação usando 75% no lugar de k·Σf/100."
+          }
+        ],
+        "pointers": [
+          { "topic": "Percentis: P1 a P99 e P50 = mediana", "pageRef": 53 },
+          { "topic": "Percentil para dados não agrupados: posição k·n/100", "pageRef": 53 },
+          { "topic": "Exemplo de P27 e P83 em um rol", "pageRef": 54 },
+          { "topic": "Percentil para dados agrupados sem classes", "pageRef": 55 },
+          { "topic": "Percentil para dados em classes: fórmula", "pageRef": 58 },
+          { "topic": "Exemplo de P45 e P77 em classes", "pageRef": 59 },
+          { "topic": "Questão-modelo de Q1 e mediana por interpolação", "pageRef": 62 },
+          { "topic": "Percentil com frequências relativas acumuladas", "pageRef": 65 }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a02/s06",
+      "bizu": {
+        "summary": [
+          "**Box plot** (diagrama de caixa) é um gráfico da análise exploratória que mostra a distribuição, a dispersão e os valores discrepantes (outliers). Resume **cinco medidas**: mínimo, Q1, mediana (Q2), Q3 e máximo.",
+          "Estrutura: uma **caixa** retangular que vai de Q1 a Q3, com uma linha interna na **mediana**, e duas hastes (**whiskers**, ou bigodes) ligando a caixa ao mínimo e ao máximo. Cada bigode reúne cerca de **25%** dos dados e a caixa cerca de **50%**.",
+          "**Distância (amplitude) interquartílica**: **DIQ = Q3 − Q1**.",
+          "**Outliers**: valores **abaixo de Q1 − 1,5·DIQ** ou **acima de Q3 + 1,5·DIQ**, marcados por pontos ou asteriscos.",
+          "Quando há outliers, os bigodes não chegam ao mínimo e ao máximo reais: terminam no **menor valor ≥ limite inferior** e no **maior valor ≤ limite superior**.",
+          "**Desvio quartílico (amplitude semi-interquartílica)**: **Dq = (Q3 − Q1) / 2**. Não confundir com a DIQ: aparece na aula de dispersão.",
+          "Se valores coincidem (ex.: mediana = Q3), as linhas se sobrepõem e a caixa ou o bigode some visualmente.",
+          "O box plot **não informa a quantidade de elementos** de cada grupo nem a média; permite **comparar distribuições** colocando vários diagramas no mesmo gráfico."
+        ],
+        "teoria": [
+          {
+            "statement": "Um box plot sintetiza a distribuição por cinco números, que são os extremos (mínimo e máximo) e os três quartis, incluindo a mediana.",
+            "isTrue": true,
+            "explanation": "Esses cinco números definem a caixa, a linha da mediana e os bigodes."
+          },
+          {
+            "statement": "A linha traçada no interior da caixa do box plot representa a média aritmética dos dados.",
+            "isTrue": false,
+            "explanation": "A linha central da caixa indica o segundo quartil, ou seja, a mediana."
+          },
+          {
+            "statement": "A distância interquartílica é calculada por Q3 − Q1.",
+            "isTrue": true,
+            "explanation": "DIQ = Q3 − Q1; é o comprimento da caixa."
+          },
+          {
+            "statement": "O desvio quartílico é igual à distância interquartílica, ambos definidos por Q3 − Q1.",
+            "isTrue": false,
+            "explanation": "O desvio quartílico é a metade dela: Dq = (Q3 − Q1) / 2."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Valores menores que Q1 − 1,5·DIQ ou maiores que Q3 + 1,5·DIQ são considerados valores discrepantes (outliers).",
+            "isTrue": true,
+            "explanation": "Essa é a regra usada para marcar pontos isolados no box plot."
+          },
+          {
+            "statement": "Em um box plot, cada bigode contém cerca de 50% dos dados, e a caixa contém os 50% restantes.",
+            "isTrue": false,
+            "explanation": "Cada bigode reúne cerca de 25% dos dados; a caixa, entre Q1 e Q3, reúne cerca de 50%."
+          },
+          {
+            "statement": "Quando o box plot assinala outliers, o bigode superior termina no maior valor do conjunto que não ultrapassa Q3 + 1,5·DIQ.",
+            "isTrue": true,
+            "explanation": "Os bigodes ficam limitados a 1,5·DIQ; os valores além disso aparecem como pontos."
+          },
+          {
+            "statement": "Um box plot permite determinar o número de elementos de cada grupo comparado.",
+            "isTrue": false,
+            "explanation": "O diagrama mostra medidas de posição e dispersão (quartis, extremos, outliers), mas não a quantidade de observações."
+          },
+          {
+            "statement": "Se a mediana e o terceiro quartil de um conjunto têm o mesmo valor, as duas linhas se sobrepõem na extremidade da caixa.",
+            "isTrue": true,
+            "explanation": "Valores iguais para medidas descritivas alteram o aspecto visual do box plot."
+          }
+        ],
+        "pointers": [
+          { "topic": "Definição e cinco medidas do box plot", "pageRef": 67 },
+          { "topic": "Whiskers e outliers", "pageRef": 67 },
+          { "topic": "DIQ = Q3 - Q1 e limites de 1,5·DIQ", "pageRef": 68 },
+          { "topic": "Desvio quartílico (Q3-Q1)/2", "pageRef": 68 },
+          { "topic": "Exemplo completo de construção do box plot", "pageRef": 70 },
+          { "topic": "Box plot comparando duas distribuições", "pageRef": 72 },
+          { "topic": "Medidas coincidentes e aspecto do gráfico", "pageRef": 73 },
+          { "topic": "O que o box plot não informa (questões)", "pageRef": 76 }
+        ]
+      }
+    }
+  ]
+}

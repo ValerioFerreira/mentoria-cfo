@@ -1,0 +1,163 @@
+{
+  "aula": "fisica/a00",
+  "batch": "w2-bizu-fisica",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "fisica/a00/s01",
+      "bizu": {
+        "summary": [
+          "**Vetor** é o ente geométrico usado na Física para representar **grandezas vetoriais**. Fica definido por **módulo** (tamanho), **direção** (dada pela reta suporte) e **sentido** (indicado pela extremidade da seta).",
+          "**Igualdade de vetores**: só são iguais se tiverem, ao mesmo tempo, o mesmo módulo, a mesma direção e o mesmo sentido.",
+          "**Soma de dois vetores (regra do paralelogramo)**: junta-se origem com origem, traçam-se paralelas e a resultante parte da origem comum até o encontro das paralelas. Módulo pela lei dos cossenos: **R² = A² + B² + 2AB cos θ**, sendo θ o ângulo entre os vetores com origens coincidentes.",
+          "**Casos particulares da resultante**: mesma direção e mesmo sentido (θ = 0°) → **R = A + B** (valor máximo); mesma direção e sentidos opostos (θ = 180°) → **R = |A − B|** (valor mínimo); perpendiculares (θ = 90°) → **R² = A² + B²** (Pitágoras).",
+          "**Regra do polígono** (mais de dois vetores): liga-se a origem de cada vetor à extremidade do anterior; a resultante vai da origem do primeiro à extremidade do último. Se o polígono se **fecha** (a extremidade do último cai na origem do primeiro), a soma é o **vetor nulo**.",
+          "**Decomposição**: trocar um vetor por componentes em eixos convenientes (situação física equivalente). Para uma força F que forma ângulo θ com o eixo x: **Fx = F cos θ** e **Fy = F sen θ**. É muito usada em plano inclinado, dinâmica e estática.",
+          "**Vetor multiplicado por um número k**: a **direção nunca muda**. Se |k| > 1 o módulo aumenta; se 0 < |k| < 1 o módulo diminui; se k > 0 o sentido se mantém; se k < 0 o sentido se inverte.",
+          "**Vetor oposto** (−a): mesmo módulo e mesma direção, sentido contrário. **Diferença**: a − b = a + (−b). Módulo da diferença: **|a − b|² = A² + B² − 2AB cos θ** (soma usa sinal +, diferença usa sinal − no termo do meio).",
+          "**Grandeza escalar** fica definida por módulo e unidade (ex.: massa, tempo, densidade, energia, trabalho). **Grandeza vetorial** exige módulo, unidade, direção e sentido (ex.: deslocamento, força, impulso, quantidade de movimento, campos elétrico e magnético)."
+        ],
+        "teoria": [
+          {
+            "statement": "Dois vetores são iguais sempre que possuem o mesmo módulo e a mesma direção, ainda que seus sentidos sejam opostos.",
+            "isTrue": false,
+            "explanation": "A igualdade vetorial exige módulo, direção E sentido iguais. Com sentidos opostos os vetores são simétricos, não iguais."
+          },
+          {
+            "statement": "Quando dois vetores têm a mesma direção e sentidos opostos, o módulo da resultante é igual ao valor absoluto da diferença entre seus módulos.",
+            "isTrue": true,
+            "explanation": "Nesse caso θ = 180° e a lei dos cossenos reduz-se a R = |A − B|."
+          },
+          {
+            "statement": "A resultante de dois vetores perpendiculares entre si tem módulo igual à soma dos módulos dos dois vetores.",
+            "isTrue": false,
+            "explanation": "Para θ = 90°, cos θ = 0 e vale o teorema de Pitágoras: R² = A² + B². A soma simples dos módulos só ocorre com vetores de mesma direção e mesmo sentido."
+          },
+          {
+            "statement": "Multiplicar um vetor por um número negativo inverte o seu sentido, mas nunca altera a sua direção.",
+            "isTrue": true,
+            "explanation": "A multiplicação por escalar não muda a direção; o sinal do número define o sentido e o seu valor absoluto define o fator do módulo."
+          },
+          {
+            "statement": "Trabalho e energia são grandezas escalares, ao passo que impulso e quantidade de movimento são grandezas vetoriais.",
+            "isTrue": true,
+            "explanation": "Escalares ficam definidas por módulo e unidade; impulso e quantidade de movimento exigem também direção e sentido."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Na regra do polígono, o vetor resultante liga a origem do primeiro vetor à extremidade do último vetor desenhado.",
+            "isTrue": true,
+            "explanation": "Os vetores são encadeados extremidade com origem; a resultante fecha o contorno do primeiro ao último."
+          },
+          {
+            "statement": "Multiplicar um vetor por 1/2 reduz o seu módulo à metade e inverte o seu sentido.",
+            "isTrue": false,
+            "explanation": "Um número positivo entre 0 e 1 reduz o módulo, mas mantém o sentido. A inversão só ocorre com número negativo."
+          },
+          {
+            "statement": "O módulo do vetor diferença a − b é dado por A² + B² − 2AB cos θ (sob raiz), em que θ é o ângulo entre os vetores quando colocados com a mesma origem.",
+            "isTrue": true,
+            "explanation": "Na soma o termo central tem sinal positivo; na diferença o sinal é negativo, pois a − b = a + (−b)."
+          },
+          {
+            "statement": "Para ficar plenamente definida, uma grandeza escalar precisa de módulo, unidade, direção e sentido.",
+            "isTrue": false,
+            "explanation": "Direção e sentido são exigências das grandezas vetoriais. A escalar é definida apenas por módulo (valor numérico) e unidade."
+          },
+          {
+            "statement": "Se a força F forma o ângulo θ com o eixo x, suas componentes são Fx = F cos θ e Fy = F sen θ.",
+            "isTrue": true,
+            "explanation": "É a decomposição em eixos perpendiculares, com a componente adjacente ao ângulo dada pelo cosseno e a oposta pelo seno."
+          }
+        ],
+        "pointers": [
+          { "topic": "Conceito de vetor e características (módulo, direção, sentido); igualdade", "pageRef": 15 },
+          { "topic": "Soma: regra do paralelogramo", "pageRef": 15 },
+          { "topic": "Soma: regra do polígono e polígono fechado (resultante nula)", "pageRef": 17 },
+          { "topic": "Módulo da resultante: lei dos cossenos e casos particulares (0°, 180°, 90°)", "pageRef": 18 },
+          { "topic": "Decomposição vetorial (Fx, Fy)", "pageRef": 20 },
+          { "topic": "Multiplicação de vetor por número (módulo e sentido)", "pageRef": 23 },
+          { "topic": "Vetor oposto e diferença de vetores", "pageRef": 25 },
+          { "topic": "Grandezas escalares x vetoriais e exemplos", "pageRef": 27 }
+        ]
+      }
+    },
+    {
+      "id": "fisica/a00/s02",
+      "bizu": {
+        "summary": [
+          "**Notação científica**: número escrito como **x · 10^y**, com **1 ≤ x < 10** e y inteiro. Vírgula deslocada para a esquerda → expoente positivo; para a direita → expoente negativo. Ex.: massa da Terra ≈ 6,0 · 10^24 kg; carga do elétron ≈ 1,6 · 10^-19 C (em módulo).",
+          "**Ordem de grandeza (O.G.)** = potência de 10 mais próxima do valor. Passos: (1) escrever em notação científica N = x · 10^y; (2) comparar x com **3,16** (≈ raiz de 10); (3) se x < 3,16, O.G. = 10^y; se x ≥ 3,16, O.G. = **10^(y+1)**.",
+          "**Algarismos significativos**: os **certos** mais **um único duvidoso** (o último, estimado). O duvidoso também conta. Mais algarismos significativos indicam instrumento de maior precisão.",
+          "**Soma e subtração** com significativos: o resultado tem o mesmo número de **casas decimais** da parcela que possui **menos** casas decimais (arredonda-se o excedente).",
+          "**Multiplicação e divisão** com significativos: o resultado tem o mesmo número de **algarismos significativos** do fator que possui **menos** algarismos significativos. Atenção: a regra da soma é por casas decimais; a do produto é por algarismos.",
+          "**Análise dimensional**: escrever a grandeza em função das **grandezas fundamentais** (comprimento L, tempo T, massa M, temperatura θ, corrente elétrica I). As demais são **derivadas** e se obtêm de pelo menos uma fórmula que as relacione.",
+          "**Dimensões úteis**: velocidade = **LT^-1**; energia = **ML²T^-2**; calor específico = **L²T^-2θ^-1**; resistência elétrica = **ML²T^-3I^-2**. A dimensão leva direto à unidade SI correspondente (velocidade em m·s^-1).",
+          "**Sistema Internacional (SI)** padroniza as unidades fundamentais (ex.: metro, quilograma, segundo, kelvin, ampere). Unidades derivadas combinam as fundamentais, e várias têm **nome especial** em homenagem a cientistas: N (newton), Pa (pascal), J (joule), Hz (hertz).",
+          "**Unidades usuais** (fora do SI), como minuto e hora, são comuns no cotidiano e convertidas ao SI por fatores. **CGS** é outro sistema, não internacional. A conversão de unidades se faz por **potências de dez dos prefixos** (quilo, mili, micro, nano, mega, giga), sem decorar a escadinha km-hm-dam."
+        ],
+        "teoria": [
+          {
+            "statement": "Um número está em notação científica quando é escrito como x · 10^y, com x maior ou igual a 1 e menor que 10, e y inteiro.",
+            "isTrue": true,
+            "explanation": "Essa é a definição: um fator entre 1 e 10 multiplicado por uma potência inteira de dez."
+          },
+          {
+            "statement": "A ordem de grandeza de uma massa de 4,5 · 10^-5 kg é 10^-5 kg.",
+            "isTrue": false,
+            "explanation": "Como 4,5 é maior que 3,16, soma-se 1 ao expoente: a ordem de grandeza é 10^-4 kg."
+          },
+          {
+            "statement": "No produto de duas medidas, o resultado deve ser expresso com o mesmo número de casas decimais da medida que tiver menos casas decimais.",
+            "isTrue": false,
+            "explanation": "A regra de casas decimais vale para soma e subtração. No produto e na divisão conta o número de algarismos significativos da medida mais pobre neles."
+          },
+          {
+            "statement": "Em uma medida, os algarismos significativos são todos os algarismos certos acrescidos de um único algarismo duvidoso.",
+            "isTrue": true,
+            "explanation": "O duvidoso é significativo, mas não se admite mais de um, pois não se pode acrescentar dúvida sobre o que já é dúvida."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A dimensão da energia, em função de massa (M), comprimento (L) e tempo (T), é ML²T^-2.",
+            "isTrue": true,
+            "explanation": "A partir da energia cinética mV²/2: M·(LT^-1)² = ML²T^-2."
+          },
+          {
+            "statement": "O newton é uma unidade fundamental do SI, pois recebeu o nome de um cientista.",
+            "isTrue": false,
+            "explanation": "O newton é unidade derivada (equivale a kg·m/s²). Ter nome de cientista é característica de algumas unidades derivadas com nome especial."
+          },
+          {
+            "statement": "Para obter a dimensão de uma grandeza derivada, basta conhecer ao menos uma fórmula física que a relacione com as grandezas fundamentais.",
+            "isTrue": true,
+            "explanation": "É o procedimento da análise dimensional: parte-se de uma relação conhecida e substituem-se as dimensões."
+          },
+          {
+            "statement": "Ao somar 27,48 cm com 2,5 cm, o resultado com algarismos significativos corretos deve manter duas casas decimais.",
+            "isTrue": false,
+            "explanation": "O resultado fica com uma casa decimal (a menor entre as parcelas): 29,98 arredonda para 30,0 cm."
+          },
+          {
+            "statement": "Uma distância de 120.000 km tem ordem de grandeza igual a 10^5 km.",
+            "isTrue": true,
+            "explanation": "120.000 = 1,2 · 10^5 e, como 1,2 < 3,16, o expoente se mantém."
+          }
+        ],
+        "pointers": [
+          { "topic": "Notação científica", "pageRef": 28 },
+          { "topic": "Ordem de grandeza: passo a passo e limite 3,16", "pageRef": 30 },
+          { "topic": "Algarismos significativos: certos e duvidoso", "pageRef": 31 },
+          { "topic": "Operações com significativos: soma/subtração x produto/divisão", "pageRef": 32 },
+          { "topic": "Análise dimensional: grandezas fundamentais e derivadas", "pageRef": 34 },
+          { "topic": "Exemplos de dimensões (velocidade, energia, calor específico, resistência)", "pageRef": 35 },
+          { "topic": "Sistema Internacional: unidades fundamentais e derivadas com nome especial", "pageRef": 37 },
+          { "topic": "Unidades usuais, CGS e prefixos (potências de dez)", "pageRef": 42 }
+        ]
+      }
+    }
+  ]
+}

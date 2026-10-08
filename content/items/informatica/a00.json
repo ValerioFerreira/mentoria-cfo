@@ -1,0 +1,405 @@
+{
+  "aula": "informatica/a00",
+  "batch": "w2-bizu-informatica",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "informatica/a00/s01",
+      "bizu": {
+        "summary": [
+          "**Origem da Internet**: nasceu de projeto militar dos EUA na Guerra Fria (ARPA, anos 50). A **ARPANET**, dos anos 60, ligava universidades e já usava **comutação por pacotes**, em vez da comutação por circuito da telefonia.",
+          "**Comutação por pacotes**: a informação é fragmentada em pacotes que podem seguir rotas diferentes, chegar fora de ordem e são remontados no destino. Na **comutação por circuito** havia uma linha dedicada reservada para cada comunicação.",
+          "A diversidade de formatos de pacote entre as redes foi resolvida pela adoção do conjunto de protocolos **TCP/IP**, base da Internet moderna.",
+          "**Principais serviços**: WWW (HTTP/HTTPS), correio eletrônico (SMTP, POP3, IMAP), acesso remoto (SSH, RDP, VNC), transferência de arquivos (FTP, P2P), wikis, ferramentas de busca, redes sociais, grupos de discussão, computação em nuvem e portais web.",
+          "A Internet segue a arquitetura **cliente/servidor**: o cliente faz solicitações e o servidor as processa e fornece os recursos (páginas, arquivos).",
+          "**Rede de computadores** = conjunto de dispositivos (nós) ligados por links de comunicação. Objetivo central: **compartilhar recursos** (equipamentos, programas e dados) e servir de meio de comunicação entre pessoas.",
+          "Classificação por abrangência: **PAN** (centímetros a poucos metros; Bluetooth), **LAN** (centenas de metros a alguns km; Ethernet e Wi-Fi), **MAN** (dezenas de km; interliga LANs de uma cidade) e **WAN** (centenas a milhares de km; a Internet é o exemplo clássico).",
+          "**LAN**: alta velocidade, baixa taxa de erros, topologias como barramento, anel e **estrela (a mais comum)**; pode ser cabeada ou sem fio.",
+          "**WAN**: velocidade em geral menor que a das redes locais, maior complexidade e exigência de segurança rigorosa. Tecnologias típicas: Frame Relay, MPLS e a própria Internet.",
+          "As versões sem fio (WPAN, WLAN, WMAN, WWAN) existem, mas as bancas costumam tratar redes locais sem fio simplesmente como LAN."
+        ],
+        "teoria": [
+          {
+            "statement": "Na comutação por circuito, a informação é fragmentada em pacotes que seguem rotas independentes; na comutação por pacotes, reserva-se uma linha dedicada para cada comunicação.",
+            "isTrue": false,
+            "explanation": "Os conceitos estão invertidos: a comutação por pacotes fragmenta a informação em blocos que viajam independentemente, e a comutação por circuito reservava uma linha dedicada."
+          },
+          {
+            "statement": "O conjunto de protocolos TCP/IP foi adotado para superar a incompatibilidade entre os diferentes formatos de pacotes usados pelas redes que surgiram a partir da ARPANET.",
+            "isTrue": true,
+            "explanation": "A interconexão de redes heterogêneas exigiu um padrão comum de comunicação, e o TCP/IP evoluiu para a Internet moderna."
+          },
+          {
+            "statement": "Uma rede local (LAN) é necessariamente cabeada, pois a transmissão sem fio só é possível em redes pessoais (PAN).",
+            "isTrue": false,
+            "explanation": "As LANs podem ser cabeadas ou sem fio (Ethernet e Wi-Fi são tecnologias típicas de LAN)."
+          },
+          {
+            "statement": "Pela abrangência geográfica, a Internet é considerada o exemplo clássico de rede de área extensa (WAN).",
+            "isTrue": true,
+            "explanation": "A WAN conecta redes em cidades, países e continentes, e a Internet é a maior de todas."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O correio eletrônico é um serviço de comunicação tipicamente assíncrona e existia antes da criação da Internet.",
+            "isTrue": true,
+            "explanation": "O material descreve o e-mail como serviço anterior à Internet, com troca de mensagens em modo assíncrono."
+          },
+          {
+            "statement": "Na arquitetura cliente/servidor, o servidor é o dispositivo que faz as solicitações, enquanto o cliente processa os pedidos e fornece os recursos.",
+            "isTrue": false,
+            "explanation": "Os papéis estão trocados: o cliente solicita (por exemplo, navega em um site) e o servidor processa e fornece páginas ou arquivos."
+          },
+          {
+            "statement": "Uma rede metropolitana (MAN) normalmente resulta da interligação de várias redes locais de uma cidade, com alcance da ordem de dezenas de quilômetros.",
+            "isTrue": true,
+            "explanation": "A MAN é maior que a LAN e menor que a WAN, conectando, por exemplo, matriz e filiais de uma mesma cidade."
+          },
+          {
+            "statement": "A rede de área pessoal (PAN) abrange de algumas centenas de metros a alguns quilômetros.",
+            "isTrue": false,
+            "explanation": "Essa é a faixa da LAN. A PAN alcança de poucos centímetros a poucos metros, como um fone Bluetooth ligado ao celular."
+          }
+        ],
+        "pointers": [
+          { "topic": "Origem da Internet, ARPANET e comutação por pacotes", "pageRef": 7 },
+          { "topic": "Principais serviços da Internet e seus protocolos", "pageRef": 7 },
+          { "topic": "Arquitetura cliente/servidor", "pageRef": 8 },
+          { "topic": "Conceito e objetivo de rede de computadores", "pageRef": 9 },
+          { "topic": "PAN", "pageRef": 9 },
+          { "topic": "LAN: características e topologias", "pageRef": 10 },
+          { "topic": "MAN", "pageRef": 12 },
+          { "topic": "WAN e a Internet", "pageRef": 13 },
+          { "topic": "Quadro comparativo PAN, LAN, MAN e WAN", "pageRef": 14 }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a00/s02",
+      "bizu": {
+        "summary": [
+          "**Internet x Web**: a Internet é a infraestrutura de rede; a **Web (WWW)** é uma das aplicações que rodam sobre ela, acessada por navegadores. Componentes da Web: hipertexto, URL, navegadores, protocolos HTTP/HTTPS, servidores web, páginas em HTML e motores de busca.",
+          "**Gerações da Web** (sobrepostas): em 1989 Tim Berners-Lee especificou HTTP e HTML (Web 0.0); **Web 1.0** = sites estáticos, somente leitura; **Web 2.0** = interativa e colaborativa (redes sociais, blogs, wikis; AJAX, APIs, RSS); **Web 3.0** (Web Semântica) = dados inteligíveis por máquinas, IA, blockchain e descentralização.",
+          "**Surface Web** (cerca de 4%): indexada pelos buscadores e acessível sem autenticação. **Deep Web** (cerca de 96%): não indexada e/ou protegida por login (e-mail, internet banking, intranets, bases privadas). O conteúdo da Deep Web não é, por si só, ilegal.",
+          "**Dark Web**: subconjunto da Deep Web, acessado por redes criptografadas como a **Tor** (The Onion Router), que exige software especial. Oferece alto anonimato e abriga muita atividade ilícita, com elevado risco ao usuário.",
+          "**Darknet** é a infraestrutura de rede anônima; **Dark Web** são os sites e serviços hospedados nela. O navegador Tor também acessa a Surface Web, mas ali o serviço acessado continua identificável.",
+          "**Internet das Coisas (IoT)**: objetos físicos com sensores e software conectados à internet para coletar e trocar dados. Componentes: dispositivos, tecnologias de comunicação, **sensores (coletam) e atuadores (executam ações)** e nuvem (processa e armazena).",
+          "Comunicação na IoT: Wi-Fi (802.11), Bluetooth (802.15; BLE de baixo consumo), Zigbee, LoRa e redes móveis. Em geral usa redes de longo alcance e baixo consumo (LPWAN). O **IPv6** garante endereços para o grande número de dispositivos.",
+          "**Riscos da IoT**: acesso não autorizado a dados pessoais, escalonamento de privilégios do invasor, uso dos dispositivos em botnets, perda de privacidade e falha de rede com efeito catastrófico.",
+          "**Provedores (ISPs)** em três níveis: **nível 1** (rede global, não compra acesso de ninguém), **nível 2** (rede regional/ampla, compra de nível 1) e **nível 3** (locais, atendem usuários finais). O **backbone** é a espinha dorsal de alta velocidade que interliga países e continentes.",
+          "**Tecnologias de acesso**: Dial-Up (até 56 kbps, ocupa a linha telefônica), ADSL (linha telefônica, download maior que upload), HFC (fibra + coaxial), fibra óptica FTTH (velocidades simétricas e baixa latência), PLC (rede elétrica), rádio, satélite (maior latência) e telefonia móvel 3G/4G/5G.",
+          "Todo computador conectado precisa de uma **placa de rede (NIC)**, Ethernet ou Wi-Fi. O modem converte sinais conforme o meio; em redes domésticas, o roteador costuma trazer o modem integrado."
+        ],
+        "teoria": [
+          {
+            "statement": "Internet e Web são sinônimos, pois ambas designam o conjunto de documentos hipertextuais acessados por meio de navegadores.",
+            "isTrue": false,
+            "explanation": "A Internet é a rede mundial de computadores; a Web é apenas uma das aplicações que funcionam sobre ela, ao lado de e-mail, transferência de arquivos etc."
+          },
+          {
+            "statement": "Na Web 2.0, quem navega também cria e publica conteúdo, como ocorre em blogs, redes sociais e wikis, ao contrário da leitura passiva típica da Web 1.0.",
+            "isTrue": true,
+            "explanation": "A Web 2.0 se caracteriza pela interatividade e colaboração, em contraste com a Web 1.0, estática e unidirecional."
+          },
+          {
+            "statement": "O conteúdo da Deep Web é necessariamente ilícito, razão pela qual os buscadores comuns não o indexam.",
+            "isTrue": false,
+            "explanation": "A Deep Web reúne conteúdo não indexado ou protegido por autenticação, como e-mails privados, intranets e serviços bancários, que não são ilegais."
+          },
+          {
+            "statement": "A Dark Web é uma subseção da Deep Web e exige redes e navegadores especiais, como o Tor, para ser acessada.",
+            "isTrue": true,
+            "explanation": "A Dark Web não é indexada pelos buscadores e depende de redes criptografadas como a Tor."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Na IoT, os sensores executam ações, como ligar ou desligar um aparelho, enquanto os atuadores coletam informações do ambiente.",
+            "isTrue": false,
+            "explanation": "Os sensores coletam informações (temperatura, movimento, localização); os atuadores é que realizam ações."
+          },
+          {
+            "statement": "A ampliação do espaço de endereçamento trazida pelo IPv6 favorece a expansão da Internet das Coisas.",
+            "isTrue": true,
+            "explanation": "O IPv6 oferece quantidade enorme de endereços, de modo que o número de dispositivos e sensores não deve ser um problema."
+          },
+          {
+            "statement": "Um provedor de acesso de nível 1 precisa comprar acesso à Internet de provedores de nível 2 para alcançar redes de outros continentes.",
+            "isTrue": false,
+            "explanation": "O ISP de nível 1 está no topo da hierarquia, tem rede global e troca tráfego diretamente com seus pares, sem comprar acesso de outros."
+          },
+          {
+            "statement": "A tecnologia ADSL utiliza a linha telefônica comum sem bloquear as chamadas de voz e oferece velocidade de download superior à de upload.",
+            "isTrue": true,
+            "explanation": "ADSL significa linha digital assimétrica de assinante: transmite dados em alta velocidade pela linha telefônica, com download maior que upload."
+          },
+          {
+            "statement": "O acesso via satélite apresenta latência menor que a das soluções terrestres e é imune a condições climáticas.",
+            "isTrue": false,
+            "explanation": "O satélite atende áreas remotas, mas tem maior latência, menor velocidade relativa e sofre influência do clima."
+          }
+        ],
+        "pointers": [
+          { "topic": "Web x Internet e componentes da Web", "pageRef": 15 },
+          { "topic": "Web 1.0, 2.0 e 3.0", "pageRef": 16 },
+          { "topic": "Surface Web e Deep Web", "pageRef": 18 },
+          { "topic": "Dark Web, Tor e darknet", "pageRef": 19 },
+          { "topic": "Comparativo Surface, Deep e Dark", "pageRef": 20 },
+          { "topic": "Conceito e componentes da IoT", "pageRef": 21 },
+          { "topic": "Tecnologias de comunicação e riscos da IoT", "pageRef": 22 },
+          { "topic": "Backbone e níveis de ISP", "pageRef": 23 },
+          { "topic": "Tecnologias de acesso: Dial-Up, ADSL, HFC, FTTH", "pageRef": 24 },
+          { "topic": "PLC, rádio, satélite, telefonia móvel e modem", "pageRef": 25 }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a00/s03",
+      "bizu": {
+        "summary": [
+          "**Protocolos** são conjuntos de regras que definem formato dos dados, sequência de mensagens, detecção e correção de erros e controle de acesso, permitindo comunicação entre equipamentos diferentes. O **TCP/IP** é o padrão da Internet.",
+          "**Modelo OSI** (referência teórica, mais didático que prático): 7 camadas, da 7 à 1 = **Aplicação, Apresentação, Sessão, Transporte, Rede, Enlace, Física**. Mnemônico de baixo para cima: Física, Enlace, Rede, Transporte, Sessão, Apresentação, Aplicação (FERTSAA).",
+          "Funções OSI: **Rede** = endereçamento e roteamento (IP, ICMP, ARP, NAT); **Transporte** = segmentos, entrega sem perdas, duplicações ou desordem (TCP, UDP); **Enlace** = quadros (frames), nó a nó (Ethernet, Wi-Fi, Bluetooth); **Física** = especificações elétricas (USB, DSL); **Aplicação** = HTTP, SMTP, FTP, DNS etc.",
+          "**Arquitetura TCP/IP** é a usada na prática e foi criada antes do OSI. Pela RFC 1122 tem **4 camadas** (aplicação, transporte, internet, enlace); a camada de aplicação condensa aplicação, apresentação e sessão do OSI. Alguns autores adotam 5 camadas.",
+          "Um servidor costuma ser chamado pelo nome do protocolo que implementa: servidor HTTP (páginas), SMTP (envio de e-mail), DNS (tradução de domínios), FTP (arquivos).",
+          "**IP** (camada de rede): endereça e roteia pacotes. O endereço IP é **exclusivo** e **universal**. O protocolo é **não confiável, de melhor esforço e sem conexão**: não garante entrega, ordem nem ausência de erros.",
+          "**IPv4**: 32 bits em 4 octetos, em decimal pontuada (cada octeto de 0 a 255), como 192.168.0.17. O comando **ipconfig** mostra o endereço da máquina no Windows. Adotado em 1983; o esgotamento de endereços motivou o IPv6.",
+          "**IPv6**: 128 bits, 8 grupos de 16 bits (4 dígitos hexadecimais) separados por dois-pontos. Não tem conceito de classes nem de endereço de broadcast, e não se comunica diretamente com o IPv4.",
+          "**Abreviação IPv6**: podem-se omitir zeros não significativos de cada grupo e substituir uma sequência de grupos zerados pelo dois-pontos duplo (::), **uma única vez por endereço**.",
+          "**TCP** (transporte): confiável e orientado à conexão; usa portas, controle de fluxo, confirmação e retransmissão, entrega ordenada e soma de verificação. Ideal para navegação, e-mail e transferência de arquivos.",
+          "**Portas** vão de **0 a 65535** e permitem entregar os dados ao processo correto; a porta de destino serve à entrega e a de origem, à resposta. Protocolo + IP + porta formam um socket. **UDP**: sem conexão, sem controle de fluxo, sem retransmissão, baixo overhead; indicado a tempo real."
+        ],
+        "teoria": [
+          {
+            "statement": "Protocolos de comunicação são conjuntos de regras que definem aspectos como o formato dos dados, a sequência das mensagens e a detecção de erros entre dispositivos em rede.",
+            "isTrue": true,
+            "explanation": "Os protocolos permitem que equipamentos com hardware e software distintos se comuniquem de modo consistente."
+          },
+          {
+            "statement": "O Modelo OSI é a arquitetura efetivamente adotada na Internet, enquanto o TCP/IP é apenas um modelo didático de referência.",
+            "isTrue": false,
+            "explanation": "É o contrário: o OSI é um modelo teórico, de função didática; a arquitetura usada na prática é o TCP/IP."
+          },
+          {
+            "statement": "Na arquitetura TCP/IP de quatro camadas, as funções de aplicação, apresentação e sessão do OSI são reunidas na camada de aplicação.",
+            "isTrue": true,
+            "explanation": "A RFC 1122 condensa as três camadas superiores do OSI em uma única camada de aplicação."
+          },
+          {
+            "statement": "O protocolo IP é confiável e orientado à conexão, pois assegura a entrega dos pacotes ao destino na ordem correta e sem erros.",
+            "isTrue": false,
+            "explanation": "O IP é não confiável, de melhor esforço e sem conexão. A confiabilidade fica a cargo de protocolos acima dele, como o TCP."
+          },
+          {
+            "statement": "No Modelo OSI, a camada de transporte organiza os dados em segmentos, e a camada de enlace os organiza em quadros (frames).",
+            "isTrue": true,
+            "explanation": "Transporte lida com segmentos (TCP e UDP); enlace lida com quadros entre nós que compartilham o mesmo meio físico."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O endereço IPv4 possui 32 bits divididos em quatro octetos, e cada octeto, na notação decimal pontuada, assume valores de 0 a 255.",
+            "isTrue": true,
+            "explanation": "Um octeto tem 8 bits, o que permite 256 valores (0 a 255)."
+          },
+          {
+            "statement": "No IPv6, o endereço 2001:C00::5400::9 é uma abreviação válida, pois o dois-pontos duplo pode ser usado em todas as sequências de grupos zerados.",
+            "isTrue": false,
+            "explanation": "O dois-pontos duplo só pode aparecer uma vez por endereço; com duas ocorrências, a expansão seria ambígua."
+          },
+          {
+            "statement": "Os números de porta usados por TCP e UDP variam de 0 a 65535 e permitem identificar o processo que deve receber os dados.",
+            "isTrue": true,
+            "explanation": "O IP leva o pacote até a máquina; a porta indica a qual aplicação ou serviço os dados se destinam."
+          },
+          {
+            "statement": "O UDP estabelece conexão prévia, retransmite os pacotes perdidos e reordena os segmentos recebidos.",
+            "isTrue": false,
+            "explanation": "Essas são características do TCP. O UDP é sem conexão, não retransmite nem reordena, e por isso é mais leve."
+          },
+          {
+            "statement": "O IPv6 dispensa o conceito de classes de endereço e não possui endereço de broadcast.",
+            "isTrue": true,
+            "explanation": "O IPv6, com 128 bits, abandona classes e broadcast em seu esquema de endereçamento."
+          }
+        ],
+        "pointers": [
+          { "topic": "Conceito de protocolo", "pageRef": 26 },
+          { "topic": "Modelo OSI e suas sete camadas", "pageRef": 28 },
+          { "topic": "OSI como modelo teórico", "pageRef": 29 },
+          { "topic": "Arquitetura TCP/IP e camadas (RFC 1122)", "pageRef": 30 },
+          { "topic": "Protocolo IP: endereço único e universal, não confiável", "pageRef": 31 },
+          { "topic": "IPv4: 32 bits e octetos", "pageRef": 32 },
+          { "topic": "IPv6: 128 bits e hexadecimal", "pageRef": 34 },
+          { "topic": "Regras de abreviação do IPv6", "pageRef": 35 },
+          { "topic": "TCP: confiabilidade e orientação à conexão", "pageRef": 35 },
+          { "topic": "Portas e processos", "pageRef": 36 },
+          { "topic": "UDP", "pageRef": 37 }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a00/s04",
+      "bizu": {
+        "summary": [
+          "**TCP x UDP**: o TCP é mais lento, confiável, orientado à conexão, retransmite perdas, tolera atrasos mas não perdas (e-mail, navegação). O UDP é mais rápido, de melhor esforço, sem conexão, não retransmite, tolera perdas mas não atrasos (VoIP, streaming).",
+          "**Termos do e-mail**: cliente de e-mail (aplicação instalada, como Thunderbird e Outlook), servidor de e-mail (máquina especializada), provedor (empresa que hospeda o serviço, como Gmail) e **webmail** (aplicação hospedada em servidor remoto, acessada pelo navegador).",
+          "O e-mail segue o modelo cliente/servidor e é **assíncrono**: a mensagem é guardada na caixa postal do destinatário, que a lê quando quiser. Remetente e destinatário não se comunicam diretamente.",
+          "**SMTP** (Simple Mail Transfer Protocol): protocolo de **envio**, do cliente ao servidor e entre servidores; não serve para recuperar mensagens. Mnemônico: Sua Mensagem Tá Partindo.",
+          "Entre provedores diferentes, o servidor de origem (de saída) olha a parte do endereço **após o @** (domínio) para localizar o servidor de destino; o servidor de destino olha a parte **antes do @** para achar a caixa postal.",
+          "**POP3**: recupera mensagens baixando-as para o dispositivo local; no modo padrão (Delete/Download) as remove do servidor, e no modo Keep mantém cópia. Não sincroniza estados entre dispositivos; ideal para um único dispositivo. Porta **110**.",
+          "**IMAP**: mantém as mensagens no servidor, sincroniza estado (lido, marcado) entre dispositivos, permite criar pastas, ver o cabeçalho e baixar parcialmente. Porta **143**; versão segura IMAPS na **993**.",
+          "**Webmail** é acessado pelo navegador sem instalar software, com mensagens guardadas no servidor do provedor. Navegadores não suportam IMAP: a comunicação com o webmail usa **HTTP/HTTPS**.",
+          "**DHCP**: atribui automaticamente endereço IP (e máscara de sub-rede, gateway padrão) aos dispositivos. O IP pode ser estático (fixo, comum em servidores) ou dinâmico (comum em redes domésticas), diferentemente do endereço físico (MAC).",
+          "**DNS** (Domain Name System): traduz nomes de domínio em endereços IP e vice-versa, como uma agenda de contatos da Internet. Opera de forma hierárquica e guarda respostas recentes em cache.",
+          "**URL (Uniform Resource Locator)**: endereço padronizado de um recurso na rede. Na forma abstrata combina, nesta ordem, protocolo (esquema), host (IP ou domínio), porta, caminho de diretórios e o recurso em si."
+        ],
+        "teoria": [
+          {
+            "statement": "O SMTP é usado para o envio de mensagens do cliente ao servidor e entre servidores de e-mail, mas não para a recuperação das mensagens da caixa postal.",
+            "isTrue": true,
+            "explanation": "Recuperar mensagens é função de POP3 ou IMAP; o SMTP cuida do envio."
+          },
+          {
+            "statement": "No modo padrão do POP3, as mensagens permanecem no servidor e são sincronizadas entre todos os dispositivos do usuário.",
+            "isTrue": false,
+            "explanation": "No modo padrão o POP3 baixa e remove as mensagens do servidor, sem sincronizar estados. A sincronização é característica do IMAP."
+          },
+          {
+            "statement": "Quando o e-mail é acessado por webmail em um navegador, a comunicação com o servidor web utiliza HTTP ou HTTPS, e não o IMAP.",
+            "isTrue": true,
+            "explanation": "Navegadores falam HTTP/HTTPS; o IMAP é usado por clientes de e-mail instalados."
+          },
+          {
+            "statement": "O DHCP é o protocolo responsável por traduzir nomes de domínio em endereços IP.",
+            "isTrue": false,
+            "explanation": "A tradução de nomes em endereços IP é função do DNS. O DHCP atribui automaticamente endereços IP aos dispositivos."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O IMAP permite examinar o cabeçalho de uma mensagem antes de baixá-la e criar pastas para organizar os e-mails no servidor.",
+            "isTrue": true,
+            "explanation": "Essas são vantagens do IMAP sobre o POP3."
+          },
+          {
+            "statement": "Na troca de e-mails entre provedores diferentes, o servidor de origem usa a parte do endereço anterior ao @ para localizar o servidor do destinatário.",
+            "isTrue": false,
+            "explanation": "O servidor de origem analisa o que vem após o @ (domínio). A parte anterior ao @ é usada pelo servidor de destino para achar a caixa postal."
+          },
+          {
+            "statement": "Em comparação com o TCP, o UDP tolera perdas de pacotes, mas não tolera atrasos, sendo muito utilizado em VoIP e streaming.",
+            "isTrue": true,
+            "explanation": "Em tempo real, retransmitir um pacote perdido não compensa o atraso causado."
+          },
+          {
+            "statement": "O POP3 utiliza por padrão a porta 143, e o IMAP, a porta 110.",
+            "isTrue": false,
+            "explanation": "As portas estão trocadas: POP3 usa a 110 e IMAP usa a 143 (993 no IMAPS)."
+          },
+          {
+            "statement": "Além do endereço IP, o DHCP pode fornecer ao cliente outras configurações de rede, como a máscara de sub-rede e o gateway padrão.",
+            "isTrue": true,
+            "explanation": "O DHCP automatiza a configuração de rede, reduzindo erros de configuração manual."
+          }
+        ],
+        "pointers": [
+          { "topic": "Tabela comparativa TCP x UDP", "pageRef": 38 },
+          { "topic": "Cliente, servidor, provedor e webmail", "pageRef": 38 },
+          { "topic": "SMTP e cenário de mesmo provedor", "pageRef": 39 },
+          { "topic": "Cenário de provedores diferentes (antes e depois do @)", "pageRef": 40 },
+          { "topic": "POP3: modos Delete/Download e Keep", "pageRef": 41 },
+          { "topic": "IMAP: sincronização e IMAPS", "pageRef": 42 },
+          { "topic": "Webmail e HTTP", "pageRef": 43 },
+          { "topic": "DHCP: IP estático e dinâmico", "pageRef": 44 },
+          { "topic": "DNS: tradução de nomes e endereços IP", "pageRef": 44 },
+          { "topic": "URL: sintaxe abstrata", "pageRef": 45 }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a00/s05",
+      "bizu": {
+        "summary": [
+          "**Exemplo de URL**: https://www.estrategiaconcursos.com.br/app/.../Aula1.pdf = protocolo https, domínio estrategiaconcursos.com.br (o www é só prefixo), porta 443 omitida, caminho e recurso. Trocar o recurso muda a URL, mas **o domínio permanece**.",
+          "**Sintaxe completa**: protocolo://usuário@host:porta/caminho/recurso?query#fragmento. **Obrigatórios: apenas protocolo e domínio**; os demais são opcionais.",
+          "**Query string**: começa com **?**, usa pares chave=valor separados por **&**. **Fragmento**: vem após **#**, leva a uma seção da página e é processado só pelo navegador, **não é enviado ao servidor**. Caracteres reservados são codificados (espaço = %20).",
+          "**DNS hierárquico e distribuído**: espaço de nomes dividido em níveis. A **ICANN** controla domínios no mundo todo (.br Brasil, .pt Portugal); no Brasil o registro é feito pelo **Registro.br**. Domínio .br indica registro no Brasil, não hospedagem física no país.",
+          "**Regras de domínio no Registro.br**: 2 a 26 caracteres (sem contar a categoria), alfanuméricos, sem hífen no início ou no fim; acentos e cedilha são permitidos desde 2008. Subcategorias como .com.br e .org.br.",
+          "**HTTP**: protocolo de aplicação, modelo requisição-resposta entre navegador (cliente) e servidor web; porta padrão **80**. É protocolo; **HTML é linguagem** de marcação para criar páginas. Hoje se fala em hipermídia (hipertexto + multimídia).",
+          "**Códigos de status HTTP**: 1XX informação; 2XX sucesso (200 OK); 3XX redirecionamento (301 movida); 4XX **erro do cliente** (403 proibido, 404 não encontrada); 5XX **erro do servidor** (500 erro interno, 503 indisponível). Todo pedido gera um código, mesmo que o usuário não o veja.",
+          "**HTTPS**: HTTP com camada de segurança **SSL/TLS** (TLS é mais novo que SSL): criptografia, autenticação do servidor por **certificado digital** e integridade. Porta padrão **443**; o cadeado indica conexão segura, sem ser garantia absoluta.",
+          "Certificado inválido geralmente significa certificado não encontrado, expirado ou revogado. A validação protege contra sites falsos que imitam o original.",
+          "**FTP**: transferência de arquivos cliente/servidor, com upload e download, comandos para diretórios e autenticação (ou acesso anônimo). Usa **duas conexões**: dados na porta TCP **20** e controle na **21**.",
+          "Nem toda transferência de arquivos usa FTP: por e-mail usa-se SMTP/MIME; pela web, HTTP/HTTPS. **Download** = obter conteúdo da rede; **upload** = enviar conteúdo à rede.",
+          "**VoIP**: voz sobre IP, com comutação por pacotes; costuma usar UDP para voz, com SIP ou H.323 para estabelecer a chamada. Vantagem principal: **redução de custo**. Desvantagens: dependência da qualidade da conexão, latência, perdas e fragilidade em quedas de energia."
+        ],
+        "teoria": [
+          {
+            "statement": "Na sintaxe completa de uma URL, apenas o protocolo e o domínio são componentes obrigatórios.",
+            "isTrue": true,
+            "explanation": "Porta, caminho, recurso, usuário, query e fragmento são opcionais."
+          },
+          {
+            "statement": "O fragmento de uma URL, iniciado por #, é enviado ao servidor para que ele devolva apenas a seção da página solicitada.",
+            "isTrue": false,
+            "explanation": "O fragmento é processado exclusivamente pelo navegador e não é enviado ao servidor na requisição HTTP."
+          },
+          {
+            "statement": "O código de status HTTP 404 pertence à categoria de erros do servidor e indica falha interna.",
+            "isTrue": false,
+            "explanation": "O 404 é erro do cliente (página não encontrada). Falhas internas do servidor são da família 5XX."
+          },
+          {
+            "statement": "O HTTPS aplica ao HTTP uma camada de segurança baseada em SSL/TLS e usa certificados digitais para autenticar o servidor.",
+            "isTrue": true,
+            "explanation": "Isso garante criptografia, autenticidade do site e integridade dos dados trafegados."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Em uma query string, os parâmetros começam após o caractere ? e cada par chave=valor é separado do seguinte por &.",
+            "isTrue": true,
+            "explanation": "É a forma de enviar parâmetros adicionais ao servidor, como filtros de pesquisa e dados de formulários."
+          },
+          {
+            "statement": "A transferência de arquivos pela Internet ocorre exclusivamente por meio do protocolo FTP.",
+            "isTrue": false,
+            "explanation": "Arquivos também trafegam por HTTP/HTTPS (downloads em sites) e por SMTP/MIME (anexos de e-mail). O FTP é o protocolo cujo objetivo principal é essa tarefa."
+          },
+          {
+            "statement": "O FTP estabelece duas conexões entre cliente e servidor: uma para controle, na porta 21, e outra para dados, na porta 20.",
+            "isTrue": true,
+            "explanation": "A separação torna o protocolo mais eficiente."
+          },
+          {
+            "statement": "Um domínio terminado em .br indica que o site está hospedado fisicamente em servidor localizado no Brasil.",
+            "isTrue": false,
+            "explanation": "O .br indica que o domínio foi registrado no Brasil; a hospedagem pode estar em qualquer lugar do mundo."
+          },
+          {
+            "statement": "No VoIP, a voz digitalizada trafega em pacotes IP, e o uso do UDP se justifica porque pequenas perdas são aceitáveis em comunicação em tempo real.",
+            "isTrue": true,
+            "explanation": "Retransmitir pacotes de voz perdidos seria inútil; SIP ou H.323 coordenam o estabelecimento da chamada."
+          }
+        ],
+        "pointers": [
+          { "topic": "Exemplo de URL e diferença entre URL e domínio", "pageRef": 46 },
+          { "topic": "Sintaxe completa da URL, query e nome de usuário", "pageRef": 46 },
+          { "topic": "Fragmento da URL", "pageRef": 47 },
+          { "topic": "Hierarquia do DNS, ICANN e Registro.br", "pageRef": 47 },
+          { "topic": "Regras para nomes de domínio", "pageRef": 48 },
+          { "topic": "HTTP e códigos de status", "pageRef": 49 },
+          { "topic": "HTTP x HTML", "pageRef": 50 },
+          { "topic": "HTTPS, SSL/TLS e certificado digital", "pageRef": 51 },
+          { "topic": "FTP e portas 20 e 21", "pageRef": 53 },
+          { "topic": "Download, upload e outros protocolos de transferência", "pageRef": 54 },
+          { "topic": "VoIP: funcionamento e vantagens", "pageRef": 55 },
+          { "topic": "Desvantagens do VoIP", "pageRef": 56 }
+        ]
+      }
+    }
+  ]
+}

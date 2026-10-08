@@ -1,0 +1,313 @@
+{
+  "aula": "matematica/a10",
+  "batch": "w2-bizu-matematica",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "matematica/a10/s01",
+      "bizu": {
+        "summary": [
+          "**Função do 1º grau (afim)**: f: R -> R com lei **f(x) = ax + b**, sendo a e b reais e **a diferente de zero**. Também se escreve y = ax + b. É de 1º grau porque o maior expoente de x é 1.",
+          "**Identificar a e b**: a é o coeficiente que **multiplica x** e b é o **termo independente**, mesmo quando a lei vem em outra ordem. f(x) = 4 + 11x tem a = 11 e b = 4; y = 8x tem a = 8 e b = 0; f(x) = -3 - 7x tem a = -7 e b = -3; y = (4x + 7)/3 tem a = 4/3 e b = 7/3.",
+          "Se a questão trouxer a **equação geral** (4x + 2y + 8 = 0), isola-se y: y = -2x - 4, ou seja, a = -2 e b = -4.",
+          "**Descobrir x** quando se conhece f(x): substitui-se f(x) pelo valor e resolve-se a equação. Em f(x) = 7x + 10 com f(x) = 24, x = 2.",
+          "**Descobrir um coeficiente** a partir de f(k): f(3) = 16 em f(x) = ax + 4 dá a = 4. Atenção ao que a questão pede (por exemplo, a raiz de a, e não a).",
+          "Com **dois valores da função** (f(1) = 4 e f(2) = 7), montam-se duas equações em a e b (a + b = 4 e 2a + b = 7), o que dá a = 3 e b = 1.",
+          "**Domínio e imagem** da função afim: ambos são o conjunto dos reais, D(f) = R e Im(f) = R. Em f(x) = x - 89, a imagem é R, e não um intervalo.",
+          "Para achar o elemento do domínio que tem determinada imagem, iguala-se a lei a esse valor: em f(x) = 2x - 13, a imagem 3 corresponde a x = 8.",
+          "Quando a imagem deve ser natural, basta descartar os valores de x que produzem resultados fracionários ou negativos."
+        ],
+        "teoria": [
+          {
+            "statement": "Na função afim f(x) = ax + b, exige-se que o coeficiente a seja diferente de zero.",
+            "isTrue": true,
+            "explanation": "Se a fosse zero, desapareceria o termo em x e a função deixaria de ser do primeiro grau."
+          },
+          {
+            "statement": "Na função f(x) = 4 + 11x, o coeficiente a vale 4.",
+            "isTrue": false,
+            "explanation": "O coeficiente a é o que multiplica x, isto é, 11; o termo independente é b = 4, mesmo escrito primeiro."
+          },
+          {
+            "statement": "O domínio e o conjunto imagem de uma função afim são, ambos, o conjunto dos números reais.",
+            "isTrue": true,
+            "explanation": "x pode assumir qualquer valor real e, por ser a diferente de zero, y também assume qualquer valor real."
+          },
+          {
+            "statement": "A função y = 8x não é uma função do primeiro grau, pois não possui o termo independente b.",
+            "isTrue": false,
+            "explanation": "y = 8x é o mesmo que y = 8x + 0, com a = 8 e b = 0; b pode ser zero."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A equação 4x + 2y + 8 = 0 corresponde à função afim y = -2x - 4, com a = -2.",
+            "isTrue": true,
+            "explanation": "Isolando y: 2y = -4x - 8, logo y = -2x - 4."
+          },
+          {
+            "statement": "Se f(x) = ax + 4 e f(3) = 16, então o valor de a é 12.",
+            "isTrue": false,
+            "explanation": "16 = 3a + 4 implica 3a = 12, e a = 4. O valor 12 é o produto 3a, não o coeficiente."
+          },
+          {
+            "statement": "Para saber qual elemento do domínio tem determinada imagem, iguala-se a lei da função a esse valor e resolve-se a equação.",
+            "isTrue": true,
+            "explanation": "Se f(x) = 2x - 13 e a imagem é 3, resolve-se 3 = 2x - 13 e obtém-se x = 8."
+          },
+          {
+            "statement": "Conhecidos os valores de f(1) e f(2) de uma função afim, é possível obter a e b resolvendo um sistema com duas equações.",
+            "isTrue": true,
+            "explanation": "Cada valor conhecido gera uma equação em a e b; com duas equações, determinam-se as duas incógnitas."
+          },
+          {
+            "statement": "A imagem da função f(x) = x - 89, com domínio real, é o intervalo [-89, 0].",
+            "isTrue": false,
+            "explanation": "Sem restrição ao domínio, a imagem da função afim é todo o conjunto dos reais."
+          }
+        ],
+        "pointers": [
+          { "topic": "Definição da função afim e coeficientes", "pageRef": 3 },
+          { "topic": "Exemplos de identificação de a e b", "pageRef": 4 },
+          { "topic": "Equação geral isolando y", "pageRef": 5 },
+          { "topic": "Calcular coeficiente conhecendo f(k)", "pageRef": 8 },
+          { "topic": "Sistema para a e b com dois valores da função", "pageRef": 9 },
+          { "topic": "Domínio e imagem da função afim", "pageRef": 10 },
+          { "topic": "Elemento do domínio com imagem dada", "pageRef": 11 },
+          { "topic": "Imagem natural", "pageRef": 13 }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a10/s02",
+      "bizu": {
+        "summary": [
+          "**Coeficiente angular (a)**: é o que multiplica x. Expressa a **taxa de variação** da função (variação de y para cada variação de x) e é sempre diferente de zero na função afim.",
+          "**a > 0**: reta **crescente** (x2 > x1 implica f(x2) > f(x1)). **a < 0**: reta **decrescente** (x2 > x1 implica f(x2) < f(x1)). O sinal de b não define crescimento.",
+          "As letras podem mudar: em f(u) = mu + n, m é o coeficiente angular e n é o linear, e o raciocínio é o mesmo.",
+          "**Cálculo de a** com dois pontos A e B: **a = Δy/Δx = (yB - yA)/(xB - xA)**. A(1; 2) e B(4; 5) dão a = 1; pontos (2007; 129.000) e (2009; 159.000) dão a = 15.000.",
+          "**Coeficiente linear (b)**: termo independente; é a **ordenada do ponto em que a reta corta o eixo y** (x = 0). Pode ser positivo, negativo ou **nulo**, ao contrário de a, que nunca é zero.",
+          "Função afim é **crescente quando a > 0**; é decrescente quando a < 0. Em 10 - x/2, o coeficiente angular é -1/2 (decrescente). Em L(p) = 91p + 92, a taxa de variação é 91.",
+          "**Leitura de gráficos**: reta crescente indica a > 0; reta decrescente, a < 0; corte do eixo y acima da origem indica b > 0, e abaixo, b < 0. Uma reta crescente que corta y abaixo de 0 tem a > 0 e b < 0.",
+          "Com dois pontos da reta, calcula-se a pela razão Δy/Δx e depois substitui-se um dos pontos na lei para achar b. Para A(-2; 6) e B(0; 12): a = 3 e b = 12, logo a + b = 15.",
+          "Se for dada a equação geral, isola-se y: 2x + 3y - 12 = 0 leva a y = -2x/3 + 4, com a = -2/3 e b = 4.",
+          "Em enunciados com pontos definidos por outra função (por exemplo, (0; f(0)) e (3; f(-4)) para f(x) = x + 4), calculam-se primeiro as coordenadas e depois o coeficiente angular: pontos (0; 4) e (3; 0), logo a = -4/3."
+        ],
+        "teoria": [
+          {
+            "statement": "O coeficiente angular de uma reta que passa por A e B é dado por (yB - yA)/(xB - xA).",
+            "isTrue": true,
+            "explanation": "É a razão entre a variação de y e a variação de x entre os dois pontos."
+          },
+          {
+            "statement": "O coeficiente linear b indica a abscissa do ponto em que a reta intercepta o eixo x.",
+            "isTrue": false,
+            "explanation": "b é a ordenada do ponto em que a reta corta o eixo y (quando x = 0)."
+          },
+          {
+            "statement": "Quando o coeficiente angular é positivo, a função afim é crescente.",
+            "isTrue": true,
+            "explanation": "Com a > 0, aumentar x faz y aumentar."
+          },
+          {
+            "statement": "Uma função afim é decrescente sempre que seu coeficiente linear b é negativo.",
+            "isTrue": false,
+            "explanation": "O sentido do crescimento depende do coeficiente angular a. O sinal de b só informa onde a reta corta o eixo y."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O coeficiente linear de uma função afim pode ser igual a zero.",
+            "isTrue": true,
+            "explanation": "Se b = 0, a reta passa pela origem (como em y = 8x). Só o coeficiente angular não pode ser nulo."
+          },
+          {
+            "statement": "Em uma função afim, o coeficiente angular pode ser igual a zero.",
+            "isTrue": false,
+            "explanation": "A condição a diferente de zero garante que o termo em x existe; com a = 0 a função seria constante."
+          },
+          {
+            "statement": "A taxa de variação da função L(p) = 91p + 92 é igual a 91.",
+            "isTrue": true,
+            "explanation": "A taxa de variação é o coeficiente que multiplica a variável, independentemente da letra usada."
+          },
+          {
+            "statement": "Uma reta decrescente que corta o eixo y acima da origem tem coeficiente angular positivo e coeficiente linear negativo.",
+            "isTrue": false,
+            "explanation": "Reta decrescente implica a < 0, e corte acima da origem implica b > 0."
+          },
+          {
+            "statement": "A reta que passa por (-2; 6) e (0; 12) tem coeficiente angular 3 e coeficiente linear 12.",
+            "isTrue": true,
+            "explanation": "a = (12 - 6)/(0 - (-2)) = 3; como o ponto (0; 12) está sobre o eixo y, b = 12."
+          }
+        ],
+        "pointers": [
+          { "topic": "Coeficiente angular como taxa de variação", "pageRef": 15 },
+          { "topic": "Reta crescente (a > 0) e decrescente (a < 0)", "pageRef": 16 },
+          { "topic": "Variável e coeficientes com outras letras", "pageRef": 17 },
+          { "topic": "Cálculo do coeficiente angular por dois pontos", "pageRef": 18 },
+          { "topic": "Coeficiente linear e eixo y", "pageRef": 21 },
+          { "topic": "Função crescente conforme o sinal de a", "pageRef": 23 },
+          { "topic": "Taxa de variação em questão de concurso", "pageRef": 24 },
+          { "topic": "Sinais de a e b a partir do gráfico", "pageRef": 26 },
+          { "topic": "Duas retas no mesmo plano", "pageRef": 27 },
+          { "topic": "Coeficiente angular com pontos obtidos de outra função", "pageRef": 28 },
+          { "topic": "Equação geral isolando y para achar b", "pageRef": 29 }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a10/s03",
+      "bizu": {
+        "summary": [
+          "O **gráfico da função afim é uma reta**: crescente se a > 0 e decrescente se a < 0.",
+          "Para traçar a reta bastam **dois pontos**. Os mais práticos são o de **x = 0** (que dá (0, b), a interseção com o eixo y) e o de **y = 0** (que dá (-b/a, 0), a interseção com o eixo x). Em y = -2x + 6, os pontos são (0; 6) e (3; 0).",
+          "Antes de desenhar, a lei já informa: a **inclinação** (pelo sinal de a) e **onde a reta corta o eixo y** (pelo valor de b). Em y = x + 3 trata-se de reta crescente que corta y em 3.",
+          "**Determinar a lei a partir do gráfico**: b é a ordenada em que a reta corta o eixo y; para achar a, substitui-se outro ponto da reta. Se corta y em 4 e passa por (-1; 0), então 0 = -a + 4 e a = 4, logo y = 4x + 4.",
+          "Funções com termos em x^2 não são do 1º grau: a lei de um gráfico retilíneo só pode ser da forma ax + b.",
+          "**Pertinência de ponto**: um ponto pertence à função se suas coordenadas satisfazem a lei. Em y = x + 3, o ponto (5; 9) não pertence, pois para x = 5 obtém-se y = 8.",
+          "Esboço de f(x) = 3x + 4: reta crescente (a > 0) que corta o eixo y em +4, acima da origem.",
+          "**Função constante**: a = 0, lei y = b; o gráfico é uma **reta paralela ao eixo x**, com a mesma imagem para qualquer x.",
+          "**Função identidade**: a = 1 e b = 0, lei y = x; é **bijetora**, domínio e imagem coincidem e o gráfico é a **bissetriz dos quadrantes 1 e 3**.",
+          "**Função linear**: b = 0, com a diferente de 0 e de 1; lei y = ax, e o gráfico passa pela **origem**."
+        ],
+        "teoria": [
+          {
+            "statement": "Para traçar o gráfico de uma função afim, são suficientes dois pontos distintos.",
+            "isTrue": true,
+            "explanation": "O gráfico é uma reta, e dois pontos determinam uma única reta."
+          },
+          {
+            "statement": "O gráfico de uma função constante é uma reta paralela ao eixo y.",
+            "isTrue": false,
+            "explanation": "A função constante y = b tem gráfico paralelo ao eixo x (reta horizontal)."
+          },
+          {
+            "statement": "A função identidade, de lei y = x, é bijetora e tem a = 1 e b = 0.",
+            "isTrue": true,
+            "explanation": "Cada valor de x tem como imagem ele mesmo, de modo que a função é injetora e sobrejetora."
+          },
+          {
+            "statement": "Na função linear, o coeficiente linear b é diferente de zero.",
+            "isTrue": false,
+            "explanation": "A função linear tem b = 0 (y = ax), e seu gráfico passa pela origem."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O gráfico de uma função linear y = ax passa necessariamente pela origem do plano cartesiano.",
+            "isTrue": true,
+            "explanation": "Como b = 0, para x = 0 temos y = 0."
+          },
+          {
+            "statement": "O gráfico de y = -2x + 6 é uma reta crescente que corta o eixo y no ponto 6.",
+            "isTrue": false,
+            "explanation": "O corte em y = 6 está correto, mas como a = -2 < 0 a reta é decrescente."
+          },
+          {
+            "statement": "Para y = -2x + 6, os pontos de x = 0 e de y = 0 são (0; 6) e (3; 0).",
+            "isTrue": true,
+            "explanation": "Com x = 0, y = 6; com y = 0, 2x = 6 e x = 3."
+          },
+          {
+            "statement": "O ponto (5; 9) pertence ao gráfico de y = x + 3.",
+            "isTrue": false,
+            "explanation": "Para x = 5, a lei dá y = 8, e não 9; logo o ponto não pertence."
+          },
+          {
+            "statement": "A reta y = x é a bissetriz dos quadrantes 1 e 3.",
+            "isTrue": true,
+            "explanation": "Cada ponto dessa reta tem abscissa igual à ordenada."
+          }
+        ],
+        "pointers": [
+          { "topic": "Gráfico da função afim é uma reta", "pageRef": 32 },
+          { "topic": "Dois pontos bastam; interseções com os eixos", "pageRef": 33 },
+          { "topic": "Pontos x = 0 e y = 0", "pageRef": 34 },
+          { "topic": "Identificar a lei pelo gráfico", "pageRef": 36 },
+          { "topic": "Pertinência de ponto à função", "pageRef": 38 },
+          { "topic": "Esboço de reta com a e b positivos", "pageRef": 40 },
+          { "topic": "Função constante", "pageRef": 41 },
+          { "topic": "Função identidade", "pageRef": 43 },
+          { "topic": "Função linear", "pageRef": 44 }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a10/s04",
+      "bizu": {
+        "summary": [
+          "**Raiz (ou zero) da função**: valor de x que **zera** f(x), isto é, y = 0. Na função afim, de ax + b = 0 obtém-se **x = -b/a**.",
+          "Exemplos: y = (4x + 7)/3 tem raiz -7/4; y = x + 3 tem raiz -3; f(x) = 4x - 16 tem raiz 4. Se x = 2/3 é raiz de f(x) = mx + 2, então m = -3.",
+          "**No gráfico**, a raiz é a abscissa do ponto em que a reta **intercepta o eixo x** (eixo das abscissas).",
+          "**Estudo do sinal com a > 0** (reta crescente): f(x) < 0 para x **menor** que a raiz e f(x) > 0 para x **maior** que a raiz.",
+          "**Estudo do sinal com a < 0** (reta decrescente): tudo se inverte, isto é, f(x) > 0 para x **menor** que a raiz e f(x) < 0 para x **maior** que a raiz.",
+          "Na própria raiz, f(x) = 0 (nula). A análise de sinais vale para os pontos à esquerda e à direita da raiz.",
+          "**Roteiro prático**: (1) observe o sinal de a; (2) calcule a raiz -b/a; (3) desenhe o eixo com a raiz e marque os sinais dos dois lados.",
+          "Exemplos: y = 2x + 9 tem raiz -4,5 (negativa à esquerda, positiva à direita); y = 6x + 84 tem raiz -14; y = -x + 3 tem raiz 1 e é positiva para x < 1; y = -3x + 1 tem raiz 1/3."
+        ],
+        "teoria": [
+          {
+            "statement": "A raiz da função afim f(x) = ax + b é o valor x = -b/a.",
+            "isTrue": true,
+            "explanation": "Resulta de ax + b = 0, isolando x."
+          },
+          {
+            "statement": "A raiz da função afim é o valor que y assume quando x vale zero.",
+            "isTrue": false,
+            "explanation": "Esse valor é o coeficiente linear b. A raiz é o valor de x que torna y igual a zero."
+          },
+          {
+            "statement": "Para uma função afim com a positivo, f(x) é positiva para valores de x maiores que a raiz.",
+            "isTrue": true,
+            "explanation": "Com a > 0 a reta é crescente: negativa à esquerda da raiz e positiva à direita."
+          },
+          {
+            "statement": "Para uma função afim com a negativo, f(x) é positiva para valores de x maiores que a raiz.",
+            "isTrue": false,
+            "explanation": "Com a < 0 a reta é decrescente: positiva à esquerda da raiz e negativa à direita."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A raiz da função f(x) = 4x - 16 é igual a 4.",
+            "isTrue": true,
+            "explanation": "x = -b/a = -(-16)/4 = 4."
+          },
+          {
+            "statement": "A raiz da função y = x + 3 é igual a 3.",
+            "isTrue": false,
+            "explanation": "x = -b/a = -3/1 = -3; a reta intercepta o eixo x em -3."
+          },
+          {
+            "statement": "No gráfico da função afim, a raiz corresponde à abscissa do ponto em que a reta intercepta o eixo x.",
+            "isTrue": true,
+            "explanation": "É o ponto em que y = 0."
+          },
+          {
+            "statement": "A função y = -x + 3 assume valores positivos para x menor que 1.",
+            "isTrue": true,
+            "explanation": "A raiz é 1 e a reta é decrescente (a = -1); logo, é positiva à esquerda da raiz."
+          },
+          {
+            "statement": "Na raiz de uma função afim, o valor da função tem o mesmo sinal do coeficiente angular.",
+            "isTrue": false,
+            "explanation": "Na raiz o valor da função é nulo; o sinal só se define para valores de x diferentes da raiz."
+          }
+        ],
+        "pointers": [
+          { "topic": "Raiz como valor que zera a função", "pageRef": 45 },
+          { "topic": "Fórmula x = -b/a e exemplo de fração", "pageRef": 46 },
+          { "topic": "Raiz como interseção com o eixo x", "pageRef": 47 },
+          { "topic": "Raiz dada, coeficiente desconhecido", "pageRef": 48 },
+          { "topic": "Estudo do sinal com a positivo", "pageRef": 49 },
+          { "topic": "Exemplos numéricos de sinal", "pageRef": 51 },
+          { "topic": "Estudo do sinal com a negativo", "pageRef": 53 },
+          { "topic": "Roteiro e exemplos com a negativo", "pageRef": 55 }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,533 @@
+{
+  "aula": "informatica/a03",
+  "batch": "w2-bizu-informatica",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "informatica/a03/s01",
+      "bizu": {
+        "summary": [
+          "**Malware** (software malicioso, praga virtual) = programa ou código criado para invadir, danificar, espionar ou obter acesso indevido a sistemas, dispositivos ou redes. Pode se disfarçar de software legítimo ou agir em silêncio. Motivos comuns: ganho financeiro, roubo de dados, notoriedade e vandalismo.",
+          "**Formas de infecção**: exploração de vulnerabilidades, autoexecução de mídias removíveis, páginas web maliciosas, anexos de e-mail, redes sociais, arquivos de outros computadores. A **Internet é a principal porta de entrada**.",
+          "**Categorias principais**: vírus, worm, bot, trojan, spyware, backdoor e rootkit.",
+          "**Prevenção** (base no CERT.br): manter sistema e programas atualizados, instalar só software original e de fontes confiáveis, usar antivírus e firewall, fazer backup, usar configurações de segurança, cuidado em locais públicos e com manutenção do equipamento.",
+          "**Terminologia**: **hacker** (invade para provar habilidade ou demonstrar falhas, sem intenção de dano), **cracker** (invade para roubar, violar sistemas ou quebrar proteções de software), **script kiddie** (iniciante com ferramentas prontas), **insider** (ameaça interna), **phreaking** (hacking de telefonia), **warez** (software pirata) e **spam** (e-mail não solicitado em massa).",
+          "**Vírus** = código malicioso que se espalha **infectando arquivos e programas** existentes. Exige **autorreplicação** e não é autônomo: só age quando o arquivo hospedeiro é executado (um anexo de e-mail precisa ser aberto). Nem todo vírus é destrutivo.",
+          "**Partes do vírus**: mecanismo de infecção (vetor), mecanismo de ativação (às vezes chamado de bomba lógica) e carga útil (o que faz além de se espalhar).",
+          "**Fases do vírus**: dormência (nem todos têm), propagação, ativação e ação. A propagação pode gerar cópias diferentes para escapar da detecção.",
+          "Vírus costumam ser específicos para um sistema operacional (e às vezes hardware). **Nenhum sistema é imune**: o Windows é mais atacado por ser o mais usado; Linux e macOS também podem ser alvos."
+        ],
+        "teoria": [
+          {
+            "statement": "Segundo o material, o hacker invade sistemas para provar habilidades e demonstrar vulnerabilidades, sem o objetivo de causar danos, ao contrário do cracker, que atua para roubar informações ou violar sistemas.",
+            "isTrue": true,
+            "explanation": "Cracker é o invasor de intenção maliciosa; hacker, nessa definição, busca conhecimento e demonstração de falhas."
+          },
+          {
+            "statement": "Para ser classificado como vírus, o código não precisa ter capacidade de autorreplicação, bastando que cause algum dano ao computador.",
+            "isTrue": false,
+            "explanation": "A capacidade de fazer cópias de si mesmo é requisito do vírus; além disso, um vírus pode nem ser destrutivo."
+          },
+          {
+            "statement": "O vírus não é autônomo: depende da execução do arquivo ou programa hospedeiro infectado para começar a agir.",
+            "isTrue": true,
+            "explanation": "Por isso um anexo contaminado só ativa o vírus quando é aberto ou executado."
+          },
+          {
+            "statement": "Os sistemas operacionais Linux e macOS são imunes a vírus, razão pela qual os malwares visam apenas o Windows.",
+            "isTrue": false,
+            "explanation": "Nenhum sistema é totalmente imune. O Windows é mais visado por ter maior base de usuários, o que amplia o alcance dos ataques."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Em um vírus, é possível distinguir o vetor que o propaga, o gatilho que define o momento de agir e o efeito produzido além da simples propagação.",
+            "isTrue": true,
+            "explanation": "Correspondem ao mecanismo de infecção, ao de ativação (às vezes chamado de bomba lógica) e à carga útil."
+          },
+          {
+            "statement": "A fase de dormência é obrigatória em todo vírus, que sempre permanece ocioso até ser ativado por algum evento.",
+            "isTrue": false,
+            "explanation": "Nem todos os vírus têm a fase de dormência."
+          },
+          {
+            "statement": "Phreaking é a atividade do especialista em telefonia que realiza ligações gratuitas e clonagem ou instalação de escutas em telefones.",
+            "isTrue": true,
+            "explanation": "Já o warez refere-se a software pirata distribuído ilegalmente."
+          },
+          {
+            "statement": "Warez é o termo usado para os e-mails comerciais não solicitados enviados a muitas pessoas.",
+            "isTrue": false,
+            "explanation": "Essa é a definição de spam. Warez designa software pirata distribuído pela internet."
+          },
+          {
+            "statement": "Insiders são ameaças internas a uma instituição, como funcionários descontentes, subornados ou enganados.",
+            "isTrue": true,
+            "explanation": "O risco vem de quem já tem acesso legítimo à organização."
+          }
+        ],
+        "pointers": [
+          { "topic": "Conceito de malware e formas de infecção", "pageRef": 5 },
+          { "topic": "Procedimentos de prevenção", "pageRef": 6 },
+          { "topic": "Terminologia: hacker, cracker, script kiddie, insider, phreaking, warez, spam", "pageRef": 7 },
+          { "topic": "Conceito de vírus e autorreplicação", "pageRef": 9 },
+          { "topic": "Composição do vírus e fases", "pageRef": 10 },
+          { "topic": "Vírus e sistemas operacionais", "pageRef": 11 }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a03/s02",
+      "bizu": {
+        "summary": [
+          "**Vírus de script**: escrito em linguagens como JavaScript ou VBScript; chega por páginas web maliciosas e e-mails (anexo ou corpo HTML). Conforme a configuração do navegador ou do leitor de e-mail, pode ser executado automaticamente.",
+          "**Vírus de macro** (tipo de vírus de script): infecta **documentos**, e não programas, em aplicativos que usam macros (Word, Excel, PowerPoint, Access). Propaga-se por anexos de e-mail; só age quando o arquivo é aberto. Prevenção: bloquear a execução de macros no Office. Controles de acesso a arquivos são pouco efetivos.",
+          "**Vírus de boot** (de setor de inicialização): infecta o primeiro setor/MBR e é carregado **antes do sistema operacional**; pode afetar pendrives. **Formatação rápida não garante a remoção**.",
+          "**Vírus de arquivo** (de programa ou parasitário): o mais tradicional; infecta **executáveis** (principalmente .exe), podendo sobrescrever o código original.",
+          "**Vírus polimórfico (mutante)**: muda sua assinatura a cada infecção, mantendo as funcionalidades, para burlar o antivírus. **Metamórfico**: reescreve-se por completo, mudando assinatura e comportamento.",
+          "**Vírus stealth (furtivo)**: projetado para não ser detectado; consegue se remover temporariamente da memória para escapar do antivírus.",
+          "**Vírus time bomb (bomba-relógio)**: fica latente, apenas se replicando, e executa sua carga em momento determinado pelo criador (exemplos: Sexta-feira 13, I Love You, Chernobyl).",
+          "**Vírus de e-mail**: chega como anexo que induz o clique; ao agir, envia cópias aos contatos do computador. Recomenda-se desabilitar a autoexecução de anexos e checar a extensão.",
+          "**Vírus multipartite**: combina características de vírus de arquivo e de boot, infectando várias áreas; é difícil de remover e pode reinfectar o sistema. Todo multipartite pode conter componente de boot; nem todo vírus de boot é multipartite.",
+          "**Vírus de substituição** (tipo de vírus de arquivo): troca todo o conteúdo do executável por cópia de si mesmo, de forma destrutiva e irreversível; só a restauração de backup recupera o arquivo."
+        ],
+        "teoria": [
+          {
+            "statement": "O vírus de macro infecta documentos de aplicativos como Word e Excel e só executa suas instruções quando o arquivo contaminado é aberto.",
+            "isTrue": true,
+            "explanation": "Por isso a prevenção passa por bloquear a execução de macros e desconfiar de anexos."
+          },
+          {
+            "statement": "A formatação rápida de um pendrive infectado garante a remoção completa de qualquer vírus de boot.",
+            "isTrue": false,
+            "explanation": "Alguns malwares ficam na MBR, setor de inicialização; por isso não é recomendável usar a formatação rápida."
+          },
+          {
+            "statement": "O vírus polimórfico altera sua assinatura a cada infecção, mas mantém suas funcionalidades.",
+            "isTrue": true,
+            "explanation": "A mudança de assinatura serve para dificultar a detecção pelos antivírus."
+          },
+          {
+            "statement": "O vírus stealth permanece inativo, apenas se replicando, até que chegue uma data específica determinada pelo criador.",
+            "isTrue": false,
+            "explanation": "Essa é a descrição do time bomb. O stealth se esconde do antivírus, por exemplo removendo-se temporariamente da memória."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O vírus metamórfico muda somente a assinatura e mantém o comportamento, enquanto o polimórfico se reescreve por completo a cada infecção.",
+            "isTrue": false,
+            "explanation": "Está invertido: o polimórfico muda a assinatura; o metamórfico muda assinatura e funcionalidade."
+          },
+          {
+            "statement": "O vírus time bomb permanece latente após infectar a máquina e é programado para agir em um momento específico.",
+            "isTrue": true,
+            "explanation": "Exemplos citados são os vírus que agem apenas em datas como sexta-feira 13."
+          },
+          {
+            "statement": "Um multipartite pode abranger um componente de boot, mas um vírus de boot comum não é, por isso, multipartite.",
+            "isTrue": true,
+            "explanation": "O multipartite combina a infecção de arquivos com a do setor de inicialização; o vírus de boot comum não alcança os arquivos."
+          },
+          {
+            "statement": "O vírus de substituição guarda uma cópia de segurança do executável original, o que permite ao antivírus restaurá-lo após a limpeza.",
+            "isTrue": false,
+            "explanation": "Ele não mantém cópias do original: o dano costuma ser irreversível, e a recuperação depende de backup."
+          },
+          {
+            "statement": "Um vírus de e-mail costuma enviar cópias de si mesmo para os endereços encontrados na lista de contatos do computador infectado.",
+            "isTrue": true,
+            "explanation": "Por isso é importante desabilitar a autoexecução de anexos e verificar a extensão dos arquivos."
+          }
+        ],
+        "pointers": [
+          { "topic": "Vírus de script", "pageRef": 12 },
+          { "topic": "Vírus de macro", "pageRef": 13 },
+          { "topic": "Vírus de boot e formatação rápida", "pageRef": 14 },
+          { "topic": "Vírus de arquivo", "pageRef": 15 },
+          { "topic": "Vírus polimórfico e metamórfico", "pageRef": 16 },
+          { "topic": "Vírus stealth", "pageRef": 18 },
+          { "topic": "Vírus time bomb", "pageRef": 18 },
+          { "topic": "Vírus de e-mail", "pageRef": 19 },
+          { "topic": "Vírus multipartite", "pageRef": 19 },
+          { "topic": "Vírus de substituição", "pageRef": 20 }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a03/s03",
+      "bizu": {
+        "summary": [
+          "**Worm (verme)**: programa que se replica sozinho, enviando cópias de computador para computador, explorando vulnerabilidades ou executando suas cópias. **Não infecta outros arquivos**: ele mesmo é o arquivo. Consome muitos recursos de rede e disco.",
+          "Propagação do worm em quatro fases: **identificação dos alvos (scanning)**, **envio de cópias**, **ativação das cópias** e **reinício do processo**. Pode entrar na máquina sem interação do usuário.",
+          "**Bot**: programa com mecanismo de comunicação que permite controle remoto pelo invasor; propaga-se como um worm. O computador infectado é um **zumbi**. **Botnet** = rede de zumbis, que potencializa ataques (negação de serviço, spam, coleta de dados) e pode ser alugada. Ideal ao detectar: desconectar da rede.",
+          "**Trojan (cavalo de Troia)**: aparenta ser programa útil (cartão virtual, jogo, protetor de tela), mas executa também funções maliciosas sem o conhecimento do usuário. **Não se replica automaticamente** e precisa ser executado. Há bancas que o tratam como tipo de vírus, mas a justificativa de um gabarito de 2024 o descreveu como malware que pode ou não conter vírus.",
+          "**Tipos de trojan**: downloader (baixa outros códigos da Internet), dropper (instala códigos embutidos nele), backdoor, DoS, destrutivo, clicker (redireciona a navegação), proxy (navegação anônima e spam), spy e banker (dados bancários).",
+          "**Spyware**: software espião que coleta dados e os entrega a terceiros. Uso **legítimo** (monitorar uso abusivo, com consentimento do dono) ou **malicioso**. Precisa ser executado pelo usuário e **não se propaga**. Combate: anti-spyware. Tipos comuns: keylogger, screenlogger e adware.",
+          "**Backdoor** (porta dos fundos): garante o **retorno do invasor** ao computador comprometido, abrindo portas TCP. Pode ser incluído por outro malware, por atacante ou até pelo fabricante. **Backdoors não se propagam; bots sim**.",
+          "**Rootkit**: conjunto de programas e técnicas para **esconder e manter** a presença do invasor ou de outro malware. O nome não indica obtenção de privilégios, mas a manutenção deles. Atua em modo usuário ou em **modo kernel**, é difícil de detectar e remover e pode apagar logs e instalar backdoors."
+        ],
+        "teoria": [
+          {
+            "statement": "O worm se propaga inserindo cópias de si mesmo em outros arquivos e programas, como fazem os vírus.",
+            "isTrue": false,
+            "explanation": "O worm não infecta arquivos: ele é um programa completo que envia cópias de si pela rede ou por e-mail, sem necessidade de hospedeiro."
+          },
+          {
+            "statement": "Um bot permite que o invasor controle remotamente o computador infectado, que passa a ser chamado de zumbi.",
+            "isTrue": true,
+            "explanation": "O bot tem mecanismo de comunicação com o invasor, por exemplo via IRC, servidor web ou redes P2P."
+          },
+          {
+            "statement": "O cavalo de Troia se replica automaticamente pela rede e dispensa qualquer ação de execução pelo usuário.",
+            "isTrue": false,
+            "explanation": "O trojan não se replica sozinho e costuma exigir que o usuário o execute, atraído por uma aparência útil."
+          },
+          {
+            "statement": "O spyware pode ter uso legítimo, quando instalado com o consentimento do dono do computador para verificar usos abusivos.",
+            "isTrue": true,
+            "explanation": "Seu caráter depende da forma de instalação, das ações realizadas e do uso das informações coletadas."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Ao contrário dos bots, os backdoors são capazes de se propagar automaticamente pela rede.",
+            "isTrue": false,
+            "explanation": "É o inverso: backdoors não se propagam por si; os bots sim, de modo semelhante aos worms."
+          },
+          {
+            "statement": "O nome rootkit não indica que seus programas sirvam para obter acesso privilegiado, mas para mantê-lo e esconder a presença do invasor.",
+            "isTrue": true,
+            "explanation": "O rootkit oculta arquivos, processos e atividades e pode apagar evidências em logs."
+          },
+          {
+            "statement": "Botnet é uma rede de computadores zumbis que o controlador pode usar em seus próprios ataques ou alugar a terceiros.",
+            "isTrue": true,
+            "explanation": "Quanto mais zumbis, mais potentes as ações danosas, como ataques de negação de serviço."
+          },
+          {
+            "statement": "O trojan downloader instala códigos maliciosos que já vêm embutidos no próprio código do trojan.",
+            "isTrue": false,
+            "explanation": "Essa é a função do trojan dropper. O downloader baixa outros códigos maliciosos de sites na Internet."
+          },
+          {
+            "statement": "O ciclo de propagação do worm inclui localizar computadores-alvo, remeter cópias, fazer com que elas sejam executadas e recomeçar o processo.",
+            "isTrue": true,
+            "explanation": "A etapa de localização dos alvos é também chamada de scanning."
+          }
+        ],
+        "pointers": [
+          { "topic": "Worm: conceito e características", "pageRef": 21 },
+          { "topic": "Ações maliciosas do worm", "pageRef": 22 },
+          { "topic": "Bot e Botnet", "pageRef": 24 },
+          { "topic": "Funcionamento da botnet", "pageRef": 25 },
+          { "topic": "Trojan Horse", "pageRef": 26 },
+          { "topic": "Trojan como tipo de vírus para algumas bancas", "pageRef": 27 },
+          { "topic": "Tipos de trojan", "pageRef": 28 },
+          { "topic": "Spyware: uso legítimo e malicioso", "pageRef": 29 },
+          { "topic": "Spyware precisa ser executado e não se propaga", "pageRef": 30 },
+          { "topic": "Backdoor x bot", "pageRef": 31 },
+          { "topic": "Rootkit", "pageRef": 33 },
+          { "topic": "Rootkit x backdoor e modos de operação", "pageRef": 34 }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a03/s04",
+      "bizu": {
+        "summary": [
+          "**Comparativo de códigos maliciosos**: o vírus se propaga inserindo cópia em arquivos; worm e bot enviam cópias automaticamente pela rede; **trojan, spyware, backdoor e rootkit não se propagam**.",
+          "**Ransomware**: torna dados ou o equipamento inacessíveis, em geral por **criptografia**, e exige **resgate** (extorsão virtual), normalmente em moeda digital. Tipos: **locker** (impede o acesso ao equipamento) e **crypto** (impede o acesso aos dados). O pagamento não garante a recuperação; a defesa essencial é o **backup** atualizado. O WannaCry foi um ransomware com características de worm (2017).",
+          "**Keylogger**: spyware que captura e armazena as **teclas digitadas** e as envia ao invasor, buscando senhas. Ativação frequentemente condicionada a ação do usuário (ex.: acessar internet banking). Contramedida: **teclado virtual**.",
+          "**Screenlogger**: spyware que registra a **tela** ou a região em torno do cursor no momento do clique; surgiu para capturar o que se clica em teclados virtuais.",
+          "**Adware**: spyware voltado a exibir propagandas (muitas vezes pop-ups). Pode ser **legítimo** (patrocínio de programas gratuitos) ou **malicioso**, quando direciona anúncios conforme a navegação sem o usuário saber.",
+          "**Sniffer** (farejador): analisador de pacotes que monitora, intercepta e registra o tráfego da rede. Uso **legítimo** (administradores) ou malicioso (capturar senhas não criptografadas, em modo promíscuo). Pode ficar em **qualquer máquina da rede local**, inclusive diferente da monitorada.",
+          "**Bomba lógica**: código malicioso em geral deixado por usuário autorizado (ex.: administrador) que causa dano quando ocorre determinado evento. Disparo **positivo** (ativa quando o evento ocorre) ou **negativo** (ativa a menos que o evento ocorra). Diferente do vírus time bomb, pode ser usada por outros tipos de malware.",
+          "**Exploit**: software que explora vulnerabilidades conhecidas e permite invasão sem grande conhecimento técnico. **Zero-day** = vulnerabilidade ainda desconhecida do administrador do sistema.",
+          "**Browser hijacker**: sequestra o navegador, alterando registros do sistema, página inicial e abrindo páginas automaticamente; o criador pode ganhar por cliques."
+        ],
+        "teoria": [
+          {
+            "statement": "O ransomware do tipo crypto usa criptografia para impedir o acesso do usuário aos seus dados, e o pagamento do resgate não assegura a recuperação do acesso.",
+            "isTrue": true,
+            "explanation": "A única garantia de recuperação é possuir backups atualizados."
+          },
+          {
+            "statement": "O keylogger é o spyware que captura imagens da tela e a posição do cursor no momento em que o mouse é clicado.",
+            "isTrue": false,
+            "explanation": "Essa é a função do screenlogger. O keylogger registra as teclas digitadas."
+          },
+          {
+            "statement": "O sniffer pode ser empregado de forma legítima por administradores de rede e pode ser instalado em um computador diferente daquele cujo tráfego monitora.",
+            "isTrue": true,
+            "explanation": "Basta que esteja em uma máquina conectada à mesma rede local; já o spyware precisa estar na máquina monitorada."
+          },
+          {
+            "statement": "O adware é sempre malicioso, pois seu único objetivo é espionar a navegação do usuário.",
+            "isTrue": false,
+            "explanation": "Pode ser legítimo, como forma de patrocínio de programas gratuitos; torna-se malicioso quando monitora a navegação sem conhecimento do usuário."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O screenlogger foi criado principalmente para capturar o que o usuário clica em teclados virtuais, contornando a proteção contra keyloggers.",
+            "isTrue": true,
+            "explanation": "O teclado virtual evita o uso do teclado físico, mas o screenlogger registra a tela nos cliques."
+          },
+          {
+            "statement": "A bomba lógica é restrita aos vírus, ao passo que o vírus time bomb pode ser usado por qualquer tipo de malware.",
+            "isTrue": false,
+            "explanation": "É o inverso: a bomba lógica pode ser usada por diversos malwares; o time bomb é um tipo de vírus."
+          },
+          {
+            "statement": "Exploits são programas que aproveitam vulnerabilidades conhecidas de sistemas, e zero-day é a vulnerabilidade ainda desconhecida pelo administrador.",
+            "isTrue": true,
+            "explanation": "O termo dia zero marca o dia em que o administrador descobre a falha e começa a mitigá-la."
+          },
+          {
+            "statement": "O browser hijacker é o malware que monitora o tráfego da rede em modo promíscuo para capturar senhas.",
+            "isTrue": false,
+            "explanation": "Isso descreve o sniffer. O hijacker modifica o funcionamento do navegador, como a página inicial."
+          },
+          {
+            "statement": "Na bomba lógica com disparo negativo, a carga útil é ativada a menos que um evento específico ocorra.",
+            "isTrue": true,
+            "explanation": "No disparo positivo, a carga fica inativa até que o evento ocorra."
+          }
+        ],
+        "pointers": [
+          { "topic": "Tabela comparativa dos códigos maliciosos", "pageRef": 36 },
+          { "topic": "Ransomware: locker e crypto", "pageRef": 37 },
+          { "topic": "WannaCry e caso do STJ", "pageRef": 38 },
+          { "topic": "Keylogger e teclado virtual", "pageRef": 39 },
+          { "topic": "Screenlogger", "pageRef": 41 },
+          { "topic": "Adware", "pageRef": 42 },
+          { "topic": "Sniffer e modo promíscuo", "pageRef": 44 },
+          { "topic": "Bomba lógica e disparos positivo e negativo", "pageRef": 46 },
+          { "topic": "Exploits e zero-day", "pageRef": 47 },
+          { "topic": "Browser hijacker", "pageRef": 48 }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a03/s05",
+      "bizu": {
+        "summary": [
+          "**Engenharia social**: técnica de persuasão que explora confiança, ingenuidade, ganância ou boa-fé das pessoas para obter informações sigilosas ou aplicar golpes, geralmente por telefone, e-mail ou chat. O fator humano é o elo explorado; o phishing é um exemplo comum.",
+          "**Força bruta (brute force)**: adivinhar usuário e senha por **tentativa e erro**, para agir com os privilégios da vítima. Usa dicionários, listas de palavras comuns, substituições óbvias (a por @), sequências numéricas e dados pessoais. Pode bloquear contas e até resultar em **negação de serviço**.",
+          "**DoS (negação de serviço)**: tira de operação um serviço, computador ou rede, **exaurindo recursos**; não visa invadir nem coletar dados. O alvo volta ao normal ao fim do ataque, sem vazamento de informações. **DDoS** = ataque distribuído, com muitos equipamentos (frequentemente zumbis de botnets).",
+          "**IP spoofing**: falsificação do endereço IP, usada quando a autenticação da rede se baseia no IP; o atacante se faz passar por usuário autorizado.",
+          "**E-mail spoofing**: alteração de campos do cabeçalho do e-mail para parecer enviado por outra origem, possível por características do **protocolo SMTP**. É usado em propagação de malware, spam e phishing.",
+          "Indícios de e-mail spoofing: receber respostas ou devoluções de mensagens que você não enviou, ou e-mails aparentemente enviados por você mesmo. Há ainda ARP, MAC e DNS spoofing."
+        ],
+        "teoria": [
+          {
+            "statement": "A engenharia social explora o fator humano, como a confiança e a ingenuidade das pessoas, para obter informações sigilosas.",
+            "isTrue": true,
+            "explanation": "Muitas vezes é mais eficaz perguntar a senha à vítima, mediante um pretexto convincente, do que quebrá-la tecnicamente."
+          },
+          {
+            "statement": "O principal objetivo de um ataque de negação de serviço é invadir o sistema e furtar as informações nele armazenadas.",
+            "isTrue": false,
+            "explanation": "O DoS visa tornar o serviço indisponível, exaurindo recursos; não invade nem coleta informações."
+          },
+          {
+            "statement": "O ataque distribuído de negação de serviço (DDoS) utiliza um conjunto de equipamentos de forma coordenada, muitos deles computadores infectados sem o conhecimento do dono.",
+            "isTrue": true,
+            "explanation": "Computadores com worms ou integrantes de botnets podem participar sem que o usuário saiba."
+          },
+          {
+            "statement": "O e-mail spoofing é possível porque o protocolo POP3 permite a falsificação de campos do cabeçalho das mensagens.",
+            "isTrue": false,
+            "explanation": "A falsificação decorre de características do SMTP, protocolo de envio de e-mails."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Em um ataque de força bruta, as tentativas de acerto podem se basear em dicionários, listas de palavras comuns e informações pessoais da vítima.",
+            "isTrue": true,
+            "explanation": "Dependendo do volume de tentativas, o ataque pode ainda causar bloqueio de contas e sobrecarga."
+          },
+          {
+            "statement": "No IP spoofing, o atacante altera campos do cabeçalho de um e-mail para parecer que a mensagem partiu de outro remetente.",
+            "isTrue": false,
+            "explanation": "Isso é e-mail spoofing. No IP spoofing falsifica-se o endereço IP, mascarando-se como usuário autorizado."
+          },
+          {
+            "statement": "O IP spoofing é especialmente útil ao atacante quando a identificação do usuário na rede é feita com base no seu endereço IP.",
+            "isTrue": true,
+            "explanation": "Clonando o IP de um usuário legítimo, o atacante pode obter acessos não autorizados."
+          },
+          {
+            "statement": "Após um ataque de negação de serviço bem-sucedido, o alvo fica permanentemente comprometido e os dados armazenados são vazados.",
+            "isTrue": false,
+            "explanation": "Em geral o alvo apenas fica impedido de prestar o serviço durante o ataque e volta a funcionar normalmente, sem vazamento."
+          },
+          {
+            "statement": "Receber devoluções de e-mails que você nunca enviou pode indicar que seu endereço foi usado indevidamente em um e-mail spoofing.",
+            "isTrue": true,
+            "explanation": "Atacantes usam endereços coletados para enviar mensagens que parecem partir de pessoas conhecidas."
+          }
+        ],
+        "pointers": [
+          { "topic": "Engenharia social", "pageRef": 51 },
+          { "topic": "Ataque de força bruta", "pageRef": 53 },
+          { "topic": "DoS e DDoS", "pageRef": 55 },
+          { "topic": "IP spoofing", "pageRef": 57 },
+          { "topic": "E-mail spoofing e SMTP", "pageRef": 59 }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a03/s06",
+      "bizu": {
+        "summary": [
+          "**Phishing scam**: fraude que combina técnicas computacionais e **engenharia social** para obter dados pessoais e financeiros. As mensagens se passam por instituições conhecidas, atraem por curiosidade, caridade ou vantagem, ameaçam com consequências e levam a páginas falsas, formulários ou arquivos maliciosos.",
+          "**Prevenção do phishing**: desconfiar de mensagens que pedem dados ou cliques, digitar o endereço no navegador, passar o mouse sobre o link para ver o destino real, usar antimalware, firewall e filtros antiphishing, conferir a conexão segura e o **certificado**, e consultar a instituição pelos canais oficiais.",
+          "**Smishing** = phishing por **SMS** (SMS + phishing): mensagem alarmante ou tentadora com link ou telefone que leva a site falso ou ao download de malware. Não clicar em links, não fornecer dados por mensagem.",
+          "**Pharming**: tipo de phishing que **corrompe o DNS** para redirecionar, de forma transparente, o usuário que digita o endereço correto para um site fraudulento. O método mais comum é o envenenamento de cache; o DNS spoofing (poisoning) atinge o servidor DNS de um provedor.",
+          "Redirecionamento do pharming: comprometimento do servidor DNS do provedor, código malicioso que altera o DNS do computador ou invasor que acessa as configurações do DNS do computador ou do modem. Verifique se há conexão segura e se o certificado corresponde ao site verdadeiro.",
+          "**Vishing** = phishing por **telefone** (voice + phishing): o golpista se passa por banco, suporte ou operadora, cria urgência e pode falsificar o número de origem (spoofing). Desligar e ligar para o canal oficial.",
+          "**Baiting** (isca): explora curiosidade e ganância; exemplo clássico é o **pendrive deixado em local público** com rótulo atraente, que instala malware ao ser conectado. Também ocorre com links de brindes. Desativar a execução automática de mídias removíveis.",
+          "**Whaling** (caça à baleia): phishing direcionado a **executivos e altos cargos**, personalizado e com urgência (ex.: e-mail falso do CEO pedindo transferência). Defesas: autenticação multifator, treinamento e confirmação de ordens incomuns por outro canal."
+        ],
+        "teoria": [
+          {
+            "statement": "O phishing mistura recursos de informática com persuasão, em geral por mensagens que imitam instituições conhecidas e conduzem a páginas falsas ou a arquivos maliciosos.",
+            "isTrue": true,
+            "explanation": "A meta do golpista é capturar dados pessoais e bancários da vítima para fraudá-la."
+          },
+          {
+            "statement": "No pharming, o usuário é levado ao site falso por uma mensagem enganosa, sem que haja qualquer alteração no serviço de DNS.",
+            "isTrue": false,
+            "explanation": "O pharming se caracteriza justamente pela corrupção do DNS, que redireciona o usuário de forma transparente ao digitar o endereço correto."
+          },
+          {
+            "statement": "O smishing é o golpe de phishing aplicado por meio de mensagens SMS.",
+            "isTrue": true,
+            "explanation": "O nome une SMS e phishing; a mensagem traz link ou telefone para enganar a vítima."
+          },
+          {
+            "statement": "O vishing é o phishing realizado por mensagens de texto SMS enviadas ao celular da vítima.",
+            "isTrue": false,
+            "explanation": "O vishing é feito por voz, em ligações telefônicas. O golpe por SMS é o smishing."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O baiting pode ocorrer com pendrives abandonados em locais públicos, rotulados de forma atraente para despertar a curiosidade de quem os encontra.",
+            "isTrue": true,
+            "explanation": "Ao conectar o dispositivo, o malware pode ser instalado automaticamente."
+          },
+          {
+            "statement": "O whaling visa usuários domésticos escolhidos aleatoriamente, em ataques massivos e genéricos.",
+            "isTrue": false,
+            "explanation": "O whaling é altamente direcionado a executivos e outros cargos de alto escalão, com mensagens personalizadas."
+          },
+          {
+            "statement": "Uma defesa recomendada contra o whaling é confirmar por outro canal, como ligação ou chamada de vídeo, os pedidos fora do padrão.",
+            "isTrue": true,
+            "explanation": "Soma-se a isso a autenticação multifator e o treinamento de conscientização."
+          },
+          {
+            "statement": "Para identificar um phishing, é útil posicionar o mouse sobre o link da mensagem, pois muitas vezes isso revela o endereço real da página.",
+            "isTrue": true,
+            "explanation": "Golpistas ofuscam o link verdadeiro; a verificação do destino ajuda a perceber a fraude."
+          },
+          {
+            "statement": "Mensagens de phishing nunca simulam urgência nem ameaçam o usuário, pois isso despertaria suspeitas.",
+            "isTrue": false,
+            "explanation": "É comum ameaçarem com consequências, como cancelamento de conta ou inclusão em serviços de proteção ao crédito, para pressionar a vítima."
+          }
+        ],
+        "pointers": [
+          { "topic": "Conceito e exemplos de phishing", "pageRef": 61 },
+          { "topic": "Medidas de prevenção do phishing", "pageRef": 62 },
+          { "topic": "Smishing", "pageRef": 65 },
+          { "topic": "Pharming e envenenamento de cache DNS", "pageRef": 66 },
+          { "topic": "Tipos de redirecionamento e prevenção do pharming", "pageRef": 67 },
+          { "topic": "Vishing", "pageRef": 68 },
+          { "topic": "Baiting", "pageRef": 68 },
+          { "topic": "Whaling", "pageRef": 69 },
+          { "topic": "Proteção contra whaling", "pageRef": 70 }
+        ]
+      }
+    },
+    {
+      "id": "informatica/a03/s07",
+      "bizu": {
+        "summary": [
+          "**Spear phishing**: phishing **altamente direcionado** a uma ou poucas vítimas, com mensagens personalizadas a partir de pesquisa prévia em redes sociais e vazamentos. Costuma passar por filtros tradicionais e abre caminho para ransomware ou acesso persistente. Proteção: checar remetente, desconfiar de urgência, autenticação multifator e treinamento.",
+          "**Hoax (boato)**: mensagem de conteúdo alarmante ou falso, geralmente atribuída a instituição ou órgão público (correntes, pirâmides). Prejudica a credibilidade de quem repassa, sobrecarrega servidores e banda e pode induzir ações danosas. É preciso conferir a procedência, mesmo quando o remetente é conhecido.",
+          "**Man in the Middle (homem no meio)**: o atacante intercepta, registra e possivelmente altera a comunicação entre duas partes sem que percebam, retransmitindo-a inalterada, modificada ou bloqueada em parte.",
+          "**Defacement (desfiguração/pichação)**: alteração do conteúdo de uma página web, geralmente a principal. O atacante é o defacer e pode explorar vulnerabilidades da aplicação, invadir o servidor ou furtar senhas de administração.",
+          "**SQL Injection**: o invasor insere instruções SQL em campos de formulário ou parâmetros de URL, manipulando o banco de dados quando a entrada não é validada. Mitigação: validação e sanitização de entradas, consultas parametrizadas, software atualizado e **menor privilégio**.",
+          "**Furto de identidade**: alguém se passa por outra pessoa para obter vantagens (abrir conta ou empresa em seu nome, criar perfil falso). Pode ser crime de falsa identidade. Indícios: problemas com proteção ao crédito, transações desconhecidas no extrato e acessos em horários ou locais estranhos.",
+          "**Fraude de antecipação de recursos (advance fee fraud)**: o golpista induz a vítima a fornecer dados ou **pagar adiantado** em troca de benefício futuro inexistente. Variações: golpe da Nigéria, loteria internacional, crédito fácil, oferta de emprego, doação de animais e noiva russa.",
+          "Sinais da fraude de antecipação: valores astronômicos, pedido de sigilo e rapidez, termos como urgente e confidencial, erros de ortografia. **Nunca responder** a esse tipo de mensagem, pois confirma que o e-mail é válido."
+        ],
+        "teoria": [
+          {
+            "statement": "O spear phishing é direcionado a uma ou poucas vítimas, com mensagens personalizadas a partir de pesquisa prévia, o que facilita contornar filtros tradicionais de segurança.",
+            "isTrue": true,
+            "explanation": "Sem elementos típicos de spam em massa, as mensagens costumam passar por firewalls e antivírus."
+          },
+          {
+            "statement": "Para evitar os efeitos de um boato (hoax), basta repassá-lo aos contatos conhecidos, pois a confiança no remetente garante a veracidade do conteúdo.",
+            "isTrue": false,
+            "explanation": "Repassar boatos prejudica a credibilidade de quem o faz; é preciso verificar a procedência mesmo quando o remetente é conhecido."
+          },
+          {
+            "statement": "No ataque man in the middle, os dados trocados entre duas partes são interceptados e podem ser registrados ou alterados sem que as vítimas percebam.",
+            "isTrue": true,
+            "explanation": "O atacante pode retransmitir os dados inalterados, modificados ou bloquear parte deles."
+          },
+          {
+            "statement": "O defacement consiste em interceptar a comunicação entre cliente e servidor para capturar senhas.",
+            "isTrue": false,
+            "explanation": "O defacement é a alteração do conteúdo de uma página web, geralmente a principal."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Para mitigar a SQL Injection, recomenda-se validar e sanitizar as entradas, usar consultas parametrizadas e aplicar o princípio do menor privilégio ao banco de dados.",
+            "isTrue": true,
+            "explanation": "A falha ocorre quando instruções SQL inseridas pelo atacante são executadas sem validação."
+          },
+          {
+            "statement": "Na fraude de antecipação de recursos, a vítima recebe o benefício prometido antes de efetuar qualquer pagamento ou fornecer dados.",
+            "isTrue": false,
+            "explanation": "A vítima é induzida a pagar ou fornecer informações antes, em troca de um benefício futuro que não existe."
+          },
+          {
+            "statement": "No golpe da Nigéria, a vítima é convidada a atuar como intermediária em uma transferência de fundos.",
+            "isTrue": true,
+            "explanation": "É uma das variações da fraude de antecipação de recursos."
+          },
+          {
+            "statement": "Transações no extrato bancário que o titular não realizou e problemas com órgãos de proteção ao crédito podem indicar furto de identidade.",
+            "isTrue": true,
+            "explanation": "Também são indícios o retorno de e-mails que não enviou e acessos às suas contas em horários ou locais estranhos."
+          },
+          {
+            "statement": "Mensagens de fraude de antecipação de recursos devem ser respondidas para confirmar que se trata de golpe.",
+            "isTrue": false,
+            "explanation": "Mensagens desse tipo não devem ser respondidas, pois a resposta confirma que o endereço é válido e pode incluí-lo em listas de spam e de novas vítimas."
+          }
+        ],
+        "pointers": [
+          { "topic": "Spear phishing", "pageRef": 71 },
+          { "topic": "Hoax", "pageRef": 73 },
+          { "topic": "Man in the Middle", "pageRef": 75 },
+          { "topic": "Defacement", "pageRef": 76 },
+          { "topic": "SQL Injection", "pageRef": 77 },
+          { "topic": "Mitigação da SQL Injection", "pageRef": 78 },
+          { "topic": "Furto de identidade e indícios", "pageRef": 79 },
+          { "topic": "Fraude de antecipação de recursos e variações", "pageRef": 80 },
+          { "topic": "Como se prevenir e não responder", "pageRef": 81 }
+        ]
+      }
+    }
+  ]
+}

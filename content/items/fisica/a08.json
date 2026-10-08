@@ -1,0 +1,149 @@
+{
+  "aula": "fisica/a08",
+  "batch": "w2-bizu-fisica",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "fisica/a08/s01",
+      "bizu": {
+        "summary": [
+          "**Estática dos sólidos** estuda o **equilíbrio estático** de corpos sólidos. O corpo pode ser **ponto material** (dimensões irrelevantes) ou **corpo extenso** (dimensões relevantes para o equilíbrio).",
+          "**Equilíbrio do ponto material**: força resultante nula. Em componentes: **ΣFx = 0 e ΣFy = 0**. Procedimento: decompor todas as forças nos eixos horizontal e vertical e igualar, em cada eixo, as componentes em sentidos opostos.",
+          "**Regra do polígono fechado** (outro método): quando um ponto material está em equilíbrio, os vetores das forças que nele atuam formam um **polígono fechado**. Para três forças, usam-se relações trigonométricas no triângulo (seno, tangente etc.). Escolha o método em que você tem mais segurança: o polígono exige figura bem feita; a decomposição é mais trabalhosa, mas mais direta.",
+          "Exemplo clássico: peso de 100 N sustentado por duas forças, uma inclinada a 30°. Da decomposição obtêm-se T sen 30° = 100 (T = 200 N) e F = T cos 30° = 100√3 N (pela tangente ou pelo polígono, mesmo resultado).",
+          "**Associação de roldanas (polias)**: no mesmo **fio ideal**, a tração é constante. Cada **polia móvel** divide a força: no segundo fio a força é o dobro, no seguinte o quádruplo etc. Para equilibrar o peso P: **F = P / 2^n**, sendo **n o número de polias móveis**. A polia fixa só muda a direção da força (não reduz o esforço).",
+          "Ex.: sistema com duas polias móveis e uma fixa, peso desprezível das polias, carga de 100 kgf → F = 100/2² = **25 kgf**. O sistema é útil para erguer cargas muito acima da capacidade muscular."
+        ],
+        "teoria": [
+          {
+            "statement": "Um ponto material está em equilíbrio quando a soma das componentes horizontais das forças é nula e a soma das componentes verticais também é nula.",
+            "isTrue": true,
+            "explanation": "A força resultante nula, decomposta em x e y, equivale a ΣFx = 0 e ΣFy = 0."
+          },
+          {
+            "statement": "Para uma partícula em equilíbrio sob várias forças, a representação dessas forças, encadeadas uma após a outra, deixa o contorno aberto.",
+            "isTrue": false,
+            "explanation": "Com resultante nula, as forças encadeadas (extremidade com origem) voltam ao ponto de partida e formam um polígono fechado."
+          },
+          {
+            "statement": "Em uma associação ideal de roldanas com n polias móveis, a força necessária para equilibrar um peso P é igual a P multiplicado por 2 elevado a n.",
+            "isTrue": false,
+            "explanation": "A força é reduzida: F = P/2^n. Cada polia móvel divide por dois o esforço."
+          },
+          {
+            "statement": "A estática dos sólidos considera o equilíbrio estático, em que o corpo permanece em repouso.",
+            "isTrue": true,
+            "explanation": "O equilíbrio tratado nessa aula é o estático, razão pela qual a resultante das forças é nula e o corpo não se move."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Em um sistema ideal com duas polias móveis e uma polia fixa, uma carga de 100 kgf é equilibrada por uma força de 25 kgf.",
+            "isTrue": true,
+            "explanation": "F = P/2² = 100/4 = 25 kgf."
+          },
+          {
+            "statement": "Uma polia fixa ideal reduz à metade a força necessária para sustentar um peso.",
+            "isTrue": false,
+            "explanation": "A polia fixa apenas muda a direção da força; quem reduz o esforço são as polias móveis."
+          },
+          {
+            "statement": "O equilíbrio de um ponto material pode ser analisado tanto pela decomposição das forças nos eixos quanto pelo polígono fechado de forças.",
+            "isTrue": true,
+            "explanation": "São dois métodos que levam ao mesmo resultado; a escolha depende da segurança de cada candidato."
+          },
+          {
+            "statement": "O que diferencia um corpo extenso de um ponto material é o fato de suas dimensões serem relevantes para a condição de equilíbrio.",
+            "isTrue": true,
+            "explanation": "No ponto material as dimensões são desprezadas; no corpo extenso elas importam (por exemplo, por causa do giro)."
+          }
+        ],
+        "pointers": [
+          { "topic": "Ponto material x corpo extenso na estática", "pageRef": 3 },
+          { "topic": "Condições de equilíbrio do ponto material (ΣFx = 0, ΣFy = 0)", "pageRef": 4 },
+          { "topic": "Resolução por decomposição vetorial", "pageRef": 6 },
+          { "topic": "Regra do polígono fechado", "pageRef": 7 },
+          { "topic": "Associação de roldanas e polias móveis", "pageRef": 9 },
+          { "topic": "Fórmula F = P/2^n e exemplo com 25 kgf", "pageRef": 11 }
+        ]
+      }
+    },
+    {
+      "id": "fisica/a08/s02",
+      "bizu": {
+        "summary": [
+          "**Torque (momento de uma força)**: grandeza **vetorial**, que mede a capacidade de a força girar um corpo extenso em torno de um eixo. Módulo: **M = F·d·sen θ**, com d a distância do ponto de aplicação ao eixo e θ o ângulo entre a força e o vetor posição. Se a força é **perpendicular** a d, **M = F·d**; se for **paralela** (θ = 0), o torque é **nulo**.",
+          "**Unidade do torque: N·m.** É equivalente à do joule, mas as grandezas são diferentes: trabalho é escalar; torque é vetorial. Para o mesmo torque, quanto maior o braço (distância), menor a força necessária (ex.: puxar um cabo preso longe do ponto de giro).",
+          "**Equilíbrio do corpo extenso** exige que ambas as condições sejam satisfeitas: (1) **equilíbrio translacional**: força resultante nula (ΣFx = 0, ΣFy = 0); (2) **equilíbrio rotacional**: soma dos momentos nula, ou seja, **momentos horários = momentos anti-horários**. A condição translacional é necessária, mas não suficiente.",
+          "O **ponto de referência para calcular os momentos pode ser qualquer um**; forças aplicadas nesse ponto não geram torque nele. Dica: escolher o ponto onde atua uma força desconhecida ou onde concorrem muitas forças.",
+          "**Binário**: duas forças de **mesmo módulo e sentidos opostos**, aplicadas em pontos diferentes, que fazem o corpo girar **no mesmo sentido**. Momento do binário: **M = F·d**, em que d é a distância entre as retas de ação das forças (soma dos dois momentos). Ex.: soltar o parafuso da roda com as duas mãos.",
+          "**Teorema das três forças**: se um corpo está em equilíbrio sob a ação de três forças, elas são **concorrentes em um ponto**, que pode estar **dentro ou fora do corpo**. Útil para descobrir a direção de uma terceira força.",
+          "**Tipos de equilíbrio**: **estável** (perturbado, o corpo volta ao equilíbrio anterior), **instável** (perturbado, não volta e se afasta) e **indiferente** (permanece na nova posição).",
+          "**Centro de gravidade**: ponto de aplicação do peso do corpo; em corpos **homogêneos** coincide com o centro geométrico. A estabilidade exige a vertical do centro de gravidade passando dentro da base de apoio. Em brinquedos do tipo \"João-teimoso\" o centro de gravidade fica **abaixo** do centro geométrico, gerando torque restaurador."
+        ],
+        "teoria": [
+          {
+            "statement": "O torque de uma força é uma grandeza escalar, medida em joules.",
+            "isTrue": false,
+            "explanation": "No material o torque é vetorial e sua unidade é o N·m; o joule é unidade de trabalho/energia, grandeza escalar."
+          },
+          {
+            "statement": "Uma força aplicada na mesma direção do vetor que liga o eixo de rotação ao ponto de aplicação não produz torque em relação a esse eixo.",
+            "isTrue": true,
+            "explanation": "Com θ = 0, sen θ = 0 e M = F·d·sen θ = 0: a força não consegue girar o corpo."
+          },
+          {
+            "statement": "As unidades N·m e joule são equivalentes e, por isso, torque e trabalho representam a mesma grandeza física.",
+            "isTrue": false,
+            "explanation": "As unidades se equivalem dimensionalmente, mas as grandezas são distintas: torque é vetorial e trabalho é escalar."
+          },
+          {
+            "statement": "Para um corpo extenso em equilíbrio, além de a força resultante ser nula, a soma dos momentos que o fazem girar no sentido horário deve ser igual à soma dos que o fazem girar no sentido anti-horário.",
+            "isTrue": true,
+            "explanation": "São as condições translacional e rotacional do equilíbrio de um corpo extenso."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O momento de um binário é dado pelo produto do valor de uma das forças pela distância que separa as retas de ação das duas forças.",
+            "isTrue": true,
+            "explanation": "M = F·d, resultante da soma dos dois momentos no mesmo sentido de giro."
+          },
+          {
+            "statement": "Ao calcular os momentos de um corpo em equilíbrio, as forças aplicadas no ponto escolhido como referência não geram torque em relação a ele.",
+            "isTrue": true,
+            "explanation": "A distância ao eixo é nula; por isso convém escolher um ponto onde atue uma força desconhecida."
+          },
+          {
+            "statement": "Três forças que equilibram um corpo extenso devem ser sempre concorrentes em um ponto situado dentro do corpo.",
+            "isTrue": false,
+            "explanation": "O ponto de concorrência pode estar dentro ou fora do corpo."
+          },
+          {
+            "statement": "No equilíbrio indiferente, o corpo perturbado tende a retornar à posição original de equilíbrio.",
+            "isTrue": false,
+            "explanation": "Isso ocorre no equilíbrio estável. No indiferente o corpo permanece na posição para a qual foi deslocado."
+          },
+          {
+            "statement": "Em um corpo homogêneo, o centro de gravidade coincide com o centro geométrico do corpo.",
+            "isTrue": true,
+            "explanation": "Em corpos não homogêneos esse ponto pode se afastar do centro geométrico."
+          }
+        ],
+        "pointers": [
+          { "topic": "Conceito de torque e fórmula M = F·d·sen θ", "pageRef": 13 },
+          { "topic": "Torque nulo com força paralela à distância", "pageRef": 14 },
+          { "topic": "Aplicação: ponto de amarração e braço do torque", "pageRef": 16 },
+          { "topic": "Unidade do torque (N·m) x joule", "pageRef": 17 },
+          { "topic": "Condições de equilíbrio de corpo extenso", "pageRef": 18 },
+          { "topic": "Escolha do ponto de referência para momentos", "pageRef": 18 },
+          { "topic": "Binário", "pageRef": 20 },
+          { "topic": "Teorema das três forças", "pageRef": 21 },
+          { "topic": "Tipos de equilíbrio (estável, instável, indiferente)", "pageRef": 22 },
+          { "topic": "Centro de gravidade e estabilidade", "pageRef": 23 }
+        ]
+      }
+    }
+  ]
+}

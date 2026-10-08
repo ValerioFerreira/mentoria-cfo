@@ -1,0 +1,309 @@
+{
+  "aula": "matematica/a01",
+  "batch": "w2-bizu-matematica",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "matematica/a01/s01",
+      "bizu": {
+        "summary": [
+          "**Soma (adição)** reúne quantidades. Na conta armada, alinham-se unidade com unidade, dezena com dezena e, havendo decimais, **vírgula sob vírgula** (completando com zeros à direita quando preciso).",
+          "Propriedades da soma: **elemento neutro = 0** (x + 0 = x), **comutativa** (a + b = b + a), **associativa** ((a + b) + c = a + (b + c)) e **fechamento** (soma de naturais é natural; vale também em Z, Q e R, mas não nos irracionais).",
+          "**Subtração** é a operação oposta da soma: retira uma quantidade de outra. O primeiro termo é o **minuendo** e o segundo é o **subtraendo** (em 39 - 17, minuendo 39 e subtraendo 17).",
+          "Na conta armada, a subtração começa pelo algarismo mais à direita; se o de cima é menor que o de baixo, **empresta-se** do algarismo vizinho (o 2 vira 12 e o vizinho perde 1).",
+          "A subtração **não é comutativa**: 7 - 3 é diferente de 3 - 7.",
+          "A subtração **não é associativa**: (7 - 2) - 3 = 2, mas 7 - (2 - 3) = 8.",
+          "A subtração **não tem elemento neutro**: x - 0 = x, porém 0 - x = -x (o zero inverte o sinal do subtraendo).",
+          "Série de subtrações equivale a subtrair a **soma** dos termos: 35,8 - 6,3 - 14,2 - 0,13 = 35,8 - (6,3 + 14,2 + 0,13)."
+        ],
+        "teoria": [
+          {
+            "statement": "O zero é o elemento neutro da adição, pois somado a qualquer número x resulta no próprio x.",
+            "isTrue": true,
+            "explanation": "x + 0 = x e 0 + x = x: o zero não produz efeito na soma."
+          },
+          {
+            "statement": "A subtração é comutativa, de modo que 7 - 3 e 3 - 7 têm o mesmo resultado.",
+            "isTrue": false,
+            "explanation": "7 - 3 = 4, enquanto 3 - 7 = -4. A comutatividade vale na soma, não na subtração."
+          },
+          {
+            "statement": "Na subtração 39 - 17, o número 39 é o minuendo e o 17 é o subtraendo.",
+            "isTrue": true,
+            "explanation": "O primeiro termo da subtração é o minuendo (ou diminuendo) e o segundo é o subtraendo."
+          },
+          {
+            "statement": "Ao armar a conta 120 + 13,25, deve-se colocar o algarismo das unidades de 13,25 sob o das dezenas de 120, completando com zeros à esquerda.",
+            "isTrue": false,
+            "explanation": "Alinha-se vírgula sob vírgula e unidade sob unidade. O número inteiro 120 é completado com zeros à direita da vírgula (120,00)."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Na subtração, (a - b) - c é sempre igual a a - (b - c), pois a propriedade associativa vale para essa operação.",
+            "isTrue": false,
+            "explanation": "Com a = 7, b = 2 e c = 3: (7 - 2) - 3 = 2 e 7 - (2 - 3) = 8. A associatividade não se aplica à subtração."
+          },
+          {
+            "statement": "A expressão 0 - x é igual a -x, razão pela qual o zero não é elemento neutro da subtração.",
+            "isTrue": true,
+            "explanation": "Embora x - 0 = x, a ordem inversa muda o sinal do subtraendo; por isso não se fala em elemento neutro na subtração."
+          },
+          {
+            "statement": "A expressão 35,8 - 6,3 - 14,2 pode ser reescrita como 35,8 - (6,3 - 14,2).",
+            "isTrue": false,
+            "explanation": "Subtrações em sequência equivalem a subtrair a soma dos termos: 35,8 - (6,3 + 14,2). O sinal dentro dos parênteses seria trocado."
+          },
+          {
+            "statement": "Na soma, a ordem das parcelas e a forma de agrupá-las não alteram o resultado.",
+            "isTrue": true,
+            "explanation": "São as propriedades comutativa (a + b = b + a) e associativa ((a + b) + c = a + (b + c)) da adição."
+          }
+        ],
+        "pointers": [
+          { "topic": "Soma e método da conta armada", "pageRef": 3 },
+          { "topic": "Soma com decimais (vírgula sob vírgula)", "pageRef": 5 },
+          { "topic": "Elemento neutro, comutativa e associativa da soma", "pageRef": 6 },
+          { "topic": "Fechamento da soma", "pageRef": 7 },
+          { "topic": "Subtração: minuendo, subtraendo e empréstimo", "pageRef": 8 },
+          { "topic": "Propriedades que a subtração não possui", "pageRef": 9 }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a01/s02",
+      "bizu": {
+        "summary": [
+          "**Multiplicar** é somar repetidas vezes a mesma parcela: 5 x 7 = 5 somado 7 vezes. Dominar a **tabuada** é pré-requisito.",
+          "Na multiplicação armada, cada algarismo do multiplicador multiplica todos os do multiplicando, **começando pela direita**. A cada nova linha de resultado, desloca-se uma coluna para a esquerda, e as linhas são somadas no final.",
+          "**Elemento neutro** da multiplicação é o **1** (x . 1 = x). O zero não é neutro: multiplicar por 0 anula o produto.",
+          "**Elemento inverso**: o inverso multiplicativo de x é **1/x**, pois x . (1/x) = 1.",
+          "A multiplicação é **associativa** ((a.b).c = a.(b.c)) e **comutativa** (a.b = b.a), e tem **fechamento** em naturais, inteiros, racionais e reais (irracionais ficam de fora).",
+          "**Propriedade distributiva** (\"chuveirinho\"): a.(b + c) = a.b + a.c. O caminho inverso é **colocar em evidência** o fator comum: 2 + 2x = 2.(1 + x).",
+          "**Divisão** reparte em partes iguais. Termos: **dividendo (D)**, **divisor (d)**, **quociente (Q)** e **resto (R)**.",
+          "**Relação fundamental da divisão**: D = d x Q + R. Resto zero indica **divisão exata**; resto diferente de zero, divisão não exata (14563 = 18 x 809 + 1).",
+          "No algoritmo da divisão, começa-se pelo algarismo **mais à esquerda** (ao contrário da soma, da subtração e da multiplicação). Se o trecho tomado é menor que o divisor, baixa-se outro algarismo, colocando **zero no quociente** quando for necessário."
+        ],
+        "teoria": [
+          {
+            "statement": "O elemento neutro da multiplicação é o número 1, pois x multiplicado por 1 resulta em x.",
+            "isTrue": true,
+            "explanation": "x . 1 = x e 1 . x = x. O zero, ao contrário, anula o produto e por isso não é neutro."
+          },
+          {
+            "statement": "O inverso multiplicativo de um número x é o seu oposto, -x.",
+            "isTrue": false,
+            "explanation": "O inverso multiplicativo é 1/x (x . 1/x = 1). O oposto -x é o inverso aditivo."
+          },
+          {
+            "statement": "Em qualquer divisão, vale a relação dividendo = divisor x quociente + resto.",
+            "isTrue": true,
+            "explanation": "É a relação fundamental da divisão, D = d x Q + R."
+          },
+          {
+            "statement": "Quando o resto de uma divisão é diferente de zero, ela é chamada divisão exata.",
+            "isTrue": false,
+            "explanation": "A divisão é exata quando o resto é igual a zero; com resto diferente de zero, é não exata."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A igualdade a.b + a.c = a.(b + c) é a propriedade distributiva lida de trás para frente, isto é, colocar o fator a em evidência.",
+            "isTrue": true,
+            "explanation": "O \"chuveirinho\" distribui a sobre a soma; colocar em evidência faz o caminho inverso."
+          },
+          {
+            "statement": "Na conta armada de uma multiplicação, as operações começam pelo algarismo mais à esquerda, assim como na divisão.",
+            "isTrue": false,
+            "explanation": "Soma, subtração e multiplicação armadas começam pela direita; só o algoritmo da divisão começa pelo algarismo mais à esquerda."
+          },
+          {
+            "statement": "Se o dividendo é 50, o divisor é 7 e o resto é 1, então o quociente é 7.",
+            "isTrue": true,
+            "explanation": "Pela relação fundamental, 50 = 7 x Q + 1, logo 7 x Q = 49 e Q = 7."
+          },
+          {
+            "statement": "Multiplicar um número x por zero resulta no próprio x, razão pela qual o zero é elemento neutro da multiplicação.",
+            "isTrue": false,
+            "explanation": "Qualquer número multiplicado por zero dá zero. O elemento neutro da multiplicação é o 1."
+          }
+        ],
+        "pointers": [
+          { "topic": "Multiplicação como soma repetida", "pageRef": 10 },
+          { "topic": "Algoritmo da multiplicação armada", "pageRef": 11 },
+          { "topic": "Elemento neutro (1) e elemento inverso (1/x)", "pageRef": 14 },
+          { "topic": "Associativa, comutativa e fechamento", "pageRef": 15 },
+          { "topic": "Distributiva e colocar em evidência", "pageRef": 15 },
+          { "topic": "Termos e relação fundamental da divisão", "pageRef": 17 },
+          { "topic": "Algoritmo da divisão e divisão exata", "pageRef": 19 },
+          { "topic": "Zero no quociente e divisão não exata", "pageRef": 20 }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a01/s03",
+      "bizu": {
+        "summary": [
+          "**Potenciação** (ou exponenciação) é multiplicação repetida: a^n = a . a . ... . a, com n fatores. **a** é a base e **n** é o expoente; o resultado é a potência.",
+          "**Radiciação** é a operação inversa. Na raiz n-ésima de a, **n é o índice** e **a é o radicando**. Ex.: raiz(81) = 9, pois 9^2 = 81; raiz cúbica de 8 = 2, pois 2^3 = 8.",
+          "Raízes **não exatas** (raiz(2), raiz(3)) são números **irracionais**. Vale decorar os quadrados até 15^2 e as potências de 2 até 2^13 (2^10 = 1024).",
+          "Por definição, **a^0 = 1**. Além disso, 0^n = 0 e 1^n = 1 para expoente natural positivo.",
+          "**P1**: produto de potências de mesma base mantém a base e **soma** os expoentes (a^m . a^n = a^(m+n)). **P2**: quociente mantém a base e **subtrai** os expoentes (a^m / a^n = a^(m-n)).",
+          "**P3**: potência de potência **multiplica** os expoentes ((a^m)^n = a^(m.n)). **P4**: (a.b)^n = a^n . b^n. **P5**: (a/b)^n = a^n / b^n.",
+          "**Expoente negativo**: a^(-n) = 1/a^n, ou seja, **inverte-se a base**: (2/3)^(-2) = (3/2)^2 = 9/4. As propriedades continuam valendo.",
+          "**Raiz como potência**: raiz n-ésima de a^m = a^(m/n). O radicando fornece o numerador do expoente e o índice fornece o denominador.",
+          "Propriedades das raízes de mesmo índice: o **produto** das raízes é a raiz do produto; o **quociente** é a raiz do quociente; (raiz n-ésima de a)^m = raiz n-ésima de a^m; **raiz de raiz** multiplica os índices.",
+          "**Pegadinhas**: (a + b)^2 NÃO é a^2 + b^2, e raiz(a) + raiz(b) NÃO é raiz(a + b). Raízes só se somam se forem semelhantes (mesmo índice e mesmo radicando): raiz(2) + raiz(2) = 2.raiz(2).",
+          "**Racionalização**: eliminar a raiz do denominador multiplicando numerador e denominador por um mesmo fator, ou seja, a fração é multiplicada por 1 e seu valor não muda. 1/raiz(2) = raiz(2)/2. Para raiz n-ésima de a^k no denominador, multiplica-se por raiz n-ésima de a^(n-k)."
+        ],
+        "teoria": [
+          {
+            "statement": "Em a^n, a base é o fator que se repete e o expoente informa quantas vezes ele aparece na multiplicação.",
+            "isTrue": true,
+            "explanation": "a^n = a . a . ... . a com n fatores; por exemplo, 2^7 repete o 2 sete vezes."
+          },
+          {
+            "statement": "A igualdade (2 + 3)^2 = 2^2 + 3^2 é verdadeira.",
+            "isTrue": false,
+            "explanation": "(2 + 3)^2 = 25, enquanto 2^2 + 3^2 = 13. O expoente não se distribui sobre a soma."
+          },
+          {
+            "statement": "A raiz de índice n de a elevado a m pode ser escrita como a elevado a m/n.",
+            "isTrue": true,
+            "explanation": "Toda raiz é uma potência de expoente fracionário: raiz n-ésima de a^m = a^(m/n), e então valem as propriedades da potenciação."
+          },
+          {
+            "statement": "A soma raiz(2) + raiz(3) é igual a raiz(5).",
+            "isTrue": false,
+            "explanation": "raiz(2) + raiz(3) vale cerca de 3,15, enquanto raiz(5) vale cerca de 2,24. Raízes de radicandos diferentes não se somam."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O produto de duas potências de mesma base é obtido mantendo-se a base e somando-se os expoentes.",
+            "isTrue": true,
+            "explanation": "Propriedade P1: a^m . a^n = a^(m+n), por exemplo 3^4 . 3^5 = 3^9."
+          },
+          {
+            "statement": "Em uma potência de potência, mantém-se a base e somam-se os expoentes, de modo que (a^m)^n = a^(m+n).",
+            "isTrue": false,
+            "explanation": "Na potência de potência os expoentes são multiplicados: (a^m)^n = a^(m.n). A soma ocorre apenas no produto de potências de mesma base."
+          },
+          {
+            "statement": "Um expoente negativo indica o inverso da base elevada ao expoente positivo, de modo que 2^(-4) = 1/16.",
+            "isTrue": true,
+            "explanation": "a^(-n) = 1/a^n, logo 2^(-4) = 1/2^4 = 1/16."
+          },
+          {
+            "statement": "Somando-se raiz(2) com raiz(2), obtém-se 2.raiz(2), pois as duas raízes são semelhantes.",
+            "isTrue": true,
+            "explanation": "Raízes com o mesmo índice e o mesmo radicando se somam como termos iguais: raiz(2) + raiz(2) = 2.raiz(2)."
+          },
+          {
+            "statement": "Racionalizar o denominador consiste em multiplicar a fração por um número diferente de 1, de modo que o valor da fração se altere.",
+            "isTrue": false,
+            "explanation": "Multiplica-se numerador e denominador pelo mesmo fator (por exemplo, raiz(2)/raiz(2) = 1), o que gera fração equivalente e preserva o valor."
+          }
+        ],
+        "pointers": [
+          { "topic": "Potenciação: base, expoente e potência", "pageRef": 21 },
+          { "topic": "Radiciação: índice, radicando e raiz não exata", "pageRef": 22 },
+          { "topic": "Potência de expoente zero", "pageRef": 24 },
+          { "topic": "Propriedades P1, P2 e P3 da potenciação", "pageRef": 24 },
+          { "topic": "Potência de produto e de quociente", "pageRef": 25 },
+          { "topic": "Expoente negativo", "pageRef": 27 },
+          { "topic": "Raiz como potência de expoente fracionário", "pageRef": 28 },
+          { "topic": "Produto e quociente de raízes de mesmo índice", "pageRef": 29 },
+          { "topic": "Raiz de raiz e potência de raiz", "pageRef": 30 },
+          { "topic": "Erros comuns com soma de potências e raízes", "pageRef": 31 },
+          { "topic": "Racionalização de denominadores", "pageRef": 32 }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a01/s04",
+      "bizu": {
+        "summary": [
+          "**Situações-problema**: o enunciado costuma ser contextualizado; o passo central é traduzi-lo para operações ou para uma expressão (ex.: valor total = taxa fixa + preço por pessoa x número de pessoas). **Maioria absoluta** = mais da metade dos votos.",
+          "**Expressões numéricas**: resolvem-se primeiro os **parênteses ( )**, depois os **colchetes [ ]** e por fim as **chaves { }**.",
+          "Dentro de cada grupo, a prioridade é: **potências e raízes**, depois **multiplicações e divisões**, depois **adições e subtrações**. Operações de mesma prioridade são feitas da esquerda para a direita.",
+          "**Jogo de sinais** (multiplicação e divisão): sinais iguais dão resultado **positivo**; sinais diferentes dão resultado **negativo**. Logo, (-1)^2 = +1.",
+          "**Expressão algébrica** mistura números e letras. Cada parcela é um **termo algébrico**, formado por **coeficiente** (parte numérica) e **parte literal**. Um termo é **monômio**, dois termos formam um **binômio**, três um **trinômio** e mais de três um **polinômio**.",
+          "**Valor numérico**: substituem-se as letras pelos valores dados e resolve-se a expressão numérica resultante, atentando aos sinais dos números negativos elevados a expoentes.",
+          "**Termos semelhantes** têm a **mesma parte literal** e só eles podem ser somados ou subtraídos: 5x e 3x são semelhantes; x^2y e xy, ou x^3 e x^2, não são.",
+          "**Evidência**: caminho inverso da distributiva. 2ab + 5abc = ab.(2 + 5c).",
+          "**Produtos notáveis**: (x + y)^2 = x^2 + 2xy + y^2; (x - y)^2 = x^2 - 2xy + y^2; (x + y)(x - y) = x^2 - y^2; (x + y)^3 = x^3 + 3x^2y + 3xy^2 + y^3; (x - y)^3 = x^3 - 3x^2y + 3xy^2 - y^3.",
+          "**Produtos notáveis II**: (x + y + z)^2 = x^2 + y^2 + z^2 + 2.(xy + yz + xz); (x + y)(x^2 - xy + y^2) = x^3 + y^3; (x - y)(x^2 + xy + y^2) = x^3 - y^3.",
+          "**Fatoração** transforma soma em produto (evidência, agrupamento, reconhecimento de produto notável). Serve para **simplificar frações algébricas**: só se cancela fator comum a toda a expressão do numerador e do denominador."
+        ],
+        "teoria": [
+          {
+            "statement": "Em uma expressão numérica com parênteses, colchetes e chaves, resolve-se primeiro o que está entre parênteses, depois entre colchetes e por último entre chaves.",
+            "isTrue": true,
+            "explanation": "A ordem dos sinais de associação é ( ), depois [ ], depois { }."
+          },
+          {
+            "statement": "Na expressão 20 - 3 x 2 + 4, a primeira operação a ser feita é a subtração 20 - 3.",
+            "isTrue": false,
+            "explanation": "A multiplicação tem prioridade sobre adição e subtração: 3 x 2 = 6 é resolvida primeiro, e então 20 - 6 + 4 = 18."
+          },
+          {
+            "statement": "Termos algébricos semelhantes são aqueles que possuem a mesma parte literal.",
+            "isTrue": true,
+            "explanation": "Por exemplo, 5x e 3x, ou x^2y e 4x^2y. Somente termos semelhantes podem ser somados ou subtraídos."
+          },
+          {
+            "statement": "O quadrado da diferença é dado por (x - y)^2 = x^2 - y^2.",
+            "isTrue": false,
+            "explanation": "O desenvolvimento correto é (x - y)^2 = x^2 - 2xy + y^2. A expressão x^2 - y^2 corresponde ao produto da soma pela diferença."
+          },
+          {
+            "statement": "O produto (x + y)(x^2 - xy + y^2) é igual a x^3 + y^3.",
+            "isTrue": true,
+            "explanation": "É o produto notável da soma de cubos: ao multiplicar, os termos intermediários se cancelam."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O produto de dois números negativos é um número positivo.",
+            "isTrue": true,
+            "explanation": "No jogo de sinais, sinais iguais dão resultado positivo: (-1) . (-1) = +1."
+          },
+          {
+            "statement": "Os termos x^2y e xy são termos semelhantes, pois ambos possuem as letras x e y.",
+            "isTrue": false,
+            "explanation": "Para serem semelhantes, a parte literal deve ser idêntica, inclusive nos expoentes. Em x^2y e xy os expoentes de x são diferentes."
+          },
+          {
+            "statement": "Uma expressão algébrica que possui exatamente três termos é chamada de trinômio.",
+            "isTrue": true,
+            "explanation": "Um termo: monômio; dois: binômio; três: trinômio; mais de três: polinômio."
+          },
+          {
+            "statement": "O produto da soma pela diferença, (x + y)(x - y), resulta em x^2 + y^2.",
+            "isTrue": false,
+            "explanation": "O resultado correto é x^2 - y^2: os termos do meio (xy e -xy) se cancelam e o sinal de y^2 é negativo."
+          },
+          {
+            "statement": "A expressão 2ab + 5abc pode ser fatorada colocando-se ab em evidência, resultando em ab.(2 + 5c).",
+            "isTrue": true,
+            "explanation": "Colocar em evidência é o inverso da distributiva: ab.2 + ab.5c devolve 2ab + 5abc."
+          }
+        ],
+        "pointers": [
+          { "topic": "Situações-problema e maioria absoluta", "pageRef": 34 },
+          { "topic": "Ordem das operações e sinais de associação", "pageRef": 36 },
+          { "topic": "Jogo de sinais", "pageRef": 37 },
+          { "topic": "Termo algébrico e classificação em monômio, binômio etc.", "pageRef": 40 },
+          { "topic": "Valor numérico de expressão algébrica", "pageRef": 41 },
+          { "topic": "Termos semelhantes", "pageRef": 42 },
+          { "topic": "Evidência como inverso da distributiva", "pageRef": 43 },
+          { "topic": "Produtos notáveis básicos", "pageRef": 44 },
+          { "topic": "Fatoração para simplificar frações algébricas", "pageRef": 47 },
+          { "topic": "Quadrado da soma de três termos e produtos de cubos", "pageRef": 48 }
+        ]
+      }
+    }
+  ]
+}

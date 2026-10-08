@@ -1,0 +1,368 @@
+{
+  "aula": "estatistica/a05",
+  "batch": "w2-bizu-estatistica",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "estatistica/a05/s01",
+      "bizu": {
+        "summary": [
+          "**Análise combinatória** estuda técnicas de contagem em conjuntos finitos, sem precisar listar todos os casos.",
+          "**Princípio multiplicativo**: se um evento ocorre de m maneiras e, para cada uma, outro ocorre de n maneiras, ambos juntos (A **E** B) ocorrem de **m × n** maneiras. Vale para qualquer número de etapas: **p1 × p2 × ... × pn**.",
+          "**Princípio aditivo**: para eventos **mutuamente exclusivos** (se um ocorre, o outro não), o número de maneiras de ocorrer um deles (A **OU** B) é **m + n**. Resumo: **E multiplica, OU soma**. Questões mistas combinam os dois (ex.: vestido OU saia E blusa, E sapato).",
+          "**Contagem de divisores**: fatore o número em primos; se N = a^e1 · b^e2 · c^e3 ..., o número de divisores positivos é **(e1 + 1)(e2 + 1)(e3 + 1)...**. Exemplo: 60 = 2² · 3 · 5 tem 3·2·2 = 12 divisores.",
+          "**Princípio da casa dos pombos**: se n pombos devem ocupar m casas e n > m, **pelo menos uma casa** terá mais de um pombo. A garantia exige raciocinar no **pior cenário** (distribuição mais espalhada possível).",
+          "Para garantir pelo menos 2 em uma casa, são necessários m + 1 elementos; para garantir pelo menos k em alguma casa, no pior cenário há k − 1 em cada uma das m casas, e o próximo elemento garante: **m · (k − 1) + 1**. Ex.: 12 meses → 13 pessoas para 2 aniversários no mesmo mês; 4 cargos e 4 do mesmo cargo → 13 funcionários.",
+          "Pergunta sempre pelo **menor** número que garante o resultado (qualquer número maior também garante).",
+          "**Contagem de jogos** em torneio eliminatório: cada jogo elimina exatamente um participante; com N participantes e um campeão, são eliminados N − 1, logo o número de jogos é **N − 1**."
+        ],
+        "teoria": [
+          {
+            "statement": "Quando duas decisões devem ser tomadas em sequência, com m opções para a primeira e n opções para a segunda, o número de combinações possíveis é m × n.",
+            "isTrue": true,
+            "explanation": "É o princípio multiplicativo: eventos que ocorrem em conjunto (E) têm suas possibilidades multiplicadas."
+          },
+          {
+            "statement": "O princípio aditivo é aplicado a eventos que ocorrem juntos, somando-se as possibilidades de cada um.",
+            "isTrue": false,
+            "explanation": "Soma-se quando os eventos são mutuamente exclusivos (OU). Eventos que ocorrem juntos (E) têm as possibilidades multiplicadas."
+          },
+          {
+            "statement": "Se a fatoração de um número natural tem expoentes e1, e2, ..., ek, a quantidade de divisores positivos desse número é (e1 + 1) × (e2 + 1) × ... × (ek + 1).",
+            "isTrue": true,
+            "explanation": "Cada expoente pode variar de 0 até o seu valor, o que dá e + 1 possibilidades; o princípio multiplicativo une as escolhas."
+          },
+          {
+            "statement": "Em um torneio eliminatório com N participantes em que cada partida elimina um deles e há um único campeão, o número total de partidas é N/2.",
+            "isTrue": false,
+            "explanation": "Para restar um campeão, N − 1 participantes precisam ser eliminados; como cada jogo elimina um, o número de jogos é N − 1."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Com 4 casas disponíveis, 9 pombos são suficientes para garantir que alguma casa tenha ao menos 3 pombos.",
+            "isTrue": true,
+            "explanation": "No pior cenário há 2 pombos em cada casa (8 pombos); o nono obriga uma casa a ter 3."
+          },
+          {
+            "statement": "Se n pombos são colocados em m casas, com n maior que m, é possível que cada casa receba no máximo um pombo.",
+            "isTrue": false,
+            "explanation": "Pelo princípio da casa dos pombos, quando n > m pelo menos uma casa recebe mais de um pombo."
+          },
+          {
+            "statement": "Para garantir que pelo menos duas pessoas de um grupo façam aniversário no mesmo mês, basta reunir 12 pessoas.",
+            "isTrue": false,
+            "explanation": "Com 12 pessoas é possível que cada uma nasça em um mês diferente; a garantia só vem com 13."
+          },
+          {
+            "statement": "Na contagem de possibilidades, o conectivo E indica multiplicação das possibilidades e o conectivo OU, entre eventos excludentes, indica soma.",
+            "isTrue": true,
+            "explanation": "Resumo prático dos princípios multiplicativo e aditivo."
+          }
+        ],
+        "pointers": [
+          { "topic": "Objetivo da análise combinatória", "pageRef": 4 },
+          { "topic": "Princípio multiplicativo", "pageRef": 4 },
+          { "topic": "Contagem de divisores de um número", "pageRef": 8 },
+          { "topic": "Princípio aditivo e eventos mutuamente exclusivos", "pageRef": 10 },
+          { "topic": "Exemplo combinando os dois princípios", "pageRef": 11 },
+          { "topic": "Princípio da casa dos pombos", "pageRef": 13 },
+          { "topic": "Pior cenário e número mínimo para garantir", "pageRef": 14 },
+          { "topic": "Contagem de jogos (N - 1)", "pageRef": 16 }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a05/s02",
+      "bizu": {
+        "summary": [
+          "**Fatorial**: **n! = n · (n − 1) · (n − 2) · ... · 2 · 1**. Pode-se parar em qualquer fator: n! = n · (n − 1)! = n · (n − 1) · (n − 2)!, o que simplifica divisões (10!/7! = 10 · 9 · 8).",
+          "Casos especiais: **1! = 1** e **0! = 1** (convenção coerente com n! = (n + 1)!/(n + 1)).",
+          "**Cuidado com parênteses**: 6!/3! (calcula os fatoriais antes) é diferente de (6/3)! = 2!; 2 · 4! = 48, mas (2 · 4)! = 8! = 40.320; 2 + 4! = 26, mas (2 + 4)! = 720.",
+          "**Permutação simples**: ordenar n elementos **distintos**: **P_n = n!**. Serve para filas, anagramas de palavras sem letras repetidas, números com algarismos distintos.",
+          "**Restrição por posição fixa**: se p dos n elementos ficam em posições determinadas, permutam-se os demais: **(n − p)!**. Se os p elementos ocupam as posições designadas mas podem trocar entre si: **(n − p)! · p!**.",
+          "**Elementos juntos**: tratando os j elementos como um único bloco, em ordem determinada, o total é **(n − j + 1)!**; se o bloco pode ser reordenado por dentro: **(n − j + 1)! · j!**.",
+          "Exemplo de fila alternada: com 5 meninas e 4 meninos, a fila só alterna começando e terminando por menina, e resulta 5! · 4! = 2.880.",
+          "Resumo: **(i) posições designadas** → permutam-se os demais; **(ii) elementos que ficam juntos** → bloco único + permutação interna, se a ordem interna for livre."
+        ],
+        "teoria": [
+          {
+            "statement": "Por convenção, 0! vale 1, o que é coerente com a relação 0! = 1!/1.",
+            "isTrue": true,
+            "explanation": "Escrevendo n! = (n + 1)!/(n + 1), obtém-se 0! = 1!/1 = 1."
+          },
+          {
+            "statement": "O valor de 6!/3! é igual a (6/3)!, isto é, a 2.",
+            "isTrue": false,
+            "explanation": "6!/3! = 6 · 5 · 4 = 120; já (6/3)! = 2! = 2. A posição dos parênteses muda o resultado."
+          },
+          {
+            "statement": "O número de anagramas de uma palavra com n letras todas distintas é n!.",
+            "isTrue": true,
+            "explanation": "É a permutação simples de n elementos."
+          },
+          {
+            "statement": "Ao se fixar 2 de 8 elementos em posições determinadas, o número de ordenações dos demais é obtido dividindo-se 8! por 2.",
+            "isTrue": false,
+            "explanation": "Restam 6 elementos livres em 6 posições, e o total é 6! = (8 − 2)!."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Se j elementos devem ficar sempre juntos, mas podem trocar de lugar entre si, o total de ordenações de n elementos é (n − j + 1)! × j!.",
+            "isTrue": true,
+            "explanation": "Permuta-se o bloco com os demais elementos e multiplica-se pelas permutações internas do bloco."
+          },
+          {
+            "statement": "Se j elementos devem ficar juntos em uma ordem fixa, o número de ordenações de n elementos é (n − j)!.",
+            "isTrue": false,
+            "explanation": "O bloco conta como um elemento a mais: o resultado é (n − j + 1)!."
+          },
+          {
+            "statement": "O valor de 2 × 4! é 48, enquanto o valor de (2 × 4)! é 40.320.",
+            "isTrue": true,
+            "explanation": "No primeiro caso o fatorial só atinge o 4; no segundo, atinge o produto 8."
+          },
+          {
+            "statement": "O fatorial de n pode ser escrito como n × (n + 1)!.",
+            "isTrue": false,
+            "explanation": "A relação correta é n! = n × (n − 1)!."
+          }
+        ],
+        "pointers": [
+          { "topic": "Definição de fatorial e simplificação de divisões", "pageRef": 18 },
+          { "topic": "Cuidados com parênteses e operações com fatorial", "pageRef": 19 },
+          { "topic": "Casos 1! e 0!", "pageRef": 20 },
+          { "topic": "Permutação simples: raciocínio posição a posição", "pageRef": 22 },
+          { "topic": "Fórmula P_n = n! e anagramas", "pageRef": 24 },
+          { "topic": "Restrição: elementos em posições fixas", "pageRef": 25 },
+          { "topic": "Elementos em posições designadas sem fixar cada um", "pageRef": 26 },
+          { "topic": "Elementos juntos, com ou sem reordenação interna", "pageRef": 29 }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a05/s03",
+      "bizu": {
+        "summary": [
+          "**Permutação com repetição**: com n elementos totais, dos quais m1, m2, ..., mk são iguais entre si, divide-se a permutação simples pelas permutações dos repetidos: **n! / (m1! · m2! · ... · mk!)**. Ex.: CASA (2 A) → 4!/2! = 12 anagramas.",
+          "**Permutação circular**: sem posição de início, fixa-se um elemento e permutam-se os demais: **PC_n = (n − 1)!**. Rotações do círculo contam como a mesma disposição.",
+          "**Circular com restrições** (ex.: meninos e meninas alternados): resolve-se em etapas — primeiro um grupo em círculo ((n−1)!), depois o outro grupo nas posições entre eles (permutação simples). Ex.: 4 meninos e 4 meninas → 3! · 4! = 144.",
+          "**Permutação com elementos ordenados**: se k dos n elementos precisam seguir uma ordem definida (não necessariamente consecutivos), o total é **n! / k!**. Com dois grupos de ordem: **n! / (k1! · k2!)**. Se a ordem também for consecutiva, trata-se como bloco.",
+          "**Permutação caótica (desarranjo)**: nenhum elemento volta à posição original. **D_n = n! · [1/2! − 1/3! + 1/4! − ... + (−1)^n / n!]**. Valores úteis: **D_2 = 1, D_3 = 2, D_4 = 9**.",
+          "**Arranjo e combinação** selecionam k dentre n elementos: no **arranjo a ordem importa**; na **combinação não**.",
+          "**Arranjo simples (sem reposição)**: **A(n,k) = n! / (n − k)!** (n possibilidades para o 1º, n − 1 para o 2º, etc.).",
+          "**Arranjo com reposição**: **n^k**, pois cada escolha tem sempre n opções. Questões mistas (letras distintas + dígitos repetidos) multiplicam arranjos sem e com reposição: 26 · 25 · 10⁴ = 6.500.000."
+        ],
+        "teoria": [
+          {
+            "statement": "O número de anagramas da palavra CASA é 4!/2!, pois a letra A aparece duas vezes.",
+            "isTrue": true,
+            "explanation": "Na permutação com repetição divide-se n! pelo fatorial do número de vezes que cada elemento se repete."
+          },
+          {
+            "statement": "A permutação circular de n elementos é igual a n!.",
+            "isTrue": false,
+            "explanation": "Como as rotações do círculo são consideradas a mesma disposição, fixa-se um elemento e o resultado é (n − 1)!."
+          },
+          {
+            "statement": "Em um arranjo a ordem em que os elementos são selecionados é relevante, ao passo que em uma combinação não é.",
+            "isTrue": true,
+            "explanation": "Essa é a distinção central entre as duas técnicas."
+          },
+          {
+            "statement": "Se k dos n elementos devem respeitar uma ordem definida, o número de ordenações possíveis é n! multiplicado por k!.",
+            "isTrue": false,
+            "explanation": "A restrição reduz as possibilidades: divide-se n! por k!, ou seja, n!/k!."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O número de permutações caóticas de 3 elementos é 2.",
+            "isTrue": true,
+            "explanation": "D_3 = 3!·(1/2! − 1/3!) = 3 − 1 = 2."
+          },
+          {
+            "statement": "O arranjo com reposição de k elementos dentre n é dado por n!/(n − k)!.",
+            "isTrue": false,
+            "explanation": "Essa é a fórmula do arranjo SEM reposição. Com reposição, o total é n^k."
+          },
+          {
+            "statement": "Na permutação com elementos ordenados, os elementos que seguem a ordem exigida não precisam estar em posições consecutivas.",
+            "isTrue": true,
+            "explanation": "Só se exige a ordem relativa; para exigir também que fiquem consecutivos, trata-se o grupo como bloco."
+          },
+          {
+            "statement": "O número de maneiras de reorganizar 4 funcionários em 4 mesas, de modo que nenhum fique na mesa que ocupava antes, é 12.",
+            "isTrue": false,
+            "explanation": "Trata-se de desarranjo de 4 elementos: D_4 = 9."
+          },
+          {
+            "statement": "Uma senha com 2 letras distintas, escolhidas dentre 26, seguidas de 4 dígitos que podem se repetir, admite 26 × 25 × 10^4 possibilidades.",
+            "isTrue": true,
+            "explanation": "As letras formam um arranjo sem reposição (26 × 25) e os dígitos, um arranjo com reposição (10 × 10 × 10 × 10)."
+          }
+        ],
+        "pointers": [
+          { "topic": "Permutação com repetição", "pageRef": 32 },
+          { "topic": "Fórmula geral e exemplo CASA/GEÓLOGO", "pageRef": 33 },
+          { "topic": "Permutação circular: (n-1)!", "pageRef": 36 },
+          { "topic": "Permutação circular com restrições", "pageRef": 36 },
+          { "topic": "Permutação com elementos ordenados: n!/k!", "pageRef": 40 },
+          { "topic": "Permutação caótica (desarranjo): fórmula", "pageRef": 43 },
+          { "topic": "Arranjo simples: A(n,k)", "pageRef": 47 },
+          { "topic": "Arranjo com reposição", "pageRef": 47 }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a05/s04",
+      "bizu": {
+        "summary": [
+          "**Combinação simples**: escolhe-se k dentre n elementos **sem importar a ordem**. **C(n,k) = n! / [(n − k)! · k!] = A(n,k) / P_k**. Notações: C(n,k), C_n^k ou o binomial n sobre k.",
+          "**Combinação x arranjo**: cada combinação corresponde a k! arranjos (mudanças de ordem). Use combinação para comissões, grupos, times, duplas; use arranjo quando as posições/cargos são distintos.",
+          "**\"Pelo menos um\"**: calcule o total sem restrição e **subtraia** os casos que não atendem (ex.: grupos de 3 entre 5 mulheres e 4 homens com pelo menos 1 mulher = C(9,3) − C(4,3) = 80).",
+          "**Casos particulares**: C(n,n) = 1; C(n,0) = 1; C(n,1) = n; C(n,n−1) = n; **C(n,k) = C(n,n−k)** (escolher k é o mesmo que escolher quem fica de fora).",
+          "**Teorema das linhas**: **C(n,0) + C(n,1) + ... + C(n,n) = 2^n**. Útil em questões como \"cada caixa recebe pelo menos uma pasta\" (2^10 − 2 = 1022).",
+          "**Triângulo de Pascal**: linhas n e colunas k a partir de 0. **Relação de Stifel**: C(n,k) + C(n,k+1) = C(n+1,k+1). **Teorema das colunas**: C(k,k) + C(k+1,k) + ... + C(k+n,k) = C(k+n+1,k+1).",
+          "**Combinação completa (com repetição)**: escolher p objetos, iguais ou não, dentre n tipos: **CR(n,p) = C(n − 1 + p, p) = (n − 1 + p)! / [(n − 1)! · p!]**. Raciocínio: permutar p objetos e n − 1 divisórias.",
+          "**Soluções inteiras não negativas** de x1 + x2 + ... + xn = p: são **CR(n,p)**. Se as incógnitas devem ser positivas, distribui-se 1 unidade a cada uma antes (sobram p − n) e aplica-se CR(n, p − n). Restringir a inteiros não negativos é o que torna o total finito."
+        ],
+        "teoria": [
+          {
+            "statement": "A combinação simples de k elementos dentre n é igual ao arranjo de k dentre n dividido pela permutação de k elementos.",
+            "isTrue": true,
+            "explanation": "C(n,k) = A(n,k)/k!, pois as k! reordenações dos mesmos elementos formam a mesma combinação."
+          },
+          {
+            "statement": "A combinação de k elementos dentre n e a combinação de n − k elementos dentre n são, em geral, valores diferentes.",
+            "isTrue": false,
+            "explanation": "C(n,k) = C(n,n−k): escolher quem entra equivale a escolher quem fica de fora."
+          },
+          {
+            "statement": "A soma das combinações de n elementos tomados 0 a 0, 1 a 1, ..., n a n é igual a 2^n.",
+            "isTrue": true,
+            "explanation": "É o teorema das linhas do triângulo de Pascal."
+          },
+          {
+            "statement": "O número de soluções inteiras não negativas da equação x1 + x2 + x3 = 5 é C(5,3).",
+            "isTrue": false,
+            "explanation": "São CR(3,5) = C(3 − 1 + 5, 5) = C(7,5) = 21; C(5,3) é 10."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Escolher um único elemento dentre n possíveis pode ser feito de n maneiras, ou seja, C(n,1) = n.",
+            "isTrue": true,
+            "explanation": "É um dos casos particulares da combinação."
+          },
+          {
+            "statement": "A combinação C(n,0) vale zero, pois não há como escolher nenhum elemento.",
+            "isTrue": false,
+            "explanation": "Há uma única forma de não escolher nada: C(n,0) = 1."
+          },
+          {
+            "statement": "Em problemas com a expressão \"pelo menos um\", pode-se calcular o total de possibilidades sem restrição e subtrair as possibilidades em que nenhum elemento desejado é escolhido.",
+            "isTrue": true,
+            "explanation": "É o método do complementar, que evita somar várias combinações."
+          },
+          {
+            "statement": "Pela relação de Stifel, C(n,k) + C(n,k+1) é igual a C(n+1,k).",
+            "isTrue": false,
+            "explanation": "A relação de Stifel dá C(n,k) + C(n,k+1) = C(n+1,k+1)."
+          },
+          {
+            "statement": "A combinação completa de p objetos dentre n tipos pode ser calculada como C(n − 1 + p, p).",
+            "isTrue": true,
+            "explanation": "Equivale à permutação de p objetos e n − 1 divisórias."
+          }
+        ],
+        "pointers": [
+          { "topic": "Combinação simples: definição e fórmula", "pageRef": 49 },
+          { "topic": "Combinação x arranjo (divisão por P_k)", "pageRef": 50 },
+          { "topic": "Restrição \"pelo menos um\" pelo complementar", "pageRef": 51 },
+          { "topic": "Casos particulares C(n,n), C(n,0), C(n,1), C(n,n-1)", "pageRef": 52 },
+          { "topic": "C(n,k) = C(n,n-k) e soma das combinações = 2^n", "pageRef": 53 },
+          { "topic": "Triângulo de Pascal, Stifel e teorema das colunas", "pageRef": 55 },
+          { "topic": "Combinação completa: fórmula", "pageRef": 59 },
+          { "topic": "Número de soluções inteiras de equações", "pageRef": 62 }
+        ]
+      }
+    },
+    {
+      "id": "estatistica/a05/s05",
+      "bizu": {
+        "summary": [
+          "**Partição**: divisão de um conjunto em subconjuntos cuja soma de elementos dá o total do conjunto (como fatias de uma pizza). Nos grupos, a ordem dos elementos **dentro** do subconjunto não importa.",
+          "**Partição ordenada** (grupos **distintos**, ex.: gerente, coordenadores, trabalhadores): **n! / (p1! · p2! · ... · pm!)**. Resolve-se também por combinações sucessivas (C(10,1) · C(9,2) · C(7,7) = 360).",
+          "**Partição não ordenada** (grupos **equivalentes**, mesma tarefa): divide-se o resultado ordenado pelo número de maneiras de permutar os grupos. Para m grupos de p elementos: **(m·p)! / [m! · (p!)^m]**. Ex.: 6 pessoas em 3 duplas → 90/6 = 15; 10 pessoas em 2 grupos de 5 → 126.",
+          "**Lemas de Kaplansky**: contam subconjuntos de p elementos, escolhidos dentre n dispostos em ordem, **sem elementos vizinhos**.",
+          "**1º lema** (fila: os extremos NÃO são vizinhos): **f(n,p) = C(n − p + 1, p)**. Raciocínio: n − p elementos não escolhidos criam n − p + 1 espaços onde colocar os p escolhidos. Ex.: 3 dias não consecutivos de segunda a sábado → C(4,3) = 4.",
+          "**2º lema** (círculo: os extremos SÃO vizinhos, como meses do ano ou fatias de pizza): **g(n,p) = [n / (n − p)] · C(n − p, p)**. Ex.: 3 fatias não vizinhas em 8 → (8/5) · C(5,3) = 16.",
+          "Origem do 2º lema: separa-se o caso em que um elemento (o 1) é escolhido — restam n − 3 elementos em fila — e o caso em que não é — restam n − 1 em fila — e soma-se com o 1º lema.",
+          "Casos com p = 0 ou p = 1 dispensam o lema (C(n,0) = 1 e C(n,1) = n); para combinações com várias quantidades, use o princípio aditivo sobre cada p."
+        ],
+        "teoria": [
+          {
+            "statement": "Na partição ordenada de n elementos em subconjuntos de tamanhos p1, p2, ..., pm, o número de possibilidades é n!/(p1!·p2!·...·pm!).",
+            "isTrue": true,
+            "explanation": "Os grupos são distintos entre si; dentro de cada um, a ordem não importa."
+          },
+          {
+            "statement": "Na partição não ordenada em grupos equivalentes, não é necessário dividir o resultado da partição ordenada por m!.",
+            "isTrue": false,
+            "explanation": "Como trocar a ordem dos grupos equivalentes não gera nova partição, divide-se por m! (permutação dos m grupos)."
+          },
+          {
+            "statement": "O 1º lema de Kaplansky, f(n,p) = C(n − p + 1, p), vale para elementos dispostos em fila, em que os extremos não são considerados vizinhos.",
+            "isTrue": true,
+            "explanation": "O 2º lema é o usado quando os extremos são vizinhos (disposição circular)."
+          },
+          {
+            "statement": "O 2º lema de Kaplansky deve ser usado quando o primeiro e o último elemento do conjunto não são considerados vizinhos.",
+            "isTrue": false,
+            "explanation": "O 2º lema trata o conjunto como um círculo: o primeiro e o último elemento são vizinhos."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O número de maneiras de dividir 6 pessoas em 3 duplas equivalentes é 15.",
+            "isTrue": true,
+            "explanation": "6!/(2!·2!·2!) = 90 na versão ordenada; dividindo por 3! = 6, obtém-se 15."
+          },
+          {
+            "statement": "O número de modos de dividir 10 pessoas em dois grupos equivalentes de 5 pessoas é C(10,5) = 252.",
+            "isTrue": false,
+            "explanation": "Como os grupos são equivalentes, divide-se por 2!: 252/2 = 126."
+          },
+          {
+            "statement": "O 2º lema de Kaplansky é dado por g(n,p) = [n/(n − p)] · C(n − p, p).",
+            "isTrue": true,
+            "explanation": "Para n = 8 e p = 3, g(8,3) = (8/5) × 10 = 16."
+          },
+          {
+            "statement": "Para escolher 3 dias não consecutivos de segunda a sábado, o número de possibilidades é C(6,3) = 20.",
+            "isTrue": false,
+            "explanation": "Os dias estão em fila (extremos não vizinhos); aplica-se f(6,3) = C(6 − 3 + 1, 3) = C(4,3) = 4."
+          },
+          {
+            "statement": "Dentro de cada subconjunto de uma partição, a ordem dos elementos não é relevante.",
+            "isTrue": true,
+            "explanation": "Na partição ordenada a ordem que importa é a dos subconjuntos, e não a dos elementos dentro de cada um."
+          }
+        ],
+        "pointers": [
+          { "topic": "Conceito de partição e diferença para combinação", "pageRef": 65 },
+          { "topic": "Partição ordenada: fórmula e dedução", "pageRef": 66 },
+          { "topic": "Questões com partição ordenada", "pageRef": 68 },
+          { "topic": "Partição não ordenada e divisão por m!", "pageRef": 69 },
+          { "topic": "Fórmula (m·p)!/(m!(p!)^m)", "pageRef": 70 },
+          { "topic": "Primeiro lema de Kaplansky", "pageRef": 72 },
+          { "topic": "Exemplo das lâmpadas e dos dias de trabalho", "pageRef": 74 },
+          { "topic": "Segundo lema de Kaplansky", "pageRef": 75 }
+        ]
+      }
+    }
+  ]
+}

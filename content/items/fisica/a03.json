@@ -1,0 +1,215 @@
+{
+  "aula": "fisica/a03",
+  "batch": "w2-bizu-fisica",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "fisica/a03/s01",
+      "bizu": {
+        "summary": [
+          "**Movimento vertical no vácuo (MVV)**: a única aceleração é a da gravidade g, constante perto da superfície. Logo, **todo MVV é um MRUV**, e valem as equações do MRUV (V = V0 + a·t; S = S0 + V0·t + a·t²/2; Torricelli). No vácuo todos os corpos caem com a mesma aceleração, **independentemente da massa** (elefante e gato chegam juntos).",
+          "**Queda livre**: movimento vertical no vácuo com **velocidade inicial nula** (V0 = 0) e altura inicial diferente de zero. Dicas de enunciado: \"abandona-se\", \"larga-se\", \"solta-se\". É movimento **acelerado** (|V| cresce).",
+          "**Queda livre — fórmulas**: tempo de queda **t = √(2H/g)** e velocidade ao chegar ao solo **V = √(2·g·H)**. Ambos dependem só da altura H e de g (não da massa). Para as demais perguntas, raciocinar e aplicar as equações do MRUV.",
+          "**Lançamento vertical para cima**: V0 ≠ 0, pode partir do solo ou de certa altura. É **retardado na subida** (V e g em sentidos opostos) e **acelerado na descida**.",
+          "No **topo** da trajetória a velocidade é nula, mas a aceleração continua sendo g (não é nula). **Tempo de subida: t_sub = V0/g**. **Altura máxima (Torricelli com V final nula): H_máx = V0²/(2g)**.",
+          "**Simetria**: tempo de descida = tempo de subida (até o nível de partida); em um mesmo nível a velocidade tem o mesmo módulo na subida e na descida, com sentidos opostos; trechos simétricos percorrem a mesma distância (o último segundo da subida equivale ao primeiro segundo da queda; com g = 10 m/s², 5 m).",
+          "**Lançamento vertical para baixo**: acelerado, V0 ≠ 0, lançado de certa altura. É raro em prova e não tem fórmula pronta: use as equações do MRUV com os sinais adequados."
+        ],
+        "teoria": [
+          {
+            "statement": "Todo movimento vertical no vácuo, nas proximidades da superfície terrestre, é um movimento retilíneo uniformemente variado.",
+            "isTrue": true,
+            "explanation": "A trajetória é vertical (reta) e a única aceleração é a gravidade, constante; portanto valem as equações do MRUV."
+          },
+          {
+            "statement": "Na queda livre, o corpo é lançado com velocidade inicial diferente de zero.",
+            "isTrue": false,
+            "explanation": "Queda livre exige velocidade inicial nula (corpo abandonado, largado ou solto) e altura inicial diferente de zero."
+          },
+          {
+            "statement": "No vácuo, o tempo de queda livre de uma mesma altura é o mesmo para corpos de massas diferentes.",
+            "isTrue": true,
+            "explanation": "A aceleração é g para todos os corpos, de modo que as variáveis cinemáticas da queda não dependem da massa."
+          },
+          {
+            "statement": "No ponto mais alto de um lançamento vertical para cima, tanto a velocidade quanto a aceleração do corpo são nulas.",
+            "isTrue": false,
+            "explanation": "Nesse ponto a velocidade se anula momentaneamente, mas a aceleração permanece igual a g, voltada para baixo."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O tempo de queda livre a partir de uma altura H é dado por raiz quadrada de (2H/g).",
+            "isTrue": true,
+            "explanation": "De H = g·t²/2 com V0 = 0, resulta t = √(2H/g)."
+          },
+          {
+            "statement": "No lançamento vertical para cima com velocidade inicial V0, a altura máxima atingida é V0²/g.",
+            "isTrue": false,
+            "explanation": "Pela equação de Torricelli (0 = V0² − 2·g·H), a altura máxima é V0²/(2g)."
+          },
+          {
+            "statement": "No lançamento vertical para baixo, o movimento é retardado, pois a velocidade inicial é diferente de zero.",
+            "isTrue": false,
+            "explanation": "A velocidade e a gravidade têm o mesmo sentido (para baixo), logo o movimento é acelerado."
+          },
+          {
+            "statement": "Em um lançamento vertical para cima, o tempo de descida até o nível de lançamento é igual ao tempo de subida.",
+            "isTrue": true,
+            "explanation": "Existe simetria entre subida e descida; por isso trechos equivalentes têm tempos e distâncias iguais."
+          },
+          {
+            "statement": "No lançamento vertical para cima, o movimento é retardado durante a subida e acelerado durante a descida.",
+            "isTrue": true,
+            "explanation": "Na subida velocidade e aceleração têm sentidos contrários; na descida a velocidade inverte e passa a ter o mesmo sentido da aceleração."
+          }
+        ],
+        "pointers": [
+          { "topic": "Todo movimento vertical no vácuo é MRUV", "pageRef": 4 },
+          { "topic": "Queda livre: V0 = 0 e independência da massa", "pageRef": 5 },
+          { "topic": "Tempo de queda e velocidade final na queda livre", "pageRef": 6 },
+          { "topic": "Lançamento vertical para cima: particularidades e classificação", "pageRef": 8 },
+          { "topic": "Tempo de subida e simetria subida-descida", "pageRef": 9 },
+          { "topic": "Distâncias em trechos simétricos (último segundo de subida)", "pageRef": 11 },
+          { "topic": "Altura máxima pela equação de Torricelli", "pageRef": 12 },
+          { "topic": "Lançamento vertical para baixo", "pageRef": 13 }
+        ]
+      }
+    },
+    {
+      "id": "fisica/a03/s02",
+      "bizu": {
+        "summary": [
+          "**Lançamento horizontal no vácuo**: a velocidade inicial é exclusivamente **horizontal** e o corpo deve ser lançado de certa altura inicial. É um **movimento composto**: na horizontal, **MU** (a velocidade V0 se conserva, pois não há aceleração nessa direção); na vertical, **queda livre** (MRUV acelerado com a = g e velocidade vertical inicial nula).",
+          "A velocidade **vertical é variável (cresce)**; a horizontal é constante. A trajetória em relação ao solo é uma **parábola** (y proporcional a x²).",
+          "**Princípio de Galileu (independência dos movimentos)**: nos movimentos compostos, o tempo não depende do movimento de arrastamento. Assim, o **tempo de queda é o mesmo** que o de um corpo abandonado da mesma altura: **t_queda = √(2h/g)**, independente de V0. Lápis lançado horizontalmente e borracha solta da mesa chegam ao solo juntos.",
+          "**Alcance horizontal D** = distância horizontal percorrida durante o tempo de queda: **D = V0·t_queda = V0·√(2h/g)**. Depende da altura inicial, da velocidade inicial e de g (não da massa).",
+          "Aplicação: com a altura do barranco e o ponto onde o veículo caiu, estima-se a velocidade de lançamento (ex.: h = 5 m e D = 25 m com g = 10 m/s² dão V0 = 25 m/s = 90 km/h, acima dos 80 km/h da via). Lembrar de converter m/s em km/h multiplicando por 3,6.",
+          "Em resumo: queda livre \"arrastada\" por uma velocidade horizontal constante V0."
+        ],
+        "teoria": [
+          {
+            "statement": "No lançamento horizontal no vácuo, a componente horizontal da velocidade do corpo permanece constante durante todo o movimento.",
+            "isTrue": true,
+            "explanation": "A única aceleração é a da gravidade, vertical; na horizontal o movimento é uniforme com velocidade igual a V0."
+          },
+          {
+            "statement": "Um corpo lançado horizontalmente de uma mesa leva mais tempo para chegar ao solo do que outro corpo abandonado da mesma altura.",
+            "isTrue": false,
+            "explanation": "Pelo princípio de Galileu os movimentos são independentes: o tempo de queda depende só da altura e de g, então os dois chegam juntos."
+          },
+          {
+            "statement": "A trajetória descrita por um corpo em lançamento horizontal no vácuo, vista por um observador no solo, é um arco de parábola.",
+            "isTrue": true,
+            "explanation": "A composição de MU na horizontal com movimento uniformemente variado na vertical gera uma parábola."
+          },
+          {
+            "statement": "Se a velocidade horizontal de lançamento for dobrada, mantendo-se a mesma altura, o tempo de queda também dobra.",
+            "isTrue": false,
+            "explanation": "O tempo de queda depende apenas da altura e da gravidade; dobrar V0 dobra o alcance, mas não altera o tempo."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A componente vertical do movimento em um lançamento horizontal no vácuo comporta-se como uma queda livre.",
+            "isTrue": true,
+            "explanation": "A velocidade vertical inicial é nula e a aceleração é g, que é exatamente a situação da queda livre."
+          },
+          {
+            "statement": "No lançamento horizontal, a componente vertical da velocidade é constante, porque só existe gravidade atuando.",
+            "isTrue": false,
+            "explanation": "A gravidade é a causa de uma aceleração vertical; por isso a componente vertical da velocidade aumenta com o tempo."
+          },
+          {
+            "statement": "O alcance horizontal no lançamento horizontal depende da altura inicial, da velocidade inicial e da aceleração da gravidade, mas não da massa do corpo.",
+            "isTrue": true,
+            "explanation": "D = V0·√(2h/g): a massa não aparece na expressão."
+          },
+          {
+            "statement": "Mantida a mesma altura de lançamento, aumentar a velocidade horizontal inicial diminui o alcance.",
+            "isTrue": false,
+            "explanation": "O tempo de queda é fixo, e o alcance D = V0·t cresce proporcionalmente a V0."
+          }
+        ],
+        "pointers": [
+          { "topic": "Definição e condições do lançamento horizontal", "pageRef": 14 },
+          { "topic": "Horizontal uniforme e vertical uniformemente variado", "pageRef": 15 },
+          { "topic": "Queda livre arrastada pela velocidade horizontal", "pageRef": 16 },
+          { "topic": "Trajetória parabólica (relação entre y e x)", "pageRef": 17 },
+          { "topic": "Tempo de queda e princípio de Galileu", "pageRef": 18 },
+          { "topic": "Alcance horizontal D = V0·t_queda", "pageRef": 20 }
+        ]
+      }
+    },
+    {
+      "id": "fisica/a03/s03",
+      "bizu": {
+        "summary": [
+          "**Lançamento oblíquo**: a velocidade inicial V0 forma um ângulo θ com a horizontal. É a composição de **MU na horizontal** (velocidade Vx constante, sem aceleração) com **lançamento vertical para cima na vertical** (MRUV com a = −g). Os movimentos são independentes (Galileu).",
+          "**Decomposição da velocidade inicial**: **V0x = V0·cos θ** e **V0y = V0·sen θ**. Na altura máxima a componente **vertical** é nula, mas a horizontal continua valendo V0x; portanto a velocidade total no topo não é nula.",
+          "**Tempo de subida**: t_sub = V0·sen θ / g (usa V = V0y − g·t com V = 0). Tempo de descida = tempo de subida (simetria; em pontos de mesma altura a velocidade tem o mesmo módulo, com sentidos opostos). **Tempo total: t_total = 2·V0·sen θ / g**.",
+          "**Altura máxima** (Torricelli na vertical): **H_máx = (V0·sen θ)² / (2g) = V0²·sen²θ / (2g)**. Depende de V0, de θ e de g.",
+          "**Alcance horizontal**: A = Vx·t_total (movimento uniforme na horizontal), o que leva a **A = V0²·sen(2θ) / g**, usando a identidade sen(2θ) = 2·sen θ·cos θ.",
+          "**Alcance máximo** (mesmos V0 e g): ocorre quando sen(2θ) = 1, ou seja, **θ = 45°**, e vale A_máx = V0²/g.",
+          "**Ângulos complementares** (soma 90°, ex.: 30° e 60°) produzem o **mesmo alcance**; o alcance é simétrico em torno de 45°.",
+          "Aplicações do dia a dia: tiro de meta no futebol, balística, jato de mangueira (para o maior alcance, incline a 45°)."
+        ],
+        "teoria": [
+          {
+            "statement": "No lançamento oblíquo no vácuo, o movimento horizontal é uniforme e o movimento vertical é uniformemente variado.",
+            "isTrue": true,
+            "explanation": "Só existe a aceleração da gravidade, vertical; na horizontal a velocidade é constante."
+          },
+          {
+            "statement": "No ponto mais alto da trajetória de um lançamento oblíquo, a velocidade do corpo é nula.",
+            "isTrue": false,
+            "explanation": "Só a componente vertical se anula; a componente horizontal permanece constante e diferente de zero (se θ < 90°)."
+          },
+          {
+            "statement": "As componentes da velocidade inicial em um lançamento oblíquo são V0x = V0·cos θ e V0y = V0·sen θ, com θ medido em relação à horizontal.",
+            "isTrue": true,
+            "explanation": "A decomposição usa o cosseno para a componente adjacente ao ângulo (horizontal) e o seno para a oposta (vertical)."
+          },
+          {
+            "statement": "Para uma mesma velocidade inicial, quanto maior o ângulo de lançamento (até 90°), maior será o alcance horizontal.",
+            "isTrue": false,
+            "explanation": "O alcance é proporcional a sen(2θ), que cresce até 45° e depois diminui; em 90° o alcance é nulo."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Para uma velocidade inicial fixa e no vácuo, o alcance horizontal máximo é obtido com ângulo de lançamento de 45°.",
+            "isTrue": true,
+            "explanation": "A = V0²·sen(2θ)/g é máximo quando sen(2θ) = 1, isto é, θ = 45°."
+          },
+          {
+            "statement": "Lançamentos com a mesma velocidade inicial e ângulos de 30° e 50° atingem o mesmo alcance horizontal.",
+            "isTrue": false,
+            "explanation": "Alcances iguais ocorrem para ângulos complementares (soma 90°), como 30° e 60°. A soma 30° + 50° = 80°."
+          },
+          {
+            "statement": "No lançamento oblíquo no vácuo, a altura máxima alcançada depende de V0, de g e do ângulo θ de lançamento.",
+            "isTrue": true,
+            "explanation": "H_máx = V0²·sen²θ/(2g)."
+          },
+          {
+            "statement": "O tempo total de voo de um lançamento oblíquo, do solo ao solo, é igual a duas vezes o tempo de subida, ou seja, 2·V0·sen θ / g.",
+            "isTrue": true,
+            "explanation": "Tempos de subida e de descida são iguais por simetria, e t_sub = V0·sen θ / g."
+          }
+        ],
+        "pointers": [
+          { "topic": "Lançamento oblíquo: horizontal uniforme e vertical como lançamento para cima", "pageRef": 22 },
+          { "topic": "Velocidade vertical nula no topo; independência dos movimentos", "pageRef": 23 },
+          { "topic": "Decomposição de V0 (cos θ e sen θ)", "pageRef": 24 },
+          { "topic": "Tempo de subida, de descida e total", "pageRef": 26 },
+          { "topic": "Altura máxima", "pageRef": 27 },
+          { "topic": "Alcance horizontal e fórmula com sen(2θ)", "pageRef": 29 },
+          { "topic": "Alcance máximo em 45°", "pageRef": 31 },
+          { "topic": "Ângulos complementares com alcances iguais", "pageRef": 32 }
+        ]
+      }
+    }
+  ]
+}

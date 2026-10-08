@@ -1,0 +1,307 @@
+{
+  "aula": "matematica/a06",
+  "batch": "w2-bizu-matematica",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "matematica/a06/s01",
+      "bizu": {
+        "summary": [
+          "Os cinco **elementos de uma operação de juros** são: **Capital (C)**, **Juros (J)**, **Taxa de juros (i)**, **Tempo (t)** e **Montante (M)**.",
+          "**Capital** é o valor inicial (\"data zero\") da operação, aplicado em um investimento ou tomado em um financiamento. Também aparece como valor atual, principal, valor presente ou montante inicial.",
+          "**Juros** são a remuneração pelo uso do capital em um intervalo de tempo: ganho em um investimento e custo em um financiamento. Matematicamente, **J = M - C**.",
+          "**Taxa de juros** é um coeficiente que fixa o valor do capital por unidade de tempo (diária, mensal, semestral, anual...). É a razão entre os juros e o capital de um período.",
+          "Nas fórmulas, a taxa entra sempre na **forma unitária**: 7,5% ao mês corresponde a 7,5/100 = 0,075. Taxa e tempo devem estar na mesma unidade de tempo (prazo de 6 meses exige taxa mensal).",
+          "**Tempo** é o número de períodos em que a operação se desdobra.",
+          "**Montante** é o valor final da operação: **M = C + J**. Também chamado valor futuro, valor final ou montante final.",
+          "Pegadinha clássica: a quantia total obtida ao final da aplicação é o **montante**, e não os juros. Os juros são só a diferença entre o montante e o capital."
+        ],
+        "teoria": [
+          {
+            "statement": "Em matemática financeira, os juros de uma operação são calculados pela diferença entre o montante e o capital inicial.",
+            "isTrue": true,
+            "explanation": "J = M - C. O montante é o capital mais os juros."
+          },
+          {
+            "statement": "Os juros correspondem à quantia total recebida ao final da aplicação, isto é, o capital somado à remuneração.",
+            "isTrue": false,
+            "explanation": "A quantia total ao final é o montante. Juros são apenas a remuneração, a diferença entre o montante e o capital."
+          },
+          {
+            "statement": "O capital é o valor existente na data zero da operação, ou seja, o valor inicial aplicado ou financiado.",
+            "isTrue": true,
+            "explanation": "Pode ser o dinheiro investido ou o valor do empréstimo tomado, e também é chamado de principal ou valor presente."
+          },
+          {
+            "statement": "Uma taxa de 7,5% ao mês deve ser inserida nas fórmulas de matemática financeira como 7,5.",
+            "isTrue": false,
+            "explanation": "A taxa entra na forma unitária: 7,5/100 = 0,075."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "As expressões valor futuro, valor final e montante final são usadas como sinônimos de montante.",
+            "isTrue": true,
+            "explanation": "O montante é o valor final resultante da operação financeira."
+          },
+          {
+            "statement": "O capital inicial também pode ser chamado de valor futuro da operação.",
+            "isTrue": false,
+            "explanation": "O capital inicial corresponde ao valor atual (presente, principal). O valor futuro é o montante."
+          },
+          {
+            "statement": "O montante é igual à soma do capital inicial com os juros da operação.",
+            "isTrue": true,
+            "explanation": "M = C + J: o valor inicial aplicado mais os juros recebidos."
+          },
+          {
+            "statement": "Em um financiamento, os juros representam o valor que o tomador do empréstimo recebe do banco.",
+            "isTrue": false,
+            "explanation": "No financiamento, os juros são o quanto se paga pelo capital emprestado; no investimento, são o quanto se ganha."
+          },
+          {
+            "statement": "Cada taxa de juros está associada a um período de tempo, e deve ser compatível com o prazo da operação.",
+            "isTrue": true,
+            "explanation": "A taxa é definida por unidade de tempo (dia, mês, ano) e precisa estar na mesma unidade do tempo usado no cálculo."
+          }
+        ],
+        "pointers": [
+          { "topic": "Capital como valor inicial", "pageRef": 3 },
+          { "topic": "Juros como remuneração e J = M - C", "pageRef": 4 },
+          { "topic": "Taxa de juros e forma unitária", "pageRef": 4 },
+          { "topic": "Tempo na matemática financeira", "pageRef": 4 },
+          { "topic": "Montante como valor final", "pageRef": 5 },
+          { "topic": "Taxa deve concordar com o prazo", "pageRef": 7 }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a06/s02",
+      "bizu": {
+        "summary": [
+          "**Regime de capitalização** é o modelo que descreve o crescimento do capital ao longo do tempo. Pode ser **simples** ou **composto**.",
+          "**Capitalização simples**: os juros de cada período são **iguais**, pois são sempre calculados sobre o **capital inicial**. Não há capitalização dos juros (eles não são incorporados ao capital).",
+          "Em juros simples, os montantes formam uma **progressão aritmética crescente** cuja razão é o valor dos juros; o gráfico do montante é uma **reta** (função do 1º grau), isto é, crescimento linear.",
+          "**Capitalização composta**: os rendimentos de cada período são **incorporados ao capital** (capitalizados); assim, os juros seguintes incidem sobre o capital inicial **e também sobre os juros anteriores**. Os juros crescem a cada período.",
+          "Em juros compostos, os montantes formam uma **progressão geométrica crescente** de razão **(1 + i)**; o gráfico do montante é uma **função exponencial**.",
+          "**Comparação (mesmo capital, mesma taxa)**: para t **menor que 1** período, o montante e os juros simples são **maiores** que os compostos; para **t = 1**, são **iguais**; para t **maior que 1**, os **compostos são maiores**. Os gráficos se cruzam em t = 1.",
+          "A unidade de tempo da comparação é a **unidade da taxa**: com taxa mensal, o ponto de virada é 1 mês; com taxa anual, é 1 ano. Resgate após 20 dias com taxa mensal significa t < 1, e o regime simples rende mais.",
+          "Quadro-resumo cobrado em prova: capitalização dos juros ocorre só no regime composto; no simples, os juros de todos os períodos são idênticos."
+        ],
+        "teoria": [
+          {
+            "statement": "No regime de juros simples, os juros de todos os períodos são iguais, pois incidem sempre sobre o capital inicial.",
+            "isTrue": true,
+            "explanation": "Como os juros não são incorporados ao capital, a base de cálculo não muda."
+          },
+          {
+            "statement": "No regime de juros compostos, os juros de cada período são calculados apenas sobre o capital inicial.",
+            "isTrue": false,
+            "explanation": "Essa é a característica dos juros simples. Nos compostos, os juros anteriores são incorporados ao capital e também rendem juros."
+          },
+          {
+            "statement": "Duas aplicações de mesmo capital e mesma taxa, uma em juros simples e outra em compostos, geram o mesmo montante quando o prazo é de uma unidade de tempo da taxa.",
+            "isTrue": true,
+            "explanation": "Para t = 1, os dois regimes coincidem (1 + i x 1 = (1 + i)^1)."
+          },
+          {
+            "statement": "Para prazos menores que uma unidade de tempo da taxa, os juros compostos superam os juros simples.",
+            "isTrue": false,
+            "explanation": "Para t menor que 1, o regime simples produz juros e montante maiores; a superioridade composta só vem com t maior que 1."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Em juros compostos, a sequência dos montantes de cada período forma uma progressão geométrica de razão 1 + i.",
+            "isTrue": true,
+            "explanation": "O montante de cada período é o do anterior multiplicado por (1 + i); por isso o gráfico é exponencial."
+          },
+          {
+            "statement": "Em juros simples, o gráfico do montante em função do tempo é uma curva exponencial.",
+            "isTrue": false,
+            "explanation": "No regime simples o montante cresce linearmente (progressão aritmética), e o gráfico é uma reta."
+          },
+          {
+            "statement": "A capitalização dos juros é uma característica exclusiva do regime composto.",
+            "isTrue": true,
+            "explanation": "No regime simples, os juros não são incorporados ao capital para o cálculo dos juros do período seguinte."
+          },
+          {
+            "statement": "Em um resgate feito 20 dias após uma aplicação à taxa de 2,25% ao mês, o regime composto proporcionaria montante maior que o simples.",
+            "isTrue": false,
+            "explanation": "A unidade de tempo é o mês; 20 dias é menos de 1 mês, situação em que o regime simples rende mais."
+          },
+          {
+            "statement": "Para prazos maiores que uma unidade de tempo da taxa, o regime composto gera juros maiores que o regime simples.",
+            "isTrue": true,
+            "explanation": "Com t maior que 1, a curva exponencial fica acima da reta."
+          }
+        ],
+        "pointers": [
+          { "topic": "Regime simples: juros iguais em todos os períodos", "pageRef": 9 },
+          { "topic": "Simples como PA e reta", "pageRef": 10 },
+          { "topic": "Regime composto: capitalização dos juros", "pageRef": 10 },
+          { "topic": "Composto como PG e função exponencial", "pageRef": 11 },
+          { "topic": "Gráfico comparativo e ponto t = 1", "pageRef": 13 },
+          { "topic": "Quadro das três hipóteses (t menor, igual ou maior que 1)", "pageRef": 14 },
+          { "topic": "Capitalização ocorre só no regime composto", "pageRef": 17 },
+          { "topic": "Aplicação a 20 dias com taxa mensal", "pageRef": 19 }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a06/s03",
+      "bizu": {
+        "summary": [
+          "**Juros simples**: **J = C x i x t**. Os juros incidem sempre sobre o capital inicial.",
+          "Duas regras ao usar a fórmula: **taxa e tempo na mesma unidade** (taxa ao mês exige tempo em meses) e **taxa na forma unitária**.",
+          "**Montante simples**: M = C + J. Substituindo J, obtém-se **M = C x (1 + i x t)**. Pode-se usar a fórmula direta ou calcular primeiro os juros e somar ao capital.",
+          "**Taxa a partir de capital e montante**: se um saldo de R$ 200 vira R$ 280 em um mês, 280 = 200 x (1 + i), logo i = 40% ao mês. Em compra parcelada com entrada, o capital financiado é o preço menos a entrada.",
+          "**Pagamentos intermediários**: calcula-se o saldo devedor até a data do pagamento, abate-se a parcela paga e os juros passam a incidir apenas sobre o novo saldo, pelo tempo restante.",
+          "**Conversão de taxa anual para mensal** em juros simples: divide-se por 12 (18% ao ano = 1,5% ao mês).",
+          "**Isolando incógnitas**: C = J/(i x t); i = J/(C x t); t = J/(C x i), sempre com taxa e tempo na mesma unidade. R$ 1.200 que rendem R$ 72 em 1 ano (12 meses) indicam taxa de 0,5% ao mês.",
+          "**Capital que dobra**: M = 2C implica i x t = 1. Se isso ocorre em 4 anos, a taxa é de 25% ao ano.",
+          "Exemplo de juros: R$ 50.000 a 3% ao mês durante 3 meses geram J = 50.000 x 0,03 x 3 = R$ 4.500."
+        ],
+        "teoria": [
+          {
+            "statement": "No regime de juros simples, os juros são dados por J = C x i x t.",
+            "isTrue": true,
+            "explanation": "Os juros são sempre o produto do capital inicial pela taxa unitária e pelo número de períodos."
+          },
+          {
+            "statement": "No regime de juros simples, o montante é calculado por M = C x (1 + i)^t.",
+            "isTrue": false,
+            "explanation": "Essa é a fórmula dos juros compostos. Nos simples, M = C x (1 + i x t)."
+          },
+          {
+            "statement": "Ao aplicar a fórmula dos juros simples, a taxa deve estar na forma unitária e na mesma unidade de tempo do prazo.",
+            "isTrue": true,
+            "explanation": "Taxa de 3% ao mês vira 0,03 e exige tempo em meses."
+          },
+          {
+            "statement": "Com taxa anual e prazo em meses, a fórmula J = C x i x t pode ser aplicada diretamente, sem conversão de unidades.",
+            "isTrue": false,
+            "explanation": "A taxa e o tempo precisam estar na mesma unidade; por exemplo, converte-se a taxa anual para mensal (dividindo por 12) ou o prazo para anos."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O montante simples pode ser obtido tanto por M = C x (1 + i x t) quanto somando-se ao capital os juros J = C x i x t.",
+            "isTrue": true,
+            "explanation": "As duas formas são equivalentes, pois M = C + J."
+          },
+          {
+            "statement": "Quando uma parte do dinheiro é sacada no meio do prazo em juros simples, os juros seguintes continuam incidindo sobre o capital original integral.",
+            "isTrue": false,
+            "explanation": "Após o saque, o saldo remanescente passa a ser o novo capital, e os juros do tempo restante incidem sobre ele."
+          },
+          {
+            "statement": "Em juros simples, se o montante é o dobro do capital, o produto da taxa pelo tempo é igual a 1.",
+            "isTrue": true,
+            "explanation": "M = C x (1 + i x t) = 2C implica 1 + i x t = 2, logo i x t = 1."
+          },
+          {
+            "statement": "Um capital que dobra em 4 anos a juros simples corresponde a uma taxa de 50% ao ano.",
+            "isTrue": false,
+            "explanation": "i x 4 = 1 resulta em i = 0,25, isto é, 25% ao ano."
+          },
+          {
+            "statement": "Em compra com entrada financiada a juros simples, os juros incidem apenas sobre o saldo financiado, isto é, o preço menos a entrada.",
+            "isTrue": true,
+            "explanation": "O capital da operação financeira é o valor tomado a prazo, e não o preço total da mercadoria."
+          }
+        ],
+        "pointers": [
+          { "topic": "Fórmula J = C.i.t e as observações de unidade", "pageRef": 22 },
+          { "topic": "Montante simples M = C.(1 + i.t)", "pageRef": 23 },
+          { "topic": "Duas maneiras de calcular o montante", "pageRef": 24 },
+          { "topic": "Taxa de um parcelamento com entrada", "pageRef": 25 },
+          { "topic": "Saldo devedor com pagamento intermediário", "pageRef": 26 },
+          { "topic": "Conversão de taxa anual em mensal (proporcional)", "pageRef": 29 },
+          { "topic": "Calcular o tempo ou a taxa isolando a incógnita", "pageRef": 34 },
+          { "topic": "Capital que dobra de valor", "pageRef": 35 }
+        ]
+      }
+    },
+    {
+      "id": "matematica/a06/s04",
+      "bizu": {
+        "summary": [
+          "**Taxas proporcionais**: taxas expressas em unidades de tempo diferentes que, aplicadas ao mesmo capital, geram o mesmo montante em juros simples. Relacionam-se **linearmente** com o tempo e se obtêm por multiplicação, divisão ou regra de três.",
+          "Exemplos: 8% ao bimestre = 4% ao mês; 5% ao semestre = 10% ao ano; 5% ao bimestre = 15% ao semestre; 4,8% ao ano = 0,8% ao bimestre (6 bimestres no ano).",
+          "**No regime de juros simples, taxa equivalente = taxa proporcional.**",
+          "Julgamentos comuns: 21% ao mês é proporcional a 252% ao ano (x12); 24% ao ano corresponde a 2% ao mês; 18% ao ano corresponde a 3% ao bimestre (e não 9%); 16% ao semestre equivale a 64% em dois anos (4 semestres, taxa bienal).",
+          "4% ao trimestre equivale a 16% ao ano (4 trimestres); 4,25% ao mês equivale a 25,5% ao semestre.",
+          "Como o montante simples cresce de forma linear, a juros de 10% ao ano o capital dobra em 10 anos (1 = 0,1 x t).",
+          "**Juros comerciais (ordinários ou bancários)**: mês de **30 dias** e ano de **360 dias**, independentemente do calendário civil.",
+          "**Juros exatos**: seguem o calendário civil, com mês de **30 ou 31 dias** (número real) e ano de **365 ou 366 dias**.",
+          "Para obter a taxa diária, divide-se a taxa mensal por 30 (comercial) ou pelo número real de dias do mês (exato). Em um mês de 31 dias, 9,3% ao mês dá 0,31% ao dia no comercial e 0,30% ao dia no exato.",
+          "A convenção é definida pelo **número de dias** considerado para o mês e o ano, e não por regra de arredondamento de casas decimais. Juros ordinários = juros comerciais (ano de 360 dias)."
+        ],
+        "teoria": [
+          {
+            "statement": "No regime de juros simples, a taxa equivalente é igual à taxa proporcional.",
+            "isTrue": true,
+            "explanation": "Como os juros simples crescem de modo linear com o tempo, bastam multiplicações ou divisões para passar de uma unidade de tempo a outra."
+          },
+          {
+            "statement": "Uma taxa de 18% ao ano é proporcional a uma taxa de 9% ao bimestre.",
+            "isTrue": false,
+            "explanation": "O ano tem 6 bimestres; logo, a taxa proporcional é 18%/6 = 3% ao bimestre."
+          },
+          {
+            "statement": "Nos juros comerciais considera-se o mês com 30 dias e o ano com 360 dias.",
+            "isTrue": true,
+            "explanation": "É a convenção comercial (ordinária ou bancária), independente do calendário civil."
+          },
+          {
+            "statement": "O cálculo dos juros exatos adota uma média de trinta dias para cada mês.",
+            "isTrue": false,
+            "explanation": "Isso descreve os juros comerciais. Nos exatos usa-se o número real de dias do mês e o ano civil de 365 ou 366 dias."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "No regime de juros simples, uma taxa de 21% ao mês é proporcional a 252% ao ano.",
+            "isTrue": true,
+            "explanation": "Há 12 meses em um ano: 21% x 12 = 252%."
+          },
+          {
+            "statement": "Em juros simples, a taxa de 4% ao trimestre equivale a 12% ao ano.",
+            "isTrue": false,
+            "explanation": "O ano tem 4 trimestres, então a taxa anual proporcional é 4% x 4 = 16%."
+          },
+          {
+            "statement": "Para calcular juros exatos de alguns dias, a taxa diária é obtida dividindo-se a taxa mensal pelo número real de dias do mês em questão.",
+            "isTrue": true,
+            "explanation": "Em um mês de 31 dias, divide-se por 31; nos juros comerciais, divide-se sempre por 30."
+          },
+          {
+            "statement": "A diferença entre juros comerciais e juros exatos está no número de casas decimais usadas no arredondamento do resultado.",
+            "isTrue": false,
+            "explanation": "A diferença é a convenção do número de dias do mês e do ano (30/360 contra o calendário civil)."
+          },
+          {
+            "statement": "Os juros ordinários são os juros comerciais, calculados com o ano de 360 dias.",
+            "isTrue": true,
+            "explanation": "Comercial, ordinário e bancário são nomes da mesma convenção de mês de 30 dias e ano de 360 dias."
+          }
+        ],
+        "pointers": [
+          { "topic": "Taxas proporcionais e relação linear", "pageRef": 37 },
+          { "topic": "Taxa equivalente igual à proporcional nos juros simples", "pageRef": 38 },
+          { "topic": "Exemplos de taxas proporcionais (mensal, anual, bimestral)", "pageRef": 39 },
+          { "topic": "Taxa bienal e semestral", "pageRef": 40 },
+          { "topic": "Taxa trimestral e anual equivalente", "pageRef": 41 },
+          { "topic": "Tempo para dobrar o capital", "pageRef": 43 },
+          { "topic": "Juros comerciais x juros exatos", "pageRef": 44 },
+          { "topic": "Juros por dias com convenção de 30 dias", "pageRef": 45 },
+          { "topic": "Diferença numérica entre comerciais e exatos", "pageRef": 47 },
+          { "topic": "Juros ordinários equivalem aos comerciais", "pageRef": 49 }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "aula": "fisica/a02",
+  "batch": "w2-bizu-fisica",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "fisica/a02/s01",
+      "bizu": {
+        "summary": [
+          "**MRUV** (movimento retilíneo uniformemente variado) = trajetória **retilínea** e **aceleração constante** (e diferente de zero). Todo MRUV tem velocidade variável, mas **nem todo movimento de velocidade variável é MRUV**.",
+          "Por ser retilíneo, não há aceleração centrípeta (que muda a direção da velocidade). A aceleração tratada na aula é a **tangencial**, que altera o **módulo** da velocidade.",
+          "**Aceleração escalar média**: **a = ΔV / Δt** (variação da velocidade por unidade de tempo). Unidade no SI: **m/s²** (também cm/s², km/h²). Em questões, converta km/h para m/s antes de calcular (ex.: 100 km/h ÷ 3,6 ≈ 27,8 m/s).",
+          "O nome \"uniformemente variado\" indica que a velocidade varia de forma **uniforme**: ganha ou perde a mesma quantidade em intervalos de tempo iguais. Diferente do MRU, os espaços percorridos em tempos iguais **não** são iguais: crescem se |V| aumenta e diminuem se |V| diminui.",
+          "**Classificação**: compare os **sinais de V e de a**. Mesmo sinal → movimento **acelerado** (|V| aumenta). Sinais contrários → **retardado** (|V| diminui). Aceleração negativa **não** significa movimento retardado: com V negativo e a negativa o movimento é acelerado.",
+          "**Quatro combinações**: V+ e a+ → acelerado e progressivo; V− e a− → acelerado e retrógrado; V+ e a− → retardado e progressivo; V− e a+ → retardado e retrógrado.",
+          "**Equação da velocidade**: **V = V0 + a·t**, deduzida da aceleração constante (a = (V − V0)/(t − 0)). É função do 1º grau em t. Exemplo: V = 5 − 2t (SI) indica V0 = 5 m/s e a = −2 m/s²; em t = 2 s, V = 1 m/s.",
+          "Frenagens e acelerações em acidentes de trânsito (estimar a velocidade pelo rastro de frenagem) são aplicações típicas do MRUV."
+        ],
+        "teoria": [
+          {
+            "statement": "Qualquer movimento em que a velocidade varia com o tempo é um MRUV.",
+            "isTrue": false,
+            "explanation": "Todo MRUV tem velocidade variável, mas a recíproca é falsa: o MRUV exige trajetória retilínea e aceleração constante."
+          },
+          {
+            "statement": "No MRUV a trajetória é retilínea e a aceleração tangencial é constante e diferente de zero.",
+            "isTrue": true,
+            "explanation": "Esse é o conceito: movimento retilíneo (sem aceleração centrípeta) com variação uniforme da velocidade."
+          },
+          {
+            "statement": "Um móvel com aceleração negativa pode estar em movimento acelerado.",
+            "isTrue": true,
+            "explanation": "O movimento é acelerado quando V e a têm o mesmo sinal. Se ambos forem negativos, |V| aumenta mesmo com a < 0."
+          },
+          {
+            "statement": "No Sistema Internacional, a unidade da aceleração escalar é o metro por segundo (m/s).",
+            "isTrue": false,
+            "explanation": "A unidade SI de aceleração é m/s² (metro por segundo por segundo). O m/s é unidade de velocidade."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A aceleração escalar média é definida pela razão entre a variação da velocidade e o intervalo de tempo correspondente.",
+            "isTrue": true,
+            "explanation": "a = ΔV/Δt, medindo a taxa com que a velocidade varia no tempo."
+          },
+          {
+            "statement": "Se a velocidade e a aceleração de um móvel têm sinais contrários, o módulo da velocidade diminui e o movimento é retardado.",
+            "isTrue": true,
+            "explanation": "Sinais opostos significam que a aceleração se opõe ao sentido do movimento."
+          },
+          {
+            "statement": "Quando a velocidade é negativa e a aceleração é positiva, o movimento é acelerado e retrógrado.",
+            "isTrue": false,
+            "explanation": "Com sinais contrários o movimento é retardado; sendo V negativa, ele também é retrógrado (retardado e retrógrado)."
+          },
+          {
+            "statement": "No MRUV, em intervalos de tempo iguais o móvel percorre sempre a mesma distância.",
+            "isTrue": false,
+            "explanation": "Isso é característica do MRU. No MRUV a velocidade varia, então as distâncias percorridas em tempos iguais aumentam ou diminuem."
+          },
+          {
+            "statement": "A equação V = V0 + a·t, que dá a velocidade no MRUV, é uma função do primeiro grau em relação ao tempo.",
+            "isTrue": true,
+            "explanation": "Com a constante, a velocidade varia linearmente com t."
+          }
+        ],
+        "pointers": [
+          { "topic": "Conceito de MRUV: trajetória retilínea e aceleração constante", "pageRef": 4 },
+          { "topic": "Nem todo movimento de velocidade variável é MRUV", "pageRef": 3 },
+          { "topic": "Aceleração tangencial e fórmula a = ΔV/Δt; unidade m/s²", "pageRef": 5 },
+          { "topic": "Exemplos de cálculo de aceleração e conversão km/h → m/s", "pageRef": 7 },
+          { "topic": "Velocidade varia de modo uniforme; espaços diferentes em tempos iguais", "pageRef": 10 },
+          { "topic": "Classificação: acelerado x retardado pelos sinais de V e a", "pageRef": 11 },
+          { "topic": "Equação da velocidade V = V0 + a·t", "pageRef": 13 }
+        ]
+      }
+    },
+    {
+      "id": "fisica/a02/s02",
+      "bizu": {
+        "summary": [
+          "**Equação horária do espaço no MRUV**: **S = S0 + V0·t + (a/2)·t²**. É função do **2º grau** em t. Em uma equação numérica: termo independente = S0; coeficiente de t = V0; coeficiente de t² = a/2 (a aceleração é o **dobro** desse coeficiente). Ex.: S = 12 − 8t + 4t² → S0 = 12 m, V0 = −8 m/s, a = 8 m/s².",
+          "A fórmula sai da área sob o gráfico V x t (trapézio): ΔS = área. **Inversão do sentido** ocorre quando V = 0 (iguala-se V0 + a·t a zero para achar o instante).",
+          "**Velocidade média no MRUV** é a **média aritmética das velocidades inicial e final** do intervalo: Vm = (V0 + V)/2. Essa propriedade vale apenas para o MRUV (aceleração constante), e não para movimentos quaisquer.",
+          "**Equação de Torricelli**: **V² = V0² + 2·a·ΔS**. Não contém o tempo; útil em frenagens e acelerações em que se conhece a distância. A aceleração entra **com seu sinal** (frenagem: a negativa).",
+          "**Gráfico V x t**: **reta** (função do 1º grau); coeficiente angular = **aceleração** (a = tg do ângulo com o eixo horizontal: positiva se a reta sobe, negativa se desce); intercepto no eixo V = V0. A **área sob o gráfico é numericamente igual a ΔS**; trechos abaixo do eixo contam como negativos (marcha à ré). A propriedade vale para qualquer gráfico V x t, inclusive o do MRU.",
+          "**Gráfico S x t**: **parábola**. Concavidade **para cima** se a > 0 e **para baixo** se a < 0. O **vértice** é o ponto em que V = 0 e o móvel inverte o sentido; se não há vértice no trecho, não houve inversão.",
+          "**Velocidade instantânea no gráfico S x t**: é numericamente a tangente do ângulo da reta tangente à curva no instante considerado. No MRU a inclinação é a mesma sempre; no MRUV muda a cada instante.",
+          "**Gráfico a x t**: a aceleração é constante, logo o gráfico é uma **reta paralela ao eixo dos tempos**. A **área sob o gráfico a x t é numericamente igual à variação de velocidade ΔV**."
+        ],
+        "teoria": [
+          {
+            "statement": "No MRUV, a equação horária do espaço é uma função do segundo grau em t, e o coeficiente que acompanha t² é a metade da aceleração.",
+            "isTrue": true,
+            "explanation": "S = S0 + V0·t + (a/2)·t²: o termo em t² é a/2."
+          },
+          {
+            "statement": "Para o móvel descrito por S = 7t + 4t² (SI), a aceleração vale 4 m/s².",
+            "isTrue": false,
+            "explanation": "O coeficiente de t² é a/2; logo a = 2 × 4 = 8 m/s². A velocidade inicial (7 m/s) é o coeficiente de t."
+          },
+          {
+            "statement": "A velocidade média ser igual à média aritmética das velocidades inicial e final é uma propriedade válida para qualquer movimento variado.",
+            "isTrue": false,
+            "explanation": "A propriedade depende de a aceleração ser constante; ela vale para o MRUV, não para movimentos variados em geral."
+          },
+          {
+            "statement": "A equação de Torricelli relaciona velocidade final, velocidade inicial, aceleração e variação de posição, sem depender do tempo.",
+            "isTrue": true,
+            "explanation": "V² = V0² + 2·a·ΔS é obtida eliminando-se o tempo entre as equações da velocidade e da posição."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "No gráfico V x t de um MRUV, a aceleração é dada pelo coeficiente angular da reta, isto é, pela tangente do ângulo de inclinação.",
+            "isTrue": true,
+            "explanation": "Como V = V0 + a·t, o coeficiente de t é a aceleração; reta ascendente indica a > 0 e descendente, a < 0."
+          },
+          {
+            "statement": "No gráfico S x t de um MRUV com aceleração negativa, a parábola tem concavidade voltada para cima.",
+            "isTrue": false,
+            "explanation": "Concavidade para cima corresponde a a > 0. Com aceleração negativa a concavidade é para baixo."
+          },
+          {
+            "statement": "O vértice da parábola no gráfico S x t indica o instante em que a velocidade se anula e o móvel inverte o sentido do movimento.",
+            "isTrue": true,
+            "explanation": "No vértice a tangente à curva é horizontal (V = 0) e a inclinação muda de sinal."
+          },
+          {
+            "statement": "No gráfico a x t de um MRUV, a área sob a reta é numericamente igual à variação da velocidade.",
+            "isTrue": true,
+            "explanation": "Área = a·Δt = ΔV."
+          },
+          {
+            "statement": "O gráfico da aceleração em função do tempo no MRUV é uma reta inclinada.",
+            "isTrue": false,
+            "explanation": "A aceleração é constante, então o gráfico a x t é uma reta paralela ao eixo dos tempos."
+          }
+        ],
+        "pointers": [
+          { "topic": "Equação horária do espaço S = S0 + V0·t + a·t²/2", "pageRef": 15 },
+          { "topic": "Identificar S0, V0 e a numa equação horária numérica", "pageRef": 16 },
+          { "topic": "Inversão do sentido (V = 0) e classificação num instante", "pageRef": 17 },
+          { "topic": "Velocidade média no MRUV = média de V0 e V", "pageRef": 18 },
+          { "topic": "Equação de Torricelli e sinal da aceleração", "pageRef": 20 },
+          { "topic": "Gráfico V x t: coeficiente angular e área = ΔS", "pageRef": 21 },
+          { "topic": "Gráfico S x t: parábola, concavidade e vértice", "pageRef": 22 },
+          { "topic": "Velocidade como tangente no gráfico S x t", "pageRef": 23 },
+          { "topic": "Gráfico a x t e área = ΔV", "pageRef": 28 }
+        ]
+      }
+    }
+  ]
+}
