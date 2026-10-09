@@ -2,22 +2,24 @@ PROGRESSO DO COLABORADOR — branch bizus-exatas
 Disciplinas: Informática, Estatística, Matemática, Física, Química
 Etapa 1 (Bizu: resumo + itens C/E + pointers, stage "bizu", status DRAFT)
 
-ESTADO: etapa 1 CONCLUÍDA em todas as disciplinas da branch.
-(validate_content.py --coverage --stage bizu --subject <disc>)
+ESTADO: etapas 1 (bizu) e 2 (questões AOCP de múltipla escolha, 5 alternativas) CONCLUÍDAS
+em todas as disciplinas da branch, para TODOS os trechos (validate_content.py --coverage --stage full).
 
-  Informática   92/92 trechos com bizu  (a06 s07-s12, a07 a a14 feitos nesta rodada)
-  Estatística   76/76
-  Matemática    76/76  (a13-a17 feitos nesta rodada)
-  Física        41/41  (a17 feito nesta rodada)
-  Química       79/79  (a10-a23 feitos nesta rodada)
+  Disciplina    Trechos   Com bizu   Com questões   Questões   Itens C/E (bizu)
+  Informática      92        92          92           1229          777
+  Estatística      76        76          76            976          607
+  Matemática       76        76          76            944          643
+  Física           41        41          41            554          368
+  Química          79        79          79           1016          638
 
-Todos os arquivos passam em `validate_content.py` (esquema, C/E certos e errados,
-pointers dentro do trecho, originalidade) e `pytest pipeline/tests -q` = 45 passed.
+Gabarito global por disciplina equilibrado (cada letra 19-21%). Tudo entra como DRAFT; a
+aprovação (APPROVED) é humana, em /admin/revisao. Todos os arquivos passam em
+`validate_content.py` (esquema, C/E, pointers, originalidade, gabarito) e
+`pytest pipeline/tests -q` = 45 passed.
 
-NÃO FEITO (fora do escopo desta rodada)
-- Etapa 2 (questões AOCP) — só existem as questões que já estavam no repositório.
-  Cobertura de questões: Informática 1 trecho, Estatística 1, Matemática 2, Física 2,
-  Química 1 (ver `--coverage`).
+As questões foram escritas por agentes (um por matéria/faixa de aulas), lendo o texto do PDF
+de cada trecho, com contas conferidas em Python e segunda passada de revisão. Mesmo assim,
+recomenda-se amostragem humana, principalmente nas aulas listadas abaixo.
 
 PONTOS PARA REVISÃO HUMANA
 1. Física a17 e Matemática a13-a14 foram primeiro escritos SEM o PDF; depois o Valério enviou
@@ -70,3 +72,54 @@ PROBLEMAS ADICIONAIS NO MATERIAL (reescrita de Matemática a13)
   ≈ 2,718 (o bizu usa 2,718).
 - Matemática a14, pág. 22: o gabarito comentado fala em "progressões geométricas aritméticas" (erro
   de digitação; refere-se à PA).
+
+ETAPA 2 — PROBLEMAS DO MATERIAL ENCONTRADOS (não geraram questão; o Valério corrige/avalia)
+Informática
+- a02 p36: senha de 8 dígitos numéricos = "1 milhão" (seria 100 milhões); p60 x p62 (AR emite ou não); p11 "risco" x ameaça.
+- a01 p15-16: intranet remota x extranet depende da banca (ambíguo). a03 p27: "cavalo de Troia é vírus" varia por banca.
+- a12: Windows 11 lançado em junho (p11) x outubro de 2021 (p10, p36); tabela p42 com Restaurar/Maximizar trocados;
+  Win+Seta p42 x p186; barra de tarefas "movível" (p24, p29) é do Windows 10; F8 para Modo de Segurança e
+  "Atualização e Segurança > Backup" (p176, p173) são do Windows 10; DELTREE (p122) não existe; histórico da
+  área de transferência "25 itens" (p132) x 24 (p89-90, p133); "COM" provavelmente "CON" (p121).
+- a13: Office 365 "5 PCs, R$30" desatualizado; CaaS tem 2 significados (p25); iCloud ambíguo (p37).
+- a14: msinfo32 com Ctrl+R (p77, é Win+R); gabarito SSHD p116 (Letra C x explicação B); tempo de acesso de HD/SSD
+  "em nanossegundos" (p118); memória primária RAM/ROM/cache (p84) x só RAM/ROM (p93); data/hora na ROM (p95, é CMOS);
+  ISA "anos 90" (p56, é de 1981); AGP obsoleto (p60).
+- a11 p11: cita "ocultar slides" no menu Apresentação de slides, mas a imagem não traz esse comando.
+Estatística
+- a00 p21 (total incoerente); a01 p33-34 (notas 7,0 x 6,0), p50 (comentário 7min14s x gabarito D 7min32s), p55 (média
+  geométrica de taxas), p63 (média geométrica de 1 e -1); a02 p60 (P77 41,58 x 41,04); a03 p27 (média x moda);
+  a05 p45 (D4 x D3). a07 págs. 37-42 (função de distribuição acumulada) são EXTRA e ficaram sem questões.
+Matemática
+- a01 p41, p43-44; a03 p19-20, p30-31, p62; a05 p24; a06 p6 (J=122 truncado; item do CFO DF falso); a07 p30 (gabarito C x
+  valor da D); a08 p26; a09 p36-37 (mais de uma defensável); a10 p33, p46, p54; a11 p24-25, p46, p62; a13 p9 (e=2,721);
+  a14 p19 (gabarito B x valor 600 = D) e p22; a15 p23, p25, p26, p44, p58, p69, p116, p119; a16 p42, p45 (esfera
+  "inscrita" x circunscrita); a17 p53, p78.
+Física
+- a02 p19; a04 ("centrípeta constante"); a05 p36; a09 p7 (unidade/constante da 3ª lei); a10 ("E>P flutua"); a11 p13/15
+  (capacidade térmica x calor específico); a13 (onda estacionária, difração do som, Vmax do MHS); a14 (corpo neutro);
+  a16 (título não bate com o conteúdo); a17 p10 (plástico e madeira como paramagnéticos: duvidoso).
+Química
+- a00 (radônio "Rb"; fórmula do AAS), a01 (postulado 6), a02 (Mendeleyev 1871; "fosfato (SO4 2-)"; Mg paramagnético;
+  limites 2n²), a03 (esquerda/direita; "5/2 de O2" para Cl2), a04 (Be no dueto; AgCl3/FeBr3; SO3), a06 (O +1 em
+  fluoretos; "trinitroglicerina"; H2CO3; NO), a07 (nitroglicerina; NaCl 58,4), a08 ("solidificação fracionada"),
+  a09 (nitrito de prata "insolúvel"), a22 (p56 sinal O/C=O; p63 Fehling Cu+; p65; p71 NaBH4; p102 biodiesel),
+  a23 (p8 propano C3H6; p9 rocha geradora x reservatório; p10 butadieno; p17 HDS/HDN; p14 gasolina 25% de etanol:
+  hoje E30 desde ago/2025, valor DESATUALIZADO também no bizu de a23/s02 — não alterado).
+- Bizu de a23/s01 cita polos petroquímicos da p20, fora do trecho (p3-12).
+
+ETAPA 2 — PONTOS PARA REVISÃO HUMANA (principais)
+- Aulas com menos de 50% de cálculo (matéria conceitual): Física a12 (e em parte a03, a09, a13, a14), Química a05 e a08.
+- Informática: em ~28-68% das questões a correta é a mais longa por margem pequena (passa na regra do validador).
+- Alternativas/convenções: kilo = 1024 em bytes e 1000 em bits (convenção do material, não SI); 480 Mbps = 60 MB/s;
+  espaços gratuitos de nuvem (15/2/5/5 GB) podem estar datados; PaaS x SO (a13 s02 Q6).
+- Estatística: convenção de arredondamento de posições em quartis/decis/percentis; relação moda<mediana<média só em
+  casos concretos; Cp de Mallows e R² ajustado (a14 s03) tratados de forma breve pelo PDF.
+- Matemática: g²=R²+h² (cone, a16 s03), cos 120° = -1/2 dado no enunciado (a15 s04), "tan x >= 1" (a17 s10).
+- Física: convenção de sinal no Doppler; fontes em oposição de fase; eta = 50% na potência máxima (derivado, não literal).
+- Química: eletronegatividade N x Cl (a02); força do Mg(OH)2 (a05/a06); SF4 (a04); Grignard e estequiometria 3:1 da
+  transesterificação (a22 s05, não explícitos no material).
+- Informática: a02 s05 q13 (confidencial x restrito), a02 s06 q13 (A1 = 1 ano, A3 = 5 anos), a03 s06 q12 (whaling x
+  spear phishing), a12 s13 q15 (chave HKEY_CURRENT_PROGRAMS inventada) e s11 q9 (AUX.docx), a12 s15 q10 (exFAT).
+- Física a17: duas questões nível 3 (direção do campo, razão no solenoide).
+- Intervenção no bizu fora do escopo: Química a09 s02 teoria[1] e [2] (paráfrase por originalidade).
