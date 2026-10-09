@@ -5,14 +5,25 @@ import * as z from "zod";
 import { requireUser } from "@/lib/auth/dal";
 import { loadPlannerData } from "@/lib/data/planner-data";
 import { bandOf, dayIndexOf, generatePlan, mondayOf, PlanInputError } from "@/lib/planner";
+import { addDays } from "@/lib/planner/dates";
 import { todayISO } from "@/lib/plan-time";
 import { savePlan } from "@/lib/plan/persist";
 import type { Known, Level } from "@/lib/planner/types";
 
+/** Data real no formato AAAA-MM-DD (rejeita 2027-02-30) e no máximo ~2 anos à frente (evita planos com milhares de semanas). */
+const examDateOk = (v: string) => {
+  const d = new Date(`${v}T00:00:00Z`);
+  if (Number.isNaN(d.getTime()) || d.toISOString().slice(0, 10) !== v) return false;
+  return v <= addDays(todayISO(), 730);
+};
+
 const Selection = z.object({
-  subjects: z.array(z.object({ id: z.string(), level: z.union([z.literal(0), z.literal(1), z.literal(2), z.literal(3)]) })).min(1, "Escolha ao menos uma disciplina."),
+  subjects: z
+    .array(z.object({ id: z.string(), level: z.union([z.literal(0), z.literal(1), z.literal(2), z.literal(3)]) }))
+    .min(1, "Escolha ao menos uma disciplina.")
+    .refine((l) => new Set(l.map((s) => s.id)).size === l.length, "Há disciplinas repetidas."),
   hoursPerWeek: z.number().int().min(14).max(50),
-  examDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  examDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).refine(examDateOk, "Data da prova inválida ou distante demais (máximo de 2 anos)."),
   /** "now" = começar hoje (dia civil de Recife); ou uma data AAAA-MM-DD escolhida na agenda */
   start: z.union([z.literal("now"), z.string().regex(/^\d{4}-\d{2}-\d{2}$/)]).default("now"),
   /** anamnese por aula: id da aula → 1 (já estudei) ou 2 (domino); ausente = nunca estudei */

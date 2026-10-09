@@ -52,7 +52,8 @@ export function teoriaStep(seg: SegmentRef, authored = false): string {
     ? `Continue na ${pageLabel(seg.startPage, seg.startPrinted)}${seg.startTopic ? `, dentro do tópico ${q(seg.startTopic)}` : ""}`
     : `Comece na ${pageLabel(seg.startPage, seg.startPrinted)}${seg.startTopic ? `, no tópico ${q(seg.startTopic)}` : ""}`;
   let end: string;
-  if (seg.stopBeforeTopic) end = `estude até a ${pageLabel(seg.endPage, seg.endPrinted)}, parando antes do tópico ${q(seg.stopBeforeTopic)}`;
+  // o título seguinte costuma abrir no meio da página: o que vem antes dele na pág. seguinte ainda é deste assunto
+  if (seg.stopBeforeTopic) end = `estude até a ${pageLabel(seg.endPage, seg.endPrinted)}, parando antes do tópico ${q(seg.stopBeforeTopic)} (se ele começar no meio da pág. ${seg.endPage + 1}, leia também a parte da pág. ${seg.endPage + 1} que vem antes do título)`;
   else if (seg.endsTheory && authored) end = `estude até a ${pageLabel(seg.endPage, seg.endPrinted)}, a última do material`;
   else if (seg.endsTheory) end = `estude até a ${pageLabel(seg.endPage, seg.endPrinted)}, que encerra a teoria desta aula (o que vem depois são resumos e questões)`;
   else if (seg.endsMidTopic) end = `estude até o fim da ${pageLabel(seg.endPage, seg.endPrinted)}${seg.endTopic ? ` (você ainda estará dentro de ${q(seg.endTopic)}; a próxima atividade continua dali)` : ""}`;

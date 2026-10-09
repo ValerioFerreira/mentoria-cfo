@@ -8,7 +8,7 @@ import { db } from "@/lib/db";
 import { requireUser } from "@/lib/auth/dal";
 import { hashPassword, verifyPassword } from "@/lib/auth/password";
 import { generateTemporaryPassword, sendPasswordResetEmail } from "@/lib/email";
-import { CONTEST_SUBTITLES } from "@/lib/contests";
+import { CONTEST_SUBTITLES, CONTESTS } from "@/lib/contests";
 import { CONTEST_COOKIE } from "@/lib/user-contest";
 
 export type ProfilePasswordState = { errors?: Record<string, string[]>; message?: string; success?: boolean } | undefined;
@@ -88,6 +88,10 @@ export async function updateUserContest(contestKey: string): Promise<{ success: 
   const sessionUser = await requireUser();
   if (!(contestKey in CONTEST_SUBTITLES)) {
     return { success: false, message: "Concurso inválido." };
+  }
+  // só concursos com plano pronto: os demais estão em desenvolvimento (lista de espera)
+  if (!CONTESTS.find((c) => c.key === contestKey)?.available) {
+    return { success: false, message: "O plano deste concurso ainda está em desenvolvimento." };
   }
 
   const jar = await cookies();

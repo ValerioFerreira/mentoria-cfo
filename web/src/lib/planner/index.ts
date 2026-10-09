@@ -1,7 +1,7 @@
 // Motor de planejamento: gera as metas semanais (e a divisão por dias) a partir das escolhas do aluno.
 import { computeCoverage, gapWarnings } from "./coverage";
 import { EXAM_TOTAL_QUESTIONS, FINAL_REVIEW_WEEKS, MIN_FINAL_REVIEW_WEEKS, PACKING_EFFICIENCY, WEEKLY_SLACK } from "./constants";
-import { addDays, nextMonday, weekday, weeksUntil } from "./dates";
+import { addDays, dayIndexOf, nextMonday, weekday, weeksUntil } from "./dates";
 import { weekFraction } from "./days";
 import { buildReviewWeeks, type ReviewSubject } from "./review";
 import { buildAulaCycle, scheduleStreams, type StreamInfo } from "./schedule";
@@ -110,6 +110,12 @@ export function generatePlan(input: PlanInput): PlanResult {
     firstDay,
   });
   const weeks: PlannedWeek[] = [...contentSchedule, ...reviewWeeks];
+  // nada é agendado no dia da prova nem depois dela: a última semana termina na véspera
+  const examDay = dayIndexOf(input.examDate);
+  const lastWeek = weeks[weeks.length - 1];
+  if (lastWeek && examDay > 0) {
+    lastWeek.activities = lastWeek.activities.map((a) => (a.day !== undefined && a.day >= examDay ? { ...a, day: examDay - 1 } : a));
+  }
 
   const coverage = computeCoverage(chosen, sel, known);
   const warnings: string[] = [];

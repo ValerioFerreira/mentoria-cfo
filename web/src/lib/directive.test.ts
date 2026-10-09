@@ -10,7 +10,7 @@ const aula: AulaRef = { id: "x/a02", number: 2, shortTitle: "Adjetivos e Advérb
 
 describe("diretriz de Teoria", () => {
   it("diz início, fim e o tópico em que parar", () => {
-    expect(teoriaStep(seg())).toBe("Comece na pág. 12, no tópico “Comparativos”, e estude até a pág. 24, parando antes do tópico “Superlativos”.");
+    expect(teoriaStep(seg())).toBe("Comece na pág. 12, no tópico “Comparativos”, e estude até a pág. 24, parando antes do tópico “Superlativos” (se ele começar no meio da pág. 25, leia também a parte da pág. 25 que vem antes do título).");
   });
   it("mostra a página impressa quando difere da do PDF", () => {
     expect(pageLabel(12, 11)).toBe("pág. 12 (impressa 11)");

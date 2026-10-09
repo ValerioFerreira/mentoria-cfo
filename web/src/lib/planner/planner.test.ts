@@ -81,6 +81,24 @@ describe("início no meio da semana", () => {
   });
 });
 
+describe("generatePlan — dia da prova e Legislações PE", () => {
+  it("nada é agendado no dia da prova nem depois dela (prova no domingo ou em dia útil)", () => {
+    for (const [examDate, lastDay] of [["2027-02-28", 5], ["2027-03-03", 1]] as const) {
+      const p = generatePlan(input(35, ALL_PT, 1, { examDate }));
+      const last = p.weeks.at(-1)!;
+      expect(last.activities.length).toBeGreaterThan(0);
+      expect(Math.max(...last.activities.map((a) => a.day!))).toBeLessThanOrEqual(lastDay);
+    }
+  });
+
+  it("as aulas-base de Legislações PE entram mesmo com poucas horas (a incidência nunca é negativa)", () => {
+    for (const s of catalog.subjects) for (const a of s.aulas) expect(a.incidence, a.id).toBeGreaterThanOrEqual(0);
+    const p = generatePlan(input(14, ALL_PT, 1));
+    const leg = p.coverage.subjects.find((s) => s.subjectId === "legislacoes-pe")!;
+    expect(leg.aulas.map((a) => a.aulaId)).toEqual(expect.arrayContaining(["legislacoes-pe/a01", "legislacoes-pe/a02"]));
+  });
+});
+
 describe("generatePlan — validações", () => {
   it("rejeita Inglês e Espanhol juntos", () => {
     expect(() => generatePlan(input(20, ["lingua-inglesa", "lingua-espanhola"]))).toThrow(PlanInputError);
