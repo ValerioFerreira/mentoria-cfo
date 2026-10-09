@@ -11,7 +11,7 @@ resolves: dc-intertemporal
 
 ## Direito constitucional intertemporal: recepção, repristinação e desconstitucionalização
 
-Pessoal, o edital cita **recepção**, **repristinação** e **desconstitucionalização**, e o Estratégia só toca nesses temas de passagem: a recepção aparece como consequência da "inexistência de inconstitucionalidade superveniente" (Aula 17), e o efeito repristinatório, na ADI (Aula 17). Aqui ficam os conceitos completos, no estilo que a banca cobra: **definição + quem decide + exemplo**.
+Pessoal, o edital cita **recepção**, **repristinação** e **desconstitucionalização**, e o curso base só toca nesses temas de passagem: a recepção aparece como consequência da "inexistência de inconstitucionalidade superveniente" (Aula 17), e o efeito repristinatório, na ADI (Aula 17). Aqui ficam os conceitos completos, no estilo que a banca cobra: **definição + quem decide + exemplo**.
 
 > **A pergunta-guia do direito intertemporal:** *o que acontece com a norma velha quando entra uma norma nova de hierarquia superior?* A resposta muda conforme o fenômeno. Memorize a tabela.
 
@@ -146,4 +146,4 @@ Conforme a Aula 00 (pág. 30): **nominais** — 1824, 1891, 1934 e 1946; **semâ
 - Constituição Federal de 1988, ADCT, art. 34, § 5º (consulta em 08/10/2026); Lei nº 9.882/1999, art. 1º, parágrafo único, I.
 - Textos de época consultados nas bases da Câmara dos Deputados: Emenda Constitucional nº 1/1969 (ministros militares, AI-5 e AI-16), Emenda Constitucional nº 16/1965 (representação de inconstitucionalidade), Constituição de 1937, art. 96, e Constituição de 1824, arts. 98, 99 e 178.
 - Jurisprudência do STF citada pelas referências indicadas (ADI 2; ADPF 130, 153 e 291; RE 346.084 e RE 390.840), consultadas em resumos de fontes secundárias; conferir o inteiro teor no site do STF antes de citar em trabalho.
-- Aula 00 (classificação ontológica) e Aula 17 (inconstitucionalidade superveniente e efeito repristinatório) do material do Estratégia, apenas para remissão. Explicação, tabelas e macetes elaborados pelo MentorIA, em linguagem própria.
+- Aula 00 (classificação ontológica) e Aula 17 (inconstitucionalidade superveniente e efeito repristinatório) do curso base, apenas para remissão. Explicação, tabelas e macetes elaborados pelo MentorIA, em linguagem própria.

@@ -3,7 +3,7 @@ id: leg-pe-lei-11817-penas
 subject: legislacoes-pe
 title: Lei Estadual nº 11.817/2000 — penas, comportamento, recompensas e transgressões em espécie
 short: Código Disciplinar (2ª parte)
-subtitle: O que a Aula 01 do Estratégia não ensina: arts. 27 a 49, 60 a 73 e Parte Especial (arts. 75 a 188)
+subtitle: O que a Aula 01 do curso base não ensina: arts. 27 a 49, 60 a 73 e Parte Especial (arts. 75 a 188)
 weight: 0.3
 order: 4
 resolves: leg-lei-11817-penas
@@ -12,7 +12,7 @@ resolves: leg-lei-11817-penas
 
 ## Por que este complemento existe
 
-A Aula 01 do Estratégia trata dos princípios, da competência, do conceito e do julgamento das transgressões e dos recursos. O edital, porém, lista seis blocos do Código, e três deles **não aparecem na aula**: **penas disciplinares e medidas administrativas**, **cancelamento de penas e recompensas** e **transgressões disciplinares em espécie**. Este material cobre exatamente essas partes. Estude junto com o **Decreto 50.014/2020**, que regulamenta as penas de detenção e prisão.
+A Aula 01 do curso base trata dos princípios, da competência, do conceito e do julgamento das transgressões e dos recursos. O edital, porém, lista seis blocos do Código, e três deles **não aparecem na aula**: **penas disciplinares e medidas administrativas**, **cancelamento de penas e recompensas** e **transgressões disciplinares em espécie**. Este material cobre exatamente essas partes. Estude junto com o **Decreto 50.014/2020**, que regulamenta as penas de detenção e prisão.
 
 ## Penas disciplinares (arts. 27 a 31)
 
