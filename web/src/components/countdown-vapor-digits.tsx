@@ -37,9 +37,9 @@ const DRAG = 0.92;
 const DT_MAX = 0.032;
 const FIELD_SCALE = 0.008;
 const CURL_EPS = 0.75;
-const PAD_X = 30;
-const PAD_TOP = 80;
-const PAD_BOTTOM = 20;
+const PAD_X = 45;
+const PAD_TOP = 120;
+const PAD_BOTTOM = 30;
 
 const DEFAULT_LABELS = ["HORAS", "MINUTOS", "SEGUNDOS"] as const;
 
@@ -446,16 +446,16 @@ export function VaporCountdown({
       className={`relative inline-grid select-none ${className}`}
       style={{
         gridTemplateColumns: "repeat(3, auto)",
-        columnGap: "0.55em",
-        rowGap: "0.25rem",
-        fontSize: "clamp(2rem, 5vw, 3.25rem)",
+        columnGap: "0.45em",
+        rowGap: "0.5rem",
+        fontSize: "clamp(3.25rem, 9.5vw, 6.75rem)",
       }}
     >
       <time ref={timeRef} aria-live="off" style={{ display: "contents" }}>
         {[0, 1, 2].map((group) => (
           <span
             key={group}
-            className="flex justify-center font-display font-bold leading-none tracking-tight text-gold opacity-0 tabular-nums motion-reduce:opacity-100"
+            className="flex justify-center font-display font-bold leading-[0.88] tracking-tight text-gold opacity-0 tabular-nums motion-reduce:opacity-100"
           >
             <span data-vc-digit>0</span>
             <span data-vc-digit>0</span>
@@ -466,7 +466,7 @@ export function VaporCountdown({
         labels.map((label) => (
           <span
             key={label}
-            className="text-center font-display text-[10px] font-semibold tracking-[0.2em] text-on-ink-muted/80 uppercase"
+            className="text-center font-display text-[11px] sm:text-xs font-bold tracking-[0.22em] text-on-ink-muted/80 uppercase"
           >
             {label}
           </span>
