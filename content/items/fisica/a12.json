@@ -2,7 +2,6 @@
   "aula": "fisica/a12",
   "batch": "w2-bizu-fisica",
   "status": "DRAFT",
-  "stage": "bizu",
   "segments": [
     {
       "id": "fisica/a12/s01",
@@ -63,15 +62,225 @@
           }
         ],
         "pointers": [
-          { "topic": "Condução: meio material e agitação molécula a molécula", "pageRef": 3 },
-          { "topic": "Isolantes térmicos e o ar como isolante", "pageRef": 4 },
-          { "topic": "Lei de Fourier (K, área, espessura, diferença de temperatura)", "pageRef": 6 },
-          { "topic": "Convecção: correntes ascendentes e descendentes; ar-condicionado e aquecedor", "pageRef": 7 },
-          { "topic": "Brisas litorâneas e calor específico da água", "pageRef": 8 },
-          { "topic": "Inversão térmica", "pageRef": 9 },
-          { "topic": "Irradiação: ondas eletromagnéticas e vácuo", "pageRef": 9 }
+          {
+            "topic": "Condução: meio material e agitação molécula a molécula",
+            "pageRef": 3
+          },
+          {
+            "topic": "Isolantes térmicos e o ar como isolante",
+            "pageRef": 4
+          },
+          {
+            "topic": "Lei de Fourier (K, área, espessura, diferença de temperatura)",
+            "pageRef": 6
+          },
+          {
+            "topic": "Convecção: correntes ascendentes e descendentes; ar-condicionado e aquecedor",
+            "pageRef": 7
+          },
+          {
+            "topic": "Brisas litorâneas e calor específico da água",
+            "pageRef": 8
+          },
+          {
+            "topic": "Inversão térmica",
+            "pageRef": 9
+          },
+          {
+            "topic": "Irradiação: ondas eletromagnéticas e vácuo",
+            "pageRef": 9
+          }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Condução térmica",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 3,
+          "statement": "Sobre a propagação de calor por condução, é correto afirmar que ela",
+          "support": null,
+          "options": [
+            "só ocorre em líquidos, pois exige o movimento das partículas.",
+            "ocorre por correntes ascendentes e descendentes de um fluido.",
+            "ocorre por ondas eletromagnéticas, e pode ocorrer no vácuo.",
+            "necessita de meio material, pois o calor é transmitido de molécula em molécula.",
+            "não necessita de meio material, pois o calor se propaga por vibração do éter."
+          ],
+          "answer": "D",
+          "explanation": "Na condução, a agitação térmica é passada de uma molécula à vizinha, o que exige um meio material (como o cabo metálico de uma faca aquecida em uma ponta). As ondas eletromagnéticas e as correntes de fluido caracterizam, respectivamente, a irradiação e a convecção."
+        },
+        {
+          "topic": "Isolantes térmicos",
+          "pattern": "caso",
+          "difficulty": 1,
+          "pageRef": 4,
+          "statement": "O arrepio da pele e o ato de eriçar as penas das aves em dias frios ajudam a conservar o calor corporal porque",
+          "support": null,
+          "options": [
+            "produzem calor por irradiação, que aquece o ar ao redor do corpo.",
+            "permitem que o calor seja conduzido mais rapidamente para o ambiente.",
+            "retêm uma camada de ar junto ao corpo, e o ar é um bom isolante térmico.",
+            "impedem a propagação de calor por irradiação, mas não por condução.",
+            "aumentam a área de contato, o que acelera a troca de calor com o ambiente."
+          ],
+          "answer": "C",
+          "explanation": "O ar é um dos melhores isolantes térmicos. Ao eriçar penas ou pelos, forma-se uma camada de ar sobre a pele ou o corpo, que reduz as perdas de calor para o ambiente mais frio. O mesmo princípio é aplicado em roupas de lã e em garrafas térmicas."
+        },
+        {
+          "topic": "Lei de Fourier: cálculo do fluxo",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 6,
+          "statement": "Uma placa de vidro de 2 m² de área e 5 mm de espessura separa dois ambientes cujas temperaturas diferem em 10 °C. Dado o coeficiente de condutibilidade térmica do vidro K = 0,8 W/(m·°C), o fluxo de calor conduzido pela placa, em watts, é",
+          "support": null,
+          "options": [
+            "0,032",
+            "3,2",
+            "32",
+            "320",
+            "3.200"
+          ],
+          "answer": "E",
+          "explanation": "Pela lei de Fourier, Φ = K·A·Δθ/e = 0,8 · 2 · 10/0,005 = 3.200 W, com a espessura em metros (5 mm = 0,005 m). Esquecer a conversão de milímetros para metros levaria ao valor 3,2 W, 1.000 vezes menor."
+        },
+        {
+          "topic": "Lei de Fourier: relações de proporcionalidade",
+          "pattern": "relacao",
+          "difficulty": 2,
+          "pageRef": 6,
+          "statement": "O fluxo de calor por condução em uma parede é dado por Φ = K·A·Δθ/e. Se a área da parede e sua espessura forem multiplicadas por 3 e a diferença de temperatura entre as faces for multiplicada por 2, mantido o mesmo material, o fluxo",
+          "support": null,
+          "options": [
+            "dobrará.",
+            "ficará seis vezes maior.",
+            "triplicará.",
+            "ficará reduzido à metade.",
+            "permanecerá o mesmo."
+          ],
+          "answer": "A",
+          "explanation": "O fluxo é proporcional à área e à diferença de temperatura e inversamente proporcional à espessura. O fator total é 3 · 2/3 = 2, então o fluxo dobra. Os fatores 3 se cancelam, pois a área e a espessura variam na mesma proporção."
+        },
+        {
+          "topic": "Lei de Fourier: coeficiente de condutibilidade",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 6,
+          "statement": "Uma parede de 5 m² de área e 0,20 m de espessura conduz um fluxo de calor de 1.500 W quando a diferença de temperatura entre suas faces é de 25 °C. O coeficiente de condutibilidade térmica do material da parede, em W/(m·°C), é",
+          "support": null,
+          "options": [
+            "1,2",
+            "2,4",
+            "4,8",
+            "6,0",
+            "9,6"
+          ],
+          "answer": "B",
+          "explanation": "Isolando K na lei de Fourier, K = Φ·e/(A·Δθ) = 1.500 · 0,20/(5 · 25) = 300/125 = 2,4 W/(m·°C). Usar a espessura no denominador, em vez de no numerador, inverteria a relação e resultaria em outro valor."
+        },
+        {
+          "topic": "Condutibilidade térmica e fluxo",
+          "pattern": "relacao",
+          "difficulty": 2,
+          "pageRef": 6,
+          "statement": "Duas paredes de mesma área e espessura separam ambientes com a mesma diferença de temperatura. O coeficiente de condutibilidade térmica da parede A é 0,4 W/(m·°C), e o da parede B, 0,1 W/(m·°C). A razão entre o fluxo de calor em A e o fluxo em B é",
+          "support": null,
+          "options": [
+            "0,4.",
+            "4.",
+            "2.",
+            "1/4.",
+            "1."
+          ],
+          "answer": "B",
+          "explanation": "Com A, Δθ e e iguais, o fluxo é diretamente proporcional a K, então Φ_A/Φ_B = K_A/K_B = 0,4/0,1 = 4. A parede B, de menor condutibilidade, é o melhor isolante."
+        },
+        {
+          "topic": "Convecção em ambientes",
+          "pattern": "caso",
+          "difficulty": 1,
+          "pageRef": 7,
+          "statement": "Em uma sala, o aparelho de ar condicionado é instalado na parte alta da parede, e o aquecedor, próximo ao chão, porque",
+          "support": null,
+          "options": [
+            "o ar frio e o ar quente têm a mesma densidade, e a posição só importa por estética.",
+            "o ar frio é menos denso e sobe, e o ar quente é mais denso e desce.",
+            "o ar frio é mais denso e desce, e o ar quente é menos denso e sobe, formando correntes de convecção.",
+            "o calor se propaga apenas para cima, por condução no ar.",
+            "o calor se propaga por irradiação, e o ar frio, por condução."
+          ],
+          "answer": "C",
+          "explanation": "O ar resfriado no alto, mais denso, desce, e o ar quente embaixo, menos denso, sobe, o que gera as correntes de convecção que renovam o ar. A convecção ocorre em fluidos e é a base do funcionamento de geladeiras, ar-condicionado e aquecedores."
+        },
+        {
+          "topic": "Brisas litorâneas",
+          "pattern": "assertivas",
+          "difficulty": 2,
+          "pageRef": 8,
+          "statement": "Considere as afirmações sobre as brisas litorâneas.\n\nI. De dia, o ar sobre a areia aquece mais e sobe, e o ar mais frio do mar se desloca para a terra.\nII. À noite, a água resfria mais lentamente que a areia, o ar sobre o mar sobe, e o vento sopra da terra para o mar.\nIII. A areia aquece mais que a água durante o dia porque seu calor específico é maior que o da água.\n\nEstá correto o que se afirma em",
+          "support": null,
+          "options": [
+            "I e III, apenas.",
+            "II e III, apenas.",
+            "I, apenas.",
+            "II, apenas.",
+            "I e II, apenas."
+          ],
+          "answer": "E",
+          "explanation": "A água tem calor específico maior que o da areia, então aquece e esfria mais lentamente. De dia, a areia fica mais quente, e a brisa vai do mar para a terra (I); à noite, o mar fica mais quente, e a brisa vai da terra para o mar (II). A afirmação III é falsa, pois a causa é o menor calor específico da areia."
+        },
+        {
+          "topic": "Inversão térmica",
+          "pattern": "conceito",
+          "difficulty": 3,
+          "pageRef": 9,
+          "statement": "Em dias muito frios, é comum que a poluição fique concentrada perto do solo, no fenômeno da inversão térmica. Isso ocorre porque",
+          "support": null,
+          "options": [
+            "a irradiação solar é maior à noite, o que mantém os poluentes presos ao solo.",
+            "a condução de calor para o espaço é maior em dias frios, o que atrai os poluentes.",
+            "o ar frio é menos denso que o quente, e por isso permanece na superfície.",
+            "a camada junto ao solo fica mais fria que as camadas superiores, o que impede correntes ascendentes de convecção.",
+            "o ar próximo ao solo está mais quente que o das camadas superiores, e as correntes de convecção o levam para cima."
+          ],
+          "answer": "D",
+          "explanation": "Na inversão térmica, a camada de ar junto ao solo fica mais fria (e mais densa) que as camadas acima dela; sem correntes de convecção ascendentes, o ar poluído não se renova e permanece perto do solo. Em dias quentes, o ar do solo é mais quente, sobe e leva os poluentes consigo."
+        },
+        {
+          "topic": "Irradiação térmica",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 9,
+          "statement": "O calor do Sol chega à Terra por irradiação. Sobre esse processo, é correto afirmar que",
+          "support": null,
+          "options": [
+            "ocorre por ondas eletromagnéticas, que se propagam inclusive no vácuo.",
+            "ocorre somente em meios líquidos, pela diferença de densidade.",
+            "ocorre por correntes de convecção, que exigem um meio gasoso.",
+            "ocorre por ondas mecânicas, que exigem um meio material.",
+            "ocorre por condução, molécula a molécula, ao longo do espaço."
+          ],
+          "answer": "A",
+          "explanation": "Na irradiação, o calor se propaga por ondas eletromagnéticas (a radiação solar vem principalmente na forma de raios infravermelhos), que não precisam de meio material e, por isso, atravessam o vácuo entre o Sol e a Terra."
+        },
+        {
+          "topic": "Classificação dos processos de propagação",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 3,
+          "statement": "Considere as situações: (i) o cabo metálico de uma colher esquenta quando ela é deixada em uma panela quente; (ii) o calor do fogo de uma fogueira chega ao rosto de quem está ao lado dela; (iii) o ar quente sobe acima de uma chama, e o ar frio ocupa o lugar dele. Os processos predominantes são, respectivamente,",
+          "support": null,
+          "options": [
+            "irradiação, convecção e condução.",
+            "condução, convecção e irradiação.",
+            "condução, irradiação e convecção.",
+            "convecção, condução e irradiação.",
+            "convecção, irradiação e condução."
+          ],
+          "answer": "C",
+          "explanation": "No cabo da colher, o calor passa de molécula a molécula (condução). O calor que chega ao rosto, pelo espaço aberto ao lado do fogo, vem por ondas eletromagnéticas (irradiação). O ar quente que sobe e é substituído pelo ar frio caracteriza as correntes de convecção."
+        }
+      ]
     }
   ]
 }
