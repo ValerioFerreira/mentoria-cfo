@@ -1,698 +1,698 @@
 {
-  "aula": "fisica/a16",
-  "batch": "w2-bizu-fisica",
-  "status": "DRAFT",
-  "segments": [
+ "aula": "fisica/a16",
+ "batch": "w2-bizu-fisica",
+ "status": "DRAFT",
+ "segments": [
+  {
+   "id": "fisica/a16/s01",
+   "bizu": {
+    "summary": [
+     "**Divisão de corrente em paralelo (método do \"cruzar os resistores\")**: a corrente em cada ramo é inversamente proporcional à sua resistência, ou seja, **a maior corrente passa pelo menor resistor**. Ex.: 12 A que se divide entre 2 Ω e 4 Ω: 8 A no de 2 Ω e 4 A no de 4 Ω.",
+     "**Bateria**: sistema cujos polos têm uma diferença de potencial. O polo **positivo** está a um potencial **maior** que o negativo, na quantidade da ddp da bateria; os potenciais absolutos dos polos não são conhecidos (o positivo não é necessariamente \"positivo\"). Percorrendo-a do polo **negativo para o positivo**, o potencial **sobe** o valor da ddp; do positivo para o negativo, **desce**. O sentido da corrente não importa para essa ddp.",
+     "**Resistor**: ao percorrê-lo **no sentido da corrente**, o potencial **diminui R·i**; no sentido contrário, **aumenta R·i** (1ª lei de Ohm).",
+     "**Gerador**: dispositivo que mantém a ddp necessária ao movimento das cargas. Com **resistência interna r**, parte da energia é dissipada por efeito Joule. **Equação do gerador: U = ε − r·i** (ddp lançada = ddp produzida − ddp dissipada), com ε a força eletromotriz (fem).",
+     "**Balanço de potências**: P_total produzida = P_útil (lançada) + P_dissipada. Um gerador real tem **rendimento menor que 100%**: η = P_útil/P_total = U/ε.",
+     "**Circuito aberto** (i = 0): **U = ε**; medir a ddp nos terminais de um gerador sem corrente fornece a sua fem.",
+     "**Gráfico U × i** do gerador: **reta decrescente** (y = b − a·x). A corrente que anula a ddp nos terminais é a **corrente de curto-circuito**, **i_cc = ε/r**, que depende só das características do gerador. **Curto-circuito**: terminais ligados por fio de resistência desprezível (U = 0).",
+     "**Máxima transferência de potência**: a potência útil P = ε·i − r·i² é uma função do 2º grau com **concavidade para baixo**; tem um máximo (na condição de potência máxima o gerador opera com rendimento de 50%, quando U = ε/2).",
+     "**Receptor**: transforma energia elétrica em outra forma que não exclusivamente a térmica (ex.: motor elétrico → energia mecânica). A corrente entra pelo polo de **maior** potencial, havendo queda de potencial. Equação: **U' = ε' + r'·i**, em que ε' é a **força contraeletromotriz** (cfem). Gráfico U' × i: reta **crescente**. Potência consumida = útil + dissipada.",
+     "**Lei de Ohm-Pouillet** (elementos em série): **i = (Σε − Σε') / ΣR**."
+    ],
+    "teoria": [
+     {
+      "statement": "Quando uma corrente de 12 A se divide entre dois resistores em paralelo, de 2 Ω e de 4 Ω, a maior corrente passa pelo resistor de 4 Ω.",
+      "isTrue": false,
+      "explanation": "As correntes são inversamente proporcionais às resistências: o resistor de 2 Ω recebe 8 A e o de 4 Ω, 4 A."
+     },
+     {
+      "statement": "A ddp disponível nos terminais de um gerador com resistência interna é a força eletromotriz menos a queda de potencial na resistência interna (U = ε − r·i).",
+      "isTrue": true,
+      "explanation": "Parte da energia produzida é dissipada na resistência interna por efeito Joule."
+     },
+     {
+      "statement": "Quando o circuito está aberto, a ddp medida entre os terminais de um gerador é igual à sua força eletromotriz.",
+      "isTrue": true,
+      "explanation": "Com i = 0, a queda r·i é nula e U = ε."
+     },
+     {
+      "statement": "O polo positivo de uma bateria sempre apresenta potencial positivo, e o polo negativo, potencial negativo, em relação à Terra.",
+      "isTrue": false,
+      "explanation": "Só a diferença entre os potenciais dos dois polos é fixada pela bateria; cada potencial isolado depende da referência e pode ter qualquer valor (por exemplo, 18 V e 9 V)."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "Ao se percorrer um resistor no mesmo sentido da corrente elétrica, o potencial diminui de um valor igual a R·i.",
+      "isTrue": true,
+      "explanation": "Pela 1ª lei de Ohm, a ddp no resistor é U = R·i, e o potencial cai no sentido da corrente."
+     },
+     {
+      "statement": "A corrente de curto-circuito de um gerador é dada pela razão entre sua força eletromotriz e sua resistência interna.",
+      "isTrue": true,
+      "explanation": "Com U = 0, ε = r·i_cc, logo i_cc = ε/r."
+     },
+     {
+      "statement": "A equação do receptor é U' = ε' − r'·i, pois parte da tensão é perdida na resistência interna.",
+      "isTrue": false,
+      "explanation": "No receptor a tensão fornecida deve cobrir a utilizada e as perdas: U' = ε' + r'·i."
+     },
+     {
+      "statement": "A potência útil lançada por um gerador em função da corrente descreve uma reta crescente.",
+      "isTrue": false,
+      "explanation": "P = ε·i − r·i² é uma função do 2º grau com concavidade para baixo, com um valor máximo."
+     },
+     {
+      "statement": "Um gerador real possui rendimento inferior a 100%, porque parte da potência que produz é dissipada em sua resistência interna.",
+      "isTrue": true,
+      "explanation": "P_total = P_útil + P_dissipada, logo P_útil < P_total."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Divisão de corrente em ramos paralelos (cruzar resistores)",
+      "pageRef": 5
+     },
+     {
+      "topic": "Bateria e variação de potencial nos polos",
+      "pageRef": 8
+     },
+     {
+      "topic": "Variação de potencial em um resistor",
+      "pageRef": 9
+     },
+     {
+      "topic": "Gerador e equação U = ε − r·i",
+      "pageRef": 10
+     },
+     {
+      "topic": "Balanço energético e rendimento do gerador",
+      "pageRef": 11
+     },
+     {
+      "topic": "Gerador em circuito aberto e gráfico U × i",
+      "pageRef": 12
+     },
+     {
+      "topic": "Corrente de curto-circuito",
+      "pageRef": 13
+     },
+     {
+      "topic": "Máxima transferência de potência",
+      "pageRef": 14
+     },
+     {
+      "topic": "Receptor e força contraeletromotriz",
+      "pageRef": 15
+     },
+     {
+      "topic": "Lei de Ohm-Pouillet",
+      "pageRef": 16
+     }
+    ]
+   },
+   "questions": [
     {
-      "id": "fisica/a16/s01",
-      "bizu": {
-        "summary": [
-          "**Divisão de corrente em paralelo (método do \"cruzar os resistores\")**: a corrente em cada ramo é inversamente proporcional à sua resistência, ou seja, **a maior corrente passa pelo menor resistor**. Ex.: 12 A que se divide entre 2 Ω e 4 Ω: 8 A no de 2 Ω e 4 A no de 4 Ω.",
-          "**Bateria**: sistema cujos polos têm uma diferença de potencial. O polo **positivo** está a um potencial **maior** que o negativo, na quantidade da ddp da bateria; os potenciais absolutos dos polos não são conhecidos (o positivo não é necessariamente \"positivo\"). Percorrendo-a do polo **negativo para o positivo**, o potencial **sobe** o valor da ddp; do positivo para o negativo, **desce**. O sentido da corrente não importa para essa ddp.",
-          "**Resistor**: ao percorrê-lo **no sentido da corrente**, o potencial **diminui R·i**; no sentido contrário, **aumenta R·i** (1ª lei de Ohm).",
-          "**Gerador**: dispositivo que mantém a ddp necessária ao movimento das cargas. Com **resistência interna r**, parte da energia é dissipada por efeito Joule. **Equação do gerador: U = ε − r·i** (ddp lançada = ddp produzida − ddp dissipada), com ε a força eletromotriz (fem).",
-          "**Balanço de potências**: P_total produzida = P_útil (lançada) + P_dissipada. Um gerador real tem **rendimento menor que 100%**: η = P_útil/P_total = U/ε.",
-          "**Circuito aberto** (i = 0): **U = ε**; medir a ddp nos terminais de um gerador sem corrente fornece a sua fem.",
-          "**Gráfico U × i** do gerador: **reta decrescente** (y = b − a·x). A corrente que anula a ddp nos terminais é a **corrente de curto-circuito**, **i_cc = ε/r**, que depende só das características do gerador. **Curto-circuito**: terminais ligados por fio de resistência desprezível (U = 0).",
-          "**Máxima transferência de potência**: a potência útil P = ε·i − r·i² é uma função do 2º grau com **concavidade para baixo**; tem um máximo (na condição de potência máxima o gerador opera com rendimento de 50%, quando U = ε/2).",
-          "**Receptor**: transforma energia elétrica em outra forma que não exclusivamente a térmica (ex.: motor elétrico → energia mecânica). A corrente entra pelo polo de **maior** potencial, havendo queda de potencial. Equação: **U' = ε' + r'·i**, em que ε' é a **força contraeletromotriz** (cfem). Gráfico U' × i: reta **crescente**. Potência consumida = útil + dissipada.",
-          "**Lei de Ohm-Pouillet** (elementos em série): **i = (Σε − Σε') / ΣR**."
-        ],
-        "teoria": [
-          {
-            "statement": "Quando uma corrente de 12 A se divide entre dois resistores em paralelo, de 2 Ω e de 4 Ω, a maior corrente passa pelo resistor de 4 Ω.",
-            "isTrue": false,
-            "explanation": "As correntes são inversamente proporcionais às resistências: o resistor de 2 Ω recebe 8 A e o de 4 Ω, 4 A."
-          },
-          {
-            "statement": "A ddp disponível nos terminais de um gerador com resistência interna é a força eletromotriz menos a queda de potencial na resistência interna (U = ε − r·i).",
-            "isTrue": true,
-            "explanation": "Parte da energia produzida é dissipada na resistência interna por efeito Joule."
-          },
-          {
-            "statement": "Quando o circuito está aberto, a ddp medida entre os terminais de um gerador é igual à sua força eletromotriz.",
-            "isTrue": true,
-            "explanation": "Com i = 0, a queda r·i é nula e U = ε."
-          },
-          {
-            "statement": "O polo positivo de uma bateria sempre apresenta potencial positivo, e o polo negativo, potencial negativo, em relação à Terra.",
-            "isTrue": false,
-            "explanation": "Só a diferença entre os potenciais dos dois polos é fixada pela bateria; cada potencial isolado depende da referência e pode ter qualquer valor (por exemplo, 18 V e 9 V)."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "Ao se percorrer um resistor no mesmo sentido da corrente elétrica, o potencial diminui de um valor igual a R·i.",
-            "isTrue": true,
-            "explanation": "Pela 1ª lei de Ohm, a ddp no resistor é U = R·i, e o potencial cai no sentido da corrente."
-          },
-          {
-            "statement": "A corrente de curto-circuito de um gerador é dada pela razão entre sua força eletromotriz e sua resistência interna.",
-            "isTrue": true,
-            "explanation": "Com U = 0, ε = r·i_cc, logo i_cc = ε/r."
-          },
-          {
-            "statement": "A equação do receptor é U' = ε' − r'·i, pois parte da tensão é perdida na resistência interna.",
-            "isTrue": false,
-            "explanation": "No receptor a tensão fornecida deve cobrir a utilizada e as perdas: U' = ε' + r'·i."
-          },
-          {
-            "statement": "A potência útil lançada por um gerador em função da corrente descreve uma reta crescente.",
-            "isTrue": false,
-            "explanation": "P = ε·i − r·i² é uma função do 2º grau com concavidade para baixo, com um valor máximo."
-          },
-          {
-            "statement": "Um gerador real possui rendimento inferior a 100%, porque parte da potência que produz é dissipada em sua resistência interna.",
-            "isTrue": true,
-            "explanation": "P_total = P_útil + P_dissipada, logo P_útil < P_total."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Divisão de corrente em ramos paralelos (cruzar resistores)",
-            "pageRef": 5
-          },
-          {
-            "topic": "Bateria e variação de potencial nos polos",
-            "pageRef": 8
-          },
-          {
-            "topic": "Variação de potencial em um resistor",
-            "pageRef": 9
-          },
-          {
-            "topic": "Gerador e equação U = ε − r·i",
-            "pageRef": 10
-          },
-          {
-            "topic": "Balanço energético e rendimento do gerador",
-            "pageRef": 11
-          },
-          {
-            "topic": "Gerador em circuito aberto e gráfico U × i",
-            "pageRef": 12
-          },
-          {
-            "topic": "Corrente de curto-circuito",
-            "pageRef": 13
-          },
-          {
-            "topic": "Máxima transferência de potência",
-            "pageRef": 14
-          },
-          {
-            "topic": "Receptor e força contraeletromotriz",
-            "pageRef": 15
-          },
-          {
-            "topic": "Lei de Ohm-Pouillet",
-            "pageRef": 16
-          }
-        ]
-      },
-      "questions": [
-        {
-          "topic": "Divisão de corrente em resistores em paralelo",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 5,
-          "statement": "Uma corrente de 18 A chega a um nó e se divide entre dois resistores associados em paralelo, de 3 Ω e de 6 Ω. As correntes que passam pelo resistor de 3 Ω e pelo de 6 Ω são, respectivamente,",
-          "support": null,
-          "options": [
-            "12 A e 6 A.",
-            "15 A e 3 A.",
-            "9 A e 9 A.",
-            "6 A e 12 A.",
-            "18 A e 18 A."
-          ],
-          "answer": "A",
-          "explanation": "Em paralelo, a ddp é a mesma, então as correntes são inversamente proporcionais às resistências: o resistor de 3 Ω recebe o dobro da corrente do de 6 Ω. Com i1 + i2 = 18 A e i1 = 2·i2, resultam 12 A e 6 A (verificação: 3 · 12 = 6 · 6 = 36 V). A divisão em partes iguais só ocorreria com resistências iguais."
-        },
-        {
-          "topic": "Polos de uma bateria",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 7,
-          "statement": "Em uma bateria de 9 V, é correto afirmar que",
-          "support": null,
-          "options": [
-            "o polo positivo tem potencial de 9 V, e o negativo, potencial nulo.",
-            "o polo negativo tem potencial 9 V maior que o do positivo.",
-            "o polo positivo tem potencial 9 V maior que o do negativo, sem que se conheça o valor absoluto de cada potencial.",
-            "os dois polos têm o mesmo potencial, e a ddp só existe com o circuito fechado.",
-            "o polo positivo tem potencial de +9 V, e o negativo, de −9 V."
-          ],
-          "answer": "C",
-          "explanation": "Uma bateria mantém entre seus polos uma diferença de potencial, e é essa diferença que se conhece; o polo positivo tem potencial maior, em 9 V, que o negativo. Os valores absolutos dos potenciais são arbitrários: por exemplo, 18 V e 9 V é possível."
-        },
-        {
-          "topic": "ddp ao atravessar uma bateria",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 8,
-          "statement": "O ponto A, ligado ao polo negativo de uma bateria de 12 V, tem potencial de 5 V. O ponto B está ligado ao polo positivo da mesma bateria. O potencial do ponto B, em volts, é",
-          "support": null,
-          "options": [
-            "−17",
-            "−7",
-            "5",
-            "12",
-            "17"
-          ],
-          "answer": "E",
-          "explanation": "Ao atravessar a bateria do polo negativo para o positivo, o potencial aumenta o valor da ddp da bateria: V_B = V_A + 12 = 5 + 12 = 17 V. O valor −7 V seria obtido atravessando no sentido oposto (do positivo ao negativo)."
-        },
-        {
-          "topic": "ddp em um resistor",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 9,
-          "statement": "Uma corrente de 2 A atravessa um resistor de 5 Ω do ponto A para o ponto B, e o potencial de A é de 30 V. O potencial do ponto B, em volts, é",
-          "support": null,
-          "options": [
-            "5",
-            "10",
-            "20",
-            "35",
-            "40"
-          ],
-          "answer": "C",
-          "explanation": "Percorrido no sentido da corrente, o resistor diminui o potencial de R·i = 5 · 2 = 10 V, então V_B = 30 − 10 = 20 V. Se o percurso fosse contrário à corrente, o potencial aumentaria (40 V)."
-        },
-        {
-          "topic": "Percurso com bateria e resistor",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 9,
-          "statement": "O ponto A tem potencial de 10 V. Do ponto A se vai, por um fio ideal, ao polo positivo de uma bateria de 6 V, atravessando-a até o polo negativo, e em seguida atravessa-se um resistor de 2 Ω no sentido da corrente de 1 A, até o ponto B. O potencial do ponto B, em volts, é",
-          "support": null,
-          "options": [
-            "−2",
-            "2",
-            "6",
-            "14",
-            "18"
-          ],
-          "answer": "B",
-          "explanation": "Do polo positivo ao negativo, o potencial cai 6 V: 10 − 6 = 4 V. Ao percorrer o resistor no sentido da corrente, cai R·i = 2 · 1 = 2 V: V_B = 4 − 2 = 2 V. O valor 14 V resulta de somar as duas variações, e não de subtraí-las."
-        },
-        {
-          "topic": "Equação do gerador",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 10,
-          "statement": "Em um gerador real, de força eletromotriz ε e resistência interna r, a ddp U entre os terminais, quando percorrido por corrente i, é menor que ε porque",
-          "support": null,
-          "options": [
-            "o gerador transforma toda a energia em calor, e U = 0.",
-            "parte da energia é armazenada no gerador, e U = ε + r·i.",
-            "a resistência interna aumenta a ddp fornecida ao circuito, e U = ε + r·i.",
-            "a ddp aumenta com a corrente, e U = ε·i.",
-            "parte da energia é dissipada por efeito Joule na resistência interna, e U = ε − r·i."
-          ],
-          "answer": "E",
-          "explanation": "A ddp lançada no circuito é a ddp produzida (fem) menos a dissipada na resistência interna: U = ε − r·i. Por isso, quanto maior a corrente, menor a ddp nos terminais, e o gerador real tem rendimento menor que 100%."
-        },
-        {
-          "topic": "Gerador: ddp nos terminais",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 10,
-          "statement": "Um gerador de força eletromotriz 12 V e resistência interna 0,5 Ω é percorrido por uma corrente de 4 A. A ddp entre seus terminais, em volts, é",
-          "support": null,
-          "options": [
-            "8",
-            "10",
-            "12",
-            "14",
-            "16"
-          ],
-          "answer": "B",
-          "explanation": "A equação do gerador é U = ε − r·i = 12 − 0,5 · 4 = 10 V. O valor 14 V resulta de somar a queda interna, em vez de subtraí-la."
-        },
-        {
-          "topic": "Rendimento do gerador",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 11,
-          "statement": "Um gerador, de força eletromotriz 20 V, fornece ao circuito externo uma ddp de 16 V entre seus terminais. O rendimento desse gerador é de",
-          "support": null,
-          "options": [
-            "8%",
-            "16%",
-            "25%",
-            "64%",
-            "80%"
-          ],
-          "answer": "E",
-          "explanation": "O rendimento é a razão entre a potência útil e a total: η = U·i/(ε·i) = U/ε = 16/20 = 0,80 = 80%. O valor 125% resulta de inverter a razão, o que daria rendimento maior que 100%, impossível em um gerador real."
-        },
-        {
-          "topic": "Gerador em circuito aberto",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 12,
-          "statement": "Um voltímetro é ligado aos terminais de um gerador cujo circuito está aberto, isto é, sem corrente circulando. A leitura obtida corresponde",
-          "support": null,
-          "options": [
-            "à força eletromotriz do gerador, pois, com i = 0, U = ε.",
-            "a um valor menor que ε, igual a r·i.",
-            "à ddp dissipada na resistência interna, igual a ε.",
-            "a zero, pois não há corrente circulando.",
-            "à corrente de curto-circuito do gerador."
-          ],
-          "answer": "A",
-          "explanation": "Com a corrente nula, a queda r·i é zero e a equação do gerador fornece U = ε. Assim, a ddp nos terminais do gerador em circuito aberto é a sua força eletromotriz. A corrente de curto-circuito é outra grandeza (ε/r)."
-        },
-        {
-          "topic": "Corrente de curto-circuito",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 13,
-          "statement": "Um gerador tem força eletromotriz de 12 V e resistência interna de 0,4 Ω. A corrente que circula quando seus terminais são ligados por um fio de resistência desprezível (curto-circuito), em ampères, é",
-          "support": null,
-          "options": [
-            "1,2",
-            "4,8",
-            "12",
-            "30",
-            "48"
-          ],
-          "answer": "D",
-          "explanation": "No curto-circuito, a ddp nos terminais é nula, e i_cc = ε/r = 12/0,4 = 30 A. O valor 4,8 A resulta de multiplicar ε por r, em vez de dividir."
-        },
-        {
-          "topic": "Máxima transferência de potência",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 14,
-          "statement": "Um gerador tem força eletromotriz de 20 V e resistência interna de 2 Ω. A potência útil máxima que ele pode transferir a um circuito externo, que ocorre quando i = ε/(2r), em watts, é",
-          "support": null,
-          "options": [
-            "50",
-            "100",
-            "200",
-            "400",
-            "800"
-          ],
-          "answer": "A",
-          "explanation": "A potência útil é P = ε·i − r·i², máxima quando i = ε/2r = 20/4 = 5 A, e vale P_máx = ε²/(4r) = 400/8 = 50 W. O valor 100 W seria obtido com ε·i, sem descontar a potência dissipada na resistência interna."
-        },
-        {
-          "topic": "Rendimento na potência máxima",
-          "pattern": "caso",
-          "difficulty": 3,
-          "pageRef": 14,
-          "statement": "Um gerador de força eletromotriz ε e resistência interna r transfere ao circuito externo a máxima potência possível, o que ocorre com i = ε/(2r). Nessa condição, o rendimento do gerador é de",
-          "support": null,
-          "options": [
-            "75%, pois a ddp nos terminais é U = 3ε/4.",
-            "50%, pois a ddp nos terminais é U = ε/2.",
-            "100%, pois toda a potência produzida é transferida.",
-            "25%, pois a potência é a quarta parte de ε²/r.",
-            "0%, pois a corrente é a metade da de curto-circuito."
-          ],
-          "answer": "B",
-          "explanation": "Com i = ε/2r, a queda interna é r·i = ε/2, então U = ε − ε/2 = ε/2. O rendimento é η = U/ε = 50%. Metade da potência produzida é dissipada na resistência interna, mesmo na condição de potência máxima; rendimento de 100% exigiria r = 0."
-        },
-        {
-          "topic": "Receptor: ddp total",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 15,
-          "statement": "Um motor elétrico, tratado como receptor, tem contra-força eletromotriz de 100 V e resistência interna de 2 Ω, e é percorrido por uma corrente de 5 A. A ddp total que deve ser aplicada ao motor, em volts, é",
-          "support": null,
-          "options": [
-            "90",
-            "100",
-            "105",
-            "110",
-            "200"
-          ],
-          "answer": "D",
-          "explanation": "Para o receptor, U' = ε' + r'·i = 100 + 2 · 5 = 110 V: a ddp fornecida deve cobrir a parte útil (cfem) e as perdas internas. O valor 90 V seria obtido com o sinal trocado (equação de gerador)."
-        },
-        {
-          "topic": "Lei de Ohm-Pouillet",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 16,
-          "statement": "Em um circuito em série, há um gerador (ε = 24 V; r = 1 Ω), um motor (cfem ε' = 12 V; r' = 1 Ω) e um resistor de 4 Ω. A corrente no circuito, em ampères, é",
-          "support": null,
-          "options": [
-            "1",
-            "2",
-            "4",
-            "6",
-            "9"
-          ],
-          "answer": "B",
-          "explanation": "Pela lei de Ohm-Pouillet, i = (Σε − Σε')/ΣR = (24 − 12)/(1 + 1 + 4) = 12/6 = 2 A. O valor 6 A resulta de ignorar a cfem do motor (24/4), e 4 A, de usar apenas o resistor externo."
-        }
-      ]
+     "topic": "Divisão de corrente em resistores em paralelo",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 5,
+     "statement": "Uma corrente de 18 A chega a um nó e se divide entre dois resistores associados em paralelo, de 3 Ω e de 6 Ω. As correntes que passam pelo resistor de 3 Ω e pelo de 6 Ω são, respectivamente,",
+     "support": null,
+     "options": [
+      "12 A e 6 A.",
+      "15 A e 3 A.",
+      "9 A e 9 A.",
+      "6 A e 12 A.",
+      "18 A e 18 A."
+     ],
+     "answer": "A",
+     "explanation": "Em paralelo, a ddp é a mesma, então as correntes são inversamente proporcionais às resistências: o resistor de 3 Ω recebe o dobro da corrente do de 6 Ω. Com i1 + i2 = 18 A e i1 = 2·i2, resultam 12 A e 6 A (verificação: 3 · 12 = 6 · 6 = 36 V). A divisão em partes iguais só ocorreria com resistências iguais."
     },
     {
-      "id": "fisica/a16/s02",
-      "bizu": {
-        "summary": [
-          "**Geradores em série**: o polo positivo de um se liga ao negativo do seguinte; todos são percorridos pela **mesma corrente**. O gerador equivalente tem **ε_eq = ε1 + ε2 + ...** e **r_eq = r1 + r2 + ...** (aumenta a fem, mas também a dissipação interna).",
-          "**Geradores em paralelo** (positivos ligados entre si e negativos entre si; em geral iguais): **ε_eq = ε** (a mesma de cada gerador) e **r_eq = r/n**, com n o número de geradores iguais.",
-          "**Capacitor**: dispositivo que acumula energia potencial elétrica (flash de câmera: carrega e descarrega rapidamente). Pode ser plano, esférico, cilíndrico etc. A **capacitância** depende da geometria e do material (dielétrico). O mais cobrado é o **capacitor plano**.",
-          "**Carregamento** (chave fechada): a corrente começa no **valor máximo** e tende a **zero**; a **ddp** parte de zero e cresce até um valor praticamente constante, igual à ddp da bateria; a **carga** cresce até **Q = C·U**. Com o capacitor carregado, a corrente é nula.",
-          "**Energia armazenada**: **E = Q·U/2 = C·U²/2 = Q²/(2C)** (área sob o gráfico Q × U).",
-          "**Capacitores em série**: mesma carga em todos; **1/C_eq = 1/C1 + 1/C2 + ...**; **C_eq menor** que cada capacitância (n iguais: C/n; dois: C1·C2/(C1 + C2)).",
-          "**Capacitores em paralelo**: mesma ddp; **C_eq = C1 + C2 + ...**, **maior** que cada capacitância (n iguais: n·C). Associação mista: resolver por partes.",
-          "**Capacitor plano**: duas placas paralelas separadas por dielétrico; **C = ε·A/d**, em que ε é a permissividade do dielétrico, A a área das placas e d a distância entre elas. Maior área ou maior ε → maior C; maior distância → menor C.",
-          "**Constante dielétrica** = razão entre a permissividade do meio e a do vácuo (ε/ε0). **Não confundir** com a constante eletrostática do meio (k = 1/(4π·ε)): são conceitos distintos."
-        ],
-        "teoria": [
-          {
-            "statement": "Na associação em série de dois geradores, a força eletromotriz equivalente é a soma das forças eletromotrizes, e a resistência interna equivalente é a soma das resistências internas.",
-            "isTrue": true,
-            "explanation": "ε_eq = ε1 + ε2 e r_eq = r1 + r2; há mais fem, mas também mais dissipação interna."
-          },
-          {
-            "statement": "Na associação em paralelo de n geradores iguais, a resistência interna equivalente é n vezes a resistência de um deles.",
-            "isTrue": false,
-            "explanation": "No paralelo, r_eq = r/n e a fem equivalente é a de um único gerador."
-          },
-          {
-            "statement": "Aumentando-se a distância entre as placas de um capacitor plano, sem alterar mais nada, sua capacitância diminui.",
-            "isTrue": true,
-            "explanation": "C = ε·A/d é inversamente proporcional à distância entre as placas."
-          },
-          {
-            "statement": "Durante o carregamento de um capacitor, a corrente no circuito é mínima no início e máxima ao final do processo.",
-            "isTrue": false,
-            "explanation": "A corrente parte do valor máximo e tende a zero, anulando-se quando o capacitor completa o carregamento."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "Capacitores associados em série acumulam a mesma carga, e a capacitância equivalente é menor que a de cada capacitor da associação.",
-            "isTrue": true,
-            "explanation": "No série, 1/C_eq é a soma dos inversos, resultando em C_eq menor que a menor capacitância."
-          },
-          {
-            "statement": "Na associação em paralelo de capacitores, todos ficam submetidos à mesma ddp e a capacitância equivalente é a soma das capacitâncias.",
-            "isTrue": true,
-            "explanation": "Cargas se somam (Q = Q1 + Q2 + ...) para a mesma U, resultando em C_eq = C1 + C2 + ..."
-          },
-          {
-            "statement": "A energia elétrica armazenada em um capacitor é dada pelo produto da capacitância pela ddp (C·U).",
-            "isTrue": false,
-            "explanation": "C·U é a carga acumulada. A energia é C·U²/2 (ou Q·U/2)."
-          },
-          {
-            "statement": "A constante dielétrica de um meio é a mesma grandeza que a constante eletrostática (k) desse meio.",
-            "isTrue": false,
-            "explanation": "A constante dielétrica é a razão entre permissividades (ε/ε0); a constante eletrostática relaciona-se com a permissividade por k = 1/(4π·ε). São conceitos distintos."
-          },
-          {
-            "statement": "No carregamento de um capacitor, a ddp entre suas placas parte de zero e cresce até valer praticamente a ddp da bateria que o carrega.",
-            "isTrue": true,
-            "explanation": "A carga se acumula até Q = C·U, quando a ddp do capacitor se iguala à da bateria e a corrente cessa."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Geradores em série",
-            "pageRef": 20
-          },
-          {
-            "topic": "Geradores em paralelo",
-            "pageRef": 22
-          },
-          {
-            "topic": "Função e tipos de capacitores",
-            "pageRef": 22
-          },
-          {
-            "topic": "Carregamento: corrente, ddp e carga ao longo do tempo",
-            "pageRef": 25
-          },
-          {
-            "topic": "Carga final e energia armazenada",
-            "pageRef": 26
-          },
-          {
-            "topic": "Capacitores em série",
-            "pageRef": 27
-          },
-          {
-            "topic": "Capacitores em paralelo",
-            "pageRef": 28
-          },
-          {
-            "topic": "Capacitor plano: C = ε·A/d",
-            "pageRef": 29
-          },
-          {
-            "topic": "Constante dielétrica x constante eletrostática",
-            "pageRef": 30
-          }
-        ]
-      },
-      "questions": [
-        {
-          "topic": "Geradores em série",
-          "pattern": "calculo",
-          "difficulty": 1,
-          "pageRef": 21,
-          "statement": "Três pilhas iguais, cada uma com força eletromotriz de 1,5 V e resistência interna de 0,2 Ω, são associadas em série. O gerador equivalente tem força eletromotriz e resistência interna, respectivamente, de",
-          "support": null,
-          "options": [
-            "4,5 V e 0,6 Ω.",
-            "1,5 V e 0,6 Ω.",
-            "0,5 V e cerca de 0,07 Ω.",
-            "1,5 V e 0,2 Ω.",
-            "4,5 V e cerca de 0,07 Ω."
-          ],
-          "answer": "A",
-          "explanation": "Na associação em série, as forças eletromotrizes e as resistências internas se somam: ε = 3 · 1,5 = 4,5 V e r = 3 · 0,2 = 0,6 Ω. Há aumento de fem, mas também maior dissipação interna. Dividir r por n só vale na associação em paralelo."
-        },
-        {
-          "topic": "Geradores em paralelo",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 22,
-          "statement": "Quatro geradores iguais, cada um com força eletromotriz de 6 V e resistência interna de 2 Ω, são associados em paralelo. O gerador equivalente tem força eletromotriz e resistência interna, respectivamente, de",
-          "support": null,
-          "options": [
-            "6 V e 8 Ω.",
-            "6 V e 0,5 Ω.",
-            "1,5 V e 0,5 Ω.",
-            "24 V e 0,5 Ω.",
-            "24 V e 8 Ω."
-          ],
-          "answer": "B",
-          "explanation": "Na associação em paralelo de geradores iguais, a força eletromotriz é a de um deles (6 V) e a resistência interna é dividida pelo número de geradores: r = 2/4 = 0,5 Ω. O paralelo não aumenta a fem; ele reduz a resistência interna."
-        },
-        {
-          "topic": "Função do capacitor",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 22,
-          "statement": "O flash de uma câmera fotográfica funciona com base em um capacitor. A função principal desse dispositivo nesse caso é",
-          "support": null,
-          "options": [
-            "manter uma ddp constante igual a zero no circuito.",
-            "transformar energia elétrica em energia mecânica de forma contínua.",
-            "acumular energia potencial elétrica das pilhas e descarregá-la rapidamente na lâmpada.",
-            "dissipar energia por efeito Joule, aquecendo a lâmpada.",
-            "amplificar a corrente das pilhas, sem armazenar energia."
-          ],
-          "answer": "C",
-          "explanation": "O capacitor tem por função acumular energia potencial elétrica para repô-la durante o funcionamento do circuito. No flash, ele armazena a energia das pilhas e a descarrega na lâmpada, gerando luz intensa em curto intervalo de tempo."
-        },
-        {
-          "topic": "De que depende a capacitância",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 24,
-          "statement": "A capacitância de um capacitor depende",
-          "support": null,
-          "options": [
-            "da geometria do capacitor e do material (dielétrico) de que é feito, e não da carga acumulada.",
-            "apenas da ddp da bateria que o carrega.",
-            "da corrente que circula, e é maior no início da carga.",
-            "da carga acumulada e da ddp, mas não da geometria.",
-            "apenas do tempo de carregamento do capacitor."
-          ],
-          "answer": "A",
-          "explanation": "A capacitância é uma característica do capacitor, associada à geometria (forma, área, distância entre as placas) e ao material. Ela é a razão Q/U, constante para o capacitor, e não varia com a carga ou a ddp aplicada."
-        },
-        {
-          "topic": "Carregamento de um capacitor",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 25,
-          "statement": "Durante o carregamento de um capacitor, ligado a uma bateria por um resistor, é correto afirmar que",
-          "support": null,
-          "options": [
-            "a corrente e a ddp no capacitor permanecem constantes durante todo o carregamento.",
-            "a corrente tende a zero, e a ddp no capacitor também tende a zero.",
-            "a corrente cresce até um valor constante, e a ddp no capacitor é nula ao final.",
-            "a corrente parte de zero e cresce até um valor máximo, enquanto a ddp no capacitor diminui.",
-            "a corrente é máxima no início e se reduz a zero no fim, e a ddp no capacitor sobe de zero até igualar a da bateria."
-          ],
-          "answer": "E",
-          "explanation": "No início do carregamento, o capacitor está descarregado, a corrente é máxima e a ddp nele é nula. À medida que a carga se acumula, a ddp cresce até igualar a da bateria, e a corrente se anula. Ao final, Q = C·U, com U igual à ddp da bateria."
-        },
-        {
-          "topic": "Carga de um capacitor",
-          "pattern": "calculo",
-          "difficulty": 1,
-          "pageRef": 26,
-          "statement": "Um capacitor de 50 µF é carregado completamente por uma bateria de 12 V. A carga acumulada no capacitor, em microcoulombs, é",
-          "support": null,
-          "options": [
-            "0,24",
-            "4,2",
-            "240",
-            "600",
-            "1.200"
-          ],
-          "answer": "D",
-          "explanation": "A carga final é Q = C·U = 50 µF · 12 V = 600 µC. O valor 4,2 resulta de dividir a capacitância pela ddp (C/U)."
-        },
-        {
-          "topic": "Energia armazenada em um capacitor",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 26,
-          "statement": "Um capacitor de 50 µF, carregado com 12 V, armazena uma energia, em milijoules, igual a",
-          "support": null,
-          "options": [
-            "0,3",
-            "1,8",
-            "3,6",
-            "7,2",
-            "36"
-          ],
-          "answer": "C",
-          "explanation": "A energia potencial acumulada é E = C·U²/2 = 0,5 · 50 · 10⁻⁶ · 144 = 3,6 · 10⁻³ J = 3,6 mJ. O valor 7,2 mJ esquece o fator 1/2, e 36 mJ erra a potência de dez."
-        },
-        {
-          "topic": "Energia, carga e ddp no capacitor",
-          "pattern": "relacao",
-          "difficulty": 3,
-          "pageRef": 26,
-          "statement": "A ddp aplicada aos terminais de um capacitor é duplicada, sem que sua capacitância se altere. A carga acumulada e a energia armazenada ficam, respectivamente,",
-          "support": null,
-          "options": [
-            "inalterada e quadruplicada.",
-            "duplicada e duplicada.",
-            "quadruplicada e quadruplicada.",
-            "duplicada e quadruplicada.",
-            "quadruplicada e duplicada."
-          ],
-          "answer": "D",
-          "explanation": "Como Q = C·U, duplicar U duplica a carga. Como E = C·U²/2, a energia é proporcional ao quadrado de U, e quadruplica."
-        },
-        {
-          "topic": "Capacitores em série (dois)",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 28,
-          "statement": "Dois capacitores, de 6 µF e 3 µF, são associados em série. A capacitância equivalente, em microfarads, é",
-          "support": null,
-          "options": [
-            "2",
-            "4,5",
-            "9",
-            "18",
-            "36"
-          ],
-          "answer": "A",
-          "explanation": "Para dois capacitores em série, C_eq = (C1·C2)/(C1 + C2) = (6 · 3)/9 = 2 µF, menor que cada capacitância individual. O valor 9 µF seria a associação em paralelo."
-        },
-        {
-          "topic": "Capacitores em paralelo",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 29,
-          "statement": "Três capacitores, de 5 µF, 15 µF e 10 µF, são associados em paralelo. A capacitância equivalente, em microfarads, é",
-          "support": null,
-          "options": [
-            "2,5",
-            "5",
-            "15",
-            "30",
-            "300"
-          ],
-          "answer": "D",
-          "explanation": "Em paralelo, os capacitores estão sob a mesma ddp e as capacitâncias se somam: C_eq = 5 + 15 + 10 = 30 µF, maior que cada uma. O valor 750 resulta de multiplicar as capacitâncias."
-        },
-        {
-          "topic": "ddp em capacitores em série",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 28,
-          "statement": "Os capacitores de 6 µF e 3 µF, associados em série, são ligados a uma fonte de 12 V. A ddp, em volts, no capacitor de 3 µF é",
-          "support": null,
-          "options": [
-            "4",
-            "6",
-            "8",
-            "12",
-            "16"
-          ],
-          "answer": "C",
-          "explanation": "Em série, a carga é a mesma e a capacitância equivalente é 2 µF, então Q = 2 · 12 = 24 µC. A ddp no capacitor de 3 µF é U = Q/C = 24/3 = 8 V (e 4 V no de 6 µF, somando 12 V). A ddp maior fica no capacitor de menor capacitância."
-        },
-        {
-          "topic": "Capacitor plano",
-          "pattern": "relacao",
-          "difficulty": 2,
-          "pageRef": 29,
-          "statement": "A capacitância de um capacitor plano é C = ε·A/d. Se a área das placas for duplicada e, ao mesmo tempo, a distância entre as placas for reduzida à metade, a capacitância",
-          "support": null,
-          "options": [
-            "ficará duas vezes menor.",
-            "ficará quatro vezes maior.",
-            "permanecerá a mesma.",
-            "ficará quatro vezes menor.",
-            "ficará duas vezes maior."
-          ],
-          "answer": "B",
-          "explanation": "A capacitância é diretamente proporcional à área e inversamente proporcional à distância: duplicar A multiplica C por 2, e reduzir d à metade multiplica C por mais 2. O efeito conjunto é 2 · 2 = 4."
-        },
-        {
-          "topic": "Constante dielétrica e constante eletrostática",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 30,
-          "statement": "A constante dielétrica k de um meio e a constante eletrostática K do meio (da lei de Coulomb) são, respectivamente,",
-          "support": null,
-          "options": [
-            "K = ε/ε0, e k = 1/(4π·ε).",
-            "a razão entre as permissividades, e a própria permissividade do vácuo.",
-            "a razão entre a permissividade do meio e a do vácuo (k = ε/ε0), e K = 1/(4π·ε).",
-            "a constante da lei de Coulomb, e a razão entre as permissividades.",
-            "duas grandezas iguais, com mesmo valor e mesma definição."
-          ],
-          "answer": "C",
-          "explanation": "A constante dielétrica é adimensional, definida por k = ε/ε0. Já a constante eletrostática, que aparece na força de Coulomb, é K = 1/(4π·ε). São conceitos distintos, e confundi-los é um erro frequente."
-        },
-        {
-          "topic": "Capacitor plano com dielétrico",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 29,
-          "statement": "Um capacitor plano tem placas de área 0,2 m², separadas por 1 mm, e, no vácuo (ε0 = 8,85 pF/m), tem capacitância de 1,77 nF. Um dielétrico de constante dielétrica 4 passa a preencher totalmente o espaço entre as placas. A nova capacitância, em nanofarads, é",
-          "support": null,
-          "options": [
-            "0,11",
-            "0,44",
-            "1,77",
-            "4,43",
-            "7,08"
-          ],
-          "answer": "E",
-          "explanation": "A capacitância é C = ε·A/d, com ε = k·ε0. Com k = 4, a capacitância fica multiplicada por 4: C = 4 · 1,77 = 7,08 nF. O valor 0,44 nF resulta de dividir por 4, em vez de multiplicar."
-        }
-      ]
+     "topic": "Polos de uma bateria",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 7,
+     "statement": "Em uma bateria de 9 V, é correto afirmar que",
+     "support": null,
+     "options": [
+      "o polo positivo tem potencial de 9 V, e o negativo, potencial nulo.",
+      "o polo negativo tem potencial 9 V maior que o do positivo.",
+      "o polo positivo tem potencial 9 V maior que o do negativo, sem que se conheça o valor absoluto de cada potencial.",
+      "os dois polos têm o mesmo potencial, e a ddp só existe com o circuito fechado.",
+      "o polo positivo tem potencial de +9 V, e o negativo, de −9 V."
+     ],
+     "answer": "C",
+     "explanation": "Uma bateria mantém entre seus polos uma diferença de potencial, e é essa diferença que se conhece; o polo positivo tem potencial maior, em 9 V, que o negativo. Os valores absolutos dos potenciais são arbitrários: por exemplo, 18 V e 9 V é possível."
+    },
+    {
+     "topic": "ddp ao atravessar uma bateria",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 8,
+     "statement": "O ponto A, ligado ao polo negativo de uma bateria de 12 V, tem potencial de 5 V. O ponto B está ligado ao polo positivo da mesma bateria. O potencial do ponto B, em volts, é",
+     "support": null,
+     "options": [
+      "−17",
+      "−7",
+      "5",
+      "12",
+      "17"
+     ],
+     "answer": "E",
+     "explanation": "Ao atravessar a bateria do polo negativo para o positivo, o potencial aumenta o valor da ddp da bateria: V_B = V_A + 12 = 5 + 12 = 17 V. O valor −7 V seria obtido atravessando no sentido oposto (do positivo ao negativo)."
+    },
+    {
+     "topic": "ddp em um resistor",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 9,
+     "statement": "Uma corrente de 2 A atravessa um resistor de 5 Ω do ponto A para o ponto B, e o potencial de A é de 30 V. O potencial do ponto B, em volts, é",
+     "support": null,
+     "options": [
+      "5",
+      "10",
+      "20",
+      "35",
+      "40"
+     ],
+     "answer": "C",
+     "explanation": "Percorrido no sentido da corrente, o resistor diminui o potencial de R·i = 5 · 2 = 10 V, então V_B = 30 − 10 = 20 V. Se o percurso fosse contrário à corrente, o potencial aumentaria (40 V)."
+    },
+    {
+     "topic": "Percurso com bateria e resistor",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 9,
+     "statement": "O ponto A tem potencial de 10 V. Do ponto A se vai, por um fio ideal, ao polo positivo de uma bateria de 6 V, atravessando-a até o polo negativo, e em seguida atravessa-se um resistor de 2 Ω no sentido da corrente de 1 A, até o ponto B. O potencial do ponto B, em volts, é",
+     "support": null,
+     "options": [
+      "−2",
+      "2",
+      "6",
+      "14",
+      "18"
+     ],
+     "answer": "B",
+     "explanation": "Do polo positivo ao negativo, o potencial cai 6 V: 10 − 6 = 4 V. Ao percorrer o resistor no sentido da corrente, cai R·i = 2 · 1 = 2 V: V_B = 4 − 2 = 2 V. O valor 14 V resulta de somar as duas variações, e não de subtraí-las."
+    },
+    {
+     "topic": "Equação do gerador",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 10,
+     "statement": "Em um gerador real, de força eletromotriz ε e resistência interna r, a ddp U entre os terminais, quando percorrido por corrente i, é menor que ε porque",
+     "support": null,
+     "options": [
+      "o gerador transforma toda a energia em calor, e U = 0.",
+      "parte da energia é armazenada no gerador, e U = ε + r·i.",
+      "a resistência interna aumenta a ddp fornecida ao circuito, e U = ε + r·i.",
+      "a ddp aumenta com a corrente, e U = ε·i.",
+      "parte da energia é dissipada por efeito Joule na resistência interna, e U = ε − r·i."
+     ],
+     "answer": "E",
+     "explanation": "A ddp lançada no circuito é a ddp produzida (fem) menos a dissipada na resistência interna: U = ε − r·i. Por isso, quanto maior a corrente, menor a ddp nos terminais, e o gerador real tem rendimento menor que 100%."
+    },
+    {
+     "topic": "Gerador: ddp nos terminais",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 10,
+     "statement": "Um gerador de força eletromotriz 12 V e resistência interna 0,5 Ω é percorrido por uma corrente de 4 A. A ddp entre seus terminais, em volts, é",
+     "support": null,
+     "options": [
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+     ],
+     "answer": "B",
+     "explanation": "A equação do gerador é U = ε − r·i = 12 − 0,5 · 4 = 10 V. O valor 14 V resulta de somar a queda interna, em vez de subtraí-la."
+    },
+    {
+     "topic": "Rendimento do gerador",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 11,
+     "statement": "Um gerador, de força eletromotriz 20 V, fornece ao circuito externo uma ddp de 16 V entre seus terminais. O rendimento desse gerador é de",
+     "support": null,
+     "options": [
+      "8%",
+      "16%",
+      "25%",
+      "64%",
+      "80%"
+     ],
+     "answer": "E",
+     "explanation": "O rendimento é a razão entre a potência útil e a total: η = U·i/(ε·i) = U/ε = 16/20 = 0,80 = 80%. O valor 125% resulta de inverter a razão, o que daria rendimento maior que 100%, impossível em um gerador real."
+    },
+    {
+     "topic": "Gerador em circuito aberto",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 12,
+     "statement": "Um voltímetro é ligado aos terminais de um gerador cujo circuito está aberto, isto é, sem corrente circulando. A leitura obtida corresponde",
+     "support": null,
+     "options": [
+      "à força eletromotriz do gerador, pois, com i = 0, U = ε.",
+      "a um valor menor que ε, igual a r·i.",
+      "à ddp dissipada na resistência interna, igual a ε.",
+      "a zero, pois não há corrente circulando.",
+      "à corrente de curto-circuito do gerador."
+     ],
+     "answer": "A",
+     "explanation": "Com a corrente nula, a queda r·i é zero e a equação do gerador fornece U = ε. Assim, a ddp nos terminais do gerador em circuito aberto é a sua força eletromotriz. A corrente de curto-circuito é outra grandeza (ε/r)."
+    },
+    {
+     "topic": "Corrente de curto-circuito",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 13,
+     "statement": "Um gerador tem força eletromotriz de 12 V e resistência interna de 0,4 Ω. A corrente que circula quando seus terminais são ligados por um fio de resistência desprezível (curto-circuito), em ampères, é",
+     "support": null,
+     "options": [
+      "1,2",
+      "4,8",
+      "12",
+      "30",
+      "48"
+     ],
+     "answer": "D",
+     "explanation": "No curto-circuito, a ddp nos terminais é nula, e i_cc = ε/r = 12/0,4 = 30 A. O valor 4,8 A resulta de multiplicar ε por r, em vez de dividir."
+    },
+    {
+     "topic": "Máxima transferência de potência",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 14,
+     "statement": "Um gerador tem força eletromotriz de 20 V e resistência interna de 2 Ω. A potência útil máxima que ele pode transferir a um circuito externo, que ocorre quando i = ε/(2r), em watts, é",
+     "support": null,
+     "options": [
+      "50",
+      "100",
+      "200",
+      "400",
+      "800"
+     ],
+     "answer": "A",
+     "explanation": "A potência útil é P = ε·i − r·i², máxima quando i = ε/2r = 20/4 = 5 A, e vale P_máx = ε²/(4r) = 400/8 = 50 W. O valor 100 W seria obtido com ε·i, sem descontar a potência dissipada na resistência interna."
+    },
+    {
+     "topic": "Rendimento na potência máxima",
+     "pattern": "caso",
+     "difficulty": 3,
+     "pageRef": 14,
+     "statement": "Um gerador de força eletromotriz ε e resistência interna r transfere ao circuito externo a máxima potência possível, o que ocorre com i = ε/(2r). Nessa condição, o rendimento do gerador é de",
+     "support": null,
+     "options": [
+      "75%, pois a ddp nos terminais é U = 3ε/4.",
+      "50%, pois a ddp nos terminais é U = ε/2.",
+      "100%, pois toda a potência produzida é transferida.",
+      "25%, pois a potência é a quarta parte de ε²/r.",
+      "0%, pois a corrente é a metade da de curto-circuito."
+     ],
+     "answer": "B",
+     "explanation": "Com i = ε/2r, a queda interna é r·i = ε/2, então U = ε − ε/2 = ε/2. O rendimento é η = U/ε = 50%. Metade da potência produzida é dissipada na resistência interna, mesmo na condição de potência máxima; rendimento de 100% exigiria r = 0."
+    },
+    {
+     "topic": "Receptor: ddp total",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 15,
+     "statement": "Um motor elétrico, tratado como receptor, tem contra-força eletromotriz de 100 V e resistência interna de 2 Ω, e é percorrido por uma corrente de 5 A. A ddp total que deve ser aplicada ao motor, em volts, é",
+     "support": null,
+     "options": [
+      "90",
+      "100",
+      "105",
+      "110",
+      "200"
+     ],
+     "answer": "D",
+     "explanation": "Para o receptor, U' = ε' + r'·i = 100 + 2 · 5 = 110 V: a ddp fornecida deve cobrir a parte útil (cfem) e as perdas internas. O valor 90 V seria obtido com o sinal trocado (equação de gerador)."
+    },
+    {
+     "topic": "Lei de Ohm-Pouillet",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 16,
+     "statement": "Em um circuito em série, há um gerador (ε = 24 V; r = 1 Ω), um motor (cfem ε' = 12 V; r' = 1 Ω) e um resistor de 4 Ω. A corrente no circuito, em ampères, é",
+     "support": null,
+     "options": [
+      "1",
+      "2",
+      "4",
+      "6",
+      "9"
+     ],
+     "answer": "B",
+     "explanation": "Pela lei de Ohm-Pouillet, i = (Σε − Σε')/ΣR = (24 − 12)/(1 + 1 + 4) = 12/6 = 2 A. O valor 6 A resulta de ignorar a cfem do motor (24/4), e 4 A, de usar apenas o resistor externo."
     }
-  ]
+   ]
+  },
+  {
+   "id": "fisica/a16/s02",
+   "bizu": {
+    "summary": [
+     "**Geradores em série**: o polo positivo de um se liga ao negativo do seguinte; todos são percorridos pela **mesma corrente**. O gerador equivalente tem **ε_eq = ε1 + ε2 + ...** e **r_eq = r1 + r2 + ...** (aumenta a fem, mas também a dissipação interna).",
+     "**Geradores em paralelo** (positivos ligados entre si e negativos entre si; em geral iguais): **ε_eq = ε** (a mesma de cada gerador) e **r_eq = r/n**, com n o número de geradores iguais.",
+     "**Capacitor**: dispositivo que acumula energia potencial elétrica (flash de câmera: carrega e descarrega rapidamente). Pode ser plano, esférico, cilíndrico etc. A **capacitância** depende da geometria e do material (dielétrico). O mais cobrado é o **capacitor plano**.",
+     "**Carregamento** (chave fechada): a corrente começa no **valor máximo** e tende a **zero**; a **ddp** parte de zero e cresce até um valor praticamente constante, igual à ddp da bateria; a **carga** cresce até **Q = C·U**. Com o capacitor carregado, a corrente é nula.",
+     "**Energia armazenada**: **E = Q·U/2 = C·U²/2 = Q²/(2C)** (área sob o gráfico Q × U).",
+     "**Capacitores em série**: mesma carga em todos; **1/C_eq = 1/C1 + 1/C2 + ...**; **C_eq menor** que cada capacitância (n iguais: C/n; dois: C1·C2/(C1 + C2)).",
+     "**Capacitores em paralelo**: mesma ddp; **C_eq = C1 + C2 + ...**, **maior** que cada capacitância (n iguais: n·C). Associação mista: resolver por partes.",
+     "**Capacitor plano**: duas placas paralelas separadas por dielétrico; **C = ε·A/d**, em que ε é a permissividade do dielétrico, A área das placas e d a distância entre elas. Maior área ou maior ε → maior C; maior distância → menor C.",
+     "**Constante dielétrica** = razão entre a permissividade do meio e a do vácuo (ε/ε0). **Não confundir** com a constante eletrostática do meio (k = 1/(4π·ε)): são conceitos distintos."
+    ],
+    "teoria": [
+     {
+      "statement": "Na associação em série de dois geradores, a força eletromotriz equivalente é a soma das forças eletromotrizes, e a resistência interna equivalente é a soma das resistências internas.",
+      "isTrue": true,
+      "explanation": "ε_eq = ε1 + ε2 e r_eq = r1 + r2; há mais fem, mas também mais dissipação interna."
+     },
+     {
+      "statement": "Na associação em paralelo de n geradores iguais, a resistência interna equivalente é n vezes a resistência de um deles.",
+      "isTrue": false,
+      "explanation": "No paralelo, r_eq = r/n e a fem equivalente é a de um único gerador."
+     },
+     {
+      "statement": "Aumentando-se a distância entre as placas de um capacitor plano, sem alterar mais nada, sua capacitância diminui.",
+      "isTrue": true,
+      "explanation": "C = ε·A/d é inversamente proporcional à distância entre as placas."
+     },
+     {
+      "statement": "Durante o carregamento de um capacitor, a corrente no circuito é mínima no início e máxima ao final do processo.",
+      "isTrue": false,
+      "explanation": "A corrente parte do valor máximo e tende a zero, anulando-se quando o capacitor completa o carregamento."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "Capacitores associados em série acumulam a mesma carga, e a capacitância equivalente é menor que a de cada capacitor da associação.",
+      "isTrue": true,
+      "explanation": "No série, 1/C_eq é a soma dos inversos, resultando em C_eq menor que a menor capacitância."
+     },
+     {
+      "statement": "Na associação em paralelo de capacitores, todos ficam submetidos à mesma ddp e a capacitância equivalente é a soma das capacitâncias.",
+      "isTrue": true,
+      "explanation": "Cargas se somam (Q = Q1 + Q2 + ...) para a mesma U, resultando em C_eq = C1 + C2 + ..."
+     },
+     {
+      "statement": "A energia elétrica armazenada em um capacitor é dada pelo produto da capacitância pela ddp (C·U).",
+      "isTrue": false,
+      "explanation": "C·U é a carga acumulada. A energia é C·U²/2 (ou Q·U/2)."
+     },
+     {
+      "statement": "A constante dielétrica de um meio é a mesma grandeza que a constante eletrostática (k) desse meio.",
+      "isTrue": false,
+      "explanation": "A constante dielétrica é a razão entre permissividades (ε/ε0); a constante eletrostática relaciona-se com a permissividade por k = 1/(4π·ε). São conceitos distintos."
+     },
+     {
+      "statement": "No carregamento de um capacitor, a ddp entre suas placas parte de zero e cresce até valer praticamente a ddp da bateria que o carrega.",
+      "isTrue": true,
+      "explanation": "A carga se acumula até Q = C·U, quando a ddp do capacitor se iguala à da bateria e a corrente cessa."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Geradores em série",
+      "pageRef": 20
+     },
+     {
+      "topic": "Geradores em paralelo",
+      "pageRef": 22
+     },
+     {
+      "topic": "Função e tipos de capacitores",
+      "pageRef": 22
+     },
+     {
+      "topic": "Carregamento: corrente, ddp e carga ao longo do tempo",
+      "pageRef": 25
+     },
+     {
+      "topic": "Carga final e energia armazenada",
+      "pageRef": 26
+     },
+     {
+      "topic": "Capacitores em série",
+      "pageRef": 27
+     },
+     {
+      "topic": "Capacitores em paralelo",
+      "pageRef": 28
+     },
+     {
+      "topic": "Capacitor plano: C = ε·A/d",
+      "pageRef": 29
+     },
+     {
+      "topic": "Constante dielétrica x constante eletrostática",
+      "pageRef": 30
+     }
+    ]
+   },
+   "questions": [
+    {
+     "topic": "Geradores em série",
+     "pattern": "calculo",
+     "difficulty": 1,
+     "pageRef": 21,
+     "statement": "Três pilhas iguais, cada uma com força eletromotriz de 1,5 V e resistência interna de 0,2 Ω, são associadas em série. O gerador equivalente tem força eletromotriz e resistência interna, respectivamente, de",
+     "support": null,
+     "options": [
+      "4,5 V e 0,6 Ω.",
+      "1,5 V e 0,6 Ω.",
+      "0,5 V e cerca de 0,07 Ω.",
+      "1,5 V e 0,2 Ω.",
+      "4,5 V e cerca de 0,07 Ω."
+     ],
+     "answer": "A",
+     "explanation": "Na associação em série, as forças eletromotrizes e as resistências internas se somam: ε = 3 · 1,5 = 4,5 V e r = 3 · 0,2 = 0,6 Ω. Há aumento de fem, mas também maior dissipação interna. Dividir r por n só vale na associação em paralelo."
+    },
+    {
+     "topic": "Geradores em paralelo",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 22,
+     "statement": "Quatro geradores iguais, cada um com força eletromotriz de 6 V e resistência interna de 2 Ω, são associados em paralelo. O gerador equivalente tem força eletromotriz e resistência interna, respectivamente, de",
+     "support": null,
+     "options": [
+      "6 V e 8 Ω.",
+      "6 V e 0,5 Ω.",
+      "1,5 V e 0,5 Ω.",
+      "24 V e 0,5 Ω.",
+      "24 V e 8 Ω."
+     ],
+     "answer": "B",
+     "explanation": "Na associação em paralelo de geradores iguais, a força eletromotriz é a de um deles (6 V) e a resistência interna é dividida pelo número de geradores: r = 2/4 = 0,5 Ω. O paralelo não aumenta a fem; ele reduz a resistência interna."
+    },
+    {
+     "topic": "Função do capacitor",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 22,
+     "statement": "O flash de uma câmera fotográfica funciona com base em um capacitor. A função principal desse dispositivo nesse caso é",
+     "support": null,
+     "options": [
+      "manter uma ddp constante igual a zero no circuito.",
+      "transformar energia elétrica em energia mecânica de forma contínua.",
+      "acumular energia potencial elétrica das pilhas e descarregá-la rapidamente na lâmpada.",
+      "dissipar energia por efeito Joule, aquecendo a lâmpada.",
+      "amplificar a corrente das pilhas, sem armazenar energia."
+     ],
+     "answer": "C",
+     "explanation": "O capacitor tem por função acumular energia potencial elétrica para repô-la durante o funcionamento do circuito. No flash, ele armazena a energia das pilhas e a descarrega na lâmpada, gerando luz intensa em curto intervalo de tempo."
+    },
+    {
+     "topic": "De que depende a capacitância",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 24,
+     "statement": "A capacitância de um capacitor depende",
+     "support": null,
+     "options": [
+      "da geometria do capacitor e do material (dielétrico) de que é feito, e não da carga acumulada.",
+      "apenas da ddp da bateria que o carrega.",
+      "da corrente que circula, e é maior no início da carga.",
+      "da carga acumulada e da ddp, mas não da geometria.",
+      "apenas do tempo de carregamento do capacitor."
+     ],
+     "answer": "A",
+     "explanation": "A capacitância é uma característica do capacitor, associada à geometria (forma, área, distância entre as placas) e ao material. Ela é a razão Q/U, constante para o capacitor, e não varia com a carga ou a ddp aplicada."
+    },
+    {
+     "topic": "Carregamento de um capacitor",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 25,
+     "statement": "Durante o carregamento de um capacitor, ligado a uma bateria por um resistor, é correto afirmar que",
+     "support": null,
+     "options": [
+      "a corrente e a ddp no capacitor permanecem constantes durante todo o carregamento.",
+      "a corrente tende a zero, e a ddp no capacitor também tende a zero.",
+      "a corrente cresce até um valor constante, e a ddp no capacitor é nula ao final.",
+      "a corrente parte de zero e cresce até um valor máximo, enquanto a ddp no capacitor diminui.",
+      "a corrente é máxima no início e se reduz a zero no fim, e a ddp no capacitor sobe de zero até igualar a da bateria."
+     ],
+     "answer": "E",
+     "explanation": "No início do carregamento, o capacitor está descarregado, a corrente é máxima e a ddp nele é nula. À medida que a carga se acumula, a ddp cresce até igualar a da bateria, e a corrente se anula. Ao final, Q = C·U, com U igual à ddp da bateria."
+    },
+    {
+     "topic": "Carga de um capacitor",
+     "pattern": "calculo",
+     "difficulty": 1,
+     "pageRef": 26,
+     "statement": "Um capacitor de 50 µF é carregado completamente por uma bateria de 12 V. A carga acumulada no capacitor, em microcoulombs, é",
+     "support": null,
+     "options": [
+      "0,24",
+      "4,2",
+      "240",
+      "600",
+      "1.200"
+     ],
+     "answer": "D",
+     "explanation": "A carga final é Q = C·U = 50 µF · 12 V = 600 µC. O valor 4,2 resulta de dividir a capacitância pela ddp (C/U)."
+    },
+    {
+     "topic": "Energia armazenada em um capacitor",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 26,
+     "statement": "Um capacitor de 50 µF, carregado com 12 V, armazena uma energia, em milijoules, igual a",
+     "support": null,
+     "options": [
+      "0,3",
+      "1,8",
+      "3,6",
+      "7,2",
+      "36"
+     ],
+     "answer": "C",
+     "explanation": "A energia potencial acumulada é E = C·U²/2 = 0,5 · 50 · 10⁻⁶ · 144 = 3,6 · 10⁻³ J = 3,6 mJ. O valor 7,2 mJ esquece o fator 1/2, e 36 mJ erra a potência de dez."
+    },
+    {
+     "topic": "Energia, carga e ddp no capacitor",
+     "pattern": "relacao",
+     "difficulty": 3,
+     "pageRef": 26,
+     "statement": "A ddp aplicada aos terminais de um capacitor é duplicada, sem que sua capacitância se altere. A carga acumulada e a energia armazenada ficam, respectivamente,",
+     "support": null,
+     "options": [
+      "inalterada e quadruplicada.",
+      "duplicada e duplicada.",
+      "quadruplicada e quadruplicada.",
+      "duplicada e quadruplicada.",
+      "quadruplicada e duplicada."
+     ],
+     "answer": "D",
+     "explanation": "Como Q = C·U, duplicar U duplica a carga. Como E = C·U²/2, a energia é proporcional ao quadrado de U, e quadruplica."
+    },
+    {
+     "topic": "Capacitores em série (dois)",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 28,
+     "statement": "Dois capacitores, de 6 µF e 3 µF, são associados em série. A capacitância equivalente, em microfarads, é",
+     "support": null,
+     "options": [
+      "2",
+      "4,5",
+      "9",
+      "18",
+      "36"
+     ],
+     "answer": "A",
+     "explanation": "Para dois capacitores em série, C_eq = (C1·C2)/(C1 + C2) = (6 · 3)/9 = 2 µF, menor que cada capacitância individual. O valor 9 µF seria a associação em paralelo."
+    },
+    {
+     "topic": "Capacitores em paralelo",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 29,
+     "statement": "Três capacitores, de 5 µF, 15 µF e 10 µF, são associados em paralelo. A capacitância equivalente, em microfarads, é",
+     "support": null,
+     "options": [
+      "2,5",
+      "5",
+      "15",
+      "30",
+      "300"
+     ],
+     "answer": "D",
+     "explanation": "Em paralelo, os capacitores estão sob a mesma ddp e as capacitâncias se somam: C_eq = 5 + 15 + 10 = 30 µF, maior que cada uma. O valor 750 resulta de multiplicar as capacitâncias."
+    },
+    {
+     "topic": "ddp em capacitores em série",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 28,
+     "statement": "Os capacitores de 6 µF e 3 µF, associados em série, são ligados a uma fonte de 12 V. A ddp, em volts, no capacitor de 3 µF é",
+     "support": null,
+     "options": [
+      "4",
+      "6",
+      "8",
+      "12",
+      "16"
+     ],
+     "answer": "C",
+     "explanation": "Em série, a carga é a mesma e a capacitância equivalente é 2 µF, então Q = 2 · 12 = 24 µC. A ddp no capacitor de 3 µF é U = Q/C = 24/3 = 8 V (e 4 V no de 6 µF, somando 12 V). A ddp maior fica no capacitor de menor capacitância."
+    },
+    {
+     "topic": "Capacitor plano",
+     "pattern": "relacao",
+     "difficulty": 2,
+     "pageRef": 29,
+     "statement": "A capacitância de um capacitor plano é C = ε·A/d. Se a área das placas for duplicada e, ao mesmo tempo, a distância entre as placas for reduzida à metade, a capacitância",
+     "support": null,
+     "options": [
+      "ficará duas vezes menor.",
+      "ficará quatro vezes maior.",
+      "permanecerá a mesma.",
+      "ficará quatro vezes menor.",
+      "ficará duas vezes maior."
+     ],
+     "answer": "B",
+     "explanation": "A capacitância é diretamente proporcional à área e inversamente proporcional à distância: duplicar A multiplica C por 2, e reduzir d à metade multiplica C por mais 2. O efeito conjunto é 2 · 2 = 4."
+    },
+    {
+     "topic": "Constante dielétrica e constante eletrostática",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 30,
+     "statement": "A constante dielétrica k de um meio e a constante eletrostática K do meio (da lei de Coulomb) são, respectivamente,",
+     "support": null,
+     "options": [
+      "K = ε/ε0, e k = 1/(4π·ε).",
+      "a razão entre as permissividades, e a própria permissividade do vácuo.",
+      "a razão entre a permissividade do meio e a do vácuo (k = ε/ε0), e K = 1/(4π·ε).",
+      "a constante da lei de Coulomb, e a razão entre as permissividades.",
+      "duas grandezas iguais, com mesmo valor e mesma definição."
+     ],
+     "answer": "C",
+     "explanation": "A constante dielétrica é adimensional, definida por k = ε/ε0. Já a constante eletrostática, que aparece na força de Coulomb, é K = 1/(4π·ε). São conceitos distintos, e confundi-los é um erro frequente."
+    },
+    {
+     "topic": "Capacitor plano com dielétrico",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 29,
+     "statement": "Um capacitor plano tem placas de área 0,2 m², separadas por 1 mm, e, no vácuo (ε0 = 8,85 pF/m), tem capacitância de 1,77 nF. Um dielétrico de constante dielétrica 4 passa a preencher totalmente o espaço entre as placas. A nova capacitância, em nanofarads, é",
+     "support": null,
+     "options": [
+      "0,11",
+      "0,44",
+      "1,77",
+      "4,43",
+      "7,08"
+     ],
+     "answer": "E",
+     "explanation": "A capacitância é C = ε·A/d, com ε = k·ε0. Com k = 4, a capacitância fica multiplicada por 4: C = 4 · 1,77 = 7,08 nF. O valor 0,44 nF resulta de dividir por 4, em vez de multiplicar."
+    }
+   ]
+  }
+ ]
 }

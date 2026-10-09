@@ -1,1123 +1,1123 @@
 {
-  "aula": "informatica/a04",
-  "batch": "w2-bizu-informatica",
-  "status": "DRAFT",
-  "segments": [
+ "aula": "informatica/a04",
+ "batch": "w2-bizu-informatica",
+ "status": "DRAFT",
+ "segments": [
+  {
+   "id": "informatica/a04/s01",
+   "bizu": {
+    "summary": [
+     "**Ferramentas antimalware** detectam e anulam ou removem códigos maliciosos (antivírus, antispyware, antirootkit, antitrojan). O **antivírus** é o mais abrangente e incorporou funções das demais. Nenhuma ferramenta é infalível: dependem de atualização constante e do comportamento do usuário.",
+     "Os antimalware diferem pelo **método de detecção** (assinatura, heurística, comportamento), pela forma de obtenção (gratuito, experimental, pago), pela execução (local, sob demanda via navegador, online) e pelas funcionalidades extras (disco de emergência, firewall pessoal). Preço alto não significa, necessariamente, melhor proteção.",
+     "**Cuidados**: manter um antimalware local instalado; usar um online apenas como segunda opinião; configurar para verificar todas as extensões, anexos de e-mail, downloads, discos e mídias removíveis; manter o arquivo de assinaturas e o programa atualizados (atualização automática, de preferência diária); criar disco de emergência.",
+     "Atenção: **evite executar simultaneamente vários antimalware**, pois geram conflitos, concorrência na varredura, falsos positivos/negativos e consumo elevado de recursos. Uma segunda verificação deve ser feita com ferramenta sob demanda, de forma pontual.",
+     "O antivírus tem função **preventiva e corretiva**. Fases ao tratar uma infecção: **detecção**, **identificação** do vírus específico e **remoção** (restaurando o programa ao estado original). Marcas citadas: Avast, McAfee, Bitdefender, Kaspersky, AVG, Norton, Avira.",
+     "**Quarentena**: o arquivo suspeito é isolado em área segura, geralmente alterado de modo a não ser executável, até se confirmar se é ameaça real ou **falso positivo** (arquivo legítimo apontado como malicioso). Pode ser restaurado depois.",
+     "**1ª geração – assinatura**: compara arquivos com um banco de assinaturas de vírus conhecidos (como uma lista negra). Vantagens: alta precisão contra ameaças conhecidas, poucos falsos positivos, varredura rápida. Desvantagens: **ineficaz contra ameaças novas (zero-day)**, depende totalmente da atualização da base e é driblada por vírus polimórficos.",
+     "**Sandbox** ('caixa de areia') = ambiente isolado e controlado para executar arquivos suspeitos e observar seu comportamento sem arriscar o sistema principal. É usada por antivírus mais avançados, laboratórios e filtros de e-mail."
+    ],
+    "teoria": [
+     {
+      "statement": "As três fases básicas do trabalho de um antivírus diante de uma infecção são detecção, identificação e remoção.",
+      "isTrue": true,
+      "explanation": "Primeiro localiza o vírus, depois identifica qual é e, por fim, remove-o tentando restaurar o programa."
+     },
+     {
+      "statement": "Executar dois antivírus simultaneamente no mesmo computador aumenta a proteção, pois cada um cobre as falhas do outro.",
+      "isTrue": false,
+      "explanation": "Não se recomenda: surgem conflitos, perda de desempenho e divergências de detecção, o que reduz a segurança."
+     },
+     {
+      "statement": "Em quarentena, o arquivo suspeito é isolado e normalmente alterado para não poder ser executado, podendo ser restaurado se for considerado falso positivo.",
+      "isTrue": true,
+      "explanation": "A quarentena evita apagar de imediato um arquivo que talvez seja legítimo."
+     },
+     {
+      "statement": "O antivírus de primeira geração identifica ameaças inéditas por meio da análise do comportamento do código, dispensando atualizações da base de dados.",
+      "isTrue": false,
+      "explanation": "A 1ª geração é baseada em assinaturas de vírus já conhecidos e depende de atualização constante da base."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "A detecção por assinatura é eficaz contra malwares já catalogados, mas falha diante de ameaças novas ou modificadas.",
+      "isTrue": true,
+      "explanation": "Pequenas alterações no código e os vírus polimórficos escapam da correspondência exata."
+     },
+     {
+      "statement": "Quanto mais caro for um antimalware, maior será necessariamente sua eficiência e proteção.",
+      "isTrue": false,
+      "explanation": "O valor cobrado nem sempre se relaciona à eficácia; há versões gratuitas mais completas que certas pagas."
+     },
+     {
+      "statement": "A sandbox executa programas suspeitos em ambiente isolado, permitindo observar seu comportamento sem arriscar o sistema principal.",
+      "isTrue": true,
+      "explanation": "É uma camada adicional útil contra ransomware e malwares polimórficos."
+     },
+     {
+      "statement": "Falso positivo é a situação em que o antivírus deixa de detectar um malware realmente presente no sistema.",
+      "isTrue": false,
+      "explanation": "Isso é um falso negativo. No falso positivo, um arquivo legítimo é apontado como malicioso."
+     },
+     {
+      "statement": "Recomenda-se configurar o antimalware para atualizar automaticamente as assinaturas, de preferência diariamente, e verificar anexos de e-mail e mídias removíveis.",
+      "isTrue": true,
+      "explanation": "Assinaturas desatualizadas tornam a proteção rapidamente ineficaz."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Conceito e classificação das ferramentas antimalware",
+      "pageRef": 5
+     },
+     {
+      "topic": "Cuidados com o antimalware escolhido",
+      "pageRef": 6
+     },
+     {
+      "topic": "Antivírus: função e fases (detecção, identificação, remoção)",
+      "pageRef": 7
+     },
+     {
+      "topic": "Quarentena e falso positivo",
+      "pageRef": 7
+     },
+     {
+      "topic": "Não usar mais de um antimalware simultaneamente",
+      "pageRef": 9
+     },
+     {
+      "topic": "1ª geração: detecção por assinatura",
+      "pageRef": 10
+     },
+     {
+      "topic": "Vantagens e desvantagens da assinatura e sandbox",
+      "pageRef": 11
+     }
+    ]
+   },
+   "questions": [
     {
-      "id": "informatica/a04/s01",
-      "bizu": {
-        "summary": [
-          "**Ferramentas antimalware** detectam e anulam ou removem códigos maliciosos (antivírus, antispyware, antirootkit, antitrojan). O **antivírus** é o mais abrangente e incorporou funções das demais. Nenhuma ferramenta é infalível: dependem de atualização constante e do comportamento do usuário.",
-          "Os antimalware diferem pelo **método de detecção** (assinatura, heurística, comportamento), pela forma de obtenção (gratuito, experimental, pago), pela execução (local, sob demanda via navegador, online) e pelas funcionalidades extras (disco de emergência, firewall pessoal). Preço alto não significa, necessariamente, melhor proteção.",
-          "**Cuidados**: manter um antimalware local instalado; usar um online apenas como segunda opinião; configurar para verificar todas as extensões, anexos de e-mail, downloads, discos e mídias removíveis; manter o arquivo de assinaturas e o programa atualizados (atualização automática, de preferência diária); criar disco de emergência.",
-          "Atenção: **evite executar simultaneamente vários antimalware**, pois geram conflitos, concorrência na varredura, falsos positivos/negativos e consumo elevado de recursos. Uma segunda verificação deve ser feita com ferramenta sob demanda, de forma pontual.",
-          "O antivírus tem função **preventiva e corretiva**. Fases ao tratar uma infecção: **detecção**, **identificação** do vírus específico e **remoção** (restaurando o programa ao estado original). Marcas citadas: Avast, McAfee, Bitdefender, Kaspersky, AVG, Norton, Avira.",
-          "**Quarentena**: o arquivo suspeito é isolado em área segura, geralmente alterado de modo a não ser executável, até se confirmar se é ameaça real ou **falso positivo** (arquivo legítimo apontado como malicioso). Pode ser restaurado depois.",
-          "**1ª geração – assinatura**: compara arquivos com um banco de assinaturas de vírus conhecidos (como uma lista negra). Vantagens: alta precisão contra ameaças conhecidas, poucos falsos positivos, varredura rápida. Desvantagens: **ineficaz contra ameaças novas (zero-day)**, depende totalmente da atualização da base e é driblada por vírus polimórficos.",
-          "**Sandbox** ('caixa de areia') = ambiente isolado e controlado para executar arquivos suspeitos e observar seu comportamento sem arriscar o sistema principal. É usada por antivírus mais avançados, laboratórios e filtros de e-mail."
-        ],
-        "teoria": [
-          {
-            "statement": "As três fases básicas do trabalho de um antivírus diante de uma infecção são detecção, identificação e remoção.",
-            "isTrue": true,
-            "explanation": "Primeiro localiza o vírus, depois identifica qual é e, por fim, remove-o tentando restaurar o programa."
-          },
-          {
-            "statement": "Executar dois antivírus simultaneamente no mesmo computador aumenta a proteção, pois cada um cobre as falhas do outro.",
-            "isTrue": false,
-            "explanation": "Não se recomenda: surgem conflitos, perda de desempenho e divergências de detecção, o que reduz a segurança."
-          },
-          {
-            "statement": "Em quarentena, o arquivo suspeito é isolado e normalmente alterado para não poder ser executado, podendo ser restaurado se for considerado falso positivo.",
-            "isTrue": true,
-            "explanation": "A quarentena evita apagar de imediato um arquivo que talvez seja legítimo."
-          },
-          {
-            "statement": "O antivírus de primeira geração identifica ameaças inéditas por meio da análise do comportamento do código, dispensando atualizações da base de dados.",
-            "isTrue": false,
-            "explanation": "A 1ª geração é baseada em assinaturas de vírus já conhecidos e depende de atualização constante da base."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "A detecção por assinatura é eficaz contra malwares já catalogados, mas falha diante de ameaças novas ou modificadas.",
-            "isTrue": true,
-            "explanation": "Pequenas alterações no código e os vírus polimórficos escapam da correspondência exata."
-          },
-          {
-            "statement": "Quanto mais caro for um antimalware, maior será necessariamente sua eficiência e proteção.",
-            "isTrue": false,
-            "explanation": "O valor cobrado nem sempre se relaciona à eficácia; há versões gratuitas mais completas que certas pagas."
-          },
-          {
-            "statement": "A sandbox executa programas suspeitos em ambiente isolado, permitindo observar seu comportamento sem arriscar o sistema principal.",
-            "isTrue": true,
-            "explanation": "É uma camada adicional útil contra ransomware e malwares polimórficos."
-          },
-          {
-            "statement": "Falso positivo é a situação em que o antivírus deixa de detectar um malware realmente presente no sistema.",
-            "isTrue": false,
-            "explanation": "Isso é um falso negativo. No falso positivo, um arquivo legítimo é apontado como malicioso."
-          },
-          {
-            "statement": "Recomenda-se configurar o antimalware para atualizar automaticamente as assinaturas, de preferência diariamente, e verificar anexos de e-mail e mídias removíveis.",
-            "isTrue": true,
-            "explanation": "Assinaturas desatualizadas tornam a proteção rapidamente ineficaz."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Conceito e classificação das ferramentas antimalware",
-            "pageRef": 5
-          },
-          {
-            "topic": "Cuidados com o antimalware escolhido",
-            "pageRef": 6
-          },
-          {
-            "topic": "Antivírus: função e fases (detecção, identificação, remoção)",
-            "pageRef": 7
-          },
-          {
-            "topic": "Quarentena e falso positivo",
-            "pageRef": 7
-          },
-          {
-            "topic": "Não usar mais de um antimalware simultaneamente",
-            "pageRef": 9
-          },
-          {
-            "topic": "1ª geração: detecção por assinatura",
-            "pageRef": 10
-          },
-          {
-            "topic": "Vantagens e desvantagens da assinatura e sandbox",
-            "pageRef": 11
-          }
-        ]
-      },
-      "questions": [
-        {
-          "topic": "Ferramentas antimalware",
-          "pattern": "correta",
-          "difficulty": 1,
-          "pageRef": 5,
-          "statement": "Sobre as ferramentas antimalware, assinale a alternativa correta.",
-          "support": null,
-          "options": [
-            "A integração de funções tornou os antivírus obsoletos, pois os firewalls passaram a detectar e a remover todos os malwares.",
-            "O antivírus continua atuando exclusivamente sobre vírus, e as demais ameaças só podem ser combatidas por programas separados.",
-            "O antivírus, criado só para vírus, passou a incorporar funções de antispyware e antitrojan, tornando-se a ferramenta mais abrangente.",
-            "Os antimalware são programas que apenas previnem a entrada de códigos maliciosos, sem nunca removê-los ou anulá-los.",
-            "Cada ferramenta combate um único tipo de ameaça, e a definição de vírus ou trojan é igual para todos os fabricantes."
-          ],
-          "answer": "C",
-          "explanation": "Antimalware detectam e anulam ou removem códigos maliciosos; o antivírus nasceu para vírus e foi incorporando funcionalidades de antispyware e antitrojan, o que tornou alguns programas específicos menos relevantes. Na prática a divisão entre ameaças nem sempre é clara, e as definições variam entre fabricantes."
-        },
-        {
-          "topic": "Ferramentas antimalware: métodos de detecção",
-          "pattern": "relacao",
-          "difficulty": 3,
-          "pageRef": 5,
-          "statement": "Assinale a alternativa que associa corretamente o método de detecção de antimalware à sua base de funcionamento.",
-          "support": null,
-          "options": [
-            "Assinatura: características do código; heurística: ações do programa; comportamento: padrões previamente catalogados.",
-            "Assinatura: ações do programa; heurística: lista de arquivos suspeitos; comportamento: estruturas do código.",
-            "Assinatura: estruturas e instruções do código; heurística: padrões catalogados; comportamento: lista de arquivos suspeitos.",
-            "Assinatura: ações do programa em execução; heurística: padrões catalogados; comportamento: estruturas do código.",
-            "Assinatura: padrões catalogados; heurística: estruturas, instruções e características do código; comportamento: ações do programa."
-          ],
-          "answer": "E",
-          "explanation": "A detecção por assinatura procura padrões de uma lista de assinaturas; a heurística se baseia nas estruturas, instruções e características do código; a detecção por comportamento se baseia no comportamento que o programa apresenta."
-        },
-        {
-          "topic": "Antimalware: uso simultâneo",
-          "pattern": "caso",
-          "difficulty": 2,
-          "pageRef": 9,
-          "statement": "Para reforçar a proteção, um técnico instalou dois antivírus com monitoramento em tempo real no mesmo computador de um quartel. Quanto a essa decisão, é correto afirmar que ela",
-          "support": null,
-          "options": [
-            "não é recomendada, pois os programas podem entrar em conflito, reduzir o desempenho e interferir na capacidade de detecção.",
-            "é indiferente, pois os programas de tempo real não disputam a análise dos mesmos arquivos e processos.",
-            "é recomendada desde que um deles seja gratuito, pois só os pagos geram conflitos entre si.",
-            "só é permitida em computadores que usem apenas uma conexão de rede cabeada, sem acesso à Internet.",
-            "é recomendada, pois um antivírus cobre as falhas do outro e as capacidades de detecção se somam."
-          ],
-          "answer": "A",
-          "explanation": "Dois antimalware ativos ao mesmo tempo podem travar o sistema, disputar a varredura em tempo real, causar lentidão e gerar falsos positivos ou negativos. O ideal é um único antimalware completo e atualizado, usando, se for o caso, um segundo programa on-demand de forma pontual."
-        },
-        {
-          "topic": "Antimalware: configuração recomendada",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 6,
-          "statement": "Assinale a alternativa que apresenta uma configuração recomendada para o antimalware instalado no computador.",
-          "support": null,
-          "options": [
-            "Atualizar o arquivo de assinaturas apenas uma vez por ano, para não consumir banda da rede.",
-            "Dispensar a criação de disco de emergência, já que o antimalware instalado nunca fica desabilitado.",
-            "Verificar somente arquivos com extensão .exe, que são os únicos capazes de transportar códigos maliciosos.",
-            "Atualizar automaticamente o arquivo de assinaturas, de preferência todo dia, e verificar anexos e unidades removíveis.",
-            "Desativar a verificação das unidades removíveis, como pen-drives e discos externos, para ganhar desempenho."
-          ],
-          "answer": "D",
-          "explanation": "Recomenda-se manter o arquivo de assinaturas e o próprio programa atualizados, verificar todas as extensões, os anexos de e-mail, os arquivos da Internet, os discos rígidos e as unidades removíveis, e ter um disco de emergência para quando houver suspeita de que o antimalware está comprometido."
-        },
-        {
-          "topic": "Antimalware: custo e eficácia",
-          "pattern": "correta",
-          "difficulty": 2,
-          "pageRef": 6,
-          "statement": "Quanto à escolha de um antimalware, assinale a alternativa correta.",
-          "support": null,
-          "options": [
-            "O programa mais caro sempre será o mais eficiente, pois o valor cobrado reflete diretamente a qualidade da proteção.",
-            "O preço nem sempre se relaciona à eficiência, e há versões gratuitas com mais recursos de proteção que certas opções pagas.",
-            "Os programas on-line substituem integralmente o antimalware instalado, pois têm todas as funções da versão local.",
-            "As versões gratuitas não oferecem nenhuma função de detecção, servindo apenas para exibir propagandas ao usuário.",
-            "O perfil de uso do usuário é irrelevante, pois todos os antimalware oferecem exatamente a mesma proteção."
-          ],
-          "answer": "B",
-          "explanation": "Deve-se considerar o perfil de uso e as características de cada programa; o valor nem sempre indica eficiência, e a versão gratuita costuma ter funções básicas, ao passo que a paga tem extras. Programas on-line são úteis como segunda opinião, mas em geral têm funcionalidades reduzidas."
-        },
-        {
-          "topic": "Antivírus: fases de atuação",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 7,
-          "statement": "Os antivírus costumam seguir três passos básicos. Na fase em que, após a detecção, o programa determina qual vírus específico infectou o arquivo, ocorre a",
-          "support": null,
-          "options": [
-            "remoção.",
-            "interceptação.",
-            "detecção.",
-            "identificação.",
-            "quarentena."
-          ],
-          "answer": "D",
-          "explanation": "O antivírus primeiro detecta que há algo errado (detecção), depois identifica exatamente qual vírus causa o problema (identificação) e, por fim, elimina o vírus e tenta restaurar o programa ao estado normal (remoção)."
-        },
-        {
-          "topic": "Antivírus: quarentena",
-          "pattern": "correta",
-          "difficulty": 2,
-          "pageRef": 8,
-          "statement": "Sobre a quarentena em um antivírus, assinale a alternativa correta.",
-          "support": null,
-          "options": [
-            "O arquivo suspeito fica isolado e impedido de ser executado, e pode ser restaurado se depois se constatar um falso positivo.",
-            "O arquivo suspeito permanece no local original e é executado em ambiente isolado, até que o usuário decida apagá-lo.",
-            "O arquivo suspeito é movido para a lixeira do sistema operacional, de onde pode ser executado normalmente pelo usuário.",
-            "O arquivo suspeito é apagado de forma definitiva e imediata, sem possibilidade de recuperação, mesmo em caso de alarme falso.",
-            "O arquivo suspeito é enviado automaticamente ao fabricante, e o antivírus deixa de monitorar o computador do usuário."
-          ],
-          "answer": "A",
-          "explanation": "A quarentena isola o arquivo suspeito em área segura, geralmente criptografado ou modificado para não ser executado, nem por acidente. Se for um falso positivo, o arquivo pode ser restaurado depois, o que evita a perda de arquivos importantes por exclusão precipitada."
-        },
-        {
-          "topic": "Antivírus: principais produtos",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 8,
-          "statement": "Assinale a alternativa que apresenta apenas nomes de programas antivírus.",
-          "support": null,
-          "options": [
-            "McAfee, Metasploit, AVG e Avira.",
-            "Avast, Kaspersky, Norton e AVG.",
-            "Kaspersky, Norton, Firefox e Avast.",
-            "Bitdefender, Norton, Nmap e Avira.",
-            "Avast, Kaspersky, Wireshark e AVG."
-          ],
-          "answer": "B",
-          "explanation": "Avast, McAfee, Bitdefender, Kaspersky, AVG, Norton, Avira e PSafe estão entre os principais antivírus do mercado. As demais alternativas misturam antivírus com analisadores de rede, ferramentas de teste de invasão ou navegadores."
-        },
-        {
-          "topic": "1ª geração: detecção por assinatura",
-          "pattern": "correta",
-          "difficulty": 2,
-          "pageRef": 10,
-          "statement": "Em relação aos antivírus de 1ª geração, baseados em assinatura, assinale a alternativa correta.",
-          "support": null,
-          "options": [
-            "Combinam inteligência artificial, análise de comportamento e atualizações em nuvem, com a maior taxa de detecção.",
-            "Analisam estrutura e comportamento do código, identificando ameaças desconhecidas, mas sujeitos a falsos positivos.",
-            "Monitoram em tempo real as chamadas ao sistema operacional e bloqueiam ações perigosas antes que concluam o dano.",
-            "Dispensam atualizações frequentes, pois reconhecem qualquer variante de um vírus já catalogado, mesmo se modificada.",
-            "Comparam arquivos com uma base de assinaturas: precisos contra ameaças catalogadas, mas ineficazes contra inéditas."
-          ],
-          "answer": "E",
-          "explanation": "A detecção por assinatura funciona como uma lista negra de códigos conhecidos: é precisa, rápida e rara em falsos positivos, mas ineficaz contra ameaças novas (zero-day) e exige downloads frequentes de assinaturas. Heurística, interceptação de atividades e proteção completa são as outras gerações."
-        },
-        {
-          "topic": "Sandbox",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 11,
-          "statement": "Em segurança da informação, o termo sandbox designa",
-          "support": null,
-          "options": [
-            "uma área do antivírus onde ficam armazenadas as assinaturas dos vírus já catalogados pelo fabricante.",
-            "um recurso do firewall que bloqueia as conexões de entrada originadas em endereços da lista negra.",
-            "um ambiente isolado e controlado, em que programas ou arquivos suspeitos são executados sem risco para o sistema principal.",
-            "um servidor intermediário que filtra e registra as requisições de navegação feitas pelos usuários.",
-            "uma cópia de segurança criptografada dos arquivos do usuário, guardada em local fora do computador."
-          ],
-          "answer": "C",
-          "explanation": "A sandbox (caixa de areia) isola o programa, que não acessa o sistema real nem altera arquivos sensíveis, permitindo observar seu comportamento com segurança. Laboratórios de análise de malware, antivírus avançados e filtros de anexos e downloads a utilizam."
-        }
-      ]
+     "topic": "Ferramentas antimalware",
+     "pattern": "correta",
+     "difficulty": 1,
+     "pageRef": 5,
+     "statement": "Sobre as ferramentas antimalware, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "A integração de funções tornou os antivírus obsoletos, pois os firewalls passaram a detectar e a remover todos os malwares.",
+      "O antivírus continua atuando exclusivamente sobre vírus, e as demais ameaças só podem ser combatidas por programas separados.",
+      "O antivírus, criado só para vírus, passou a incorporar funções de antispyware e antitrojan, tornando-se a ferramenta mais abrangente.",
+      "Os antimalware são programas que apenas previnem a entrada de códigos maliciosos, sem nunca removê-los ou anulá-los.",
+      "Cada ferramenta combate um único tipo de ameaça, e a definição de vírus ou trojan é igual para todos os fabricantes."
+     ],
+     "answer": "C",
+     "explanation": "Antimalware detectam e anulam ou removem códigos maliciosos; o antivírus nasceu para vírus e foi incorporando funcionalidades de antispyware e antitrojan, o que tornou alguns programas específicos menos relevantes. Na prática a divisão entre ameaças nem sempre é clara, e as definições variam entre fabricantes."
     },
     {
-      "id": "informatica/a04/s02",
-      "bizu": {
-        "summary": [
-          "**2ª geração – heurística**: identifica ameaças **novas ou desconhecidas** analisando estrutura, instruções e comportamento do código, sem exigir correspondência exata com assinaturas. Funciona por pontuação de ações suspeitas. Vantagens: detecta variantes e polimórficos, é proativa. Desvantagens: **falsos positivos**, mais consumo de recursos e resultado probabilístico.",
-          "**3ª geração – interceptação de atividades**: monitora em tempo real o comportamento dos programas e **intercepta chamadas ao sistema operacional** (alterar arquivos do sistema, registro, conexões externas, processos ocultos). Bloqueia a ação antes do dano (ex.: programa que começa a criptografar vários arquivos). Desvantagens: impacto no desempenho e falsos positivos.",
-          "**4ª geração – proteção completa**: abordagem multicamadas e de defesa em profundidade que combina assinaturas, heurística, interceptação de comportamento, sandboxing, firewall integrado, verificação de e-mails, antispam, antiphishing, atualização em nuvem, machine learning e IA. Maior taxa de detecção, inclusive zero-day, porém exige mais recursos e configuração mais complexa.",
-          "**NGAV (Next Generation Antivirus)**: evolução que usa IA, machine learning, análise comportamental e integração com a nuvem para detectar ameaças inéditas (polimórficos, ransomware, ataques fileless). Funciona melhor integrado a EDR, firewalls e políticas de segurança; costuma ser mais caro e exigir preparo técnico.",
-          "**Antispam**: detecta, filtra e bloqueia mensagens indesejadas em massa (spam), usando listas negras, palavras-chave, reputação de IP, aprendizado de máquina e análise de comportamento. As mensagens suspeitas vão para a pasta de lixo eletrônico. Protege contra phishing e malware em anexos e economiza banda e armazenamento. **Não criptografa** mensagens.",
-          "**Antispyware**: detecta, previne e remove spywares. Atua por escaneamento periódico e por monitoramento em tempo real. Foca em ameaças que roubam informações; pode e deve trabalhar junto ao antivírus, e muitos pacotes de segurança já o integram."
-        ],
-        "teoria": [
-          {
-            "statement": "O antivírus heurístico pode identificar ameaças novas, analisando a estrutura e o comportamento do código, mas está sujeito a falsos positivos.",
-            "isTrue": true,
-            "explanation": "A análise é preditiva e probabilística; por isso pode confundir softwares legítimos com maliciosos."
-          },
-          {
-            "statement": "O antivírus de segunda geração detecta ameaças apenas por comparação exata do código com assinaturas já catalogadas.",
-            "isTrue": false,
-            "explanation": "Essa é a lógica da 1ª geração. A 2ª geração usa heurística para detectar também ameaças ainda não catalogadas."
-          },
-          {
-            "statement": "O antivírus de terceira geração intercepta, em tempo real, chamadas críticas ao sistema operacional e pode bloquear um processo que passe a criptografar muitos arquivos.",
-            "isTrue": true,
-            "explanation": "Ele reconhece o comportamento perigoso mesmo sem saber previamente que o programa é malicioso."
-          },
-          {
-            "statement": "O antispam tem como função principal criptografar as mensagens de e-mail para impedir que sejam lidas por terceiros.",
-            "isTrue": false,
-            "explanation": "O antispam filtra e bloqueia mensagens indesejadas; não realiza criptografia."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "Os antivírus de quarta geração combinam várias técnicas simultâneas, como assinaturas, heurística, interceptação de comportamento, sandboxing e inteligência artificial.",
-            "isTrue": true,
-            "explanation": "A inovação é o uso combinado de múltiplas camadas, a chamada defesa em profundidade."
-          },
-          {
-            "statement": "O NGAV baseia-se fortemente em assinaturas conhecidas, exatamente como os antivírus convencionais.",
-            "isTrue": false,
-            "explanation": "O NGAV usa IA, machine learning e análise comportamental para identificar ameaças mesmo que nunca vistas."
-          },
-          {
-            "statement": "O antispyware pode atuar tanto por escaneamento periódico do sistema quanto por monitoramento em tempo real.",
-            "isTrue": true,
-            "explanation": "É recomendável usá-lo em conjunto com o antivírus, desde que não haja conflito entre eles."
-          },
-          {
-            "statement": "Os sistemas antispam modernos dependem exclusivamente de regras fixas, sem recorrer a aprendizado de máquina.",
-            "isTrue": false,
-            "explanation": "Os mais eficientes usam inteligência artificial e machine learning, aprendendo com o feedback do usuário."
-          },
-          {
-            "statement": "Na heurística, ações consideradas suspeitas somam pontos, e o arquivo é classificado como potencialmente perigoso quando a pontuação ultrapassa um limite.",
-            "isTrue": true,
-            "explanation": "É um sistema de pontuação que tenta prever se o código é malicioso."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "2ª geração: heurística",
-            "pageRef": 12
-          },
-          {
-            "topic": "Vantagens e desvantagens da heurística",
-            "pageRef": 13
-          },
-          {
-            "topic": "3ª geração: interceptação de atividades",
-            "pageRef": 13
-          },
-          {
-            "topic": "Exemplo do ransomware e desvantagens da 3ª geração",
-            "pageRef": 14
-          },
-          {
-            "topic": "4ª geração: proteção completa",
-            "pageRef": 14
-          },
-          {
-            "topic": "NGAV",
-            "pageRef": 15
-          },
-          {
-            "topic": "NGAV e integração com EDR",
-            "pageRef": 16
-          },
-          {
-            "topic": "Antispam",
-            "pageRef": 17
-          },
-          {
-            "topic": "Antispyware",
-            "pageRef": 19
-          }
-        ]
-      },
-      "questions": [
-        {
-          "topic": "2ª geração: heurística",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 12,
-          "statement": "Um antivírus identifica um programa desconhecido como perigoso ao analisar as instruções e as características do seu código e ao somar pontos a cada ação suspeita, até ultrapassar um limite. Essa é a abordagem de detecção baseada em",
-          "support": null,
-          "options": [
-            "quarentena.",
-            "sandbox.",
-            "interceptação de atividades.",
-            "heurística.",
-            "assinatura."
-          ],
-          "answer": "D",
-          "explanation": "A heurística tenta prever se um código é malicioso por padrões suspeitos, com um sistema de pontuação por ação suspeita; assim detecta ameaças novas ou variantes sem assinatura correspondente. A detecção por assinatura exige correspondência com padrões já catalogados."
-        },
-        {
-          "topic": "2ª geração: vantagens e desvantagens",
-          "pattern": "correta",
-          "difficulty": 2,
-          "pageRef": 13,
-          "statement": "Quanto aos antivírus baseados em heurística, assinale a alternativa correta.",
-          "support": null,
-          "options": [
-            "Funcionam bem apenas contra vírus de boot, sendo ineficazes contra polimórficos e contra variantes de vírus antigos.",
-            "Detectam malwares novos e variantes de vírus antigos, mas podem gerar falsos positivos e exigir mais recursos do sistema.",
-            "Dispensam qualquer análise do código, pois só comparam o nome dos arquivos com uma lista de ameaças conhecidas.",
-            "Não consomem recursos adicionais do sistema, pois a análise é feita apenas uma vez, no momento da instalação.",
-            "Detectam apenas malwares já catalogados em uma base, mas nunca confundem programas legítimos com vírus."
-          ],
-          "answer": "B",
-          "explanation": "A heurística oferece proteção proativa contra ameaças ainda não catalogadas, inclusive polimórficas, mas é uma estimativa: pode apontar falsos positivos, e a análise dinâmica pode deixar o computador mais lento."
-        },
-        {
-          "topic": "3ª geração: interceptação de atividades",
-          "pattern": "caso",
-          "difficulty": 2,
-          "pageRef": 14,
-          "statement": "Pouco depois de instalado, um programa começa a criptografar dezenas de arquivos. O antivírus, que monitora as chamadas feitas ao sistema operacional, reconhece o padrão e interrompe o processo antes do dano maior, sem conhecer o programa. Essa é a técnica da",
-          "support": null,
-          "options": [
-            "interceptação de atividades, típica de antivírus de 3ª geração.",
-            "filtragem antispam, aplicada às mensagens recebidas.",
-            "análise de antispyware, aplicada apenas ao histórico de navegação.",
-            "detecção por assinatura, típica de antivírus de 1ª geração.",
-            "análise estática de heurística, aplicada só antes da instalação do programa."
-          ],
-          "answer": "A",
-          "explanation": "Os antivírus de 3ª geração interceptam chamadas críticas (escrita em arquivos do sistema, alterações no registro, conexões externas, processos ocultos) e bloqueiam a ação na hora, mesmo sem saber que o programa é malicioso. A assinatura exigiria que o programa já fosse catalogado."
-        },
-        {
-          "topic": "3ª geração: vantagens e desvantagens",
-          "pattern": "correta",
-          "difficulty": 3,
-          "pageRef": 14,
-          "statement": "Em relação aos antivírus de 3ª geração, assinale a alternativa correta.",
-          "support": null,
-          "options": [
-            "Dependem exclusivamente de assinaturas e, por isso, não conseguem agir contra ameaças inéditas ou sofisticadas.",
-            "São dispensáveis em ambientes corporativos, pois os usuários domésticos é que correm maior risco de danos graves.",
-            "Eliminam por completo os falsos positivos, pois só bloqueiam programas que constem de uma base de ameaças.",
-            "Não afetam o desempenho do sistema, pois verificam os arquivos apenas depois que a execução dos processos termina.",
-            "São indicados a ambientes corporativos e sistemas críticos, mas podem afetar o desempenho e gerar falsos positivos."
-          ],
-          "answer": "E",
-          "explanation": "A interceptação de atividades age em tempo real, sem depender só de assinaturas ou heurística, e impede ações maliciosas mesmo em códigos que pareçam inofensivos. Em contrapartida, monitorar sempre pode afetar o desempenho, gerar falsos positivos e exigir boa configuração."
-        },
-        {
-          "topic": "4ª geração: proteção completa",
-          "pattern": "correta",
-          "difficulty": 2,
-          "pageRef": 14,
-          "statement": "Sobre os antivírus de 4ª geração, assinale a alternativa correta.",
-          "support": null,
-          "options": [
-            "Dispensam qualquer configuração e nunca exigem recursos extras, pois operam sem monitoramento em tempo real.",
-            "Limitam-se ao combate de vírus de boot e de macro, deixando os demais malwares aos cuidados de firewalls.",
-            "Combinam várias técnicas, como assinatura, heurística, interceptação, nuvem e IA, com maior taxa de detecção.",
-            "Usam somente assinaturas, atualizadas pela nuvem, e por isso não detectam ameaças desconhecidas ou de tipo zero-day.",
-            "Abandonam a análise de comportamento e a heurística, que foram substituídas pelo bloqueio de todos os arquivos novos."
-          ],
-          "answer": "C",
-          "explanation": "A inovação da 4ª geração é a combinação de técnicas (assinatura, heurística, interceptação de atividades, análise em nuvem ou sandbox, antispam, antiphishing, firewall integrado, aprendizado de máquina), o que amplia a cobertura, ainda que exija mais recursos e configuração."
-        },
-        {
-          "topic": "NGAV: antivírus de próxima geração",
-          "pattern": "correta",
-          "difficulty": 3,
-          "pageRef": 15,
-          "statement": "No que se refere ao NGAV (Next Generation Antivirus), assinale a alternativa correta.",
-          "support": null,
-          "options": [
-            "Substitui o firewall e as políticas de segurança, como controle de acesso, backups e treinamento dos usuários.",
-            "Destina-se a usuários domésticos, pois dispensa configuração e preparo técnico e custa menos que os antivírus comuns.",
-            "Usa IA, aprendizado de máquina, análise comportamental e nuvem, e costuma custar mais e exigir preparo técnico.",
-            "Baseia-se fortemente em assinaturas conhecidas e, por isso, é pouco eficaz contra ameaças polimórficas e fileless.",
-            "Atua apenas sobre arquivos baixados da Internet e ignora o comportamento geral do sistema em tempo real."
-          ],
-          "answer": "C",
-          "explanation": "O NGAV é a evolução do antivírus, pensada para malwares polimórficos, ransomware e ataques sem arquivos: observa o comportamento do sistema em tempo real, apoia-se em IA e nuvem e tenta prever comportamentos maliciosos nunca vistos. Em geral custa mais e demanda mais preparo."
-        },
-        {
-          "topic": "Antispam",
-          "pattern": "caso",
-          "difficulty": 1,
-          "pageRef": 17,
-          "statement": "A caixa de entrada de um oficial é inundada por mensagens que oferecem prêmios improváveis, e as suspeitas devem ser movidas automaticamente para a pasta de lixo eletrônico. A ferramenta apropriada é o",
-          "support": null,
-          "options": [
-            "disco de emergência.",
-            "sandbox.",
-            "antispyware.",
-            "firewall de aplicação.",
-            "antispam."
-          ],
-          "answer": "E",
-          "explanation": "O antispam detecta, filtra e bloqueia mensagens indesejadas, em geral enviadas em massa, movendo as suspeitas para pasta de Spam ou Lixo Eletrônico, ou apagando-as. O antispyware combate espiões, e a sandbox isola a execução de arquivos suspeitos."
-        },
-        {
-          "topic": "Antispam: critérios de filtragem",
-          "pattern": "correta",
-          "difficulty": 2,
-          "pageRef": 17,
-          "statement": "Quanto ao funcionamento dos filtros antispam, assinale a alternativa correta.",
-          "support": null,
-          "options": [
-            "Atuam apenas por regras fixas e não se beneficiam de aprendizado de máquina nem do feedback dos usuários.",
-            "Bloqueiam apenas mensagens com anexos executáveis, ignorando o endereço do remetente e o texto do assunto.",
-            "Criptografam o conteúdo das mensagens recebidas, para que os spams não possam ser lidos por terceiros.",
-            "Avaliam remetente, palavras suspeitas, estrutura da mensagem e comportamento de envio, e podem aprender com o feedback do usuário.",
-            "Eliminam todas as mensagens de remetentes desconhecidos, sem mover nenhuma delas para pastas separadas."
-          ],
-          "answer": "D",
-          "explanation": "Antispam analisam o endereço do remetente, frases suspeitas no assunto ou no corpo, a estrutura (muitos links ou anexos estranhos) e o comportamento do remetente; os mais eficientes usam IA e aprendem com as marcações dos usuários. Eles não criptografam mensagens."
-        },
-        {
-          "topic": "Antispyware: funcionamento",
-          "pattern": "correta",
-          "difficulty": 2,
-          "pageRef": 19,
-          "statement": "Sobre o antispyware, assinale a alternativa correta.",
-          "support": null,
-          "options": [
-            "Atua por escaneamento periódico e por monitoramento em tempo real, podendo trabalhar junto ao antivírus e agir também sobre adwares.",
-            "Serve apenas para filtrar mensagens de e-mail indesejadas, deixando a defesa contra espiões ao firewall.",
-            "Não pode trabalhar junto ao antivírus, pois os dois programas sempre entram em conflito nos softwares modernos.",
-            "Não alcança adwares, pois eles não monitoram nem interferem na atividade do usuário no computador.",
-            "Atua apenas por varredura manual, pois não possui monitoramento em tempo real nem prevenção da instalação."
-          ],
-          "answer": "A",
-          "explanation": "O antispyware detecta, previne e remove spywares, por escaneamento periódico e monitoramento em tempo real; muitos pacotes já o trazem integrado ao antivírus, e ele também costuma tratar adwares como ameaças. Pode enviar arquivos suspeitos para a quarentena."
-        },
-        {
-          "topic": "Antispyware x antivírus",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 19,
-          "statement": "Comparando as duas ferramentas, o antivírus cobre numerosas categorias de malware, ao passo que o antispyware",
-          "support": null,
-          "options": [
-            "foca unicamente no bloqueio das conexões de entrada indevidas na rede.",
-            "foca especificamente nas ameaças que visam roubar informações do usuário.",
-            "foca somente nas mensagens indesejadas que chegam à caixa de entrada.",
-            "foca exclusivamente nos worms que se propagam pelas redes locais.",
-            "foca apenas nos vírus que infectam o setor de inicialização do disco."
-          ],
-          "answer": "B",
-          "explanation": "O material compara o antivírus a um guarda de fronteira e o antispyware a um detetive que investiga infiltrações silenciosas: o primeiro cobre vários malwares (vírus, trojans, worms), o segundo mira os programas espiões que coletam dados. Spam é com o antispam e conexões indevidas, com o firewall."
-        }
-      ]
+     "topic": "Ferramentas antimalware: métodos de detecção",
+     "pattern": "relacao",
+     "difficulty": 3,
+     "pageRef": 5,
+     "statement": "Assinale a alternativa que associa corretamente o método de detecção de antimalware à sua base de funcionamento.",
+     "support": null,
+     "options": [
+      "Assinatura: características do código; heurística: ações do programa; comportamento: padrões previamente catalogados.",
+      "Assinatura: ações do programa; heurística: lista de arquivos suspeitos; comportamento: estruturas do código.",
+      "Assinatura: estruturas e instruções do código; heurística: padrões catalogados; comportamento: lista de arquivos suspeitos.",
+      "Assinatura: ações do programa em execução; heurística: padrões catalogados; comportamento: estruturas do código.",
+      "Assinatura: padrões catalogados; heurística: estruturas, instruções e características do código; comportamento: ações do programa."
+     ],
+     "answer": "E",
+     "explanation": "A detecção por assinatura procura padrões de uma lista de assinaturas; a heurística se baseia nas estruturas, instruções e características do código; a detecção por comportamento se baseia no comportamento que o programa apresenta."
     },
     {
-      "id": "informatica/a04/s03",
-      "bizu": {
-        "summary": [
-          "**Firewall** = software, hardware ou combinação dos dois que regula o tráfego entre redes distintas, bloqueando acessos nocivos ou não autorizados de acordo com a política de segurança. Ele controla, registra, monitora e filtra a entrada e a saída de dados. Duas em cada três questões cobram a definição.",
-          "Exemplos: Windows Defender Firewall (Windows), IPTables/Netfilter (Linux). O **roteador doméstico** já traz firewall; empresas usam firewalls de hardware mais robustos.",
-          "O firewall **não impede o fluxo normal**: tudo o que não violar as regras segue sem obstáculo. Posição típica: entre a rede interna e a Internet (**firewall de borda**). Pode haver também **firewall interno**, protegendo ativos críticos dentro da rede; por isso pode, sim, ajudar contra ataques internos, embora algumas bancas considerem só o de borda.",
-          "**Firewall x antivírus**: o firewall age de forma **preventiva**, analisando pacotes segundo uma política de acesso; o antivírus identifica e remove de forma reativa malwares já presentes. O ideal é usar os dois.",
-          "**Modos**: **restritivo** (bloqueia tudo que não é expressamente permitido; usa **lista branca**) e **permissivo** (permite tudo que não é expressamente proibido; usa **lista negra**). Em geral, o firewall trabalha em modo restritivo. O conjunto de regras é a **Lista de Controle de Acesso (ACL)**.",
-          "**Técnicas de controle**: de serviços (IP e porta), de direção, de usuário e de comportamento.",
-          "**Funções auxiliares** que podem estar no firewall: NAT, DMZ, balanceamento de carga, antispoofing, autenticação de usuário, VPN, alta disponibilidade, filtros de URL, spam e e-mail, bloqueio de alguns DoS e bloqueio por endereço MAC. Não são o foco principal; muitas funções aumentam a complexidade.",
-          "**Firewall pessoal**: protege um computador contra acessos não autorizados vindos da Internet. Pode registrar tentativas, bloquear invasões e explorações de vulnerabilidades, barrar a comunicação entre invasor e código malicioso instalado e evitar a propagação do malware. Antimalware sozinho não bloqueia exploração de vulnerabilidade pela rede nem backdoors.",
-          "O firewall pode **bloquear a propagação de worms**, impedindo conexões em portas abandonadas, mas **não é antimalware** e não elimina o worm."
-        ],
-        "teoria": [
-          {
-            "statement": "O firewall pode ser implementado como software, como hardware ou como uma combinação de ambos, e o roteador doméstico já costuma incorporar essa função.",
-            "isTrue": true,
-            "explanation": "Sistemas operacionais trazem firewall em software; empresas usam firewalls de hardware mais robustos."
-          },
-          {
-            "statement": "Firewall e antivírus desempenham a mesma função: ambos identificam e eliminam malwares presentes no computador.",
-            "isTrue": false,
-            "explanation": "O firewall controla acessos conforme uma política de segurança, de modo preventivo; o antivírus detecta e remove malware já presente."
-          },
-          {
-            "statement": "Um firewall em modo restritivo bloqueia tudo o que não seja expressamente permitido, utilizando o conceito de lista branca.",
-            "isTrue": true,
-            "explanation": "É o modo mais comum e se assemelha ao princípio da legalidade estrita da Administração."
-          },
-          {
-            "statement": "Um firewall que usa lista negra opera em modo restritivo, pois só bloqueia o que consta da lista.",
-            "isTrue": false,
-            "explanation": "Lista negra caracteriza o modo permissivo: tudo é permitido, exceto o que foi explicitamente proibido."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "O firewall de borda fica entre a rede interna e a Internet, mas é possível usar também um firewall interno para proteger ativos críticos dentro da rede.",
-            "isTrue": true,
-            "explanation": "Assim, um acesso que passou pela borda ainda encontra outra barreira antes de dados sensíveis."
-          },
-          {
-            "statement": "O firewall pessoal substitui o antimalware, pois é capaz de eliminar os códigos maliciosos que já estejam instalados no computador.",
-            "isTrue": false,
-            "explanation": "Ele controla o tráfego e pode bloquear a propagação, mas não elimina o malware; os dois recursos se complementam."
-          },
-          {
-            "statement": "O firewall pode impedir que um worm se propague pela rede, mas não é capaz de eliminar o worm do computador infectado.",
-            "isTrue": true,
-            "explanation": "A eliminação é tarefa de ferramentas antimalware."
-          },
-          {
-            "statement": "O conjunto de regras que um firewall aplica é chamado de Lista de Controle de Acesso.",
-            "isTrue": true,
-            "explanation": "É a ACL (Access Control List), que traduz a política de segurança da organização."
-          },
-          {
-            "statement": "NAT, DMZ e VPN são o foco principal de um firewall, sendo sua função primordial.",
-            "isTrue": false,
-            "explanation": "São funções auxiliares. O foco do firewall é controlar o tráfego conforme a política de segurança."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Definição de firewall e exemplos",
-            "pageRef": 60
-          },
-          {
-            "topic": "Hardware, software e firewall do roteador",
-            "pageRef": 60
-          },
-          {
-            "topic": "Firewall de borda e firewall interno",
-            "pageRef": 62
-          },
-          {
-            "topic": "Firewall x antivírus",
-            "pageRef": 63
-          },
-          {
-            "topic": "Modos restritivo e permissivo; listas branca e negra",
-            "pageRef": 64
-          },
-          {
-            "topic": "ACL e técnicas de controle",
-            "pageRef": 65
-          },
-          {
-            "topic": "Funções auxiliares do firewall",
-            "pageRef": 66
-          },
-          {
-            "topic": "Firewall pessoal",
-            "pageRef": 67
-          },
-          {
-            "topic": "Firewall e propagação de worms",
-            "pageRef": 68
-          }
-        ]
-      },
-      "questions": [
-        {
-          "topic": "Firewall: conceito",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 60,
-          "statement": "O firewall é um componente de segurança de rede que",
-          "support": null,
-          "options": [
-            "tem a função de traduzir os nomes de domínio digitados pelos usuários nos endereços IP dos servidores.",
-            "pode ser software, hardware ou ambos, e regula o tráfego entre redes distintas, bloqueando acessos nocivos ou não autorizados.",
-            "tem a função de filtrar exclusivamente as mensagens de e-mail, separando as desejadas das de spam.",
-            "existe apenas como software e tem a função de eliminar os vírus que já se instalaram no computador do usuário.",
-            "existe apenas como hardware e tem a função de criptografar todas as mensagens enviadas pelos usuários da rede."
-          ],
-          "answer": "B",
-          "explanation": "O firewall regula o tráfego de entrada e saída entre redes conforme a política de segurança da organização; pode ser software, hardware ou a combinação de ambos. Eliminar vírus é papel do antivírus, filtrar spam é do antispam e traduzir nomes é do DNS."
-        },
-        {
-          "topic": "Firewall: firewall embutido nos sistemas",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 60,
-          "statement": "No sistema operacional Linux, o firewall embutido, em forma de software, é o",
-          "support": null,
-          "options": [
-            "Firewall Mac.",
-            "Windows Firewall.",
-            "Sandbox.",
-            "IPTables/Netfilter.",
-            "Avast Shield."
-          ],
-          "answer": "D",
-          "explanation": "Os principais sistemas operacionais trazem firewall embutido: Windows Firewall no Windows, IPTables/Netfilter no Linux e Firewall Mac no macOS. Empresas costumam investir em firewalls mais robustos, em hardware."
-        },
-        {
-          "topic": "Firewall: posição na rede",
-          "pattern": "correta",
-          "difficulty": 2,
-          "pageRef": 62,
-          "statement": "Quanto à posição do firewall na rede, assinale a alternativa correta.",
-          "support": null,
-          "options": [
-            "O firewall interno separa a rede de duas organizações diferentes, e o de borda separa dois departamentos.",
-            "O firewall fica sempre dentro do computador do usuário, e um segundo firewall na borda da rede é desnecessário.",
-            "O firewall de borda fica entre a rede interna e a Internet, e um firewall interno pode proteger recursos, como a folha de pagamento, na própria rede.",
-            "O firewall de borda fica na parte interna da rede e, por isso, não pode impedir acessos vindos da Internet.",
-            "O uso de um firewall interno dispensa o de borda, pois ele cobre todo o tráfego entre a rede e a Internet."
-          ],
-          "answer": "C",
-          "explanation": "O firewall tipicamente fica entre a rede interna e a Internet (firewall de borda), mas pode haver outro dentro da rede (firewall interno), por exemplo, para proteger o banco de dados da folha de pagamento de quem já passou pela borda."
-        },
-        {
-          "topic": "Firewall x antivírus",
-          "pattern": "correta",
-          "difficulty": 2,
-          "pageRef": 63,
-          "statement": "Em relação às diferenças entre firewall e antivírus, assinale a alternativa correta.",
-          "support": null,
-          "options": [
-            "O firewall analisa pacotes conforme uma política de acesso e age preventivamente; o antivírus usa assinaturas e heurística para eliminar malwares já presentes.",
-            "O firewall usa assinaturas e heurística para eliminar malwares já presentes; o antivírus age de modo preventivo, por política de acesso.",
-            "O firewall e o antivírus são equivalentes, e instalar um deles dispensa a instalação do outro no computador.",
-            "O firewall elimina qualquer vírus que já tenha se instalado no sistema, enquanto o antivírus só bloqueia conexões.",
-            "O antivírus controla as portas de comunicação do computador, e o firewall verifica o conteúdo dos arquivos baixados."
-          ],
-          "answer": "A",
-          "explanation": "O firewall é preventivo: examina o tráfego segundo a política de acesso e bloqueia ou permite. O antivírus é reativo: usa assinatura, heurística e outras técnicas para identificar e destruir malwares dentro do sistema. Recomenda-se usar os dois."
-        },
-        {
-          "topic": "Firewall: modos de funcionamento",
-          "pattern": "relacao",
-          "difficulty": 2,
-          "pageRef": 63,
-          "statement": "Quanto aos modos de funcionamento de um firewall, assinale a alternativa que relaciona corretamente a lista utilizada ao modo.",
-          "support": null,
-          "options": [
-            "A lista branca e a lista negra correspondem, ambas, ao modo restritivo.",
-            "A lista branca e a lista negra correspondem, ambas, ao modo permissivo.",
-            "A lista branca corresponde ao firewall de borda, e a lista negra, ao firewall interno.",
-            "A lista branca corresponde ao modo permissivo, e a lista negra, ao modo restritivo.",
-            "A lista branca corresponde ao modo restritivo, e a lista negra, ao modo permissivo."
-          ],
-          "answer": "E",
-          "explanation": "No modo restritivo, o firewall impede tudo o que não seja expressamente permitido (lista branca), em geral mais seguro; no permissivo, permite tudo o que não seja expressamente proibido (lista negra), o que deixa passar penetras."
-        },
-        {
-          "topic": "Firewall: técnicas de controle",
-          "pattern": "relacao",
-          "difficulty": 3,
-          "pageRef": 65,
-          "statement": "Assinale a alternativa que associa corretamente a técnica de controle do firewall à sua descrição.",
-          "support": null,
-          "options": [
-            "Controle de comportamento: define quais usuários podem acessar cada serviço da rede.",
-            "Controle de serviço: determina a direção em que as solicitações podem ser iniciadas e fluir.",
-            "Controle de usuário: regula o acesso a um serviço conforme quem tenta acessá-lo.",
-            "Controle de usuário: filtra o e-mail para eliminar spam e libera parte da informação de um servidor.",
-            "Controle de direção: define quais serviços de Internet estão liberados para acesso."
-          ],
-          "answer": "C",
-          "explanation": "Controle de serviço define quais serviços podem ser acessados; de direção, em que sentido as solicitações podem ser iniciadas; de usuário, quem pode acessar o serviço; e de comportamento, como os serviços são usados (por exemplo, filtrar spam)."
-        },
-        {
-          "topic": "Firewall: Lista de Controle de Acesso",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 65,
-          "statement": "O conjunto de regras que um firewall aplica na organização é denominado",
-          "support": null,
-          "options": [
-            "cache de servidor proxy.",
-            "Lista de Controle de Acesso (ACL).",
-            "tabela de estados de sessão.",
-            "Lista de Certificados Revogados (LCR).",
-            "área de quarentena."
-          ],
-          "answer": "B",
-          "explanation": "O conjunto de regras de acesso de uma organização é a Lista de Controle de Acesso (Access Control List). A LCR trata de certificados digitais, e a tabela de estados guarda as conexões abertas de um firewall stateful."
-        },
-        {
-          "topic": "Firewall: funções auxiliares",
-          "pattern": "correta",
-          "difficulty": 2,
-          "pageRef": 66,
-          "statement": "Sobre as funções auxiliares que um firewall pode desempenhar, assinale a alternativa correta.",
-          "support": null,
-          "options": [
-            "Só pode bloquear tráfego pela camada de aplicação, não sendo capaz de usar o endereço MAC ou bloquear ataques de DoS.",
-            "Não pode implementar NAT nem VPN, pois essas funções são exclusivas dos roteadores e dos servidores de arquivos.",
-            "As funções auxiliares são o foco do recurso, e a filtragem de tráfego entre redes é apenas uma função secundária.",
-            "Pode implementar NAT, DMZ, VPN e filtros de URL e de spam, mas essas funções não são seu foco e aumentam a complexidade da administração.",
-            "Agregar funções reduz a complexidade da administração e as chances de falha, razão pela qual elas são o foco principal."
-          ],
-          "answer": "D",
-          "explanation": "Um firewall pode implementar NAT, DMZ, balanceamento de carga, antispoofing, autenticação, VPN, alta disponibilidade, filtros de URL, spam e e-mail e bloqueios de DoS ou por MAC. Cada função a mais amplia o risco de falhas e dificulta a administração."
-        },
-        {
-          "topic": "Firewall pessoal",
-          "pattern": "caso",
-          "difficulty": 2,
-          "pageRef": 67,
-          "statement": "Um tenente mantém o antivírus atualizado, mas teme que um invasor explore pela rede alguma vulnerabilidade do seu computador ou acesse um backdoor já instalado. A proteção complementar adequada é",
-          "support": null,
-          "options": [
-            "o filtro antispam, que bloqueia as mensagens indesejadas recebidas pelo cliente de e-mail.",
-            "o disco de emergência, que substitui o antivírus quando este estiver desabilitado.",
-            "o certificado digital, que garante a autoria dos documentos assinados pelo militar.",
-            "a quarentena, que isola os arquivos suspeitos encontrados durante as varreduras.",
-            "o firewall pessoal, que protege contra acessos não autorizados vindos da Internet."
-          ],
-          "answer": "E",
-          "explanation": "Antimalware não impedem que um atacante explore vulnerabilidades pela rede nem evitam o acesso por backdoor; o firewall pessoal é o recurso que bloqueia tentativas de invasão e registra tentativas de acesso, protegendo o computador contra acessos indevidos vindos da Internet."
-        },
-        {
-          "topic": "Firewall: worms",
-          "pattern": "correta",
-          "difficulty": 3,
-          "pageRef": 68,
-          "statement": "Em relação à atuação do firewall diante de worms, assinale a alternativa correta.",
-          "support": null,
-          "options": [
-            "Pode impedir a propagação, ao bloquear conexões em portas desativadas ou abandonadas, mas não elimina o worm, pois não é um antimalware.",
-            "Elimina o worm que já se instalou no computador, pois detecta e remove os códigos maliciosos por assinatura.",
-            "Não consegue impedir a propagação, pois worms se espalham por meio de documentos e não por conexões de rede.",
-            "Impede a propagação ao analisar o conteúdo dos arquivos de cada documento do Office compartilhado na rede.",
-            "Identifica e isola o worm em quarentena, restaurando os arquivos infectados ao estado em que estavam antes."
-          ],
-          "answer": "A",
-          "explanation": "Worms se propagam por conexões de rede, usando portas desativadas ou abandonadas; o firewall, como ferramenta preventiva, pode bloquear essa propagação, mas não é um antimalware e, portanto, não elimina o worm."
-        },
-        {
-          "topic": "Filtro de pacotes: portas de serviços",
-          "pattern": "relacao",
-          "difficulty": 2,
-          "pageRef": 68,
-          "statement": "Assinale a alternativa que associa corretamente o serviço à porta padrão que ele utiliza.",
-          "support": null,
-          "options": [
-            "DNS: porta 21; HTTP: porta 80; HTTPS: porta 443.",
-            "DNS: porta 53; HTTP: porta 80; HTTPS: porta 443.",
-            "DNS: porta 53; HTTP: porta 443; HTTPS: porta 80.",
-            "DNS: porta 80; HTTP: porta 53; HTTPS: porta 443.",
-            "DNS: porta 443; HTTP: porta 80; HTTPS: porta 53."
-          ],
-          "answer": "B",
-          "explanation": "O DNS usa a porta 53, o HTTP a 80 e o HTTPS a 443. A porta 21 é a de controle do FTP. O firewall de pacotes permite ou bloqueia o tráfego em cada porta, controlando os serviços."
-        }
-      ]
+     "topic": "Antimalware: uso simultâneo",
+     "pattern": "caso",
+     "difficulty": 2,
+     "pageRef": 9,
+     "statement": "Para reforçar a proteção, um técnico instalou dois antivírus com monitoramento em tempo real no mesmo computador de um quartel. Quanto a essa decisão, é correto afirmar que ela",
+     "support": null,
+     "options": [
+      "não é recomendada, pois os programas podem entrar em conflito, reduzir o desempenho e interferir na capacidade de detecção.",
+      "é indiferente, pois os programas de tempo real não disputam a análise dos mesmos arquivos e processos.",
+      "é recomendada desde que um deles seja gratuito, pois só os pagos geram conflitos entre si.",
+      "só é permitida em computadores que usem apenas uma conexão de rede cabeada, sem acesso à Internet.",
+      "é recomendada, pois um antivírus cobre as falhas do outro e as capacidades de detecção se somam."
+     ],
+     "answer": "A",
+     "explanation": "Dois antimalware ativos ao mesmo tempo podem travar o sistema, disputar a varredura em tempo real, causar lentidão e gerar falsos positivos ou negativos. O ideal é um único antimalware completo e atualizado, usando, se for o caso, um segundo programa on-demand de forma pontual."
     },
     {
-      "id": "informatica/a04/s04",
-      "bizu": {
-        "summary": [
-          "**Filtro de pacotes** (firewall **stateless**, sem estado de sessão): examina cada pacote isoladamente, com base no cabeçalho (IP e porta de origem e destino, protocolo, direção), nas camadas de **rede e transporte** da arquitetura TCP/IP. É simples, barato e flexível (roteadores o têm), mas menos seguro: pacotes podem ser falsificados; não autentica usuário e tem limitações de logs. Praticamente não é mais usado isoladamente.",
-          "Exemplo: bloquear portas 5222 e 5223 impede o uso do WhatsApp. Mas bloquear a porta 80 impediria **todas** as páginas web, não só as de um tipo de site, pois o filtro não diferencia conteúdo.",
-          "**Filtro de estado de sessão** (firewall **stateful**): mantém uma **tabela de estados** das conexões ativas, além da tabela de regras. Analisa inicialmente a abertura da conexão e depois confere se cada pacote pertence a uma sessão ativa. Também atua nas camadas de rede e transporte e tem todos os recursos do filtro de pacotes.",
-          "**Proxy** (gateway de aplicação, ou firewall de aplicação): servidor intermediário entre clientes da rede interna e servidores externos. Filtra com base em dados da **camada de aplicação** (URL, palavras-chave), podendo bloquear sites, inclusive downloads de executáveis.",
-          "Recursos do proxy: **cache** compartilhado por todos os computadores da rede (diferente do cache do navegador), **controle de acesso** conforme política, **registro (log)** das tentativas de acesso (inclusive às páginas bloqueadas) e **anonimato** (o IP exibido é o do proxy). Só atua como firewall quando faz controle de acesso.",
-          "**Firewalls híbridos** misturam as tecnologias anteriores. **Proxy x VPN**: ambos mascaram o IP, mas o proxy **não criptografa** o tráfego; a VPN protege e criptografa os dados. **WAF** (Web Application Firewall) é firewall de aplicação específico para tráfego HTTP.",
-          "**NGFW (Next Generation Firewall)**: vai além de portas e protocolos, com **inspeção profunda de pacotes (DPI)**, **controle de aplicações** (identifica Facebook, YouTube etc. independentemente da porta), IDS/IPS integrados, visibilidade contextual e integração com inteligência contra ameaças. Exige mais recursos e equipe preparada. Complementa, mas não substitui, o antivírus instalado nas máquinas."
-        ],
-        "teoria": [
-          {
-            "statement": "O filtro de pacotes é um firewall stateless que decide sobre cada pacote com base nas informações de cabeçalho, como endereços, portas e protocolo.",
-            "isTrue": true,
-            "explanation": "Ele atua nas camadas de rede e transporte e não guarda registro de pacotes anteriores."
-          },
-          {
-            "statement": "O filtro de estado de sessão inspeciona cada pacote de forma isolada, sem manter qualquer informação sobre as conexões estabelecidas.",
-            "isTrue": false,
-            "explanation": "Essa é a característica do filtro de pacotes. O filtro de estado mantém uma tabela de estados das conexões."
-          },
-          {
-            "statement": "O servidor proxy pode filtrar o acesso com base em dados da camada de aplicação, como o endereço URL das páginas solicitadas.",
-            "isTrue": true,
-            "explanation": "Por isso permite bloquear categorias de sites, o que o filtro de pacotes não consegue fazer com precisão."
-          },
-          {
-            "statement": "Para impedir apenas o acesso a sites de redes sociais, basta que o filtro de pacotes bloqueie a porta 80, sem afetar as demais páginas web.",
-            "isTrue": false,
-            "explanation": "Bloquear a porta 80 impede o acesso a qualquer página HTTP, pois o filtro não distingue conteúdos que chegam à mesma porta."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "O cache do proxy armazena dados de páginas acessadas por todos os computadores da rede interna, enquanto o cache do navegador guarda apenas os acessados pelo próprio computador.",
-            "isTrue": true,
-            "explanation": "O cache do proxy economiza banda e acelera acessos recorrentes."
-          },
-          {
-            "statement": "Assim como uma VPN, o servidor proxy criptografa todo o tráfego do usuário, impedindo sua interceptação.",
-            "isTrue": false,
-            "explanation": "O proxy mascara o IP, mas não criptografa; a VPN é que protege e criptografa os dados."
-          },
-          {
-            "statement": "O NGFW identifica e controla aplicações específicas, como redes sociais, independentemente da porta ou do protocolo utilizado.",
-            "isTrue": true,
-            "explanation": "Além disso, faz inspeção profunda de pacotes e costuma integrar IDS/IPS."
-          },
-          {
-            "statement": "O filtro de pacotes é o tipo de firewall mais seguro e continua sendo o mais utilizado isoladamente nos dias de hoje.",
-            "isTrue": false,
-            "explanation": "Ele oferece menor grau de segurança, pois pacotes podem ser forjados, e praticamente não é mais usado isoladamente."
-          },
-          {
-            "statement": "O servidor proxy mantém registro das tentativas de acesso a páginas web, inclusive daquelas que foram bloqueadas.",
-            "isTrue": true,
-            "explanation": "Os logs permitem auditar o uso da rede."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Filtro de pacotes (stateless)",
-            "pageRef": 69
-          },
-          {
-            "topic": "Exemplo de portas e limites do filtro de pacotes",
-            "pageRef": 69
-          },
-          {
-            "topic": "Filtro de estado de sessão (stateful)",
-            "pageRef": 70
-          },
-          {
-            "topic": "Proxy: conceito",
-            "pageRef": 72
-          },
-          {
-            "topic": "Proxy x filtro de pacotes (camada de aplicação)",
-            "pageRef": 73
-          },
-          {
-            "topic": "Cache, controle de acesso e anonimato do proxy",
-            "pageRef": 74
-          },
-          {
-            "topic": "Proxy como firewall; proxy x VPN; WAF",
-            "pageRef": 75
-          },
-          {
-            "topic": "NGFW",
-            "pageRef": 76
-          }
-        ]
-      },
-      "questions": [
-        {
-          "topic": "Filtro de pacotes: funcionamento",
-          "pattern": "correta",
-          "difficulty": 2,
-          "pageRef": 69,
-          "statement": "Sobre o firewall do tipo filtro de pacotes, assinale a alternativa correta.",
-          "support": null,
-          "options": [
-            "Decide com base no conteúdo dos dados transportados e consegue identificar qual aplicativo gerou o tráfego.",
-            "Atua na camada de aplicação e decide conforme o endereço URL e as palavras presentes no conteúdo das páginas.",
-            "É stateless: decide por cabeçalhos (endereços, portas, direção), nas camadas de rede e transporte, avaliando cada pacote isoladamente.",
-            "Atua somente no computador do usuário e depende de assinaturas de vírus atualizadas para tomar suas decisões.",
-            "É stateful: guarda registro dos pacotes anteriores de cada conexão e decide conforme o estado da sessão aberta."
-          ],
-          "answer": "C",
-          "explanation": "O filtro de pacotes examina protocolo e porta (e demais campos do cabeçalho IP/TCP/UDP) e aplica regras da política de segurança, sem estado de sessão: cada pacote é analisado de forma independente de ser de uma conexão nova ou existente."
-        },
-        {
-          "topic": "Filtro de pacotes: vantagens e limitações",
-          "pattern": "correta",
-          "difficulty": 3,
-          "pageRef": 69,
-          "statement": "Quanto às características do filtro de pacotes, assinale a alternativa correta.",
-          "support": null,
-          "options": [
-            "Oferece o mais alto grau de segurança entre os tipos de firewall, pois examina o conteúdo da aplicação em cada pacote.",
-            "É imune a ataques de falsificação de pacotes, pois só aceita aqueles que provêm de sessões autenticadas.",
-            "Autentica os usuários que acessam a rede e mantém registros detalhados de suas sessões, sem limitações de logs.",
-            "É simples, barato e flexível, mas dá menor segurança, pois os pacotes podem ser falsificados para passar pelas regras.",
-            "Exige equipamentos caros e é difícil de implementar, razão pela qual não é encontrado em roteadores."
-          ],
-          "answer": "D",
-          "explanation": "Por funcionar nas camadas de rede e transporte, o filtro de pacotes é simples e barato, mas dá menor segurança: pacotes podem ser forjados para passar pelas regras, não há autenticação de usuário e há problemas de gerenciamento, de logs e de fragmentação. Por isso quase não é mais usado."
-        },
-        {
-          "topic": "Filtro de pacotes: bloqueio de portas",
-          "pattern": "caso",
-          "difficulty": 2,
-          "pageRef": 69,
-          "statement": "Um gestor bloqueia no firewall as portas usadas por um aplicativo de mensagens. A regra analisa cada pacote isoladamente, com base no protocolo e na porta, sem guardar registro dos pacotes anteriores. Esse firewall é do tipo",
-          "support": null,
-          "options": [
-            "filtro de estado de sessão.",
-            "servidor proxy de aplicação.",
-            "firewall pessoal.",
-            "NGFW com inspeção profunda.",
-            "filtro de pacotes."
-          ],
-          "answer": "E",
-          "explanation": "O filtro de pacotes examina os pacotes em relação ao protocolo e à porta, sem estado: bloquear portas impede o serviço que as utiliza. O de estado de sessão também considera uma tabela de conexões abertas, e o proxy decide com base na camada de aplicação."
-        },
-        {
-          "topic": "Filtro de estado de sessão",
-          "pattern": "correta",
-          "difficulty": 2,
-          "pageRef": 70,
-          "statement": "Em relação ao firewall de filtro de estado de sessão, assinale a alternativa correta.",
-          "support": null,
-          "options": [
-            "Mantém, além da tabela de regras, uma tabela de estado das conexões, e verifica se cada pacote pertence a uma sessão aberta.",
-            "Atua apenas sobre o conteúdo das páginas web, bloqueando-as por endereço URL e por palavras-chave.",
-            "Trabalha somente com a porta de controle de cada serviço e ignora as demais conexões ligadas à sessão.",
-            "Decide só pelo estado das conexões abertas, sem considerar protocolo, porta ou lista negra e branca.",
-            "Analisa cada pacote isoladamente, sem guardar nenhum registro das conexões, e por isso é chamado de stateless."
-          ],
-          "answer": "A",
-          "explanation": "O firewall stateful é mais sofisticado: ao receber um pacote, consulta as regras (lista, protocolo, porta) e também o estado da sessão, ou seja, se há conexão aberta. Já o filtro de pacotes não tem estado e examina cada pacote sem memória dos anteriores."
-        },
-        {
-          "topic": "Filtro de estado de sessão: FTP",
-          "pattern": "caso",
-          "difficulty": 3,
-          "pageRef": 70,
-          "statement": "Um arquivo grande é transferido por FTP, dividido em milhões de pacotes. O firewall que, em vez de aplicar todas as regras a cada pacote, verifica se ele pertence à sessão já aberta é o filtro de",
-          "support": null,
-          "options": [
-            "pacotes, pois ele abre uma sessão de controle pela porta 21 antes de enviar dados.",
-            "estado de sessão, pois mantém uma tabela com as conexões abertas.",
-            "aplicação, pois ele separa os pacotes de dados dos de controle pelo conteúdo da URL.",
-            "pacotes, pois ele guarda o registro dos pacotes recebidos antes na sessão.",
-            "estado de sessão, pois ele analisa cada pacote isoladamente, sem considerar as conexões."
-          ],
-          "answer": "B",
-          "explanation": "O filtro de estado de sessão sabe que há uma sessão FTP aberta (controle na porta 21 e dados na 20) e só confere se cada pacote pertence a ela. O filtro de pacotes não tem estado e avalia as regras para cada pacote isoladamente."
-        },
-        {
-          "topic": "Proxy: conceito",
-          "pattern": "correta",
-          "difficulty": 1,
-          "pageRef": 72,
-          "statement": "Sobre o servidor proxy, assinale a alternativa correta.",
-          "support": null,
-          "options": [
-            "Atua como intermediário entre a rede interna e recursos externos, filtrando e encaminhando requisições, em especial na camada de aplicação.",
-            "É um protocolo que traduz nomes de domínio em endereços IP, em um modelo hierárquico de consultas.",
-            "Atua apenas nas camadas de rede e de transporte, decidindo só pelos endereços IP e pelas portas dos pacotes.",
-            "É um mecanismo que impede o registro das tentativas de acesso, para garantir a privacidade dos usuários.",
-            "É um programa instalado no computador de cada usuário, que detecta e elimina vírus pelo método de assinatura."
-          ],
-          "answer": "A",
-          "explanation": "O proxy intercepta, filtra e encaminha as requisições dos clientes a outros servidores, impondo políticas de segurança, controlando conteúdos, mantendo logs, cache e até anonimato. Também é chamado de gateway de aplicação."
-        },
-        {
-          "topic": "Proxy x filtro de pacotes",
-          "pattern": "caso",
-          "difficulty": 3,
-          "pageRef": 73,
-          "statement": "Uma organização quer impedir o acesso de seus servidores a redes sociais, mas manter o acesso às demais páginas web. Em relação a essa necessidade, é correto afirmar que",
-          "support": null,
-          "options": [
-            "o filtro de pacotes resolve, pois distingue os pacotes que chegam a uma mesma porta pelo conteúdo da aplicação.",
-            "o filtro de estado de sessão resolve, pois reconhece as páginas de cada site pelo endereço URL.",
-            "o filtro de pacotes, ao bloquear a porta 80, bloquearia todas as páginas web, e o proxy filtra pela URL.",
-            "o proxy não resolve, pois só consegue decidir com base nos cabeçalhos dos protocolos de rede e de transporte.",
-            "nenhuma solução resolve, pois o bloqueio por site exige que a porta 80 seja bloqueada para todos."
-          ],
-          "answer": "C",
-          "explanation": "O filtro de pacotes só vê cabeçalhos da camada de rede e de transporte e não distingue pacotes que chegam à mesma porta; para bloquear só alguns sites, é preciso um proxy, que filtra com base nos dados da aplicação, como a URL."
-        },
-        {
-          "topic": "Proxy: cache e logs",
-          "pattern": "correta",
-          "difficulty": 3,
-          "pageRef": 74,
-          "statement": "Quanto aos recursos de um servidor proxy, assinale a alternativa correta.",
-          "support": null,
-          "options": [
-            "O proxy bloqueia páginas por palavras-chave, mas não registra as tentativas de acesso feitas a páginas bloqueadas.",
-            "O cache do proxy dispensa o cache do navegador, pois ambos armazenam exatamente as mesmas informações.",
-            "O proxy acelera o acesso ao armazenar o conteúdo, mas não permite o controle de acesso de acordo com a política de segurança.",
-            "O cache do proxy guarda apenas as páginas acessadas por um computador, como o cache do navegador desse equipamento.",
-            "O cache do proxy guarda páginas acessadas por toda a rede interna, e o proxy registra as tentativas de acesso, mesmo às bloqueadas."
-          ],
-          "answer": "E",
-          "explanation": "O cache do navegador guarda dados temporários das páginas acessadas pelo seu computador; o do proxy guarda os das páginas acessadas por toda a rede interna. O proxy também controla o acesso por endereços e palavras e registra todas as tentativas, mesmo as bloqueadas."
-        },
-        {
-          "topic": "Proxy como firewall",
-          "pattern": "correta",
-          "difficulty": 3,
-          "pageRef": 75,
-          "statement": "Em relação à relação entre proxy e firewall, assinale a alternativa correta.",
-          "support": null,
-          "options": [
-            "O proxy atua como firewall apenas se for instalado no computador do usuário, e não em um servidor da rede.",
-            "O proxy nunca atua como firewall, pois só trabalha na camada de enlace, e não no controle de acesso.",
-            "O proxy sempre atua como firewall, mesmo quando apenas gerencia as requisições dos clientes sem aplicar política alguma.",
-            "Quando o proxy limita ou bloqueia conexões por uma política de segurança, atua como firewall; se só intermedeia requisições, é apenas um intermediário.",
-            "O proxy atua como firewall somente quando faz cache de páginas web, independentemente de qualquer bloqueio de acesso."
-          ],
-          "answer": "D",
-          "explanation": "Um proxy tem vários recursos: se faz controle de acesso à rede, limitando ou bloqueando conexões segundo uma política de segurança, exerce o papel de firewall; se apenas gerencia requisições de clientes para servidores, é um simples intermediário."
-        },
-        {
-          "topic": "NGFW",
-          "pattern": "correta",
-          "difficulty": 2,
-          "pageRef": 76,
-          "statement": "Sobre o firewall de próxima geração (NGFW), assinale a alternativa correta.",
-          "support": null,
-          "options": [
-            "Dispensa bases de assinaturas e de indicadores de comprometimento, pois só atua nas camadas de rede e de transporte.",
-            "Consome menos recursos que os demais firewalls, pois não analisa o conteúdo do tráfego que passa por ele.",
-            "Identifica apenas o usuário, sem considerar dispositivo, horário ou contexto, e não integra IDS ou IPS.",
-            "Decide só pelo IP e pela porta, como os firewalls tradicionais, e não consegue identificar o aplicativo em uso.",
-            "Faz inspeção profunda de pacotes e controle de aplicações, identificando o aplicativo mesmo por portas permitidas."
-          ],
-          "answer": "E",
-          "explanation": "O NGFW vai além de IP e porta: faz DPI, controla aplicações como YouTube ou WhatsApp independentemente da porta, costuma integrar IDS/IPS, usa assinaturas e IoCs e oferece visibilidade contextual (quem, dispositivo, horário). Em contrapartida, a inspeção profunda consome mais recursos."
-        },
-        {
-          "topic": "NGFW: controle de aplicações",
-          "pattern": "caso",
-          "difficulty": 2,
-          "pageRef": 76,
-          "statement": "Uma corporação quer limitar o uso de redes sociais no expediente, ainda que o acesso seja feito por conexão segura, independentemente da porta ou do protocolo utilizado. O recurso mais adequado é o",
-          "support": null,
-          "options": [
-            "antispam do cliente de e-mail.",
-            "firewall pessoal do sistema operacional.",
-            "disco de emergência do antivírus.",
-            "NGFW, com controle de aplicações.",
-            "filtro de pacotes, com regras por porta."
-          ],
-          "answer": "D",
-          "explanation": "O NGFW reconhece qual aplicativo está em uso e aplica políticas específicas (bloquear, limitar ou priorizar), mesmo em conexões seguras. O filtro de pacotes só vê protocolo e porta, e as demais opções não controlam aplicações."
-        }
-      ]
+     "topic": "Antimalware: configuração recomendada",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 6,
+     "statement": "Assinale a alternativa que apresenta uma configuração recomendada para o antimalware instalado no computador.",
+     "support": null,
+     "options": [
+      "Atualizar o arquivo de assinaturas apenas uma vez por ano, para não consumir banda da rede.",
+      "Dispensar a criação de disco de emergência, já que o antimalware instalado nunca fica desabilitado.",
+      "Verificar somente arquivos com extensão .exe, que são os únicos capazes de transportar códigos maliciosos.",
+      "Atualizar automaticamente o arquivo de assinaturas, de preferência todo dia, e verificar anexos e unidades removíveis.",
+      "Desativar a verificação das unidades removíveis, como pen-drives e discos externos, para ganhar desempenho."
+     ],
+     "answer": "D",
+     "explanation": "Recomenda-se manter o arquivo de assinaturas e o próprio programa atualizados, verificar todas as extensões, os anexos de e-mail, os arquivos da Internet, os discos rígidos e as unidades removíveis, e ter um disco de emergência para quando houver suspeita de que o antimalware está comprometido."
+    },
+    {
+     "topic": "Antimalware: custo e eficácia",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 6,
+     "statement": "Quanto à escolha de um antimalware, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "O programa mais caro sempre será o mais eficiente, pois o valor cobrado reflete diretamente a qualidade da proteção.",
+      "O preço nem sempre se relaciona à eficiência, e há versões gratuitas com mais recursos de proteção que certas opções pagas.",
+      "Os programas on-line substituem integralmente o antimalware instalado, pois têm todas as funções da versão local.",
+      "As versões gratuitas não oferecem nenhuma função de detecção, servindo apenas para exibir propagandas ao usuário.",
+      "O perfil de uso do usuário é irrelevante, pois todos os antimalware oferecem exatamente a mesma proteção."
+     ],
+     "answer": "B",
+     "explanation": "Deve-se considerar o perfil de uso e as características de cada programa; o valor nem sempre indica eficiência, e a versão gratuita costuma ter funções básicas, ao passo que a paga tem extras. Programas on-line são úteis como segunda opinião, mas em geral têm funcionalidades reduzidas."
+    },
+    {
+     "topic": "Antivírus: fases de atuação",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 7,
+     "statement": "Os antivírus costumam seguir três passos básicos. Na fase em que, após a detecção, o programa determina qual vírus específico infectou o arquivo, ocorre a",
+     "support": null,
+     "options": [
+      "remoção.",
+      "interceptação.",
+      "detecção.",
+      "identificação.",
+      "quarentena."
+     ],
+     "answer": "D",
+     "explanation": "O antivírus primeiro detecta que há algo errado (detecção), depois identifica exatamente qual vírus causa o problema (identificação) e, por fim, elimina o vírus e tenta restaurar o programa ao estado normal (remoção)."
+    },
+    {
+     "topic": "Antivírus: quarentena",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 8,
+     "statement": "Sobre a quarentena em um antivírus, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "O arquivo suspeito fica isolado e impedido de ser executado, e pode ser restaurado se depois se constatar um falso positivo.",
+      "O arquivo suspeito permanece no local original e é executado em ambiente isolado, até que o usuário decida apagá-lo.",
+      "O arquivo suspeito é movido para a lixeira do sistema operacional, de onde pode ser executado normalmente pelo usuário.",
+      "O arquivo suspeito é apagado de forma definitiva e imediata, sem possibilidade de recuperação, mesmo em caso de alarme falso.",
+      "O arquivo suspeito é enviado automaticamente ao fabricante, e o antivírus deixa de monitorar o computador do usuário."
+     ],
+     "answer": "A",
+     "explanation": "A quarentena isola o arquivo suspeito em área segura, geralmente criptografado ou modificado para não ser executado, nem por acidente. Se for um falso positivo, o arquivo pode ser restaurado depois, o que evita a perda de arquivos importantes por exclusão precipitada."
+    },
+    {
+     "topic": "Antivírus: principais produtos",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 8,
+     "statement": "Assinale a alternativa que apresenta apenas nomes de programas antivírus.",
+     "support": null,
+     "options": [
+      "McAfee, Metasploit, AVG e Avira.",
+      "Avast, Kaspersky, Norton e AVG.",
+      "Kaspersky, Norton, Firefox e Avast.",
+      "Bitdefender, Norton, Nmap e Avira.",
+      "Avast, Kaspersky, Wireshark e AVG."
+     ],
+     "answer": "B",
+     "explanation": "Avast, McAfee, Bitdefender, Kaspersky, AVG, Norton, Avira e PSafe estão entre os principais antivírus do mercado. As demais alternativas misturam antivírus com analisadores de rede, ferramentas de teste de invasão ou navegadores."
+    },
+    {
+     "topic": "1ª geração: detecção por assinatura",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 10,
+     "statement": "Em relação aos antivírus de 1ª geração, baseados em assinatura, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "Combinam inteligência artificial, análise de comportamento e atualizações em nuvem, com a maior taxa de detecção.",
+      "Analisam estrutura e comportamento do código, identificando ameaças desconhecidas, mas sujeitos a falsos positivos.",
+      "Monitoram em tempo real as chamadas ao sistema operacional e bloqueiam ações perigosas antes que concluam o dano.",
+      "Dispensam atualizações frequentes, pois reconhecem qualquer variante de um vírus já catalogado, mesmo se modificada.",
+      "Comparam arquivos com uma base de assinaturas: precisos contra ameaças catalogadas, mas ineficazes contra inéditas."
+     ],
+     "answer": "E",
+     "explanation": "A detecção por assinatura funciona como uma lista negra de códigos conhecidos: é precisa, rápida e rara em falsos positivos, mas ineficaz contra ameaças novas (zero-day) e exige downloads frequentes de assinaturas. Heurística, interceptação de atividades e proteção completa são as outras gerações."
+    },
+    {
+     "topic": "Sandbox",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 11,
+     "statement": "Em segurança da informação, o termo sandbox designa",
+     "support": null,
+     "options": [
+      "uma área do antivírus onde ficam armazenadas as assinaturas dos vírus já catalogados pelo fabricante.",
+      "um recurso do firewall que bloqueia as conexões de entrada originadas em endereços da lista negra.",
+      "um ambiente isolado e controlado, em que programas ou arquivos suspeitos são executados sem risco para o sistema principal.",
+      "um servidor intermediário que filtra e registra as requisições de navegação feitas pelos usuários.",
+      "uma cópia de segurança criptografada dos arquivos do usuário, guardada em local fora do computador."
+     ],
+     "answer": "C",
+     "explanation": "A sandbox (caixa de areia) isola o programa, que não acessa o sistema real nem altera arquivos sensíveis, permitindo observar seu comportamento com segurança. Laboratórios de análise de malware, antivírus avançados e filtros de anexos e downloads a utilizam."
     }
-  ]
+   ]
+  },
+  {
+   "id": "informatica/a04/s02",
+   "bizu": {
+    "summary": [
+     "**2ª geração – heurística**: identifica ameaças **novas ou desconhecidas** analisando estrutura, instruções e comportamento do código, sem exigir correspondência exata com assinaturas. Funciona por pontuação de ações suspeitas. Vantagens: detecta variantes e polimórficos, é proativa. Desvantagens: **falsos positivos**, mais consumo de recursos e resultado probabilístico.",
+     "**3ª geração – interceptação de atividades**: monitora em tempo real o comportamento dos programas e **intercepta chamadas ao sistema operacional** (alterar arquivos do sistema, registro, conexões externas, processos ocultos). Bloqueia a ação antes do dano (ex.: programa que começa a criptografar vários arquivos). Desvantagens: impacto no desempenho e falsos positivos.",
+     "**4ª geração – proteção completa**: abordagem multicamadas e de defesa em profundidade que combina assinaturas, heurística, interceptação de comportamento, sandboxing, firewall integrado, verificação de e-mails, antispam, antiphishing, atualização em nuvem, machine learning e IA. Maior taxa de detecção, inclusive zero-day, porém exige mais recursos e configuração mais complexa.",
+     "**NGAV (Next Generation Antivirus)**: evolução que usa IA, machine learning, análise comportamental e integração com a nuvem para detectar ameaças inéditas (polimórficos, ransomware, ataques fileless). Funciona melhor integrado a EDR, firewalls e políticas de segurança; costuma ser mais caro e exigir preparo técnico.",
+     "**Antispam**: detecta, filtra e bloqueia mensagens indesejadas em massa (spam), usando listas negras, palavras-chave, reputação de IP, aprendizado de máquina e análise de comportamento. As mensagens suspeitas vão para a pasta de lixo eletrônico. Protege contra phishing e malware em anexos e economiza banda e armazenamento. **Não criptografa** mensagens.",
+     "**Antispyware**: detecta, previne e remove spywares. Atua por escaneamento periódico e por monitoramento em tempo real. Foca em ameaças que roubam informações; pode e deve trabalhar junto ao antivírus, e muitos pacotes de segurança já o integram."
+    ],
+    "teoria": [
+     {
+      "statement": "O antivírus heurístico pode identificar ameaças novas, analisando a estrutura e o comportamento do código, mas está sujeito a falsos positivos.",
+      "isTrue": true,
+      "explanation": "A análise é preditiva e probabilística; por isso pode confundir softwares legítimos com maliciosos."
+     },
+     {
+      "statement": "O antivírus de segunda geração detecta ameaças apenas por comparação exata do código com assinaturas já catalogadas.",
+      "isTrue": false,
+      "explanation": "Essa é a lógica da 1ª geração. A 2ª geração usa heurística para detectar também ameaças ainda não catalogadas."
+     },
+     {
+      "statement": "O antivírus de terceira geração intercepta, em tempo real, chamadas críticas ao sistema operacional e pode bloquear um processo que passe a criptografar muitos arquivos.",
+      "isTrue": true,
+      "explanation": "Ele reconhece o comportamento perigoso mesmo sem saber previamente que o programa é malicioso."
+     },
+     {
+      "statement": "O antispam tem como função principal criptografar as mensagens de e-mail para impedir que sejam lidas por terceiros.",
+      "isTrue": false,
+      "explanation": "O antispam filtra e bloqueia mensagens indesejadas; não realiza criptografia."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "Os antivírus de quarta geração combinam várias técnicas simultâneas, como assinaturas, heurística, interceptação de comportamento, sandboxing e inteligência artificial.",
+      "isTrue": true,
+      "explanation": "A inovação é o uso combinado de múltiplas camadas, a chamada defesa em profundidade."
+     },
+     {
+      "statement": "O NGAV baseia-se fortemente em assinaturas conhecidas, exatamente como os antivírus convencionais.",
+      "isTrue": false,
+      "explanation": "O NGAV usa IA, machine learning e análise comportamental para identificar ameaças mesmo que nunca vistas."
+     },
+     {
+      "statement": "O antispyware pode atuar tanto por escaneamento periódico do sistema quanto por monitoramento em tempo real.",
+      "isTrue": true,
+      "explanation": "É recomendável usá-lo em conjunto com o antivírus, desde que não haja conflito entre eles."
+     },
+     {
+      "statement": "Os sistemas antispam modernos dependem exclusivamente de regras fixas, sem recorrer a aprendizado de máquina.",
+      "isTrue": false,
+      "explanation": "Os mais eficientes usam inteligência artificial e machine learning, aprendendo com o feedback do usuário."
+     },
+     {
+      "statement": "Na heurística, ações consideradas suspeitas somam pontos, e o arquivo é classificado como potencialmente perigoso quando a pontuação ultrapassa um limite.",
+      "isTrue": true,
+      "explanation": "É um sistema de pontuação que tenta prever se o código é malicioso."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "2ª geração: heurística",
+      "pageRef": 12
+     },
+     {
+      "topic": "Vantagens e desvantagens da heurística",
+      "pageRef": 13
+     },
+     {
+      "topic": "3ª geração: interceptação de atividades",
+      "pageRef": 13
+     },
+     {
+      "topic": "Exemplo do ransomware e desvantagens da 3ª geração",
+      "pageRef": 14
+     },
+     {
+      "topic": "4ª geração: proteção completa",
+      "pageRef": 14
+     },
+     {
+      "topic": "NGAV",
+      "pageRef": 15
+     },
+     {
+      "topic": "NGAV e integração com EDR",
+      "pageRef": 16
+     },
+     {
+      "topic": "Antispam",
+      "pageRef": 17
+     },
+     {
+      "topic": "Antispyware",
+      "pageRef": 19
+     }
+    ]
+   },
+   "questions": [
+    {
+     "topic": "2ª geração: heurística",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 12,
+     "statement": "Um antivírus identifica um programa desconhecido como perigoso ao analisar as instruções e as características do seu código e ao somar pontos a cada ação suspeita, até ultrapassar um limite. Essa é a abordagem de detecção baseada em",
+     "support": null,
+     "options": [
+      "quarentena.",
+      "sandbox.",
+      "interceptação de atividades.",
+      "heurística.",
+      "assinatura."
+     ],
+     "answer": "D",
+     "explanation": "A heurística tenta prever se um código é malicioso por padrões suspeitos, com um sistema de pontuação por ação suspeita; assim detecta ameaças novas ou variantes sem assinatura correspondente. A detecção por assinatura exige correspondência com padrões já catalogados."
+    },
+    {
+     "topic": "2ª geração: vantagens e desvantagens",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 13,
+     "statement": "Quanto aos antivírus baseados em heurística, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "Funcionam bem apenas contra vírus de boot, sendo ineficazes contra polimórficos e contra variantes de vírus antigos.",
+      "Detectam malwares novos e variantes de vírus antigos, mas podem gerar falsos positivos e exigir mais recursos do sistema.",
+      "Dispensam qualquer análise do código, pois só comparam o nome dos arquivos com uma lista de ameaças conhecidas.",
+      "Não consomem recursos adicionais do sistema, pois a análise é feita apenas uma vez, no momento da instalação.",
+      "Detectam apenas malwares já catalogados em uma base, mas nunca confundem programas legítimos com vírus."
+     ],
+     "answer": "B",
+     "explanation": "A heurística oferece proteção proativa contra ameaças ainda não catalogadas, inclusive polimórficas, mas é uma estimativa: pode apontar falsos positivos, e a análise dinâmica pode deixar o computador mais lento."
+    },
+    {
+     "topic": "3ª geração: interceptação de atividades",
+     "pattern": "caso",
+     "difficulty": 2,
+     "pageRef": 14,
+     "statement": "Pouco depois de instalado, um programa começa a criptografar dezenas de arquivos. O antivírus, que monitora as chamadas feitas ao sistema operacional, reconhece o padrão e interrompe o processo antes do dano maior, sem conhecer o programa. Essa é a técnica da",
+     "support": null,
+     "options": [
+      "interceptação de atividades, típica de antivírus de 3ª geração.",
+      "filtragem antispam, aplicada às mensagens recebidas.",
+      "análise de antispyware, aplicada apenas ao histórico de navegação.",
+      "detecção por assinatura, típica de antivírus de 1ª geração.",
+      "análise estática de heurística, aplicada só antes da instalação do programa."
+     ],
+     "answer": "A",
+     "explanation": "Os antivírus de 3ª geração interceptam chamadas críticas (escrita em arquivos do sistema, alterações no registro, conexões externas, processos ocultos) e bloqueiam a ação na hora, mesmo sem saber que o programa é malicioso. A assinatura exigiria que o programa já fosse catalogado."
+    },
+    {
+     "topic": "3ª geração: vantagens e desvantagens",
+     "pattern": "correta",
+     "difficulty": 3,
+     "pageRef": 14,
+     "statement": "Em relação aos antivírus de 3ª geração, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "Dependem exclusivamente de assinaturas e, por isso, não conseguem agir contra ameaças inéditas ou sofisticadas.",
+      "São dispensáveis em ambientes corporativos, pois os usuários domésticos é que correm maior risco de danos graves.",
+      "Eliminam por completo os falsos positivos, pois só bloqueiam programas que constem de uma base de ameaças.",
+      "Não afetam o desempenho do sistema, pois verificam os arquivos apenas depois que a execução dos processos termina.",
+      "São indicados a ambientes corporativos e sistemas críticos, mas podem afetar o desempenho e gerar falsos positivos."
+     ],
+     "answer": "E",
+     "explanation": "A interceptação de atividades age em tempo real, sem depender só de assinaturas ou heurística, e impede ações maliciosas mesmo em códigos que pareçam inofensivos. Em contrapartida, monitorar sempre pode afetar o desempenho, gerar falsos positivos e exigir boa configuração."
+    },
+    {
+     "topic": "4ª geração: proteção completa",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 14,
+     "statement": "Sobre os antivírus de 4ª geração, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "Dispensam qualquer configuração e nunca exigem recursos extras, pois operam sem monitoramento em tempo real.",
+      "Limitam-se ao combate de vírus de boot e de macro, deixando os demais malwares aos cuidados de firewalls.",
+      "Combinam várias técnicas, como assinatura, heurística, interceptação, nuvem e IA, com maior taxa de detecção.",
+      "Usam somente assinaturas, atualizadas pela nuvem, e por isso não detectam ameaças desconhecidas ou de tipo zero-day.",
+      "Abandonam a análise de comportamento e a heurística, que foram substituídas pelo bloqueio de todos os arquivos novos."
+     ],
+     "answer": "C",
+     "explanation": "A inovação da 4ª geração é a combinação de técnicas (assinatura, heurística, interceptação de atividades, análise em nuvem ou sandbox, antispam, antiphishing, firewall integrado, aprendizado de máquina), o que amplia a cobertura, ainda que exija mais recursos e configuração."
+    },
+    {
+     "topic": "NGAV: antivírus de próxima geração",
+     "pattern": "correta",
+     "difficulty": 3,
+     "pageRef": 15,
+     "statement": "No que se refere ao NGAV (Next Generation Antivirus), assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "Substitui o firewall e as políticas de segurança, como controle de acesso, backups e treinamento dos usuários.",
+      "Destina-se a usuários domésticos, pois dispensa configuração e preparo técnico e custa menos que os antivírus comuns.",
+      "Usa IA, aprendizado de máquina, análise comportamental e nuvem, e costuma custar mais e exigir preparo técnico.",
+      "Baseia-se fortemente em assinaturas conhecidas e, por isso, é pouco eficaz contra ameaças polimórficas e fileless.",
+      "Atua apenas sobre arquivos baixados da Internet e ignora o comportamento geral do sistema em tempo real."
+     ],
+     "answer": "C",
+     "explanation": "O NGAV é a evolução do antivírus, pensada para malwares polimórficos, ransomware e ataques sem arquivos: observa o comportamento do sistema em tempo real, apoia-se em IA e nuvem e tenta prever comportamentos maliciosos nunca vistos. Em geral custa mais e demanda mais preparo."
+    },
+    {
+     "topic": "Antispam",
+     "pattern": "caso",
+     "difficulty": 1,
+     "pageRef": 17,
+     "statement": "A caixa de entrada de um oficial é inundada por mensagens que oferecem prêmios improváveis, e as suspeitas devem ser movidas automaticamente para a pasta de lixo eletrônico. A ferramenta apropriada é o",
+     "support": null,
+     "options": [
+      "disco de emergência.",
+      "sandbox.",
+      "antispyware.",
+      "firewall de aplicação.",
+      "antispam."
+     ],
+     "answer": "E",
+     "explanation": "O antispam detecta, filtra e bloqueia mensagens indesejadas, em geral enviadas em massa, movendo as suspeitas para pasta de Spam ou Lixo Eletrônico, ou apagando-as. O antispyware combate espiões, e a sandbox isola a execução de arquivos suspeitos."
+    },
+    {
+     "topic": "Antispam: critérios de filtragem",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 17,
+     "statement": "Quanto ao funcionamento dos filtros antispam, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "Atuam apenas por regras fixas e não se beneficiam de aprendizado de máquina nem do feedback dos usuários.",
+      "Bloqueiam apenas mensagens com anexos executáveis, ignorando o endereço do remetente e o texto do assunto.",
+      "Criptografam o conteúdo das mensagens recebidas, para que os spams não possam ser lidos por terceiros.",
+      "Avaliam remetente, palavras suspeitas, estrutura da mensagem e comportamento de envio, e podem aprender com o feedback do usuário.",
+      "Eliminam todas as mensagens de remetentes desconhecidos, sem mover nenhuma delas para pastas separadas."
+     ],
+     "answer": "D",
+     "explanation": "Antispam analisam o endereço do remetente, frases suspeitas no assunto ou no corpo, a estrutura (muitos links ou anexos estranhos) e o comportamento do remetente; os mais eficientes usam IA e aprendem com as marcações dos usuários. Eles não criptografam mensagens."
+    },
+    {
+     "topic": "Antispyware: funcionamento",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 19,
+     "statement": "Sobre o antispyware, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "Atua por escaneamento periódico e por monitoramento em tempo real, podendo trabalhar junto ao antivírus e agir também sobre adwares.",
+      "Serve apenas para filtrar mensagens de e-mail indesejadas, deixando a defesa contra espiões ao firewall.",
+      "Não pode trabalhar junto ao antivírus, pois os dois programas sempre entram em conflito nos softwares modernos.",
+      "Não alcança adwares, pois eles não monitoram nem interferem na atividade do usuário no computador.",
+      "Atua apenas por varredura manual, pois não possui monitoramento em tempo real nem prevenção da instalação."
+     ],
+     "answer": "A",
+     "explanation": "O antispyware detecta, previne e remove spywares, por escaneamento periódico e monitoramento em tempo real; muitos pacotes já o trazem integrado ao antivírus, e ele também costuma tratar adwares como ameaças. Pode enviar arquivos suspeitos para a quarentena."
+    },
+    {
+     "topic": "Antispyware x antivírus",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 19,
+     "statement": "Comparando as duas ferramentas, o antivírus cobre numerosas categorias de malware, ao passo que o antispyware",
+     "support": null,
+     "options": [
+      "foca unicamente no bloqueio das conexões de entrada indevidas na rede.",
+      "foca especificamente nas ameaças que visam roubar informações do usuário.",
+      "foca somente nas mensagens indesejadas que chegam à caixa de entrada.",
+      "foca exclusivamente nos worms que se propagam pelas redes locais.",
+      "foca apenas nos vírus que infectam o setor de inicialização do disco."
+     ],
+     "answer": "B",
+     "explanation": "O material compara o antivírus a um guarda de fronteira e o antispyware a um detetive que investiga infiltrações silenciosas: o primeiro cobre vários malwares (vírus, trojans, worms), o segundo mira os programas espiões que coletam dados. Spam é com o antispam e conexões indevidas, com o firewall."
+    }
+   ]
+  },
+  {
+   "id": "informatica/a04/s03",
+   "bizu": {
+    "summary": [
+     "**Firewall** = software, hardware ou combinação dos dois que regula o tráfego entre redes distintas, bloqueando acessos nocivos ou não autorizados de acordo com a política de segurança. Ele controla, registra, monitora e filtra a entrada e a saída de dados. Duas em cada três questões cobram a definição.",
+     "Exemplos: Windows Defender Firewall (Windows), IPTables/Netfilter (Linux). O **roteador doméstico** já traz firewall; empresas usam firewalls de hardware mais robustos.",
+     "O firewall **não impede o fluxo normal**: tudo o que não violar as regras segue sem obstáculo. Posição típica: entre a rede interna e a Internet (**firewall de borda**). Pode haver também **firewall interno**, protegendo ativos críticos dentro da rede; por isso pode, sim, ajudar contra ataques internos, embora algumas bancas considerem só o de borda.",
+     "**Firewall x antivírus**: o firewall age de forma **preventiva**, analisando pacotes segundo uma política de acesso; o antivírus identifica e remove de forma reativa malwares já presentes. O ideal é usar os dois.",
+     "**Modos**: **restritivo** (bloqueia tudo que não é expressamente permitido; usa **lista branca**) e **permissivo** (permite tudo que não é expressamente proibido; usa **lista negra**). Em geral, o firewall trabalha em modo restritivo. O conjunto de regras é a **Lista de Controle de Acesso (ACL)**.",
+     "**Técnicas de controle**: de serviços (IP e porta), de direção, de usuário e de comportamento.",
+     "**Funções auxiliares** que podem estar no firewall: NAT, DMZ, balanceamento de carga, antispoofing, autenticação de usuário, VPN, alta disponibilidade, filtros de URL, spam e-mail, bloqueio de alguns DoS e bloqueio por endereço MAC. Não são o foco principal; muitas funções aumentam a complexidade.",
+     "**Firewall pessoal**: protege um computador contra acessos não autorizados vindos da Internet. Pode registrar tentativas, bloquear invasões e explorações de vulnerabilidades, barrar a comunicação entre invasor e código malicioso instalado e evitar a propagação do malware. Antimalware sozinho não bloqueia exploração de vulnerabilidade pela rede nem backdoors.",
+     "O firewall pode **bloquear a propagação de worms**, impedindo conexões em portas abandonadas, mas **não é antimalware** e não elimina o worm."
+    ],
+    "teoria": [
+     {
+      "statement": "O firewall pode ser implementado como software, como hardware ou como uma combinação de ambos, e o roteador doméstico já costuma incorporar essa função.",
+      "isTrue": true,
+      "explanation": "Sistemas operacionais trazem firewall em software; empresas usam firewalls de hardware mais robustos."
+     },
+     {
+      "statement": "Firewall e antivírus desempenham a mesma função: ambos identificam e eliminam malwares presentes no computador.",
+      "isTrue": false,
+      "explanation": "O firewall controla acessos conforme uma política de segurança, de modo preventivo; o antivírus detecta e remove malware já presente."
+     },
+     {
+      "statement": "Um firewall em modo restritivo bloqueia tudo o que não seja expressamente permitido, utilizando o conceito de lista branca.",
+      "isTrue": true,
+      "explanation": "É o modo mais comum e se assemelha ao princípio da legalidade estrita da Administração."
+     },
+     {
+      "statement": "Um firewall que usa lista negra opera em modo restritivo, pois só bloqueia o que consta da lista.",
+      "isTrue": false,
+      "explanation": "Lista negra caracteriza o modo permissivo: tudo é permitido, exceto o que foi explicitamente proibido."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "O firewall de borda fica entre a rede interna e a Internet, mas é possível usar também um firewall interno para proteger ativos críticos dentro da rede.",
+      "isTrue": true,
+      "explanation": "Assim, um acesso que passou pela borda ainda encontra outra barreira antes de dados sensíveis."
+     },
+     {
+      "statement": "O firewall pessoal substitui o antimalware, pois é capaz de eliminar os códigos maliciosos que já estejam instalados no computador.",
+      "isTrue": false,
+      "explanation": "Ele controla o tráfego e pode bloquear a propagação, mas não elimina o malware; os dois recursos se complementam."
+     },
+     {
+      "statement": "O firewall pode impedir que um worm se propague pela rede, mas não é capaz de eliminar o worm do computador infectado.",
+      "isTrue": true,
+      "explanation": "A eliminação é tarefa de ferramentas antimalware."
+     },
+     {
+      "statement": "O conjunto de regras que um firewall aplica é chamado de Lista de Controle de Acesso.",
+      "isTrue": true,
+      "explanation": "É a ACL (Access Control List), que traduz a política de segurança da organização."
+     },
+     {
+      "statement": "NAT, DMZ e VPN são o foco principal de um firewall, sendo sua função primordial.",
+      "isTrue": false,
+      "explanation": "São funções auxiliares. O foco do firewall é controlar o tráfego conforme a política de segurança."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Definição de firewall e exemplos",
+      "pageRef": 60
+     },
+     {
+      "topic": "Hardware, software e firewall do roteador",
+      "pageRef": 60
+     },
+     {
+      "topic": "Firewall de borda e firewall interno",
+      "pageRef": 62
+     },
+     {
+      "topic": "Firewall x antivírus",
+      "pageRef": 63
+     },
+     {
+      "topic": "Modos restritivo e permissivo; listas branca e negra",
+      "pageRef": 64
+     },
+     {
+      "topic": "ACL e técnicas de controle",
+      "pageRef": 65
+     },
+     {
+      "topic": "Funções auxiliares do firewall",
+      "pageRef": 66
+     },
+     {
+      "topic": "Firewall pessoal",
+      "pageRef": 67
+     },
+     {
+      "topic": "Firewall e propagação de worms",
+      "pageRef": 68
+     }
+    ]
+   },
+   "questions": [
+    {
+     "topic": "Firewall: conceito",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 60,
+     "statement": "O firewall é um componente de segurança de rede que",
+     "support": null,
+     "options": [
+      "tem a função de traduzir os nomes de domínio digitados pelos usuários nos endereços IP dos servidores.",
+      "pode ser software, hardware ou ambos, e regula o tráfego entre redes distintas, bloqueando acessos nocivos ou não autorizados.",
+      "tem a função de filtrar exclusivamente as mensagens de e-mail, separando as desejadas das de spam.",
+      "existe apenas como software e tem a função de eliminar os vírus que já se instalaram no computador do usuário.",
+      "existe apenas como hardware e tem a função de criptografar todas as mensagens enviadas pelos usuários da rede."
+     ],
+     "answer": "B",
+     "explanation": "O firewall regula o tráfego de entrada e saída entre redes conforme a política de segurança da organização; pode ser software, hardware ou a combinação de ambos. Eliminar vírus é papel do antivírus, filtrar spam é do antispam e traduzir nomes é do DNS."
+    },
+    {
+     "topic": "Firewall: firewall embutido nos sistemas",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 60,
+     "statement": "No sistema operacional Linux, o firewall embutido, em forma de software, é o",
+     "support": null,
+     "options": [
+      "Firewall Mac.",
+      "Windows Firewall.",
+      "Sandbox.",
+      "IPTables/Netfilter.",
+      "Avast Shield."
+     ],
+     "answer": "D",
+     "explanation": "Os principais sistemas operacionais trazem firewall embutido: Windows Firewall no Windows, IPTables/Netfilter no Linux e Firewall Mac no macOS. Empresas costumam investir em firewalls mais robustos, em hardware."
+    },
+    {
+     "topic": "Firewall: posição na rede",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 62,
+     "statement": "Quanto à posição do firewall na rede, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "O firewall interno separa a rede de duas organizações diferentes, e o de borda separa dois departamentos.",
+      "O firewall fica sempre dentro do computador do usuário, e um segundo firewall na borda da rede é desnecessário.",
+      "O firewall de borda fica entre a rede interna e a Internet, e um firewall interno pode proteger recursos, como a folha de pagamento, na própria rede.",
+      "O firewall de borda fica na parte interna da rede e, por isso, não pode impedir acessos vindos da Internet.",
+      "O uso de um firewall interno dispensa o de borda, pois ele cobre todo o tráfego entre a rede e a Internet."
+     ],
+     "answer": "C",
+     "explanation": "O firewall tipicamente fica entre a rede interna e a Internet (firewall de borda), mas pode haver outro dentro da rede (firewall interno), por exemplo, para proteger o banco de dados da folha de pagamento de quem já passou pela borda."
+    },
+    {
+     "topic": "Firewall x antivírus",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 63,
+     "statement": "Em relação às diferenças entre firewall e antivírus, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "O firewall analisa pacotes conforme uma política de acesso e age preventivamente; o antivírus usa assinaturas e heurística para eliminar malwares já presentes.",
+      "O firewall usa assinaturas e heurística para eliminar malwares já presentes; o antivírus age de modo preventivo, por política de acesso.",
+      "O firewall e o antivírus são equivalentes, e instalar um deles dispensa a instalação do outro no computador.",
+      "O firewall elimina qualquer vírus que já tenha se instalado no sistema, enquanto o antivírus só bloqueia conexões.",
+      "O antivírus controla as portas de comunicação do computador, e o firewall verifica o conteúdo dos arquivos baixados."
+     ],
+     "answer": "A",
+     "explanation": "O firewall é preventivo: examina o tráfego segundo a política de acesso e bloqueia ou permite. O antivírus é reativo: usa assinatura, heurística e outras técnicas para identificar e destruir malwares dentro do sistema. Recomenda-se usar os dois."
+    },
+    {
+     "topic": "Firewall: modos de funcionamento",
+     "pattern": "relacao",
+     "difficulty": 2,
+     "pageRef": 63,
+     "statement": "Quanto aos modos de funcionamento de um firewall, assinale a alternativa que relaciona corretamente a lista utilizada ao modo.",
+     "support": null,
+     "options": [
+      "A lista branca e a lista negra correspondem, ambas, ao modo restritivo.",
+      "A lista branca e a lista negra correspondem, ambas, ao modo permissivo.",
+      "A lista branca corresponde ao firewall de borda, e a lista negra, ao firewall interno.",
+      "A lista branca corresponde ao modo permissivo, e a lista negra, ao modo restritivo.",
+      "A lista branca corresponde ao modo restritivo, e a lista negra, ao modo permissivo."
+     ],
+     "answer": "E",
+     "explanation": "No modo restritivo, o firewall impede tudo o que não seja expressamente permitido (lista branca), em geral mais seguro; no permissivo, permite tudo o que não seja expressamente proibido (lista negra), o que deixa passar penetras."
+    },
+    {
+     "topic": "Firewall: técnicas de controle",
+     "pattern": "relacao",
+     "difficulty": 3,
+     "pageRef": 65,
+     "statement": "Assinale a alternativa que associa corretamente a técnica de controle do firewall à sua descrição.",
+     "support": null,
+     "options": [
+      "Controle de comportamento: define quais usuários podem acessar cada serviço da rede.",
+      "Controle de serviço: determina a direção em que as solicitações podem ser iniciadas e fluir.",
+      "Controle de usuário: regula o acesso a um serviço conforme quem tenta acessá-lo.",
+      "Controle de usuário: filtra o e-mail para eliminar spam e libera parte da informação de um servidor.",
+      "Controle de direção: define quais serviços de Internet estão liberados para acesso."
+     ],
+     "answer": "C",
+     "explanation": "Controle de serviço define quais serviços podem ser acessados; de direção, em que sentido as solicitações podem ser iniciadas; de usuário, quem pode acessar o serviço; e de comportamento, como os serviços são usados (por exemplo, filtrar spam)."
+    },
+    {
+     "topic": "Firewall: Lista de Controle de Acesso",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 65,
+     "statement": "O conjunto de regras que um firewall aplica na organização é denominado",
+     "support": null,
+     "options": [
+      "cache de servidor proxy.",
+      "Lista de Controle de Acesso (ACL).",
+      "tabela de estados de sessão.",
+      "Lista de Certificados Revogados (LCR).",
+      "área de quarentena."
+     ],
+     "answer": "B",
+     "explanation": "O conjunto de regras de acesso de uma organização é a Lista de Controle de Acesso (Access Control List). A LCR trata de certificados digitais, e a tabela de estados guarda as conexões abertas de um firewall stateful."
+    },
+    {
+     "topic": "Firewall: funções auxiliares",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 66,
+     "statement": "Sobre as funções auxiliares que um firewall pode desempenhar, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "Só pode bloquear tráfego pela camada de aplicação, não sendo capaz de usar o endereço MAC ou bloquear ataques de DoS.",
+      "Não pode implementar NAT nem VPN, pois essas funções são exclusivas dos roteadores e dos servidores de arquivos.",
+      "As funções auxiliares são o foco do recurso, e a filtragem de tráfego entre redes é apenas uma função secundária.",
+      "Pode implementar NAT, DMZ, VPN e filtros de URL e de spam, mas essas funções não são seu foco e aumentam a complexidade da administração.",
+      "Agregar funções reduz a complexidade da administração e as chances de falha, razão pela qual elas são o foco principal."
+     ],
+     "answer": "D",
+     "explanation": "Um firewall pode implementar NAT, DMZ, balanceamento de carga, antispoofing, autenticação, VPN, alta disponibilidade, filtros de URL, spam e-mail e bloqueios de DoS ou por MAC. Cada função a mais amplia o risco de falhas e dificulta a administração."
+    },
+    {
+     "topic": "Firewall pessoal",
+     "pattern": "caso",
+     "difficulty": 2,
+     "pageRef": 67,
+     "statement": "Um tenente mantém o antivírus atualizado, mas teme que um invasor explore pela rede alguma vulnerabilidade do seu computador ou acesse um backdoor já instalado. A proteção complementar adequada é",
+     "support": null,
+     "options": [
+      "o filtro antispam, que bloqueia as mensagens indesejadas recebidas pelo cliente de e-mail.",
+      "o disco de emergência, que substitui o antivírus quando este estiver desabilitado.",
+      "o certificado digital, que garante a autoria dos documentos assinados pelo militar.",
+      "a quarentena, que isola os arquivos suspeitos encontrados durante as varreduras.",
+      "o firewall pessoal, que protege contra acessos não autorizados vindos da Internet."
+     ],
+     "answer": "E",
+     "explanation": "Antimalware não impedem que um atacante explore vulnerabilidades pela rede nem evitam o acesso por backdoor; o firewall pessoal é o recurso que bloqueia tentativas de invasão e registra tentativas de acesso, protegendo o computador contra acessos indevidos vindos da Internet."
+    },
+    {
+     "topic": "Firewall: worms",
+     "pattern": "correta",
+     "difficulty": 3,
+     "pageRef": 68,
+     "statement": "Em relação à atuação do firewall diante de worms, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "Pode impedir a propagação, ao bloquear conexões em portas desativadas ou abandonadas, mas não elimina o worm, pois não é um antimalware.",
+      "Elimina o worm que já se instalou no computador, pois detecta e remove os códigos maliciosos por assinatura.",
+      "Não consegue impedir a propagação, pois worms se espalham por meio de documentos e não por conexões de rede.",
+      "Impede a propagação ao analisar o conteúdo dos arquivos de cada documento do Office compartilhado na rede.",
+      "Identifica e isola o worm em quarentena, restaurando os arquivos infectados ao estado em que estavam antes."
+     ],
+     "answer": "A",
+     "explanation": "Worms se propagam por conexões de rede, usando portas desativadas ou abandonadas; o firewall, como ferramenta preventiva, pode bloquear essa propagação, mas não é um antimalware e, portanto, não elimina o worm."
+    },
+    {
+     "topic": "Filtro de pacotes: portas de serviços",
+     "pattern": "relacao",
+     "difficulty": 2,
+     "pageRef": 68,
+     "statement": "Assinale a alternativa que associa corretamente o serviço à porta padrão que ele utiliza.",
+     "support": null,
+     "options": [
+      "DNS: porta 21; HTTP: porta 80; HTTPS: porta 443.",
+      "DNS: porta 53; HTTP: porta 80; HTTPS: porta 443.",
+      "DNS: porta 53; HTTP: porta 443; HTTPS: porta 80.",
+      "DNS: porta 80; HTTP: porta 53; HTTPS: porta 443.",
+      "DNS: porta 443; HTTP: porta 80; HTTPS: porta 53."
+     ],
+     "answer": "B",
+     "explanation": "O DNS usa a porta 53, o HTTP a 80 e o HTTPS a 443. A porta 21 é a de controle do FTP. O firewall de pacotes permite ou bloqueia o tráfego em cada porta, controlando os serviços."
+    }
+   ]
+  },
+  {
+   "id": "informatica/a04/s04",
+   "bizu": {
+    "summary": [
+     "**Filtro de pacotes** (firewall **stateless**, sem estado de sessão): examina cada pacote isoladamente, com base no cabeçalho (IP e porta de origem e destino, protocolo, direção), nas camadas de **rede e transporte** da arquitetura TCP/IP. É simples, barato e flexível (roteadores o têm), mas menos seguro: pacotes podem ser falsificados; não autentica usuário e tem limitações de logs. Praticamente não é mais usado isoladamente.",
+     "Exemplo: bloquear portas 5222 e 5223 impede o uso do WhatsApp. Mas bloquear a porta 80 impediria **todas** as páginas web, não só as de um tipo de site, pois o filtro não diferencia conteúdo.",
+     "**Filtro de estado de sessão** (firewall **stateful**): mantém uma **tabela de estados** das conexões ativas, além da tabela de regras. Analisa inicialmente a abertura da conexão e depois confere se cada pacote pertence a uma sessão ativa. Também atua nas camadas de rede e transporte e tem todos os recursos do filtro de pacotes.",
+     "**Proxy** (gateway de aplicação, ou firewall de aplicação): servidor intermediário entre clientes da rede interna e servidores externos. Filtra com base em dados da **camada de aplicação** (URL, palavras-chave), podendo bloquear sites, inclusive downloads de executáveis.",
+     "Recursos do proxy: **cache** compartilhado por todos os computadores da rede (diferente do cache do navegador), **controle de acesso** conforme política, **registro (log)** das tentativas de acesso (inclusive às páginas bloqueadas) e **anonimato** (o IP exibido é o do proxy). Só atua como firewall quando faz controle de acesso.",
+     "**Firewalls híbridos** misturam as tecnologias anteriores. **Proxy x VPN**: ambos mascaram o IP, mas o proxy **não criptografa** o tráfego; a VPN protege e criptografa os dados. **WAF** (Web Application Firewall) é firewall de aplicação específico para tráfego HTTP.",
+     "**NGFW (Next Generation Firewall)**: vai além de portas e protocolos, com **inspeção profunda de pacotes (DPI)**, **controle de aplicações** (identifica Facebook, YouTube etc. independentemente da porta), IDS/IPS integrados, visibilidade contextual e integração com inteligência contra ameaças. Exige mais recursos e equipe preparada. Complementa, mas não substitui, o antivírus instalado nas máquinas."
+    ],
+    "teoria": [
+     {
+      "statement": "O filtro de pacotes é um firewall stateless que decide sobre cada pacote com base nas informações de cabeçalho, como endereços, portas e protocolo.",
+      "isTrue": true,
+      "explanation": "Ele atua nas camadas de rede e transporte e não guarda registro de pacotes anteriores."
+     },
+     {
+      "statement": "O filtro de estado de sessão inspeciona cada pacote de forma isolada, sem manter qualquer informação sobre as conexões estabelecidas.",
+      "isTrue": false,
+      "explanation": "Essa é a característica do filtro de pacotes. O filtro de estado mantém uma tabela de estados das conexões."
+     },
+     {
+      "statement": "O servidor proxy pode filtrar o acesso com base em dados da camada de aplicação, como o endereço URL das páginas solicitadas.",
+      "isTrue": true,
+      "explanation": "Por isso permite bloquear categorias de sites, o que o filtro de pacotes não consegue fazer com precisão."
+     },
+     {
+      "statement": "Para impedir apenas o acesso a sites de redes sociais, basta que o filtro de pacotes bloqueie a porta 80, sem afetar as demais páginas web.",
+      "isTrue": false,
+      "explanation": "Bloquear a porta 80 impede o acesso a qualquer página HTTP, pois o filtro não distingue conteúdos que chegam à mesma porta."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "O cache do proxy armazena dados de páginas acessadas por todos os computadores da rede interna, enquanto o cache do navegador guarda apenas os acessados pelo próprio computador.",
+      "isTrue": true,
+      "explanation": "O cache do proxy economiza banda e acelera acessos recorrentes."
+     },
+     {
+      "statement": "Assim como uma VPN, o servidor proxy criptografa todo o tráfego do usuário, impedindo sua interceptação.",
+      "isTrue": false,
+      "explanation": "O proxy mascara o IP, mas não criptografa; a VPN é que protege e criptografa os dados."
+     },
+     {
+      "statement": "O NGFW identifica e controla aplicações específicas, como redes sociais, independentemente da porta ou do protocolo utilizado.",
+      "isTrue": true,
+      "explanation": "Além disso, faz inspeção profunda de pacotes e costuma integrar IDS/IPS."
+     },
+     {
+      "statement": "O filtro de pacotes é o tipo de firewall mais seguro e continua sendo o mais utilizado isoladamente nos dias de hoje.",
+      "isTrue": false,
+      "explanation": "Ele oferece menor grau de segurança, pois pacotes podem ser forjados, e praticamente não é mais usado isoladamente."
+     },
+     {
+      "statement": "O servidor proxy mantém registro das tentativas de acesso a páginas web, inclusive daquelas que foram bloqueadas.",
+      "isTrue": true,
+      "explanation": "Os logs permitem auditar o uso da rede."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Filtro de pacotes (stateless)",
+      "pageRef": 69
+     },
+     {
+      "topic": "Exemplo de portas e limites do filtro de pacotes",
+      "pageRef": 69
+     },
+     {
+      "topic": "Filtro de estado de sessão (stateful)",
+      "pageRef": 70
+     },
+     {
+      "topic": "Proxy: conceito",
+      "pageRef": 72
+     },
+     {
+      "topic": "Proxy x filtro de pacotes (camada de aplicação)",
+      "pageRef": 73
+     },
+     {
+      "topic": "Cache, controle de acesso e anonimato do proxy",
+      "pageRef": 74
+     },
+     {
+      "topic": "Proxy como firewall; proxy x VPN; WAF",
+      "pageRef": 75
+     },
+     {
+      "topic": "NGFW",
+      "pageRef": 76
+     }
+    ]
+   },
+   "questions": [
+    {
+     "topic": "Filtro de pacotes: funcionamento",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 69,
+     "statement": "Sobre o firewall do tipo filtro de pacotes, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "Decide com base no conteúdo dos dados transportados e consegue identificar qual aplicativo gerou o tráfego.",
+      "Atua na camada de aplicação e decide conforme o endereço URL e as palavras presentes no conteúdo das páginas.",
+      "É stateless: decide por cabeçalhos (endereços, portas, direção), nas camadas de rede e transporte, avaliando cada pacote isoladamente.",
+      "Atua somente no computador do usuário e depende de assinaturas de vírus atualizadas para tomar suas decisões.",
+      "É stateful: guarda registro dos pacotes anteriores de cada conexão e decide conforme o estado da sessão aberta."
+     ],
+     "answer": "C",
+     "explanation": "O filtro de pacotes examina protocolo e porta (e demais campos do cabeçalho IP/TCP/UDP) e aplica regras da política de segurança, sem estado de sessão: cada pacote é analisado de forma independente de ser de uma conexão nova ou existente."
+    },
+    {
+     "topic": "Filtro de pacotes: vantagens e limitações",
+     "pattern": "correta",
+     "difficulty": 3,
+     "pageRef": 69,
+     "statement": "Quanto às características do filtro de pacotes, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "Oferece o mais alto grau de segurança entre os tipos de firewall, pois examina o conteúdo da aplicação em cada pacote.",
+      "É imune a ataques de falsificação de pacotes, pois só aceita aqueles que provêm de sessões autenticadas.",
+      "Autentica os usuários que acessam a rede e mantém registros detalhados de suas sessões, sem limitações de logs.",
+      "É simples, barato e flexível, mas dá menor segurança, pois os pacotes podem ser falsificados para passar pelas regras.",
+      "Exige equipamentos caros e é difícil de implementar, razão pela qual não é encontrado em roteadores."
+     ],
+     "answer": "D",
+     "explanation": "Por funcionar nas camadas de rede e transporte, o filtro de pacotes é simples e barato, mas dá menor segurança: pacotes podem ser forjados para passar pelas regras, não há autenticação de usuário e há problemas de gerenciamento, de logs e de fragmentação. Por isso quase não é mais usado."
+    },
+    {
+     "topic": "Filtro de pacotes: bloqueio de portas",
+     "pattern": "caso",
+     "difficulty": 2,
+     "pageRef": 69,
+     "statement": "Um gestor bloqueia no firewall as portas usadas por um aplicativo de mensagens. A regra analisa cada pacote isoladamente, com base no protocolo e na porta, sem guardar registro dos pacotes anteriores. Esse firewall é do tipo",
+     "support": null,
+     "options": [
+      "filtro de estado de sessão.",
+      "servidor proxy de aplicação.",
+      "firewall pessoal.",
+      "NGFW com inspeção profunda.",
+      "filtro de pacotes."
+     ],
+     "answer": "E",
+     "explanation": "O filtro de pacotes examina os pacotes em relação ao protocolo e à porta, sem estado: bloquear portas impede o serviço que as utiliza. O de estado de sessão também considera uma tabela de conexões abertas, e o proxy decide com base na camada de aplicação."
+    },
+    {
+     "topic": "Filtro de estado de sessão",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 70,
+     "statement": "Em relação ao firewall de filtro de estado de sessão, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "Mantém, além da tabela de regras, uma tabela de estado das conexões, e verifica se cada pacote pertence a uma sessão aberta.",
+      "Atua apenas sobre o conteúdo das páginas web, bloqueando-as por endereço URL e por palavras-chave.",
+      "Trabalha somente com a porta de controle de cada serviço e ignora as demais conexões ligadas à sessão.",
+      "Decide só pelo estado das conexões abertas, sem considerar protocolo, porta ou lista negra e branca.",
+      "Analisa cada pacote isoladamente, sem guardar nenhum registro das conexões, e por isso é chamado de stateless."
+     ],
+     "answer": "A",
+     "explanation": "O firewall stateful é mais sofisticado: ao receber um pacote, consulta as regras (lista, protocolo, porta) e também o estado da sessão, ou seja, se há conexão aberta. Já o filtro de pacotes não tem estado e examina cada pacote sem memória dos anteriores."
+    },
+    {
+     "topic": "Filtro de estado de sessão: FTP",
+     "pattern": "caso",
+     "difficulty": 3,
+     "pageRef": 70,
+     "statement": "Um arquivo grande é transferido por FTP, dividido em milhões de pacotes. O firewall que, em vez de aplicar todas as regras a cada pacote, verifica se ele pertence à sessão já aberta é o filtro de",
+     "support": null,
+     "options": [
+      "pacotes, pois ele abre uma sessão de controle pela porta 21 antes de enviar dados.",
+      "estado de sessão, pois mantém uma tabela com as conexões abertas.",
+      "aplicação, pois ele separa os pacotes de dados dos de controle pelo conteúdo da URL.",
+      "pacotes, pois ele guarda o registro dos pacotes recebidos antes na sessão.",
+      "estado de sessão, pois ele analisa cada pacote isoladamente, sem considerar as conexões."
+     ],
+     "answer": "B",
+     "explanation": "O filtro de estado de sessão sabe que há uma sessão FTP aberta (controle na porta 21 e dados na 20) e só confere se cada pacote pertence a ela. O filtro de pacotes não tem estado e avalia as regras para cada pacote isoladamente."
+    },
+    {
+     "topic": "Proxy: conceito",
+     "pattern": "correta",
+     "difficulty": 1,
+     "pageRef": 72,
+     "statement": "Sobre o servidor proxy, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "Atua como intermediário entre a rede interna e recursos externos, filtrando e encaminhando requisições, em especial na camada de aplicação.",
+      "É um protocolo que traduz nomes de domínio em endereços IP, em um modelo hierárquico de consultas.",
+      "Atua apenas nas camadas de rede e de transporte, decidindo só pelos endereços IP e pelas portas dos pacotes.",
+      "É um mecanismo que impede o registro das tentativas de acesso, para garantir a privacidade dos usuários.",
+      "É um programa instalado no computador de cada usuário, que detecta e elimina vírus pelo método de assinatura."
+     ],
+     "answer": "A",
+     "explanation": "O proxy intercepta, filtra e encaminha as requisições dos clientes a outros servidores, impondo políticas de segurança, controlando conteúdos, mantendo logs, cache e até anonimato. Também é chamado de gateway de aplicação."
+    },
+    {
+     "topic": "Proxy x filtro de pacotes",
+     "pattern": "caso",
+     "difficulty": 3,
+     "pageRef": 73,
+     "statement": "Uma organização quer impedir o acesso de seus servidores a redes sociais, mas manter o acesso às demais páginas web. Em relação a essa necessidade, é correto afirmar que",
+     "support": null,
+     "options": [
+      "o filtro de pacotes resolve, pois distingue os pacotes que chegam a uma mesma porta pelo conteúdo da aplicação.",
+      "o filtro de estado de sessão resolve, pois reconhece as páginas de cada site pelo endereço URL.",
+      "o filtro de pacotes, ao bloquear a porta 80, bloquearia todas as páginas web, e o proxy filtra pela URL.",
+      "o proxy não resolve, pois só consegue decidir com base nos cabeçalhos dos protocolos de rede e de transporte.",
+      "nenhuma solução resolve, pois o bloqueio por site exige que a porta 80 seja bloqueada para todos."
+     ],
+     "answer": "C",
+     "explanation": "O filtro de pacotes só vê cabeçalhos da camada de rede e de transporte e não distingue pacotes que chegam à mesma porta; para bloquear só alguns sites, é preciso um proxy, que filtra com base nos dados da aplicação, como a URL."
+    },
+    {
+     "topic": "Proxy: cache e logs",
+     "pattern": "correta",
+     "difficulty": 3,
+     "pageRef": 74,
+     "statement": "Quanto aos recursos de um servidor proxy, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "O proxy bloqueia páginas por palavras-chave, mas não registra as tentativas de acesso feitas a páginas bloqueadas.",
+      "O cache do proxy dispensa o cache do navegador, pois ambos armazenam exatamente as mesmas informações.",
+      "O proxy acelera o acesso ao armazenar o conteúdo, mas não permite o controle de acesso de acordo com a política de segurança.",
+      "O cache do proxy guarda apenas as páginas acessadas por um computador, como o cache do navegador desse equipamento.",
+      "O cache do proxy guarda páginas acessadas por toda a rede interna, e o proxy registra as tentativas de acesso, mesmo às bloqueadas."
+     ],
+     "answer": "E",
+     "explanation": "O cache do navegador guarda dados temporários das páginas acessadas pelo seu computador; o do proxy guarda os das páginas acessadas por toda a rede interna. O proxy também controla o acesso por endereços e palavras e registra todas as tentativas, mesmo as bloqueadas."
+    },
+    {
+     "topic": "Proxy como firewall",
+     "pattern": "correta",
+     "difficulty": 3,
+     "pageRef": 75,
+     "statement": "Em relação à relação entre proxy e firewall, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "O proxy atua como firewall apenas se for instalado no computador do usuário, e não em um servidor da rede.",
+      "O proxy nunca atua como firewall, pois só trabalha na camada de enlace, e não no controle de acesso.",
+      "O proxy sempre atua como firewall, mesmo quando apenas gerencia as requisições dos clientes sem aplicar política alguma.",
+      "Quando o proxy limita ou bloqueia conexões por uma política de segurança, atua como firewall; se só intermedeia requisições, é apenas um intermediário.",
+      "O proxy atua como firewall somente quando faz cache de páginas web, independentemente de qualquer bloqueio de acesso."
+     ],
+     "answer": "D",
+     "explanation": "Um proxy tem vários recursos: se faz controle de acesso à rede, limitando ou bloqueando conexões segundo uma política de segurança, exerce o papel de firewall; se apenas gerencia requisições de clientes para servidores, é um simples intermediário."
+    },
+    {
+     "topic": "NGFW",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 76,
+     "statement": "Sobre o firewall de próxima geração (NGFW), assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "Dispensa bases de assinaturas e de indicadores de comprometimento, pois só atua nas camadas de rede e de transporte.",
+      "Consome menos recursos que os demais firewalls, pois não analisa o conteúdo do tráfego que passa por ele.",
+      "Identifica apenas o usuário, sem considerar dispositivo, horário ou contexto, e não integra IDS ou IPS.",
+      "Decide só pelo IP e pela porta, como os firewalls tradicionais, e não consegue identificar o aplicativo em uso.",
+      "Faz inspeção profunda de pacotes e controle de aplicações, identificando o aplicativo mesmo por portas permitidas."
+     ],
+     "answer": "E",
+     "explanation": "O NGFW vai além de IP e porta: faz DPI, controla aplicações como YouTube ou WhatsApp independentemente da porta, costuma integrar IDS/IPS, usa assinaturas e IoCs e oferece visibilidade contextual (quem, dispositivo, horário). Em contrapartida, a inspeção profunda consome mais recursos."
+    },
+    {
+     "topic": "NGFW: controle de aplicações",
+     "pattern": "caso",
+     "difficulty": 2,
+     "pageRef": 76,
+     "statement": "Uma corporação quer limitar o uso de redes sociais no expediente, ainda que o acesso seja feito por conexão segura, independentemente da porta ou do protocolo utilizado. O recurso mais adequado é o",
+     "support": null,
+     "options": [
+      "antispam do cliente de e-mail.",
+      "firewall pessoal do sistema operacional.",
+      "disco de emergência do antivírus.",
+      "NGFW, com controle de aplicações.",
+      "filtro de pacotes, com regras por porta."
+     ],
+     "answer": "D",
+     "explanation": "O NGFW reconhece qual aplicativo está em uso e aplica políticas específicas (bloquear, limitar ou priorizar), mesmo em conexões seguras. O filtro de pacotes só vê protocolo e porta, e as demais opções não controlam aplicações."
+    }
+   ]
+  }
+ ]
 }

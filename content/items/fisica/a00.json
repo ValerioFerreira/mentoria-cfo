@@ -1,741 +1,741 @@
 {
-  "aula": "fisica/a00",
-  "batch": "w2-bizu-fisica",
-  "status": "DRAFT",
-  "segments": [
+ "aula": "fisica/a00",
+ "batch": "w2-bizu-fisica",
+ "status": "DRAFT",
+ "segments": [
+  {
+   "id": "fisica/a00/s01",
+   "bizu": {
+    "summary": [
+     "**Vetor** é o ente geométrico usado na Física para representar **grandezas vetoriais**. Fica definido por **módulo** (tamanho), **direção** (dada pela reta suporte) e **sentido** (indicado pela extremidade da seta).",
+     "**Igualdade de vetores**: só são iguais se tiverem, ao mesmo tempo, o mesmo módulo, a mesma direção e o mesmo sentido.",
+     "**Soma de dois vetores (regra do paralelogramo)**: junta-se origem com origem, traçam-se paralelas e a resultante parte da origem comum até o encontro das paralelas. Módulo pela lei dos cossenos: **R² = A² + B² + 2AB cos θ**, sendo θ o ângulo entre os vetores com origens coincidentes.",
+     "**Casos particulares da resultante**: mesma direção e mesmo sentido (θ = 0°) → **R = A + B** (valor máximo); mesma direção e sentidos opostos (θ = 180°) → **R = |A − B|** (valor mínimo); perpendiculares (θ = 90°) → **R² = A² + B²** (Pitágoras).",
+     "**Regra do polígono** (mais de dois vetores): liga-se a origem de cada vetor à extremidade do anterior; a resultante vai da origem do primeiro à extremidade do último. Se o polígono se **fecha** (a extremidade do último cai na origem do primeiro), a soma é o **vetor nulo**.",
+     "**Decomposição**: trocar um vetor por componentes em eixos convenientes (situação física equivalente). Para uma força F que forma ângulo θ com o eixo x: **Fx = F cos θ** e **Fy = F sen θ**. É muito usada em plano inclinado, dinâmica e estática.",
+     "**Vetor multiplicado por um número k**: a **direção nunca muda**. Se |k| > 1 o módulo aumenta; se 0 < |k| < 1 o módulo diminui; se k > 0 o sentido se mantém; se k < 0 o sentido se inverte.",
+     "**Vetor oposto** (−a): mesmo módulo e mesma direção, sentido contrário. **Diferença**: a − b = a + (−b). Módulo da diferença: **|a − b|² = A² + B² − 2AB cos θ** (soma usa sinal +, diferença usa sinal − no termo do meio).",
+     "**Grandeza escalar** fica definida por módulo e unidade (ex.: massa, tempo, densidade, energia, trabalho). **Grandeza vetorial** exige módulo, unidade, direção e sentido (ex.: deslocamento, força, impulso, quantidade de movimento, campos elétrico e magnético)."
+    ],
+    "teoria": [
+     {
+      "statement": "Dois vetores são iguais sempre que possuem o mesmo módulo e a mesma direção, ainda que seus sentidos sejam opostos.",
+      "isTrue": false,
+      "explanation": "A igualdade vetorial exige módulo, direção E sentido iguais. Com sentidos opostos os vetores são simétricos, não iguais."
+     },
+     {
+      "statement": "Quando dois vetores têm a mesma direção e sentidos opostos, o módulo da resultante é igual ao valor absoluto da diferença entre seus módulos.",
+      "isTrue": true,
+      "explanation": "Nesse caso θ = 180° e a lei dos cossenos reduz-se a R = |A − B|."
+     },
+     {
+      "statement": "A resultante de dois vetores perpendiculares entre si tem módulo igual à soma dos módulos dos dois vetores.",
+      "isTrue": false,
+      "explanation": "Para θ = 90°, cos θ = 0 e vale o teorema de Pitágoras: R² = A² + B². A soma simples dos módulos só ocorre com vetores de mesma direção e mesmo sentido."
+     },
+     {
+      "statement": "Multiplicar um vetor por um número negativo inverte o seu sentido, mas nunca altera a sua direção.",
+      "isTrue": true,
+      "explanation": "A multiplicação por escalar não muda a direção; o sinal do número define o sentido e o seu valor absoluto define o fator do módulo."
+     },
+     {
+      "statement": "Trabalho e energia são grandezas escalares, ao passo que impulso e quantidade de movimento são grandezas vetoriais.",
+      "isTrue": true,
+      "explanation": "Escalares ficam definidas por módulo e unidade; impulso e quantidade de movimento exigem também direção e sentido."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "Na regra do polígono, o vetor resultante liga a origem do primeiro vetor à extremidade do último vetor desenhado.",
+      "isTrue": true,
+      "explanation": "Os vetores são encadeados extremidade com origem; a resultante fecha o contorno do primeiro ao último."
+     },
+     {
+      "statement": "Multiplicar um vetor por 1/2 reduz o seu módulo à metade e inverte o seu sentido.",
+      "isTrue": false,
+      "explanation": "Um número positivo entre 0 e 1 reduz o módulo, mas mantém o sentido. A inversão só ocorre com número negativo."
+     },
+     {
+      "statement": "O módulo do vetor diferença a − b é dado por A² + B² − 2AB cos θ (sob raiz), em que θ é o ângulo entre os vetores quando colocados com a mesma origem.",
+      "isTrue": true,
+      "explanation": "Na soma o termo central tem sinal positivo; na diferença o sinal é negativo, pois a − b = a + (−b)."
+     },
+     {
+      "statement": "Para ficar plenamente definida, uma grandeza escalar precisa de módulo, unidade, direção e sentido.",
+      "isTrue": false,
+      "explanation": "Direção e sentido são exigências das grandezas vetoriais. A escalar é definida apenas por módulo (valor numérico) e unidade."
+     },
+     {
+      "statement": "Se a força F forma o ângulo θ com o eixo x, suas componentes são Fx = F cos θ e Fy = F sen θ.",
+      "isTrue": true,
+      "explanation": "É a decomposição em eixos perpendiculares, com a componente adjacente ao ângulo dada pelo cosseno e a oposta pelo seno."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Conceito de vetor e características (módulo, direção, sentido); igualdade",
+      "pageRef": 15
+     },
+     {
+      "topic": "Soma: regra do paralelogramo",
+      "pageRef": 15
+     },
+     {
+      "topic": "Soma: regra do polígono e polígono fechado (resultante nula)",
+      "pageRef": 17
+     },
+     {
+      "topic": "Módulo da resultante: lei dos cossenos e casos particulares (0°, 180°, 90°)",
+      "pageRef": 18
+     },
+     {
+      "topic": "Decomposição vetorial (Fx, Fy)",
+      "pageRef": 20
+     },
+     {
+      "topic": "Multiplicação de vetor por número (módulo e sentido)",
+      "pageRef": 23
+     },
+     {
+      "topic": "Vetor oposto e diferença de vetores",
+      "pageRef": 25
+     },
+     {
+      "topic": "Grandezas escalares x vetoriais e exemplos",
+      "pageRef": 27
+     }
+    ]
+   },
+   "questions": [
     {
-      "id": "fisica/a00/s01",
-      "bizu": {
-        "summary": [
-          "**Vetor** é o ente geométrico usado na Física para representar **grandezas vetoriais**. Fica definido por **módulo** (tamanho), **direção** (dada pela reta suporte) e **sentido** (indicado pela extremidade da seta).",
-          "**Igualdade de vetores**: só são iguais se tiverem, ao mesmo tempo, o mesmo módulo, a mesma direção e o mesmo sentido.",
-          "**Soma de dois vetores (regra do paralelogramo)**: junta-se origem com origem, traçam-se paralelas e a resultante parte da origem comum até o encontro das paralelas. Módulo pela lei dos cossenos: **R² = A² + B² + 2AB cos θ**, sendo θ o ângulo entre os vetores com origens coincidentes.",
-          "**Casos particulares da resultante**: mesma direção e mesmo sentido (θ = 0°) → **R = A + B** (valor máximo); mesma direção e sentidos opostos (θ = 180°) → **R = |A − B|** (valor mínimo); perpendiculares (θ = 90°) → **R² = A² + B²** (Pitágoras).",
-          "**Regra do polígono** (mais de dois vetores): liga-se a origem de cada vetor à extremidade do anterior; a resultante vai da origem do primeiro à extremidade do último. Se o polígono se **fecha** (a extremidade do último cai na origem do primeiro), a soma é o **vetor nulo**.",
-          "**Decomposição**: trocar um vetor por componentes em eixos convenientes (situação física equivalente). Para uma força F que forma ângulo θ com o eixo x: **Fx = F cos θ** e **Fy = F sen θ**. É muito usada em plano inclinado, dinâmica e estática.",
-          "**Vetor multiplicado por um número k**: a **direção nunca muda**. Se |k| > 1 o módulo aumenta; se 0 < |k| < 1 o módulo diminui; se k > 0 o sentido se mantém; se k < 0 o sentido se inverte.",
-          "**Vetor oposto** (−a): mesmo módulo e mesma direção, sentido contrário. **Diferença**: a − b = a + (−b). Módulo da diferença: **|a − b|² = A² + B² − 2AB cos θ** (soma usa sinal +, diferença usa sinal − no termo do meio).",
-          "**Grandeza escalar** fica definida por módulo e unidade (ex.: massa, tempo, densidade, energia, trabalho). **Grandeza vetorial** exige módulo, unidade, direção e sentido (ex.: deslocamento, força, impulso, quantidade de movimento, campos elétrico e magnético)."
-        ],
-        "teoria": [
-          {
-            "statement": "Dois vetores são iguais sempre que possuem o mesmo módulo e a mesma direção, ainda que seus sentidos sejam opostos.",
-            "isTrue": false,
-            "explanation": "A igualdade vetorial exige módulo, direção E sentido iguais. Com sentidos opostos os vetores são simétricos, não iguais."
-          },
-          {
-            "statement": "Quando dois vetores têm a mesma direção e sentidos opostos, o módulo da resultante é igual ao valor absoluto da diferença entre seus módulos.",
-            "isTrue": true,
-            "explanation": "Nesse caso θ = 180° e a lei dos cossenos reduz-se a R = |A − B|."
-          },
-          {
-            "statement": "A resultante de dois vetores perpendiculares entre si tem módulo igual à soma dos módulos dos dois vetores.",
-            "isTrue": false,
-            "explanation": "Para θ = 90°, cos θ = 0 e vale o teorema de Pitágoras: R² = A² + B². A soma simples dos módulos só ocorre com vetores de mesma direção e mesmo sentido."
-          },
-          {
-            "statement": "Multiplicar um vetor por um número negativo inverte o seu sentido, mas nunca altera a sua direção.",
-            "isTrue": true,
-            "explanation": "A multiplicação por escalar não muda a direção; o sinal do número define o sentido e o seu valor absoluto define o fator do módulo."
-          },
-          {
-            "statement": "Trabalho e energia são grandezas escalares, ao passo que impulso e quantidade de movimento são grandezas vetoriais.",
-            "isTrue": true,
-            "explanation": "Escalares ficam definidas por módulo e unidade; impulso e quantidade de movimento exigem também direção e sentido."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "Na regra do polígono, o vetor resultante liga a origem do primeiro vetor à extremidade do último vetor desenhado.",
-            "isTrue": true,
-            "explanation": "Os vetores são encadeados extremidade com origem; a resultante fecha o contorno do primeiro ao último."
-          },
-          {
-            "statement": "Multiplicar um vetor por 1/2 reduz o seu módulo à metade e inverte o seu sentido.",
-            "isTrue": false,
-            "explanation": "Um número positivo entre 0 e 1 reduz o módulo, mas mantém o sentido. A inversão só ocorre com número negativo."
-          },
-          {
-            "statement": "O módulo do vetor diferença a − b é dado por A² + B² − 2AB cos θ (sob raiz), em que θ é o ângulo entre os vetores quando colocados com a mesma origem.",
-            "isTrue": true,
-            "explanation": "Na soma o termo central tem sinal positivo; na diferença o sinal é negativo, pois a − b = a + (−b)."
-          },
-          {
-            "statement": "Para ficar plenamente definida, uma grandeza escalar precisa de módulo, unidade, direção e sentido.",
-            "isTrue": false,
-            "explanation": "Direção e sentido são exigências das grandezas vetoriais. A escalar é definida apenas por módulo (valor numérico) e unidade."
-          },
-          {
-            "statement": "Se a força F forma o ângulo θ com o eixo x, suas componentes são Fx = F cos θ e Fy = F sen θ.",
-            "isTrue": true,
-            "explanation": "É a decomposição em eixos perpendiculares, com a componente adjacente ao ângulo dada pelo cosseno e a oposta pelo seno."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Conceito de vetor e características (módulo, direção, sentido); igualdade",
-            "pageRef": 15
-          },
-          {
-            "topic": "Soma: regra do paralelogramo",
-            "pageRef": 15
-          },
-          {
-            "topic": "Soma: regra do polígono e polígono fechado (resultante nula)",
-            "pageRef": 17
-          },
-          {
-            "topic": "Módulo da resultante: lei dos cossenos e casos particulares (0°, 180°, 90°)",
-            "pageRef": 18
-          },
-          {
-            "topic": "Decomposição vetorial (Fx, Fy)",
-            "pageRef": 20
-          },
-          {
-            "topic": "Multiplicação de vetor por número (módulo e sentido)",
-            "pageRef": 23
-          },
-          {
-            "topic": "Vetor oposto e diferença de vetores",
-            "pageRef": 25
-          },
-          {
-            "topic": "Grandezas escalares x vetoriais e exemplos",
-            "pageRef": 27
-          }
-        ]
-      },
-      "questions": [
-        {
-          "topic": "Igualdade de vetores",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 15,
-          "statement": "Dois vetores a e b têm o mesmo módulo e a mesma direção, mas sentidos contrários. A respeito dessa situação, é correto afirmar que",
-          "support": null,
-          "options": [
-            "somam um vetor de módulo duplo, pois as setas têm o mesmo tamanho.",
-            "têm direções diferentes, já que as setas apontam para lados contrários.",
-            "são iguais, porque o sentido não faz parte da definição de igualdade vetorial.",
-            "um é o oposto do outro, e por isso não são iguais.",
-            "só seriam diferentes se também tivessem módulos distintos."
-          ],
-          "answer": "D",
-          "explanation": "A igualdade vetorial exige módulo, direção e sentido iguais ao mesmo tempo. Vetores de mesmo módulo e mesma direção, porém de sentidos contrários, são opostos (b = −a): não são iguais, e sua soma é o vetor nulo, não um vetor de módulo duplo. A direção é a mesma, pois ambos estão sobre a mesma reta suporte."
-        },
-        {
-          "topic": "Soma: regra do paralelogramo",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 15,
-          "statement": "Ao somar dois vetores pela regra do paralelogramo, o vetor resultante é representado",
-          "support": null,
-          "options": [
-            "pelo lado do paralelogramo paralelo ao vetor de maior módulo.",
-            "pelo segmento que vai do encontro das paralelas de volta à origem comum.",
-            "por um vetor cujo módulo é sempre a soma aritmética dos módulos dos dois vetores.",
-            "pelo segmento que parte da origem comum e chega ao ponto de encontro das paralelas traçadas.",
-            "pelo segmento que liga as extremidades dos dois vetores, do menor para o maior."
-          ],
-          "answer": "D",
-          "explanation": "No método do paralelogramo juntam-se os vetores origem com origem, traçam-se retas paralelas a cada um deles e une-se a origem comum ao ponto em que as paralelas se encontram. O módulo só é a soma aritmética no caso particular de vetores de mesma direção e mesmo sentido; em geral depende do ângulo entre eles."
-        },
-        {
-          "topic": "Resultante de vetores perpendiculares",
-          "pattern": "calculo",
-          "difficulty": 1,
-          "pageRef": 19,
-          "statement": "Duas forças perpendiculares entre si, de 9 N e 12 N, atuam ao mesmo tempo sobre um ponto material. O módulo da força resultante, em newtons, é",
-          "support": null,
-          "options": [
-            "3",
-            "15",
-            "21",
-            "108",
-            "225"
-          ],
-          "answer": "B",
-          "explanation": "Como as forças são perpendiculares, o ângulo é 90° e a lei dos cossenos se reduz ao teorema de Pitágoras: R² = 9² + 12² = 81 + 144 = 225, logo R = 15 N. O valor 21 é a soma simples (só vale para forças de mesma direção e sentido) e 3 é a diferença (sentidos opostos); 225 é R², e não R."
-        },
-        {
-          "topic": "Valores possíveis da resultante",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 18,
-          "statement": "Duas forças, de 7 N e 12 N, atuam sobre o mesmo ponto material, formando entre si um ângulo qualquer. Entre as intensidades a seguir, a única que NÃO pode ser a da resultante dessas forças é",
-          "support": null,
-          "options": [
-            "4 N",
-            "6 N",
-            "12 N",
-            "18 N",
-            "19 N"
-          ],
-          "answer": "A",
-          "explanation": "A resultante é máxima com as forças na mesma direção e sentido (7 + 12 = 19 N) e mínima com sentidos opostos (12 − 7 = 5 N); qualquer ângulo intermediário dá valores entre 5 N e 19 N. Assim, 4 N fica abaixo do mínimo e é impossível, ao passo que 6, 12, 18 e 19 N estão no intervalo."
-        },
-        {
-          "topic": "Módulo da resultante pela lei dos cossenos",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 18,
-          "statement": "Dois vetores de módulos 7 u e 8 u formam entre si um ângulo de 60° quando suas origens coincidem. Considerando cos 60° = 0,5, o módulo do vetor soma é, aproximadamente,",
-          "support": null,
-          "options": [
-            "7,5 u",
-            "10,6 u",
-            "13 u",
-            "15 u",
-            "169 u"
-          ],
-          "answer": "C",
-          "explanation": "Pela lei dos cossenos para a soma, R² = A² + B² + 2AB·cos θ = 49 + 64 + 2·7·8·0,5 = 169, e então R = 13 u. Usar o sinal negativo daria cerca de 7,5 u (é a fórmula da diferença), e usar Pitágoras ignoraria o ângulo e daria cerca de 10,6 u; 15 u seria a soma dos módulos."
-        },
-        {
-          "topic": "Módulo do vetor diferença",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 26,
-          "statement": "Os vetores a e b têm módulos 5 u e 8 u e, com as origens coincidentes, formam um ângulo de 60° (cos 60° = 0,5). O módulo da diferença a − b vale, em u,",
-          "support": null,
-          "options": [
-            "3",
-            "7",
-            "9,4",
-            "11,4",
-            "13"
-          ],
-          "answer": "B",
-          "explanation": "Para a diferença, o termo central tem sinal negativo: |a − b|² = A² + B² − 2AB·cos θ = 25 + 64 − 2·5·8·0,5 = 49, portanto |a − b| = 7 u. O valor 3 seria o caso de vetores de mesmo sentido, 9,4 o de vetores perpendiculares e 11,4 o módulo da soma (que usa o sinal positivo)."
-        },
-        {
-          "topic": "Decomposição vetorial",
-          "pattern": "calculo",
-          "difficulty": 1,
-          "pageRef": 20,
-          "statement": "Uma força de 100 N forma um ângulo de 37° com o eixo horizontal x. Dados sen 37° = 0,6 e cos 37° = 0,8, o módulo da componente vertical dessa força, em newtons, é",
-          "support": null,
-          "options": [
-            "36",
-            "48",
-            "60",
-            "80",
-            "100"
-          ],
-          "answer": "C",
-          "explanation": "A componente vertical é Fy = F·sen θ = 100 · 0,6 = 60 N, já que θ é medido em relação ao eixo x. O valor 80 N corresponde à componente horizontal (Fx = F·cos θ), e 100 N seria a própria força, o que só ocorreria se ela estivesse sobre o eixo y."
-        },
-        {
-          "topic": "Composição a partir das componentes",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 20,
-          "statement": "As componentes de uma força F, nas direções x e y, valem Fx = 24 N e Fy = 32 N. Como x e y são perpendiculares, o módulo de F, em newtons, é",
-          "support": null,
-          "options": [
-            "8",
-            "28",
-            "32",
-            "40",
-            "56"
-          ],
-          "answer": "D",
-          "explanation": "As componentes e a força formam um triângulo retângulo, com F como hipotenusa: F² = 24² + 32² = 576 + 1024 = 1600, logo F = 40 N. A soma simples (56 N) ignora que as componentes são perpendiculares, e a média (28 N) não tem significado físico."
-        },
-        {
-          "topic": "Multiplicação de vetor por número",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 24,
-          "statement": "Sabe-se que o vetor a tem módulo 12 u. O vetor b é definido por b = −0,25·a. Em relação a a, o vetor b tem",
-          "support": null,
-          "options": [
-            "módulo 9 u, mesma direção e sentido oposto.",
-            "módulo 3 u, mesma direção e mesmo sentido.",
-            "módulo 3 u, direção perpendicular e sentido oposto.",
-            "módulo 48 u, mesma direção e sentido oposto.",
-            "módulo 3 u, mesma direção e sentido oposto."
-          ],
-          "answer": "E",
-          "explanation": "Multiplicar um vetor por um número nunca altera a direção. Como |−0,25| = 0,25 está entre 0 e 1, o módulo diminui para 0,25 · 12 = 3 u, e como o número é negativo, o sentido se inverte. O módulo 48 u seria obtido com k = −4 e o 9 u é o resultado de subtrair 12 − 3, operação que não existe aqui."
-        },
-        {
-          "topic": "Polígono fechado",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 17,
-          "statement": "Três vetores são desenhados em sequência: a origem do segundo está na extremidade do primeiro, a origem do terceiro está na extremidade do segundo e a extremidade do terceiro coincide com a origem do primeiro. A soma desses três vetores é",
-          "support": null,
-          "options": [
-            "um vetor com a direção do maior dos três e módulo igual ao dobro dele.",
-            "o próprio terceiro vetor, por ser o último a ser desenhado.",
-            "o vetor nulo, pois o polígono se fecha.",
-            "um vetor de módulo igual à soma dos três módulos.",
-            "o vetor que liga a origem do primeiro à extremidade do terceiro."
-          ],
-          "answer": "C",
-          "explanation": "Na regra do polígono, a resultante liga a origem do primeiro vetor à extremidade do último. Se a extremidade do último coincide com a origem do primeiro, esse segmento tem comprimento zero e a soma é o vetor nulo. Não há razão para o módulo ser a soma dos módulos, que só ocorre com vetores de mesma direção e sentido."
-        },
-        {
-          "topic": "Relação vetorial a partir da figura",
-          "pattern": "relacao",
-          "difficulty": 3,
-          "pageRef": 22,
-          "statement": "Em uma figura, os vetores p e q estão dispostos em sequência (a origem de q está na extremidade de p), e o vetor r parte da origem de p e termina na extremidade de q. A relação vetorial correta entre eles é",
-          "support": null,
-          "options": [
-            "p + q − r = 0.",
-            "p − q − r = 0.",
-            "p + q + r = 0.",
-            "p − q + r = 0.",
-            "q + r − p = 0."
-          ],
-          "answer": "A",
-          "explanation": "Pela regra do polígono, p + q é o vetor que vai da origem de p à extremidade de q, ou seja, p + q = r e, portanto, p + q − r = 0. Embora a figura forme um triângulo fechado, a soma é nula com todos os sinais positivos apenas quando os três vetores estão encadeados extremidade com origem; aqui r tem sentido contrário ao do percurso p, q, o que exige o sinal negativo na relação."
-        },
-        {
-          "topic": "Grandezas escalares",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 27,
-          "statement": "Assinale a alternativa em que todas as grandezas citadas são escalares.",
-          "support": null,
-          "options": [
-            "Densidade, deslocamento e tempo.",
-            "Força, massa e energia.",
-            "Massa, tempo e força.",
-            "Energia, trabalho e deslocamento.",
-            "Massa, tempo e densidade."
-          ],
-          "answer": "E",
-          "explanation": "Grandezas escalares ficam completamente definidas por módulo e unidade, como massa, tempo, densidade, energia e trabalho. Força e deslocamento exigem também direção e sentido, por isso são vetoriais, e cada uma das demais alternativas traz pelo menos uma delas."
-        },
-        {
-          "topic": "Grandeza vetorial: deslocamento",
-          "pattern": "caso",
-          "difficulty": 1,
-          "pageRef": 27,
-          "statement": "Um socorrista informa que andou 200 m a partir do portão de um quartel. Para que o deslocamento dele fique completamente definido, falta informar",
-          "support": null,
-          "options": [
-            "somente a massa do socorrista, para fechar o módulo.",
-            "apenas a direção, pois o sentido pode ser deduzido do módulo.",
-            "o instante em que o movimento começou e terminou.",
-            "a direção e o sentido do movimento.",
-            "apenas a unidade de medida, já que o módulo foi dado."
-          ],
-          "answer": "D",
-          "explanation": "O deslocamento é grandeza vetorial: precisa de módulo, unidade, direção e sentido. Foram dados o módulo (200) e a unidade (m); faltam direção (por exemplo, leste-oeste) e sentido (para o leste ou para o oeste). O módulo sozinho não indica o sentido."
-        },
-        {
-          "topic": "Resultante nula de três forças",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 18,
-          "statement": "Três forças coplanares atuam sobre um ponto material que permanece em repouso. Duas delas são perpendiculares entre si e valem 5 N e 12 N. Para que a resultante seja nula, a terceira força deve ter intensidade, em newtons, igual a",
-          "support": null,
-          "options": [
-            "7",
-            "13",
-            "17",
-            "60",
-            "169"
-          ],
-          "answer": "B",
-          "explanation": "As duas forças perpendiculares têm resultante R = √(5² + 12²) = 13 N. Para que a soma das três seja nula, a terceira deve ter o mesmo módulo dessa resultante, 13 N, e sentido oposto. A soma simples (17 N) e a diferença (7 N) ignoram o ângulo reto entre as forças."
-        },
-        {
-          "topic": "Decomposição: finalidade",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 20,
-          "statement": "Ao decompor uma força F em duas componentes Fx e Fy, perpendiculares entre si, pode-se afirmar que",
-          "support": null,
-          "options": [
-            "F pode ser trocada por Fx e Fy, e a situação física permanece equivalente.",
-            "as componentes se somam algebricamente e não vetorialmente.",
-            "Fx e Fy atuam além de F, e a situação física passa a ter três forças distintas.",
-            "a decomposição só é válida quando F forma 45° com os eixos.",
-            "o módulo de cada componente é sempre maior que o módulo de F."
-          ],
-          "answer": "A",
-          "explanation": "Decompor é substituir um vetor por outros mais convenientes, e a situação física continua a mesma: as componentes, somadas vetorialmente, reproduzem F. Cada componente é menor ou igual a F (F cos θ e F sen θ) e o método vale para qualquer ângulo; ele é útil, por exemplo, no plano inclinado."
-        }
-      ]
+     "topic": "Igualdade de vetores",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 15,
+     "statement": "Dois vetores a e b têm o mesmo módulo e a mesma direção, mas sentidos contrários. A respeito dessa situação, é correto afirmar que",
+     "support": null,
+     "options": [
+      "somam um vetor de módulo duplo, pois as setas têm o mesmo tamanho.",
+      "têm direções diferentes, já que as setas apontam para lados contrários.",
+      "são iguais, porque o sentido não faz parte da definição de igualdade vetorial.",
+      "um é o oposto do outro, e por isso não são iguais.",
+      "só seriam diferentes se também tivessem módulos distintos."
+     ],
+     "answer": "D",
+     "explanation": "A igualdade vetorial exige módulo, direção e sentido iguais ao mesmo tempo. Vetores de mesmo módulo e mesma direção, porém de sentidos contrários, são opostos (b = −a): não são iguais, e sua soma é o vetor nulo, não um vetor de módulo duplo. A direção é a mesma, pois ambos estão sobre a mesma reta suporte."
     },
     {
-      "id": "fisica/a00/s02",
-      "bizu": {
-        "summary": [
-          "**Notação científica**: número escrito como **x · 10^y**, com **1 ≤ x < 10** e y inteiro. Vírgula deslocada para a esquerda → expoente positivo; para a direita → expoente negativo. Ex.: massa da Terra ≈ 6,0 · 10^24 kg; carga do elétron ≈ 1,6 · 10^-19 C (em módulo).",
-          "**Ordem de grandeza (O.G.)** = potência de 10 mais próxima do valor. Passos: (1) escrever em notação científica N = x · 10^y; (2) comparar x com **3,16** (≈ raiz de 10); (3) se x < 3,16, O.G. = 10^y; se x ≥ 3,16, O.G. = **10^(y+1)**.",
-          "**Algarismos significativos**: os **certos** mais **um único duvidoso** (o último, estimado). O duvidoso também conta. Mais algarismos significativos indicam instrumento de maior precisão.",
-          "**Soma e subtração** com significativos: o resultado tem o mesmo número de **casas decimais** da parcela que possui **menos** casas decimais (arredonda-se o excedente).",
-          "**Multiplicação e divisão** com significativos: o resultado tem o mesmo número de **algarismos significativos** do fator que possui **menos** algarismos significativos. Atenção: a regra da soma é por casas decimais; a do produto é por algarismos.",
-          "**Análise dimensional**: escrever a grandeza em função das **grandezas fundamentais** (comprimento L, tempo T, massa M, temperatura θ, corrente elétrica I). As demais são **derivadas** e se obtêm de pelo menos uma fórmula que as relacione.",
-          "**Dimensões úteis**: velocidade = **LT^-1**; energia = **ML²T^-2**; calor específico = **L²T^-2θ^-1**; resistência elétrica = **ML²T^-3I^-2**. A dimensão leva direto à unidade SI correspondente (velocidade em m·s^-1).",
-          "**Sistema Internacional (SI)** padroniza as unidades fundamentais (ex.: metro, quilograma, segundo, kelvin, ampere). Unidades derivadas combinam as fundamentais, e várias têm **nome especial** em homenagem a cientistas: N (newton), Pa (pascal), J (joule), Hz (hertz).",
-          "**Unidades usuais** (fora do SI), como minuto e hora, são comuns no cotidiano e convertidas ao SI por fatores. **CGS** é outro sistema, não internacional. A conversão de unidades se faz por **potências de dez dos prefixos** (quilo, mili, micro, nano, mega, giga), sem decorar a escadinha km-hm-dam."
-        ],
-        "teoria": [
-          {
-            "statement": "Um número está em notação científica quando é escrito como x · 10^y, com x maior ou igual a 1 e menor que 10, e y inteiro.",
-            "isTrue": true,
-            "explanation": "Essa é a definição: um fator entre 1 e 10 multiplicado por uma potência inteira de dez."
-          },
-          {
-            "statement": "A ordem de grandeza de uma massa de 4,5 · 10^-5 kg é 10^-5 kg.",
-            "isTrue": false,
-            "explanation": "Como 4,5 é maior que 3,16, soma-se 1 ao expoente: a ordem de grandeza é 10^-4 kg."
-          },
-          {
-            "statement": "No produto de duas medidas, o resultado deve ser expresso com o mesmo número de casas decimais da medida que tiver menos casas decimais.",
-            "isTrue": false,
-            "explanation": "A regra de casas decimais vale para soma e subtração. No produto e na divisão conta o número de algarismos significativos da medida mais pobre neles."
-          },
-          {
-            "statement": "Em uma medida, os algarismos significativos são todos os algarismos certos acrescidos de um único algarismo duvidoso.",
-            "isTrue": true,
-            "explanation": "O duvidoso é significativo, mas não se admite mais de um, pois não se pode acrescentar dúvida sobre o que já é dúvida."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "A dimensão da energia, em função de massa (M), comprimento (L) e tempo (T), é ML²T^-2.",
-            "isTrue": true,
-            "explanation": "A partir da energia cinética mV²/2: M·(LT^-1)² = ML²T^-2."
-          },
-          {
-            "statement": "O newton é uma unidade fundamental do SI, pois recebeu o nome de um cientista.",
-            "isTrue": false,
-            "explanation": "O newton é unidade derivada (equivale a kg·m/s²). Ter nome de cientista é característica de algumas unidades derivadas com nome especial."
-          },
-          {
-            "statement": "Para obter a dimensão de uma grandeza derivada, basta conhecer ao menos uma fórmula física que a relacione com as grandezas fundamentais.",
-            "isTrue": true,
-            "explanation": "É o procedimento da análise dimensional: parte-se de uma relação conhecida e substituem-se as dimensões."
-          },
-          {
-            "statement": "Ao somar 27,48 cm com 2,5 cm, o resultado com algarismos significativos corretos deve manter duas casas decimais.",
-            "isTrue": false,
-            "explanation": "O resultado fica com uma casa decimal (a menor entre as parcelas): 29,98 arredonda para 30,0 cm."
-          },
-          {
-            "statement": "Uma distância de 120.000 km tem ordem de grandeza igual a 10^5 km.",
-            "isTrue": true,
-            "explanation": "120.000 = 1,2 · 10^5 e, como 1,2 < 3,16, o expoente se mantém."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Notação científica",
-            "pageRef": 28
-          },
-          {
-            "topic": "Ordem de grandeza: passo a passo e limite 3,16",
-            "pageRef": 30
-          },
-          {
-            "topic": "Algarismos significativos: certos e duvidoso",
-            "pageRef": 31
-          },
-          {
-            "topic": "Operações com significativos: soma/subtração x produto/divisão",
-            "pageRef": 32
-          },
-          {
-            "topic": "Análise dimensional: grandezas fundamentais e derivadas",
-            "pageRef": 34
-          },
-          {
-            "topic": "Exemplos de dimensões (velocidade, energia, calor específico, resistência)",
-            "pageRef": 35
-          },
-          {
-            "topic": "Sistema Internacional: unidades fundamentais e derivadas com nome especial",
-            "pageRef": 37
-          },
-          {
-            "topic": "Unidades usuais, CGS e prefixos (potências de dez)",
-            "pageRef": 42
-          }
-        ]
-      },
-      "questions": [
-        {
-          "topic": "Notação científica",
-          "pattern": "calculo",
-          "difficulty": 1,
-          "pageRef": 28,
-          "statement": "A distância média da Terra à Lua é de cerca de 384.000 km. Escrita em notação científica, essa distância é",
-          "support": null,
-          "options": [
-            "3,84 · 10^5 km.",
-            "0,384 · 10^6 km.",
-            "3,84 · 10^6 km.",
-            "38,4 · 10^4 km.",
-            "3,84 · 10^-5 km."
-          ],
-          "answer": "A",
-          "explanation": "Na notação científica o número é escrito como x · 10^y, com 1 ≤ x < 10. Deslocando a vírgula cinco casas para a esquerda obtém-se 3,84 e o expoente positivo 5. As alternativas 38,4 · 10^4 e 0,384 · 10^6 têm o mesmo valor, mas x está fora do intervalo exigido; 10^6 e 10^-5 mudam o valor."
-        },
-        {
-          "topic": "Notação científica: regras",
-          "pattern": "assertivas",
-          "difficulty": 2,
-          "pageRef": 29,
-          "statement": "Considere as afirmações sobre notação científica.\n\nI. Quando a vírgula é deslocada para a esquerda, o expoente de 10 é positivo.\nII. O número 25 · 10^3 está em notação científica, pois a potência de 10 está explícita.\nIII. Na forma x · 10^y, o fator x deve ser maior ou igual a 1 e menor que 10.\n\nEstá correto o que se afirma em",
-          "support": null,
-          "options": [
-            "II, apenas.",
-            "I, II e III.",
-            "II e III, apenas.",
-            "I e III, apenas.",
-            "I, apenas."
-          ],
-          "answer": "D",
-          "explanation": "A afirmação I está certa (vírgula à esquerda, expoente positivo) e a III também (1 ≤ x < 10). A II é falsa: 25 · 10^3 tem x = 25, fora do intervalo, e o correto seria 2,5 · 10^4. Ter a potência de 10 escrita não basta para a notação ser científica."
-        },
-        {
-          "topic": "Ordem de grandeza",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 30,
-          "statement": "A massa de um grão de poeira é de 0,0000072 kg. A ordem de grandeza dessa massa, em quilogramas, é",
-          "support": null,
-          "options": [
-            "7 · 10^-6.",
-            "10^-7.",
-            "10^-5.",
-            "10^-6.",
-            "10^-4."
-          ],
-          "answer": "C",
-          "explanation": "Em notação científica a massa é 7,2 · 10^-6 kg. Como 7,2 é maior que 3,16, a ordem de grandeza é a potência seguinte: 10^(−6+1) = 10^-5 kg. Responder 10^-6 seria apenas copiar o expoente da notação científica, sem comparar x com 3,16, e 7 · 10^-6 não é potência de 10."
-        },
-        {
-          "topic": "Ordem de grandeza: assertivas",
-          "pattern": "assertivas",
-          "difficulty": 3,
-          "pageRef": 30,
-          "statement": "Considere as afirmações sobre ordem de grandeza (O.G.).\n\nI. A O.G. de 280.000 é 10^5.\nII. A O.G. de 3.500.000 é 10^6.\nIII. A O.G. de 0,0031 é 10^-3.\n\nEstá correto o que se afirma em",
-          "support": null,
-          "options": [
-            "I, II e III.",
-            "II, apenas.",
-            "I e III, apenas.",
-            "II e III, apenas.",
-            "I, apenas."
-          ],
-          "answer": "C",
-          "explanation": "Em I, 280.000 = 2,8 · 10^5 e, como 2,8 < 3,16, a O.G. é 10^5. Em III, 0,0031 = 3,1 · 10^-3 e 3,1 < 3,16, logo a O.G. é 10^-3. Em II, 3.500.000 = 3,5 · 10^6 e 3,5 > 3,16, o que leva a 10^7 e não a 10^6; por isso a II é falsa."
-        },
-        {
-          "topic": "Algarismos significativos",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 31,
-          "statement": "Um técnico mede uma barra com uma régua e registra 23,46 cm. Sobre os algarismos dessa medida, está correto afirmar que",
-          "support": null,
-          "options": [
-            "ela tem quatro significativos: 2, 3 e 4 são certos e 6 é o duvidoso.",
-            "ela tem dois significativos, pois a vírgula separa os certos dos duvidosos.",
-            "ela tem quatro significativos, com dois duvidosos (o 4 e o 6).",
-            "ela tem quatro significativos, todos certos, pois a leitura foi feita com instrumento.",
-            "ela tem três significativos, pois o duvidoso não conta como significativo."
-          ],
-          "answer": "A",
-          "explanation": "Os algarismos significativos são os certos mais um único duvidoso, e o duvidoso também conta. Em 23,46 o 6 é o duvidoso, estimado na leitura, e 2, 3 e 4 são certos, o que dá quatro significativos. Não se admite mais de um algarismo duvidoso."
-        },
-        {
-          "topic": "Contagem de significativos",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 32,
-          "statement": "O tempo de uma prova de resistência foi registrado como 0,00450 s. O número de algarismos significativos dessa medida é",
-          "support": null,
-          "options": [
-            "4.",
-            "6.",
-            "2.",
-            "5.",
-            "3."
-          ],
-          "answer": "E",
-          "explanation": "Zeros à esquerda do primeiro algarismo diferente de zero apenas posicionam a vírgula e não contam; o zero final, à direita, indica a precisão da leitura e conta. Assim, 0,00450 s = 4,50 · 10^-3 s tem três significativos (4, 5 e 0), de modo análogo ao exemplo de 0,000120 s."
-        },
-        {
-          "topic": "Soma com significativos",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 33,
-          "statement": "Três comprimentos medidos com instrumentos diferentes são somados: 12,36 m + 4,8 m + 0,257 m. Respeitando as regras dos algarismos significativos, o resultado deve ser escrito como",
-          "support": null,
-          "options": [
-            "17,42 m.",
-            "17,5 m.",
-            "17 m.",
-            "17,417 m.",
-            "17,4 m."
-          ],
-          "answer": "E",
-          "explanation": "Na adição, o resultado tem o mesmo número de casas decimais da parcela que tem menos casas, que é 4,8 (uma casa). A soma exata é 17,417 m e, arredondada para uma casa decimal, resulta em 17,4 m. Manter duas ou três casas aumentaria artificialmente a precisão, e 17,5 resultaria de arredondar incorretamente para cima."
-        },
-        {
-          "topic": "Produto com significativos",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 33,
-          "statement": "Uma placa retangular tem lados medidos como 4,35 cm e 2,1 cm. Seguindo as regras dos algarismos significativos, a área da placa, em cm², deve ser escrita como",
-          "support": null,
-          "options": [
-            "9",
-            "9,1",
-            "9,14",
-            "9,135",
-            "9,2"
-          ],
-          "answer": "B",
-          "explanation": "Na multiplicação, o resultado fica com o número de algarismos significativos do fator que tem menos: 2,1 tem dois, então o resultado tem dois significativos. O produto exato é 9,135, que arredondado para dois significativos resulta em 9,1 cm². Dar uma casa decimal a mais (9,14) ou todas (9,135) falsearia a precisão."
-        },
-        {
-          "topic": "Regras mistas de significativos",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 34,
-          "statement": "Ao se efetuar 5,67 · 10^4 + 8,4, respeitando as regras dos algarismos significativos para a adição, o resultado é",
-          "support": null,
-          "options": [
-            "5,6708 · 10^4.",
-            "5,671 · 10^4.",
-            "5,7 · 10^4.",
-            "5,67 · 10^4.",
-            "6 · 10^4."
-          ],
-          "answer": "D",
-          "explanation": "O termo 5,67 · 10^4 = 56.700 tem a incerteza na casa das centenas, então a parcela 8,4 é desprezível frente a essa precisão; o resultado mantém 5,67 · 10^4. Escrever mais algarismos (5,671 ou 5,6708) ou menos (5,7 ou 6) altera a precisão que as regras determinam."
-        },
-        {
-          "topic": "Grandezas fundamentais",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 35,
-          "statement": "Na análise dimensional estudada, as grandezas fundamentais são comprimento, tempo, massa, temperatura e corrente elétrica. Assinale a alternativa que apresenta apenas grandezas fundamentais.",
-          "support": null,
-          "options": [
-            "Comprimento, velocidade e tempo.",
-            "Corrente elétrica, massa e potência.",
-            "Massa, temperatura e energia.",
-            "Tempo, força e comprimento.",
-            "Comprimento, massa e corrente elétrica."
-          ],
-          "answer": "E",
-          "explanation": "Comprimento, massa e corrente elétrica estão na lista de grandezas fundamentais. Velocidade, energia, força e potência são derivadas: podem ser expressas em função das fundamentais por meio de ao menos uma fórmula que as relacione."
-        },
-        {
-          "topic": "Equação dimensional de uma constante",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 36,
-          "statement": "A força elástica de uma mola é dada por F = k·x, em que x é a deformação (dimensão L). Sabendo que a força tem dimensão M·L·T^-2, a dimensão da constante k é",
-          "support": null,
-          "options": [
-            "M·L·T^-2",
-            "M·T^-2",
-            "M·L^-1·T^-2",
-            "M·T^-1",
-            "M·L^2·T^-2"
-          ],
-          "answer": "B",
-          "explanation": "Isolando a constante, k = F/x, e então [k] = (M·L·T^-2)/L = M·T^-2. Esse resultado corresponde à unidade kg·s^-2, equivalente a N/m. As demais opções esquecem de dividir por L ou dividem de forma incorreta; M·L·T^-2 é a própria dimensão da força."
-        },
-        {
-          "topic": "Dimensão e unidade SI",
-          "pattern": "relacao",
-          "difficulty": 2,
-          "pageRef": 36,
-          "statement": "Uma grandeza física tem dimensão M·L^2·T^-3. Em unidades de base do SI, ela se expressa como",
-          "support": null,
-          "options": [
-            "kg·m^2·s^-3·A^-1, unidade que recebe o nome de volt (V).",
-            "kg·m^2·s^-2, unidade que recebe o nome de joule (J).",
-            "kg·m·s^-2, unidade que recebe o nome de newton (N).",
-            "kg·m^-1·s^-2, unidade que recebe o nome de pascal (Pa).",
-            "kg·m^2·s^-3, unidade que recebe o nome de watt (W)."
-          ],
-          "answer": "E",
-          "explanation": "Substituindo cada símbolo dimensional pela unidade de base correspondente (M → kg, L → m, T → s), obtém-se kg·m^2·s^-3, que equivale a J/s, isto é, ao watt (potência). Joule, newton e pascal têm expoentes de tempo ou de comprimento diferentes, e o volt exige ainda o ampère na expressão."
-        },
-        {
-          "topic": "Unidades de base do SI",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 37,
-          "statement": "Assinale a alternativa em que todas as unidades citadas são unidades de base do Sistema Internacional.",
-          "support": null,
-          "options": [
-            "Newton, metro, segundo e kelvin.",
-            "Metro, grama, segundo e kelvin.",
-            "Metro, quilograma, segundo e kelvin.",
-            "Centímetro, quilograma, segundo e ampère.",
-            "Metro, quilograma, hora e ampère."
-          ],
-          "answer": "C",
-          "explanation": "As unidades de base do SI para as grandezas fundamentais são metro (comprimento), quilograma (massa), segundo (tempo), ampère (corrente) e kelvin (temperatura). O grama não é a unidade de base de massa, a hora é usual (fora do SI), o centímetro pertence ao sistema CGS e o newton é unidade derivada."
-        },
-        {
-          "topic": "Unidade derivada com nome especial",
-          "pattern": "calculo",
-          "difficulty": 1,
-          "pageRef": 38,
-          "statement": "Um bombeiro empurra uma viatura de 1.500 kg, que adquire aceleração de 0,2 m/s², sem atrito. A força resultante vale 300 kg·m/s², unidade que recebe um nome especial no SI. Esse valor equivale a",
-          "support": null,
-          "options": [
-            "300 J",
-            "300 N",
-            "300 Pa",
-            "300 W",
-            "300 Hz"
-          ],
-          "answer": "B",
-          "explanation": "O produto massa × aceleração tem unidade kg·m/s², que é o newton (N), homenagem a Isaac Newton. Joule (N·m), pascal (N/m²), watt (J/s) e hertz (s^-1) são outras unidades derivadas com nome especial, mas representam grandezas diferentes (energia, pressão, potência e frequência)."
-        },
-        {
-          "topic": "Conversão com prefixos",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 42,
-          "statement": "A luz de um laser tem comprimento de onda de 450 nm. Utilizando a potência de dez correspondente ao prefixo nano, esse comprimento, em metros, vale",
-          "support": null,
-          "options": [
-            "4,5 · 10^-7 m.",
-            "4,5 · 10^7 m.",
-            "4,5 · 10^-6 m.",
-            "4,5 · 10^-5 m.",
-            "4,5 · 10^-9 m."
-          ],
-          "answer": "A",
-          "explanation": "O prefixo nano corresponde a 10^-9. Assim, 450 nm = 450 · 10^-9 m = 4,5 · 10^2 · 10^-9 m = 4,5 · 10^-7 m. Esquecer de converter 450 para notação científica leva ao erro de 4,5 · 10^-9, e trocar o sinal do expoente leva a 4,5 · 10^7."
-        },
-        {
-          "topic": "Unidades usuais: litro",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 40,
-          "statement": "Um reservatório de água tem volume de 2,5 m³. Sabendo que 1 L = 1 dm³ = 10^-3 m³, a capacidade desse reservatório, em litros, é",
-          "support": null,
-          "options": [
-            "2,5 L.",
-            "250 L.",
-            "25 L.",
-            "2.500 L.",
-            "25.000 L."
-          ],
-          "answer": "D",
-          "explanation": "Como 1 L = 10^-3 m³, 1 m³ = 10^3 L, e 2,5 m³ = 2,5 · 10^3 L = 2.500 L. As demais alternativas erram o número de potências de dez na conversão entre metro cúbico e litro."
-        }
-      ]
+     "topic": "Soma: regra do paralelogramo",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 15,
+     "statement": "Ao somar dois vetores pela regra do paralelogramo, o vetor resultante é representado",
+     "support": null,
+     "options": [
+      "pelo lado do paralelogramo paralelo ao vetor de maior módulo.",
+      "pelo segmento que vai do encontro das paralelas de volta à origem comum.",
+      "por um vetor cujo módulo é sempre a soma aritmética dos módulos dos dois vetores.",
+      "pelo segmento que parte da origem comum e chega ao ponto de encontro das paralelas traçadas.",
+      "pelo segmento que liga as extremidades dos dois vetores, do menor para o maior."
+     ],
+     "answer": "D",
+     "explanation": "No método do paralelogramo juntam-se os vetores origem com origem, traçam-se retas paralelas a cada um deles e une-se a origem comum ao ponto em que as paralelas se encontram. O módulo só é a soma aritmética no caso particular de vetores de mesma direção e mesmo sentido; em geral depende do ângulo entre eles."
+    },
+    {
+     "topic": "Resultante de vetores perpendiculares",
+     "pattern": "calculo",
+     "difficulty": 1,
+     "pageRef": 19,
+     "statement": "Duas forças perpendiculares entre si, de 9 N e 12 N, atuam ao mesmo tempo sobre um ponto material. O módulo da força resultante, em newtons, é",
+     "support": null,
+     "options": [
+      "3",
+      "15",
+      "21",
+      "108",
+      "225"
+     ],
+     "answer": "B",
+     "explanation": "Como as forças são perpendiculares, o ângulo é 90° e a lei dos cossenos se reduz ao teorema de Pitágoras: R² = 9² + 12² = 81 + 144 = 225, logo R = 15 N. O valor 21 é a soma simples (só vale para forças de mesma direção e sentido) e 3 é a diferença (sentidos opostos); 225 é R², e não R."
+    },
+    {
+     "topic": "Valores possíveis da resultante",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 18,
+     "statement": "Duas forças, de 7 N e 12 N, atuam sobre o mesmo ponto material, formando entre si um ângulo qualquer. Entre as intensidades a seguir, a única que NíO pode ser a da resultante dessas forças é",
+     "support": null,
+     "options": [
+      "4 N",
+      "6 N",
+      "12 N",
+      "18 N",
+      "19 N"
+     ],
+     "answer": "A",
+     "explanation": "A resultante é máxima com as forças na mesma direção e sentido (7 + 12 = 19 N) e mínima com sentidos opostos (12 − 7 = 5 N); qualquer ângulo intermediário dá valores entre 5 N e 19 N. Assim, 4 N fica abaixo do mínimo e é impossível, ao passo que 6, 12, 18 e 19 N estão no intervalo."
+    },
+    {
+     "topic": "Módulo da resultante pela lei dos cossenos",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 18,
+     "statement": "Dois vetores de módulos 7 u e 8 u formam entre si um ângulo de 60° quando suas origens coincidem. Considerando cos 60° = 0,5, o módulo do vetor soma é, aproximadamente,",
+     "support": null,
+     "options": [
+      "7,5 u",
+      "10,6 u",
+      "13 u",
+      "15 u",
+      "169 u"
+     ],
+     "answer": "C",
+     "explanation": "Pela lei dos cossenos para a soma, R² = A² + B² + 2AB·cos θ = 49 + 64 + 2·7·8·0,5 = 169, e então R = 13 u. Usar o sinal negativo daria cerca de 7,5 u (é a fórmula da diferença), e usar Pitágoras ignoraria o ângulo e daria cerca de 10,6 u; 15 u seria a soma dos módulos."
+    },
+    {
+     "topic": "Módulo do vetor diferença",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 26,
+     "statement": "Os vetores a e b têm módulos 5 u e 8 u e, com as origens coincidentes, formam um ângulo de 60° (cos 60° = 0,5). O módulo da diferença a − b vale, em u,",
+     "support": null,
+     "options": [
+      "3",
+      "7",
+      "9,4",
+      "11,4",
+      "13"
+     ],
+     "answer": "B",
+     "explanation": "Para a diferença, o termo central tem sinal negativo: |a − b|² = A² + B² − 2AB·cos θ = 25 + 64 − 2·5·8·0,5 = 49, portanto |a − b| = 7 u. O valor 3 seria o caso de vetores de mesmo sentido, 9,4 o de vetores perpendiculares e 11,4 o módulo da soma (que usa o sinal positivo)."
+    },
+    {
+     "topic": "Decomposição vetorial",
+     "pattern": "calculo",
+     "difficulty": 1,
+     "pageRef": 20,
+     "statement": "Uma força de 100 N forma um ângulo de 37° com o eixo horizontal x. Dados sen 37° = 0,6 e cos 37° = 0,8, o módulo da componente vertical dessa força, em newtons, é",
+     "support": null,
+     "options": [
+      "36",
+      "48",
+      "60",
+      "80",
+      "100"
+     ],
+     "answer": "C",
+     "explanation": "A componente vertical é Fy = F·sen θ = 100 · 0,6 = 60 N, já que θ é medido em relação ao eixo x. O valor 80 N corresponde à componente horizontal (Fx = F·cos θ), e 100 N seria a própria força, o que só ocorreria se ela estivesse sobre o eixo y."
+    },
+    {
+     "topic": "Composição a partir das componentes",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 20,
+     "statement": "As componentes de uma força F, nas direções x e y, valem Fx = 24 N e Fy = 32 N. Como x e y são perpendiculares, o módulo de F, em newtons, é",
+     "support": null,
+     "options": [
+      "8",
+      "28",
+      "32",
+      "40",
+      "56"
+     ],
+     "answer": "D",
+     "explanation": "As componentes e a força formam um triângulo retângulo, com F como hipotenusa: F² = 24² + 32² = 576 + 1024 = 1600, logo F = 40 N. A soma simples (56 N) ignora que as componentes são perpendiculares, e a média (28 N) não tem significado físico."
+    },
+    {
+     "topic": "Multiplicação de vetor por número",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 24,
+     "statement": "Sabe-se que o vetor a tem módulo 12 u. O vetor b é definido por b = −0,25·a. Em relação a, o vetor b tem",
+     "support": null,
+     "options": [
+      "módulo 9 u, mesma direção e sentido oposto.",
+      "módulo 3 u, mesma direção e mesmo sentido.",
+      "módulo 3 u, direção perpendicular e sentido oposto.",
+      "módulo 48 u, mesma direção e sentido oposto.",
+      "módulo 3 u, mesma direção e sentido oposto."
+     ],
+     "answer": "E",
+     "explanation": "Multiplicar um vetor por um número nunca altera a direção. Como |−0,25| = 0,25 está entre 0 e 1, o módulo diminui para 0,25 · 12 = 3 u, e como o número é negativo, o sentido se inverte. O módulo 48 u seria obtido com k = −4 e o 9 u é o resultado de subtrair 12 − 3, operação que não existe aqui."
+    },
+    {
+     "topic": "Polígono fechado",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 17,
+     "statement": "Três vetores são desenhados em sequência: a origem do segundo está na extremidade do primeiro, a origem do terceiro está na extremidade do segundo e a extremidade do terceiro coincide com a origem do primeiro. A soma desses três vetores é",
+     "support": null,
+     "options": [
+      "um vetor com a direção do maior dos três e módulo igual ao dobro dele.",
+      "o próprio terceiro vetor, por ser o último a ser desenhado.",
+      "o vetor nulo, pois o polígono se fecha.",
+      "um vetor de módulo igual à soma dos três módulos.",
+      "o vetor que liga a origem do primeiro à extremidade do terceiro."
+     ],
+     "answer": "C",
+     "explanation": "Na regra do polígono, a resultante liga a origem do primeiro vetor à extremidade do último. Se a extremidade do último coincide com a origem do primeiro, esse segmento tem comprimento zero e a soma é o vetor nulo. Não há razão para o módulo ser a soma dos módulos, que só ocorre com vetores de mesma direção e sentido."
+    },
+    {
+     "topic": "Relação vetorial a partir da figura",
+     "pattern": "relacao",
+     "difficulty": 3,
+     "pageRef": 22,
+     "statement": "Em uma figura, os vetores p e q estão dispostos em sequência (a origem de q está na extremidade de p), e o vetor r parte da origem de p e termina na extremidade de q. A relação vetorial correta entre eles é",
+     "support": null,
+     "options": [
+      "p + q − r = 0.",
+      "p − q − r = 0.",
+      "p + q + r = 0.",
+      "p − q + r = 0.",
+      "q + r − p = 0."
+     ],
+     "answer": "A",
+     "explanation": "Pela regra do polígono, p + q é o vetor que vai da origem de p à extremidade de q, ou seja, p + q = r e, portanto, p + q − r = 0. Embora a figura forme um triângulo fechado, a soma é nula com todos os sinais positivos apenas quando os três vetores estão encadeados extremidade com origem; aqui r tem sentido contrário ao do percurso p, q, o que exige o sinal negativo na relação."
+    },
+    {
+     "topic": "Grandezas escalares",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 27,
+     "statement": "Assinale a alternativa em que todas as grandezas citadas são escalares.",
+     "support": null,
+     "options": [
+      "Densidade, deslocamento e tempo.",
+      "Força, massa e energia.",
+      "Massa, tempo e força.",
+      "Energia, trabalho e deslocamento.",
+      "Massa, tempo e densidade."
+     ],
+     "answer": "E",
+     "explanation": "Grandezas escalares ficam completamente definidas por módulo e unidade, como massa, tempo, densidade, energia e trabalho. Força e deslocamento exigem também direção e sentido, por isso são vetoriais, e cada uma das demais alternativas traz pelo menos uma delas."
+    },
+    {
+     "topic": "Grandeza vetorial: deslocamento",
+     "pattern": "caso",
+     "difficulty": 1,
+     "pageRef": 27,
+     "statement": "Um socorrista informa que andou 200 m a partir do portão de um quartel. Para que o deslocamento dele fique completamente definido, falta informar",
+     "support": null,
+     "options": [
+      "somente a massa do socorrista, para fechar o módulo.",
+      "apenas a direção, pois o sentido pode ser deduzido do módulo.",
+      "o instante em que o movimento começou e terminou.",
+      "a direção e o sentido do movimento.",
+      "apenas a unidade de medida, já que o módulo foi dado."
+     ],
+     "answer": "D",
+     "explanation": "O deslocamento é grandeza vetorial: precisa de módulo, unidade, direção e sentido. Foram dados o módulo (200) e a unidade (m); faltam direção (por exemplo, leste-oeste) e sentido (para o leste ou para o oeste). O módulo sozinho não indica o sentido."
+    },
+    {
+     "topic": "Resultante nula de três forças",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 18,
+     "statement": "Três forças coplanares atuam sobre um ponto material que permanece em repouso. Duas delas são perpendiculares entre si e valem 5 N e 12 N. Para que a resultante seja nula, a terceira força deve ter intensidade, em newtons, igual a",
+     "support": null,
+     "options": [
+      "7",
+      "13",
+      "17",
+      "60",
+      "169"
+     ],
+     "answer": "B",
+     "explanation": "As duas forças perpendiculares têm resultante R = √(5² + 12²) = 13 N. Para que a soma das três seja nula, a terceira deve ter o mesmo módulo dessa resultante, 13 N, e sentido oposto. A soma simples (17 N) e a diferença (7 N) ignoram o ângulo reto entre as forças."
+    },
+    {
+     "topic": "Decomposição: finalidade",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 20,
+     "statement": "Ao decompor uma força F em duas componentes Fx e Fy, perpendiculares entre si, pode-se afirmar que",
+     "support": null,
+     "options": [
+      "F pode ser trocada por Fx e Fy, e a situação física permanece equivalente.",
+      "as componentes se somam algebricamente e não vetorialmente.",
+      "Fx e Fy atuam além de F, e a situação física passa a ter três forças distintas.",
+      "a decomposição só é válida quando F forma 45° com os eixos.",
+      "o módulo de cada componente é sempre maior que o módulo de F."
+     ],
+     "answer": "A",
+     "explanation": "Decompor é substituir um vetor por outros mais convenientes, e a situação física continua a mesma: as componentes, somadas vetorialmente, reproduzem F. Cada componente é menor ou igual a F (F cos θ e F sen θ) e o método vale para qualquer ângulo; ele é útil, por exemplo, no plano inclinado."
     }
-  ]
+   ]
+  },
+  {
+   "id": "fisica/a00/s02",
+   "bizu": {
+    "summary": [
+     "**Notação científica**: número escrito como **x · 10^y**, com **1 ≤ x < 10** e y inteiro. Vírgula deslocada para a esquerda → expoente positivo; para a direita → expoente negativo. Ex.: massa da Terra ≈ 6,0 · 10^24 kg; carga do elétron ≈ 1,6 · 10^-19 C (em módulo).",
+     "**Ordem de grandeza (O.G.)** = potência de 10 mais próxima do valor. Passos: (1) escrever em notação científica N = x · 10^y; (2) comparar x com **3,16** (≈ raiz de 10); (3) se x < 3,16, O.G. = 10^y; se x ≥ 3,16, O.G. = **10^(y+1)**.",
+     "**Algarismos significativos**: os **certos** mais **um único duvidoso** (o último, estimado). O duvidoso também conta. Mais algarismos significativos indicam instrumento de maior precisão.",
+     "**Soma e subtração** com significativos: o resultado tem o mesmo número de **casas decimais** da parcela que possui **menos** casas decimais (arredonda-se o excedente).",
+     "**Multiplicação e divisão** com significativos: o resultado tem o mesmo número de **algarismos significativos** do fator que possui **menos** algarismos significativos. Atenção: a regra da soma é por casas decimais; a do produto é por algarismos.",
+     "**Análise dimensional**: escrever a grandeza em função das **grandezas fundamentais** (comprimento L, tempo T, massa M, temperatura θ, corrente elétrica I). As demais são **derivadas** e se obtêm de pelo menos uma fórmula que as relacione.",
+     "**Dimensões úteis**: velocidade = **LT^-1**; energia = **ML²T^-2**; calor específico = **L²T^-2θ^-1**; resistência elétrica = **ML²T^-3I^-2**. A dimensão leva direto à unidade SI correspondente (velocidade em m·s^-1).",
+     "**Sistema Internacional (SI)** padroniza as unidades fundamentais (ex.: metro, quilograma, segundo, kelvin, ampere). Unidades derivadas combinam as fundamentais, e várias têm **nome especial** em homenagem a cientistas: N (newton), Pa (pascal), J (joule), Hz (hertz).",
+     "**Unidades usuais** (fora do SI), como minuto e hora, são comuns no cotidiano e convertidas ao SI por fatores. **CGS** é outro sistema, não internacional. A conversão de unidades se faz por **potências de dez dos prefixos** (quilo, mili, micro, nano, mega, giga), sem decorar a escadinha km-hm-dam."
+    ],
+    "teoria": [
+     {
+      "statement": "Um número está em notação científica quando é escrito como x · 10^y, com x maior ou igual a 1 e menor que 10, e y inteiro.",
+      "isTrue": true,
+      "explanation": "Essa é a definição: um fator entre 1 e 10 multiplicado por uma potência inteira de dez."
+     },
+     {
+      "statement": "A ordem de grandeza de uma massa de 4,5 · 10^-5 kg é 10^-5 kg.",
+      "isTrue": false,
+      "explanation": "Como 4,5 é maior que 3,16, soma-se 1 ao expoente: a ordem de grandeza é 10^-4 kg."
+     },
+     {
+      "statement": "No produto de duas medidas, o resultado deve ser expresso com o mesmo número de casas decimais da medida que tiver menos casas decimais.",
+      "isTrue": false,
+      "explanation": "A regra de casas decimais vale para soma e subtração. No produto e na divisão conta o número de algarismos significativos da medida mais pobre neles."
+     },
+     {
+      "statement": "Em uma medida, os algarismos significativos são todos os algarismos certos acrescidos de um único algarismo duvidoso.",
+      "isTrue": true,
+      "explanation": "O duvidoso é significativo, mas não se admite mais de um, pois não se pode acrescentar dúvida sobre o que já é dúvida."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "A dimensão da energia, em função de massa (M), comprimento (L) e tempo (T), é ML²T^-2.",
+      "isTrue": true,
+      "explanation": "A partir da energia cinética mV²/2: M·(LT^-1)² = ML²T^-2."
+     },
+     {
+      "statement": "O newton é uma unidade fundamental do SI, pois recebeu o nome de um cientista.",
+      "isTrue": false,
+      "explanation": "O newton é unidade derivada (equivale a kg·m/s²). Ter nome de cientista é característica de algumas unidades derivadas com nome especial."
+     },
+     {
+      "statement": "Para obter a dimensão de uma grandeza derivada, basta conhecer ao menos uma fórmula física que a relacione com as grandezas fundamentais.",
+      "isTrue": true,
+      "explanation": "É o procedimento da análise dimensional: parte-se de uma relação conhecida e substituem-se as dimensões."
+     },
+     {
+      "statement": "Ao somar 27,48 cm com 2,5 cm, o resultado com algarismos significativos corretos deve manter duas casas decimais.",
+      "isTrue": false,
+      "explanation": "O resultado fica com uma casa decimal (a menor entre as parcelas): 29,98 arredonda para 30,0 cm."
+     },
+     {
+      "statement": "Uma distância de 120.000 km tem ordem de grandeza igual a 10^5 km.",
+      "isTrue": true,
+      "explanation": "120.000 = 1,2 · 10^5 e, como 1,2 < 3,16, o expoente se mantém."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Notação científica",
+      "pageRef": 28
+     },
+     {
+      "topic": "Ordem de grandeza: passo a passo e limite 3,16",
+      "pageRef": 30
+     },
+     {
+      "topic": "Algarismos significativos: certos e duvidoso",
+      "pageRef": 31
+     },
+     {
+      "topic": "Operações com significativos: soma/subtração x produto/divisão",
+      "pageRef": 32
+     },
+     {
+      "topic": "Análise dimensional: grandezas fundamentais e derivadas",
+      "pageRef": 34
+     },
+     {
+      "topic": "Exemplos de dimensões (velocidade, energia, calor específico, resistência)",
+      "pageRef": 35
+     },
+     {
+      "topic": "Sistema Internacional: unidades fundamentais e derivadas com nome especial",
+      "pageRef": 37
+     },
+     {
+      "topic": "Unidades usuais, CGS e prefixos (potências de dez)",
+      "pageRef": 42
+     }
+    ]
+   },
+   "questions": [
+    {
+     "topic": "Notação científica",
+     "pattern": "calculo",
+     "difficulty": 1,
+     "pageRef": 28,
+     "statement": "A distância média da Terra à Lua é de cerca de 384.000 km. Escrita em notação científica, essa distância é",
+     "support": null,
+     "options": [
+      "3,84 · 10^5 km.",
+      "0,384 · 10^6 km.",
+      "3,84 · 10^6 km.",
+      "38,4 · 10^4 km.",
+      "3,84 · 10^-5 km."
+     ],
+     "answer": "A",
+     "explanation": "Na notação científica o número é escrito como x · 10^y, com 1 ≤ x < 10. Deslocando a vírgula cinco casas para a esquerda obtém-se 3,84 e o expoente positivo 5. As alternativas 38,4 · 10^4 e 0,384 · 10^6 têm o mesmo valor, mas x está fora do intervalo exigido; 10^6 e 10^-5 mudam o valor."
+    },
+    {
+     "topic": "Notação científica: regras",
+     "pattern": "assertivas",
+     "difficulty": 2,
+     "pageRef": 29,
+     "statement": "Considere as afirmações sobre notação científica.\n\nI. Quando a vírgula é deslocada para a esquerda, o expoente de 10 é positivo.\nII. O número 25 · 10^3 está em notação científica, pois a potência de 10 está explícita.\nIII. Na forma x · 10^y, o fator x deve ser maior ou igual a 1 e menor que 10.\n\nEstá correto o que se afirma em",
+     "support": null,
+     "options": [
+      "II, apenas.",
+      "I, II e III.",
+      "II e III, apenas.",
+      "I e III, apenas.",
+      "I, apenas."
+     ],
+     "answer": "D",
+     "explanation": "A afirmação I está certa (vírgula à esquerda, expoente positivo) e a III também (1 ≤ x < 10). A II é falsa: 25 · 10^3 tem x = 25, fora do intervalo, e o correto seria 2,5 · 10^4. Ter a potência de 10 escrita não basta para a notação ser científica."
+    },
+    {
+     "topic": "Ordem de grandeza",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 30,
+     "statement": "A massa de um grão de poeira é de 0,0000072 kg. A ordem de grandeza dessa massa, em quilogramas, é",
+     "support": null,
+     "options": [
+      "7 · 10^-6.",
+      "10^-7.",
+      "10^-5.",
+      "10^-6.",
+      "10^-4."
+     ],
+     "answer": "C",
+     "explanation": "Em notação científica a massa é 7,2 · 10^-6 kg. Como 7,2 é maior que 3,16, a ordem de grandeza é a potência seguinte: 10^(−6+1) = 10^-5 kg. Responder 10^-6 seria apenas copiar o expoente da notação científica, sem comparar x com 3,16, e 7 · 10^-6 não é potência de 10."
+    },
+    {
+     "topic": "Ordem de grandeza: assertivas",
+     "pattern": "assertivas",
+     "difficulty": 3,
+     "pageRef": 30,
+     "statement": "Considere as afirmações sobre ordem de grandeza (O.G.).\n\nI. A O.G. de 280.000 é 10^5.\nII. A O.G. de 3.500.000 é 10^6.\nIII. A O.G. de 0,0031 é 10^-3.\n\nEstá correto o que se afirma em",
+     "support": null,
+     "options": [
+      "I, II e III.",
+      "II, apenas.",
+      "I e III, apenas.",
+      "II e III, apenas.",
+      "I, apenas."
+     ],
+     "answer": "C",
+     "explanation": "Em I, 280.000 = 2,8 · 10^5 e, como 2,8 < 3,16, a O.G. é 10^5. Em III, 0,0031 = 3,1 · 10^-3 e 3,1 < 3,16, logo a O.G. é 10^-3. Em II, 3.500.000 = 3,5 · 10^6 e 3,5 > 3,16, o que leva a 10^7 e não a 10^6; por isso a II é falsa."
+    },
+    {
+     "topic": "Algarismos significativos",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 31,
+     "statement": "Um técnico mede uma barra com uma régua e registra 23,46 cm. Sobre os algarismos dessa medida, está correto afirmar que",
+     "support": null,
+     "options": [
+      "ela tem quatro significativos: 2, 3 e 4 são certos e 6 é o duvidoso.",
+      "ela tem dois significativos, pois a vírgula separa os certos dos duvidosos.",
+      "ela tem quatro significativos, com dois duvidosos (o 4 e o 6).",
+      "ela tem quatro significativos, todos certos, pois a leitura foi feita com instrumento.",
+      "ela tem três significativos, pois o duvidoso não conta como significativo."
+     ],
+     "answer": "A",
+     "explanation": "Os algarismos significativos são os certos mais um único duvidoso, e o duvidoso também conta. Em 23,46 o 6 é o duvidoso, estimado na leitura, e 2, 3 e 4 são certos, o que dá quatro significativos. Não se admite mais de um algarismo duvidoso."
+    },
+    {
+     "topic": "Contagem de significativos",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 32,
+     "statement": "O tempo de uma prova de resistência foi registrado como 0,00450 s. O número de algarismos significativos dessa medida é",
+     "support": null,
+     "options": [
+      "4.",
+      "6.",
+      "2.",
+      "5.",
+      "3."
+     ],
+     "answer": "E",
+     "explanation": "Zeros à esquerda do primeiro algarismo diferente de zero apenas posicionam a vírgula e não contam; o zero final, à direita, indica a precisão da leitura e conta. Assim, 0,00450 s = 4,50 · 10^-3 s tem três significativos (4, 5 e 0), de modo análogo ao exemplo de 0,000120 s."
+    },
+    {
+     "topic": "Soma com significativos",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 33,
+     "statement": "Três comprimentos medidos com instrumentos diferentes são somados: 12,36 m + 4,8 m + 0,257 m. Respeitando as regras dos algarismos significativos, o resultado deve ser escrito como",
+     "support": null,
+     "options": [
+      "17,42 m.",
+      "17,5 m.",
+      "17 m.",
+      "17,417 m.",
+      "17,4 m."
+     ],
+     "answer": "E",
+     "explanation": "Na adição, o resultado tem o mesmo número de casas decimais da parcela que tem menos casas, que é 4,8 (uma casa). A soma exata é 17,417 m e, arredondada para uma casa decimal, resulta em 17,4 m. Manter duas ou três casas aumentaria artificialmente a precisão, e 17,5 resultaria de arredondar incorretamente para cima."
+    },
+    {
+     "topic": "Produto com significativos",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 33,
+     "statement": "Uma placa retangular tem lados medidos como 4,35 cm e 2,1 cm. Seguindo as regras dos algarismos significativos, a área da placa, em cm², deve ser escrita como",
+     "support": null,
+     "options": [
+      "9",
+      "9,1",
+      "9,14",
+      "9,135",
+      "9,2"
+     ],
+     "answer": "B",
+     "explanation": "Na multiplicação, o resultado fica com o número de algarismos significativos do fator que tem menos: 2,1 tem dois, então o resultado tem dois significativos. O produto exato é 9,135, que arredondado para dois significativos resulta em 9,1 cm². Dar uma casa decimal a mais (9,14) ou todas (9,135) falsearia a precisão."
+    },
+    {
+     "topic": "Regras mistas de significativos",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 34,
+     "statement": "Ao se efetuar 5,67 · 10^4 + 8,4, respeitando as regras dos algarismos significativos para a adição, o resultado é",
+     "support": null,
+     "options": [
+      "5,6708 · 10^4.",
+      "5,671 · 10^4.",
+      "5,7 · 10^4.",
+      "5,67 · 10^4.",
+      "6 · 10^4."
+     ],
+     "answer": "D",
+     "explanation": "O termo 5,67 · 10^4 = 56.700 tem a incerteza na casa das centenas, então a parcela 8,4 é desprezível frente a essa precisão; o resultado mantém 5,67 · 10^4. Escrever mais algarismos (5,671 ou 5,6708) ou menos (5,7 ou 6) altera a precisão que as regras determinam."
+    },
+    {
+     "topic": "Grandezas fundamentais",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 35,
+     "statement": "Na análise dimensional estudada, as grandezas fundamentais são comprimento, tempo, massa, temperatura e corrente elétrica. Assinale a alternativa que apresenta apenas grandezas fundamentais.",
+     "support": null,
+     "options": [
+      "Comprimento, velocidade e tempo.",
+      "Corrente elétrica, massa e potência.",
+      "Massa, temperatura e energia.",
+      "Tempo, força e comprimento.",
+      "Comprimento, massa e corrente elétrica."
+     ],
+     "answer": "E",
+     "explanation": "Comprimento, massa e corrente elétrica estão na lista de grandezas fundamentais. Velocidade, energia, força e potência são derivadas: podem ser expressas em função das fundamentais por meio de ao menos uma fórmula que as relacione."
+    },
+    {
+     "topic": "Equação dimensional de uma constante",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 36,
+     "statement": "A força elástica de uma mola é dada por F = k·x, em que x é a deformação (dimensão L). Sabendo que a força tem dimensão M·L·T^-2, a dimensão da constante k é",
+     "support": null,
+     "options": [
+      "M·L·T^-2",
+      "M·T^-2",
+      "M·L^-1·T^-2",
+      "M·T^-1",
+      "M·L^2·T^-2"
+     ],
+     "answer": "B",
+     "explanation": "Isolando a constante, k = F/x, e então [k] = (M·L·T^-2)/L = M·T^-2. Esse resultado corresponde à unidade kg·s^-2, equivalente a N/m. As demais opções esquecem de dividir por L ou dividem de forma incorreta; M·L·T^-2 é a própria dimensão da força."
+    },
+    {
+     "topic": "Dimensão e unidade SI",
+     "pattern": "relacao",
+     "difficulty": 2,
+     "pageRef": 36,
+     "statement": "Uma grandeza física tem dimensão M·L^2·T^-3. Em unidades de base do SI, ela se expressa como",
+     "support": null,
+     "options": [
+      "kg·m^2·s^-3·A^-1, unidade que recebe o nome de volt (V).",
+      "kg·m^2·s^-2, unidade que recebe o nome de joule (J).",
+      "kg·m·s^-2, unidade que recebe o nome de newton (N).",
+      "kg·m^-1·s^-2, unidade que recebe o nome de pascal (Pa).",
+      "kg·m^2·s^-3, unidade que recebe o nome de watt (W)."
+     ],
+     "answer": "E",
+     "explanation": "Substituindo cada símbolo dimensional pela unidade de base correspondente (M → kg, L → m, T → s), obtém-se kg·m^2·s^-3, que equivale a J/s, isto é, ao watt (potência). Joule, newton e pascal têm expoentes de tempo ou de comprimento diferentes, e o volt exige ainda o ampère na expressão."
+    },
+    {
+     "topic": "Unidades de base do SI",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 37,
+     "statement": "Assinale a alternativa em que todas as unidades citadas são unidades de base do Sistema Internacional.",
+     "support": null,
+     "options": [
+      "Newton, metro, segundo e kelvin.",
+      "Metro, grama, segundo e kelvin.",
+      "Metro, quilograma, segundo e kelvin.",
+      "Centímetro, quilograma, segundo e ampère.",
+      "Metro, quilograma, hora e ampère."
+     ],
+     "answer": "C",
+     "explanation": "As unidades de base do SI para as grandezas fundamentais são metro (comprimento), quilograma (massa), segundo (tempo), ampère (corrente) e kelvin (temperatura). O grama não é a unidade de base de massa, a hora é usual (fora do SI), o centímetro pertence ao sistema CGS e o newton é unidade derivada."
+    },
+    {
+     "topic": "Unidade derivada com nome especial",
+     "pattern": "calculo",
+     "difficulty": 1,
+     "pageRef": 38,
+     "statement": "Um bombeiro empurra uma viatura de 1.500 kg, que adquire aceleração de 0,2 m/s², sem atrito. A força resultante vale 300 kg·m/s², unidade que recebe um nome especial no SI. Esse valor equivale a",
+     "support": null,
+     "options": [
+      "300 J",
+      "300 N",
+      "300 Pa",
+      "300 W",
+      "300 Hz"
+     ],
+     "answer": "B",
+     "explanation": "O produto massa × aceleração tem unidade kg·m/s², que é o newton (N), homenagem a Isaac Newton. Joule (N·m), pascal (N/m²), watt (J/s) e hertz (s^-1) são outras unidades derivadas com nome especial, mas representam grandezas diferentes (energia, pressão, potência e frequência)."
+    },
+    {
+     "topic": "Conversão com prefixos",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 42,
+     "statement": "A luz de um laser tem comprimento de onda de 450 nm. Utilizando a potência de dez correspondente ao prefixo nano, esse comprimento, em metros, vale",
+     "support": null,
+     "options": [
+      "4,5 · 10^-7 m.",
+      "4,5 · 10^7 m.",
+      "4,5 · 10^-6 m.",
+      "4,5 · 10^-5 m.",
+      "4,5 · 10^-9 m."
+     ],
+     "answer": "A",
+     "explanation": "O prefixo nano corresponde a 10^-9. Assim, 450 nm = 450 · 10^-9 m = 4,5 · 10^2 · 10^-9 m = 4,5 · 10^-7 m. Esquecer de converter 450 para notação científica leva ao erro de 4,5 · 10^-9, e trocar o sinal do expoente leva a 4,5 · 10^7."
+    },
+    {
+     "topic": "Unidades usuais: litro",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 40,
+     "statement": "Um reservatório de água tem volume de 2,5 m³. Sabendo que 1 L = 1 dm³ = 10^-3 m³, a capacidade desse reservatório, em litros, é",
+     "support": null,
+     "options": [
+      "2,5 L.",
+      "250 L.",
+      "25 L.",
+      "2.500 L.",
+      "25.000 L."
+     ],
+     "answer": "D",
+     "explanation": "Como 1 L = 10^-3 m³, 1 m³ = 10^3 L, e 2,5 m³ = 2,5 · 10^3 L = 2.500 L. As demais alternativas erram o número de potências de dez na conversão entre metro cúbico e litro."
+    }
+   ]
+  }
+ ]
 }
