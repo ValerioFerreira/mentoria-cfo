@@ -16,6 +16,21 @@ const NAV: NavItem[] = [
 export default async function AppLayout({ children }: LayoutProps<"/">) {
   const user = await requireUser();
   const theme = await getTheme();
+  if (user.role !== "ADMIN" && process.env.APP_ENABLED !== "true") {
+    return (
+      <main className="mx-auto flex min-h-screen max-w-xl flex-1 flex-col items-center justify-center gap-4 px-6 text-center">
+        <h1 className="font-display text-3xl font-bold">Cadastro confirmado!</h1>
+        <p className="text-on-surface-muted">
+          Sua conta está criada. Avisaremos assim que o plano de estudos for liberado.
+        </p>
+        <form action={logout}>
+          <button type="submit" className="cursor-pointer text-sm underline">
+            Sair
+          </button>
+        </form>
+      </main>
+    );
+  }
   const nav: NavItem[] = user.role === "ADMIN" ? [...NAV, { href: "/admin/revisao", label: "Revisão", icon: "admin" }] : NAV;
   const name = user.name ?? user.email;
 
