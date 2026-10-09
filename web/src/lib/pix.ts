@@ -35,7 +35,7 @@ export interface PixConfig {
   key: string;
   receiverName: string;
   city: string;
-  /** valor fixo do QR Code (ex.: "35.00"); sem ele a pessoa digita o valor no app do banco */
+  /** valor fixo do QR Code (ex.: "20.00"); sem ele a pessoa digita o valor no app do banco */
   amount?: string;
 }
 

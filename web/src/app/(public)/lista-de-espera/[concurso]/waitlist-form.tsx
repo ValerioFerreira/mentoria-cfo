@@ -112,7 +112,7 @@ function PlanChoice({ error }: { error?: string[] }) {
           </span>
           <span className="space-y-1 text-sm text-on-ink-muted">
             <span className="block">Acesso liberado até o dia da prova, sem nenhuma mensalidade.</span>
-            <span className="block font-semibold text-gold">Menos que o valor de 3 mensalidades.</span>
+            <span className="block font-semibold text-gold">Mais econômico a partir do 4º mês.</span>
           </span>
         </label>
 

@@ -22,8 +22,8 @@ describe("BR Code Pix", () => {
   it("fixa o valor do plano no QR Code (campo 54) e o omite quando não há valor", async () => {
     const { buildPixPayload } = await import("./pix");
     const base = { key: "12345678909", receiverName: "MENTORIA", city: "RECIFE" };
-    expect(buildPixPayload({ ...base, amount: "35.00" }, "aluno@exemplo.com")).toContain("540535.00");
-    expect(buildPixPayload({ ...base, amount: "100.00" }, "aluno@exemplo.com")).toContain("5406100.00");
+    expect(buildPixPayload({ ...base, amount: "20.00" }, "aluno@exemplo.com")).toContain("540520.00");
+    expect(buildPixPayload({ ...base, amount: "75.00" }, "aluno@exemplo.com")).toContain("540575.00");
     expect(buildPixPayload(base, "aluno@exemplo.com")).not.toContain("5405");
   });
 
