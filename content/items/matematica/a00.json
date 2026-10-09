@@ -1,0 +1,579 @@
+{
+  "aula": "matematica/a00",
+  "batch": "w2-bizu-matematica",
+  "status": "DRAFT",
+  "segments": [
+    {
+      "id": "matematica/a00/s01",
+      "bizu": {
+        "summary": [
+          "**Naturais (N)** = {0, 1, 2, 3, ...}. Não há negativos nem números \"quebrados\". O asterisco (**N***) indica que o zero foi retirado do conjunto, e a notação vale para qualquer conjunto numérico.",
+          "**Sucessor** de n é n + 1 (todo natural tem sucessor). **Antecessor** de n é n - 1: o **zero é o único natural sem antecessor natural**, pois -1 é inteiro, mas não é natural.",
+          "**Inteiros (Z)** = naturais + negativos. Vale N está contido em Z: todo natural é inteiro, mas os negativos são inteiros que não são naturais. **Z*** é Z sem o zero.",
+          "**Par** = número inteiro da forma **2n**; **ímpar** = **2n + 1** (n inteiro). Na prática: par termina em 0, 2, 4, 6 ou 8; ímpar termina em 1, 3, 5, 7 ou 9.",
+          "**Racionais (Q)**: números que podem ser escritos como fração a/b de inteiros, com **b diferente de zero**. Incluem os inteiros, os decimais finitos e as **dízimas periódicas**. Vale Z está contido em Q.",
+          "**Dízima periódica** (decimal infinito com período que se repete, como 0,333... ou 1,6767...) **é número racional**: sempre pode ser convertida em fração.",
+          "**Irracionais** = decimais infinitos **não periódicos**; não podem ser escritos como fração de inteiros. Representação: **R - Q** (reais que não são racionais), ou I.",
+          "Irracionais famosos: **pi** (3,14159...), **número de Euler e** (2,71828...), **razão áurea** (1 + raiz(5))/2 (1,618...) e as **raízes não exatas** como raiz(2) e raiz(3). Já raiz(4) = 2 é natural, logo nem toda raiz é irracional.",
+          "**Reais (R)** = racionais + irracionais: tudo o que se representa na **reta real**. Cadeia de inclusões: **N ⊂ Z ⊂ Q ⊂ R**. A reta real é a base dos intervalos usados em inequações."
+        ],
+        "teoria": [
+          {
+            "statement": "O número zero pertence aos naturais, mas não possui antecessor dentro do próprio conjunto dos números naturais.",
+            "isTrue": true,
+            "explanation": "O antecessor de 0 seria -1, que é inteiro, porém não é natural. Por isso o zero é o único natural sem antecessor natural."
+          },
+          {
+            "statement": "Como o conjunto dos naturais está contido no conjunto dos inteiros, os números negativos também são números naturais.",
+            "isTrue": false,
+            "explanation": "A inclusão vai de N para Z, não o contrário: todo natural é inteiro, mas os negativos são inteiros que não são naturais."
+          },
+          {
+            "statement": "O número 1,676767... é racional, pois toda dízima periódica pode ser convertida em uma fração de números inteiros.",
+            "isTrue": true,
+            "explanation": "Dízimas periódicas são decimais infinitos, porém periódicos, e por isso são números racionais."
+          },
+          {
+            "statement": "Um número inteiro que pode ser escrito na forma 2n + 1, com n inteiro, é um número par.",
+            "isTrue": false,
+            "explanation": "A forma 2n define o número par; a forma 2n + 1 define o número ímpar."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Todo número natural possui um sucessor, que é obtido somando-se 1 a ele.",
+            "isTrue": true,
+            "explanation": "Para qualquer natural n, o sucessor n + 1 também é natural. O que falta ao zero é o antecessor, não o sucessor."
+          },
+          {
+            "statement": "A raiz quadrada de 4 é um número irracional, porque toda raiz quadrada de número natural é irracional.",
+            "isTrue": false,
+            "explanation": "Só as raízes não exatas são irracionais. Como raiz(4) = 2, ela é um número natural e, portanto, racional."
+          },
+          {
+            "statement": "Todo número decimal com quantidade finita de algarismos, como 0,75, é um número racional.",
+            "isTrue": true,
+            "explanation": "Um decimal finito é escrito como fração de inteiros com denominador em potência de 10: 0,75 = 75/100 = 3/4."
+          },
+          {
+            "statement": "Qualquer número com infinitas casas decimais é racional, desde que se possam escrever alguns de seus algarismos.",
+            "isTrue": false,
+            "explanation": "Decimal infinito só é racional se for periódico. Se a representação infinita não for periódica, o número é irracional (como pi)."
+          },
+          {
+            "statement": "A notação Z* representa o conjunto dos números inteiros sem o zero.",
+            "isTrue": true,
+            "explanation": "O asterisco sobrescrito indica a exclusão do zero, e essa notação pode ser aplicada a qualquer conjunto numérico."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Naturais, asterisco e antecessor/sucessor",
+            "pageRef": 5
+          },
+          {
+            "topic": "Inteiros e inclusão dos naturais",
+            "pageRef": 7
+          },
+          {
+            "topic": "Definição de par (2n) e ímpar (2n + 1)",
+            "pageRef": 7
+          },
+          {
+            "topic": "Racionais: forma de fração",
+            "pageRef": 8
+          },
+          {
+            "topic": "Dízimas periódicas são racionais",
+            "pageRef": 9
+          },
+          {
+            "topic": "Irracionais: decimal infinito não periódico",
+            "pageRef": 10
+          },
+          {
+            "topic": "Irracionais famosos (pi, e, razão áurea)",
+            "pageRef": 11
+          },
+          {
+            "topic": "Reais e reta real",
+            "pageRef": 11
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Antecessor e sucessor",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 5,
+          "statement": "Considere o conjunto dos números naturais, ℕ = {0, 1, 2, 3, ...}. Assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "O sucessor de um natural n é obtido calculando n − 1.",
+            "O zero é o único elemento de ℕ que não tem antecessor em ℕ.",
+            "O número 1 não possui antecessor em ℕ.",
+            "Existe um natural que não possui sucessor em ℕ.",
+            "O conjunto ℕ* contém o zero e todos os demais naturais."
+          ],
+          "answer": "B",
+          "explanation": "No conjunto ℕ todo elemento tem sucessor (n + 1), mas o antecessor de 0 seria −1, que é inteiro e não é natural; assim, o zero é o único natural sem antecessor natural. O antecessor de 1 é 0, e o asterisco em ℕ* indica justamente a retirada do zero."
+        },
+        {
+          "topic": "Notação com asterisco",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 5,
+          "statement": "Seja A = {x ∈ ℤ* | −3 ≤ x ≤ 3}. A soma dos elementos de A e o número de elementos de A são, respectivamente,",
+          "support": null,
+          "options": [
+            "0 e 7.",
+            "6 e 6.",
+            "0 e 6.",
+            "3 e 6.",
+            "6 e 7."
+          ],
+          "answer": "C",
+          "explanation": "O asterisco em ℤ* indica que o zero foi retirado, de modo que A = {−3, −2, −1, 1, 2, 3}. Os opostos se anulam e a soma é 0; são 6 elementos. Quem esquece de excluir o zero conta 7 elementos."
+        },
+        {
+          "topic": "Números pares e ímpares",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 7,
+          "statement": "Sendo n um número inteiro qualquer, qual das expressões a seguir representa, para todo valor de n, um número ímpar?",
+          "support": null,
+          "options": [
+            "2n.",
+            "2n + 1.",
+            "3n.",
+            "n + 3.",
+            "4n + 2."
+          ],
+          "answer": "B",
+          "explanation": "Pela definição, ímpar é todo inteiro da forma 2n + 1. As expressões 2n e 4n + 2 são sempre pares, enquanto 3n e n + 3 podem ser pares ou ímpares conforme o valor de n (por exemplo, n = 2 dá 6 e 5)."
+        },
+        {
+          "topic": "Antecessor e sucessor",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 5,
+          "statement": "A soma do antecessor do antecessor de 30 com o sucessor do sucessor de 18 é igual a",
+          "support": null,
+          "options": [
+            "44.",
+            "46.",
+            "48.",
+            "50.",
+            "52."
+          ],
+          "answer": "C",
+          "explanation": "O antecessor do antecessor de 30 é 30 − 2 = 28, e o sucessor do sucessor de 18 é 18 + 2 = 20. A soma é 28 + 20 = 48. Trocar o sentido de um dos deslocamentos leva aos valores 44 ou 52."
+        },
+        {
+          "topic": "Classificação dos números",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 9,
+          "statement": "Considere o conjunto A = {−3; 0; √16; 5/2; 0,444...; √7}. É correto afirmar que A possui",
+          "support": null,
+          "options": [
+            "três números inteiros e um irracional.",
+            "dois números inteiros e dois irracionais.",
+            "quatro números inteiros e nenhum irracional.",
+            "três números inteiros e dois irracionais.",
+            "dois números inteiros e nenhum irracional."
+          ],
+          "answer": "A",
+          "explanation": "Os inteiros de A são −3, 0 e √16 = 4, ou seja, três. O único irracional é √7, raiz não exata; 5/2 e 0,444... (dízima periódica) são racionais não inteiros. Confundir √16 com um irracional leva a contar dois inteiros e dois irracionais."
+        },
+        {
+          "topic": "Definição de número racional",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 9,
+          "statement": "Um número racional é aquele que pode ser escrito na forma a/b, com a e b inteiros. Para que essa forma represente um número, o denominador b deve obedecer à seguinte condição:",
+          "support": null,
+          "options": [
+            "ser um número natural maior que a.",
+            "ser um número primo.",
+            "ser divisor de a.",
+            "ser diferente de zero.",
+            "ser positivo e maior que 1."
+          ],
+          "answer": "D",
+          "explanation": "A única restrição é b ≠ 0, pois não existe divisão por zero. Exigir que b divida a faria o quociente ser sempre inteiro, e frações como 3/2 ou −1/4, com b qualquer inteiro não nulo, também são racionais."
+        },
+        {
+          "topic": "Inclusão de conjuntos numéricos",
+          "pattern": "relacao",
+          "difficulty": 1,
+          "pageRef": 7,
+          "statement": "Assinale a alternativa que apresenta a cadeia de inclusões correta entre os conjuntos numéricos.",
+          "support": null,
+          "options": [
+            "ℤ ⊂ ℕ ⊂ ℚ ⊂ ℝ.",
+            "ℕ ⊂ ℚ ⊂ ℤ ⊂ ℝ.",
+            "ℕ ⊂ ℤ ⊂ 𝕀 ⊂ ℝ.",
+            "ℚ ⊂ ℕ ⊂ ℤ ⊂ ℝ.",
+            "ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ."
+          ],
+          "answer": "E",
+          "explanation": "Todo natural é inteiro, todo inteiro é racional (pode ser escrito como fração de denominador 1) e todo racional é real: ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ. O conjunto 𝕀 dos irracionais não contém os inteiros, pois é formado pelos reais que não são racionais."
+        },
+        {
+          "topic": "Conjunto dos irracionais",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 10,
+          "statement": "A notação ℝ − ℚ, usada para o conjunto dos números irracionais, designa",
+          "support": null,
+          "options": [
+            "os números racionais que não são reais.",
+            "os números racionais que não são inteiros.",
+            "os números reais negativos.",
+            "os números reais que não são racionais.",
+            "as raízes quadradas de números negativos."
+          ],
+          "answer": "D",
+          "explanation": "A diferença ℝ − ℚ reúne os elementos do conjunto dos reais que não pertencem ao dos racionais, isto é, decimais infinitos e não periódicos, como π e √2. Os racionais que não são inteiros seriam representados por ℚ − ℤ."
+        },
+        {
+          "topic": "Reta real",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 11,
+          "statement": "A reta real, empregada na representação de intervalos, associa cada ponto da reta a",
+          "support": null,
+          "options": [
+            "um número racional, apenas.",
+            "um número real, racional ou irracional.",
+            "um número inteiro, apenas.",
+            "um número real ou um número complexo não real.",
+            "um número natural ou um irracional, apenas."
+          ],
+          "answer": "B",
+          "explanation": "A reta real é a representação geométrica do conjunto ℝ, que reúne racionais e irracionais, de modo que todo ponto da reta corresponde a um real. Complexos não reais não cabem nessa reta, pois dependem de dois componentes reais."
+        },
+        {
+          "topic": "Decimal finito em fração",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 10,
+          "statement": "Escrevendo o número racional 0,35 como fração irredutível de numerador e denominador inteiros, obtém-se",
+          "support": null,
+          "options": [
+            "7/20.",
+            "35/10.",
+            "3/5.",
+            "7/10.",
+            "35/1000."
+          ],
+          "answer": "A",
+          "explanation": "Como 0,35 tem duas casas decimais, vale 35/100; dividindo numerador e denominador por 5, resulta 7/20. A fração 35/10 vale 3,5, 7/10 vale 0,7 e 35/1000 vale 0,035."
+        },
+        {
+          "topic": "Raízes exatas e não exatas",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 11,
+          "statement": "Dentre os números √12, √25, √50, √64 e √81, a quantidade de números irracionais é",
+          "support": null,
+          "options": [
+            "2.",
+            "1.",
+            "3.",
+            "4.",
+            "5."
+          ],
+          "answer": "A",
+          "explanation": "Apenas as raízes exatas resultam em números racionais: √25 = 5, √64 = 8 e √81 = 9. Já √12 e √50 são raízes não exatas, portanto irracionais, o que dá 2."
+        }
+      ]
+    },
+    {
+      "id": "matematica/a00/s02",
+      "bizu": {
+        "summary": [
+          "**Complexos (C)**: números z = a + bi, com a e b reais e **i = raiz(-1)** (unidade imaginária). Quando b = 0, z = a: **todo real é complexo** (R ⊂ C), mas **nem todo complexo é real** (ex.: 2 + i).",
+          "**Soma**: o resultado é sempre natural (entre naturais), inteiro, racional ou real. Fica de fora apenas o conjunto dos **irracionais**: (5 + raiz(2)) + (5 - raiz(2)) = 10, que é racional.",
+          "**Paridade na soma/subtração**: par ± par = par; ímpar ± ímpar = par; ímpar ± par = ímpar.",
+          "**Subtração**: o resultado permanece em Z, Q e R. **Não** vale para naturais (10 - 100 = -90, que é inteiro negativo) nem para irracionais ((pi + 2) - pi = 2, racional).",
+          "**Multiplicação**: o produto é sempre natural, inteiro, racional ou real quando os fatores são do respectivo conjunto. Falha só nos **irracionais**: raiz(5) x raiz(20) = 10.",
+          "**Divisão** (divisor diferente de zero): o quociente de racionais é racional e o de reais é real. **Não** vale para naturais (1/2 = 0,5), inteiros (-5/2 = -2,5) nem irracionais (raiz(1000)/raiz(10) = 10).",
+          "O quociente de dois naturais só é natural quando a **divisão é exata**, isto é, quando o divisor é fator do dividendo.",
+          "Divisão de dois irracionais: o resultado é sempre **real**, mas pode ser racional (raiz(2)/raiz(2) = 1) ou irracional (raiz(2)/raiz(3)). Nunca se pode afirmar que é irracional.",
+          "**Como julgar \"sempre\"**: um único **contraexemplo** derruba a afirmação universal. Para irracionais, os contraexemplos clássicos usam raiz(2) e -raiz(2), ou um número e seu complemento."
+        ],
+        "teoria": [
+          {
+            "statement": "Somando-se dois números inteiros quaisquer, obtém-se necessariamente outro número inteiro.",
+            "isTrue": true,
+            "explanation": "A soma é fechada nos naturais, inteiros, racionais e reais; apenas os irracionais ficam fora dessa propriedade."
+          },
+          {
+            "statement": "Subtraindo-se dois números naturais, o resultado pertence sempre ao conjunto dos naturais.",
+            "isTrue": false,
+            "explanation": "Se o primeiro for menor que o segundo, o resultado é negativo, por exemplo 10 - 100 = -90, que é inteiro e não é natural."
+          },
+          {
+            "statement": "Todo número real pode ser escrito na forma a + bi com a e b reais, ou seja, é também um número complexo.",
+            "isTrue": true,
+            "explanation": "Basta tomar b = 0. Logo, os reais formam um subconjunto dos complexos."
+          },
+          {
+            "statement": "O produto de dois números irracionais é sempre um número irracional.",
+            "isTrue": false,
+            "explanation": "Contraexemplo: raiz(5) x raiz(20) = raiz(100) = 10, que é racional."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A soma de dois números ímpares é um número par.",
+            "isTrue": true,
+            "explanation": "Pelas regras de paridade, ímpar ± ímpar = par (por exemplo, 3 + 5 = 8)."
+          },
+          {
+            "statement": "O quociente entre dois números inteiros, com divisor diferente de zero, é sempre um número inteiro.",
+            "isTrue": false,
+            "explanation": "A divisão de inteiros só é inteira quando é exata. Por exemplo, -5 dividido por 2 dá -2,5, que é racional."
+          },
+          {
+            "statement": "Existem dois irracionais cuja soma é um número racional.",
+            "isTrue": true,
+            "explanation": "Exemplo: raiz(2) + (-raiz(2)) = 0, ou (5 + raiz(2)) + (5 - raiz(2)) = 10."
+          },
+          {
+            "statement": "O número 2 + i, em que i = raiz(-1), é um número real.",
+            "isTrue": false,
+            "explanation": "Na forma a + bi, o número é real somente se b = 0. Em 2 + i temos b = 1, então ele é complexo e não real."
+          },
+          {
+            "statement": "O quociente entre dois números racionais, com divisor não nulo, é um número racional.",
+            "isTrue": true,
+            "explanation": "Dividir a/b por c/d equivale a multiplicar por d/c, e o resultado continua sendo fração de inteiros."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Complexos: forma a + bi e inclusão dos reais",
+            "pageRef": 13
+          },
+          {
+            "topic": "Soma e contraexemplo com irracionais",
+            "pageRef": 14
+          },
+          {
+            "topic": "Regras de paridade",
+            "pageRef": 14
+          },
+          {
+            "topic": "Subtração: naturais e irracionais ficam de fora",
+            "pageRef": 16
+          },
+          {
+            "topic": "Multiplicação: apenas irracionais ficam de fora",
+            "pageRef": 18
+          },
+          {
+            "topic": "Uso de contraexemplos em questões com irracionais",
+            "pageRef": 19
+          },
+          {
+            "topic": "Divisão: só racionais e reais mantêm o conjunto",
+            "pageRef": 20
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Números complexos e reais",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 13,
+          "statement": "Considere o número complexo z = a + bi, com a e b reais e i = √−1. Quando b = 0, o número z",
+          "support": null,
+          "options": [
+            "coincide com o número real a, o que mostra que ℝ ⊂ ℂ.",
+            "deixa de ser complexo e passa a ser apenas natural.",
+            "é chamado de imaginário puro.",
+            "não pertence a ℂ.",
+            "é sempre irracional."
+          ],
+          "answer": "A",
+          "explanation": "Se b = 0, então z = a + 0·i = a, um real; por isso todo real é complexo (ℝ ⊂ ℂ). A recíproca é falsa: números como 2 + 3i são complexos que não são reais."
+        },
+        {
+          "topic": "Complexo não real",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 13,
+          "statement": "Seja z = a + bi, com a e b reais. O número z NÃO é um número real quando",
+          "support": null,
+          "options": [
+            "a < 0.",
+            "a ≠ 0.",
+            "b = 0.",
+            "b ≠ 0.",
+            "a e b são ambos irracionais."
+          ],
+          "answer": "D",
+          "explanation": "A parte real a pode ser qualquer real, inclusive negativa ou irracional, sem alterar o fato de z ser real; o que decide é a parte imaginária. Com b ≠ 0 o número deixa de ser real, e com b = 0 ele se reduz a a."
+        },
+        {
+          "topic": "Soma e produto de irracionais",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 14,
+          "statement": "Os números α = 4 + √3 e β = 4 − √3 são irracionais. Sobre α + β e α · β, é correto afirmar que",
+          "support": null,
+          "options": [
+            "α + β e α · β são irracionais, pois α e β são irracionais.",
+            "α + β = 8 é racional, mas α · β é irracional.",
+            "α + β é irracional, mas α · β = 13.",
+            "α + β = 8 e α · β = 19, ambos racionais.",
+            "α + β = 8 e α · β = 13, ambos racionais."
+          ],
+          "answer": "E",
+          "explanation": "Na soma os radicais se cancelam: 4 + √3 + 4 − √3 = 8. No produto, (4 + √3)(4 − √3) = 16 − 3 = 13. Portanto, operar com dois irracionais pode resultar em racional; o valor 19 vem de somar 3 em vez de subtrair."
+        },
+        {
+          "topic": "Paridade na soma",
+          "pattern": "assertivas",
+          "difficulty": 2,
+          "pageRef": 14,
+          "statement": "Considere as afirmações sobre soma de números inteiros.\nI - A soma de seis números ímpares é um número par.\nII - A soma de três números ímpares com dois números pares é um número par.\nIII - A diferença entre um número ímpar e um número par é um número ímpar.\nEstá correto o que se afirma em",
+          "support": null,
+          "options": [
+            "I, apenas.",
+            "II, apenas.",
+            "I e III, apenas.",
+            "II e III, apenas.",
+            "I, II e III."
+          ],
+          "answer": "C",
+          "explanation": "Agrupando os ímpares em pares, cada dupla soma um número par; assim, seis ímpares dão soma par (I é verdadeira). Três ímpares deixam um ímpar sobrando, e somar pares não altera a paridade, logo a soma de II é ímpar (falsa). A diferença ímpar − par é sempre ímpar (III é verdadeira)."
+        },
+        {
+          "topic": "Fechamento da subtração",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 16,
+          "statement": "Considere a subtração de dois elementos de um mesmo conjunto numérico. O resultado nem sempre pertence a esse conjunto, e isso ocorre apenas em",
+          "support": null,
+          "options": [
+            "ℤ e ℚ.",
+            "ℚ e ℝ.",
+            "ℕ e ℤ.",
+            "ℕ e 𝕀.",
+            "ℤ e 𝕀."
+          ],
+          "answer": "D",
+          "explanation": "A subtração é fechada em ℤ, ℚ e ℝ. Em ℕ falha porque 7 − 20 = −13 não é natural; em 𝕀 falha porque (π + 2) − π = 2 é racional. Por isso a resposta é ℕ e 𝕀, e a inclusão de ℤ nas demais opções as torna erradas."
+        },
+        {
+          "topic": "Subtração de naturais",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 16,
+          "statement": "Sendo x e y números naturais com x < y, a diferença x − y é um número que pertence necessariamente ao conjunto dos",
+          "support": null,
+          "options": [
+            "naturais, pois x e y são naturais.",
+            "irracionais, pois é negativo.",
+            "inteiros, mas não ao dos naturais.",
+            "racionais não inteiros.",
+            "naturais, desde que x ≠ 0."
+          ],
+          "answer": "C",
+          "explanation": "Como x é menor que y, a diferença é um inteiro negativo, por exemplo 36 − 90 = −54. Ele pertence a ℤ e não a ℕ, e o fato de ser negativo não o torna irracional nem fracionário."
+        },
+        {
+          "topic": "Produto de irracionais",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 18,
+          "statement": "Os números √12 e √27 são irracionais. O produto √12 · √27 é igual a",
+          "support": null,
+          "options": [
+            "18, número natural.",
+            "√39, número irracional.",
+            "12, número natural.",
+            "9, número natural.",
+            "18, número irracional, pois os fatores são irracionais."
+          ],
+          "answer": "A",
+          "explanation": "Multiplicam-se os radicandos: 12 · 27 = 324 e √324 = 18. Também se pode escrever √12 = 2√3 e √27 = 3√3, de modo que o produto é 6 · 3 = 18. O produto de irracionais pode, portanto, ser natural."
+        },
+        {
+          "topic": "Divisão de naturais",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 19,
+          "statement": "Em qual das divisões a seguir o quociente é um número natural?",
+          "support": null,
+          "options": [
+            "35 ÷ 4.",
+            "91 ÷ 7.",
+            "27 ÷ 6.",
+            "50 ÷ 8.",
+            "64 ÷ 24."
+          ],
+          "answer": "B",
+          "explanation": "O quociente de dois naturais é natural apenas se a divisão for exata, isto é, se o divisor for fator do dividendo. Como 91 = 7 · 13, o resultado é 13; as demais dão 8,75, 4,5, 6,25 e 2,666...."
+        },
+        {
+          "topic": "Fechamento da divisão",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 19,
+          "statement": "Com divisor diferente de zero, o quociente de dois elementos de um mesmo conjunto numérico sempre pertence a esse mesmo conjunto apenas em",
+          "support": null,
+          "options": [
+            "ℕ e ℤ.",
+            "ℤ e ℚ.",
+            "ℚ e ℝ.",
+            "ℚ e 𝕀.",
+            "ℕ e ℝ."
+          ],
+          "answer": "C",
+          "explanation": "A divisão é fechada em ℚ e em ℝ. Em ℕ e ℤ ela falha (1 ÷ 2 = 0,5 e −5 ÷ 2 = −2,5), e em 𝕀 também, pois √1000 ÷ √10 = 10 é racional."
+        },
+        {
+          "topic": "Divisão de irracionais",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 20,
+          "statement": "Dividindo-se o número irracional √48 pelo número irracional √3, obtém-se",
+          "support": null,
+          "options": [
+            "√45, número irracional.",
+            "16, número natural.",
+            "8, número racional.",
+            "um número irracional, pois a divisão de irracionais é sempre irracional.",
+            "4, número racional."
+          ],
+          "answer": "E",
+          "explanation": "Para dividir raízes de mesmo índice, divide-se os radicandos: 48 ÷ 3 = 16 e √16 = 4. O resultado é racional, o que impede afirmar que o quociente de irracionais seja irracional; o único que se pode garantir é que é um número real."
+        },
+        {
+          "topic": "Contraexemplo",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 19,
+          "statement": "Para refutar a afirmação \"o produto de dois números irracionais é sempre irracional\", é suficiente apresentar",
+          "support": null,
+          "options": [
+            "vários pares de irracionais cujo produto é irracional.",
+            "um par de racionais cujo produto é racional.",
+            "uma demonstração de que √2 é irracional.",
+            "um par de racionais cujo produto é irracional.",
+            "um único par de irracionais cujo produto é racional, como √2 e √8."
+          ],
+          "answer": "E",
+          "explanation": "Uma afirmação universal (\"sempre\") cai com um único contraexemplo. Como √2 · √8 = √16 = 4, o produto de dois irracionais é racional; exemplos que confirmam a regra, ou que envolvem racionais, não refutam nada."
+        }
+      ]
+    }
+  ]
+}

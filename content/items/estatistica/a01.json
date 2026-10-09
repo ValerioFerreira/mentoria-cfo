@@ -1,0 +1,1548 @@
+{
+  "aula": "estatistica/a01",
+  "batch": "w2-bizu-estatistica",
+  "status": "DRAFT",
+  "segments": [
+    {
+      "id": "estatistica/a01/s01",
+      "bizu": {
+        "summary": [
+          "**Medidas de posição** resumem a série por valores que indicam onde os dados se concentram. Dividem-se em **medidas de tendência central** (média, mediana e moda) e **medidas separatrizes** (mediana, quartis, decis e percentis).",
+          "**Média aritmética** = soma dos valores dividida pelo número de observações (a mais usada). **Mediana** = valor central da série ordenada. **Moda** = valor que mais se repete.",
+          "**Separatrizes**: dividem a série em partes com o mesmo número de elementos — **mediana** (2 partes), **quartis** (4), **decis** (10) e **percentis** (100). A mediana é, ao mesmo tempo, tendência central e separatriz.",
+          "**Somatório (sigma)**: Σ x_i com i de a até b soma os termos de x_a até x_b. Se os limites vêm omitidos, entende-se i de 1 a n. O índice pode ser i, j ou outra letra.",
+          "**Cuidado com ordens diferentes**: soma dos produtos (Σ x_i·y_i) é diferente do produto das somas (Σx_i · Σy_i); e o quadrado da soma (Σx_i)² é diferente da soma dos quadrados (Σ x_i²).",
+          "**Propriedade 1**: somatório de uma constante k, com n termos, vale **k · n**.",
+          "**Propriedade 2**: a constante pode sair do somatório: **Σ (k · x_i) = k · Σ x_i**.",
+          "**Propriedade 3**: o somatório de uma soma ou diferença é a soma ou diferença dos somatórios: **Σ (x_i ± y_i) = Σ x_i ± Σ y_i**."
+        ],
+        "teoria": [
+          {
+            "statement": "A mediana é, ao mesmo tempo, uma medida de tendência central e uma medida separatriz.",
+            "isTrue": true,
+            "explanation": "Ela ocupa a posição central da série ordenada (tendência central) e divide a série em duas partes com o mesmo número de elementos (separatriz)."
+          },
+          {
+            "statement": "Os quartis dividem a série ordenada em dez partes com a mesma quantidade de elementos.",
+            "isTrue": false,
+            "explanation": "Quartis dividem em quatro partes; são os decis que dividem em dez e os percentis em cem."
+          },
+          {
+            "statement": "O somatório de uma constante k com n termos é igual a k multiplicado por n.",
+            "isTrue": true,
+            "explanation": "Σ k = k + k + ... + k (n vezes) = k · n."
+          },
+          {
+            "statement": "A soma dos produtos Σ (x_i · y_i) é sempre igual ao produto das somas (Σ x_i) · (Σ y_i).",
+            "isTrue": false,
+            "explanation": "São expressões distintas. Em geral, soma dos produtos e produto das somas fornecem valores diferentes."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O somatório da soma de duas variáveis equivale à soma dos somatórios de cada variável: Σ (x_i + y_i) = Σ x_i + Σ y_i.",
+            "isTrue": true,
+            "explanation": "É a 3ª propriedade do somatório (vale também para a subtração)."
+          },
+          {
+            "statement": "O quadrado da soma dos valores de uma variável é igual à soma dos quadrados desses valores.",
+            "isTrue": false,
+            "explanation": "(Σ x_i)² é o quadrado da soma, diferente de Σ x_i², que é a soma dos quadrados; os resultados em geral não coincidem."
+          },
+          {
+            "statement": "A moda é o valor que ocupa a posição central de uma série ordenada.",
+            "isTrue": false,
+            "explanation": "Esse conceito é o da mediana. A moda é o valor mais frequente da série."
+          },
+          {
+            "statement": "Uma constante que multiplica cada termo de um somatório pode ser colocada em evidência, multiplicando o somatório: Σ (k · x_i) = k · Σ x_i.",
+            "isTrue": true,
+            "explanation": "É a 2ª propriedade do somatório."
+          },
+          {
+            "statement": "O somatório de x_i com i variando de 3 a 10 reúne oito termos, de x_3 até x_10.",
+            "isTrue": true,
+            "explanation": "Os limites inferior e superior indicam o primeiro e o último elemento da soma: 3, 4, ..., 10 são 8 índices."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Medidas de posição: tendência central",
+            "pageRef": 4
+          },
+          {
+            "topic": "Medidas separatrizes (mediana, quartis, decis, percentis)",
+            "pageRef": 5
+          },
+          {
+            "topic": "Notação de somatório e limites",
+            "pageRef": 7
+          },
+          {
+            "topic": "Soma dos produtos x produto das somas",
+            "pageRef": 9
+          },
+          {
+            "topic": "Quadrado da soma x soma dos quadrados",
+            "pageRef": 10
+          },
+          {
+            "topic": "1ª propriedade: somatório de constante",
+            "pageRef": 11
+          },
+          {
+            "topic": "2ª propriedade: constante sai do somatório",
+            "pageRef": 12
+          },
+          {
+            "topic": "3ª propriedade: somatório de soma/diferença",
+            "pageRef": 14
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Medidas de tendência central e separatrizes",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 5,
+          "statement": "Entre as medidas de posição a seguir, a que se classifica, ao mesmo tempo, como medida de tendência central e como medida separatriz é a",
+          "support": null,
+          "options": [
+            "média aritmética.",
+            "moda.",
+            "média geométrica.",
+            "mediana.",
+            "decil."
+          ],
+          "answer": "D",
+          "explanation": "A mediana ocupa a posição central da série ordenada, sendo medida de tendência central; e, como divide a série em duas partes com o mesmo número de elementos, é também separatriz. Os decis são apenas separatrizes, e a média e a moda, apenas medidas de tendência central."
+        },
+        {
+          "topic": "Quartis, decis e percentis",
+          "pattern": "lacuna",
+          "difficulty": 1,
+          "pageRef": 5,
+          "statement": "Os quartis dividem uma série ordenada em ____ partes com o mesmo número de elementos; os decis, em ____ partes; e os percentis, em ____ partes.",
+          "support": null,
+          "options": [
+            "4, 10 e 100",
+            "4, 5 e 50",
+            "2, 10 e 100",
+            "4, 10 e 50",
+            "3, 10 e 100"
+          ],
+          "answer": "A",
+          "explanation": "Quartis dividem a série em quatro partes iguais, decis em dez e percentis em cem. A mediana é que a divide em duas partes iguais."
+        },
+        {
+          "topic": "Média, mediana e moda",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 4,
+          "statement": "Os tempos de resposta, em minutos, de cinco equipes foram 12, 15, 9, 15 e 14. A média aritmética, a mediana e a moda desses valores são, respectivamente,",
+          "support": null,
+          "options": [
+            "13, 14 e 15.",
+            "13, 15 e 14.",
+            "14, 13 e 15.",
+            "15, 14 e 13.",
+            "13, 12 e 15."
+          ],
+          "answer": "A",
+          "explanation": "A média é (12 + 15 + 9 + 15 + 14) ÷ 5 = 65 ÷ 5 = 13. Em ordem crescente (9, 12, 14, 15, 15), a mediana é o valor central, 14, e a moda é o valor que mais se repete, 15."
+        },
+        {
+          "topic": "Notação de somatório",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 7,
+          "statement": "O valor do somatório de i = 1 até 5 de (3i − 1) é",
+          "support": null,
+          "options": [
+            "55",
+            "45",
+            "40",
+            "35",
+            "15"
+          ],
+          "answer": "C",
+          "explanation": "Substituindo i de 1 a 5: 2 + 5 + 8 + 11 + 14 = 40. O valor 55 seria o de 3 · (1 + ... + 5) + 10, e 35 resultaria de errar um dos termos."
+        },
+        {
+          "topic": "Limites do somatório",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 8,
+          "statement": "Sendo x1 = 4, x2 = 7, x3 = 1, x4 = 9, x5 = 6 e x6 = 3, o valor do somatório de xi, com i variando de 3 até 6, é",
+          "support": null,
+          "options": [
+            "30",
+            "26",
+            "19",
+            "16",
+            "10"
+          ],
+          "answer": "C",
+          "explanation": "O índice começa em i = 3 e termina em 6, de modo que se somam x3 + x4 + x5 + x6 = 1 + 9 + 6 + 3 = 19. O valor 30 inclui todos os termos, de x1 a x6."
+        },
+        {
+          "topic": "Soma dos quadrados e quadrado da soma",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 10,
+          "statement": "Para os valores x = 2, 3, 4 e 5, a diferença entre o quadrado da soma dos valores e a soma dos quadrados dos valores é",
+          "support": null,
+          "options": [
+            "54",
+            "112",
+            "142",
+            "170",
+            "196"
+          ],
+          "answer": "C",
+          "explanation": "O quadrado da soma é (2 + 3 + 4 + 5)² = 14² = 196, e a soma dos quadrados é 4 + 9 + 16 + 25 = 54. A diferença é 196 − 54 = 142; as duas expressões são diferentes em geral."
+        },
+        {
+          "topic": "Soma dos produtos e produto das somas",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 9,
+          "statement": "Sejam x = (1, 2, 3) e y = (4, 5, 6). Os valores da soma dos produtos (∑ xi · yi) e do produto das somas (∑ xi) · (∑ yi) são, respectivamente,",
+          "support": null,
+          "options": [
+            "90 e 32.",
+            "32 e 32.",
+            "90 e 90.",
+            "15 e 21.",
+            "32 e 90."
+          ],
+          "answer": "E",
+          "explanation": "A soma dos produtos é 1·4 + 2·5 + 3·6 = 4 + 10 + 18 = 32. O produto das somas é (1 + 2 + 3) · (4 + 5 + 6) = 6 · 15 = 90. As duas operações não se confundem."
+        },
+        {
+          "topic": "Somatório de constante",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 11,
+          "statement": "O valor do somatório de 6, com o índice i variando de 5 até 24, é",
+          "support": null,
+          "options": [
+            "144",
+            "114",
+            "126",
+            "120",
+            "20"
+          ],
+          "answer": "D",
+          "explanation": "O somatório de uma constante é o número de termos vezes a constante. De 5 a 24 há 24 − 5 + 1 = 20 termos; logo, a soma vale 20 × 6 = 120. Contar 24 termos (144) ignora que o índice não começa em 1."
+        },
+        {
+          "topic": "Propriedades do somatório",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 14,
+          "statement": "Assinale a alternativa que apresenta uma igualdade verdadeira para quaisquer sequências xi e yi e constante k.",
+          "support": null,
+          "options": [
+            "O somatório de (k · xi) é igual a k mais o somatório de xi.",
+            "O somatório de (xi + yi) é igual ao somatório de xi mais o somatório de yi.",
+            "O somatório de (xi · yi) é igual ao produto do somatório de xi pelo somatório de yi.",
+            "O quadrado do somatório de xi é igual ao somatório de xi².",
+            "O somatório de k, com i de 1 a n, é igual a k, qualquer que seja n."
+          ],
+          "answer": "B",
+          "explanation": "O somatório de uma soma é a soma dos somatórios. A constante multiplicativa sai do somatório multiplicando (e não somando), a soma dos produtos difere do produto das somas, o quadrado da soma difere da soma dos quadrados, e o somatório de uma constante vale n · k."
+        },
+        {
+          "topic": "Aplicação das propriedades do somatório",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 13,
+          "statement": "A folha mensal de pagamento de 8 militares é de R$ 36.000. Uma proposta prevê reajuste de 10% sobre o salário de cada um e, em seguida, uma gratificação fixa de R$ 200 para cada militar. A nova folha seria de",
+          "support": null,
+          "options": [
+            "R$ 43.200",
+            "R$ 41.600",
+            "R$ 41.200",
+            "R$ 39.800",
+            "R$ 39.600"
+          ],
+          "answer": "C",
+          "explanation": "A nova folha é o somatório de (1,1 · xi + 200): 1,1 · 36.000 + 8 · 200 = 39.600 + 1.600 = 41.200. A constante multiplicativa multiplica o somatório, e a constante aditiva é multiplicada pelo número de termos."
+        },
+        {
+          "topic": "Medidas de posição",
+          "pattern": "assertivas",
+          "difficulty": 2,
+          "pageRef": 4,
+          "statement": "Considere as afirmações. I. As medidas de posição resumem uma série por valores que mostram onde os dados tendem a se concentrar. II. A moda é o valor que ocupa a posição central da série ordenada. III. A média aritmética é a soma de todos os valores dividida pelo número de observações. Está(ão) correta(s)",
+          "support": null,
+          "options": [
+            "I, apenas.",
+            "I e III, apenas.",
+            "II, apenas.",
+            "II e III, apenas.",
+            "I, II e III."
+          ],
+          "answer": "B",
+          "explanation": "I e III estão corretas. A II troca a moda pela mediana: a moda é o valor mais frequente, e o valor que ocupa a posição central é a mediana."
+        },
+        {
+          "topic": "Somatório com expressão no termo geral",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 8,
+          "statement": "O valor do somatório de (i² − i), com i variando de 2 até 5, é",
+          "support": null,
+          "options": [
+            "56",
+            "50",
+            "40",
+            "38",
+            "30"
+          ],
+          "answer": "C",
+          "explanation": "Para i = 2, 3, 4 e 5: (4 − 2) + (9 − 3) + (16 − 4) + (25 − 5) = 2 + 6 + 12 + 20 = 40. O valor 30 resulta de incluir apenas parte dos termos."
+        }
+      ]
+    },
+    {
+      "id": "estatistica/a01/s02",
+      "bizu": {
+        "summary": [
+          "**Média aritmética simples** = soma de todos os elementos dividida pelo número deles: **x̄ = (x1 + x2 + ... + xn) / n**. Quando a prova não diz o tipo de média, calcule a aritmética.",
+          "A ideia central é que a média aritmética **preserva a soma**: trocar todos os valores pela média não altera a soma da lista. Daí: **soma total = n · média**.",
+          "**Propriedade 1**: para um conjunto com pelo menos um elemento, a média aritmética **sempre existe e é única**.",
+          "**Propriedade 2**: **mínimo ≤ média ≤ máximo**. A média nunca fica fora do intervalo dos dados.",
+          "**Propriedade 3**: somando (ou subtraindo) uma constante c a todos os valores, a média fica somada (ou subtraída) de c.",
+          "**Propriedade 4**: multiplicando (ou dividindo) todos os valores por uma constante c, a média fica multiplicada (ou dividida) por c.",
+          "**Propriedade 5**: a **soma dos desvios em relação à média é nula**: Σ (x_i − x̄) = 0.",
+          "**Propriedade 6**: tomando os desvios ao quadrado e somando, o resultado é **o menor possível quando o ponto de referência é a própria média**. Vale Σ (x_i − a)² = Σ (x_i − x̄)² + n · (x̄ − a)², e o mínimo ocorre com a = x̄.",
+          "Aplicação típica: quando a questão fornece a média e o número de dados, calcule a soma total (média × n) e descubra o valor que falta por diferença."
+        ],
+        "teoria": [
+          {
+            "statement": "A média aritmética preserva a soma dos elementos: se todos os valores forem substituídos pela média, a soma da lista permanece a mesma.",
+            "isTrue": true,
+            "explanation": "Essa é a propriedade que dá origem à fórmula: n · x̄ = x1 + x2 + ... + xn."
+          },
+          {
+            "statement": "A média aritmética de um conjunto de números pode ser maior que o maior elemento do conjunto.",
+            "isTrue": false,
+            "explanation": "A média aritmética está sempre entre o valor mínimo e o máximo: mínimo ≤ x̄ ≤ máximo."
+          },
+          {
+            "statement": "Se uma constante c for somada a todos os valores de um conjunto, a nova média será a média original acrescida de c.",
+            "isTrue": true,
+            "explanation": "3ª propriedade: y = x + c implica ȳ = x̄ + c."
+          },
+          {
+            "statement": "Ao multiplicar todos os valores de um conjunto por uma constante c, a média do novo conjunto permanece igual à original.",
+            "isTrue": false,
+            "explanation": "A média também fica multiplicada por c (4ª propriedade): ȳ = x̄ · c."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A soma algébrica dos desvios dos valores em relação à média aritmética é nula.",
+            "isTrue": true,
+            "explanation": "Σ (x_i − x̄) = 0, pois Σ x_i = n · x̄."
+          },
+          {
+            "statement": "A soma dos quadrados dos desvios é mínima quando calculada em relação à mediana do conjunto.",
+            "isTrue": false,
+            "explanation": "O mínimo da soma dos quadrados dos desvios ocorre quando o ponto de referência é a média aritmética."
+          },
+          {
+            "statement": "A soma de todos os valores de um conjunto é igual ao produto da média aritmética pela quantidade de elementos.",
+            "isTrue": true,
+            "explanation": "Decorre da definição: x̄ = soma / n, logo soma = n · x̄."
+          },
+          {
+            "statement": "Quando o enunciado não especifica o tipo de média, deve-se adotar a média geométrica.",
+            "isTrue": false,
+            "explanation": "Na ausência de especificação, calcula-se a média aritmética."
+          },
+          {
+            "statement": "Para qualquer conjunto com pelo menos um elemento, a média aritmética existe e é única.",
+            "isTrue": true,
+            "explanation": "A soma e a contagem dos elementos fornecem um único quociente (1ª propriedade)."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Definição e fórmula da média aritmética; preserva a soma",
+            "pageRef": 16
+          },
+          {
+            "topic": "Soma total = média x quantidade",
+            "pageRef": 18
+          },
+          {
+            "topic": "1ª propriedade: existência e unicidade",
+            "pageRef": 21
+          },
+          {
+            "topic": "2ª propriedade: média entre mínimo e máximo",
+            "pageRef": 22
+          },
+          {
+            "topic": "3ª propriedade: soma/subtração de constante",
+            "pageRef": 24
+          },
+          {
+            "topic": "4ª propriedade: multiplicação/divisão por constante",
+            "pageRef": 26
+          },
+          {
+            "topic": "5ª propriedade: soma dos desvios é nula",
+            "pageRef": 28
+          },
+          {
+            "topic": "6ª propriedade: soma dos quadrados dos desvios é mínima na média",
+            "pageRef": 30
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Cálculo da média aritmética",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 17,
+          "statement": "Os tempos, em minutos, que cinco viaturas levaram para chegar ao local de uma ocorrência foram 7, 9, 12, 8 e 14. O tempo médio de chegada foi de",
+          "support": null,
+          "options": [
+            "9 minutos.",
+            "10 minutos.",
+            "11 minutos.",
+            "12 minutos.",
+            "8 minutos."
+          ],
+          "answer": "B",
+          "explanation": "A média aritmética é a soma dividida pelo número de valores: (7 + 9 + 12 + 8 + 14) ÷ 5 = 50 ÷ 5 = 10 minutos. O valor 12 é apenas um dos tempos observados."
+        },
+        {
+          "topic": "Soma total e média",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 18,
+          "statement": "A média de idade de 12 militares de um pelotão é 31 anos. Um deles, de 53 anos, deixa o pelotão. A média de idade dos 11 que permanecem é de",
+          "support": null,
+          "options": [
+            "28 anos.",
+            "29 anos.",
+            "30 anos.",
+            "31 anos.",
+            "27 anos."
+          ],
+          "answer": "B",
+          "explanation": "A soma das idades é 12 × 31 = 372. Retirando 53, restam 372 − 53 = 319 anos para 11 militares: 319 ÷ 11 = 29 anos. A média não permanece em 31 porque quem saiu era mais velho que a média."
+        },
+        {
+          "topic": "Valor desconhecido a partir da média",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 19,
+          "statement": "A média de cinco medições de pressão é 24. Quatro delas valem 20, 26, 22 e 25. A quinta medição vale",
+          "support": null,
+          "options": [
+            "24",
+            "26",
+            "28",
+            "27",
+            "25"
+          ],
+          "answer": "D",
+          "explanation": "A soma das cinco medições é 5 × 24 = 120. As quatro conhecidas somam 93, logo a quinta vale 120 − 93 = 27. Uma média 24 não implica que a medição restante seja 24."
+        },
+        {
+          "topic": "A média preserva a soma",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 17,
+          "statement": "Oito bombeiros têm massa média de 70 kg. Ao grupo se junta um nono bombeiro, de 88 kg. A nova massa média é de",
+          "support": null,
+          "options": [
+            "70 kg.",
+            "74 kg.",
+            "79 kg.",
+            "71 kg.",
+            "72 kg."
+          ],
+          "answer": "E",
+          "explanation": "A soma das massas dos oito é 8 × 70 = 560 kg; com o nono, 648 kg. A nova média é 648 ÷ 9 = 72 kg. A média simples entre 70 e 88 (79 kg) ignoraria que o grupo original tem oito pessoas."
+        },
+        {
+          "topic": "Existência e unicidade da média",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 21,
+          "statement": "Em relação à existência da média aritmética de um conjunto com ao menos um elemento, é correto afirmar que ela",
+          "support": null,
+          "options": [
+            "existe apenas quando os valores são todos distintos.",
+            "sempre existe e é única.",
+            "existe, mas pode assumir mais de um valor.",
+            "existe apenas quando o número de elementos é par.",
+            "existe apenas quando coincide com um dos elementos."
+          ],
+          "answer": "B",
+          "explanation": "Para n ≥ 1 sempre é possível calcular a soma dos elementos e dividi-la por n, e o resultado é um único número. Não há exigência de valores distintos, de quantidade par ou de coincidência com algum elemento."
+        },
+        {
+          "topic": "A média está entre o mínimo e o máximo",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 22,
+          "statement": "Um conjunto de dados tem menor valor igual a 12 e maior valor igual a 40. Qual dos números a seguir NÃO pode ser a média aritmética desse conjunto?",
+          "support": null,
+          "options": [
+            "41",
+            "13",
+            "26",
+            "39,5",
+            "30"
+          ],
+          "answer": "A",
+          "explanation": "A média nunca é menor que o menor valor nem maior que o maior valor (mínimo ≤ média ≤ máximo). Como o maior valor é 40, uma média de 41 é impossível; todos os demais números estão entre 12 e 40 e podem ocorrer."
+        },
+        {
+          "topic": "Média e constante somada",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 24,
+          "statement": "O salário médio de 20 servidores é de R$ 4.200. Cada um receberá um acréscimo fixo de R$ 350. O novo salário médio será de",
+          "support": null,
+          "options": [
+            "R$ 7.000",
+            "R$ 4.900",
+            "R$ 4.620",
+            "R$ 4.550",
+            "R$ 4.200"
+          ],
+          "answer": "D",
+          "explanation": "Somando uma constante a todos os valores, a média fica acrescida dessa constante: 4.200 + 350 = 4.550. Multiplicar por 20 ou usar 350 × 20 só se justificaria se a pergunta fosse sobre a folha total."
+        },
+        {
+          "topic": "Transformação linear da média",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 26,
+          "statement": "A média de uma variável x é 12. Uma nova variável y é obtida por y = 3x − 5 para cada observação. A média de y é",
+          "support": null,
+          "options": [
+            "31",
+            "36",
+            "7",
+            "28",
+            "41"
+          ],
+          "answer": "A",
+          "explanation": "A média de uma variável multiplicada por uma constante fica multiplicada por ela, e a subtração de uma constante reduz a média nessa constante: ȳ = 3 × 12 − 5 = 31. Usar 3 × (12 − 5) = 21 seria inverter a ordem das operações."
+        },
+        {
+          "topic": "Soma dos desvios em relação à média",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 28,
+          "statement": "Cinco valores têm desvios, em relação à média, iguais a +3, −5, +2 e +4 para os quatro primeiros. O desvio do quinto valor é",
+          "support": null,
+          "options": [
+            "0",
+            "−4",
+            "+4",
+            "−2",
+            "+5"
+          ],
+          "answer": "B",
+          "explanation": "Desvios positivos e negativos em torno da média se compensam, e o total é sempre zero. Os quatro primeiros somam 3 − 5 + 2 + 4 = 4, de modo que o quinto deve valer −4 para que o total seja zero."
+        },
+        {
+          "topic": "Soma dos quadrados dos desvios",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 30,
+          "statement": "Para os valores 2, 4, 6, 8 e 10 (média 6), a soma dos quadrados dos desvios em relação à média é 40. A soma dos quadrados dos desvios desses mesmos valores em relação ao número 4 é",
+          "support": null,
+          "options": [
+            "60",
+            "50",
+            "45",
+            "40",
+            "20"
+          ],
+          "answer": "A",
+          "explanation": "Em relação a um número a, a soma dos quadrados dos desvios é a soma em relação à média mais n · (média − a)²: 40 + 5 · (6 − 4)² = 40 + 20 = 60. Verificando diretamente: 4 + 0 + 4 + 16 + 36 = 60. O mínimo possível, 40, ocorre quando a é a média."
+        },
+        {
+          "topic": "Propriedades da média",
+          "pattern": "assertivas",
+          "difficulty": 2,
+          "pageRef": 21,
+          "statement": "Considere as afirmações. I. A média aritmética de um conjunto com ao menos um elemento sempre existe e é única. II. A média aritmética de um conjunto coincide sempre com um dos valores observados. III. Multiplicando todos os valores de um conjunto por uma constante c, a média também fica multiplicada por c. Está(ão) correta(s)",
+          "support": null,
+          "options": [
+            "I, apenas.",
+            "III, apenas.",
+            "II e III, apenas.",
+            "I, II e III.",
+            "I e III, apenas."
+          ],
+          "answer": "E",
+          "explanation": "I e III são propriedades da média. A II é falsa: a média de 1, 2 e 6 vale 3, que não é um dos valores observados."
+        },
+        {
+          "topic": "Média de partes do conjunto",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 18,
+          "statement": "Em um conjunto de 30 valores, a média é 15. Os 10 primeiros valores têm média 12. A média dos outros 20 valores é",
+          "support": null,
+          "options": [
+            "18",
+            "17",
+            "16,5",
+            "15",
+            "13,5"
+          ],
+          "answer": "C",
+          "explanation": "A soma total é 30 × 15 = 450, e os 10 primeiros somam 10 × 12 = 120. Restam 330 para 20 valores: 330 ÷ 20 = 16,5. A média das partes não é simplesmente a média geral."
+        },
+        {
+          "topic": "Ordem das operações sobre a média",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 26,
+          "statement": "A média de um conjunto de valores é 20. Cada valor é multiplicado por 2 e, em seguida, aumentado em 5 unidades. A média do novo conjunto é",
+          "support": null,
+          "options": [
+            "45",
+            "50",
+            "25",
+            "40",
+            "55"
+          ],
+          "answer": "A",
+          "explanation": "Multiplicando por 2, a média passa a 40; somando 5, passa a 45. Aumentar em 5 antes de multiplicar daria (20 + 5) × 2 = 50, que é outra transformação."
+        },
+        {
+          "topic": "Média e valores extremos",
+          "pattern": "incorreta",
+          "difficulty": 3,
+          "pageRef": 22,
+          "statement": "Sobre a média aritmética, assinale a alternativa INCORRETA.",
+          "support": null,
+          "options": [
+            "Em um conjunto com valores diferentes entre si, a média é igual ao menor valor.",
+            "Desvios positivos e negativos em torno da média se anulam, somando zero.",
+            "A média de um conjunto não é menor que o menor valor nem maior que o maior.",
+            "Somando uma constante a todos os valores, a média fica aumentada nessa constante.",
+            "A soma dos quadrados dos desvios é mínima quando calculada em relação à média."
+          ],
+          "answer": "A",
+          "explanation": "Se os valores são diferentes entre si, a média fica estritamente entre o menor e o maior valor; só coincidiria com o mínimo se todos fossem iguais. As demais afirmativas reproduzem propriedades da média."
+        }
+      ]
+    },
+    {
+      "id": "estatistica/a01/s03",
+      "bizu": {
+        "summary": [
+          "**Média ponderada** = média de valores com **pesos** diferentes: **x̄ = Σ (x_i · p_i) / Σ p_i**. No numerador, cada valor multiplica seu peso; no denominador, soma-se os pesos (e não a quantidade de valores).",
+          "Roteiro prático: (1) multiplicar cada valor pelo peso; (2) somar os produtos; (3) dividir pela soma dos pesos.",
+          "Os pesos podem vir como **percentuais ou frações** do total (ex.: 25%, 40% e 35%); nesse caso o denominador é 100% (ou 1).",
+          "**Dados não agrupados (brutos)** são os recém-coletados; **agrupados** já foram organizados por valor (tabela de frequências) ou por classes.",
+          "**Média de dados agrupados por valor**: é uma média ponderada em que o **peso é a frequência**: **x̄ = Σ (X_i · f_i) / Σ f_i**.",
+          "Se **todas as frequências são multiplicadas pela mesma constante** (ex.: dobradas), a média **não muda**, pois os pesos mantêm as mesmas proporções.",
+          "A média ponderada é puxada para os valores de maior peso; se o candidato tem notas baixas nas disciplinas de maior peso, a média final cai mesmo com notas altas em disciplinas de peso menor.",
+          "Cuidado ao completar tabelas: frequência relativa = frequência absoluta / total; use regra de três para completar absoluta, relativa ou porcentagem antes de calcular a média."
+        ],
+        "teoria": [
+          {
+            "statement": "Na média ponderada, divide-se a soma dos produtos (valor × peso) pela soma dos pesos.",
+            "isTrue": true,
+            "explanation": "x̄ = Σ (x_i · p_i) / Σ p_i."
+          },
+          {
+            "statement": "Na média ponderada, a soma dos produtos (valor × peso) é dividida pela quantidade de valores, independentemente dos pesos.",
+            "isTrue": false,
+            "explanation": "O denominador é a soma dos pesos, e não a quantidade de valores."
+          },
+          {
+            "statement": "Para dados agrupados por valor em uma tabela de frequências, a média é uma média ponderada em que os pesos são as frequências.",
+            "isTrue": true,
+            "explanation": "x̄ = Σ (X_i · f_i) / Σ f_i."
+          },
+          {
+            "statement": "Se todas as frequências de uma distribuição forem dobradas, a média dobra.",
+            "isTrue": false,
+            "explanation": "Multiplicar todas as frequências pela mesma constante preserva as proporções entre os pesos e, portanto, a média não se altera."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Quando os pesos são dados como porcentagens que somam 100%, o denominador da média ponderada é 100% (ou 1).",
+            "isTrue": true,
+            "explanation": "O denominador é a soma dos pesos; com percentuais que somam 100%, equivale a 1."
+          },
+          {
+            "statement": "Em uma tabela de frequências, a média é obtida somando os valores da variável e dividindo pelo número de linhas da tabela.",
+            "isTrue": false,
+            "explanation": "É preciso ponderar cada valor pela sua frequência e dividir pela soma das frequências (n), e não pelo número de linhas."
+          },
+          {
+            "statement": "Em uma média ponderada, um valor com peso maior exerce mais influência sobre o resultado do que um valor de peso menor.",
+            "isTrue": true,
+            "explanation": "O peso mede a importância relativa do valor no cálculo."
+          },
+          {
+            "statement": "Dados agrupados por intervalos de classe ou por valor são considerados brutos, pois ainda não passaram por análise alguma.",
+            "isTrue": false,
+            "explanation": "Os dados brutos ainda não foram organizados; os agrupados já passaram por organização por valor ou por classe."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Fórmula da média ponderada",
+            "pageRef": 33
+          },
+          {
+            "topic": "Exemplo com pesos de disciplinas",
+            "pageRef": 34
+          },
+          {
+            "topic": "Etapas do cálculo da média ponderada",
+            "pageRef": 35
+          },
+          {
+            "topic": "Pesos como frações do total",
+            "pageRef": 36
+          },
+          {
+            "topic": "Dobrar as frequências não altera a média",
+            "pageRef": 37
+          },
+          {
+            "topic": "Dados brutos x agrupados",
+            "pageRef": 39
+          },
+          {
+            "topic": "Média para dados agrupados por valor",
+            "pageRef": 40
+          },
+          {
+            "topic": "Completar tabela com frequências relativas antes da média",
+            "pageRef": 45
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Média ponderada",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 33,
+          "statement": "Em uma avaliação, as notas 6, 8 e 10 têm pesos 2, 3 e 5, respectivamente. A média ponderada é",
+          "support": null,
+          "options": [
+            "9,0",
+            "8,6",
+            "8,3",
+            "8,0",
+            "7,8"
+          ],
+          "answer": "B",
+          "explanation": "A média ponderada é a soma dos produtos nota × peso dividida pela soma dos pesos: (6·2 + 8·3 + 10·5) ÷ (2 + 3 + 5) = 86 ÷ 10 = 8,6. A média simples (8,0) desconsidera os pesos."
+        },
+        {
+          "topic": "Média ponderada com proporções",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 36,
+          "statement": "Um batalhão adquire três itens de proteção cujos preços unitários são R$ 20 (luvas), R$ 60 (capacetes) e R$ 120 (botas). Das unidades compradas, 50% foram de luvas, 30% de capacetes e o restante de botas. O preço médio unitário pago foi de",
+          "support": null,
+          "options": [
+            "R$ 66,67",
+            "R$ 48",
+            "R$ 60",
+            "R$ 52",
+            "R$ 56"
+          ],
+          "answer": "D",
+          "explanation": "As porcentagens funcionam como pesos: 20 × 0,5 + 60 × 0,3 + 120 × 0,2 = 10 + 18 + 24 = 52. A média simples dos preços (66,67) ignora que há mais luvas que botas na compra."
+        },
+        {
+          "topic": "Nota necessária em média ponderada",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 34,
+          "statement": "Em um curso, a média final é ponderada: três provas têm pesos 2, 3 e 5. Um aluno tirou 7,0 na primeira e 6,0 na segunda. Para obter média final igual a 7,0, a nota mínima na terceira prova deve ser",
+          "support": null,
+          "options": [
+            "7,0",
+            "8,0",
+            "7,2",
+            "6,8",
+            "7,6"
+          ],
+          "answer": "E",
+          "explanation": "A soma ponderada necessária é 7 × 10 = 70. As duas primeiras contribuem 7 · 2 + 6 · 3 = 32, sobrando 38 para a terceira, que tem peso 5: 38 ÷ 5 = 7,6. Tirar 7,0 daria média 6,7."
+        },
+        {
+          "topic": "Média de dois grupos",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 37,
+          "statement": "A turma A tem 20 alunos, com média 6,0 em uma prova; a turma B tem 30 alunos, com média 8,0. A média dos 50 alunos juntos é",
+          "support": null,
+          "options": [
+            "7,0",
+            "7,2",
+            "6,8",
+            "7,5",
+            "6,6"
+          ],
+          "answer": "B",
+          "explanation": "A média conjunta é ponderada pelo número de alunos: (20 × 6 + 30 × 8) ÷ 50 = 360 ÷ 50 = 7,2. A média simples das duas médias (7,0) só valeria se as turmas tivessem o mesmo tamanho."
+        },
+        {
+          "topic": "Efeito de multiplicar as frequências",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 37,
+          "statement": "Uma distribuição de idades de uma turma é comparada com outra turma, em que as frequências de cada idade são exatamente o triplo das frequências da primeira, com as mesmas idades. A média das idades da segunda turma, em relação à da primeira, é",
+          "support": null,
+          "options": [
+            "o triplo.",
+            "um terço.",
+            "maior que a da primeira, mas não o triplo.",
+            "igual.",
+            "menor que a da primeira."
+          ],
+          "answer": "D",
+          "explanation": "A média é a soma dos produtos valor × frequência dividida pela soma das frequências. Multiplicando todas as frequências por 3, numerador e denominador triplicam, e a média não muda; o que mudaria seria o número de alunos."
+        },
+        {
+          "topic": "Média de dados agrupados por valor",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 40,
+          "statement": "O número de ocorrências atendidas por dia em um quartel foi registrado assim: 2 ocorrências em 4 dias, 3 em 6 dias, 4 em 8 dias e 5 em 2 dias. A média diária de ocorrências nesses 20 dias foi de",
+          "support": null,
+          "options": [
+            "3,0",
+            "3,2",
+            "3,4",
+            "3,5",
+            "4,0"
+          ],
+          "answer": "C",
+          "explanation": "Cada valor é multiplicado por sua frequência: 2·4 + 3·6 + 4·8 + 5·2 = 8 + 18 + 32 + 10 = 68. Dividindo pela soma das frequências (20): 68 ÷ 20 = 3,4. A média simples dos valores 2, 3, 4 e 5 (3,5) ignora as frequências."
+        },
+        {
+          "topic": "Frequência desconhecida",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 41,
+          "statement": "Em uma tabela de frequências, os valores 1, 2, 3 e 4 ocorrem 3, x, 5 e 2 vezes, respectivamente. Sabendo que a média é 2,5, o valor de x é",
+          "support": null,
+          "options": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "answer": "B",
+          "explanation": "Com média 2,5: (3 + 2x + 15 + 8) ÷ (10 + x) = 2,5, logo 26 + 2x = 25 + 2,5x, o que dá x = 2. Conferindo: soma = 30 e n = 12, e 30 ÷ 12 = 2,5."
+        },
+        {
+          "topic": "Média ponderada por grupos",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 43,
+          "statement": "Em um pelotão, 6 soldados ganham R$ 3.000, 10 cabos ganham R$ 4.000 e 4 sargentos ganham R$ 6.000. O salário médio dos 20 militares é de",
+          "support": null,
+          "options": [
+            "R$ 4.333",
+            "R$ 4.000",
+            "R$ 4.200",
+            "R$ 4.100",
+            "R$ 3.900"
+          ],
+          "answer": "D",
+          "explanation": "A soma é 6 · 3.000 + 10 · 4.000 + 4 · 6.000 = 18.000 + 40.000 + 24.000 = 82.000, e a média é 82.000 ÷ 20 = 4.100. A média simples dos três salários (4.333) desconsidera o número de militares em cada grupo."
+        },
+        {
+          "topic": "Média com frequências relativas",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 45,
+          "statement": "Em uma tabela, o valor 5 tem frequência relativa 0,20; o valor 10, 0,30; o valor 20, 0,25; e o valor 40 completa a distribuição. A média é",
+          "support": null,
+          "options": [
+            "21,25",
+            "20",
+            "19",
+            "18",
+            "17,5"
+          ],
+          "answer": "C",
+          "explanation": "A frequência relativa do valor 40 é 1 − 0,75 = 0,25. Como as frequências relativas somam 1, a média é a soma de valor × frequência relativa: 1 + 3 + 5 + 10 = 19."
+        },
+        {
+          "topic": "Média ponderada com pesos iguais",
+          "pattern": "relacao",
+          "difficulty": 1,
+          "pageRef": 33,
+          "statement": "Quando todos os pesos de uma média ponderada são iguais entre si, o resultado",
+          "support": null,
+          "options": [
+            "coincide com a média geométrica.",
+            "coincide com a mediana.",
+            "é sempre igual ao maior valor.",
+            "é sempre igual a zero.",
+            "coincide com a média aritmética simples."
+          ],
+          "answer": "E",
+          "explanation": "Com pesos iguais p, a fórmula fica (p · soma dos valores) ÷ (n · p), isto é, a soma dividida por n, que é a média aritmética simples. Não há relação geral com mediana ou média geométrica."
+        },
+        {
+          "topic": "Papel da frequência",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 40,
+          "statement": "No cálculo da média de dados agrupados por valor, o papel de peso de cada valor é desempenhado",
+          "support": null,
+          "options": [
+            "pelo próprio valor da variável.",
+            "pela amplitude total do conjunto.",
+            "pelo número de classes.",
+            "pela moda do conjunto.",
+            "pela frequência absoluta do valor."
+          ],
+          "answer": "E",
+          "explanation": "A fórmula soma cada valor multiplicado pela sua frequência e divide pela soma das frequências, o mesmo raciocínio da média ponderada, com a frequência como peso."
+        },
+        {
+          "topic": "Notas com frequências relacionadas",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 42,
+          "statement": "Na prova de 30 militares, as notas 0, 1, 2 e 3 foram obtidas por 1, 3, 5 e 6 militares, respectivamente. O número de militares que tirou nota 4 foi o dobro dos que tiraram nota 5, e não houve outras notas. A nota média foi de",
+          "support": null,
+          "options": [
+            "2,8",
+            "3,0",
+            "3,2",
+            "3,4",
+            "3,5"
+          ],
+          "answer": "C",
+          "explanation": "Com y militares na nota 5 e 2y na nota 4: 15 + 3y = 30, logo y = 5 (10 na nota 4). A soma é 3 + 10 + 18 + 40 + 25 = 96, e a média é 96 ÷ 30 = 3,2."
+        },
+        {
+          "topic": "Média ponderada e dados agrupados",
+          "pattern": "incorreta",
+          "difficulty": 3,
+          "pageRef": 40,
+          "statement": "Assinale a alternativa INCORRETA sobre média ponderada e média para dados agrupados por valor.",
+          "support": null,
+          "options": [
+            "Na média ponderada, o denominador é a soma dos pesos.",
+            "Na média para dados agrupados por valor, o denominador é a soma das frequências.",
+            "A média ponderada pode diferir da média aritmética simples dos mesmos valores.",
+            "Na média para dados agrupados por valor, a frequência de cada valor atua como seu peso.",
+            "Na média para dados agrupados por valor, a média sempre difere da média calculada com os dados brutos originais."
+          ],
+          "answer": "E",
+          "explanation": "Quando os dados são agrupados por valor, nenhuma informação é perdida: a média coincide com a dos dados brutos (no exemplo da aula, 5,4 nos dois casos). A diferença só surge quando se agrupa em classes, pelo uso dos pontos médios."
+        }
+      ]
+    },
+    {
+      "id": "estatistica/a01/s04",
+      "bizu": {
+        "summary": [
+          "**Média para dados agrupados por classe**: substitui-se cada intervalo pelo seu **ponto médio** PM = (l_inf + l_sup) / 2 e aplica-se a ponderação: **x̄ = Σ (PM_i · f_i) / Σ f_i**.",
+          "A média por classe é uma **aproximação**: ao agrupar em classes perdem-se detalhes, então ela pode diferir da média calculada com os valores individuais ou agrupados por valor.",
+          "Se as frequências vêm como **percentuais**, use-as como pesos e divida por 100% (ou 1).",
+          "**Média geométrica (G)** de n números não negativos = **raiz n-ésima do produto**: G = (x1 · x2 · ... · xn)^(1/n). Com 2 números, raiz quadrada; com 3, raiz cúbica.",
+          "Propriedade principal: a média geométrica **preserva o produto** dos elementos: trocar todos por G não altera o produto da lista (G^n = produto).",
+          "Para extrair a raiz, **fatore** os números em primos e divida cada expoente por n (ex.: 4, 20 e 100 geram G = 20).",
+          "Usos: **quando se acumulam taxas multiplicativas** e na geometria (lado do quadrado com área igual à de um retângulo = G dos lados; aresta do cubo com volume igual ao de um prisma = G das três dimensões).",
+          "**Restrição**: não se define a média geométrica para números negativos, pois a raiz pode não existir nos reais (ex.: 1 e −1)."
+        ],
+        "teoria": [
+          {
+            "statement": "Para dados agrupados em classes, a média é calculada pela ponderação dos pontos médios das classes pelas respectivas frequências.",
+            "isTrue": true,
+            "explanation": "x̄ = Σ (PM_i · f_i) / Σ f_i."
+          },
+          {
+            "statement": "A média de dados agrupados em classes sempre coincide exatamente com a média calculada a partir dos valores individuais originais.",
+            "isTrue": false,
+            "explanation": "O agrupamento em classes perde detalhes; o ponto médio é apenas um representante, e o resultado é aproximado."
+          },
+          {
+            "statement": "A média geométrica de um conjunto de números positivos preserva o produto dos seus elementos.",
+            "isTrue": true,
+            "explanation": "Substituir todos os elementos por G mantém o produto, já que G elevado a n é igual ao produto original."
+          },
+          {
+            "statement": "A média geométrica de n números positivos é obtida extraindo-se a raiz n-ésima da soma desses números.",
+            "isTrue": false,
+            "explanation": "É a raiz n-ésima do PRODUTO dos números."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Não é possível calcular a média geométrica de 1 e −1 no campo dos números reais, pois seria preciso extrair a raiz quadrada de um número negativo.",
+            "isTrue": true,
+            "explanation": "O produto de 1 por −1 é −1, e a raiz quadrada de −1 não existe nos reais; por isso a média geométrica é definida para números não negativos."
+          },
+          {
+            "statement": "O lado de um quadrado cuja área seja igual à de um retângulo de lados a e b é a média aritmética de a e b.",
+            "isTrue": false,
+            "explanation": "Como lado² = a · b, o lado é a média geométrica (raiz de a · b)."
+          },
+          {
+            "statement": "Para calcular a média geométrica de três números, extrai-se a raiz quadrada do produto deles.",
+            "isTrue": false,
+            "explanation": "O índice da raiz é o número de elementos: três números pedem raiz cúbica."
+          },
+          {
+            "statement": "A média por classe e a média por valor calculadas sobre os mesmos dados podem ser diferentes, porque o agrupamento em classes elimina detalhes dos dados.",
+            "isTrue": true,
+            "explanation": "O ponto médio substitui os valores reais de cada classe, introduzindo aproximação."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Média por classe: ponto médio ponderado",
+            "pageRef": 47
+          },
+          {
+            "topic": "Cálculo com PM x f e comparação com a média por valor",
+            "pageRef": 49
+          },
+          {
+            "topic": "Média geométrica: definição e fórmula",
+            "pageRef": 53
+          },
+          {
+            "topic": "Cálculo da raiz por fatoração em primos",
+            "pageRef": 54
+          },
+          {
+            "topic": "Geométrica preserva o produto; aplicações",
+            "pageRef": 55
+          },
+          {
+            "topic": "Restrição a números não negativos",
+            "pageRef": 56
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Média para dados agrupados por classe",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 48,
+          "statement": "O tempo de espera (em minutos) de 40 pacientes foi agrupado em classes: 0 ⊢ 10 (4 pacientes), 10 ⊢ 20 (10), 20 ⊢ 30 (14), 30 ⊢ 40 (8) e 40 ⊢ 50 (4). O tempo médio de espera, calculado pelos pontos médios das classes, é de",
+          "support": null,
+          "options": [
+            "22,5 min.",
+            "24,5 min.",
+            "25 min.",
+            "26 min.",
+            "28 min."
+          ],
+          "answer": "B",
+          "explanation": "Os pontos médios são 5, 15, 25, 35 e 45. A soma dos produtos ponto médio × frequência é 20 + 150 + 350 + 280 + 180 = 980, e a média é 980 ÷ 40 = 24,5. O valor 25 seria o ponto médio da classe de maior frequência, e não a média."
+        },
+        {
+          "topic": "Ponto médio das classes",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 47,
+          "statement": "Em uma distribuição de dados agrupados em classes, o ponto médio da classe 36 ⊢ 52 é",
+          "support": null,
+          "options": [
+            "88",
+            "52",
+            "44",
+            "40",
+            "16"
+          ],
+          "answer": "C",
+          "explanation": "O ponto médio é a média dos extremos: (36 + 52) ÷ 2 = 44. O valor 16 é a amplitude da classe, e 88 é a soma dos limites, sem dividir por 2."
+        },
+        {
+          "topic": "Por que a média por classes é aproximada",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 49,
+          "statement": "Uma mesma série de tempos foi organizada por valor e, depois, em classes. A média calculada pelas classes difere da média por valor porque, no agrupamento em classes,",
+          "support": null,
+          "options": [
+            "os pesos deixam de ser as frequências.",
+            "a soma das frequências deixa de ser igual a n.",
+            "a média aritmética deixa de preservar a soma.",
+            "os valores são ponderados pela amplitude de cada classe.",
+            "perdem-se detalhes dos valores individuais, que passam a ser representados pelos pontos médios."
+          ],
+          "answer": "E",
+          "explanation": "Ao substituir cada valor pelo ponto médio de sua classe, perde-se o detalhe dos valores originais, e a média passa a ser uma aproximação. A média por valor, por sua vez, é exata. As frequências continuam sendo os pesos e somam n."
+        },
+        {
+          "topic": "Média por classes com percentuais",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 51,
+          "statement": "A distribuição das idades dos candidatos de um curso é: 18 ⊢ 25, 40%; 25 ⊢ 35, 30%; 35 ⊢ 45, 20%; 45 ⊢ 65, 10%. A idade média, calculada pelos pontos médios, é de",
+          "support": null,
+          "options": [
+            "30,0 anos.",
+            "31,1 anos.",
+            "32,5 anos.",
+            "35,0 anos.",
+            "28,4 anos."
+          ],
+          "answer": "B",
+          "explanation": "Os pontos médios são 21,5, 30, 40 e 55. Como os percentuais somam 100%, a média é 21,5 · 0,4 + 30 · 0,3 + 40 · 0,2 + 55 · 0,1 = 8,6 + 9 + 8 + 5,5 = 31,1 anos. Usar o ponto médio de classes de amplitudes diferentes exige cuidado com os limites, mas o procedimento é o mesmo."
+        },
+        {
+          "topic": "Duração média em minutos e segundos",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 50,
+          "statement": "A duração das ligações recebidas por uma central, em minutos, foi agrupada assim: 0 ⊢ 4 (30 ligações), 4 ⊢ 8 (40), 8 ⊢ 12 (20) e 12 ⊢ 16 (10). Calculando pelos pontos médios, a duração média é de",
+          "support": null,
+          "options": [
+            "6 min e 24 s.",
+            "6 min e 40 s.",
+            "6 min e 4 s.",
+            "7 min e 24 s.",
+            "6 min e 14 s."
+          ],
+          "answer": "A",
+          "explanation": "Os pontos médios são 2, 6, 10 e 14. A soma dos produtos é 60 + 240 + 200 + 140 = 640, e a média é 640 ÷ 100 = 6,4 minutos. Como 0,4 min = 0,4 × 60 = 24 s, a duração média é de 6 min e 24 s."
+        },
+        {
+          "topic": "Procedimento para classes",
+          "pattern": "incorreta",
+          "difficulty": 2,
+          "pageRef": 47,
+          "statement": "Em relação ao cálculo da média de dados agrupados em classes, assinale a alternativa INCORRETA.",
+          "support": null,
+          "options": [
+            "Os limites inferiores das classes são usados como valores representativos, no lugar dos pontos médios.",
+            "Cada classe é representada pelo seu ponto médio.",
+            "Cada ponto médio é multiplicado pela frequência da classe.",
+            "A soma dos produtos é dividida pela soma das frequências.",
+            "O resultado costuma ser uma aproximação da média dos dados brutos."
+          ],
+          "answer": "A",
+          "explanation": "O valor representativo de cada classe é o ponto médio, calculado como a média entre os limites inferior e superior, e não o limite inferior. As demais afirmações descrevem o procedimento corretamente."
+        },
+        {
+          "topic": "Propriedade da média geométrica",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 53,
+          "statement": "A propriedade principal da média geométrica de uma lista de números positivos é preservar",
+          "support": null,
+          "options": [
+            "a soma dos elementos da lista.",
+            "a soma dos inversos dos elementos.",
+            "a soma dos quadrados dos elementos.",
+            "o produto dos elementos da lista.",
+            "a ordem dos elementos."
+          ],
+          "answer": "D",
+          "explanation": "Substituindo todos os elementos por G, o produto da lista permanece o mesmo. Preservar a soma é a propriedade da média aritmética, e preservar a soma dos inversos, da harmônica."
+        },
+        {
+          "topic": "Cálculo da média geométrica",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 54,
+          "statement": "A média geométrica dos números 3, 12 e 48 é",
+          "support": null,
+          "options": [
+            "9",
+            "12",
+            "16",
+            "21",
+            "24"
+          ],
+          "answer": "B",
+          "explanation": "G é a raiz cúbica do produto: 3 × 12 × 48 = 1.728 = 12³; logo, G = 12. A média aritmética desses números é 21, que é maior que G."
+        },
+        {
+          "topic": "Média geométrica na geometria",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 55,
+          "statement": "Um prisma de base retangular, com dimensões 2 cm, 6 cm e 18 cm, tem o mesmo volume de um cubo. A aresta desse cubo mede",
+          "support": null,
+          "options": [
+            "8,67 cm.",
+            "12 cm.",
+            "7 cm.",
+            "6 cm.",
+            "10 cm."
+          ],
+          "answer": "D",
+          "explanation": "O volume do prisma é 2 × 6 × 18 = 216 cm³, que é o volume do cubo: aresta = raiz cúbica de 216 = 6 cm. Equivale à média geométrica das três dimensões. A média aritmética (8,67) preservaria a soma, e não o volume."
+        },
+        {
+          "topic": "Domínio da média geométrica",
+          "pattern": "conceito",
+          "difficulty": 3,
+          "pageRef": 56,
+          "statement": "Para qual dos pares de números a média geométrica NÃO pode ser calculada no conjunto dos números reais?",
+          "support": null,
+          "options": [
+            "4 e 16",
+            "2 e 8",
+            "3 e 27",
+            "0 e 5",
+            "−4 e 9"
+          ],
+          "answer": "E",
+          "explanation": "A média geométrica de dois números é a raiz quadrada do produto. Para −4 e 9, o produto é −36, que não tem raiz quadrada real. Nos demais pares o produto é não negativo (para 0 e 5, a média é zero)."
+        },
+        {
+          "topic": "Raiz n-ésima",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 56,
+          "statement": "A média geométrica dos números 1, 4, 16 e 64 é igual a",
+          "support": null,
+          "options": [
+            "21,25",
+            "16",
+            "8",
+            "6",
+            "4"
+          ],
+          "answer": "C",
+          "explanation": "Com quatro números, G é a raiz quarta do produto: 1 · 4 · 16 · 64 = 4.096 = 8⁴; logo, G = 8. O valor 21,25 é a média aritmética."
+        },
+        {
+          "topic": "Sistema com médias aritméticas",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 57,
+          "statement": "Os números positivos a, b e c são tais que a média aritmética de a e b é 4,5; a de b e c é 17,5; e a de a e c é 14. A média geométrica de a, b e c é",
+          "support": null,
+          "options": [
+            "6",
+            "8",
+            "9",
+            "10",
+            "12"
+          ],
+          "answer": "A",
+          "explanation": "Das médias, a + b = 9, b + c = 35 e a + c = 28. Somando, 2(a + b + c) = 72, logo a + b + c = 36, e daí c = 27, a = 1 e b = 8. O produto é 216, e a média geométrica é a raiz cúbica de 216, igual a 6."
+        }
+      ]
+    },
+    {
+      "id": "estatistica/a01/s05",
+      "bizu": {
+        "summary": [
+          "**Média harmônica (H)** é o **inverso da média aritmética dos inversos**: **H = n / (1/x1 + 1/x2 + ... + 1/xn)**, definida para números positivos.",
+          "Propriedade principal: a harmônica **preserva a soma dos inversos** dos elementos da lista.",
+          "Uso típico: **grandezas inversamente proporcionais**, como a velocidade média quando os trechos têm a mesma distância e a vazão/tempo de torneiras ou máquinas que enchem o mesmo tanque.",
+          "Para **dois números**: **H = 2ab / (a + b)** (dobro do produto dividido pela soma).",
+          "Exemplo de velocidade: metades iguais do percurso a 80 km/h e 120 km/h resultam em média harmônica de 96 km/h (e não 100 km/h).",
+          "Em problemas de torneiras: calcula-se a média harmônica dos tempos e divide-se pelo número de torneiras para obter o tempo de enchimento com todas abertas juntas.",
+          "**Desigualdade das médias**: para números positivos, **x̄ ≥ G ≥ H** (aritmética maior ou igual à geométrica, maior ou igual à harmônica).",
+          "A **igualdade** entre as três médias só ocorre quando **todos os valores da lista são iguais**; com valores distintos, a ordem é estrita: x̄ > G > H."
+        ],
+        "teoria": [
+          {
+            "statement": "Calcular a média harmônica equivale a tomar os inversos dos valores, achar a média aritmética deles e inverter o resultado.",
+            "isTrue": true,
+            "explanation": "H = 1 / [(1/x1 + ... + 1/xn)/n] = n / (1/x1 + ... + 1/xn)."
+          },
+          {
+            "statement": "A média harmônica de dois números positivos a e b é dada por (a + b) / (2ab).",
+            "isTrue": false,
+            "explanation": "A fórmula correta é H = 2ab / (a + b); a expressão apresentada é o inverso dela."
+          },
+          {
+            "statement": "Quando um veículo percorre duas metades iguais de um trajeto com velocidades diferentes, a velocidade média no trajeto é a média harmônica das duas velocidades.",
+            "isTrue": true,
+            "explanation": "Distâncias iguais e velocidades diferentes tornam velocidade e tempo inversamente proporcionais, o que pede a média harmônica."
+          },
+          {
+            "statement": "Para uma lista de números positivos, a média aritmética é maior ou igual à geométrica, que por sua vez é maior ou igual à harmônica.",
+            "isTrue": true,
+            "explanation": "Desigualdade das médias: x̄ ≥ G ≥ H."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "As médias aritmética, geométrica e harmônica de uma lista de números positivos são iguais quando todos os números da lista são iguais.",
+            "isTrue": true,
+            "explanation": "A igualdade na desigualdade das médias ocorre apenas nesse caso."
+          },
+          {
+            "statement": "A principal propriedade da média harmônica é preservar o produto dos elementos da lista.",
+            "isTrue": false,
+            "explanation": "Quem preserva o produto é a média geométrica; a harmônica preserva a soma dos inversos."
+          },
+          {
+            "statement": "Em uma lista de números positivos e distintos, a média harmônica é maior que a média aritmética.",
+            "isTrue": false,
+            "explanation": "A harmônica nunca supera a aritmética; para valores distintos ela é estritamente menor."
+          },
+          {
+            "statement": "Se uma torneira enche um tanque em 12 horas e outra em 6 horas, a média harmônica dos tempos é 8 horas, e com as duas abertas juntas o tanque enche em 4 horas.",
+            "isTrue": true,
+            "explanation": "H = 2·12·6/(12+6) = 8 h; dividindo pelo número de torneiras (2) obtém-se 4 h."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Definição e fórmula da média harmônica",
+            "pageRef": 59
+          },
+          {
+            "topic": "Harmônica preserva a soma dos inversos; exemplo 15 e 60",
+            "pageRef": 60
+          },
+          {
+            "topic": "Velocidade média em trechos iguais",
+            "pageRef": 61
+          },
+          {
+            "topic": "Torneiras: tempo conjunto de enchimento",
+            "pageRef": 62
+          },
+          {
+            "topic": "Fórmula rápida para dois números: 2ab/(a+b)",
+            "pageRef": 64
+          },
+          {
+            "topic": "Desigualdade das médias (aritmética, geométrica, harmônica)",
+            "pageRef": 66
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Definição de média harmônica",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 59,
+          "statement": "A média harmônica de uma lista de números positivos é definida como",
+          "support": null,
+          "options": [
+            "a média aritmética dos inversos dos números.",
+            "a raiz n-ésima do produto dos números.",
+            "o inverso da soma dos números.",
+            "o inverso da média aritmética dos inversos dos números.",
+            "a média aritmética dos quadrados dos números."
+          ],
+          "answer": "D",
+          "explanation": "Em símbolos, H = n ÷ (1/x1 + ... + 1/xn), isto é, o inverso do valor médio dos inversos. Ela preserva a soma dos inversos. A raiz n-ésima do produto é a média geométrica."
+        },
+        {
+          "topic": "Média harmônica de dois números",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 60,
+          "statement": "A média harmônica dos números 10 e 40 é",
+          "support": null,
+          "options": [
+            "12,5",
+            "16",
+            "20",
+            "24",
+            "25"
+          ],
+          "answer": "B",
+          "explanation": "Para dois números, H = 2ab ÷ (a + b) = 2 · 10 · 40 ÷ 50 = 800 ÷ 50 = 16. O valor 25 é a média aritmética e 20 é a média geométrica (√400)."
+        },
+        {
+          "topic": "Velocidade média em trechos iguais",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 61,
+          "statement": "Uma viatura vai de uma base a um local de ocorrência a 60 km/h e retorna pelo mesmo caminho a 90 km/h. A velocidade média em todo o percurso é de",
+          "support": null,
+          "options": [
+            "75 km/h.",
+            "70 km/h.",
+            "80 km/h.",
+            "73,5 km/h.",
+            "72 km/h."
+          ],
+          "answer": "E",
+          "explanation": "Como as distâncias são iguais, a velocidade média é a média harmônica das velocidades: 2 · 60 · 90 ÷ (60 + 90) = 10.800 ÷ 150 = 72 km/h. A média aritmética (75 km/h) superestima o resultado, pois a viatura passa mais tempo na velocidade menor."
+        },
+        {
+          "topic": "Quando usar a média harmônica",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 59,
+          "statement": "A média harmônica é particularmente indicada quando se trabalha com grandezas inversamente proporcionais, como no cálculo",
+          "support": null,
+          "options": [
+            "da velocidade média em percursos de mesma distância.",
+            "do aumento percentual acumulado em juros compostos.",
+            "do lado do cubo que tem o mesmo volume de um paralelepípedo.",
+            "da nota final com pesos diferentes para cada prova.",
+            "do valor médio de dados agrupados em classes."
+          ],
+          "answer": "A",
+          "explanation": "Velocidade e tempo são inversamente proporcionais quando a distância é fixa, o que leva à média harmônica (assim como a vazão de torneiras). Juros acumulados e equivalências de volume se associam à média geométrica; pesos diferentes, à ponderada; e dados em classes, aos pontos médios."
+        },
+        {
+          "topic": "Vazão de três torneiras",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 62,
+          "statement": "Três torneiras enchem sozinhas o mesmo tanque em 6 h, 12 h e 12 h, respectivamente. Abertas ao mesmo tempo, o tanque ficará cheio em",
+          "support": null,
+          "options": [
+            "9 horas.",
+            "4 horas.",
+            "2 horas.",
+            "3 horas.",
+            "5 horas."
+          ],
+          "answer": "D",
+          "explanation": "Em uma hora, as torneiras enchem 1/6 + 1/12 + 1/12 = 1/3 do tanque; logo, levam 3 horas. Pela média harmônica, o tempo médio é 3 ÷ (1/3) = 9 h por torneira, e dividindo por 3 torneiras obtêm-se 3 h. O valor 9 é o tempo médio, e não o das três juntas."
+        },
+        {
+          "topic": "Comparação entre as médias",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 63,
+          "statement": "A média aritmética dos números 8 e 32 supera a média harmônica desses mesmos números em",
+          "support": null,
+          "options": [
+            "12 unidades.",
+            "8 unidades.",
+            "7,2 unidades.",
+            "6,4 unidades.",
+            "4 unidades."
+          ],
+          "answer": "C",
+          "explanation": "A média aritmética é (8 + 32) ÷ 2 = 20, e a harmônica é 2 · 8 · 32 ÷ 40 = 512 ÷ 40 = 12,8. A diferença é 20 − 12,8 = 7,2. A média geométrica (16) fica entre as duas."
+        },
+        {
+          "topic": "Desigualdade das médias",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 66,
+          "statement": "Para uma lista de números positivos, a relação entre as médias aritmética (A), geométrica (G) e harmônica (H) é:",
+          "support": null,
+          "options": [
+            "A é maior ou igual a G, que é maior ou igual a H, ocorrendo igualdade quando os números são todos iguais.",
+            "H é maior ou igual a G, que é maior ou igual a A, ocorrendo igualdade quando os números são todos diferentes.",
+            "G é maior ou igual a A, que é maior ou igual a H, em qualquer lista.",
+            "A é sempre estritamente maior que G e H, mesmo que os números sejam iguais.",
+            "As três médias são sempre iguais entre si."
+          ],
+          "answer": "A",
+          "explanation": "A desigualdade das médias estabelece A ≥ G ≥ H, com igualdade se, e somente se, todos os números da lista são iguais (como em 5, 5 e 5). A igualdade não ocorre quando os números são diferentes."
+        },
+        {
+          "topic": "Valores das três médias",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 66,
+          "statement": "Para os números 2 e 8, as médias aritmética, geométrica e harmônica valem, respectivamente,",
+          "support": null,
+          "options": [
+            "4; 5 e 3,2.",
+            "5; 3,2 e 4.",
+            "3,2; 4 e 5.",
+            "5; 4 e 3,2.",
+            "5; 4 e 2,5."
+          ],
+          "answer": "D",
+          "explanation": "A aritmética é (2 + 8) ÷ 2 = 5; a geométrica é √16 = 4; a harmônica é 2 · 2 · 8 ÷ 10 = 3,2. Os valores confirmam a ordem A ≥ G ≥ H."
+        },
+        {
+          "topic": "Condição de igualdade das médias",
+          "pattern": "conceito",
+          "difficulty": 3,
+          "pageRef": 66,
+          "statement": "Uma lista de números positivos tem média aritmética igual à sua média harmônica. Pode-se concluir que",
+          "support": null,
+          "options": [
+            "a lista tem apenas dois números.",
+            "a lista tem números inversamente proporcionais.",
+            "a média geométrica é nula.",
+            "os números da lista formam uma progressão aritmética.",
+            "todos os números da lista são iguais."
+          ],
+          "answer": "E",
+          "explanation": "Como A ≥ G ≥ H, A = H obriga G a ser igual às duas; e a igualdade entre as médias só ocorre se todos os números forem iguais. Uma média geométrica nula é incompatível com números positivos."
+        },
+        {
+          "topic": "Limites da média geométrica",
+          "pattern": "caso",
+          "difficulty": 3,
+          "pageRef": 66,
+          "statement": "Dois números positivos e distintos têm média aritmética 13 e média harmônica 12. Apenas com base na desigualdade das médias, é possível afirmar que a média geométrica desses números pode ser igual a",
+          "support": null,
+          "options": [
+            "11,5.",
+            "13,5.",
+            "14.",
+            "10.",
+            "12,5."
+          ],
+          "answer": "E",
+          "explanation": "Como A ≥ G ≥ H e os números são distintos, 12 < G < 13. Entre as alternativas, apenas 12,5 satisfaz essa condição. Os demais valores estão abaixo da harmônica ou acima da aritmética."
+        },
+        {
+          "topic": "Afirmativas sobre a média harmônica",
+          "pattern": "assertivas",
+          "difficulty": 2,
+          "pageRef": 62,
+          "statement": "Considere as afirmações. I. A média harmônica preserva a soma dos inversos dos elementos da lista. II. A média harmônica é indicada para grandezas inversamente proporcionais, como velocidade média e vazão de torneiras. III. A média harmônica de uma lista de números positivos nunca é menor que a média aritmética. Está(ão) correta(s)",
+          "support": null,
+          "options": [
+            "I, apenas.",
+            "II e III, apenas.",
+            "III, apenas.",
+            "I, II e III.",
+            "I e II, apenas."
+          ],
+          "answer": "E",
+          "explanation": "I e II descrevem a média harmônica. A III é falsa: pela desigualdade das médias, a harmônica nunca é maior que a aritmética (H ≤ A), sendo igual a ela apenas quando os números são todos iguais."
+        },
+        {
+          "topic": "Média harmônica de três números",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 65,
+          "statement": "A média harmônica dos números 2, 3 e 6 é",
+          "support": null,
+          "options": [
+            "4",
+            "3,67",
+            "3",
+            "2,5",
+            "2"
+          ],
+          "answer": "C",
+          "explanation": "A soma dos inversos é 1/2 + 1/3 + 1/6 = 3/6 + 2/6 + 1/6 = 1; logo, H = 3 ÷ 1 = 3. A média aritmética desses números é 3,67, maior que H, como esperado."
+        }
+      ]
+    }
+  ]
+}

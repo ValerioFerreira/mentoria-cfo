@@ -1,0 +1,585 @@
+{
+  "aula": "informatica/a01",
+  "batch": "w2-bizu-informatica",
+  "status": "DRAFT",
+  "segments": [
+    {
+      "id": "informatica/a01/s01",
+      "bizu": {
+        "summary": [
+          "**Três ambientes**: **Internet** (pública e global), **Intranet** (privada, restrita aos membros de uma organização) e **Extranet** (ponte segura entre a rede interna e usuários externos autorizados).",
+          "**Internet** = rede de redes: conjunto de redes públicas interconectadas pelo mundo por **backbones** e roteadores, que trocam dados por protocolos comuns (**TCP/IP**). Tecnicamente é classificada como **WAN**, embora seja formada por milhões de LANs.",
+          "**Pública não significa gratuita**: a rede é aberta a qualquer pessoa que tenha dispositivo e conexão, normalmente paga a um **provedor** (Claro, Vivo, Oi). O controle é **descentralizado e distribuído** entre provedores, empresas e governos.",
+          "**Serviços da Internet**: web (páginas HTML), correio eletrônico, grupos de discussão, mensagens instantâneas, FTP (upload e download), bate-papo e redes sociais. A navegação por **hiperlinks** permite leitura não sequencial.",
+          "A segurança na Internet é menos controlada: há risco de ataques, vazamentos e interceptações, o que exige camadas extras (firewalls, criptografia).",
+          "**Intranet** = rede corporativa **privada e restrita** que usa as **mesmas tecnologias, protocolos e serviços da Internet** (TCP/IP, HTTP, HTTPS, FTP, e-mail, chat, compartilhamento de arquivos e impressoras). É, em geral, uma LAN. É o tema mais cobrado da aula.",
+          "**Pegadinha clássica**: Internet e intranet NÃO usam protocolos diferentes. A diferença está no **acesso e no controle**: a Internet é aberta; a intranet é limitada a usuários autorizados e controlada de forma centralizada pela organização.",
+          "A intranet pode ser acessada de fora por **VPN** ou autenticação remota, mas o usuário precisa se identificar com credenciais válidas.",
+          "A intranet **não depende da Internet**: pode ficar totalmente isolada, mas também pode ser ligada a ela. Usar endereços IP numa rede local, por si só, não define uma intranet.",
+          "Usos e características da intranet: compartilhar documentos, reduzir papel e distâncias, acelerar processos e transferir conhecimento. Tem alta segurança (autenticação, **firewall**, controle de permissões) e costuma ter velocidade maior que a da Internet."
+        ],
+        "teoria": [
+          {
+            "statement": "Internet e intranet operam com conjuntos de protocolos diferentes, adequados à finalidade de cada rede.",
+            "isTrue": false,
+            "explanation": "Ambas usam as mesmas tecnologias (TCP/IP, HTTP, HTTPS, FTP etc.); a diferença está no acesso, que é restrito na intranet."
+          },
+          {
+            "statement": "Uma intranet pode funcionar normalmente sem qualquer conexão com a Internet, restrita à rede local da organização.",
+            "isTrue": true,
+            "explanation": "A intranet não depende da Internet; ela pode ser mantida totalmente isolada do mundo externo."
+          },
+          {
+            "statement": "Dizer que a Internet é uma rede pública significa que o acesso a ela é gratuito para qualquer pessoa.",
+            "isTrue": false,
+            "explanation": "Pública quer dizer aberta ao acesso de qualquer um que cumpra requisitos mínimos, como contratar um provedor; não implica gratuidade."
+          },
+          {
+            "statement": "A principal diferença entre Internet e intranet está no controle de acesso: a primeira é aberta ao público e a segunda é restrita a usuários autorizados.",
+            "isTrue": true,
+            "explanation": "A intranet reproduz a tecnologia da Internet em ambiente privado, destinado a um grupo específico."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A intranet de uma organização pode ser protegida por firewall, que examina o tráfego que entra e sai da rede.",
+            "isTrue": true,
+            "explanation": "O firewall reforça a segurança entre a rede interna e as redes externas, como a Internet."
+          },
+          {
+            "statement": "O simples fato de uma rede local utilizar endereços IP já é suficiente para caracterizá-la como intranet.",
+            "isTrue": false,
+            "explanation": "Endereços IP são usados em qualquer rede TCP/IP. A intranet exige rede privada, de acesso restrito a um público definido, com serviços do tipo Internet."
+          },
+          {
+            "statement": "Um colaborador pode acessar a intranet da empresa estando fora dela, desde que se autentique, por exemplo, por meio de uma VPN.",
+            "isTrue": true,
+            "explanation": "O acesso remoto é possível, mas exige identificação com credenciais autorizadas pela organização."
+          },
+          {
+            "statement": "O controle da Internet é centralizado em uma única organização, ao passo que o da intranet é distribuído entre diversos provedores.",
+            "isTrue": false,
+            "explanation": "É o inverso: a Internet tem controle descentralizado e distribuído; a intranet é gerida de forma centralizada pela própria organização."
+          },
+          {
+            "statement": "Grupos de discussão, mensagens instantâneas e FTP são exemplos de serviços disponibilizados sobre a Internet.",
+            "isTrue": true,
+            "explanation": "Além deles, a Internet oferece web, correio eletrônico, bate-papo e redes sociais."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Internet x intranet x extranet: visão geral",
+            "pageRef": 5
+          },
+          {
+            "topic": "Definição de Internet e características",
+            "pageRef": 6
+          },
+          {
+            "topic": "Internet como rede pública, WAN, backbones e provedores",
+            "pageRef": 7
+          },
+          {
+            "topic": "Serviços da Internet",
+            "pageRef": 7
+          },
+          {
+            "topic": "Definição e características da intranet",
+            "pageRef": 10
+          },
+          {
+            "topic": "Intranet usa as mesmas tecnologias da Internet",
+            "pageRef": 11
+          },
+          {
+            "topic": "Diferença é o acesso; acesso remoto por VPN",
+            "pageRef": 12
+          },
+          {
+            "topic": "Intranet sem depender da Internet; usos e firewall",
+            "pageRef": 13
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Intranet x Extranet x Internet",
+          "pattern": "caso",
+          "difficulty": 1,
+          "pageRef": 5,
+          "statement": "Um sistema de escala de serviço do CBMPE só pode ser consultado pelos militares da corporação, mediante login, e não fica disponível ao público em geral. Esse ambiente é um exemplo de",
+          "support": null,
+          "options": [
+            "Internet, um ambiente público e global aberto a qualquer usuário.",
+            "intranet, uma rede privada restrita aos membros da organização.",
+            "extranet, uma rede aberta a qualquer pessoa que possua uma conta de e-mail.",
+            "Internet, uma rede em que o acesso depende apenas do provedor contratado.",
+            "extranet, uma rede cuja finalidade é atender somente a usuários de fora da instituição."
+          ],
+          "answer": "B",
+          "explanation": "A intranet é a rede privada, de uso interno e restrito aos funcionários ou membros da organização. A Internet é pública e global, e a extranet é uma ponte segura que dá acesso a usuários externos autorizados, como parceiros e fornecedores."
+        },
+        {
+          "topic": "Internet: rede pública",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 7,
+          "statement": "Ao se afirmar que a Internet é uma rede pública, quer-se dizer que ela",
+          "support": null,
+          "options": [
+            "pertence ao governo de cada país, que decide quem pode ou não se conectar a ela e em quais condições.",
+            "é controlada por uma única entidade central, que autoriza individualmente cada acesso de cada usuário.",
+            "está aberta ao acesso de qualquer pessoa que atenda a requisitos mínimos, como contratar um provedor, sem ser gratuita.",
+            "pode ser usada sem qualquer custo por todos os usuários, pois nenhum provedor cobra pelo acesso à sua estrutura.",
+            "só funciona entre computadores de uma mesma organização, protegidos por controle de acesso."
+          ],
+          "answer": "C",
+          "explanation": "Uma rede é pública quando qualquer pessoa pode acessá-la, desde que cumpra exigências básicas, por exemplo contratar um provedor de Internet; isso não implica gratuidade. Ao contrário da intranet, ela não é fechada a um grupo específico e não tem controle centralizado."
+        },
+        {
+          "topic": "Internet: características",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 6,
+          "statement": "Quanto às características da Internet, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "A segurança da informação é nativamente alta, o que dispensa o uso de firewalls e de criptografia.",
+            "O alcance é restrito à área da organização contratante, que gerencia a infraestrutura de ponta a ponta.",
+            "Os dados trafegam por redes privadas, e a gestão da informação é uniforme em todos os serviços.",
+            "O controle é centralizado em uma única entidade global, responsável por administrar todos os backbones.",
+            "O controle é descentralizado e distribuído, e a infraestrutura é mantida por provedores, empresas e governos."
+          ],
+          "answer": "E",
+          "explanation": "A Internet tem acesso público, alcance global e controle descentralizado, com manutenção distribuída entre provedores, empresas e governos. Sua segurança é menor que a de uma rede privada: ela está sujeita a ataques e interceptações e exige camadas extras, como firewalls e criptografia."
+        },
+        {
+          "topic": "Internet: WAN e backbones",
+          "pattern": "correta",
+          "difficulty": 3,
+          "pageRef": 7,
+          "statement": "Em relação à classificação e à estrutura física da Internet, é correto afirmar que ela",
+          "support": null,
+          "options": [
+            "é uma WAN apenas quando se considera o tráfego entre países, sendo uma LAN no restante do percurso.",
+            "é uma LAN, pois resulta da reunião de milhões de redes locais, interligadas por roteadores residenciais.",
+            "não recebe classificação por abrangência, porque é pública e, portanto, não se enquadra em nenhum tipo.",
+            "é uma WAN pela abrangência geográfica, embora formada por milhões de LANs interligadas por backbones de alta capacidade.",
+            "é uma MAN, pois conecta as redes de cada cidade por meio de backbones de curta distância."
+          ],
+          "answer": "D",
+          "explanation": "A Internet é classificada como WAN em razão do alcance mundial, ainda que seja composta por milhões de redes locais. Os backbones, em geral cabos de fibra óptica que atravessam oceanos, funcionam como as rodovias que ligam continentes."
+        },
+        {
+          "topic": "Internet: protocolos comuns",
+          "pattern": "lacuna",
+          "difficulty": 1,
+          "pageRef": 7,
+          "statement": "Na Internet, computadores de lugares e fabricantes diferentes conseguem se entender porque seguem protocolos comuns, especialmente os da arquitetura",
+          "support": null,
+          "options": [
+            "TCP/IP.",
+            "Ethernet.",
+            "OSI.",
+            "Wi-Fi.",
+            "Bluetooth."
+          ],
+          "answer": "A",
+          "explanation": "Os protocolos de comunicação da arquitetura TCP/IP permitem que dispositivos distintos troquem dados corretamente. Ethernet, Wi-Fi e Bluetooth são tecnologias de rede, e o OSI é um modelo teórico de referência, não a pilha efetivamente usada."
+        },
+        {
+          "topic": "Internet: provedor de acesso",
+          "pattern": "caso",
+          "difficulty": 1,
+          "pageRef": 7,
+          "statement": "Um morador contratou um plano de fibra óptica para usar a Internet em casa. O acesso à rede mundial é viabilizado, nesse caso, por",
+          "support": null,
+          "options": [
+            "um provedor de Internet, empresa que vende acesso à sua infraestrutura de rede.",
+            "um backbone, que o usuário contrata individualmente junto aos operadores de cabos submarinos.",
+            "um servidor DNS, responsável por conectar a residência à rede e por entregar o sinal.",
+            "uma intranet, que o morador passa a integrar como funcionário do provedor.",
+            "um protocolo de aplicação, que transmite o sinal óptico até a placa de rede do computador."
+          ],
+          "answer": "A",
+          "explanation": "O usuário entra na Internet conectando-se a uma das redes que a compõem, normalmente por meio de um provedor (como Claro, Vivo ou Oi), que cobra pelo acesso, à semelhança de um pedágio. Backbones sustentam o tráfego global, mas não são contratados pelo usuário final."
+        },
+        {
+          "topic": "Intranet: definição",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 10,
+          "statement": "A intranet pode ser definida como uma rede",
+          "support": null,
+          "options": [
+            "pública, usada por órgãos do governo, que oferece acesso livre a clientes, parceiros e fornecedores.",
+            "privada, restrita a funcionários, que dispensa o conjunto de protocolos TCP/IP para se comunicar.",
+            "mundial, mantida por provedores, que utiliza serviços exclusivos de armazenamento em nuvem.",
+            "privada, restrita a um público específico, que utiliza as tecnologias, os padrões e os serviços da Internet.",
+            "pública, aberta a qualquer usuário, que utiliza protocolos exclusivos e diferentes dos da Internet."
+          ],
+          "answer": "D",
+          "explanation": "A intranet é uma rede corporativa, privada e exclusiva de um grupo (por exemplo, os funcionários), construída sobre os mesmos padrões e serviços da Internet para melhorar a comunicação interna e o compartilhamento de recursos. Ela usa TCP/IP; não é aberta ao público."
+        },
+        {
+          "topic": "Intranet: mesmas tecnologias da Internet",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 12,
+          "statement": "Sobre as tecnologias e os serviços de uma intranet, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "Ela não permite o compartilhamento de impressoras, recurso restrito às redes de alcance mundial.",
+            "Ela pode usar os mesmos protocolos da Internet, como HTTP, HTTPS e FTP, e compartilhar arquivos e impressoras.",
+            "Ela não admite o HTTPS nem o FTP, por serem protocolos exclusivos de redes públicas como a Internet.",
+            "Ela se limita a páginas estáticas, sem suporte a formulários eletrônicos, chat interno ou vídeo.",
+            "Ela usa protocolos próprios, incompatíveis com a pilha TCP/IP, a fim de garantir o isolamento da rede."
+          ],
+          "answer": "B",
+          "explanation": "A pegadinha clássica é achar que a intranet usa tecnologia diferente: tudo o que foi desenvolvido para a Internet pode ser usado nela (pilha TCP/IP, HTTP e HTTPS, compartilhamento de arquivos e impressoras, vídeo, chat). A diferença está no acesso, e não na tecnologia."
+        },
+        {
+          "topic": "Intranet: acesso remoto",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 12,
+          "statement": "Um oficial em viagem precisa consultar o sistema interno da corporação. Em relação ao acesso à intranet a partir de fora da sede, é correto afirmar que",
+          "support": null,
+          "options": [
+            "ele é impossível, pois a intranet só funciona com computadores fisicamente ligados à rede do prédio.",
+            "ele só é permitido a gerentes e diretores, que têm direito a acessar a rede por meio de VPN.",
+            "ele é possível por VPN ou outra autenticação remota, exigindo usuário e senha autorizados pela organização.",
+            "ele exige que a corporação abra a intranet ao público, já que a conexão ocorre pela Internet.",
+            "ele dispensa qualquer identificação, bastando que o oficial conheça o endereço eletrônico do sistema."
+          ],
+          "answer": "C",
+          "explanation": "A intranet é restrita a um grupo, mas pode ser acessada de fora por meio de VPN ou autenticação remota, sempre com identificação (usuário e senha válidos) concedida pela organização. A abertura ao público descaracterizaria a rede, e o acesso não se limita a cargos de chefia."
+        },
+        {
+          "topic": "Intranet sem Internet",
+          "pattern": "correta",
+          "difficulty": 3,
+          "pageRef": 12,
+          "statement": "A respeito da relação entre a intranet e a Internet, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "A intranet exige um provedor de acesso contratado, mesmo quando todos os usuários estão na própria rede local.",
+            "A intranet deixa de ser uma rede privada no instante em que passa a ter qualquer tipo de conexão com a Internet.",
+            "A intranet e a Internet têm relação obrigatória, pois uma é sempre derivada da outra em qualquer organização.",
+            "A intranet só funciona se estiver conectada à Internet, pois depende dela para trocar mensagens internas entre setores.",
+            "A intranet pode funcionar isolada, apenas entre os computadores da rede local, embora costume estar ligada à Internet."
+          ],
+          "answer": "E",
+          "explanation": "A intranet não depende da Internet: uma organização pode mantê-la totalmente isolada, e isso é perfeitamente possível. Quando está conectada à Internet (o que é mais comum, por causa do trabalho em locais diferentes), continua sendo privada, graças a controles como firewalls e autenticação."
+        },
+        {
+          "topic": "Intranet: usos",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 13,
+          "statement": "Assinale a alternativa que apresenta um uso ou benefício da intranet em uma organização.",
+          "support": null,
+          "options": [
+            "Dispensar o uso de firewalls, já que a rede é fechada e por isso não sofre tentativas de invasão.",
+            "Exigir que todos os colaboradores estejam no mesmo prédio, para que compartilhem documentos.",
+            "Centralizar documentos e formulários, acelerar processos, reduzir papel e aproximar unidades de cidades diferentes.",
+            "Impedir reuniões virtuais e listas de discussão, por serem serviços exclusivos da rede pública.",
+            "Permitir que qualquer visitante da página da corporação baixe os relatórios estratégicos da diretoria."
+          ],
+          "answer": "C",
+          "explanation": "A intranet centraliza documentos, agiliza processos, reduz papel e aproxima pessoas de unidades diferentes, além de permitir reuniões virtuais, listas de discussão e transferência de conhecimento. Ela é protegida por firewalls, que verificam o tráfego, e não é aberta a visitantes."
+        },
+        {
+          "topic": "Intranet x Internet: acesso e propriedade",
+          "pattern": "correta",
+          "difficulty": 3,
+          "pageRef": 14,
+          "statement": "Comparando a intranet com a Internet, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "Têm a mesma propriedade, pois ambas são mantidas por provedores de acesso, e diferem apenas pela velocidade.",
+            "A intranet é aberta ao público, enquanto a Internet é restrita aos funcionários de cada empresa.",
+            "Diferem pela tecnologia: a intranet exige software próprio, e a Internet funciona apenas com o conjunto TCP/IP.",
+            "Usam protocolos diferentes, e a Internet pertence a uma única empresa, que decide as regras de acesso de todos.",
+            "Usam basicamente as mesmas tecnologias; a Internet não tem dono único, e a intranet pertence a uma organização."
+          ],
+          "answer": "E",
+          "explanation": "As maiores diferenças entre as duas estão no acesso (restrito aos autorizados x público) e na propriedade (a intranet é de uma organização e é mantida pela equipe de TI dela; a Internet é um conglomerado de redes operadas por muitos agentes). A tecnologia, em essência, é a mesma."
+        }
+      ]
+    },
+    {
+      "id": "informatica/a01/s02",
+      "bizu": {
+        "summary": [
+          "**Extranet** = rede privada que funciona como **extensão da intranet** para usuários externos autorizados (parceiros, fornecedores, clientes), usando a Internet como meio. O acesso é restrito, autenticado e controlado.",
+          "Ambas, intranet e extranet, são redes de **uso restrito**. A diferença é o público: a intranet atende os membros internos; a extranet estende o acesso a externos autorizados.",
+          "**Cenários**: colaborador na sede = intranet; colaborador remoto = intranet acessada remotamente; parceiro comercial externo = **extranet**. Em sentido genérico, qualquer acesso externo à rede interna seria extranet, mas o termo é mais associado a parceiros.",
+          "**Extranet** mantém gestão centralizada: os dados são compartilhados apenas parcialmente, com controle do que o externo pode ver ou alterar. Usa autenticação, criptografia, firewalls e controle de acesso.",
+          "**VPN** (Virtual Private Network, rede privada virtual): usa a infraestrutura pública da Internet para transmitir informações com segurança, **criptografando** requisições e respostas e criando um 'túnel'. Oculta o IP do usuário do site visitado e do provedor.",
+          "Exemplo da urna eletrônica: os votos são enviados ao TSE por VPN, o que impede identificar o pacote como sendo da urna e conhecer seu conteúdo.",
+          "**Tunelamento**: encapsulamento de um protocolo dentro de outro. O pacote é criptografado, encapsulado (ganha cabeçalho adicional), enviado pela rede pública e, no destino, desencapsulado e descriptografado. Protocolos: IPSec, L2TP.",
+          "**VPN Site-to-Site** (gateway a gateway): liga duas redes, como escritórios de uma empresa. **VPN Client-to-Site** (acesso remoto): liga um único dispositivo a uma rede remota, caso típico do teletrabalho e do usuário doméstico.",
+          "**Aplicações da extranet**: acesso remoto de vendedores, aplicações B2B, melhoria da cadeia de suprimentos, projetos colaborativos entre empresas e agilização de transações comerciais.",
+          "Fazer login no site público de uma empresa **não** é acessar a intranet dela: o site fica em servidor web público; a rede interna é outra coisa."
+        ],
+        "teoria": [
+          {
+            "statement": "A principal diferença entre intranet e extranet é que a primeira é de uso restrito e a segunda é de uso público.",
+            "isTrue": false,
+            "explanation": "As duas são restritas. A intranet atende o público interno; a extranet estende o acesso a usuários externos autorizados."
+          },
+          {
+            "statement": "A extranet pode ser entendida como uma extensão da intranet que concede acesso restrito a usuários externos, como parceiros e fornecedores.",
+            "isTrue": true,
+            "explanation": "É a definição central: rede privada ligada à Internet, com acesso controlado para externos."
+          },
+          {
+            "statement": "Quando um aluno faz login no site público de um curso online, ele está acessando a intranet da empresa responsável pelo curso.",
+            "isTrue": false,
+            "explanation": "O site público fica em um servidor web acessível pela Internet. A intranet é a rede interna da organização, usada para dados privados e recursos internos."
+          },
+          {
+            "statement": "A VPN utiliza a infraestrutura da Internet e criptografa a comunicação, criando um túnel seguro entre os pontos conectados.",
+            "isTrue": true,
+            "explanation": "A rede é 'privada' porque é construída sobre uma rede pública, protegendo a confidencialidade das informações."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O tunelamento consiste em encapsular um protocolo dentro de outro, permitindo enviar o pacote com segurança por uma rede pública.",
+            "isTrue": true,
+            "explanation": "É a técnica base das VPNs; o pacote é protegido, encapsulado, transmitido e depois desencapsulado no destino."
+          },
+          {
+            "statement": "A VPN site-to-site conecta um único dispositivo a uma rede remota, enquanto a client-to-site liga duas redes por meio de gateways.",
+            "isTrue": false,
+            "explanation": "Os conceitos estão invertidos: a site-to-site liga duas redes (gateway a gateway); a client-to-site liga um dispositivo individual à rede remota."
+          },
+          {
+            "statement": "Na extranet, os dados da organização são compartilhados apenas em parte com os usuários externos, mantendo-se a gestão centralizada.",
+            "isTrue": true,
+            "explanation": "A organização controla o que o agente externo pode visualizar ou alterar."
+          },
+          {
+            "statement": "Ao usar uma VPN, o site visitado e o provedor de acesso continuam conhecendo o IP real e as ações do usuário.",
+            "isTrue": false,
+            "explanation": "Com a VPN, eles identificam apenas o acesso da VPN, sem saber quem está por trás nem o que foi pedido, pois o tráfego segue criptografado."
+          },
+          {
+            "statement": "A extranet é utilizada em aplicações B2B e para melhorar a comunicação ao longo da cadeia de suprimentos.",
+            "isTrue": true,
+            "explanation": "Fornecedores e parceiros acessam pedidos, contratos e informações da empresa de modo controlado."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Definições e características da extranet",
+            "pageRef": 15
+          },
+          {
+            "topic": "Extranet como extensão da intranet",
+            "pageRef": 15
+          },
+          {
+            "topic": "Cenários de acesso: intranet, intranet remota e extranet",
+            "pageRef": 16
+          },
+          {
+            "topic": "VPN: conceito e criptografia",
+            "pageRef": 17
+          },
+          {
+            "topic": "Tunelamento e VPN como túnel",
+            "pageRef": 18
+          },
+          {
+            "topic": "VPN Site-to-Site e Client-to-Site",
+            "pageRef": 19
+          },
+          {
+            "topic": "Aplicações da extranet e site público x intranet",
+            "pageRef": 19
+          },
+          {
+            "topic": "Diferença intranet x extranet nas questões",
+            "pageRef": 20
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Extranet: definição",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 15,
+          "statement": "A extranet pode ser definida como uma rede",
+          "support": null,
+          "options": [
+            "isolada da Internet, que conecta apenas os computadores de um mesmo prédio ou de um único campus.",
+            "pública que substitui a intranet, permitindo que qualquer pessoa consulte os sistemas internos da empresa.",
+            "privada que independe de autenticação, pois os usuários externos são sempre considerados confiáveis.",
+            "privada que estende a intranet, com acesso restrito e autenticado a usuários externos, como parceiros e fornecedores.",
+            "mundial que reúne milhões de redes locais, com acesso aberto a quem contratar um provedor."
+          ],
+          "answer": "D",
+          "explanation": "A extranet é uma extensão da intranet, também privada, que, por meio da Internet, dá a usuários externos autorizados (parceiros, fornecedores, clientes) acesso controlado a parte dos recursos da organização, com autenticação e permissões."
+        },
+        {
+          "topic": "Extranet: cenário de parceiro comercial",
+          "pattern": "caso",
+          "difficulty": 1,
+          "pageRef": 16,
+          "statement": "Uma empresa fornecedora de equipamentos de resgate, situada em outra cidade, acessa pela Internet a área do sistema do CBMPE destinada ao acompanhamento de seus pedidos, usando credenciais fornecidas pela corporação. Esse acesso caracteriza o uso de uma",
+          "support": null,
+          "options": [
+            "extranet.",
+            "rede de área metropolitana (MAN) aberta.",
+            "intranet local.",
+            "rede de área pessoal (PAN).",
+            "Internet pública, sem autenticação."
+          ],
+          "answer": "A",
+          "explanation": "O acesso de um parceiro comercial externo, autenticado e limitado a recursos da organização, é associado à extranet. Uma intranet local pressupõe usuário dentro da rede interna, e a Internet pública não exige credenciais corporativas."
+        },
+        {
+          "topic": "Intranet x Extranet",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 15,
+          "statement": "Quanto à diferença entre intranet e extranet, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "A intranet é uma rede de longa distância, e a extranet é uma rede local restrita a um único andar de prédio.",
+            "As duas são de uso restrito: a intranet atende aos membros internos, e a extranet amplia o acesso a externos autorizados.",
+            "A intranet utiliza a pilha TCP/IP, e a extranet utiliza protocolos próprios, incompatíveis com a Internet e com a intranet.",
+            "A extranet dispensa a Internet para funcionar, ao passo que a intranet só opera quando está conectada a ela.",
+            "A intranet é uma rede de uso restrito, e a extranet é uma rede de uso público, aberta a qualquer internauta que a encontre."
+          ],
+          "answer": "B",
+          "explanation": "Intranet e extranet são ambas privadas e restritas; o que muda é o público: membros internos, na primeira, e usuários externos autorizados, na segunda, que acessam via Internet. Ambas usam as mesmas tecnologias da Internet."
+        },
+        {
+          "topic": "VPN (Virtual Private Network)",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 17,
+          "statement": "Uma rede privada virtual (VPN) é uma tecnologia que",
+          "support": null,
+          "options": [
+            "substitui o provedor de acesso, fornecendo ao usuário uma conexão gratuita e sem criptografia.",
+            "usa a infraestrutura da Internet para transmitir informações de forma segura, criando uma espécie de túnel protegido.",
+            "converte nomes de domínio em endereços IP, para que o usuário acesse redes privadas com segurança.",
+            "serve exclusivamente à troca de mensagens de e-mail entre servidores de organizações diferentes.",
+            "constrói uma rede física de cabos próprios, totalmente independente da infraestrutura da Internet."
+          ],
+          "answer": "B",
+          "explanation": "A VPN é virtual e privada porque é construída sobre uma rede pública real, normalmente a Internet, com um túnel que protege a confidencialidade dos dados. Não é uma rede física independente nem um serviço de DNS ou de e-mail."
+        },
+        {
+          "topic": "VPN: privacidade",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 17,
+          "statement": "Um usuário acessa um site por meio de uma VPN. Em relação ao que o provedor de Internet e o site visitado conseguem identificar, é correto afirmar que",
+          "support": null,
+          "options": [
+            "o site visitado enxerga o endereço IP real do usuário, e somente o provedor desconhece quem acessou a página.",
+            "ambos identificam o usuário e o que ele fez, porque a VPN só protege o tráfego dentro da rede do provedor.",
+            "o provedor lê o conteúdo de cada requisição e de cada resposta, pois a VPN apenas muda o nome do usuário.",
+            "ambos passam a conhecer o IP real do usuário, desde que ele não use o protocolo HTTP nas requisições.",
+            "eles percebem apenas que o acesso partiu da VPN, sem saber quem está por trás, pois o IP do usuário fica oculto."
+          ],
+          "answer": "E",
+          "explanation": "Com a VPN, as requisições e respostas viajam criptografadas até o servidor VPN; o site e o provedor sabem apenas que o acesso foi feito pela VPN, não conhecem o usuário e não veem o que foi pedido. Sem VPN, ambos sabem quem é o usuário, qual página visitou e o que fez."
+        },
+        {
+          "topic": "VPN: tunelamento",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 18,
+          "statement": "A técnica de tunelamento, empregada na criação de VPNs, consiste em",
+          "support": null,
+          "options": [
+            "encapsular um protocolo dentro de outro, para enviar o pacote com segurança por uma rede pública, como a Internet.",
+            "bloquear as portas de comunicação da rede interna, de modo que nenhum pacote saia ou entre nela.",
+            "traduzir os nomes de domínio digitados pelo usuário em endereços numéricos, antes do envio dos pacotes.",
+            "dividir a rede corporativa em sub-redes isoladas, ligadas por cabos de uso exclusivo da organização.",
+            "armazenar cópias dos pacotes em um servidor remoto, a fim de recuperá-los em caso de perda."
+          ],
+          "answer": "A",
+          "explanation": "Tunelamento é o encapsulamento de um protocolo dentro de outro, o que permite trafegar com segurança por uma rede pública e é a base das VPNs. O encapsulamento ocorre nas camadas de enlace ou de rede, com protocolos como IPSec e L2TP."
+        },
+        {
+          "topic": "VPN: etapas do envio",
+          "pattern": "relacao",
+          "difficulty": 3,
+          "pageRef": 18,
+          "statement": "Em uma VPN, cada datagrama passa por etapas na origem e outras no destino antes de ser entregue. A ordem correta dessas etapas é:",
+          "support": null,
+          "options": [
+            "o datagrama é enviado sem alteração; no destino, é encapsulado, criptografado e entregue ao destinatário final.",
+            "o datagrama é desencapsulado ainda na origem, criptografado na rede intermediária e decifrado no destino.",
+            "o datagrama é encapsulado, depois criptografado e enviado; no destino, é decifrado e só então desencapsulado.",
+            "o datagrama é criptografado, depois encapsulado com cabeçalho adicional e enviado; no destino, é desencapsulado e decifrado.",
+            "o datagrama é criptografado e enviado sem encapsulamento, pois o túnel dispensa o uso de cabeçalhos adicionais."
+          ],
+          "answer": "D",
+          "explanation": "Na origem, o datagrama é primeiro criptografado (fica ilegível se for interceptado) e depois encapsulado, recebendo um cabeçalho adicional para atravessar a rede intermediária. Ao chegar, o caminho se inverte: é desencapsulado, decifrado e encaminhado ao destino final."
+        },
+        {
+          "topic": "VPN: Site-to-Site e Client-to-Site",
+          "pattern": "assertivas",
+          "difficulty": 2,
+          "pageRef": 19,
+          "statement": "Sobre os tipos de conexão em redes privadas virtuais, considere as afirmativas a seguir.\n\nI. A VPN Site-to-Site liga a rede de uma unidade à rede de outra, de gateway a gateway.\nII. A VPN Client-to-Site, ou de acesso remoto, liga um único dispositivo a uma rede remota.\nIII. Na VPN Client-to-Site, o enlace privado é criado entre duas redes inteiras, de roteador a roteador.\n\nEstá correto o que se afirma em",
+          "support": null,
+          "options": [
+            "I, apenas.",
+            "II, apenas.",
+            "III, apenas.",
+            "I e II, apenas.",
+            "I, II e III."
+          ],
+          "answer": "D",
+          "explanation": "A Site-to-Site conecta duas redes (por exemplo, filiais de uma empresa), de gateway a gateway ou de roteador a roteador. A Client-to-Site, típica do usuário doméstico e do funcionário em trabalho externo, conecta um único dispositivo a uma rede remota, o que torna a afirmativa III falsa."
+        },
+        {
+          "topic": "Extranet: aplicações",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 19,
+          "statement": "Assinale a situação que exemplifica uma aplicação típica de extranet.",
+          "support": null,
+          "options": [
+            "Qualquer internauta consulta, sem login, as notícias públicas publicadas no portal institucional da empresa.",
+            "Um colaborador consulta documentos internos estando dentro da sede, conectado à rede interna da organização.",
+            "Empresas parceiras compartilham, de forma controlada, informações da cadeia de suprimentos e acompanham pedidos pela Internet.",
+            "Um usuário doméstico baixa vídeos de um site aberto, usando apenas o navegador e a conexão contratada.",
+            "Os militares de um quartel compartilham uma impressora conectada à rede local, sem qualquer acesso externo."
+          ],
+          "answer": "C",
+          "explanation": "A extranet viabiliza a colaboração controlada entre a organização e agentes externos: B2B, acompanhamento de pedidos, projetos entre empresas e cadeia de suprimentos. Impressora na rede local e acesso interno à sede são intranet, e portal aberto ao público é Internet."
+        },
+        {
+          "topic": "Intranet: sites públicos com login",
+          "pattern": "caso",
+          "difficulty": 3,
+          "pageRef": 19,
+          "statement": "Um aluno acessa o site público de um curso on-line, informa usuário e senha e assiste às aulas. Sobre esse acesso, é correto afirmar que o aluno",
+          "support": null,
+          "options": [
+            "acessa a intranet da empresa, pois todo site com área restrita é uma rede privada corporativa.",
+            "acessa a intranet da empresa, pois a autenticação com usuário e senha caracteriza uma rede interna.",
+            "acessa a intranet da empresa, desde que o conteúdo esteja hospedado em servidores localizados no Brasil.",
+            "não acessa a intranet, pois o acesso autenticado a qualquer site é sempre classificado como extranet.",
+            "não acessa a intranet da empresa, mas o site público dela, hospedado em um servidor web em algum lugar do mundo."
+          ],
+          "answer": "E",
+          "explanation": "A intranet é a rede interna usada para compartilhar dados privados, arquivos e impressoras da organização. Um site público hospedado em servidor web, mesmo com login, não é a intranet; autenticar-se não transforma um serviço da Internet em rede interna."
+        }
+      ]
+    }
+  ]
+}
