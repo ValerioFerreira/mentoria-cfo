@@ -2,7 +2,6 @@
   "aula": "matematica/a13",
   "batch": "w2-bizu-matematica",
   "status": "DRAFT",
-  "stage": "bizu",
   "segments": [
     {
       "id": "matematica/a13/s01",
@@ -96,7 +95,230 @@
             "pageRef": 11
           }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Definição de logaritmo",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 6,
+          "statement": "O valor de log₄ (1/64) é",
+          "support": null,
+          "options": [
+            "−3",
+            "−1/3",
+            "1/3",
+            "3",
+            "16"
+          ],
+          "answer": "A",
+          "explanation": "Procura-se o expoente y tal que 4ʸ = 1/64. Como 64 = 4³, tem-se 1/64 = 4⁻³ e, portanto, y = −3. O valor 3 troca o sinal do expoente; −1/3 e 16 resultam de usar a divisão no lugar da definição."
+        },
+        {
+          "topic": "Definição de logaritmo",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 7,
+          "statement": "Sabendo que log_x 343 = 3, a base x vale",
+          "support": null,
+          "options": [
+            "21",
+            "49",
+            "9",
+            "7",
+            "3"
+          ],
+          "answer": "D",
+          "explanation": "Pela definição, log_x 343 = 3 equivale a x³ = 343. Como 7³ = 343, conclui-se que x = 7. O valor 3 confunde base com expoente, e 49 é o quadrado da base."
+        },
+        {
+          "topic": "Condição de existência",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 4,
+          "statement": "Entre os logaritmos a seguir, o único que NÃO existe no conjunto dos números reais é",
+          "support": null,
+          "options": [
+            "o logaritmo de 1/8 na base 2.",
+            "o logaritmo de 1 na base 7.",
+            "o logaritmo de 4 na base 1/2.",
+            "o logaritmo de 0,01 na base 10.",
+            "o logaritmo de 9 na base −3."
+          ],
+          "answer": "E",
+          "explanation": "A base precisa ser positiva e diferente de 1, e o logaritmando precisa ser positivo. Só o primeiro caso viola a condição (base negativa). Base 1/2 é permitida (entre 0 e 1), logaritmando 1 é permitido (resulta em 0) e logaritmando fracionário positivo também."
+        },
+        {
+          "topic": "Consequências da definição",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 7,
+          "statement": "O valor da expressão 7^(log₇ 12) + log₁₁ 1 − log₁₃ 13 é",
+          "support": null,
+          "options": [
+            "9",
+            "10",
+            "11",
+            "12",
+            "13"
+          ],
+          "answer": "C",
+          "explanation": "Pela consequência da definição, 7^(log₇ 12) = 12; além disso, log₁₁ 1 = 0 (qualquer base) e log₁₃ 13 = 1. A conta fica 12 + 0 − 1 = 11. Quem esquece de subtrair log₁₃ 13 obtém 12; quem troca log₁₁ 1 por 1 erra em uma unidade."
+        },
+        {
+          "topic": "Consequências da definição",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 8,
+          "statement": "Se log₃ (3x − 2) = log₃ (x + 6), então x é igual a",
+          "support": null,
+          "options": [
+            "8",
+            "10",
+            "2",
+            "4",
+            "1"
+          ],
+          "answer": "D",
+          "explanation": "Com a mesma base, a igualdade entre logaritmos só ocorre quando os logaritmandos coincidem: 3x − 2 = x + 6, logo 2x = 8 e x = 4 (verificação: 10 > 0 nos dois lados). O valor 10 é o logaritmando, não o x; 8 vem de esquecer de dividir por 2."
+        },
+        {
+          "topic": "Bases especiais",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 8,
+          "statement": "Considerando que, sem indicação de base, o logaritmo é decimal, o valor de log 10000 + ln e é",
+          "support": null,
+          "options": [
+            "6",
+            "4",
+            "9",
+            "5",
+            "10"
+          ],
+          "answer": "D",
+          "explanation": "log 10000 = log₁₀ 10⁴ = 4 e ln e = logₑ e = 1, logo a soma é 5. Quem acha que ln e = 0 chega a 4, e quem conta cinco zeros em 10000 chega a 6."
+        },
+        {
+          "topic": "Bases especiais",
+          "pattern": "assertivas",
+          "difficulty": 2,
+          "pageRef": 8,
+          "statement": "Considere as afirmações sobre logaritmos de bases especiais: I. O símbolo log 50, sem base escrita, representa log₁₀ 50. II. A notação ln 5 representa logₑ 5, em que e é uma constante irracional. III. A notação ln 5 representa log₅ e. Está correto o que se afirma em",
+          "support": null,
+          "options": [
+            "II, apenas.",
+            "I, apenas.",
+            "I, II e III.",
+            "I e III, apenas.",
+            "I e II, apenas."
+          ],
+          "answer": "E",
+          "explanation": "I e II descrevem corretamente o logaritmo decimal e o natural. A III inverte base e logaritmando: ln 5 é o logaritmo de 5 na base e, e não o de e na base 5. Logo só I e II estão certas."
+        },
+        {
+          "topic": "Logaritmo do quociente",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 9,
+          "statement": "O valor de log₂ 96 − log₂ 3 é",
+          "support": null,
+          "options": [
+            "32",
+            "93",
+            "5",
+            "6",
+            "3"
+          ],
+          "answer": "C",
+          "explanation": "A diferença de logaritmos de mesma base é o logaritmo do quociente: log₂ (96/3) = log₂ 32 = 5, pois 2⁵ = 32. O valor 32 é o quociente sem o logaritmo, e 93 vem de subtrair os logaritmandos."
+        },
+        {
+          "topic": "Logaritmo da potência",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 10,
+          "statement": "Admita que log 3 = 0,48. Nessas condições, o valor de log 81 − log 3 é",
+          "support": null,
+          "options": [
+            "0,96",
+            "1,44",
+            "1,92",
+            "2,40",
+            "38,40"
+          ],
+          "answer": "B",
+          "explanation": "Como 81 = 3⁴, log 81 = 4 · 0,48 = 1,92; subtraindo log 3 = 0,48 obtém-se 1,44 (equivale a 3 · log 3). O valor 1,92 esquece a subtração, e 38,40 resulta de multiplicar o logaritmando por 0,48 em vez de usar o expoente."
+        },
+        {
+          "topic": "Base elevada a um expoente",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 10,
+          "statement": "Sendo x um número real positivo e log₃ x = m, o valor de log₉ x² em função de m é",
+          "support": null,
+          "options": [
+            "m/4",
+            "m/2",
+            "m",
+            "2m",
+            "4m"
+          ],
+          "answer": "C",
+          "explanation": "Base 9 = 3²: log₉ x² = (1/2) · log₃ x². Pela propriedade da potência, log₃ x² = 2m. Portanto, log₉ x² = (1/2) · 2m = m. Os fatores se compensam: o expoente 2 do logaritmando multiplica e o expoente 2 da base divide."
+        },
+        {
+          "topic": "Aplicação das propriedades",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 12,
+          "statement": "Dados log 2 = a e log 3 = b, o valor de log 0,75 em função de a e b é",
+          "support": null,
+          "options": [
+            "b − a²",
+            "b − 2a",
+            "b + 2a",
+            "2a − b",
+            "b/(2a)"
+          ],
+          "answer": "B",
+          "explanation": "Como 0,75 = 3/4 = 3/2², log 0,75 = log 3 − log 2² = b − 2a. A alternativa b − a² aplica a potência ao logaritmo e não ao fator; 2a − b inverte o quociente."
+        },
+        {
+          "topic": "Aplicação das propriedades",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 14,
+          "statement": "Sejam a, b e c números reais positivos com c = 3 e log₄ a + log₄ b − log₄ c = 2. O valor do produto a · b é",
+          "support": null,
+          "options": [
+            "12",
+            "16",
+            "24",
+            "32",
+            "48"
+          ],
+          "answer": "E",
+          "explanation": "Reunindo os logaritmos: log₄ (ab/c) = 2, logo ab/c = 4² = 16 e ab = 16 · 3 = 48. O valor 16 é a razão ab/c e esquece de multiplicar por c."
+        },
+        {
+          "topic": "Propriedades dos logaritmos",
+          "pattern": "incorreta",
+          "difficulty": 1,
+          "pageRef": 9,
+          "statement": "Para a, x e y reais positivos, com a ≠ 1, assinale a alternativa que apresenta uma relação INCORRETA.",
+          "support": null,
+          "options": [
+            "logₐ (x + y) = logₐ x · logₐ y",
+            "logₐ (x / y) = logₐ x − logₐ y",
+            "log_(a²) x = (1/2) · logₐ x",
+            "logₐ x³ = 3 · logₐ x",
+            "logₐ (x · y) = logₐ x + logₐ y"
+          ],
+          "answer": "A",
+          "explanation": "Não existe propriedade que transforme o logaritmo de uma soma: logₐ (x + y) não é igual ao produto dos logaritmos. As demais são, respectivamente, as propriedades do produto, do quociente, da potência e da base elevada a expoente, todas corretas."
+        }
+      ]
     },
     {
       "id": "matematica/a13/s02",
@@ -185,7 +407,213 @@
             "pageRef": 25
           }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Fórmula de mudança de base",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 15,
+          "statement": "Sendo a, b e x números reais positivos, com a ≠ 1 e b ≠ 1, a mudança do logaritmo da base a para a base b é dada por logₐ x =",
+          "support": null,
+          "options": [
+            "log_b x − log_b a",
+            "log_b x / log_b a",
+            "log_b a / log_b x",
+            "log_b x + log_b a",
+            "log_b x · log_b a"
+          ],
+          "answer": "B",
+          "explanation": "Na mudança de base, o logaritmando é dividido pelo logaritmo da base antiga, ambos tomados na nova base: logₐ x = log_b x / log_b a. A alternativa que inverte numerador e denominador corresponde a log_x a (inverso), e as demais não são identidades."
+        },
+        {
+          "topic": "Mudança de base",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 15,
+          "statement": "O valor de log_(1/2) 8 é",
+          "support": null,
+          "options": [
+            "3",
+            "1/3",
+            "−8",
+            "−1/3",
+            "−3"
+          ],
+          "answer": "E",
+          "explanation": "Levando à base 10 (ou 2): log 8 / log (1/2) = 3 · log 2 / (−log 2) = −3. Pela definição, (1/2)ʸ = 8 exige y = −3, pois (1/2)⁻³ = 2³ = 8. Quem ignora que a base está entre 0 e 1 marca 3."
+        },
+        {
+          "topic": "Inverso do logaritmo",
+          "pattern": "relacao",
+          "difficulty": 1,
+          "pageRef": 15,
+          "statement": "Sendo a e x números reais positivos e diferentes de 1, se logₐ x = p, então log_x a é igual a",
+          "support": null,
+          "options": [
+            "−p",
+            "1/p",
+            "p/2",
+            "p",
+            "p²"
+          ],
+          "answer": "B",
+          "explanation": "Vale logₐ x = 1 / log_x a. Assim, log_x a é o inverso de logₐ x, isto é, 1/p. Trocar a base pelo logaritmando não muda o sinal nem eleva ao quadrado: gera o inverso, e não o oposto."
+        },
+        {
+          "topic": "Mudança de base com dados",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 16,
+          "statement": "Dados log 2 = a e log 3 = b, o valor de log₃ 12 em função de a e b é",
+          "support": null,
+          "options": [
+            "12a/b",
+            "(2a + b)/a",
+            "(2a + b)/b",
+            "(a + 2b)/b",
+            "2a + b"
+          ],
+          "answer": "C",
+          "explanation": "Mudando para a base 10: log₃ 12 = log 12 / log 3. Como 12 = 2² · 3, log 12 = 2a + b. Logo log₃ 12 = (2a + b)/b. A alternativa (2a + b)/a divide pelo logaritmo errado (seria log₂ 12)."
+        },
+        {
+          "topic": "Mudança de base",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 15,
+          "statement": "O valor da soma log₃ 27 + log₉ 243 é",
+          "support": null,
+          "options": [
+            "11/2",
+            "5",
+            "8",
+            "15/2",
+            "13/2"
+          ],
+          "answer": "A",
+          "explanation": "log₃ 27 = 3. Para log₉ 243, escreve-se tudo na base 3: log₃ 243 / log₃ 9 = 5/2. A soma é 3 + 5/2 = 11/2. O valor 8 soma 3 + 5, esquecendo de dividir por log₃ 9."
+        },
+        {
+          "topic": "Encadeamento de logaritmos",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 15,
+          "statement": "O valor do produto log₂ 3 · log₃ 7 · log₇ 16 é",
+          "support": null,
+          "options": [
+            "6",
+            "7",
+            "21",
+            "4",
+            "12"
+          ],
+          "answer": "D",
+          "explanation": "Pela forma log_a x = log_b x · log_a b, o produto log₂ 3 · log₃ 7 vale log₂ 7, e log₂ 7 · log₇ 16 vale log₂ 16 = 4. É como se as bases intermediárias 3 e 7 se cancelassem. Multiplicar os números (3 · 7 = 21) não tem sentido aqui."
+        },
+        {
+          "topic": "Equação exponencial com base e",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 24,
+          "statement": "Em uma cultura, o número de bactérias é N(t) = 3e^(kt), com t em horas e k constante positiva. Sabendo que N(2) = 75, o valor de k é",
+          "support": null,
+          "options": [
+            "ln 3",
+            "ln 25",
+            "ln 75",
+            "ln 10",
+            "ln 5"
+          ],
+          "answer": "E",
+          "explanation": "Substituindo, 75 = 3e^(2k), então e^(2k) = 25 e 2k = ln 25. Assim, k = (1/2) · ln 25 = ln 25^(1/2) = ln 5. O valor ln 25 corresponde a 2k, e ln 75 ignora a divisão por 3."
+        },
+        {
+          "topic": "Mudança de base",
+          "pattern": "relacao",
+          "difficulty": 2,
+          "pageRef": 23,
+          "statement": "Se 3^m = 10, então log₃ 30 é igual a",
+          "support": null,
+          "options": [
+            "m + 3",
+            "3m",
+            "10m",
+            "m + 1",
+            "m/3"
+          ],
+          "answer": "D",
+          "explanation": "Pela definição, m = log₃ 10. Como 30 = 3 · 10, log₃ 30 = log₃ 3 + log₃ 10 = 1 + m. A alternativa m + 3 soma o logaritmando 3 em vez do logaritmo de 3 na base 3, que vale 1."
+        },
+        {
+          "topic": "Aplicação das propriedades",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 19,
+          "statement": "Dado log 2 = 0,30, o valor de log 0,02 é",
+          "support": null,
+          "options": [
+            "−1,70",
+            "−1,30",
+            "−0,70",
+            "1,70",
+            "2,30"
+          ],
+          "answer": "A",
+          "explanation": "Escreve-se 0,02 = 2/100, logo log 0,02 = log 2 − log 100 = 0,30 − 2 = −1,70. O sinal negativo é esperado, pois 0,02 < 1. A alternativa 1,70 esquece o sinal; −0,70 usa 10 no lugar de 100 (0,30 − 1); −1,30 seria o valor de log 0,05, e não de log 0,02."
+        },
+        {
+          "topic": "Propriedades do logaritmo",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 20,
+          "statement": "A expressão log₃ 12 + log₃ 3 é equivalente a",
+          "support": null,
+          "options": [
+            "log₃ 15",
+            "2 · log₃ 6",
+            "log₃ 4",
+            "12 · log₃ 3",
+            "3 · log₃ 12"
+          ],
+          "answer": "B",
+          "explanation": "A soma de logaritmos de mesma base é o logaritmo do produto: log₃ (12 · 3) = log₃ 36. Como 36 = 6², isso é 2 · log₃ 6. A alternativa log₃ 15 soma os logaritmandos, o que não é permitido; log₃ 4 usaria o quociente."
+        },
+        {
+          "topic": "Condições da mudança de base",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 15,
+          "statement": "Em relação à fórmula de mudança de base, logₐ x = log_b x / log_b a, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "Ela só vale quando a nova base b é maior que 1.",
+            "Ela vale para x negativo, desde que b seja maior que 1.",
+            "Ela vale para a e b positivos e diferentes de 1, com x positivo.",
+            "Ela só vale quando as bases a e b são iguais.",
+            "Ela vale com b = 1, desde que a seja diferente de 1."
+          ],
+          "answer": "C",
+          "explanation": "A fórmula exige bases positivas e diferentes de 1 e logaritmando positivo. A nova base pode estar entre 0 e 1. Com b = 1 o denominador log_b a não existe, pois log_1 não é definido, e bases iguais tornariam a mudança inútil (resultado 1 ou o próprio log)."
+        },
+        {
+          "topic": "Mudança de base numérica",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 25,
+          "statement": "Admita que log 2 = 0,30. O valor aproximado de log₈ 1000 é",
+          "support": null,
+          "options": [
+            "3,33",
+            "2,70",
+            "0,90",
+            "3,00",
+            "10,00"
+          ],
+          "answer": "A",
+          "explanation": "Na base 10: log₈ 1000 = log 1000 / log 8 = 3 / (3 · 0,30) = 3/0,90 ≈ 3,33. O valor 0,90 é apenas log 8; 10,00 resulta de usar log 8 = 0,30 (esquecendo que 8 = 2³)."
+        }
+      ]
     },
     {
       "id": "matematica/a13/s03",
@@ -269,7 +697,179 @@
             "pageRef": 33
           }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Definição da função logarítmica",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 27,
+          "statement": "A função logarítmica de base a é definida por f(x) = logₐ x. Assinale a alternativa que apresenta corretamente a condição sobre a base e o conjunto em que a função é definida.",
+          "support": null,
+          "options": [
+            "a > 0 e a ≠ 1, com f de ℝ em ℝ.",
+            "a > 0 e a ≠ 1, com f de ℝ*₊ em ℝ.",
+            "a ≥ 0, com f de ℝ*₊ em ℝ.",
+            "a > 1, com f de ℝ*₊ em ℝ*₊.",
+            "a > 0 e a ≠ 1, com f de ℝ*₊ em ℝ*₊."
+          ],
+          "answer": "B",
+          "explanation": "A base deve ser positiva e diferente de 1, o domínio é ℝ*₊ (logaritmandos positivos) e o contradomínio é ℝ, pois o logaritmo assume qualquer valor real. Exigir a > 1 descarta as bases entre 0 e 1, que também são válidas; a ≥ 0 admite a base 0, que não é permitida."
+        },
+        {
+          "topic": "Domínio",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 28,
+          "statement": "O domínio da função f(x) = log₅ (2x − 6) é o conjunto dos números reais x tais que",
+          "support": null,
+          "options": [
+            "x > 3",
+            "x < 3",
+            "x > 6",
+            "x ≥ 3",
+            "x > −3"
+          ],
+          "answer": "A",
+          "explanation": "A base 5 já satisfaz as condições; basta o logaritmando ser positivo: 2x − 6 > 0, logo x > 3. O intervalo é aberto em 3, pois log₅ 0 não existe, o que elimina x ≥ 3."
+        },
+        {
+          "topic": "Domínio com base variável",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 29,
+          "statement": "O domínio da função f(x) = log_(x−2) 9 é",
+          "support": null,
+          "options": [
+            "x > 3",
+            "x > 2",
+            "x ≥ 2 e x ≠ 3",
+            "x ≠ 3",
+            "x > 2 e x ≠ 3"
+          ],
+          "answer": "E",
+          "explanation": "O logaritmando 9 é positivo. A base x − 2 deve ser positiva e diferente de 1: x − 2 > 0 dá x > 2, e x − 2 ≠ 1 dá x ≠ 3. Ficar só com x > 2 ignora a exclusão do valor que torna a base igual a 1."
+        },
+        {
+          "topic": "Domínio com logaritmando quadrático",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 29,
+          "statement": "O domínio da função f(x) = log₃ (x² − 5x + 4) é",
+          "support": null,
+          "options": [
+            "−4 < x < −1",
+            "x > 4",
+            "x < 1 ou x > 4",
+            "1 < x < 4",
+            "x ≤ 1 ou x ≥ 4"
+          ],
+          "answer": "C",
+          "explanation": "Exige-se x² − 5x + 4 > 0. As raízes são 1 e 4 e a parábola tem concavidade para cima, logo o trinômio é positivo fora do intervalo das raízes: x < 1 ou x > 4. Os extremos ficam de fora (desigualdade estrita), e o intervalo 1 < x < 4 é onde o trinômio é negativo."
+        },
+        {
+          "topic": "Domínio com base variável",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 31,
+          "statement": "O domínio da função f(x) = log_(x−1) (4x − x²) é o conjunto",
+          "support": null,
+          "options": [
+            "]1, 4[",
+            "]0, 4[",
+            "]0, 1[ ∪ ]1, 4[",
+            "]1, 2[ ∪ ]2, 4[",
+            "]1, 2[ ∪ ]2, +∞["
+          ],
+          "answer": "D",
+          "explanation": "Logaritmando: 4x − x² > 0 dá 0 < x < 4. Base: x − 1 > 0 e x − 1 ≠ 1, isto é, x > 1 e x ≠ 2. A interseção é ]1, 4[ sem o ponto 2, ou seja, ]1, 2[ ∪ ]2, 4[. Em x = 2 a base vale 1, por isso esse ponto sai; quem o esquece marca ]1, 4[."
+        },
+        {
+          "topic": "Imagem",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 33,
+          "statement": "Considere a função f(x) = log₂ x. O valor de x para o qual f(x) = −3 é",
+          "support": null,
+          "options": [
+            "8",
+            "inexistente, pois f só assume valores positivos",
+            "−8",
+            "−6",
+            "1/8"
+          ],
+          "answer": "E",
+          "explanation": "f(x) = −3 significa log₂ x = −3, isto é, x = 2⁻³ = 1/8, que pertence ao domínio. A imagem da função logarítmica é todo o conjunto dos reais, então valores negativos são atingidos (para x entre 0 e 1). O domínio é que exige x positivo, não a imagem."
+        },
+        {
+          "topic": "Domínio e imagem",
+          "pattern": "assertivas",
+          "difficulty": 2,
+          "pageRef": 33,
+          "statement": "Considere as afirmações: I. Em f(x) = log₇ x, o domínio é o conjunto dos reais positivos. II. Na mesma função f(x) = log₇ x, a imagem é o conjunto dos reais positivos. III. Em g(x) = log_(x+3) 5, devem valer x > −3 e x ≠ −2. Está correto o que se afirma em",
+          "support": null,
+          "options": [
+            "I e III, apenas.",
+            "II e III, apenas.",
+            "I e II, apenas.",
+            "I, apenas.",
+            "I, II e III."
+          ],
+          "answer": "A",
+          "explanation": "A I está certa: o logaritmando precisa ser positivo. A II está errada: a imagem é ℝ, incluindo negativos e zero. A III está certa: a base x + 3 deve ser positiva (x > −3) e diferente de 1 (x ≠ −2)."
+        },
+        {
+          "topic": "Domínio",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 30,
+          "statement": "O domínio da função f(x) = log₂ (9 − x²) é",
+          "support": null,
+          "options": [
+            "−3 ≤ x ≤ 3",
+            "x < −3 ou x > 3",
+            "x > 3",
+            "−3 < x < 3",
+            "x ≤ 3"
+          ],
+          "answer": "D",
+          "explanation": "Exige-se 9 − x² > 0. A parábola tem concavidade para baixo e raízes −3 e 3, sendo positiva entre elas: −3 < x < 3, com extremos abertos. Quem confunde com x² − 9 > 0 marca x < −3 ou x > 3."
+        },
+        {
+          "topic": "Domínio",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 30,
+          "statement": "O domínio da função f(x) = log₂ (x² + 4) é o conjunto",
+          "support": null,
+          "options": [
+            "x > 0",
+            "ℝ*",
+            "ℝ",
+            "−2 < x < 2",
+            "x < −2 ou x > 2"
+          ],
+          "answer": "C",
+          "explanation": "Como x² ≥ 0 para todo real x, x² + 4 ≥ 4 > 0: o logaritmando é sempre positivo e a função existe para todo x real. As raízes ±2 aparecem em x² − 4, não em x² + 4; por isso as alternativas com intervalos em torno de ±2 estão erradas."
+        },
+        {
+          "topic": "Cálculo de valores da função",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 27,
+          "statement": "Seja f(x) = log₂ (x + 6). O valor de f(10) + f(−2) é",
+          "support": null,
+          "options": [
+            "2",
+            "6",
+            "8",
+            "4",
+            "12"
+          ],
+          "answer": "B",
+          "explanation": "f(10) = log₂ 16 = 4 e f(−2) = log₂ 4 = 2, pois x + 6 é positivo nos dois casos. A soma é 6. Quem calcula f(−2) = log₂ (−2) esquece que a variável entra somada a 6."
+        }
+      ]
     },
     {
       "id": "matematica/a13/s04",
@@ -357,7 +957,213 @@
             "pageRef": 43
           }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Comportamento conforme a base",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 35,
+          "statement": "Qual das funções a seguir é decrescente em todo o seu domínio?",
+          "support": null,
+          "options": [
+            "f(x) = log_(√2) x",
+            "f(x) = ln x",
+            "f(x) = log_(0,2) x",
+            "f(x) = log_(3/2) x",
+            "f(x) = log₂ x"
+          ],
+          "answer": "C",
+          "explanation": "A função logarítmica é decrescente quando a base está entre 0 e 1, caso de 0,2. Nas demais, as bases (2, e ≈ 2,7, 3/2 e √2 ≈ 1,41) são maiores que 1, e a função é crescente. Observe que base maior que 1 não precisa ser inteira nem grande."
+        },
+        {
+          "topic": "Comparação de logaritmos",
+          "pattern": "relacao",
+          "difficulty": 2,
+          "pageRef": 35,
+          "statement": "Assinale a alternativa que apresenta uma comparação VERDADEIRA entre logaritmos.",
+          "support": null,
+          "options": [
+            "log_(1/2) 3 < log_(1/2) 5",
+            "log₃ 5 < log₃ 2",
+            "log_(0,5) 7 > log_(0,5) 1",
+            "log₂ 3 > log₂ 5",
+            "log_(1/3) 2 > log_(1/3) 4"
+          ],
+          "answer": "E",
+          "explanation": "Com base entre 0 e 1 a função é decrescente: x₂ > x₁ implica f(x₂) < f(x₁), então log_(1/3) 2 > log_(1/3) 4. Nas bases 2 e 3 a função é crescente e as desigualdades dadas estão invertidas. Em log_(0,5) 7 > log_(0,5) 1 o primeiro vale algo negativo e o segundo vale 0, logo a desigualdade é falsa."
+        },
+        {
+          "topic": "Construção do gráfico",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 38,
+          "statement": "O gráfico da função f(x) = log_(1/2) x passa pelo ponto",
+          "support": null,
+          "options": [
+            "(1/4, −2)",
+            "(1, 1)",
+            "(4, 2)",
+            "(4, −2)",
+            "(2, 1)"
+          ],
+          "answer": "D",
+          "explanation": "Como (1/2)⁻² = 4, log_(1/2) 4 = −2, então (4, −2) pertence ao gráfico. Os pontos (4, 2) e (2, 1) valeriam para a base 2, e (1/4, −2) também, pois log₂ (1/4) = −2; na base 1/2, f(1/4) = 2. Em x = 1 qualquer logaritmo vale 0, não 1."
+        },
+        {
+          "topic": "Intersecções com os eixos",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 41,
+          "statement": "O gráfico da função f(x) = 1 − log₂ (x + 4) intercepta os eixos coordenados nos pontos",
+          "support": null,
+          "options": [
+            "(0, −1) e (−2, 0)",
+            "(0, −1) e (2, 0)",
+            "(0, −1) e (−6, 0)",
+            "(0, 2) e (−2, 0)",
+            "(0, 1) e (−2, 0)"
+          ],
+          "answer": "A",
+          "explanation": "Com x = 0: f(0) = 1 − log₂ 4 = 1 − 2 = −1, ponto (0, −1). Com f(x) = 0: log₂ (x + 4) = 1, logo x + 4 = 2 e x = −2, ponto (−2, 0). Os demais pares trocam sinais ao resolver uma das duas condições."
+        },
+        {
+          "topic": "Lei a partir do gráfico",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 42,
+          "statement": "Uma função f(x) = logₐ (x + b), com a > 0 e a ≠ 1, tem gráfico que passa pelos pontos (2, 0) e (5, 1). A lei de formação de f é",
+          "support": null,
+          "options": [
+            "f(x) = log₂ (x − 1)",
+            "f(x) = log₄ (x − 1)",
+            "f(x) = log₅ (x − 1)",
+            "f(x) = log₄ x",
+            "f(x) = log₄ (x + 1)"
+          ],
+          "answer": "B",
+          "explanation": "Em (2, 0): logₐ (2 + b) = 0 implica 2 + b = 1, logo b = −1. Em (5, 1): logₐ (5 − 1) = 1 implica a = 4. Portanto f(x) = log₄ (x − 1). Conferência: f(2) = log₄ 1 = 0 e f(5) = log₄ 4 = 1. As demais opções falham em pelo menos um dos pontos."
+        },
+        {
+          "topic": "Função inversa",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 43,
+          "statement": "A função inversa da função exponencial g(x) = 3ˣ é",
+          "support": null,
+          "options": [
+            "f(x) = 1/3ˣ",
+            "f(x) = x³",
+            "f(x) = log₃ x",
+            "f(x) = −3ˣ",
+            "f(x) = log_x 3"
+          ],
+          "answer": "C",
+          "explanation": "A exponencial de base 3 é bijetora e sua inversa é a função logarítmica de mesma base, f(x) = log₃ x, pois y = 3ˣ equivale a x = log₃ y. A expressão 1/3ˣ é o inverso multiplicativo (outra exponencial), e não a função inversa."
+        },
+        {
+          "topic": "Simetria entre os gráficos",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 44,
+          "statement": "O gráfico de g(x) = 5ˣ contém o ponto (2, 25). Sabendo que f(x) = log₅ x é a inversa de g, o gráfico de f contém o ponto",
+          "support": null,
+          "options": [
+            "(−2, 25)",
+            "(−25, −2)",
+            "(2, 25)",
+            "(25, 2)",
+            "(5, 2)"
+          ],
+          "answer": "D",
+          "explanation": "Os gráficos de uma função e de sua inversa são simétricos em relação à reta y = x, o que troca as coordenadas: (2, 25) em g corresponde a (25, 2) em f. Conferência: log₅ 25 = 2. O ponto (2, 25) em f exigiria log₅ 2 = 25, o que é falso."
+        },
+        {
+          "topic": "Crescimento e gráfico",
+          "pattern": "assertivas",
+          "difficulty": 2,
+          "pageRef": 37,
+          "statement": "Sobre a função f(x) = logₐ x, com a > 0 e a ≠ 1, considere: I. Se a > 1, então x₂ > x₁ implica f(x₂) > f(x₁). II. Se 0 < a < 1, a função é crescente. III. O gráfico passa pelo ponto (1, 0), qualquer que seja a base válida. IV. O gráfico de f(x) = log₂ x intercepta o eixo das ordenadas. Estão corretas apenas",
+          "support": null,
+          "options": [
+            "I e III.",
+            "II e IV.",
+            "I e II.",
+            "I, III e IV.",
+            "III e IV."
+          ],
+          "answer": "A",
+          "explanation": "I está certa (função crescente para a > 1) e III também (logₐ 1 = 0 em qualquer base). II está errada: para 0 < a < 1 a função é decrescente. IV está errada: x = 0 não pertence ao domínio, então o gráfico não toca o eixo y."
+        },
+        {
+          "topic": "Quadrantes do gráfico",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 37,
+          "statement": "O gráfico da função f(x) = log₂ x está contido nos quadrantes",
+          "support": null,
+          "options": [
+            "1º e 2º.",
+            "1º e 3º.",
+            "2º e 3º.",
+            "3º e 4º.",
+            "1º e 4º."
+          ],
+          "answer": "E",
+          "explanation": "Como x > 0, o gráfico só ocupa os quadrantes à direita do eixo y (1º e 4º). Para x > 1 a função é positiva (1º quadrante) e para 0 < x < 1 é negativa (4º quadrante), passando por (1, 0)."
+        },
+        {
+          "topic": "Cálculo de valores",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 37,
+          "statement": "Para f(x) = log₃ x, o valor de f(1/9) + f(3) + f(27) é",
+          "support": null,
+          "options": [
+            "4",
+            "2",
+            "6",
+            "0",
+            "−2"
+          ],
+          "answer": "B",
+          "explanation": "f(1/9) = −2, pois 3⁻² = 1/9; f(3) = 1; f(27) = 3. A soma é −2 + 1 + 3 = 2. O valor 6 troca o sinal de f(1/9), e 0 e 4 resultam de erros de adição ou de considerar f(27) = 1."
+        },
+        {
+          "topic": "Deslocamento vertical",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 37,
+          "statement": "O gráfico da função f(x) = k + log₂ x passa pelo ponto (8, 5). O valor de f(1/4) é",
+          "support": null,
+          "options": [
+            "−2",
+            "4",
+            "0",
+            "2",
+            "−4"
+          ],
+          "answer": "C",
+          "explanation": "De f(8) = 5: k + log₂ 8 = k + 3 = 5, logo k = 2. Então f(1/4) = 2 + log₂ (1/4) = 2 − 2 = 0. O valor −2 é log₂ (1/4) sem somar k; 4 ocorre ao usar log₂ (1/4) = +2."
+        },
+        {
+          "topic": "Função inversa e gráfico",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 44,
+          "statement": "O gráfico de f(x) = logₐ x passa pelo ponto (9, 2). Se g é a função inversa de f, o valor de g(−2) é",
+          "support": null,
+          "options": [
+            "1/6",
+            "1/9",
+            "9",
+            "−9",
+            "−1/9"
+          ],
+          "answer": "B",
+          "explanation": "De logₐ 9 = 2 obtém-se a² = 9 e a = 3. A inversa de f é g(x) = 3ˣ, logo g(−2) = 3⁻² = 1/9. O valor 9 seria g(2), e −9 ou −1/9 ignoram que uma exponencial é sempre positiva."
+        }
+      ]
     }
   ]
 }
