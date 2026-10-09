@@ -7,7 +7,7 @@ import { addDays } from "./dates";
 import { assignDays, weekFraction } from "./days";
 import type { PlannedActivity, PlannedWeek, Tier } from "./types";
 
-/** Ciclo de uma aula na camada escolhida: [T T T R] [T T T R] … F… Q… */
+/** Ciclo de uma aula na camada escolhida: Essencial = T T T … Q; Completo/Aprofundamento = [T T T R] [T T T R] … F… Q… */
 export function buildAulaCycle(bp: AulaBlueprint, tier: Tier): PlannedActivity[] {
   const aulaId = bp.aula.id;
   const subjectId = aulaId.split("/")[0];
@@ -25,6 +25,8 @@ export function buildAulaCycle(bp: AulaBlueprint, tier: Tier): PlannedActivity[]
     scope: "AULA",
   }));
 
+  // sem Revisão (camada Essencial): a teoria corre direto; o caderno vem ao final
+  if (shape.reviews === 0) out.push(...teorias);
   const reviewGroups = splitEven(teorias.length, shape.reviews);
   reviewGroups.forEach((group, gi) => {
     for (const i of group) out.push(teorias[i]);

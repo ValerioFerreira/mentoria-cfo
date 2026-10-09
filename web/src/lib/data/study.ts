@@ -61,7 +61,7 @@ export async function getActivity(userId: string, id: string) {
         include: {
           refActivity: {
             select: {
-              id: true, key: true,
+              id: true, key: true, status: true,
               aula: { select: { number: true, shortTitle: true } },
               segments: { select: { segmentId: true } },
             },

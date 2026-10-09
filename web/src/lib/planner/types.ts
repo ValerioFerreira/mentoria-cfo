@@ -134,7 +134,7 @@ export interface SubjectCoverage {
   plannedHours: number;
   /** Minutos planejados por tipo de atividade. */
   minutes: { teoria: number; revisao: number; fixacao: number; questoes: number };
-  /** Minutos para fechar TODAS as aulas da disciplina no nível Essencial. */
+  /** Minutos para ver TODAS as aulas da disciplina no nível Essencial (Teoria + Questões). */
   fullMinutes: number;
   aulas: { aulaId: string; tier: Tier; hours: number }[];
   theoryPagesCovered: number;
@@ -158,7 +158,7 @@ export interface PlanResult {
     reviewWeeks: number;
     capacityHours: number;
     plannedHours: number;
-    /** Horas por semana (nominais) necessárias para fechar o edital inteiro no nível Essencial. */
+    /** Horas por semana (nominais) necessárias para ver o edital inteiro (só Teoria + Questões, com a revisão final no piso). */
     fullEditalHoursPerWeek: number;
     /** Segunda-feira da semana 1. */
     startDate: string;

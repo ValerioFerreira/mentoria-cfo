@@ -5,6 +5,7 @@ import { AppNav, type NavItem } from "@/components/app-nav";
 import { TimerWidget } from "@/components/timer-widget";
 import { requireUser } from "@/lib/auth/dal";
 import { getTheme } from "@/lib/theme";
+import { getUserContestSubtitle } from "@/lib/user-contest";
 import { logout } from "../(auth)/actions";
 
 const NAV: NavItem[] = [
@@ -18,6 +19,7 @@ const NAV: NavItem[] = [
 export default async function AppLayout({ children }: LayoutProps<"/">) {
   const user = await requireUser();
   const theme = await getTheme();
+  const contestSubtitle = await getUserContestSubtitle(user.email);
   if (user.role !== "ADMIN" && process.env.APP_ENABLED !== "true") {
     return (
       <main className="mx-auto flex min-h-screen max-w-xl flex-1 flex-col items-center justify-center gap-4 px-6 text-center">
@@ -81,7 +83,7 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
 
   return (
     <>
-      <AppNav items={nav} user={who} appearance={<AppearanceMenu initial={theme} inverse />} />
+      <AppNav items={nav} user={who} appearance={<AppearanceMenu initial={theme} inverse />} subtitle={contestSubtitle} />
       <div className="flex flex-1 flex-col lg:pl-64">
         <div className="sticky top-0 z-20 hidden justify-end px-10 pt-4 lg:flex">
           <AppearanceMenu initial={theme} />

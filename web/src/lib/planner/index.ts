@@ -1,6 +1,6 @@
 // Motor de planejamento: gera as metas semanais (e a divisão por dias) a partir das escolhas do aluno.
 import { computeCoverage, gapWarnings } from "./coverage";
-import { EXAM_TOTAL_QUESTIONS, FINAL_REVIEW_WEEKS, WEEKLY_SLACK } from "./constants";
+import { EXAM_TOTAL_QUESTIONS, FINAL_REVIEW_WEEKS, MIN_FINAL_REVIEW_WEEKS, PACKING_EFFICIENCY, WEEKLY_SLACK } from "./constants";
 import { addDays, nextMonday, weekday, weeksUntil } from "./dates";
 import { weekFraction } from "./days";
 import { buildReviewWeeks, type ReviewSubject } from "./review";
@@ -35,34 +35,59 @@ function validate(input: PlanInput): void {
 export function generatePlan(input: PlanInput): PlanResult {
   validate(input);
   const slack = input.slack ?? WEEKLY_SLACK;
-  const finalWeeks = input.finalReviewWeeks ?? FINAL_REVIEW_WEEKS;
   const weeklyMinutes = Math.max(60, Math.floor(input.hoursPerWeek * 60 * slack));
   const totalWeeks = weeksUntil(input.startDate, input.examDate);
-  const reviewWeeksMin = Math.min(finalWeeks, totalWeeks - 1);
-  const contentWeeks = totalWeeks - reviewWeeksMin;
   const firstDay = input.firstDay ?? 0;
-  // a semana em que o aluno começa no meio vale só os dias que restam
-  const capacityMinutes = Math.round((contentWeeks - 1 + weekFraction(firstDay)) * weeklyMinutes);
   const known = input.known ?? {};
-
   const chosen: SelectedSubject[] = input.subjects.map((s) => ({
     subject: input.catalog.subjects.find((x) => x.id === s.id)!,
     level: s.level,
   }));
-  const sel = selectContent(chosen, input.segments, capacityMinutes, known);
-
-  // filas por disciplina: ciclos das aulas selecionadas na ordem do curso
-  const streams: StreamInfo[] = chosen.map(({ subject }) => {
-    const queue = subject.aulas
-      .filter((a) => sel.tierByAula.has(a.id))
-      .sort((a, b) => a.number - b.number)
-      .flatMap((a) => buildAulaCycle(sel.blueprints.get(a.id)!, sel.tierByAula.get(a.id)!));
-    return { subjectId: subject.id, examQuestions: subject.examQuestions, sortOrder: subject.sortOrder, queue };
-  });
+  // a semana em que o aluno começa no meio vale só os dias que restam
+  const capacityOf = (finalWeeks: number) => {
+    const reviewWeeksMin = Math.min(finalWeeks, totalWeeks - 1);
+    const contentWeeks = totalWeeks - reviewWeeksMin;
+    return { contentWeeks, capacityMinutes: Math.round((contentWeeks - 1 + weekFraction(firstDay)) * weeklyMinutes) };
+  };
   const focus = input.hoursPerWeek <= 21 ? 3 : input.hoursPerWeek <= 28 ? 4 : 5;
-  const contentSchedule = scheduleStreams(streams.filter((s) => s.queue.length > 0), weeklyMinutes, contentWeeks, input.startDate, focus, firstDay);
+  // Seleciona o conteúdo e o distribui nas semanas. `eff` é a fração da capacidade que a seleção pode ocupar
+  // (o encaixe nunca é perfeito); se mesmo assim sobrar atividade sem semana, repete com menos.
+  const attempt = (fw: number, eff: number) => {
+    const cap = capacityOf(fw);
+    const sel = selectContent(chosen, input.segments, Math.round(cap.capacityMinutes * eff), known);
+    // filas por disciplina: ciclos das aulas selecionadas na ordem do curso
+    const streams: StreamInfo[] = chosen.map(({ subject }) => {
+      const queue = subject.aulas
+        .filter((a) => sel.tierByAula.has(a.id))
+        .sort((a, b) => a.number - b.number)
+        .flatMap((a) => buildAulaCycle(sel.blueprints.get(a.id)!, sel.tierByAula.get(a.id)!));
+      return { subjectId: subject.id, examQuestions: subject.examQuestions, sortOrder: subject.sortOrder, queue };
+    });
+    const queued = streams.reduce((n, s) => n + s.queue.length, 0);
+    const schedule = scheduleStreams(streams.filter((s) => s.queue.length > 0), weeklyMinutes, cap.contentWeeks, input.startDate, focus, firstDay);
+    const leftover = queued - schedule.reduce((n, w) => n + w.activities.length, 0);
+    return { cap, sel, schedule, leftover };
+  };
+  // Revisão final: 2 semanas por padrão. Se o tempo não bastar para VER o edital inteiro (só Teoria + Questões),
+  // a revisão encolhe até o piso e a semana volta a ser conteúdo: cobrir o edital vale mais do que revisá-lo.
+  const explicitFinal = input.finalReviewWeeks;
+  let finalWeeks = explicitFinal ?? FINAL_REVIEW_WEEKS;
+  let eff = PACKING_EFFICIENCY;
+  let cur = attempt(finalWeeks, eff);
+  while (explicitFinal === undefined && finalWeeks > MIN_FINAL_REVIEW_WEEKS && cur.sel.fullMinutes > cur.cap.capacityMinutes * eff) {
+    finalWeeks--;
+    cur = attempt(finalWeeks, eff);
+  }
+  for (let guard = 0; cur.leftover > 0 && guard < 8; guard++) {
+    eff -= 0.02;
+    cur = attempt(finalWeeks, eff);
+  }
+  const { sel, schedule: contentSchedule } = cur;
+  const { contentWeeks, capacityMinutes } = cur.cap;
 
   // semanas de revisão: as finais + qualquer folga que sobrou (inclui as aulas que o aluno já domina)
+  // só entram trechos que tiveram Teoria agendada (ou aulas que o aluno domina)
+  const studied = new Set(contentSchedule.flatMap((w) => w.activities.filter((a) => a.type === "TEORIA").flatMap((a) => a.segmentIds)));
   const reviewSubjects: ReviewSubject[] = chosen.map(({ subject }) => {
     const aulas = subject.aulas
       .filter((a) => sel.tierByAula.has(a.id) || sel.mastered.has(a.id))
@@ -71,7 +96,9 @@ export function generatePlan(input: PlanInput): PlanResult {
       subjectId: subject.id,
       examQuestions: subject.examQuestions,
       sortOrder: subject.sortOrder,
-      segments: aulas.flatMap((a) => (input.segments[a.id] ?? []).map((s) => ({ id: s.id, aulaId: a.id }))),
+      segments: aulas.flatMap((a) =>
+        (input.segments[a.id] ?? []).filter((s) => sel.mastered.has(a.id) || studied.has(s.id)).map((s) => ({ id: s.id, aulaId: a.id })),
+      ),
     };
   });
   const reviewWeeks = buildReviewWeeks({
@@ -86,11 +113,16 @@ export function generatePlan(input: PlanInput): PlanResult {
 
   const coverage = computeCoverage(chosen, sel, known);
   const warnings: string[] = [];
+  if (explicitFinal === undefined && finalWeeks < FINAL_REVIEW_WEEKS) {
+    warnings.push("Para ver o edital inteiro no tempo disponível, a revisão final foi reduzida a 1 semana; as revisões ficam para o que sobrar.");
+  }
   if (sel.floorShortfall) warnings.push("O tempo disponível não cobre nem uma aula essencial de cada disciplina; priorizamos as de maior peso na prova.");
   warnings.push(...gapWarnings(input.catalog, input.subjects.map((s) => s.id)));
 
   const plannedMinutes = contentSchedule.reduce((n, w) => n + w.targetMinutes, 0);
-  const fullEditalHoursPerWeek = Math.ceil(sel.fullMinutes / 60 / (contentWeeks - 1 + weekFraction(firstDay)) / slack);
+  // horas por semana para VER o edital inteiro (só Teoria + Questões), com a revisão final no piso
+  const closing = capacityOf(explicitFinal ?? MIN_FINAL_REVIEW_WEEKS);
+  const fullEditalHoursPerWeek = Math.ceil(sel.fullMinutes / 60 / (closing.contentWeeks - 1 + weekFraction(firstDay)) / slack / PACKING_EFFICIENCY);
   return {
     params: {
       hoursPerWeek: input.hoursPerWeek,

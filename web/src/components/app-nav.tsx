@@ -23,7 +23,17 @@ function isActive(path: string, href: string) {
  * Casca de navegação: trilho lateral (desktop) e barra inferior (celular).
  * `user` e `appearance` chegam prontos do servidor.
  */
-export function AppNav({ items, user, appearance }: { items: NavItem[]; user: ReactNode; appearance: ReactNode }) {
+export function AppNav({
+  items,
+  user,
+  appearance,
+  subtitle = "OFICIAL - CBMPE",
+}: {
+  items: NavItem[];
+  user: ReactNode;
+  appearance: ReactNode;
+  subtitle?: string;
+}) {
   const path = usePathname();
   return (
     <>
@@ -35,7 +45,7 @@ export function AppNav({ items, user, appearance }: { items: NavItem[]; user: Re
         </div>
         <div className="px-6 pb-5 pt-7">
           <Link href="/" aria-label="MentorIA — início">
-            <Brand inverse subtitle="Missão Oficial · CBMPE" />
+            <Brand inverse subtitle={subtitle} />
           </Link>
         </div>
         <div className="tape tape-rule mx-6 mb-5" aria-hidden />
@@ -71,7 +81,7 @@ export function AppNav({ items, user, appearance }: { items: NavItem[]; user: Re
       {/* celular: barra superior + abas */}
       <header className="sticky top-0 z-30 flex items-center justify-between border-b border-white/10 bg-ink/95 px-4 py-2.5 text-on-ink backdrop-blur lg:hidden">
         <Link href="/" aria-label="MentorIA — início">
-          <Brand inverse subtitle="Missão Oficial · CBMPE" />
+          <Brand inverse subtitle={subtitle} />
         </Link>
         {appearance}
       </header>

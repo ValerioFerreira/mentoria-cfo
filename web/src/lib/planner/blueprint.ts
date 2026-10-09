@@ -116,14 +116,14 @@ export interface TierShape {
 }
 
 /**
- * Forma do ciclo por camada. Essencial = toda a teoria + revisões espaçadas + prática enxuta (para ver o edital inteiro);
- * Completo e Aprofundamento ampliam a prática.
+ * Forma do ciclo por camada. Essencial = só o necessário para VER o edital inteiro: toda a teoria + cadernos enxutos
+ * (sem Revisão nem Fixação, que são opcionais para responder "consegui estudar todo o edital?"). Completo acrescenta as
+ * Revisões espaçadas e a Fixação; Aprofundamento amplia a prática.
  */
 export function tierShape(bp: AulaBlueprint, tier: Tier): TierShape {
   const t = bp.teoria.length;
-  // Essencial: uma Revisão a cada 4 Teorias; Completo/Aprofundamento: o agrupamento do nível do aluno (2 a 4)
-  const group = tier === 1 ? Math.max(bp.reviewGroup, 4) : bp.reviewGroup;
-  const reviews = t === 0 ? 0 : Math.ceil(t / group);
+  // Essencial: sem Revisão (entra no Completo); Completo/Aprofundamento: o agrupamento do nível do aluno (2 a 4)
+  const reviews = t === 0 || tier === 1 ? 0 : Math.ceil(t / bp.reviewGroup);
   const full = bp.fixChunksFull;
   let fix = 0;
   if (full > 0) {

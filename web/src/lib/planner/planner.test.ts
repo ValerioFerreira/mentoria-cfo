@@ -96,11 +96,12 @@ describe.each([14, 21, 25, 35, 50])("generatePlan — invariantes com %i h/seman
   const acts = flat(plan);
   const content = acts.filter((a) => a.kind === "CONTENT");
 
-  it("ocupa as 20 semanas, com as 2 últimas (ao menos) de revisão final", () => {
+  it("ocupa as 20 semanas, com a última (ao menos) de revisão final; só encolhe a revisão para 1 semana se o edital não couber", () => {
     expect(plan.weeks.length).toBe(20);
     expect(plan.weeks.at(-1)!.kind).toBe("FINAL_REVIEW");
-    expect(plan.weeks.at(-2)!.kind).toBe("FINAL_REVIEW");
-    expect(plan.weeks.filter((w) => w.kind === "FINAL_REVIEW").length).toBeGreaterThanOrEqual(2);
+    const finals = plan.weeks.filter((w) => w.kind === "FINAL_REVIEW").length;
+    expect(finals).toBeGreaterThanOrEqual(1);
+    if (finals === 1) expect(plan.warnings.some((w) => w.includes("revisão final foi reduzida"))).toBe(true);
   });
 
   it("nenhuma semana excede a meta de minutos (±5%) e o total cabe na capacidade", () => {
@@ -126,7 +127,8 @@ describe.each([14, 21, 25, 35, 50])("generatePlan — invariantes com %i h/seman
       }
     }
     // só semanas muito carregadas (poucos dias para muitas sessões da mesma disciplina) forçam Teoria e Revisão no mesmo dia
-    expect(same / Math.max(1, total)).toBeLessThanOrEqual(hours <= 28 ? 0.02 : 0.12);
+    // (com poucas Revisões — a camada Essencial não as tem — uma única ocorrência já seria >12%: tolera 1)
+    expect(same).toBeLessThanOrEqual(Math.max(1, Math.floor(total * (hours <= 28 ? 0.02 : 0.12))));
   });
 
   const lastContent = plan.weeks.filter((x) => x.kind === "CONTENT").at(-1);
@@ -253,12 +255,33 @@ describe("modelo de tempo", () => {
     expect(mastered.coverage.subjects[0].coverage).toBeGreaterThan(0.99);
   });
 
-  it("é possível fechar o edital inteiro (nível Essencial) dentro da faixa Avançado para quem tem nível intermediário", () => {
-    const p = generatePlan(input(50, ALL_PT, 2));
-    expect(p.params.fullEditalHoursPerWeek).toBeLessThanOrEqual(50);
-    const pf = generatePlan(input(p.params.fullEditalHoursPerWeek, ALL_PT, 2));
-    const seen = pf.coverage.subjects.every((s) => s.aulas.length + 0 >= 1);
-    expect(seen).toBe(true);
-    expect(pf.coverage.subjects.every((s) => s.notCovered.length === 0)).toBe(true);
+  it("o Essencial é só Teoria + Questões: nenhuma Revisão nem Fixação entra antes de o edital inteiro estar visto", () => {
+    const p = generatePlan(input(generatePlan(input(30, ALL_PT, 1)).params.fullEditalHoursPerWeek, ALL_PT, 1));
+    const content = flat(p).filter((a) => a.kind === "CONTENT");
+    const n = (t: string) => content.filter((a) => a.type === t).length;
+    // com o tempo justo para ver tudo, só sobra uma folga de arredondamento para revisões; o grosso é Teoria
+    expect(n("REVISAO") + n("FIXACAO")).toBeLessThan(n("TEORIA") * 0.08);
+  });
+
+  it("é possível ver o edital inteiro (Teoria + Questões) mesmo no pior caso (iniciante em tudo) dentro da faixa Avançado", () => {
+    for (const level of [0, 1, 2, 3] as const) {
+      const p = generatePlan(input(50, ALL_PT, level));
+      expect(p.params.fullEditalHoursPerWeek).toBeLessThanOrEqual(level === 0 ? 42 : 50);
+      const pf = generatePlan(input(p.params.fullEditalHoursPerWeek, ALL_PT, level));
+      expect(pf.coverage.subjects.every((s) => s.aulas.length >= 1)).toBe(true);
+      expect(pf.coverage.subjects.every((s) => s.notCovered.length === 0)).toBe(true);
+      expect(pf.coverage.selected).toBeGreaterThan(0.995);
+    }
+  });
+
+  it("quando o edital não cabe com 2 semanas de revisão final, a revisão encolhe para 1 e a semana vira conteúdo", () => {
+    const need = generatePlan(input(30, ALL_PT, 1)).params.fullEditalHoursPerWeek;
+    const tight = generatePlan(input(need, ALL_PT, 1));
+    expect(tight.weeks.filter((w) => w.kind === "FINAL_REVIEW")).toHaveLength(1);
+    expect(tight.params.contentWeeks).toBe(19);
+    const roomy = generatePlan(input(50, ALL_PT, 1));
+    expect(roomy.weeks.filter((w) => w.kind === "FINAL_REVIEW").length).toBeGreaterThanOrEqual(2);
+    // revisão final pedida explicitamente é respeitada
+    expect(generatePlan(input(need, ALL_PT, 1, { finalReviewWeeks: 2 })).weeks.filter((w) => w.kind === "FINAL_REVIEW").length).toBeGreaterThanOrEqual(2);
   });
 });

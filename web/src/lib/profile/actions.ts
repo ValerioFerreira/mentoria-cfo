@@ -2,10 +2,14 @@
 
 import * as z from "zod";
 import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
+import type { Contest } from "@/generated/prisma/client";
 import { db } from "@/lib/db";
 import { requireUser } from "@/lib/auth/dal";
 import { hashPassword, verifyPassword } from "@/lib/auth/password";
 import { generateTemporaryPassword, sendPasswordResetEmail } from "@/lib/email";
+import { CONTEST_SUBTITLES } from "@/lib/contests";
+import { CONTEST_COOKIE } from "@/lib/user-contest";
 
 export type ProfilePasswordState = { errors?: Record<string, string[]>; message?: string; success?: boolean } | undefined;
 
@@ -77,5 +81,35 @@ export async function sendSelfPasswordReset(): Promise<{ success: boolean; messa
   return {
     success: true,
     message: `Uma nova senha temporária foi enviada para ${user.email}. Ao sair ou fazer novo login, você a utilizará para trocar sua senha.`,
+  };
+}
+
+export async function updateUserContest(contestKey: string): Promise<{ success: boolean; message: string }> {
+  const sessionUser = await requireUser();
+  if (!(contestKey in CONTEST_SUBTITLES)) {
+    return { success: false, message: "Concurso inválido." };
+  }
+
+  const jar = await cookies();
+  jar.set(CONTEST_COOKIE, contestKey, {
+    path: "/",
+    maxAge: 365 * 86400,
+    sameSite: "lax",
+  });
+
+  try {
+    await db.waitlistEntry.updateMany({
+      where: { email: sessionUser.email.toLowerCase() },
+      data: { contest: contestKey as Contest },
+    });
+  } catch (err) {
+    console.error("[updateUserContest] Erro ao sincronizar waitlistEntry:", err);
+  }
+
+  revalidatePath("/", "layout");
+  revalidatePath("/perfil");
+  return {
+    success: true,
+    message: `Concurso alterado para ${CONTEST_SUBTITLES[contestKey as Contest]}.`,
   };
 }

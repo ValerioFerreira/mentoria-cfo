@@ -84,6 +84,8 @@ export default async function ActivityPage({ params }: PageProps<"/atividade/[id
   const bizuItems = bizus.flatMap((b) => b.items.filter((i) => i.set === bizuSet));
   const limitMin = Math.round((a.quizLimitSec ?? 3600) / 60);
   const meta = TYPE_META[a.type];
+  // Revisão e Caderno de uma aula pressupõem a Teoria feita: avisa (sem bloquear) se alguma ainda está pendente
+  const pendingTheory = !isFinal && (a.type === "REVISAO" || a.type === "QUESTOES") ? a.refs.filter((r) => r.refActivity.status !== "DONE") : [];
 
   return (
     <div className="mx-auto max-w-3xl space-y-7">
@@ -113,6 +115,21 @@ export default async function ActivityPage({ params }: PageProps<"/atividade/[id
           <ActivityActions id={a.id} status={a.status} />
         </div>
       </header>
+
+      {pendingTheory.length > 0 && (
+        <Alert>
+          {a.type === "QUESTOES"
+            ? "Este caderno cobre assuntos cuja Teoria você ainda não concluiu. Estude antes para o caderno medir o que você aprendeu:"
+            : "Esta Revisão pressupõe a Teoria feita. Conclua antes:"}{" "}
+          {pendingTheory.map((r, i) => (
+            <span key={r.refActivityId}>
+              {i > 0 && ", "}
+              <Link href={`/atividade/${r.refActivityId}`} className="font-semibold underline">Teoria · {aulaLabel(r.refActivity.aula)}</Link>
+            </span>
+          ))}
+          .
+        </Alert>
+      )}
 
       <section aria-labelledby="dir" className="rise" style={{ "--i": 1 } as CSSProperties}>
         <Section id="dir" icon={<Lightbulb className="h-5 w-5 text-gold" aria-hidden />} title="Diretriz" />
@@ -175,20 +192,6 @@ export default async function ActivityPage({ params }: PageProps<"/atividade/[id
         </Card>
       </section>
 
-      {(a.type === "TEORIA" || a.type === "REVISAO") && (
-        <section className="rise" style={{ "--i": 2 } as CSSProperties} aria-labelledby="bizu">
-          <Section id="bizu" icon={<Sparkles className="h-5 w-5 text-gold" aria-hidden />} title="Bizu" />
-          {bizus.length === 0 ? (
-            <Alert tone="info">O Bizu (resumo + itens de Certo/Errado) deste trecho ainda está em produção.</Alert>
-          ) : (
-            <div className="space-y-4">
-              {bizus.map((b) => <BizuSummary key={b.id} markdown={b.summary} />)}
-              <BizuItems activityId={a.id} items={bizuItems.map((i) => ({ id: i.id, statement: i.statement, isTrue: i.isTrue, explanation: i.explanation }))} />
-            </div>
-          )}
-        </section>
-      )}
-
       {a.type === "TEORIA" && segs.length > 0 && (
         <section className="rise" style={{ "--i": 3 } as CSSProperties}>
           <Section id="resumo" icon={<NotebookPen className="h-5 w-5 text-muted" aria-hidden />} title="Meu resumo" info="Escreva com as suas palavras. Este texto aparece na Revisão e em Meus resumos." />
@@ -211,6 +214,20 @@ export default async function ActivityPage({ params }: PageProps<"/atividade/[id
               </div>
             ))}
           </Card>
+        </section>
+      )}
+
+      {(a.type === "TEORIA" || a.type === "REVISAO") && (
+        <section className="rise" style={{ "--i": 4 } as CSSProperties} aria-labelledby="bizu">
+          <Section id="bizu" icon={<Sparkles className="h-5 w-5 text-gold" aria-hidden />} title="Bizu" />
+          {bizus.length === 0 ? (
+            <Alert tone="info">O Bizu (resumo + itens de Certo/Errado) deste trecho ainda está em produção.</Alert>
+          ) : (
+            <div className="space-y-4">
+              {bizus.map((b) => <BizuSummary key={b.id} markdown={b.summary} />)}
+              <BizuItems activityId={a.id} items={bizuItems.map((i) => ({ id: i.id, statement: i.statement, isTrue: i.isTrue, explanation: i.explanation }))} />
+            </div>
+          )}
         </section>
       )}
 

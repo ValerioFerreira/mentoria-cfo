@@ -483,7 +483,7 @@ function PreviewBox({ preview, subjects, hours, detailed, onUseHours }: { previe
           <p className="eyebrow flex items-center gap-1.5 !text-on-ink-muted">
             Cobertura estimada do edital
             <InfoTip align="start">
-              Parte do edital das {subjects.length} disciplinas que o plano faz você estudar em {preview.totalWeeks} semanas (≈ {preview.capacityHours} h de conteúdo), levando em conta o que você já estudou. Fechar o edital inteiro no nível Essencial exige ≈ {need} h por semana com o seu perfil.
+              Parte do edital das {subjects.length} disciplinas que o plano faz você estudar em {preview.totalWeeks} semanas (≈ {preview.capacityHours} h de conteúdo), levando em conta o que você já estudou. Ver o edital inteiro (só Teoria e Questões; revisões e fixação entram com o tempo que sobrar) exige ≈ {need} h por semana com o seu perfil.
             </InfoTip>
           </p>
           <p className="text-sm text-on-ink-muted">

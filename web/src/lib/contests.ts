@@ -23,6 +23,12 @@ export const CONTESTS: ContestInfo[] = [
   { slug: "pcpe-agente", key: "PCPE_AGENTE", org: "PCPE", role: "Agente de Polícia", category: "", image: "/images/PCPE.webp", imagePosition: "center", available: false },
 ];
 
+export const CONTEST_SUBTITLES: Record<Contest, string> = {
+  CBMPE_OFICIAL: "OFICIAL - CBMPE",
+  CBMPE_SOLDADO: "PRAÇA - CBMPE",
+  PCPE_AGENTE: "AGENTE - PCPE",
+};
+
 export function contestBySlug(slug: string): ContestInfo | undefined {
   return CONTESTS.find((c) => c.slug === slug);
 }

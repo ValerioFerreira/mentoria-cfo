@@ -1,7 +1,11 @@
 // Regras fixas do edital (2º Tenente CBMPE, código 401) e do planejamento.
 export const EXAM_DATE_DEFAULT = "2027-02-28";
 export const FINAL_REVIEW_WEEKS = 2;
+/** Se o tempo não bastar para ver o edital inteiro (só Teoria + Questões), a revisão final encolhe até este piso para virar conteúdo. */
+export const MIN_FINAL_REVIEW_WEEKS = 1;
 export const WEEKLY_SLACK = 0.9; // 10% de folga para atrasos
+/** O encaixe das atividades (blocos de 20–75 min) nas semanas nunca é perfeito: a seleção conta com 95% da capacidade. */
+export const PACKING_EFFICIENCY = 0.95;
 
 export const HOURS_BANDS = {
   LEVE: { min: 14, max: 21 },

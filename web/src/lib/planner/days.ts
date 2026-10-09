@@ -62,7 +62,10 @@ export function toChunks(load: SubjectWeekLoad, maxChunks = 7): Chunk[] {
     let bi = 0;
     let bm = Number.POSITIVE_INFINITY;
     for (let i = 0; i < out.length - 1; i++) {
-      const m = sum(out[i]) + sum(out[i + 1]);
+      // evita fundir uma Revisão com a Teoria que ela revê (cairiam no mesmo dia): só como último recurso
+      const keys = new Set(out[i].map((a) => a.key));
+      const clash = out[i + 1].some((a) => a.type === "REVISAO" && a.refKeys.some((k) => keys.has(k)));
+      const m = sum(out[i]) + sum(out[i + 1]) + (clash ? 1e6 : 0);
       if (m < bm) {
         bm = m;
         bi = i;
