@@ -36,7 +36,7 @@ export async function getWeek(userId: string, planId: string, index: number) {
     include: {
       activities: {
         orderBy: { sortOrder: "asc" },
-        include: { subject: { select: { name: true } }, aula: { select: { number: true, shortTitle: true } }, segments: { select: { segment: { select: { startPage: true, endPage: true } } } } },
+        include: { subject: { select: { name: true } }, aula: { select: { number: true, shortTitle: true } }, segments: { select: { segment: { select: { startTopic: true, sortOrder: true } } } } },
       },
     },
   });

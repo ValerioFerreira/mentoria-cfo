@@ -236,6 +236,15 @@ export function EmptyState({ icon, title, children, action }: { icon?: ReactNode
   );
 }
 
+/** Espaço de um gráfico que ainda não tem dados suficientes: fica em branco e diz o que fazer para ele aparecer. */
+export function ChartEmpty({ children, className }: { children: ReactNode; className?: string }) {
+  return (
+    <div className={cx("flex items-center justify-center rounded-xl border border-dashed border-border-strong px-6 text-center", className ?? "h-40")}>
+      <p className="max-w-sm text-sm text-muted">{children}</p>
+    </div>
+  );
+}
+
 export function Kbd({ children }: { children: ReactNode }) {
   return <kbd className="inline-flex min-w-5 items-center justify-center rounded-md border border-border-strong bg-surface-2 px-1.5 text-[11px] font-semibold leading-5 text-muted shadow-[0_1px_0_var(--border-strong)]">{children}</kbd>;
 }

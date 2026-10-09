@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { projectExam, quizBySubject, secondsByDay, secondsThisWeek, secondsByWeek, secondsBySubject, streakDays, totalSeconds, weakTopics, weekIndexOf, type QuizRow, type SubjectMeta, type TimeRow } from "./metrics";
+import { chartReadiness, projectExam, weeksWithStudy, quizBySubject, secondsByDay, secondsThisWeek, secondsByWeek, secondsBySubject, streakDays, totalSeconds, weakTopics, weekIndexOf, type QuizRow, type SubjectMeta, type TimeRow } from "./metrics";
 
 const d = (s: string) => new Date(s + "T12:00:00Z");
 const t = (iso: string, seconds: number, subjectId: string | null = "x"): TimeRow => ({ seconds, startedAt: d(iso), subjectId });
@@ -78,5 +78,18 @@ describe("projeção por bloco", () => {
     expect(risk[0].status).toBe("risco"); // Informática zerada, mesmo com o bloco acima de 30%
     const low = projectExam(subs, new Map([stat("p", 20, 4), stat("i", 20, 4), stat("m", 20, 4)]));
     expect(low[1].status).toBe("risco"); // 20% < 30%
+  });
+});
+
+describe("prontidão dos gráficos", () => {
+  it("só libera o gráfico com o mínimo de dados e informa quanto falta", () => {
+    expect(chartReadiness(0, 3)).toEqual({ ready: false, missing: 3 });
+    expect(chartReadiness(2, 3)).toEqual({ ready: false, missing: 1 });
+    expect(chartReadiness(3, 3)).toEqual({ ready: true, missing: 0 });
+    expect(chartReadiness(9, 3)).toEqual({ ready: true, missing: 0 });
+  });
+  it("conta só as semanas do plano com tempo lançado", () => {
+    expect(weeksWithStudy([0, 0, 0])).toBe(0);
+    expect(weeksWithStudy([0, 3600, 0, 60])).toBe(2);
   });
 });

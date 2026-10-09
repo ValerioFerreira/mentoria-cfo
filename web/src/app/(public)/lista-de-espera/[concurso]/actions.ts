@@ -31,7 +31,7 @@ export type JoinState =
       errors?: Record<string, string[]>;
       message?: string;
       /** pagamento a exibir depois do cadastro */
-      payment?: { payload: string; qr: string; email: string; plan: string; amount: string; alreadyJoined: boolean };
+      payment?: { payload: string; qr: string; email: string; plan: string; amount: string; alreadyJoined: boolean; txId: string };
     };
 
 const JoinSchema = z.object({
@@ -42,10 +42,11 @@ const JoinSchema = z.object({
 });
 
 /** Código Pix e QR Code do plano escolhido (a mensagem do Pix é o e-mail). */
-async function paymentFor(cfg: PixConfig, planKey: WaitlistPlan, email: string, alreadyJoined: boolean) {
+async function paymentFor(cfg: PixConfig, planKey: WaitlistPlan, email: string, alreadyJoined: boolean, username?: string) {
   const plan = WAITLIST_PLANS[planKey];
-  const payload = buildPixPayload({ ...cfg, amount: plan.amount }, email);
-  return { payload, qr: await pixQrDataUri(payload), email, plan: plan.name, amount: plan.price, alreadyJoined };
+  const cleanId = (username ? `CFO${username}` : `CFO${email.split("@")[0]}`).replace(/[^a-zA-Z0-9]/g, "").slice(0, 25);
+  const payload = buildPixPayload({ ...cfg, amount: plan.amount }, email, cleanId);
+  return { payload, qr: await pixQrDataUri(payload), email, plan: plan.name, amount: plan.price, alreadyJoined, txId: cleanId };
 }
 
 async function clientKey(): Promise<string> {
@@ -74,7 +75,7 @@ export async function joinWaitlist(slug: string, _: JoinState, formData: FormDat
     // com o Pix já conferido, o plano que vale é o que foi pago
     const effective = existing.paidAt && existing.plan ? existing.plan : plan;
     if (!existing.paidAt && existing.plan !== plan) await db.waitlistEntry.update({ where: { id: existing.id }, data: { plan } });
-    return { payment: await paymentFor(cfg, effective, email, true) };
+    return { payment: await paymentFor(cfg, effective, email, true, existing.username) };
   }
 
   if (await db.user.findUnique({ where: { email }, select: { id: true } })) {
@@ -89,5 +90,5 @@ export async function joinWaitlist(slug: string, _: JoinState, formData: FormDat
     // corrida entre duas pessoas escolhendo o mesmo usuário
     return { errors: { username: ["Este nome de usuário já está em uso."] } };
   }
-  return { payment: await paymentFor(cfg, plan, email, false) };
+  return { payment: await paymentFor(cfg, plan, email, false, username) };
 }

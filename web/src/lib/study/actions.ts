@@ -31,9 +31,11 @@ export async function logManualTime(activityId: string, hours: number, minutes: 
   if (total < 1) return { error: "Informe pelo menos 1 minuto." };
   const a = await ownedActivity(user.id, activityId);
   const seconds = total * 60;
-  const now = Date.now();
+  // o tempo lançado vale para o momento do lançamento: recuar o início pela duração jogaria o estudo para o dia (ou a
+  // semana) anterior quando a pessoa lança logo depois da meia-noite, e ele sumiria do "esta semana"
+  const now = new Date();
   await db.timeLog.create({
-    data: { userId: user.id, activityId, seconds, startedAt: new Date(now - seconds * 1000), endedAt: new Date(now), source: "MANUAL" },
+    data: { userId: user.id, activityId, seconds, startedAt: now, endedAt: now, source: "MANUAL" },
   });
   if (a.status === "PENDING") await db.activity.update({ where: { id: activityId }, data: { status: "IN_PROGRESS" } });
   revalidatePath("/", "layout");

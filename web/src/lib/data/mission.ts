@@ -40,7 +40,7 @@ export async function getMission(userId: string, plan: PlanWithWeeks) {
   const [details, seconds] = await Promise.all([
     db.activity.findMany({
       where: { id: { in: ids } },
-      select: { id: true, type: true, scope: true, fixRanges: true, quizQuestions: true, aula: { select: { number: true, shortTitle: true } }, segments: { select: { segment: { select: { startPage: true, endPage: true } } } } },
+      select: { id: true, type: true, scope: true, fixRanges: true, quizQuestions: true, aula: { select: { number: true, shortTitle: true } }, segments: { select: { segment: { select: { startTopic: true, sortOrder: true } } } } },
     }),
     secondsByActivity(userId, ids),
   ]);

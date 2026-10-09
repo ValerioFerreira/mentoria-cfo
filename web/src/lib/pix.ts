@@ -50,13 +50,15 @@ export function pixConfig(): PixConfig | null {
 }
 
 /** Monta o código "copia e cola". `message` é a mensagem do Pix (aqui, o e-mail do interessado). */
-export function buildPixPayload(cfg: PixConfig, message: string): string {
+export function buildPixPayload(cfg: PixConfig, message: string, txId?: string): string {
   const gui = field("00", "br.gov.bcb.pix");
   const keyField = field("01", cfg.key);
   // o campo 26 inteiro tem no máximo 99 caracteres: sobra espaço para a mensagem depois do GUI e da chave
   const room = 99 - gui.length - keyField.length - 4;
   const msg = ascii(message, Math.max(0, room));
   const merchant = field("26", gui + keyField + (msg ? field("02", msg) : ""));
+  // txId deve ter no máximo 25 caracteres alfanuméricos; padrão é ***
+  const cleanTxId = (txId || "***").replace(/[^a-zA-Z0-9]/g, "").slice(0, 25) || "***";
   const body =
     field("00", "01") +
     field("01", "11") + // 11 = QR estático, reutilizável
@@ -67,7 +69,7 @@ export function buildPixPayload(cfg: PixConfig, message: string): string {
     field("58", "BR") +
     field("59", ascii(cfg.receiverName, 25) || "MENTORIA") +
     field("60", ascii(cfg.city, 15) || "RECIFE") +
-    field("62", field("05", "***")) +
+    field("62", field("05", cleanTxId)) +
     "6304";
   return body + crc16(body);
 }

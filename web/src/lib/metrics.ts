@@ -142,6 +142,26 @@ export function weakTopics(rows: QuizRow[], minAttempts = 3, limit = 8): WeakTop
 
 export const MIN_QUESTIONS_FOR_PROJECTION = 10;
 
+/** Dados mínimos para desenhar cada gráfico do Desempenho; abaixo disso o gráfico fica em branco e a tela diz o que falta. */
+export const MIN_TREND_CADERNOS = 3;
+export const MIN_HEAT_DAYS = 3;
+export const MIN_WEEKS_WITH_STUDY = 2;
+
+export interface ChartReadiness {
+  ready: boolean;
+  /** quanto falta para atingir o mínimo (0 quando pronto) */
+  missing: number;
+}
+
+export function chartReadiness(have: number, min: number): ChartReadiness {
+  return { ready: have >= min, missing: Math.max(0, min - have) };
+}
+
+/** Semanas do plano com algum tempo lançado. */
+export function weeksWithStudy(byWeekSeconds: number[]): number {
+  return byWeekSeconds.filter((s) => s > 0).length;
+}
+
 export interface BlockProjection {
   block: "I" | "II" | "III";
   points: number; // pontos da prova no bloco (considerando só as disciplinas do aluno)

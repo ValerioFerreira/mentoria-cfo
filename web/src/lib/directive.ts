@@ -20,7 +20,7 @@ export interface AulaRef {
   shortTitle: string;
   subjectName: string;
   printedOffset: number;
-  /** material complementar do MentorIA (PDF próprio) em vez de aula do Estratégia */
+  /** material complementar do MentorIA (PDF próprio) em vez de aula do material-base */
   authored?: boolean;
   materialPath?: string | null;
 }

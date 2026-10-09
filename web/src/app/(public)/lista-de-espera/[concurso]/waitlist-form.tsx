@@ -145,28 +145,66 @@ function PlanChoice({ error }: { error?: string[] }) {
 
 function Payment({ p }: { p: NonNullable<NonNullable<Awaited<ReturnType<typeof joinWaitlist>>>["payment"]> }) {
   const [copied, setCopied] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState(false);
+
   async function copy() {
     try {
       await navigator.clipboard.writeText(p.payload);
       setCopied(true);
       setTimeout(() => setCopied(false), 2500);
     } catch {
-      /* sem permissão de área de transferência: a pessoa seleciona o código manualmente */
+      /* sem permissão de área de transferência */
     }
   }
+
+  async function copyEmail() {
+    try {
+      await navigator.clipboard.writeText(p.email);
+      setCopiedEmail(true);
+      setTimeout(() => setCopiedEmail(false), 2500);
+    } catch {
+      /* sem permissão */
+    }
+  }
+
   return (
     <Card className="space-y-6">
       <div className="space-y-2">
         {p.alreadyJoined && <p className="eyebrow">Você já está na lista</p>}
         <h2 className="font-display text-5xl font-bold uppercase leading-none">Falta pouco!</h2>
         <p className="text-sm leading-relaxed text-muted">
-          Efetue o pagamento via PIX, usando o QR Code ou o código copia e cola. <strong className="text-text">Não altere a mensagem do PIX:</strong> Ela contém o e-mail que será utilizado pela plataforma para confirmar seu acesso!
+          Efetue o pagamento via PIX pelo QR Code ou pelo código copia e cola abaixo.
         </p>
       </div>
+
+      <div className="rounded-xl border border-primary/30 bg-primary-soft p-4 space-y-2 text-xs leading-relaxed text-text">
+        <p className="font-bold text-sm text-primary flex items-center gap-1.5">
+          ⚠️ Identificação do seu Pagamento no Banco
+        </p>
+        <p>
+          A maioria dos aplicativos bancários (Nubank, Itaú, Bradesco, BB, etc.) deixa o campo <strong>Descrição / Mensagem</strong> em branco. Para localizarmos seu pagamento sem demora, <strong>cole seu e-mail</strong> no campo de mensagem do Pix no app do seu banco:
+        </p>
+        <div className="flex flex-wrap items-center gap-2 pt-1">
+          <span className="font-mono font-bold bg-surface px-2.5 py-1 rounded border border-border text-xs break-all">
+            {p.email}
+          </span>
+          <Button type="button" size="sm" variant="secondary" onClick={copyEmail} className="text-xs">
+            {copiedEmail ? <Check className="h-3.5 w-3.5 text-ok" /> : <Copy className="h-3.5 w-3.5" />}
+            {copiedEmail ? "E-mail copiado!" : "Copiar meu e-mail"}
+          </Button>
+        </div>
+        {p.txId && (
+          <p className="text-[11px] text-muted pt-1">
+            Identificador único da transação: <code className="font-bold text-text">{p.txId}</code>
+          </p>
+        )}
+      </div>
+
       <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 rounded-xl bg-surface-2 px-4 py-3">
         <p className="text-sm font-semibold">{p.plan}</p>
         <p className="tabular font-display text-3xl font-bold leading-none">R$ {p.amount}</p>
       </div>
+
       <div className="flex flex-col items-center gap-5 sm:flex-row sm:items-start">
         <Image src={p.qr} alt="QR Code do Pix" width={208} height={208} unoptimized className="h-52 w-52 shrink-0 rounded-xl border border-border bg-white p-1.5" />
         <div className="min-w-0 flex-1 space-y-3">
@@ -176,12 +214,11 @@ function Payment({ p }: { p: NonNullable<NonNullable<Awaited<ReturnType<typeof j
             {copied ? <Check className="h-4 w-4 text-ok" aria-hidden /> : <Copy className="h-4 w-4" aria-hidden />}
             {copied ? "Código copiado" : "Copiar código Pix"}
           </Button>
-          <p className="text-xs text-muted">
-            E-mail na mensagem do Pix: <strong className="break-all text-text">{p.email}</strong>
-          </p>
         </div>
       </div>
-      <p className="border-t border-dashed border-border-strong pt-4 text-sm text-muted">Assim que seu pagamento for confirmado, você receberá no seu e-mail as credenciais de acesso à plataforma.</p>
+      <p className="border-t border-dashed border-border-strong pt-4 text-sm text-muted">
+        Assim que seu pagamento for confirmado pela administração, você receberá no seu e-mail as credenciais de acesso com a sua senha temporária.
+      </p>
     </Card>
   );
 }

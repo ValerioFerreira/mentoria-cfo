@@ -124,7 +124,7 @@ export default async function QuizPage({ params }: PageProps<"/caderno/[id]">) {
                     <div>
                       <p className="font-semibold">{p.topic}</p>
                       <p className="text-xs text-muted">
-                        {aula ? `Aula ${String(aula.number).padStart(2, "0")} — ${aula.shortTitle}` : ""}{p.pageRef ? ` · reveja a pág. ${p.pageRef}` : ""}
+                        {aula ? aula.shortTitle : ""}
                       </p>
                     </div>
                     <div className="flex items-center gap-2 text-sm">

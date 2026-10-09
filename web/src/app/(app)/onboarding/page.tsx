@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { requireUser } from "@/lib/auth/dal";
 import { loadPlannerData } from "@/lib/data/planner-data";
+import { db } from "@/lib/db";
 import { todayISO } from "@/lib/plan-time";
 import { Wizard, type WizardSubject } from "./wizard";
 
@@ -8,7 +9,11 @@ export const metadata: Metadata = { title: "Montar plano" };
 
 export default async function OnboardingPage() {
   await requireUser();
-  const { catalog } = await loadPlannerData();
+  const [{ catalog }, items] = await Promise.all([
+    loadPlannerData(),
+    db.editalItem.findMany({ orderBy: [{ subjectId: "asc" }, { sortOrder: "asc" }], select: { id: true, subjectId: true, title: true, aulaIds: true } }),
+  ]);
+  const itemsBySubject = Map.groupBy(items, (i) => i.subjectId);
   const subjects: WizardSubject[] = catalog.subjects.map((s) => {
     const aulas = s.aulas.filter((a) => a.selectable);
     return {
@@ -17,8 +22,8 @@ export default async function OnboardingPage() {
       block: s.block,
       examQuestions: s.examQuestions,
       languageGroup: s.languageGroup ?? null,
-      aulas: aulas.map((a) => ({ id: a.id, number: a.number, title: a.shortTitle, pages: a.theoryPages, authored: a.source === "authored" })),
-      theoryPages: aulas.reduce((n, a) => n + a.theoryPages, 0),
+      items: (itemsBySubject.get(s.id) ?? []).map((i) => ({ id: i.id, title: i.title, aulaIds: i.aulaIds as string[] })),
+      aulaIds: aulas.map((a) => a.id),
       hasComplement: aulas.some((a) => a.source === "authored"),
     };
   });

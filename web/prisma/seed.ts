@@ -1,6 +1,6 @@
 // Carrega o conteúdo versionado em /content no banco. Idempotente (upsert): pode ser reexecutado
 // sem apagar planos, tempos ou respostas dos usuários.
-//   1) estrutura: disciplinas, aulas, tópicos, segmentos, lacunas  (content/catalog.json, structure/, segments/)
+//   1) estrutura: disciplinas, aulas, tópicos, segmentos, lacunas, assuntos do edital  (content/catalog.json, structure/, segments/, edital/)
 //   2) autoral:  bizus e questões                                   (content/items/<disciplina>/<aula>.json)
 import "dotenv/config";
 import fs from "node:fs";
@@ -19,7 +19,7 @@ interface CatalogAula {
   edital: "yes" | "partial" | "no"; selectable: boolean; note?: string | null;
   totalPages: number; theoryPages: number; segmentCount: number; commentedPages: number; listPages: number;
   commentedRuns: number[][]; practiceLinks: unknown[]; printedOffset: number; incidence: number;
-  source?: "estrategia" | "authored"; materialPath?: string;
+  source?: "base" | "authored"; materialPath?: string;
 }
 interface Catalog {
   subjects: { id: string; name: string; block: "I" | "II" | "III"; examQuestions: number; sortOrder: number;
@@ -31,6 +31,10 @@ interface SegJson {
   endPrinted: number | null; pages: number; load: number; startTopic: string | null; startsMidTopic: boolean;
   stopBeforeTopic: string | null; endsMidTopic: boolean; endTopic: string | null; endsTheory: boolean;
   topicsCovered: string[]; minutes: number;
+}
+interface EditalFile {
+  subject: string;
+  items: { id: string; item: string; where?: { aula: string }[] }[];
 }
 interface BizuItemJson { statement: string; isTrue: boolean; explanation: string }
 interface QuestionJson {
@@ -70,7 +74,7 @@ async function seedStructure() {
           selectable: a.selectable, totalPages: a.totalPages, theoryPages: a.theoryPages, segmentCount: a.segmentCount,
           commentedPages: a.commentedPages, listPages: a.listPages, commentedRuns: a.commentedRuns,
           practiceLinks: a.practiceLinks as object[], printedOffset: a.printedOffset, incidence: a.incidence, note: a.note ?? null,
-          source: a.source === "authored" ? ("AUTHORED" as const) : ("ESTRATEGIA" as const), materialPath: a.materialPath ?? null,
+          source: a.source === "authored" ? ("AUTHORED" as const) : ("BASE" as const), materialPath: a.materialPath ?? null,
         };
         return db.aula.upsert({ where: { id: a.id }, create: { id: a.id, ...data }, update: data });
       }),
@@ -116,13 +120,30 @@ async function seedStructure() {
   });
   if (gone.count) console.log(`aulas fora do catálogo desativadas: ${gone.count}`);
 
+  // assuntos do edital: só entram os que têm ao menos uma aula planejável da própria disciplina
+  // (assuntos cobertos em outra disciplina não alteram o plano de quem os marca)
+  const planavel = new Set(aulas.filter(({ a }) => a.selectable).map(({ a }) => a.id));
+  let editalItems = 0;
+  for (const s of catalog.subjects) {
+    const file = path.join(CONTENT, "edital", `${s.id}.json`);
+    if (!fs.existsSync(file)) continue;
+    const doc = read<EditalFile>("edital", `${s.id}.json`);
+    const rows = doc.items.flatMap((it, i) => {
+      const aulaIds = [...new Set((it.where ?? []).map((w) => w.aula).filter((id) => id.startsWith(`${s.id}/`) && planavel.has(id)))];
+      return aulaIds.length ? [{ id: `${s.id}/e${it.id}`, subjectId: s.id, code: it.id, title: it.item, aulaIds, sortOrder: i }] : [];
+    });
+    await db.editalItem.deleteMany({ where: { subjectId: s.id } }); // não é referenciado por dados de usuário
+    if (rows.length) await db.editalItem.createMany({ data: rows });
+    editalItems += rows.length;
+  }
+
   await db.$transaction(
     catalog.gaps.map((g) => {
       const data = { subjectId: g.subject, item: g.item, evidence: g.evidence, severity: g.severity.toUpperCase() as "HIGH" | "MEDIUM" | "LOW", remedy: g.remedy, resolved: !!g.resolved, resolution: g.resolution ?? null };
       return db.gap.upsert({ where: { id: g.id }, create: { id: g.id, ...data }, update: data });
     }),
   );
-  console.log(`estrutura: ${catalog.subjects.length} disciplinas, ${aulas.length} aulas, ${topics} tópicos, ${segments} segmentos, ${catalog.gaps.length} lacunas`);
+  console.log(`estrutura: ${catalog.subjects.length} disciplinas, ${aulas.length} aulas, ${topics} tópicos, ${segments} segmentos, ${editalItems} assuntos do edital, ${catalog.gaps.length} lacunas`);
 }
 
 async function seedItems() {
@@ -186,9 +207,37 @@ async function seedItems() {
   console.log(`autoral: ${bizus} bizus, ${bizuItems} itens C/E, ${questions} questões (${retired} aposentadas)`);
 }
 
+async function seedAdmin() {
+  const { randomBytes, scrypt: scryptCb } = await import("node:crypto");
+  const { promisify } = await import("node:util");
+  const scrypt = promisify(scryptCb) as (pw: string, salt: Buffer, keylen: number, opts: { N: number; r: number; p: number }) => Promise<Buffer>;
+  const salt = randomBytes(16);
+  const key = await scrypt("P3rn@mbuco", salt, 64, { N: 16384, r: 8, p: 1 });
+  const passwordHash = ["scrypt", 16384, 8, 1, salt.toString("base64"), key.toString("base64")].join("$");
+  const email = "valerioeducfin@gmail.com";
+
+  await db.user.upsert({
+    where: { email },
+    create: {
+      email,
+      name: "Valério Ferreira (Admin)",
+      username: "valerio",
+      passwordHash,
+      role: "ADMIN",
+      mustChangePassword: false,
+    },
+    update: {
+      role: "ADMIN",
+      passwordHash,
+    },
+  });
+  console.log(`admin: ${email} assegurado com role ADMIN`);
+}
+
 async function main() {
   await seedStructure();
   await seedItems();
+  await seedAdmin();
 }
 
 main().finally(() => db.$disconnect());

@@ -25,7 +25,7 @@ export default async function MissionPage() {
           <div className="tape tape-rule absolute inset-x-0 top-0 !rounded-none" aria-hidden />
           <p className="eyebrow !text-on-ink-muted">Bem-vindo, {first}</p>
           <h1 className="mt-2 font-display text-5xl font-bold uppercase leading-[0.95] sm:text-7xl">Monte a sua<br />missão oficial</h1>
-          <p className="mt-4 max-w-lg text-on-ink-muted">Escolha as disciplinas, conte o que já estudou e o tempo que tem por semana. O MentorIA monta cada dia até a prova, com a aula e a página exatas.</p>
+          <p className="mt-4 max-w-lg text-on-ink-muted">Escolha as disciplinas, conte o que já estudou e o tempo que tem por semana. O MentorIA monta cada dia até a prova, com o que estudar em cada atividade.</p>
           <LinkButton href="/onboarding" size="lg" className="mt-7">
             <Rocket className="h-5 w-5" aria-hidden />
             Montar meu plano

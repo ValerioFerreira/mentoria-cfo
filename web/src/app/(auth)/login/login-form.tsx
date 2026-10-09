@@ -1,6 +1,7 @@
 "use client";
 
 import { Eye, EyeOff, Loader2, LogIn } from "lucide-react";
+import Link from "next/link";
 import { useActionState, useState } from "react";
 import { Alert, Button, Field, LinkButton, inputCls } from "@/components/ui";
 import { login } from "../actions";
@@ -20,9 +21,14 @@ export function LoginForm() {
           <input name="email" type="email" autoComplete="email" required className={inputCls} />
         </Field>
         <div className="space-y-1.5">
-          <label htmlFor="password" className="block text-sm font-semibold">
-            Senha
-          </label>
+          <div className="flex items-center justify-between">
+            <label htmlFor="password" className="block text-sm font-semibold">
+              Senha
+            </label>
+            <Link href="/recuperar-senha" className="text-xs font-semibold text-primary transition hover:underline">
+              Esqueci minha senha
+            </Link>
+          </div>
           <div className="relative">
             <input id="password" name="password" type={show ? "text" : "password"} autoComplete="current-password" required className={`${inputCls} pr-11`} aria-invalid={Boolean(state?.errors?.password)} />
             <button
