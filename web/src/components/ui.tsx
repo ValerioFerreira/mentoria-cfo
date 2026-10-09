@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BookOpen, ClipboardCheck, Info, Repeat, Target, TriangleAlert, OctagonAlert, type LucideIcon } from "lucide-react";
+import { InfoTip } from "./info-tip";
 import type { ButtonHTMLAttributes, ComponentProps, CSSProperties, ReactNode } from "react";
 
 export function cx(...c: (string | false | null | undefined)[]) {
@@ -178,33 +179,8 @@ export function Alert({ children, tone = "warn" }: { children: ReactNode; tone?:
 }
 
 /* ───────── balão informativo (?) ───────── */
-/** Explicações longas ficam recolhidas: aparecem ao passar o mouse, focar (teclado) ou tocar no "?". */
-export function InfoTip({ children, label = "Mais informações", align = "center", className }: { children: ReactNode; label?: string; align?: "start" | "center" | "end"; className?: string }) {
-  const pos = { start: "left-0", center: "left-1/2 -translate-x-1/2", end: "right-0" }[align];
-  return (
-    <span className={cx("group/tip relative inline-flex align-middle", className)}>
-      <button
-        type="button"
-        aria-label={label}
-        className="flex h-[18px] w-[18px] cursor-help items-center justify-center rounded-full border border-border-strong bg-surface-2 font-sans text-[11px] font-bold leading-none text-muted transition hover:border-primary hover:bg-primary hover:text-on-primary focus-visible:border-primary focus-visible:bg-primary focus-visible:text-on-primary"
-      >
-        ?
-      </button>
-      <span
-        role="tooltip"
-        className={cx(
-          "pointer-events-none invisible absolute top-full z-40 mt-2 w-64 max-w-[78vw] translate-y-1 rounded-xl border border-border bg-surface p-3 text-left font-sans text-[12.5px] font-normal normal-case leading-snug tracking-normal text-text opacity-0 shadow-lift transition duration-150",
-          "group-hover/tip:visible group-hover/tip:translate-y-0 group-hover/tip:opacity-100 group-focus-within/tip:visible group-focus-within/tip:translate-y-0 group-focus-within/tip:opacity-100",
-          pos,
-        )}
-      >
-        {children}
-      </span>
-    </span>
-  );
-}
+export { InfoTip };
 
-/* ───────── estrutura de página ───────── */
 export function PageHeader({ eyebrow, title, description, info, actions, className }: { eyebrow?: ReactNode; title: ReactNode; description?: ReactNode; info?: ReactNode; actions?: ReactNode; className?: string }) {
   return (
     <header className={cx("flex flex-wrap items-end justify-between gap-4", className)}>
