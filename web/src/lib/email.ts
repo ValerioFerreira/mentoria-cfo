@@ -1,5 +1,7 @@
 import "server-only";
 
+import nodemailer from "nodemailer";
+
 export interface SendEmailOptions {
   to: string;
   subject: string;
@@ -8,10 +10,13 @@ export interface SendEmailOptions {
 }
 
 export async function sendEmail({ to, subject, html, text }: SendEmailOptions): Promise<{ success: boolean; error?: string }> {
-  const from = process.env.EMAIL_FROM || "MentorIA CBMPE <acesso@mentoriacfo.com.br>";
+  const from =
+    process.env.EMAIL_FROM ||
+    (process.env.SMTP_USER ? `MentorIA CBMPE <${process.env.SMTP_USER}>` : "MentorIA CBMPE <acesso@missaomentoria.com.br>");
+
   const resendKey = process.env.RESEND_API_KEY || process.env.EMAIL_API_KEY;
 
-  // 1) Se houver Resend configurado
+  // 1) Se houver Resend configurado via API REST
   if (resendKey) {
     try {
       const res = await fetch("https://api.resend.com/emails", {
@@ -31,24 +36,63 @@ export async function sendEmail({ to, subject, html, text }: SendEmailOptions): 
 
       if (!res.ok) {
         const errJson = await res.json().catch(() => ({}));
-        console.error("Falha ao enviar e-mail via Resend:", errJson);
+        console.error("[Email Resend] Falha ao enviar:", errJson);
         return { success: false, error: JSON.stringify(errJson) };
       }
+      console.log(`[Email Resend] E-mail enviado com sucesso para ${to}.`);
       return { success: true };
     } catch (err: unknown) {
-      console.error("Erro na requisição para o Resend:", err);
+      console.error("[Email Resend] Erro na requisição:", err);
       return { success: false, error: String(err) };
     }
   }
 
-  // 2) Fallback para desenvolvimento / log seguro no servidor
-  console.log(`\n================== [ENVIO DE E-MAIL] ==================`);
+  // 2) Se houver SMTP configurado (Gmail, Hostinger, Brevo, AWS SES, Zoho, etc.)
+  const smtpHost = process.env.SMTP_HOST;
+  if (smtpHost && process.env.SMTP_USER && process.env.SMTP_PASS) {
+    try {
+      const port = Number(process.env.SMTP_PORT) || 587;
+      const secure = process.env.SMTP_SECURE === "true" || port === 465;
+
+      const transporter = nodemailer.createTransport({
+        host: smtpHost,
+        port,
+        secure,
+        auth: {
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASS,
+        },
+      });
+
+      await transporter.sendMail({
+        from,
+        to,
+        subject,
+        text,
+        html,
+      });
+
+      console.log(`[Email SMTP] E-mail enviado com sucesso via ${smtpHost} para ${to}.`);
+      return { success: true };
+    } catch (err: unknown) {
+      console.error("[Email SMTP] Erro ao enviar:", err);
+      return { success: false, error: String(err) };
+    }
+  }
+
+  // 3) Fallback: Nenhum provedor configurado no ambiente
+  console.warn(`\n[Email Warning] NENHUM SERVIÇO DE E-MAIL CONFIGURADO NA VERCEL!`);
+  console.warn(`Para envio real, configure na Vercel: RESEND_API_KEY OU (SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS)`);
+  console.log(`================== [E-MAIL REGISTRADO EM LOG] ==================`);
   console.log(`Para: ${to}`);
   console.log(`Assunto: ${subject}`);
   console.log(`Texto:\n${text}`);
-  console.log(`=======================================================\n`);
+  console.log(`================================================================\n`);
 
-  return { success: true };
+  return {
+    success: false,
+    error: "Serviço de e-mail não configurado na Vercel. Configure RESEND_API_KEY ou SMTP_HOST nas Environment Variables.",
+  };
 }
 
 export function generateTemporaryPassword(prefix = "CFO"): string {

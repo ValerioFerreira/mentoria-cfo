@@ -72,16 +72,18 @@ export async function approveRegistration(
   });
 
   // Envia e-mail de aprovação
-  const loginUrl = `${(process.env.SITE_URL || "https://mentoria-cfo.vercel.app").replace(/\/$/, "")}/login`;
+  const loginUrl = `${(process.env.SITE_URL || "https://www.missaomentoria.com.br").replace(/\/$/, "")}/login`;
 
+  let emailSent = false;
   try {
-    await sendApprovalEmail({
+    const emailRes = await sendApprovalEmail({
       to: entry.email,
       name: entry.name,
       tempPassword,
       accessDuration: duration,
       loginUrl,
     });
+    emailSent = emailRes?.success ?? false;
   } catch (err) {
     console.error("Erro ao enviar e-mail de aprovação:", err);
   }
@@ -89,7 +91,9 @@ export async function approveRegistration(
   revalidatePath("/admin/cadastros");
   return {
     success: true,
-    message: `Cadastro de ${entry.name} aprovado com sucesso! E-mail com senha temporária enviado.`,
+    message: emailSent
+      ? `Cadastro de ${entry.name} aprovado com sucesso! E-mail com senha temporária enviado.`
+      : `Cadastro de ${entry.name} aprovado! Atenção: configure RESEND_API_KEY ou SMTP na Vercel para envio automático. Copie a senha temporária abaixo para enviar ao aluno.`,
     tempPassword,
   };
 }

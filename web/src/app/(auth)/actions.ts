@@ -150,7 +150,7 @@ export async function requestPasswordReset(_: AuthState, formData: FormData): Pr
       },
     });
 
-    const loginUrl = `${(process.env.SITE_URL || "https://mentoria-cfo.vercel.app").replace(/\/$/, "")}/login`;
+    const loginUrl = `${(process.env.SITE_URL || "https://www.missaomentoria.com.br").replace(/\/$/, "")}/login`;
 
     await sendPasswordResetEmail({
       to: user.email,

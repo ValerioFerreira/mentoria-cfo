@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "postinstall": "prisma generate",
-    "build": "prisma migrate deploy && next build",
+    "build": "prisma migrate deploy && tsx prisma/seed-structure.ts && next build",
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
@@ -21,6 +21,7 @@
     "@prisma/client": "^7.10.0",
     "lucide-react": "^1.52.0",
     "next": "16.4.0",
+    "nodemailer": "^10.0.16",
     "pg": "^8.23.1",
     "qrcode": "^1.5.4",
     "react": "19.3.0",
@@ -31,6 +32,7 @@
   "devDependencies": {
     "@tailwindcss/turbopack": "^4",
     "@types/node": "^22.20.5",
+    "@types/nodemailer": "^8.0.2",
     "@types/pg": "^8.23.1",
     "@types/qrcode": "^1.5.6",
     "@types/react": "^19",
@@ -45,4 +47,3 @@
     "vitest": "^5.0.3"
   }
 }
-
