@@ -1,0 +1,38 @@
+PROGRESSO DO COLABORADOR — ETAPA 2 (questões AOCP) — branch questoes-juridicas
+Disciplinas desta frente: Direito Constitucional, Direito Administrativo, Língua Espanhola (aulas a00–a13)
+Base: origin/bizus-juridicas-linguas (bizus prontos). Tudo entra como DRAFT. Escopo conforme INSTRUCOES-COLABORADOR-ETAPA2.md.
+
+COMO RETOMAR (se a sessão cair ou o limite de uso acabar)
+1. git switch questoes-juridicas && git pull
+2. Colocar em docs/ (fora do Git) os PDFs: 02 (Dir. Adm., 10), 04 (Dir. Const., 19), 05 (Espanhol, só 001–014).
+   Cache de texto: PYTHONIOENCODING=utf-8 python3 pipeline/extract.py --only 02 / 04 / 05
+3. Ver o que falta: PYTHONIOENCODING=utf-8 python3 pipeline/validate_content.py --coverage --stage full --subject <disc>
+   (lista os trechos sem questões). Um arquivo pode ter trechos já feitos e outros com "stage":"bizu" por trecho: o
+   validador aceita; ao concluir o trecho, remover o "stage".
+4. Fazer as questões só dos trechos pendentes (briefing: pipeline/briefs/content.md), validar cada aula e commitar.
+
+ESTADO (atualizado em 2026-10-09, durante a produção; os agentes seguem trabalhando)
+  Disciplina              Trechos   Com questões   Faltam
+  Dir. Administrativo        69         17          52  (a03 4 · a04 5 · a05 13 · a06 5 · a07 5 · a08 4 · a09 16)
+  Dir. Constitucional        87         38          49  (a04 3 · a05 1 · a06 2 · a07 1 · a08 9 · a09 6 · a13 6 · a14 3 ·
+                                                          a15 3 · a16 6 · a17 8 · a18 1)
+  Língua Espanhola (a00-13)  36         27           9  (a11 3 · a12 1 · a13 5)
+
+Prontos e validados (questões incluídas): Dir. Adm. a00–a02; Dir. Const. a00–a03, a10–a12 e parte de a13 (4 de 10
+trechos); Espanhol a00–a10. Os complementos cNN já tinham bizu e questões e não foram tocados.
+Os números acima são um instantâneo: conferir sempre com o comando de cobertura do passo 3.
+
+NOTAS DE EXECUÇÃO
+- As questões foram escritas por agentes (uma faixa de aulas por agente), lendo as páginas de cada trecho no cache
+  de texto, com validação por aula e segunda passada de revisão.
+- Dir. Const. a02 teve questões reescritas para passar na checagem de originalidade (10 palavras do PDF).
+- Os agentes receberam as dúvidas do material já levantadas nas seções 11–14 de PROGRESSO-AUDITORIA.txt e foram
+  instruídos a NÃO criar questão sobre elas.
+
+PROBLEMAS NO MATERIAL ENCONTRADOS NESTA ETAPA (a completar com os relatórios finais dos agentes)
+- (nenhum relatório final recebido ainda)
+
+PARA REVISÃO HUMANA
+- Amostragem das questões antes de aprovar (APPROVED) em /admin/revisao, principalmente em lei seca e temas com
+  alterações recentes (emendas constitucionais, leis novas).
+- Espanhol: conferir os textos-base originais em espanhol e a correção segundo a RAE.
