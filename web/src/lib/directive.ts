@@ -76,6 +76,21 @@ export function teoriaDirective(aula: AulaRef, segs: SegmentRef[]): TeoriaDirect
   };
 }
 
+/** Modo Turbo: o resumo (Bizu) substitui a Teoria; a teoria completa fica indicada para consulta. */
+export function turboDirective(aula: AulaRef, segs: SegmentRef[]): TeoriaDirective {
+  const ordered = [...segs].sort((a, b) => a.startPage - b.startPage);
+  const first = ordered[0];
+  const last = ordered[ordered.length - 1];
+  const steps = [
+    "Modo Turbo: o tempo disponível não permite estudar esta aula na íntegra, então esta atividade traz o resumo (Bizu) dos assuntos abaixo. Leia o resumo com atenção.",
+    "Responda aos itens de Certo/Errado do Bizu e confira o que errou. Depois, anote no campo “Meu resumo” o que você lembra.",
+  ];
+  if (first && last && !aula.authored) {
+    steps.push(`Se um ponto ficar confuso, a teoria completa está na ${first.startPage === last.endPage ? pageLabel(first.startPage, first.startPrinted) : `${pageLabel(first.startPage, first.startPrinted)} a ${pageLabel(last.endPage, last.endPrinted)}`} (${aulaLabel(aula)}).`);
+  }
+  return { heading: `${aula.subjectName} · ${aulaLabel(aula)}`, steps, pages: 0 };
+}
+
 export function revisaoSteps(): string[] {
   return [
     "Sem consultar o material, escreva em até 10 minutos tudo de que você se lembra sobre os conceitos das atividades de Teoria abaixo — um parágrafo breve para cada conceito.",

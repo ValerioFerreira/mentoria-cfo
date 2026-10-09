@@ -26,8 +26,10 @@ export interface Selection {
   /** Aulas que o aluno disse dominar na anamnese: contam como cobertas e não geram atividades. */
   mastered: Set<string>;
   usedMinutes: number;
-  /** Minutos para cobrir todas as aulas no nível Essencial (tudo do edital). */
+  /** Minutos para cobrir todas as aulas no nível Essencial (tudo do edital), sem Modo Turbo. */
   fullMinutes: number;
+  /** Aulas cuja Teoria virou resumo (Modo Turbo). */
+  turboAulas: Set<string>;
   floorFraction: number;
   floorShortfall: boolean;
 }
@@ -52,6 +54,7 @@ export function selectContent(
   segments: SegmentsByAula,
   capacityMinutes: number,
   known: Record<string, Known> = {},
+  turbo = false,
 ): Selection {
   const blueprints = new Map<string, AulaBlueprint>();
   const items: Item[] = [];
@@ -79,6 +82,27 @@ export function selectContent(
       blueprints.set(aula.id, bp);
       fullMinutes += tierMinutes(bp, 1).total;
       items.push({ aulaId: aula.id, subjectId: subject.id, examQuestions: subject.examQuestions, number: aula.number, share });
+    }
+  }
+
+  // Modo Turbo: se o edital inteiro não cabe, as aulas de menor valor por minuto economizado viram resumos
+  // (valor = questões esperadas na prova: peso da disciplina × participação da aula), até caber.
+  const turboAulas = new Set<string>();
+  if (turbo && fullMinutes > capacityMinutes) {
+    const cands = items
+      .map((it) => {
+        const bp = blueprints.get(it.aulaId)!;
+        const saved = tierMinutes(bp, 1).total - tierMinutes({ ...bp, turbo: true }, 1).total;
+        return { it, bp, saved, value: it.examQuestions * it.share };
+      })
+      .filter((c) => c.saved > 0)
+      .sort((a, b) => a.value / a.saved - b.value / b.saved || a.it.number - b.it.number);
+    let total = fullMinutes;
+    for (const c of cands) {
+      if (total <= capacityMinutes) break;
+      blueprints.set(c.it.aulaId, { ...c.bp, turbo: true });
+      turboAulas.add(c.it.aulaId);
+      total -= c.saved;
     }
   }
 
@@ -167,5 +191,5 @@ export function selectContent(
     }
   }
 
-  return { tierByAula, blueprints, mastered, usedMinutes: used, fullMinutes, floorFraction: f, floorShortfall };
+  return { tierByAula, blueprints, mastered, usedMinutes: used, fullMinutes, turboAulas, floorFraction: f, floorShortfall };
 }

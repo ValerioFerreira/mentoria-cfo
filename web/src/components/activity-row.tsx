@@ -12,6 +12,8 @@ export interface ActivityRowData {
   subjectId: string;
   scope: string;
   plannedMinutes: number;
+  /** Modo Turbo: a Teoria é um resumo (Bizu) */
+  turbo?: boolean;
   aula: { number: number; shortTitle: string };
   /** o que fazer, em uma linha: páginas, questões comentadas, tamanho do caderno */
   detail?: string | null;
@@ -51,6 +53,7 @@ export function ActivityRow({ a, spent = 0, order, index = 0, quickTime = true }
             <span className="text-xs font-semibold" style={{ color: m.color }}>{m.label}</span>
             {a.detail && <span className="text-xs font-semibold text-text/70">· {a.detail}</span>}
             {a.scope === "FINAL" && <Badge tone="gold">geral</Badge>}
+            {a.turbo && <Badge tone="gold">turbo</Badge>}
             {skipped && <Badge>pulada</Badge>}
           </span>
           <span className="mt-0.5 line-clamp-2 block text-sm text-muted sm:line-clamp-1">{activityTitle(a)}</span>
@@ -93,6 +96,7 @@ export function ActivityCard({ a, spent = 0, index = 0, late }: { a: ActivityRow
       <div className="mt-2 flex items-center justify-between text-[11px] text-muted tabular">
         <span className="flex items-center gap-1"><Clock3 className="h-3 w-3" aria-hidden />{fmtMinutes(a.plannedMinutes)}</span>
         {spent > 0 && <span className="font-semibold text-ok">{fmtDuration(spent)} estudados</span>}
+        {a.turbo ? <Badge tone="gold">turbo</Badge> : null}
         {skipped && <Badge>pulada</Badge>}
       </div>
     </div>

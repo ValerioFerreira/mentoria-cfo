@@ -10,7 +10,7 @@ import { requireUser } from "@/lib/auth/dal";
 import { getActivity } from "@/lib/data/study";
 import { db } from "@/lib/db";
 import {
-  aulaLabel, fixacaoSteps, questoesSteps, revisaoFinalSteps, revisaoSteps, teoriaDirective,
+  aulaLabel, fixacaoSteps, questoesSteps, revisaoFinalSteps, revisaoSteps, teoriaDirective, turboDirective,
   type AulaRef, type FixRange, type SegmentRef,
 } from "@/lib/directive";
 import { servableStatuses } from "@/lib/quiz/servable";
@@ -87,6 +87,20 @@ export default async function ActivityPage({ params }: PageProps<"/atividade/[id
   // Revisão e Caderno de uma aula pressupõem a Teoria feita: avisa (sem bloquear) se alguma ainda está pendente
   const pendingTheory = !isFinal && (a.type === "REVISAO" || a.type === "QUESTOES") ? a.refs.filter((r) => r.refActivity.status !== "DONE") : [];
 
+  const bizuSection = (a.type === "TEORIA" || a.type === "REVISAO") ? (
+  <section className="rise" style={{ "--i": 4 } as CSSProperties} aria-labelledby="bizu">
+            <Section id="bizu" icon={<Sparkles className="h-5 w-5 text-gold" aria-hidden />} title="Bizu" />
+            {bizus.length === 0 ? (
+              <Alert tone="info">O Bizu (resumo + itens de Certo/Errado) deste trecho ainda está em produção.</Alert>
+            ) : (
+              <div className="space-y-4">
+                {bizus.map((b) => <BizuSummary key={b.id} markdown={b.summary} />)}
+                <BizuItems activityId={a.id} items={bizuItems.map((i) => ({ id: i.id, statement: i.statement, isTrue: i.isTrue, explanation: i.explanation }))} />
+              </div>
+            )}
+          </section>
+  ) : null;
+
   return (
     <div className="mx-auto max-w-3xl space-y-7">
       <nav aria-label="Navegação">
@@ -107,6 +121,7 @@ export default async function ActivityPage({ params }: PageProps<"/atividade/[id
               <p className="text-sm font-semibold">{subjectShort(a.subjectId)}</p>
             </div>
             <span className="ml-auto flex flex-wrap items-center gap-2">
+              {a.turbo && <Badge tone="gold">Modo Turbo</Badge>}
               <Badge tone={a.status === "DONE" ? "ok" : "neutral"}>{STATUS_LABEL[a.status]}</Badge>
               <span className="inline-flex items-center gap-1 text-xs font-semibold text-muted"><Clock3 className="h-3.5 w-3.5" aria-hidden />~{a.plannedMinutes} min</span>
             </span>
@@ -136,10 +151,10 @@ export default async function ActivityPage({ params }: PageProps<"/atividade/[id
         <Card className="space-y-5">
           {a.type === "TEORIA" &&
             [...byAula].map(([aulaId, list]) => {
-              const d = teoriaDirective(toRef(aulaById.get(aulaId)!), list);
+              const d = a.turbo ? turboDirective(toRef(aulaById.get(aulaId)!), list) : teoriaDirective(toRef(aulaById.get(aulaId)!), list);
               return (
                 <div key={aulaId} className="space-y-3">
-                  <p className="eyebrow">{d.heading} · {d.pages} págs.</p>
+                  <p className="eyebrow">{d.heading}{d.pages > 0 ? ` · ${d.pages} págs.` : ""}</p>
                   {toRef(aulaById.get(aulaId)!).authored && <MaterialLink path={toRef(aulaById.get(aulaId)!).materialPath} page={list[0].startPage} />}
                   <Steps items={d.steps} color={meta.color} />
                 </div>
@@ -192,6 +207,8 @@ export default async function ActivityPage({ params }: PageProps<"/atividade/[id
         </Card>
       </section>
 
+      {a.turbo && bizuSection}
+
       {a.type === "TEORIA" && segs.length > 0 && (
         <section className="rise" style={{ "--i": 3 } as CSSProperties}>
           <Section id="resumo" icon={<NotebookPen className="h-5 w-5 text-muted" aria-hidden />} title="Meu resumo" info="Escreva com as suas palavras. Este texto aparece na Revisão e em Meus resumos." />
@@ -217,19 +234,7 @@ export default async function ActivityPage({ params }: PageProps<"/atividade/[id
         </section>
       )}
 
-      {(a.type === "TEORIA" || a.type === "REVISAO") && (
-        <section className="rise" style={{ "--i": 4 } as CSSProperties} aria-labelledby="bizu">
-          <Section id="bizu" icon={<Sparkles className="h-5 w-5 text-gold" aria-hidden />} title="Bizu" />
-          {bizus.length === 0 ? (
-            <Alert tone="info">O Bizu (resumo + itens de Certo/Errado) deste trecho ainda está em produção.</Alert>
-          ) : (
-            <div className="space-y-4">
-              {bizus.map((b) => <BizuSummary key={b.id} markdown={b.summary} />)}
-              <BizuItems activityId={a.id} items={bizuItems.map((i) => ({ id: i.id, statement: i.statement, isTrue: i.isTrue, explanation: i.explanation }))} />
-            </div>
-          )}
-        </section>
-      )}
+      {!a.turbo && bizuSection}
 
       <ManualTime id={a.id} logs={a.timeLogs.map((l) => ({ id: l.id, seconds: l.seconds, source: l.source, startedAt: l.startedAt.toISOString() }))} />
     </div>

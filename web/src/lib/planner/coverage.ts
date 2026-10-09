@@ -37,7 +37,7 @@ export function computeCoverage(chosen: SelectedSubject[], sel: Selection, known
       const bp = sel.blueprints.get(a.id)!;
       const m = tierMinutes(bp, tier);
       seenInc += a.incidence;
-      const full = tierMinutes(bp, 3);
+      const full = tierMinutes({ ...bp, turbo: false }, 3);
       const fullPractice = full.fixacao + full.questoes;
       depthInc += a.incidence * (fullPractice > 0 ? (m.fixacao + m.questoes) / fullPractice : 1);
       pages += a.theoryPages;
@@ -45,7 +45,7 @@ export function computeCoverage(chosen: SelectedSubject[], sel: Selection, known
       mins.revisao += m.revisao;
       mins.fixacao += m.fixacao;
       mins.questoes += m.questoes;
-      aulas.push({ aulaId: a.id, tier, hours: round1(m.total / 60) });
+      aulas.push({ aulaId: a.id, tier, hours: round1(m.total / 60), ...(bp.turbo ? { turbo: true } : {}) });
     }
     const notCovered = selectable
       .filter((a) => sel.blueprints.has(a.id) && !sel.tierByAula.has(a.id) && !sel.mastered.has(a.id))
@@ -55,7 +55,7 @@ export function computeCoverage(chosen: SelectedSubject[], sel: Selection, known
     const total = mins.teoria + mins.revisao + mins.fixacao + mins.questoes;
     const full = selectable.reduce((n, a) => {
       const bp = sel.blueprints.get(a.id);
-      return bp ? n + tierMinutes(bp, 1).total : n;
+      return bp ? n + tierMinutes({ ...bp, turbo: false }, 1).total : n;
     }, 0);
     return {
       subjectId: subject.id,

@@ -68,6 +68,7 @@ export function Wizard({ subjects, todayIso }: { subjects: WizardSubject[]; toda
   const startValid = startMode === "now" || (startPick >= todayIso && startPick < examDate);
   const [answers, setAnswers] = useState<Record<string, DiagnosticAnswer>>({});
   const [marks, setMarks] = useState<Marks>({});
+  const [turbo, setTurbo] = useState(false);
   const [preview, setPreview] = useState<Preview | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [pending, startTransition] = useTransition();
@@ -88,11 +89,11 @@ export function Wizard({ subjects, todayIso }: { subjects: WizardSubject[]; toda
     if (chosen.length === 0 || step < 2) return;
     const id = ++seq.current;
     const t = setTimeout(async () => {
-      const r = await previewPlan({ subjects: levels, hoursPerWeek: hours, examDate, start, known: knownChosen });
+      const r = await previewPlan({ subjects: levels, hoursPerWeek: hours, examDate, start, known: knownChosen, turbo });
       if (id === seq.current) setPreview(r);
     }, 350);
     return () => clearTimeout(t);
-  }, [chosen.length, levels, hours, examDate, start, knownChosen, step]);
+  }, [chosen.length, levels, hours, examDate, start, knownChosen, step, turbo]);
 
   function toggle(s: WizardSubject) {
     setSelected((prev) => {
@@ -127,7 +128,7 @@ export function Wizard({ subjects, todayIso }: { subjects: WizardSubject[]; toda
   function submit() {
     setError(null);
     startTransition(async () => {
-      const res = await createPlanAction({ subjects: levels, hoursPerWeek: hours, examDate, start, known: knownChosen, diagnostics: answers });
+      const res = await createPlanAction({ subjects: levels, hoursPerWeek: hours, examDate, start, known: knownChosen, turbo, diagnostics: answers });
       if (res?.error) setError(res.error);
     });
   }
@@ -294,6 +295,7 @@ export function Wizard({ subjects, todayIso }: { subjects: WizardSubject[]; toda
               <div className="flex justify-between text-xs font-semibold text-muted tabular"><span>{band.min} h</span><span>{band.max} h</span></div>
             </Card>
             <PreviewBox preview={preview} subjects={chosen} hours={hours} onUseHours={setHours} />
+            <TurboOption preview={preview} on={turbo} onChange={setTurbo} />
           </section>
         )}
 
@@ -344,6 +346,7 @@ export function Wizard({ subjects, todayIso }: { subjects: WizardSubject[]; toda
               )}
             </Card>
             <PreviewBox preview={preview} subjects={chosen} hours={hours} detailed />
+            <TurboOption preview={preview} on={turbo} onChange={setTurbo} />
             {error && <Alert tone="danger">{error}</Alert>}
           </section>
         )}
@@ -511,6 +514,30 @@ function PreviewBox({ preview, subjects, hours, detailed, onUseHours }: { previe
           ))}
         </ul>
       )}
+    </Card>
+  );
+}
+
+/** Aparece só quando o tempo e a anamnese não fecham o edital inteiro: oferece trocar as aulas de menor valor por resumos. */
+function TurboOption({ preview, on, onChange }: { preview: Preview | null; on: boolean; onChange: (v: boolean) => void }) {
+  if (!preview || "error" in preview || preview.editalFits) return null;
+  return (
+    <Card tone={on ? "ink" : undefined} className="space-y-3">
+      <label className="flex cursor-pointer items-start gap-3">
+        <input type="checkbox" checked={on} onChange={(e) => onChange(e.target.checked)} className="mt-1 h-5 w-5 shrink-0 cursor-pointer accent-[var(--primary)]" />
+        <span className="min-w-0 space-y-1.5">
+          <span className="flex items-center gap-2 font-display text-2xl font-bold uppercase leading-none">
+            <Zap className="h-5 w-5 text-gold" aria-hidden />
+            Permitir Modo Turbo
+          </span>
+          <span className={cx("block text-sm leading-relaxed", on ? "text-on-ink-muted" : "text-muted")}>
+            E agora? Já que o tempo disponível e o resultado da anamnese não permitiriam a você fechar o edital, o MentorIA irá substituir os assuntos com menor incidência na prova e menor probabilidade de aparecerem pelos resumos, garantindo que você veja todo o edital, do seu jeito.
+          </span>
+          {on && preview.turboAulas > 0 && (
+            <span className="block text-sm font-semibold text-gold">{preview.turboAulas} {preview.turboAulas === 1 ? "aula será estudada" : "aulas serão estudadas"} por resumo.</span>
+          )}
+        </span>
+      </label>
     </Card>
   );
 }

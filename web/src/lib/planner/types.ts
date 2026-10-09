@@ -88,6 +88,8 @@ export interface PlanInput {
   /** Anamnese por aula (id da aula → conhecimento). Aulas ausentes valem 0. */
   known?: Record<string, Known>;
   finalReviewWeeks?: number;
+  /** Modo Turbo: se o tempo não fechar o edital, as aulas de menor valor viram resumos. */
+  turbo?: boolean;
   slack?: number;
 }
 
@@ -116,6 +118,8 @@ export interface PlannedActivity {
   quiz?: { questions: number; limitSeconds: number; mixed: boolean };
   /** Dia planejado dentro da semana (0 = segunda … 6 = domingo). */
   day?: number;
+  /** Modo Turbo: Teoria substituída pelo resumo (Bizu) do trecho. */
+  turbo?: boolean;
 }
 
 export interface PlannedWeek {
@@ -136,7 +140,7 @@ export interface SubjectCoverage {
   minutes: { teoria: number; revisao: number; fixacao: number; questoes: number };
   /** Minutos para ver TODAS as aulas da disciplina no nível Essencial (Teoria + Questões). */
   fullMinutes: number;
-  aulas: { aulaId: string; tier: Tier; hours: number }[];
+  aulas: { aulaId: string; tier: Tier; hours: number; turbo?: boolean }[];
   theoryPagesCovered: number;
   theoryPagesEligible: number;
   /** 0–1: fatia do edital da disciplina que o plano cobre (aulas estudadas ou já dominadas × completude do material). */
@@ -160,6 +164,10 @@ export interface PlanResult {
     plannedHours: number;
     /** Horas por semana (nominais) necessárias para ver o edital inteiro (só Teoria + Questões, com a revisão final no piso). */
     fullEditalHoursPerWeek: number;
+    /** O edital inteiro (Teoria + Questões) cabe no tempo disponível, sem Modo Turbo? */
+    editalFits: boolean;
+    /** Nº de aulas trocadas por resumos (Modo Turbo). */
+    turboAulas: number;
     /** Segunda-feira da semana 1. */
     startDate: string;
     /** Dia em que o aluno começa a estudar (pode ser depois da segunda da semana 1). */

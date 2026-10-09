@@ -27,6 +27,8 @@ export const TEORIA_MINUTES = { perLoadUnit: 60 / SEGMENT.targetLoad, min: 30, m
 /** Revisão: 10 min por Teoria revista + 15 min de base (recuperação ativa do resumo + Bizu). */
 export const REVISAO_MINUTES = { base: 15, perTeoria: 10, min: 30, max: 50 } as const;
 export const FIXACAO_MINUTES = 60;
+/** Modo Turbo: leitura do resumo (Bizu) + Certo/Errado no lugar da Teoria, por trecho. */
+export const TURBO_MINUTES_PER_SEGMENT = 15;
 export const QUESTOES_MINUTES = 60;
 export const MIN_ACTIVITY_MINUTES = 20;
 

@@ -58,7 +58,7 @@ export async function savePlan({ userId, input, result, diagnostics, foreignLang
             id, planId: plan.id, weekId: weekIds.get(w.index)!, sortOrder: order, type: a.type, subjectId: a.subjectId, aulaId: a.aulaId,
             plannedMinutes: a.minutes, key: a.key, scope: a.scope ?? ("AULA" as const),
             fixRanges: a.fixRanges ? (a.fixRanges as object[]) : undefined,
-            dayIndex: a.day ?? null, quizQuestions: a.quiz?.questions ?? null, quizLimitSec: a.quiz?.limitSeconds ?? null, quizMixed: a.quiz?.mixed ?? false,
+            dayIndex: a.day ?? null, turbo: a.turbo ?? false, quizQuestions: a.quiz?.questions ?? null, quizLimitSec: a.quiz?.limitSeconds ?? null, quizMixed: a.quiz?.mixed ?? false,
           };
         }),
       );

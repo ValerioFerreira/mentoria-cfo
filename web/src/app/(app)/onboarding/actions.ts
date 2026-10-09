@@ -28,6 +28,8 @@ const Selection = z.object({
   start: z.union([z.literal("now"), z.string().regex(/^\d{4}-\d{2}-\d{2}$/)]).default("now"),
   /** anamnese por aula: id da aula → 1 (já estudei) ou 2 (domino); ausente = nunca estudei */
   known: z.record(z.string(), z.union([z.literal(0), z.literal(1), z.literal(2)])).default({}),
+  /** Modo Turbo: se o tempo não fechar o edital, as aulas de menor valor viram resumos */
+  turbo: z.boolean().default(false),
 });
 export type SelectionInput = z.input<typeof Selection>;
 
@@ -59,6 +61,7 @@ export async function previewPlan(input: SelectionInput) {
       hoursPerWeek: parsed.data.hoursPerWeek,
       subjects: parsed.data.subjects as { id: string; level: Level }[],
       known: parsed.data.known as Record<string, Known>,
+      turbo: parsed.data.turbo,
     });
     return {
       ok: true as const,
@@ -69,6 +72,8 @@ export async function previewPlan(input: SelectionInput) {
       capacityHours: r.params.capacityHours,
       plannedHours: r.params.plannedHours,
       fullEditalHoursPerWeek: r.params.fullEditalHoursPerWeek,
+      editalFits: r.params.editalFits,
+      turboAulas: r.params.turboAulas,
       subjects: r.coverage.subjects.map((s) => ({ id: s.subjectId, hours: s.plannedHours, coverage: s.coverage, depth: s.depth })),
     };
   } catch (e) {
@@ -92,6 +97,7 @@ export async function createPlanAction(input: SelectionInput & { diagnostics: Re
     hoursPerWeek: parsed.data.hoursPerWeek,
     subjects: parsed.data.subjects as { id: string; level: Level }[],
     known: parsed.data.known as Record<string, Known>,
+    turbo: parsed.data.turbo,
   };
   let result;
   try {

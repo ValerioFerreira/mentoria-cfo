@@ -40,13 +40,13 @@ export async function getMission(userId: string, plan: PlanWithWeeks) {
   const [details, seconds] = await Promise.all([
     db.activity.findMany({
       where: { id: { in: ids } },
-      select: { id: true, type: true, scope: true, fixRanges: true, quizQuestions: true, aula: { select: { number: true, shortTitle: true } }, segments: { select: { segment: { select: { startTopic: true, sortOrder: true } } } } },
+      select: { id: true, type: true, scope: true, turbo: true, fixRanges: true, quizQuestions: true, aula: { select: { number: true, shortTitle: true } }, segments: { select: { segment: { select: { startTopic: true, sortOrder: true } } } } },
     }),
     secondsByActivity(userId, ids),
   ]);
   const detailOf = new Map(details.map((d) => [d.id, d]));
   const toRow = (a: (typeof all)[number]): MissionRow => ({
-    id: a.id, type: a.type, status: a.status, subjectId: a.subjectId, scope: a.scope, plannedMinutes: a.plannedMinutes,
+    id: a.id, type: a.type, status: a.status, subjectId: a.subjectId, scope: a.scope, plannedMinutes: a.plannedMinutes, turbo: detailOf.get(a.id)?.turbo ?? false,
     aula: detailOf.get(a.id)?.aula ?? { number: 0, shortTitle: "" }, detail: detailOf.has(a.id) ? activityDetail(detailOf.get(a.id)!) : null, week: a.week, day: a.day, date: a.date, spent: seconds.get(a.id) ?? 0,
   });
   const byOrder = (x: { week: number; day: number }, y: { week: number; day: number }) => x.week - y.week || x.day - y.day;

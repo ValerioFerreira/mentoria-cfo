@@ -23,6 +23,7 @@ export function buildAulaCycle(bp: AulaBlueprint, tier: Tier): PlannedActivity[]
     segmentIds: u.segmentIds,
     refKeys: [],
     scope: "AULA",
+    ...(bp.turbo ? { turbo: true } : {}),
   }));
 
   // sem Revisão (camada Essencial): a teoria corre direto; o caderno vem ao final

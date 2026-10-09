@@ -1,7 +1,7 @@
 // Blueprint do ciclo de uma aula: Teoria → Revisão → Fixação → Questões, por camada (tier), com o tempo de cada atividade.
 import {
   FIXACAO_MINUTES, FIXACAO_PAGES_PER_HOUR, KNOWN_PACE, LEVEL_PACE, MIN_ACTIVITY_MINUTES, QUESTOES_MINUTES, QUIZ,
-  REVISAO_MINUTES, SEGMENT, TEORIA_MINUTES,
+  REVISAO_MINUTES, SEGMENT, TEORIA_MINUTES, TURBO_MINUTES_PER_SEGMENT,
 } from "./constants";
 import type { CatalogAula, FixRange, Known, Level, SegmentLite, Tier } from "./types";
 
@@ -24,6 +24,8 @@ export interface AulaBlueprint {
   pace: number;
   /** Multiplicador de Teoria/Revisão: nível × "já estudei" desta aula. */
   readPace: number;
+  /** Modo Turbo: a Teoria da aula é substituída pelo resumo (Bizu); sem Revisão, Fixação nem Questões. */
+  turbo?: boolean;
 }
 
 const MERGE_UNTIL_PAGES = 8; // segmentos curtos são juntados enquanto a unidade tiver < 8 págs.
@@ -90,6 +92,7 @@ export function roundMinutes(m: number): number {
 
 /** Teoria: ~1 h para cada 12 de carga (10–17 págs., conforme a densidade), ajustada pelo ritmo do aluno. */
 export function teoriaMinutes(u: TeoriaUnit, bp: AulaBlueprint): number {
+  if (bp.turbo) return roundMinutes(TURBO_MINUTES_PER_SEGMENT * u.segmentIds.length * bp.readPace);
   const base = Math.min(Math.max(u.load * TEORIA_MINUTES.perLoadUnit, TEORIA_MINUTES.min), TEORIA_MINUTES.max);
   return roundMinutes(base * bp.readPace);
 }
@@ -121,6 +124,7 @@ export interface TierShape {
  * Revisões espaçadas e a Fixação; Aprofundamento amplia a prática.
  */
 export function tierShape(bp: AulaBlueprint, tier: Tier): TierShape {
+  if (bp.turbo) return { reviews: 0, fixChunks: 0, quizzes: 0 };
   const t = bp.teoria.length;
   // Essencial: sem Revisão (entra no Completo); Completo/Aprofundamento: o agrupamento do nível do aluno (2 a 4)
   const reviews = t === 0 || tier === 1 ? 0 : Math.ceil(t / bp.reviewGroup);

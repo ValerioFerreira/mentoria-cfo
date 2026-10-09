@@ -450,6 +450,8 @@ model Activity {
   quizMixed      Boolean        @default(false)
   // dia da semana planejado: 0 = segunda … 6 = domingo (nulo em planos antigos)
   dayIndex       Int?
+  // Modo Turbo: Teoria substituída pelo resumo (Bizu) do trecho
+  turbo          Boolean        @default(false)
 
   week        Week              @relation(fields: [weekId], references: [id], onDelete: Cascade)
   subject     Subject           @relation(fields: [subjectId], references: [id])

@@ -99,6 +99,47 @@ describe("generatePlan — dia da prova e Legislações PE", () => {
   });
 });
 
+describe("Modo Turbo", () => {
+  it("sem Modo Turbo ninguém vira resumo; com ele, o tempo curto passa a cobrir o edital inteiro", () => {
+    const off = generatePlan(input(21, ALL_PT, 1));
+    const on = generatePlan(input(21, ALL_PT, 1, { turbo: true }));
+    expect(off.params.editalFits).toBe(false);
+    expect(flat(off).some((a) => a.turbo)).toBe(false);
+    expect(on.params.turboAulas).toBeGreaterThan(0);
+    expect(on.coverage.selected).toBeGreaterThan(off.coverage.selected);
+    expect(on.coverage.selected).toBeGreaterThan(0.99);
+    expect(on.warnings.some((w) => w.startsWith("Modo Turbo"))).toBe(true);
+  });
+
+  it("as aulas em turbo são as de menor valor, só têm Teoria (resumo) e ficam mais curtas", () => {
+    const on = generatePlan(input(21, ALL_PT, 1, { turbo: true }));
+    const turboAulas = new Set(flat(on).filter((a) => a.turbo).map((a) => a.aulaId));
+    expect(turboAulas.size).toBe(on.params.turboAulas);
+    for (const a of flat(on).filter((x) => x.kind === "CONTENT" && turboAulas.has(x.aulaId))) {
+      expect(a.type).toBe("TEORIA");
+      expect(a.turbo).toBe(true);
+      expect(a.refKeys).toHaveLength(0);
+    }
+    const sharesOf = (ids: string[]) => ids.map((id) => {
+      const subj = catalog.subjects.find((s) => id.startsWith(`${s.id}/`))!;
+      const tot = subj.aulas.filter((a) => a.selectable).reduce((n, a) => n + a.incidence, 0);
+      return (subj.examQuestions * subj.aulas.find((a) => a.id === id)!.incidence) / tot;
+    });
+    const rest = flat(on).filter((a) => a.type === "TEORIA" && !a.turbo).map((a) => a.aulaId);
+    const mean = (xs: number[]) => xs.reduce((a, b) => a + b, 0) / xs.length;
+    expect(mean(sharesOf([...turboAulas]))).toBeLessThan(mean(sharesOf([...new Set(rest)])));
+  });
+
+  it("se o edital já cabe no tempo, o Modo Turbo não muda nada", () => {
+    const need = generatePlan(input(30, ALL_PT, 1)).params.fullEditalHoursPerWeek;
+    const a = generatePlan(input(need + 4, ALL_PT, 1));
+    const b = generatePlan(input(need + 4, ALL_PT, 1, { turbo: true }));
+    expect(a.params.editalFits).toBe(true);
+    expect(b.params.turboAulas).toBe(0);
+    expect(JSON.stringify(b.weeks)).toBe(JSON.stringify(a.weeks));
+  });
+});
+
 describe("generatePlan — validações", () => {
   it("rejeita Inglês e Espanhol juntos", () => {
     expect(() => generatePlan(input(20, ["lingua-inglesa", "lingua-espanhola"]))).toThrow(PlanInputError);

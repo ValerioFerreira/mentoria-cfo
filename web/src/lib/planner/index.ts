@@ -54,7 +54,7 @@ export function generatePlan(input: PlanInput): PlanResult {
   // (o encaixe nunca é perfeito); se mesmo assim sobrar atividade sem semana, repete com menos.
   const attempt = (fw: number, eff: number) => {
     const cap = capacityOf(fw);
-    const sel = selectContent(chosen, input.segments, Math.round(cap.capacityMinutes * eff), known);
+    const sel = selectContent(chosen, input.segments, Math.round(cap.capacityMinutes * eff), known, input.turbo === true);
     // filas por disciplina: ciclos das aulas selecionadas na ordem do curso
     const streams: StreamInfo[] = chosen.map(({ subject }) => {
       const queue = subject.aulas
@@ -122,6 +122,9 @@ export function generatePlan(input: PlanInput): PlanResult {
   if (explicitFinal === undefined && finalWeeks < FINAL_REVIEW_WEEKS) {
     warnings.push("Para ver o edital inteiro no tempo disponível, a revisão final foi reduzida a 1 semana; as revisões ficam para o que sobrar.");
   }
+  if (sel.turboAulas.size > 0) {
+    warnings.push(`Modo Turbo: ${sel.turboAulas.size} aulas de menor incidência na prova foram trocadas por resumos para você ver o edital inteiro no tempo disponível.`);
+  }
   if (sel.floorShortfall) warnings.push("O tempo disponível não cobre nem uma aula essencial de cada disciplina; priorizamos as de maior peso na prova.");
   warnings.push(...gapWarnings(input.catalog, input.subjects.map((s) => s.id)));
 
@@ -140,6 +143,8 @@ export function generatePlan(input: PlanInput): PlanResult {
       capacityHours: Math.round(capacityMinutes / 60),
       plannedHours: Math.round(plannedMinutes / 60),
       fullEditalHoursPerWeek,
+      editalFits: sel.fullMinutes <= cur.cap.capacityMinutes * eff,
+      turboAulas: sel.turboAulas.size,
       startDate: input.startDate,
       firstStudyDate: addDays(input.startDate, firstDay),
       examDate: input.examDate,
