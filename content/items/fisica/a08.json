@@ -2,7 +2,6 @@
   "aula": "fisica/a08",
   "batch": "w2-bizu-fisica",
   "status": "DRAFT",
-  "stage": "bizu",
   "segments": [
     {
       "id": "fisica/a08/s01",
@@ -60,14 +59,204 @@
           }
         ],
         "pointers": [
-          { "topic": "Ponto material x corpo extenso na estática", "pageRef": 3 },
-          { "topic": "Condições de equilíbrio do ponto material (ΣFx = 0, ΣFy = 0)", "pageRef": 4 },
-          { "topic": "Resolução por decomposição vetorial", "pageRef": 6 },
-          { "topic": "Regra do polígono fechado", "pageRef": 7 },
-          { "topic": "Associação de roldanas e polias móveis", "pageRef": 9 },
-          { "topic": "Fórmula F = P/2^n e exemplo com 25 kgf", "pageRef": 11 }
+          {
+            "topic": "Ponto material x corpo extenso na estática",
+            "pageRef": 3
+          },
+          {
+            "topic": "Condições de equilíbrio do ponto material (ΣFx = 0, ΣFy = 0)",
+            "pageRef": 4
+          },
+          {
+            "topic": "Resolução por decomposição vetorial",
+            "pageRef": 6
+          },
+          {
+            "topic": "Regra do polígono fechado",
+            "pageRef": 7
+          },
+          {
+            "topic": "Associação de roldanas e polias móveis",
+            "pageRef": 9
+          },
+          {
+            "topic": "Fórmula F = P/2^n e exemplo com 25 kgf",
+            "pageRef": 11
+          }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Ponto material e corpo extenso na estática",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 3,
+          "statement": "Na estática dos sólidos, um corpo pode ser tratado como ponto material quando",
+          "support": null,
+          "options": [
+            "sobre ele atua uma única força, de módulo constante.",
+            "ele está em repouso, pois só corpos em repouso são pontos materiais.",
+            "sua massa é desprezível em relação à de outros corpos do problema.",
+            "suas dimensões são grandes e relevantes para o equilíbrio.",
+            "suas dimensões não influenciam a análise do equilíbrio do problema."
+          ],
+          "answer": "E",
+          "explanation": "Ponto material é o corpo cujas dimensões são irrelevantes para o problema; o corpo extenso é o oposto, com dimensões relevantes para o equilíbrio. Essa classificação não depende da massa nem do número de forças aplicadas."
+        },
+        {
+          "topic": "Condições de equilíbrio do ponto material",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 4,
+          "statement": "Um ponto material está em equilíbrio quando",
+          "support": null,
+          "options": [
+            "a soma dos módulos de todas as forças é igual ao peso do corpo.",
+            "ele se move com aceleração constante em linha reta.",
+            "o torque resultante é nulo, ainda que a força resultante não o seja.",
+            "o módulo de cada força aplicada sobre ele é igual a zero.",
+            "a força resultante sobre ele é nula, isto é, as somas das componentes horizontais e das verticais são nulas."
+          ],
+          "answer": "E",
+          "explanation": "A condição de equilíbrio do ponto material é F_R = 0, o que equivale a ΣF_x = 0 e ΣF_y = 0. Isso não exige que cada força seja nula, apenas que a soma vetorial seja nula. Na estática, ele permanece em repouso; a condição do torque é adicional e vale para corpos extensos."
+        },
+        {
+          "topic": "Equilíbrio sob duas cordas simétricas",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 5,
+          "statement": "Um bloco de peso 120 N é mantido em equilíbrio, suspenso por duas cordas ideais simétricas, cada uma formando 30° com a horizontal (sen 30° = 0,5). A tração em cada corda, em newtons, é",
+          "support": null,
+          "options": [
+            "30",
+            "60",
+            "69",
+            "120",
+            "208"
+          ],
+          "answer": "D",
+          "explanation": "As componentes horizontais das trações se anulam, e as verticais equilibram o peso: 2·T·sen 30° = 120, então T = 120/(2 · 0,5) = 120 N. O valor 60 N seria a componente vertical de cada corda, e não a tração."
+        },
+        {
+          "topic": "Equilíbrio com força horizontal e fio inclinado",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 6,
+          "statement": "Um corpo de peso 60 N está em equilíbrio, preso a um fio inclinado que forma 37° com a horizontal (tração T) e puxado por uma força horizontal F. Dados sen 37° = 0,6 e cos 37° = 0,8, os valores de T e de F são, respectivamente,",
+          "support": null,
+          "options": [
+            "T = 100 N e F = 60 N.",
+            "T = 100 N e F = 80 N.",
+            "T = 80 N e F = 100 N.",
+            "T = 75 N e F = 45 N.",
+            "T = 36 N e F = 28,8 N."
+          ],
+          "answer": "B",
+          "explanation": "Na vertical, T·sen 37° = P, então T = 60/0,6 = 100 N. Na horizontal, F = T·cos 37° = 100 · 0,8 = 80 N. Trocar seno e cosseno inverte os valores, e multiplicar o peso pelo seno ou cosseno confunde o sentido da relação."
+        },
+        {
+          "topic": "Regra do polígono fechado",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 7,
+          "statement": "Em um ponto material em equilíbrio sob a ação de três forças, ao se representarem as forças por vetores colocados em sequência, extremidade com origem, obtém-se",
+          "support": null,
+          "options": [
+            "um polígono fechado apenas se o corpo estiver em movimento.",
+            "um paralelogramo, cuja diagonal é igual ao peso do corpo.",
+            "uma reta, cujo comprimento é a soma dos módulos das forças.",
+            "um polígono fechado, no caso um triângulo.",
+            "um polígono aberto, cujo lado que falta é a força resultante."
+          ],
+          "answer": "D",
+          "explanation": "Se a força resultante é nula, o último vetor termina exatamente na origem do primeiro, e o polígono formado é fechado (um triângulo, para três forças). Por isso o método do polígono pode ser usado, no lugar da decomposição, para calcular forças desconhecidas em equilíbrio."
+        },
+        {
+          "topic": "Associação de polias móveis",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 10,
+          "statement": "Para erguer uma carga de 800 N, usa-se uma associação com uma polia fixa e três polias móveis, todas ideais e de peso desprezível. A força F necessária para manter a carga em equilíbrio, em newtons, é",
+          "support": null,
+          "options": [
+            "100",
+            "200",
+            "267",
+            "400",
+            "800"
+          ],
+          "answer": "A",
+          "explanation": "Cada polia móvel divide a força por 2, e com n polias móveis a força é F = P/2^n = 800/2³ = 100 N. A polia fixa só muda a direção da força. O valor 267 N resultaria de dividir por 3 em vez de por 2³."
+        },
+        {
+          "topic": "Número de polias móveis",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 10,
+          "statement": "Um corpo de peso 1.200 N é mantido em equilíbrio por uma força de 150 N, aplicada em uma associação com uma polia fixa e algumas polias móveis ideais. O número de polias móveis do sistema é",
+          "support": null,
+          "options": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "8"
+          ],
+          "answer": "C",
+          "explanation": "Com n polias móveis, P = 2^n · F, então 2^n = 1.200/150 = 8, de modo que n = 3. O valor 8 é a razão entre as forças, e não o número de polias."
+        },
+        {
+          "topic": "Papel da polia fixa",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 10,
+          "statement": "No cálculo da força para equilibrar um peso P em uma associação de polias ideais, dada por F = P/2^n, o valor de n representa",
+          "support": null,
+          "options": [
+            "o número de polias móveis, pois a polia fixa apenas muda a direção da força.",
+            "o número de polias fixas, pois só elas reduzem a força.",
+            "o número total de polias, fixas e móveis.",
+            "o número de fios que passam pelas polias.",
+            "o número de voltas do fio em torno das polias."
+          ],
+          "answer": "A",
+          "explanation": "Cada polia móvel reduz à metade a força necessária; a polia fixa só altera a direção e o sentido da força, sem reduzi-la. Por isso n conta apenas as polias móveis, e a força no mesmo fio ideal é a mesma em toda a sua extensão."
+        },
+        {
+          "topic": "Forças nos fios de uma associação",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 9,
+          "statement": "Em uma associação com uma polia fixa e duas polias móveis, ideais, o fio puxado pelo operário tem tração F, o fio seguinte tem 2F e o terceiro, 4F, que sustenta o corpo em equilíbrio. Se F = 90 N, o peso do corpo, em newtons, é",
+          "support": null,
+          "options": [
+            "270",
+            "360",
+            "450",
+            "720",
+            "810"
+          ],
+          "answer": "B",
+          "explanation": "O peso é equilibrado pela força 4F aplicada verticalmente para cima: P = 4F = 4 · 90 = 360 N. A força cresce em progressão geométrica a cada polia móvel, e não em progressão aritmética (270 N seria 3F)."
+        },
+        {
+          "topic": "Equilíbrio sob três forças perpendiculares",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 4,
+          "statement": "Um ponto material em repouso está sob a ação de três forças coplanares: F1 = 30 N, para o leste, F2 = 40 N, para o norte, e uma terceira, F3. Para que o equilíbrio ocorra, o módulo de F3, em newtons, deve ser",
+          "support": null,
+          "options": [
+            "10",
+            "35",
+            "50",
+            "70",
+            "1.200"
+          ],
+          "answer": "C",
+          "explanation": "A resultante de F1 e F2, perpendiculares, é √(30² + 40²) = 50 N. Para que a resultante total seja nula, F3 deve ter 50 N e sentido oposto a essa resultante, isto é, para o sudoeste. A soma simples (70 N) ignora que as forças são perpendiculares."
+        }
+      ]
     },
     {
       "id": "fisica/a08/s02",
@@ -132,18 +321,288 @@
           }
         ],
         "pointers": [
-          { "topic": "Conceito de torque e fórmula M = F·d·sen θ", "pageRef": 13 },
-          { "topic": "Torque nulo com força paralela à distância", "pageRef": 14 },
-          { "topic": "Aplicação: ponto de amarração e braço do torque", "pageRef": 16 },
-          { "topic": "Unidade do torque (N·m) x joule", "pageRef": 17 },
-          { "topic": "Condições de equilíbrio de corpo extenso", "pageRef": 18 },
-          { "topic": "Escolha do ponto de referência para momentos", "pageRef": 18 },
-          { "topic": "Binário", "pageRef": 20 },
-          { "topic": "Teorema das três forças", "pageRef": 21 },
-          { "topic": "Tipos de equilíbrio (estável, instável, indiferente)", "pageRef": 22 },
-          { "topic": "Centro de gravidade e estabilidade", "pageRef": 23 }
+          {
+            "topic": "Conceito de torque e fórmula M = F·d·sen θ",
+            "pageRef": 13
+          },
+          {
+            "topic": "Torque nulo com força paralela à distância",
+            "pageRef": 14
+          },
+          {
+            "topic": "Aplicação: ponto de amarração e braço do torque",
+            "pageRef": 16
+          },
+          {
+            "topic": "Unidade do torque (N·m) x joule",
+            "pageRef": 17
+          },
+          {
+            "topic": "Condições de equilíbrio de corpo extenso",
+            "pageRef": 18
+          },
+          {
+            "topic": "Escolha do ponto de referência para momentos",
+            "pageRef": 18
+          },
+          {
+            "topic": "Binário",
+            "pageRef": 20
+          },
+          {
+            "topic": "Teorema das três forças",
+            "pageRef": 21
+          },
+          {
+            "topic": "Tipos de equilíbrio (estável, instável, indiferente)",
+            "pageRef": 22
+          },
+          {
+            "topic": "Centro de gravidade e estabilidade",
+            "pageRef": 23
+          }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Conceito de torque",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 13,
+          "statement": "Sobre o torque (momento) de uma força em relação a um eixo, é correto afirmar que",
+          "support": null,
+          "options": [
+            "depende apenas da distância ao eixo, e é medido em metros.",
+            "só existe quando o corpo está em movimento de translação.",
+            "depende apenas do módulo da força, e é medido em N.",
+            "é uma grandeza escalar, medida em joules, que depende da massa do corpo.",
+            "depende da força e da distância do ponto de aplicação ao eixo, e é medido em N·m."
+          ],
+          "answer": "E",
+          "explanation": "O módulo do torque resulta de multiplicar a intensidade da força pelo afastamento entre o eixo e o ponto onde ela atua (com o seno do ângulo entre eles), e se mede em N·m. Com a mesma força, quanto mais longe do eixo, maior o efeito de giro. O conceito se liga à rotação do corpo extenso, e não à translação."
+        },
+        {
+          "topic": "Momento de uma força oblíqua",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 13,
+          "statement": "Uma força de 40 N é aplicada a 0,5 m do eixo de rotação de uma porta, formando 30° com a linha que liga o eixo ao ponto de aplicação (sen 30° = 0,5; cos 30° ≈ 0,87). O módulo do momento dessa força em relação ao eixo, em N·m, é",
+          "support": null,
+          "options": [
+            "5",
+            "10",
+            "17,4",
+            "20",
+            "40"
+          ],
+          "answer": "B",
+          "explanation": "O módulo do momento é M = F·d·sen θ = 40 · 0,5 · 0,5 = 10 N·m. O valor 17,4 resulta de usar o cosseno no lugar do seno, e 20 N·m, de ignorar o seno do ângulo (força perpendicular)."
+        },
+        {
+          "topic": "Força paralela à distância",
+          "pattern": "caso",
+          "difficulty": 1,
+          "pageRef": 14,
+          "statement": "Uma pessoa empurra uma porta com uma força muito intensa, mas aplicada ao longo da linha que liga a dobradiça ao ponto de aplicação. O momento dessa força em relação ao eixo da porta é",
+          "support": null,
+          "options": [
+            "negativo, pois a força se opõe ao giro da porta.",
+            "nulo, mas apenas se a porta estiver fechada.",
+            "igual ao produto da força pela distância, como se fosse perpendicular.",
+            "nulo, pois a força é paralela à distância e não produz giro.",
+            "máximo, pois a intensidade da força é grande."
+          ],
+          "answer": "D",
+          "explanation": "O momento é M = F·d·sen θ; com a força paralela à distância, θ = 0° e sen θ = 0, então M = 0, por maior que seja a força. Só a componente perpendicular à distância é capaz de produzir giro."
+        },
+        {
+          "topic": "Torque e força necessária",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 13,
+          "statement": "Para soltar um parafuso, um bombeiro precisa aplicar um torque de 90 N·m, usando uma chave de 0,45 m de comprimento, com a força perpendicular à chave. A intensidade da força, em newtons, é",
+          "support": null,
+          "options": [
+            "20",
+            "40,5",
+            "100",
+            "200",
+            "405"
+          ],
+          "answer": "D",
+          "explanation": "Como a força é perpendicular, M = F·d, então F = 90/0,45 = 200 N. O valor 40,5 N é o produto 90 × 0,45, ou seja, multiplicar em vez de dividir."
+        },
+        {
+          "topic": "Braço maior, torque maior",
+          "pattern": "relacao",
+          "difficulty": 2,
+          "pageRef": 13,
+          "statement": "Duas pessoas empurram a mesma porta com forças iguais e perpendiculares a ela: a primeira a 20 cm das dobradiças e a segunda a 80 cm. Em relação ao torque da primeira pessoa, o da segunda é",
+          "support": null,
+          "options": [
+            "oito vezes maior.",
+            "quatro vezes menor.",
+            "igual, pois as forças são iguais.",
+            "duas vezes maior.",
+            "quatro vezes maior."
+          ],
+          "answer": "E",
+          "explanation": "Como as forças são perpendiculares e iguais, o torque é proporcional à distância ao eixo: 80/20 = 4. Por isso é mais fácil abrir uma porta empurrando longe das dobradiças, e quanto mais perto do eixo, maior a força necessária para o mesmo torque."
+        },
+        {
+          "topic": "Torque e joule",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 17,
+          "statement": "A unidade de torque, o N·m, é dimensionalmente equivalente ao joule. Sobre torque e trabalho, é correto afirmar que",
+          "support": null,
+          "options": [
+            "as unidades são diferentes, pois o torque é medido em N·s.",
+            "as grandezas são diferentes porque o torque é escalar e o trabalho, vetorial.",
+            "as unidades são equivalentes, mas as grandezas são diferentes: torque é vetorial e trabalho é escalar.",
+            "as grandezas são iguais, pois possuem a mesma unidade.",
+            "o torque é sempre igual ao trabalho realizado pela força que o produz."
+          ],
+          "answer": "C",
+          "explanation": "N·m e joule têm a mesma dimensão, mas representam grandezas distintas: o torque é uma grandeza vetorial ligada ao giro, e o trabalho é uma grandeza escalar ligada à variação da energia. Ter a mesma unidade não faz de duas grandezas a mesma grandeza."
+        },
+        {
+          "topic": "Condições de equilíbrio do corpo extenso",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 17,
+          "statement": "Um corpo extenso está sujeito a um conjunto de forças cuja resultante é nula. Sobre o equilíbrio desse corpo, é correto afirmar que",
+          "support": null,
+          "options": [
+            "ele só pode estar em repouso, pois não há resultante.",
+            "ele pode ainda girar, pois o momento resultante em relação a um eixo pode não ser nulo.",
+            "ele tem momento resultante nulo, pois as forças se anulam.",
+            "ele não gira, mas pode transladar com aceleração constante.",
+            "ele está necessariamente em equilíbrio, pois a resultante nula basta."
+          ],
+          "answer": "B",
+          "explanation": "A resultante nula garante o equilíbrio translacional, mas é condição necessária e não suficiente para o corpo extenso. É preciso ainda que a soma dos momentos seja nula (equilíbrio rotacional); um binário, por exemplo, tem resultante nula e produz giro."
+        },
+        {
+          "topic": "Equilíbrio rotacional: gangorra",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 18,
+          "statement": "Em uma gangorra, uma criança de 30 kg está sentada a 2 m do ponto de apoio. Para equilibrá-la, outra criança, de 20 kg, deve sentar-se do outro lado, a uma distância do apoio, em metros, de",
+          "support": null,
+          "options": [
+            "0,5",
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "answer": "D",
+          "explanation": "No equilíbrio, os momentos horários e anti-horários se igualam: 30·g·2 = 20·g·d, de modo que d = 60/20 = 3 m. O corpo mais leve precisa de maior braço, e g se cancela."
+        },
+        {
+          "topic": "Equilíbrio de barra com cabo vertical",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 18,
+          "statement": "Uma barra homogênea AB, de 4 m e peso 200 N, está na horizontal, presa por uma dobradiça em A e sustentada, em B, por um cabo vertical. Desprezando a massa do cabo, a tração no cabo, em newtons, é",
+          "support": null,
+          "options": [
+            "50",
+            "100",
+            "150",
+            "200",
+            "400"
+          ],
+          "answer": "B",
+          "explanation": "Tomando A como ponto de referência (a reação da dobradiça não tem momento), T · 4 = 200 · 2, pois o peso atua no ponto médio da barra homogênea. Então T = 100 N. O valor 200 N supõe que o cabo suporte todo o peso, o que só ocorreria se estivesse no centro de gravidade."
+        },
+        {
+          "topic": "Barra com carga adicional",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 18,
+          "statement": "Na mesma barra homogênea AB (4 m; 200 N; dobradiça em A; cabo vertical em B), pendura-se um bloco de 100 N a 1 m de A. A tração no cabo, em newtons, passa a ser",
+          "support": null,
+          "options": [
+            "50",
+            "100",
+            "125",
+            "150",
+            "250"
+          ],
+          "answer": "C",
+          "explanation": "Os momentos em relação a A se equilibram: T · 4 = 200 · 2 + 100 · 1 = 500, logo T = 125 N. O bloco, mais próximo da dobradiça, acrescenta menos que o seu peso à tração; somar os pesos e dividir por 2 (150 N) ignora as distâncias."
+        },
+        {
+          "topic": "Momento de um binário",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 20,
+          "statement": "Uma pessoa aplica as duas mãos em um volante de comandos, exercendo duas forças de 25 N, de sentidos opostos, em pontos separados por 0,4 m. O módulo do momento do binário, em N·m, é",
+          "support": null,
+          "options": [
+            "10",
+            "20",
+            "62,5",
+            "100",
+            "200"
+          ],
+          "answer": "A",
+          "explanation": "O momento do binário é o produto do valor de uma das forças pela distância entre os pontos de aplicação: M = 25 · 0,4 = 10 N·m. Usar as duas forças separadamente, 2·25·0,4, daria 20 N·m, o que conta a distância em dobro."
+        },
+        {
+          "topic": "Teorema das três forças",
+          "pattern": "conceito",
+          "difficulty": 3,
+          "pageRef": 21,
+          "statement": "Um corpo extenso está em equilíbrio sob a ação de apenas três forças não paralelas. Pelo teorema das três forças, é correto afirmar que as linhas de ação dessas forças",
+          "support": null,
+          "options": [
+            "se encontram em um mesmo ponto, que pode estar dentro ou fora do corpo.",
+            "não precisam ser concorrentes, desde que a resultante seja nula.",
+            "são paralelas entre si, pois o corpo está em equilíbrio.",
+            "se encontram em um ponto, que necessariamente está dentro do corpo.",
+            "são perpendiculares duas a duas, e formam um triângulo equilátero."
+          ],
+          "answer": "A",
+          "explanation": "Se um corpo está em equilíbrio sob três forças, elas são concorrentes: as retas que contêm as forças passam por um mesmo ponto, interno ou externo ao corpo. Esse teorema é útil para achar a direção de uma terceira força, quando se conhece a direção das outras duas."
+        },
+        {
+          "topic": "Tipos de equilíbrio",
+          "pattern": "caso",
+          "difficulty": 1,
+          "pageRef": 22,
+          "statement": "Uma pequena esfera é colocada em repouso exatamente no ponto mais alto de uma superfície esférica convexa. Ao ser levemente perturbada, ela se afasta e não retorna. O equilíbrio da esfera na posição inicial é",
+          "support": null,
+          "options": [
+            "estável, mas com resultante não nula.",
+            "indiferente.",
+            "neutro e dinâmico.",
+            "estável.",
+            "instável."
+          ],
+          "answer": "E",
+          "explanation": "No equilíbrio instável, o corpo perturbado não regressa ao estado anterior; é o caso da esfera no topo de uma superfície convexa. No estável, ele retorna (fundo de uma cavidade), e no indiferente, permanece na nova posição (superfície plana)."
+        },
+        {
+          "topic": "Equilíbrio estável e centro de gravidade",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 25,
+          "statement": "Um boneco do tipo \"João-bobo\" volta sempre à posição vertical após ser inclinado. Isso ocorre porque",
+          "support": null,
+          "options": [
+            "seu centro de gravidade coincide com o ponto de apoio em qualquer posição.",
+            "o torque do peso se anula em qualquer inclinação.",
+            "seu centro de gravidade fica abaixo do centro geométrico, e o peso gera torque restaurador.",
+            "seu centro de gravidade fica acima do centro geométrico, o que o torna instável.",
+            "seu peso é nulo na posição inclinada."
+          ],
+          "answer": "C",
+          "explanation": "Com o centro de gravidade abaixo do centro geométrico, a inclinação cria um torque do peso que tende a restaurar a posição original, o que caracteriza o equilíbrio estável. Com o centro de gravidade acima, o equilíbrio seria instável."
+        }
+      ]
     }
   ]
 }

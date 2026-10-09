@@ -2,7 +2,6 @@
   "aula": "matematica/a07",
   "batch": "w2-bizu-matematica",
   "status": "DRAFT",
-  "stage": "bizu",
   "segments": [
     {
       "id": "matematica/a07/s01",
@@ -67,16 +66,246 @@
           }
         ],
         "pointers": [
-          { "topic": "Montante composto e observações sobre unidade e forma unitária", "pageRef": 3 },
-          { "topic": "Juros compostos: J = M - C e forma direta", "pageRef": 4 },
-          { "topic": "Macete do quadrado de 1,0x", "pageRef": 6 },
-          { "topic": "Cálculo da taxa a partir de M, C e t", "pageRef": 8 },
-          { "topic": "Saldo devedor com pagamento intermediário", "pageRef": 9 },
-          { "topic": "Aluguel a juros compostos por dois meses", "pageRef": 11 },
-          { "topic": "Conversão do bimestre em meses", "pageRef": 13 },
-          { "topic": "Empréstimo com pagamento parcial e quitação", "pageRef": 14 }
+          {
+            "topic": "Montante composto e observações sobre unidade e forma unitária",
+            "pageRef": 3
+          },
+          {
+            "topic": "Juros compostos: J = M - C e forma direta",
+            "pageRef": 4
+          },
+          {
+            "topic": "Macete do quadrado de 1,0x",
+            "pageRef": 6
+          },
+          {
+            "topic": "Cálculo da taxa a partir de M, C e t",
+            "pageRef": 8
+          },
+          {
+            "topic": "Saldo devedor com pagamento intermediário",
+            "pageRef": 9
+          },
+          {
+            "topic": "Aluguel a juros compostos por dois meses",
+            "pageRef": 11
+          },
+          {
+            "topic": "Conversão do bimestre em meses",
+            "pageRef": 13
+          },
+          {
+            "topic": "Empréstimo com pagamento parcial e quitação",
+            "pageRef": 14
+          }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Montante composto",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 3,
+          "statement": "Um capital de R$ 6.000,00 é aplicado a juros compostos de 5% ao mês durante 2 meses. O montante obtido é de",
+          "support": null,
+          "options": [
+            "R$ 6.600,00.",
+            "R$ 6.300,00.",
+            "R$ 6.660,00.",
+            "R$ 6.615,00.",
+            "R$ 7.200,00."
+          ],
+          "answer": "D",
+          "explanation": "M = C × (1 + i)ᵗ = 6.000 × 1,05² = 6.000 × 1,1025 = 6.615. O valor 6.600 é o montante em juros simples (6.000 × 1,10), e não considera juros sobre juros."
+        },
+        {
+          "topic": "Juros compostos",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 4,
+          "statement": "Um capital de R$ 5.000,00 é aplicado a juros compostos de 6% ao mês durante 2 meses. Os juros obtidos são de",
+          "support": null,
+          "options": [
+            "R$ 600,00.",
+            "R$ 5.618,00.",
+            "R$ 1.236,00.",
+            "R$ 6.180,00.",
+            "R$ 618,00."
+          ],
+          "answer": "E",
+          "explanation": "O montante é 5.000 × 1,06² = 5.000 × 1,1236 = 5.618, e os juros são J = M − C = 618. O valor 600 seria o dos juros simples, e 5.618 é o montante, não os juros."
+        },
+        {
+          "topic": "Macete do quadrado de 1,0x",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 6,
+          "statement": "Um capital de R$ 40.000,00 é aplicado a juros compostos de 7% ao ano durante 2 anos. O montante é de",
+          "support": null,
+          "options": [
+            "R$ 45.600,00.",
+            "R$ 45.000,00.",
+            "R$ 45.796,00.",
+            "R$ 44.900,00.",
+            "R$ 47.000,00."
+          ],
+          "answer": "C",
+          "explanation": "Pelo macete, 1,07² = 1,1449 (dobra-se o 07 → 14 e eleva-se 07 ao quadrado → 49). Logo, M = 40.000 × 1,1449 = 45.796. O valor 45.600 resulta de 1,14 × 40.000, que são os juros simples."
+        },
+        {
+          "topic": "Taxa a partir do montante",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 7,
+          "statement": "Um investimento de R$ 4.000,00 em juros compostos resultou em R$ 5.324,00 após 3 anos. A taxa anual aplicada foi de",
+          "support": null,
+          "options": [
+            "11,03%.",
+            "33,1%.",
+            "10%.",
+            "9,5%.",
+            "8%."
+          ],
+          "answer": "C",
+          "explanation": "Como 5.324 ÷ 4.000 = 1,331 e 1,1³ = 1,331, tem-se (1 + i)³ = 1,331 e i = 10% ao ano. O valor 33,1% é a taxa do período inteiro, e 11,03% resulta de dividi-lo por 3, o que é próprio dos juros simples."
+        },
+        {
+          "topic": "Conversão do prazo",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 13,
+          "statement": "Um capital de R$ 5.000,00 é aplicado a juros compostos de 4% ao mês, durante um trimestre. Os juros obtidos são de",
+          "support": null,
+          "options": [
+            "R$ 600,00.",
+            "R$ 624,32.",
+            "R$ 5.624,32.",
+            "R$ 1.248,64.",
+            "R$ 120,00."
+          ],
+          "answer": "B",
+          "explanation": "Um trimestre tem 3 meses e 1,04³ = 1,124864, de modo que M = 5.624,32 e J = 624,32. O valor 600 é o dos juros simples (3 × 4% × 5.000)."
+        },
+        {
+          "topic": "Saldo devedor em juros compostos",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 14,
+          "statement": "Um empréstimo de R$ 10.000,00 é contratado a juros compostos de 10% ao mês. Dois meses depois, o devedor paga R$ 6.000,00 e, mais dois meses depois, quita o restante. O valor da quitação é de",
+          "support": null,
+          "options": [
+            "R$ 6.100,00.",
+            "R$ 7.381,00.",
+            "R$ 6.710,00.",
+            "R$ 7.260,00.",
+            "R$ 8.100,00."
+          ],
+          "answer": "B",
+          "explanation": "Após 2 meses, a dívida é 10.000 × 1,21 = 12.100; pagos 6.000, restam 6.100. Por mais 2 meses, esse saldo rende 10% ao mês: 6.100 × 1,21 = 7.381. O valor 6.100 desconsidera os juros do período final."
+        },
+        {
+          "topic": "Fórmula dos juros compostos",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 4,
+          "statement": "A fórmula que fornece diretamente os juros no regime de capitalização composta é",
+          "support": null,
+          "options": [
+            "J = C × [(1 + i)ᵗ − 1].",
+            "J = C × i × t.",
+            "J = C × (1 + i)ᵗ.",
+            "J = C × [(1 + i)ᵗ + 1].",
+            "J = C ÷ (1 + i)ᵗ."
+          ],
+          "answer": "A",
+          "explanation": "Como J = M − C e M = C × (1 + i)ᵗ, colocando C em evidência obtém-se J = C × [(1 + i)ᵗ − 1]. A fórmula J = C·i·t é a do regime simples, e C × (1 + i)ᵗ é o montante."
+        },
+        {
+          "topic": "Prazo em unidades da taxa",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 13,
+          "statement": "Um capital de R$ 6.000,00 é aplicado a juros compostos de 10% ao semestre durante 1 ano e meio. Dado que 1,1³ = 1,331, o montante é de",
+          "support": null,
+          "options": [
+            "R$ 7.800,00.",
+            "R$ 7.260,00.",
+            "R$ 7.986,00.",
+            "R$ 8.800,00.",
+            "R$ 9.000,00."
+          ],
+          "answer": "C",
+          "explanation": "Um ano e meio equivale a 3 semestres, portanto M = 6.000 × 1,1³ = 7.986. O valor 7.800 é o obtido por juros simples (6.000 × 1,3), e 7.260 usaria apenas 2 semestres."
+        },
+        {
+          "topic": "Taxa em prazo de dois anos",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 6,
+          "statement": "Um capital de R$ 2.500,00 transformou-se em R$ 2.704,00 após 2 anos, a juros compostos. A taxa anual foi de",
+          "support": null,
+          "options": [
+            "4,08%.",
+            "8,16%.",
+            "2%.",
+            "4,5%.",
+            "4%."
+          ],
+          "answer": "E",
+          "explanation": "Como 2.704 ÷ 2.500 = 1,0816 = 1,04², a taxa é de 4% ao ano. O valor 8,16% é a taxa do período total, e 4,08% é essa taxa dividida por 2 (cálculo próprio dos juros simples)."
+        },
+        {
+          "topic": "Capital a partir do montante",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 4,
+          "statement": "Um capital aplicado a juros compostos de 10% ao mês gerou um montante de R$ 14.641,00 em 4 meses. O capital aplicado foi de",
+          "support": null,
+          "options": [
+            "R$ 10.458,00.",
+            "R$ 8.784,00.",
+            "R$ 9.000,00.",
+            "R$ 10.000,00.",
+            "R$ 11.000,00."
+          ],
+          "answer": "D",
+          "explanation": "Como M = C × 1,1⁴ e 1,1⁴ = 1,4641, tem-se C = 14.641 ÷ 1,4641 = 10.000. O valor 10.458 corresponde a dividir por 1,4 (juros simples)."
+        },
+        {
+          "topic": "Retirada parcial em juros compostos",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 14,
+          "statement": "Um investidor aplica R$ 10.000,00 a juros compostos de 5% ao mês. Dois meses depois, retira R$ 3.025,00 e deixa o restante aplicado mais 2 meses. O valor final é de",
+          "support": null,
+          "options": [
+            "R$ 8.000,00.",
+            "R$ 8.800,00.",
+            "R$ 9.000,00.",
+            "R$ 10.500,00.",
+            "R$ 8.820,00."
+          ],
+          "answer": "E",
+          "explanation": "Após 2 meses, o montante é 10.000 × 1,1025 = 11.025; retirados 3.025, restam 8.000. Em mais 2 meses, 8.000 × 1,1025 = 8.820. O valor 8.800 usa juros simples para o saldo."
+        },
+        {
+          "topic": "Juros de um período específico",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 4,
+          "statement": "Um capital de R$ 1.000,00 é aplicado a juros compostos de 10% ao mês. Os juros produzidos apenas no terceiro mês são de",
+          "support": null,
+          "options": [
+            "R$ 121,00.",
+            "R$ 100,00.",
+            "R$ 110,00.",
+            "R$ 331,00.",
+            "R$ 133,10."
+          ],
+          "answer": "A",
+          "explanation": "O montante após 2 meses é 1.210, e após 3 meses é 1.331. O juro do terceiro mês é 10% de 1.210 = 121. O valor 331 é o juro acumulado nos três meses."
+        }
+      ]
     },
     {
       "id": "matematica/a07/s02",
@@ -141,15 +370,208 @@
           }
         ],
         "pointers": [
-          { "topic": "Taxa efetiva", "pageRef": 15 },
-          { "topic": "Taxa nominal e exemplos", "pageRef": 16 },
-          { "topic": "Quem manda é o período de capitalização", "pageRef": 16 },
-          { "topic": "Conversões de taxa nominal para efetiva", "pageRef": 17 },
-          { "topic": "Investimento com saque e taxa nominal bimestral", "pageRef": 19 },
-          { "topic": "Conversão do tempo para a unidade de capitalização", "pageRef": 22 },
-          { "topic": "Taxa nominal anual com capitalização trimestral", "pageRef": 23 }
+          {
+            "topic": "Taxa efetiva",
+            "pageRef": 15
+          },
+          {
+            "topic": "Taxa nominal e exemplos",
+            "pageRef": 16
+          },
+          {
+            "topic": "Quem manda é o período de capitalização",
+            "pageRef": 16
+          },
+          {
+            "topic": "Conversões de taxa nominal para efetiva",
+            "pageRef": 17
+          },
+          {
+            "topic": "Investimento com saque e taxa nominal bimestral",
+            "pageRef": 19
+          },
+          {
+            "topic": "Conversão do tempo para a unidade de capitalização",
+            "pageRef": 22
+          },
+          {
+            "topic": "Taxa nominal anual com capitalização trimestral",
+            "pageRef": 23
+          }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Identificação de taxa nominal",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 16,
+          "statement": "Dentre as taxas a seguir, aquela que é nominal é",
+          "support": null,
+          "options": [
+            "3% ao mês, capitalizados mensalmente.",
+            "8% ao trimestre, capitalizados trimestralmente.",
+            "12% ao ano, capitalizados mensalmente.",
+            "5% ao semestre, capitalizados semestralmente.",
+            "2% ao bimestre, capitalizados bimestralmente."
+          ],
+          "answer": "C",
+          "explanation": "Taxa nominal é aquela cuja unidade de tempo não coincide com o período de capitalização (ano × mês). Nas demais, a unidade da taxa e a da capitalização são iguais, o que as torna efetivas."
+        },
+        {
+          "topic": "Conversão para taxa efetiva mensal",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 17,
+          "statement": "A taxa efetiva mensal correspondente a 18% ao ano, capitalizados mensalmente, é",
+          "support": null,
+          "options": [
+            "18% ao mês.",
+            "9% ao mês.",
+            "1,8% ao mês.",
+            "15% ao mês.",
+            "1,5% ao mês."
+          ],
+          "answer": "E",
+          "explanation": "Quem manda é o período de capitalização, o mês. Como um ano tem 12 meses, divide-se: 18% ÷ 12 = 1,5% ao mês."
+        },
+        {
+          "topic": "Taxa nominal semestral e capitalização trimestral",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 17,
+          "statement": "A taxa efetiva trimestral correspondente a 24% ao semestre, capitalizados trimestralmente, é",
+          "support": null,
+          "options": [
+            "48% ao trimestre.",
+            "6% ao trimestre.",
+            "24% ao trimestre.",
+            "8% ao trimestre.",
+            "12% ao trimestre."
+          ],
+          "answer": "E",
+          "explanation": "Um semestre tem 2 trimestres, então a taxa efetiva trimestral é 24% ÷ 2 = 12%. Multiplicar por 2 (48%) inverteria o sentido da conversão."
+        },
+        {
+          "topic": "Taxa nominal na fórmula do montante",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 18,
+          "statement": "Um capital de R$ 5.000,00 é aplicado por 2 meses à taxa de 24% ao ano, capitalizados mensalmente, em juros compostos. O montante é de",
+          "support": null,
+          "options": [
+            "R$ 5.202,00.",
+            "R$ 5.200,00.",
+            "R$ 5.240,00.",
+            "R$ 5.600,00.",
+            "R$ 6.200,00."
+          ],
+          "answer": "A",
+          "explanation": "A taxa efetiva mensal é 24% ÷ 12 = 2% ao mês. Então M = 5.000 × 1,02² = 5.000 × 1,0404 = 5.202. O valor 5.200 corresponde ao uso de juros simples."
+        },
+        {
+          "topic": "Primeiro passo com taxa nominal",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 16,
+          "statement": "Quando um problema de juros compostos traz uma taxa nominal, o primeiro passo é",
+          "support": null,
+          "options": [
+            "usá-la diretamente na fórmula, se o tempo estiver em anos.",
+            "convertê-la em taxa anual, qualquer que seja a capitalização.",
+            "extrair a raiz do fator de acumulação.",
+            "convertê-la na taxa efetiva do período de capitalização.",
+            "converter o prazo em dias."
+          ],
+          "answer": "D",
+          "explanation": "A taxa nominal não deve ser usada nas fórmulas de juros compostos. Passa-se à unidade do período de capitalização (por divisão ou multiplicação), e só então se calcula o montante."
+        },
+        {
+          "topic": "Capitalização trimestral de taxa semestral",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 19,
+          "statement": "Um capital de R$ 10.000,00 é aplicado por 6 meses à taxa de 10% ao semestre, capitalizados trimestralmente, a juros compostos. O montante é de",
+          "support": null,
+          "options": [
+            "R$ 11.000,00.",
+            "R$ 11.025,00.",
+            "R$ 11.050,00.",
+            "R$ 11.100,00.",
+            "R$ 12.100,00."
+          ],
+          "answer": "B",
+          "explanation": "A taxa efetiva trimestral é 10% ÷ 2 = 5%. Em 6 meses há 2 trimestres, e M = 10.000 × 1,05² = 11.025. O valor 11.000 ignora a capitalização intermediária."
+        },
+        {
+          "topic": "Montante com taxa nominal anual",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 22,
+          "statement": "Um capital de R$ 25.000,00 é aplicado por 2 meses à taxa de 36% ao ano, capitalizados mensalmente, a juros compostos. O montante é de",
+          "support": null,
+          "options": [
+            "R$ 26.500,00.",
+            "R$ 27.250,00.",
+            "R$ 27.000,00.",
+            "R$ 26.522,50.",
+            "R$ 25.900,00."
+          ],
+          "answer": "D",
+          "explanation": "A taxa efetiva é 36% ÷ 12 = 3% ao mês, e M = 25.000 × 1,03² = 25.000 × 1,0609 = 26.522,50. O valor 26.500 é o montante em juros simples."
+        },
+        {
+          "topic": "Taxa nominal semestral e capitalização bimestral",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 17,
+          "statement": "A taxa efetiva bimestral correspondente a 18% ao semestre, capitalizados bimestralmente, é",
+          "support": null,
+          "options": [
+            "3% ao bimestre.",
+            "9% ao bimestre.",
+            "54% ao bimestre.",
+            "6% ao bimestre.",
+            "18% ao bimestre."
+          ],
+          "answer": "D",
+          "explanation": "Um semestre tem 3 bimestres, e a taxa efetiva é 18% ÷ 3 = 6% ao bimestre."
+        },
+        {
+          "topic": "Capitalização com período maior que o da taxa",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 17,
+          "statement": "A taxa efetiva anual correspondente a 8% ao semestre, capitalizados anualmente, é",
+          "support": null,
+          "options": [
+            "4% ao ano.",
+            "16% ao ano.",
+            "8% ao ano.",
+            "17,28% ao ano.",
+            "64% ao ano."
+          ],
+          "answer": "B",
+          "explanation": "Como a capitalização é anual, converte-se a taxa semestral para o ano: 1 ano tem 2 semestres e 8% × 2 = 16%. Dividir por 2 (4%) inverteria a lógica da conversão."
+        },
+        {
+          "topic": "Taxa efetiva implícita",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 15,
+          "statement": "Uma taxa apresentada apenas como 5% ao mês, sem menção ao período de capitalização, deve ser interpretada como",
+          "support": null,
+          "options": [
+            "nominal, com capitalização anual.",
+            "efetiva, com capitalização mensal subentendida.",
+            "nominal, com capitalização diária.",
+            "efetiva anual.",
+            "indeterminada, impossibilitando o cálculo."
+          ],
+          "answer": "B",
+          "explanation": "Quando a taxa vem escrita só com sua unidade de tempo, trata-se de taxa efetiva, e a capitalização coincide com essa unidade (aqui, mensal)."
+        }
+      ]
     },
     {
       "id": "matematica/a07/s03",
@@ -215,17 +637,250 @@
           }
         ],
         "pointers": [
-          { "topic": "Definição de taxas equivalentes e não proporcionalidade", "pageRef": 24 },
-          { "topic": "Exemplo 5% ao mês para bimestre", "pageRef": 25 },
-          { "topic": "Exemplos de equivalência (semestre-ano, trimestre-mês)", "pageRef": 26 },
-          { "topic": "Equivalência com taxa nominal (conversão prévia)", "pageRef": 27 },
-          { "topic": "Fórmula geral da taxa equivalente", "pageRef": 29 },
-          { "topic": "Taxa semestral efetiva com capitalização bimestral", "pageRef": 30 },
-          { "topic": "Taxa mensal para anual com dado auxiliar", "pageRef": 31 },
-          { "topic": "Taxa bimestral para mensal por raiz", "pageRef": 32 },
-          { "topic": "Taxa efetiva anual a partir da nominal quadrimestral", "pageRef": 34 }
+          {
+            "topic": "Definição de taxas equivalentes e não proporcionalidade",
+            "pageRef": 24
+          },
+          {
+            "topic": "Exemplo 5% ao mês para bimestre",
+            "pageRef": 25
+          },
+          {
+            "topic": "Exemplos de equivalência (semestre-ano, trimestre-mês)",
+            "pageRef": 26
+          },
+          {
+            "topic": "Equivalência com taxa nominal (conversão prévia)",
+            "pageRef": 27
+          },
+          {
+            "topic": "Fórmula geral da taxa equivalente",
+            "pageRef": 29
+          },
+          {
+            "topic": "Taxa semestral efetiva com capitalização bimestral",
+            "pageRef": 30
+          },
+          {
+            "topic": "Taxa mensal para anual com dado auxiliar",
+            "pageRef": 31
+          },
+          {
+            "topic": "Taxa bimestral para mensal por raiz",
+            "pageRef": 32
+          },
+          {
+            "topic": "Taxa efetiva anual a partir da nominal quadrimestral",
+            "pageRef": 34
+          }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Taxa bimestral equivalente",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 24,
+          "statement": "No regime de juros compostos, a taxa bimestral equivalente a 4% ao mês é",
+          "support": null,
+          "options": [
+            "8% ao bimestre.",
+            "8,16% ao bimestre.",
+            "8,32% ao bimestre.",
+            "16,64% ao bimestre.",
+            "4,08% ao bimestre."
+          ],
+          "answer": "B",
+          "explanation": "Capitalizando 2 meses: (1 + i) = 1,04² = 1,0816, o que dá i = 8,16% ao bimestre. A taxa de 8% seria a proporcional (4% × 2), válida só em juros simples."
+        },
+        {
+          "topic": "Taxa anual equivalente",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 26,
+          "statement": "No regime de juros compostos, a taxa anual equivalente a 10% ao semestre é",
+          "support": null,
+          "options": [
+            "21%.",
+            "20%.",
+            "22%.",
+            "21,5%.",
+            "10,5%."
+          ],
+          "answer": "A",
+          "explanation": "(1 + i) = 1,1² = 1,21, logo i = 21% ao ano. A taxa de 20% é a proporcional e não considera a capitalização dos juros."
+        },
+        {
+          "topic": "Taxa bimestral a partir de quadrimestral",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 26,
+          "statement": "A taxa bimestral composta equivalente a 21% ao quadrimestre é",
+          "support": null,
+          "options": [
+            "10%.",
+            "10,5%.",
+            "20%.",
+            "9,5%.",
+            "5%."
+          ],
+          "answer": "A",
+          "explanation": "Um quadrimestre tem 2 bimestres: (1 + i)² = 1,21, logo 1 + i = 1,1 e i = 10% ao bimestre. A divisão simples (10,5%) é válida apenas em juros simples."
+        },
+        {
+          "topic": "Taxa semestral equivalente",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 26,
+          "statement": "A taxa semestral composta equivalente a 44% ao ano é",
+          "support": null,
+          "options": [
+            "22%.",
+            "20%.",
+            "21%.",
+            "24%.",
+            "18%."
+          ],
+          "answer": "B",
+          "explanation": "Como (1 + i)² = 1,44, tem-se 1 + i = 1,2 e i = 20% ao semestre. A metade de 44% (22%) seria a taxa proporcional."
+        },
+        {
+          "topic": "Taxa bimestral equivalente a taxa mensal",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 25,
+          "statement": "A taxa bimestral composta equivalente a 9% ao mês é",
+          "support": null,
+          "options": [
+            "18%.",
+            "19%.",
+            "18,5%.",
+            "81%.",
+            "18,81%."
+          ],
+          "answer": "E",
+          "explanation": "(1 + i) = 1,09² = 1,1881, portanto i = 18,81% ao bimestre. A soma 9% + 9% = 18% é a taxa proporcional e ignora os juros sobre juros do segundo mês."
+        },
+        {
+          "topic": "Conceito de taxas equivalentes",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 24,
+          "statement": "No regime de juros compostos, duas taxas de unidades de tempo diferentes são equivalentes quando, aplicadas ao mesmo capital pelo mesmo prazo, produzem",
+          "support": null,
+          "options": [
+            "taxas proporcionais.",
+            "o mesmo juro apenas se o prazo for de 1 ano.",
+            "montantes que diferem pelo efeito da capitalização.",
+            "o mesmo valor numérico.",
+            "o mesmo montante."
+          ],
+          "answer": "E",
+          "explanation": "A equivalência é definida pelo resultado: mesmo capital, mesmo prazo e mesmo montante (e, por consequência, mesmos juros). Em juros compostos, taxas equivalentes não são proporcionais."
+        },
+        {
+          "topic": "Taxa nominal e equivalência",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 28,
+          "statement": "A taxa trimestral composta equivalente a 12% ao semestre, capitalizados mensalmente, é de aproximadamente",
+          "support": null,
+          "options": [
+            "6,12%.",
+            "6,00%.",
+            "6,09%.",
+            "6,24%.",
+            "4,00%."
+          ],
+          "answer": "A",
+          "explanation": "A taxa efetiva mensal é 12% ÷ 6 = 2%. Capitalizando 3 meses, 1,02³ = 1,061208, portanto a taxa trimestral equivalente é cerca de 6,12%. O valor 6% seria a metade da taxa semestral."
+        },
+        {
+          "topic": "Taxa anual equivalente a taxa quadrimestral",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 29,
+          "statement": "A taxa anual composta equivalente a 10% ao quadrimestre é",
+          "support": null,
+          "options": [
+            "30%.",
+            "31,5%.",
+            "36,4%.",
+            "33,1%.",
+            "33%."
+          ],
+          "answer": "D",
+          "explanation": "Um ano tem 3 quadrimestres: 1,1³ = 1,331, portanto i = 33,1% ao ano. A taxa proporcional seria 30%, e a diferença de 3,1 pontos vem dos juros sobre juros."
+        },
+        {
+          "topic": "Expoente na fórmula da taxa equivalente",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 29,
+          "statement": "Para obter a taxa trimestral composta equivalente a uma taxa anual, calcula-se (1 + i anual) elevado a",
+          "support": null,
+          "options": [
+            "1/4 e subtrai-se 1 do resultado.",
+            "4 e subtrai-se 1 do resultado.",
+            "1/12 e subtrai-se 1 do resultado.",
+            "1/2 e subtrai-se 1 do resultado.",
+            "4 e divide-se o resultado por 4."
+          ],
+          "answer": "A",
+          "explanation": "Como o ano tem 4 trimestres, i trimestral = (1 + i anual)^(1/4) − 1: é a raiz quarta do fator anual. Elevar a 4 serviria para o caminho inverso, de trimestral para anual."
+        },
+        {
+          "topic": "Montantes e taxas equivalentes",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 25,
+          "statement": "A taxa de 4,04% ao bimestre é equivalente a 2% ao mês em juros compostos. Dois capitais iguais, aplicados por 8 meses, um a cada taxa, produzem montantes",
+          "support": null,
+          "options": [
+            "maiores na taxa bimestral.",
+            "maiores na taxa mensal.",
+            "iguais.",
+            "diferentes pelo valor de 4,04%.",
+            "dependentes do valor do capital."
+          ],
+          "answer": "C",
+          "explanation": "Em 8 meses, 1,02⁸ = 1,0404⁴, e os fatores são iguais. A definição de taxas equivalentes garante montantes iguais, qualquer que seja o capital."
+        },
+        {
+          "topic": "Equivalente menor que proporcional",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 24,
+          "statement": "No regime composto, a taxa semestral equivalente a 20% ao ano é",
+          "support": null,
+          "options": [
+            "exatamente 10%.",
+            "menor que 10%.",
+            "maior que 10%.",
+            "igual a 20%.",
+            "igual a 40%."
+          ],
+          "answer": "B",
+          "explanation": "A taxa semestral i deve satisfazer (1 + i)² = 1,2, o que dá i ≈ 9,54%, menor que a proporcional de 10%. Como o segundo semestre rende juros sobre juros, cada semestre precisa de taxa menor."
+        },
+        {
+          "topic": "Diferença entre equivalente e proporcional",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 26,
+          "statement": "Para a taxa de 10% ao mês, a taxa trimestral composta equivalente supera a proporcional em",
+          "support": null,
+          "options": [
+            "0 ponto percentual.",
+            "3,1 pontos percentuais.",
+            "1,0 ponto percentual.",
+            "3,0 pontos percentuais.",
+            "33,1 pontos percentuais."
+          ],
+          "answer": "B",
+          "explanation": "A taxa equivalente é 1,1³ − 1 = 33,1%, e a proporcional é 3 × 10% = 30%. A diferença é de 3,1 pontos percentuais, provocados pela capitalização."
+        }
+      ]
     },
     {
       "id": "matematica/a07/s04",
@@ -292,18 +947,271 @@
           }
         ],
         "pointers": [
-          { "topic": "Parte inteira e fracionária do tempo", "pageRef": 35 },
-          { "topic": "Convenção exponencial", "pageRef": 35 },
-          { "topic": "Convenção linear", "pageRef": 36 },
-          { "topic": "Fórmula direta da convenção linear", "pageRef": 37 },
-          { "topic": "Questão de juros pela convenção linear em anos", "pageRef": 38 },
-          { "topic": "Questão inversa para achar o capital inicial", "pageRef": 39 },
-          { "topic": "Fator de acumulação de capitais", "pageRef": 42 },
-          { "topic": "Uso da tabela financeira", "pageRef": 43 },
-          { "topic": "Pagamento extra e tabela para dois prazos", "pageRef": 46 },
-          { "topic": "Tabela com fator inverso", "pageRef": 49 }
+          {
+            "topic": "Parte inteira e fracionária do tempo",
+            "pageRef": 35
+          },
+          {
+            "topic": "Convenção exponencial",
+            "pageRef": 35
+          },
+          {
+            "topic": "Convenção linear",
+            "pageRef": 36
+          },
+          {
+            "topic": "Fórmula direta da convenção linear",
+            "pageRef": 37
+          },
+          {
+            "topic": "Questão de juros pela convenção linear em anos",
+            "pageRef": 38
+          },
+          {
+            "topic": "Questão inversa para achar o capital inicial",
+            "pageRef": 39
+          },
+          {
+            "topic": "Fator de acumulação de capitais",
+            "pageRef": 42
+          },
+          {
+            "topic": "Uso da tabela financeira",
+            "pageRef": 43
+          },
+          {
+            "topic": "Pagamento extra e tabela para dois prazos",
+            "pageRef": 46
+          },
+          {
+            "topic": "Tabela com fator inverso",
+            "pageRef": 49
+          }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Convenção linear",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 36,
+          "statement": "Um capital de R$ 10.000,00 é aplicado à taxa de 20% ao ano, em juros compostos, por 1 ano e 3 meses, adotando-se a convenção linear. O montante é de",
+          "support": null,
+          "options": [
+            "R$ 12.000,00.",
+            "R$ 12.500,00.",
+            "R$ 14.400,00.",
+            "R$ 12.600,00.",
+            "R$ 12.250,00."
+          ],
+          "answer": "D",
+          "explanation": "Na convenção linear, usa-se juros compostos na parte inteira (1 ano): 10.000 × 1,2 = 12.000; depois, juros simples na fração (0,25 ano): 12.000 × (1 + 0,2 × 0,25) = 12.600. O valor 12.500 aplica juros simples a todo o prazo."
+        },
+        {
+          "topic": "Convenção linear com vários períodos",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 37,
+          "statement": "Um capital de R$ 30.000,00 é aplicado à taxa de 10% ao ano, em juros compostos, por 3 anos e 6 meses, pela convenção linear. O montante é de",
+          "support": null,
+          "options": [
+            "R$ 41.926,50.",
+            "R$ 39.930,00.",
+            "R$ 41.000,00.",
+            "R$ 43.923,00.",
+            "R$ 40.500,00."
+          ],
+          "answer": "A",
+          "explanation": "M = C × (1 + i)^t1 × (1 + i × t2) com t1 = 3 e t2 = 0,5: 30.000 × 1,331 × 1,05 = 41.926,50. O valor 39.930 considera só a parte inteira, e os 6 meses finais ficam sem rendimento."
+        },
+        {
+          "topic": "Juros pela convenção linear",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 37,
+          "statement": "Um capital de R$ 50.000,00 é aplicado à taxa de 20% ao ano, em juros compostos, por 2 anos e 6 meses, com convenção linear. Os juros obtidos são de",
+          "support": null,
+          "options": [
+            "R$ 22.000,00.",
+            "R$ 25.000,00.",
+            "R$ 29.200,00.",
+            "R$ 79.200,00.",
+            "R$ 27.000,00."
+          ],
+          "answer": "C",
+          "explanation": "Parte inteira: 50.000 × 1,2² = 72.000. Parte fracionária (0,5 ano): 72.000 × (1 + 0,2 × 0,5) = 79.200. Juros: 79.200 − 50.000 = 29.200. O valor 79.200 é o montante, e 22.000 desconsidera os 6 meses."
+        },
+        {
+          "topic": "Convenção exponencial",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 35,
+          "statement": "Um capital de R$ 20.000,00 é aplicado a 10% ao mês, em juros compostos, por 2 meses e 15 dias. Pela convenção exponencial, sabendo que 1,1^2,5 ≈ 1,269, o montante é de",
+          "support": null,
+          "options": [
+            "R$ 25.410,00.",
+            "R$ 25.380,00.",
+            "R$ 24.200,00.",
+            "R$ 26.000,00.",
+            "R$ 25.000,00."
+          ],
+          "answer": "B",
+          "explanation": "Na convenção exponencial, aplica-se M = C × (1 + i)ᵗ a todo o prazo, com t = 2,5 meses: 20.000 × 1,269 = 25.380. O valor 25.410 resulta da convenção linear (20.000 × 1,21 × 1,05)."
+        },
+        {
+          "topic": "Definição da convenção exponencial",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 35,
+          "statement": "Em prazos com parte fracionária, a convenção exponencial consiste em usar",
+          "support": null,
+          "options": [
+            "juros simples para a parte inteira e juros compostos para a fracionária.",
+            "juros simples para todo o período.",
+            "juros compostos para a parte inteira e juros simples para a fracionária.",
+            "juros compostos para todo o período, inclusive a parte fracionária.",
+            "o ano comercial de 360 dias para qualquer prazo."
+          ],
+          "answer": "D",
+          "explanation": "A convenção exponencial aplica a capitalização composta a todo o prazo, com expoente fracionário. Já a linear usa composta na parte inteira e simples na fração."
+        },
+        {
+          "topic": "Diferença entre as convenções",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 36,
+          "statement": "Um capital de R$ 10.000,00 é aplicado a 10% ao ano, em juros compostos, por 2 anos e 6 meses. Sabendo que 1,1^2,5 ≈ 1,269, a diferença entre o montante da convenção linear e o da convenção exponencial é de",
+          "support": null,
+          "options": [
+            "R$ 0,00.",
+            "R$ 150,00.",
+            "R$ 15,00.",
+            "R$ 1.500,00.",
+            "R$ 5,00."
+          ],
+          "answer": "C",
+          "explanation": "Linear: 10.000 × 1,21 × 1,05 = 12.705. Exponencial: 10.000 × 1,269 = 12.690. A diferença é 15, o que mostra que a convenção linear leva a montante ligeiramente maior para prazos fracionários."
+        },
+        {
+          "topic": "Partes do prazo na convenção linear",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 37,
+          "statement": "Em uma operação com taxa anual e prazo de 3 anos e 9 meses, pela convenção linear, os valores de t1 e t2 são, respectivamente,",
+          "support": null,
+          "options": [
+            "3 e 9.",
+            "3,75 e 0.",
+            "3 e 0,75.",
+            "3 e 0,9.",
+            "4 e 0,25."
+          ],
+          "answer": "C",
+          "explanation": "A parte inteira do prazo é t1 = 3 anos. A parte fracionária deve estar na unidade da taxa (ano): 9 meses = 9/12 = 0,75 ano, logo t2 = 0,75."
+        },
+        {
+          "topic": "Uso da tabela financeira",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 43,
+          "statement": "Em uma tabela do fator de acumulação de capitais (1 + i)ⁿ, com a taxa i na coluna e o tempo n na linha, o valor de 1,07⁹ é encontrado entrando-se com",
+          "support": null,
+          "options": [
+            "a taxa de 7% e o tempo de 9 períodos.",
+            "a taxa de 9% e o tempo de 7 períodos.",
+            "a taxa de 0,07% e o tempo de 9 períodos.",
+            "a taxa de 63% e o tempo de 1 período.",
+            "a taxa de 16% e o tempo de 2 períodos."
+          ],
+          "answer": "A",
+          "explanation": "O número 1,07 corresponde a 1 + 0,07, ou seja, taxa de 7%; e o expoente 9 é o tempo n. Trocar os papéis (9% e 7 períodos) leva a outra potência, 1,09⁷."
+        },
+        {
+          "topic": "Tabela com fator inverso",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 49,
+          "statement": "Uma tabela financeira fornece o fator 1/(1 + i)ⁿ. Para i = 4% e n = 10, o valor tabelado é 0,6756. Com isso, o montante de R$ 20.000,00 aplicado por 10 meses a 4% ao mês, em juros compostos, é de aproximadamente",
+          "support": null,
+          "options": [
+            "R$ 13.512,00.",
+            "R$ 29.600,00.",
+            "R$ 28.000,00.",
+            "R$ 27.000,00.",
+            "R$ 33.000,00."
+          ],
+          "answer": "B",
+          "explanation": "O fator de acumulação é o inverso do tabelado: (1,04)¹⁰ ≈ 1 ÷ 0,6756 ≈ 1,480. Então M ≈ 20.000 × 1,480 ≈ 29.600. O valor 13.512 resulta de multiplicar pelo fator inverso (20.000 × 0,6756)."
+        },
+        {
+          "topic": "Tabela com taxa nominal",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 44,
+          "statement": "Um capital de R$ 30.000,00 é aplicado por 6 meses à taxa de 12% ao trimestre, capitalizados mensalmente, em juros compostos. Dado que 1,04⁶ ≈ 1,2653, o montante é de aproximadamente",
+          "support": null,
+          "options": [
+            "R$ 37.959,00.",
+            "R$ 37.632,00.",
+            "R$ 37.200,00.",
+            "R$ 36.000,00.",
+            "R$ 35.700,00."
+          ],
+          "answer": "A",
+          "explanation": "A taxa efetiva mensal é 12% ÷ 3 = 4%. Em 6 meses, M = 30.000 × 1,04⁶ ≈ 30.000 × 1,2653 = 37.959. O valor 37.632 resulta de tratar 12% como efetiva trimestral (1,12² = 1,2544), e 37.200 de aplicar juros simples."
+        },
+        {
+          "topic": "Pagamento parcial com fatores dados",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 47,
+          "statement": "Um empréstimo de R$ 80.000,00 é feito a juros compostos de 2% ao mês. Após 6 meses, o devedor paga R$ 30.000,00 e quita o restante no décimo mês. Dados 1,02⁶ ≈ 1,1262 e 1,02⁴ ≈ 1,0824, o valor da quitação é de aproximadamente",
+          "support": null,
+          "options": [
+            "R$ 90.096,00.",
+            "R$ 60.096,00.",
+            "R$ 67.200,00.",
+            "R$ 65.048,00.",
+            "R$ 62.900,00."
+          ],
+          "answer": "D",
+          "explanation": "No 6º mês, a dívida é 80.000 × 1,1262 = 90.096; abatidos 30.000, restam 60.096. Por mais 4 meses, 60.096 × 1,0824 ≈ 65.048. O valor 60.096 é o saldo logo após o pagamento, sem os juros do final."
+        },
+        {
+          "topic": "Quando as convenções coincidem",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 35,
+          "statement": "As convenções linear e exponencial produzem o mesmo montante quando",
+          "support": null,
+          "options": [
+            "o prazo é um número inteiro de unidades da taxa.",
+            "o prazo é menor que uma unidade da taxa.",
+            "a taxa é nominal.",
+            "o prazo possui parte fracionária.",
+            "a taxa de juros é superior a 10%."
+          ],
+          "answer": "A",
+          "explanation": "Diferenças entre as convenções existem só quando há parte fracionária no prazo: sem ela, ambas se reduzem a M = C × (1 + i)ᵗ com t inteiro, e os resultados coincidem."
+        },
+        {
+          "topic": "Capital da parte fracionária na convenção linear",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 39,
+          "statement": "Pela convenção linear, em uma aplicação a 3% ao mês por 4 meses e 15 dias, os juros simples da parte fracionária foram R$ 90,00. O valor acumulado no fim dos 4 meses (parte inteira) era de",
+          "support": null,
+          "options": [
+            "R$ 3.000,00.",
+            "R$ 12.000,00.",
+            "R$ 4.500,00.",
+            "R$ 6.000,00.",
+            "R$ 600,00."
+          ],
+          "answer": "D",
+          "explanation": "Na fração, os juros são simples: 90 = V × 0,03 × 0,5 (15 dias = 0,5 mês), logo V = 90 ÷ 0,015 = 6.000. O valor 3.000 esquece de converter 15 dias para meio mês."
+        }
+      ]
     }
   ]
 }

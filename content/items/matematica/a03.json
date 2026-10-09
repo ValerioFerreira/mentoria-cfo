@@ -2,7 +2,6 @@
   "aula": "matematica/a03",
   "batch": "w2-bizu-matematica",
   "status": "DRAFT",
-  "stage": "bizu",
   "segments": [
     {
       "id": "matematica/a03/s01",
@@ -68,16 +67,263 @@
           }
         ],
         "pointers": [
-          { "topic": "Múltiplos e números primos", "pageRef": 5 },
-          { "topic": "MMC por decomposição simultânea", "pageRef": 6 },
-          { "topic": "Atalhos para calcular o MMC", "pageRef": 7 },
-          { "topic": "Conceito de fração e fração equivalente", "pageRef": 9 },
-          { "topic": "Fração irredutível e primos entre si", "pageRef": 10 },
-          { "topic": "Simplificação de frações", "pageRef": 11 },
-          { "topic": "Soma e subtração de frações com MMC", "pageRef": 12 },
-          { "topic": "Simplificar o resultado da soma/subtração", "pageRef": 13 }
+          {
+            "topic": "Múltiplos e números primos",
+            "pageRef": 5
+          },
+          {
+            "topic": "MMC por decomposição simultânea",
+            "pageRef": 6
+          },
+          {
+            "topic": "Atalhos para calcular o MMC",
+            "pageRef": 7
+          },
+          {
+            "topic": "Conceito de fração e fração equivalente",
+            "pageRef": 9
+          },
+          {
+            "topic": "Fração irredutível e primos entre si",
+            "pageRef": 10
+          },
+          {
+            "topic": "Simplificação de frações",
+            "pageRef": 11
+          },
+          {
+            "topic": "Soma e subtração de frações com MMC",
+            "pageRef": 12
+          },
+          {
+            "topic": "Simplificar o resultado da soma/subtração",
+            "pageRef": 13
+          }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Números primos",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 5,
+          "statement": "Os números primos são os naturais maiores que 1 com exatamente dois divisores naturais. Assinale a alternativa que contém apenas números primos.",
+          "support": null,
+          "options": [
+            "1, 2 e 3.",
+            "9, 11 e 13.",
+            "21, 23 e 29.",
+            "17, 29 e 41.",
+            "31, 37 e 39."
+          ],
+          "answer": "D",
+          "explanation": "17, 29 e 41 só são divisíveis por 1 e por eles mesmos. O número 1 tem um único divisor, 9 = 3 × 3, 21 = 3 × 7 e 39 = 3 × 13 têm mais de dois divisores, de modo que as demais alternativas contêm um composto."
+        },
+        {
+          "topic": "Múltiplos de um número",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 5,
+          "statement": "A quantidade de números múltiplos de 7 que existem entre 100 e 200 (inclusive) é",
+          "support": null,
+          "options": [
+            "13.",
+            "15.",
+            "12.",
+            "14.",
+            "16."
+          ],
+          "answer": "D",
+          "explanation": "O primeiro múltiplo de 7 a partir de 100 é 105 (7 × 15) e o último até 200 é 196 (7 × 28). Os fatores vão de 15 a 28, o que dá 28 − 15 + 1 = 14 múltiplos. Contar 28 − 15 = 13 esquece o primeiro termo."
+        },
+        {
+          "topic": "MMC por decomposição simultânea",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 6,
+          "statement": "O mínimo múltiplo comum entre 12, 18 e 30 é",
+          "support": null,
+          "options": [
+            "180.",
+            "90.",
+            "360.",
+            "60.",
+            "540."
+          ],
+          "answer": "A",
+          "explanation": "Decompondo simultaneamente: 12 = 2² × 3, 18 = 2 × 3² e 30 = 2 × 3 × 5; o MMC usa o maior expoente de cada primo, 2² × 3² × 5 = 180. O valor 540 é o produto 18 × 30, sem se preocupar com os fatores comuns."
+        },
+        {
+          "topic": "MMC e múltiplos",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 7,
+          "statement": "O mínimo múltiplo comum entre 8, 12, 24 e 6 é",
+          "support": null,
+          "options": [
+            "48.",
+            "96.",
+            "24.",
+            "144.",
+            "576."
+          ],
+          "answer": "C",
+          "explanation": "Como 24 é múltiplo de 8, de 12 e de 6, ele próprio é o menor múltiplo comum desses números. É desnecessário multiplicar tudo, e os valores 48, 96 e 144 são múltiplos comuns, mas não o menor."
+        },
+        {
+          "topic": "Aplicação do MMC",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 6,
+          "statement": "Duas sirenes de um quartel são acionadas em intervalos regulares, uma a cada 20 s e a outra a cada 30 s, e tocam juntas em determinado instante. O menor intervalo de tempo até tocarem juntas de novo é de",
+          "support": null,
+          "options": [
+            "10 s.",
+            "50 s.",
+            "90 s.",
+            "600 s.",
+            "60 s."
+          ],
+          "answer": "E",
+          "explanation": "Elas coincidem em instantes múltiplos de 20 e de 30 ao mesmo tempo, e o menor deles é o MMC(20; 30) = 60. O valor 10 é o máximo divisor comum, e 600 é o produto, que é múltiplo comum, mas não o mínimo."
+        },
+        {
+          "topic": "Numerador e denominador",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 9,
+          "statement": "Considere a fração 5/8. Pode-se afirmar que, nessa fração,",
+          "support": null,
+          "options": [
+            "o numerador 5 faz o papel de divisor e o denominador 8, o de dividendo.",
+            "o numerador 5 indica em quantas partes iguais o todo foi dividido.",
+            "o denominador 8 indica quantas partes foram tomadas.",
+            "o numerador 5 faz o papel de dividendo e o denominador 8, o de divisor.",
+            "a fração é maior que 1, pois o denominador é maior que 5."
+          ],
+          "answer": "D",
+          "explanation": "A fração representa a divisão do numerador (dividendo) pelo denominador (divisor): 5 ÷ 8 = 0,625. O denominador informa em quantas partes o todo foi dividido, e o numerador, quantas se tomam. Como 5 < 8, a fração é menor que 1."
+        },
+        {
+          "topic": "Números primos entre si",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 9,
+          "statement": "Dois números são primos entre si quando não têm fatores primos em comum. Dentre os pares a seguir, aquele formado por números primos entre si é",
+          "support": null,
+          "options": [
+            "24 e 40.",
+            "21 e 35.",
+            "30 e 42.",
+            "28 e 45.",
+            "27 e 45."
+          ],
+          "answer": "D",
+          "explanation": "Como 28 = 2² × 7 e 45 = 3² × 5, não há fator primo comum, e o único divisor comum é 1. Nos demais pares há fatores comuns: 8 em 24 e 40, 7 em 21 e 35, 6 em 30 e 42 e 9 em 27 e 45."
+        },
+        {
+          "topic": "Fração irredutível",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 10,
+          "statement": "Dentre as frações a seguir, a única que é irredutível é",
+          "support": null,
+          "options": [
+            "14/21.",
+            "18/45.",
+            "15/28.",
+            "22/33.",
+            "26/39."
+          ],
+          "answer": "C",
+          "explanation": "Uma fração é irredutível quando numerador e denominador são primos entre si. Como 15 = 3 × 5 e 28 = 2² × 7, não há fator comum. As demais podem ser simplificadas por 7, 9, 11 e 13, respectivamente."
+        },
+        {
+          "topic": "Simplificação de frações",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 11,
+          "statement": "A fração irredutível equivalente a 126/210 é",
+          "support": null,
+          "options": [
+            "21/35.",
+            "2/5.",
+            "7/10.",
+            "3/5.",
+            "5/3."
+          ],
+          "answer": "D",
+          "explanation": "Dividindo numerador e denominador por 42 (126 = 42 × 3 e 210 = 42 × 5), obtém-se 3/5. A fração 21/35 é equivalente, mas ainda pode ser simplificada por 7; a 5/3 é a inversa."
+        },
+        {
+          "topic": "Frações equivalentes",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 11,
+          "statement": "A fração equivalente a 3/8 cujo denominador é 56 tem numerador igual a",
+          "support": null,
+          "options": [
+            "24.",
+            "3.",
+            "21.",
+            "18.",
+            "15."
+          ],
+          "answer": "C",
+          "explanation": "Para passar o denominador de 8 para 56, multiplica-se por 7, e o numerador deve ser multiplicado pelo mesmo fator: 3 × 7 = 21. Somar 7 aos dois termos (24/56 ou 10/56) não preserva o valor da fração."
+        },
+        {
+          "topic": "Soma e subtração de frações",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 12,
+          "statement": "O valor da expressão 2/3 + 5/6 − 1/4 é",
+          "support": null,
+          "options": [
+            "6/5.",
+            "11/12.",
+            "7/12.",
+            "3/2.",
+            "5/4."
+          ],
+          "answer": "E",
+          "explanation": "O MMC dos denominadores é 12: 8/12 + 10/12 − 3/12 = 15/12 = 5/4. O valor 6/5 vem de somar numeradores e denominadores separadamente, o que não é permitido."
+        },
+        {
+          "topic": "Soma de três frações",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 13,
+          "statement": "A soma 1/4 + 3/10 + 7/15 é igual a",
+          "support": null,
+          "options": [
+            "11/29.",
+            "61/60.",
+            "59/60.",
+            "31/30.",
+            "5/4."
+          ],
+          "answer": "B",
+          "explanation": "O MMC de 4, 10 e 15 é 60; as frações equivalentes são 15/60, 18/60 e 28/60, e a soma é 61/60. A resposta 11/29 vem de somar numeradores e denominadores diretamente."
+        },
+        {
+          "topic": "Subtração de frações",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 13,
+          "statement": "O resultado de 7/12 − 3/8 é",
+          "support": null,
+          "options": [
+            "4/4.",
+            "1/4.",
+            "4/12.",
+            "5/12.",
+            "5/24."
+          ],
+          "answer": "E",
+          "explanation": "O MMC entre 12 e 8 é 24, de modo que 7/12 = 14/24 e 3/8 = 9/24. A diferença é 5/24, que já é irredutível. Subtrair numeradores e denominadores separadamente leva a 4/4, valor sem sentido aqui."
+        }
+      ]
     },
     {
       "id": "matematica/a03/s02",
@@ -138,16 +384,263 @@
           }
         ],
         "pointers": [
-          { "topic": "Multiplicação de frações com simplificação prévia", "pageRef": 15 },
-          { "topic": "Divisão de frações (inverte a segunda)", "pageRef": 16 },
-          { "topic": "Comparação de frações", "pageRef": 19 },
-          { "topic": "A palavra \"de\" como multiplicação", "pageRef": 20 },
-          { "topic": "Todo a partir da parte: inverte e multiplica", "pageRef": 23 },
-          { "topic": "Fração complementar", "pageRef": 25 },
-          { "topic": "Problema de entrada e financiamento", "pageRef": 26 },
-          { "topic": "Soma de frações consumidas e restante", "pageRef": 27 }
+          {
+            "topic": "Multiplicação de frações com simplificação prévia",
+            "pageRef": 15
+          },
+          {
+            "topic": "Divisão de frações (inverte a segunda)",
+            "pageRef": 16
+          },
+          {
+            "topic": "Comparação de frações",
+            "pageRef": 19
+          },
+          {
+            "topic": "A palavra \"de\" como multiplicação",
+            "pageRef": 20
+          },
+          {
+            "topic": "Todo a partir da parte: inverte e multiplica",
+            "pageRef": 23
+          },
+          {
+            "topic": "Fração complementar",
+            "pageRef": 25
+          },
+          {
+            "topic": "Problema de entrada e financiamento",
+            "pageRef": 26
+          },
+          {
+            "topic": "Soma de frações consumidas e restante",
+            "pageRef": 27
+          }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Produto de frações",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 15,
+          "statement": "O produto 14/15 × 25/21, na forma de fração irredutível, é",
+          "support": null,
+          "options": [
+            "9/10.",
+            "10/9.",
+            "13/12.",
+            "10/3.",
+            "5/3."
+          ],
+          "answer": "B",
+          "explanation": "Simplificando antes de multiplicar: 14 e 21 por 7 (2 e 3) e 25 e 15 por 5 (5 e 3), resulta 2/3 × 5/3 = 10/9. Os valores 9/10 e 10/3 vêm de erros na simplificação ou na inversão."
+        },
+        {
+          "topic": "Divisão de frações",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 15,
+          "statement": "O quociente (7/12) ÷ (14/9) é igual a",
+          "support": null,
+          "options": [
+            "8/3.",
+            "49/54.",
+            "3/8.",
+            "1/6.",
+            "2/3."
+          ],
+          "answer": "C",
+          "explanation": "Divide-se multiplicando pela fração inversa: 7/12 × 9/14. Simplificando 7 com 14 e 9 com 12, obtém-se 1/4 × 3/2 = 3/8. O valor 49/54 resulta de multiplicar as frações sem inverter a segunda, e 8/3 é o inverso do resultado correto."
+        },
+        {
+          "topic": "Número dividido por fração",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 16,
+          "statement": "O valor de 12 ÷ (3/4) é",
+          "support": null,
+          "options": [
+            "9.",
+            "16.",
+            "15.",
+            "36.",
+            "48."
+          ],
+          "answer": "B",
+          "explanation": "Dividir por 3/4 equivale a multiplicar por 4/3: 12 × 4/3 = 16. O resultado 9 é o de multiplicar 12 por 3/4, sem inverter a fração."
+        },
+        {
+          "topic": "Expressão com frações",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 16,
+          "statement": "O valor da expressão (3/4 × 8/9) + (5/6 ÷ 5/3) é",
+          "support": null,
+          "options": [
+            "7/6.",
+            "1/3.",
+            "5/6.",
+            "7/12.",
+            "4/3."
+          ],
+          "answer": "A",
+          "explanation": "Primeiro, 3/4 × 8/9 = 2/3. Depois, 5/6 ÷ 5/3 = 5/6 × 3/5 = 1/2. A soma 2/3 + 1/2 = 4/6 + 3/6 = 7/6. Valores como 7/12 aparecem ao somar numeradores sem igualar denominadores."
+        },
+        {
+          "topic": "Comparação de frações",
+          "pattern": "relacao",
+          "difficulty": 2,
+          "pageRef": 19,
+          "statement": "Considere as frações a = 3/7, b = 5/12 e c = 4/9. Colocadas em ordem crescente, resulta:",
+          "support": null,
+          "options": [
+            "a < b < c.",
+            "b < a < c.",
+            "c < a < b.",
+            "a < c < b.",
+            "c < b < a."
+          ],
+          "answer": "B",
+          "explanation": "Com denominador comum 252 (MMC de 7, 12 e 9): a = 108/252, b = 105/252 e c = 112/252. Logo, b < a < c. Em decimais: a ≈ 0,4286, b ≈ 0,4167 e c ≈ 0,4444, o que confirma."
+        },
+        {
+          "topic": "Uso da palavra \"de\" (multiplicação)",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 20,
+          "statement": "Em um quartel com 240 militares, 3/8 estão em serviço externo, e 2/5 dos que estão em serviço externo são oficiais. Quantos oficiais estão em serviço externo?",
+          "support": null,
+          "options": [
+            "90.",
+            "96.",
+            "24.",
+            "54.",
+            "36."
+          ],
+          "answer": "E",
+          "explanation": "A palavra \"de\" indica multiplicação. Em serviço externo estão 3/8 de 240 = 90 militares, e destes 2/5 são oficiais: 2/5 de 90 = 36. O valor 90 é só a primeira etapa, e 96 é 2/5 de 240."
+        },
+        {
+          "topic": "Todo a partir da parte",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 23,
+          "statement": "Se 3/7 da carga de um caminhão pesam 1.260 kg, a carga total do caminhão pesa",
+          "support": null,
+          "options": [
+            "540 kg.",
+            "3.780 kg.",
+            "2.940 kg.",
+            "8.820 kg.",
+            "1.764 kg."
+          ],
+          "answer": "C",
+          "explanation": "Para obter o todo a partir da parte, inverte-se a fração e multiplica-se: 7/3 × 1.260 = 2.940. Multiplicar por 3/7 (sem inverter) daria 540, que é fração da parte e não o todo."
+        },
+        {
+          "topic": "Todo a partir da parte e nova fração",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 24,
+          "statement": "Em um reservatório, 5/8 do volume correspondem a 150 litros. Portanto, 3/4 do volume desse reservatório correspondem a",
+          "support": null,
+          "options": [
+            "112,5 litros.",
+            "225 litros.",
+            "240 litros.",
+            "90 litros.",
+            "180 litros."
+          ],
+          "answer": "E",
+          "explanation": "O volume total é 8/5 × 150 = 240 litros, e 3/4 de 240 são 180 litros. O valor 240 é o volume total, e 112,5 resulta de aplicar 3/4 diretamente sobre os 150 litros."
+        },
+        {
+          "topic": "Fração complementar",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 25,
+          "statement": "Um comandante usou 1/5 da verba em combustível e 2/7 da verba em manutenção. A fração da verba que ainda resta é",
+          "support": null,
+          "options": [
+            "17/35.",
+            "12/35.",
+            "22/35.",
+            "3/12.",
+            "18/35."
+          ],
+          "answer": "E",
+          "explanation": "Gasto total: 1/5 + 2/7 = 7/35 + 10/35 = 17/35. A fração restante é a complementar: 1 − 17/35 = 18/35. O valor 17/35 é o que foi gasto, e 3/12 resulta de somar numeradores e denominadores."
+        },
+        {
+          "topic": "Frações sucessivas",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 25,
+          "statement": "De um estoque de 480 kg de alimentos, consumiu-se 1/4 na primeira semana e, na semana seguinte, 2/5 do que restava. Após as duas semanas, o estoque ficou com",
+          "support": null,
+          "options": [
+            "168 kg.",
+            "216 kg.",
+            "144 kg.",
+            "264 kg.",
+            "120 kg."
+          ],
+          "answer": "B",
+          "explanation": "Após a primeira semana restam 3/4 × 480 = 360 kg; o consumo da segunda é 2/5 de 360 = 144 kg, restando 360 − 144 = 216 kg. O valor 168 vem de tomar 2/5 do estoque inicial, e não do que restava."
+        },
+        {
+          "topic": "Entrada e financiamento",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 26,
+          "statement": "Ao comprar um equipamento, um cliente deu 2/5 do valor como entrada e financiou 3/4 do restante. A parcela final, que cobre o que falta, corresponde a qual fração do valor total?",
+          "support": null,
+          "options": [
+            "1/4.",
+            "9/20.",
+            "3/20.",
+            "1/10.",
+            "7/20."
+          ],
+          "answer": "C",
+          "explanation": "Depois da entrada, restam 1 − 2/5 = 3/5 do valor. Financiou-se 3/4 desse restante, e a parte não financiada é a complementar, 1/4 de 3/5 = 3/20. O valor 9/20 é a parte financiada."
+        },
+        {
+          "topic": "Divisão de frações (conceito)",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 15,
+          "statement": "Para dividir uma fração por outra (divisor diferente de zero), deve-se",
+          "support": null,
+          "options": [
+            "multiplicar a primeira fração pelo inverso da segunda.",
+            "multiplicar a segunda fração pelo inverso da primeira.",
+            "inverter as duas frações e multiplicá-las.",
+            "somar os numeradores e multiplicar os denominadores.",
+            "igualar os denominadores e multiplicar os numeradores."
+          ],
+          "answer": "A",
+          "explanation": "A regra é \"conserva a primeira, inverte a segunda e multiplica\": a/b ÷ c/d = a/b × d/c. Inverter a primeira fração ou ambas altera o valor do quociente."
+        },
+        {
+          "topic": "Parte da parte",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 24,
+          "statement": "Um terço de três quintos de certa quantia vale R$ 120,00. Essa quantia é de",
+          "support": null,
+          "options": [
+            "R$ 600,00.",
+            "R$ 72,00.",
+            "R$ 200,00.",
+            "R$ 360,00.",
+            "R$ 1.800,00."
+          ],
+          "answer": "A",
+          "explanation": "A parte vale 1/3 × 3/5 = 1/5 da quantia. Se 1/5 da quantia é R$ 120,00, a quantia inteira é 5 × 120 = R$ 600,00. Multiplicar 120 por 3/5 ou por 3 leva a valores de etapas intermediárias."
+        }
+      ]
     },
     {
       "id": "matematica/a03/s03",
@@ -212,16 +705,246 @@
           }
         ],
         "pointers": [
-          { "topic": "Modelagem de problemas com incógnita", "pageRef": 28 },
-          { "topic": "Frações do restante em etapas", "pageRef": 29 },
-          { "topic": "Problema de frações encadeadas com divisão em três pessoas", "pageRef": 30 },
-          { "topic": "Definição de dízima e de período", "pageRef": 33 },
-          { "topic": "Regra dos noves para dízima simples", "pageRef": 33 },
-          { "topic": "Dízima composta: separar a parte não periódica", "pageRef": 34 },
-          { "topic": "0,999... é igual a 1", "pageRef": 35 },
-          { "topic": "Fração equivalente nas alternativas", "pageRef": 36 }
+          {
+            "topic": "Modelagem de problemas com incógnita",
+            "pageRef": 28
+          },
+          {
+            "topic": "Frações do restante em etapas",
+            "pageRef": 29
+          },
+          {
+            "topic": "Problema de frações encadeadas com divisão em três pessoas",
+            "pageRef": 30
+          },
+          {
+            "topic": "Definição de dízima e de período",
+            "pageRef": 33
+          },
+          {
+            "topic": "Regra dos noves para dízima simples",
+            "pageRef": 33
+          },
+          {
+            "topic": "Dízima composta: separar a parte não periódica",
+            "pageRef": 34
+          },
+          {
+            "topic": "0,999... é igual a 1",
+            "pageRef": 35
+          },
+          {
+            "topic": "Fração equivalente nas alternativas",
+            "pageRef": 36
+          }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Modelagem com incógnita",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 28,
+          "statement": "Em um curso a distância, um aluno leu 1/4 do material na primeira semana e, na segunda, 3/5 do que restava. Faltam 30 páginas para terminar. O número de páginas do material é",
+          "support": null,
+          "options": [
+            "150.",
+            "75.",
+            "100.",
+            "300.",
+            "120."
+          ],
+          "answer": "C",
+          "explanation": "Seja T o total. Restam 3T/4 após a primeira semana; na segunda leu-se 3/5 desse restante, restando 2/5 × 3T/4 = 3T/10. Como 3T/10 = 30, T = 100."
+        },
+        {
+          "topic": "Frações do restante",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 29,
+          "statement": "Uma associação gastou 3/8 de sua verba com o item A, depois 1/5 do que restava com o item B, e ficaram R$ 2.400,00. O valor gasto com o item B foi de",
+          "support": null,
+          "options": [
+            "R$ 480,00.",
+            "R$ 900,00.",
+            "R$ 1.200,00.",
+            "R$ 600,00.",
+            "R$ 300,00."
+          ],
+          "answer": "D",
+          "explanation": "Seja V a verba. Após A, restam 5V/8; B corresponde a 1/5 de 5V/8 = V/8; sobram 5V/8 − V/8 = V/2. Como V/2 = 2.400, V = 4.800 e B = V/8 = R$ 600,00."
+        },
+        {
+          "topic": "Problema de frações com o restante",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 31,
+          "statement": "Em um batalhão, 1/5 dos militares fazem um curso, 1/4 estão de férias e os 77 restantes estão em serviço. O número de militares de férias é",
+          "support": null,
+          "options": [
+            "28.",
+            "77.",
+            "45.",
+            "42.",
+            "35."
+          ],
+          "answer": "E",
+          "explanation": "Seja B o total. Os que não estão em serviço são 1/5 + 1/4 = 9/20, e os 77 restantes representam 11/20 de B. Logo, B = 77 × 20/11 = 140 e os de férias são 1/4 × 140 = 35. O valor 28 corresponde aos que fazem o curso."
+        },
+        {
+          "topic": "Equação com frações",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 28,
+          "statement": "Dois terços de um número excedem a metade desse mesmo número em 8 unidades. O número é",
+          "support": null,
+          "options": [
+            "48.",
+            "12.",
+            "24.",
+            "36.",
+            "96."
+          ],
+          "answer": "A",
+          "explanation": "Montando a equação 2x/3 − x/2 = 8, o MMC é 6: (4x − 3x)/6 = 8, ou seja, x/6 = 8 e x = 48. Conferência: 2/3 de 48 = 32, a metade é 24 e 32 − 24 = 8."
+        },
+        {
+          "topic": "Período da dízima",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 33,
+          "statement": "Na dízima periódica 4,1272727..., o período é",
+          "support": null,
+          "options": [
+            "127.",
+            "7.",
+            "27.",
+            "1272.",
+            "4127."
+          ],
+          "answer": "C",
+          "explanation": "O período é a porção que se repete indefinidamente: depois de 4,12 aparece \"27\" repetidamente. O trecho \"12\" não se repete e, portanto, não faz parte do período."
+        },
+        {
+          "topic": "Soma de dízimas simples",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 33,
+          "statement": "A soma 0,555... + 0,222... é igual à fração",
+          "support": null,
+          "options": [
+            "7/18.",
+            "7/99.",
+            "7/90.",
+            "7/9.",
+            "3/9."
+          ],
+          "answer": "D",
+          "explanation": "Cada dízima de um algarismo repetido tem como numerador o algarismo e como denominador 9: 5/9 + 2/9 = 7/9. Denominadores 99 ou 90 só aparecem em períodos de dois algarismos ou em dízimas compostas."
+        },
+        {
+          "topic": "Dízima periódica simples em fração",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 34,
+          "statement": "A fração irredutível que representa a dízima 0,363636... é",
+          "support": null,
+          "options": [
+            "9/25.",
+            "3/11.",
+            "4/11.",
+            "4/9.",
+            "36/9."
+          ],
+          "answer": "C",
+          "explanation": "O período 36 tem dois algarismos, logo a fração é 36/99, que simplifica por 9 para 4/11. A fração 9/25 equivale a 0,36 (decimal finito), diferente da dízima."
+        },
+        {
+          "topic": "Dízima composta",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 34,
+          "statement": "A fração irredutível equivalente à dízima periódica 0,1666... é",
+          "support": null,
+          "options": [
+            "16/99.",
+            "1/60.",
+            "8/45.",
+            "17/100.",
+            "1/6."
+          ],
+          "answer": "E",
+          "explanation": "Separando: 0,1666... = 0,1 + 0,0666... = 1/10 + (1/10) × (6/9) = 1/10 + 1/15 = 3/30 + 2/30 = 5/30 = 1/6. A fração 16/99 corresponderia a 0,1616..., com período \"16\"."
+        },
+        {
+          "topic": "Dízima com parte inteira",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 35,
+          "statement": "O número 2,4333... é equivalente à fração",
+          "support": null,
+          "options": [
+            "243/100.",
+            "73/30.",
+            "243/99.",
+            "71/30.",
+            "217/90."
+          ],
+          "answer": "B",
+          "explanation": "Escreve-se 2,4333... = 2 + 0,4 + 0,0333... = 2 + 2/5 + (1/10) × (3/9) = 2 + 2/5 + 1/30 = 60/30 + 12/30 + 1/30 = 73/30. Conferência: 73 ÷ 30 = 2,4333..."
+        },
+        {
+          "topic": "Dízima 0,999...",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 35,
+          "statement": "Sobre a dízima periódica 0,999..., é correto afirmar que ela",
+          "support": null,
+          "options": [
+            "é um número irracional, pois possui infinitas casas decimais.",
+            "é igual a 1, e não apenas uma aproximação de 1.",
+            "é igual a 9/10, pois tem apenas algarismos 9.",
+            "é menor que 1, pois nunca chega a atingir 1.",
+            "não pode ser escrita como fração de números inteiros."
+          ],
+          "answer": "B",
+          "explanation": "Pela regra da geratriz, 0,999... = 9/9 = 1, igualdade exata. As dízimas periódicas são racionais, logo sempre se escrevem como fração, e 9/10 = 0,9 é um decimal finito."
+        },
+        {
+          "topic": "Soma de dízimas compostas",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 37,
+          "statement": "O valor da soma 0,444... + 0,1555... é igual à fração",
+          "support": null,
+          "options": [
+            "31/45.",
+            "29/45.",
+            "2/3.",
+            "19/30.",
+            "3/5."
+          ],
+          "answer": "E",
+          "explanation": "Primeiro, 0,444... = 4/9. Depois, 0,1555... = 1/10 + (1/10) × (5/9) = 1/10 + 1/18 = 14/90 = 7/45. Somando, 20/45 + 7/45 = 27/45 = 3/5. Conferência decimal: 0,4444 + 0,1556 = 0,6."
+        },
+        {
+          "topic": "Fração como divisão",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 33,
+          "statement": "A representação decimal da fração 5/11 é",
+          "support": null,
+          "options": [
+            "0,545454...",
+            "0,45.",
+            "0,4555...",
+            "0,454545...",
+            "0,0454..."
+          ],
+          "answer": "D",
+          "explanation": "Dividindo 5 por 11, obtém-se 0,4545..., dízima periódica de período 45 (5/11 = 45/99). A fração é racional, mas o denominador 11 faz a divisão não terminar."
+        }
+      ]
     },
     {
       "id": "matematica/a03/s04",
@@ -287,15 +1010,242 @@
           }
         ],
         "pointers": [
-          { "topic": "Razão e ordem dos termos", "pageRef": 40 },
-          { "topic": "Uso de incógnita em razões", "pageRef": 42 },
-          { "topic": "Proporção: meios e extremos", "pageRef": 44 },
-          { "topic": "Multiplicação cruzada e rearranjo de meios/extremos", "pageRef": 45 },
-          { "topic": "Razão entre partes versus parte e todo", "pageRef": 48 },
-          { "topic": "Propriedade fundamental da soma", "pageRef": 49 },
-          { "topic": "Propriedade fundamental da subtração", "pageRef": 50 }
+          {
+            "topic": "Razão e ordem dos termos",
+            "pageRef": 40
+          },
+          {
+            "topic": "Uso de incógnita em razões",
+            "pageRef": 42
+          },
+          {
+            "topic": "Proporção: meios e extremos",
+            "pageRef": 44
+          },
+          {
+            "topic": "Multiplicação cruzada e rearranjo de meios/extremos",
+            "pageRef": 45
+          },
+          {
+            "topic": "Razão entre partes versus parte e todo",
+            "pageRef": 48
+          },
+          {
+            "topic": "Propriedade fundamental da soma",
+            "pageRef": 49
+          },
+          {
+            "topic": "Propriedade fundamental da subtração",
+            "pageRef": 50
+          }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Razão entre grandezas",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 40,
+          "statement": "Uma guarnição tem 36 bombeiros e 9 viaturas. A razão entre o número de viaturas e o número de bombeiros é",
+          "support": null,
+          "options": [
+            "4.",
+            "1/5.",
+            "1/3.",
+            "1/4.",
+            "9."
+          ],
+          "answer": "D",
+          "explanation": "A razão pedida é viaturas ÷ bombeiros = 9/36 = 1/4. O valor 4 é a razão inversa (bombeiros por viatura), e 1/5 compara as viaturas com o total de 45 elementos, o que não é pedido."
+        },
+        {
+          "topic": "Razão derivada",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 41,
+          "statement": "Sabendo que A/B = 5/2, com B diferente de zero, o valor da razão (A − B)/B é",
+          "support": null,
+          "options": [
+            "3.",
+            "7/2.",
+            "5/2.",
+            "2/3.",
+            "3/2."
+          ],
+          "answer": "E",
+          "explanation": "Como A = 5B/2, tem-se (A − B)/B = (5B/2 − B)/B = (3B/2)/B = 3/2. Outra forma: (A − B)/B = A/B − 1 = 5/2 − 1 = 3/2. O valor 7/2 é a razão (A + B)/B."
+        },
+        {
+          "topic": "Razão entre grupos",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 42,
+          "statement": "Em um grupo, há tantos homens quanto mulheres. Seleciona-se metade dos homens e 2/3 das mulheres para formar um novo grupo. Nesse novo grupo, a fração de mulheres em relação ao total é",
+          "support": null,
+          "options": [
+            "2/3.",
+            "3/7.",
+            "4/7.",
+            "1/2.",
+            "7/12."
+          ],
+          "answer": "C",
+          "explanation": "Seja X o número de homens e de mulheres. No novo grupo há X/2 homens e 2X/3 mulheres, total 7X/6. A fração de mulheres é (2X/3) ÷ (7X/6) = 4/7. O valor 2/3 é a fração de mulheres selecionadas, não a do novo grupo."
+        },
+        {
+          "topic": "Meios e extremos",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 44,
+          "statement": "Na proporção 6/9 = 10/15, os extremos e os meios são, respectivamente,",
+          "support": null,
+          "options": [
+            "6 e 15; 9 e 10.",
+            "9 e 10; 6 e 15.",
+            "6 e 9; 10 e 15.",
+            "6 e 10; 9 e 15.",
+            "15 e 9; 6 e 10."
+          ],
+          "answer": "A",
+          "explanation": "Em A/B = C/D, os extremos são A e D, e os meios, B e C. Aqui, extremos 6 e 15, meios 9 e 10, e os produtos coincidem: 6 × 15 = 9 × 10 = 90."
+        },
+        {
+          "topic": "Multiplicação cruzada",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 45,
+          "statement": "O valor de x na proporção (x + 5)/4 = (2x − 2)/5 é",
+          "support": null,
+          "options": [
+            "7.",
+            "9.",
+            "13.",
+            "33.",
+            "11."
+          ],
+          "answer": "E",
+          "explanation": "Multiplicando cruzado: 5(x + 5) = 4(2x − 2), ou seja, 5x + 25 = 8x − 8, logo 3x = 33 e x = 11. Conferência: (11 + 5)/4 = 4 e (22 − 2)/5 = 4."
+        },
+        {
+          "topic": "Quarta proporcional",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 46,
+          "statement": "Os números 8, 20, 14 e k formam, nessa ordem, uma proporção. O valor de k é",
+          "support": null,
+          "options": [
+            "35.",
+            "28.",
+            "32.",
+            "40.",
+            "11,2."
+          ],
+          "answer": "A",
+          "explanation": "Escrevendo 8/20 = 14/k, a multiplicação cruzada dá 8k = 20 × 14 = 280, logo k = 35. O valor 11,2 vem de montar 8/20 = k/14, trocando a posição de k na ordem dada."
+        },
+        {
+          "topic": "Razão parte-todo",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 48,
+          "statement": "Em um batalhão, a razão entre o número de homens e o número de mulheres é 3/5. Assim, a fração do efetivo formada por homens é",
+          "support": null,
+          "options": [
+            "3/8.",
+            "3/5.",
+            "3/2.",
+            "5/8.",
+            "2/5."
+          ],
+          "answer": "A",
+          "explanation": "A razão compara homens com mulheres; o total é 3 + 5 = 8 partes, e os homens são 3 delas: 3/8. Confundir a razão parte-parte com a razão parte-todo é a pegadinha clássica."
+        },
+        {
+          "topic": "Propriedade da soma das razões",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 49,
+          "statement": "Sabendo que a/3 = b/5 = c/7 e que a + b + c = 90, o valor de c é",
+          "support": null,
+          "options": [
+            "30.",
+            "35.",
+            "21.",
+            "42.",
+            "15."
+          ],
+          "answer": "D",
+          "explanation": "Pela propriedade da soma, cada razão vale (a + b + c)/(3 + 5 + 7) = 90/15 = 6. Então c = 7 × 6 = 42 (e a = 18, b = 30). O valor 30 é o de b."
+        },
+        {
+          "topic": "Propriedade da subtração das razões",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 50,
+          "statement": "Na proporção (x + 6)/9 = (x − 2)/5, o valor de x é",
+          "support": null,
+          "options": [
+            "12.",
+            "6.",
+            "10.",
+            "14.",
+            "24."
+          ],
+          "answer": "A",
+          "explanation": "Subtraindo numeradores e denominadores, as razões valem ((x + 6) − (x − 2))/(9 − 5) = 8/4 = 2; então x + 6 = 18 e x = 12. Conferência: (12 − 2)/5 = 2."
+        },
+        {
+          "topic": "Razão e soma",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 49,
+          "statement": "Se x/y = 3/4 e x + y = 56, o valor de x é",
+          "support": null,
+          "options": [
+            "32.",
+            "42.",
+            "18.",
+            "12.",
+            "24."
+          ],
+          "answer": "E",
+          "explanation": "Pela propriedade da soma, x/(x + y) = 3/(3 + 4), então x = 56 × 3/7 = 24 (e y = 32). O valor 32 é o de y."
+        },
+        {
+          "topic": "Trocar os meios",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 45,
+          "statement": "Dada a proporção A/B = C/D (todos diferentes de zero), é verdadeira a proporção",
+          "support": null,
+          "options": [
+            "A/D = B/C.",
+            "A/B = D/C.",
+            "A/C = D/B.",
+            "A/C = B/D.",
+            "(A + C)/(B − D) = A/B."
+          ],
+          "answer": "D",
+          "explanation": "Trocar os meios de posição mantém a proporção, pois A × D = B × C continua valendo. As demais alternativas alteram a igualdade; por exemplo, em 1/2 = 2/4, a expressão (A + C)/(B − D) vale 3/(−2), diferente de 1/2."
+        },
+        {
+          "topic": "Razão com decimais",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 40,
+          "statement": "A razão entre 0,6 e 1,5, escrita como fração irredutível, é",
+          "support": null,
+          "options": [
+            "5/2.",
+            "3/10.",
+            "2/5.",
+            "2/3.",
+            "1/4."
+          ],
+          "answer": "C",
+          "explanation": "Dividindo 0,6 por 1,5 obtém-se 0,4, que é 4/10 = 2/5. A razão 5/2 seria a de 1,5 para 0,6."
+        }
+      ]
     },
     {
       "id": "matematica/a03/s05",
@@ -367,19 +1317,288 @@
           }
         ],
         "pointers": [
-          { "topic": "Escala como razão e interpretação de 1:50.000", "pageRef": 51 },
-          { "topic": "Escala: exemplos de cálculo e conversão final", "pageRef": 52 },
-          { "topic": "Velocidade média", "pageRef": 53 },
-          { "topic": "Conversão km/h e m/s (fator 3,6)", "pageRef": 54 },
-          { "topic": "Velocidade constante e tempo em minutos", "pageRef": 55 },
-          { "topic": "Trem atravessando túnel", "pageRef": 57 },
-          { "topic": "Perseguição com velocidades constantes", "pageRef": 59 },
-          { "topic": "Vazão e unidades", "pageRef": 60 },
-          { "topic": "Soma das vazões das torneiras", "pageRef": 61 },
-          { "topic": "Torneira desconhecida e níveis em duas caixas", "pageRef": 63 }
+          {
+            "topic": "Escala como razão e interpretação de 1:50.000",
+            "pageRef": 51
+          },
+          {
+            "topic": "Escala: exemplos de cálculo e conversão final",
+            "pageRef": 52
+          },
+          {
+            "topic": "Velocidade média",
+            "pageRef": 53
+          },
+          {
+            "topic": "Conversão km/h e m/s (fator 3,6)",
+            "pageRef": 54
+          },
+          {
+            "topic": "Velocidade constante e tempo em minutos",
+            "pageRef": 55
+          },
+          {
+            "topic": "Trem atravessando túnel",
+            "pageRef": 57
+          },
+          {
+            "topic": "Perseguição com velocidades constantes",
+            "pageRef": 59
+          },
+          {
+            "topic": "Vazão e unidades",
+            "pageRef": 60
+          },
+          {
+            "topic": "Soma das vazões das torneiras",
+            "pageRef": 61
+          },
+          {
+            "topic": "Torneira desconhecida e níveis em duas caixas",
+            "pageRef": 63
+          }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Conceito de escala",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 51,
+          "statement": "Em um mapa na escala 1:50.000, é correto afirmar que",
+          "support": null,
+          "options": [
+            "1 cm do mapa representa 50.000 m na realidade.",
+            "1 cm do mapa representa 50.000 cm (500 m) na realidade.",
+            "1 cm na realidade é representado por 50.000 cm no mapa.",
+            "1 cm do mapa representa 5.000 cm (50 m) na realidade.",
+            "1 km do mapa representa 50.000 cm na realidade."
+          ],
+          "answer": "B",
+          "explanation": "A escala é a razão entre a medida no desenho e a medida real, na mesma unidade: 1 unidade do mapa corresponde a 50.000 unidades reais. Para 1 cm, são 50.000 cm = 500 m; confundir cm com m produz o erro de 50.000 m."
+        },
+        {
+          "topic": "Escala e distância real",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 52,
+          "statement": "Em um mapa com escala 1:250.000, a distância entre duas cidades mede 3,6 cm. A distância real entre elas é de",
+          "support": null,
+          "options": [
+            "90 km.",
+            "0,9 km.",
+            "9 km.",
+            "900 km.",
+            "3,6 km."
+          ],
+          "answer": "C",
+          "explanation": "A distância real é 3,6 × 250.000 = 900.000 cm. Como 100.000 cm = 1 km, isso dá 9 km. Os valores 90 e 0,9 vêm de erros na conversão de centímetros para quilômetros."
+        },
+        {
+          "topic": "Maquete",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 52,
+          "statement": "Uma torre de 18 m de altura será reproduzida em uma maquete na escala 1:40. A altura da maquete será de",
+          "support": null,
+          "options": [
+            "45 cm.",
+            "4,5 cm.",
+            "72 cm.",
+            "720 cm.",
+            "0,45 cm."
+          ],
+          "answer": "A",
+          "explanation": "Como 18 m = 1.800 cm, a medida representada é 1.800 ÷ 40 = 45 cm. Multiplicar por 40 (720 m ou 72.000 cm) confunde a direção da escala: a maquete é menor que o real."
+        },
+        {
+          "topic": "Determinação da escala",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 52,
+          "statement": "Duas cidades distam 54 km uma da outra e, em um mapa, a distância entre elas mede 9 cm. A escala desse mapa é",
+          "support": null,
+          "options": [
+            "1:60.000.",
+            "1:600.000.",
+            "1:6.000.000.",
+            "1:540.000.",
+            "1:6.000."
+          ],
+          "answer": "B",
+          "explanation": "Em centímetros, 54 km = 5.400.000 cm. A escala é 9 ÷ 5.400.000 = 1/600.000. Erros de uma casa decimal na conversão (54 km = 540.000 cm) produzem os demais valores."
+        },
+        {
+          "topic": "Velocidade média",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 54,
+          "statement": "Uma viatura percorreu 90 km em 1 h 15 min, com velocidade constante. Sua velocidade, em km/h, foi de",
+          "support": null,
+          "options": [
+            "78 km/h.",
+            "112,5 km/h.",
+            "90 km/h.",
+            "60 km/h.",
+            "72 km/h."
+          ],
+          "answer": "E",
+          "explanation": "Convertendo o tempo, 1 h 15 min = 1,25 h. A velocidade é 90 ÷ 1,25 = 72 km/h. Ler 1 h 15 min como 1,15 h leva a 78 km/h, e multiplicar 90 × 1,25 leva a 112,5."
+        },
+        {
+          "topic": "Conversão de velocidades",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 54,
+          "statement": "Uma velocidade de 108 km/h equivale, em metros por segundo, a",
+          "support": null,
+          "options": [
+            "388,8 m/s.",
+            "30 m/s.",
+            "18 m/s.",
+            "300 m/s.",
+            "3 m/s."
+          ],
+          "answer": "B",
+          "explanation": "Para passar de km/h para m/s, divide-se por 3,6: 108 ÷ 3,6 = 30. O valor 388,8 resulta de multiplicar em vez de dividir."
+        },
+        {
+          "topic": "Distância a partir da velocidade",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 54,
+          "statement": "Um atleta mantém a velocidade constante de 5 m/s. A distância que ele percorre em 12 minutos é de",
+          "support": null,
+          "options": [
+            "36 km.",
+            "3,6 km.",
+            "0,36 km.",
+            "60 m.",
+            "1,2 km."
+          ],
+          "answer": "B",
+          "explanation": "Em 12 min há 720 s, e a distância é 5 × 720 = 3.600 m = 3,6 km. Multiplicar 5 por 12 (60) ignora a conversão de minutos para segundos."
+        },
+        {
+          "topic": "Alcance entre veículos",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 59,
+          "statement": "Uma viatura parte de um ponto a 80 km/h. Meia hora depois, outra viatura parte do mesmo ponto, na mesma direção, a 100 km/h. Quanto tempo, após sua partida, a segunda viatura leva para alcançar a primeira?",
+          "support": null,
+          "options": [
+            "1 h 30 min.",
+            "2 h.",
+            "4 h.",
+            "40 min.",
+            "2 h 30 min."
+          ],
+          "answer": "B",
+          "explanation": "Quando a segunda parte, a primeira já percorreu 80 × 0,5 = 40 km. A segunda se aproxima a 100 − 80 = 20 km/h, então o alcance ocorre em 40 ÷ 20 = 2 h. Conferência: 100 × 2 = 200 km e 80 × 2,5 = 200 km."
+        },
+        {
+          "topic": "Trem atravessando túnel",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 57,
+          "statement": "Um trem em velocidade constante atravessa completamente uma ponte de 120 m em 12 s e um túnel de 270 m em 24 s. O comprimento do trem é de",
+          "support": null,
+          "options": [
+            "40 m.",
+            "60 m.",
+            "20 m.",
+            "90 m.",
+            "30 m."
+          ],
+          "answer": "E",
+          "explanation": "Para atravessar, o trem percorre seu comprimento mais o do obstáculo: (L + 120)/12 = (L + 270)/24, logo 2L + 240 = L + 270 e L = 30 m. A velocidade é 150 ÷ 12 = 12,5 m/s, e 300 ÷ 24 = 12,5 m/s."
+        },
+        {
+          "topic": "Velocidade e voltas",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 56,
+          "statement": "Em uma pista, um carro a 90 km/h dá 30 voltas em 1 hora. Mantendo-se na mesma pista, o número de voltas em 1 hora a 120 km/h é",
+          "support": null,
+          "options": [
+            "33.",
+            "36.",
+            "45.",
+            "40.",
+            "50."
+          ],
+          "answer": "D",
+          "explanation": "A distância total é proporcional à velocidade no mesmo tempo: 120/90 = 4/3, então o número de voltas é 30 × 4/3 = 40. Somar 3 voltas a cada 10 km/h de aumento seria o erro de supor uma relação aditiva."
+        },
+        {
+          "topic": "Vazão",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 60,
+          "statement": "Uma torneira enche um balde de 18 litros em 4 minutos. Sua vazão, em litros por hora, é de",
+          "support": null,
+          "options": [
+            "270 l/h.",
+            "4,5 l/h.",
+            "72 l/h.",
+            "108 l/h.",
+            "450 l/h."
+          ],
+          "answer": "A",
+          "explanation": "A vazão é 18 l ÷ 4 min = 4,5 l/min. Como 1 h tem 60 min, 4,5 × 60 = 270 l/h. O valor 4,5 está em l/min, e 72 vem de 18 × 4."
+        },
+        {
+          "topic": "Torneiras em conjunto",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 61,
+          "statement": "Uma torneira enche um tanque em 10 horas e outra o enche em 15 horas. Abertas ao mesmo tempo, as duas enchem o tanque em",
+          "support": null,
+          "options": [
+            "6 horas.",
+            "12 horas e 30 minutos.",
+            "25 horas.",
+            "5 horas.",
+            "7 horas e 30 minutos."
+          ],
+          "answer": "A",
+          "explanation": "As vazões se somam: 1/10 + 1/15 = 3/30 + 2/30 = 5/30 = 1/6 do tanque por hora, de modo que o tempo é 6 h. Fazer a média (12,5 h) ou somar os tempos (25 h) é incorreto, pois o tempo conjunto deve ser menor que o da mais rápida."
+        },
+        {
+          "topic": "Torneira e ralo",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 62,
+          "statement": "Uma torneira enche um tanque vazio em 12 horas, e um ralo o esvazia, quando cheio, em 20 horas. Com a torneira e o ralo abertos ao mesmo tempo, o tanque vazio fica cheio em",
+          "support": null,
+          "options": [
+            "7 horas e 30 minutos.",
+            "32 horas.",
+            "30 horas.",
+            "15 horas.",
+            "60 horas."
+          ],
+          "answer": "C",
+          "explanation": "A vazão líquida é a diferença: 1/12 − 1/20 = 5/60 − 3/60 = 2/60 = 1/30 do tanque por hora. O tempo é, então, 30 h. O valor 7 h 30 min seria o do caso em que as duas vazões se somassem (1/12 + 1/20 = 2/15), o que ignoraria que o ralo esvazia."
+        },
+        {
+          "topic": "Terceira torneira",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 63,
+          "statement": "Duas torneiras enchem um tanque em 12 h e em 20 h, respectivamente. Com uma terceira aberta junto com elas, o tanque enche em 5 h. Sozinha, a terceira torneira enche o tanque em",
+          "support": null,
+          "options": [
+            "8 horas.",
+            "10 horas.",
+            "30 horas.",
+            "60 horas.",
+            "15 horas."
+          ],
+          "answer": "E",
+          "explanation": "A soma das vazões é 1/5: 1/12 + 1/20 + 1/t = 1/5, portanto 1/t = 12/60 − 5/60 − 3/60 = 4/60 = 1/15, e t = 15 h. Somar 12 + 20 + 5 não tem significado físico."
+        }
+      ]
     }
   ]
 }
-

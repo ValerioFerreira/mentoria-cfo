@@ -2,7 +2,6 @@
   "aula": "informatica/a02",
   "batch": "w2-bizu-informatica",
   "status": "DRAFT",
-  "stage": "bizu",
   "segments": [
     {
       "id": "informatica/a02/s01",
@@ -68,14 +67,187 @@
           }
         ],
         "pointers": [
-          { "topic": "Definições de segurança da informação e PNSI", "pageRef": 7 },
-          { "topic": "Tríade CID e ausência de hierarquia", "pageRef": 7 },
-          { "topic": "Conceitos de confidencialidade, integridade e disponibilidade", "pageRef": 8 },
-          { "topic": "Controles físicos e lógicos", "pageRef": 9 },
-          { "topic": "Terminologia: ativo, ameaça, vulnerabilidade, ataque, incidente, risco", "pageRef": 10 },
-          { "topic": "Diferença entre ameaça e risco", "pageRef": 10 }
+          {
+            "topic": "Definições de segurança da informação e PNSI",
+            "pageRef": 7
+          },
+          {
+            "topic": "Tríade CID e ausência de hierarquia",
+            "pageRef": 7
+          },
+          {
+            "topic": "Conceitos de confidencialidade, integridade e disponibilidade",
+            "pageRef": 8
+          },
+          {
+            "topic": "Controles físicos e lógicos",
+            "pageRef": 9
+          },
+          {
+            "topic": "Terminologia: ativo, ameaça, vulnerabilidade, ataque, incidente, risco",
+            "pageRef": 10
+          },
+          {
+            "topic": "Diferença entre ameaça e risco",
+            "pageRef": 10
+          }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Segurança da informação: tríade CID",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 7,
+          "statement": "A tríade clássica da segurança da informação, conhecida pela sigla CID, é formada por",
+          "support": null,
+          "options": [
+            "autenticidade, integridade e disponibilidade.",
+            "confidencialidade, integridade e disponibilidade.",
+            "confidencialidade, irretratabilidade e disponibilidade.",
+            "confiabilidade, integridade e disponibilidade.",
+            "confidencialidade, integridade e autenticidade."
+          ],
+          "answer": "B",
+          "explanation": "A tríade CID reúne Confidencialidade, Integridade e Disponibilidade. Autenticidade e irretratabilidade são princípios adicionais, e confiabilidade (resistência a falhas) não é um dos pilares clássicos, embora seja facilmente confundida com confidencialidade."
+        },
+        {
+          "topic": "Segurança da informação: tríade CID",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 7,
+          "statement": "A respeito dos princípios da tríade CID, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "Somente haverá incidente de segurança se os três princípios forem violados ao mesmo tempo.",
+            "A confidencialidade ocupa o topo da pirâmide, razão pela qual sua quebra é o único incidente relevante.",
+            "A disponibilidade é secundária, pois se aplica apenas a informações guardadas em meio físico.",
+            "Os três princípios se aplicam apenas a dados digitais, e não a documentos impressos ou a pessoas.",
+            "Se qualquer um dos três for desrespeitado, há um incidente de segurança, e não existe hierarquia entre eles."
+          ],
+          "answer": "E",
+          "explanation": "A literatura trata a tríade como propriedades equivalentes: o desrespeito a uma ou mais delas caracteriza incidente, e a pirâmide numerada usada em ilustrações não indica ordem de importância."
+        },
+        {
+          "topic": "Segurança da informação: definição legal",
+          "pattern": "relacao",
+          "difficulty": 2,
+          "pageRef": 7,
+          "statement": "A Política Nacional de Segurança da Informação (Decreto nº 9.637) busca assegurar, em âmbito nacional, quatro propriedades da informação. Assinale a alternativa que as apresenta.",
+          "support": null,
+          "options": [
+            "Disponibilidade, integridade, confiabilidade e autenticidade.",
+            "Rastreabilidade, integridade, confidencialidade e autenticidade.",
+            "Disponibilidade, privacidade, confidencialidade e autenticidade.",
+            "Disponibilidade, integridade, confidencialidade e autenticidade.",
+            "Disponibilidade, integridade, confidencialidade e irretratabilidade."
+          ],
+          "answer": "D",
+          "explanation": "O decreto trata de disponibilidade, integridade, confidencialidade e autenticidade. Irretratabilidade, confiabilidade, rastreabilidade e privacidade não integram o rol citado."
+        },
+        {
+          "topic": "Controles de Segurança: físicos e lógicos",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 9,
+          "statement": "Assinale a alternativa que apresenta apenas exemplos de controles lógicos de segurança.",
+          "support": null,
+          "options": [
+            "Senhas, firewalls, listas de controle de acesso e criptografia.",
+            "Catracas, alarmes de incêndio, firewalls e criptografia.",
+            "Câmeras de vigilância, geradores, cadeados e senhas.",
+            "Salas-cofre, crachás, listas de controle de acesso e IDS.",
+            "Paredes blindadas, vigilantes, senhas e criptografia."
+          ],
+          "answer": "A",
+          "explanation": "Controles lógicos (ou técnicos) monitoram e controlam o acesso a informações e sistemas: senhas, firewalls, listas de controle de acesso, criptografia, biometria, IDS e IPS. Catracas, alarmes, câmeras, cadeados, salas-cofre, crachás e vigilantes são controles físicos."
+        },
+        {
+          "topic": "Controles de Segurança: tipo depende do recurso",
+          "pattern": "caso",
+          "difficulty": 3,
+          "pageRef": 9,
+          "statement": "Em um quartel, a leitura de impressão digital libera a porta da sala de armas e, também, o acesso ao sistema de escalas. Quanto à classificação desses dois usos da biometria, tratam-se, respectivamente, de",
+          "support": null,
+          "options": [
+            "controle físico nos dois casos, pois a biometria é uma característica do corpo humano.",
+            "controle lógico nos dois casos, pois a biometria depende de software para a leitura.",
+            "controle físico e controle lógico.",
+            "controle lógico e controle físico.",
+            "controle lógico e controle processual."
+          ],
+          "answer": "C",
+          "explanation": "O tipo de controle depende do recurso protegido, e não do método de autenticação: biometria para entrar em um espaço físico é controle físico, e para acessar um sistema é controle lógico. O mesmo método pode ser, portanto, físico ou lógico."
+        },
+        {
+          "topic": "Terminologia: ameaça e risco",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 10,
+          "statement": "Quanto à diferença entre ameaça e risco, na terminologia da segurança da informação, é correto afirmar que",
+          "support": null,
+          "options": [
+            "a ameaça é a fragilidade existente no ativo, e o risco é a ação que o agente pratica para obter acesso indevido.",
+            "os dois termos são sinônimos e designam o fato decorrente de um ataque bem-sucedido contra um ativo de informação.",
+            "o risco é o agente externo que explora a vulnerabilidade, e a ameaça mede a probabilidade e o impacto de um incidente.",
+            "a ameaça é um dano potencial que explora vulnerabilidades, e o risco avalia a probabilidade do incidente e seu impacto.",
+            "o risco só existe depois que o incidente ocorre, pois depende da constatação do dano sofrido pela organização."
+          ],
+          "answer": "D",
+          "explanation": "A ameaça é um agente externo que, aproveitando vulnerabilidades, pode quebrar a confidencialidade, a integridade ou a disponibilidade; o risco trata da possibilidade de dano, combinando probabilidade e impacto. A fragilidade do ativo é a vulnerabilidade."
+        },
+        {
+          "topic": "Terminologia: vulnerabilidade, ataque e impacto",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 10,
+          "statement": "No computador do almoxarifado de um batalhão, as atualizações de segurança não são instaladas há anos. Um invasor explora essa falha para apagar o cadastro de equipamentos, e os danos alcançam vários processos da corporação. A falta de atualizações, a ação do invasor e a abrangência dos danos correspondem, respectivamente, a",
+          "support": null,
+          "options": [
+            "vulnerabilidade, ataque e impacto.",
+            "agente, evento e impacto.",
+            "ameaça, vulnerabilidade e risco.",
+            "vulnerabilidade, risco e incidente.",
+            "ativo, incidente e evento."
+          ],
+          "answer": "A",
+          "explanation": "A fragilidade do ativo é a vulnerabilidade; o ataque é o evento decorrente da exploração dessa vulnerabilidade por uma ameaça; e o impacto é a abrangência dos danos sobre os processos de negócio. Risco, por sua vez, é uma probabilidade e não a ação do invasor."
+        },
+        {
+          "topic": "Terminologia: evento e incidente",
+          "pattern": "correta",
+          "difficulty": 3,
+          "pageRef": 10,
+          "statement": "Em relação aos termos evento e incidente de segurança, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "O evento decorre de ataque bem-sucedido, com consequências negativas, e o incidente apenas indica possível violação da política.",
+            "Evento e incidente são sinônimos e designam a fragilidade de um ativo que pode ser explorada por uma ameaça.",
+            "O incidente decorre de ataque bem-sucedido, com consequências negativas, e o evento apenas indica possível violação da política.",
+            "O incidente é sempre a ação de um agente interno, e o evento é sempre a ação de um agente externo.",
+            "O incidente é a probabilidade de o evento ocorrer, e o evento é a abrangência dos danos sobre os processos de negócio."
+          ],
+          "answer": "C",
+          "explanation": "Evento é a ocorrência identificada que indica possível violação da política de segurança, falha de controles ou situação desconhecida; incidente é o fato decorrente de ataque bem-sucedido. A fragilidade é vulnerabilidade, e a abrangência dos danos é impacto."
+        },
+        {
+          "topic": "Terminologia: ativo",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 10,
+          "statement": "Na terminologia da segurança da informação, o termo ativo designa",
+          "support": null,
+          "options": [
+            "o dano causado a processos da organização por um incidente de segurança ocorrido.",
+            "apenas os equipamentos de informática com valor contábil registrado no patrimônio da instituição.",
+            "a probabilidade de um evento causar danos a um ou mais bens da organização.",
+            "a fonte produtora de um evento que pode causar efeito adverso, como um hacker ou um funcionário.",
+            "qualquer elemento que tenha valor para a instituição, como informações, pessoas, serviços, software e hardware."
+          ],
+          "answer": "E",
+          "explanation": "Ativo é tudo o que tem valor para a instituição, o que inclui informações, pessoas, serviços, softwares, hardwares e documentos físicos. A fonte do evento é o agente; o dano é o impacto; a probabilidade de dano é o risco."
+        }
+      ]
     },
     {
       "id": "informatica/a02/s02",
@@ -140,16 +312,229 @@
           }
         ],
         "pointers": [
-          { "topic": "Confidencialidade e diferença para confiabilidade", "pageRef": 12 },
-          { "topic": "Integridade e independência em relação à confidencialidade", "pageRef": 13 },
-          { "topic": "Disponibilidade e recursos de alta disponibilidade", "pageRef": 14 },
-          { "topic": "Princípios adicionais e Hexagrama Parkeriano", "pageRef": 15 },
-          { "topic": "Autenticidade e tipos de autenticação", "pageRef": 16 },
-          { "topic": "Irretratabilidade e fórmula autenticidade + integridade", "pageRef": 17 },
-          { "topic": "Rastreabilidade e logs de auditoria", "pageRef": 18 },
-          { "topic": "Interrupção, interceptação, modificação e fabricação", "pageRef": 19 }
+          {
+            "topic": "Confidencialidade e diferença para confiabilidade",
+            "pageRef": 12
+          },
+          {
+            "topic": "Integridade e independência em relação à confidencialidade",
+            "pageRef": 13
+          },
+          {
+            "topic": "Disponibilidade e recursos de alta disponibilidade",
+            "pageRef": 14
+          },
+          {
+            "topic": "Princípios adicionais e Hexagrama Parkeriano",
+            "pageRef": 15
+          },
+          {
+            "topic": "Autenticidade e tipos de autenticação",
+            "pageRef": 16
+          },
+          {
+            "topic": "Irretratabilidade e fórmula autenticidade + integridade",
+            "pageRef": 17
+          },
+          {
+            "topic": "Rastreabilidade e logs de auditoria",
+            "pageRef": 18
+          },
+          {
+            "topic": "Interrupção, interceptação, modificação e fabricação",
+            "pageRef": 19
+          }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Confidencialidade",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 12,
+          "statement": "Em segurança da informação, confidencialidade e confiabilidade são conceitos distintos. Assinale a alternativa que os diferencia corretamente.",
+          "support": null,
+          "options": [
+            "A confidencialidade é a resistência do sistema a falhas; a confiabilidade protege a informação contra acessos não autorizados.",
+            "A confidencialidade protege a informação contra acessos não autorizados; a confiabilidade é a resistência do sistema a falhas.",
+            "Os dois termos são sinônimos e integram a tríade clássica ao lado da integridade e da disponibilidade.",
+            "A confidencialidade assegura que a informação não seja alterada; a confiabilidade assegura que ela esteja sempre acessível.",
+            "A confidencialidade impede a negação de autoria; a confiabilidade verifica a identidade do emissor da mensagem."
+          ],
+          "answer": "B",
+          "explanation": "A confidencialidade garante que só quem tem permissão acesse a informação; a confiabilidade diz respeito à capacidade de o sistema funcionar corretamente ao longo do tempo, sem falhas, e não integra a tríade CID."
+        },
+        {
+          "topic": "Confidencialidade: descarte seguro",
+          "pattern": "caso",
+          "difficulty": 3,
+          "pageRef": 12,
+          "statement": "Ao desfazer-se de computadores antigos, uma seção apenas excluiu os arquivos de forma comum, e um terceiro conseguiu recuperá-los depois, tomando conhecimento de dados reservados. O princípio da segurança da informação diretamente violado foi a",
+          "support": null,
+          "options": [
+            "integridade.",
+            "confidencialidade.",
+            "confiabilidade.",
+            "disponibilidade.",
+            "irretratabilidade."
+          ],
+          "answer": "B",
+          "explanation": "A confidencialidade deve ser garantida em todo o ciclo da informação, inclusive no descarte: apagar de modo seguro impede que terceiros a recuperem. A integridade trataria de alteração indevida, e a disponibilidade, de acesso em momento de necessidade."
+        },
+        {
+          "topic": "Integridade",
+          "pattern": "caso",
+          "difficulty": 1,
+          "pageRef": 13,
+          "statement": "A planilha do efetivo de plantão foi alterada por uma pessoa sem autorização, que trocou nomes e horários. O princípio da segurança da informação violado nesse caso é a",
+          "support": null,
+          "options": [
+            "confidencialidade.",
+            "autenticidade.",
+            "integridade.",
+            "disponibilidade.",
+            "irretratabilidade."
+          ],
+          "answer": "C",
+          "explanation": "A integridade assegura que a informação seja exata, completa e não alterada sem autorização, da origem ao destino. Como a planilha foi modificada indevidamente, esse princípio foi quebrado."
+        },
+        {
+          "topic": "Integridade x Confidencialidade",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 13,
+          "statement": "Um invasor acessou e leu um relatório sigiloso da corporação, mas não modificou nenhuma informação do documento. Em relação aos princípios da segurança da informação, ocorreu",
+          "support": null,
+          "options": [
+            "quebra da integridade, sem necessariamente haver quebra da confidencialidade.",
+            "quebra da disponibilidade, pois o documento passou a ser acessado por mais de uma pessoa.",
+            "quebra simultânea da confidencialidade e da integridade, que são sempre violadas em conjunto.",
+            "nenhuma quebra, pois o conteúdo do relatório permaneceu exatamente como estava antes.",
+            "quebra da confidencialidade, sem necessariamente haver quebra da integridade."
+          ],
+          "answer": "E",
+          "explanation": "Confidencialidade e integridade são princípios independentes: ler sem autorização viola a primeira, mas, se o conteúdo não for alterado, a segunda se mantém, como na carta lida contra a luz e entregue intacta."
+        },
+        {
+          "topic": "Disponibilidade",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 14,
+          "statement": "Qual conjunto de medidas contribui diretamente para a disponibilidade da informação?",
+          "support": null,
+          "options": [
+            "Redundância de servidores, backups atualizados e fontes de energia ininterrupta.",
+            "Cálculo de hash dos arquivos, controle de versões e restrição de alterações no sistema.",
+            "Criptografia dos dados armazenados, biometria e controle de acesso por senhas.",
+            "Assinatura digital das mensagens, certificados e registros de auditoria dos acessos.",
+            "Cofres para mídias, vigilância de salas e controle de entrada de visitantes na sede."
+          ],
+          "answer": "A",
+          "explanation": "A disponibilidade trata de manter a informação acessível a quem de direito sempre que necessário, o que se apoia em backups, redundância, energia ininterrupta, firewalls contra ataques e monitoramento. Criptografia e senhas atendem à confidencialidade; assinatura digital atende à autenticidade; hash atende à integridade."
+        },
+        {
+          "topic": "Disponibilidade x Confidencialidade",
+          "pattern": "assertivas",
+          "difficulty": 3,
+          "pageRef": 14,
+          "statement": "Considere as afirmativas sobre confidencialidade e disponibilidade.\n\nI. A confidencialidade garante que a informação só esteja acessível a usuários autorizados.\nII. A disponibilidade exige que a informação esteja acessível a qualquer pessoa, autorizada ou não, sempre que necessário.\nIII. A disponibilidade garante que a informação esteja acessível aos usuários autorizados sempre que necessário.\n\nEstá correto o que se afirma em",
+          "support": null,
+          "options": [
+            "I, apenas.",
+            "II, apenas.",
+            "III, apenas.",
+            "I e III, apenas.",
+            "I, II e III."
+          ],
+          "answer": "D",
+          "explanation": "A pegadinha clássica está em que a disponibilidade tem dois requisitos: acesso quando necessário e acesso restrito a quem está autorizado. Disponibilizar a informação a qualquer pessoa violaria a confidencialidade; por isso a afirmativa II é falsa."
+        },
+        {
+          "topic": "Princípios Adicionais: Hexagrama Parkeriano",
+          "pattern": "caso",
+          "difficulty": 3,
+          "pageRef": 15,
+          "statement": "Segundo o Hexagrama Parkeriano, de Donn Parker, o furto de um celular que guarda dados sigilosos, ainda que a informação armazenada continue intacta, representa perda principalmente da",
+          "support": null,
+          "options": [
+            "disponibilidade da informação, pois o furto interrompeu o acesso à rede móvel.",
+            "utilidade da informação, pois os dados ficaram ilegíveis ao proprietário.",
+            "integridade da informação, pois o aparelho saiu do poder do proprietário.",
+            "autenticidade da informação, pois o aparelho passou a ter outro portador.",
+            "posse ou controle da informação, pois o dono deixa de detê-la."
+          ],
+          "answer": "E",
+          "explanation": "Para Parker, posse ou controle diz respeito a quem de fato mantém a informação em seu poder, seja ou não o seu criador. No celular roubado, o dono perde o controle ainda que o conteúdo siga intacto. Utilidade trata de a informação estar em formato legível e aproveitável."
+        },
+        {
+          "topic": "Autenticidade: tipos de autenticação",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 16,
+          "statement": "Quanto aos dois tipos de autenticação em segurança da informação, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "A autenticação de origem dos dados dispensa conexão prévia, ao passo que a de entidade par pressupõe conexão e confirma a identidade das partes ligadas.",
+            "As duas dispensam conexão, mas a de entidade par é restrita a assinaturas manuscritas reconhecidas em cartório.",
+            "A autenticação de entidade par independe de conexão, e a de origem dos dados só ocorre entre servidores de uma mesma rede.",
+            "As duas exigem conexão prévia, mas a de origem dos dados confirma a identidade dos usuários, e a de entidade par, a dos arquivos.",
+            "A autenticação de origem dos dados ocorre sempre com conexão, e a de entidade par pode ocorrer sem conexão entre as partes."
+          ],
+          "answer": "A",
+          "explanation": "A autenticação de origem dos dados, possível sem conexão, confirma que os dados recebidos vêm de quem se declara o emissor; a autenticação de entidade par, que exige conexão, confirma quem são as partes que se comunicam."
+        },
+        {
+          "topic": "Irretratabilidade",
+          "pattern": "relacao",
+          "difficulty": 2,
+          "pageRef": 17,
+          "statement": "Um comandante assina digitalmente uma ordem, que chega ao destino sem nenhuma modificação, e por isso não poderá negar a autoria. A irretratabilidade (não repúdio) decorre, nesse caso, da combinação dos princípios de",
+          "support": null,
+          "options": [
+            "confidencialidade e integridade.",
+            "integridade e disponibilidade.",
+            "autenticidade e integridade.",
+            "autenticidade e disponibilidade.",
+            "confidencialidade e disponibilidade."
+          ],
+          "answer": "C",
+          "explanation": "A irretratabilidade resulta de autenticidade (a assinatura prova quem é o autor) somada à integridade (a mensagem chegou como foi enviada). Sem integridade, o autor poderia alegar que o conteúdo foi alterado no caminho."
+        },
+        {
+          "topic": "Irretratabilidade: rastreabilidade e logs",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 18,
+          "statement": "Para que os logs de auditoria de um sistema sejam confiáveis, uma prática recomendada é",
+          "support": null,
+          "options": [
+            "permitir que usuários com privilégios operacionais ajustem os registros sempre que perceberem inconsistências.",
+            "guardá-los nas mesmas tabelas de negócio, para que os usuários operacionais possam corrigir registros incorretos.",
+            "excluir os logs antigos periodicamente em sistemas sensíveis, a fim de liberar espaço e manter o desempenho.",
+            "armazená-los em repositório separado do sistema principal, com acesso restrito e registros imutáveis, sem apagar ou alterar eventos.",
+            "dispensar a sincronização de horário entre os servidores, pois a ordem dos eventos não interfere na auditoria."
+          ],
+          "answer": "D",
+          "explanation": "Logs confiáveis são íntegros e imutáveis (append-only), têm horário sincronizado e ficam em ambiente separado, com controles de acesso mais restritivos e retenção segura. Guardar junto às tabelas de negócio ou permitir ajustes facilita adulterações e prejudica a rastreabilidade."
+        },
+        {
+          "topic": "Desafio: ataques e princípios violados",
+          "pattern": "relacao",
+          "difficulty": 3,
+          "pageRef": 19,
+          "statement": "Considere os ataques à comunicação entre fonte e destinatário: interrupção, interceptação, modificação e fabricação. Assinale a alternativa que relaciona cada ataque ao princípio violado.",
+          "support": null,
+          "options": [
+            "Interrupção: disponibilidade; interceptação: confidencialidade; modificação: autenticidade; fabricação: integridade.",
+            "Interrupção: disponibilidade; interceptação: confidencialidade; modificação: integridade; fabricação: autenticidade.",
+            "Interrupção: integridade; interceptação: confidencialidade; modificação: disponibilidade; fabricação: autenticidade.",
+            "Interrupção: confidencialidade; interceptação: disponibilidade; modificação: integridade; fabricação: autenticidade.",
+            "Interrupção: disponibilidade; interceptação: integridade; modificação: confidencialidade; fabricação: autenticidade."
+          ],
+          "answer": "B",
+          "explanation": "A interrupção impede que a informação chegue (disponibilidade); a interceptação dá acesso indevido ao conteúdo (confidencialidade); a modificação altera a informação no trajeto (integridade); e a fabricação cria mensagem por terceiro que finge ser a fonte (autenticidade)."
+        }
+      ]
     },
     {
       "id": "informatica/a02/s03",
@@ -222,18 +607,305 @@
           }
         ],
         "pointers": [
-          { "topic": "Criptologia, criptografia e criptoanálise; códigos e cifras", "pageRef": 20 },
-          { "topic": "Esteganografia", "pageRef": 21 },
-          { "topic": "História da criptografia: Enigma e Turing", "pageRef": 25 },
-          { "topic": "Substituição e transposição; criptografia simétrica e cifra de César", "pageRef": 26 },
-          { "topic": "Limitações da chave simétrica e garantias oferecidas", "pageRef": 28 },
-          { "topic": "Criptografia assimétrica: par de chaves", "pageRef": 28 },
-          { "topic": "Uso das chaves pública e privada (confidencialidade e autenticidade)", "pageRef": 30 },
-          { "topic": "Não repúdio na assimétrica e comparação com simétrica", "pageRef": 31 },
-          { "topic": "Criptografia híbrida e chaves de sessão", "pageRef": 32 },
-          { "topic": "Princípio de Kerckhoff", "pageRef": 32 }
+          {
+            "topic": "Criptologia, criptografia e criptoanálise; códigos e cifras",
+            "pageRef": 20
+          },
+          {
+            "topic": "Esteganografia",
+            "pageRef": 21
+          },
+          {
+            "topic": "História da criptografia: Enigma e Turing",
+            "pageRef": 25
+          },
+          {
+            "topic": "Substituição e transposição; criptografia simétrica e cifra de César",
+            "pageRef": 26
+          },
+          {
+            "topic": "Limitações da chave simétrica e garantias oferecidas",
+            "pageRef": 28
+          },
+          {
+            "topic": "Criptografia assimétrica: par de chaves",
+            "pageRef": 28
+          },
+          {
+            "topic": "Uso das chaves pública e privada (confidencialidade e autenticidade)",
+            "pageRef": 30
+          },
+          {
+            "topic": "Não repúdio na assimétrica e comparação com simétrica",
+            "pageRef": 31
+          },
+          {
+            "topic": "Criptografia híbrida e chaves de sessão",
+            "pageRef": 32
+          },
+          {
+            "topic": "Princípio de Kerckhoff",
+            "pageRef": 32
+          }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Criptologia",
+          "pattern": "lacuna",
+          "difficulty": 1,
+          "pageRef": 20,
+          "statement": "Na criptologia, a ocultação de informações pode ser alcançada pela esteganografia ou pela criptografia, enquanto a quebra dos segredos dessa ocultação é objeto da",
+          "support": null,
+          "options": [
+            "função de hash.",
+            "autenticação forte.",
+            "assinatura digital.",
+            "criptoanálise.",
+            "criptografia assimétrica."
+          ],
+          "answer": "D",
+          "explanation": "A criptologia estuda tanto a ocultação das informações (esteganografia e criptografia) quanto a quebra desses segredos, tarefa da criptoanálise. Hash, assinatura digital e autenticação são mecanismos de segurança, e não formas de quebrar a ocultação."
+        },
+        {
+          "topic": "Criptologia: códigos e cifras",
+          "pattern": "correta",
+          "difficulty": 3,
+          "pageRef": 20,
+          "statement": "Na criptografia, existem os grupos dos códigos e das cifras. Assinale a alternativa correta a respeito deles.",
+          "support": null,
+          "options": [
+            "Os códigos e as cifras são sinônimos e designam técnicas de ocultação de mensagens dentro de arquivos de imagem.",
+            "As cifras são algoritmos de cifragem que usam transposição ou substituição; os códigos trocam elementos do texto por símbolos.",
+            "As cifras dependem de chaves públicas e privadas, e os códigos dependem de uma única chave compartilhada.",
+            "As cifras usam apenas a transposição, e os códigos usam apenas a substituição de letras por outras letras do alfabeto.",
+            "Os códigos são algoritmos de cifragem que usam transposição ou substituição; as cifras trocam elementos do texto por símbolos."
+          ],
+          "answer": "B",
+          "explanation": "Os códigos substituem elementos do texto claro por palavras, frases, letras ou símbolos; as cifras são os algoritmos de criptografia e descriptografia, e operam por transposição ou por substituição."
+        },
+        {
+          "topic": "Esteganografia",
+          "pattern": "caso",
+          "difficulty": 1,
+          "pageRef": 21,
+          "statement": "Peritos descobriram que fotografias de aparência comum, anexadas a e-mails, traziam mensagens de voz escondidas em seus bits, sem alteração perceptível da imagem. A técnica empregada é a",
+          "support": null,
+          "options": [
+            "criptoanálise.",
+            "criptografia simétrica.",
+            "esteganografia.",
+            "assinatura digital.",
+            "função de hash."
+          ],
+          "answer": "C",
+          "explanation": "A esteganografia oculta uma mensagem dentro de outra (imagens, sons, vídeos ou textos), alterando poucos bits de modo imperceptível. A criptoanálise busca quebrar cifras, e as demais opções são mecanismos de criptografia ou de verificação."
+        },
+        {
+          "topic": "Esteganografia x criptografia",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 21,
+          "statement": "Quanto à diferença entre criptografia e esteganografia, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "A criptografia torna a mensagem ininteligível, e a esteganografia a esconde em outro arquivo, de modo que sua existência passe despercebida.",
+            "A esteganografia torna a mensagem ininteligível, e a criptografia a esconde em outro arquivo, de modo que sua existência passe despercebida.",
+            "Os dois termos são sinônimos e designam a técnica de codificar a informação para que terceiros não a entendam.",
+            "A criptografia é um algoritmo capaz de obter a mensagem original a partir do resumo gerado por uma função de hash.",
+            "A esteganografia é o estudo de técnicas para quebrar o sigilo de mensagens que foram previamente criptografadas."
+          ],
+          "answer": "A",
+          "explanation": "Criptografia transforma o conteúdo para que ele não seja entendido; esteganografia oculta a própria existência da mensagem. Quebrar o sigilo de mensagens cifradas é criptoanálise, e o hash é unidirecional: não permite recuperar o original."
+        },
+        {
+          "topic": "Criptografia e Criptoanálise: Enigma e Bombe",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 25,
+          "statement": "Durante a Segunda Guerra Mundial, o matemático Alan Turing criou a máquina Bombe, capaz de decifrar mensagens que os alemães cifravam com a máquina Enigma. A Bombe é um exemplo de aplicação de",
+          "support": null,
+          "options": [
+            "autenticação forte.",
+            "esteganografia.",
+            "criptografia assimétrica.",
+            "assinatura digital.",
+            "criptoanálise."
+          ],
+          "answer": "E",
+          "explanation": "A Enigma cifrava mensagens (criptografia), e a Bombe foi usada para quebrá-las, ou seja, para fazer criptoanálise. A esteganografia esconderia a existência da mensagem, e assinatura digital e autenticação forte tratam de identidade e integridade."
+        },
+        {
+          "topic": "Técnicas de Criptografia: transposição",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 26,
+          "statement": "Em uma cifra, as letras do texto original não são trocadas por outras, mas apenas reorganizadas em uma nova ordem, sem perda de informação. O fundamento criptográfico empregado é a",
+          "support": null,
+          "options": [
+            "substituição.",
+            "criptoanálise.",
+            "assinatura digital.",
+            "transposição.",
+            "esteganografia."
+          ],
+          "answer": "D",
+          "explanation": "As técnicas de criptografia empregam dois fundamentos: substituição (cada elemento do texto claro é mapeado em outro) e transposição (os elementos são reorganizados). Em ambas, toda a informação precisa ser preservada."
+        },
+        {
+          "topic": "Criptografia Simétrica: cifra de César",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 26,
+          "statement": "Na cifra de César, com chave 3, cada letra é substituída pela que está três posições à frente no alfabeto (A vira D, B vira E, e assim por diante). Aplicando essa cifra, a palavra FOGO será escrita como",
+          "support": null,
+          "options": [
+            "IRJR.",
+            "JSKS.",
+            "CLDL.",
+            "HQIQ.",
+            "GPHP."
+          ],
+          "answer": "A",
+          "explanation": "Somando 3 posições a cada letra: F vira I, O vira R, G vira J e O vira R, resultando em IRJR. CLDL resulta de deslocar três posições para trás; GPHP, HQIQ e JSKS usam deslocamentos de 1, 2 e 4 posições, ou seja, chaves diferentes."
+        },
+        {
+          "topic": "Criptografia Simétrica",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 26,
+          "statement": "Assinale a alternativa que apresenta uma característica da criptografia simétrica.",
+          "support": null,
+          "options": [
+            "Dispensa o uso de chaves, pois a segurança depende apenas do segredo mantido sobre o algoritmo.",
+            "Usa um par de chaves, pública e privada, e a pública é distribuída livremente para quem desejar cifrar.",
+            "Usa chaves de sessão derivadas da chave pública do destinatário, trocadas durante a comunicação.",
+            "Usa duas chaves privadas distintas, uma conhecida pelo emissor e outra conhecida pelo receptor.",
+            "Usa a mesma chave secreta para cifrar e decifrar, e ela precisa ser trocada com segurança antes da comunicação."
+          ],
+          "answer": "E",
+          "explanation": "Na criptografia simétrica, a mesma chave secreta cifra e decifra, e por isso precisa ser protegida e combinada previamente; o risco cresce quando mais partes a conhecem. O par de chaves pública e privada é a criptografia assimétrica."
+        },
+        {
+          "topic": "Criptografia Simétrica: não repúdio",
+          "pattern": "correta",
+          "difficulty": 3,
+          "pageRef": 28,
+          "statement": "Algoritmos de criptografia simétrica podem assegurar confidencialidade, integridade e autenticidade, mas não asseguram o não repúdio. A razão disso é que",
+          "support": null,
+          "options": [
+            "o destinatário não consegue decifrar a mensagem sem a chave pública do emissor, que não foi compartilhada previamente.",
+            "as duas partes conhecem a chave secreta, e qualquer uma delas pode negar o envio, afirmando que a outra foi quem enviou a mensagem.",
+            "o algoritmo cifra somente o cabeçalho da mensagem, e o conteúdo continua legível para qualquer pessoa que o intercepte.",
+            "a chave secreta é de conhecimento público, e por isso qualquer pessoa pode se passar pelo emissor da mensagem enviada.",
+            "o texto em claro nunca acompanha o texto cifrado, o que torna impossível verificar se a mensagem foi alterada no caminho."
+          ],
+          "answer": "B",
+          "explanation": "Como emissor e receptor compartilham a mesma chave, um terceiro jamais saberá qual dos dois enviou a mensagem, e cada um pode repudiar a autoria apontando o outro. A integridade, por outro lado, pode ser verificada comparando o texto em claro com o recebido."
+        },
+        {
+          "topic": "Criptografia Simétrica: algoritmos",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 28,
+          "statement": "Assinale a alternativa que apresenta apenas algoritmos de criptografia simétrica.",
+          "support": null,
+          "options": [
+            "Diffie-Hellman, RSA, 3DES e DSA.",
+            "AES, RC4, RSA e IDEA.",
+            "DES, 3DES, AES e Blowfish.",
+            "RSA, DSA, AES e ElGamal.",
+            "DES, ECDSA, Blowfish e 3DES."
+          ],
+          "answer": "C",
+          "explanation": "DES, 3DES, AES, IDEA, RC4 e Blowfish são algoritmos simétricos. RSA, DSA, ECDSA, ElGamal e Diffie-Hellman (troca de chaves) pertencem à criptografia assimétrica, razão pela qual as demais alternativas misturam os dois grupos."
+        },
+        {
+          "topic": "Criptografia Assimétrica: confidencialidade",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 30,
+          "statement": "Um oficial vai enviar um documento sigiloso ao comandante, usando criptografia assimétrica, e quer garantir a confidencialidade. Para cifrar o documento, deve empregar",
+          "support": null,
+          "options": [
+            "uma chave secreta compartilhada, que dispensa o uso do par de chaves do comandante.",
+            "a sua própria chave privada, para que somente o comandante a utilize na decifragem.",
+            "a chave privada do comandante, para que apenas a chave pública dele consiga decifrá-lo.",
+            "a chave pública do comandante, para que apenas a chave privada dele consiga decifrá-lo.",
+            "a sua própria chave pública, que somente o comandante conhece e consegue utilizar."
+          ],
+          "answer": "D",
+          "explanation": "Quem deseja enviar informação sigilosa deve usar a chave pública do destinatário; só a chave privada correspondente, de posse exclusiva dele, desfaz a operação, o que garante a confidencialidade."
+        },
+        {
+          "topic": "Criptografia Assimétrica: chave privada do emissor",
+          "pattern": "caso",
+          "difficulty": 3,
+          "pageRef": 30,
+          "statement": "Um servidor cifra uma mensagem com a sua própria chave privada e a envia a vários destinatários. Sobre essa operação, é correto afirmar que",
+          "support": null,
+          "options": [
+            "qualquer pessoa com a chave pública do servidor poderá decifrá-la, o que não garante a confidencialidade, mas comprova a autoria.",
+            "ninguém, nem mesmo o próprio servidor, conseguirá decifrá-la, pois a chave privada é de uso personalíssimo.",
+            "ela só pode ser decifrada pela mesma chave privada, já que as chaves do par são idênticas.",
+            "somente o destinatário consegue decifrá-la, o que garante a confidencialidade da mensagem enviada.",
+            "a autenticidade fica comprometida, pois a chave privada é conhecida por todos os destinatários."
+          ],
+          "answer": "A",
+          "explanation": "O que é cifrado com a chave privada só se decifra com a pública correspondente, que é de conhecimento geral: logo não há sigilo. Em compensação, a decifragem bem-sucedida prova que a mensagem foi cifrada pela chave privada do servidor, o que garante a autenticidade."
+        },
+        {
+          "topic": "Criptografia Assimétrica: serviços de segurança",
+          "pattern": "assertivas",
+          "difficulty": 3,
+          "pageRef": 31,
+          "statement": "Sobre os serviços de segurança associados à criptografia, considere as afirmativas a seguir.\n\nI. Isoladamente, a criptografia assegura somente a confidencialidade.\nII. Algoritmos de chave pública podem garantir confidencialidade, integridade, autenticidade e não repúdio.\nIII. Garantir a autenticidade da mensagem implica garantir automaticamente o não repúdio.\n\nEstá correto o que se afirma em",
+          "support": null,
+          "options": [
+            "I, apenas.",
+            "III, apenas.",
+            "I e II, apenas.",
+            "II e III, apenas.",
+            "I, II e III."
+          ],
+          "answer": "C",
+          "explanation": "A criptografia por si só protege a confidencialidade; integridade e autenticidade exigem mecanismos adicionais ou algoritmos específicos. Os algoritmos de chave pública também sustentam o não repúdio. A afirmativa III inverte a relação: garantir o não repúdio implica a autenticidade, mas garantir apenas a autenticidade não basta para o não repúdio."
+        },
+        {
+          "topic": "Criptografia Híbrida e SSL",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 32,
+          "statement": "Sobre a criptografia híbrida, adotada em protocolos como o SSL, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "Só a criptografia simétrica é usada, com uma chave fixa publicada no certificado digital do servidor.",
+            "Só a criptografia assimétrica é usada durante toda a comunicação, já que as chaves simétricas são de tamanho maior.",
+            "A criptografia simétrica troca a chave de sessão, e a assimétrica protege o restante da comunicação, por ser mais rápida.",
+            "O algoritmo de hash substitui as chaves de sessão e cifra o conteúdo da comunicação do início ao fim.",
+            "A criptografia assimétrica troca com segurança a chave de sessão, e a simétrica protege o restante da comunicação, por ser bem mais rápida."
+          ],
+          "answer": "E",
+          "explanation": "A criptografia assimétrica chega a ser muito mais lenta que a simétrica; por isso é usada só para trocar as chaves de sessão, e o restante da comunicação usa criptografia simétrica com essa chave. As chaves simétricas são, em geral, menores."
+        },
+        {
+          "topic": "Princípio de Kerckhoff",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 32,
+          "statement": "De acordo com o Princípio de Kerckhoff, a respeito da segurança de um sistema criptográfico, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "A segurança aumenta quando o algoritmo é secreto, pois o atacante desconhece o seu funcionamento.",
+            "A segurança deve depender do sigilo da chave, e não do segredo do algoritmo, que pode e deve ser público.",
+            "Tanto o algoritmo quanto as chaves devem ser mantidos em sigilo para que o sistema seja considerado seguro.",
+            "O surgimento de um algoritmo de implementação desconhecida eleva imediatamente a confiabilidade do sistema.",
+            "O tamanho da chave é irrelevante, pois a força do sistema decorre apenas do segredo do algoritmo."
+          ],
+          "answer": "B",
+          "explanation": "Para Kerckhoff, não há problema em o atacante conhecer o algoritmo; a segurança vem da força do algoritmo, do sigilo da chave e do seu tamanho. O melhor algoritmo é o público que resiste a ataques diversos sem ser quebrado."
+        }
+      ]
     },
     {
       "id": "informatica/a02/s04",
@@ -300,19 +972,275 @@
           }
         ],
         "pointers": [
-          { "topic": "Tabela de algoritmos simétricos e assimétricos", "pageRef": 34 },
-          { "topic": "Categorias de autenticação: sabe, tem, é", "pageRef": 35 },
-          { "topic": "Senhas, força bruta e boas práticas", "pageRef": 36 },
-          { "topic": "PIN", "pageRef": 37 },
-          { "topic": "Perguntas de segurança", "pageRef": 37 },
-          { "topic": "Biometria", "pageRef": 38 },
-          { "topic": "Smartcards", "pageRef": 39 },
-          { "topic": "Aplicativos autenticadores e OTP (TOTP e HOTP)", "pageRef": 40 },
-          { "topic": "Tokens físicos e digitais", "pageRef": 40 },
-          { "topic": "Autenticação forte, MFA e 2FA", "pageRef": 41 },
-          { "topic": "Exemplo de 2FA no caixa eletrônico", "pageRef": 42 }
+          {
+            "topic": "Tabela de algoritmos simétricos e assimétricos",
+            "pageRef": 34
+          },
+          {
+            "topic": "Categorias de autenticação: sabe, tem, é",
+            "pageRef": 35
+          },
+          {
+            "topic": "Senhas, força bruta e boas práticas",
+            "pageRef": 36
+          },
+          {
+            "topic": "PIN",
+            "pageRef": 37
+          },
+          {
+            "topic": "Perguntas de segurança",
+            "pageRef": 37
+          },
+          {
+            "topic": "Biometria",
+            "pageRef": 38
+          },
+          {
+            "topic": "Smartcards",
+            "pageRef": 39
+          },
+          {
+            "topic": "Aplicativos autenticadores e OTP (TOTP e HOTP)",
+            "pageRef": 40
+          },
+          {
+            "topic": "Tokens físicos e digitais",
+            "pageRef": 40
+          },
+          {
+            "topic": "Autenticação forte, MFA e 2FA",
+            "pageRef": 41
+          },
+          {
+            "topic": "Exemplo de 2FA no caixa eletrônico",
+            "pageRef": 42
+          }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Principais Algoritmos: DES e AES",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 34,
+          "statement": "A respeito dos algoritmos DES e AES, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "O DES é o algoritmo simétrico mais moderno e usa chaves de 256 bits, sendo hoje o padrão atual.",
+            "O AES é assimétrico e usa o par de chaves pública e privada, com chaves fixas de 56 bits.",
+            "O AES é simétrico e substituiu o DES como padrão em 2001, com chaves de 128, 192 ou 256 bits.",
+            "O AES é um algoritmo de troca de chaves, usado para estabelecer segredos entre dois interlocutores.",
+            "O DES e o AES são algoritmos de hash, que geram um resumo de tamanho fixo da mensagem original."
+          ],
+          "answer": "C",
+          "explanation": "O DES, dos anos 1970, usa chave de 56 bits e hoje é considerado fraco; o AES, simétrico, tornou-se o padrão em 2001 e admite chaves de 128, 192 ou 256 bits. Nenhum dos dois é algoritmo de hash ou de troca de chaves."
+        },
+        {
+          "topic": "Principais Algoritmos: Diffie-Hellman",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 34,
+          "statement": "O algoritmo Diffie-Hellman é utilizado para",
+          "support": null,
+          "options": [
+            "gerar um resumo de tamanho fixo de um arquivo, para que alterações indevidas possam ser detectadas.",
+            "cifrar arquivos extensos com uma única chave secreta de 56 bits, usada por ambos os interlocutores.",
+            "ocultar mensagens dentro de imagens, de modo que terceiros não percebam a existência do conteúdo.",
+            "trocar chaves de forma segura por um canal inseguro, sendo amplamente empregado em sistemas de chave pública.",
+            "autenticar usuários por meio de características físicas, como a impressão digital e a íris."
+          ],
+          "answer": "D",
+          "explanation": "O Diffie-Hellman é um algoritmo de troca de chaves que permite comunicação segura em canal inseguro, ligado à criptografia de chave pública. Geração de resumos é papel das funções de hash, e a ocultação de mensagens é esteganografia."
+        },
+        {
+          "topic": "Métodos de Autenticação: três categorias",
+          "pattern": "relacao",
+          "difficulty": 1,
+          "pageRef": 35,
+          "statement": "Os métodos de autenticação se baseiam em três categorias. Assinale a alternativa que associa corretamente cada elemento à sua categoria.",
+          "support": null,
+          "options": [
+            "Senha: algo que você sabe; token: algo que você é; impressão digital: algo que você tem.",
+            "Senha: algo que você tem; token: algo que você é; impressão digital: algo que você sabe.",
+            "Senha: algo que você é; token: algo que você tem; impressão digital: algo que você sabe.",
+            "Senha: algo que você tem; token: algo que você sabe; impressão digital: algo que você é.",
+            "Senha: algo que você sabe; token: algo que você tem; impressão digital: algo que você é."
+          ],
+          "answer": "E",
+          "explanation": "Senhas, PINs e respostas a perguntas de segurança são algo que você sabe; tokens, smartcards e apps autenticadores são algo que você tem; biometria (digital, face, íris) é algo que você é."
+        },
+        {
+          "topic": "Senhas: força bruta",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 36,
+          "statement": "Em um ataque de força bruta contra um PIN formado só por seis dígitos numéricos (0 a 9), o número máximo de combinações a testar é de",
+          "support": null,
+          "options": [
+            "1.000.000.",
+            "60.000.",
+            "10.000.000.",
+            "100.000.",
+            "600.000."
+          ],
+          "answer": "A",
+          "explanation": "Cada posição admite 10 valores, logo seis dígitos geram 10 elevado a 6 = 1.000.000 de combinações; o material mostra que cinco dígitos geram 100.000. Quanto maior e mais variada a senha, mais difícil é o ataque."
+        },
+        {
+          "topic": "Senhas: boas práticas",
+          "pattern": "correta",
+          "difficulty": 1,
+          "pageRef": 36,
+          "statement": "Assinale a alternativa que apresenta uma boa prática na criação e no uso de senhas.",
+          "support": null,
+          "options": [
+            "Reutilizar uma mesma senha forte em todas as contas, para facilitar a memorização e evitar esquecimentos.",
+            "Usar frases-senha longas, com tipos variados de caracteres, e criar uma senha diferente para cada conta.",
+            "Compor a senha com o nome do filho e a data de nascimento, que são fáceis de lembrar pelo usuário.",
+            "Preferir senhas curtas, de quatro a seis caracteres, a fim de reduzir erros de digitação nos acessos.",
+            "Adotar sequências do teclado, como qwerty, por serem difíceis de adivinhar e rápidas de digitar."
+          ],
+          "answer": "B",
+          "explanation": "Senhas devem ser longas (de preferência 12 a 14 caracteres ou mais), misturar maiúsculas, minúsculas, números e símbolos, ser únicas por conta e evitar dados pessoais e sequências óbvias. Reutilizar senhas causa vazamentos em cadeia."
+        },
+        {
+          "topic": "PIN e smartcard",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 37,
+          "statement": "Para acessar um sistema, um militar insere seu cartão com chip no leitor e digita um PIN. Quanto aos fatores de autenticação envolvidos, trata-se de",
+          "support": null,
+          "options": [
+            "algo que você é (o cartão) e algo que você sabe (o PIN), configurando dois fatores.",
+            "algo que você tem (o cartão) e algo que você sabe (o PIN), configurando dois fatores.",
+            "algo que você tem (o cartão) e algo que você é (o PIN), configurando dois fatores.",
+            "dois fatores do tipo algo que você sabe, pois o cartão e o PIN funcionam como senhas.",
+            "um único fator, pois o cartão apenas armazena a senha digitada pelo usuário."
+          ],
+          "answer": "B",
+          "explanation": "O cartão com chip é algo que se tem, e o PIN (número pessoal de identificação) é algo que se sabe: duas categorias diferentes, ou seja, autenticação de dois fatores. O PIN é um exemplo clássico de fator baseado em conhecimento."
+        },
+        {
+          "topic": "Perguntas de segurança",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 37,
+          "statement": "As perguntas de segurança, muito usadas na recuperação de contas bloqueadas, enquadram-se na categoria de",
+          "support": null,
+          "options": [
+            "algo que você sabe e não devem ser usadas como único método de autenticação.",
+            "algo que você sabe e substituem a autenticação em dois fatores em sistemas sensíveis.",
+            "algo que você tem e são mais seguras que os tokens, por dependerem de respostas criativas.",
+            "algo que você é e dispensam qualquer outro método, por serem únicas de cada pessoa.",
+            "algo que você tem e podem ser usadas como único método de autenticação."
+          ],
+          "answer": "A",
+          "explanation": "Perguntas de segurança são baseadas em conhecimento (algo que você sabe). Se forem personalizadas, as perguntas até reforçam a proteção, mas jamais devem ser a única forma de autenticar o usuário."
+        },
+        {
+          "topic": "Biometria",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 38,
+          "statement": "Em relação à biometria como método de autenticação, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "Enquadra-se em algo que você sabe, pois depende de o usuário memorizar o dado que o identifica.",
+            "É imune a falsificações, mesmo quando o sistema que a utiliza é mal projetado e mal configurado.",
+            "Limita-se à impressão digital, não abrangendo o reconhecimento de voz, de rosto ou de íris.",
+            "Garante a confidencialidade dos dados protegidos, e não a autenticação da identidade do usuário.",
+            "Baseia-se em características físicas ou comportamentais, como digital, voz e digitação, e é algo que você é."
+          ],
+          "answer": "E",
+          "explanation": "A biometria mede características únicas do indivíduo (digital, rosto, íris, retina, voz, veias, até padrões de digitação) e é associada à autenticidade. Apesar de segura, levanta preocupações de privacidade e pode ser falsificada em sistemas mal projetados."
+        },
+        {
+          "topic": "Smart Cards",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 39,
+          "statement": "Assinale a alternativa que descreve corretamente um smartcard.",
+          "support": null,
+          "options": [
+            "Dispositivo que mede características físicas do usuário e libera o acesso por reconhecimento facial.",
+            "Cartão com tarja magnética que guarda a senha em texto aberto e dispensa leitor específico para uso.",
+            "Cartão com chip que guarda certificados e chaves, lido por leitor específico e combinado com um PIN.",
+            "Aplicativo instalado no celular que gera códigos temporários, mesmo quando o aparelho está sem sinal.",
+            "Programa gerenciador que cria e armazena senhas fortes, protegido por uma senha mestra do usuário."
+          ],
+          "answer": "C",
+          "explanation": "O smartcard é algo que você tem: um cartão com chip que armazena de forma criptografada certificados e chaves, usado em login, assinatura digital e controle de acesso físico. Geralmente exige também senha ou PIN, o que forma uma autenticação de dois fatores."
+        },
+        {
+          "topic": "Aplicativos Autenticadores",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 39,
+          "statement": "Sobre os aplicativos autenticadores usados na verificação em duas etapas, é correto afirmar que",
+          "support": null,
+          "options": [
+            "substituem a senha, tornando desnecessário qualquer outro fator de autenticação na conta do usuário.",
+            "dependem do envio de um SMS pela operadora a cada acesso, o que os torna mais seguros que os tokens físicos.",
+            "enquadram-se na categoria algo que você é, pois a leitura do código depende do rosto do usuário.",
+            "geram códigos temporários no próprio aparelho, sem depender de sinal, e são mais seguros que códigos recebidos por SMS.",
+            "produzem um código que continua válido por tempo indeterminado, enquanto o aplicativo permanecer instalado."
+          ],
+          "answer": "D",
+          "explanation": "Os apps autenticadores (Google ou Microsoft Authenticator, Authy etc.) geram OTPs localmente, sem internet nem sinal, o que evita interceptação de SMS e clonagem de chip. O código é algo que você tem, complementa a senha e vale só por pouco tempo."
+        },
+        {
+          "topic": "Tokens: TOTP e HOTP",
+          "pattern": "relacao",
+          "difficulty": 3,
+          "pageRef": 40,
+          "statement": "Os códigos de acesso temporários gerados por tokens e aplicativos autenticadores usam algoritmos como o TOTP e o HOTP. Assinale a alternativa que os descreve corretamente.",
+          "support": null,
+          "options": [
+            "O TOTP gera códigos reutilizáveis por qualquer número de logins, e o HOTP gera códigos de uso único.",
+            "Ambos dependem do envio do código por SMS, razão pela qual não funcionam em aparelhos sem sinal de celular.",
+            "O TOTP gera código que muda com o tempo, a cada 30 ou 60 segundos, e o HOTP gera código que muda por contador de uso.",
+            "Ambos geram códigos fixos que mudam apenas quando o usuário troca de senha, a cada período de alguns meses.",
+            "O TOTP gera código que muda por contador de uso, e o HOTP gera código que muda com o tempo, a cada 30 ou 60 segundos."
+          ],
+          "answer": "C",
+          "explanation": "TOTP (time-based) muda o código conforme o tempo (em geral a cada 30 ou 60 segundos); HOTP (HMAC-based) muda conforme um contador. Ambos geram códigos imprevisíveis e válidos uma única vez, sem necessidade de SMS."
+        },
+        {
+          "topic": "Autenticação Forte",
+          "pattern": "caso",
+          "difficulty": 3,
+          "pageRef": 41,
+          "statement": "Assinale a alternativa que apresenta uma combinação que caracteriza autenticação forte.",
+          "support": null,
+          "options": [
+            "Duas respostas a perguntas de segurança distintas.",
+            "Duas senhas diferentes digitadas em sequência.",
+            "Senha e resposta a uma pergunta de segurança.",
+            "PIN e senha numérica de oito dígitos.",
+            "Senha e código gerado por aplicativo autenticador."
+          ],
+          "answer": "E",
+          "explanation": "A autenticação forte exige dois ou mais fatores de naturezas distintas: senha (algo que você sabe) e código do aplicativo (algo que você tem). Duas senhas, senha e pergunta de segurança, PIN e senha ou duas perguntas repetem o mesmo tipo de fator, algo que você sabe."
+        },
+        {
+          "topic": "Autenticação Forte e 2FA",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 42,
+          "statement": "Quanto à autenticação em dois fatores (2FA) e à autenticação forte, é correto afirmar que",
+          "support": null,
+          "options": [
+            "a 2FA exige três ou mais fatores distintos, e a autenticação forte exige exatamente dois deles.",
+            "a autenticação forte aceita dois fatores do mesmo tipo, e a 2FA exige três fatores de tipos diferentes.",
+            "as duas dispensam a senha e se baseiam apenas em características biométricas do usuário.",
+            "a 2FA exige exatamente dois fatores distintos, e a autenticação forte exige dois ou mais fatores distintos.",
+            "a 2FA admite um único fator, desde que seja uma senha complexa, e a autenticação forte exige dois fatores."
+          ],
+          "answer": "D",
+          "explanation": "A autenticação em dois fatores exige exatamente dois elementos distintos (como senha e código no celular); a autenticação forte (multifator) exige dois ou mais fatores de naturezas diferentes. Senha complexa, sozinha, é um fator único."
+        }
+      ]
     },
     {
       "id": "informatica/a02/s05",
@@ -377,18 +1305,271 @@
           }
         ],
         "pointers": [
-          { "topic": "Assinatura digital: autenticidade, integridade e irretratabilidade", "pageRef": 44 },
-          { "topic": "Conceito e propriedades da função de hash", "pageRef": 45 },
-          { "topic": "Unidirecionalidade, colisão e dígito verificador", "pageRef": 46 },
-          { "topic": "Hash e armazenamento de senhas", "pageRef": 47 },
-          { "topic": "Passo a passo da assinatura digital", "pageRef": 48 },
-          { "topic": "Hash não criptografa; verificação pelo receptor", "pageRef": 49 },
-          { "topic": "MD5 e SHA-1", "pageRef": 50 },
-          { "topic": "SHA-256 e cadeia de custódia", "pageRef": 51 },
-          { "topic": "Identificação, autenticação e autorização", "pageRef": 53 },
-          { "topic": "Classificação de dados e níveis", "pageRef": 54 }
+          {
+            "topic": "Assinatura digital: autenticidade, integridade e irretratabilidade",
+            "pageRef": 44
+          },
+          {
+            "topic": "Conceito e propriedades da função de hash",
+            "pageRef": 45
+          },
+          {
+            "topic": "Unidirecionalidade, colisão e dígito verificador",
+            "pageRef": 46
+          },
+          {
+            "topic": "Hash e armazenamento de senhas",
+            "pageRef": 47
+          },
+          {
+            "topic": "Passo a passo da assinatura digital",
+            "pageRef": 48
+          },
+          {
+            "topic": "Hash não criptografa; verificação pelo receptor",
+            "pageRef": 49
+          },
+          {
+            "topic": "MD5 e SHA-1",
+            "pageRef": 50
+          },
+          {
+            "topic": "SHA-256 e cadeia de custódia",
+            "pageRef": 51
+          },
+          {
+            "topic": "Identificação, autenticação e autorização",
+            "pageRef": 53
+          },
+          {
+            "topic": "Classificação de dados e níveis",
+            "pageRef": 54
+          }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Assinatura Digital: garantias",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 44,
+          "statement": "A assinatura digital de um documento garante, simultaneamente,",
+          "support": null,
+          "options": [
+            "autenticidade, integridade e irretratabilidade.",
+            "confidencialidade, integridade e disponibilidade.",
+            "autenticidade, disponibilidade e confidencialidade.",
+            "confidencialidade, autenticidade e irretratabilidade.",
+            "disponibilidade, integridade e irretratabilidade."
+          ],
+          "answer": "A",
+          "explanation": "A assinatura digital confirma quem assinou (autenticidade), prova que o conteúdo não foi alterado depois da assinatura (integridade) e impede que o signatário negue a autoria (irretratabilidade). Ela não visa à confidencialidade nem à disponibilidade."
+        },
+        {
+          "topic": "Algoritmos de Hash: características",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 47,
+          "statement": "Sobre as funções de hash, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "Criptografam o documento original para que ninguém consiga lê-lo sem a chave pública do remetente.",
+            "Aceitam entradas de qualquer tamanho, geram saída de tamanho fixo e são unidirecionais: não se recupera a entrada a partir do resumo.",
+            "Produzem resultados diferentes a cada execução sobre a mesma entrada, o que impede o uso para conferência.",
+            "Geram saídas cujo tamanho cresce com o da entrada e são reversíveis por quem conhece a chave secreta do emissor.",
+            "Geram, para entradas que diferem em um único caractere, saídas quase idênticas, com poucos bits distintos."
+          ],
+          "answer": "B",
+          "explanation": "O hash é uma função de mão única: qualquer entrada vira um resumo de tamanho fixo, entradas idênticas dão resumos idênticos, e uma pequena alteração muda o resultado por inteiro. Ele apenas resume o documento, sem criptografá-lo."
+        },
+        {
+          "topic": "Algoritmos de Hash: integridade",
+          "pattern": "caso",
+          "difficulty": 1,
+          "pageRef": 45,
+          "statement": "Dois arquivos de texto são idênticos, exceto por uma única vírgula acrescentada em um deles. Ao calcular o hash de cada arquivo, os resumos obtidos serão",
+          "support": null,
+          "options": [
+            "completamente diferentes, o que permite detectar a alteração e comprova a perda da integridade.",
+            "muito parecidos, com diferença em apenas alguns bits, o que dificulta detectar a alteração.",
+            "diferentes apenas se os arquivos forem enviados por e-mail e criptografados com a chave pública.",
+            "idênticos, pois o hash considera apenas o tamanho do arquivo, e não o seu conteúdo textual.",
+            "idênticos, pois a saída da função de hash tem sempre o mesmo tamanho para qualquer entrada."
+          ],
+          "answer": "A",
+          "explanation": "Em uma função de hash, uma alteração mínima (até um bit) produz um resumo totalmente diferente, o que torna o hash uma impressão digital do conteúdo e serve para verificar a integridade. O tamanho fixo da saída não implica saídas iguais."
+        },
+        {
+          "topic": "Algoritmos de Hash: colisão",
+          "pattern": "correta",
+          "difficulty": 3,
+          "pageRef": 46,
+          "statement": "Sobre colisões em algoritmos de hash, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "A colisão ocorre apenas em algoritmos simétricos, e sua chance diminui ao se compartilhar a chave com mais partes.",
+            "A colisão ocorre quando duas entradas diferentes geram o mesmo hash, e sua chance diminui ao se aumentar o tamanho, em bits, da saída.",
+            "A colisão ocorre quando o hash é revertido até a entrada original, e sua chance diminui com chaves públicas maiores.",
+            "A colisão é impossível em qualquer algoritmo de hash, pois o resumo tem tamanho fixo e é unidirecional.",
+            "A colisão ocorre quando a mesma entrada gera hashes diferentes, e sua chance diminui ao se reduzir o tamanho da saída."
+          ],
+          "answer": "B",
+          "explanation": "Como a saída tem tamanho fixo e as entradas são ilimitadas, é matematicamente possível que entradas diferentes gerem o mesmo hash (colisão); nos algoritmos modernos ela é raríssima, e quanto maior a saída em bits, menor a chance. O hash não usa chaves."
+        },
+        {
+          "topic": "Algoritmos de Hash: dígito verificador",
+          "pattern": "relacao",
+          "difficulty": 2,
+          "pageRef": 46,
+          "statement": "Os dois últimos algarismos de um CPF são dígitos verificadores, calculados a partir dos nove primeiros. Esse mecanismo é comparado ao hash porque o dígito verificador",
+          "support": null,
+          "options": [
+            "permite reconstruir, por cálculo inverso, os nove primeiros algarismos a partir dos dois últimos.",
+            "é gerado de forma aleatória e independe dos demais dígitos, mudando a cada consulta ao CPF.",
+            "resume uma entrada maior em uma saída pequena e fixa, e conhecê-lo não permite descobrir os números que o geraram.",
+            "tem tamanho proporcional à entrada, crescendo à medida que o número de algarismos aumenta.",
+            "é obtido pela cifragem do número com uma chave pública, que só o titular consegue reverter."
+          ],
+          "answer": "C",
+          "explanation": "O dígito verificador é uma analogia do hash: uma função de mão única, em que uma entrada grande gera uma saída pequena e de formato fixo, e qualquer mudança na entrada altera a saída; a operação inversa não é possível."
+        },
+        {
+          "topic": "Algoritmos de Hash: armazenamento de senhas",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 47,
+          "statement": "Em um sistema bem projetado, a senha de um usuário não é guardada como foi digitada. Quanto ao armazenamento e à validação dessa senha, é correto afirmar que o sistema",
+          "support": null,
+          "options": [
+            "guarda o hash e a senha em texto claro em tabelas separadas, para recuperar a senha caso seja esquecida.",
+            "guarda a senha cifrada com a chave pública do usuário e a decifra a cada login para comparar.",
+            "guarda a senha em texto puro em tabela protegida e usa o hash apenas para registrar acessos.",
+            "guarda o hash da senha e o reverte a cada login para obter a senha original e compará-la.",
+            "guarda apenas o hash da senha e, a cada login, gera o hash da senha digitada e o compara com o armazenado."
+          ],
+          "answer": "E",
+          "explanation": "Como o hash é unidirecional, o sistema não precisa conhecer a senha verdadeira: basta comparar o hash calculado no login com o hash salvo. Assim, um vazamento do banco de dados não expõe as senhas em texto puro."
+        },
+        {
+          "topic": "Algoritmos de Hash: MD5, SHA-1 e SHA-256",
+          "pattern": "relacao",
+          "difficulty": 2,
+          "pageRef": 50,
+          "statement": "Assinale a alternativa que relaciona corretamente cada algoritmo de hash ao tamanho do resumo que ele gera.",
+          "support": null,
+          "options": [
+            "MD5: 128 bits; SHA-1: 256 bits; SHA-256: 160 bits.",
+            "MD5: 160 bits; SHA-1: 256 bits; SHA-256: 128 bits.",
+            "MD5: 256 bits; SHA-1: 160 bits; SHA-256: 128 bits.",
+            "MD5: 128 bits; SHA-1: 160 bits; SHA-256: 256 bits.",
+            "MD5: 160 bits; SHA-1: 128 bits; SHA-256: 256 bits."
+          ],
+          "answer": "D",
+          "explanation": "O MD5 gera um resumo de 128 bits (16 bytes), o SHA-1 gera 160 bits (20 bytes) e o SHA-256, da família SHA-2, gera 256 bits (32 bytes). As demais alternativas trocam os tamanhos entre os algoritmos."
+        },
+        {
+          "topic": "Algoritmos de Hash: segurança dos algoritmos",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 51,
+          "statement": "Quanto à situação atual dos algoritmos de hash, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "O SHA-256 foi quebrado por colisões práticas, e o MD5 passou a ser o algoritmo recomendado para certificados.",
+            "O SHA-1 pertence à família SHA-2 e é hoje o algoritmo preferido para proteger senhas e assinaturas.",
+            "Os três algoritmos continuam plenamente recomendados, pois nenhuma colisão foi comprovada em qualquer deles.",
+            "MD5 e SHA-1 deixaram de ser recomendados por colisões, e o SHA-256, da família SHA-2, segue considerado seguro.",
+            "O MD5 e o SHA-256 estão obsoletos, e o SHA-1 é o único considerado seguro para dados sensíveis."
+          ],
+          "answer": "D",
+          "explanation": "MD5 e SHA-1 tiveram colisões comprovadas e são considerados obsoletos para contextos de segurança, aparecendo apenas em sistemas legados; o SHA-256 (família SHA-2) segue seguro, sem colisões práticas conhecidas."
+        },
+        {
+          "topic": "Assinatura Digital: funcionamento",
+          "pattern": "relacao",
+          "difficulty": 3,
+          "pageRef": 48,
+          "statement": "Maria envia uma mensagem assinada digitalmente a João. Assinale a alternativa que descreve corretamente o processo.",
+          "support": null,
+          "options": [
+            "Maria gera o hash da mensagem e o cifra com a chave pública de João; ele o decifra com a sua chave privada e o compara.",
+            "Maria cifra o hash da mensagem com sua chave privada; João o decifra com a chave pública dela e o compara com o que calcula.",
+            "Maria cifra a mensagem inteira com a chave pública de João; ele a decifra e confere com o hash enviado em claro.",
+            "Maria gera o hash e o cifra com a chave privada de João; este o decifra com a chave pública de Maria e o compara.",
+            "Maria cifra a mensagem com uma chave simétrica e envia a chave por e-mail; João calcula o hash e a compara."
+          ],
+          "answer": "B",
+          "explanation": "Na assinatura, o hash da mensagem é cifrado com a chave privada do remetente; o destinatário gera um novo hash, decifra a assinatura com a chave pública do remetente e compara os dois. Se forem iguais, há integridade, autenticidade e, por consequência, irretratabilidade."
+        },
+        {
+          "topic": "Assinatura Digital: confidencialidade",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 48,
+          "statement": "Um terceiro intercepta uma mensagem assinada digitalmente pelo comandante, na qual o hash foi cifrado com a chave privada dele e anexado ao texto original. Em relação a essa interceptação, é correto afirmar que o terceiro",
+          "support": null,
+          "options": [
+            "não consegue ler a mensagem, pois a assinatura digital a criptografa com a chave privada do comandante.",
+            "não consegue ler a mensagem, pois ela só pode ser aberta com a chave pública do destinatário.",
+            "consegue alterar a mensagem sem que o destinatário perceba, pois o hash não depende do conteúdo.",
+            "consegue ler a mensagem, mas a assinatura digital deixa de comprovar a autoria do comandante.",
+            "consegue ler a mensagem, pois ela trafega em texto claro; a assinatura serve para provar autoria e ausência de alteração."
+          ],
+          "answer": "E",
+          "explanation": "A assinatura digital não visa à confidencialidade: a mensagem original segue em claro e qualquer um pode lê-la. O objetivo é provar que ela é legítima, de autoria do remetente e não adulterada; qualquer alteração faria o hash não bater."
+        },
+        {
+          "topic": "Controle de Acesso",
+          "pattern": "caso",
+          "difficulty": 1,
+          "pageRef": 53,
+          "statement": "Um sargento informa sua matrícula ao sistema, confirma a identidade com a impressão digital e, ao entrar, só consegue visualizar relatórios, sem poder editá-los. Essas três etapas correspondem, respectivamente, a",
+          "support": null,
+          "options": [
+            "identificação, autorização e autenticação.",
+            "autorização, autenticação e identificação.",
+            "identificação, autenticação e autorização.",
+            "autenticação, identificação e autorização.",
+            "autenticação, autorização e identificação."
+          ],
+          "answer": "C",
+          "explanation": "Identificação é a declaração de quem se é (matrícula); autenticação é a prova da identidade (impressão digital); autorização define o que o usuário autenticado pode fazer (apenas ler relatórios)."
+        },
+        {
+          "topic": "Classificação de Dados",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 54,
+          "statement": "Em relação à classificação de dados, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "Rotula as informações por sensibilidade e criticidade, aplicando controles proporcionais ao risco, em níveis como público e restrito.",
+            "Independe da tríade CID e considera apenas o tamanho do arquivo e a data de criação para definir o nível.",
+            "Exige criptografia forte e auditoria contínua para o nível público, por ser o de maior exposição ao risco.",
+            "Define o nível restrito como o de menor sensibilidade, aberto à consulta de qualquer colaborador da instituição.",
+            "Aplica o mesmo nível máximo de proteção a todos os dados da organização, para simplificar a gestão de controles."
+          ],
+          "answer": "A",
+          "explanation": "A classificação determina quais dados exigem mais proteção, considerando confidencialidade, integridade e disponibilidade, e distribui as informações em níveis (público, interno, confidencial, restrito), cada um com regras próprias de acesso, compartilhamento e proteção."
+        },
+        {
+          "topic": "Classificação de Dados: níveis",
+          "pattern": "caso",
+          "difficulty": 3,
+          "pageRef": 55,
+          "statement": "Chaves criptográficas e segredos industriais, cujo acesso indevido pode causar danos graves ou irreversíveis, e que pedem acesso mínimo necessário e auditoria contínua, costumam ser enquadrados no nível",
+          "support": null,
+          "options": [
+            "de uso geral.",
+            "restrito.",
+            "interno.",
+            "confidencial.",
+            "público."
+          ],
+          "answer": "B",
+          "explanation": "O nível restrito reúne informações altamente sensíveis e críticas (segredos industriais, chaves criptográficas, dados estratégicos), com acesso mínimo necessário e criptografia forte. O nível confidencial abrange dados pessoais, contratos e relatórios financeiros, com controles um pouco menos rígidos."
+        }
+      ]
     },
     {
       "id": "informatica/a02/s06",
@@ -455,19 +1636,275 @@
           }
         ],
         "pointers": [
-          { "topic": "Fragilidade da assinatura digital e necessidade da AC", "pageRef": 56 },
-          { "topic": "Conteúdo do certificado e funções da AC", "pageRef": 57 },
-          { "topic": "HTTPS, cadeado e lista de ACs confiáveis", "pageRef": 57 },
-          { "topic": "LCR e EV-SSL", "pageRef": 58 },
-          { "topic": "Assinatura digital x certificado digital", "pageRef": 58 },
-          { "topic": "Onde fica a chave privada", "pageRef": 59 },
-          { "topic": "ICP-Brasil e AC-Raiz", "pageRef": 61 },
-          { "topic": "Autoridade de Registro e padrão X.509", "pageRef": 62 },
-          { "topic": "Caminho de certificação e certificado autoassinado", "pageRef": 63 },
-          { "topic": "Teia de confiança", "pageRef": 64 },
-          { "topic": "Tipos de certificado A e S (A1 a A4)", "pageRef": 66 }
+          {
+            "topic": "Fragilidade da assinatura digital e necessidade da AC",
+            "pageRef": 56
+          },
+          {
+            "topic": "Conteúdo do certificado e funções da AC",
+            "pageRef": 57
+          },
+          {
+            "topic": "HTTPS, cadeado e lista de ACs confiáveis",
+            "pageRef": 57
+          },
+          {
+            "topic": "LCR e EV-SSL",
+            "pageRef": 58
+          },
+          {
+            "topic": "Assinatura digital x certificado digital",
+            "pageRef": 58
+          },
+          {
+            "topic": "Onde fica a chave privada",
+            "pageRef": 59
+          },
+          {
+            "topic": "ICP-Brasil e AC-Raiz",
+            "pageRef": 61
+          },
+          {
+            "topic": "Autoridade de Registro e padrão X.509",
+            "pageRef": 62
+          },
+          {
+            "topic": "Caminho de certificação e certificado autoassinado",
+            "pageRef": 63
+          },
+          {
+            "topic": "Teia de confiança",
+            "pageRef": 64
+          },
+          {
+            "topic": "Tipos de certificado A e S (A1 a A4)",
+            "pageRef": 66
+          }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Certificado Digital: Autoridade Certificadora",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 56,
+          "statement": "A assinatura digital possui uma fragilidade: não há certeza de que a chave pública utilizada pertence mesmo a quem diz ser. Essa fragilidade é resolvida pelo recurso a",
+          "support": null,
+          "options": [
+            "uma função de hash mais longa, que impede que um terceiro substitua a chave pública durante o trânsito.",
+            "uma chave simétrica compartilhada entre as partes, usada para confirmar a procedência de cada mensagem.",
+            "um servidor DNS, que traduz o nome do remetente no endereço IP em que sua chave pública está publicada.",
+            "um firewall instalado na rede do destinatário, que descarta mensagens cujo remetente não é conhecido.",
+            "uma Autoridade Certificadora, terceira parte confiável que emite certificados ligando a chave pública ao titular."
+          ],
+          "answer": "E",
+          "explanation": "A Autoridade Certificadora funciona como um cartório digital: emite certificados que vinculam a chave pública a uma identidade, permitindo confiar nela. Sem isso, um terceiro poderia enviar sua própria chave pública e se passar pelo remetente."
+        },
+        {
+          "topic": "Certificado Digital: conteúdo",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 57,
+          "statement": "Assinale a alternativa que apresenta dados que constam em um certificado digital.",
+          "support": null,
+          "options": [
+            "Chave simétrica de sessão do titular, data de validade e assinatura digital do próprio titular.",
+            "Chave privada do titular, protegida por criptografia, e o nome da autoridade certificadora que o emitiu.",
+            "Chave pública do titular, número de série, data de validade e assinatura digital da autoridade certificadora.",
+            "Chave privada da autoridade certificadora, que permite a qualquer pessoa verificar a assinatura aposta.",
+            "Hash da senha do titular e endereço IP do computador em que o certificado foi gerado e instalado."
+          ],
+          "answer": "C",
+          "explanation": "O certificado contém nome e registro civil do titular, a chave pública, validade, versão, número de série, algoritmo, e o nome e a assinatura digital da AC emissora. Chaves privadas jamais constam nele, pois é um documento público."
+        },
+        {
+          "topic": "Certificado Digital: chave privada",
+          "pattern": "correta",
+          "difficulty": 3,
+          "pageRef": 59,
+          "statement": "Quanto à chave privada relacionada a um certificado digital, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "Ela fica gravada dentro do certificado digital, que por isso deve ser mantido em sigilo absoluto pelo titular.",
+            "Ela é armazenada obrigatoriamente na Autoridade Certificadora, que a fornece sempre que o titular precisar.",
+            "Ela precisa ser memorizada pelo titular, pois é uma sequência curta usada a cada assinatura de documento.",
+            "Fica fora do certificado, que é público, e pode ser guardada em token USB ou smartcard, protegida por senha.",
+            "Ela só pode ser guardada no disco rígido do computador do usuário, o meio considerado mais seguro."
+          ],
+          "answer": "D",
+          "explanation": "O certificado digital é público e nunca contém a chave privada. Ela pode ficar no computador do usuário (menos seguro), em token USB ou em smartcard (mais seguros), e a senha do dispositivo é o que o usuário memoriza, pois a chave é uma sequência longa e complexa."
+        },
+        {
+          "topic": "Certificado Digital: Lista de Certificados Revogados",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 58,
+          "statement": "A Lista de Certificados Revogados (LCR) é",
+          "support": null,
+          "options": [
+            "um arquivo publicado periodicamente pela AC, com o número de série e a data de revogação de certificados inválidos.",
+            "um arquivo mantido pelo navegador com os sites bloqueados, por haverem usado protocolos não criptografados.",
+            "um cadastro que reúne todos os certificados emitidos pela AC, com a respectiva validade de cada um deles.",
+            "uma relação das chaves privadas comprometidas, que é distribuída a todos os usuários da infraestrutura de chaves.",
+            "uma lista de Autoridades de Registro desligadas da cadeia, que perderam o direito de validar solicitantes."
+          ],
+          "answer": "A",
+          "explanation": "Ao saber que um certificado perdeu a confiabilidade, a AC o relaciona na LCR, uma lista negra que informa número de série e data de revogação. Ao abrir um site com certificado revogado, o navegador costuma exibir um alerta."
+        },
+        {
+          "topic": "Certificado Digital x Assinatura Digital",
+          "pattern": "correta",
+          "difficulty": 3,
+          "pageRef": 58,
+          "statement": "Em relação à assinatura digital e ao certificado digital, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "A assinatura digital independe de certificado e tem validade jurídica apenas quando feita de forma manuscrita.",
+            "O certificado digital é emitido pelo próprio titular e, por isso, dispensa a participação de terceira parte confiável.",
+            "A assinatura depende de um certificado para ser gerada, e o certificado, emitido por AC, vincula uma chave pública a uma entidade.",
+            "O certificado digital é um método matemático que garante integridade, e a assinatura digital é o documento emitido pela AC.",
+            "Os dois termos são sinônimos e designam o arquivo que guarda, em sigilo, a chave privada do titular."
+          ],
+          "answer": "C",
+          "explanation": "A assinatura digital é um método de autenticação que garante autoria e integridade; para ser gerada, depende de certificado, emitido por uma AC, que vincula a chave pública ao titular. Ambos têm validade jurídica quando relacionados a um certificado reconhecido."
+        },
+        {
+          "topic": "ICP-Brasil: Autoridade Certificadora Raiz",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 61,
+          "statement": "Sobre a Autoridade Certificadora Raiz (AC-Raiz) da ICP-Brasil, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "Compete a ela emitir diretamente os certificados de pessoas físicas e jurídicas que solicitam um certificado.",
+            "Compete a ela emitir e gerenciar os certificados das ACs de nível imediatamente subsequente, e não os de usuários finais.",
+            "Ela está subordinada às ACs de nível 1 e cumpre as normas que estas lhe determinam sobre emissão de certificados.",
+            "Ela emite certificados somente para equipamentos, enquanto as ACs emitem os de pessoas físicas e jurídicas.",
+            "Compete a ela identificar, de forma presencial, os solicitantes e encaminhar os pedidos de emissão às ACs."
+          ],
+          "answer": "B",
+          "explanation": "A AC-Raiz é a primeira da cadeia: emite, expede, distribui, revoga e gerencia os certificados das ACs imediatamente abaixo, emite a LCR e fiscaliza ACs e ARs. A emissão para pessoas, equipamentos e empresas cabe às ACs, e a identificação presencial, às ARs."
+        },
+        {
+          "topic": "ICP-Brasil: Autoridade de Registro",
+          "pattern": "caso",
+          "difficulty": 3,
+          "pageRef": 62,
+          "statement": "Para obter um certificado digital, um oficial comparece a uma Autoridade de Registro e comprova sua identidade presencialmente. Sobre o papel dessa AR, é correto afirmar que ela",
+          "support": null,
+          "options": [
+            "emite e assina o certificado do solicitante, pois é a entidade responsável por gerenciar certificados.",
+            "ocupa o topo da cadeia de certificação e assina o próprio certificado, que é autoassinado.",
+            "publica a Lista de Certificados Revogados e fiscaliza as Autoridades Certificadoras vinculadas à raiz.",
+            "gera o par de chaves do oficial e passa a guardar a chave privada, em nome da Autoridade Certificadora.",
+            "recebe, valida e encaminha a solicitação à AC e mantém o registro das operações, mas não emite o certificado."
+          ],
+          "answer": "E",
+          "explanation": "A AR é a interface entre o usuário e a AC: recebe, valida e encaminha as solicitações de emissão ou revogação, identifica o solicitante presencialmente e mantém registros. Quem emite o certificado (inclusive para pessoas físicas) é a AC."
+        },
+        {
+          "topic": "ICP-Brasil: padrão X.509",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 62,
+          "statement": "O padrão X.509, na versão 3, adotado pela ICP-Brasil, especifica",
+          "support": null,
+          "options": [
+            "o formato dos certificados digitais, de modo a vincular com firmeza um nome a uma chave pública.",
+            "o algoritmo de hash de 128 bits utilizado para gerar o resumo das mensagens assinadas.",
+            "o modelo de autenticação biométrica exigido para a emissão presencial dos certificados.",
+            "a regra de armazenamento das chaves privadas em módulos de segurança criptográfica.",
+            "o protocolo de transferência de e-mails com criptografia entre os servidores das ACs."
+          ],
+          "answer": "A",
+          "explanation": "O X.509 v3 define o formato dos certificados digitais (campos como versão, número de série, titular, emissor, validade, chave pública e assinatura da AC) e é o padrão da ICP-Brasil. Não define hash, e-mail ou biometria."
+        },
+        {
+          "topic": "Certificado Digital: verificação da assinatura da AC",
+          "pattern": "relacao",
+          "difficulty": 3,
+          "pageRef": 63,
+          "statement": "Para verificar se um certificado digital recebido é autêntico e não foi alterado, a entidade que o recebe deve",
+          "support": null,
+          "options": [
+            "decifrar o hash anexado com a chave privada da AC emissora, calcular um novo hash e compará-los.",
+            "decifrar o hash anexado com a chave pública do titular, calcular um novo hash e compará-los.",
+            "comparar o certificado com o hash da senha do titular, armazenado no servidor da AC emissora.",
+            "decifrar o hash anexado com a chave pública da AC, gerar um novo hash do certificado e compará-los.",
+            "devolver o certificado ao titular, para que ele o cifre com a chave pública de quem o recebeu."
+          ],
+          "answer": "D",
+          "explanation": "A AC gera o hash das informações do certificado e o cifra com a sua chave privada; quem o recebe usa a chave pública da AC para decifrar esse hash, calcula um novo hash e o compara. Se forem idênticos, o certificado não foi alterado e é confiável."
+        },
+        {
+          "topic": "Certificado Digital: caminho de certificação",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 63,
+          "statement": "Em uma cadeia de certificação, o certificado da Autoridade Certificadora Raiz é assinado",
+          "support": null,
+          "options": [
+            "por uma Autoridade de Registro vinculada.",
+            "por uma AC intermediária de nível inferior.",
+            "por ela própria (certificado autoassinado).",
+            "pelo usuário final que solicitou o certificado.",
+            "por um servidor DNS de nível superior."
+          ],
+          "answer": "C",
+          "explanation": "No topo da hierarquia não há quem assine o certificado da raiz, então ela mesma o assina (certificado autoassinado). Abaixo dela, a AC-Raiz assina os certificados das ACs intermediárias, que por sua vez assinam os das entidades finais."
+        },
+        {
+          "topic": "Cadeia de Confiança (Web of Trust)",
+          "pattern": "correta",
+          "difficulty": 3,
+          "pageRef": 64,
+          "statement": "Sobre a diferença entre a infraestrutura de chave pública (ICP) e a cadeia ou teia de confiança (Web of Trust), assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "Na ICP, qualquer entidade pode assinar e atestar a validade de certificados de terceiros, sem hierarquia.",
+            "Na ICP, só uma AC assina certificados, em hierarquia; na teia de confiança, qualquer entidade pode atestá-los.",
+            "A ICP é descentralizada e transitiva, ao passo que a teia de confiança depende de autoridades de registro.",
+            "A teia de confiança elimina o uso de chaves públicas, pois a confiança dispensa a assinatura de certificados.",
+            "Na teia de confiança, todo certificado é assinado por uma AC raiz, em estrutura hierárquica e centralizada."
+          ],
+          "answer": "B",
+          "explanation": "A ICP é hierárquica e centralizada, e todo certificado precisa ser assinado por uma AC; na Web of Trust a confiança é transitiva (se A confia em B e B em C, A confia em C) e as próprias pessoas assinam as chaves umas das outras, sem hierarquia."
+        },
+        {
+          "topic": "Tipos de Certificado: A e S",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 66,
+          "statement": "Na ICP-Brasil, os certificados da Categoria S (sigilo) destinam-se principalmente à",
+          "support": null,
+          "options": [
+            "codificação de documentos, bases de dados e mensagens sigilosas.",
+            "confirmação de identidade na web, em e-mails e em redes privadas virtuais.",
+            "autenticação exclusiva de servidores web em conexões HTTPS.",
+            "assinatura de contratos e transações com validade jurídica.",
+            "emissão de certificados para outras autoridades certificadoras."
+          ],
+          "answer": "A",
+          "explanation": "Os certificados A (assinatura digital) servem à identificação e à autenticação, como na web, em e-mails, VPNs e documentos eletrônicos; os certificados S (sigilo) servem à codificação de documentos, bancos de dados relacionais e mensagens sigilosas."
+        },
+        {
+          "topic": "Tipos de Certificado: A1 e A3",
+          "pattern": "relacao",
+          "difficulty": 3,
+          "pageRef": 66,
+          "statement": "Quanto aos tipos de certificado A1 e A3 da ICP-Brasil, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "No A1, o par de chaves é gerado por hardware e guardado em smartcard; no A3, é gerado por software e guardado em disco rígido.",
+            "No A3, o par de chaves é gerado por software e guardado em disco rígido, com validade máxima de um ano.",
+            "No A1, o par de chaves é guardado em token USB, e no A3 é guardado em pendrive, com validade máxima igual para ambos.",
+            "No A1 e no A3, o par de chaves é gerado por software, e ambos são guardados em módulo de segurança criptográfica.",
+            "No A1, o par de chaves é gerado por software e guardado em HD ou pendrive; no A3, por hardware e guardado em smartcard ou token."
+          ],
+          "answer": "E",
+          "explanation": "A1 e S1 geram as chaves por software e as guardam em HD ou pendrive (validade máxima de 1 ano); A3 e S3 geram por hardware e guardam em smartcard ou token USB (até 5 anos). O A4 usa módulo de segurança criptográfica (HSM)."
+        }
+      ]
     }
   ]
 }

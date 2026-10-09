@@ -2,7 +2,6 @@
   "aula": "matematica/a02",
   "batch": "w2-bizu-matematica",
   "status": "DRAFT",
-  "stage": "bizu",
   "segments": [
     {
       "id": "matematica/a02/s01",
@@ -69,15 +68,208 @@
           }
         ],
         "pointers": [
-          { "topic": "Potências de dez e expoentes positivos/negativos", "pageRef": 6 },
-          { "topic": "Multiplicação e divisão com potências de dez", "pageRef": 7 },
-          { "topic": "Notação científica: coeficiente e expoente", "pageRef": 8 },
-          { "topic": "Unidades de comprimento e regra do avanço", "pageRef": 10 },
-          { "topic": "Unidades de massa", "pageRef": 11 },
-          { "topic": "Tonelada e unidades de capacidade", "pageRef": 13 },
-          { "topic": "Prefixos como potências de dez", "pageRef": 14 }
+          {
+            "topic": "Potências de dez e expoentes positivos/negativos",
+            "pageRef": 6
+          },
+          {
+            "topic": "Multiplicação e divisão com potências de dez",
+            "pageRef": 7
+          },
+          {
+            "topic": "Notação científica: coeficiente e expoente",
+            "pageRef": 8
+          },
+          {
+            "topic": "Unidades de comprimento e regra do avanço",
+            "pageRef": 10
+          },
+          {
+            "topic": "Unidades de massa",
+            "pageRef": 11
+          },
+          {
+            "topic": "Tonelada e unidades de capacidade",
+            "pageRef": 13
+          },
+          {
+            "topic": "Prefixos como potências de dez",
+            "pageRef": 14
+          }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Notação científica",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 8,
+          "statement": "O número 0,0000052, escrito em notação científica, é",
+          "support": null,
+          "options": [
+            "5,2 × 10⁻⁶.",
+            "5,2 × 10⁻⁷.",
+            "5,2 × 10⁶.",
+            "0,52 × 10⁻⁵.",
+            "5,2 × 10⁻⁵."
+          ],
+          "answer": "A",
+          "explanation": "Para chegar a um valor entre 1 e 10, a vírgula anda seis casas para a direita, o que dá expoente −6: 5,2 × 10⁻⁶. A forma 0,52 × 10⁻⁵ tem o mesmo valor, mas não está em notação científica, pois o coeficiente é menor que 1."
+        },
+        {
+          "topic": "Definição de notação científica",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 8,
+          "statement": "Um número está escrito em notação científica, na forma A × 10ᴺ, quando",
+          "support": null,
+          "options": [
+            "A é maior que 10 e menor que 100, e N é um número natural.",
+            "A é maior ou igual a 1 e menor que 10, e N é um número inteiro.",
+            "A é menor que 1, e N é um número inteiro positivo.",
+            "A é um número inteiro qualquer e N é um número natural.",
+            "A está entre 0 e 1 e N é sempre negativo."
+          ],
+          "answer": "B",
+          "explanation": "A notação científica exige 1 ≤ A < 10 (o número 10 não é permitido) e expoente N inteiro, que pode ser positivo, nulo ou negativo. Por isso 12 × 10³ e 0,3 × 10⁵ não estão na forma padrão."
+        },
+        {
+          "topic": "Multiplicação com potências de dez",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 7,
+          "statement": "O resultado de 0,00004 × 25.000.000, obtido com potências de base 10, é",
+          "support": null,
+          "options": [
+            "100.",
+            "1.000.",
+            "10.000.",
+            "10.",
+            "0,1."
+          ],
+          "answer": "B",
+          "explanation": "Em potências de dez, 0,00004 = 4 × 10⁻⁵ e 25.000.000 = 2,5 × 10⁷. Multiplica-se 4 × 2,5 = 10 e soma-se os expoentes: 10 × 10² = 1.000. Quem contar mal as casas obtém valores deslocados em uma ordem de grandeza."
+        },
+        {
+          "topic": "Divisão com potências de dez",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 7,
+          "statement": "O quociente 36.000.000 ÷ 0,0009 é igual a",
+          "support": null,
+          "options": [
+            "4 × 10¹¹.",
+            "4 × 10³.",
+            "4 × 10¹⁰.",
+            "4 × 10⁹.",
+            "4 × 10⁻¹."
+          ],
+          "answer": "C",
+          "explanation": "Escrevendo 3,6 × 10⁷ ÷ 9 × 10⁻⁴: os coeficientes dão 3,6 ÷ 9 = 0,4 e os expoentes 7 − (−4) = 11. Logo, 0,4 × 10¹¹ = 4 × 10¹⁰. O erro 4 × 10³ vem de subtrair 7 − 4 em vez de 7 − (−4)."
+        },
+        {
+          "topic": "Contagem de casas em potência de dez",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 7,
+          "statement": "O número 0,000000302, escrito como 302 × 10ᴺ, corresponde a N igual a",
+          "support": null,
+          "options": [
+            "−9.",
+            "−8.",
+            "−7.",
+            "9.",
+            "3."
+          ],
+          "answer": "A",
+          "explanation": "O número tem nove casas após a vírgula (contando o último algarismo), então 0,000000302 = 302 × 10⁻⁹. Expoentes negativos indicam o número de casas decimais, e expoentes positivos são usados para números grandes."
+        },
+        {
+          "topic": "Conversão de comprimento",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 11,
+          "statement": "Convertendo 0,48 hm em decímetros, obtém-se",
+          "support": null,
+          "options": [
+            "4,8 dm.",
+            "480 dm.",
+            "48 dm.",
+            "4.800 dm.",
+            "48.000 dm."
+          ],
+          "answer": "B",
+          "explanation": "De hm para dm são três avanços à direita (dam, m, dm), cada um multiplicando por 10: 0,48 × 10³ = 480. Conferência: 0,48 hm = 48 m = 480 dm."
+        },
+        {
+          "topic": "Toneladas e gramas",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 13,
+          "statement": "Uma carga de 2,75 toneladas corresponde a quantos gramas?",
+          "support": null,
+          "options": [
+            "275.000 g.",
+            "27.500 g.",
+            "2.750.000 g.",
+            "2.750 g.",
+            "27.500.000 g."
+          ],
+          "answer": "C",
+          "explanation": "Como 1 tonelada = 1.000 kg, 2,75 t = 2.750 kg. Cada quilograma tem 1.000 g, de modo que 2.750 × 1.000 = 2.750.000 g. O valor 2.750 está em quilogramas, não em gramas."
+        },
+        {
+          "topic": "Conversão de capacidade",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 14,
+          "statement": "O volume de 1.250.000 ml equivale, em quilolitros, a",
+          "support": null,
+          "options": [
+            "1,25 kl.",
+            "12,5 kl.",
+            "0,125 kl.",
+            "125 kl.",
+            "1.250 kl."
+          ],
+          "answer": "A",
+          "explanation": "De ml para kl são seis avanços à esquerda (cl, dl, l, dal, hl, kl), cada um dividindo por 10: 1.250.000 × 10⁻⁶ = 1,25. Por outro lado, 1.250.000 ml = 1.250 l = 1,25 kl, já que 1 kl = 1.000 l."
+        },
+        {
+          "topic": "Soma de capacidades",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 14,
+          "statement": "Um reservatório recebeu 4,2 dal de água e, em seguida, mais 350 cl. O volume total acrescentado, em litros, foi de",
+          "support": null,
+          "options": [
+            "7,7 l.",
+            "42,35 l.",
+            "45,5 l.",
+            "455 l.",
+            "4,55 l."
+          ],
+          "answer": "C",
+          "explanation": "Convertem-se as parcelas à mesma unidade: 4,2 dal = 42 l (multiplica-se por 10) e 350 cl = 3,5 l (divide-se por 100). A soma é 42 + 3,5 = 45,5 l. Somar 4,2 + 3,5 diretamente ignora as unidades diferentes."
+        },
+        {
+          "topic": "Prefixos das unidades",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 14,
+          "statement": "Em relação aos prefixos das unidades de medida, é correto afirmar que",
+          "support": null,
+          "options": [
+            "deca corresponde a 10² e centi a 10⁻¹.",
+            "mili corresponde a 10⁻² e hecto a 10³.",
+            "quilo corresponde a 10² e deci a 10⁻².",
+            "deci corresponde a 10⁻¹ e hecto corresponde a 10².",
+            "centi corresponde a 10⁻³ e quilo a 10¹."
+          ],
+          "answer": "D",
+          "explanation": "Os prefixos mais usados são quilo (10³), hecto (10²), deca (10¹), deci (10⁻¹), centi (10⁻²) e mili (10⁻³). Nas demais alternativas, pelo menos um prefixo aparece com expoente trocado."
+        }
+      ]
     },
     {
       "id": "matematica/a02/s02",
@@ -149,16 +341,263 @@
           }
         ],
         "pointers": [
-          { "topic": "Unidades de área, hectare e are", "pageRef": 15 },
-          { "topic": "Unidades de volume e fator 1000", "pageRef": 17 },
-          { "topic": "Equivalência litro x decímetro cúbico", "pageRef": 18 },
-          { "topic": "Água: litro e quilograma", "pageRef": 19 },
-          { "topic": "Densidade e massa de outros materiais", "pageRef": 20 },
-          { "topic": "Relações entre unidades de tempo", "pageRef": 22 },
-          { "topic": "Subtração de horários com empréstimo", "pageRef": 23 },
-          { "topic": "Parte decimal de horas e minutos", "pageRef": 24 }
+          {
+            "topic": "Unidades de área, hectare e are",
+            "pageRef": 15
+          },
+          {
+            "topic": "Unidades de volume e fator 1000",
+            "pageRef": 17
+          },
+          {
+            "topic": "Equivalência litro x decímetro cúbico",
+            "pageRef": 18
+          },
+          {
+            "topic": "Água: litro e quilograma",
+            "pageRef": 19
+          },
+          {
+            "topic": "Densidade e massa de outros materiais",
+            "pageRef": 20
+          },
+          {
+            "topic": "Relações entre unidades de tempo",
+            "pageRef": 22
+          },
+          {
+            "topic": "Subtração de horários com empréstimo",
+            "pageRef": 23
+          },
+          {
+            "topic": "Parte decimal de horas e minutos",
+            "pageRef": 24
+          }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Conversão de unidades de área",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 15,
+          "statement": "Uma área de 3,2 km² equivale, em metros quadrados, a",
+          "support": null,
+          "options": [
+            "320.000 m².",
+            "32.000 m².",
+            "3.200 m².",
+            "32.000.000 m².",
+            "3.200.000 m²."
+          ],
+          "answer": "E",
+          "explanation": "Nas unidades de área, cada avanço multiplica por 100. De km² para m² são três avanços (hm², dam², m²): 3,2 × 100³ = 3,2 × 10⁶ = 3.200.000. Multiplicar por 10 em cada avanço, como no comprimento, dá o valor errado 3.200."
+        },
+        {
+          "topic": "Hectare",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 15,
+          "statement": "Sabendo que 1 hectare equivale a 1 hm², uma fazenda de 4,5 ha tem área, em metros quadrados, de",
+          "support": null,
+          "options": [
+            "4.500 m².",
+            "450.000 m².",
+            "4.500.000 m².",
+            "45.000 m².",
+            "450 m²."
+          ],
+          "answer": "D",
+          "explanation": "Como 1 hm² = (100 m)² = 10.000 m², 4,5 ha = 4,5 × 10.000 = 45.000 m². Quem usa fator 1.000 (como em volumes) ou 100 (um só avanço) erra a conversão."
+        },
+        {
+          "topic": "Are",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 15,
+          "statement": "O are corresponde a 1 dam². Dessa forma, um terreno de 8.000 m² mede, em ares,",
+          "support": null,
+          "options": [
+            "8 a.",
+            "800 a.",
+            "0,8 a.",
+            "80 a.",
+            "8.000 a."
+          ],
+          "answer": "D",
+          "explanation": "Como 1 dam² = 100 m², divide-se 8.000 por 100, obtendo 80 ares. O are é, portanto, uma unidade bem menor que o hectare (1 ha = 100 a)."
+        },
+        {
+          "topic": "Conversão de unidades de volume",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 17,
+          "statement": "O volume de 7.200.000 cm³ é igual, em metros cúbicos, a",
+          "support": null,
+          "options": [
+            "72 m³.",
+            "0,72 m³.",
+            "720 m³.",
+            "0,0072 m³.",
+            "7,2 m³."
+          ],
+          "answer": "E",
+          "explanation": "Nos volumes, cada avanço divide ou multiplica por 1.000. De cm³ para m³ são dois avanços à esquerda (dm³ e m³): 7.200.000 × 10⁻⁶ = 7,2. Usar 10 por avanço levaria a 72.000, e 100 por avanço a 720, valores incorretos."
+        },
+        {
+          "topic": "Capacidade e volume",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 18,
+          "statement": "Um tanque com capacidade de 3,6 m³ comporta, quando totalmente cheio, quantos litros?",
+          "support": null,
+          "options": [
+            "360 l.",
+            "36.000 l.",
+            "3,6 l.",
+            "3.600 l.",
+            "0,36 l."
+          ],
+          "answer": "D",
+          "explanation": "Como 1 l = 1 dm³ e 1 m³ = 1.000 dm³, 3,6 m³ = 3.600 dm³ = 3.600 l. Confundir 1 m³ com 100 dm³ (como nas áreas) leva a 360 l."
+        },
+        {
+          "topic": "Mililitro e centímetro cúbico",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 18,
+          "statement": "Um frasco tem capacidade de 0,35 l. Seu volume, em centímetros cúbicos, é",
+          "support": null,
+          "options": [
+            "35 cm³.",
+            "3.500 cm³.",
+            "350 cm³.",
+            "0,35 cm³.",
+            "0,00035 cm³."
+          ],
+          "answer": "C",
+          "explanation": "Como 1 ml = 1 cm³, basta converter litros em mililitros: 0,35 l = 350 ml = 350 cm³. Mantém-se a relação 1 l = 1.000 cm³."
+        },
+        {
+          "topic": "Massa de água",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 19,
+          "statement": "Uma caixa-d'água de 2,4 m³, totalmente cheia de água, contém uma massa de água igual a",
+          "support": null,
+          "options": [
+            "240 kg.",
+            "24.000 kg.",
+            "2,4 kg.",
+            "2.400 kg.",
+            "24 kg."
+          ],
+          "answer": "D",
+          "explanation": "Primeiro, 2,4 m³ = 2.400 dm³ = 2.400 l. Para a água, 1 l corresponde a 1 kg, de modo que a massa é 2.400 kg (ou 2,4 t). A equivalência não vale para outros líquidos, que têm densidade diferente."
+        },
+        {
+          "topic": "Densidade",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 20,
+          "statement": "Um óleo tem densidade de 0,9 kg/l. A massa de 40 l desse óleo é de",
+          "support": null,
+          "options": [
+            "44,4 kg.",
+            "3,6 kg.",
+            "360 kg.",
+            "40,9 kg.",
+            "36 kg."
+          ],
+          "answer": "E",
+          "explanation": "Como d = M ÷ V, a massa é M = d × V = 0,9 × 40 = 36 kg. Dividir o volume pela densidade (40 ÷ 0,9 ≈ 44,4) calcularia outra grandeza, e o óleo, por ter densidade menor que a da água, pesa menos que 40 kg."
+        },
+        {
+          "topic": "Unidades de tempo",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 22,
+          "statement": "O número de segundos contidos em 3,5 dias é",
+          "support": null,
+          "options": [
+            "302.400.",
+            "5.040.",
+            "12.600.",
+            "30.240.",
+            "126.000."
+          ],
+          "answer": "A",
+          "explanation": "Um dia tem 24 h = 86.400 s, portanto 3,5 dias = 3,5 × 86.400 = 302.400 s. O valor 5.040 corresponde a 3,5 dias em minutos (84 h × 60)."
+        },
+        {
+          "topic": "Subtração de tempos",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 23,
+          "statement": "Um treinamento começou às 7 h 50 min e terminou às 11 h 20 min do mesmo dia. Sua duração foi de",
+          "support": null,
+          "options": [
+            "4 h 30 min.",
+            "4 h 10 min.",
+            "3 h 30 min.",
+            "3 h 10 min.",
+            "3 h 50 min."
+          ],
+          "answer": "C",
+          "explanation": "Como 20 min é menor que 50 min, empresta-se 1 h do 11, transformando 11 h 20 min em 10 h 80 min. A subtração fica (10 − 7) h (80 − 50) min = 3 h 30 min. Subtrair 20 de 50 sem emprestar levaria ao erro de 4 h 30 min."
+        },
+        {
+          "topic": "Segundos em minutos e segundos",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 23,
+          "statement": "Um atleta percorre 5 voltas de uma pista em 21 minutos, gastando o mesmo tempo em cada volta. O tempo de cada volta é de",
+          "support": null,
+          "options": [
+            "4 min 12 s.",
+            "4 min 20 s.",
+            "4 min 2 s.",
+            "4 min 30 s.",
+            "4 min 8 s."
+          ],
+          "answer": "A",
+          "explanation": "Em segundos, 21 × 60 = 1.260, e cada volta leva 1.260 ÷ 5 = 252 s. Como 252 = 4 × 60 + 12, o tempo é 4 min 12 s. Dividir 21 min por 5 e escrever 4,2 como \"4 min 20 s\" é um erro frequente, pois a parte decimal deve ser multiplicada por 60."
+        },
+        {
+          "topic": "Horas decimais",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 24,
+          "statement": "O tempo de 2,35 horas corresponde a",
+          "support": null,
+          "options": [
+            "2 h 35 min.",
+            "2 h 21 min.",
+            "2 h 12 min.",
+            "2 h 30 min.",
+            "2 h 3 min."
+          ],
+          "answer": "B",
+          "explanation": "A parte decimal 0,35 h é multiplicada por 60 minutos: 0,35 × 60 = 21 min. Assim, 2,35 h = 2 h 21 min. Ler o decimal como minutos (2 h 35 min) é a pegadinha clássica."
+        },
+        {
+          "topic": "Horário de saída com horas decimais",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 25,
+          "statement": "O expediente de um servidor termina às 18 h. Em certo dia ele saiu antes do fim e precisa repor 2,4 horas. A hora em que saiu foi",
+          "support": null,
+          "options": [
+            "15 h 24 min.",
+            "15 h 20 min.",
+            "16 h 24 min.",
+            "15 h 6 min.",
+            "15 h 36 min."
+          ],
+          "answer": "E",
+          "explanation": "O horário de saída é 18 − 2,4 = 15,6 h. A parte decimal, 0,6 h, vale 0,6 × 60 = 36 min, logo a saída ocorreu às 15 h 36 min. Ler 0,4 como 40 minutos (subtrair 2 h 40 min) levaria ao erro 15 h 20 min."
+        }
+      ]
     }
   ]
 }
