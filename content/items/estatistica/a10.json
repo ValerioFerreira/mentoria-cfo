@@ -2,7 +2,6 @@
   "aula": "estatistica/a10",
   "batch": "w2-bizu-estatistica",
   "status": "DRAFT",
-  "stage": "bizu",
   "segments": [
     {
       "id": "estatistica/a10/s01",
@@ -77,7 +76,179 @@
             "pageRef": 11
           }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "F.d.p. da uniforme",
+          "pattern": "correta",
+          "difficulty": 1,
+          "pageRef": 4,
+          "statement": "Em uma distribuição uniforme contínua no intervalo (a, b), a função densidade de probabilidade",
+          "support": null,
+          "options": [
+            "cresce linearmente de a até b.",
+            "é igual a (b − a) em todo o intervalo.",
+            "é constante e igual a 1/(b − a) em todo o intervalo.",
+            "tem formato de sino, simétrico em torno de (a + b)/2.",
+            "decresce exponencialmente a partir de a."
+          ],
+          "answer": "C",
+          "explanation": "Na uniforme contínua a densidade é uma constante k, e a área do retângulo de base (b − a) deve ser 1, o que dá k = 1/(b − a). Os limites a e b são os únicos parâmetros. A forma de sino é da normal e o decaimento exponencial é da exponencial."
+        },
+        {
+          "topic": "Valor da densidade uniforme",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 4,
+          "statement": "O tempo X, em minutos, de uma etapa de treinamento tem distribuição uniforme contínua no intervalo (3, 11). O valor constante da f.d.p. de X nesse intervalo é",
+          "support": null,
+          "options": [
+            "1/11.",
+            "1/8.",
+            "1/14.",
+            "1/3.",
+            "8."
+          ],
+          "answer": "B",
+          "explanation": "A área do retângulo é (11 − 3) × k = 1, logo k = 1/8. Os valores 1/11 e 1/14 usam b e a + b no lugar da amplitude b − a."
+        },
+        {
+          "topic": "Probabilidade em subintervalo",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 5,
+          "statement": "O tempo de espera X, em minutos, por uma viatura tem distribuição uniforme contínua entre 20 e 60. A probabilidade de a espera estar entre 35 e 50 minutos é",
+          "support": null,
+          "options": [
+            "25,0%.",
+            "37,5%.",
+            "62,5%.",
+            "75,0%.",
+            "15,0%."
+          ],
+          "answer": "B",
+          "explanation": "Na uniforme, P(m < X < n) = (n − m)/(b − a) = (50 − 35)/(60 − 20) = 15/40 = 37,5%. O valor 25% divide por b (15/60) e 62,5% é a probabilidade complementar dentro do intervalo."
+        },
+        {
+          "topic": "F.d.a. da uniforme",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 6,
+          "statement": "Uma variável X tem distribuição uniforme contínua no intervalo (10, 50). O valor da função de distribuição acumulada em x = 22, isto é, P(X ≤ 22), é",
+          "support": null,
+          "options": [
+            "0,30.",
+            "0,70.",
+            "0,44.",
+            "0,55.",
+            "0,24."
+          ],
+          "answer": "A",
+          "explanation": "Para a < x < b, F(x) = (x − a)/(b − a) = (22 − 10)/(50 − 10) = 12/40 = 0,30. O valor 0,70 é P(X > 22), e 0,44 divide x por b sem descontar o limite inferior."
+        },
+        {
+          "topic": "Uniforme com limite inferior negativo",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 12,
+          "statement": "Uma variável X tem distribuição uniforme contínua no intervalo (−3, 9). A probabilidade de X ser menor que 2 é",
+          "support": null,
+          "options": [
+            "5/12.",
+            "7/12.",
+            "2/9.",
+            "1/2.",
+            "1/6."
+          ],
+          "answer": "A",
+          "explanation": "O intervalo tem amplitude 9 − (−3) = 12, e a parte abaixo de 2 vai de −3 a 2, com amplitude 5: P(X < 2) = 5/12. O valor 7/12 é P(X > 2), e 2/9 ignora o trecho negativo do intervalo."
+        },
+        {
+          "topic": "Esperança da uniforme",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 8,
+          "statement": "O tempo X, em minutos, de carregamento de um equipamento tem distribuição uniforme contínua entre 12 e 30 minutos. O tempo médio de carregamento é",
+          "support": null,
+          "options": [
+            "18 minutos.",
+            "42 minutos.",
+            "21 minutos.",
+            "9 minutos.",
+            "30 minutos."
+          ],
+          "answer": "C",
+          "explanation": "A esperança da uniforme é a média aritmética dos extremos: (12 + 30)/2 = 21. O valor 18 é a amplitude b − a, e 42 é a soma dos extremos, sem dividir por 2."
+        },
+        {
+          "topic": "Variância da uniforme",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 9,
+          "statement": "Uma variável X tem distribuição uniforme contínua no intervalo (4, 16). A variância de X é",
+          "support": null,
+          "options": [
+            "6.",
+            "24.",
+            "144.",
+            "10.",
+            "12."
+          ],
+          "answer": "E",
+          "explanation": "Var(X) = (b − a)²/12 = 12²/12 = 12. O valor 144 é (b − a)² sem dividir por 12, e 10 é a esperança, (4 + 16)/2."
+        },
+        {
+          "topic": "Parâmetros a partir de média e variância",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 11,
+          "statement": "Uma variável X tem distribuição uniforme contínua com média 15 e variância 3. A probabilidade de que X seja maior que 16 é",
+          "support": null,
+          "options": [
+            "1/4.",
+            "1/3.",
+            "1/2.",
+            "2/3.",
+            "1/6."
+          ],
+          "answer": "B",
+          "explanation": "De (b − a)²/12 = 3 vem b − a = 6, e de (a + b)/2 = 15 vem a + b = 30; logo a = 12 e b = 18. Então P(X > 16) = (18 − 16)/(18 − 12) = 2/6 = 1/3."
+        },
+        {
+          "topic": "Propriedades da uniforme",
+          "pattern": "incorreta",
+          "difficulty": 2,
+          "pageRef": 9,
+          "statement": "Sobre a distribuição uniforme contínua no intervalo (a, b), assinale a alternativa INCORRETA.",
+          "support": null,
+          "options": [
+            "A f.d.p. é constante em todo o intervalo e igual a 1/(b − a).",
+            "A esperança é a média aritmética dos extremos do intervalo.",
+            "A probabilidade de um subintervalo é a razão entre sua amplitude e a do intervalo total.",
+            "A variância é igual a (b + a)²/12.",
+            "Os limites a e b são os únicos parâmetros da distribuição."
+          ],
+          "answer": "D",
+          "explanation": "A variância da uniforme é (b − a)²/12, que depende da amplitude do intervalo, e não da soma dos extremos. As demais afirmações descrevem corretamente a distribuição."
+        },
+        {
+          "topic": "Probabilidade a um desvio padrão da média",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 9,
+          "statement": "Uma variável X tem distribuição uniforme contínua no intervalo (2, 14). A probabilidade de X ficar a menos de um desvio padrão de sua média é, aproximadamente,",
+          "support": null,
+          "options": [
+            "68,3%.",
+            "50,0%.",
+            "57,7%.",
+            "42,3%.",
+            "75,0%."
+          ],
+          "answer": "C",
+          "explanation": "A média é 8 e o desvio padrão é 12/√12 ≈ 3,46, de modo que o intervalo é (4,54; 11,46), com amplitude 6,93. A probabilidade é 6,93/12 ≈ 57,7% (1/√3, para qualquer uniforme). O valor 68,3% pertence à regra empírica da normal, que não vale aqui."
+        }
+      ]
     },
     {
       "id": "estatistica/a10/s02",
@@ -153,7 +324,247 @@
             "pageRef": 19
           }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Uso da exponencial",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 13,
+          "statement": "A distribuição exponencial costuma ser usada para modelar",
+          "support": null,
+          "options": [
+            "o número de sucessos em n ensaios independentes de Bernoulli.",
+            "o resultado da soma de muitos efeitos pequenos e independentes.",
+            "valores igualmente prováveis em um intervalo limitado.",
+            "variáveis que só assumem valores inteiros.",
+            "o tempo até a ocorrência de uma falha, quando a taxa de falha é constante."
+          ],
+          "answer": "E",
+          "explanation": "A exponencial descreve o tempo até a falha (ou ocorrência) com taxa constante, como a vida útil de uma lâmpada. Contagens de sucessos remetem à binomial, somas de efeitos à normal e valores equiprováveis à uniforme."
+        },
+        {
+          "topic": "Parâmetro da exponencial",
+          "pattern": "correta",
+          "difficulty": 1,
+          "pageRef": 13,
+          "statement": "Na função densidade f(x) = λ·e^(−λx), para x ≥ 0, que define a distribuição exponencial, o parâmetro λ",
+          "support": null,
+          "options": [
+            "representa o tempo médio até a falha, na mesma unidade de x.",
+            "pode assumir qualquer valor real, desde que a área total seja 1.",
+            "é um de dois parâmetros, ao lado da média.",
+            "deve ser maior que zero e expressa a taxa de falha em cada unidade de tempo.",
+            "coincide com a variância da distribuição."
+          ],
+          "answer": "D",
+          "explanation": "O único parâmetro da exponencial é λ > 0, a taxa de falha (ocorrência) por unidade de tempo; o tempo médio é o seu inverso, 1/λ. A variância é 1/λ², e não λ."
+        },
+        {
+          "topic": "F.d.a. da exponencial",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 15,
+          "statement": "A vida útil X, em horas, de uma bateria tem distribuição exponencial com média de 5 horas. Dado e^(−0,5) = 0,6065, a probabilidade de a bateria durar menos de 2,5 horas é, aproximadamente,",
+          "support": null,
+          "options": [
+            "60,6%.",
+            "50,0%.",
+            "20,0%.",
+            "39,3%.",
+            "13,5%."
+          ],
+          "answer": "D",
+          "explanation": "O parâmetro é λ = 1/5 = 0,2, e P(X < 2,5) = 1 − e^(−λx) = 1 − e^(−0,5) = 1 − 0,6065 = 39,35%. O valor 60,6% é P(X > 2,5), a probabilidade de a bateria durar mais."
+        },
+        {
+          "topic": "Probabilidade em intervalo",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 14,
+          "statement": "A vida útil X, em horas, de um componente tem distribuição exponencial com média de 100 horas. Dados e^(−1) = 0,3679 e e^(−3) = 0,0498, a probabilidade de que ele dure entre 100 e 300 horas é, aproximadamente,",
+          "support": null,
+          "options": [
+            "0,632.",
+            "0,368.",
+            "0,318.",
+            "0,050.",
+            "0,950."
+          ],
+          "answer": "C",
+          "explanation": "Com λ = 0,01, P(100 < X < 300) = e^(−λ·100) − e^(−λ·300) = e^(−1) − e^(−3) = 0,3679 − 0,0498 = 0,3181. O valor 0,632 é P(X < 100), e 0,368 é apenas P(X > 100)."
+        },
+        {
+          "topic": "Conversão de unidades",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 16,
+          "statement": "O tempo X entre duas ocorrências em um posto é exponencial, com taxa λ = 0,5 por hora. Dado e^(−0,25) = 0,7788, a probabilidade de que o intervalo entre duas ocorrências seja superior a 30 minutos é, aproximadamente,",
+          "support": null,
+          "options": [
+            "22,1%.",
+            "60,7%.",
+            "0,0%.",
+            "77,9%.",
+            "12,5%."
+          ],
+          "answer": "D",
+          "explanation": "x e λ devem estar na mesma unidade: 30 minutos = 0,5 hora. Então P(X > 0,5) = e^(−λx) = e^(−0,25) = 0,7788. O valor 22,1% é P(X < 0,5), e 0,0% resulta de usar x = 30 sem converter (e^(−15))."
+        },
+        {
+          "topic": "Sistema redundante",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 15,
+          "statement": "Um sistema de energia tem dois geradores independentes e redundantes, isto é, o sistema só falha se ambos falharem. A probabilidade de falha de cada gerador nas primeiras 100 horas é 0,3 e 0,4, respectivamente. A probabilidade de o sistema não falhar nesse período é",
+          "support": null,
+          "options": [
+            "0,12.",
+            "0,88.",
+            "0,42.",
+            "0,58.",
+            "0,70."
+          ],
+          "answer": "B",
+          "explanation": "Na redundância, a função de distribuição do sistema é o produto das individuais: F_S = 0,3 × 0,4 = 0,12. A confiabilidade é R = 1 − F_S = 0,88. O valor 0,42 seria a probabilidade de ambos funcionarem (0,7 × 0,6), típica de um sistema em série."
+        },
+        {
+          "topic": "Esperança e variância da exponencial",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 18,
+          "statement": "Uma variável tem distribuição exponencial com parâmetro λ = 0,25. A esperança e a variância dessa variável são, respectivamente,",
+          "support": null,
+          "options": [
+            "4 e 4.",
+            "0,25 e 0,0625.",
+            "4 e 8.",
+            "16 e 4.",
+            "4 e 16."
+          ],
+          "answer": "E",
+          "explanation": "E(X) = 1/λ = 4 e Var(X) = 1/λ² = 16. O desvio padrão (4) coincide com a média, o que é característico da exponencial."
+        },
+        {
+          "topic": "Desvio padrão igual à média",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 19,
+          "statement": "O tempo de atendimento em uma central segue distribuição exponencial, com desvio padrão de 8 minutos. O parâmetro λ dessa distribuição, por minuto, é",
+          "support": null,
+          "options": [
+            "0,0156.",
+            "8,0.",
+            "0,25.",
+            "0,5.",
+            "0,125."
+          ],
+          "answer": "E",
+          "explanation": "Na exponencial, o desvio padrão é igual à média (coeficiente de variação igual a 1). Logo a média é 8 minutos e λ = 1/8 = 0,125. O valor 0,0156 seria 1/64, resultante de usar a variância."
+        },
+        {
+          "topic": "Relação com a distribuição de Poisson",
+          "pattern": "relacao",
+          "difficulty": 2,
+          "pageRef": 19,
+          "statement": "As chamadas de um canal de emergência chegam segundo uma distribuição de Poisson, com média de 3 chamadas por hora. O tempo entre duas chamadas consecutivas segue distribuição",
+          "support": null,
+          "options": [
+            "exponencial, com média de 3 horas.",
+            "de Poisson, com média de 20 minutos.",
+            "uniforme, com média de 30 minutos.",
+            "exponencial, com média de 20 minutos.",
+            "normal, com média de 3 minutos."
+          ],
+          "answer": "D",
+          "explanation": "O tempo entre ocorrências sucessivas de um processo de Poisson é exponencial com o mesmo parâmetro (λ = 3 por hora), cuja média é 1/3 de hora = 20 minutos. A média de 3 horas inverte a taxa."
+        },
+        {
+          "topic": "Mudança de escala",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 19,
+          "statement": "O tempo X, em dias, até a falha de um equipamento é exponencial, com λ = 0,6 por dia. O custo de reparo é proporcional ao tempo, e define-se Y = 3X. O tempo médio de Y é",
+          "support": null,
+          "options": [
+            "1,8.",
+            "1,67.",
+            "5,0.",
+            "0,2.",
+            "15,0."
+          ],
+          "answer": "C",
+          "explanation": "Multiplicar uma exponencial por k > 0 gera exponencial com parâmetro λ/k: Y tem λ_Y = 0,6/3 = 0,2 e média 1/0,2 = 5. O valor 1,67 é a média de X, e 0,2 é o parâmetro de Y, não a média."
+        },
+        {
+          "topic": "Mínimo de exponenciais independentes",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 19,
+          "statement": "Um sistema em série falha assim que o primeiro de seus dois componentes falha. Os tempos de vida, em horas, são exponenciais e independentes, com parâmetros 0,02 e 0,03. Dado e^(−1) = 0,3679, a probabilidade de o sistema durar mais de 20 horas é, aproximadamente,",
+          "support": null,
+          "options": [
+            "67,0%.",
+            "54,9%.",
+            "36,8%.",
+            "13,5%.",
+            "63,2%."
+          ],
+          "answer": "C",
+          "explanation": "O mínimo de exponenciais independentes é exponencial com parâmetro igual à soma: λ = 0,05. Então P(X > 20) = e^(−0,05 × 20) = e^(−1) = 0,3679. Os valores 67,0% e 54,9% consideram apenas um dos componentes, e 63,2% é P(X < 20)."
+        },
+        {
+          "topic": "Falta de memória da exponencial",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 20,
+          "statement": "A vida útil de uma lâmpada é exponencial, com média de 1.000 horas. Sabendo que ela já funcionou 500 horas, e dado e^(−0,2) = 0,8187, a probabilidade de que funcione pelo menos mais 200 horas é, aproximadamente,",
+          "support": null,
+          "options": [
+            "49,7%.",
+            "60,7%.",
+            "18,1%.",
+            "81,9%.",
+            "13,5%."
+          ],
+          "answer": "D",
+          "explanation": "Pela falta de memória, P(X > 700 | X > 500) = P(X > 200) = e^(−0,001 × 200) = e^(−0,2) = 0,8187. O valor 49,7% usa P(X > 700) sem considerar o histórico, e 18,1% é a probabilidade complementar."
+        },
+        {
+          "topic": "Probabilidade condicional e garantia",
+          "pattern": "caso",
+          "difficulty": 3,
+          "pageRef": 24,
+          "statement": "A vida útil de um equipamento é exponencial, com média de 20 anos. Os equipamentos vendidos têm 4 anos de uso, sem defeito, e a garantia vai até os 10 anos de vida. Dado e^(−0,3) = 0,7408, a probabilidade de que um deles precise de assistência dentro da garantia é, aproximadamente,",
+          "support": null,
+          "options": [
+            "74,1%.",
+            "25,9%.",
+            "39,3%.",
+            "18,1%.",
+            "60,7%."
+          ],
+          "answer": "B",
+          "explanation": "Pela falta de memória, restam 10 − 4 = 6 anos de garantia, e P(falhar) = P(X < 6) = 1 − e^(−6/20) = 1 − e^(−0,3) = 1 − 0,7408 = 25,9%. O valor 39,3% é P(X < 10), que ignora os 4 anos já cumpridos."
+        },
+        {
+          "topic": "Parametrização pelo escala β",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 20,
+          "statement": "Na parametrização alternativa f(x) = (1/β)·e^(−x/β), para x ≥ 0, com β = 15, a esperança e a variância da variável são, respectivamente,",
+          "support": null,
+          "options": [
+            "15 e 15.",
+            "1/15 e 1/225.",
+            "225 e 15.",
+            "15 e 30.",
+            "15 e 225."
+          ],
+          "answer": "E",
+          "explanation": "Nessa parametrização, β é o parâmetro de escala, igual à média: E(X) = β = 15 e Var(X) = β² = 225. Corresponde a λ = 1/β."
+        }
+      ]
     },
     {
       "id": "estatistica/a10/s03",
@@ -223,7 +634,196 @@
             "pageRef": 30
           }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Mistura de exponenciais",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 25,
+          "statement": "Em um depósito, 70% das lâmpadas são do tipo X, com vida útil exponencial de parâmetro 0,02 por hora, e 30% são do tipo Y, com parâmetro 0,10 por hora. Dados e^(−0,2) = 0,8187 e e^(−1) = 0,3679, a probabilidade de uma lâmpada escolhida ao acaso durar mais de 10 horas é, aproximadamente,",
+          "support": null,
+          "options": [
+            "64,4%.",
+            "68,3%.",
+            "57,3%.",
+            "36,8%.",
+            "81,9%."
+          ],
+          "answer": "B",
+          "explanation": "Pelo teorema da probabilidade total, P = 0,7 × e^(−0,2) + 0,3 × e^(−1) = 0,7 × 0,8187 + 0,3 × 0,3679 = 68,3%. O valor 64,4% resulta de usar uma única exponencial com a taxa média ponderada, o que não vale: a mistura não é exponencial."
+        },
+        {
+          "topic": "Teorema da probabilidade total",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 25,
+          "statement": "Um lote mistura objetos de dois tipos, cujas vidas úteis seguem exponenciais com parâmetros diferentes. Para obter a probabilidade de um objeto escolhido ao acaso durar mais que z, deve-se",
+          "support": null,
+          "options": [
+            "usar uma exponencial cujo parâmetro é a média simples dos dois parâmetros.",
+            "somar os dois parâmetros e aplicar e^(−λz).",
+            "multiplicar as probabilidades de cada tipo durar mais que z.",
+            "calcular a média das probabilidades de cada tipo durar mais que z, ponderada pelas proporções dos tipos.",
+            "usar apenas a distribuição do tipo mais frequente."
+          ],
+          "answer": "D",
+          "explanation": "A probabilidade de um objeto sorteado durar mais que z é P = P(A|X)·P(X) + P(A|Y)·P(Y), a média ponderada das probabilidades condicionais. Substituir os parâmetros por uma média ou por uma soma produz uma exponencial única, que não representa a mistura."
+        },
+        {
+          "topic": "Coeficiente de variação e famílias",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 27,
+          "statement": "Sobre o coeficiente de variação (CV) de distribuições relacionadas à exponencial, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "A exponencial tem CV igual a 1, a hipoexponencial (soma de exponenciais) tem CV menor que 1 e a hiperexponencial (mistura), CV maior que 1.",
+            "A exponencial tem CV menor que 1 e a hiperexponencial tem CV igual a 1.",
+            "A hipoexponencial tem CV maior que 1 e a hiperexponencial, CV menor que 1.",
+            "Todas as três têm CV igual a 1.",
+            "A exponencial tem CV igual a 0, pois sua variância é determinada por λ."
+          ],
+          "answer": "A",
+          "explanation": "A exponencial tem desvio padrão igual à média, logo CV = 1. A soma de exponenciais independentes (Erlang/hipoexponencial) tem CV menor que 1, e a mistura ponderada de exponenciais (hiperexponencial) tem CV maior que 1."
+        },
+        {
+          "topic": "Exponencial como caso da gama",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 27,
+          "statement": "A distribuição gama, de parâmetros α e β, se reduz à distribuição exponencial quando",
+          "support": null,
+          "options": [
+            "α = 2, com β = λ.",
+            "β = 1, com α = λ.",
+            "α = β.",
+            "α tende a infinito.",
+            "α = 1, com β = λ."
+          ],
+          "answer": "E",
+          "explanation": "Fazendo α = 1 na f.d.p. da gama obtém-se β·e^(−βx), isto é, a exponencial com λ = β; nesse caso E(X) = 1/λ e Var(X) = 1/λ², como na exponencial."
+        },
+        {
+          "topic": "Média e variância da gama",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 27,
+          "statement": "Uma variável X tem distribuição gama com parâmetros α = 4 e β = 0,5. A esperança e a variância de X são, respectivamente,",
+          "support": null,
+          "options": [
+            "2 e 1.",
+            "8 e 8.",
+            "8 e 16.",
+            "4 e 16.",
+            "16 e 8."
+          ],
+          "answer": "C",
+          "explanation": "Na gama, E(X) = α/β = 4/0,5 = 8 e Var(X) = α/β² = 4/0,25 = 16. O valor 2 e 1 seria αβ e αβ², fórmulas que tratam β como parâmetro de escala, diferente da parametrização do material."
+        },
+        {
+          "topic": "Soma de exponenciais independentes",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 27,
+          "statement": "Cinco tempos independentes são somados, e cada um segue distribuição exponencial com parâmetro λ = 0,5 por hora. A variância do tempo total é",
+          "support": null,
+          "options": [
+            "10.",
+            "5.",
+            "100.",
+            "20.",
+            "4."
+          ],
+          "answer": "D",
+          "explanation": "Cada tempo tem variância 1/λ² = 4, e as variâncias de variáveis independentes se somam: 5 × 4 = 20. A soma segue uma gama com α = 5 e β = 0,5, cuja variância é α/β² = 20."
+        },
+        {
+          "topic": "Diferença de exponenciais",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 27,
+          "statement": "X1 e X2 são variáveis independentes, ambas exponenciais com o mesmo parâmetro λ. A diferença Y = X1 − X2",
+          "support": null,
+          "options": [
+            "segue distribuição exponencial com parâmetro 2λ.",
+            "segue distribuição de Laplace (exponencial dupla), simétrica em torno de zero e podendo assumir valores negativos.",
+            "segue distribuição exponencial com parâmetro λ.",
+            "segue distribuição normal com média zero.",
+            "segue distribuição gama com α = 2."
+          ],
+          "answer": "B",
+          "explanation": "A diferença de duas exponenciais independentes pode ser negativa, o que exclui a exponencial e a gama (definidas só para x ≥ 0). Ela segue a distribuição de Laplace, com formato de duas caudas exponenciais e pico agudo em zero, e não a normal."
+        },
+        {
+          "topic": "Média e variância da diferença",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 28,
+          "statement": "X1 e X2 são exponenciais independentes, com parâmetros λ1 = 0,5 e λ2 = 0,25. A esperança e a variância de Y = X1 − X2 são, respectivamente,",
+          "support": null,
+          "options": [
+            "−2 e 12.",
+            "2 e 20.",
+            "−2 e 20.",
+            "−2 e 10.",
+            "6 e 20."
+          ],
+          "answer": "C",
+          "explanation": "E(Y) = 1/λ1 − 1/λ2 = 2 − 4 = −2 e, por independência, Var(Y) = 1/λ1² + 1/λ2² = 4 + 16 = 20. O valor 12 resultaria de subtrair as variâncias, e 6 de somar as médias."
+        },
+        {
+          "topic": "Assimetria da diferença",
+          "pattern": "relacao",
+          "difficulty": 3,
+          "pageRef": 28,
+          "statement": "X1 e X2 são exponenciais independentes, com médias 10 e 5, respectivamente. A diferença Y = X1 − X2 apresenta",
+          "support": null,
+          "options": [
+            "assimetria positiva, pois a cauda à direita é a mais longa (λ1 < λ2).",
+            "assimetria negativa, pois a cauda à esquerda é a mais longa (λ1 < λ2).",
+            "simetria perfeita em torno de zero, pois a diferença tem média nula.",
+            "assimetria positiva, pois λ1 > λ2.",
+            "assimetria negativa, pois a média de Y é negativa."
+          ],
+          "answer": "A",
+          "explanation": "A média maior de X1 significa λ1 = 0,1 < λ2 = 0,2, o que alonga a cauda à direita: assimetria positiva (E(Y) = 10 − 5 = 5 > 0). A simetria em torno de zero só ocorre quando os parâmetros são iguais."
+        },
+        {
+          "topic": "Distribuição beta",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 29,
+          "statement": "Uma proporção X, definida no intervalo [0, 1], segue distribuição beta com parâmetros α = 3 e β = 7. A esperança de X é",
+          "support": null,
+          "options": [
+            "0,3.",
+            "0,7.",
+            "0,43.",
+            "0,5.",
+            "0,03."
+          ],
+          "answer": "A",
+          "explanation": "Na beta, E(X) = α/(α + β) = 3/10 = 0,3. O valor 0,43 resulta de dividir α por β (3/7)."
+        },
+        {
+          "topic": "Probabilidade total com tipos distintos",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 26,
+          "statement": "Metade das peças de um estoque é do tipo A, com vida útil exponencial de média 200 horas, e a outra metade é do tipo B, com vida útil exponencial de média 500 horas. Dados e^(−2) = 0,1353 e e^(−0,8) = 0,4493, a probabilidade de uma peça escolhida ao acaso durar menos de 400 horas é, aproximadamente,",
+          "support": null,
+          "options": [
+            "86,5%.",
+            "70,8%.",
+            "55,1%.",
+            "75,3%.",
+            "29,2%."
+          ],
+          "answer": "B",
+          "explanation": "P(A) = 1 − e^(−400/200) = 1 − e^(−2) = 0,8647 e P(B) = 1 − e^(−400/500) = 1 − e^(−0,8) = 0,5507. Ponderando: 0,5 × 0,8647 + 0,5 × 0,5507 = 70,8%. Os valores 86,5% e 55,1% consideram apenas um dos tipos."
+        }
+      ]
     },
     {
       "id": "estatistica/a10/s04",
@@ -303,7 +903,230 @@
             "pageRef": 41
           }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Parâmetros da normal",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 32,
+          "statement": "A distribuição normal (gaussiana) é completamente caracterizada por",
+          "support": null,
+          "options": [
+            "um único parâmetro, a taxa λ.",
+            "dois parâmetros, o número de ensaios n e a probabilidade p.",
+            "dois parâmetros independentes: a média μ e a variância σ².",
+            "dois parâmetros, os extremos a e b do intervalo.",
+            "um único parâmetro, os graus de liberdade k."
+          ],
+          "answer": "C",
+          "explanation": "A f.d.p. normal depende apenas de μ (posição do centro) e σ² (dispersão), que variam de forma independente. A taxa λ é da exponencial, n e p da binomial, a e b da uniforme e k das distribuições qui-quadrado, t e F."
+        },
+        {
+          "topic": "Efeito da variância sobre a curva",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 33,
+          "statement": "As variáveis A e B têm distribuição normal, ambas com média 50, sendo a variância de A igual a 4 e a de B igual a 25. Assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "A curva de A é mais achatada, com pico mais baixo e caudas mais largas que a de B.",
+            "A moda de B é maior que a moda de A.",
+            "As duas curvas têm o mesmo formato, pois só a média define a curva.",
+            "A curva de B é mais achatada, com pico mais baixo e caudas mais largas que a de A, e as duas têm o mesmo centro.",
+            "A curva de B é assimétrica à direita, pois sua variância é maior."
+          ],
+          "answer": "D",
+          "explanation": "Quanto maior a variância, mais achatada a curva (pico mais baixo e caudas mais largas), mas o centro é sempre μ = 50, que é também a moda e a mediana. A normal é simétrica qualquer que seja a variância."
+        },
+        {
+          "topic": "Simetria em torno da média",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 33,
+          "statement": "Uma variável X tem distribuição normal com média 30 e variância 16, e sabe-se que P(X > 38) = 0,0228. Nessas condições, P(X < 22) é igual a",
+          "support": null,
+          "options": [
+            "0,9772.",
+            "0,0456.",
+            "0,4772.",
+            "0,5000.",
+            "0,0228."
+          ],
+          "answer": "E",
+          "explanation": "Como 38 = μ + 8 e 22 = μ − 8, a simetria da normal garante P(X > μ + k) = P(X < μ − k), logo P(X < 22) = 0,0228. O valor 0,0456 seria a soma das duas caudas."
+        },
+        {
+          "topic": "Pontos de inflexão",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 35,
+          "statement": "Uma variável X tem distribuição normal com média 100 e variância 25. Os pontos de inflexão da curva de X ocorrem em",
+          "support": null,
+          "options": [
+            "95 e 105.",
+            "90 e 110.",
+            "75 e 125.",
+            "100 e 125.",
+            "97,5 e 102,5."
+          ],
+          "answer": "A",
+          "explanation": "Os pontos de inflexão da normal ficam a um desvio padrão da média, μ ± σ. Com σ = √25 = 5, são 95 e 105. O par 75 e 125 usa a variância (25) em lugar do desvio padrão."
+        },
+        {
+          "topic": "Assíntotas da curva normal",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 34,
+          "statement": "Diz-se que a curva normal é duplamente assintótica. Isso significa que",
+          "support": null,
+          "options": [
+            "a curva toca o eixo horizontal em dois pontos, a uma distância 3σ da média.",
+            "a curva tem duas modas, uma em cada lado da média.",
+            "a curva se aproxima indefinidamente do eixo horizontal, nos dois lados, sem nunca tocá-lo.",
+            "a curva possui duas médias distintas, uma para cada cauda.",
+            "a probabilidade é nula fora do intervalo μ ± 3σ."
+          ],
+          "answer": "C",
+          "explanation": "A f.d.p. normal é definida em toda a reta real e tende a zero quando x → −∞ e x → +∞, sem se anular. Por isso a probabilidade fora de μ ± 3σ é pequena, porém não nula."
+        },
+        {
+          "topic": "Leitura da tabela da normal padrão",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 38,
+          "statement": "Para a normal padrão, a tabela informa P(0 < Z < 1,50) = 0,4332. Logo, P(Z > 1,50) é igual a",
+          "support": null,
+          "options": [
+            "0,4332.",
+            "0,9332.",
+            "0,1336.",
+            "0,5668.",
+            "0,0668."
+          ],
+          "answer": "E",
+          "explanation": "Como P(Z > 0) = 0,5, P(Z > 1,50) = 0,5 − P(0 < Z < 1,50) = 0,5 − 0,4332 = 0,0668. O valor 0,9332 é P(Z < 1,50), e 0,1336 é P(|Z| > 1,50), que soma as duas caudas."
+        },
+        {
+          "topic": "Probabilidade em módulo (menor que)",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 39,
+          "statement": "Na normal padrão, P(0 < Z < 1,28) = 0,3997. Portanto, P(|Z| < 1,28) é aproximadamente",
+          "support": null,
+          "options": [
+            "0,3997.",
+            "0,2006.",
+            "0,8997.",
+            "0,7994.",
+            "0,1003."
+          ],
+          "answer": "D",
+          "explanation": "P(|Z| < z) = P(−z < Z < z) = 2 · P(0 < Z < z) = 2 × 0,3997 = 0,7994. O valor 0,2006 é P(|Z| > 1,28), a probabilidade complementar."
+        },
+        {
+          "topic": "Probabilidade em módulo (maior que)",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 40,
+          "statement": "Na normal padrão, P(0 < Z < 2,00) = 0,4772. Portanto, P(|Z| > 2,00) é aproximadamente",
+          "support": null,
+          "options": [
+            "0,0228.",
+            "0,9544.",
+            "0,5228.",
+            "0,0456.",
+            "0,4772."
+          ],
+          "answer": "D",
+          "explanation": "P(|Z| > z) = 1 − 2 · P(0 < Z < z) = 1 − 2 × 0,4772 = 0,0456. O valor 0,0228 considera só uma cauda, e 0,9544 é P(|Z| < 2)."
+        },
+        {
+          "topic": "Valor de z a partir da probabilidade",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 37,
+          "statement": "Deseja-se o valor z da normal padrão tal que P(Z > z) = 0,10. A tabela informa P(0 < Z < 1,28) = 0,3997, valor mais próximo de 0,40. Logo, z é aproximadamente",
+          "support": null,
+          "options": [
+            "1,64.",
+            "1,96.",
+            "0,40.",
+            "0,90.",
+            "1,28."
+          ],
+          "answer": "E",
+          "explanation": "Se P(Z > z) = 0,10, então P(0 < Z < z) = 0,5 − 0,10 = 0,40, e o valor mais próximo na tabela corresponde a z = 1,28. Os valores 1,64 e 1,96 correspondem a caudas de 5% e 2,5%."
+        },
+        {
+          "topic": "Tabela da normal acumulada",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 41,
+          "statement": "Uma tabela da normal padrão fornece a função acumulada P(Z < z). Sabendo que P(Z < 1,50) = 0,9332, a probabilidade P(−1,50 < Z < 1,50) é",
+          "support": null,
+          "options": [
+            "0,9332.",
+            "0,8664.",
+            "0,1336.",
+            "0,4332.",
+            "0,8000."
+          ],
+          "answer": "B",
+          "explanation": "Pela simetria, P(Z < −1,50) = 1 − 0,9332 = 0,0668, então P(−1,50 < Z < 1,50) = 0,9332 − 0,0668 = 0,8664. O valor 0,9332 é apenas P(Z < 1,50)."
+        },
+        {
+          "topic": "Simetria da normal padrão",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 41,
+          "statement": "Sobre a simetria da distribuição normal padrão Z, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "P(Z ≥ 1,5) = 1 − P(Z ≤ −1,5).",
+            "P(Z ≥ 1,5) = P(Z ≤ −1,5).",
+            "P(Z ≤ −1,5) = P(Z ≤ 1,5).",
+            "P(−1,5 < Z < 0) = 1 − P(0 < Z < 1,5).",
+            "P(|Z| < 1,5) = P(0 < Z < 1,5)."
+          ],
+          "answer": "B",
+          "explanation": "A simetria em torno de zero iguala as duas caudas: P(Z ≥ z) = P(Z ≤ −z). As demais igualdades são falsas: 1 − P(Z ≤ −1,5) é a região central, quase toda a área, e P(|Z| < 1,5) vale o dobro de P(0 < Z < 1,5)."
+        },
+        {
+          "topic": "Simetria com intervalo e cauda",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 34,
+          "statement": "Uma variável X tem distribuição normal com média 40 e variância 9, e sabe-se que P(40 < X < 46) = 0,4772. A probabilidade P(X < 34) é",
+          "support": null,
+          "options": [
+            "0,0228.",
+            "0,4772.",
+            "0,9772.",
+            "0,0456.",
+            "0,5228."
+          ],
+          "answer": "A",
+          "explanation": "Como 46 = μ + 6 e 34 = μ − 6, a simetria dá P(34 < X < 40) = 0,4772. Logo P(X < 34) = 0,5 − 0,4772 = 0,0228. O valor 0,9772 é P(X > 34), a probabilidade complementar, e 0,0456 soma as duas caudas."
+        },
+        {
+          "topic": "Afirmativas sobre a normal",
+          "pattern": "assertivas",
+          "difficulty": 2,
+          "pageRef": 35,
+          "statement": "Considere as afirmativas sobre a distribuição normal. I. A média e a variância são parâmetros independentes. II. Quanto maior a variância, mais baixo é o pico e mais largas são as caudas. III. A área total sob a curva é igual à variância. IV. A curva é simétrica em torno da média, que coincide com a mediana e a moda. Estão corretas apenas as afirmativas",
+          "support": null,
+          "options": [
+            "I e III.",
+            "II e III.",
+            "III e IV.",
+            "I, III e IV.",
+            "I, II e IV."
+          ],
+          "answer": "E",
+          "explanation": "I, II e IV descrevem corretamente a normal. A III é falsa: a área total sob qualquer f.d.p. é igual a 1 (100%), qualquer que seja a variância."
+        }
+      ]
     },
     {
       "id": "estatistica/a10/s05",
@@ -373,7 +1196,196 @@
             "pageRef": 49
           }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Transformação z",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 42,
+          "statement": "Uma variável X tem distribuição normal com média 60 e variância 64. O valor padronizado z correspondente a x = 76 é",
+          "support": null,
+          "options": [
+            "0,25.",
+            "16.",
+            "8.",
+            "2.",
+            "4."
+          ],
+          "answer": "D",
+          "explanation": "z = (x − μ)/σ, com σ = √64 = 8: z = (76 − 60)/8 = 2. O valor 0,25 resulta de dividir pela variância (16/64) e 16 é o desvio bruto."
+        },
+        {
+          "topic": "Probabilidade de cauda",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 42,
+          "statement": "O tempo de vistoria X, em minutos, tem distribuição normal com média 120 e desvio padrão 20. Dado P(0 < Z < 1,50) = 0,4332, a probabilidade de uma vistoria durar mais de 150 minutos é",
+          "support": null,
+          "options": [
+            "43,32%.",
+            "93,32%.",
+            "13,36%.",
+            "6,68%.",
+            "4,57%."
+          ],
+          "answer": "D",
+          "explanation": "z = (150 − 120)/20 = 1,5, logo P(X > 150) = P(Z > 1,5) = 0,5 − 0,4332 = 0,0668. O valor 13,36% soma as duas caudas (|Z| > 1,5), e 93,32% é P(X < 150)."
+        },
+        {
+          "topic": "Intervalo em torno da média",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 43,
+          "statement": "O tempo X de um procedimento tem distribuição normal com média 100 e desvio padrão 15. Dados P(0 < Z < 1) = 0,3413 e P(0 < Z < 2) = 0,4772, a probabilidade P(85 < X < 130) é",
+          "support": null,
+          "options": [
+            "0,1359.",
+            "0,3413.",
+            "0,4772.",
+            "0,9544.",
+            "0,8185."
+          ],
+          "answer": "E",
+          "explanation": "Os extremos padronizados são z = (85 − 100)/15 = −1 e z = (130 − 100)/15 = 2. Como o intervalo cruza a média, soma-se: P(−1 < Z < 2) = 0,3413 + 0,4772 = 0,8185. O valor 0,1359 é P(1 < Z < 2), que subtrai em vez de somar."
+        },
+        {
+          "topic": "Valor de x a partir da probabilidade",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 44,
+          "statement": "O tempo X de resposta de uma equipe tem distribuição normal com média 70 e desvio padrão 12. Dado P(0 < Z < 1,96) = 0,4750, o valor x tal que P(X > x) = 0,025 é",
+          "support": null,
+          "options": [
+            "89,68.",
+            "93,52.",
+            "46,48.",
+            "70,30.",
+            "98,00."
+          ],
+          "answer": "B",
+          "explanation": "P(X > x) = 0,025 implica P(0 < Z < z) = 0,475, isto é, z = 1,96. Então x = μ + z·σ = 70 + 1,96 × 12 = 93,52. O valor 46,48 corresponde à cauda inferior, e 89,68 usaria z = 1,64 (cauda de 5%)."
+        },
+        {
+          "topic": "Regra empírica: 95%",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 46,
+          "statement": "Segundo a Regra Empírica, em uma distribuição normal, a probabilidade de a variável estar entre μ − 2σ e μ + 2σ é de, aproximadamente,",
+          "support": null,
+          "options": [
+            "68%.",
+            "99,7%.",
+            "90%.",
+            "50%.",
+            "95%."
+          ],
+          "answer": "E",
+          "explanation": "A Regra Empírica estabelece cerca de 68% em μ ± σ, 95% em μ ± 2σ e 99,7% em μ ± 3σ."
+        },
+        {
+          "topic": "Regra empírica: cauda",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 46,
+          "statement": "O escore X de um teste tem distribuição normal com média 80 e variância 100. Pela Regra Empírica, a probabilidade de X ser menor que 60 é, aproximadamente,",
+          "support": null,
+          "options": [
+            "5%.",
+            "2,5%.",
+            "95%.",
+            "0,15%.",
+            "16%."
+          ],
+          "answer": "B",
+          "explanation": "Com σ = 10, 60 = μ − 2σ. Como 95% da distribuição está em μ ± 2σ, restam 5% nas duas caudas, e pela simetria 2,5% em cada uma. O valor 5% soma as duas caudas."
+        },
+        {
+          "topic": "Regra empírica: faixa de 99,7%",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 46,
+          "statement": "As notas de uma prova seguem distribuição normal, com média 70 e desvio padrão 8. A faixa que contém, aproximadamente, 99,7% das notas é",
+          "support": null,
+          "options": [
+            "de 46 a 94.",
+            "de 54 a 86.",
+            "de 62 a 78.",
+            "de 38 a 102.",
+            "de 50 a 90."
+          ],
+          "answer": "A",
+          "explanation": "A faixa de 99,7% é μ ± 3σ = 70 ± 24, isto é, de 46 a 94. A faixa de 54 a 86 corresponde a ±2σ (95%) e a de 62 a 78, a ±1σ (68%)."
+        },
+        {
+          "topic": "Probabilidade entre a média e um valor",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 48,
+          "statement": "O tempo X, em minutos, de uma tarefa tem distribuição normal com média 80 e desvio padrão 6. Dados P(Z < 0) = 0,5000 e P(Z < −0,50) = 0,3085, a probabilidade P(77 < X < 80) é",
+          "support": null,
+          "options": [
+            "0,1915.",
+            "0,3085.",
+            "0,6915.",
+            "0,2085.",
+            "0,3830."
+          ],
+          "answer": "A",
+          "explanation": "z = (77 − 80)/6 = −0,5, logo P(77 < X < 80) = P(−0,5 < Z < 0) = P(Z < 0) − P(Z < −0,5) = 0,5 − 0,3085 = 0,1915. O valor 0,3085 é a cauda P(X < 77), e 0,3830 é P(|Z| < 0,5)."
+        },
+        {
+          "topic": "Limite da faixa inferior",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 49,
+          "statement": "Os salários de uma empresa têm distribuição normal, com média R$ 3.000,00 e desvio padrão R$ 500,00. Considere P(Z ≤ 1,28) = 0,90. Os 10% menores salários são todos inferiores a, aproximadamente,",
+          "support": null,
+          "options": [
+            "R$ 3.640,00.",
+            "R$ 2.360,00.",
+            "R$ 2.180,00.",
+            "R$ 2.500,00.",
+            "R$ 2.640,00."
+          ],
+          "answer": "B",
+          "explanation": "Para os 10% inferiores, z = −1,28 (simetria de P(Z ≤ 1,28) = 0,90). Então x = μ + z·σ = 3.000 − 1,28 × 500 = R$ 2.360,00. O valor R$ 3.640,00 é o limite dos 10% maiores salários."
+        },
+        {
+          "topic": "Intervalo simétrico em torno da média",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 45,
+          "statement": "Uma variável X tem distribuição normal com média 50 e desvio padrão 5. Dado P(0 < Z < 1,60) = 0,4452, a probabilidade P(42 < X < 58) é",
+          "support": null,
+          "options": [
+            "0,4452.",
+            "0,9452.",
+            "0,8904.",
+            "0,5548.",
+            "0,2226."
+          ],
+          "answer": "C",
+          "explanation": "Os extremos são equidistantes da média: z = (58 − 50)/5 = 1,6 e z = −1,6. Logo P = 2 × 0,4452 = 0,8904. O valor 0,4452 considera apenas metade do intervalo."
+        },
+        {
+          "topic": "Desvio padrão pela Regra Empírica",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 46,
+          "statement": "Em uma distribuição normal, aproximadamente 95% dos valores estão entre 62 e 98. O desvio padrão da distribuição é, aproximadamente,",
+          "support": null,
+          "options": [
+            "18.",
+            "4,5.",
+            "9.",
+            "36.",
+            "3."
+          ],
+          "answer": "C",
+          "explanation": "O intervalo de 95% é μ ± 2σ, com centro 80 e semiamplitude 18. Logo 2σ = 18 e σ = 9. O valor 18 é a semiamplitude (2σ), e 36 é a amplitude total."
+        }
+      ]
     },
     {
       "id": "estatistica/a10/s06",
@@ -448,7 +1460,230 @@
             "pageRef": 59
           }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Soma de normais independentes",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 51,
+          "statement": "X e Y são variáveis normais independentes, com X ~ N(10; 9) e Y ~ N(20; 16), em que o segundo parâmetro é a variância. A soma S = X + Y segue distribuição",
+          "support": null,
+          "options": [
+            "normal, com média 30 e variância 25.",
+            "normal, com média 30 e variância 7.",
+            "normal, com média 30 e variância 5.",
+            "normal, com média 30 e variância 49.",
+            "normal, com média 10 e variância 25."
+          ],
+          "answer": "A",
+          "explanation": "A soma de normais independentes é normal, com média igual à soma das médias (30) e variância igual à soma das variâncias (9 + 16 = 25). Somar desvios padrão (3 + 4 = 7) é erro comum."
+        },
+        {
+          "topic": "Diferença de normais com probabilidade",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 51,
+          "statement": "X e Y são normais independentes, com X ~ N(50; 16) e Y ~ N(30; 9), em que o segundo parâmetro é a variância. Dado P(0 < Z < 1) = 0,3413, a probabilidade de D = X − Y ser maior que 15 é",
+          "support": null,
+          "options": [
+            "15,87%.",
+            "34,13%.",
+            "84,13%.",
+            "65,87%.",
+            "97,72%."
+          ],
+          "answer": "C",
+          "explanation": "D é normal, com média 50 − 30 = 20 e variância 16 + 9 = 25 (σ = 5). Então z = (15 − 20)/5 = −1 e P(D > 15) = P(Z > −1) = 0,5 + 0,3413 = 84,13%. O valor 15,87% é P(D < 15)."
+        },
+        {
+          "topic": "Transformação linear de uma normal",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 52,
+          "statement": "X é uma variável normal com média 4 e variância 9. A variável Y = 3X − 5 segue distribuição normal com média e variância, respectivamente,",
+          "support": null,
+          "options": [
+            "7 e 27.",
+            "7 e 81.",
+            "7 e 9.",
+            "12 e 81.",
+            "7 e 36."
+          ],
+          "answer": "B",
+          "explanation": "E(Y) = 3 × 4 − 5 = 7 e Var(Y) = 3² × 9 = 81; a constante somada não altera a variância e o coeficiente entra ao quadrado. O valor 27 multiplica a variância por 3, em vez de 3²."
+        },
+        {
+          "topic": "Enunciado do Teorema Central do Limite",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 54,
+          "statement": "Sobre o Teorema Central do Limite (TCL), assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "A soma de n variáveis independentes e identicamente distribuídas, com qualquer distribuição, tende à normal com média n·E(X) e variância n·V(X) quando n cresce.",
+            "Só vale se cada variável da soma já tiver distribuição normal.",
+            "A variância da soma de n variáveis i.i.d. é n²·V(X).",
+            "A soma tende à normal com média E(X) e variância V(X), independentemente de n.",
+            "O teorema vale apenas para variáveis discretas."
+          ],
+          "answer": "A",
+          "explanation": "O TCL afirma que a soma de variáveis i.i.d. aproxima-se de uma normal, qualquer que seja a distribuição original, com média nE(X) e variância nV(X) (as variâncias se somam, e não se multiplicam por n²)."
+        },
+        {
+          "topic": "Desvio padrão da soma",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 55,
+          "statement": "A duração de cada atendimento tem média de 5 minutos e variância de 9 minutos². Considerando 36 atendimentos independentes, o desvio padrão da duração total é de",
+          "support": null,
+          "options": [
+            "324 minutos.",
+            "18 minutos.",
+            "108 minutos.",
+            "6 minutos.",
+            "3 minutos."
+          ],
+          "answer": "B",
+          "explanation": "A variância da soma é 36 × 9 = 324, e o desvio padrão é √324 = 18. O valor 108 resulta de somar os desvios padrão (36 × 3), que é incorreto; 324 é a variância."
+        },
+        {
+          "topic": "Probabilidade da soma pelo TCL",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 55,
+          "statement": "Cem variáveis independentes e identicamente distribuídas têm, cada uma, média 5 e variância 4. Dado P(0 < Z < 2) = 0,4772, a probabilidade de a soma ser superior a 540 é, aproximadamente,",
+          "support": null,
+          "options": [
+            "4,56%.",
+            "47,72%.",
+            "97,72%.",
+            "2,28%.",
+            "15,87%."
+          ],
+          "answer": "D",
+          "explanation": "A soma tem média 500 e variância 400 (σ = 20); z = (540 − 500)/20 = 2. Então P(S > 540) = 0,5 − 0,4772 = 0,0228. O valor 4,56% soma as duas caudas."
+        },
+        {
+          "topic": "Condições para aproximar a binomial",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 58,
+          "statement": "Para que a distribuição binomial seja bem aproximada por uma normal, convém que n seja grande e p não esteja próximo de 0 ou de 1 (n vezes a menor entre p e q, maior que 5 ou 15). Entre as binomiais a seguir, a mais bem aproximada pela normal é",
+          "support": null,
+          "options": [
+            "B(10; 0,1).",
+            "B(20; 0,02).",
+            "B(8; 0,9).",
+            "B(100; 0,5).",
+            "B(15; 0,05)."
+          ],
+          "answer": "D",
+          "explanation": "Em B(100; 0,5), n · min(p, q) = 50, bem acima de 15. Nas demais, o produto é pequeno (1; 0,4; 0,8 e 0,75), e as distribuições ficam assimétricas e distantes da normal."
+        },
+        {
+          "topic": "Média e variância da aproximação",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 56,
+          "statement": "Uma variável X tem distribuição binomial com n = 400 e p = 0,25 e será aproximada por uma normal. A média e a variância da normal usada na aproximação são, respectivamente,",
+          "support": null,
+          "options": [
+            "100 e 100.",
+            "100 e 8,66.",
+            "100 e 75.",
+            "75 e 100.",
+            "300 e 75."
+          ],
+          "answer": "C",
+          "explanation": "A aproximação usa μ = n·p = 100 e σ² = n·p·q = 400 × 0,25 × 0,75 = 75 (σ ≈ 8,66). O valor 8,66 é o desvio padrão, e 300 é n·q."
+        },
+        {
+          "topic": "Correção de continuidade",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 59,
+          "statement": "Deseja-se aproximar, pela normal Y, a probabilidade de uma binomial X assumir mais de 10 e no máximo 15 sucessos. Com a correção de continuidade, essa probabilidade é aproximada por",
+          "support": null,
+          "options": [
+            "P(10 < Y < 15).",
+            "P(9,5 < Y < 15,5).",
+            "P(10,5 < Y < 15,5).",
+            "P(10,5 < Y < 16,5).",
+            "P(11,5 < Y < 14,5)."
+          ],
+          "answer": "C",
+          "explanation": "O evento \"mais de 10 e no máximo 15\" equivale a X de 11 a 15, o intervalo [11, 15] com extremos incluídos. A correção subtrai 0,5 do inferior e soma 0,5 ao superior: (10,5; 15,5)."
+        },
+        {
+          "topic": "Aproximação com correção",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 60,
+          "statement": "Em uma população, 20% dos itens apresentam defeito. Em uma amostra de 400 itens, a probabilidade de que pelo menos 92 sejam defeituosos pode ser aproximada pela normal. Dados P(Z < 1,44) = 0,9251 e P(Z < 1,50) = 0,9332, e usando a correção de continuidade, o valor aproximado é",
+          "support": null,
+          "options": [
+            "7,5%.",
+            "6,7%.",
+            "92,5%.",
+            "93,3%.",
+            "15,0%."
+          ],
+          "answer": "A",
+          "explanation": "Com n = 400 e p = 0,2: μ = 80 e σ = √64 = 8. P(X ≥ 92) ≅ P(Y > 91,5), z = (91,5 − 80)/8 ≈ 1,44, e P(Z > 1,44) = 1 − 0,9251 = 7,5%. O valor 6,7% resulta de não usar a correção (z = 1,5), e 92,5% é a probabilidade complementar."
+        },
+        {
+          "topic": "Intervalo da binomial com correção",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 60,
+          "statement": "Uma variável X tem distribuição binomial com n = 64 e p = 0,5. Usando a aproximação pela normal com correção de continuidade, e dados P(0 < Z < 1,13) = 0,3708 e P(0 < Z < 1,00) = 0,3413, a probabilidade de 28 ≤ X ≤ 36 é, aproximadamente,",
+          "support": null,
+          "options": [
+            "68,3%.",
+            "37,1%.",
+            "87,1%.",
+            "63,1%.",
+            "74,2%."
+          ],
+          "answer": "E",
+          "explanation": "μ = 32 e σ = 4. Com a correção, o intervalo é (27,5; 36,5), com z = ±4,5/4 ≈ ±1,13: P = 2 × 0,3708 = 74,2%. O valor 68,3% resulta de não usar a correção (z = ±1)."
+        },
+        {
+          "topic": "Soma e transformações de normais",
+          "pattern": "incorreta",
+          "difficulty": 2,
+          "pageRef": 51,
+          "statement": "Sobre combinações de variáveis normais independentes e o Teorema Central do Limite, assinale a alternativa INCORRETA.",
+          "support": null,
+          "options": [
+            "A soma de variáveis normais independentes também é normal.",
+            "O desvio padrão de uma soma de variáveis independentes é a soma de seus desvios padrão.",
+            "A variância da diferença entre duas normais independentes é a soma de suas variâncias.",
+            "Se X é normal, aX + b também é normal.",
+            "A soma de muitas variáveis independentes e i.i.d., mesmo não normais, aproxima-se de uma normal."
+          ],
+          "answer": "B",
+          "explanation": "Em variáveis independentes somam-se as variâncias, e não os desvios padrão: σ_S = √(σ₁² + σ₂² + ...). As demais afirmações são propriedades corretas da normal e do TCL."
+        },
+        {
+          "topic": "Combinação linear e probabilidade",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 52,
+          "statement": "X é normal, com média 10 e variância 4, e Y = 2X + 1. Dado P(0 < Z < 1) = 0,3413, a probabilidade P(Y > 25) é",
+          "support": null,
+          "options": [
+            "34,13%.",
+            "84,13%.",
+            "15,87%.",
+            "2,28%.",
+            "31,74%."
+          ],
+          "answer": "C",
+          "explanation": "Y é normal com média 2 × 10 + 1 = 21 e variância 4 × 4 = 16 (σ = 4). Então z = (25 − 21)/4 = 1 e P(Y > 25) = 0,5 − 0,3413 = 0,1587. O valor 31,74% soma as duas caudas."
+        }
+      ]
     },
     {
       "id": "estatistica/a10/s07",
@@ -533,7 +1768,264 @@
             "pageRef": 74
           }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Definição da qui-quadrado",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 63,
+          "statement": "Se Z1, Z2, ..., Z6 são variáveis normais padrão independentes, a variável Z1² + Z2² + ... + Z6² segue distribuição",
+          "support": null,
+          "options": [
+            "qui-quadrado com 6 graus de liberdade.",
+            "normal padrão.",
+            "t de Student com 6 graus de liberdade.",
+            "qui-quadrado com 5 graus de liberdade.",
+            "F de Snedecor com 6 e 1 graus de liberdade."
+          ],
+          "answer": "A",
+          "explanation": "A qui-quadrado com k graus de liberdade é a soma dos quadrados de k normais padrão independentes; aqui k = 6, o número de parcelas."
+        },
+        {
+          "topic": "Média e variância da qui-quadrado",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 64,
+          "statement": "Uma variável tem distribuição qui-quadrado com 8 graus de liberdade. Sua esperança e sua variância são, respectivamente,",
+          "support": null,
+          "options": [
+            "8 e 16.",
+            "8 e 8.",
+            "16 e 8.",
+            "4 e 8.",
+            "8 e 64."
+          ],
+          "answer": "A",
+          "explanation": "Na qui-quadrado, E = k = 8 e Var = 2k = 16."
+        },
+        {
+          "topic": "Forma da qui-quadrado",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 64,
+          "statement": "Sobre a distribuição qui-quadrado, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "Assume valores em toda a reta real e é simétrica em torno de zero.",
+            "Assume apenas valores não negativos, é assimétrica à direita e tende à simetria à medida que os graus de liberdade aumentam.",
+            "Assume apenas valores não negativos e é assimétrica à esquerda.",
+            "Sua forma não depende do número de graus de liberdade.",
+            "Tem média zero e variância igual a k."
+          ],
+          "answer": "B",
+          "explanation": "Como é soma de quadrados, a qui-quadrado só assume valores positivos e tem cauda longa à direita; com mais graus de liberdade aproxima-se da normal (TCL). Sua média é k (e não zero) e a variância é 2k."
+        },
+        {
+          "topic": "Soma de qui-quadrados",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 64,
+          "statement": "U, V e W são variáveis independentes com distribuição qui-quadrado, com 3, 5 e 4 graus de liberdade, respectivamente. A variância de U + V + W é",
+          "support": null,
+          "options": [
+            "12.",
+            "48.",
+            "60.",
+            "8.",
+            "24."
+          ],
+          "answer": "E",
+          "explanation": "A soma de qui-quadrados independentes é qui-quadrado com graus de liberdade somados: 3 + 5 + 4 = 12. Logo Var = 2k = 24. O valor 12 é a esperança."
+        },
+        {
+          "topic": "Padronização na qui-quadrado",
+          "pattern": "caso",
+          "difficulty": 3,
+          "pageRef": 63,
+          "statement": "X1, X2 e X3 são variáveis independentes, todas com distribuição normal de média 10 e variância 25. A variável Q = [(X1 − 10)² + (X2 − 10)² + (X3 − 10)²] / 25 segue distribuição",
+          "support": null,
+          "options": [
+            "qui-quadrado com 2 graus de liberdade.",
+            "qui-quadrado com 75 graus de liberdade.",
+            "t de Student com 3 graus de liberdade.",
+            "qui-quadrado com 3 graus de liberdade.",
+            "normal com média 0 e variância 3."
+          ],
+          "answer": "D",
+          "explanation": "Cada parcela (Xi − 10)²/25 = Zi² é o quadrado de uma normal padrão, pois σ² = 25. A soma de 3 quadrados de normais padrão independentes é qui-quadrado com k = 3 graus de liberdade."
+        },
+        {
+          "topic": "Qui-quadrado e exponencial",
+          "pattern": "relacao",
+          "difficulty": 3,
+          "pageRef": 65,
+          "statement": "A distribuição qui-quadrado é um caso particular da gama, com α = k/2 e β = 1/2. Para k = 2, a qui-quadrado coincide com uma exponencial, cujo parâmetro λ e média são, respectivamente,",
+          "support": null,
+          "options": [
+            "2 e 1/2.",
+            "1/4 e 4.",
+            "2 e 2.",
+            "1 e 1.",
+            "1/2 e 2."
+          ],
+          "answer": "E",
+          "explanation": "Com k = 2, α = 1, e a gama se reduz à exponencial com λ = β = 1/2, cuja média é 1/λ = 2 (igual a k, a média da qui-quadrado)."
+        },
+        {
+          "topic": "Definição da t de Student",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 68,
+          "statement": "Z é uma variável normal padrão e V é uma variável qui-quadrado com 9 graus de liberdade, independentes entre si. A variável T = Z / √(V/9) segue distribuição",
+          "support": null,
+          "options": [
+            "t de Student com 9 graus de liberdade.",
+            "normal padrão.",
+            "t de Student com 8 graus de liberdade.",
+            "qui-quadrado com 9 graus de liberdade.",
+            "F de Snedecor com 1 e 9 graus de liberdade."
+          ],
+          "answer": "A",
+          "explanation": "A t de Student com k graus de liberdade é a razão entre uma normal padrão e a raiz de uma qui-quadrado independente dividida por seus graus de liberdade, aqui k = 9. A F surge do quadrado dessa variável."
+        },
+        {
+          "topic": "Variância da t de Student",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 68,
+          "statement": "Uma variável tem distribuição t de Student com 10 graus de liberdade. Sua variância é",
+          "support": null,
+          "options": [
+            "1,00.",
+            "0,80.",
+            "10,00.",
+            "1,25.",
+            "1,11."
+          ],
+          "answer": "D",
+          "explanation": "Para k > 2, Var(T) = k/(k − 2) = 10/8 = 1,25, sempre maior que 1 e tendendo a 1 quando k cresce. O valor 1,11 resulta de usar k − 1 no denominador."
+        },
+        {
+          "topic": "Propriedades da t de Student",
+          "pattern": "incorreta",
+          "difficulty": 2,
+          "pageRef": 69,
+          "statement": "Sobre a distribuição t de Student, assinale a alternativa INCORRETA.",
+          "support": null,
+          "options": [
+            "É simétrica em torno de zero e tem formato de sino.",
+            "Comparada à normal padrão, é mais baixa no centro e tem caudas mais largas.",
+            "Aproxima-se da normal padrão à medida que os graus de liberdade aumentam.",
+            "Pode assumir qualquer valor real.",
+            "Sua variância é menor que 1 para qualquer número de graus de liberdade maior que 2."
+          ],
+          "answer": "E",
+          "explanation": "A variância k/(k − 2) é sempre maior que 1 e se aproxima de 1 quando k cresce, o que explica as caudas mais pesadas que as da normal. As demais afirmações estão corretas."
+        },
+        {
+          "topic": "Razão de normais e Cauchy",
+          "pattern": "caso",
+          "difficulty": 3,
+          "pageRef": 70,
+          "statement": "U é normal com média 5 e variância 9, e W é normal padrão, independentes. Considere R = (U − 5) / (3W). Assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "R segue t de Student com 1 grau de liberdade (Cauchy), simétrica em torno de zero e sem variância definida.",
+            "R segue distribuição normal padrão.",
+            "R segue t de Student com 2 graus de liberdade.",
+            "R segue qui-quadrado com 1 grau de liberdade.",
+            "R segue F de Snedecor com 1 e 1 graus de liberdade."
+          ],
+          "answer": "A",
+          "explanation": "(U − 5)/3 é normal padrão, e W também; logo R é a razão entre duas normais padrão independentes, que é uma t de Student com 1 grau de liberdade (Cauchy). Essa distribuição não tem média nem variância definidas."
+        },
+        {
+          "topic": "Tabela da t de Student",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 70,
+          "statement": "Para 5 graus de liberdade, a tabela da t de Student informa P(T < 1,48) = 0,90. Logo, P(−1,48 < T < 1,48) é igual a",
+          "support": null,
+          "options": [
+            "0,90.",
+            "0,20.",
+            "0,10.",
+            "0,95.",
+            "0,80."
+          ],
+          "answer": "E",
+          "explanation": "Por simetria, P(T > 1,48) = 0,10 e P(T < −1,48) = 0,10, de modo que P(−1,48 < T < 1,48) = 1 − 0,10 − 0,10 = 0,80. O valor 0,20 é P(|T| > 1,48)."
+        },
+        {
+          "topic": "Definição da F de Snedecor",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 73,
+          "statement": "U e W são variáveis independentes, com U ~ qui-quadrado com 7 graus de liberdade e W ~ qui-quadrado com 15 graus de liberdade. A variável F = (U/7) / (W/15) segue distribuição F de Snedecor com",
+          "support": null,
+          "options": [
+            "7 graus de liberdade no numerador e 15 no denominador.",
+            "15 graus de liberdade no numerador e 7 no denominador.",
+            "22 graus de liberdade no total.",
+            "8 graus de liberdade no numerador e 14 no denominador.",
+            "1 grau de liberdade no numerador e 22 no denominador."
+          ],
+          "answer": "A",
+          "explanation": "A F de Snedecor é a razão entre duas qui-quadrado independentes divididas pelos respectivos graus de liberdade: k1 = 7 no numerador e k2 = 15 no denominador. A ordem importa."
+        },
+        {
+          "topic": "Média da F de Snedecor",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 73,
+          "statement": "Uma variável tem distribuição F de Snedecor com 5 graus de liberdade no numerador e 12 no denominador. Sua média é",
+          "support": null,
+          "options": [
+            "1,0.",
+            "1,2.",
+            "1,7.",
+            "0,83.",
+            "2,4."
+          ],
+          "answer": "B",
+          "explanation": "A média da F depende apenas do denominador: μ = k2/(k2 − 2) = 12/10 = 1,2, sempre maior que 1. O valor 1,7 resulta de usar k2 − k1 = 7 no denominador (12/7)."
+        },
+        {
+          "topic": "Quadrado da t de Student",
+          "pattern": "relacao",
+          "difficulty": 2,
+          "pageRef": 74,
+          "statement": "T é uma variável com distribuição t de Student com 8 graus de liberdade. A variável T² segue distribuição",
+          "support": null,
+          "options": [
+            "F de Snedecor, com numerador de 8 graus de liberdade e denominador de 1.",
+            "qui-quadrado com 8 graus de liberdade.",
+            "F de Snedecor, com numerador de 1 grau de liberdade e denominador de 8.",
+            "t de Student com 16 graus de liberdade.",
+            "normal com média zero e variância 8."
+          ],
+          "answer": "C",
+          "explanation": "T² = Z² / (χ²₈/8), e Z² é qui-quadrado com 1 grau de liberdade; portanto T² ~ F(1, 8). A ordem dos graus de liberdade é numerador (1) e denominador (8)."
+        },
+        {
+          "topic": "Tabela da F de Snedecor",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 75,
+          "statement": "Uma tabela da F de Snedecor traz os valores f tais que P(F > f) = 0,05. Para 5 graus de liberdade no numerador e 10 no denominador, f = 3,33. Portanto, para essa distribuição, P(F ≤ 3,33) é igual a",
+          "support": null,
+          "options": [
+            "0,95.",
+            "0,05.",
+            "0,50.",
+            "0,90.",
+            "0,975."
+          ],
+          "answer": "A",
+          "explanation": "A tabela dá a cauda superior: P(F > 3,33) = 0,05, logo P(F ≤ 3,33) = 1 − 0,05 = 0,95. Para outra probabilidade na cauda, seria necessária outra tabela, pois a F depende de dois parâmetros."
+        }
+      ]
     }
   ]
 }
