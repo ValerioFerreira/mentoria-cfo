@@ -447,6 +447,32 @@ body::before {
     opacity: 0.35;
   }
 }
+@keyframes day-fill-sweep {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes day-pulse-active {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 20px -2px var(--gold);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.92);
+    box-shadow: 0 0 8px -3px var(--gold);
+  }
+}
 /* ───────── chama animada (marca) ───────── */
 .flame {
   transform-origin: 50% 92%;

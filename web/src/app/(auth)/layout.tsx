@@ -3,22 +3,72 @@ import { AppearanceMenu } from "@/components/appearance-menu";
 import { Brand } from "@/components/brand";
 import { getTheme } from "@/lib/theme";
 
-const OPTIONS = ["A", "B", "C", "D", "E"];
-const MARKED = "C";
+const WEEK_DAYS = [
+  { label: "D", title: "Domingo" },
+  { label: "S", title: "Segunda-feira" },
+  { label: "T", title: "Terça-feira" },
+  { label: "Q", title: "Quarta-feira" },
+  { label: "Q", title: "Quinta-feira" },
+  { label: "S", title: "Sexta-feira" },
+  { label: "S", title: "Sábado" },
+];
 
-/** Fileira de alternativas de um cartão-resposta: uma delas é preenchida assim que a página abre. */
-function AnswerBubbles() {
+/** Retorna o índice do dia de hoje no fuso de Recife (0 = Domingo ... 6 = Sábado). */
+function getTodayDayOfWeek(): number {
+  const short = new Intl.DateTimeFormat("en-US", { timeZone: "America/Recife", weekday: "short" }).format(new Date());
+  const idx = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(short);
+  return idx >= 0 ? idx : new Date().getDay();
+}
+
+/** Fileira dos dias da semana (D S T Q Q S S): o marcador percorre do Domingo até o dia atual e nele fica piscando. */
+function WeekdayBubbles() {
+  const currentDayIndex = getTodayDayOfWeek();
+
   return (
-    <div className="flex items-center gap-2.5 sm:gap-3.5" aria-hidden>
-      {OPTIONS.map((letter) => (
-        <span
-          key={letter}
-          className="relative grid h-10 w-10 place-items-center rounded-full border-2 border-on-ink-muted/45 font-display text-xl font-bold text-on-ink-muted sm:h-14 sm:w-14 sm:text-2xl"
-        >
-          {letter}
-          {letter === MARKED && <span className="pop absolute -inset-0.5 rounded-full bg-gold shadow-[0_0_22px_-2px_var(--gold)]" style={{ animationDelay: "900ms" }} />}
-        </span>
-      ))}
+    <div className="flex items-center gap-2 sm:gap-3" aria-label="Dias da semana">
+      {WEEK_DAYS.map((day, i) => {
+        const isPastOrToday = i <= currentDayIndex;
+        const isToday = i === currentDayIndex;
+        // Intervalo de 220ms entre cada dia percorrido; o dia atual para e entra em pulso contínuo
+        const sweepDelay = `${i * 220 + 200}ms`;
+
+        return (
+          <span
+            key={`${day.label}-${i}`}
+            title={day.title}
+            className={`relative grid h-10 w-10 place-items-center rounded-full border-2 font-display text-xl font-bold transition-colors sm:h-12 sm:w-12 sm:text-2xl ${
+              isPastOrToday ? "border-gold/60 text-on-ink" : "border-on-ink-muted/30 text-on-ink-muted/60"
+            }`}
+          >
+            {/* Letra do dia da semana (fica na frente da bolinha) */}
+            <span className="relative z-10">{day.label}</span>
+
+            {/* Bolinha dourada preenchida: dias anteriores animam e ficam fixos */}
+            {isPastOrToday && !isToday && (
+              <span
+                className="absolute inset-0 rounded-full bg-gold/30 shadow-[0_0_10px_-2px_var(--gold)]"
+                style={{
+                  animation: `day-fill-sweep 0.4s var(--ease-spring) both`,
+                  animationDelay: sweepDelay,
+                }}
+              />
+            )}
+
+            {/* Bolinha dourada do dia atual: percorre, preenche e fica pulsando/piscando sem parar */}
+            {isToday && (
+              <span
+                className="absolute -inset-0.5 rounded-full bg-gold"
+                style={{
+                  animation: `day-fill-sweep 0.4s var(--ease-spring) both, day-pulse-active 1.4s ease-in-out infinite ${
+                    i * 220 + 600
+                  }ms`,
+                  animationDelay: `${sweepDelay}, ${i * 220 + 600}ms`,
+                }}
+              />
+            )}
+          </span>
+        );
+      })}
     </div>
   );
 }
@@ -42,7 +92,7 @@ export default async function AuthLayout({ children }: LayoutProps<"/">) {
             <br />
             conta.
           </h2>
-          <AnswerBubbles />
+          <WeekdayBubbles />
           <p className="max-w-md text-sm leading-relaxed text-on-ink-muted sm:text-base lg:text-lg">
             Tenha um plano de estudos exclusivo, individualizado, com direcionamento detalhado, resumos, e questões com a pegada da banca. Você só precisa sentar e estudar, o resto deixa com a gente!
           </p>
