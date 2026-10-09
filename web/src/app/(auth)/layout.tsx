@@ -93,7 +93,7 @@ export default async function AuthLayout({ children }: LayoutProps<"/">) {
           <p className="mb-2 font-display text-xs sm:text-sm font-bold uppercase tracking-[0.25em] text-gold">
             Lançamento Oficial
           </p>
-          <VaporCountdown targetDate="2026-10-09T22:00:00-03:00" />
+          <VaporCountdown targetDate="2026-10-10T20:00:00-03:00" />
         </div>
 
         <div className="relative space-y-5 sm:space-y-7 lg:space-y-9">

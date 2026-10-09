@@ -45,7 +45,7 @@ const CONTEST_LABELS: Record<string, string> = {
 };
 
 const PLAN_LABELS: Record<string, string> = {
-  MONTHLY: "R$ 20/mês",
+  MONTHLY: "R$ 25/mês",
   UNTIL_EXAM: "R$ 75 até a prova",
 };
 

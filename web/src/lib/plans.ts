@@ -11,7 +11,7 @@ export interface PlanInfo {
 
 /** Planos oferecidos na lista de espera. O valor do Pix vem daqui. */
 export const WAITLIST_PLANS: Record<WaitlistPlan, PlanInfo> = {
-  MONTHLY: { key: "MONTHLY", name: "Mensalidade", amount: "20.00", price: "20,00" },
+  MONTHLY: { key: "MONTHLY", name: "Mensalidade", amount: "25.00", price: "25,00" },
   UNTIL_EXAM: { key: "UNTIL_EXAM", name: "Acesso até a prova", amount: "75.00", price: "75,00" },
 };
 
