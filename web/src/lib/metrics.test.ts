@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { projectExam, quizBySubject, secondsByDay, secondsByWeek, secondsBySubject, streakDays, totalSeconds, weakTopics, weekIndexOf, type QuizRow, type SubjectMeta, type TimeRow } from "./metrics";
+import { projectExam, quizBySubject, secondsByDay, secondsThisWeek, secondsByWeek, secondsBySubject, streakDays, totalSeconds, weakTopics, weekIndexOf, type QuizRow, type SubjectMeta, type TimeRow } from "./metrics";
 
 const d = (s: string) => new Date(s + "T12:00:00Z");
 const t = (iso: string, seconds: number, subjectId: string | null = "x"): TimeRow => ({ seconds, startedAt: d(iso), subjectId });
@@ -19,6 +19,15 @@ describe("tempo estudado", () => {
     expect(weekIndexOf(d("2026-10-11"), start, 20)).toBeNull();
     const rows = [t("2026-10-13", 100), t("2026-10-20", 200), t("2026-10-21", 300)];
     expect(secondsByWeek(rows, start, 3)).toEqual([100, 500, 0]);
+  });
+  it("semana civil (segunda a domingo, Recife): estudo às 22h de domingo ainda é da semana que termina", () => {
+    // domingo 11/10 22h em Recife = segunda 12/10 01h UTC; hoje: quarta 14/10
+    const sundayNight = { seconds: 3600, startedAt: new Date("2026-10-12T01:00:00Z"), subjectId: "x" };
+    const mondayNoon = t("2026-10-12", 600);
+    expect(secondsThisWeek([sundayNight, mondayNoon], d("2026-10-14"))).toBe(600);
+    expect(secondsThisWeek([sundayNight], d("2026-10-11"))).toBe(3600);
+    // lançamento sem plano e antes do início do plano também conta na semana corrente
+    expect(secondsThisWeek([t("2026-10-13", 120)], d("2026-10-14"))).toBe(120);
   });
   it("sequência de dias consecutivos, tolerando que hoje ainda esteja em aberto", () => {
     const rows = [t("2026-10-10", 60), t("2026-10-11", 60), t("2026-10-12", 60)];

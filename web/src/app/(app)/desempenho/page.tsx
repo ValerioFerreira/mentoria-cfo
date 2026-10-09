@@ -39,7 +39,7 @@ export default async function PerformancePage() {
   const nowWeek = pos?.week ?? 0;
   const weekTarget = (i: number) => (plan?.weeks[i]?.targetMinutes ?? 0) * 60;
   const maxBar = Math.max(1, ...perf.byWeekSeconds, ...(plan?.weeks.map((w) => w.targetMinutes * 60) ?? [0]));
-  const thisWeekSec = perf.byWeekSeconds[nowWeek - 1] ?? 0;
+  const thisWeekSec = perf.thisWeekSeconds;
 
   // aderência: das atividades que já deveriam ter sido feitas (até hoje), quantas foram concluídas
   const due = plan ? plan.weeks.flatMap((w) => effectiveDays(w.activities).map((a) => ({ ...a, date: dateOfPlanDay(startIso, w.index, a.day) }))).filter((a) => a.date <= today) : [];

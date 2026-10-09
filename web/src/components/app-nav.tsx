@@ -59,6 +59,12 @@ export function AppNav({ items, user, appearance }: { items: NavItem[]; user: Re
         </nav>
         <div className="p-4">
           <div className="rounded-xl bg-white/5 p-2.5">{user}</div>
+          <p className="mt-2.5 text-center text-[11px] leading-snug text-on-ink-muted">
+            Desenvolvido por{" "}
+            <a href="https://safercode.com.br" target="_blank" rel="noopener noreferrer" className="font-semibold text-on-ink underline-offset-2 transition hover:text-gold hover:underline">
+              SaferCode Softwares
+            </a>
+          </p>
         </div>
       </aside>
 

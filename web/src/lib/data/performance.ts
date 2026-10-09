@@ -1,7 +1,7 @@
 import "server-only";
 import { db } from "@/lib/db";
 import {
-  projectExam, quizBySubject, secondsByDay, secondsBySubject, secondsByWeek, streakDays, totalSeconds, weakTopics,
+  projectExam, quizBySubject, secondsByDay, secondsBySubject, secondsByWeek, secondsThisWeek, streakDays, totalSeconds, weakTopics,
   type QuizRow, type SubjectMeta, type TimeRow,
 } from "@/lib/metrics";
 
@@ -34,6 +34,7 @@ export async function getPerformance(userId: string, planStart: Date | null, tot
   return {
     totalSeconds: totalSeconds(timeRows),
     bySubjectSeconds: secondsBySubject(timeRows),
+    thisWeekSeconds: secondsThisWeek(timeRows, new Date()),
     byWeekSeconds: planStart ? secondsByWeek(timeRows, planStart, totalWeeks) : [],
     streak: streakDays(timeRows, new Date()),
     daily: secondsByDay(timeRows, new Date(), 7 * 15),
