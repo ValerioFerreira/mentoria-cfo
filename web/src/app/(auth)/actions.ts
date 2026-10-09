@@ -30,8 +30,11 @@ export async function signup(_: AuthState, formData: FormData): Promise<AuthStat
   }
 
   const passwordHash = await hashPassword(password);
+  // o nome de usuário escolhido na lista de espera passa para a conta (se ainda estiver livre)
+  const waiting = await db.waitlistEntry.findFirst({ where: { email }, orderBy: { createdAt: "asc" } });
+  const username = waiting && !(await db.user.findUnique({ where: { username: waiting.username }, select: { id: true } })) ? waiting.username : undefined;
   const user = await db.$transaction(async (tx) => {
-    const u = await tx.user.create({ data: { name, email, passwordHash, role: inv.makeAdmin ? "ADMIN" : "USER" } });
+    const u = await tx.user.create({ data: { name, email, username, passwordHash, role: inv.makeAdmin ? "ADMIN" : "USER" } });
     await tx.invite.update({ where: { id: inv.id }, data: { usedAt: new Date(), usedByUserId: u.id } });
     return u;
   });

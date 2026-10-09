@@ -28,6 +28,9 @@ export function LoginForm() {
       <p className="text-center text-sm text-muted">
         Tem um convite? <Link href="/cadastro" className="font-semibold text-primary hover:underline">Criar conta</Link>
       </p>
+      <p className="text-center text-sm text-muted">
+        Ainda não tem acesso? <Link href="/concursos" className="font-semibold text-primary hover:underline">Entrar na lista de espera</Link>
+      </p>
     </form>
   );
 }

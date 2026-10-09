@@ -109,6 +109,12 @@ enum QuizKind {
   SIMULADO_BLOCO // revisão final: bloco inteiro
 }
 
+enum Contest {
+  CBMPE_SOLDADO // CBMPE · Soldado (Praça)
+  CBMPE_OFICIAL // CBMPE · 2º Tenente (Oficial)
+  PCPE_AGENTE // PCPE · Agente de Polícia
+}
+
 enum ReportStatus {
   OPEN
   RESOLVED
@@ -303,6 +309,7 @@ model User {
   id           String   @id @default(cuid())
   email        String   @unique
   name         String?
+  username     String?  @unique // minúsculas; vem da lista de espera (contas antigas não têm)
   passwordHash String
   role         Role     @default(USER)
   createdAt    DateTime @default(now())
@@ -556,4 +563,20 @@ model QuestionReport {
   question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
 
   @@index([questionId, status])
+}
+
+// Lista de espera: o interessado informa nome, e-mail e usuário e paga por Pix (a mensagem do Pix leva o e-mail).
+// O administrador confere o pagamento e libera o acesso com um convite.
+model WaitlistEntry {
+  id        String   @id @default(cuid())
+  contest   Contest
+  name      String
+  email     String // minúsculas
+  username  String   @unique // minúsculas
+  createdAt DateTime @default(now())
+  paidAt    DateTime? // preenchido pelo administrador ao conferir o Pix
+  note      String?
+
+  @@unique([contest, email])
+  @@index([createdAt])
 }
