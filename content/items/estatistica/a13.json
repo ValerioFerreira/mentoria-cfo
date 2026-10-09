@@ -2,7 +2,6 @@
   "aula": "estatistica/a13",
   "batch": "w2-bizu-estatistica",
   "status": "DRAFT",
-  "stage": "bizu",
   "segments": [
     {
       "id": "estatistica/a13/s01",
@@ -82,7 +81,230 @@
             "pageRef": 11
           }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Regressão múltipla: conceito",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 3,
+          "statement": "A regressão linear múltipla difere da simples porque o modelo múltiplo",
+          "support": null,
+          "options": [
+            "relaciona duas variáveis dependentes a uma única variável independente.",
+            "dispensa o termo de erro aleatório.",
+            "relaciona uma variável dependente a duas ou mais variáveis independentes (explicativas).",
+            "exige que a variável dependente seja binária.",
+            "estima apenas o coeficiente angular, sem intercepto."
+          ],
+          "answer": "C",
+          "explanation": "Na regressão múltipla, Y = α + β1x1 + β2x2 + ... + βkxk + ε: uma variável dependente explicada por duas ou mais independentes, mantendo o intercepto e o erro aleatório."
+        },
+        {
+          "topic": "Coeficientes de regressão parcial",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 4,
+          "statement": "Em Ŷ = a + b1x1 + b2x2, o coeficiente b1 (coeficiente de regressão parcial) indica",
+          "support": null,
+          "options": [
+            "a variação estimada de Y quando x1 e x2 variam simultaneamente em uma unidade.",
+            "o valor de Y quando x1 e x2 são nulos.",
+            "a correlação entre x1 e x2.",
+            "a variação estimada de Y para cada unidade de x1, mantidos os demais fatores constantes (ceteris paribus).",
+            "o erro médio de previsão do modelo."
+          ],
+          "answer": "D",
+          "explanation": "Vale a ideia de ceteris paribus: ao manter x2 fixo, uma variação em x1 provoca variação b1·Δx1 em Y. O valor de Y quando as explicativas são nulas é o intercepto a."
+        },
+        {
+          "topic": "Número mínimo de observações",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 3,
+          "statement": "Para estimar um modelo de regressão múltipla, a amostra precisa ter ao menos duas observações a mais que o total de variáveis explicativas. Com 4 variáveis explicativas, o mínimo de observações é",
+          "support": null,
+          "options": [
+            "4.",
+            "5.",
+            "6.",
+            "8.",
+            "10."
+          ],
+          "answer": "C",
+          "explanation": "Com k = 4 variáveis explicativas, são necessárias ao menos k + 2 = 6 observações (no exemplo do material, 2 explicativas exigem 4 observações)."
+        },
+        {
+          "topic": "Pressupostos do modelo",
+          "pattern": "correta",
+          "difficulty": 1,
+          "pageRef": 4,
+          "statement": "Os pressupostos do modelo de regressão linear múltipla sobre os erros incluem",
+          "support": null,
+          "options": [
+            "média igual à variância e correlação perfeita entre os erros.",
+            "média zero, variância constante, ausência de correlação entre os erros e distribuição normal.",
+            "variância crescente com os valores das variáveis independentes.",
+            "distribuição uniforme e variâncias diferentes para cada observação.",
+            "média igual a 1 e distribuição normal com variâncias diferentes."
+          ],
+          "answer": "B",
+          "explanation": "Os pressupostos são E(εi) = 0, Var(εi) = σ² (homocedasticidade), Corr(εi, εj) = 0 e erros normais. Variância que muda com X é heterocedasticidade, e erros correlacionados violam a independência."
+        },
+        {
+          "topic": "Multicolinearidade",
+          "pattern": "caso",
+          "difficulty": 3,
+          "pageRef": 4,
+          "statement": "Em um modelo com as variáveis explicativas x1, x2 e x3, há multicolinearidade perfeita (relação linear exata entre as explicativas) quando",
+          "support": null,
+          "options": [
+            "x3 = 2·x1 + x2.",
+            "x3 = x1 · x2.",
+            "x3 não está correlacionada com x1 nem com x2.",
+            "a média de x3 é igual a zero.",
+            "a variância dos erros é constante."
+          ],
+          "answer": "A",
+          "explanation": "Multicolinearidade é a existência de relação linear entre as variáveis independentes, como x3 = 2x1 + x2 (ou x2 = 2x1). Um produto x1·x2 é relação não linear, e a falta de correlação é o oposto do problema."
+        },
+        {
+          "topic": "Estimador matricial de mínimos quadrados",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 6,
+          "statement": "Na notação matricial y = Xβ + E, o estimador de mínimos quadrados ordinários do vetor de parâmetros é",
+          "support": null,
+          "options": [
+            "β̂ = (XᵀX)⁻¹Xᵀy.",
+            "β̂ = (XXᵀ)⁻¹Xy.",
+            "β̂ = XᵀX(Xᵀy)⁻¹.",
+            "β̂ = (Xy)⁻¹XᵀX.",
+            "β̂ = Xᵀ(Xy)⁻¹."
+          ],
+          "answer": "A",
+          "explanation": "O estimador de MQO é β̂ = (XᵀX)⁻¹Xᵀy, em que Xᵀ é a transposta de X e (XᵀX)⁻¹ é a inversa de XᵀX. Os estimadores são lineares, não viciados e de variância mínima."
+        },
+        {
+          "topic": "Cálculo de β̂",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 12,
+          "statement": "Em um modelo com intercepto e uma variável explicativa, (XᵀX)⁻¹ = [[0,5; 0,1], [0,1; 0,2]] e Xᵀy = (20; 50)ᵀ. O vetor de estimativas β̂ = (XᵀX)⁻¹Xᵀy é",
+          "support": null,
+          "options": [
+            "(12; 15).",
+            "(10; 10).",
+            "(25; 52).",
+            "(70; 12).",
+            "(15; 12)."
+          ],
+          "answer": "E",
+          "explanation": "β̂ = (0,5 × 20 + 0,1 × 50; 0,1 × 20 + 0,2 × 50) = (10 + 5; 2 + 10) = (15; 12). Multiplica-se cada linha da primeira matriz pela coluna de Xᵀy; (12; 15) troca a ordem do resultado."
+        },
+        {
+          "topic": "Estimadores de MQO e de máxima verossimilhança",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 6,
+          "statement": "Sobre os estimadores de mínimos quadrados do modelo de regressão linear múltipla, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "São lineares, não viciados, têm variância mínima entre os lineares e coincidem com os de máxima verossimilhança sob normalidade dos erros.",
+            "São viciados, mas têm variância mínima entre todos os estimadores possíveis.",
+            "Só coincidem com os de máxima verossimilhança se a reta passar pela origem.",
+            "São não lineares nos valores observados de Y.",
+            "Só podem ser calculados quando as variáveis explicativas são perfeitamente correlacionadas."
+          ],
+          "answer": "A",
+          "explanation": "Assim como na regressão simples, os estimadores de MQO são lineares, não viciados e de variância mínima na classe dos lineares; sob normalidade dos erros, equivalem aos de máxima verossimilhança. Correlação perfeita entre explicativas (multicolinearidade) impede a estimativa."
+        },
+        {
+          "topic": "Elementos de XᵀX",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 8,
+          "statement": "Em um modelo com intercepto e duas variáveis explicativas, as quatro observações são x1 = (1, 2, 3, 4) e x2 = (2, 1, 0, 3). No produto XᵀX, o elemento correspondente a Σ x1·x2 é",
+          "support": null,
+          "options": [
+            "10.",
+            "6.",
+            "30.",
+            "16.",
+            "14."
+          ],
+          "answer": "D",
+          "explanation": "Σ x1·x2 = 1×2 + 2×1 + 3×0 + 4×3 = 16. Os valores 10 e 6 são Σ x1 e Σ x2, e 30 e 14 são Σ x1² e Σ x2²."
+        },
+        {
+          "topic": "Produto de matrizes no estimador",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 12,
+          "statement": "Em um modelo de regressão múltipla, (XᵀX)⁻¹ = [[1; 0,5; 0], [0,5; 1; 0,5], [0; 0,5; 1]] e Xᵀy = (20; 10; 4)ᵀ. A estimativa de mínimos quadrados β̂ é",
+          "support": null,
+          "options": [
+            "(25; 22; 9)ᵀ.",
+            "(20; 10; 4)ᵀ.",
+            "(25; 22; 4)ᵀ.",
+            "(30; 15; 5)ᵀ.",
+            "(15; 22; 9)ᵀ."
+          ],
+          "answer": "A",
+          "explanation": "Multiplicando cada linha por (20; 10; 4): 1×20 + 0,5×10 + 0 = 25; 0,5×20 + 1×10 + 0,5×4 = 22; 0 + 0,5×10 + 1×4 = 9. O vetor (20; 10; 4) é o próprio Xᵀy, sem multiplicar por (XᵀX)⁻¹."
+        },
+        {
+          "topic": "Resíduos e SQR",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 11,
+          "statement": "Em um modelo ajustado, os valores observados de Y foram (3; 5; 8; 10) e os estimados foram (4; 5; 7; 10). A soma dos quadrados dos resíduos é",
+          "support": null,
+          "options": [
+            "0.",
+            "1.",
+            "4.",
+            "2.",
+            "6."
+          ],
+          "answer": "D",
+          "explanation": "Os resíduos e = y − ŷ são (−1; 0; 1; 0), e SQR = 1 + 0 + 1 + 0 = 2. O valor 0 é a soma dos resíduos (não dos quadrados)."
+        },
+        {
+          "topic": "Coluna de 1s na matriz X",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 5,
+          "statement": "Na notação matricial y = Xβ + E da regressão múltipla, a primeira coluna da matriz X é formada somente por valores 1 e corresponde",
+          "support": null,
+          "options": [
+            "à variável dependente Y.",
+            "ao termo constante (intercepto) do modelo.",
+            "à média das variáveis explicativas.",
+            "ao erro aleatório de cada observação.",
+            "ao coeficiente de determinação."
+          ],
+          "answer": "B",
+          "explanation": "A coluna de 1s multiplica o intercepto α em cada observação, de modo que a primeira linha do produto Xβ é α + β1x1 + ... + βkxk. As demais colunas contêm os valores das explicativas."
+        },
+        {
+          "topic": "Previsão pelo modelo estimado",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 3,
+          "statement": "Um modelo estimado é Ŷ = 1 + 2x1 − x2. A previsão de Y para x1 = 3 e x2 = 2 é",
+          "support": null,
+          "options": [
+            "6.",
+            "5.",
+            "7.",
+            "−1.",
+            "9."
+          ],
+          "answer": "B",
+          "explanation": "Ŷ = 1 + 2 × 3 − 2 = 5. O valor 7 omite o termo de x2 (1 + 6), e 9 soma o termo de x2 em vez de subtraí-lo (1 + 6 + 2)."
+        }
+      ]
     },
     {
       "id": "estatistica/a13/s02",
@@ -162,7 +384,247 @@
             "pageRef": 21
           }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Efeito parcial com variável fixa",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 13,
+          "statement": "Um modelo estimado é Ŷ = 10 + 3x1 − 2x2. Se x1 aumentar 4 unidades e x2 permanecer fixo, a variação estimada de Y é",
+          "support": null,
+          "options": [
+            "−8.",
+            "4.",
+            "10.",
+            "2.",
+            "12."
+          ],
+          "answer": "E",
+          "explanation": "Com x2 fixo, ΔŶ = b1·Δx1 = 3 × 4 = 12. O valor −8 seria b2·Δx1, e 10 é o intercepto."
+        },
+        {
+          "topic": "Efeitos parciais conjuntos",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 13,
+          "statement": "Um modelo estimado é Ŷ = 10 + 3x1 − 2x2. Se x1 aumentar 4 unidades e x2 aumentar 5 unidades, a variação estimada de Y é",
+          "support": null,
+          "options": [
+            "12.",
+            "2.",
+            "−10.",
+            "22.",
+            "−8."
+          ],
+          "answer": "B",
+          "explanation": "ΔŶ = b1·Δx1 + b2·Δx2 = 3 × 4 + (−2) × 5 = 12 − 10 = 2. O valor 12 considera apenas o efeito de x1."
+        },
+        {
+          "topic": "Hipóteses da ANOVA múltipla",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 13,
+          "statement": "Na análise de variância da regressão múltipla com k variáveis explicativas, a hipótese nula testada é",
+          "support": null,
+          "options": [
+            "H0: α = 0, contra H1: α ≠ 0.",
+            "H0: todos os βi são diferentes de zero.",
+            "H0: R² = 1.",
+            "H0: pelo menos um βi é igual a zero.",
+            "H0: β1 = β2 = ... = βk = 0, contra a alternativa de que pelo menos um βi seja diferente de zero."
+          ],
+          "answer": "E",
+          "explanation": "A ANOVA testa se alguma variável explicativa se relaciona com Y: H0 afirma que todos os coeficientes angulares são nulos. Aceitá-la significa que não há relação linear entre Y e nenhuma das explicativas."
+        },
+        {
+          "topic": "Graus de liberdade da regressão múltipla",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 15,
+          "statement": "Uma regressão linear múltipla com intercepto e 4 variáveis explicativas é ajustada com n = 30 observações. Os graus de liberdade do modelo, dos resíduos e do total são, respectivamente,",
+          "support": null,
+          "options": [
+            "5, 25 e 30.",
+            "4, 26 e 30.",
+            "4, 25 e 29.",
+            "5, 24 e 29.",
+            "4, 24 e 28."
+          ],
+          "answer": "C",
+          "explanation": "O número de parâmetros é p = 4 + 1 = 5. Então gl do modelo = p − 1 = 4, gl dos resíduos = n − p = 25 e gl total = n − 1 = 29 (29 = 4 + 25)."
+        },
+        {
+          "topic": "Coeficiente de determinação",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 14,
+          "statement": "Em uma regressão múltipla, SQM = 420 e SQR = 180. O coeficiente de determinação R² é",
+          "support": null,
+          "options": [
+            "0,30.",
+            "2,33.",
+            "0,43.",
+            "0,70.",
+            "0,58."
+          ],
+          "answer": "D",
+          "explanation": "SQT = SQM + SQR = 600, e R² = SQM/SQT = 420/600 = 0,70. O valor 0,30 é SQR/SQT, e 2,33 é SQM/SQR."
+        },
+        {
+          "topic": "R² ajustado na regressão múltipla",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 16,
+          "statement": "Em uma regressão múltipla com intercepto e 3 variáveis explicativas, ajustada com n = 12 observações, R² = 0,90. O coeficiente de determinação ajustado é, aproximadamente,",
+          "support": null,
+          "options": [
+            "0,90.",
+            "0,76.",
+            "0,14.",
+            "0,86.",
+            "0,81."
+          ],
+          "answer": "D",
+          "explanation": "Com p = 4 parâmetros, R̄² = 1 − (1 − R²)(n − 1)/(n − p) = 1 − 0,10 × 11/8 = 1 − 0,1375 ≈ 0,86. O ajuste penaliza o número de variáveis; o valor 0,90 é o R² simples."
+        },
+        {
+          "topic": "Estatística F na regressão múltipla",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 17,
+          "statement": "Em uma regressão múltipla com intercepto e 3 variáveis explicativas, ajustada com n = 20 observações, SQM = 90 e SQR = 48. A estatística F* = QMM/QMR é",
+          "support": null,
+          "options": [
+            "11,9.",
+            "10,0.",
+            "7,5.",
+            "30,0.",
+            "1,9."
+          ],
+          "answer": "B",
+          "explanation": "p = 4. QMM = SQM/(p − 1) = 90/3 = 30 e QMR = SQR/(n − p) = 48/16 = 3, logo F* = 30/3 = 10,0. O valor 11,9 usa n − 1 nos graus de liberdade do resíduo, e 7,5 usa p no numerador."
+        },
+        {
+          "topic": "Distribuição da estatística F*",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 18,
+          "statement": "Em uma regressão linear múltipla com intercepto e 3 variáveis explicativas, ajustada com n = 25 observações, a estatística F* segue, sob H0, distribuição F de Snedecor com",
+          "support": null,
+          "options": [
+            "4 graus de liberdade no numerador e 21 no denominador.",
+            "3 graus de liberdade no numerador e 24 no denominador.",
+            "3 graus de liberdade no numerador e 21 no denominador.",
+            "4 graus de liberdade no numerador e 20 no denominador.",
+            "21 graus de liberdade no numerador e 3 no denominador."
+          ],
+          "answer": "C",
+          "explanation": "Com p = 4 parâmetros, os graus de liberdade são p − 1 = 3 no numerador (modelo) e n − p = 21 no denominador (resíduos). A ordem é numerador (modelo) e denominador (resíduos)."
+        },
+        {
+          "topic": "Decisão pelo teste F",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 18,
+          "statement": "Em uma regressão com n = 12 e 2 variáveis explicativas, obteve-se F* = 9,5. O valor crítico da F com 2 e 9 graus de liberdade, a 5%, é 4,26. A conclusão é",
+          "support": null,
+          "options": [
+            "não rejeitar H0, pois F* é maior que o valor crítico.",
+            "rejeitar H0, concluindo que todos os coeficientes angulares são nulos.",
+            "não rejeitar H0, concluindo que existe relação linear significativa.",
+            "o teste é inconclusivo, pois p − 1 é igual a 2.",
+            "rejeitar H0, pois há evidência de que pelo menos um coeficiente angular é diferente de zero."
+          ],
+          "answer": "E",
+          "explanation": "Como F* = 9,5 > 4,26, rejeita-se H0: β1 = β2 = 0 e conclui-se que ao menos uma explicativa se relaciona linearmente com Y. A rejeição indica que nem todos os coeficientes são nulos."
+        },
+        {
+          "topic": "Variância dos erros: estimador não viciado",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 19,
+          "statement": "Em uma regressão com intercepto, 3 variáveis explicativas e n = 20 observações, SQR = 48. O estimador não viciado da variância dos erros (σ̂²) e o erro quadrático médio (EQM = SQR/n) valem, respectivamente,",
+          "support": null,
+          "options": [
+            "2,4 e 3,0.",
+            "3,0 e 2,4.",
+            "2,5 e 2,4.",
+            "3,0 e 3,0.",
+            "12,0 e 2,4."
+          ],
+          "answer": "B",
+          "explanation": "σ̂² = SQR/(n − p) = 48/16 = 3,0 (p = 4), enquanto o EQM = 48/20 = 2,4, que subestima a variância dos erros. O valor 2,5 resulta de dividir por n − 1 (48/19 ≈ 2,5)."
+        },
+        {
+          "topic": "Estimador de máxima verossimilhança de σ²",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 19,
+          "statement": "Sobre os estimadores da variância dos erros σ² na regressão linear múltipla, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "O estimador de máxima verossimilhança é SQR/n, viciado em amostras finitas e não viciado apenas assintoticamente.",
+            "O estimador de máxima verossimilhança é SQR/(n − p) e é não viciado para qualquer n.",
+            "O estimador SQR/(n − p) subestima a variância verdadeira dos erros.",
+            "O estimador SQR/n é não viciado para qualquer tamanho de amostra.",
+            "Nenhum estimador de σ² pode ser obtido a partir dos resíduos."
+          ],
+          "answer": "A",
+          "explanation": "O EMV de σ² é SQR/n, que tende a subestimar σ² e só é não viciado quando n → ∞. Dividindo SQR por n − p corrige o viés e fornece um estimador não viciado."
+        },
+        {
+          "topic": "Tabela ANOVA incompleta",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 19,
+          "statement": "Em uma tabela ANOVA de regressão múltipla com n = 16 observações e 2 variáveis explicativas, sabe-se que SQM = 90 e que o quadrado médio dos resíduos é QMR = 4. O valor da estatística F* é",
+          "support": null,
+          "options": [
+            "22,50.",
+            "45,00.",
+            "11,25.",
+            "1,73.",
+            "0,63."
+          ],
+          "answer": "C",
+          "explanation": "p = 3. QMM = SQM/(p − 1) = 90/2 = 45, e F* = QMM/QMR = 45/4 = 11,25. O valor 22,5 é SQM/QMR, sem dividir pelos graus de liberdade do modelo."
+        },
+        {
+          "topic": "Graus de liberdade dos resíduos",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 20,
+          "statement": "Em um modelo de regressão múltipla com intercepto e 3 variáveis explicativas, ajustado com n = 30 observações, o número de graus de liberdade dos resíduos é",
+          "support": null,
+          "options": [
+            "27.",
+            "28.",
+            "29.",
+            "26.",
+            "30."
+          ],
+          "answer": "D",
+          "explanation": "gl dos resíduos = n − p = n − k − 1 = 30 − 3 − 1 = 26, pois p = 3 + 1 = 4 parâmetros (incluindo o intercepto). O valor 29 é o gl total (n − 1)."
+        },
+        {
+          "topic": "R² e acréscimo de variáveis",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 16,
+          "statement": "Sobre o coeficiente de determinação e o acréscimo de variáveis explicativas na regressão múltipla, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "O R² diminui sempre que uma variável é acrescentada ao modelo.",
+            "O R² ajustado nunca difere do R², qualquer que seja o número de variáveis.",
+            "O R² normalmente cresce com novas variáveis; o R² ajustado considera o número de variáveis, pois a inclusão excessiva reduz graus de liberdade.",
+            "O R² ajustado só pode ser calculado na regressão linear simples.",
+            "Acrescentar variáveis aumenta os graus de liberdade dos resíduos."
+          ],
+          "answer": "C",
+          "explanation": "Novas variáveis tendem a elevar o R², mas consomem graus de liberdade; o R² ajustado corrige essa distorção ao usar SQR/(n − p) e SQT/(n − 1)."
+        }
+      ]
     },
     {
       "id": "estatistica/a13/s03",
@@ -227,7 +689,128 @@
             "pageRef": 33
           }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Problema da especificação",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 30,
+          "statement": "O problema da especificação na regressão consiste em",
+          "support": null,
+          "options": [
+            "estimar a variância dos erros do modelo.",
+            "determinar o nível de significância do teste F.",
+            "definir o modelo matemático (forma funcional e variáveis) que melhor se ajusta à relação estudada.",
+            "calcular a inversa da matriz XᵀX.",
+            "escolher o tamanho da amostra."
+          ],
+          "answer": "C",
+          "explanation": "Especificar o modelo é escolher o tipo de função matemática e as variáveis independentes a incluir. A escolha costuma basear-se em conhecimento prévio ou na análise gráfica dos dados."
+        },
+        {
+          "topic": "Omissão de variável relevante",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 32,
+          "statement": "O modelo correto tem as variáveis x1, x2 e x3, mas o analista estima apenas com x1 e x2, omitindo x3, que afeta Y. Em consequência, as estimativas de b1 e b2",
+          "support": null,
+          "options": [
+            "são tendenciosas.",
+            "permanecem não tendenciosas.",
+            "passam a ter esperança nula.",
+            "ficam sempre iguais às corretas.",
+            "têm variância mínima, mas média zero."
+          ],
+          "answer": "A",
+          "explanation": "Ao omitir uma variável importante, as esperanças dos estimadores incorporam um viés (E(b1) = β1 + θ1β3), e as estimativas ficam tendenciosas. O modelo equivocado pode distorcer a análise."
+        },
+        {
+          "topic": "Inclusão de variável desnecessária",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 32,
+          "statement": "O modelo correto é Yi = β1x1i + β2x2i + εi, mas o analista estima Ŷi = b1x1i + b2x2i + b3x3i, incluindo x3, que não afeta Y. Nessa situação, as esperanças de b1 e de b3 são, respectivamente,",
+          "support": null,
+          "options": [
+            "β1 + β3 e β3.",
+            "0 e β3.",
+            "β1 e β3.",
+            "0 e 0.",
+            "β1 e 0."
+          ],
+          "answer": "E",
+          "explanation": "Incluir uma variável desnecessária não gera viés: E(b1) = β1, E(b2) = β2 e E(b3) = 0. O custo é um possível aumento na variância dos estimadores."
+        },
+        {
+          "topic": "Omissão do termo quadrático",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 33,
+          "statement": "Um pesquisador modela o tempo de resposta de uma guarnição em função da distância e do número de chamadas simultâneas, mas omite o termo (distância)², que é relacionado às duas variáveis incluídas. O que ocorre e como corrigir?",
+          "support": null,
+          "options": [
+            "Os coeficientes continuam não tendenciosos, e o termo quadrático deve ser removido do erro.",
+            "Os coeficientes ficam nulos, e a correção é aumentar o tamanho da amostra.",
+            "Apenas o intercepto fica tendencioso, e a correção é eliminar a variável distância.",
+            "Os coeficientes estimados ficam tendenciosos, e o problema se corrige incluindo o termo quadrático.",
+            "Nada ocorre, pois o termo omitido passa a fazer parte do erro e não afeta as estimativas."
+          ],
+          "answer": "D",
+          "explanation": "Se o termo omitido se relaciona com as variáveis incluídas, ele passa a compor o erro e correlaciona-se com as explicativas, tornando as estimativas tendenciosas. A correção é incluir o termo no modelo."
+        },
+        {
+          "topic": "Formas funcionais",
+          "pattern": "relacao",
+          "difficulty": 1,
+          "pageRef": 30,
+          "statement": "No problema da especificação, os modelos Y = αXᵝ, Y = αβˣ e Y = α + β·log(X) são denominados, respectivamente,",
+          "support": null,
+          "options": [
+            "potência, exponencial e logarítmico.",
+            "exponencial, potência e logarítmico.",
+            "logarítmico, potência e exponencial.",
+            "linear, exponencial e polinomial.",
+            "polinomial, logarítmico e potência."
+          ],
+          "answer": "A",
+          "explanation": "Y = αXᵝ é a função potência (X na base); Y = αβˣ é exponencial (X no expoente); Y = α + β·log(X) é logarítmica. A escolha do modelo depende de conhecimento a priori ou da análise do gráfico."
+        },
+        {
+          "topic": "Escolha da forma funcional",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 31,
+          "statement": "Sobre a escolha do modelo matemático em uma regressão, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "É sempre linear, pois nenhuma outra função pode ser usada em regressão.",
+            "Normalmente é determinada por conhecimento prévio ou pela análise gráfica dos dados, e a forma funcional errada também gera problema de especificação.",
+            "É feita ao acaso, pois a forma funcional não afeta os resultados.",
+            "Depende exclusivamente do tamanho da amostra.",
+            "Só é relevante quando há uma única variável independente."
+          ],
+          "answer": "B",
+          "explanation": "Além de funções lineares, podem ser usadas potência, exponencial, logarítmica, polinomial etc. Escolher mal a forma funcional (por exemplo, omitir um logaritmo) é outra fonte do problema de especificação."
+        },
+        {
+          "topic": "Omitir × incluir variáveis",
+          "pattern": "relacao",
+          "difficulty": 3,
+          "pageRef": 32,
+          "statement": "Em dois cenários, (I) omitiu-se uma variável explicativa relevante e (II) incluiu-se uma variável explicativa irrelevante. Quanto às estimativas dos demais coeficientes, em (I) e (II) ocorre, respectivamente,",
+          "support": null,
+          "options": [
+            "ausência de viés; viés.",
+            "viés; viés.",
+            "ausência de viés, com redução da variância; viés.",
+            "ausência de viés em ambos, sem alteração da variância.",
+            "viés; ausência de viés, com possível aumento da variância."
+          ],
+          "answer": "E",
+          "explanation": "Omitir variável importante produz estimativas tendenciosas; incluir variável desnecessária mantém as estimativas não tendenciosas, mas geralmente aumenta a variância dos estimadores. Por isso é preferível incluir uma variável supérflua a omitir uma significativa, embora também seja prejudicial."
+        }
+      ]
     }
   ]
 }
