@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, CircleAlert, Copy, Loader2, Send } from "lucide-react";
+import { Check, CircleAlert, Copy, Loader2, Send, ShieldCheck } from "lucide-react";
 import Image from "next/image";
 import { useActionState, useRef, useState } from "react";
 import { Star } from "@/components/brand";
@@ -45,6 +45,7 @@ export function WaitlistForm({ slug }: { slug: string }) {
     <form action={action} className="space-y-5">
       {state?.message && <Alert tone="danger">{state.message}</Alert>}
       <PlanChoice error={state?.errors?.plan} />
+      <RefundNotice />
       <Field label="Nome completo" error={state?.errors?.name}>
         <input name="name" type="text" autoComplete="name" required minLength={5} maxLength={120} className={inputCls} />
       </Field>
@@ -100,19 +101,20 @@ function PlanChoice({ error }: { error?: string[] }) {
           </span>
           <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-gold px-2.5 py-1 text-xs font-bold text-ink">
             <Star className="h-3 w-3" />
-            Melhor oferta
+            50% OFF · lançamento
           </span>
           <span className="space-y-1">
             <span className="block font-display text-2xl font-bold uppercase leading-none">{until.name}</span>
+            <span className="block text-sm font-semibold text-on-ink-muted line-through">De R$ 100,00</span>
             <span className="flex items-baseline gap-1.5">
               <span className="font-display text-xl font-semibold text-gold">R$</span>
               <span className="tabular font-display text-6xl font-bold leading-none">{until.price.split(",")[0]}</span>
-              <span className="text-sm font-semibold text-on-ink-muted">pagamento único</span>
+              <span className="text-sm font-semibold text-on-ink-muted">pagamento único · lançamento</span>
             </span>
           </span>
           <span className="space-y-1 text-sm text-on-ink-muted">
             <span className="block">Acesso liberado até o dia da prova, sem nenhuma mensalidade.</span>
-            <span className="block font-semibold text-gold">Mais econômico a partir do 4º mês.</span>
+            <span className="block font-semibold text-gold">Mais econômico a partir do 2º mês.</span>
           </span>
         </label>
 
@@ -129,7 +131,7 @@ function PlanChoice({ error }: { error?: string[] }) {
             <span className="flex items-baseline gap-1.5">
               <span className="font-display text-xl font-semibold text-muted">R$</span>
               <span className="tabular font-display text-5xl font-bold leading-none">{monthly.price.split(",")[0]}</span>
-              <span className="text-sm font-semibold text-muted">por mês</span>
+            <span className="text-sm font-semibold text-muted">por mês</span>
             </span>
           </span>
           <span className="text-sm text-muted">Pague mês a mês.</span>
@@ -141,6 +143,18 @@ function PlanChoice({ error }: { error?: string[] }) {
         </p>
       ))}
     </fieldset>
+  );
+}
+
+function RefundNotice() {
+  return (
+    <aside className="flex gap-3 rounded-2xl border border-ok/30 bg-ok/5 p-4" aria-label="Garantia de 7 dias">
+      <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-ok" aria-hidden />
+      <div className="space-y-1">
+        <h2 className="font-display text-lg font-bold">E se você não gostar da plataforma?</h2>
+        <p className="text-sm leading-relaxed text-muted">Você tem até 7 dias para testar a plataforma, e se desistir do acesso, devolvemos seu dinheiro!</p>
+      </div>
+    </aside>
   );
 }
 
@@ -178,6 +192,8 @@ function Payment({ p }: { p: NonNullable<NonNullable<Awaited<ReturnType<typeof j
           Efetue o pagamento via PIX pelo QR Code ou pelo código copia e cola abaixo.
         </p>
       </div>
+
+      <RefundNotice />
 
       <div className="rounded-xl border border-primary/30 bg-primary-soft p-4 space-y-2 text-xs leading-relaxed text-text">
         <p className="font-bold text-sm text-primary flex items-center gap-1.5">

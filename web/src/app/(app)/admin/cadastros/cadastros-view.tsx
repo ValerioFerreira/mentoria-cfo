@@ -45,8 +45,8 @@ const CONTEST_LABELS: Record<string, string> = {
 };
 
 const PLAN_LABELS: Record<string, string> = {
-  MONTHLY: "R$ 25/mês",
-  UNTIL_EXAM: "R$ 75 até a prova",
+  MONTHLY: "R$ 30/mês",
+  UNTIL_EXAM: "R$ 50 até a prova (50% de lançamento)",
 };
 
 export function CadastrosView({ entries }: { entries: WaitlistRow[] }) {
