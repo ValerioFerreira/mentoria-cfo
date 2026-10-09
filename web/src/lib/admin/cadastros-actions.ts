@@ -19,7 +19,7 @@ export async function approveRegistration(
     return { success: false, message: "Registro da lista de espera não encontrado." };
   }
 
-  const tempPassword = generateTemporaryPassword("CFO");
+  const tempPassword = generateTemporaryPassword("MTR");
   const passwordHash = await hashPassword(tempPassword);
 
   const accessExpiresAt =

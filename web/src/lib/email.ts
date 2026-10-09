@@ -95,7 +95,7 @@ export async function sendEmail({ to, subject, html, text }: SendEmailOptions): 
   };
 }
 
-export function generateTemporaryPassword(prefix = "CFO"): string {
+export function generateTemporaryPassword(prefix = "MTR"): string {
   const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
   let random = "";
   for (let i = 0; i < 6; i++) {
@@ -118,11 +118,11 @@ export async function sendApprovalEmail(params: {
 
   const greeting = params.name ? `Olá, ${params.name}!` : "Olá!";
 
-  const subject = "Seu acesso ao MentorIA CBMPE foi liberado!";
+  const subject = "Seu acesso ao MentorIA foi liberado!";
 
   const text = `${greeting}
 
-Seu cadastro na plataforma MentorIA — Missão Oficial CBMPE foi aprovado com sucesso!
+Seu cadastro na plataforma MentorIA — Missão Oficial foi aprovado com sucesso!
 
 Validade do Acesso: ${durationText}
 Login / E-mail: ${params.to}
@@ -133,7 +133,7 @@ Acesse pelo link: ${params.loginUrl}
 Importante: Ao realizar o primeiro login com esta senha temporária, você será orientado a criar uma nova senha pessoal definitiva.
 
 Bons estudos e conte conosco rumo à aprovação!
-Equipe MentorIA CBMPE`;
+Equipe MentorIA`;
 
   const html = `<!DOCTYPE html>
 <html lang="pt-BR">

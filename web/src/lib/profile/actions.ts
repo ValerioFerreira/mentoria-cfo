@@ -65,7 +65,7 @@ export async function sendSelfPasswordReset(): Promise<{ success: boolean; messa
     },
   });
 
-  const loginUrl = `${(process.env.SITE_URL || "https://mentoria-cfo.vercel.app").replace(/\/$/, "")}/login`;
+  const loginUrl = `${(process.env.SITE_URL || "https://www.missaomentoria.com.br").replace(/\/$/, "")}/login`;
 
   await sendPasswordResetEmail({
     to: user.email,

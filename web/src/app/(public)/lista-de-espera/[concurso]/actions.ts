@@ -44,7 +44,8 @@ const JoinSchema = z.object({
 /** Código Pix e QR Code do plano escolhido (a mensagem do Pix é o e-mail). */
 async function paymentFor(cfg: PixConfig, planKey: WaitlistPlan, email: string, alreadyJoined: boolean, username?: string) {
   const plan = WAITLIST_PLANS[planKey];
-  const cleanId = (username ? `CFO${username}` : `CFO${email.split("@")[0]}`).replace(/[^a-zA-Z0-9]/g, "").slice(0, 25);
+  // Identificador do Pix (txId): alfanumérico com o e-mail do aluno (sem CFO)
+  const cleanId = email.replace(/[^a-zA-Z0-9]/g, "").slice(0, 25) || "ALUNO";
   const payload = buildPixPayload({ ...cfg, amount: plan.amount }, email, cleanId);
   return { payload, qr: await pixQrDataUri(payload), email, plan: plan.name, amount: plan.price, alreadyJoined, txId: cleanId };
 }

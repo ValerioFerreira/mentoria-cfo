@@ -1,4 +1,4 @@
-import { CalendarRange, ClipboardCheck, PartyPopper, Rocket, Target, TriangleAlert } from "lucide-react";
+import { PartyPopper, Rocket, TriangleAlert } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import type { CSSProperties } from "react";
@@ -24,31 +24,13 @@ export default async function MissionPage() {
           <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-primary/30 blur-3xl" aria-hidden />
           <div className="tape tape-rule absolute inset-x-0 top-0 !rounded-none" aria-hidden />
           <p className="eyebrow !text-on-ink-muted">Bem-vindo, {first}</p>
-          <h1 className="mt-2 font-display text-5xl font-bold uppercase leading-[0.95] sm:text-7xl">Monte a sua<br />missão oficial</h1>
-          <p className="mt-4 max-w-lg text-on-ink-muted">Escolha as disciplinas, conte o que já estudou e o tempo que tem por semana. O MentorIA monta cada dia até a prova, com o que estudar em cada atividade.</p>
+          <h1 className="mt-2 font-display text-5xl font-bold uppercase leading-[0.95] sm:text-7xl">Pronto para a missão?</h1>
+          <p className="mt-4 max-w-lg text-on-ink-muted">Responda o questionário para que o MentorIA crie o seu planejamento personalizado.</p>
           <LinkButton href="/onboarding" size="lg" className="mt-7">
             <Rocket className="h-5 w-5" aria-hidden />
             Montar meu plano
           </LinkButton>
         </section>
-        <ul className="grid gap-3 sm:grid-cols-3">
-          {[
-            ["Anamnese rápida", "O que você já estudou encurta o plano.", Target],
-            ["Missão de cada dia", "Poucas atividades, na ordem que mais fixa.", CalendarRange],
-            ["Cadernos de 25 questões", "5 alternativas, 60 minutos, como na prova.", ClipboardCheck],
-          ].map(([t, d, Icon], i) => {
-            const I = Icon as typeof Target;
-            return (
-              <li key={String(t)} className="rise" style={{ "--i": i + 2 } as CSSProperties}>
-                <Card className="h-full space-y-2 p-4">
-                  <I className="h-5 w-5 text-primary" aria-hidden />
-                  <p className="font-display text-lg font-bold uppercase tracking-wide">{String(t)}</p>
-                  <p className="text-sm text-muted">{String(d)}</p>
-                </Card>
-              </li>
-            );
-          })}
-        </ul>
       </div>
     );
   }

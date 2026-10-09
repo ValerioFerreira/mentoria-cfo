@@ -127,7 +127,7 @@ export default async function PerformancePage() {
           id="edital"
           info="O edital elimina quem ficar abaixo de 30% dos pontos em qualquer bloco, quem zerar alguma disciplina ou quem ficar abaixo de 30% do total. Aqui estimamos seus acertos se você fizesse a prova hoje: seu percentual de acerto em cada disciplina (mínimo de 10 questões) vezes as questões que ela tem na prova. A linha marca o mínimo exigido (30%); quanto mais cadernos você fizer, mais precisa fica a estimativa."
         >
-          Você passaria hoje? Critérios do edital
+          E se a prova fosse hoje?
         </SectionTitle>
         <div className="grid gap-3 md:grid-cols-3">
           {perf.projection.map((b, i) => {

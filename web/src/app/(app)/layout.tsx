@@ -45,24 +45,35 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
   const name = user.name ?? user.email;
 
   const who = (
-    <div className="space-y-2">
+    <div className="flex items-center gap-2">
       <Link
         href="/perfil"
-        className="flex items-center gap-2.5 rounded-lg p-1 transition hover:bg-white/5"
+        className="group flex min-w-0 flex-1 items-center gap-2.5 rounded-lg p-1.5 transition hover:bg-white/10"
         title="Ver meu perfil e segurança"
       >
-        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary to-gold font-display text-lg font-bold uppercase text-on-primary" aria-hidden>
+        <span
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary to-gold font-display text-base font-bold uppercase text-on-primary shadow-sm"
+          aria-hidden
+        >
           {name.trim().charAt(0)}
         </span>
         <span className="min-w-0 flex-1 text-left">
-          <span className="block truncate text-[13px] font-semibold leading-tight text-on-ink">{user.name ?? "Aluno"}</span>
-          <span className="block text-[11px] text-on-ink-muted hover:text-gold transition">Meu perfil →</span>
+          <span className="block truncate text-xs font-semibold leading-tight text-on-ink group-hover:text-gold transition">
+            {user.name ?? "Aluno"}
+          </span>
+          <span className="block truncate text-[11px] text-on-ink-muted">
+            {user.email}
+          </span>
         </span>
       </Link>
-      <form action={logout} className="flex justify-end px-1">
-        <button type="submit" className="flex cursor-pointer items-center gap-1 text-xs text-on-ink-muted transition hover:text-on-ink">
-          <LogOut className="h-3 w-3" aria-hidden />
-          Sair
+      <form action={logout} className="shrink-0">
+        <button
+          type="submit"
+          title="Sair da conta"
+          className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg text-on-ink-muted transition hover:bg-white/10 hover:text-red-400"
+        >
+          <LogOut className="h-4 w-4" aria-hidden />
+          <span className="sr-only">Sair</span>
         </button>
       </form>
     </div>

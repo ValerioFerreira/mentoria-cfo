@@ -91,9 +91,9 @@ export default async function AuthLayout({ children }: LayoutProps<"/">) {
         {/* Cronômetro moderno sem fundo, centralizado no espaço entre a marca e CADA DIA CONTA */}
         <div className="relative my-auto flex flex-col items-center justify-center py-4 text-center">
           <p className="mb-2 font-display text-xs sm:text-sm font-bold uppercase tracking-[0.25em] text-gold">
-            Lançamento Oficial · Encerra em
+            Lançamento Oficial
           </p>
-          <VaporCountdown targetDate="2026-10-09T18:00:00-03:00" />
+          <VaporCountdown targetDate="2026-10-09T22:00:00-03:00" />
         </div>
 
         <div className="relative space-y-5 sm:space-y-7 lg:space-y-9">

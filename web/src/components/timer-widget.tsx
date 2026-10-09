@@ -99,7 +99,8 @@ export function TimerWidget() {
   }, []);
 
   // o caderno de questões tem cronômetro regressivo próprio
-  if (!s || pathname.startsWith("/caderno")) return null;
+  // O cronômetro só surge quando o usuário estiver em uma página de atividade (/atividade/[id])
+  if (!s || !pathname.startsWith("/atividade/")) return null;
 
   const t = Math.max(now, s.startedAt ?? 0, s.pausedAt ?? 0);
   const elapsed = s.accumulated + (s.status === "running" && s.startedAt ? Math.max(0, t - s.startedAt) : 0);
