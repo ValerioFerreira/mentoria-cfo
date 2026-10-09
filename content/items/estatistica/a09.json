@@ -2,7 +2,6 @@
   "aula": "estatistica/a09",
   "batch": "w2-bizu-estatistica",
   "status": "DRAFT",
-  "stage": "bizu",
   "segments": [
     {
       "id": "estatistica/a09/s01",
@@ -81,7 +80,213 @@
             "pageRef": 11
           }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Variáveis discretas e contínuas",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 4,
+          "statement": "Assinale a alternativa que apresenta apenas variáveis aleatórias contínuas.",
+          "support": null,
+          "options": [
+            "Tempo de deslocamento de uma viatura até a ocorrência e volume de água de um reservatório.",
+            "Número de vítimas atendidas por plantão e tempo de deslocamento de uma viatura.",
+            "Volume de água de um reservatório e número de chamadas recebidas por dia.",
+            "Número de viaturas disponíveis e número de bombeiros por guarnição.",
+            "Número de incêndios por mês e quantidade de hidrantes vistoriados."
+          ],
+          "answer": "A",
+          "explanation": "Variáveis contínuas são medidas (tempo, volume, peso, distância) e podem assumir qualquer valor de um intervalo; variáveis discretas são contadas (vítimas, chamadas, viaturas, hidrantes). Só a primeira alternativa reúne duas grandezas medidas."
+        },
+        {
+          "topic": "Probabilidade de um valor isolado",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 4,
+          "statement": "Em variáveis aleatórias contínuas, a probabilidade é associada a intervalos de valores, e não a valores isolados, porque",
+          "support": null,
+          "options": [
+            "os valores possíveis são contáveis, mas muito numerosos para serem listados.",
+            "há infinitos valores possíveis e a probabilidade de a variável assumir exatamente um valor específico é zero.",
+            "a soma das probabilidades de todos os valores isolados é maior que 1.",
+            "as variáveis contínuas só podem ser contadas, nunca medidas.",
+            "a função densidade assume apenas valores negativos fora do intervalo."
+          ],
+          "answer": "B",
+          "explanation": "Como se pode sempre acrescentar casas decimais à medida, os valores possíveis são infinitos e não enumeráveis, e P(X = x) = 0 para qualquer x isolado. Por isso se calculam probabilidades de intervalos, por meio da função densidade de probabilidade."
+        },
+        {
+          "topic": "Condições da f.d.p.",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 5,
+          "statement": "Para que uma função f seja uma função densidade de probabilidade de uma variável contínua, é necessário que",
+          "support": null,
+          "options": [
+            "f(x) seja sempre menor ou igual a 1 e crescente.",
+            "f(x) seja simétrica em torno da média da variável.",
+            "a soma dos valores de f(x) em pontos inteiros seja igual a 1.",
+            "f(x) nunca seja negativa e a área total sob a curva seja igual a 1.",
+            "f(x) seja igual à probabilidade P(X = x) em cada ponto."
+          ],
+          "answer": "D",
+          "explanation": "Uma f.d.p. exige f(x) ≥ 0 (probabilidade não negativa) e que a probabilidade do espaço amostral, isto é, a área total sob f, seja 1. Não é preciso que seja crescente ou simétrica, e f(x) não é a probabilidade de um ponto, que vale zero."
+        },
+        {
+          "topic": "Probabilidade como área (geometria)",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 6,
+          "statement": "O tempo X, em horas, que uma equipe leva para concluir uma vistoria tem f.d.p. f(x) = x/8 para 0 ≤ x ≤ 4 e f(x) = 0 nos demais pontos. A probabilidade de a vistoria durar mais de 3 horas é",
+          "support": null,
+          "options": [
+            "9/16.",
+            "3/8.",
+            "1/4.",
+            "5/16.",
+            "7/16."
+          ],
+          "answer": "E",
+          "explanation": "A probabilidade é a área do trapézio sob f entre x = 3 e x = 4: bases f(3) = 3/8 e f(4) = 1/2, altura 1, logo (3/8 + 1/2)/2 = 7/16. O valor 9/16 é P(X < 3), e 3/8 é apenas o valor da densidade em x = 3, que não é probabilidade."
+        },
+        {
+          "topic": "Probabilidade por integral definida",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 9,
+          "statement": "Seja X uma variável contínua com f.d.p. f(x) = 4x³ para 0 ≤ x ≤ 1 e zero fora desse intervalo. A probabilidade P(0,5 < X < 0,8) é, aproximadamente,",
+          "support": null,
+          "options": [
+            "0,0081.",
+            "0,3000.",
+            "0,3471.",
+            "0,4096.",
+            "0,6529."
+          ],
+          "answer": "C",
+          "explanation": "A primitiva de 4x³ é F(x) = x⁴, e P(0,5 < X < 0,8) = F(0,8) − F(0,5) = 0,4096 − 0,0625 = 0,3471. O valor 0,0081 resulta do erro de calcular F(0,8 − 0,5), em vez de subtrair os valores de F nos extremos."
+        },
+        {
+          "topic": "Constante normalizadora",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 10,
+          "statement": "A f.d.p. de uma variável X é f(x) = c · x², para 0 ≤ x ≤ 3, e zero fora desse intervalo. O valor da constante c é",
+          "support": null,
+          "options": [
+            "1/3.",
+            "1/27.",
+            "1/9.",
+            "3.",
+            "1/6."
+          ],
+          "answer": "C",
+          "explanation": "A integral de f em [0, 3] deve ser 1: c · [x³/3] de 0 a 3 = c · 27/3 = 9c = 1, logo c = 1/9. O valor 1/27 resulta de esquecer de dividir o cubo por 3 ao integrar."
+        },
+        {
+          "topic": "Sinais de desigualdade em variáveis contínuas",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 10,
+          "statement": "Considere uma variável contínua X, cuja f.d.p. é a função f. Assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "P(X ≤ 4) é maior que P(X < 4) sempre que f(4) > 0.",
+            "P(1 < X < 4) = f(4) − f(1).",
+            "P(X = 4) = f(4).",
+            "P(1 < X < 4) = P(1 ≤ X ≤ 4).",
+            "P(1 ≤ X ≤ 4) é maior que P(1 < X < 4), pois inclui as extremidades."
+          ],
+          "answer": "D",
+          "explanation": "Como P(X = x) = 0 para qualquer x, incluir ou excluir as extremidades não altera a probabilidade. A probabilidade de um intervalo é a diferença da primitiva F(4) − F(1), não f(4) − f(1), e f(4) é densidade, não probabilidade."
+        },
+        {
+          "topic": "F.d.p. definida por partes",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 11,
+          "statement": "Uma variável X tem f.d.p. f(x) = x/4 para 0 ≤ x < 2; f(x) = 1/4 para 2 ≤ x ≤ 4; e f(x) = 0 nos demais pontos. A probabilidade P(1 < X < 3) é",
+          "support": null,
+          "options": [
+            "1/2.",
+            "3/8.",
+            "3/4.",
+            "5/8.",
+            "1/4."
+          ],
+          "answer": "D",
+          "explanation": "Como a função muda em x = 2, a integral é dividida: de 1 a 2, ∫ x/4 dx = (4 − 1)/8 = 3/8; de 2 a 3, ∫ 1/4 dx = 1/4. A soma é 3/8 + 2/8 = 5/8. O valor 3/8 considera apenas o primeiro trecho, e 1/4, apenas o segundo."
+        },
+        {
+          "topic": "Regras de integração",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 7,
+          "statement": "A integral indefinida de 4x³ + 2x em relação a x é",
+          "support": null,
+          "options": [
+            "x⁴ + x² + C.",
+            "12x² + 2 + C.",
+            "x⁴/4 + x²/2 + C.",
+            "4x⁴ + 2x² + C.",
+            "x⁴ + 2x² + C."
+          ],
+          "answer": "A",
+          "explanation": "Para cada termo, ∫ a·xⁿ dx = a · xⁿ⁺¹/(n + 1): ∫ 4x³ dx = x⁴ e ∫ 2x dx = x². O resultado 12x² + 2 é a derivada, e as demais opções erram a divisão pelo novo expoente."
+        },
+        {
+          "topic": "Constante e probabilidade acumulada",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 10,
+          "statement": "A f.d.p. de X é f(x) = k(1 − x), para 0 ≤ x ≤ 1, e zero nos demais pontos. A probabilidade de X ser menor ou igual a 0,5 é",
+          "support": null,
+          "options": [
+            "25%.",
+            "75%.",
+            "50%.",
+            "87,5%.",
+            "62,5%."
+          ],
+          "answer": "B",
+          "explanation": "A área total é um triângulo de base 1 e altura k, logo k/2 = 1 e k = 2. P(X > 0,5) é o triângulo de base 0,5 e altura f(0,5) = 1, isto é, 0,25; portanto P(X ≤ 0,5) = 1 − 0,25 = 75%."
+        },
+        {
+          "topic": "Propriedades da f.d.p.",
+          "pattern": "incorreta",
+          "difficulty": 2,
+          "pageRef": 5,
+          "statement": "Sobre a função densidade de probabilidade (f.d.p.) de uma variável aleatória contínua, assinale a alternativa INCORRETA.",
+          "support": null,
+          "options": [
+            "A probabilidade de um intervalo corresponde à área sob a f.d.p. nesse intervalo.",
+            "A área total sob a f.d.p. é igual a 1.",
+            "A f.d.p. nunca assume valores negativos.",
+            "Em um intervalo no qual f(x) = 0, a probabilidade é zero.",
+            "O valor de f(x0) é a probabilidade de X ser exatamente igual a x0."
+          ],
+          "answer": "E",
+          "explanation": "A f.d.p. não é uma probabilidade pontual: P(X = x0) = 0, e a probabilidade só se obtém pela área sob a curva em um intervalo. As demais afirmações descrevem corretamente propriedades da densidade."
+        },
+        {
+          "topic": "F.d.p. triangular",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 12,
+          "statement": "O tempo X de resposta de um sistema tem f.d.p. triangular: vale zero em x = 0, cresce linearmente até um valor máximo em x = 4, decresce linearmente até zero em x = 6 e é nula fora de [0, 6]. A probabilidade de X ser maior que 4 é",
+          "support": null,
+          "options": [
+            "2/3.",
+            "1/3.",
+            "1/6.",
+            "1/2.",
+            "1/4."
+          ],
+          "answer": "B",
+          "explanation": "A área total é 6 · h/2 = 1, logo a altura máxima é h = 1/3. A região x > 4 é um triângulo de base 2 e altura 1/3, com área (2 × 1/3)/2 = 1/3. O valor 2/3 é a probabilidade complementar, P(X < 4)."
+        }
+      ]
     },
     {
       "id": "estatistica/a09/s02",
@@ -165,7 +370,230 @@
             "pageRef": 25
           }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Definição da f.d.a.",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 16,
+          "statement": "Para uma variável aleatória contínua X, a função de distribuição acumulada F(x) representa",
+          "support": null,
+          "options": [
+            "a probabilidade P(X = x), igual ao valor da densidade em x.",
+            "a probabilidade P(X ≥ x), obtida integrando a f.d.p. de x até o extremo superior.",
+            "a derivada da f.d.p. no ponto x.",
+            "a probabilidade P(X ≤ x), obtida integrando a f.d.p. do extremo inferior até x.",
+            "o valor máximo da f.d.p. no intervalo até x."
+          ],
+          "answer": "D",
+          "explanation": "A f.d.a. acumula as probabilidades desde o início da distribuição até x: F(x) = P(X ≤ x) = ∫ f(t) dt de x_I até x. A f.d.p. é, por sua vez, a derivada da f.d.a."
+        },
+        {
+          "topic": "Propriedades da f.d.a.",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 17,
+          "statement": "Sobre a função de distribuição acumulada F de uma variável contínua, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "F pode ser decrescente em intervalos nos quais a densidade é pequena.",
+            "F pode ultrapassar 1 se a densidade for maior que 1.",
+            "F é não decrescente, assume valores entre 0 e 1 e é igual a 1 a partir do extremo superior da variável.",
+            "F é igual a 1 no extremo inferior da variável.",
+            "F coincide sempre com a f.d.p."
+          ],
+          "answer": "C",
+          "explanation": "Como as probabilidades apenas se acumulam, F é não decrescente, fica entre 0 e 1, vale 0 até o extremo inferior e 1 a partir do extremo superior. Ela coincide com a primitiva da f.d.p. apenas quando esta se anula no limite inferior, e nunca com a própria f.d.p."
+        },
+        {
+          "topic": "Cálculo da f.d.a.",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 16,
+          "statement": "Uma variável contínua X tem f.d.p. f(x) = 3x²/8 para 0 ≤ x ≤ 2 e f(x) = 0 nos demais pontos. O valor de P(X ≤ 1,5) é, aproximadamente,",
+          "support": null,
+          "options": [
+            "0,8438.",
+            "0,7500.",
+            "0,5625.",
+            "0,4219.",
+            "0,3750."
+          ],
+          "answer": "D",
+          "explanation": "A f.d.a. é F(x) = ∫ de 0 a x de 3t²/8 dt = x³/8, e F(1,5) = 3,375/8 = 0,4219. O valor 0,8438 é a densidade f(1,5), que não é uma probabilidade."
+        },
+        {
+          "topic": "Extremo superior da variável",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 18,
+          "statement": "A função f(x) = 2x/9 é f.d.p. de uma variável X definida para 0 ≤ x ≤ b e nula fora desse intervalo. O valor de b é",
+          "support": null,
+          "options": [
+            "9.",
+            "3.",
+            "1,5.",
+            "4,5.",
+            "2."
+          ],
+          "answer": "B",
+          "explanation": "A f.d.a. é F(x) = x²/9, e o extremo superior é o ponto em que F(b) = 1: b²/9 = 1, logo b = 3. O valor 9 seria b², sem a raiz."
+        },
+        {
+          "topic": "F.d.a. de função definida por partes",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 18,
+          "statement": "Uma variável X tem f.d.p. f(x) = 3/8 para 0 ≤ x < 2; f(x) = (4 − x)/8 para 2 ≤ x ≤ 4; e f(x) = 0 nos demais pontos. O valor da f.d.a. em x = 3, isto é, P(X ≤ 3), é",
+          "support": null,
+          "options": [
+            "0,1875.",
+            "0,7500.",
+            "0,8125.",
+            "0,9375.",
+            "0,6250."
+          ],
+          "answer": "D",
+          "explanation": "Até x = 2 acumulam-se 2 × 3/8 = 0,75. De 2 a 3, ∫ (4 − x)/8 dx = [4x − x²/2]/8 de 2 a 3 = (7,5 − 6)/8 = 0,1875. Somando, F(3) = 0,75 + 0,1875 = 0,9375. O valor 0,1875 omite a probabilidade acumulada no primeiro trecho."
+        },
+        {
+          "topic": "Mediana pela f.d.a.",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 22,
+          "statement": "Uma variável X tem f.d.p. f(x) = 2x para 0 ≤ x ≤ 1 e f(x) = 0 nos demais pontos. A mediana de X é, aproximadamente,",
+          "support": null,
+          "options": [
+            "0,50.",
+            "0,67.",
+            "0,75.",
+            "0,71.",
+            "0,58."
+          ],
+          "answer": "D",
+          "explanation": "A f.d.a. é F(x) = x², e a mediana satisfaz F(x_Md) = 0,5, isto é, x² = 0,5 e x = 0,71. O valor 0,50 seria o ponto médio do intervalo, e 0,67 é a esperança de X (2/3), não a mediana."
+        },
+        {
+          "topic": "Mediana e transformações lineares",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 23,
+          "statement": "A mediana do tempo X, em minutos, de um procedimento é 8. Se o custo for Y = 3X − 2, a mediana de Y será",
+          "support": null,
+          "options": [
+            "24.",
+            "6.",
+            "18.",
+            "26.",
+            "22."
+          ],
+          "answer": "E",
+          "explanation": "A mediana sofre as mesmas operações aplicadas à variável: Md(3X − 2) = 3 · Md(X) − 2 = 3 × 8 − 2 = 22. O valor 24 ignora a subtração; 18 subtrai antes de multiplicar."
+        },
+        {
+          "topic": "Definição de moda",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 23,
+          "statement": "Para uma variável aleatória contínua, a moda é o valor de x",
+          "support": null,
+          "options": [
+            "que divide a distribuição em duas partes de mesma probabilidade.",
+            "igual à média aritmética dos valores extremos do intervalo.",
+            "em que a função de distribuição acumulada vale 1.",
+            "em que a f.d.p. se anula.",
+            "associado ao maior valor da função densidade de probabilidade."
+          ],
+          "answer": "E",
+          "explanation": "A moda corresponde ao ponto de maior densidade, visível como o pico da f.d.p. O valor que divide a distribuição em duas metades iguais é a mediana, e a f.d.a. vale 1 no extremo superior."
+        },
+        {
+          "topic": "Moda de f.d.p. monótona",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 24,
+          "statement": "Uma variável X tem f.d.p. f(x) = (5 − x)/8 para 1 ≤ x ≤ 5 e f(x) = 0 nos demais pontos. A moda de X é",
+          "support": null,
+          "options": [
+            "1.",
+            "5.",
+            "3.",
+            "2,5.",
+            "inexistente."
+          ],
+          "answer": "A",
+          "explanation": "A função é decrescente no intervalo; logo o maior valor da densidade ocorre no menor valor da variável, f(1) = 0,5, e a moda é x = 1. Em f.d.p. crescente, a moda seria o maior valor do intervalo."
+        },
+        {
+          "topic": "Moda de parábola côncava para baixo",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 24,
+          "statement": "Uma variável X tem f.d.p. f(x) = c(x − 2)(8 − x), para 2 ≤ x ≤ 8, em que c é uma constante positiva, e f(x) = 0 nos demais pontos. A moda de X é",
+          "support": null,
+          "options": [
+            "2.",
+            "8.",
+            "5.",
+            "4.",
+            "6."
+          ],
+          "answer": "C",
+          "explanation": "A f.d.p. é uma parábola com concavidade para baixo e raízes 2 e 8; a moda é a média das raízes: (2 + 8)/2 = 5. Os valores 2 e 8 são os extremos, onde a densidade é nula."
+        },
+        {
+          "topic": "Moda pela derivada",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 26,
+          "statement": "A f.d.p. de X é f(x) = (3/64) · x²(4 − x), para 0 ≤ x ≤ 4. Derivando f e igualando a zero, obtém-se a moda de X, que é",
+          "support": null,
+          "options": [
+            "2.",
+            "3.",
+            "4/3.",
+            "8/3.",
+            "16/9."
+          ],
+          "answer": "D",
+          "explanation": "Escrevendo f(x) = (3/64)(4x² − x³), a derivada é (3/64)(8x − 3x²), que se anula em x = 8/3 (x = 0 é extremo). Como f é nula nos extremos e positiva entre eles, esse ponto é de máximo e é a moda."
+        },
+        {
+          "topic": "Derivada de polinômio",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 25,
+          "statement": "A derivada da função f(x) = 5x³ − 2x² + 7 em relação a x é",
+          "support": null,
+          "options": [
+            "15x² − 4x.",
+            "15x² − 4x + 7.",
+            "5x⁴/4 − 2x³/3 + 7x.",
+            "15x³ − 4x².",
+            "5x² − 2x."
+          ],
+          "answer": "A",
+          "explanation": "Deriva-se cada termo: (5x³)′ = 15x², (−2x²)′ = −4x e a derivada da constante 7 é zero. A opção com integrais confunde derivação com integração."
+        },
+        {
+          "topic": "Moda de parábola côncava para cima",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 24,
+          "statement": "A f.d.p. de X é f(x) = (x − 1)²/3, para 0 ≤ x ≤ 3, e f(x) = 0 nos demais pontos. A moda de X é",
+          "support": null,
+          "options": [
+            "3.",
+            "1.",
+            "0.",
+            "2.",
+            "1,5."
+          ],
+          "answer": "A",
+          "explanation": "A parábola tem concavidade para cima; seu vértice (x = 1) é um ponto de mínimo, e não de máximo. A moda está em um dos extremos, e basta comparar: f(0) = 1/3 e f(3) = 4/3. Logo a moda é x = 3."
+        }
+      ]
     },
     {
       "id": "estatistica/a09/s03",
@@ -250,7 +678,247 @@
             "pageRef": 39
           }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Esperança de variável contínua",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 29,
+          "statement": "Na passagem do caso discreto para o contínuo, a esperança E(X) deixa de ser uma soma e passa a ser calculada como",
+          "support": null,
+          "options": [
+            "a integral de f(x) em todo o intervalo da variável.",
+            "a integral de x² · f(x) em todo o intervalo da variável.",
+            "a derivada de x · f(x) no ponto médio do intervalo.",
+            "o valor de f(x) na moda da variável.",
+            "a integral de x · f(x) em todo o intervalo da variável."
+          ],
+          "answer": "E",
+          "explanation": "No caso contínuo, a soma de x · P(X = x) é substituída pela integral de x · f(x). A integral de x² · f(x) fornece E(X²), e a integral de f(x) vale 1."
+        },
+        {
+          "topic": "Esperança por integral",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 29,
+          "statement": "Uma variável X tem f.d.p. f(x) = x/2 para 0 ≤ x ≤ 2 e f(x) = 0 nos demais pontos. A esperança de X é",
+          "support": null,
+          "options": [
+            "1.",
+            "2/3.",
+            "2.",
+            "8/3.",
+            "4/3."
+          ],
+          "answer": "E",
+          "explanation": "E(X) = ∫ x · (x/2) dx de 0 a 2 = [x³/6] de 0 a 2 = 8/6 = 4/3. O valor 1 seria a esperança de uma distribuição uniforme no mesmo intervalo; como f cresce, a média fica acima do centro."
+        },
+        {
+          "topic": "Constante e esperança",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 33,
+          "statement": "A f.d.p. de X é f(x) = k · x², para 0 ≤ x ≤ 3, e zero fora desse intervalo. A constante k e a esperança de X são, respectivamente,",
+          "support": null,
+          "options": [
+            "k = 1/9 e E(X) = 3/2.",
+            "k = 1/9 e E(X) = 9/4.",
+            "k = 1/3 e E(X) = 9/4.",
+            "k = 1/9 e E(X) = 3.",
+            "k = 1/27 e E(X) = 3/4."
+          ],
+          "answer": "B",
+          "explanation": "De ∫ k x² dx = 9k = 1, vem k = 1/9. Então E(X) = ∫ x · x²/9 dx = [x⁴/36] de 0 a 3 = 81/36 = 9/4. O valor 3/2 seria o ponto médio do intervalo, que só é a média em densidades simétricas."
+        },
+        {
+          "topic": "Propriedades da esperança",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 30,
+          "statement": "O tempo X, em horas, de uma operação tem esperança 1,2. O custo da operação, em reais, é C = 50X + 20. O valor esperado do custo é",
+          "support": null,
+          "options": [
+            "R$ 60,00.",
+            "R$ 62,00.",
+            "R$ 1.060,00.",
+            "R$ 21,20.",
+            "R$ 80,00."
+          ],
+          "answer": "E",
+          "explanation": "Pela linearidade, E(C) = 50 · E(X) + 20 = 50 × 1,2 + 20 = 80. O valor 1.060 resulta de somar a constante antes de multiplicar, 50 × (1,2 + 20)."
+        },
+        {
+          "topic": "Simetria e parábola",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 30,
+          "statement": "A f.d.p. de X é f(x) = c(x − 1)(7 − x), para 1 ≤ x ≤ 7, em que c é constante positiva. A esperança de X é",
+          "support": null,
+          "options": [
+            "3.",
+            "3,5.",
+            "4.",
+            "6.",
+            "8."
+          ],
+          "answer": "C",
+          "explanation": "A f.d.p. é uma parábola côncava para baixo, simétrica em torno do ponto central entre as raízes: média = mediana = moda = (1 + 7)/2 = 4. O valor 8 é a soma das raízes."
+        },
+        {
+          "topic": "Simetria apenas em intervalo simétrico",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 31,
+          "statement": "A f.d.p. de X é f(x) = (x − 2)²/9, para 2 ≤ x ≤ 5, e f(x) = 0 nos demais pontos. Pode-se afirmar que a esperança de X é",
+          "support": null,
+          "options": [
+            "4,25.",
+            "2,00.",
+            "3,50.",
+            "5,00.",
+            "4,00."
+          ],
+          "answer": "A",
+          "explanation": "A única raiz da parábola é x = 2, mas o intervalo [2, 5] não é simétrico em torno desse ponto; logo não vale média = raiz. Com u = x − 2, E(X) = 2 + ∫ u³/9 du de 0 a 3 = 2 + 81/36 = 4,25. O valor 3,5 seria o centro do intervalo, e 2 é a raiz."
+        },
+        {
+          "topic": "Variância pela fórmula",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 35,
+          "statement": "Uma variável contínua X tem E(X) = 2 e E(X²) = 5,5. A variância de X é",
+          "support": null,
+          "options": [
+            "1,5.",
+            "3,5.",
+            "7,5.",
+            "1,25.",
+            "0,5."
+          ],
+          "answer": "A",
+          "explanation": "V(X) = E(X²) − [E(X)]² = 5,5 − 4 = 1,5. O valor 3,5 resulta de subtrair E(X) em vez de seu quadrado."
+        },
+        {
+          "topic": "Variância de transformação linear",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 36,
+          "statement": "A f.d.p. de X é f(x) = 2x para 0 ≤ x ≤ 1 e f(x) = 0 nos demais pontos. Se Y = 6X + 1, a variância de Y é",
+          "support": null,
+          "options": [
+            "1/18.",
+            "2.",
+            "3.",
+            "1/3.",
+            "6."
+          ],
+          "answer": "B",
+          "explanation": "E(X) = ∫ 2x² dx = 2/3 e E(X²) = ∫ 2x³ dx = 1/2, logo V(X) = 1/2 − 4/9 = 1/18. Como V(6X + 1) = 36 · V(X), obtém-se 36/18 = 2. O valor 1/18 é a variância de X, sem aplicar o fator 6²."
+        },
+        {
+          "topic": "Propriedades da variância",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 36,
+          "statement": "Uma variável X tem variância 12. A variância de W = (X + 8)/2 é",
+          "support": null,
+          "options": [
+            "6.",
+            "10.",
+            "3.",
+            "5.",
+            "12."
+          ],
+          "answer": "C",
+          "explanation": "Somar uma constante não altera a variância, e dividir por 2 divide a variância por 2² = 4: V(W) = 12/4 = 3. O valor 6 divide por 2, em vez de por 4, e 5 resulta de somar 8 antes de dividir."
+        },
+        {
+          "topic": "Variância de combinação linear",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 36,
+          "statement": "X e Y são variáveis contínuas independentes, com V(X) = 9 e V(Y) = 16. A variância de 2X − Y é",
+          "support": null,
+          "options": [
+            "20.",
+            "52.",
+            "34.",
+            "25.",
+            "2."
+          ],
+          "answer": "B",
+          "explanation": "Para variáveis independentes, V(aX + bY) = a² V(X) + b² V(Y), mesmo com subtração: 4 × 9 + 16 = 52. O valor 20 subtrai as variâncias e 25 ignora o coeficiente 2."
+        },
+        {
+          "topic": "Variância da diferença com covariância",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 40,
+          "statement": "Sabe-se que V(X) = 6, V(Y) = 4 e Cov(X, Y) = −1. A variância de X − Y é",
+          "support": null,
+          "options": [
+            "8.",
+            "10.",
+            "12.",
+            "14.",
+            "4."
+          ],
+          "answer": "C",
+          "explanation": "V(X − Y) = V(X) + V(Y) − 2 · Cov(X, Y) = 6 + 4 − 2(−1) = 12. O valor 8 seria V(X + Y) = 6 + 4 + 2(−1), e 10 ignoraria a covariância."
+        },
+        {
+          "topic": "Coeficiente de correlação",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 40,
+          "statement": "Duas variáveis X e Y têm V(X) = 25, V(Y) = 4 e Cov(X, Y) = 6. O coeficiente de correlação entre elas é",
+          "support": null,
+          "options": [
+            "0,06.",
+            "0,30.",
+            "0,60.",
+            "1,20.",
+            "0,24."
+          ],
+          "answer": "C",
+          "explanation": "ρ = Cov(X, Y) / (σX · σY) = 6 / (5 × 2) = 0,60. O valor 0,06 usa as variâncias no lugar dos desvios padrão, e 1,20 divide apenas por σX."
+        },
+        {
+          "topic": "Propriedades da covariância",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 40,
+          "statement": "Sobre as propriedades da covariância entre variáveis aleatórias, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "Cov(kX, Y) = k² · Cov(X, Y), para qualquer constante k.",
+            "Cov(X, X) = V(X) e Cov(k, X) = 0, para qualquer constante k.",
+            "Cov(X, Y) = V(X) + V(Y).",
+            "Cov(X, Y) é, em geral, diferente de Cov(Y, X).",
+            "Cov(X + Y, Z) = Cov(X, Z) · Cov(Y, Z)."
+          ],
+          "answer": "B",
+          "explanation": "A covariância de uma variável com ela mesma é sua variância, e a covariância com uma constante é zero. Ela é simétrica, aditiva no primeiro argumento e a constante sai multiplicando (k, e não k²)."
+        },
+        {
+          "topic": "Independência, E(XY) e covariância",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 30,
+          "statement": "X e Y são variáveis independentes, com E(X) = 3 e E(Y) = 2. Os valores de E(X · Y) e de Cov(X, Y) são, respectivamente,",
+          "support": null,
+          "options": [
+            "6 e 1.",
+            "5 e 0.",
+            "6 e 6.",
+            "6 e 0.",
+            "5 e 1."
+          ],
+          "answer": "D",
+          "explanation": "Se X e Y são independentes, E(XY) = E(X) · E(Y) = 6. Então Cov(X, Y) = E(XY) − E(X)E(Y) = 6 − 6 = 0. O valor 5 resultaria de somar as esperanças em vez de multiplicá-las."
+        }
+      ]
     },
     {
       "id": "estatistica/a09/s04",
@@ -321,7 +989,196 @@
             "pageRef": 48
           }
         ]
-      }
+      },
+      "questions": [
+        {
+          "topic": "Natureza da desigualdade de Chebyshev",
+          "pattern": "correta",
+          "difficulty": 1,
+          "pageRef": 42,
+          "statement": "Em relação à desigualdade de Chebyshev, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "Só pode ser aplicada a variáveis com distribuição normal.",
+            "Fornece o valor exato da probabilidade de a variável se afastar da média.",
+            "Só se aplica a variáveis discretas.",
+            "Fornece um limite inferior para P(|X − μ| ≥ δ).",
+            "Fornece um limite superior para a probabilidade de a variável se afastar da média em pelo menos δ, usando apenas a média e a variância."
+          ],
+          "answer": "E",
+          "explanation": "A desigualdade P(|X − μ| ≥ δ) ≤ σ²/δ² vale para qualquer distribuição com média e variância conhecidas, mas só dá uma cota superior, não o valor exato. A cota inferior vale para a probabilidade complementar."
+        },
+        {
+          "topic": "Cota de Chebyshev",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 43,
+          "statement": "O tempo de resposta X, em minutos, de uma guarnição tem média 50 e variância 16, com distribuição desconhecida. Pela desigualdade de Chebyshev, a probabilidade de X se afastar da média em 12 minutos ou mais é, no máximo, de aproximadamente",
+          "support": null,
+          "options": [
+            "33,3%.",
+            "8,0%.",
+            "88,9%.",
+            "25,0%.",
+            "11,1%."
+          ],
+          "answer": "E",
+          "explanation": "P(|X − 50| ≥ 12) ≤ σ²/δ² = 16/144 = 0,1111, ou seja, cerca de 11,1%. O valor 33,3% usa σ/δ (4/12) e 88,9% é a cota complementar, P(|X − 50| < 12) ≥ 0,889."
+        },
+        {
+          "topic": "Probabilidade mínima dentro do intervalo",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 43,
+          "statement": "Uma variável X tem média 200 e variância 100, com distribuição desconhecida. Pela desigualdade de Chebyshev, a probabilidade de X estar entre 180 e 220 é, no mínimo, de",
+          "support": null,
+          "options": [
+            "75%.",
+            "25%.",
+            "50%.",
+            "90%.",
+            "95%."
+          ],
+          "answer": "A",
+          "explanation": "Com δ = 20, P(|X − 200| ≥ 20) ≤ 100/400 = 0,25; logo P(180 < X < 220) ≥ 1 − 0,25 = 0,75. O valor 25% é a cota máxima para a região fora do intervalo."
+        },
+        {
+          "topic": "Chebyshev em número de desvios padrão",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 43,
+          "statement": "Sem conhecer a forma da distribuição de uma variável, o teorema de Chebyshev garante que a proporção mínima de valores situados a até 3 desvios padrão da média é, aproximadamente,",
+          "support": null,
+          "options": [
+            "88,9%.",
+            "99,7%.",
+            "66,7%.",
+            "95,0%.",
+            "11,1%."
+          ],
+          "answer": "A",
+          "explanation": "A cota é 1 − 1/z² = 1 − 1/9 ≈ 88,9%. O valor 99,7% é o da regra empírica para a distribuição normal, que depende de uma forma específica; 11,1% é a cota máxima fora do intervalo."
+        },
+        {
+          "topic": "Desvio padrão a partir da cota",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 45,
+          "statement": "Uma variável X tem média 30 e distribuição desconhecida. Pelo teorema de Chebyshev, a probabilidade de X não pertencer ao intervalo (24, 36) é, no máximo, 4% (cota exata). O desvio padrão de X é",
+          "support": null,
+          "options": [
+            "1,44.",
+            "1,2.",
+            "0,24.",
+            "6,0.",
+            "2,4."
+          ],
+          "answer": "B",
+          "explanation": "O afastamento é δ = 6, e σ²/δ² = 0,04 leva a σ² = 0,04 × 36 = 1,44, de modo que σ = 1,2. O valor 1,44 é a variância."
+        },
+        {
+          "topic": "Intervalo garantido por Chebyshev",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 43,
+          "statement": "Uma variável X tem média 100 e desvio padrão 10, com distribuição desconhecida. Para garantir, pelo teorema de Chebyshev, que pelo menos 96% dos valores estejam no intervalo, ele deve ser",
+          "support": null,
+          "options": [
+            "(60; 140).",
+            "(50; 150).",
+            "(80; 120).",
+            "(90; 110).",
+            "(40; 160)."
+          ],
+          "answer": "B",
+          "explanation": "Faz-se 1 − 1/z² = 0,96, o que dá 1/z² = 0,04 e z = 5. O intervalo é μ ± 5σ = 100 ± 50, isto é, (50; 150). Com z = 4 (60; 140), a garantia seria de apenas 93,75%."
+        },
+        {
+          "topic": "Desigualdade unilateral (Cantelli)",
+          "pattern": "correta",
+          "difficulty": 1,
+          "pageRef": 46,
+          "statement": "A versão unilateral da desigualdade de Chebyshev (desigualdade de Cantelli) estabelece, para δ > 0, que",
+          "support": null,
+          "options": [
+            "P(X − μ ≥ δ) ≤ σ² / δ².",
+            "P(X − μ ≥ δ) ≤ σ² / (σ² − δ²).",
+            "P(X − μ ≥ δ) ≤ σ² / (σ² + δ²).",
+            "P(X − μ ≥ δ) ≤ δ² / (σ² + δ²).",
+            "P(X − μ ≥ δ) ≥ 1 − σ² / δ²."
+          ],
+          "answer": "C",
+          "explanation": "A cota de Cantelli para o afastamento apenas para cima é σ²/(σ² + δ²). A cota σ²/δ² pertence à versão bilateral, que limita |X − μ| ≥ δ."
+        },
+        {
+          "topic": "Cota unilateral",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 46,
+          "statement": "A pressão X de um sistema tem média 80 e variância 36, com distribuição desconhecida. Pela desigualdade unilateral, a probabilidade de X ser maior ou igual a 92 é, no máximo,",
+          "support": null,
+          "options": [
+            "25%.",
+            "33%.",
+            "80%.",
+            "20%.",
+            "10%."
+          ],
+          "answer": "D",
+          "explanation": "Com δ = 92 − 80 = 12: σ²/(σ² + δ²) = 36/(36 + 144) = 0,20. O valor 25% é a cota bilateral 36/144 para |X − 80| ≥ 12, que é menos precisa para o afastamento só para cima."
+        },
+        {
+          "topic": "Cota unilateral com E(X) e E(X²)",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 47,
+          "statement": "Uma variável X tem E(X) = 2 e E(X²) = 13. Pela desigualdade unilateral de Chebyshev, a cota superior para P(X ≥ 8) é",
+          "support": null,
+          "options": [
+            "25%.",
+            "12,3%.",
+            "75%.",
+            "5%.",
+            "20%."
+          ],
+          "answer": "E",
+          "explanation": "A variância é 13 − 4 = 9, e 8 − 2 = 6 = δ. Então σ²/(σ² + δ²) = 9/(9 + 36) = 0,20. O valor 12,3% resulta de esquecer de subtrair a média (δ = 8: 9/73)."
+        },
+        {
+          "topic": "Variância a partir da cota unilateral",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 47,
+          "statement": "Uma variável X tem média zero e, pela desigualdade unilateral de Chebyshev, P(X ≥ 10) ≤ 0,2 (cota exata). A variância de X é",
+          "support": null,
+          "options": [
+            "25.",
+            "20.",
+            "100.",
+            "10.",
+            "50."
+          ],
+          "answer": "A",
+          "explanation": "Com δ = 10 e μ = 0: σ²/(σ² + 100) = 0,2, logo σ² = 0,2σ² + 20 e 0,8σ² = 20, de onde σ² = 25. O valor 100 é δ²."
+        },
+        {
+          "topic": "Probabilidade complementar da cota unilateral",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 47,
+          "statement": "Uma variável X tem média 100 e variância 25, com distribuição desconhecida. Pela desigualdade unilateral, a probabilidade de X ser menor que 110 é, no mínimo,",
+          "support": null,
+          "options": [
+            "75%.",
+            "20%.",
+            "80%.",
+            "87,5%.",
+            "96%."
+          ],
+          "answer": "C",
+          "explanation": "Com δ = 10, P(X ≥ 110) ≤ 25/(25 + 100) = 0,2; logo P(X < 110) ≥ 1 − 0,2 = 0,8. O valor 75% resulta da cota bilateral (P(|X − 100| < 10) ≥ 0,75), menos precisa para um só lado."
+        }
+      ]
     }
   ]
 }
