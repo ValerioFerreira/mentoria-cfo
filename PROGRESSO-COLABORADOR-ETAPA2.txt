@@ -1,7 +1,7 @@
 PROGRESSO DO COLABORADOR — ETAPA 2 (questões AOCP) — branch questoes-juridicas
 Disciplinas desta frente: Direito Constitucional, Direito Administrativo, Língua Espanhola (aulas a00–a13)
 Base: origin/bizus-juridicas-linguas (bizus prontos). Tudo entra como DRAFT. Escopo: INSTRUCOES-COLABORADOR-ETAPA2.md.
-Última atualização: 2026-10-09.
+Última atualização: 2026-10-09. ETAPA 2 DESTA FRENTE CONCLUÍDA (190 trechos de Dir. Const., Dir. Adm. e Espanhol a00–a13).
 
 =====================================================================================================
 1. PANORAMA GERAL DO PROJETO (o que já foi feito, em todas as branches)
@@ -29,22 +29,20 @@ Pendências de conteúdo já conhecidas (exatas, opcionais):
   - Química a23/s02: bizu cita gasolina com E30 desde ago/2025 e o material fala em 25%: conferir e corrigir.
   - Física a17: exemplos paramagnéticos (platina/madeira/plástico) duvidosos: conferir.
 
+======================================================================================================================================================================================================
+2. ESTADO DESTA BRANCH (questoes-juridicas) — CONCLUÍDO
 =====================================================================================================
-2. ESTADO DESTA BRANCH (questoes-juridicas) — instantâneo
-=====================================================================================================
-  Disciplina               Trechos*  Com questões  Faltam
-  Dir. Administrativo         71          46         25  (a07 5 · a08 4 · a09 16)         (a06 em finalização)
-  Dir. Constitucional         93          73         20  (a09 6 · a13 4 · a17 8 · a18 1 · a16 1 em finalização)
-  Língua Espanhola (a00-13)   37          37          0  CONCLUÍDA (501 questões; a13 com 67)
-  (* inclui os trechos dos complementos cNN, que já vieram prontos e não devem ser tocados.)
-Sempre conferir com: PYTHONIOENCODING=utf-8 python3 pipeline/validate_content.py --coverage --stage full --subject <disc>
-Arquivos parciais mantêm "stage":"bizu" por trecho nos trechos ainda sem questões e validam; ao concluir o trecho, o
-"stage" é removido.
+  Disciplina               Trechos*  Com questões  Questões  Faltam
+  Dir. Administrativo         71          71          909       0
+  Dir. Constitucional         93          93         1209       0
+  Língua Espanhola (a00-13)   37          37          501       0
+  (* inclui os trechos dos complementos cNN, que já vieram prontos.)
+Validação final: validate_content.py em todos os arquivos das 3 disciplinas sem erros; --coverage --stage full completo;
+pytest pipeline/tests -q: 45 passed. Tudo como DRAFT (revisão/aprovação em /admin/revisao).
+PRÓXIMOS PASSOS desta frente: (1) mesclar questoes-juridicas na main/lancamento junto das demais branches (pastas disjuntas);
+(2) revisão humana (seção 6); (3) apagar as branches docs-temp*.
 
-Quando a produção foi interrompida por limite de uso, havia 4 agentes em segundo plano (um por faixa): Dir. Adm. a05–a09,
-Dir. Const. a04–a09 + a13, Dir. Const. a14–a18 e Espanhol a13 (este já concluído). Se ficaram trechos sem questões, relançar.
-
-=====================================================================================================
+====
 3. COMO CONTINUAR EM OUTRA MÁQUINA / SESSÃO
 =====================================================================================================
 1. git fetch origin && git switch questoes-juridicas && git pull
@@ -93,7 +91,22 @@ Língua Espanhola a13 (relatório do agente):
 - Revisão humana: billón = trilhão e mil millones = bilhão (s04, p. 46; coerente com a RAE, mas é a mesma escala numérica
   da a10); extrañar = sentir saudades (s04, p. 50; uso americano, com objeto pessoa); classes "total" e "conceitual" de
   sinonímia (s02) têm exemplos sobrepostos (marido/esposo): nunca foram oferecidas juntas como alternativas no mesmo item.
-Dir. Constitucional / Dir. Administrativo: relatórios finais dos agentes ainda não recebidos (completar aqui).
+Dir. Constitucional (relatórios dos agentes):
+- a13 (pp. 74/76): material cita "art. 120, §3º/§4º" (TSE/TREs) onde o correto é art. 121, §3º/§4º; as explicações usam o correto.
+- a13 p. 67: questão TRF 1ª Região (2015) sobre navios/aeronaves "civis ou militares" com comentário confuso: não cobrada.
+- a13 pp. 66: IDC descrito de forma ambígua (ineficiência do Estado x inação "não é pressuposto"): questão cobra só o da ADI 3.486.
+- a13: precatórios: evitadas ADI 4357/7047/7064, EC 136/2025, juros IPCA/2%, §23, §27, §29, ADCT 76-B; só regras anteriores à EC 136.
+- a17: p. 14-15 "controle misto" com dois sentidos; p. 34 erro de digitação ("artigo da Constituição" em vez de "da lei", art. 52, X);
+  p. 37 reclamação x súmula vinculante (generalização); pp. 57 e 61 efeito repristinatório (parece contrariar art. 11, §2º, Lei 9.868);
+  p. 69 "ADI 3.862" por "3.682"; p. 74 ADC e prazo de 180 dias; pp. 88-89 duplo controle (prejudicialidade confusa). Nenhum cobrado.
+- a18: art. 103 da CE/PE truncado (§5º logo após o inciso II); "Polícia Civil subordina-se ao Governador" vem do comentário do
+  professor (p. 9); art. 100, §3º (cargo civil permanente leva à reserva) possivelmente desatualizado frente à CF (EC 77/2014).
+Dir. Administrativo (a08-a09):
+- Lição cita art. 41, §1º para aposentadoria e art. 37, VIII para vedação de vinculação do salário mínimo; corretos: art. 40 e
+  art. 37, XIII. Tema 777 aparece como RE 842.846/RJ numa página e /SC em outra. Trecho solto de revisão geral anual mistura
+  lei e doutrina. Tema 1.164: o termo "limite prudencial" é impreciso (seria limite legal): usada só a ideia geral.
+- Não cobrados: EC 138/2025 (professor), Lei 14.965/2024, Lei 15.142/2025 (cotas, só ADC 41), altura mínima (Tema 1.424),
+  licença-paternidade, SV 13 (RE 1.133.118 pendente). Denunciação da lide: questão segue a jurisprudência do STJ (facultativa).
 
 =====================================================================================================
 6. PARA REVISÃO HUMANA
@@ -101,3 +114,8 @@ Dir. Constitucional / Dir. Administrativo: relatórios finais dos agentes ainda 
 - Amostragem das questões antes de aprovar (APPROVED) em /admin/revisao, principalmente em lei seca e temas com alterações
   recentes (emendas constitucionais, leis novas).
 - Espanhol: conferir os textos-base originais em espanhol e a correção segundo a RAE.
+- Dir. Const.: conferir a17/s02 q8 (ADI 5297, j. 14/08/2025), a17/s05 q3 (Tema 1120 e MS 38.216) e a18 q9 (Polícia Civil); em a13,
+  explicações com informação além do PDF: contravenção contra autarquia federal vai à Justiça estadual (s07), estatais
+  exploradoras de atividade econômica seguem o regime privado (s10), ressalva do júri no Conselho de Justiça (s08).
+- Dir. Adm.: teses/julgados recentes usados nas questões de a08-a09: Tema 1.388, Tema 1.233 STJ (abono de permanência),
+  Tema 1.427, Tema 1.189 (FGTS em contratação temporária nula), ADI 2.135 (fim do RJU, 2024), Lei 14.768/2023 (surdez unilateral).
