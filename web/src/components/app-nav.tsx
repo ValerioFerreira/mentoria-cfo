@@ -1,12 +1,12 @@
 "use client";
 
-import { CalendarDays, ChartNoAxesColumn, Crosshair, Map as MapIcon, ShieldCheck, type LucideIcon } from "lucide-react";
+import { CalendarDays, ChartNoAxesColumn, Crosshair, Map as MapIcon, NotebookPen, ShieldCheck, Users, type LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { Brand } from "@/components/brand";
 
-const ICONS: Record<string, LucideIcon> = { today: Crosshair, week: CalendarDays, plan: MapIcon, perf: ChartNoAxesColumn, admin: ShieldCheck };
+const ICONS: Record<string, LucideIcon> = { today: Crosshair, week: CalendarDays, plan: MapIcon, notes: NotebookPen, perf: ChartNoAxesColumn, admin: ShieldCheck, users: Users };
 
 export interface NavItem {
   href: string;

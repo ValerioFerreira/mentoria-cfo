@@ -31,7 +31,7 @@ export interface CatalogAula {
   incidence: number;
   printedOffset: number;
   /** "authored": material complementar do MentorIA (preenche lacuna do edital) com PDF próprio. */
-  source?: "estrategia" | "authored";
+  source?: "base" | "authored";
 }
 
 export interface CatalogSubject {

@@ -206,7 +206,7 @@ describe("generatePlan — comportamento", () => {
     expect(p.coverage.subjects[0].coverage).toBeGreaterThan(0.99);
   });
 
-  it("as lacunas do Estratégia foram preenchidas por complementos: não há aviso de lacuna aberta, mas o aviso existe se uma lacuna reaparecer", () => {
+  it("as lacunas do material-base foram preenchidas por complementos: não há aviso de lacuna aberta, mas o aviso existe se uma lacuna reaparecer", () => {
     const p = generatePlan(input(21, ["legislacoes-pe", "lingua-inglesa"]));
     expect(p.warnings.filter((w) => w.startsWith("Lacuna no material"))).toHaveLength(0);
     const aulas = catalog.subjects.flatMap((s) => s.aulas).filter((a) => a.source === "authored");
@@ -226,8 +226,8 @@ describe("modelo de tempo", () => {
   const minutesOf = (p: PlanResult, subject: string) => p.coverage.subjects.find((s) => s.subjectId === subject)!.minutes;
 
   it("a Teoria segue a regra de 10–17 págs. por hora: Legislações PE (44 págs.) leva ~3–4 h de leitura", () => {
-    const estrategiaOnly = Object.fromEntries(["c01", "c02", "c03"].map((c) => [`legislacoes-pe/${c}`, 2 as const])); // só as aulas 01 e 02 (44 págs.)
-    const p = generatePlan(input(35, ["legislacoes-pe"], 0, { known: estrategiaOnly }));
+    const baseOnly = Object.fromEntries(["c01", "c02", "c03"].map((c) => [`legislacoes-pe/${c}`, 2 as const])); // só as aulas 01 e 02 (44 págs.)
+    const p = generatePlan(input(35, ["legislacoes-pe"], 0, { known: baseOnly }));
     const t = minutesOf(p, "legislacoes-pe").teoria / 60;
     expect(t).toBeGreaterThan(2.5);
     expect(t).toBeLessThan(4.5);

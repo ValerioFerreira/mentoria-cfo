@@ -3,7 +3,6 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import { QuickTime, StatusToggle } from "@/components/study-controls";
 import { Badge, TYPE_META, TypeIcon, cx, type ActivityType } from "@/components/ui";
-import { aulaLabel } from "@/lib/directive";
 import { fmtDuration, subjectShort } from "@/lib/ui-format";
 
 export interface ActivityRowData {
@@ -20,7 +19,7 @@ export interface ActivityRowData {
 
 export function activityTitle(a: Pick<ActivityRowData, "scope" | "type" | "aula">) {
   if (a.scope === "FINAL") return a.type === "QUESTOES" ? "Caderno misto da disciplina" : "Revisão geral dos trechos mais importantes";
-  return aulaLabel(a.aula);
+  return a.aula.shortTitle;
 }
 
 /** "1h05" / "45 min" para minutos planejados. */

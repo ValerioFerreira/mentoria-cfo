@@ -36,7 +36,7 @@ enum ForeignLanguage {
 }
 
 enum ContentSource {
-  ESTRATEGIA // aula do Estratégia (diretriz aponta página)
+  BASE // material-base da disciplina (a diretriz aponta as páginas)
   LEGAL_PUBLICO // texto legal público (diretriz aponta dispositivo/artigos)
   AUTHORED // material complementar autoral do MentorIA (PDF próprio) que preenche lacunas do edital
 }
@@ -136,11 +136,11 @@ model Subject {
   languageGroup        String? // "lingua-estrangeira" p/ Inglês/Espanhol (mutuamente exclusivos)
   foreignLanguage      ForeignLanguage?
   sortOrder            Int
-  estrategiaSection    String? // nome da pasta/curso no Estratégia
   materialCompleteness Float            @default(1) // fatia do edital que o material cobre (estimativa)
 
-  aulas      Aula[]
-  gaps       Gap[]
+  aulas       Aula[]
+  editalItems EditalItem[]
+  gaps        Gap[]
   planLinks  PlanSubject[]
   activities Activity[]
   questions  Question[]
@@ -153,7 +153,7 @@ model Aula {
   title          String
   shortTitle     String
   kind           AulaKind      @default(THEORY)
-  source         ContentSource @default(ESTRATEGIA)
+  source         ContentSource @default(BASE)
   edital         EditalFit     @default(YES)
   selectable     Boolean       @default(true) // false: fora do edital ou aula de prática já vinculada a outras
   totalPages     Int
@@ -177,6 +177,21 @@ model Aula {
 
   @@unique([subjectId, number])
   @@index([subjectId])
+}
+
+// Assuntos do edital de cada disciplina (content/edital/<disciplina>.json). A anamnese pergunta o que o aluno já estudou
+// por assunto; o planejador traduz as respostas para as aulas que cobrem cada assunto.
+model EditalItem {
+  id        String @id // "lingua-portuguesa/e1", "direito-constitucional/e3.1"
+  subjectId String
+  code      String // numeração no edital: "1", "3.5"
+  title     String
+  aulaIds   Json // aulas da própria disciplina (planejáveis) que tratam do assunto
+  sortOrder Int
+
+  subject Subject @relation(fields: [subjectId], references: [id])
+
+  @@index([subjectId, sortOrder])
 }
 
 model Gap {
@@ -245,7 +260,7 @@ model Segment {
 model Bizu {
   id        String @id @default(cuid())
   segmentId String @unique
-  summary   String // markdown em palavras próprias (nunca verbatim do Estratégia)
+  summary   String // markdown em palavras próprias (nunca verbatim do material-base)
   version   Int    @default(1)
 
   segment Segment    @relation(fields: [segmentId], references: [id])
@@ -316,8 +331,10 @@ model User {
   name         String?
   username     String?  @unique // minúsculas; vem da lista de espera (contas antigas não têm)
   passwordHash String
-  role         Role     @default(USER)
-  createdAt    DateTime @default(now())
+  role               Role      @default(USER)
+  mustChangePassword Boolean   @default(false)
+  accessExpiresAt    DateTime?
+  createdAt          DateTime  @default(now())
 
   sessions     Session[]
   profile      Profile?
@@ -361,7 +378,6 @@ model Profile {
   hoursBand       HoursBand?
   hoursPerWeek    Int? // valor efetivo escolhido (14–50)
   foreignLanguage ForeignLanguage?
-  estrategiaUrl   String? // link do curso do aluno no Estratégia
   createdAt       DateTime         @default(now())
   updatedAt       DateTime         @updatedAt
 
@@ -578,11 +594,17 @@ model WaitlistEntry {
   name      String
   email     String // minúsculas
   username  String   @unique // minúsculas
-  plan      WaitlistPlan? // plano escolhido (define o valor do Pix); nulo nos cadastros anteriores aos planos
-  createdAt DateTime @default(now())
-  paidAt    DateTime? // preenchido pelo administrador ao conferir o Pix
-  note      String?
+  plan            WaitlistPlan? // plano escolhido (define o valor do Pix); nulo nos cadastros anteriores aos planos
+  status          String        @default("PENDING") // PENDING, APPROVED, REJECTED
+  approvedAt      DateTime?
+  rejectedAt      DateTime?
+  accessDuration  String?       // "30_DAYS" ou "INDEFINITE"
+  rejectionReason String?
+  createdAt       DateTime      @default(now())
+  paidAt          DateTime? // preenchido pelo administrador ao conferir o Pix
+  note            String?
 
   @@unique([contest, email])
   @@index([createdAt])
+  @@index([status])
 }

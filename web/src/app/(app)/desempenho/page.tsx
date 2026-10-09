@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { Heatmap } from "@/components/heatmap";
-import { Alert, BLOCK_COLOR, Badge, Card, Count, EmptyState, LinkButton, PageHeader, Progress, Ring, SectionTitle, Stat } from "@/components/ui";
+import { Alert, BLOCK_COLOR, Badge, Card, ChartEmpty, Count, EmptyState, LinkButton, PageHeader, Progress, Ring, SectionTitle, Stat } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
 import { getPerformance } from "@/lib/data/performance";
 import { getActivePlan } from "@/lib/data/study";
-import { MIN_QUESTIONS_FOR_PROJECTION } from "@/lib/metrics";
+import { MIN_HEAT_DAYS, MIN_QUESTIONS_FOR_PROJECTION, MIN_TREND_CADERNOS, MIN_WEEKS_WITH_STUDY, chartReadiness, weeksWithStudy } from "@/lib/metrics";
 import { dateOfPlanDay, firstStudyISO, effectiveDays, planPosition, todayISO } from "@/lib/plan-time";
 import { fmtDuration, subjectName, subjectShort } from "@/lib/ui-format";
 
@@ -15,6 +15,7 @@ export const metadata: Metadata = { title: "Desempenho" };
 
 const pct = (v: number | null) => (v === null ? "—" : `${Math.round(v * 100)}%`);
 const num = (v: number) => (Number.isInteger(v) ? String(v) : v.toFixed(1).replace(".", ","));
+const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
 const BLOCK = { I: "Bloco I", II: "Bloco II", III: "Bloco III" } as const;
 const accColor = (v: number | null) => (v === null ? "var(--surface-3)" : v >= 0.7 ? "var(--ok)" : v >= 0.5 ? "var(--gold)" : "var(--primary)");
 
@@ -58,6 +59,10 @@ export default async function PerformancePage() {
     .map((s) => ({ ...s, seconds: perf.bySubjectSeconds.get(s.id) ?? 0, q: perf.quizStats.get(s.id), act: doneBySubject.get(s.id) }));
   const unattached = perf.bySubjectSeconds.get("_none") ?? 0;
   const activeDays = perf.daily.filter((d) => d.seconds > 0).length;
+  const trendReady = chartReadiness(perf.trend.length, MIN_TREND_CADERNOS);
+  const heatReady = chartReadiness(activeDays, MIN_HEAT_DAYS);
+  const weeksStudied = weeksWithStudy(perf.byWeekSeconds);
+  const weeklyReady = chartReadiness(weeksStudied, MIN_WEEKS_WITH_STUDY);
 
   const totalPoints = perf.projection.reduce((n, b) => n + b.points, 0);
   const projectedTotal = perf.projection.every((b) => b.projected !== null) ? perf.projection.reduce((n, b) => n + b.projected!, 0) : null;
@@ -76,7 +81,7 @@ export default async function PerformancePage() {
         <Stat
           label="Tempo estudado"
           value={fmtDuration(perf.totalSeconds)}
-          hint={plan ? `${fmtDuration(thisWeekSec)} esta semana · meta ${fmtDuration(weekTarget(nowWeek - 1))}` : unattached ? `${fmtDuration(unattached)} sem atividade` : "no total"}
+          hint={pos?.state === "during" ? `${fmtDuration(thisWeekSec)} esta semana · meta ${fmtDuration(weekTarget(nowWeek - 1))}` : `${fmtDuration(thisWeekSec)} esta semana${unattached ? ` · ${fmtDuration(unattached)} sem atividade` : ""}`}
           info="Soma dos tempos que você lançou nas atividades. O cronômetro flutuante não entra: ele é só um apoio."
           icon={<Clock3 className="h-4 w-4" aria-hidden />}
           delay={0}
@@ -143,11 +148,15 @@ export default async function PerformancePage() {
                   {b.projected === null ? "—" : num(b.projected)}
                   <span className="text-base font-medium text-muted"> de {b.points} questões</span>
                 </p>
-                <div className="relative pb-5 pt-1">
-                  <Progress value={ratio} color={b.status === "risco" ? "var(--primary)" : "var(--ok)"} size="lg" label={`Acertos estimados no ${BLOCK[b.block]}`} />
-                  <span className="absolute top-0 h-5 w-px bg-text/70" style={{ left: "30%" }} aria-hidden />
-                  <span className="absolute bottom-0 -translate-x-1/2 whitespace-nowrap text-[11px] font-semibold text-muted" style={{ left: "30%" }}>mínimo: {num(floor)} questões</span>
-                </div>
+                {b.projected === null ? (
+                  <ChartEmpty className="h-16 !px-3">Faça mais cadernos de questões deste bloco para gerar dados suficientes para a estimativa.</ChartEmpty>
+                ) : (
+                  <div className="relative pb-5 pt-1">
+                    <Progress value={ratio} color={b.status === "risco" ? "var(--primary)" : "var(--ok)"} size="lg" label={`Acertos estimados no ${BLOCK[b.block]}`} />
+                    <span className="absolute top-0 h-5 w-px bg-text/70" style={{ left: "30%" }} aria-hidden />
+                    <span className="absolute bottom-0 -translate-x-1/2 whitespace-nowrap text-[11px] font-semibold text-muted" style={{ left: "30%" }}>mínimo: {num(floor)} questões</span>
+                  </div>
+                )}
                 <ul className="divide-y divide-border text-sm">
                   {b.subjects.map((s) => (
                     <li key={s.id} className="flex items-center justify-between gap-3 py-1.5">
@@ -199,8 +208,10 @@ export default async function PerformancePage() {
               </thead>
               <tbody className="divide-y divide-border">
                 {rows.map((r, i) => {
-                  const acc = r.q?.accuracy ?? null;
-                  const mst = mastery(acc, r.q?.total ?? 0);
+                  const answered = r.q?.total ?? 0;
+                  const acc = answered >= MIN_QUESTIONS_FOR_PROJECTION ? (r.q?.accuracy ?? null) : null;
+                  const mst = mastery(acc, answered);
+                  const missingQ = Math.max(0, MIN_QUESTIONS_FOR_PROJECTION - answered);
                   return (
                     <tr key={r.id} className="transition hover:bg-surface-2/60">
                       <td className="px-5 py-3.5 font-semibold">
@@ -214,10 +225,14 @@ export default async function PerformancePage() {
                       <td className="px-3 py-3.5 text-right tabular text-muted">{r.q?.total ?? 0}</td>
                       <td className="px-3 py-3.5 text-right tabular text-muted">{r.q?.correct ?? 0}</td>
                       <td className="px-3 py-3.5">
-                        <div className="flex items-center gap-3">
-                          <Progress value={acc ?? 0} color={accColor(acc)} delay={i * 30} label={`Taxa de acerto em ${r.name}`} className="flex-1" />
-                          <span className="w-11 text-right font-display text-xl font-bold tabular">{pct(acc)}</span>
-                        </div>
+                        {acc === null ? (
+                          <p className="text-xs text-muted">Faça mais {plural(missingQ, "questão", "questões")} para gerar dados suficientes</p>
+                        ) : (
+                          <div className="flex items-center gap-3">
+                            <Progress value={acc} color={accColor(acc)} delay={i * 30} label={`Taxa de acerto em ${r.name}`} className="flex-1" />
+                            <span className="w-11 text-right font-display text-xl font-bold tabular">{pct(acc)}</span>
+                          </div>
+                        )}
                       </td>
                       <td className="px-5 py-3.5"><Badge tone={mst.tone}>{mst.label}</Badge></td>
                     </tr>
@@ -235,8 +250,8 @@ export default async function PerformancePage() {
             Evolução do acerto
           </SectionTitle>
           <Card className="rise" style={{ "--i": 2 } as CSSProperties}>
-            {perf.trend.length === 0 ? (
-              <p className="py-10 text-center text-sm text-muted">Finalize um caderno de questões para começar a ver sua evolução.</p>
+            {!trendReady.ready ? (
+              <ChartEmpty>Faça mais cadernos de questões para gerar dados suficientes: a evolução aparece a partir de {MIN_TREND_CADERNOS} cadernos finalizados (faltam {trendReady.missing}).</ChartEmpty>
             ) : (
               <>
                 <div className="relative flex h-40 items-end gap-1.5" role="img" aria-label="Taxa de acerto por caderno finalizado">
@@ -260,7 +275,11 @@ export default async function PerformancePage() {
         <section aria-labelledby="heat">
           <SectionTitle id="heat" info="Cada quadrado é um dia; quanto mais escuro, mais tempo lançado. Constância vale mais do que maratonas isoladas." aside={`${activeDays} ${activeDays === 1 ? "dia" : "dias"} com estudo`}>Constância</SectionTitle>
           <Card className="rise" style={{ "--i": 3 } as CSSProperties}>
-            <Heatmap days={perf.daily} />
+            {heatReady.ready ? (
+              <Heatmap days={perf.daily} />
+            ) : (
+              <ChartEmpty>Lance o tempo de estudo em mais dias para gerar dados suficientes: o mapa aparece a partir de {MIN_HEAT_DAYS} dias com estudo (faltam {heatReady.missing}).</ChartEmpty>
+            )}
           </Card>
         </section>
       </div>
@@ -269,6 +288,10 @@ export default async function PerformancePage() {
         <section aria-labelledby="wk">
           <SectionTitle id="wk" info="Horas lançadas em cada semana do plano. A linha tracejada é a meta daquela semana." aside="tracejado = meta">Horas por semana</SectionTitle>
           <Card className="rise" style={{ "--i": 3 } as CSSProperties}>
+            {!weeklyReady.ready ? (
+              <ChartEmpty>Lance o tempo de estudo em mais semanas do plano para gerar dados suficientes: o gráfico aparece a partir de {MIN_WEEKS_WITH_STUDY} semanas com estudo (faltam {weeklyReady.missing}).</ChartEmpty>
+            ) : (
+              <>
             <div className="flex h-40 items-end gap-[3px]" role="img" aria-label="Horas estudadas por semana em relação à meta">
               {perf.byWeekSeconds.map((sec, i) => (
                 <div key={i} className="group relative flex h-full flex-1 flex-col justify-end" title={`Semana ${i + 1}: ${fmtDuration(sec)} (meta ${fmtDuration(weekTarget(i))})`}>
@@ -281,6 +304,8 @@ export default async function PerformancePage() {
               ))}
             </div>
             <div className="mt-2 flex justify-between text-xs font-semibold text-muted tabular"><span>Semana 1</span><span className="text-gold-text">● semana atual</span><span>Semana {totalWeeks}</span></div>
+              </>
+            )}
           </Card>
         </section>
       )}
@@ -316,7 +341,7 @@ export default async function PerformancePage() {
                       <span className="text-[10px] font-bold tabular">{Math.round(r * 100)}</span>
                     </Ring>
                     <div className="min-w-0 flex-1">
-                      <p className="truncate font-semibold">{s.activity ? subjectShort(s.activity.subjectId) : "Caderno"}{s.activity ? ` · Aula ${String(s.activity.aula.number).padStart(2, "0")}` : ""}</p>
+                      <p className="truncate font-semibold">{s.activity ? subjectShort(s.activity.subjectId) : "Caderno"}{s.activity?.aula.shortTitle ? ` · ${s.activity.aula.shortTitle}` : ""}</p>
                       <p className="text-xs text-muted">{s.finishedAt?.toLocaleDateString("pt-BR")}</p>
                     </div>
                     <span className="font-display text-xl font-bold tabular">{s.score ?? 0}<span className="text-muted">/{s.total}</span></span>

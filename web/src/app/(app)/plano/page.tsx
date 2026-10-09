@@ -77,7 +77,7 @@ export default async function PlanPage() {
           <p className="eyebrow flex items-center gap-1.5 !text-on-ink-muted">
             Cobertura estimada do edital
             <InfoTip align="center">
-              Parte do edital das suas disciplinas que o plano faz você estudar até a prova, ponderada pelo número de questões de cada uma. Aulas que você marcou como dominadas já contam como cobertas.
+              Parte do edital das suas disciplinas que o plano faz você estudar até a prova, ponderada pelo número de questões de cada uma. Assuntos que você marcou como dominados já contam como cobertos.
             </InfoTip>
           </p>
         </Card>
@@ -194,7 +194,7 @@ export default async function PlanPage() {
                         <span className="h-3 w-3 shrink-0 rounded-[4px]" style={{ background: color }} aria-hidden />
                         {subjectShort(s.subjectId)}
                       </p>
-                      <p className="mt-1.5 text-xs text-muted">{s.examQuestions} {s.examQuestions === 1 ? "questão" : "questões"} na prova · {s.aulas.length} aulas · {Math.round(s.plannedHours)} h planejadas</p>
+                      <p className="mt-1.5 text-xs text-muted">{s.examQuestions} {s.examQuestions === 1 ? "questão" : "questões"} na prova · {Math.round(s.plannedHours)} h planejadas</p>
                     </div>
                     <div className="text-right">
                       <p className="font-display text-3xl font-bold leading-none tabular">{Math.round(s.coverage * 100)}%</p>
@@ -211,7 +211,7 @@ export default async function PlanPage() {
                     {hasAuthored && (
                       <Badge tone="gold">
                         <Sparkles className="h-3 w-3" aria-hidden />
-                        material complementar MentorIA
+                        conteúdo exclusivo MentorIA
                       </Badge>
                     )}
                   </div>

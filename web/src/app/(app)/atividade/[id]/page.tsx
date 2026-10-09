@@ -73,7 +73,7 @@ export default async function ActivityPage({ params }: PageProps<"/atividade/[id
   const isFinal = a.scope === "FINAL";
   const title = isFinal
     ? a.type === "QUESTOES" ? `Caderno misto — ${subjectShort(a.subjectId)}` : `Revisão geral — ${subjectShort(a.subjectId)}`
-    : aulaLabel(mainAula);
+    : mainAula.shortTitle;
 
   // blocos de teoria agrupados por aula
   const byAula = new Map<string, (SegmentRef & { aulaId: string })[]>();
@@ -191,10 +191,10 @@ export default async function ActivityPage({ params }: PageProps<"/atividade/[id
 
       {a.type === "TEORIA" && segs.length > 0 && (
         <section className="rise" style={{ "--i": 3 } as CSSProperties}>
-          <Section icon={<NotebookPen className="h-5 w-5 text-muted" aria-hidden />} title="Meu resumo" info="Escreva com as suas palavras. Este texto aparece na Revisão." />
+          <Section id="resumo" icon={<NotebookPen className="h-5 w-5 text-muted" aria-hidden />} title="Meu resumo" info="Escreva com as suas palavras. Este texto aparece na Revisão e em Meus resumos." />
           <Card className="space-y-4">
             {segs.map((s, i) => (
-              <NotesEditor key={s.id} segmentId={s.id} label={segs.length > 1 ? `Trecho ${i + 1} (págs. ${s.startPage}–${s.endPage})` : "Resumo do trecho"} initial={noteBySeg.get(s.id) ?? ""} />
+              <NotesEditor key={s.id} segmentId={s.id} label={segs.length > 1 ? `Parte ${i + 1}${s.startTopic ? ` · ${s.startTopic}` : ""}` : "Resumo do assunto"} initial={noteBySeg.get(s.id) ?? ""} />
             ))}
           </Card>
         </section>
@@ -206,8 +206,8 @@ export default async function ActivityPage({ params }: PageProps<"/atividade/[id
           <Card className="space-y-3">
             {segs.map((s) => (
               <div key={s.id} className="rounded-xl bg-surface-2 p-4 text-sm">
-                <p className="eyebrow mb-1.5">Págs. {s.startPage}–{s.endPage}{s.startTopic ? ` · ${s.startTopic}` : ""}</p>
-                <p className="whitespace-pre-wrap leading-relaxed">{noteBySeg.get(s.id) || <span className="text-muted">Você ainda não escreveu um resumo para este trecho.</span>}</p>
+                {s.startTopic && <p className="eyebrow mb-1.5">{s.startTopic}</p>}
+                <p className="whitespace-pre-wrap leading-relaxed">{noteBySeg.get(s.id) || <span className="text-muted">Você ainda não escreveu um resumo para este assunto.</span>}</p>
               </div>
             ))}
           </Card>

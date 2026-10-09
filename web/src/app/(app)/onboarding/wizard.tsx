@@ -3,6 +3,7 @@
 import { ArrowLeft, ArrowRight, CalendarDays, Check, ChevronDown, Flame, Gauge, Loader2, Rocket, Sparkles, Zap } from "lucide-react";
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { Alert, BLOCK_COLOR, Badge, Button, Card, Count, InfoTip, Progress, Ring, cx } from "@/components/ui";
+import { knownFromMarks, type Mark } from "@/lib/anamnesis";
 import {
   DEFAULT_ANSWER, EXPERIENCE_OPTIONS, HIT_OPTIONS, LEVEL_LABEL, SELF_OPTIONS, levelFromAnswer,
   type DiagnosticAnswer,
@@ -10,12 +11,11 @@ import {
 import { longDate } from "@/lib/plan-time";
 import { createPlanAction, previewPlan } from "./actions";
 
-export interface WizardAula {
+export interface WizardItem {
   id: string;
-  number: number;
   title: string;
-  pages: number;
-  authored: boolean;
+  /** aulas da disciplina que tratam do assunto (o planejador trabalha por aula) */
+  aulaIds: string[];
 }
 
 export interface WizardSubject {
@@ -24,9 +24,10 @@ export interface WizardSubject {
   block: "I" | "II" | "III";
   examQuestions: number;
   languageGroup: string | null;
-  aulas: WizardAula[];
-  theoryPages: number;
-  /** a disciplina inclui material complementar autoral do MentorIA (preenche lacunas do edital) */
+  /** assuntos do edital, na ordem do edital */
+  items: WizardItem[];
+  aulaIds: string[];
+  /** a disciplina inclui conteúdo exclusivo do MentorIA sobre pontos do edital */
   hasComplement: boolean;
 }
 
@@ -53,7 +54,7 @@ function perDay(h: number) {
 }
 
 type Preview = Awaited<ReturnType<typeof previewPlan>>;
-type Known = Record<string, 1 | 2>;
+type Marks = Record<string, 1 | 2>;
 
 export function Wizard({ subjects, todayIso }: { subjects: WizardSubject[]; todayIso: string }) {
   const [step, setStep] = useState(0);
@@ -66,7 +67,7 @@ export function Wizard({ subjects, todayIso }: { subjects: WizardSubject[]; toda
   const start = startMode === "now" ? "now" : startPick;
   const startValid = startMode === "now" || (startPick >= todayIso && startPick < examDate);
   const [answers, setAnswers] = useState<Record<string, DiagnosticAnswer>>({});
-  const [known, setKnown] = useState<Known>({});
+  const [marks, setMarks] = useState<Marks>({});
   const [preview, setPreview] = useState<Preview | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [pending, startTransition] = useTransition();
@@ -78,8 +79,8 @@ export function Wizard({ subjects, todayIso }: { subjects: WizardSubject[]; toda
     () => chosen.map((s) => ({ id: s.id, level: levelFromAnswer(answers[s.id] ?? DEFAULT_ANSWER) })),
     [chosen, answers],
   );
-  // só as aulas das disciplinas escolhidas entram no cálculo
-  const knownChosen = useMemo(() => Object.fromEntries(Object.entries(known).filter(([id]) => selected.has(id.split("/")[0]))), [known, selected]);
+  // marcas por assunto viram marcas por aula (o que o planejador entende); só as disciplinas escolhidas entram no cálculo
+  const knownChosen = useMemo(() => Object.assign({}, ...chosen.map((s) => knownFromMarks(s, marks))) as Record<string, 1 | 2>, [chosen, marks]);
   const points = chosen.reduce((n, s) => n + s.examQuestions, 0);
 
   // prévia de cobertura (debounce) sempre que a seleção, as horas, a data, os níveis ou a anamnese mudam
@@ -106,19 +107,19 @@ export function Wizard({ subjects, todayIso }: { subjects: WizardSubject[]; toda
   }
   const setAnswer = (id: string, patch: Partial<DiagnosticAnswer>) =>
     setAnswers((a) => ({ ...a, [id]: { ...(a[id] ?? DEFAULT_ANSWER), ...patch } }));
-  const setKnownAula = (aulaId: string, v: 0 | 1 | 2) =>
-    setKnown((k) => {
-      const next = { ...k };
-      if (v === 0) delete next[aulaId];
-      else next[aulaId] = v;
+  const setMark = (itemId: string, v: Mark) =>
+    setMarks((m) => {
+      const next = { ...m };
+      if (v === 0) delete next[itemId];
+      else next[itemId] = v;
       return next;
     });
-  const setKnownAll = (s: WizardSubject, v: 0 | 1 | 2) =>
-    setKnown((k) => {
-      const next = { ...k };
-      for (const a of s.aulas) {
-        if (v === 0) delete next[a.id];
-        else next[a.id] = v;
+  const setMarkAll = (s: WizardSubject, v: Mark) =>
+    setMarks((m) => {
+      const next = { ...m };
+      for (const i of s.items) {
+        if (v === 0) delete next[i.id];
+        else next[i.id] = v;
       }
       return next;
     });
@@ -214,7 +215,7 @@ export function Wizard({ subjects, todayIso }: { subjects: WizardSubject[]; toda
                               className={cx("cursor-pointer rounded-lg px-4 py-2 text-sm font-semibold transition", selected.has(l.id) ? "bg-surface text-primary shadow-card" : "text-muted hover:text-text")}
                             >
                               {l.id === "lingua-inglesa" ? "Inglês" : "Espanhol"}
-                              <span className="ml-2 text-xs font-normal text-muted">{l.aulas.length} aulas</span>
+                              <span className="ml-2 text-xs font-normal text-muted">{l.items.length} assuntos</span>
                             </button>
                           ))}
                         </div>
@@ -232,15 +233,15 @@ export function Wizard({ subjects, todayIso }: { subjects: WizardSubject[]; toda
             <h1 id="t1" className="flex items-center gap-3 font-display text-4xl font-bold uppercase leading-none sm:text-5xl">
               O que você já estudou?
               <InfoTip align="start">
-                A anamnese vem antes do tempo porque define quanto do edital já está encaminhado. Quem estuda uma disciplina com mais bagagem lê e revisa mais rápido, e aulas marcadas como dominadas saem do plano (voltam só nas revisões finais). Se preferir, pule: assumimos que tudo é novo.
+                A anamnese vem antes do tempo porque define quanto do edital já está encaminhado. Quem estuda uma disciplina com mais bagagem lê e revisa mais rápido, e assuntos marcados como dominados saem do plano (voltam só nas revisões finais). Se preferir, pule: assumimos que tudo é novo.
               </InfoTip>
             </h1>
             <div className="space-y-3">
               {chosen.map((s) => {
                 const a = answers[s.id] ?? DEFAULT_ANSWER;
                 const lvl = levelFromAnswer(a);
-                const studied = s.aulas.filter((x) => known[x.id] === 1).length;
-                const mastered = s.aulas.filter((x) => known[x.id] === 2).length;
+                const studied = s.items.filter((x) => marks[x.id] === 1).length;
+                const mastered = s.items.filter((x) => marks[x.id] === 2).length;
                 return (
                   <Card key={s.id} className="relative space-y-3.5 overflow-hidden p-4 pl-6">
                     <span className="absolute inset-y-0 left-0 w-1.5" style={{ background: BLOCK_COLOR[s.block] }} aria-hidden />
@@ -251,7 +252,7 @@ export function Wizard({ subjects, todayIso }: { subjects: WizardSubject[]; toda
                     <ChipRow label="Experiência" value={a.experience} options={EXPERIENCE_OPTIONS.map((o) => ({ value: o.value, label: o.label }))} onChange={(v) => setAnswer(s.id, { experience: v })} />
                     <ChipRow label="Como você se avalia?" value={a.self} options={SELF_OPTIONS} onChange={(v) => setAnswer(s.id, { self: v })} />
                     <ChipRow label="Acerto recente em questões" value={a.hitRate} options={HIT_OPTIONS} onChange={(v) => setAnswer(s.id, { hitRate: v })} />
-                    <AulaChecklist s={s} known={known} onSet={setKnownAula} onAll={(v) => setKnownAll(s, v)} summary={studied + mastered > 0 ? `${studied} já estudei · ${mastered} domino` : `${s.aulas.length} aulas`} />
+                    <AssuntoChecklist s={s} marks={marks} onSet={setMark} onAll={(v) => setMarkAll(s, v)} summary={studied + mastered > 0 ? `${studied} já estudei · ${mastered} domino` : `${s.items.length} assuntos`} />
                   </Card>
                 );
               })}
@@ -388,11 +389,11 @@ function SubjectCard({ s, on, onToggle }: { s: WizardSubject; on: boolean; onTog
           {on && <Check className="pop h-3 w-3" strokeWidth={4} aria-hidden />}
         </span>
       </div>
-      <p className="mt-1 text-xs text-muted tabular">{s.examQuestions} {s.examQuestions === 1 ? "questão" : "questões"} na prova · {s.aulas.length} aulas · ~{s.theoryPages} páginas</p>
+      <p className="mt-1 text-xs text-muted tabular">{s.examQuestions} {s.examQuestions === 1 ? "questão" : "questões"} na prova · {s.items.length} assuntos</p>
       {s.hasComplement && (
         <p className="mt-1 flex items-center gap-1 text-xs font-medium text-gold-text">
           <Sparkles className="h-3 w-3" aria-hidden />
-          Inclui material complementar do MentorIA
+          Inclui conteúdo exclusivo do MentorIA
         </p>
       )}
     </button>
@@ -420,9 +421,10 @@ function ChipRow<T extends string | number>({ label, value, options, onChange }:
   );
 }
 
-/** Lista de aulas da disciplina: o aluno marca o que nunca viu, já estudou ou domina. */
-function AulaChecklist({ s, known, onSet, onAll, summary }: { s: WizardSubject; known: Known; onSet: (id: string, v: 0 | 1 | 2) => void; onAll: (v: 0 | 1 | 2) => void; summary: string }) {
+/** Assuntos do edital da disciplina: o aluno marca o que nunca viu, já estudou ou domina. */
+function AssuntoChecklist({ s, marks, onSet, onAll, summary }: { s: WizardSubject; marks: Marks; onSet: (id: string, v: Mark) => void; onAll: (v: Mark) => void; summary: string }) {
   const [open, setOpen] = useState(false);
+  if (s.items.length === 0) return null;
   return (
     <div className="rounded-xl border border-border bg-surface-2/60">
       <button type="button" onClick={() => setOpen((v) => !v)} aria-expanded={open} className="flex w-full cursor-pointer items-center justify-between gap-3 px-3.5 py-2.5 text-left text-sm font-semibold">
@@ -432,26 +434,23 @@ function AulaChecklist({ s, known, onSet, onAll, summary }: { s: WizardSubject; 
       {open && (
         <div className="swap-in space-y-2 border-t border-border px-3.5 py-3">
           <div className="flex flex-wrap gap-1.5">
-            <Button variant="secondary" size="sm" onClick={() => onAll(1)}>Todas: já estudei</Button>
-            <Button variant="secondary" size="sm" onClick={() => onAll(2)}>Todas: domino</Button>
+            <Button variant="secondary" size="sm" onClick={() => onAll(1)}>Todos: já estudei</Button>
+            <Button variant="secondary" size="sm" onClick={() => onAll(2)}>Todos: domino</Button>
             <Button variant="ghost" size="sm" onClick={() => onAll(0)}>Limpar</Button>
           </div>
-          <ul className="divide-y divide-border">
-            {s.aulas.map((a) => {
-              const v = (known[a.id] ?? 0) as 0 | 1 | 2;
+          <ul className="max-h-[28rem] divide-y divide-border overflow-y-auto pr-1">
+            {s.items.map((it) => {
+              const v = (marks[it.id] ?? 0) as Mark;
               return (
-                <li key={a.id} className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1.5 py-2">
-                  <span className="min-w-0 flex-1 text-sm">
-                    <span className="font-semibold tabular">Aula {String(a.number).padStart(2, "0")}</span> <span className="text-muted">{a.title}</span>
-                    {a.authored && <Badge tone="gold" className="ml-1.5">MentorIA</Badge>}
-                  </span>
-                  <span className="flex shrink-0 gap-0.5 rounded-lg bg-surface-3 p-0.5" role="group" aria-label={`Aula ${a.number}`}>
+                <li key={it.id} className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1.5 py-2">
+                  <span className="min-w-0 flex-1 text-sm">{it.title}</span>
+                  <span className="flex shrink-0 gap-0.5 rounded-lg bg-surface-3 p-0.5" role="group" aria-label={it.title}>
                     {KNOWN_OPTIONS.map((o) => (
                       <button
                         key={o.value}
                         type="button"
                         aria-pressed={v === o.value}
-                        onClick={() => onSet(a.id, o.value)}
+                        onClick={() => onSet(it.id, o.value)}
                         className={cx("cursor-pointer rounded-md px-2.5 py-1 text-xs font-semibold transition", v === o.value ? (o.value === 2 ? "bg-ok text-white shadow-card" : o.value === 1 ? "bg-surface text-primary shadow-card" : "bg-surface text-text shadow-card") : "text-muted hover:text-text")}
                       >
                         {o.label}

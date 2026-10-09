@@ -6,6 +6,9 @@ import { getCurrentUser } from "./session";
 export async function requireUser() {
   const user = await getCurrentUser();
   if (!user) redirect("/login");
+  if (user.accessExpiresAt && user.accessExpiresAt < new Date()) {
+    redirect("/login?erro=acesso-expirado");
+  }
   return user;
 }
 
