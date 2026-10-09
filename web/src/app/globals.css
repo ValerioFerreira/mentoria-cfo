@@ -508,6 +508,20 @@ body::before {
   filter: drop-shadow(0 0 0.35em color-mix(in srgb, var(--primary) 35%, transparent));
 }
 
+/* ───────── cartão-resposta: marcas de leitura óptica na borda da folha ───────── */
+.omr-edge {
+  position: relative;
+}
+.omr-edge::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 1.6rem;
+  background: linear-gradient(to bottom, var(--text) 0 0.55rem, transparent 0.55rem) 0.7rem 0.4rem / 0.45rem 1.35rem repeat-y;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
 /* ───────── semana: linha do tempo ───────── */
 .wk-seg {
   transition: transform 0.3s var(--ease-out), background-color 0.2s;

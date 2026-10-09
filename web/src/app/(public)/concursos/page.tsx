@@ -18,7 +18,6 @@ export default async function ContestsPage() {
         <h1 className="font-display text-5xl font-bold uppercase leading-[0.92] sm:text-7xl">
           Qual é a sua <span className="text-primary">missão?</span>
         </h1>
-        <p className="text-muted">Escolha o concurso. O MentorIA monta o plano de trás para frente a partir da data da prova, com a missão de cada dia, o que estudar e onde.</p>
       </div>
       <ul className="grid gap-5 md:grid-cols-3">
         {CONTESTS.map((c, i) => (

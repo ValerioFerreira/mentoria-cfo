@@ -9,7 +9,7 @@ export default async function PublicLayout({ children }: LayoutProps<"/">) {
   return (
     <div className="flex min-h-screen flex-col">
       <header className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-5 py-5 sm:px-8">
-        <Link href="/concursos" aria-label="MentorIA — início">
+        <Link href="/" aria-label="MentorIA — início">
           <Brand />
         </Link>
         <div className="flex items-center gap-3">

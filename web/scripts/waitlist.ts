@@ -16,6 +16,7 @@ const flag = (n: string) => {
 };
 const db = new PrismaClient({ adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL }) });
 const LABEL = { CBMPE_SOLDADO: "CBMPE Soldado", CBMPE_OFICIAL: "CBMPE 2º Tenente", PCPE_AGENTE: "PCPE Agente" } as const;
+const PLAN = { MONTHLY: "R$ 35/mês", UNTIL_EXAM: "R$ 100 até a prova" } as const;
 
 async function main() {
   const paid = flag("--pago");
@@ -45,7 +46,7 @@ async function main() {
   if (!all.length) return console.log("Lista de espera vazia.");
   for (const e of all) {
     const when = e.createdAt.toLocaleString("pt-BR", { timeZone: "America/Recife" });
-    console.log(`${e.paidAt ? "[PAGO]    " : "[aguarda] "}${when}  ${LABEL[e.contest].padEnd(16)} ${e.email.padEnd(34)} @${e.username.padEnd(20)} ${e.name}`);
+    console.log(`${e.paidAt ? "[PAGO]    " : "[aguarda] "}${when}  ${LABEL[e.contest].padEnd(16)} ${(e.plan ? PLAN[e.plan] : "—").padEnd(19)} ${e.email.padEnd(34)} @${e.username.padEnd(20)} ${e.name}`);
   }
   console.log(`\n${all.length} na lista · ${all.filter((e) => e.paidAt).length} com Pix conferido`);
 }

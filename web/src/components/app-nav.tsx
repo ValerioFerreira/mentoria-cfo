@@ -35,7 +35,7 @@ export function AppNav({ items, user, appearance }: { items: NavItem[]; user: Re
         </div>
         <div className="px-6 pb-5 pt-7">
           <Link href="/" aria-label="MentorIA — início">
-            <Brand inverse />
+            <Brand inverse subtitle="Missão Oficial · CBMPE" />
           </Link>
         </div>
         <div className="tape tape-rule mx-6 mb-5" aria-hidden />
@@ -71,7 +71,7 @@ export function AppNav({ items, user, appearance }: { items: NavItem[]; user: Re
       {/* celular: barra superior + abas */}
       <header className="sticky top-0 z-30 flex items-center justify-between border-b border-white/10 bg-ink/95 px-4 py-2.5 text-on-ink backdrop-blur lg:hidden">
         <Link href="/" aria-label="MentorIA — início">
-          <Brand inverse />
+          <Brand inverse subtitle="Missão Oficial · CBMPE" />
         </Link>
         {appearance}
       </header>

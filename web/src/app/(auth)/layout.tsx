@@ -1,50 +1,61 @@
+import Link from "next/link";
 import { AppearanceMenu } from "@/components/appearance-menu";
-import { Brand, Star } from "@/components/brand";
+import { Brand } from "@/components/brand";
 import { getTheme } from "@/lib/theme";
 
-const WEEKS = 20;
+const OPTIONS = ["A", "B", "C", "D", "E"];
+const MARKED = "C";
+
+/** Fileira de alternativas de um cartão-resposta: uma delas é preenchida assim que a página abre. */
+function AnswerBubbles() {
+  return (
+    <div className="flex items-center gap-2.5 sm:gap-3.5" aria-hidden>
+      {OPTIONS.map((letter) => (
+        <span
+          key={letter}
+          className="relative grid h-10 w-10 place-items-center rounded-full border-2 border-on-ink-muted/45 font-display text-xl font-bold text-on-ink-muted sm:h-14 sm:w-14 sm:text-2xl"
+        >
+          {letter}
+          {letter === MARKED && <span className="pop absolute -inset-0.5 rounded-full bg-gold shadow-[0_0_22px_-2px_var(--gold)]" style={{ animationDelay: "900ms" }} />}
+        </span>
+      ))}
+    </div>
+  );
+}
 
 export default async function AuthLayout({ children }: LayoutProps<"/">) {
   const theme = await getTheme();
   return (
-    <div className="grid min-h-screen lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
-      {/* painel de marca */}
-      <aside className="relative hidden overflow-hidden bg-ink p-12 text-on-ink lg:flex lg:flex-col lg:justify-between" aria-hidden>
-        <div className="pointer-events-none absolute -left-24 -top-24 h-96 w-96 rounded-full bg-primary/30 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-32 right-0 h-96 w-96 rounded-full bg-teoria/20 blur-3xl" />
-        <div className="tape tape-rule absolute inset-x-0 top-0 !rounded-none" />
-        <Brand inverse size="lg" />
-        <div className="relative space-y-6">
-          <p className="eyebrow !text-on-ink-muted">Missão Oficial · CBMPE · AOCP</p>
-          <h2 className="font-display text-[5.5rem] font-bold uppercase leading-[0.88]">
-            Cada dia<br />
-            <span className="text-primary">conta.</span>
-          </h2>
-          <p className="max-w-md text-on-ink-muted">Plano de estudos montado de trás para frente a partir da data da prova, com a missão de cada dia, a aula e a página exatas, bizus e cadernos de questões.</p>
-          <div>
-            <div className="flex items-end gap-1">
-              {Array.from({ length: WEEKS }, (_, i) => (
-                <span key={i} className="relative flex-1">
-                  {i === WEEKS - 1 && <Star className="absolute -top-6 left-1/2 h-4 w-4 -translate-x-1/2 text-gold" />}
-                  <span className="rise flex h-14 items-end rounded-md bg-white/10" style={{ ["--i" as string]: i * 0.4 }}>
-                    <span className={`block w-full rounded-md ${i === WEEKS - 1 ? "bg-gold" : "bg-primary"}`} style={{ height: `${20 + (i / (WEEKS - 1)) * 80}%` }} />
-                  </span>
-                </span>
-              ))}
-            </div>
-            <p className="mt-2 flex justify-between text-[11px] font-semibold text-on-ink-muted"><span>{WEEKS} semanas</span><span>Prova · 28/02/2027</span></p>
-          </div>
+    <div className="grid min-h-screen lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
+      {/* coluna de marca */}
+      <aside className="relative flex flex-col overflow-hidden bg-ink px-6 pb-11 pt-6 text-on-ink sm:px-12 sm:pb-16 sm:pt-8 lg:justify-between lg:p-14 lg:pb-20">
+        <div className="pointer-events-none absolute -left-24 -top-24 h-96 w-96 rounded-full bg-primary/25 blur-3xl" aria-hidden />
+        <div className="pointer-events-none absolute -bottom-40 right-0 h-96 w-96 rounded-full bg-teoria/15 blur-3xl" aria-hidden />
+        <div className="relative">
+          <Link href="/" aria-label="MentorIA — início" className="inline-block">
+            <Brand inverse size="lg" />
+          </Link>
         </div>
-        <p className="relative text-xs text-on-ink-muted">Acesso por convite.</p>
+        <div className="relative mt-7 space-y-5 sm:mt-10 sm:space-y-7 lg:mt-0 lg:space-y-9">
+          <h2 className="font-display text-[clamp(3.75rem,11vw,9rem)] font-bold uppercase leading-[0.84]">
+            Cada dia
+            <br />
+            conta.
+          </h2>
+          <AnswerBubbles />
+          <p className="max-w-md text-sm leading-relaxed text-on-ink-muted sm:text-base lg:text-lg">
+            Tenha um plano de estudos exclusivo, individualizado, com direcionamento detalhado, resumos, e questões com a pegada da banca. Você só precisa sentar e estudar, o resto deixa com a gente!
+          </p>
+        </div>
+        <div className="tape tape-rule absolute inset-x-0 bottom-0 !rounded-none" aria-hidden />
       </aside>
 
-      {/* formulário */}
-      <main className="relative flex flex-col justify-center px-5 py-10 sm:px-10">
-        <div className="absolute right-4 top-4"><AppearanceMenu initial={theme} /></div>
-        <div className="mx-auto w-full max-w-md space-y-8">
-          <div className="lg:hidden">
-            <Brand size="lg" />
-          </div>
+      {/* folha do formulário (borda com as marcas do cartão-resposta) */}
+      <main className="omr-edge relative flex flex-col justify-center bg-surface py-8 pl-12 pr-6 shadow-[-28px_0_48px_-24px_rgb(0_0_0/0.55)] sm:py-12 sm:pl-16 sm:pr-14 lg:py-10">
+        <div className="absolute right-4 top-4">
+          <AppearanceMenu initial={theme} />
+        </div>
+        <div className="mx-auto w-full max-w-sm">
           <div className="page-in">{children}</div>
         </div>
       </main>

@@ -5,7 +5,7 @@ import QRCode from "qrcode";
  * Pix "copia e cola" estático (BR Code / EMV) para recebimento por chave Pix.
  * O e-mail do interessado vai na mensagem (campo de informação adicional, subcampo 02 do campo 26),
  * para que o recebedor veja no extrato de quem veio o pagamento.
- * A chave, o nome e a cidade vêm do ambiente (PIX_KEY, PIX_RECEIVER_NAME, PIX_CITY); PIX_AMOUNT é opcional.
+ * A chave, o nome e a cidade vêm do ambiente (PIX_KEY, PIX_RECEIVER_NAME, PIX_CITY); o valor vem do plano escolhido (lib/plans.ts).
  */
 
 function field(id: string, value: string): string {
@@ -35,18 +35,17 @@ export interface PixConfig {
   key: string;
   receiverName: string;
   city: string;
+  /** valor fixo do QR Code (ex.: "35.00"); sem ele a pessoa digita o valor no app do banco */
   amount?: string;
 }
 
 export function pixConfig(): PixConfig | null {
   const key = process.env.PIX_KEY?.trim();
   if (!key) return null;
-  const amount = process.env.PIX_AMOUNT?.trim();
   return {
     key,
     receiverName: process.env.PIX_RECEIVER_NAME?.trim() || "MENTORIA",
     city: process.env.PIX_CITY?.trim() || "RECIFE",
-    amount: amount && /^\d+(\.\d{1,2})?$/.test(amount) ? amount : undefined,
   };
 }
 

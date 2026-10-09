@@ -18,7 +18,7 @@ export default async function WaitlistPage({ params }: PageProps<"/lista-de-espe
   const c = contestBySlug(concurso);
   if (!c) notFound();
   return (
-    <div className="mx-auto max-w-xl space-y-6 pt-2 sm:pt-8">
+    <div className="mx-auto max-w-2xl space-y-6 pt-2 sm:pt-8">
       <Link href="/concursos" className="inline-flex items-center gap-1.5 text-sm font-semibold text-muted transition hover:text-text">
         <ArrowLeft className="h-4 w-4" aria-hidden />
         Trocar de concurso

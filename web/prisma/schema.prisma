@@ -115,6 +115,11 @@ enum Contest {
   PCPE_AGENTE // PCPE · Agente de Polícia
 }
 
+enum WaitlistPlan {
+  MONTHLY // mensalidade
+  UNTIL_EXAM // pagamento único: acesso até o dia da prova
+}
+
 enum ReportStatus {
   OPEN
   RESOLVED
@@ -573,6 +578,7 @@ model WaitlistEntry {
   name      String
   email     String // minúsculas
   username  String   @unique // minúsculas
+  plan      WaitlistPlan? // plano escolhido (define o valor do Pix); nulo nos cadastros anteriores aos planos
   createdAt DateTime @default(now())
   paidAt    DateTime? // preenchido pelo administrador ao conferir o Pix
   note      String?

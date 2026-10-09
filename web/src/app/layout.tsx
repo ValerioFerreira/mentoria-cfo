@@ -8,8 +8,8 @@ const display = Barlow_Condensed({ subsets: ["latin"], weight: ["500", "600", "7
 const sans = Public_Sans({ subsets: ["latin"], variable: "--font-public", display: "swap" });
 
 export const metadata: Metadata = {
-  title: { default: "MentorIA · Missão Oficial CBMPE", template: "%s · MentorIA" },
-  description: "Plano de estudos diário, bizus e questões no padrão AOCP para a missão de 2º Tenente do CBMPE.",
+  title: { default: "MentorIA", template: "%s · MentorIA" },
+  description: "Plano de estudos exclusivo e individualizado para concursos: direcionamento detalhado, resumos e questões com a pegada da banca.",
 };
 
 export const viewport: Viewport = {
