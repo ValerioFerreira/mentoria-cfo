@@ -1,0 +1,103 @@
+PROGRESSO DO COLABORADOR — ETAPA 2 (questões AOCP) — branch questoes-juridicas
+Disciplinas desta frente: Direito Constitucional, Direito Administrativo, Língua Espanhola (aulas a00–a13)
+Base: origin/bizus-juridicas-linguas (bizus prontos). Tudo entra como DRAFT. Escopo: INSTRUCOES-COLABORADOR-ETAPA2.md.
+Última atualização: 2026-10-09.
+
+=====================================================================================================
+1. PANORAMA GERAL DO PROJETO (o que já foi feito, em todas as branches)
+=====================================================================================================
+Branches no remoto (origin):
+  bizus-exatas              Informática, Estatística, Matemática, Física, Química: bizus + questões de múltipla escolha
+                            CONCLUÍDOS (último commit d6ca78c). AINDA NÃO mesclada em main/lancamento nem em questoes-juridicas.
+                            Totais de questões: Info 1229 · Estat 976 · Mat 944 · Fís 554 · Quím 1016. Problemas do material e
+                            pontos para revisão humana: PROGRESSO-COLABORADOR.txt (nessa branch).
+  bizus-juridicas-linguas   Bizus de todos os 761 trechos da outra frente (outro colaborador). Etapa 1 fechada.
+  questoes-juridicas        ESTA branch (parte do colaborador na Etapa 2): Dir. Const., Dir. Adm., Espanhol a00–a13.
+  questoes-parte-a / -b     (a criar pelos 2 colaboradores novos) ver INSTRUCOES-COLABORADOR-ETAPA2B.md.
+  docs-temp, docs-temp2, docs-temp3, docs-temp4   TEMPORÁRIAS usadas só para enviar PDFs: APAGAR quando não precisar mais:
+                            git push origin --delete docs-temp4 docs-temp3 docs-temp2 docs-temp
+                            (apagar a branch NÃO remove os PDFs do histórico do Git: manter o repositório PRIVADO.)
+  lancamento, main          integração final.
+
+Divisão das questões (Etapa 2):
+  - Exatas (5 disciplinas): FEITAS (bizus-exatas).
+  - Este colaborador: Dir. Constitucional, Dir. Administrativo, Língua Espanhola a00–a13 (190 trechos): EM ANDAMENTO (seção 2).
+  - Parte A (Biologia + Inglês, 91 trechos) e Parte B (Português + Dir. Penal Militar + Legislações PE, 92 trechos): NÃO INICIADAS;
+    prompts e tabela por aula em INSTRUCOES-COLABORADOR-ETAPA2B.md (Língua Portuguesa a13 fica de fora: não selecionável).
+
+Pendências de conteúdo já conhecidas (exatas, opcionais):
+  - Química a23/s02: bizu cita gasolina com E30 desde ago/2025 e o material fala em 25%: conferir e corrigir.
+  - Física a17: exemplos paramagnéticos (platina/madeira/plástico) duvidosos: conferir.
+
+=====================================================================================================
+2. ESTADO DESTA BRANCH (questoes-juridicas) — instantâneo
+=====================================================================================================
+  Disciplina               Trechos*  Com questões  Faltam
+  Dir. Administrativo         71          46         25  (a07 5 · a08 4 · a09 16)         (a06 em finalização)
+  Dir. Constitucional         93          73         20  (a09 6 · a13 4 · a17 8 · a18 1 · a16 1 em finalização)
+  Língua Espanhola (a00-13)   37          37          0  CONCLUÍDA (501 questões; a13 com 67)
+  (* inclui os trechos dos complementos cNN, que já vieram prontos e não devem ser tocados.)
+Sempre conferir com: PYTHONIOENCODING=utf-8 python3 pipeline/validate_content.py --coverage --stage full --subject <disc>
+Arquivos parciais mantêm "stage":"bizu" por trecho nos trechos ainda sem questões e validam; ao concluir o trecho, o
+"stage" é removido.
+
+Quando a produção foi interrompida por limite de uso, havia 4 agentes em segundo plano (um por faixa): Dir. Adm. a05–a09,
+Dir. Const. a04–a09 + a13, Dir. Const. a14–a18 e Espanhol a13 (este já concluído). Se ficaram trechos sem questões, relançar.
+
+=====================================================================================================
+3. COMO CONTINUAR EM OUTRA MÁQUINA / SESSÃO
+=====================================================================================================
+1. git fetch origin && git switch questoes-juridicas && git pull
+2. Colocar em docs/ (raiz do projeto, FORA do Git, nunca commitar) os PDFs: 02 (Dir. Adm., aulas 00–09) e 04 (Dir. Const.,
+   aulas 00–18), mais docs/indice_topicos_curso.xlsx. (Espanhol já está concluído.)
+   Cache de texto: PYTHONIOENCODING=utf-8 pipeline/.venv/Scripts/python pipeline/extract.py --only 02  (e --only 04)
+   (em Linux/Mac use python3 no lugar de pipeline/.venv/Scripts/python).
+3. Ver o que falta: validate_content.py --coverage --stage full --subject direito-administrativo (e direito-constitucional).
+4. Rodar um agente (Claude Code) por faixa pendente, por exemplo:
+     "Leia pipeline/briefs/content.md e produza as questões AOCP dos trechos SEM questões de direito-administrativo a07–a09
+      (use inspect_aula.py para ver as páginas de cada trecho no cache). Grave o arquivo a cada aula, valide com
+      validate_content.py <arquivo>, não faça git, não mexa no bizu nem em trechos que já têm questões, nem nos
+      pontos listados nas seções 11–14 de PROGRESSO-AUDITORIA.txt."
+   Faixas sugeridas: Dir. Adm. a07–a09 (25 trechos) · Dir. Const. a09 + a13 (10) · Dir. Const. a16–a18 (~10).
+5. Validar cada aula, commitar (git add content/items PROGRESSO-COLABORADOR-ETAPA2.txt; git commit; git push -u origin
+   questoes-juridicas).
+6. Ao terminar: validação geral (--coverage --stage full nas 3 disciplinas), pytest pipeline/tests -q (inclui teste de
+   originalidade; exige o cache de texto), preencher a seção 5 abaixo e fazer o commit/push final.
+
+Regras do trabalho (resumo; íntegra em pipeline/briefs/content.md e INSTRUCOES-COLABORADOR-ETAPA2.md):
+  5 alternativas (A–E); mín. 8 questões/trecho (5 se < 6 págs.); dificuldade ~25/50/25%; gabarito por arquivo com cada letra
+  entre ~14–26% e máx. 3 seguidas; correta não sistematicamente a mais longa; "incorreta/exceto" ≤ 20%; nenhuma sequência
+  de 10 palavras iguais ao PDF (validador rejeita; em lei seca, troque verbos/ordem e quebre listas); explanation ≥ 2 frases;
+  pageRef dentro do trecho; "literal": true só para citação exata de norma. Escrever somente em content/items/<disciplina>/.
+  Não rodar segment.py, build_catalog.py, build_complements.py, edital_map.py nem o seed.
+
+=====================================================================================================
+4. NOTAS DE EXECUÇÃO
+=====================================================================================================
+- As questões foram escritas por agentes (uma faixa de aulas por agente), lendo as páginas de cada trecho no cache de texto,
+  com validação por aula e segunda passada de revisão.
+- Dir. Const. a02 e a08/s03 tiveram questões reescritas para passar na checagem de originalidade (10 palavras do PDF).
+- Os agentes receberam as dúvidas do material já levantadas nas seções 11–14 de PROGRESSO-AUDITORIA.txt e foram instruídos
+  a NÃO criar questão sobre elas.
+- Limites de uso (sessão e semanal) interromperam os agentes mais de uma vez; por isso foram feitos commits de snapshot
+  (inclusive de arquivos parciais, autorizado) e os agentes gravam a cada aula.
+- Na máquina Windows do usuário os PDFs ficavam em docs\docs\NN - ...; no repositório o esperado é docs/NN - .../ (raiz).
+
+=====================================================================================================
+5. PROBLEMAS NO MATERIAL ENCONTRADOS NESTA ETAPA
+=====================================================================================================
+Língua Espanhola a13 (relatório do agente):
+- Evitados por serem discutíveis/regionais: cutis, cancelar = pagar, prohibido/ahijado como ditongo, latir, acudir,
+  carro = carroça, bolso.
+- Já apontados antes e evitados: 'bíceps' = 'árvore', 'el desordem', 'a estante', listas duvidosas.
+- Revisão humana: billón = trilhão e mil millones = bilhão (s04, p. 46; coerente com a RAE, mas é a mesma escala numérica
+  da a10); extrañar = sentir saudades (s04, p. 50; uso americano, com objeto pessoa); classes "total" e "conceitual" de
+  sinonímia (s02) têm exemplos sobrepostos (marido/esposo): nunca foram oferecidas juntas como alternativas no mesmo item.
+Dir. Constitucional / Dir. Administrativo: relatórios finais dos agentes ainda não recebidos (completar aqui).
+
+=====================================================================================================
+6. PARA REVISÃO HUMANA
+=====================================================================================================
+- Amostragem das questões antes de aprovar (APPROVED) em /admin/revisao, principalmente em lei seca e temas com alterações
+  recentes (emendas constitucionais, leis novas).
+- Espanhol: conferir os textos-base originais em espanhol e a correção segundo a RAE.
