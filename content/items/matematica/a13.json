@@ -8,59 +8,93 @@
       "id": "matematica/a13/s01",
       "bizu": {
         "summary": [
-          "**Definição**: log_b(a) = x ⇔ b^x = a. Condições de existência: **a > 0**, **b > 0** e **b ≠ 1**. a é o logaritmando, b é a base e x é o logaritmo.",
-          "**Consequências da definição**: log_b(1) = 0; log_b(b) = 1; log_b(b^n) = n; **b^(log_b a) = a**; se log_b(x) = log_b(y), então x = y.",
-          "**Bases especiais**: **logaritmo decimal** (base 10, escreve-se log x) e **logaritmo natural** (base e ≈ 2,718, escreve-se ln x). Quando a base não aparece, em log subentende-se base 10.",
-          "**Logaritmo do produto**: log_b(x·y) = log_b x + log_b y (x e y positivos). **Logaritmo do quociente**: log_b(x/y) = log_b x − log_b y.",
-          "**Logaritmo da potência**: log_b(x^n) = n·log_b x. Também vale log_(b^m)(x) = (1/m)·log_b x: expoente na **base** divide, expoente no **logaritmando** multiplica.",
-          "**Pegadinha**: **não existe** propriedade para log(x + y) nem para log(x − y); log(x + y) **não** é log x + log y.",
-          "**Cologaritmo**: colog_b(a) = −log_b(a) = log_b(1/a)."
+          "**Para que serve**: em 3^y = 5 não dá para igualar as bases; o **logaritmo** resolve: y = log₃ 5. Logaritmo é a operação que **reverte a exponenciação**.",
+          "**Definição**: para a > 0, a ≠ 1 e x > 0, **logₐ x = y ⇔ aʸ = x**. **a** = base; **x** = logaritmando; **y** = logaritmo. Pergunta-chave: *a base deve ser elevada a qual expoente para dar o logaritmando?* Ex.: log₂ 8 = 3; log₇ 7 = 1; log₂(1/4) = −2.",
+          "**Dica de questão**: o enunciado pode pedir a **base** — log_x 243 = 5 ⇒ x⁵ = 243 ⇒ **x = 3**.",
+          "**Consequências da definição**: **logₐ a = 1**; **logₐ 1 = 0**; **a^(logₐ x) = x**; **logₐ aˣ = x**; **logₐ x = logₐ y ⇔ x = y** (mesma base).",
+          "**Bases especiais**: **decimal** (base 10) — quando a base não aparece, é 10: log x = log₁₀ x; **natural** (base **e**, número irracional ≈ 2,718): logₑ x = **ln x**.",
+          "**Produto**: logₐ(x·y) = logₐ x + logₐ y (vale para n fatores). **Quociente**: logₐ(x/y) = logₐ x − logₐ y.",
+          "**Potência**: logₐ xᵖ = **p·logₐ x**. **Base elevada a expoente**: log_(aᵖ) x = **(1/p)·logₐ x** — expoente no logaritmando **multiplica**; expoente na base **divide**.",
+          "**Aplicação**: dados log 2 = a e log 3 = b, decompõe-se em fatores: log 6 = a + b; log 9 = 2b; log 1,5 = b − a; log 5 = log(10/2) = **1 − a**; log 36 = 2a + 2b; log₁₀₀ 2 = a/2. Use as propriedades **nos dois sentidos** (ex.: log₃x + log₃y + log₃z = 4 ⇒ xyz = 3⁴ = 81)."
         ],
         "teoria": [
           {
-            "statement": "Para que log_b(a) exista no conjunto dos números reais, é necessário que a > 0, b > 0 e b ≠ 1.",
+            "statement": "Pela definição, logₐ x = y equivale a aʸ = x, com a > 0, a ≠ 1 e x > 0.",
             "isTrue": true,
-            "explanation": "Essas são as condições de existência do logaritmo: logaritmando positivo e base positiva diferente de 1."
+            "explanation": "A base é elevada ao logaritmo para resultar no logaritmando."
           },
           {
-            "statement": "A igualdade log(x + y) = log x + log y é válida para quaisquer x e y positivos.",
+            "statement": "Sem indicação de base, o símbolo log representa o logaritmo natural, de base e.",
             "isTrue": false,
-            "explanation": "A soma de logaritmos corresponde ao logaritmo do produto: log x + log y = log(x·y). Não há propriedade para log(x + y)."
+            "explanation": "Sem base escrita, o log é decimal (base 10); o natural é escrito ln."
           },
           {
-            "statement": "O logaritmo de 1 em qualquer base válida é igual a zero.",
+            "statement": "O logaritmo de 1 é zero em qualquer base válida, e o logaritmo da própria base é 1.",
             "isTrue": true,
-            "explanation": "Como b^0 = 1 para qualquer base b > 0, b ≠ 1, tem-se log_b(1) = 0."
+            "explanation": "Pois a⁰ = 1 e a¹ = a."
           },
           {
-            "statement": "Quando a base não está escrita, o logaritmo é natural, isto é, de base e.",
-            "isTrue": false,
-            "explanation": "Por convenção, log sem base indica o logaritmo decimal (base 10); o natural é indicado por ln."
+            "statement": "O logaritmo de um produto é igual à soma dos logaritmos dos fatores, na mesma base.",
+            "isTrue": true,
+            "explanation": "Vale para dois ou mais fatores positivos."
           }
         ],
         "revisao": [
           {
-            "statement": "log_b(x/y) é igual a log_b x menos log_b y, para x e y positivos.",
+            "statement": "Se log 2 = a, então log 5 = 1 − a.",
             "isTrue": true,
-            "explanation": "É a propriedade do logaritmo do quociente."
+            "explanation": "log 5 = log(10/2) = log 10 − log 2 = 1 − a."
           },
           {
-            "statement": "log_b(x^n) é igual a (log_b x)^n.",
+            "statement": "O logaritmo de uma potência xᵖ é igual a (logₐ x) elevado a p.",
             "isTrue": false,
-            "explanation": "O expoente do logaritmando desce multiplicando: log_b(x^n) = n·log_b x."
+            "explanation": "É p vezes o logaritmo de x: logₐ xᵖ = p·logₐ x."
           },
           {
-            "statement": "Se log_b(x) = log_b(y), com base válida, então x = y.",
+            "statement": "log_(aᵖ) x equivale a (1/p)·logₐ x.",
             "isTrue": true,
-            "explanation": "A função logarítmica é injetora; logaritmos iguais, na mesma base, implicam logaritmandos iguais."
+            "explanation": "Expoente na base divide o logaritmo."
+          },
+          {
+            "statement": "Se log₃ x + log₃ y = 4, então o produto x·y vale 81.",
+            "isTrue": true,
+            "explanation": "Pela propriedade do produto, log₃(xy) = 4, logo xy = 3⁴."
+          },
+          {
+            "statement": "O logaritmo do quociente x/y é igual ao quociente dos logaritmos de x e de y.",
+            "isTrue": false,
+            "explanation": "É a diferença: logₐ x − logₐ y."
           }
         ],
         "pointers": [
-          { "topic": "Definição e condições de existência", "pageRef": 4 },
-          { "topic": "Consequências da definição", "pageRef": 7 },
-          { "topic": "Bases especiais (decimal e natural)", "pageRef": 8 },
-          { "topic": "Logaritmo do produto e do quociente", "pageRef": 9 },
-          { "topic": "Logaritmo da potência e expoente na base", "pageRef": 10 }
+          {
+            "topic": "Definição de logaritmo",
+            "pageRef": 4
+          },
+          {
+            "topic": "Exemplos de cálculo",
+            "pageRef": 6
+          },
+          {
+            "topic": "Consequências da definição",
+            "pageRef": 7
+          },
+          {
+            "topic": "Bases especiais (decimal e natural)",
+            "pageRef": 8
+          },
+          {
+            "topic": "Propriedades do produto e do quociente",
+            "pageRef": 9
+          },
+          {
+            "topic": "Potência e base elevada a expoente",
+            "pageRef": 10
+          },
+          {
+            "topic": "Aplicações das propriedades",
+            "pageRef": 11
+          }
         ]
       }
     },
@@ -68,53 +102,88 @@
       "id": "matematica/a13/s02",
       "bizu": {
         "summary": [
-          "**Mudança de base**: log_b(a) = log_c(a) / log_c(b), com c > 0 e c ≠ 1. Permite escrever todos os logaritmos de um problema numa **mesma base** conveniente.",
-          "**Inverso**: log_b(a) = 1 / log_a(b). Logo, log_b(a)·log_a(b) = 1 (com a e b positivos e diferentes de 1).",
-          "**Regra da cadeia**: log_b(a)·log_a(c) = log_b(c).",
-          "**Expoente na base e no logaritmando**: log_(b^m)(a^n) = (n/m)·log_b(a).",
-          "**Uso prático**: ao receber valores como log 2 ≈ 0,30 e log 3 ≈ 0,48, **decomponha o número em fatores primos** e aplique produto/potência para obter outros logaritmos (por exemplo, log 6 = log 2 + log 3).",
-          "**Equações logarítmicas**: resolva restringindo antes o **domínio** (logaritmando > 0, base válida); depois iguale logaritmandos ou passe à forma exponencial. **Verifique as raízes** no domínio ao final."
+          "**Mudança de base**: para a, x, b positivos com a, b ≠ 1: **logₐ x = log_b x / log_b a**. Serve para levar todos os logaritmos a uma **base conveniente** (em geral, 10).",
+          "**Formas equivalentes**: logₐ x = log_b x · logₐ b e **logₐ x = 1 / log_x a** (inverso, com a e x positivos e diferentes de 1).",
+          "**Exemplo** (log 2 = a, log 3 = b): log₃ 2 = a/b; log₂ 3 = b/a (inverso); log₆ 5 = log 5/log 6 = **(1 − a)/(a + b)**.",
+          "**Estratégia em questões**: reescrever o número em função de fatores conhecidos (ex.: 50 = 5·10; 12 = 2²·3; 72 = 2³·3²) e aplicar produto, quociente e potência. Com log 5 = 0,698, log 50 = 1,698; com log 2 = 0,301 e log 3 = 0,477, log 12 = 2·0,301 + 0,477 = **1,079**.",
+          "**Casos cobrados**: log₅ 625 = 4; log 20 + log 5 = log 100 = 2; log n = 3 − log 2 ⇒ n = 500; log₁₀ 8 + log₁₀ 2 = log₁₀ 16 = **2·log₁₀ 4**; log₁₀₀ 72 = **(3a + 2b)/2**.",
+          "**Equação exponencial com e**: de 2e^(4k) = 162 vem e^(4k) = 81 ⇒ 4k = ln 81 ⇒ **k = ln 3**. Se 2ˣ = 6, então x = log₂ 6 = 1 + log₂ 3 ⇒ log₂ 3 = **x − 1**.",
+          "**Mudança de base numérica**: log₅ 100 com log 5 = 0,7 ⇒ log 100 / log 5 = 2/0,7 ≈ **2,85**. Soma log₂16 + log₄8 + log₈4: leva-se tudo à base 2 (4 + 3/2 + 2/3 = **37/6**)."
         ],
         "teoria": [
           {
-            "statement": "Pela mudança de base, log_b(a) = log_c(a) / log_c(b), em que c é qualquer base válida.",
+            "statement": "Pela mudança de base, logₐ x = log_b x / log_b a, para a e b positivos e diferentes de 1.",
             "isTrue": true,
-            "explanation": "É a fórmula de mudança de base, que mantém o logaritmando no numerador e a base antiga no denominador."
+            "explanation": "O logaritmo da base original fica no denominador."
           },
           {
-            "statement": "log_2(5)·log_5(2) é igual a 2.",
+            "statement": "log₂ 3 é igual ao inverso de log₃ 2.",
+            "isTrue": true,
+            "explanation": "logₐ x = 1/log_x a."
+          },
+          {
+            "statement": "Se log 5 = 0,7, então log₅ 100 é igual a 0,35.",
             "isTrue": false,
-            "explanation": "log_b(a) e log_a(b) são inversos; o produto é igual a 1."
+            "explanation": "log₅ 100 = log 100 / log 5 = 2/0,7 ≈ 2,85."
           },
           {
-            "statement": "Ao resolver uma equação logarítmica, é obrigatório conferir se as raízes obtidas satisfazem as condições de existência.",
+            "statement": "Se log 2 = 0,301 e log 3 = 0,477, então log 12 vale 1,079.",
             "isTrue": true,
-            "explanation": "Raízes que tornem algum logaritmando negativo ou nulo (ou a base inválida) devem ser descartadas."
+            "explanation": "log 12 = 2·log 2 + log 3 = 0,602 + 0,477."
           }
         ],
         "revisao": [
           {
-            "statement": "log_b(a) é o inverso multiplicativo de log_a(b), com a e b positivos e diferentes de 1.",
+            "statement": "Se 2ˣ = 6, então log₂ 3 = x − 1.",
             "isTrue": true,
-            "explanation": "log_b(a) = 1 / log_a(b), consequência direta da mudança de base."
+            "explanation": "x = log₂(2·3) = 1 + log₂ 3."
           },
           {
-            "statement": "Na mudança de base, a nova base colocada no denominador é a do logaritmando original.",
+            "statement": "log₁₀ 8 + log₁₀ 2 é equivalente a log₁₀ 10.",
             "isTrue": false,
-            "explanation": "No denominador entra o logaritmo da base original: log_c(b); no numerador, o do logaritmando: log_c(a)."
+            "explanation": "A soma é log₁₀ 16, que equivale a 2·log₁₀ 4."
           },
           {
-            "statement": "log_(b^m)(a^n) = (n/m)·log_b(a), com condições de existência satisfeitas.",
+            "statement": "Dados log 2 = a e log 3 = b, o valor de log₃ 2 é a/b.",
             "isTrue": true,
-            "explanation": "O expoente do logaritmando multiplica e o expoente da base divide."
+            "explanation": "Mudança para a base 10."
+          },
+          {
+            "statement": "Se log n = 3 − log 2, então n = 500.",
+            "isTrue": true,
+            "explanation": "log n + log 2 = 3 ⇒ 2n = 1000."
+          },
+          {
+            "statement": "A mudança de base só pode ser feita para a base e.",
+            "isTrue": false,
+            "explanation": "Pode-se usar qualquer base positiva e diferente de 1, geralmente 10 ou 2."
           }
         ],
         "pointers": [
-          { "topic": "Fórmula de mudança de base", "pageRef": 15 },
-          { "topic": "Inverso e regra da cadeia", "pageRef": 17 },
-          { "topic": "Expoentes na base e no logaritmando", "pageRef": 19 },
-          { "topic": "Uso de logaritmos dados e fatoração", "pageRef": 21 },
-          { "topic": "Equações logarítmicas e domínio", "pageRef": 24 }
+          {
+            "topic": "Fórmula de mudança de base",
+            "pageRef": 15
+          },
+          {
+            "topic": "Exemplos com log 2 = a e log 3 = b",
+            "pageRef": 15
+          },
+          {
+            "topic": "Questões de aplicação das propriedades",
+            "pageRef": 17
+          },
+          {
+            "topic": "Questões com valores dados",
+            "pageRef": 21
+          },
+          {
+            "topic": "Logaritmo com base 100 e fatoração",
+            "pageRef": 22
+          },
+          {
+            "topic": "Mudança de base em questões",
+            "pageRef": 25
+          }
         ]
       }
     },
@@ -122,52 +191,83 @@
       "id": "matematica/a13/s03",
       "bizu": {
         "summary": [
-          "**Função logarítmica**: f(x) = log_b(x), com **b > 0 e b ≠ 1**. É a **função inversa** da exponencial de mesma base.",
-          "**Domínio**: x > 0, isto é, **R\\*₊**. Quando o argumento é uma expressão g(x), o domínio exige **g(x) > 0**; se a base também variar, exige-se base positiva e diferente de 1.",
-          "**Imagem**: todos os reais (**R**). A função é sobrejetora no conjunto dos reais.",
-          "**Zero da função**: x = 1, pois log_b(1) = 0; o gráfico sempre passa por **(1, 0)**.",
-          "**Domínio de expressões**: para log_(x−2)(5 − x), por exemplo, exigem-se 5 − x > 0, x − 2 > 0 e x − 2 ≠ 1; o domínio é a **interseção** de todas as condições.",
-          "**Simetria com a exponencial**: o domínio da logarítmica é a imagem da exponencial, e vice-versa."
+          "**Função logarítmica**: f(x) = logₐ x, com **a > 0 e a ≠ 1**; f: R*₊ → R. f(x) e y são notações equivalentes.",
+          "**Domínio**: conjunto dos x em que a função existe. Duas condições: **base > 0 e ≠ 1** e **logaritmando > 0**. A condição de existência do logaritmo é o domínio da função.",
+          "**Exemplos**: log₃(x − 8) ⇒ x − 8 > 0 ⇒ **D = {x > 8}**; log_(x−3) 8 ⇒ x − 3 > 0 e x − 3 ≠ 1 ⇒ **x > 3 e x ≠ 4**; log₂(x² − 9x + 14) ⇒ raízes 2 e 7, parábola para cima, positiva fora das raízes ⇒ **x < 2 ou x > 7**.",
+          "**Base e logaritmando variáveis** (questão PMMG): f(x) = log_(x+1)(x² − 5x − 14): base ⇒ x > −1 e x ≠ 0; logaritmando ⇒ x < −2 ou x > 7; **interseção ⇒ ]7, +∞[**.",
+          "**Imagem**: todos os números reais, **I = R = ]−∞, +∞[** (o logaritmo pode ser negativo, zero ou positivo). Questão típica: imagem de f(x) = log₂ x é **(−∞, +∞)**.",
+          "**Roteiro para domínio**: resolver separadamente cada condição (inequações do 1º ou 2º grau) e fazer a **interseção** dos resultados na reta real; intervalos **abertos** nas raízes."
         ],
         "teoria": [
           {
-            "statement": "O domínio de f(x) = log_b(x) é o conjunto dos números reais positivos.",
+            "statement": "O domínio da função f(x) = log₃(x − 8) é o conjunto dos reais maiores que 8.",
             "isTrue": true,
-            "explanation": "O logaritmando precisa ser positivo, logo x > 0."
+            "explanation": "É preciso x − 8 > 0."
           },
           {
-            "statement": "A imagem da função logarítmica f(x) = log_b(x) é o conjunto dos reais positivos.",
+            "statement": "A imagem de f(x) = log₂ x é o conjunto dos reais positivos.",
             "isTrue": false,
-            "explanation": "A imagem é todo o conjunto dos reais; o conjunto dos reais positivos é o domínio."
+            "explanation": "A imagem é todo o conjunto dos reais."
           },
           {
-            "statement": "O gráfico de f(x) = log_b(x) intercepta o eixo x no ponto (1, 0), qualquer que seja a base válida.",
+            "statement": "Na função logarítmica, a base deve ser positiva e diferente de 1, e o logaritmando deve ser positivo.",
             "isTrue": true,
-            "explanation": "Como log_b(1) = 0 para qualquer base válida, a raiz é x = 1."
+            "explanation": "Essas são as condições de existência."
+          },
+          {
+            "statement": "Em f(x) = log_(x−3) 8, o domínio é x > 3, com x ≠ 4.",
+            "isTrue": true,
+            "explanation": "A base x − 3 deve ser positiva e diferente de 1."
           }
         ],
         "revisao": [
           {
-            "statement": "Para determinar o domínio de log_(x−2)(5 − x), basta exigir 5 − x > 0.",
-            "isTrue": false,
-            "explanation": "Também é preciso que a base seja positiva e diferente de 1 (x − 2 > 0 e x − 2 ≠ 1)."
-          },
-          {
-            "statement": "A função logarítmica de base b é a inversa da função exponencial de base b.",
+            "statement": "O domínio de log₂(x² − 9x + 14) é formado pelos x menores que 2 ou maiores que 7.",
             "isTrue": true,
-            "explanation": "As funções são inversas: b^(log_b x) = x e log_b(b^x) = x."
+            "explanation": "O trinômio é positivo fora das raízes 2 e 7."
           },
           {
-            "statement": "A função logarítmica possui valor para x = 0 se a base for maior que 1.",
+            "statement": "A função logarítmica f(x) = logₐ x é definida para todo x real.",
             "isTrue": false,
-            "explanation": "O zero não pertence ao domínio, qualquer que seja a base válida."
+            "explanation": "Só existe para x > 0, ou seja, em R*₊."
+          },
+          {
+            "statement": "No estudo do domínio de uma função com base e logaritmando variáveis, toma-se a interseção das condições.",
+            "isTrue": true,
+            "explanation": "No exemplo da PMMG, o resultado foi ]7, +∞[."
+          },
+          {
+            "statement": "O conjunto imagem da função logarítmica pode incluir valores negativos, o zero e valores positivos.",
+            "isTrue": true,
+            "explanation": "A imagem é R."
+          },
+          {
+            "statement": "Na expressão f(x) = log_(x+1)(...), a base exige x + 1 > 0 e x + 1 ≠ 1.",
+            "isTrue": true,
+            "explanation": "Ou seja, x > −1 e x ≠ 0."
           }
         ],
         "pointers": [
-          { "topic": "Definição da função logarítmica", "pageRef": 27 },
-          { "topic": "Domínio e condições da base", "pageRef": 27 },
-          { "topic": "Imagem da função", "pageRef": 33 },
-          { "topic": "Domínio de expressões com logaritmos", "pageRef": 29 }
+          {
+            "topic": "Definição da função logarítmica",
+            "pageRef": 27
+          },
+          {
+            "topic": "Domínio: condições de existência",
+            "pageRef": 27
+          },
+          {
+            "topic": "Exemplos de domínio",
+            "pageRef": 28
+          },
+          {
+            "topic": "Domínio com base variável",
+            "pageRef": 30
+          },
+          {
+            "topic": "Imagem",
+            "pageRef": 33
+          }
         ]
       }
     },
@@ -175,58 +275,87 @@
       "id": "matematica/a13/s04",
       "bizu": {
         "summary": [
-          "**Base maior que 1 (b > 1)**: função **crescente**; quanto maior x, maior o log. Para 0 < x < 1 o valor é **negativo**; para x > 1 é **positivo**.",
-          "**Base entre 0 e 1 (0 < b < 1)**: função **decrescente**; para 0 < x < 1 o valor é **positivo**; para x > 1 é **negativo**.",
-          "**Assíntota**: o eixo y (x = 0) é **assíntota vertical**; o gráfico fica sempre à direita dele e nunca o toca.",
-          "**Construção do gráfico**: marque o ponto (1, 0), o ponto (b, 1) e, se útil, (1/b, −1); ligue por curva suave respeitando a assíntota.",
-          "**Transformações**: log_b(x − h) desloca o gráfico h unidades para a **direita** (a assíntota passa a x = h); log_b(x) + k desloca k unidades **verticalmente**.",
-          "**Função logarítmica × exponencial**: os gráficos são **simétricos em relação à reta y = x** (bissetriz dos quadrantes ímpares), pois as funções são inversas.",
-          "**Desigualdades**: com b > 1, log_b x > log_b y ⇔ x > y (sentido mantido); com 0 < b < 1 o **sentido se inverte**."
+          "**Gráfico e base**: dois comportamentos. **a > 1** ⇒ função **crescente** (x₂ > x₁ ⇒ f(x₂) > f(x₁)); **0 < a < 1** ⇒ função **decrescente** (x₂ > x₁ ⇒ f(x₂) < f(x₁)).",
+          "**Por gráfico**: se o gráfico sobe da esquerda para a direita, a base é **maior que 1**. Questão VUNESP: dois gráficos crescentes ⇒ funções de base > 1, como y = log₂ x e y = log₂ 4x.",
+          "**Construção do gráfico**: atribuir valores a x, calcular f(x), marcar os pontos e traçar a curva (ex.: f(x) = log₂ x e f(x) = log_(1/2) x). O gráfico passa por **(1, 0)**.",
+          "**Dois tipos de questão**: (1) dada a função, escolher o gráfico (calcular as intersecções com os eixos: x = 0 dá o ponto no eixo y; y = 0 dá o ponto no eixo x); (2) dado o gráfico, achar a lei.",
+          "**Exemplo**: f(x) = 3 − log₃(3 − x): f(0) = 3 − 1 = **2** e f(x) = 0 ⇒ 3 − x = 27 ⇒ **x = −24**. **Lei pelo gráfico**: f(x) = logₐ(x + b); passando por (1, 0) e (2, 1): b = 0 e a = 2 ⇒ **f(x) = log₂ x**.",
+          "**Inversa da exponencial**: g(x) = aˣ é bijetora; sua inversa é f(x) = logₐ x. Os gráficos são **simétricos em relação à reta y = x** (bissetriz dos quadrantes ímpares), seja a > 1 ou 0 < a < 1."
         ],
         "teoria": [
           {
             "statement": "Se a base é maior que 1, a função logarítmica é crescente.",
             "isTrue": true,
-            "explanation": "Para b > 1, valores maiores de x correspondem a logaritmos maiores."
+            "explanation": "Se 0 < a < 1, é decrescente."
           },
           {
-            "statement": "O gráfico de uma função logarítmica toca o eixo y em um único ponto.",
+            "statement": "A função logarítmica de base entre 0 e 1 é crescente.",
             "isTrue": false,
-            "explanation": "O eixo y é assíntota vertical: o gráfico se aproxima dele, mas nunca o toca nem o cruza."
+            "explanation": "Com base entre 0 e 1, a função é decrescente."
           },
           {
-            "statement": "Com a base entre 0 e 1, o logaritmo de um número maior que 1 é negativo.",
+            "statement": "A função logarítmica f(x) = logₐ x é a inversa da função exponencial g(x) = aˣ.",
             "isTrue": true,
-            "explanation": "Nesse caso a função é decrescente e passa por (1, 0); para x > 1 os valores ficam abaixo de zero."
+            "explanation": "Os gráficos são simétricos em relação à reta y = x."
           },
           {
-            "statement": "O gráfico de y = log_2(x − 3) é o de y = log_2(x) deslocado 3 unidades para a esquerda.",
-            "isTrue": false,
-            "explanation": "Subtrair 3 do argumento desloca o gráfico 3 unidades para a direita; a assíntota passa a ser x = 3."
+            "statement": "Na função f(x) = 3 − log₃(3 − x), o gráfico intercepta o eixo y no ponto (0, 2).",
+            "isTrue": true,
+            "explanation": "f(0) = 3 − log₃ 3 = 2."
           }
         ],
         "revisao": [
           {
-            "statement": "Os gráficos de y = b^x e y = log_b(x) são simétricos em relação à reta y = x.",
+            "statement": "O gráfico de uma função logarítmica de base maior que 1 sobe à medida que x aumenta.",
             "isTrue": true,
-            "explanation": "Funções inversas têm gráficos simétricos em relação à bissetriz dos quadrantes ímpares."
+            "explanation": "Por isso a função é crescente."
           },
           {
-            "statement": "Se 0 < b < 1, a desigualdade log_b x > log_b y equivale a x > y.",
+            "statement": "Se um gráfico passa pelos pontos (1, 0) e (2, 1), a função logarítmica correspondente é f(x) = log₂ x.",
+            "isTrue": true,
+            "explanation": "b = 0 e a = 2."
+          },
+          {
+            "statement": "O gráfico de uma função logarítmica e o da exponencial de mesma base coincidem.",
             "isTrue": false,
-            "explanation": "Para base entre 0 e 1 a função é decrescente, e o sentido da desigualdade se inverte: x < y."
+            "explanation": "São simétricos em relação à reta y = x, mas não coincidem."
           },
           {
-            "statement": "Para qualquer base válida, o gráfico da função logarítmica passa pelo ponto (b, 1).",
+            "statement": "Para construir o gráfico de uma função logarítmica, atribuem-se valores a x e calcula-se f(x) em cada ponto.",
             "isTrue": true,
-            "explanation": "log_b(b) = 1, logo (b, 1) pertence ao gráfico."
+            "explanation": "Depois se traça a curva."
+          },
+          {
+            "statement": "A função f(x) = log₃(3 − x) não é definida para x = 3.",
+            "isTrue": true,
+            "explanation": "O logaritmando 3 − x deve ser positivo, logo x < 3."
           }
         ],
         "pointers": [
-          { "topic": "Crescimento e decrescimento conforme a base", "pageRef": 34 },
-          { "topic": "Construção do gráfico", "pageRef": 37 },
-          { "topic": "Assíntota e deslocamentos", "pageRef": 40 },
-          { "topic": "Logarítmica × exponencial (inversas)", "pageRef": 43 }
+          {
+            "topic": "Comportamento do gráfico conforme a base",
+            "pageRef": 34
+          },
+          {
+            "topic": "Questão VUNESP (gráficos)",
+            "pageRef": 36
+          },
+          {
+            "topic": "Construção do gráfico",
+            "pageRef": 37
+          },
+          {
+            "topic": "Função dada, gráfico pedido",
+            "pageRef": 39
+          },
+          {
+            "topic": "Gráfico dado, função pedida",
+            "pageRef": 42
+          },
+          {
+            "topic": "Função logarítmica × exponencial",
+            "pageRef": 43
+          }
         ]
       }
     }
