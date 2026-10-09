@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { AppearanceMenu } from "@/components/appearance-menu";
 import { Brand } from "@/components/brand";
+import { VaporCountdown } from "@/components/countdown-vapor-digits";
 import { getTheme } from "@/lib/theme";
 
 const WEEK_DAYS = [
@@ -86,7 +87,15 @@ export default async function AuthLayout({ children }: LayoutProps<"/">) {
             <Brand inverse size="lg" />
           </Link>
         </div>
-        <div className="relative mt-7 space-y-5 sm:mt-10 sm:space-y-7 lg:mt-0 lg:space-y-9">
+        <div className="relative mt-7 space-y-6 sm:mt-10 sm:space-y-7 lg:mt-0 lg:space-y-8">
+          {/* Cronômetro moderno centralizado acima de CADA DIA CONTA */}
+          <div className="flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-surface/5 px-4 py-4 text-center backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+            <p className="mb-2 font-display text-[11px] font-bold uppercase tracking-[0.2em] text-gold/90">
+              Lançamento Oficial · Encerra em
+            </p>
+            <VaporCountdown targetDate="2026-10-09T18:00:00-03:00" />
+          </div>
+
           <h2 className="font-display text-[clamp(3.75rem,11vw,9rem)] font-bold uppercase leading-[0.84]">
             Cada dia
             <br />

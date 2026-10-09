@@ -1,4 +1,5 @@
-import { ArrowRight } from "lucide-react";
+import { RouteNavigationTrap } from "@/components/route-navigation-trap";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,7 +13,12 @@ export const metadata: Metadata = { title: "Escolha seu concurso" };
 export default async function ContestsPage() {
   if (await getCurrentUser()) redirect("/");
   return (
-    <div className="space-y-10 pt-4 sm:pt-10">
+    <div className="space-y-8 pt-2 sm:pt-8">
+      <RouteNavigationTrap targetUrl="/" />
+      <Link href="/" className="inline-flex items-center gap-1.5 text-sm font-semibold text-muted transition hover:text-text">
+        <ArrowLeft className="h-4 w-4" aria-hidden />
+        Voltar para o início
+      </Link>
       <div className="max-w-2xl space-y-4">
         <p className="eyebrow">MentorIA · Plano de estudos</p>
         <h1 className="font-display text-5xl font-bold uppercase leading-[0.92] sm:text-7xl">

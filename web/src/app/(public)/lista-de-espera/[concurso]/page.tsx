@@ -1,3 +1,4 @@
+import { RouteNavigationTrap } from "@/components/route-navigation-trap";
 import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -19,6 +20,7 @@ export default async function WaitlistPage({ params }: PageProps<"/lista-de-espe
   if (!c) notFound();
   return (
     <div className="mx-auto max-w-2xl space-y-6 pt-2 sm:pt-8">
+      <RouteNavigationTrap targetUrl="/concursos" />
       <Link href="/concursos" className="inline-flex items-center gap-1.5 text-sm font-semibold text-muted transition hover:text-text">
         <ArrowLeft className="h-4 w-4" aria-hidden />
         Trocar de concurso

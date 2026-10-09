@@ -4,6 +4,7 @@ import { Check, CircleAlert, Copy, Loader2, Send } from "lucide-react";
 import Image from "next/image";
 import { useActionState, useRef, useState } from "react";
 import { Star } from "@/components/brand";
+import { RouteNavigationTrap } from "@/components/route-navigation-trap";
 import { Alert, Button, Card, Field, inputCls } from "@/components/ui";
 import { WAITLIST_PLANS } from "@/lib/plans";
 import { checkUsername, joinWaitlist, type UsernameCheck } from "./actions";
@@ -156,6 +157,7 @@ function Payment({ p }: { p: NonNullable<NonNullable<Awaited<ReturnType<typeof j
   }
   return (
     <Card className="space-y-6">
+      <RouteNavigationTrap targetUrl="/concursos" />
       <div className="space-y-2">
         {p.alreadyJoined && <p className="eyebrow">Você já está na lista</p>}
         <h2 className="font-display text-5xl font-bold uppercase leading-none">Falta pouco!</h2>
