@@ -1,0 +1,51 @@
+PROGRESSO DO COLABORADOR — ETAPA 2B, PARTE B (questões AOCP) — branch questoes-parte-b
+Disciplinas desta frente: Língua Portuguesa (a00–a12), Direito Penal Militar (a00–a11), Legislações PE (a01–a02)
+Escopo: 92 trechos (1.035 págs.). Tudo entra como DRAFT. Instruções: INSTRUCOES-COLABORADOR-ETAPA2B.md; briefing: pipeline/briefs/content.md.
+Fora do escopo: complementos (cNN, já têm questões) e Língua Portuguesa a13 (Redação Oficial, fora do plano).
+
+COMO RETOMAR (se a sessão cair ou o limite de uso acabar)
+1. git fetch origin && git switch questoes-parte-b && git pull   (ou: git worktree add .worktrees/parte-b questoes-parte-b)
+2. Os PDFs (docs/03, docs/08, docs/13) ficam fora do Git; o cache de texto sai de:
+   PYTHONIOENCODING=utf-8 pipeline/.venv/Scripts/python pipeline/extract.py --only 03   (e --only 08, --only 13)
+   Em worktree: criar junção  pipeline\.cache -> <repo principal>\pipeline\.cache  e usar o python do .venv do repo principal.
+3. Ver o que falta (lista os trechos sem questões):
+   PYTHONIOENCODING=utf-8 pipeline/.venv/Scripts/python pipeline/validate_content.py --coverage --stage full --subject lingua-portuguesa
+   (idem direito-penal-militar e legislacoes-pe). Arquivos parciais mantêm "stage":"bizu" por trecho nos pendentes e validam.
+4. Fazer só os trechos pendentes (briefing: pipeline/briefs/content.md), validar cada aula e commitar/push.
+
+DIVISÃO EM AGENTES PARALELOS (9) — iniciada em 2026-10-09
+  Agente  Escopo                                                                Trechos  Págs.
+  LP1     Língua Portuguesa a00 + a01                                              10     127
+  LP2     Língua Portuguesa a02 + a12                                               9     114
+  LP3     Língua Portuguesa a04 + a08                                               9     127
+  LP4     Língua Portuguesa a05 + a09 + a10                                        10     130
+  LP5     Língua Portuguesa a06 + a07                                               8     104
+  LP6     Língua Portuguesa a03 + a11                                               8     106
+  DPM1    Legislações PE a01 + a02 · Dir. Penal Militar a00 + a01 + a02            11     107
+  DPM2    Dir. Penal Militar a03 + a04 + a05 + a06 + a07 + a10 + a11               15     115
+  DPM3    Dir. Penal Militar a08 + a09                                             12     105
+
+ESTADO (instantâneo de 2026-10-09; conferir sempre com o comando de cobertura do passo 3)
+  Disciplina            Trechos   Com questões   Faltam   Questões
+  Língua Portuguesa*      54          36            18       516
+  Dir. Penal Militar      34          14            20       158
+  Legislações PE           4           4             0        51   CONCLUÍDA (a01, a02)
+  (* o total de 56 trechos do validador inclui os 2 de complementos, que já tinham questões)
+  Agentes concluídos: LP6 (Português a03 + a11: 110 questões). Demais em andamento.
+
+NOTAS DE EXECUÇÃO
+- As questões são escritas por agentes (um conjunto de aulas por agente), lendo as páginas de cada trecho no cache de texto,
+  com validação por aula e segunda passada de revisão; commits a cada 1–3 aulas.
+- Os agentes recebem as dúvidas do material já levantadas em PROGRESSO-AUDITORIA.txt (seções 8, 13, 14) e NÃO criam questão sobre elas.
+- Trabalho feito em git worktree (.worktrees/parte-b) porque a pasta principal é usada por outra sessão (Parte A) em outra branch.
+
+PROBLEMAS NO MATERIAL ENCONTRADOS NESTA ETAPA (a completar com os relatórios finais dos agentes)
+- LP6 (Português a03, a11): pontos do material NÃO usados em questões:
+  a11 p.45 (poema com marcas emotivas = função poética) x p.41 (emotiva predomina em poemas líricos); a11 p.14 mantém o tempo
+  verbal da fala no discurso indireto ("João disse que Pedro não desistirá"); pp. 40-41 (a03) e 12, 43, 48-49, 52 (a11) são imagens.
+  a03/s02 usa a regra do material de que "mas" não vem intercalado entre vírgulas (p.20): a banca pode discordar.
+
+PARA REVISÃO HUMANA
+- Amostragem das questões antes de aprovar (APPROVED) em /admin/revisao, principalmente lei seca (CPM, Estatuto dos Militares de PE,
+  Código Disciplinar) e temas com alterações recentes de lei.
+- Língua Portuguesa: conferir os textos-base originais e a gramática normativa (dúvidas já mapeadas em PROGRESSO-AUDITORIA.txt, seção 14).
