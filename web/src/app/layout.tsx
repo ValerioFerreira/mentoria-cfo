@@ -27,6 +27,10 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   const theme = saved === "light" || saved === "sepia" || saved === "dark" ? saved : undefined;
   return (
     <html lang="pt-BR" data-theme={theme} className={`${display.variable} ${sans.variable} h-full`} suppressHydrationWarning>
+      <head>
+        <link rel="prefetch" href="/images/CBMPE.webp" as="image" type="image/webp" />
+        <link rel="prefetch" href="/images/PCPE.webp" as="image" type="image/webp" />
+      </head>
       <body className="min-h-full flex flex-col">
         <FaviconFlame />
         {children}

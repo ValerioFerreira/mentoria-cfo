@@ -40,6 +40,7 @@ function ContestCard({ c }: { c: ContestInfo }) {
         src={c.image}
         alt=""
         fill
+        priority
         sizes="(min-width: 768px) 33vw, 100vw"
         className="object-cover opacity-85 transition duration-500 ease-out group-hover:scale-110 group-hover:opacity-100"
         style={{ objectPosition: c.imagePosition }}
