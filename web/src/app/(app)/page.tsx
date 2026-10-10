@@ -1,4 +1,4 @@
-import { PartyPopper, Rocket, TriangleAlert } from "lucide-react";
+import { HelpCircle, PartyPopper, Rocket, TriangleAlert } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import type { CSSProperties } from "react";
@@ -26,10 +26,16 @@ export default async function MissionPage() {
           <p className="eyebrow !text-on-ink-muted">Bem-vindo, {first}</p>
           <h1 className="mt-2 font-display text-5xl font-bold uppercase leading-[0.95] sm:text-7xl">Pronto para a missão?</h1>
           <p className="mt-4 max-w-lg text-on-ink-muted">Responda o questionário para que o MentorIA crie o seu planejamento personalizado.</p>
-          <LinkButton href="/onboarding" size="lg" className="mt-7">
-            <Rocket className="h-5 w-5" aria-hidden />
-            Montar meu plano
-          </LinkButton>
+          <div className="mt-7 flex flex-wrap items-center gap-3">
+            <LinkButton href="/onboarding" size="lg">
+              <Rocket className="h-5 w-5" aria-hidden />
+              Montar meu plano
+            </LinkButton>
+            <LinkButton href="/como-funciona" variant="onInk" size="lg">
+              <HelpCircle className="h-5 w-5" aria-hidden />
+              Como funciona a plataforma?
+            </LinkButton>
+          </div>
         </section>
       </div>
     );

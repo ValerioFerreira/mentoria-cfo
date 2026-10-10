@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 
-const PUBLIC = ["/login", "/cadastro", "/concursos", "/lista-de-espera", "/recuperar-senha"];
+const PUBLIC = ["/login", "/cadastro", "/concursos", "/lista-de-espera", "/recuperar-senha", "/como-funciona"];
 
 export default function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
