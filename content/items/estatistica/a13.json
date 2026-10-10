@@ -13,8 +13,8 @@
      "**Estimador de mínimos quadrados**: **β̂ = (XᵀX)⁻¹ Xᵀy**, em que Xᵀ é a transposta de X e (XᵀX)⁻¹, a inversa de XᵀX.",
      "**Valores ajustados e resíduos**: ŷ = Xβ̂ e = y − ŷ.",
      "**Dimensões**: com n observações e p parâmetros (incluindo o intercepto), X é n × p; XᵀX é p × p e Xᵀy é p × 1. Multiplicar uma matriz 3 × 5 por uma 5 × 3 resulta em 3 × 3.",
-     "**Dica de prova**: raramente se exige o cálculo completo (inversa de matriz); é comum já fornecerem (XᵀX)⁻¹ e Xᵀy para multiplicar. Atenção à **ordem** das multiplicações.",
-     "**Exemplo da aula**: o modelo ajustado foi Y = −0,5 + 2·x₁ − 0,5·x₂ + ε (5 observações e 3 parâmetros)."
+     "📌 **Dica de prova**: raramente se exige o cálculo completo (inversa de matriz); é comum já fornecerem (XᵀX)⁻¹ e Xᵀy para multiplicar. Atenção à **ordem** das multiplicações.",
+     "💡 **Exemplo da aula**: o modelo ajustado foi Y = −0,5 + 2·x₁ − 0,5·x₂ + ε (5 observações e 3 parâmetros)."
     ],
     "teoria": [
      {
@@ -311,13 +311,13 @@
    "bizu": {
     "summary": [
      "**Equação estimada**: Ŷ = a + b₁X₁ + b₂X₂. O intercepto a é o valor estimado de Y quando todas as variáveis valem zero; b₁ e b₂ são **efeitos parciais** (efeito de uma variável mantendo a outra constante).",
-     "**Decomposição da variação**: **SQT = SQM + SQR** (total = modelo + resíduos). **R² = SQM/SQT = 1 − SQR/SQT**. Exemplo: SQM = 60.000 e SQR = 15.000 → SQT = 75.000 e R² = 0,80.",
+     "💡 **Exemplo Prático:** **Decomposição da variação**: **SQT = SQM + SQR** (total = modelo + resíduos). **R² = SQM/SQT = 1 − SQR/SQT**. Exemplo: SQM = 60.000 e SQR = 15.000 → SQT = 75.000 e R² = 0,80.",
      "**Graus de liberdade** (p = número de parâmetros, incluindo o intercepto): **total = n − 1**; **modelo = p − 1**; **resíduos = n − p**. Vale gl_total = gl_resíduos + gl_modelo. Se a fórmula usa k variáveis explicativas: gl_resíduos = n − k − 1.",
      "**R² nunca diminui** ao incluir variáveis; a inclusão excessiva consome graus de liberdade. Por isso usa-se o **R² ajustado**: **R²_aj = 1 − (1 − R²)(n − 1)/(n − p)**.",
      "**Quadrados médios**: **QMM = SQM/(p − 1)**, **QMR = SQR/(n − p)** e **QMT = SQT/(n − 1)**.",
      "**Teste F global**: H₀: β₁ = β₂ = … = βₖ = 0 (nenhuma variável explica Y). **F* = QMM/QMR**, que segue **F com p − 1 e n − p graus de liberdade**. Se F* > F_crítico, rejeita-se H₀.",
      "**Estimador da variância dos erros**: **σ̂² = SQR/(n − p) = QMR** (não viesado). O estimador de máxima verossimilhança divide por n (é viesado).",
-     "**Exemplo de tabela F**: com 5 observações e 3 parâmetros, o teste global usa 2 g.l. no numerador e 2 no denominador, e o valor crítico tabelado é 19,00 (a 5%). Se F* ficar abaixo disso, não se rejeita H₀."
+     "💡 **Exemplo de tabela F**: com 5 observações e 3 parâmetros, o teste global usa 2 g.l. no numerador e 2 no denominador, e o valor crítico tabelado é 19,00 (a 5%). Se F* ficar abaixo disso, não se rejeita H₀."
     ],
     "teoria": [
      {

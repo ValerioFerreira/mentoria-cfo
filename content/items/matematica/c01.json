@@ -1,310 +1,310 @@
 {
-  "aula": "matematica/c01",
-  "batch": "w1-matematica",
-  "status": "DRAFT",
-  "segments": [
+ "aula": "matematica/c01",
+ "batch": "w1-matematica",
+ "status": "DRAFT",
+ "segments": [
+  {
+   "id": "matematica/c01/s01",
+   "bizu": {
+    "summary": [
+     "**Plano cartesiano:** quadrantes 1º (+, +), 2º (−, +), 3º (−, −) e 4º (+, −). Pontos sobre os eixos **não pertencem a nenhum quadrante**. **Bissetriz dos quadrantes ímpares:** y = x; **dos pares:** y = −x.",
+     "**Simetrias de P(a, b):** eixo x → **(a, −b)**; eixo y → **(−a, b)**; origem → **(−a, −b)**; bissetriz y = x → **(b, a)**; bissetriz y = −x → **(−b, −a)**.",
+     "**Distância entre pontos:** d = √[(x₂ − x₁)² + (y₂ − y₁)²]. Para achar ponto **equidistante**, iguale os **quadrados** das distâncias. Para testar triângulo retângulo, use os quadrados dos lados (Pitágoras).",
+     "**Ponto médio** = média das coordenadas; extremo desconhecido: **B = 2M − A**. As diagonais de um paralelogramo se cortam no ponto médio. **Baricentro** = média dos **três** vértices (divide por **3**, e não por 2).",
+     "**Alinhamento:** determinante D de [x y 1] igual a **0**. **Área do triângulo = |D| ÷ 2** (o determinante pode ser negativo; a área, nunca). Polígono: regra do **cadarço**.",
+     "**Formas da reta:** **geral** (ax + by + c = 0), **reduzida** (y = mx + n), **ponto-inclinação**, **segmentária** (x/p + y/q = 1; área com os eixos = |p·q| ÷ 2) e **paramétrica**. Da geral para a reduzida: **m = −a/b** e **n = −c/b**. **Vertical** (x = k) **não tem** coeficiente angular; horizontal (y = k) tem m = 0.",
+     "**Coeficiente angular:** m = tg α = Δy ÷ Δx (0° → 0; 45° → 1; 60° → √3; 135° → −1; 90° → não existe). m > 0: reta crescente; m < 0: decrescente.",
+     "📌 **Bizu de Prova:** **Paralelas:** m₁ = m₂ (e termos independentes diferentes); na forma geral, a₁/a₂ = b₁/b₂ ≠ c₁/c₂. **Perpendiculares:** **m₁ · m₂ = −1** ou, na forma geral, **a₁a₂ + b₁b₂ = 0**. Macetes: a paralela **mantém** ax + by e troca o termo constante; a perpendicular **troca a e b** e inverte um sinal.",
+     "**Ângulo entre retas:** tg θ = |(m₁ − m₂) ÷ (1 + m₁m₂)|. **Mediatriz** de AB = perpendicular a AB pelo ponto médio (pontos equidistantes de A e B).",
+     "**Distância de ponto a reta:** **d = |ax₀ + by₀ + c| ÷ √(a² + b²)**, com a reta na **forma geral** e o numerador em **módulo**. Entre paralelas de mesmo a e b: |c₁ − c₂| ÷ √(a² + b²).",
+     "⚠️ **Ponto de Atenção:** **Circunferência:** reduzida **(x − a)² + (y − b)² = r²** (cuidado com os sinais do centro e com r²); geral **x² + y² + Dx + Ey + F = 0**, com **centro (−D/2, −E/2)** e **r² = D²/4 + E²/4 − F** (se r² ≤ 0, não é circunferência). **Tangente a uma reta:** raio = distância do centro à reta.",
+     "**Posições:** ponto × circunferência (**d² × r²**: interior, sobre, exterior); reta × circunferência (**d × r**: secante, tangente, exterior); duas circunferências (**d × r₁ + r₂** e **d × |r₁ − r₂|**: exteriores, tangentes externas, secantes, tangentes internas, uma dentro da outra). **Sistema 2 × 2** = duas retas: concorrentes (SPD), coincidentes (SPI), paralelas distintas (SI)."
+    ],
+    "teoria": [
+     {
+      "statement": "O simétrico do ponto P(a, b) em relação ao eixo das abscissas é o ponto (a, −b).",
+      "isTrue": true,
+      "explanation": "O espelho no eixo x troca o sinal de y e mantém x."
+     },
+     {
+      "statement": "O baricentro de um triângulo é obtido dividindo por 2 a soma das coordenadas dos três vértices.",
+      "isTrue": false,
+      "explanation": "O baricentro é a média aritmética dos três vértices, e por isso a divisão é por 3. A divisão por 2 é a do ponto médio de um segmento."
+     },
+     {
+      "statement": "Duas retas não verticais, de coeficientes angulares m₁ e m₂, são perpendiculares quando m₁ · m₂ = −1.",
+      "isTrue": true,
+      "explanation": "Na forma geral, a condição equivalente é a₁a₂ + b₁b₂ = 0. Se uma das retas é vertical, o produto não se aplica, pois ela não tem coeficiente angular."
+     },
+     {
+      "statement": "Uma reta vertical tem coeficiente angular igual a zero.",
+      "isTrue": false,
+      "explanation": "A reta horizontal é que tem m = 0. A reta vertical (x = k) não tem coeficiente angular, porque a tangente de 90° não existe."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "Para aplicar a fórmula da distância de ponto a reta, a equação da reta deve estar na forma geral, e o numerador é tomado em módulo.",
+      "isTrue": true,
+      "explanation": "Se o ponto está sobre a reta, o numerador é zero; a distância nunca é negativa."
+     },
+     {
+      "statement": "A equação (x + 2)² + (y − 3)² = 16 representa uma circunferência de centro (2, −3) e raio 16.",
+      "isTrue": false,
+      "explanation": "O centro é (−2, 3), com os sinais trocados em relação à equação, e o raio é 4, pois 16 = r²."
+     },
+     {
+      "statement": "Se a distância do centro de uma circunferência a uma reta é igual ao raio, a reta é tangente à circunferência.",
+      "isTrue": true,
+      "explanation": "Se a distância é menor que o raio, a reta é secante (dois pontos comuns); se é maior, a reta é exterior."
+     },
+     {
+      "statement": "Duas retas com o mesmo coeficiente angular são sempre coincidentes.",
+      "isTrue": false,
+      "explanation": "Com m₁ = m₂, as retas são paralelas distintas se os termos independentes diferem, e coincidentes apenas se também n₁ = n₂."
+     }
+    ]
+   },
+   "questions": [
     {
-      "id": "matematica/c01/s01",
-      "bizu": {
-        "summary": [
-          "**Plano cartesiano:** quadrantes 1º (+, +), 2º (−, +), 3º (−, −) e 4º (+, −). Pontos sobre os eixos **não pertencem a nenhum quadrante**. **Bissetriz dos quadrantes ímpares:** y = x; **dos pares:** y = −x.",
-          "**Simetrias de P(a, b):** eixo x → **(a, −b)**; eixo y → **(−a, b)**; origem → **(−a, −b)**; bissetriz y = x → **(b, a)**; bissetriz y = −x → **(−b, −a)**.",
-          "**Distância entre pontos:** d = √[(x₂ − x₁)² + (y₂ − y₁)²]. Para achar ponto **equidistante**, iguale os **quadrados** das distâncias. Para testar triângulo retângulo, use os quadrados dos lados (Pitágoras).",
-          "**Ponto médio** = média das coordenadas; extremo desconhecido: **B = 2M − A**. As diagonais de um paralelogramo se cortam no ponto médio. **Baricentro** = média dos **três** vértices (divide por **3**, e não por 2).",
-          "**Alinhamento:** determinante D de [x y 1] igual a **0**. **Área do triângulo = |D| ÷ 2** (o determinante pode ser negativo; a área, nunca). Polígono: regra do **cadarço**.",
-          "**Formas da reta:** **geral** (ax + by + c = 0), **reduzida** (y = mx + n), **ponto-inclinação**, **segmentária** (x/p + y/q = 1; área com os eixos = |p·q| ÷ 2) e **paramétrica**. Da geral para a reduzida: **m = −a/b** e **n = −c/b**. **Vertical** (x = k) **não tem** coeficiente angular; horizontal (y = k) tem m = 0.",
-          "**Coeficiente angular:** m = tg α = Δy ÷ Δx (0° → 0; 45° → 1; 60° → √3; 135° → −1; 90° → não existe). m > 0: reta crescente; m < 0: decrescente.",
-          "**Paralelas:** m₁ = m₂ (e termos independentes diferentes); na forma geral, a₁/a₂ = b₁/b₂ ≠ c₁/c₂. **Perpendiculares:** **m₁ · m₂ = −1** ou, na forma geral, **a₁a₂ + b₁b₂ = 0**. Macetes: a paralela **mantém** ax + by e troca o termo constante; a perpendicular **troca a e b** e inverte um sinal.",
-          "**Ângulo entre retas:** tg θ = |(m₁ − m₂) ÷ (1 + m₁m₂)|. **Mediatriz** de AB = perpendicular a AB pelo ponto médio (pontos equidistantes de A e B).",
-          "**Distância de ponto a reta:** **d = |ax₀ + by₀ + c| ÷ √(a² + b²)**, com a reta na **forma geral** e o numerador em **módulo**. Entre paralelas de mesmo a e b: |c₁ − c₂| ÷ √(a² + b²).",
-          "**Circunferência:** reduzida **(x − a)² + (y − b)² = r²** (cuidado com os sinais do centro e com r²); geral **x² + y² + Dx + Ey + F = 0**, com **centro (−D/2, −E/2)** e **r² = D²/4 + E²/4 − F** (se r² ≤ 0, não é circunferência). **Tangente a uma reta:** raio = distância do centro à reta.",
-          "**Posições:** ponto × circunferência (**d² × r²**: interior, sobre, exterior); reta × circunferência (**d × r**: secante, tangente, exterior); duas circunferências (**d × r₁ + r₂** e **d × |r₁ − r₂|**: exteriores, tangentes externas, secantes, tangentes internas, uma dentro da outra). **Sistema 2 × 2** = duas retas: concorrentes (SPD), coincidentes (SPI), paralelas distintas (SI)."
-        ],
-        "teoria": [
-          {
-            "statement": "O simétrico do ponto P(a, b) em relação ao eixo das abscissas é o ponto (a, −b).",
-            "isTrue": true,
-            "explanation": "O espelho no eixo x troca o sinal de y e mantém x."
-          },
-          {
-            "statement": "O baricentro de um triângulo é obtido dividindo por 2 a soma das coordenadas dos três vértices.",
-            "isTrue": false,
-            "explanation": "O baricentro é a média aritmética dos três vértices, e por isso a divisão é por 3. A divisão por 2 é a do ponto médio de um segmento."
-          },
-          {
-            "statement": "Duas retas não verticais, de coeficientes angulares m₁ e m₂, são perpendiculares quando m₁ · m₂ = −1.",
-            "isTrue": true,
-            "explanation": "Na forma geral, a condição equivalente é a₁a₂ + b₁b₂ = 0. Se uma das retas é vertical, o produto não se aplica, pois ela não tem coeficiente angular."
-          },
-          {
-            "statement": "Uma reta vertical tem coeficiente angular igual a zero.",
-            "isTrue": false,
-            "explanation": "A reta horizontal é que tem m = 0. A reta vertical (x = k) não tem coeficiente angular, porque a tangente de 90° não existe."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "Para aplicar a fórmula da distância de ponto a reta, a equação da reta deve estar na forma geral, e o numerador é tomado em módulo.",
-            "isTrue": true,
-            "explanation": "Se o ponto está sobre a reta, o numerador é zero; a distância nunca é negativa."
-          },
-          {
-            "statement": "A equação (x + 2)² + (y − 3)² = 16 representa uma circunferência de centro (2, −3) e raio 16.",
-            "isTrue": false,
-            "explanation": "O centro é (−2, 3), com os sinais trocados em relação à equação, e o raio é 4, pois 16 = r²."
-          },
-          {
-            "statement": "Se a distância do centro de uma circunferência a uma reta é igual ao raio, a reta é tangente à circunferência.",
-            "isTrue": true,
-            "explanation": "Se a distância é menor que o raio, a reta é secante (dois pontos comuns); se é maior, a reta é exterior."
-          },
-          {
-            "statement": "Duas retas com o mesmo coeficiente angular são sempre coincidentes.",
-            "isTrue": false,
-            "explanation": "Com m₁ = m₂, as retas são paralelas distintas se os termos independentes diferem, e coincidentes apenas se também n₁ = n₂."
-          }
-        ]
-      },
-      "questions": [
-        {
-          "topic": "Simetria em relação a uma bissetriz",
-          "pattern": "calculo",
-          "difficulty": 1,
-          "pageRef": 1,
-          "statement": "O simétrico do ponto P(4, −1) em relação à bissetriz dos quadrantes pares (reta y = −x) é o ponto",
-          "support": null,
-          "options": [
-            "(−4, 1).",
-            "(4, 1).",
-            "(−1, 4).",
-            "(1, −4).",
-            "(−4, −1)."
-          ],
-          "answer": "D",
-          "explanation": "O simétrico de (a, b) em relação a y = −x é (−b, −a): troca de lugar e de sinal, resultando em (1, −4). As outras alternativas são os simétricos em relação à origem (A), ao eixo x (B), à bissetriz y = x (C) e ao eixo y (E)."
-        },
-        {
-          "topic": "Ponto equidistante",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 2,
-          "statement": "O ponto do eixo das abscissas que é equidistante de A(1, 3) e B(5, 7) é",
-          "support": null,
-          "options": [
-            "(6, 0).",
-            "(7, 0).",
-            "(8, 0).",
-            "(9, 0).",
-            "(4, 0)."
-          ],
-          "answer": "C",
-          "explanation": "Seja P(x, 0). Igualando os quadrados das distâncias: (x − 1)² + 3² = (x − 5)² + 7², isto é, −2x + 10 = −10x + 74, logo 8x = 64 e x = 8. Conferência: PA² = 49 + 9 = 58 e PB² = 9 + 49 = 58."
-        },
-        {
-          "topic": "Ponto médio: extremo desconhecido",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 2,
-          "statement": "O ponto M(2, −3) é o ponto médio do segmento AB, sendo A(−4, 1). As coordenadas de B são",
-          "support": null,
-          "options": [
-            "(0, −1).",
-            "(8, −7).",
-            "(−10, 5).",
-            "(6, −4).",
-            "(8, −5)."
-          ],
-          "answer": "B",
-          "explanation": "Como M é a média de A e B, B = 2M − A = (2 · 2 − (−4); 2 · (−3) − 1) = (8, −7). Conferência: a média das abscissas, (−4 + 8) ÷ 2, é 2, e a das ordenadas, (1 − 7) ÷ 2, é −3."
-        },
-        {
-          "topic": "Baricentro",
-          "pattern": "calculo",
-          "difficulty": 1,
-          "pageRef": 2,
-          "statement": "O baricentro do triângulo de vértices A(2, 1), B(6, 5) e C(4, 9) é o ponto",
-          "support": null,
-          "options": [
-            "(4, 5).",
-            "(6; 7,5).",
-            "(4, 4).",
-            "(12, 15).",
-            "(5, 5)."
-          ],
-          "answer": "A",
-          "explanation": "O baricentro é a média dos três vértices: ((2 + 6 + 4) ÷ 3; (1 + 5 + 9) ÷ 3) = (4, 5). A alternativa B resulta de dividir por 2, e a D, de não dividir."
-        },
-        {
-          "topic": "Área do triângulo",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 3,
-          "statement": "A área do triângulo de vértices A(1, 2), B(5, 2) e C(3, 8) é igual a",
-          "support": null,
-          "options": [
-            "6.",
-            "12.",
-            "24.",
-            "18.",
-            "10."
-          ],
-          "answer": "B",
-          "explanation": "O determinante é 1(2 − 8) + 5(8 − 2) + 3(2 − 2) = −6 + 30 + 0 = 24, e a área é |24| ÷ 2 = 12. Conferência: AB é horizontal (base 4) e a altura até C é 6, logo 4 · 6 ÷ 2 = 12. O valor 24 é o erro de esquecer o fator ½."
-        },
-        {
-          "topic": "Equação da reta por dois pontos",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 4,
-          "statement": "A equação da reta que passa pelos pontos A(0, 3) e B(2, 7) é",
-          "support": null,
-          "options": [
-            "y = 3x + 2.",
-            "y = 2x − 3.",
-            "y = x/2 + 3.",
-            "y = −2x + 3.",
-            "y = 2x + 3."
-          ],
-          "answer": "E",
-          "explanation": "O coeficiente angular é m = (7 − 3) ÷ (2 − 0) = 2, e o coeficiente linear é a ordenada do ponto em que a reta corta o eixo y, isto é, 3. Logo, y = 2x + 3."
-        },
-        {
-          "topic": "Área entre a reta e os eixos",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 4,
-          "statement": "A área do triângulo formado pela reta 3x + 4y − 24 = 0 e pelos eixos coordenados é igual a",
-          "support": null,
-          "options": [
-            "12.",
-            "18.",
-            "24.",
-            "48.",
-            "6."
-          ],
-          "answer": "C",
-          "explanation": "A reta corta o eixo x em (8, 0) e o eixo y em (0, 6), formando um triângulo retângulo de catetos 8 e 6, com área 8 · 6 ÷ 2 = 24. A forma segmentária é x/8 + y/6 = 1, e o valor 48 esquece de dividir por 2."
-        },
-        {
-          "topic": "Reta paralela",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 5,
-          "statement": "A equação da reta paralela a r: 2x − y + 5 = 0 que passa pelo ponto P(1, 4) é",
-          "support": null,
-          "options": [
-            "2x − y − 2 = 0.",
-            "x + 2y − 9 = 0.",
-            "2x + y − 6 = 0.",
-            "2x − y + 2 = 0.",
-            "2x − y + 6 = 0."
-          ],
-          "answer": "D",
-          "explanation": "A paralela mantém 2x − y e muda o termo constante: 2x − y + c = 0. Em P: 2 − 4 + c = 0, logo c = 2. A alternativa B é a perpendicular a r pelo ponto P (troca de a e b, com inversão de um sinal)."
-        },
-        {
-          "topic": "Retas perpendiculares com parâmetro",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 5,
-          "statement": "As retas (k + 1)x + 3y − 2 = 0 e 2x − y + 7 = 0 são perpendiculares quando o valor de k é igual a",
-          "support": null,
-          "options": [
-            "1/2.",
-            "−1/2.",
-            "1.",
-            "2.",
-            "5/2."
-          ],
-          "answer": "A",
-          "explanation": "Na forma geral, a condição de perpendicularidade é a₁a₂ + b₁b₂ = 0: (k + 1) · 2 + 3 · (−1) = 0, logo 2k − 1 = 0 e k = 1/2. Conferência: 2 · (1/2 + 1) = 3, que anula o termo −3."
-        },
-        {
-          "topic": "Distância de ponto a reta",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 7,
-          "statement": "A distância do ponto P(1, 5) à reta 3x − 4y + 2 = 0 é igual a",
-          "support": null,
-          "options": [
-            "1.",
-            "2.",
-            "3.",
-            "5.",
-            "15."
-          ],
-          "answer": "C",
-          "explanation": "d = |3 · 1 − 4 · 5 + 2| ÷ √(3² + 4²) = |−15| ÷ 5 = 3. O valor 15 é o numerador, sem dividir pelo denominador, e o sinal negativo desaparece por causa do módulo."
-        },
-        {
-          "topic": "Centro e raio a partir da equação geral",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 7,
-          "statement": "O centro e o raio da circunferência de equação x² + y² − 8x + 2y − 8 = 0 são, respectivamente,",
-          "support": null,
-          "options": [
-            "(−4, 1) e 5.",
-            "(4, −1) e 25.",
-            "(8, −2) e 5.",
-            "(4, 1) e 3.",
-            "(4, −1) e 5."
-          ],
-          "answer": "E",
-          "explanation": "Com D = −8, E = 2 e F = −8, o centro é (−D/2; −E/2) = (4, −1) e r² = 16 + 1 + 8 = 25, logo r = 5. Completando quadrados: (x − 4)² + (y + 1)² = 25. A alternativa B confunde r com r²."
-        },
-        {
-          "topic": "Circunferência tangente a uma reta",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 8,
-          "statement": "A equação da circunferência de centro C(2, 1) tangente à reta 3x + 4y − 20 = 0 é",
-          "support": null,
-          "options": [
-            "(x − 2)² + (y − 1)² = 2.",
-            "(x − 2)² + (y − 1)² = 4.",
-            "(x + 2)² + (y + 1)² = 4.",
-            "(x − 2)² + (y − 1)² = 10.",
-            "(x − 2)² + (y − 1)² = 16."
-          ],
-          "answer": "B",
-          "explanation": "Se a circunferência é tangente à reta, o raio é a distância do centro à reta: |3 · 2 + 4 · 1 − 20| ÷ 5 = 10 ÷ 5 = 2. Logo, r² = 4, e a equação é (x − 2)² + (y − 1)² = 4. A alternativa A usa o raio no lugar de r²."
-        },
-        {
-          "topic": "Posição relativa de duas circunferências",
-          "pattern": "relacao",
-          "difficulty": 2,
-          "pageRef": 8,
-          "statement": "As circunferências de equações x² + y² = 9 e (x − 7)² + y² = 16 são",
-          "support": null,
-          "options": [
-            "secantes.",
-            "exteriores, sem ponto comum.",
-            "tangentes internamente.",
-            "tangentes externamente.",
-            "concêntricas."
-          ],
-          "answer": "D",
-          "explanation": "Os centros são (0, 0) e (7, 0), com raios 3 e 4, e a distância entre os centros é d = 7 = 3 + 4. Quando d = r₁ + r₂, as circunferências são tangentes externamente (um único ponto comum)."
-        },
-        {
-          "topic": "Sistema linear 2 × 2 e posição das retas",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 9,
-          "statement": "O sistema de equações\nx + ky = 3\n2x + 4y = 6\né possível e indeterminado quando o valor de k é igual a",
-          "support": null,
-          "options": [
-            "2.",
-            "1.",
-            "3.",
-            "4.",
-            "6."
-          ],
-          "answer": "A",
-          "explanation": "O sistema é indeterminado (retas coincidentes) quando as equações são proporcionais: 1/2 = k/4 = 3/6. Como 1/2 = 3/6, deve-se ter k/4 = 1/2, isto é, k = 2; a segunda equação passa a ser o dobro da primeira. Para k ≠ 2, o sistema é possível e determinado."
-        }
-      ]
+     "topic": "Simetria em relação a uma bissetriz",
+     "pattern": "calculo",
+     "difficulty": 1,
+     "pageRef": 1,
+     "statement": "O simétrico do ponto P(4, −1) em relação à bissetriz dos quadrantes pares (reta y = −x) é o ponto",
+     "support": null,
+     "options": [
+      "(−4, 1).",
+      "(4, 1).",
+      "(−1, 4).",
+      "(1, −4).",
+      "(−4, −1)."
+     ],
+     "answer": "D",
+     "explanation": "O simétrico de (a, b) em relação a y = −x é (−b, −a): troca de lugar e de sinal, resultando em (1, −4). As outras alternativas são os simétricos em relação à origem (A), ao eixo x (B), à bissetriz y = x (C) e ao eixo y (E)."
+    },
+    {
+     "topic": "Ponto equidistante",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 2,
+     "statement": "O ponto do eixo das abscissas que é equidistante de A(1, 3) e B(5, 7) é",
+     "support": null,
+     "options": [
+      "(6, 0).",
+      "(7, 0).",
+      "(8, 0).",
+      "(9, 0).",
+      "(4, 0)."
+     ],
+     "answer": "C",
+     "explanation": "Seja P(x, 0). Igualando os quadrados das distâncias: (x − 1)² + 3² = (x − 5)² + 7², isto é, −2x + 10 = −10x + 74, logo 8x = 64 e x = 8. Conferência: PA² = 49 + 9 = 58 e PB² = 9 + 49 = 58."
+    },
+    {
+     "topic": "Ponto médio: extremo desconhecido",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 2,
+     "statement": "O ponto M(2, −3) é o ponto médio do segmento AB, sendo A(−4, 1). As coordenadas de B são",
+     "support": null,
+     "options": [
+      "(0, −1).",
+      "(8, −7).",
+      "(−10, 5).",
+      "(6, −4).",
+      "(8, −5)."
+     ],
+     "answer": "B",
+     "explanation": "Como M é a média de A e B, B = 2M − A = (2 · 2 − (−4); 2 · (−3) − 1) = (8, −7). Conferência: a média das abscissas, (−4 + 8) ÷ 2, é 2, e a das ordenadas, (1 − 7) ÷ 2, é −3."
+    },
+    {
+     "topic": "Baricentro",
+     "pattern": "calculo",
+     "difficulty": 1,
+     "pageRef": 2,
+     "statement": "O baricentro do triângulo de vértices A(2, 1), B(6, 5) e C(4, 9) é o ponto",
+     "support": null,
+     "options": [
+      "(4, 5).",
+      "(6; 7,5).",
+      "(4, 4).",
+      "(12, 15).",
+      "(5, 5)."
+     ],
+     "answer": "A",
+     "explanation": "O baricentro é a média dos três vértices: ((2 + 6 + 4) ÷ 3; (1 + 5 + 9) ÷ 3) = (4, 5). A alternativa B resulta de dividir por 2, e a D, de não dividir."
+    },
+    {
+     "topic": "Área do triângulo",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 3,
+     "statement": "A área do triângulo de vértices A(1, 2), B(5, 2) e C(3, 8) é igual a",
+     "support": null,
+     "options": [
+      "6.",
+      "12.",
+      "24.",
+      "18.",
+      "10."
+     ],
+     "answer": "B",
+     "explanation": "O determinante é 1(2 − 8) + 5(8 − 2) + 3(2 − 2) = −6 + 30 + 0 = 24, e a área é |24| ÷ 2 = 12. Conferência: AB é horizontal (base 4) e a altura até C é 6, logo 4 · 6 ÷ 2 = 12. O valor 24 é o erro de esquecer o fator ½."
+    },
+    {
+     "topic": "Equação da reta por dois pontos",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 4,
+     "statement": "A equação da reta que passa pelos pontos A(0, 3) e B(2, 7) é",
+     "support": null,
+     "options": [
+      "y = 3x + 2.",
+      "y = 2x − 3.",
+      "y = x/2 + 3.",
+      "y = −2x + 3.",
+      "y = 2x + 3."
+     ],
+     "answer": "E",
+     "explanation": "O coeficiente angular é m = (7 − 3) ÷ (2 − 0) = 2, e o coeficiente linear é a ordenada do ponto em que a reta corta o eixo y, isto é, 3. Logo, y = 2x + 3."
+    },
+    {
+     "topic": "Área entre a reta e os eixos",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 4,
+     "statement": "A área do triângulo formado pela reta 3x + 4y − 24 = 0 e pelos eixos coordenados é igual a",
+     "support": null,
+     "options": [
+      "12.",
+      "18.",
+      "24.",
+      "48.",
+      "6."
+     ],
+     "answer": "C",
+     "explanation": "A reta corta o eixo x em (8, 0) e o eixo y em (0, 6), formando um triângulo retângulo de catetos 8 e 6, com área 8 · 6 ÷ 2 = 24. A forma segmentária é x/8 + y/6 = 1, e o valor 48 esquece de dividir por 2."
+    },
+    {
+     "topic": "Reta paralela",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 5,
+     "statement": "A equação da reta paralela a r: 2x − y + 5 = 0 que passa pelo ponto P(1, 4) é",
+     "support": null,
+     "options": [
+      "2x − y − 2 = 0.",
+      "x + 2y − 9 = 0.",
+      "2x + y − 6 = 0.",
+      "2x − y + 2 = 0.",
+      "2x − y + 6 = 0."
+     ],
+     "answer": "D",
+     "explanation": "A paralela mantém 2x − y e muda o termo constante: 2x − y + c = 0. Em P: 2 − 4 + c = 0, logo c = 2. A alternativa B é a perpendicular a r pelo ponto P (troca de a e b, com inversão de um sinal)."
+    },
+    {
+     "topic": "Retas perpendiculares com parâmetro",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 5,
+     "statement": "As retas (k + 1)x + 3y − 2 = 0 e 2x − y + 7 = 0 são perpendiculares quando o valor de k é igual a",
+     "support": null,
+     "options": [
+      "1/2.",
+      "−1/2.",
+      "1.",
+      "2.",
+      "5/2."
+     ],
+     "answer": "A",
+     "explanation": "Na forma geral, a condição de perpendicularidade é a₁a₂ + b₁b₂ = 0: (k + 1) · 2 + 3 · (−1) = 0, logo 2k − 1 = 0 e k = 1/2. Conferência: 2 · (1/2 + 1) = 3, que anula o termo −3."
+    },
+    {
+     "topic": "Distância de ponto a reta",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 7,
+     "statement": "A distância do ponto P(1, 5) à reta 3x − 4y + 2 = 0 é igual a",
+     "support": null,
+     "options": [
+      "1.",
+      "2.",
+      "3.",
+      "5.",
+      "15."
+     ],
+     "answer": "C",
+     "explanation": "d = |3 · 1 − 4 · 5 + 2| ÷ √(3² + 4²) = |−15| ÷ 5 = 3. O valor 15 é o numerador, sem dividir pelo denominador, e o sinal negativo desaparece por causa do módulo."
+    },
+    {
+     "topic": "Centro e raio a partir da equação geral",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 7,
+     "statement": "O centro e o raio da circunferência de equação x² + y² − 8x + 2y − 8 = 0 são, respectivamente,",
+     "support": null,
+     "options": [
+      "(−4, 1) e 5.",
+      "(4, −1) e 25.",
+      "(8, −2) e 5.",
+      "(4, 1) e 3.",
+      "(4, −1) e 5."
+     ],
+     "answer": "E",
+     "explanation": "Com D = −8, E = 2 e F = −8, o centro é (−D/2; −E/2) = (4, −1) e r² = 16 + 1 + 8 = 25, logo r = 5. Completando quadrados: (x − 4)² + (y + 1)² = 25. A alternativa B confunde r com r²."
+    },
+    {
+     "topic": "Circunferência tangente a uma reta",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 8,
+     "statement": "A equação da circunferência de centro C(2, 1) tangente à reta 3x + 4y − 20 = 0 é",
+     "support": null,
+     "options": [
+      "(x − 2)² + (y − 1)² = 2.",
+      "(x − 2)² + (y − 1)² = 4.",
+      "(x + 2)² + (y + 1)² = 4.",
+      "(x − 2)² + (y − 1)² = 10.",
+      "(x − 2)² + (y − 1)² = 16."
+     ],
+     "answer": "B",
+     "explanation": "Se a circunferência é tangente à reta, o raio é a distância do centro à reta: |3 · 2 + 4 · 1 − 20| ÷ 5 = 10 ÷ 5 = 2. Logo, r² = 4, e a equação é (x − 2)² + (y − 1)² = 4. A alternativa A usa o raio no lugar de r²."
+    },
+    {
+     "topic": "Posição relativa de duas circunferências",
+     "pattern": "relacao",
+     "difficulty": 2,
+     "pageRef": 8,
+     "statement": "As circunferências de equações x² + y² = 9 e (x − 7)² + y² = 16 são",
+     "support": null,
+     "options": [
+      "secantes.",
+      "exteriores, sem ponto comum.",
+      "tangentes internamente.",
+      "tangentes externamente.",
+      "concêntricas."
+     ],
+     "answer": "D",
+     "explanation": "Os centros são (0, 0) e (7, 0), com raios 3 e 4, e a distância entre os centros é d = 7 = 3 + 4. Quando d = r₁ + r₂, as circunferências são tangentes externamente (um único ponto comum)."
+    },
+    {
+     "topic": "Sistema linear 2 × 2 e posição das retas",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 9,
+     "statement": "O sistema de equações\nx + ky = 3\n2x + 4y = 6\né possível e indeterminado quando o valor de k é igual a",
+     "support": null,
+     "options": [
+      "2.",
+      "1.",
+      "3.",
+      "4.",
+      "6."
+     ],
+     "answer": "A",
+     "explanation": "O sistema é indeterminado (retas coincidentes) quando as equações são proporcionais: 1/2 = k/4 = 3/6. Como 1/2 = 3/6, deve-se ter k/4 = 1/2, isto é, k = 2; a segunda equação passa a ser o dobro da primeira. Para k ≠ 2, o sistema é possível e determinado."
     }
-  ]
+   ]
+  }
+ ]
 }

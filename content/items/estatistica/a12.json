@@ -12,7 +12,7 @@
      "**Fórmulas alternativas** (sem calcular desvios): numerador **ΣXᵢYᵢ − n·X̄·Ȳ**; denominadores **ΣXᵢ² − n·X̄²** e **ΣYᵢ² − n·Ȳ²**. Equivale a r = [n·ΣXY − ΣX·ΣY]/√{[n·ΣX² − (ΣX)²]·[n·ΣY² − (ΣY)²]}.",
      "**Intervalo**: **−1 ≤ r ≤ 1**. **r > 0**: correlação positiva; **r < 0**: negativa; **r = ±1**: perfeita (pontos sobre uma reta); **r ≈ 0**: ausência de relação **linear**.",
      "**Interpretação**: r = 0,9927 indica correlação positiva forte; r = −0,9918, negativa forte; r = 0,1132, praticamente nula. Um r próximo de 0 não impede relação não linear.",
-     "**Exemplo prático**: com somas de quadrados 5,00 e 5,20 e soma de produtos 5,00, r = 5/√(5·5,2) ≈ 0,98, relação linear intensa.",
+     "💡 **Exemplo prático**: com somas de quadrados 5,00 e 5,20 e soma de produtos 5,00, r = 5/√(5·5,2) ≈ 0,98, relação linear intensa.",
      "**Numerador da correlação** é a soma dos produtos dos desvios: tem o mesmo sinal da covariância, e o sinal de r vem dele."
     ],
     "teoria": [
@@ -327,10 +327,10 @@
    "bizu": {
     "summary": [
      "**Correlação parcial**: mede a relação entre X e Y **controlando o efeito de uma terceira variável Z**. Fórmula: **r_XY·Z = (r_XY − r_XZ·r_YZ) / √[(1 − r_XZ²)(1 − r_YZ²)]**.",
-     "**Exemplo**: r_XY = 0,6, r_XZ = 0,5 e r_YZ = 0,7 → numerador 0,6 − 0,35 = 0,25 e denominador √(0,75·0,51) ≈ 0,6185; correlação parcial ≈ 0,404. O valor menor que 0,6 mostra o efeito de Z.",
+     "💡 **Exemplo**: r_XY = 0,6, r_XZ = 0,5 e r_YZ = 0,7 → numerador 0,6 − 0,35 = 0,25 e denominador √(0,75·0,51) ≈ 0,6185; correlação parcial ≈ 0,404. O valor menor que 0,6 mostra o efeito de Z.",
      "**Autocorrelação**: relação de uma variável **consigo mesma em momentos diferentes** (série temporal e sua defasagem), em vez de duas variáveis distintas.",
-     "**Invariância a deslocamentos**: somar constantes a X e/ou Y **não altera r** (os desvios em relação às médias permanecem iguais). Ex.: r(X + 3, Y + 5) = r(X, Y); também r(X − 200, Y − 300) = r(X, Y).",
-     "**Multiplicação por constantes de mesmo sinal**: não altera r (nem o sinal). Ex.: r(2X, 2Y) = r(−2X, −2Y) = r(X, Y).",
+     "💡 **Exemplo Prático:** **Invariância a deslocamentos**: somar constantes a X e/ou Y **não altera r** (os desvios em relação às médias permanecem iguais). Ex.: r(X + 3, Y + 5) = r(X, Y); também r(X − 200, Y − 300) = r(X, Y).",
+     "💡 **Exemplo Prático:** **Multiplicação por constantes de mesmo sinal**: não altera r (nem o sinal). Ex.: r(2X, 2Y) = r(−2X, −2Y) = r(X, Y).",
      "**Multiplicação por constantes de sinais contrários**: **inverte o sinal** de r: r(2X, −2Y) = −r(X, Y), mantendo o módulo.",
      "**Uso em prova**: transformações lineares (X − 200, Y/10…) simplificam as contas, pois r da variável transformada coincide com r da original, quando os sinais das constantes de escala forem iguais."
     ],
@@ -599,7 +599,7 @@
      "**Método dos mínimos quadrados ordinários (MQO)**: escolhe a e b que **minimizam Σ(Yᵢ − a − bXᵢ)²** (soma dos quadrados dos resíduos). Obtém-se derivando em relação a e b e igualando a zero.",
      "**Inclinação**: **b = S_XY/S_XX = Σ(Xᵢ − X̄)(Yᵢ − Ȳ) / Σ(Xᵢ − X̄)² = (ΣXᵢYᵢ − n·X̄·Ȳ)/(ΣXᵢ² − n·X̄²)**.",
      "**Intercepto**: **a = Ȳ − b·X̄**. A reta ajustada **passa pelo ponto das médias (X̄, Ȳ)**. A soma dos resíduos é zero.",
-     "**Previsão**: Ŷ = a + b·X. Ex.: com a = 2 e b = 0,8, o valor para t = 13 é 12,4. Com a = −4 e b = 1,6, X = 10 dá 12.",
+     "💡 **Exemplo Prático:** **Previsão**: Ŷ = a + b·X. Ex.: com a = 2 e b = 0,8, o valor para t = 13 é 12,4. Com a = −4 e b = 1,6, X = 10 dá 12.",
      "**Variância de a**: depende de σ², do tamanho da amostra, da média de X e da dispersão de X: Var(a) = σ²[1/n + X̄²/S_XX].",
      "**Reta pela origem** (α = 0): **b = ΣXᵢYᵢ / ΣXᵢ²**. Nesse caso, a **soma dos resíduos não é necessariamente zero**."
     ],
@@ -947,7 +947,7 @@
      "**Quadrados médios**: **QMM = SQM/1** e **QMR = SQR/(n − 2)**. O QMR é a estimativa da **variância residual σ²**.",
      "**R² ajustado**: corrige R² pelos graus de liberdade (penaliza a inclusão de variáveis): R²_aj = 1 − [SQR/(n − k)]/[SQT/(n − 1)], com k o número de parâmetros.",
      "**Estatística F**: para testar H₀: β = 0 contra H₁: β ≠ 0, **F* = QMM/QMR**, que segue **F de Snedecor com 1 e n − 2 g.l.** sob H₀. F* grande leva a rejeitar H₀.",
-     "**Exemplo de tabela ANOVA**: SQT = 1000 e SQM = 900 → R² = 0,9 e r = √0,9 em módulo."
+     "💡 **Exemplo de tabela ANOVA**: SQT = 1000 e SQM = 900 → R² = 0,9 e r = √0,9 em módulo."
     ],
     "teoria": [
      {

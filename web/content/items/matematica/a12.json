@@ -1,629 +1,629 @@
 {
-  "aula": "matematica/a12",
-  "batch": "w2-bizu-matematica",
-  "status": "DRAFT",
-  "segments": [
+ "aula": "matematica/a12",
+ "batch": "w2-bizu-matematica",
+ "status": "DRAFT",
+ "segments": [
+  {
+   "id": "matematica/a12/s01",
+   "bizu": {
+    "summary": [
+     "**Função exponencial**: f: R -> R+*, com **f(x) = a^x**, em que a base **a > 0 e a diferente de 1**. A variável está no expoente.",
+     "**Por que a > 0 e a diferente de 1?** Se a = 1, a função seria constante (1^x = 1). Se a = 0, haveria indeterminação em x = 0 (0^0) e divisão por zero para x negativo. Se a < 0, certos valores racionais de x (como 1/2) levariam a raízes de números negativos, que não são reais.",
+     "**Base a > 1**: função **estritamente crescente** (x1 > x2 implica f(x1) > f(x2)). Quanto menor x, mais f se aproxima de zero **sem nunca alcançá-lo**: **y = 0 é assíntota horizontal** quando x tende a menos infinito.",
+     "**Base 0 < a < 1**: função **estritamente decrescente**. Quanto maior x, mais f se aproxima de zero sem alcançá-lo: y = 0 é assíntota horizontal quando x tende a mais infinito.",
+     "**Propriedades válidas para qualquer base permitida**: o gráfico **corta o eixo y em (0; 1)**, pois f(0) = a^0 = 1; e a **imagem é R+* = ]0; +∞[** (a função nunca é zero nem negativa).",
+     "💡 **Exemplo Prático:** Exemplos: 2^x é crescente; (0,5)^x e (3/5)^x são decrescentes. Para (3/5)^x: f(0) = 1, imagem ]0; ∞[ e função decrescente (afirmar que é crescente é erro).",
+     "**Translação vertical** (somar k à função): desloca o gráfico para cima (k > 0) ou para baixo (k < 0), **move a assíntota para y = k** e a imagem passa a ]k; +∞[. 2^x + 2 tem assíntota y = 2 e imagem ]2; +∞[; (1/2)^x - 1 tem assíntota y = -1 e imagem ]-1; +∞[.",
+     "**Translação horizontal** (somar k a x): x - h desloca para a **direita** e x + h para a **esquerda**. 2^(x-2) é 2^x deslocada duas unidades para a direita; (1/3)^(x+1) é deslocada uma unidade para a esquerda. A assíntota (y = 0) e a imagem ]0; +∞[ **não mudam**.",
+     "O assunto de construção de gráficos derivados é **pouco cobrado**; vale entender principalmente as translações vertical e horizontal."
+    ],
+    "teoria": [
+     {
+      "statement": "Na função exponencial f(x) = a^x, a base deve ser positiva e diferente de 1.",
+      "isTrue": true,
+      "explanation": "Com a = 1 a função seria constante; com a = 0 ou a negativo haveria indeterminações ou valores não reais."
+     },
+     {
+      "statement": "A função exponencial f(x) = a^x com base maior que 1 é decrescente.",
+      "isTrue": false,
+      "explanation": "Com a > 1, a função é estritamente crescente. Ela é decrescente para 0 < a < 1."
+     },
+     {
+      "statement": "O gráfico de f(x) = a^x corta o eixo y no ponto (0; 1), qualquer que seja a base permitida.",
+      "isTrue": true,
+      "explanation": "f(0) = a^0 = 1."
+     },
+     {
+      "statement": "A imagem da função exponencial f(x) = a^x é o conjunto de todos os números reais.",
+      "isTrue": false,
+      "explanation": "A imagem é o conjunto dos reais positivos, ]0; +∞[. A função nunca assume o valor zero nem valores negativos."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "Se a base de a^x fosse igual a 1, a função seria constante.",
+      "isTrue": true,
+      "explanation": "1^x = 1 para qualquer x."
+     },
+     {
+      "statement": "Para 0 < a < 1, a função a^x se aproxima de zero quando x cresce, e a reta y = 0 é uma assíntota horizontal.",
+      "isTrue": true,
+      "explanation": "A função é decrescente e nunca chega a zero; por exemplo, (1/2)^20 é próximo de zero, mas positivo."
+     },
+     {
+      "statement": "A função f(x) = (3/5)^x é crescente.",
+      "isTrue": false,
+      "explanation": "A base está entre 0 e 1; portanto, a função é estritamente decrescente."
+     },
+     {
+      "statement": "O gráfico de 2^(x-2) é obtido deslocando-se o gráfico de 2^x duas unidades para a esquerda.",
+      "isTrue": false,
+      "explanation": "Subtrair uma constante de x desloca o gráfico para a direita; 2^(x-2) é 2^x deslocada duas unidades para a direita."
+     },
+     {
+      "statement": "O gráfico de 2^x + 2 é o de 2^x deslocado duas unidades para cima, com assíntota y = 2 e imagem ]2; +∞[.",
+      "isTrue": true,
+      "explanation": "Somar uma constante à função faz translação vertical e leva a assíntota junto."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Definição da função exponencial (a > 0 e a diferente de 1)",
+      "pageRef": 5
+     },
+     {
+      "topic": "Por que excluir a = 1, a = 0 e a negativo",
+      "pageRef": 5
+     },
+     {
+      "topic": "Base maior que 1: crescente",
+      "pageRef": 6
+     },
+     {
+      "topic": "Assíntota horizontal para a > 1",
+      "pageRef": 7
+     },
+     {
+      "topic": "Base entre 0 e 1: decrescente",
+      "pageRef": 8
+     },
+     {
+      "topic": "Ponto (0; 1) e imagem ]0; +∞[",
+      "pageRef": 9
+     },
+     {
+      "topic": "Questões sobre crescimento e imagem",
+      "pageRef": 10
+     },
+     {
+      "topic": "Translação vertical e assíntota",
+      "pageRef": 11
+     },
+     {
+      "topic": "Translação horizontal",
+      "pageRef": 13
+     }
+    ]
+   },
+   "questions": [
     {
-      "id": "matematica/a12/s01",
-      "bizu": {
-        "summary": [
-          "**Função exponencial**: f: R -> R+*, com **f(x) = a^x**, em que a base **a > 0 e a diferente de 1**. A variável está no expoente.",
-          "**Por que a > 0 e a diferente de 1?** Se a = 1, a função seria constante (1^x = 1). Se a = 0, haveria indeterminação em x = 0 (0^0) e divisão por zero para x negativo. Se a < 0, certos valores racionais de x (como 1/2) levariam a raízes de números negativos, que não são reais.",
-          "**Base a > 1**: função **estritamente crescente** (x1 > x2 implica f(x1) > f(x2)). Quanto menor x, mais f se aproxima de zero **sem nunca alcançá-lo**: **y = 0 é assíntota horizontal** quando x tende a menos infinito.",
-          "**Base 0 < a < 1**: função **estritamente decrescente**. Quanto maior x, mais f se aproxima de zero sem alcançá-lo: y = 0 é assíntota horizontal quando x tende a mais infinito.",
-          "**Propriedades válidas para qualquer base permitida**: o gráfico **corta o eixo y em (0; 1)**, pois f(0) = a^0 = 1; e a **imagem é R+* = ]0; +∞[** (a função nunca é zero nem negativa).",
-          "Exemplos: 2^x é crescente; (0,5)^x e (3/5)^x são decrescentes. Para (3/5)^x: f(0) = 1, imagem ]0; ∞[ e função decrescente (afirmar que é crescente é erro).",
-          "**Translação vertical** (somar k à função): desloca o gráfico para cima (k > 0) ou para baixo (k < 0), **move a assíntota para y = k** e a imagem passa a ]k; +∞[. 2^x + 2 tem assíntota y = 2 e imagem ]2; +∞[; (1/2)^x - 1 tem assíntota y = -1 e imagem ]-1; +∞[.",
-          "**Translação horizontal** (somar k a x): x - h desloca para a **direita** e x + h para a **esquerda**. 2^(x-2) é 2^x deslocada duas unidades para a direita; (1/3)^(x+1) é deslocada uma unidade para a esquerda. A assíntota (y = 0) e a imagem ]0; +∞[ **não mudam**.",
-          "O assunto de construção de gráficos derivados é **pouco cobrado**; vale entender principalmente as translações vertical e horizontal."
-        ],
-        "teoria": [
-          {
-            "statement": "Na função exponencial f(x) = a^x, a base deve ser positiva e diferente de 1.",
-            "isTrue": true,
-            "explanation": "Com a = 1 a função seria constante; com a = 0 ou a negativo haveria indeterminações ou valores não reais."
-          },
-          {
-            "statement": "A função exponencial f(x) = a^x com base maior que 1 é decrescente.",
-            "isTrue": false,
-            "explanation": "Com a > 1, a função é estritamente crescente. Ela é decrescente para 0 < a < 1."
-          },
-          {
-            "statement": "O gráfico de f(x) = a^x corta o eixo y no ponto (0; 1), qualquer que seja a base permitida.",
-            "isTrue": true,
-            "explanation": "f(0) = a^0 = 1."
-          },
-          {
-            "statement": "A imagem da função exponencial f(x) = a^x é o conjunto de todos os números reais.",
-            "isTrue": false,
-            "explanation": "A imagem é o conjunto dos reais positivos, ]0; +∞[. A função nunca assume o valor zero nem valores negativos."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "Se a base de a^x fosse igual a 1, a função seria constante.",
-            "isTrue": true,
-            "explanation": "1^x = 1 para qualquer x."
-          },
-          {
-            "statement": "Para 0 < a < 1, a função a^x se aproxima de zero quando x cresce, e a reta y = 0 é uma assíntota horizontal.",
-            "isTrue": true,
-            "explanation": "A função é decrescente e nunca chega a zero; por exemplo, (1/2)^20 é próximo de zero, mas positivo."
-          },
-          {
-            "statement": "A função f(x) = (3/5)^x é crescente.",
-            "isTrue": false,
-            "explanation": "A base está entre 0 e 1; portanto, a função é estritamente decrescente."
-          },
-          {
-            "statement": "O gráfico de 2^(x-2) é obtido deslocando-se o gráfico de 2^x duas unidades para a esquerda.",
-            "isTrue": false,
-            "explanation": "Subtrair uma constante de x desloca o gráfico para a direita; 2^(x-2) é 2^x deslocada duas unidades para a direita."
-          },
-          {
-            "statement": "O gráfico de 2^x + 2 é o de 2^x deslocado duas unidades para cima, com assíntota y = 2 e imagem ]2; +∞[.",
-            "isTrue": true,
-            "explanation": "Somar uma constante à função faz translação vertical e leva a assíntota junto."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Definição da função exponencial (a > 0 e a diferente de 1)",
-            "pageRef": 5
-          },
-          {
-            "topic": "Por que excluir a = 1, a = 0 e a negativo",
-            "pageRef": 5
-          },
-          {
-            "topic": "Base maior que 1: crescente",
-            "pageRef": 6
-          },
-          {
-            "topic": "Assíntota horizontal para a > 1",
-            "pageRef": 7
-          },
-          {
-            "topic": "Base entre 0 e 1: decrescente",
-            "pageRef": 8
-          },
-          {
-            "topic": "Ponto (0; 1) e imagem ]0; +∞[",
-            "pageRef": 9
-          },
-          {
-            "topic": "Questões sobre crescimento e imagem",
-            "pageRef": 10
-          },
-          {
-            "topic": "Translação vertical e assíntota",
-            "pageRef": 11
-          },
-          {
-            "topic": "Translação horizontal",
-            "pageRef": 13
-          }
-        ]
-      },
-      "questions": [
-        {
-          "topic": "Condição para a base da função exponencial",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 5,
-          "statement": "Para que f(x) = (m − 3)ˣ seja uma função exponencial, é necessário que",
-          "support": null,
-          "options": [
-            "m > 3.",
-            "m ≠ 3 e m ≠ 4.",
-            "m > 0 e m ≠ 1.",
-            "m ≥ 3 e m ≠ 4.",
-            "m > 3 e m ≠ 4."
-          ],
-          "answer": "E",
-          "explanation": "A base deve ser positiva e diferente de 1: m − 3 > 0 (m > 3) e m − 3 ≠ 1 (m ≠ 4). Com m = 3 a base seria zero, e com m = 4, igual a 1 (função constante)."
-        },
-        {
-          "topic": "Por que a base não pode ser 1",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 5,
-          "statement": "A base de uma função exponencial f(x) = aˣ não pode ser igual a 1 porque, nesse caso,",
-          "support": null,
-          "options": [
-            "a função seria decrescente.",
-            "o gráfico cortaria o eixo x.",
-            "a função se reduziria à função constante f(x) = 1.",
-            "a imagem seria o conjunto dos reais negativos.",
-            "o domínio seria restrito a x > 0."
-          ],
-          "answer": "C",
-          "explanation": "Como 1 elevado a qualquer expoente é 1, f(x) = 1ˣ vale sempre 1: função constante, que não tem as propriedades da exponencial (crescimento ou decaimento)."
-        },
-        {
-          "topic": "Função exponencial decrescente",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 8,
-          "statement": "Dentre as funções a seguir, a única estritamente decrescente é",
-          "support": null,
-          "options": [
-            "f(x) = 1,6ˣ.",
-            "f(x) = 6ˣ.",
-            "f(x) = 0,6ˣ.",
-            "f(x) = (5/3)ˣ.",
-            "f(x) = 10ˣ."
-          ],
-          "answer": "C",
-          "explanation": "A função exponencial é decrescente quando 0 < a < 1; é crescente se a > 1. Apenas 0,6 está entre 0 e 1, enquanto 1,6, 6, 5/3 e 10 são maiores que 1."
-        },
-        {
-          "topic": "Conjunto imagem",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 9,
-          "statement": "O conjunto imagem da função f(x) = (3/4)ˣ, com x real, é",
-          "support": null,
-          "options": [
-            "ℝ.",
-            "[0, +∞[.",
-            "]−∞, 0[.",
-            "]1, +∞[",
-            "]0, +∞[."
-          ],
-          "answer": "E",
-          "explanation": "A função exponencial só assume valores positivos: aproxima-se de zero sem nunca atingi-lo e nunca é negativa. A imagem é, portanto, ]0, +∞[ (reais positivos, sem o zero)."
-        },
-        {
-          "topic": "Ponto de corte com o eixo y",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 9,
-          "statement": "O gráfico da função f(x) = (0,3)ˣ intercepta o eixo y no ponto",
-          "support": null,
-          "options": [
-            "(0, 1).",
-            "(0, 0,3).",
-            "(0, 0).",
-            "(1, 0).",
-            "(0, 3)."
-          ],
-          "answer": "A",
-          "explanation": "No eixo y, x = 0, e qualquer base elevada a zero vale 1: f(0) = 1. Esse corte vale para todas as funções da forma aˣ, com base positiva e diferente de 1."
-        },
-        {
-          "topic": "Afirmações sobre uma função exponencial",
-          "pattern": "assertivas",
-          "difficulty": 2,
-          "pageRef": 10,
-          "statement": "Considere a função f(x) = (2/3)ˣ e as afirmações.\nI - f(0) = 1.\nII - A função f é crescente.\nIII - f(−1) = 3/2.\nIV - O conjunto imagem de f é ℝ.\nEstão corretas apenas",
-          "support": null,
-          "options": [
-            "I, apenas.",
-            "II e IV.",
-            "I e III.",
-            "I, II e III.",
-            "III e IV."
-          ],
-          "answer": "C",
-          "explanation": "I é verdadeira (a⁰ = 1). II é falsa: a base está entre 0 e 1, logo f é decrescente. III é verdadeira: (2/3)⁻¹ = 3/2. IV é falsa: a imagem é ]0, +∞[."
-        },
-        {
-          "topic": "Comparação de valores com base entre 0 e 1",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 8,
-          "statement": "Dentre os valores a seguir, o menor é",
-          "support": null,
-          "options": [
-            "(0,5)⁻¹.",
-            "(0,5)⁰.",
-            "(0,5)^(1/2).",
-            "(0,5)³.",
-            "(0,5)⁻²."
-          ],
-          "answer": "D",
-          "explanation": "Com base entre 0 e 1, a função é decrescente: quanto maior o expoente, menor o valor. O maior expoente é 3, e (0,5)³ = 0,125. Os demais valem 2, 1, cerca de 0,71 e 4."
-        },
-        {
-          "topic": "Assíntota horizontal",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 7,
-          "statement": "No gráfico de f(x) = 3ˣ, a reta y = 0",
-          "support": null,
-          "options": [
-            "é tocada pelo gráfico em x = 0.",
-            "é assíntota horizontal: o gráfico se aproxima dela, sem tocá-la, quando x tende a −∞.",
-            "é o eixo de simetria do gráfico.",
-            "é assíntota horizontal quando x tende a +∞.",
-            "é interceptada pelo gráfico em (1, 0)."
-          ],
-          "answer": "B",
-          "explanation": "Para a > 1, quanto menor x, mais próximo de zero fica aˣ, mas nunca igual a zero. Quando x cresce, a função cresce sem limite, e não tende a zero."
-        },
-        {
-          "topic": "Imagem após translação vertical",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 11,
-          "statement": "O conjunto imagem da função g(x) = 2ˣ + 3 é",
-          "support": null,
-          "options": [
-            "]3, +∞[.",
-            "]0, +∞[.",
-            "]−3, +∞[.",
-            "ℝ.",
-            "[3, +∞["
-          ],
-          "answer": "A",
-          "explanation": "Somar 3 translada o gráfico de 2ˣ três unidades para cima; a assíntota passa de y = 0 para y = 3, e a imagem de ]0, +∞[ para ]3, +∞[."
-        },
-        {
-          "topic": "Translação horizontal",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 12,
-          "statement": "O gráfico de g(x) = 3^(x + 2) é obtido a partir do gráfico de f(x) = 3ˣ por uma translação de duas unidades",
-          "support": null,
-          "options": [
-            "para a direita.",
-            "para a esquerda.",
-            "para cima.",
-            "para baixo.",
-            "para a esquerda, com mudança na assíntota para y = 2."
-          ],
-          "answer": "B",
-          "explanation": "Somar uma constante à variável x translada o gráfico horizontalmente: +2 desloca para a esquerda. Como é um deslocamento horizontal, a assíntota (y = 0) e a imagem não mudam."
-        },
-        {
-          "topic": "Valor da função transladada",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 12,
-          "statement": "A função f(x) = 2^(x − 1) + 3 intercepta o eixo y no ponto",
-          "support": null,
-          "options": [
-            "(0; 3,5).",
-            "(0; 4).",
-            "(0; 3).",
-            "(0; 1).",
-            "(0; 2)."
-          ],
-          "answer": "A",
-          "explanation": "Em x = 0, f(0) = 2⁻¹ + 3 = 0,5 + 3 = 3,5. O valor 3 corresponde à assíntota, que o gráfico se aproxima sem tocar."
-        }
-      ]
+     "topic": "Condição para a base da função exponencial",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 5,
+     "statement": "Para que f(x) = (m − 3)ˣ seja uma função exponencial, é necessário que",
+     "support": null,
+     "options": [
+      "m > 3.",
+      "m ≠ 3 e m ≠ 4.",
+      "m > 0 e m ≠ 1.",
+      "m ≥ 3 e m ≠ 4.",
+      "m > 3 e m ≠ 4."
+     ],
+     "answer": "E",
+     "explanation": "A base deve ser positiva e diferente de 1: m − 3 > 0 (m > 3) e m − 3 ≠ 1 (m ≠ 4). Com m = 3 a base seria zero, e com m = 4, igual a 1 (função constante)."
     },
     {
-      "id": "matematica/a12/s02",
-      "bizu": {
-        "summary": [
-          "**Multiplicar ou dividir a função por uma constante positiva C**: em geral, o gráfico muda de formato e não é só uma translação. **Exceção**: se C é uma **potência da própria base**, há apenas translação horizontal (2^2 . 2^x = 2^(x+2) desloca para a esquerda; (1/5^3) . 5^x = 5^(x-3) desloca para a direita).",
-          "**Base a > 1**: multiplicar por C > 1 desloca o gráfico para a **esquerda**; multiplicar por C entre 0 e 1 (dividir por constante maior que 1) desloca para a **direita**. Em ambos, o formato pode se alterar.",
-          "**Base entre 0 e 1**: multiplicar por C > 1 desloca para a **direita**; por C entre 0 e 1, desloca para a **esquerda**.",
-          "**Multiplicar a variável x por constante positiva**: C > 1 torna a curva **mais inclinada** (mais acentuada); C entre 0 e 1 a torna menos acentuada. Vale para qualquer base permitida.",
-          "**Multiplicar a função por -1**: o novo gráfico é o \"espelho\" do original em relação ao **eixo x**. -2^x é o espelho de 2^x; -(1/3)^x, o de (1/3)^x.",
-          "**Módulo na variável** (por exemplo, 3^|x|): para x ≥ 0, o gráfico coincide com o original; para x negativo, é o **espelho, em relação ao eixo y**, do trecho x ≥ 0.",
-          "**Composição de transformações**: para -(1/2)^|x-1| + 2, constroem-se em ordem: (1/2)^|x|, espelho em relação ao eixo x, translação de 1 unidade para a direita e translação de 2 unidades para cima.",
-          "**Leitura de lei**: f(x) = -2 + 3^x equivale a 3^x - 2, isto é, 3^x deslocada duas unidades para baixo.",
-          "**Aplicações**: o montante com juros contínuos C . b^t, com C > 0 e b > 1, tem gráfico de função exponencial crescente (curva), e não de reta, parábola, função cúbica ou raiz."
-        ],
-        "teoria": [
-          {
-            "statement": "O gráfico de -2^x é o espelho do gráfico de 2^x em relação ao eixo x.",
-            "isTrue": true,
-            "explanation": "Multiplicar a função por -1 reflete o gráfico em relação ao eixo das abscissas."
-          },
-          {
-            "statement": "Multiplicar a função exponencial por -1 produz um gráfico que é espelho do original em relação ao eixo y.",
-            "isTrue": false,
-            "explanation": "A multiplicação por -1 espelha em relação ao eixo x. O espelho em relação ao eixo y ocorre com o módulo aplicado à variável, para os valores negativos."
-          },
-          {
-            "statement": "O produto 2^2 . 2^x é igual a 2^(x+2), ou seja, corresponde a uma translação horizontal do gráfico de 2^x para a esquerda.",
-            "isTrue": true,
-            "explanation": "Quando a constante multiplicadora é uma potência da própria base, o efeito é só translação horizontal."
-          },
-          {
-            "statement": "Com base a > 1, multiplicar a função a^x por uma constante C > 1 desloca o gráfico para a direita.",
-            "isTrue": false,
-            "explanation": "Para a > 1, C > 1 desloca o gráfico para a esquerda; o deslocamento para a direita ocorre com C entre 0 e 1."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "No gráfico de 3^|x|, a parte com x negativo é o espelho, em relação ao eixo y, da parte com x ≥ 0.",
-            "isTrue": true,
-            "explanation": "Para x ≥ 0, 3^|x| coincide com 3^x; para x < 0, o gráfico reflete o trecho positivo."
-          },
-          {
-            "statement": "Multiplicar a variável x por uma constante maior que 1 deixa a curva exponencial menos inclinada.",
-            "isTrue": false,
-            "explanation": "C > 1 torna a curva mais acentuada; o efeito de menor inclinação ocorre com C entre 0 e 1."
-          },
-          {
-            "statement": "O gráfico da função f(x) = -2 + 3^x é o de 3^x deslocado duas unidades para baixo.",
-            "isTrue": true,
-            "explanation": "A lei equivale a 3^x - 2, uma translação vertical para baixo."
-          },
-          {
-            "statement": "O gráfico de y = C . b^t, com C > 0 e b > 1, é uma reta crescente que passa pela origem.",
-            "isTrue": false,
-            "explanation": "É uma exponencial crescente, uma curva que corta o eixo y em (0; C), e não uma reta pela origem."
-          },
-          {
-            "statement": "Na construção de -(1/2)^|x-1| + 2, a última etapa é uma translação vertical de duas unidades para cima.",
-            "isTrue": true,
-            "explanation": "Depois do módulo, do espelhamento em x e da translação horizontal de 1 unidade, soma-se 2 à função."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Constante que é potência da base gera translação horizontal",
-            "pageRef": 14
-          },
-          {
-            "topic": "Multiplicar por constante com base entre 0 e 1",
-            "pageRef": 15
-          },
-          {
-            "topic": "Multiplicar a variável x por constante",
-            "pageRef": 15
-          },
-          {
-            "topic": "Multiplicação da função por -1",
-            "pageRef": 16
-          },
-          {
-            "topic": "Exemplos de espelhamento em relação ao eixo x",
-            "pageRef": 17
-          },
-          {
-            "topic": "Módulo na variável x",
-            "pageRef": 18
-          },
-          {
-            "topic": "Composição de transformações",
-            "pageRef": 19
-          },
-          {
-            "topic": "Translações finais da composição",
-            "pageRef": 20
-          },
-          {
-            "topic": "Leitura de lei como translação vertical",
-            "pageRef": 21
-          },
-          {
-            "topic": "Exponencial no contexto de capitalização",
-            "pageRef": 23
-          }
-        ]
-      },
-      "questions": [
-        {
-          "topic": "Reflexão em relação ao eixo x",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 16,
-          "statement": "Em relação ao gráfico de f(x) = 3ˣ, o gráfico de g(x) = −3ˣ é",
-          "support": null,
-          "options": [
-            "o espelho de f em relação ao eixo y, e sua imagem é ]0, +∞[.",
-            "uma translação de 3 unidades para baixo, com imagem ]−3, +∞[.",
-            "o espelho de f em relação ao eixo x, e sua imagem é ]−∞, 0[.",
-            "o espelho de f em relação ao eixo x, e sua imagem é ]0, +∞[.",
-            "uma translação de f para a esquerda, com imagem ]−∞, 0]."
-          ],
-          "answer": "C",
-          "explanation": "Multiplicar a função por −1 reflete o gráfico em relação ao eixo x. Como 3ˣ > 0, tem-se −3ˣ < 0 para todo x, e a imagem passa a ser ]−∞, 0[."
-        },
-        {
-          "topic": "Módulo na variável",
-          "pattern": "calculo",
-          "difficulty": 1,
-          "pageRef": 17,
-          "statement": "Para f(x) = 2^|x|, o valor de f(−3) é",
-          "support": null,
-          "options": [
-            "1/8.",
-            "−8.",
-            "6.",
-            "8.",
-            "1/6."
-          ],
-          "answer": "D",
-          "explanation": "Com o módulo, |−3| = 3 e f(−3) = 2³ = 8. Para x ≥ 0, o gráfico coincide com 2ˣ; para x negativo, é o espelho em relação ao eixo y."
-        },
-        {
-          "topic": "Produto de valores simétricos com módulo",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 18,
-          "statement": "Para g(x) = (1/2)^|x|, o valor de g(−2) · g(2) é",
-          "support": null,
-          "options": [
-            "1.",
-            "1/16.",
-            "1/4.",
-            "16.",
-            "1/8."
-          ],
-          "answer": "B",
-          "explanation": "g(−2) = (1/2)² = 1/4, pois |−2| = 2, e g(2) = 1/4. O produto é 1/16. A função é simétrica em relação ao eixo y, então g(−x) = g(x)."
-        },
-        {
-          "topic": "Simetria do gráfico com módulo",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 17,
-          "statement": "O gráfico de f(x) = 3^|x| é simétrico em relação",
-          "support": null,
-          "options": [
-            "ao eixo x.",
-            "à origem.",
-            "à reta y = x.",
-            "ao eixo y.",
-            "a nenhum eixo ou ponto."
-          ],
-          "answer": "D",
-          "explanation": "Como |−x| = |x|, vale f(−x) = f(x): para x negativo, o gráfico é o espelho, em relação ao eixo y, do caso x ≥ 0."
-        },
-        {
-          "topic": "Imagem de função composta de transformações",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 19,
-          "statement": "O conjunto imagem da função h(x) = −2^|x| + 3 é",
-          "support": null,
-          "options": [
-            "]−∞, 3[.",
-            "[2, +∞[.",
-            "]−∞, 2[.",
-            "]2, 3]",
-            "]−∞, 2]."
-          ],
-          "answer": "E",
-          "explanation": "Como |x| ≥ 0, 2^|x| ≥ 1, logo −2^|x| ≤ −1 e h(x) ≤ 2, com igualdade em x = 0. Assim, a imagem é ]−∞, 2], e o valor máximo, 2, é atingido."
-        },
-        {
-          "topic": "Valor mínimo com módulo",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 19,
-          "statement": "O valor mínimo da função h(x) = 2^|x − 2| − 1 é",
-          "support": null,
-          "options": [
-            "0.",
-            "−1.",
-            "1.",
-            "2.",
-            "não existe."
-          ],
-          "answer": "A",
-          "explanation": "O menor valor de |x − 2| é 0 (em x = 2), de modo que 2^|x − 2| é, no mínimo, 2⁰ = 1, e h(x) ≥ 1 − 1 = 0. O mínimo é, então, 0."
-        },
-        {
-          "topic": "Multiplicação por potência da base (a > 1)",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 14,
-          "statement": "O gráfico de y = 4 · 2ˣ pode ser obtido do gráfico de y = 2ˣ por uma translação horizontal de",
-          "support": null,
-          "options": [
-            "2 unidades para a direita.",
-            "4 unidades para a esquerda.",
-            "4 unidades para cima.",
-            "2 unidades para cima.",
-            "2 unidades para a esquerda."
-          ],
-          "answer": "E",
-          "explanation": "Como 4 = 2², 4 · 2ˣ = 2^(x+2), que é a translação de 2ˣ duas unidades para a esquerda. Multiplicar por uma constante não é, em geral, translação vertical."
-        },
-        {
-          "topic": "Multiplicação por potência da base (0 < a < 1)",
-          "pattern": "conceito",
-          "difficulty": 3,
-          "pageRef": 14,
-          "statement": "O gráfico de y = 4 · (1/2)ˣ pode ser obtido do gráfico de y = (1/2)ˣ por uma translação horizontal de",
-          "support": null,
-          "options": [
-            "2 unidades para a esquerda.",
-            "2 unidades para a direita.",
-            "4 unidades para a direita.",
-            "4 unidades para a esquerda.",
-            "2 unidades para cima."
-          ],
-          "answer": "B",
-          "explanation": "Como 4 = (1/2)⁻², tem-se 4 · (1/2)ˣ = (1/2)^(x − 2), isto é, translação de 2 unidades para a direita. Com base entre 0 e 1, o sentido é oposto ao do caso a > 1."
-        },
-        {
-          "topic": "Divisão por potência da base",
-          "pattern": "conceito",
-          "difficulty": 3,
-          "pageRef": 14,
-          "statement": "O gráfico de y = 3ˣ ÷ 27 pode ser obtido do gráfico de y = 3ˣ por uma translação horizontal de",
-          "support": null,
-          "options": [
-            "3 unidades para a direita.",
-            "3 unidades para a esquerda.",
-            "27 unidades para a direita.",
-            "3 unidades para baixo.",
-            "9 unidades para a direita."
-          ],
-          "answer": "A",
-          "explanation": "Como 27 = 3³, 3ˣ ÷ 27 = 3^(x − 3), isto é, translação de 3 unidades para a direita. Dividir por uma potência da base equivale a subtrair o expoente."
-        },
-        {
-          "topic": "Multiplicação da variável por constante",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 15,
-          "statement": "Comparado com o gráfico de f(x) = 2ˣ, o gráfico de g(x) = 2^(3x) apresenta",
-          "support": null,
-          "options": [
-            "inclinação menos acentuada.",
-            "inclinação mais acentuada.",
-            "a mesma inclinação, apenas deslocada.",
-            "um espelhamento em relação ao eixo y.",
-            "a assíntota y = 3."
-          ],
-          "answer": "B",
-          "explanation": "Multiplicar a variável x por uma constante maior que 1 torna a curva mais inclinada (a função cresce mais rápido), e dividi-la por uma constante maior que 1 a torna menos inclinada. A assíntota continua em y = 0."
-        },
-        {
-          "topic": "Sequência de transformações",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 19,
-          "statement": "Para obter o gráfico de y = −2^(x + 1) a partir do gráfico de y = 2ˣ, aplicam-se",
-          "support": null,
-          "options": [
-            "uma translação de 1 unidade para a direita e uma reflexão em relação ao eixo y.",
-            "uma translação de 1 unidade para cima e uma reflexão em relação ao eixo x.",
-            "uma translação de 1 unidade para a esquerda e uma reflexão em relação ao eixo y.",
-            "uma translação de 1 unidade para a esquerda e uma reflexão em relação ao eixo x.",
-            "uma translação de 1 unidade para baixo e uma reflexão em relação ao eixo x."
-          ],
-          "answer": "D",
-          "explanation": "A soma 1 no expoente desloca o gráfico para a esquerda, e o sinal negativo na frente da função reflete o gráfico em relação ao eixo x (o que leva a imagem para os negativos)."
-        },
-        {
-          "topic": "Multiplicação da função por constante maior que 1",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 14,
-          "statement": "Ao multiplicar por uma constante C > 1 as funções 2ˣ e (1/2)ˣ, os gráficos sofrem, respectivamente, deslocamento",
-          "support": null,
-          "options": [
-            "para a direita e para a esquerda.",
-            "ambos para a esquerda.",
-            "para a esquerda e para a direita.",
-            "ambos para a direita.",
-            "para cima e para baixo."
-          ],
-          "answer": "C",
-          "explanation": "Para a base maior que 1, multiplicar por C > 1 equivale a deslocar o gráfico para a esquerda (por exemplo, 4 · 2ˣ = 2^(x+2)); para a base entre 0 e 1, o deslocamento é para a direita."
-        },
-        {
-          "topic": "Divisão por potência com base entre 0 e 1",
-          "pattern": "conceito",
-          "difficulty": 3,
-          "pageRef": 15,
-          "statement": "O gráfico de y = (1/3)ˣ ÷ 9 pode ser obtido do gráfico de y = (1/3)ˣ por uma translação horizontal de",
-          "support": null,
-          "options": [
-            "2 unidades para a direita.",
-            "2 unidades para a esquerda.",
-            "9 unidades para a esquerda.",
-            "9 unidades para a direita.",
-            "2 unidades para baixo."
-          ],
-          "answer": "B",
-          "explanation": "Como 9 = (1/3)⁻², (1/3)ˣ ÷ 9 = (1/3)ˣ · (1/3)² = (1/3)^(x + 2), translação de 2 unidades para a esquerda."
-        }
-      ]
+     "topic": "Por que a base não pode ser 1",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 5,
+     "statement": "A base de uma função exponencial f(x) = aˣ não pode ser igual a 1 porque, nesse caso,",
+     "support": null,
+     "options": [
+      "a função seria decrescente.",
+      "o gráfico cortaria o eixo x.",
+      "a função se reduziria à função constante f(x) = 1.",
+      "a imagem seria o conjunto dos reais negativos.",
+      "o domínio seria restrito a x > 0."
+     ],
+     "answer": "C",
+     "explanation": "Como 1 elevado a qualquer expoente é 1, f(x) = 1ˣ vale sempre 1: função constante, que não tem as propriedades da exponencial (crescimento ou decaimento)."
+    },
+    {
+     "topic": "Função exponencial decrescente",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 8,
+     "statement": "Dentre as funções a seguir, a única estritamente decrescente é",
+     "support": null,
+     "options": [
+      "f(x) = 1,6ˣ.",
+      "f(x) = 6ˣ.",
+      "f(x) = 0,6ˣ.",
+      "f(x) = (5/3)ˣ.",
+      "f(x) = 10ˣ."
+     ],
+     "answer": "C",
+     "explanation": "A função exponencial é decrescente quando 0 < a < 1; é crescente se a > 1. Apenas 0,6 está entre 0 e 1, enquanto 1,6, 6, 5/3 e 10 são maiores que 1."
+    },
+    {
+     "topic": "Conjunto imagem",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 9,
+     "statement": "O conjunto imagem da função f(x) = (3/4)ˣ, com x real, é",
+     "support": null,
+     "options": [
+      "ℝ.",
+      "[0, +∞[.",
+      "]−∞, 0[.",
+      "]1, +∞[",
+      "]0, +∞[."
+     ],
+     "answer": "E",
+     "explanation": "A função exponencial só assume valores positivos: aproxima-se de zero sem nunca atingi-lo e nunca é negativa. A imagem é, portanto, ]0, +∞[ (reais positivos, sem o zero)."
+    },
+    {
+     "topic": "Ponto de corte com o eixo y",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 9,
+     "statement": "O gráfico da função f(x) = (0,3)ˣ intercepta o eixo y no ponto",
+     "support": null,
+     "options": [
+      "(0, 1).",
+      "(0, 0,3).",
+      "(0, 0).",
+      "(1, 0).",
+      "(0, 3)."
+     ],
+     "answer": "A",
+     "explanation": "No eixo y, x = 0, e qualquer base elevada a zero vale 1: f(0) = 1. Esse corte vale para todas as funções da forma aˣ, com base positiva e diferente de 1."
+    },
+    {
+     "topic": "Afirmações sobre uma função exponencial",
+     "pattern": "assertivas",
+     "difficulty": 2,
+     "pageRef": 10,
+     "statement": "Considere a função f(x) = (2/3)ˣ e as afirmações.\nI - f(0) = 1.\nII - A função f é crescente.\nIII - f(−1) = 3/2.\nIV - O conjunto imagem de f é ℝ.\nEstão corretas apenas",
+     "support": null,
+     "options": [
+      "I, apenas.",
+      "II e IV.",
+      "I e III.",
+      "I, II e III.",
+      "III e IV."
+     ],
+     "answer": "C",
+     "explanation": "I é verdadeira (a⁰ = 1). II é falsa: a base está entre 0 e 1, logo f é decrescente. III é verdadeira: (2/3)⁻¹ = 3/2. IV é falsa: a imagem é ]0, +∞[."
+    },
+    {
+     "topic": "Comparação de valores com base entre 0 e 1",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 8,
+     "statement": "Dentre os valores a seguir, o menor é",
+     "support": null,
+     "options": [
+      "(0,5)⁻¹.",
+      "(0,5)⁰.",
+      "(0,5)^(1/2).",
+      "(0,5)³.",
+      "(0,5)⁻²."
+     ],
+     "answer": "D",
+     "explanation": "Com base entre 0 e 1, a função é decrescente: quanto maior o expoente, menor o valor. O maior expoente é 3, e (0,5)³ = 0,125. Os demais valem 2, 1, cerca de 0,71 e 4."
+    },
+    {
+     "topic": "Assíntota horizontal",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 7,
+     "statement": "No gráfico de f(x) = 3ˣ, a reta y = 0",
+     "support": null,
+     "options": [
+      "é tocada pelo gráfico em x = 0.",
+      "é assíntota horizontal: o gráfico se aproxima dela, sem tocá-la, quando x tende a −∞.",
+      "é o eixo de simetria do gráfico.",
+      "é assíntota horizontal quando x tende a +∞.",
+      "é interceptada pelo gráfico em (1, 0)."
+     ],
+     "answer": "B",
+     "explanation": "Para a > 1, quanto menor x, mais próximo de zero fica aˣ, mas nunca igual a zero. Quando x cresce, a função cresce sem limite, e não tende a zero."
+    },
+    {
+     "topic": "Imagem após translação vertical",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 11,
+     "statement": "O conjunto imagem da função g(x) = 2ˣ + 3 é",
+     "support": null,
+     "options": [
+      "]3, +∞[.",
+      "]0, +∞[.",
+      "]−3, +∞[.",
+      "ℝ.",
+      "[3, +∞["
+     ],
+     "answer": "A",
+     "explanation": "Somar 3 translada o gráfico de 2ˣ três unidades para cima; a assíntota passa de y = 0 para y = 3, e a imagem de ]0, +∞[ para ]3, +∞[."
+    },
+    {
+     "topic": "Translação horizontal",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 12,
+     "statement": "O gráfico de g(x) = 3^(x + 2) é obtido a partir do gráfico de f(x) = 3ˣ por uma translação de duas unidades",
+     "support": null,
+     "options": [
+      "para a direita.",
+      "para a esquerda.",
+      "para cima.",
+      "para baixo.",
+      "para a esquerda, com mudança na assíntota para y = 2."
+     ],
+     "answer": "B",
+     "explanation": "Somar uma constante à variável x translada o gráfico horizontalmente: +2 desloca para a esquerda. Como é um deslocamento horizontal, a assíntota (y = 0) e a imagem não mudam."
+    },
+    {
+     "topic": "Valor da função transladada",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 12,
+     "statement": "A função f(x) = 2^(x − 1) + 3 intercepta o eixo y no ponto",
+     "support": null,
+     "options": [
+      "(0; 3,5).",
+      "(0; 4).",
+      "(0; 3).",
+      "(0; 1).",
+      "(0; 2)."
+     ],
+     "answer": "A",
+     "explanation": "Em x = 0, f(0) = 2⁻¹ + 3 = 0,5 + 3 = 3,5. O valor 3 corresponde à assíntota, que o gráfico se aproxima sem tocar."
     }
-  ]
+   ]
+  },
+  {
+   "id": "matematica/a12/s02",
+   "bizu": {
+    "summary": [
+     "⚠️ **Ponto de Atenção:** **Multiplicar ou dividir a função por uma constante positiva C**: em geral, o gráfico muda de formato e não é só uma translação. **Exceção**: se C é uma **potência da própria base**, há apenas translação horizontal (2^2 . 2^x = 2^(x+2) desloca para a esquerda; (1/5^3) . 5^x = 5^(x-3) desloca para a direita).",
+     "**Base a > 1**: multiplicar por C > 1 desloca o gráfico para a **esquerda**; multiplicar por C entre 0 e 1 (dividir por constante maior que 1) desloca para a **direita**. Em ambos, o formato pode se alterar.",
+     "**Base entre 0 e 1**: multiplicar por C > 1 desloca para a **direita**; por C entre 0 e 1, desloca para a **esquerda**.",
+     "**Multiplicar a variável x por constante positiva**: C > 1 torna a curva **mais inclinada** (mais acentuada); C entre 0 e 1 a torna menos acentuada. Vale para qualquer base permitida.",
+     "**Multiplicar a função por -1**: o novo gráfico é o \"espelho\" do original em relação ao **eixo x**. -2^x é o espelho de 2^x; -(1/3)^x, o de (1/3)^x.",
+     "💡 **Exemplo Prático:** **Módulo na variável** (por exemplo, 3^|x|): para x ≥ 0, o gráfico coincide com o original; para x negativo, é o **espelho, em relação ao eixo y**, do trecho x ≥ 0.",
+     "**Composição de transformações**: para -(1/2)^|x-1| + 2, constroem-se em ordem: (1/2)^|x|, espelho em relação ao eixo x, translação de 1 unidade para a direita e translação de 2 unidades para cima.",
+     "**Leitura de lei**: f(x) = -2 + 3^x equivale a 3^x - 2, isto é, 3^x deslocada duas unidades para baixo.",
+     "**Aplicações**: o montante com juros contínuos C . b^t, com C > 0 e b > 1, tem gráfico de função exponencial crescente (curva), e não de reta, parábola, função cúbica ou raiz."
+    ],
+    "teoria": [
+     {
+      "statement": "O gráfico de -2^x é o espelho do gráfico de 2^x em relação ao eixo x.",
+      "isTrue": true,
+      "explanation": "Multiplicar a função por -1 reflete o gráfico em relação ao eixo das abscissas."
+     },
+     {
+      "statement": "Multiplicar a função exponencial por -1 produz um gráfico que é espelho do original em relação ao eixo y.",
+      "isTrue": false,
+      "explanation": "A multiplicação por -1 espelha em relação ao eixo x. O espelho em relação ao eixo y ocorre com o módulo aplicado à variável, para os valores negativos."
+     },
+     {
+      "statement": "O produto 2^2 . 2^x é igual a 2^(x+2), ou seja, corresponde a uma translação horizontal do gráfico de 2^x para a esquerda.",
+      "isTrue": true,
+      "explanation": "Quando a constante multiplicadora é uma potência da própria base, o efeito é só translação horizontal."
+     },
+     {
+      "statement": "Com base a > 1, multiplicar a função a^x por uma constante C > 1 desloca o gráfico para a direita.",
+      "isTrue": false,
+      "explanation": "Para a > 1, C > 1 desloca o gráfico para a esquerda; o deslocamento para a direita ocorre com C entre 0 e 1."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "No gráfico de 3^|x|, a parte com x negativo é o espelho, em relação ao eixo y, da parte com x ≥ 0.",
+      "isTrue": true,
+      "explanation": "Para x ≥ 0, 3^|x| coincide com 3^x; para x < 0, o gráfico reflete o trecho positivo."
+     },
+     {
+      "statement": "Multiplicar a variável x por uma constante maior que 1 deixa a curva exponencial menos inclinada.",
+      "isTrue": false,
+      "explanation": "C > 1 torna a curva mais acentuada; o efeito de menor inclinação ocorre com C entre 0 e 1."
+     },
+     {
+      "statement": "O gráfico da função f(x) = -2 + 3^x é o de 3^x deslocado duas unidades para baixo.",
+      "isTrue": true,
+      "explanation": "A lei equivale a 3^x - 2, uma translação vertical para baixo."
+     },
+     {
+      "statement": "O gráfico de y = C . b^t, com C > 0 e b > 1, é uma reta crescente que passa pela origem.",
+      "isTrue": false,
+      "explanation": "É uma exponencial crescente, uma curva que corta o eixo y em (0; C), e não uma reta pela origem."
+     },
+     {
+      "statement": "Na construção de -(1/2)^|x-1| + 2, a última etapa é uma translação vertical de duas unidades para cima.",
+      "isTrue": true,
+      "explanation": "Depois do módulo, do espelhamento em x e da translação horizontal de 1 unidade, soma-se 2 à função."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Constante que é potência da base gera translação horizontal",
+      "pageRef": 14
+     },
+     {
+      "topic": "Multiplicar por constante com base entre 0 e 1",
+      "pageRef": 15
+     },
+     {
+      "topic": "Multiplicar a variável x por constante",
+      "pageRef": 15
+     },
+     {
+      "topic": "Multiplicação da função por -1",
+      "pageRef": 16
+     },
+     {
+      "topic": "Exemplos de espelhamento em relação ao eixo x",
+      "pageRef": 17
+     },
+     {
+      "topic": "Módulo na variável x",
+      "pageRef": 18
+     },
+     {
+      "topic": "Composição de transformações",
+      "pageRef": 19
+     },
+     {
+      "topic": "Translações finais da composição",
+      "pageRef": 20
+     },
+     {
+      "topic": "Leitura de lei como translação vertical",
+      "pageRef": 21
+     },
+     {
+      "topic": "Exponencial no contexto de capitalização",
+      "pageRef": 23
+     }
+    ]
+   },
+   "questions": [
+    {
+     "topic": "Reflexão em relação ao eixo x",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 16,
+     "statement": "Em relação ao gráfico de f(x) = 3ˣ, o gráfico de g(x) = −3ˣ é",
+     "support": null,
+     "options": [
+      "o espelho de f em relação ao eixo y, e sua imagem é ]0, +∞[.",
+      "uma translação de 3 unidades para baixo, com imagem ]−3, +∞[.",
+      "o espelho de f em relação ao eixo x, e sua imagem é ]−∞, 0[.",
+      "o espelho de f em relação ao eixo x, e sua imagem é ]0, +∞[.",
+      "uma translação de f para a esquerda, com imagem ]−∞, 0]."
+     ],
+     "answer": "C",
+     "explanation": "Multiplicar a função por −1 reflete o gráfico em relação ao eixo x. Como 3ˣ > 0, tem-se −3ˣ < 0 para todo x, e a imagem passa a ser ]−∞, 0[."
+    },
+    {
+     "topic": "Módulo na variável",
+     "pattern": "calculo",
+     "difficulty": 1,
+     "pageRef": 17,
+     "statement": "Para f(x) = 2^|x|, o valor de f(−3) é",
+     "support": null,
+     "options": [
+      "1/8.",
+      "−8.",
+      "6.",
+      "8.",
+      "1/6."
+     ],
+     "answer": "D",
+     "explanation": "Com o módulo, |−3| = 3 e f(−3) = 2³ = 8. Para x ≥ 0, o gráfico coincide com 2ˣ; para x negativo, é o espelho em relação ao eixo y."
+    },
+    {
+     "topic": "Produto de valores simétricos com módulo",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 18,
+     "statement": "Para g(x) = (1/2)^|x|, o valor de g(−2) · g(2) é",
+     "support": null,
+     "options": [
+      "1.",
+      "1/16.",
+      "1/4.",
+      "16.",
+      "1/8."
+     ],
+     "answer": "B",
+     "explanation": "g(−2) = (1/2)² = 1/4, pois |−2| = 2, e g(2) = 1/4. O produto é 1/16. A função é simétrica em relação ao eixo y, então g(−x) = g(x)."
+    },
+    {
+     "topic": "Simetria do gráfico com módulo",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 17,
+     "statement": "O gráfico de f(x) = 3^|x| é simétrico em relação",
+     "support": null,
+     "options": [
+      "ao eixo x.",
+      "à origem.",
+      "à reta y = x.",
+      "ao eixo y.",
+      "a nenhum eixo ou ponto."
+     ],
+     "answer": "D",
+     "explanation": "Como |−x| = |x|, vale f(−x) = f(x): para x negativo, o gráfico é o espelho, em relação ao eixo y, do caso x ≥ 0."
+    },
+    {
+     "topic": "Imagem de função composta de transformações",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 19,
+     "statement": "O conjunto imagem da função h(x) = −2^|x| + 3 é",
+     "support": null,
+     "options": [
+      "]−∞, 3[.",
+      "[2, +∞[.",
+      "]−∞, 2[.",
+      "]2, 3]",
+      "]−∞, 2]."
+     ],
+     "answer": "E",
+     "explanation": "Como |x| ≥ 0, 2^|x| ≥ 1, logo −2^|x| ≤ −1 e h(x) ≤ 2, com igualdade em x = 0. Assim, a imagem é ]−∞, 2], e o valor máximo, 2, é atingido."
+    },
+    {
+     "topic": "Valor mínimo com módulo",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 19,
+     "statement": "O valor mínimo da função h(x) = 2^|x − 2| − 1 é",
+     "support": null,
+     "options": [
+      "0.",
+      "−1.",
+      "1.",
+      "2.",
+      "não existe."
+     ],
+     "answer": "A",
+     "explanation": "O menor valor de |x − 2| é 0 (em x = 2), de modo que 2^|x − 2| é, no mínimo, 2⁰ = 1, e h(x) ≥ 1 − 1 = 0. O mínimo é, então, 0."
+    },
+    {
+     "topic": "Multiplicação por potência da base (a > 1)",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 14,
+     "statement": "O gráfico de y = 4 · 2ˣ pode ser obtido do gráfico de y = 2ˣ por uma translação horizontal de",
+     "support": null,
+     "options": [
+      "2 unidades para a direita.",
+      "4 unidades para a esquerda.",
+      "4 unidades para cima.",
+      "2 unidades para cima.",
+      "2 unidades para a esquerda."
+     ],
+     "answer": "E",
+     "explanation": "Como 4 = 2², 4 · 2ˣ = 2^(x+2), que é a translação de 2ˣ duas unidades para a esquerda. Multiplicar por uma constante não é, em geral, translação vertical."
+    },
+    {
+     "topic": "Multiplicação por potência da base (0 < a < 1)",
+     "pattern": "conceito",
+     "difficulty": 3,
+     "pageRef": 14,
+     "statement": "O gráfico de y = 4 · (1/2)ˣ pode ser obtido do gráfico de y = (1/2)ˣ por uma translação horizontal de",
+     "support": null,
+     "options": [
+      "2 unidades para a esquerda.",
+      "2 unidades para a direita.",
+      "4 unidades para a direita.",
+      "4 unidades para a esquerda.",
+      "2 unidades para cima."
+     ],
+     "answer": "B",
+     "explanation": "Como 4 = (1/2)⁻², tem-se 4 · (1/2)ˣ = (1/2)^(x − 2), isto é, translação de 2 unidades para a direita. Com base entre 0 e 1, o sentido é oposto ao do caso a > 1."
+    },
+    {
+     "topic": "Divisão por potência da base",
+     "pattern": "conceito",
+     "difficulty": 3,
+     "pageRef": 14,
+     "statement": "O gráfico de y = 3ˣ ÷ 27 pode ser obtido do gráfico de y = 3ˣ por uma translação horizontal de",
+     "support": null,
+     "options": [
+      "3 unidades para a direita.",
+      "3 unidades para a esquerda.",
+      "27 unidades para a direita.",
+      "3 unidades para baixo.",
+      "9 unidades para a direita."
+     ],
+     "answer": "A",
+     "explanation": "Como 27 = 3³, 3ˣ ÷ 27 = 3^(x − 3), isto é, translação de 3 unidades para a direita. Dividir por uma potência da base equivale a subtrair o expoente."
+    },
+    {
+     "topic": "Multiplicação da variável por constante",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 15,
+     "statement": "Comparado com o gráfico de f(x) = 2ˣ, o gráfico de g(x) = 2^(3x) apresenta",
+     "support": null,
+     "options": [
+      "inclinação menos acentuada.",
+      "inclinação mais acentuada.",
+      "a mesma inclinação, apenas deslocada.",
+      "um espelhamento em relação ao eixo y.",
+      "a assíntota y = 3."
+     ],
+     "answer": "B",
+     "explanation": "Multiplicar a variável x por uma constante maior que 1 torna a curva mais inclinada (a função cresce mais rápido), e dividi-la por uma constante maior que 1 a torna menos inclinada. A assíntota continua em y = 0."
+    },
+    {
+     "topic": "Sequência de transformações",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 19,
+     "statement": "Para obter o gráfico de y = −2^(x + 1) a partir do gráfico de y = 2ˣ, aplicam-se",
+     "support": null,
+     "options": [
+      "uma translação de 1 unidade para a direita e uma reflexão em relação ao eixo y.",
+      "uma translação de 1 unidade para cima e uma reflexão em relação ao eixo x.",
+      "uma translação de 1 unidade para a esquerda e uma reflexão em relação ao eixo y.",
+      "uma translação de 1 unidade para a esquerda e uma reflexão em relação ao eixo x.",
+      "uma translação de 1 unidade para baixo e uma reflexão em relação ao eixo x."
+     ],
+     "answer": "D",
+     "explanation": "A soma 1 no expoente desloca o gráfico para a esquerda, e o sinal negativo na frente da função reflete o gráfico em relação ao eixo x (o que leva a imagem para os negativos)."
+    },
+    {
+     "topic": "Multiplicação da função por constante maior que 1",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 14,
+     "statement": "Ao multiplicar por uma constante C > 1 as funções 2ˣ e (1/2)ˣ, os gráficos sofrem, respectivamente, deslocamento",
+     "support": null,
+     "options": [
+      "para a direita e para a esquerda.",
+      "ambos para a esquerda.",
+      "para a esquerda e para a direita.",
+      "ambos para a direita.",
+      "para cima e para baixo."
+     ],
+     "answer": "C",
+     "explanation": "Para a base maior que 1, multiplicar por C > 1 equivale a deslocar o gráfico para a esquerda (por exemplo, 4 · 2ˣ = 2^(x+2)); para a base entre 0 e 1, o deslocamento é para a direita."
+    },
+    {
+     "topic": "Divisão por potência com base entre 0 e 1",
+     "pattern": "conceito",
+     "difficulty": 3,
+     "pageRef": 15,
+     "statement": "O gráfico de y = (1/3)ˣ ÷ 9 pode ser obtido do gráfico de y = (1/3)ˣ por uma translação horizontal de",
+     "support": null,
+     "options": [
+      "2 unidades para a direita.",
+      "2 unidades para a esquerda.",
+      "9 unidades para a esquerda.",
+      "9 unidades para a direita.",
+      "2 unidades para baixo."
+     ],
+     "answer": "B",
+     "explanation": "Como 9 = (1/3)⁻², (1/3)ˣ ÷ 9 = (1/3)ˣ · (1/3)² = (1/3)^(x + 2), translação de 2 unidades para a esquerda."
+    }
+   ]
+  }
+ ]
 }

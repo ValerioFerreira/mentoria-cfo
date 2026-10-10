@@ -1,1298 +1,1298 @@
 {
-  "aula": "estatistica/a14",
-  "batch": "w2-bizu-estatistica",
-  "status": "DRAFT",
-  "segments": [
+ "aula": "estatistica/a14",
+ "batch": "w2-bizu-estatistica",
+ "status": "DRAFT",
+ "segments": [
+  {
+   "id": "estatistica/a14/s01",
+   "bizu": {
+    "summary": [
+     "**ANOVA de um fator (one-way)**: teste de hipóteses que compara as **médias de três ou mais grupos**. **H₀**: todas as médias são iguais; **H₁**: pelo menos uma média é diferente. Foi desenvolvida por R. A. Fisher.",
+     "**Ideia**: separa a variação **entre os grupos** (atribuída ao tratamento/fator) da variação **dentro dos grupos** (atribuída ao erro, resíduo ou componente aleatória).",
+     "**Modelo**: x_ij = μ + α_i + ε_ij, em que μ é a média geral, α_i o efeito do tratamento i e ε_ij o erro aleatório.",
+     "**Pressupostos**: erros **normais**, com **média zero** e **variância constante** (homocedasticidade) e **independentes** (sem autocorrelação, que pode ser investigada por gráfico dos erros ou testes específicos).",
+     "**Decomposição**: x_ij − x̿ = (x̄_i − x̿) + (x_ij − x̄_i), ou seja, desvio total = desvio do tratamento + desvio do erro.",
+     "**Somas de quadrados**: **SQTrat = Σ n·(x̄_i − x̿)²**; **SQErro = ΣΣ(x_ij − x̄_i)²**; **SQTotal = SQTrat + SQErro**.",
+     "💡 **Exemplo Prático:** **Fórmula alternativa**: SQTrat = Σ(T_i²/n) − (ΣΣx)²/N, com T_i o total do tratamento i. Ex.: (40² + 35² + 30²)/5 − 105²/15 = 745 − 735 = 10.",
+     "💡 **Exemplo da aula**: 3 professores com 5 alunos cada; SQTrat = 10, SQErro = 30 e SQTotal = 40."
+    ],
+    "teoria": [
+     {
+      "statement": "A ANOVA de um fator serve para comparar as médias de três ou mais grupos.",
+      "isTrue": true,
+      "explanation": "H₀ afirma que todas as médias são iguais; H₁, que ao menos uma difere."
+     },
+     {
+      "statement": "Para a validade da ANOVA, supõe-se que os resíduos tenham distribuição normal, esperança nula e dispersão homogênea entre os grupos.",
+      "isTrue": true,
+      "explanation": "São os pressupostos de normalidade, média zero e variância constante dos erros."
+     },
+     {
+      "statement": "Na ANOVA, a soma total dos quadrados é igual à diferença entre a soma dos quadrados do tratamento e a do erro.",
+      "isTrue": false,
+      "explanation": "SQTotal = SQTrat + SQErro (soma, não diferença)."
+     },
+     {
+      "statement": "A variação entre os grupos é atribuída ao tratamento e a variação dentro dos grupos é atribuída ao erro.",
+      "isTrue": true,
+      "explanation": "Essa é a separação básica feita pela análise de variância."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "Com totais de 40, 35 e 30 em três grupos de 5 observações cada e total geral 105, SQTrat = 10.",
+      "isTrue": true,
+      "explanation": "(1600 + 1225 + 900)/5 − 105²/15 = 745 − 735 = 10."
+     },
+     {
+      "statement": "A hipótese nula da ANOVA é que pelo menos uma das médias é diferente das demais.",
+      "isTrue": false,
+      "explanation": "Isso é a hipótese alternativa; H₀ afirma a igualdade de todas as médias."
+     },
+     {
+      "statement": "Um dos pressupostos da ANOVA é que os erros sejam independentes, isto é, sem autocorrelação.",
+      "isTrue": true,
+      "explanation": "Se houver autocorrelação, são necessários métodos específicos de correção."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Objetivo da ANOVA de um fator",
+      "pageRef": 4
+     },
+     {
+      "topic": "Variação entre e dentro dos grupos",
+      "pageRef": 5
+     },
+     {
+      "topic": "Pressupostos do modelo",
+      "pageRef": 6
+     },
+     {
+      "topic": "Decomposição do desvio",
+      "pageRef": 10
+     },
+     {
+      "topic": "Cálculo de SQTrat e SQErro",
+      "pageRef": 11
+     },
+     {
+      "topic": "Fórmulas alternativas das somas de quadrados",
+      "pageRef": 13
+     }
+    ]
+   },
+   "questions": [
     {
-      "id": "estatistica/a14/s01",
-      "bizu": {
-        "summary": [
-          "**ANOVA de um fator (one-way)**: teste de hipóteses que compara as **médias de três ou mais grupos**. **H₀**: todas as médias são iguais; **H₁**: pelo menos uma média é diferente. Foi desenvolvida por R. A. Fisher.",
-          "**Ideia**: separa a variação **entre os grupos** (atribuída ao tratamento/fator) da variação **dentro dos grupos** (atribuída ao erro, resíduo ou componente aleatória).",
-          "**Modelo**: x_ij = μ + α_i + ε_ij, em que μ é a média geral, α_i o efeito do tratamento i e ε_ij o erro aleatório.",
-          "**Pressupostos**: erros **normais**, com **média zero** e **variância constante** (homocedasticidade) e **independentes** (sem autocorrelação, que pode ser investigada por gráfico dos erros ou testes específicos).",
-          "**Decomposição**: x_ij − x̿ = (x̄_i − x̿) + (x_ij − x̄_i), ou seja, desvio total = desvio do tratamento + desvio do erro.",
-          "**Somas de quadrados**: **SQTrat = Σ n·(x̄_i − x̿)²**; **SQErro = ΣΣ(x_ij − x̄_i)²**; **SQTotal = SQTrat + SQErro**.",
-          "**Fórmula alternativa**: SQTrat = Σ(T_i²/n) − (ΣΣx)²/N, com T_i o total do tratamento i. Ex.: (40² + 35² + 30²)/5 − 105²/15 = 745 − 735 = 10.",
-          "**Exemplo da aula**: 3 professores com 5 alunos cada; SQTrat = 10, SQErro = 30 e SQTotal = 40."
-        ],
-        "teoria": [
-          {
-            "statement": "A ANOVA de um fator serve para comparar as médias de três ou mais grupos.",
-            "isTrue": true,
-            "explanation": "H₀ afirma que todas as médias são iguais; H₁, que ao menos uma difere."
-          },
-          {
-            "statement": "Para a validade da ANOVA, supõe-se que os resíduos tenham distribuição normal, esperança nula e dispersão homogênea entre os grupos.",
-            "isTrue": true,
-            "explanation": "São os pressupostos de normalidade, média zero e variância constante dos erros."
-          },
-          {
-            "statement": "Na ANOVA, a soma total dos quadrados é igual à diferença entre a soma dos quadrados do tratamento e a do erro.",
-            "isTrue": false,
-            "explanation": "SQTotal = SQTrat + SQErro (soma, não diferença)."
-          },
-          {
-            "statement": "A variação entre os grupos é atribuída ao tratamento e a variação dentro dos grupos é atribuída ao erro.",
-            "isTrue": true,
-            "explanation": "Essa é a separação básica feita pela análise de variância."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "Com totais de 40, 35 e 30 em três grupos de 5 observações cada e total geral 105, SQTrat = 10.",
-            "isTrue": true,
-            "explanation": "(1600 + 1225 + 900)/5 − 105²/15 = 745 − 735 = 10."
-          },
-          {
-            "statement": "A hipótese nula da ANOVA é que pelo menos uma das médias é diferente das demais.",
-            "isTrue": false,
-            "explanation": "Isso é a hipótese alternativa; H₀ afirma a igualdade de todas as médias."
-          },
-          {
-            "statement": "Um dos pressupostos da ANOVA é que os erros sejam independentes, isto é, sem autocorrelação.",
-            "isTrue": true,
-            "explanation": "Se houver autocorrelação, são necessários métodos específicos de correção."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Objetivo da ANOVA de um fator",
-            "pageRef": 4
-          },
-          {
-            "topic": "Variação entre e dentro dos grupos",
-            "pageRef": 5
-          },
-          {
-            "topic": "Pressupostos do modelo",
-            "pageRef": 6
-          },
-          {
-            "topic": "Decomposição do desvio",
-            "pageRef": 10
-          },
-          {
-            "topic": "Cálculo de SQTrat e SQErro",
-            "pageRef": 11
-          },
-          {
-            "topic": "Fórmulas alternativas das somas de quadrados",
-            "pageRef": 13
-          }
-        ]
-      },
-      "questions": [
-        {
-          "topic": "Quando usar ANOVA",
-          "pattern": "caso",
-          "difficulty": 1,
-          "pageRef": 4,
-          "statement": "O comando deseja comparar o tempo médio de deslocamento de viaturas entre cinco batalhões, supondo as condições de aplicação satisfeitas. O teste mais adequado é",
-          "support": null,
-          "options": [
-            "a análise de variância (ANOVA) de um fator.",
-            "o teste t para duas amostras independentes.",
-            "o teste Z para uma média, com variância conhecida.",
-            "o teste qui-quadrado para a variância de uma população.",
-            "o teste de Mann-Whitney."
-          ],
-          "answer": "A",
-          "explanation": "A ANOVA compara as médias de três ou mais grupos (aqui, cinco batalhões). O teste t compara duas médias, e o teste de Mann-Whitney é a alternativa não paramétrica ao teste t, também para dois grupos."
-        },
-        {
-          "topic": "Hipóteses da ANOVA",
-          "pattern": "correta",
-          "difficulty": 2,
-          "pageRef": 4,
-          "statement": "Na ANOVA de um fator com três tratamentos, as hipóteses nula e alternativa são, respectivamente:",
-          "support": null,
-          "options": [
-            "H0: μ1 ≠ μ2 ≠ μ3; H1: todas as médias são iguais.",
-            "H0: μ1 = μ2 = μ3; H1: todas as médias são diferentes entre si.",
-            "H0: σ1² = σ2² = σ3²; H1: pelo menos um par de variâncias é diferente.",
-            "H0: pelo menos uma média é diferente; H1: μ1 = μ2 = μ3.",
-            "H0: μ1 = μ2 = μ3; H1: pelo menos um par de médias é diferente."
-          ],
-          "answer": "E",
-          "explanation": "A hipótese nula afirma a igualdade de todas as médias; a alternativa afirma apenas que há pelo menos uma média diferente, e não que todas diferem entre si."
-        },
-        {
-          "topic": "Fator e tratamento",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 4,
-          "statement": "Um estudo compara o desempenho de turmas de bombeiros treinadas por três instrutores. Na linguagem da ANOVA, o fator e os tratamentos são, respectivamente,",
-          "support": null,
-          "options": [
-            "instrutor 1, instrutor 2 e instrutor 3; o trabalho do instrutor.",
-            "o desempenho das turmas; o número de bombeiros.",
-            "a média geral das turmas; as médias de cada turma.",
-            "o trabalho do instrutor; instrutor 1, instrutor 2 e instrutor 3.",
-            "o erro aleatório; o desempenho das turmas."
-          ],
-          "answer": "D",
-          "explanation": "O fator é a característica investigada (o trabalho do instrutor), e cada nível dela para um grupo é um tratamento (instrutor 1, 2 e 3). O desempenho é a variável observada."
-        },
-        {
-          "topic": "Pressupostos da ANOVA",
-          "pattern": "correta",
-          "difficulty": 2,
-          "pageRef": 5,
-          "statement": "Os pressupostos da ANOVA de um fator, relativos aos erros, são",
-          "support": null,
-          "options": [
-            "autocorrelação positiva, normalidade e variâncias diferentes.",
-            "correlação entre os erros, distribuição uniforme e variâncias iguais.",
-            "independência, distribuição qualquer e amostras com pelo menos 30 observações.",
-            "dependência entre os erros e homocedasticidade.",
-            "independência, normalidade (média zero) e homoscedasticidade (variâncias iguais)."
-          ],
-          "answer": "E",
-          "explanation": "A ANOVA é um teste paramétrico que supõe erros independentes, normais e de variância constante. Mínimo de 30 observações e autocorrelação não são pressupostos."
-        },
-        {
-          "topic": "Alternativa não paramétrica",
-          "pattern": "caso",
-          "difficulty": 3,
-          "pageRef": 5,
-          "statement": "Quatro amostras independentes de tempos de resposta serão comparadas quanto à tendência central, mas todas mostram forte assimetria, o que invalida a normalidade. O teste mais adequado é",
-          "support": null,
-          "options": [
-            "o de Kruskal-Wallis.",
-            "a ANOVA de um fator.",
-            "o teste t de Student para duas amostras.",
-            "o teste de Mann-Whitney.",
-            "o teste Z para a proporção."
-          ],
-          "answer": "A",
-          "explanation": "Com mais de dois grupos e sem normalidade, usa-se o teste de Kruskal-Wallis (alternativa não paramétrica à ANOVA). O de Mann-Whitney compara apenas dois grupos, e a ANOVA exige normalidade."
-        },
-        {
-          "topic": "Teste de Kruskal-Wallis",
-          "pattern": "correta",
-          "difficulty": 2,
-          "pageRef": 5,
-          "statement": "Sobre o teste de Kruskal-Wallis, assinale a alternativa correta.",
-          "support": null,
-          "options": [
-            "Exige que os grupos sejam normais e tenham variâncias iguais.",
-            "Exige que todos os grupos tenham o mesmo número de elementos.",
-            "Aplica-se apenas a dois grupos independentes.",
-            "Compara as médias aritméticas das observações brutas.",
-            "Ordena todas as observações em postos, calcula uma estatística H e a compara com a qui-quadrado com g − 1 graus de liberdade (g grupos)."
-          ],
-          "answer": "E",
-          "explanation": "Kruskal-Wallis é uma extensão do teste de Mann-Whitney: usa postos (médias dos postos por grupo), não exige normalidade nem homoscedasticidade nem grupos de igual tamanho, e a estatística H é comparada com a qui-quadrado de g − 1 graus de liberdade."
-        },
-        {
-          "topic": "Detecção de autocorrelação",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 6,
-          "statement": "Para identificar autocorrelação nos erros de um modelo, podem ser utilizados",
-          "support": null,
-          "options": [
-            "somente o teste de Kruskal-Wallis.",
-            "o teste qui-quadrado de aderência.",
-            "o coeficiente de variação dos erros.",
-            "a análise gráfica dos erros em relação às observações e testes como Durbin-Watson e Breusch-Godfrey.",
-            "a razão entre a média e a variância dos erros."
-          ],
-          "answer": "D",
-          "explanation": "Padrões nos gráficos de erros ao longo das observações indicam autocorrelação, e métodos estatísticos como os testes de Durbin-Watson e de Breusch-Godfrey a verificam. Kruskal-Wallis é um teste de comparação de grupos."
-        },
-        {
-          "topic": "Decomposição da variação",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 10,
-          "statement": "Considere o desvio de uma observação em relação à média geral, separado em duas parcelas: (i) média do seu grupo menos a média geral; (ii) observação menos a média do seu grupo. Na ANOVA, essas parcelas correspondem, nessa ordem, a",
-          "support": null,
-          "options": [
-            "erro (variação entre grupos) e tratamento (variação dentro dos grupos).",
-            "tratamento (variação entre grupos) e erro (variação dentro dos grupos).",
-            "tratamento e tratamento, em partes iguais.",
-            "erro e erro, em partes iguais.",
-            "fator e nível de significância."
-          ],
-          "answer": "B",
-          "explanation": "xij − x̿ = (x̄i − x̿) + (xij − x̄i): o primeiro termo mede o efeito do tratamento (entre grupos) e o segundo, o erro ou resíduo (dentro dos grupos)."
-        },
-        {
-          "topic": "Soma dos quadrados do erro",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 11,
-          "statement": "Três grupos de 4 observações têm os valores: grupo A (12, 14, 13, 15); grupo B (10, 11, 9, 10); grupo C (8, 9, 7, 8). A soma dos quadrados dos erros (dentro dos grupos), SQErro, é",
-          "support": null,
-          "options": [
-            "62.",
-            "71.",
-            "4,5.",
-            "9.",
-            "18."
-          ],
-          "answer": "D",
-          "explanation": "As médias são 13,5; 10 e 8. SQErro = Σ(xij − x̄i)²: grupo A = 2,25 + 0,25 + 0,25 + 2,25 = 5; grupo B = 0 + 1 + 1 + 0 = 2; grupo C = 0 + 1 + 1 + 0 = 2. Total 9. O valor 62 é SQTrat, e 71 é SQTotal."
-        },
-        {
-          "topic": "SQTrat pela fórmula dos totais",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 12,
-          "statement": "Em um experimento com k = 3 tratamentos e n = 4 repetições cada, os totais dos tratamentos são 54, 40 e 32, e a soma de todas as observações é 126. Usando SQTrat = Σ(total do tratamento)²/n − (soma total)²/N, o valor de SQTrat é",
-          "support": null,
-          "options": [
-            "62.",
-            "71.",
-            "9.",
-            "1.385.",
-            "1.323."
-          ],
-          "answer": "A",
-          "explanation": "Σ(totais)²/n = (2.916 + 1.600 + 1.024)/4 = 1.385 e (soma total)²/N = 126²/12 = 1.323; logo SQTrat = 1.385 − 1.323 = 62. Os valores 1.385 e 1.323 são apenas as duas parcelas."
-        },
-        {
-          "topic": "SQTotal pela fórmula alternativa",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 13,
-          "statement": "Em um experimento com 12 observações, a soma dos valores é 126 e a soma dos quadrados dos valores é 1.394. A soma dos quadrados totais é",
-          "support": null,
-          "options": [
-            "1.394.",
-            "1.323.",
-            "71.",
-            "62.",
-            "9."
-          ],
-          "answer": "C",
-          "explanation": "SQTotal = Σx² − (Σx)²/N = 1.394 − 126²/12 = 1.394 − 1.323 = 71. Os valores 62 e 9 são SQTrat e SQErro, que somam 71."
-        },
-        {
-          "topic": "Propriedades da ANOVA",
-          "pattern": "incorreta",
-          "difficulty": 2,
-          "pageRef": 5,
-          "statement": "Sobre a ANOVA de um fator, assinale a alternativa INCORRETA.",
-          "support": null,
-          "options": [
-            "Compara as médias de três ou mais grupos.",
-            "Segrega a variação entre os grupos (tratamento) e dentro dos grupos (erro).",
-            "É um teste não paramétrico, pois não supõe nenhuma distribuição para a população.",
-            "Supõe erros independentes, normais e com variância constante.",
-            "Estando a população dividida em grupos, avalia se a característica do grupo influencia o desempenho."
-          ],
-          "answer": "C",
-          "explanation": "A ANOVA supõe normalidade e homoscedasticidade; por isso é um teste paramétrico. A alternativa não paramétrica é o teste de Kruskal-Wallis."
-        },
-        {
-          "topic": "Teste de Mann-Whitney",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 5,
-          "statement": "O teste de Mann-Whitney (Wilcoxon-Mann-Whitney) é",
-          "support": null,
-          "options": [
-            "a versão não paramétrica da ANOVA para comparar três ou mais grupos.",
-            "a versão não paramétrica do teste t para comparar dois grupos independentes.",
-            "um teste paramétrico para comparar variâncias de dois grupos.",
-            "um teste para identificar autocorrelação dos erros.",
-            "um teste de normalidade dos erros de regressão."
-          ],
-          "answer": "B",
-          "explanation": "Mann-Whitney usa postos e compara dois grupos, sendo a alternativa não paramétrica ao teste t. Kruskal-Wallis é a extensão para três ou mais grupos."
-        }
-      ]
+     "topic": "Quando usar ANOVA",
+     "pattern": "caso",
+     "difficulty": 1,
+     "pageRef": 4,
+     "statement": "O comando deseja comparar o tempo médio de deslocamento de viaturas entre cinco batalhões, supondo as condições de aplicação satisfeitas. O teste mais adequado é",
+     "support": null,
+     "options": [
+      "a análise de variância (ANOVA) de um fator.",
+      "o teste t para duas amostras independentes.",
+      "o teste Z para uma média, com variância conhecida.",
+      "o teste qui-quadrado para a variância de uma população.",
+      "o teste de Mann-Whitney."
+     ],
+     "answer": "A",
+     "explanation": "A ANOVA compara as médias de três ou mais grupos (aqui, cinco batalhões). O teste t compara duas médias, e o teste de Mann-Whitney é a alternativa não paramétrica ao teste t, também para dois grupos."
     },
     {
-      "id": "estatistica/a14/s02",
-      "bizu": {
-        "summary": [
-          "**Graus de liberdade** (k tratamentos, n repetições cada, N total): **GL_Total = N − 1**; **GL_Trat = k − 1**; **GL_Erro = N − k = k(n − 1)**. Eles se somam: GL_Total = GL_Trat + GL_Erro.",
-          "**Quadrados médios**: **QM_Trat = SQ_Trat/GL_Trat** e **QM_Erro = SQ_Erro/GL_Erro**. O QM_Erro é a estimativa da **variância dos erros** σ².",
-          "**Estatística F**: **F = QM_Trat/QM_Erro**, que sob H₀ segue **F de Snedecor com (k − 1; N − k) g.l.** Valores grandes de F indicam que a variação entre grupos supera o esperado pelo acaso.",
-          "**Exemplo**: SQ_Trat = 10 (GL 2), SQ_Erro = 30 (GL 12) → QM_Trat = 5, QM_Erro = 2,5 e F = 2. Com f₀,₀₅;₂;₁₂ = 3,885, F < crítico e **não se rejeita** H₀.",
-          "**Decisão por p-valor**: se p < α, rejeita-se H₀. O p-valor é a probabilidade de um resultado tão ou mais extremo supondo H₀.",
-          "**Tabela ANOVA**: cada linha é uma fonte (tratamento, erro e total) e as colunas trazem GL, SQ, QM e F. Preencher a tabela é o resumo final do teste.",
-          "**Efeito aleatório**: o componente de variância do tratamento é estimado por (QM_Trat − QM_Erro)/n. Ex.: (360 − 60)/4 = 75.",
-          "**Blocos**: SQ_Total = SQ_Trat + SQ_Bloco + SQ_Erro, e há duas estatísticas F (tratamento e bloco), ambas divididas pelo QM_Erro.",
-          "**Repetições desiguais** (n_i diferentes): SQ_Trat = Σ n_i·(x̄_i − x̿)²; GL_Erro = N − k.",
-          "**Atenção**: rejeitar H₀ mostra que há ao menos uma média diferente, mas **não diz quais** são diferentes (exige comparações múltiplas)."
-        ],
-        "teoria": [
-          {
-            "statement": "Na ANOVA de um fator com k tratamentos e N observações, os graus de liberdade do erro são N − k.",
-            "isTrue": true,
-            "explanation": "Equivalem a k(n − 1) quando todos os grupos têm n observações."
-          },
-          {
-            "statement": "A estatística F da ANOVA é a razão QM_Erro/QM_Trat.",
-            "isTrue": false,
-            "explanation": "A estatística é QM_Trat/QM_Erro."
-          },
-          {
-            "statement": "Com F = 2 e valor crítico 3,885 (g.l. 2 e 12), a hipótese nula de igualdade das médias não é rejeitada.",
-            "isTrue": true,
-            "explanation": "F observado menor que o crítico: não há evidência de diferença entre as médias."
-          },
-          {
-            "statement": "Rejeitar a hipótese nula na ANOVA identifica exatamente quais médias diferem entre si.",
-            "isTrue": false,
-            "explanation": "O teste indica apenas que ao menos uma difere; para saber quais, usam-se comparações múltiplas."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "O quadrado médio do erro é uma estimativa da variância dos erros.",
-            "isTrue": true,
-            "explanation": "QM_Erro = SQ_Erro/GL_Erro."
-          },
-          {
-            "statement": "Quando os grupos têm números de observações diferentes, SQ_Trat passa a ser Σ n_i·(x̄_i − x̿)².",
-            "isTrue": true,
-            "explanation": "Cada grupo é ponderado pelo seu tamanho."
-          },
-          {
-            "statement": "Com 4 tratamentos e 25 observações, GL_Erro = 24.",
-            "isTrue": false,
-            "explanation": "GL_Erro = N − k = 25 − 4 = 21."
-          },
-          {
-            "statement": "No modelo de efeito aleatório com 3 tratamentos, 4 repetições, QM_Trat = 360 e QM_Erro = 60, o componente de variância do tratamento é 75.",
-            "isTrue": true,
-            "explanation": "(360 − 60)/4 = 75."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Graus de liberdade",
-            "pageRef": 14
-          },
-          {
-            "topic": "Quadrados médios",
-            "pageRef": 14
-          },
-          {
-            "topic": "Estatística F",
-            "pageRef": 16
-          },
-          {
-            "topic": "Resultado do teste e valor crítico",
-            "pageRef": 18
-          },
-          {
-            "topic": "ANOVA com blocos",
-            "pageRef": 21
-          },
-          {
-            "topic": "Número distinto de repetições",
-            "pageRef": 24
-          }
-        ]
-      },
-      "questions": [
-        {
-          "topic": "Graus de liberdade da ANOVA",
-          "pattern": "calculo",
-          "difficulty": 1,
-          "pageRef": 14,
-          "statement": "Em uma ANOVA com k = 4 tratamentos e n = 6 observações por tratamento, os graus de liberdade do tratamento, do erro e do total são, respectivamente,",
-          "support": null,
-          "options": [
-            "4, 20 e 24.",
-            "3, 24 e 23.",
-            "3, 20 e 23.",
-            "4, 18 e 22.",
-            "3, 18 e 21."
-          ],
-          "answer": "C",
-          "explanation": "GLTrat = k − 1 = 3; GLErro = N − k = 24 − 4 = 20; GLTotal = N − 1 = 23, com GLTotal = GLTrat + GLErro (23 = 3 + 20)."
-        },
-        {
-          "topic": "Graus de liberdade com repetições desiguais",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 24,
-          "statement": "Em uma ANOVA com três tratamentos, as repetições são n1 = 4, n2 = 6 e n3 = 5. O número de graus de liberdade do erro é",
-          "support": null,
-          "options": [
-            "14.",
-            "2.",
-            "11.",
-            "15.",
-            "12."
-          ],
-          "answer": "E",
-          "explanation": "GLErro = Σ(ni − 1) = N − k = 15 − 3 = 12, mesmo com repetições desiguais. O valor 14 é GLTotal (N − 1), e 2 é GLTrat."
-        },
-        {
-          "topic": "Estatística F da ANOVA",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 16,
-          "statement": "Uma ANOVA com k = 3 tratamentos e n = 10 observações por tratamento forneceu SQTrat = 48 e SQErro = 90. A estatística F é",
-          "support": null,
-          "options": [
-            "0,5.",
-            "4,8.",
-            "7,2.",
-            "7,7.",
-            "24,0."
-          ],
-          "answer": "C",
-          "explanation": "QMTrat = 48/(3 − 1) = 24 e QMErro = 90/(30 − 3) = 90/27 ≈ 3,33; F = 24/3,33 = 7,2. O valor 0,5 é a razão entre as somas de quadrados, sem os graus de liberdade."
-        },
-        {
-          "topic": "Componente de variância do tratamento",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 15,
-          "statement": "Em um experimento com n = 5 repetições por tratamento, QMTrat = 250 e QMErro = 50. A estimativa do componente de variância associado ao tratamento é",
-          "support": null,
-          "options": [
-            "50.",
-            "200.",
-            "40.",
-            "250.",
-            "8."
-          ],
-          "answer": "C",
-          "explanation": "Como E(QMTrat) = σ²erro + n·σ²trat, tem-se σ̂²trat = (QMTrat − QMErro)/n = (250 − 50)/5 = 40. O valor 200 é a diferença sem dividir por n."
-        },
-        {
-          "topic": "Interpretação da estatística F",
-          "pattern": "correta",
-          "difficulty": 1,
-          "pageRef": 17,
-          "statement": "Sobre a interpretação da estatística F = QMTrat/QMErro na ANOVA, assinale a alternativa correta.",
-          "support": null,
-          "options": [
-            "Um F grande indica que a variabilidade entre os grupos supera bastante a variabilidade dentro dos grupos, levando à rejeição de H0.",
-            "Um F pequeno indica que as médias dos grupos são significativamente diferentes.",
-            "Um F grande indica que a variação das médias ocorre apenas ao acaso.",
-            "O F é a razão entre o quadrado médio do erro e o quadrado médio do tratamento.",
-            "O F só pode ser calculado se os grupos tiverem o mesmo tamanho."
-          ],
-          "answer": "A",
-          "explanation": "Com F grande, o QMTrat é bem maior que o QMErro, e a variação entre as médias é incompatível com o acaso: rejeita-se H0. F pequeno indica variação apenas casual."
-        },
-        {
-          "topic": "Decisão pelo valor crítico de F",
-          "pattern": "caso",
-          "difficulty": 2,
-          "pageRef": 18,
-          "statement": "Em uma ANOVA com k = 3 grupos de 5 observações cada, obteve-se F = 4,2. O valor crítico da F de Snedecor com 2 e 12 graus de liberdade, a 5%, é 3,885. A conclusão é",
-          "support": null,
-          "options": [
-            "não rejeitar H0, pois 4,2 supera o valor crítico.",
-            "rejeitar H0, concluindo que todas as médias são diferentes entre si.",
-            "rejeitar H0, pois há pelo menos uma média diferente.",
-            "não rejeitar H0, pois 4,2 é menor que k.",
-            "o teste é inconclusivo, pois F não é inteiro."
-          ],
-          "answer": "C",
-          "explanation": "Rejeita-se H0 quando F observado supera o valor tabelado (4,2 > 3,885), concluindo-se que nem todas as médias são iguais; o teste não indica quantas nem quais diferem."
-        },
-        {
-          "topic": "Graus de liberdade da estatística F",
-          "pattern": "calculo",
-          "difficulty": 1,
-          "pageRef": 18,
-          "statement": "Em uma ANOVA com k = 5 tratamentos e n = 8 observações por tratamento, a estatística F é comparada com a distribuição F de Snedecor com",
-          "support": null,
-          "options": [
-            "5 graus de liberdade no numerador e 40 no denominador.",
-            "4 graus de liberdade no numerador e 40 no denominador.",
-            "35 graus de liberdade no numerador e 4 no denominador.",
-            "4 graus de liberdade no numerador e 35 no denominador.",
-            "5 graus de liberdade no numerador e 35 no denominador."
-          ],
-          "answer": "D",
-          "explanation": "Numerador: GLTrat = k − 1 = 4; denominador: GLErro = N − k = 40 − 5 = 35. A ordem é tratamento no numerador e erro no denominador."
-        },
-        {
-          "topic": "Relação entre caudas da F",
-          "pattern": "relacao",
-          "difficulty": 3,
-          "pageRef": 19,
-          "statement": "Sabendo que P(F com 2 e 12 g.l. > 3,885) = 0,05, é correto afirmar que a probabilidade P(F com 12 e 2 g.l. < 1/3,885) vale",
-          "support": null,
-          "options": [
-            "0,95.",
-            "0,10.",
-            "0,25.",
-            "3,885.",
-            "0,05."
-          ],
-          "answer": "E",
-          "explanation": "Vale P(F(v1, v2) > f) = P(F(v2, v1) < 1/f). Assim, P(F(12, 2) < 1/3,885) = P(F(2, 12) > 3,885) = 0,05."
-        },
-        {
-          "topic": "Decisão pelo p-valor",
-          "pattern": "caso",
-          "difficulty": 1,
-          "pageRef": 20,
-          "statement": "Uma ANOVA forneceu p-valor de 0,07. Assinale a alternativa correta.",
-          "support": null,
-          "options": [
-            "H0 é rejeitada ao nível de 10%, mas não ao de 5%.",
-            "H0 é rejeitada ao nível de 5%, mas não ao de 10%.",
-            "H0 não é rejeitada a nenhum desses níveis.",
-            "H0 é rejeitada aos níveis de 5% e 10%.",
-            "H0 só é rejeitada ao nível de 1%."
-          ],
-          "answer": "A",
-          "explanation": "Rejeita-se H0 quando p < α. Com p = 0,07: 0,07 < 0,10 (rejeita), mas 0,07 > 0,05 (não rejeita)."
-        },
-        {
-          "topic": "Comparações múltiplas",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 20,
-          "statement": "Após rejeitar H0 na ANOVA, o pesquisador quer saber quais médias diferem entre si. Para isso, deve",
-          "support": null,
-          "options": [
-            "aplicar novamente a ANOVA, pois ela já indica quais médias diferem.",
-            "recorrer a um procedimento de comparação múltipla dois a dois, como Tukey ou Dunnett.",
-            "calcular a média geral e o coeficiente de variação.",
-            "concluir que todas as médias diferem entre si.",
-            "substituir a ANOVA pelo teste de Kruskal-Wallis, que identifica as médias diferentes."
-          ],
-          "answer": "B",
-          "explanation": "A ANOVA indica apenas que existe ao menos uma média diferente. Para identificar quais, usam-se comparações múltiplas (Tukey, Dunnett, teste t)."
-        },
-        {
-          "topic": "ANOVA com blocos",
-          "pattern": "conceito",
-          "difficulty": 3,
-          "pageRef": 21,
-          "statement": "Em uma ANOVA com tratamentos e blocos, a decisão sobre a igualdade das médias dos tratamentos baseia-se em",
-          "support": null,
-          "options": [
-            "F_Trat = QMTrat/QMErro, enquanto F_Bloco = QMBloco/QMErro avalia a influência do bloco.",
-            "F_Bloco = QMBloco/QMErro, e o F dos tratamentos é dispensado.",
-            "F_Trat = QMErro/QMTrat, e F_Bloco = QMErro/QMBloco.",
-            "SQTotal = SQTrat + SQErro, sem considerar os blocos.",
-            "F_Trat = QMTrat/QMBloco, sem usar o quadrado médio do erro."
-          ],
-          "answer": "A",
-          "explanation": "Com blocos, SQTotal = SQTrat + SQBloco + SQErro. Calculam-se dois F, ambos com QMErro no denominador; mesmo que F_Bloco seja significativo, a decisão sobre as médias dos tratamentos continua baseada em F_Trat."
-        },
-        {
-          "topic": "Tabela ANOVA com blocos",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 21,
-          "statement": "Em uma tabela de ANOVA com blocos, o tratamento tem 2 g.l. e SQ = 120; o bloco tem 3 g.l. e SQ = 90; o erro tem 6 g.l. e SQ = 48. O número de tratamentos e a estatística F para comparar os tratamentos são, respectivamente,",
-          "support": null,
-          "options": [
-            "2 e 7,5.",
-            "3 e 7,5.",
-            "3 e 3,75.",
-            "4 e 3,75.",
-            "2 e 15,0."
-          ],
-          "answer": "B",
-          "explanation": "GLTrat = k − 1 = 2, logo k = 3. QMTrat = 120/2 = 60 e QMErro = 48/6 = 8; F_Trat = 60/8 = 7,5. O valor 3,75 é o F do bloco (30/8)."
-        },
-        {
-          "topic": "Teste não paramétrico para blocos",
-          "pattern": "caso",
-          "difficulty": 2,
-          "pageRef": 21,
-          "statement": "Em um experimento com tratamentos e blocos, os dados são ordinais e a normalidade é inadequada. O teste não paramétrico correspondente à ANOVA com blocos é",
-          "support": null,
-          "options": [
-            "o teste de Mann-Whitney.",
-            "o teste de Kruskal-Wallis.",
-            "o teste Z para a proporção.",
-            "o teste de Friedman.",
-            "o teste t para amostras pareadas, com 1 grau de liberdade."
-          ],
-          "answer": "D",
-          "explanation": "O teste de Friedman, que considera os postos das observações, corresponde à ANOVA com blocos. Kruskal-Wallis é a versão não paramétrica da ANOVA de um fator."
-        },
-        {
-          "topic": "ANOVA com repetições desiguais",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 24,
-          "statement": "Três grupos têm as observações: A (5, 7), B (6, 7, 8, 7) e C (7, 9). A estatística F da ANOVA é, aproximadamente,",
-          "support": null,
-          "options": [
-            "0,67.",
-            "2,00.",
-            "3,33.",
-            "0,60.",
-            "1,67."
-          ],
-          "answer": "E",
-          "explanation": "As médias são 6, 7 e 8, com média geral 7. SQTrat = Σni(x̄i − x̿)² = 2·1 + 4·0 + 2·1 = 4, com 2 g.l.; SQErro = 2 + 2 + 2 = 6, com N − k = 8 − 3 = 5 g.l. Então F = (4/2)/(6/5) = 2/1,2 ≈ 1,67."
-        },
-        {
-          "topic": "Teste de Tukey",
-          "pattern": "correta",
-          "difficulty": 2,
-          "pageRef": 27,
-          "statement": "Sobre testes de comparações múltiplas, como os de Tukey e de Dunnett, assinale a alternativa correta.",
-          "support": null,
-          "options": [
-            "Verificam se há interação entre os tratamentos.",
-            "Comparam a diferença entre cada par de médias a uma diferença mínima significativa, que depende do quadrado médio do erro.",
-            "Substituem a ANOVA e dispensam o teste F.",
-            "Devem ser aplicados antes da ANOVA para decidir se ela será feita.",
-            "Não utilizam o quadrado médio do erro em seu cálculo."
-          ],
-          "answer": "B",
-          "explanation": "Esses testes comparam pares de médias com uma Diferença Mínima Significativa (DMS) que depende do QMErro. Seu objetivo é identificar quais médias diferem, e não verificar interação entre tratamentos."
-        }
-      ]
+     "topic": "Hipóteses da ANOVA",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 4,
+     "statement": "Na ANOVA de um fator com três tratamentos, as hipóteses nula e alternativa são, respectivamente:",
+     "support": null,
+     "options": [
+      "H0: μ1 ≠ μ2 ≠ μ3; H1: todas as médias são iguais.",
+      "H0: μ1 = μ2 = μ3; H1: todas as médias são diferentes entre si.",
+      "H0: σ1² = σ2² = σ3²; H1: pelo menos um par de variâncias é diferente.",
+      "H0: pelo menos uma média é diferente; H1: μ1 = μ2 = μ3.",
+      "H0: μ1 = μ2 = μ3; H1: pelo menos um par de médias é diferente."
+     ],
+     "answer": "E",
+     "explanation": "A hipótese nula afirma a igualdade de todas as médias; a alternativa afirma apenas que há pelo menos uma média diferente, e não que todas diferem entre si."
     },
     {
-      "id": "estatistica/a14/s03",
-      "bizu": {
-        "summary": [
-          "**ANOVA da regressão**: avalia se vale usar o modelo de regressão, comparando-o ao modelo apenas com a média. **H₀: β = 0** (X não explica Y) contra H₁: β ≠ 0. Na regressão múltipla, H₀: todos os coeficientes são nulos; H₁: ao menos um é diferente de zero.",
-          "**Fontes de variação**: **Modelo** (variação explicada), **Erro/resíduo** (não explicada) e **Total**. Vale **SQ_Total = SQ_Modelo + SQ_Erro**; os valores calculados com arredondamentos podem divergir ligeiramente.",
-          "**Graus de liberdade**: o do **modelo** é igual ao **número de variáveis explicativas** (1 na simples); o do **erro** é **n − 2** na simples (n − p na múltipla); o **total** é **n − 1**.",
-          "**Quadrados médios**: QM_Modelo = SQ_Modelo/GL_Modelo e QM_Erro = SQ_Erro/(n − 2) (erro quadrático médio). **F = QM_Modelo/QM_Erro**, com (1; n − 2) g.l. na regressão simples.",
-          "**Exemplo**: SQ_Modelo = 1,79, SQ_Erro = 8,39 e n = 5 → QM_Erro = 8,39/3 ≈ 2,80 e F ≈ 0,64, muito abaixo do crítico (g.l. 1 e 3, 5%): não se rejeita H₀.",
-          "**Coeficiente de determinação**: **R² = SQ_Modelo/SQ_Total**, entre 0 e 1; fração da variância total explicada pelo modelo. Tabela ANOVA: R² = 4096,1644/6300,1 ≈ 65%.",
-          "**Correlação**: **|R| = √R²**, com o sinal do coeficiente angular b. Com b = −0,36 e R² ≈ 0,18, R ≈ −0,4.",
-          "**R² ajustado**: **R²_aj = 1 − (1 − R²)(n − 1)/(n − p)**. É **sempre menor** que R² e pode ser **negativo** (ex.: −0,12). Penaliza variáveis que pouco acrescentam."
-        ],
-        "teoria": [
-          {
-            "statement": "Na ANOVA da regressão linear simples, a hipótese nula é H₀: β = 0.",
-            "isTrue": true,
-            "explanation": "Testa se a variável explicativa tem coeficiente nulo, ou seja, se o modelo não explica Y."
-          },
-          {
-            "statement": "Em uma regressão linear simples com n observações, os graus de liberdade do erro são n − 1.",
-            "isTrue": false,
-            "explanation": "São n − 2; n − 1 é o grau de liberdade total."
-          },
-          {
-            "statement": "O R² mede que parcela da variância total de Y é explicada pelo modelo: divide-se SQ_Modelo por SQ_Total.",
-            "isTrue": true,
-            "explanation": "R² = SQ_Modelo/SQ_Total, com valores entre 0 e 1."
-          },
-          {
-            "statement": "O coeficiente de determinação ajustado é sempre maior que o coeficiente de determinação não ajustado.",
-            "isTrue": false,
-            "explanation": "O ajustado é sempre inferior, pois penaliza o número de parâmetros, e pode até ser negativo."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "O sinal do coeficiente de correlação |R| = √R² é o do coeficiente angular da reta.",
-            "isTrue": true,
-            "explanation": "A raiz de R² fornece o módulo; o sinal vem de b."
-          },
-          {
-            "statement": "Se há quatro variáveis explicativas, o modelo de regressão tem quatro graus de liberdade.",
-            "isTrue": true,
-            "explanation": "O GL do modelo coincide com a quantidade de regressores (sem contar o intercepto)."
-          },
-          {
-            "statement": "Em regressão com F = 0,64 (g.l. 1 e 3) e valor crítico bem maior, conclui-se que o modelo é altamente significativo.",
-            "isTrue": false,
-            "explanation": "F abaixo do crítico implica não rejeitar H₀: não há evidência de que a variável explique Y."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Uso da ANOVA na regressão",
-            "pageRef": 28
-          },
-          {
-            "topic": "Hipóteses na regressão simples e múltipla",
-            "pageRef": 30
-          },
-          {
-            "topic": "Somas de quadrados do modelo e do erro",
-            "pageRef": 31
-          },
-          {
-            "topic": "Graus de liberdade do modelo",
-            "pageRef": 33
-          },
-          {
-            "topic": "Quadrados médios e estatística F",
-            "pageRef": 34
-          },
-          {
-            "topic": "Coeficiente de determinação",
-            "pageRef": 37
-          },
-          {
-            "topic": "R² ajustado",
-            "pageRef": 39
-          }
-        ]
-      },
-      "questions": [
-        {
-          "topic": "Hipótese testada na ANOVA da regressão",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 29,
-          "statement": "Na análise de variância da regressão linear simples, rejeitar a hipótese nula H0: β = 0 indica que",
-          "support": null,
-          "options": [
-            "não existe relação linear entre as variáveis.",
-            "o intercepto da reta é igual a zero.",
-            "há relação linear entre X e Y, e a reta ajustada descreve bem os dados.",
-            "o coeficiente de determinação é igual a 1.",
-            "a variância dos erros é nula."
-          ],
-          "answer": "C",
-          "explanation": "Como H0 afirma que não há relação linear (β = 0), sua rejeição, que é a decisão forte do teste, leva a admitir dependência linear de Y em relação a X."
-        },
-        {
-          "topic": "Soma dos quadrados do modelo",
-          "pattern": "calculo",
-          "difficulty": 1,
-          "pageRef": 30,
-          "statement": "Em uma regressão linear simples, SQTotal = 250 e SQErro = 90. A soma dos quadrados do modelo é",
-          "support": null,
-          "options": [
-            "160.",
-            "340.",
-            "90.",
-            "250.",
-            "0,36."
-          ],
-          "answer": "A",
-          "explanation": "Vale SQTotal = SQModelo + SQErro, logo SQModelo = 250 − 90 = 160. O valor 340 soma as parcelas."
-        },
-        {
-          "topic": "SQTotal pela variância amostral",
-          "pattern": "calculo",
-          "difficulty": 1,
-          "pageRef": 32,
-          "statement": "A variável Y tem variância amostral 12,5 em uma amostra de n = 21 observações. A soma dos quadrados totais é",
-          "support": null,
-          "options": [
-            "250.",
-            "12,5.",
-            "262,5.",
-            "240.",
-            "0,6."
-          ],
-          "answer": "A",
-          "explanation": "SQTotal = s²Y · (n − 1) = 12,5 × 20 = 250. O valor 262,5 multiplica por n em vez de n − 1."
-        },
-        {
-          "topic": "SQModelo pela variância de X",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 32,
-          "statement": "Em uma regressão linear simples com n = 21, a inclinação estimada é b = 0,5 e a variância amostral de X é 16. A soma dos quadrados do modelo, SQModelo = b²·s²X·(n − 1), é",
-          "support": null,
-          "options": [
-            "8.",
-            "4.",
-            "40.",
-            "160.",
-            "80."
-          ],
-          "answer": "E",
-          "explanation": "SQModelo = 0,5² × 16 × 20 = 0,25 × 320 = 80. O valor 40 usa b em vez de b², e 160 usa o dobro."
-        },
-        {
-          "topic": "Graus de liberdade na regressão",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 33,
-          "statement": "Uma regressão linear com 3 variáveis explicativas é ajustada com n = 30 observações. Os graus de liberdade do modelo, do erro e do total são, respectivamente,",
-          "support": null,
-          "options": [
-            "3, 27 e 30.",
-            "4, 25 e 29.",
-            "1, 28 e 29.",
-            "3, 26 e 30.",
-            "3, 26 e 29."
-          ],
-          "answer": "E",
-          "explanation": "GLModelo = número de variáveis explicativas = 3; GLTotal = n − 1 = 29; GLErro = 29 − 3 = 26 (= n − k − 1). Na regressão simples, GLModelo = 1 e GLErro = n − 2."
-        },
-        {
-          "topic": "Estatística F na regressão simples",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 34,
-          "statement": "Em uma regressão linear simples com n = 22 observações, SQModelo = 120 e SQErro = 100. A estatística F é",
-          "support": null,
-          "options": [
-            "1,2.",
-            "12.",
-            "4,8.",
-            "24.",
-            "5."
-          ],
-          "answer": "D",
-          "explanation": "QMModelo = 120/1 = 120 e QMErro = 100/(n − 2) = 100/20 = 5; F = 120/5 = 24. O valor 1,2 é SQModelo/SQErro."
-        },
-        {
-          "topic": "Decisão pelo teste F da regressão",
-          "pattern": "caso",
-          "difficulty": 2,
-          "pageRef": 35,
-          "statement": "Em uma regressão linear simples com n = 22, obteve-se F = 24. O valor tabelado da F com 1 e 20 graus de liberdade, a 5%, é 4,35. A conclusão é",
-          "support": null,
-          "options": [
-            "rejeitar H0: β = 0; o modelo de regressão linear é adequado.",
-            "não rejeitar H0: β = 0; o modelo de regressão linear não é adequado.",
-            "rejeitar H0: β = 0; o modelo de regressão linear não é adequado.",
-            "não rejeitar H0, pois F é maior que o valor tabelado.",
-            "o teste exige F menor que 1 para rejeitar H0."
-          ],
-          "answer": "A",
-          "explanation": "Como F = 24 > 4,35, rejeita-se H0: β = 0 e conclui-se que o modelo linear se adequa aos dados. Na ANOVA, rejeita-se H0 quando F supera o valor tabelado."
-        },
-        {
-          "topic": "Quadrado médio total",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 34,
-          "statement": "Na ANOVA da regressão, o quadrado médio total (QMTotal = SQTotal/GLTotal) corresponde",
-          "support": null,
-          "options": [
-            "ao coeficiente de determinação do modelo.",
-            "à variância amostral da variável dependente Y.",
-            "à variância dos erros do modelo.",
-            "à estatística F do teste.",
-            "à soma dos quadrados do modelo dividida por n."
-          ],
-          "answer": "B",
-          "explanation": "Como SQTotal = Σ(Yi − Ȳ)² e GLTotal = n − 1, QMTotal = Σ(Yi − Ȳ)²/(n − 1), que é exatamente a variância amostral de Y."
-        },
-        {
-          "topic": "Coeficiente de determinação (tabela)",
-          "pattern": "calculo",
-          "difficulty": 1,
-          "pageRef": 37,
-          "statement": "Em uma tabela ANOVA de regressão, SQModelo = 3.600 e SQTotal = 4.800. O coeficiente de determinação R² é",
-          "support": null,
-          "options": [
-            "0,75.",
-            "0,25.",
-            "1,33.",
-            "0,87.",
-            "0,50."
-          ],
-          "answer": "A",
-          "explanation": "R² = SQModelo/SQTotal = 3.600/4.800 = 0,75. O valor 0,25 é SQErro/SQTotal, e 0,87 é a raiz de R²."
-        },
-        {
-          "topic": "Coeficiente de correlação a partir de R²",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 37,
-          "statement": "Em uma regressão linear simples, R² = 0,49 e a inclinação estimada é negativa. O coeficiente de correlação linear é",
-          "support": null,
-          "options": [
-            "−0,7.",
-            "0,7.",
-            "−0,49.",
-            "0,49.",
-            "−0,24."
-          ],
-          "answer": "A",
-          "explanation": "|R| = √R² = √0,49 = 0,7, e o sinal acompanha o do coeficiente angular da reta; como b < 0, R = −0,7."
-        },
-        {
-          "topic": "Raiz quadrada de R²",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 38,
-          "statement": "Extrai-se a raiz quadrada de R² para obter o módulo do coeficiente de correlação porque",
-          "support": null,
-          "options": [
-            "a raiz quadrada de R² é sempre positiva e igual à inclinação da reta.",
-            "R² não pode ser interpretado em nenhuma situação.",
-            "R² compara somas de quadrados (unidade ao quadrado), e a raiz coloca a comparação na mesma unidade de medida dos dados.",
-            "a raiz torna o coeficiente maior que 1, o que facilita a interpretação.",
-            "a raiz elimina a necessidade de calcular a soma dos quadrados do modelo."
-          ],
-          "answer": "C",
-          "explanation": "R² envolve quadrados das unidades dos dados (por exemplo, anos²); a raiz restitui a unidade original, facilitando a interpretação do módulo da correlação, cujo sinal vem do coeficiente angular."
-        },
-        {
-          "topic": "R² ajustado na ANOVA da regressão",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 40,
-          "statement": "Em um modelo com k = 2 variáveis explicativas e n = 18 observações, R² = 0,64. O coeficiente de determinação ajustado, R²aj = 1 − (n − 1)/(n − k − 1) · (1 − R²), é, aproximadamente,",
-          "support": null,
-          "options": [
-            "0,64.",
-            "0,59.",
-            "0,62.",
-            "0,41.",
-            "0,36."
-          ],
-          "answer": "B",
-          "explanation": "R²aj = 1 − (17/15)(0,36) = 1 − 0,408 = 0,592 ≈ 0,59. O valor 0,62 usa n − k = 16 no denominador, e 0,64 é o R² sem ajuste."
-        },
-        {
-          "topic": "R² ajustado: propriedades",
-          "pattern": "correta",
-          "difficulty": 2,
-          "pageRef": 39,
-          "statement": "Sobre o coeficiente de determinação ajustado, assinale a alternativa correta.",
-          "support": null,
-          "options": [
-            "É sempre maior que o R² não ajustado.",
-            "Nunca pode ser negativo.",
-            "Considera os graus de liberdade; pode ser negativo e é inferior ao R² não ajustado, que não diminui ao se incluir uma nova variável.",
-            "Permite comparar o R² entre modelos, pois não considera o número de variáveis.",
-            "Diminui sempre que se inclui uma nova variável."
-          ],
-          "answer": "C",
-          "explanation": "Incluir variáveis não reduz o R², mesmo que sejam pouco relacionadas a Y; o R² ajustado penaliza o número de variáveis ao usar os graus de liberdade, é menor que o R² e pode ser negativo."
-        },
-        {
-          "topic": "Cp de Mallows",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 40,
-          "statement": "Usando Cp = SQErro/QMErro − n + 2p, com SQErro = 36, QMErro = 2 (modelo completo), n = 20 e p = 3 parâmetros (2 variáveis explicativas e o intercepto), o valor de Cp é",
-          "support": null,
-          "options": [
-            "18.",
-            "4.",
-            "−2.",
-            "6.",
-            "16."
-          ],
-          "answer": "B",
-          "explanation": "Cp = 36/2 − 20 + 2 × 3 = 18 − 20 + 6 = 4, próximo de p = 3, o que sugere um modelo adequado (bons modelos têm Cp próximo de p). O valor 18 é só o primeiro termo."
-        }
-      ]
+     "topic": "Fator e tratamento",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 4,
+     "statement": "Um estudo compara o desempenho de turmas de bombeiros treinadas por três instrutores. Na linguagem da ANOVA, o fator e os tratamentos são, respectivamente,",
+     "support": null,
+     "options": [
+      "instrutor 1, instrutor 2 e instrutor 3; o trabalho do instrutor.",
+      "o desempenho das turmas; o número de bombeiros.",
+      "a média geral das turmas; as médias de cada turma.",
+      "o trabalho do instrutor; instrutor 1, instrutor 2 e instrutor 3.",
+      "o erro aleatório; o desempenho das turmas."
+     ],
+     "answer": "D",
+     "explanation": "O fator é a característica investigada (o trabalho do instrutor), e cada nível dela para um grupo é um tratamento (instrutor 1, 2 e 3). O desempenho é a variável observada."
     },
     {
-      "id": "estatistica/a14/s04",
-      "bizu": {
-        "summary": [
-          "**Intervalo de confiança do coeficiente angular**: **β̂ ± t_GLE·s_β**, em que t_GLE vem da t de Student com os **graus de liberdade do erro** (n − 2 na simples) e s_β é o **erro padrão** de β̂.",
-          "**Erro padrão do coeficiente angular**: **s²_β = QM_Erro / Σ(Xᵢ − X̄)²**. Quanto maior a variação das estimativas entre amostras, menos precisas elas são. Na regressão múltipla, os erros padrão vêm da diagonal de σ²·(XᵀX)⁻¹.",
-          "**Intervalo do intercepto**: α̂ ± t·s_α, com **s_α = √(QM_Erro·[1/n + X̄²/Σ(Xᵢ − X̄)²])**. Ex.: QME = 2,8, n = 5, X̄ = 7, Σ(X − X̄)² = 14 → s_α ≈ 3,22.",
-          "**Intervalo da previsão individual** para X₀: **Ŷ₀ ± t·s_Y**, em que a variância da predição inclui o termo 1 (variância do próprio erro) além de 1/n e (X₀ − X̄)²/Σ(Xᵢ − X̄)², sendo maior que a variância do valor médio estimado.",
-          "**Amostras grandes**: a t de Student pode ser aproximada pela normal padrão.",
-          "**Teste de significância individual**: H₀: β = 0 (ou outro valor dado). **t = β̂/s_β**, com **GL_Erro** graus de liberdade. Rejeita-se H₀ se o p-valor < α.",
-          "**Teste t × teste F**: o F testa a significância **global** da regressão; o t, a significância **individual** de cada coeficiente. Na regressão **simples**, **F = t²** (sob H₀: β = 0).",
-          "**Dica**: se o enunciado não indica o valor de H₀, presuma H₀: β = 0."
-        ],
-        "teoria": [
-          {
-            "statement": "O intervalo de confiança do coeficiente angular da regressão usa a distribuição t de Student com os graus de liberdade do erro.",
-            "isTrue": true,
-            "explanation": "Como σ² é estimada pelo QM_Erro, a distribuição relevante é a t."
-          },
-          {
-            "statement": "A variância do estimador do coeficiente angular é QM_Erro dividido pela soma dos quadrados dos desvios de X.",
-            "isTrue": true,
-            "explanation": "s²_β = QM_Erro/Σ(Xᵢ − X̄)²."
-          },
-          {
-            "statement": "Na regressão linear simples, a estatística F do teste global é igual à raiz quadrada da estatística t do coeficiente angular.",
-            "isTrue": false,
-            "explanation": "É o contrário: F = t² (o t é a raiz do F, em módulo)."
-          },
-          {
-            "statement": "O teste t de significância individual avalia cada coeficiente da regressão, enquanto o teste F avalia a significância global do modelo.",
-            "isTrue": true,
-            "explanation": "São testes de natureza distinta, embora coincidam na regressão simples."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "A estatística do teste de significância do coeficiente angular é t = β̂/s_β, com n − 2 graus de liberdade na regressão simples.",
-            "isTrue": true,
-            "explanation": "Compara a estimativa, em unidades de erro padrão, com zero."
-          },
-          {
-            "statement": "O intervalo de predição de um valor individual de Y é mais estreito que o intervalo do valor médio.",
-            "isTrue": false,
-            "explanation": "Inclui a variância do erro individual e, portanto, é mais largo."
-          },
-          {
-            "statement": "Se o enunciado não indicar a hipótese nula do teste do coeficiente, presume-se H₀: β = 0.",
-            "isTrue": true,
-            "explanation": "É a hipótese geral de ausência de efeito."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Precisão dos estimadores",
-            "pageRef": 42
-          },
-          {
-            "topic": "IC do coeficiente angular",
-            "pageRef": 43
-          },
-          {
-            "topic": "IC do intercepto",
-            "pageRef": 45
-          },
-          {
-            "topic": "IC da predição",
-            "pageRef": 46
-          },
-          {
-            "topic": "Teste de significância individual (t)",
-            "pageRef": 48
-          },
-          {
-            "topic": "Relação F = t²",
-            "pageRef": 50
-          }
-        ]
-      },
-      "questions": [
-        {
-          "topic": "Distribuição do intervalo de confiança",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 42,
-          "statement": "O intervalo de confiança bilateral para o coeficiente angular de uma regressão é construído com a distribuição",
-          "support": null,
-          "options": [
-            "normal padrão, pois a variância dos erros é sempre conhecida.",
-            "qui-quadrado, com n graus de liberdade.",
-            "F de Snedecor, com 1 e n − 2 graus de liberdade.",
-            "uniforme contínua no intervalo (0, 1).",
-            "t de Student, com graus de liberdade dos erros, pois a variância dos coeficientes é estimada a partir dos dados."
-          ],
-          "answer": "E",
-          "explanation": "Como σ² é desconhecida e estimada pelo QMErro, os coeficientes têm erro padrão estimado e utiliza-se a t de Student com GLE graus de liberdade (n − k − 1)."
-        },
-        {
-          "topic": "Graus de liberdade dos erros",
-          "pattern": "calculo",
-          "difficulty": 1,
-          "pageRef": 43,
-          "statement": "Em uma regressão linear múltipla com 3 variáveis explicativas e n = 25 observações, os graus de liberdade usados nos intervalos de confiança dos coeficientes são",
-          "support": null,
-          "options": [
-            "22.",
-            "24.",
-            "23.",
-            "25.",
-            "21."
-          ],
-          "answer": "E",
-          "explanation": "GLE = n − k − 1 = 25 − 3 − 1 = 21. O valor 24 é o GL total (n − 1), e 22 desconta apenas k."
-        },
-        {
-          "topic": "Erro padrão do coeficiente angular",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 43,
-          "statement": "Em uma regressão linear simples, QME = 4,5 e Σ(Xi − X̄)² = 50. O erro padrão do coeficiente angular é",
-          "support": null,
-          "options": [
-            "0,09.",
-            "0,30.",
-            "3,33.",
-            "0,95.",
-            "0,67."
-          ],
-          "answer": "B",
-          "explanation": "s²β = QME/Σ(Xi − X̄)² = 4,5/50 = 0,09, e o erro padrão é √0,09 = 0,30. O valor 0,09 é a variância do estimador, e 3,33 é a raiz do inverso da razão."
-        },
-        {
-          "topic": "Efeito da variabilidade de X no erro padrão",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 43,
-          "statement": "Em uma regressão linear simples, para um mesmo quadrado médio do erro, o erro padrão do coeficiente angular",
-          "support": null,
-          "options": [
-            "aumenta quando aumenta a soma dos quadrados dos desvios de X.",
-            "independe da dispersão de X.",
-            "é igual ao quadrado médio do erro.",
-            "diminui quando aumenta a soma dos quadrados dos desvios de X.",
-            "é sempre igual a 1."
-          ],
-          "answer": "D",
-          "explanation": "Como s²β = QME/Σ(Xi − X̄)², quanto maior a dispersão de X, menor a variância do coeficiente, o que torna a estimativa mais precisa."
-        },
-        {
-          "topic": "Intervalo de confiança do coeficiente angular",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 44,
-          "statement": "Uma regressão linear simples com n = 20 forneceu b = 2,0 e erro padrão s_b = 0,5. Com 95% de confiança e t(18 g.l.) = 2,10, o intervalo de confiança para o coeficiente angular é",
-          "support": null,
-          "options": [
-            "(0,95; 3,05).",
-            "(1,50; 2,50).",
-            "(−2,20; 6,20).",
-            "(1,00; 3,00).",
-            "(0,05; 3,95)."
-          ],
-          "answer": "A",
-          "explanation": "O intervalo é b ± t·s_b = 2,0 ± 2,10 × 0,5 = 2,0 ± 1,05 = (0,95; 3,05). O par (1,50; 2,50) usa margem 0,5, equivalente a t = 1; o par (−2,20; 6,20) usa margem 4,2, que resulta de multiplicar 2,10 por 2 em vez de por 0,5."
-        },
-        {
-          "topic": "Erro padrão do intercepto",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 45,
-          "statement": "Em uma regressão linear simples com n = 10, QME = 2, X̄ = 4 e Σ(Xi − X̄)² = 32, o erro padrão do intercepto, s_a = √{QME·[1/n + X̄²/Σ(Xi − X̄)²]}, é, aproximadamente,",
-          "support": null,
-          "options": [
-            "1,20.",
-            "1,10.",
-            "0,60.",
-            "2,40.",
-            "1,55."
-          ],
-          "answer": "B",
-          "explanation": "A variância é 2 × (0,1 + 16/32) = 2 × 0,6 = 1,2, e o erro padrão é √1,2 ≈ 1,10. O valor 1,20 é a variância do estimador, e 0,60 é o fator entre colchetes."
-        },
-        {
-          "topic": "Variância da predição individual",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 45,
-          "statement": "Em uma regressão linear simples com n = 10, QME = 2, X̄ = 4 e Σ(Xi − X̄)² = 32, a variância da estimativa de uma predição individual em X0 = 8, dada por QME·[1 + 1/n + (X0 − X̄)²/Σ(Xi − X̄)²], é",
-          "support": null,
-          "options": [
-            "1,2.",
-            "2,2.",
-            "1,6.",
-            "3,2.",
-            "4,0."
-          ],
-          "answer": "D",
-          "explanation": "QME·[1 + 0,1 + 16/32] = 2 × 1,6 = 3,2. O valor 1,2 omite o termo \"1\" da predição individual, e 2,2 omite o termo da distância (X0 − X̄)²."
-        },
-        {
-          "topic": "Precisão da predição",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 45,
-          "statement": "Em uma regressão linear simples, o erro padrão da predição individual de Y depende da distância entre X0 e a média X̄. Assim, para o mesmo modelo, a predição individual é mais precisa quando",
-          "support": null,
-          "options": [
-            "X0 está muito afastado da média de X.",
-            "X0 é o maior valor observado de X.",
-            "X0 é o menor valor observado de X.",
-            "X0 coincide com a média de X.",
-            "X0 é igual a zero, qualquer que seja a média de X."
-          ],
-          "answer": "D",
-          "explanation": "O termo (X0 − X̄)²/Σ(Xi − X̄)² cresce com a distância de X0 à média; quando X0 = X̄ esse termo se anula e o erro padrão da predição é o menor possível."
-        },
-        {
-          "topic": "Estatística t do teste de significância individual",
-          "pattern": "calculo",
-          "difficulty": 1,
-          "pageRef": 48,
-          "statement": "Em um teste de significância individual de H0: β = 0, a estimativa do coeficiente é 1,8 e o erro padrão é 0,6. A estatística t é",
-          "support": null,
-          "options": [
-            "1,08.",
-            "3,0.",
-            "0,33.",
-            "2,4.",
-            "1,2."
-          ],
-          "answer": "B",
-          "explanation": "t = β̂/s_β = 1,8/0,6 = 3,0. O valor 0,33 inverte a razão, e 1,08 é o produto das duas quantidades."
-        },
-        {
-          "topic": "Sinal da estatística t",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 48,
-          "statement": "No teste de significância individual de H0: β = 0, a estatística t = β̂/s_β tem sinal",
-          "support": null,
-          "options": [
-            "sempre positivo, pois é uma razão entre quantidades ao quadrado.",
-            "sempre negativo, pois H0 supõe β = 0.",
-            "oposto ao da estimativa do coeficiente.",
-            "igual ao da estimativa do coeficiente, pois o erro padrão nunca é negativo.",
-            "sempre igual ao sinal do intercepto."
-          ],
-          "answer": "D",
-          "explanation": "Como o erro padrão é maior ou igual a zero, o sinal de t acompanha o de β̂. Por exemplo, β̂ = −0,36 e s = 0,45 dão t = −0,8."
-        },
-        {
-          "topic": "Relação entre F e t",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 50,
-          "statement": "Em uma regressão linear simples, o teste F de significância global forneceu F = 9, e a inclinação estimada é negativa. Para H0: β = 0, a estatística t do teste de significância individual é",
-          "support": null,
-          "options": [
-            "3.",
-            "−9.",
-            "−3.",
-            "81.",
-            "−4,5."
-          ],
-          "answer": "C",
-          "explanation": "Na regressão simples, t² = F, logo |t| = √9 = 3; o sinal acompanha o da estimativa do coeficiente (negativo): t = −3. O valor 81 é F²."
-        },
-        {
-          "topic": "Testes F e t na regressão",
-          "pattern": "correta",
-          "difficulty": 2,
-          "pageRef": 50,
-          "statement": "Sobre os testes F e t em modelos de regressão linear, assinale a alternativa correta.",
-          "support": null,
-          "options": [
-            "O teste t avalia a significância global, e o teste F, a de cada coeficiente.",
-            "Na regressão simples, F = √t.",
-            "Os dois testes são idênticos em qualquer modelo múltiplo.",
-            "O teste F avalia a significância global da regressão, e o teste t, a significância individual de cada coeficiente; na regressão simples, F = t².",
-            "O teste t só pode ser aplicado em regressão simples."
-          ],
-          "answer": "D",
-          "explanation": "O teste F testa conjuntamente os coeficientes angulares; o teste t testa cada coeficiente individualmente (útil na regressão múltipla). Na regressão simples, as duas estatísticas se relacionam por F = t²."
-        },
-        {
-          "topic": "Intervalos de p-valor unilateral",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 49,
-          "statement": "Em um teste t para um coeficiente, o p-valor bilateral está entre 0,05 e 0,10. Se o teste fosse unilateral, no sentido do sinal da estatística, o p-valor estaria entre",
-          "support": null,
-          "options": [
-            "0,05 e 0,10.",
-            "0,10 e 0,20.",
-            "0,10 e 0,05.",
-            "0,95 e 0,975.",
-            "0,025 e 0,05."
-          ],
-          "answer": "E",
-          "explanation": "No teste unilateral considera-se apenas uma cauda, de modo que o p-valor é a metade do bilateral: entre 0,05/2 = 0,025 e 0,10/2 = 0,05."
-        },
-        {
-          "topic": "Decisão no teste t do coeficiente",
-          "pattern": "caso",
-          "difficulty": 3,
-          "pageRef": 48,
-          "statement": "Em uma regressão linear simples com n = 22, o coeficiente estimado foi β̂ = −2,4, com erro padrão 1,0. O valor crítico bilateral da t com 20 graus de liberdade, a 5%, é 2,086. A conclusão do teste de H0: β = 0 é",
-          "support": null,
-          "options": [
-            "não rejeitar H0, pois t = −2,4 é negativo.",
-            "rejeitar H0, mas a relação é positiva, pois o erro padrão é positivo.",
-            "rejeitar H0, pois |t| = 2,4 supera 2,086, havendo relação linear negativa significativa.",
-            "não rejeitar H0, pois |t| = 2,4 é maior que o erro padrão.",
-            "o teste é inconclusivo, pois o coeficiente é negativo."
-          ],
-          "answer": "C",
-          "explanation": "t = −2,4/1,0 = −2,4, com módulo superior ao crítico (2,086): rejeita-se H0 e conclui-se que há relação linear significativa, de sinal negativo (o sinal de t acompanha o de β̂)."
-        }
-      ]
+     "topic": "Pressupostos da ANOVA",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 5,
+     "statement": "Os pressupostos da ANOVA de um fator, relativos aos erros, são",
+     "support": null,
+     "options": [
+      "autocorrelação positiva, normalidade e variâncias diferentes.",
+      "correlação entre os erros, distribuição uniforme e variâncias iguais.",
+      "independência, distribuição qualquer e amostras com pelo menos 30 observações.",
+      "dependência entre os erros e homocedasticidade.",
+      "independência, normalidade (média zero) e homoscedasticidade (variâncias iguais)."
+     ],
+     "answer": "E",
+     "explanation": "A ANOVA é um teste paramétrico que supõe erros independentes, normais e de variância constante. Mínimo de 30 observações e autocorrelação não são pressupostos."
+    },
+    {
+     "topic": "Alternativa não paramétrica",
+     "pattern": "caso",
+     "difficulty": 3,
+     "pageRef": 5,
+     "statement": "Quatro amostras independentes de tempos de resposta serão comparadas quanto à tendência central, mas todas mostram forte assimetria, o que invalida a normalidade. O teste mais adequado é",
+     "support": null,
+     "options": [
+      "o de Kruskal-Wallis.",
+      "a ANOVA de um fator.",
+      "o teste t de Student para duas amostras.",
+      "o teste de Mann-Whitney.",
+      "o teste Z para a proporção."
+     ],
+     "answer": "A",
+     "explanation": "Com mais de dois grupos e sem normalidade, usa-se o teste de Kruskal-Wallis (alternativa não paramétrica à ANOVA). O de Mann-Whitney compara apenas dois grupos, e a ANOVA exige normalidade."
+    },
+    {
+     "topic": "Teste de Kruskal-Wallis",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 5,
+     "statement": "Sobre o teste de Kruskal-Wallis, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "Exige que os grupos sejam normais e tenham variâncias iguais.",
+      "Exige que todos os grupos tenham o mesmo número de elementos.",
+      "Aplica-se apenas a dois grupos independentes.",
+      "Compara as médias aritméticas das observações brutas.",
+      "Ordena todas as observações em postos, calcula uma estatística H e a compara com a qui-quadrado com g − 1 graus de liberdade (g grupos)."
+     ],
+     "answer": "E",
+     "explanation": "Kruskal-Wallis é uma extensão do teste de Mann-Whitney: usa postos (médias dos postos por grupo), não exige normalidade nem homoscedasticidade nem grupos de igual tamanho, e a estatística H é comparada com a qui-quadrado de g − 1 graus de liberdade."
+    },
+    {
+     "topic": "Detecção de autocorrelação",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 6,
+     "statement": "Para identificar autocorrelação nos erros de um modelo, podem ser utilizados",
+     "support": null,
+     "options": [
+      "somente o teste de Kruskal-Wallis.",
+      "o teste qui-quadrado de aderência.",
+      "o coeficiente de variação dos erros.",
+      "a análise gráfica dos erros em relação às observações e testes como Durbin-Watson e Breusch-Godfrey.",
+      "a razão entre a média e a variância dos erros."
+     ],
+     "answer": "D",
+     "explanation": "Padrões nos gráficos de erros ao longo das observações indicam autocorrelação, e métodos estatísticos como os testes de Durbin-Watson e de Breusch-Godfrey a verificam. Kruskal-Wallis é um teste de comparação de grupos."
+    },
+    {
+     "topic": "Decomposição da variação",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 10,
+     "statement": "Considere o desvio de uma observação em relação à média geral, separado em duas parcelas: (i) média do seu grupo menos a média geral; (ii) observação menos a média do seu grupo. Na ANOVA, essas parcelas correspondem, nessa ordem, a",
+     "support": null,
+     "options": [
+      "erro (variação entre grupos) e tratamento (variação dentro dos grupos).",
+      "tratamento (variação entre grupos) e erro (variação dentro dos grupos).",
+      "tratamento e tratamento, em partes iguais.",
+      "erro e erro, em partes iguais.",
+      "fator e nível de significância."
+     ],
+     "answer": "B",
+     "explanation": "xij − x̿ = (x̄i − x̿) + (xij − x̄i): o primeiro termo mede o efeito do tratamento (entre grupos) e o segundo, o erro ou resíduo (dentro dos grupos)."
+    },
+    {
+     "topic": "Soma dos quadrados do erro",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 11,
+     "statement": "Três grupos de 4 observações têm os valores: grupo A (12, 14, 13, 15); grupo B (10, 11, 9, 10); grupo C (8, 9, 7, 8). A soma dos quadrados dos erros (dentro dos grupos), SQErro, é",
+     "support": null,
+     "options": [
+      "62.",
+      "71.",
+      "4,5.",
+      "9.",
+      "18."
+     ],
+     "answer": "D",
+     "explanation": "As médias são 13,5; 10 e 8. SQErro = Σ(xij − x̄i)²: grupo A = 2,25 + 0,25 + 0,25 + 2,25 = 5; grupo B = 0 + 1 + 1 + 0 = 2; grupo C = 0 + 1 + 1 + 0 = 2. Total 9. O valor 62 é SQTrat, e 71 é SQTotal."
+    },
+    {
+     "topic": "SQTrat pela fórmula dos totais",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 12,
+     "statement": "Em um experimento com k = 3 tratamentos e n = 4 repetições cada, os totais dos tratamentos são 54, 40 e 32, e a soma de todas as observações é 126. Usando SQTrat = Σ(total do tratamento)²/n − (soma total)²/N, o valor de SQTrat é",
+     "support": null,
+     "options": [
+      "62.",
+      "71.",
+      "9.",
+      "1.385.",
+      "1.323."
+     ],
+     "answer": "A",
+     "explanation": "Σ(totais)²/n = (2.916 + 1.600 + 1.024)/4 = 1.385 e (soma total)²/N = 126²/12 = 1.323; logo SQTrat = 1.385 − 1.323 = 62. Os valores 1.385 e 1.323 são apenas as duas parcelas."
+    },
+    {
+     "topic": "SQTotal pela fórmula alternativa",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 13,
+     "statement": "Em um experimento com 12 observações, a soma dos valores é 126 e a soma dos quadrados dos valores é 1.394. A soma dos quadrados totais é",
+     "support": null,
+     "options": [
+      "1.394.",
+      "1.323.",
+      "71.",
+      "62.",
+      "9."
+     ],
+     "answer": "C",
+     "explanation": "SQTotal = Σx² − (Σx)²/N = 1.394 − 126²/12 = 1.394 − 1.323 = 71. Os valores 62 e 9 são SQTrat e SQErro, que somam 71."
+    },
+    {
+     "topic": "Propriedades da ANOVA",
+     "pattern": "incorreta",
+     "difficulty": 2,
+     "pageRef": 5,
+     "statement": "Sobre a ANOVA de um fator, assinale a alternativa INCORRETA.",
+     "support": null,
+     "options": [
+      "Compara as médias de três ou mais grupos.",
+      "Segrega a variação entre os grupos (tratamento) e dentro dos grupos (erro).",
+      "É um teste não paramétrico, pois não supõe nenhuma distribuição para a população.",
+      "Supõe erros independentes, normais e com variância constante.",
+      "Estando a população dividida em grupos, avalia se a característica do grupo influencia o desempenho."
+     ],
+     "answer": "C",
+     "explanation": "A ANOVA supõe normalidade e homoscedasticidade; por isso é um teste paramétrico. A alternativa não paramétrica é o teste de Kruskal-Wallis."
+    },
+    {
+     "topic": "Teste de Mann-Whitney",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 5,
+     "statement": "O teste de Mann-Whitney (Wilcoxon-Mann-Whitney) é",
+     "support": null,
+     "options": [
+      "a versão não paramétrica da ANOVA para comparar três ou mais grupos.",
+      "a versão não paramétrica do teste t para comparar dois grupos independentes.",
+      "um teste paramétrico para comparar variâncias de dois grupos.",
+      "um teste para identificar autocorrelação dos erros.",
+      "um teste de normalidade dos erros de regressão."
+     ],
+     "answer": "B",
+     "explanation": "Mann-Whitney usa postos e compara dois grupos, sendo a alternativa não paramétrica ao teste t. Kruskal-Wallis é a extensão para três ou mais grupos."
     }
-  ]
+   ]
+  },
+  {
+   "id": "estatistica/a14/s02",
+   "bizu": {
+    "summary": [
+     "**Graus de liberdade** (k tratamentos, n repetições cada, N total): **GL_Total = N − 1**; **GL_Trat = k − 1**; **GL_Erro = N − k = k(n − 1)**. Eles se somam: GL_Total = GL_Trat + GL_Erro.",
+     "**Quadrados médios**: **QM_Trat = SQ_Trat/GL_Trat** e **QM_Erro = SQ_Erro/GL_Erro**. O QM_Erro é a estimativa da **variância dos erros** σ².",
+     "**Estatística F**: **F = QM_Trat/QM_Erro**, que sob H₀ segue **F de Snedecor com (k − 1; N − k) g.l.** Valores grandes de F indicam que a variação entre grupos supera o esperado pelo acaso.",
+     "💡 **Exemplo**: SQ_Trat = 10 (GL 2), SQ_Erro = 30 (GL 12) → QM_Trat = 5, QM_Erro = 2,5 e F = 2. Com f₀,₀₅;₂;₁₂ = 3,885, F < crítico e **não se rejeita** H₀.",
+     "**Decisão por p-valor**: se p < α, rejeita-se H₀. O p-valor é a probabilidade de um resultado tão ou mais extremo supondo H₀.",
+     "**Tabela ANOVA**: cada linha é uma fonte (tratamento, erro e total) e as colunas trazem GL, SQ, QM e F. Preencher a tabela é o resumo final do teste.",
+     "💡 **Exemplo Prático:** **Efeito aleatório**: o componente de variância do tratamento é estimado por (QM_Trat − QM_Erro)/n. Ex.: (360 − 60)/4 = 75.",
+     "**Blocos**: SQ_Total = SQ_Trat + SQ_Bloco + SQ_Erro, e há duas estatísticas F (tratamento e bloco), ambas divididas pelo QM_Erro.",
+     "**Repetições desiguais** (n_i diferentes): SQ_Trat = Σ n_i·(x̄_i − x̿)²; GL_Erro = N − k.",
+     "⚠️ **Atenção**: rejeitar H₀ mostra que há ao menos uma média diferente, mas **não diz quais** são diferentes (exige comparações múltiplas)."
+    ],
+    "teoria": [
+     {
+      "statement": "Na ANOVA de um fator com k tratamentos e N observações, os graus de liberdade do erro são N − k.",
+      "isTrue": true,
+      "explanation": "Equivalem a k(n − 1) quando todos os grupos têm n observações."
+     },
+     {
+      "statement": "A estatística F da ANOVA é a razão QM_Erro/QM_Trat.",
+      "isTrue": false,
+      "explanation": "A estatística é QM_Trat/QM_Erro."
+     },
+     {
+      "statement": "Com F = 2 e valor crítico 3,885 (g.l. 2 e 12), a hipótese nula de igualdade das médias não é rejeitada.",
+      "isTrue": true,
+      "explanation": "F observado menor que o crítico: não há evidência de diferença entre as médias."
+     },
+     {
+      "statement": "Rejeitar a hipótese nula na ANOVA identifica exatamente quais médias diferem entre si.",
+      "isTrue": false,
+      "explanation": "O teste indica apenas que ao menos uma difere; para saber quais, usam-se comparações múltiplas."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "O quadrado médio do erro é uma estimativa da variância dos erros.",
+      "isTrue": true,
+      "explanation": "QM_Erro = SQ_Erro/GL_Erro."
+     },
+     {
+      "statement": "Quando os grupos têm números de observações diferentes, SQ_Trat passa a ser Σ n_i·(x̄_i − x̿)².",
+      "isTrue": true,
+      "explanation": "Cada grupo é ponderado pelo seu tamanho."
+     },
+     {
+      "statement": "Com 4 tratamentos e 25 observações, GL_Erro = 24.",
+      "isTrue": false,
+      "explanation": "GL_Erro = N − k = 25 − 4 = 21."
+     },
+     {
+      "statement": "No modelo de efeito aleatório com 3 tratamentos, 4 repetições, QM_Trat = 360 e QM_Erro = 60, o componente de variância do tratamento é 75.",
+      "isTrue": true,
+      "explanation": "(360 − 60)/4 = 75."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Graus de liberdade",
+      "pageRef": 14
+     },
+     {
+      "topic": "Quadrados médios",
+      "pageRef": 14
+     },
+     {
+      "topic": "Estatística F",
+      "pageRef": 16
+     },
+     {
+      "topic": "Resultado do teste e valor crítico",
+      "pageRef": 18
+     },
+     {
+      "topic": "ANOVA com blocos",
+      "pageRef": 21
+     },
+     {
+      "topic": "Número distinto de repetições",
+      "pageRef": 24
+     }
+    ]
+   },
+   "questions": [
+    {
+     "topic": "Graus de liberdade da ANOVA",
+     "pattern": "calculo",
+     "difficulty": 1,
+     "pageRef": 14,
+     "statement": "Em uma ANOVA com k = 4 tratamentos e n = 6 observações por tratamento, os graus de liberdade do tratamento, do erro e do total são, respectivamente,",
+     "support": null,
+     "options": [
+      "4, 20 e 24.",
+      "3, 24 e 23.",
+      "3, 20 e 23.",
+      "4, 18 e 22.",
+      "3, 18 e 21."
+     ],
+     "answer": "C",
+     "explanation": "GLTrat = k − 1 = 3; GLErro = N − k = 24 − 4 = 20; GLTotal = N − 1 = 23, com GLTotal = GLTrat + GLErro (23 = 3 + 20)."
+    },
+    {
+     "topic": "Graus de liberdade com repetições desiguais",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 24,
+     "statement": "Em uma ANOVA com três tratamentos, as repetições são n1 = 4, n2 = 6 e n3 = 5. O número de graus de liberdade do erro é",
+     "support": null,
+     "options": [
+      "14.",
+      "2.",
+      "11.",
+      "15.",
+      "12."
+     ],
+     "answer": "E",
+     "explanation": "GLErro = Σ(ni − 1) = N − k = 15 − 3 = 12, mesmo com repetições desiguais. O valor 14 é GLTotal (N − 1), e 2 é GLTrat."
+    },
+    {
+     "topic": "Estatística F da ANOVA",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 16,
+     "statement": "Uma ANOVA com k = 3 tratamentos e n = 10 observações por tratamento forneceu SQTrat = 48 e SQErro = 90. A estatística F é",
+     "support": null,
+     "options": [
+      "0,5.",
+      "4,8.",
+      "7,2.",
+      "7,7.",
+      "24,0."
+     ],
+     "answer": "C",
+     "explanation": "QMTrat = 48/(3 − 1) = 24 e QMErro = 90/(30 − 3) = 90/27 ≈ 3,33; F = 24/3,33 = 7,2. O valor 0,5 é a razão entre as somas de quadrados, sem os graus de liberdade."
+    },
+    {
+     "topic": "Componente de variância do tratamento",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 15,
+     "statement": "Em um experimento com n = 5 repetições por tratamento, QMTrat = 250 e QMErro = 50. A estimativa do componente de variância associado ao tratamento é",
+     "support": null,
+     "options": [
+      "50.",
+      "200.",
+      "40.",
+      "250.",
+      "8."
+     ],
+     "answer": "C",
+     "explanation": "Como E(QMTrat) = σ²erro + n·σ²trat, tem-se σ̂²trat = (QMTrat − QMErro)/n = (250 − 50)/5 = 40. O valor 200 é a diferença sem dividir por n."
+    },
+    {
+     "topic": "Interpretação da estatística F",
+     "pattern": "correta",
+     "difficulty": 1,
+     "pageRef": 17,
+     "statement": "Sobre a interpretação da estatística F = QMTrat/QMErro na ANOVA, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "Um F grande indica que a variabilidade entre os grupos supera bastante a variabilidade dentro dos grupos, levando à rejeição de H0.",
+      "Um F pequeno indica que as médias dos grupos são significativamente diferentes.",
+      "Um F grande indica que a variação das médias ocorre apenas ao acaso.",
+      "O F é a razão entre o quadrado médio do erro e o quadrado médio do tratamento.",
+      "O F só pode ser calculado se os grupos tiverem o mesmo tamanho."
+     ],
+     "answer": "A",
+     "explanation": "Com F grande, o QMTrat é bem maior que o QMErro, e a variação entre as médias é incompatível com o acaso: rejeita-se H0. F pequeno indica variação apenas casual."
+    },
+    {
+     "topic": "Decisão pelo valor crítico de F",
+     "pattern": "caso",
+     "difficulty": 2,
+     "pageRef": 18,
+     "statement": "Em uma ANOVA com k = 3 grupos de 5 observações cada, obteve-se F = 4,2. O valor crítico da F de Snedecor com 2 e 12 graus de liberdade, a 5%, é 3,885. A conclusão é",
+     "support": null,
+     "options": [
+      "não rejeitar H0, pois 4,2 supera o valor crítico.",
+      "rejeitar H0, concluindo que todas as médias são diferentes entre si.",
+      "rejeitar H0, pois há pelo menos uma média diferente.",
+      "não rejeitar H0, pois 4,2 é menor que k.",
+      "o teste é inconclusivo, pois F não é inteiro."
+     ],
+     "answer": "C",
+     "explanation": "Rejeita-se H0 quando F observado supera o valor tabelado (4,2 > 3,885), concluindo-se que nem todas as médias são iguais; o teste não indica quantas nem quais diferem."
+    },
+    {
+     "topic": "Graus de liberdade da estatística F",
+     "pattern": "calculo",
+     "difficulty": 1,
+     "pageRef": 18,
+     "statement": "Em uma ANOVA com k = 5 tratamentos e n = 8 observações por tratamento, a estatística F é comparada com a distribuição F de Snedecor com",
+     "support": null,
+     "options": [
+      "5 graus de liberdade no numerador e 40 no denominador.",
+      "4 graus de liberdade no numerador e 40 no denominador.",
+      "35 graus de liberdade no numerador e 4 no denominador.",
+      "4 graus de liberdade no numerador e 35 no denominador.",
+      "5 graus de liberdade no numerador e 35 no denominador."
+     ],
+     "answer": "D",
+     "explanation": "Numerador: GLTrat = k − 1 = 4; denominador: GLErro = N − k = 40 − 5 = 35. A ordem é tratamento no numerador e erro no denominador."
+    },
+    {
+     "topic": "Relação entre caudas da F",
+     "pattern": "relacao",
+     "difficulty": 3,
+     "pageRef": 19,
+     "statement": "Sabendo que P(F com 2 e 12 g.l. > 3,885) = 0,05, é correto afirmar que a probabilidade P(F com 12 e 2 g.l. < 1/3,885) vale",
+     "support": null,
+     "options": [
+      "0,95.",
+      "0,10.",
+      "0,25.",
+      "3,885.",
+      "0,05."
+     ],
+     "answer": "E",
+     "explanation": "Vale P(F(v1, v2) > f) = P(F(v2, v1) < 1/f). Assim, P(F(12, 2) < 1/3,885) = P(F(2, 12) > 3,885) = 0,05."
+    },
+    {
+     "topic": "Decisão pelo p-valor",
+     "pattern": "caso",
+     "difficulty": 1,
+     "pageRef": 20,
+     "statement": "Uma ANOVA forneceu p-valor de 0,07. Assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "H0 é rejeitada ao nível de 10%, mas não ao de 5%.",
+      "H0 é rejeitada ao nível de 5%, mas não ao de 10%.",
+      "H0 não é rejeitada a nenhum desses níveis.",
+      "H0 é rejeitada aos níveis de 5% e 10%.",
+      "H0 só é rejeitada ao nível de 1%."
+     ],
+     "answer": "A",
+     "explanation": "Rejeita-se H0 quando p < α. Com p = 0,07: 0,07 < 0,10 (rejeita), mas 0,07 > 0,05 (não rejeita)."
+    },
+    {
+     "topic": "Comparações múltiplas",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 20,
+     "statement": "Após rejeitar H0 na ANOVA, o pesquisador quer saber quais médias diferem entre si. Para isso, deve",
+     "support": null,
+     "options": [
+      "aplicar novamente a ANOVA, pois ela já indica quais médias diferem.",
+      "recorrer a um procedimento de comparação múltipla dois a dois, como Tukey ou Dunnett.",
+      "calcular a média geral e o coeficiente de variação.",
+      "concluir que todas as médias diferem entre si.",
+      "substituir a ANOVA pelo teste de Kruskal-Wallis, que identifica as médias diferentes."
+     ],
+     "answer": "B",
+     "explanation": "A ANOVA indica apenas que existe ao menos uma média diferente. Para identificar quais, usam-se comparações múltiplas (Tukey, Dunnett, teste t)."
+    },
+    {
+     "topic": "ANOVA com blocos",
+     "pattern": "conceito",
+     "difficulty": 3,
+     "pageRef": 21,
+     "statement": "Em uma ANOVA com tratamentos e blocos, a decisão sobre a igualdade das médias dos tratamentos baseia-se em",
+     "support": null,
+     "options": [
+      "F_Trat = QMTrat/QMErro, enquanto F_Bloco = QMBloco/QMErro avalia a influência do bloco.",
+      "F_Bloco = QMBloco/QMErro, e o F dos tratamentos é dispensado.",
+      "F_Trat = QMErro/QMTrat, e F_Bloco = QMErro/QMBloco.",
+      "SQTotal = SQTrat + SQErro, sem considerar os blocos.",
+      "F_Trat = QMTrat/QMBloco, sem usar o quadrado médio do erro."
+     ],
+     "answer": "A",
+     "explanation": "Com blocos, SQTotal = SQTrat + SQBloco + SQErro. Calculam-se dois F, ambos com QMErro no denominador; mesmo que F_Bloco seja significativo, a decisão sobre as médias dos tratamentos continua baseada em F_Trat."
+    },
+    {
+     "topic": "Tabela ANOVA com blocos",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 21,
+     "statement": "Em uma tabela de ANOVA com blocos, o tratamento tem 2 g.l. e SQ = 120; o bloco tem 3 g.l. e SQ = 90; o erro tem 6 g.l. e SQ = 48. O número de tratamentos e a estatística F para comparar os tratamentos são, respectivamente,",
+     "support": null,
+     "options": [
+      "2 e 7,5.",
+      "3 e 7,5.",
+      "3 e 3,75.",
+      "4 e 3,75.",
+      "2 e 15,0."
+     ],
+     "answer": "B",
+     "explanation": "GLTrat = k − 1 = 2, logo k = 3. QMTrat = 120/2 = 60 e QMErro = 48/6 = 8; F_Trat = 60/8 = 7,5. O valor 3,75 é o F do bloco (30/8)."
+    },
+    {
+     "topic": "Teste não paramétrico para blocos",
+     "pattern": "caso",
+     "difficulty": 2,
+     "pageRef": 21,
+     "statement": "Em um experimento com tratamentos e blocos, os dados são ordinais e a normalidade é inadequada. O teste não paramétrico correspondente à ANOVA com blocos é",
+     "support": null,
+     "options": [
+      "o teste de Mann-Whitney.",
+      "o teste de Kruskal-Wallis.",
+      "o teste Z para a proporção.",
+      "o teste de Friedman.",
+      "o teste t para amostras pareadas, com 1 grau de liberdade."
+     ],
+     "answer": "D",
+     "explanation": "O teste de Friedman, que considera os postos das observações, corresponde à ANOVA com blocos. Kruskal-Wallis é a versão não paramétrica da ANOVA de um fator."
+    },
+    {
+     "topic": "ANOVA com repetições desiguais",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 24,
+     "statement": "Três grupos têm as observações: A (5, 7), B (6, 7, 8, 7) e C (7, 9). A estatística F da ANOVA é, aproximadamente,",
+     "support": null,
+     "options": [
+      "0,67.",
+      "2,00.",
+      "3,33.",
+      "0,60.",
+      "1,67."
+     ],
+     "answer": "E",
+     "explanation": "As médias são 6, 7 e 8, com média geral 7. SQTrat = Σni(x̄i − x̿)² = 2·1 + 4·0 + 2·1 = 4, com 2 g.l.; SQErro = 2 + 2 + 2 = 6, com N − k = 8 − 3 = 5 g.l. Então F = (4/2)/(6/5) = 2/1,2 ≈ 1,67."
+    },
+    {
+     "topic": "Teste de Tukey",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 27,
+     "statement": "Sobre testes de comparações múltiplas, como os de Tukey e de Dunnett, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "Verificam se há interação entre os tratamentos.",
+      "Comparam a diferença entre cada par de médias a uma diferença mínima significativa, que depende do quadrado médio do erro.",
+      "Substituem a ANOVA e dispensam o teste F.",
+      "Devem ser aplicados antes da ANOVA para decidir se ela será feita.",
+      "Não utilizam o quadrado médio do erro em seu cálculo."
+     ],
+     "answer": "B",
+     "explanation": "Esses testes comparam pares de médias com uma Diferença Mínima Significativa (DMS) que depende do QMErro. Seu objetivo é identificar quais médias diferem, e não verificar interação entre tratamentos."
+    }
+   ]
+  },
+  {
+   "id": "estatistica/a14/s03",
+   "bizu": {
+    "summary": [
+     "**ANOVA da regressão**: avalia se vale usar o modelo de regressão, comparando-o ao modelo apenas com a média. **H₀: β = 0** (X não explica Y) contra H₁: β ≠ 0. Na regressão múltipla, H₀: todos os coeficientes são nulos; H₁: ao menos um é diferente de zero.",
+     "**Fontes de variação**: **Modelo** (variação explicada), **Erro/resíduo** (não explicada) e **Total**. Vale **SQ_Total = SQ_Modelo + SQ_Erro**; os valores calculados com arredondamentos podem divergir ligeiramente.",
+     "**Graus de liberdade**: o do **modelo** é igual ao **número de variáveis explicativas** (1 na simples); o do **erro** é **n − 2** na simples (n − p na múltipla); o **total** é **n − 1**.",
+     "**Quadrados médios**: QM_Modelo = SQ_Modelo/GL_Modelo e QM_Erro = SQ_Erro/(n − 2) (erro quadrático médio). **F = QM_Modelo/QM_Erro**, com (1; n − 2) g.l. na regressão simples.",
+     "💡 **Exemplo**: SQ_Modelo = 1,79, SQ_Erro = 8,39 e n = 5 → QM_Erro = 8,39/3 ≈ 2,80 e F ≈ 0,64, muito abaixo do crítico (g.l. 1 e 3, 5%): não se rejeita H₀.",
+     "**Coeficiente de determinação**: **R² = SQ_Modelo/SQ_Total**, entre 0 e 1; fração da variância total explicada pelo modelo. Tabela ANOVA: R² = 4096,1644/6300,1 ≈ 65%.",
+     "**Correlação**: **|R| = √R²**, com o sinal do coeficiente angular b. Com b = −0,36 e R² ≈ 0,18, R ≈ −0,4.",
+     "💡 **Exemplo Prático:** **R² ajustado**: **R²_aj = 1 − (1 − R²)(n − 1)/(n − p)**. É **sempre menor** que R² e pode ser **negativo** (ex.: −0,12). Penaliza variáveis que pouco acrescentam."
+    ],
+    "teoria": [
+     {
+      "statement": "Na ANOVA da regressão linear simples, a hipótese nula é H₀: β = 0.",
+      "isTrue": true,
+      "explanation": "Testa se a variável explicativa tem coeficiente nulo, ou seja, se o modelo não explica Y."
+     },
+     {
+      "statement": "Em uma regressão linear simples com n observações, os graus de liberdade do erro são n − 1.",
+      "isTrue": false,
+      "explanation": "São n − 2; n − 1 é o grau de liberdade total."
+     },
+     {
+      "statement": "O R² mede que parcela da variância total de Y é explicada pelo modelo: divide-se SQ_Modelo por SQ_Total.",
+      "isTrue": true,
+      "explanation": "R² = SQ_Modelo/SQ_Total, com valores entre 0 e 1."
+     },
+     {
+      "statement": "O coeficiente de determinação ajustado é sempre maior que o coeficiente de determinação não ajustado.",
+      "isTrue": false,
+      "explanation": "O ajustado é sempre inferior, pois penaliza o número de parâmetros, e pode até ser negativo."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "O sinal do coeficiente de correlação |R| = √R² é o do coeficiente angular da reta.",
+      "isTrue": true,
+      "explanation": "A raiz de R² fornece o módulo; o sinal vem de b."
+     },
+     {
+      "statement": "Se há quatro variáveis explicativas, o modelo de regressão tem quatro graus de liberdade.",
+      "isTrue": true,
+      "explanation": "O GL do modelo coincide com a quantidade de regressores (sem contar o intercepto)."
+     },
+     {
+      "statement": "Em regressão com F = 0,64 (g.l. 1 e 3) e valor crítico bem maior, conclui-se que o modelo é altamente significativo.",
+      "isTrue": false,
+      "explanation": "F abaixo do crítico implica não rejeitar H₀: não há evidência de que a variável explique Y."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Uso da ANOVA na regressão",
+      "pageRef": 28
+     },
+     {
+      "topic": "Hipóteses na regressão simples e múltipla",
+      "pageRef": 30
+     },
+     {
+      "topic": "Somas de quadrados do modelo e do erro",
+      "pageRef": 31
+     },
+     {
+      "topic": "Graus de liberdade do modelo",
+      "pageRef": 33
+     },
+     {
+      "topic": "Quadrados médios e estatística F",
+      "pageRef": 34
+     },
+     {
+      "topic": "Coeficiente de determinação",
+      "pageRef": 37
+     },
+     {
+      "topic": "R² ajustado",
+      "pageRef": 39
+     }
+    ]
+   },
+   "questions": [
+    {
+     "topic": "Hipótese testada na ANOVA da regressão",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 29,
+     "statement": "Na análise de variância da regressão linear simples, rejeitar a hipótese nula H0: β = 0 indica que",
+     "support": null,
+     "options": [
+      "não existe relação linear entre as variáveis.",
+      "o intercepto da reta é igual a zero.",
+      "há relação linear entre X e Y, e a reta ajustada descreve bem os dados.",
+      "o coeficiente de determinação é igual a 1.",
+      "a variância dos erros é nula."
+     ],
+     "answer": "C",
+     "explanation": "Como H0 afirma que não há relação linear (β = 0), sua rejeição, que é a decisão forte do teste, leva a admitir dependência linear de Y em relação a X."
+    },
+    {
+     "topic": "Soma dos quadrados do modelo",
+     "pattern": "calculo",
+     "difficulty": 1,
+     "pageRef": 30,
+     "statement": "Em uma regressão linear simples, SQTotal = 250 e SQErro = 90. A soma dos quadrados do modelo é",
+     "support": null,
+     "options": [
+      "160.",
+      "340.",
+      "90.",
+      "250.",
+      "0,36."
+     ],
+     "answer": "A",
+     "explanation": "Vale SQTotal = SQModelo + SQErro, logo SQModelo = 250 − 90 = 160. O valor 340 soma as parcelas."
+    },
+    {
+     "topic": "SQTotal pela variância amostral",
+     "pattern": "calculo",
+     "difficulty": 1,
+     "pageRef": 32,
+     "statement": "A variável Y tem variância amostral 12,5 em uma amostra de n = 21 observações. A soma dos quadrados totais é",
+     "support": null,
+     "options": [
+      "250.",
+      "12,5.",
+      "262,5.",
+      "240.",
+      "0,6."
+     ],
+     "answer": "A",
+     "explanation": "SQTotal = s²Y · (n − 1) = 12,5 × 20 = 250. O valor 262,5 multiplica por n em vez de n − 1."
+    },
+    {
+     "topic": "SQModelo pela variância de X",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 32,
+     "statement": "Em uma regressão linear simples com n = 21, a inclinação estimada é b = 0,5 e a variância amostral de X é 16. A soma dos quadrados do modelo, SQModelo = b²·s²X·(n − 1), é",
+     "support": null,
+     "options": [
+      "8.",
+      "4.",
+      "40.",
+      "160.",
+      "80."
+     ],
+     "answer": "E",
+     "explanation": "SQModelo = 0,5² × 16 × 20 = 0,25 × 320 = 80. O valor 40 usa b em vez de b², e 160 usa o dobro."
+    },
+    {
+     "topic": "Graus de liberdade na regressão",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 33,
+     "statement": "Uma regressão linear com 3 variáveis explicativas é ajustada com n = 30 observações. Os graus de liberdade do modelo, do erro e do total são, respectivamente,",
+     "support": null,
+     "options": [
+      "3, 27 e 30.",
+      "4, 25 e 29.",
+      "1, 28 e 29.",
+      "3, 26 e 30.",
+      "3, 26 e 29."
+     ],
+     "answer": "E",
+     "explanation": "GLModelo = número de variáveis explicativas = 3; GLTotal = n − 1 = 29; GLErro = 29 − 3 = 26 (= n − k − 1). Na regressão simples, GLModelo = 1 e GLErro = n − 2."
+    },
+    {
+     "topic": "Estatística F na regressão simples",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 34,
+     "statement": "Em uma regressão linear simples com n = 22 observações, SQModelo = 120 e SQErro = 100. A estatística F é",
+     "support": null,
+     "options": [
+      "1,2.",
+      "12.",
+      "4,8.",
+      "24.",
+      "5."
+     ],
+     "answer": "D",
+     "explanation": "QMModelo = 120/1 = 120 e QMErro = 100/(n − 2) = 100/20 = 5; F = 120/5 = 24. O valor 1,2 é SQModelo/SQErro."
+    },
+    {
+     "topic": "Decisão pelo teste F da regressão",
+     "pattern": "caso",
+     "difficulty": 2,
+     "pageRef": 35,
+     "statement": "Em uma regressão linear simples com n = 22, obteve-se F = 24. O valor tabelado da F com 1 e 20 graus de liberdade, a 5%, é 4,35. A conclusão é",
+     "support": null,
+     "options": [
+      "rejeitar H0: β = 0; o modelo de regressão linear é adequado.",
+      "não rejeitar H0: β = 0; o modelo de regressão linear não é adequado.",
+      "rejeitar H0: β = 0; o modelo de regressão linear não é adequado.",
+      "não rejeitar H0, pois F é maior que o valor tabelado.",
+      "o teste exige F menor que 1 para rejeitar H0."
+     ],
+     "answer": "A",
+     "explanation": "Como F = 24 > 4,35, rejeita-se H0: β = 0 e conclui-se que o modelo linear se adequa aos dados. Na ANOVA, rejeita-se H0 quando F supera o valor tabelado."
+    },
+    {
+     "topic": "Quadrado médio total",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 34,
+     "statement": "Na ANOVA da regressão, o quadrado médio total (QMTotal = SQTotal/GLTotal) corresponde",
+     "support": null,
+     "options": [
+      "ao coeficiente de determinação do modelo.",
+      "à variância amostral da variável dependente Y.",
+      "à variância dos erros do modelo.",
+      "à estatística F do teste.",
+      "à soma dos quadrados do modelo dividida por n."
+     ],
+     "answer": "B",
+     "explanation": "Como SQTotal = Σ(Yi − Ȳ)² e GLTotal = n − 1, QMTotal = Σ(Yi − Ȳ)²/(n − 1), que é exatamente a variância amostral de Y."
+    },
+    {
+     "topic": "Coeficiente de determinação (tabela)",
+     "pattern": "calculo",
+     "difficulty": 1,
+     "pageRef": 37,
+     "statement": "Em uma tabela ANOVA de regressão, SQModelo = 3.600 e SQTotal = 4.800. O coeficiente de determinação R² é",
+     "support": null,
+     "options": [
+      "0,75.",
+      "0,25.",
+      "1,33.",
+      "0,87.",
+      "0,50."
+     ],
+     "answer": "A",
+     "explanation": "R² = SQModelo/SQTotal = 3.600/4.800 = 0,75. O valor 0,25 é SQErro/SQTotal, e 0,87 é a raiz de R²."
+    },
+    {
+     "topic": "Coeficiente de correlação a partir de R²",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 37,
+     "statement": "Em uma regressão linear simples, R² = 0,49 e a inclinação estimada é negativa. O coeficiente de correlação linear é",
+     "support": null,
+     "options": [
+      "−0,7.",
+      "0,7.",
+      "−0,49.",
+      "0,49.",
+      "−0,24."
+     ],
+     "answer": "A",
+     "explanation": "|R| = √R² = √0,49 = 0,7, e o sinal acompanha o do coeficiente angular da reta; como b < 0, R = −0,7."
+    },
+    {
+     "topic": "Raiz quadrada de R²",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 38,
+     "statement": "Extrai-se a raiz quadrada de R² para obter o módulo do coeficiente de correlação porque",
+     "support": null,
+     "options": [
+      "a raiz quadrada de R² é sempre positiva e igual à inclinação da reta.",
+      "R² não pode ser interpretado em nenhuma situação.",
+      "R² compara somas de quadrados (unidade ao quadrado), e a raiz coloca a comparação na mesma unidade de medida dos dados.",
+      "a raiz torna o coeficiente maior que 1, o que facilita a interpretação.",
+      "a raiz elimina a necessidade de calcular a soma dos quadrados do modelo."
+     ],
+     "answer": "C",
+     "explanation": "R² envolve quadrados das unidades dos dados (por exemplo, anos²); a raiz restitui a unidade original, facilitando a interpretação do módulo da correlação, cujo sinal vem do coeficiente angular."
+    },
+    {
+     "topic": "R² ajustado na ANOVA da regressão",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 40,
+     "statement": "Em um modelo com k = 2 variáveis explicativas e n = 18 observações, R² = 0,64. O coeficiente de determinação ajustado, R²aj = 1 − (n − 1)/(n − k − 1) · (1 − R²), é, aproximadamente,",
+     "support": null,
+     "options": [
+      "0,64.",
+      "0,59.",
+      "0,62.",
+      "0,41.",
+      "0,36."
+     ],
+     "answer": "B",
+     "explanation": "R²aj = 1 − (17/15)(0,36) = 1 − 0,408 = 0,592 ≈ 0,59. O valor 0,62 usa n − k = 16 no denominador, e 0,64 é o R² sem ajuste."
+    },
+    {
+     "topic": "R² ajustado: propriedades",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 39,
+     "statement": "Sobre o coeficiente de determinação ajustado, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "É sempre maior que o R² não ajustado.",
+      "Nunca pode ser negativo.",
+      "Considera os graus de liberdade; pode ser negativo e é inferior ao R² não ajustado, que não diminui ao se incluir uma nova variável.",
+      "Permite comparar o R² entre modelos, pois não considera o número de variáveis.",
+      "Diminui sempre que se inclui uma nova variável."
+     ],
+     "answer": "C",
+     "explanation": "Incluir variáveis não reduz o R², mesmo que sejam pouco relacionadas a Y; o R² ajustado penaliza o número de variáveis ao usar os graus de liberdade, é menor que o R² e pode ser negativo."
+    },
+    {
+     "topic": "Cp de Mallows",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 40,
+     "statement": "Usando Cp = SQErro/QMErro − n + 2p, com SQErro = 36, QMErro = 2 (modelo completo), n = 20 e p = 3 parâmetros (2 variáveis explicativas e o intercepto), o valor de Cp é",
+     "support": null,
+     "options": [
+      "18.",
+      "4.",
+      "−2.",
+      "6.",
+      "16."
+     ],
+     "answer": "B",
+     "explanation": "Cp = 36/2 − 20 + 2 × 3 = 18 − 20 + 6 = 4, próximo de p = 3, o que sugere um modelo adequado (bons modelos têm Cp próximo de p). O valor 18 é só o primeiro termo."
+    }
+   ]
+  },
+  {
+   "id": "estatistica/a14/s04",
+   "bizu": {
+    "summary": [
+     "**Intervalo de confiança do coeficiente angular**: **β̂ ± t_GLE·s_β**, em que t_GLE vem da t de Student com os **graus de liberdade do erro** (n − 2 na simples) e s_β é o **erro padrão** de β̂.",
+     "**Erro padrão do coeficiente angular**: **s²_β = QM_Erro / Σ(Xᵢ − X̄)²**. Quanto maior a variação das estimativas entre amostras, menos precisas elas são. Na regressão múltipla, os erros padrão vêm da diagonal de σ²·(XᵀX)⁻¹.",
+     "💡 **Exemplo Prático:** **Intervalo do intercepto**: α̂ ± t·s_α, com **s_α = √(QM_Erro·[1/n + X̄²/Σ(Xᵢ − X̄)²])**. Ex.: QME = 2,8, n = 5, X̄ = 7, Σ(X − X̄)² = 14 → s_α ≈ 3,22.",
+     "**Intervalo da previsão individual** para X₀: **Ŷ₀ ± t·s_Y**, em que a variância da predição inclui o termo 1 (variância do próprio erro) além de 1/n e (X₀ − X̄)²/Σ(Xᵢ − X̄)², sendo maior que a variância do valor médio estimado.",
+     "**Amostras grandes**: a t de Student pode ser aproximada pela normal padrão.",
+     "**Teste de significância individual**: H₀: β = 0 (ou outro valor dado). **t = β̂/s_β**, com **GL_Erro** graus de liberdade. Rejeita-se H₀ se o p-valor < α.",
+     "**Teste t × teste F**: o F testa a significância **global** da regressão; o t, a significância **individual** de cada coeficiente. Na regressão **simples**, **F = t²** (sob H₀: β = 0).",
+     "**Dica**: se o enunciado não indica o valor de H₀, presuma H₀: β = 0."
+    ],
+    "teoria": [
+     {
+      "statement": "O intervalo de confiança do coeficiente angular da regressão usa a distribuição t de Student com os graus de liberdade do erro.",
+      "isTrue": true,
+      "explanation": "Como σ² é estimada pelo QM_Erro, a distribuição relevante é a t."
+     },
+     {
+      "statement": "A variância do estimador do coeficiente angular é QM_Erro dividido pela soma dos quadrados dos desvios de X.",
+      "isTrue": true,
+      "explanation": "s²_β = QM_Erro/Σ(Xᵢ − X̄)²."
+     },
+     {
+      "statement": "Na regressão linear simples, a estatística F do teste global é igual à raiz quadrada da estatística t do coeficiente angular.",
+      "isTrue": false,
+      "explanation": "É o contrário: F = t² (o t é a raiz do F, em módulo)."
+     },
+     {
+      "statement": "O teste t de significância individual avalia cada coeficiente da regressão, enquanto o teste F avalia a significância global do modelo.",
+      "isTrue": true,
+      "explanation": "São testes de natureza distinta, embora coincidam na regressão simples."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "A estatística do teste de significância do coeficiente angular é t = β̂/s_β, com n − 2 graus de liberdade na regressão simples.",
+      "isTrue": true,
+      "explanation": "Compara a estimativa, em unidades de erro padrão, com zero."
+     },
+     {
+      "statement": "O intervalo de predição de um valor individual de Y é mais estreito que o intervalo do valor médio.",
+      "isTrue": false,
+      "explanation": "Inclui a variância do erro individual e, portanto, é mais largo."
+     },
+     {
+      "statement": "Se o enunciado não indicar a hipótese nula do teste do coeficiente, presume-se H₀: β = 0.",
+      "isTrue": true,
+      "explanation": "É a hipótese geral de ausência de efeito."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Precisão dos estimadores",
+      "pageRef": 42
+     },
+     {
+      "topic": "IC do coeficiente angular",
+      "pageRef": 43
+     },
+     {
+      "topic": "IC do intercepto",
+      "pageRef": 45
+     },
+     {
+      "topic": "IC da predição",
+      "pageRef": 46
+     },
+     {
+      "topic": "Teste de significância individual (t)",
+      "pageRef": 48
+     },
+     {
+      "topic": "Relação F = t²",
+      "pageRef": 50
+     }
+    ]
+   },
+   "questions": [
+    {
+     "topic": "Distribuição do intervalo de confiança",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 42,
+     "statement": "O intervalo de confiança bilateral para o coeficiente angular de uma regressão é construído com a distribuição",
+     "support": null,
+     "options": [
+      "normal padrão, pois a variância dos erros é sempre conhecida.",
+      "qui-quadrado, com n graus de liberdade.",
+      "F de Snedecor, com 1 e n − 2 graus de liberdade.",
+      "uniforme contínua no intervalo (0, 1).",
+      "t de Student, com graus de liberdade dos erros, pois a variância dos coeficientes é estimada a partir dos dados."
+     ],
+     "answer": "E",
+     "explanation": "Como σ² é desconhecida e estimada pelo QMErro, os coeficientes têm erro padrão estimado e utiliza-se a t de Student com GLE graus de liberdade (n − k − 1)."
+    },
+    {
+     "topic": "Graus de liberdade dos erros",
+     "pattern": "calculo",
+     "difficulty": 1,
+     "pageRef": 43,
+     "statement": "Em uma regressão linear múltipla com 3 variáveis explicativas e n = 25 observações, os graus de liberdade usados nos intervalos de confiança dos coeficientes são",
+     "support": null,
+     "options": [
+      "22.",
+      "24.",
+      "23.",
+      "25.",
+      "21."
+     ],
+     "answer": "E",
+     "explanation": "GLE = n − k − 1 = 25 − 3 − 1 = 21. O valor 24 é o GL total (n − 1), e 22 desconta apenas k."
+    },
+    {
+     "topic": "Erro padrão do coeficiente angular",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 43,
+     "statement": "Em uma regressão linear simples, QME = 4,5 e Σ(Xi − X̄)² = 50. O erro padrão do coeficiente angular é",
+     "support": null,
+     "options": [
+      "0,09.",
+      "0,30.",
+      "3,33.",
+      "0,95.",
+      "0,67."
+     ],
+     "answer": "B",
+     "explanation": "s²β = QME/Σ(Xi − X̄)² = 4,5/50 = 0,09, e o erro padrão é √0,09 = 0,30. O valor 0,09 é a variância do estimador, e 3,33 é a raiz do inverso da razão."
+    },
+    {
+     "topic": "Efeito da variabilidade de X no erro padrão",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 43,
+     "statement": "Em uma regressão linear simples, para um mesmo quadrado médio do erro, o erro padrão do coeficiente angular",
+     "support": null,
+     "options": [
+      "aumenta quando aumenta a soma dos quadrados dos desvios de X.",
+      "independe da dispersão de X.",
+      "é igual ao quadrado médio do erro.",
+      "diminui quando aumenta a soma dos quadrados dos desvios de X.",
+      "é sempre igual a 1."
+     ],
+     "answer": "D",
+     "explanation": "Como s²β = QME/Σ(Xi − X̄)², quanto maior a dispersão de X, menor a variância do coeficiente, o que torna a estimativa mais precisa."
+    },
+    {
+     "topic": "Intervalo de confiança do coeficiente angular",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 44,
+     "statement": "Uma regressão linear simples com n = 20 forneceu b = 2,0 e erro padrão s_b = 0,5. Com 95% de confiança e t(18 g.l.) = 2,10, o intervalo de confiança para o coeficiente angular é",
+     "support": null,
+     "options": [
+      "(0,95; 3,05).",
+      "(1,50; 2,50).",
+      "(−2,20; 6,20).",
+      "(1,00; 3,00).",
+      "(0,05; 3,95)."
+     ],
+     "answer": "A",
+     "explanation": "O intervalo é b ± t·s_b = 2,0 ± 2,10 × 0,5 = 2,0 ± 1,05 = (0,95; 3,05). O par (1,50; 2,50) usa margem 0,5, equivalente a t = 1; o par (−2,20; 6,20) usa margem 4,2, que resulta de multiplicar 2,10 por 2 em vez de por 0,5."
+    },
+    {
+     "topic": "Erro padrão do intercepto",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 45,
+     "statement": "Em uma regressão linear simples com n = 10, QME = 2, X̄ = 4 e Σ(Xi − X̄)² = 32, o erro padrão do intercepto, s_a = √{QME·[1/n + X̄²/Σ(Xi − X̄)²]}, é, aproximadamente,",
+     "support": null,
+     "options": [
+      "1,20.",
+      "1,10.",
+      "0,60.",
+      "2,40.",
+      "1,55."
+     ],
+     "answer": "B",
+     "explanation": "A variância é 2 × (0,1 + 16/32) = 2 × 0,6 = 1,2, e o erro padrão é √1,2 ≈ 1,10. O valor 1,20 é a variância do estimador, e 0,60 é o fator entre colchetes."
+    },
+    {
+     "topic": "Variância da predição individual",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 45,
+     "statement": "Em uma regressão linear simples com n = 10, QME = 2, X̄ = 4 e Σ(Xi − X̄)² = 32, a variância da estimativa de uma predição individual em X0 = 8, dada por QME·[1 + 1/n + (X0 − X̄)²/Σ(Xi − X̄)²], é",
+     "support": null,
+     "options": [
+      "1,2.",
+      "2,2.",
+      "1,6.",
+      "3,2.",
+      "4,0."
+     ],
+     "answer": "D",
+     "explanation": "QME·[1 + 0,1 + 16/32] = 2 × 1,6 = 3,2. O valor 1,2 omite o termo \"1\" da predição individual, e 2,2 omite o termo da distância (X0 − X̄)²."
+    },
+    {
+     "topic": "Precisão da predição",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 45,
+     "statement": "Em uma regressão linear simples, o erro padrão da predição individual de Y depende da distância entre X0 e a média X̄. Assim, para o mesmo modelo, a predição individual é mais precisa quando",
+     "support": null,
+     "options": [
+      "X0 está muito afastado da média de X.",
+      "X0 é o maior valor observado de X.",
+      "X0 é o menor valor observado de X.",
+      "X0 coincide com a média de X.",
+      "X0 é igual a zero, qualquer que seja a média de X."
+     ],
+     "answer": "D",
+     "explanation": "O termo (X0 − X̄)²/Σ(Xi − X̄)² cresce com a distância de X0 à média; quando X0 = X̄ esse termo se anula e o erro padrão da predição é o menor possível."
+    },
+    {
+     "topic": "Estatística t do teste de significância individual",
+     "pattern": "calculo",
+     "difficulty": 1,
+     "pageRef": 48,
+     "statement": "Em um teste de significância individual de H0: β = 0, a estimativa do coeficiente é 1,8 e o erro padrão é 0,6. A estatística t é",
+     "support": null,
+     "options": [
+      "1,08.",
+      "3,0.",
+      "0,33.",
+      "2,4.",
+      "1,2."
+     ],
+     "answer": "B",
+     "explanation": "t = β̂/s_β = 1,8/0,6 = 3,0. O valor 0,33 inverte a razão, e 1,08 é o produto das duas quantidades."
+    },
+    {
+     "topic": "Sinal da estatística t",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 48,
+     "statement": "No teste de significância individual de H0: β = 0, a estatística t = β̂/s_β tem sinal",
+     "support": null,
+     "options": [
+      "sempre positivo, pois é uma razão entre quantidades ao quadrado.",
+      "sempre negativo, pois H0 supõe β = 0.",
+      "oposto ao da estimativa do coeficiente.",
+      "igual ao da estimativa do coeficiente, pois o erro padrão nunca é negativo.",
+      "sempre igual ao sinal do intercepto."
+     ],
+     "answer": "D",
+     "explanation": "Como o erro padrão é maior ou igual a zero, o sinal de t acompanha o de β̂. Por exemplo, β̂ = −0,36 e s = 0,45 dão t = −0,8."
+    },
+    {
+     "topic": "Relação entre F e t",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 50,
+     "statement": "Em uma regressão linear simples, o teste F de significância global forneceu F = 9, e a inclinação estimada é negativa. Para H0: β = 0, a estatística t do teste de significância individual é",
+     "support": null,
+     "options": [
+      "3.",
+      "−9.",
+      "−3.",
+      "81.",
+      "−4,5."
+     ],
+     "answer": "C",
+     "explanation": "Na regressão simples, t² = F, logo |t| = √9 = 3; o sinal acompanha o da estimativa do coeficiente (negativo): t = −3. O valor 81 é F²."
+    },
+    {
+     "topic": "Testes F e t na regressão",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 50,
+     "statement": "Sobre os testes F e t em modelos de regressão linear, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "O teste t avalia a significância global, e o teste F, a de cada coeficiente.",
+      "Na regressão simples, F = √t.",
+      "Os dois testes são idênticos em qualquer modelo múltiplo.",
+      "O teste F avalia a significância global da regressão, e o teste t, a significância individual de cada coeficiente; na regressão simples, F = t².",
+      "O teste t só pode ser aplicado em regressão simples."
+     ],
+     "answer": "D",
+     "explanation": "O teste F testa conjuntamente os coeficientes angulares; o teste t testa cada coeficiente individualmente (útil na regressão múltipla). Na regressão simples, as duas estatísticas se relacionam por F = t²."
+    },
+    {
+     "topic": "Intervalos de p-valor unilateral",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 49,
+     "statement": "Em um teste t para um coeficiente, o p-valor bilateral está entre 0,05 e 0,10. Se o teste fosse unilateral, no sentido do sinal da estatística, o p-valor estaria entre",
+     "support": null,
+     "options": [
+      "0,05 e 0,10.",
+      "0,10 e 0,20.",
+      "0,10 e 0,05.",
+      "0,95 e 0,975.",
+      "0,025 e 0,05."
+     ],
+     "answer": "E",
+     "explanation": "No teste unilateral considera-se apenas uma cauda, de modo que o p-valor é a metade do bilateral: entre 0,05/2 = 0,025 e 0,10/2 = 0,05."
+    },
+    {
+     "topic": "Decisão no teste t do coeficiente",
+     "pattern": "caso",
+     "difficulty": 3,
+     "pageRef": 48,
+     "statement": "Em uma regressão linear simples com n = 22, o coeficiente estimado foi β̂ = −2,4, com erro padrão 1,0. O valor crítico bilateral da t com 20 graus de liberdade, a 5%, é 2,086. A conclusão do teste de H0: β = 0 é",
+     "support": null,
+     "options": [
+      "não rejeitar H0, pois t = −2,4 é negativo.",
+      "rejeitar H0, mas a relação é positiva, pois o erro padrão é positivo.",
+      "rejeitar H0, pois |t| = 2,4 supera 2,086, havendo relação linear negativa significativa.",
+      "não rejeitar H0, pois |t| = 2,4 é maior que o erro padrão.",
+      "o teste é inconclusivo, pois o coeficiente é negativo."
+     ],
+     "answer": "C",
+     "explanation": "t = −2,4/1,0 = −2,4, com módulo superior ao crítico (2,086): rejeita-se H0 e conclui-se que há relação linear significativa, de sinal negativo (o sinal de t acompanha o de β̂)."
+    }
+   ]
+  }
+ ]
 }

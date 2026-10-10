@@ -8,13 +8,13 @@
    "bizu": {
     "summary": [
      "**Teoria da Probabilidade** estuda **experimentos aleatórios**: resultado incerto, mas com padrão conhecido, e que podem ser **repetidos indefinidamente sob condições inalteradas**.",
-     "**Espaço amostral (U ou Ω)** = conjunto de todos os resultados possíveis; cada resultado é um **ponto amostral**. Ex.: um dado → {1,...,6}; duas moedas → 4 pontos.",
+     "💡 **Exemplo Prático:** **Espaço amostral (U ou Ω)** = conjunto de todos os resultados possíveis; cada resultado é um **ponto amostral**. Ex.: um dado → {1,...,6}; duas moedas → 4 pontos.",
      "**Evento** = qualquer subconjunto do espaço amostral. **Evento simples (elementar)**: um único ponto, n(A) = 1. **Evento impossível**: conjunto vazio, n = 0. **Evento certo**: coincide com U, n(A) = n(U).",
      "**Definição clássica**: **P(A) = n(A) / n(U)** = casos favoráveis / casos totais.",
-     "Condição crucial: todos os pontos do espaço amostral devem ser **igualmente prováveis**. Com moeda viciada, por exemplo, a definição clássica **não** pode ser usada.",
+     "💡 **Exemplo Prático:** Condição crucial: todos os pontos do espaço amostral devem ser **igualmente prováveis**. Com moeda viciada, por exemplo, a definição clássica **não** pode ser usada.",
      "Em muitas questões, n(A) e n(U) vêm da **análise combinatória**: combinação (ordem não importa) ou arranjo (ordem importa).",
      "Se o numerador e o denominador seguem o **mesmo critério** (ambos com ordem ou ambos sem ordem), **o resultado é o mesmo**: P = C(5,2)/C(11,2) = A(5,2)/A(11,2).",
-     "Exemplo: sortear 1 dentre 25 alunos, dos quais 6 torcem pelo Vasco → P = 6/25 = 24%. Cuidado para definir bem o universo (n(U)) antes de contar os favoráveis."
+     "⚠️ **Ponto de Atenção:** Exemplo: sortear 1 dentre 25 alunos, dos quais 6 torcem pelo Vasco → P = 6/25 = 24%. Cuidado para definir bem o universo (n(U)) antes de contar os favoráveis."
     ],
     "teoria": [
      {
@@ -952,7 +952,7 @@
      "**Teorema da multiplicação**: **P(A ∩ B) = P(B|A) · P(A)** (ou P(A|B) · P(B)). Para três eventos: **P(A∩B∩C) = P(A) · P(B|A) · P(C|A∩B)**.",
      "Árvores de probabilidades: multiplica-se ao longo de um caminho (E) e somam-se os caminhos alternativos (OU).",
      "**Independência**: A e B são independentes quando a ocorrência de um não altera a probabilidade do outro: **P(B|A) = P(B)**. Equivale a **P(A ∩ B) = P(A) · P(B)** (propriedade de \"ida e volta\").",
-     "Se A e B são independentes, **seus complementares também são**: P(B|Ā) = P(B), P(B̄|A) = P(B̄), P(B̄|Ā) = P(B̄). Exemplo: dois lançamentos de dado.",
+     "💡 **Exemplo Prático:** Se A e B são independentes, **seus complementares também são**: P(B|Ā) = P(B), P(B̄|A) = P(B̄), P(B̄|Ā) = P(B̄). Exemplo: dois lançamentos de dado.",
      "Com eventos independentes, \"**pelo menos um**\" = 1 − produto das probabilidades de **nenhum** ocorrer; a união é P(A) + P(B) − P(A)·P(B)."
     ],
     "teoria": [
@@ -1301,9 +1301,9 @@
      "Para n eventos independentes: **P(A1∩...∩An) = P(A1) · ... · P(An)** (a recíproca também não vale).",
      "**Teorema da probabilidade total**: se o evento I ocorre dentro de grupos A, B, C (que cobrem todos os casos), então **P(I) = P(I|A)·P(A) + P(I|B)·P(B) + P(I|C)·P(C)**. Cada condicional é ponderada pela participação do grupo.",
      "Com dois grupos complementares: **P(I) = P(I|A)·P(A) + P(I|Ā)·P(Ā)**.",
-     "Exemplo da aula: grupos A, B e C com 50%, 30% e 20% dos clientes e inadimplência de 1%, 5% e 10% → P(I) = 0,005 + 0,015 + 0,02 = 4%.",
+     "💡 **Exemplo Prático:** Exemplo da aula: grupos A, B e C com 50%, 30% e 20% dos clientes e inadimplência de 1%, 5% e 10% → P(I) = 0,005 + 0,015 + 0,02 = 4%.",
      "**Teorema de Bayes**: inverte os eventos a priori e a posteriori — conhecidas P(I|Ai) e P(Ai), obtém-se **P(A|I) = P(I|A)·P(A) / [P(I|A)·P(A) + P(I|B)·P(B) + P(I|C)·P(C)]**. O denominador é a probabilidade total.",
-     "No exemplo: P(A|I) = (0,01 × 0,5)/0,04 = 12,5%.",
+     "💡 **Exemplo Prático:** No exemplo: P(A|I) = (0,01 × 0,5)/0,04 = 12,5%.",
      "Reconhecimento: dados do tipo \"P(evento | grupo)\" e pergunta \"P(grupo | evento)\" → Bayes; pergunta sobre o evento em geral → probabilidade total."
     ],
     "teoria": [

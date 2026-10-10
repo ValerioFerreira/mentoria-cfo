@@ -257,7 +257,7 @@
      "**Integridade**: a informação é correta, fidedigna e não foi alterada sem autorização, acidental ou propositalmente. **Confidencialidade e integridade são independentes**: interceptar e ler uma carta quebra a primeira sem quebrar a segunda.",
      "**Disponibilidade**: informação acessível e utilizável quando necessário, por quem tem permissão. Recursos: backups, redundância de servidores, nobreak, firewalls e monitoramento. Pegadinha: confidencialidade = só autorizados acessam; disponibilidade = autorizados conseguem acessar quando precisam.",
      "**Princípios adicionais**: **autenticidade** e **irretratabilidade** (não repúdio). O Hexagrama Parkeriano (Donn Parker) soma ainda **posse/controle** e **utilidade** aos já citados.",
-     "**Autenticidade**: garantia de que o emissor é quem alega ser. A assinatura manuscrita é uma forma frágil; a verificação de conta em redes sociais ilustra o princípio. Tipos: autenticação de **origem dos dados** (sem conexão) e de **entidade par** (com conexão).",
+     "💡 **Exemplo Prático:** **Autenticidade**: garantia de que o emissor é quem alega ser. A assinatura manuscrita é uma forma frágil; a verificação de conta em redes sociais ilustra o princípio. Tipos: autenticação de **origem dos dados** (sem conexão) e de **entidade par** (com conexão).",
      "**Irretratabilidade** (irrefutabilidade, não repúdio): o autor não pode negar depois a autoria. É um conceito essencialmente legal, apoiado pela tecnologia. **Autenticidade + Integridade = Irretratabilidade**. Garantir o não repúdio implica autenticidade, mas não o contrário.",
      "**Rastreabilidade (auditoria)**: registrar e reconstruir ações (quem, o quê, quando, onde, como) por meio de logs. Logs confiáveis têm integridade, imutabilidade (append-only), sincronização de tempo, armazenamento separado e retenção segura.",
      "**Quatro ataques ao fluxo de informação**: interrupção viola a **disponibilidade**; interceptação, a **confidencialidade**; modificação, a **integridade**; fabricação, a **autenticidade**."
@@ -541,10 +541,10 @@
    "bizu": {
     "summary": [
      "**Criptologia** estuda a ocultação da informação e a quebra dos segredos de ocultação. A ocultação se faz por **esteganografia** ou **criptografia**; a quebra, por **criptoanálise**.",
-     "**Esteganografia**: esconde a existência da mensagem dentro de outro meio (imagens, sons, vídeos, textos), por exemplo alterando poucos bits de uma imagem de forma imperceptível. **Criptografia**: torna a mensagem ininteligível, ainda que visível.",
+     "💡 **Exemplo Prático:** **Esteganografia**: esconde a existência da mensagem dentro de outro meio (imagens, sons, vídeos, textos), por exemplo alterando poucos bits de uma imagem de forma imperceptível. **Criptografia**: torna a mensagem ininteligível, ainda que visível.",
      "A criptografia tem dois grupos: **códigos** (símbolos que substituem elementos do texto claro) e **cifras** (algoritmos), baseadas em **substituição** (um elemento vira outro) e **transposição** (elementos são reorganizados). Nenhuma informação pode ser perdida.",
      "Marcos históricos: cifra de substituição na conspiração de Maria, Rainha dos Escoceses; máquina **Enigma** nazista; **Allan Turing** e a máquina Bombe, que decifrou mensagens alemãs.",
-     "**Criptografia simétrica**: **uma única chave secreta** serve para cifrar e decifrar (também chamada de chave secreta, única ou compartilhada). Exemplo histórico: cifra de César, com deslocamento de 3 posições (chave = 3).",
+     "💡 **Exemplo Prático:** **Criptografia simétrica**: **uma única chave secreta** serve para cifrar e decifrar (também chamada de chave secreta, única ou compartilhada). Exemplo histórico: cifra de César, com deslocamento de 3 posições (chave = 3).",
      "Problema da simétrica: a chave precisa ser trocada antes e protegida; o risco aumenta com o número de partes. Algoritmos: **DES, 3DES, AES, IDEA, RC4, Blowfish**. Permite confidencialidade, integridade e autenticidade (se só duas entidades conhecem a chave), mas **não o não repúdio**. Gerenciamento: n(n-1)/2 chaves.",
      "**Criptografia assimétrica** (chave pública): **par de chaves** exclusivo, uma **pública** (divulgada) e uma **privada** (de uso personalíssimo). O que uma cifra, só a outra decifra. Algoritmos: **RSA, DSA, ECDSA, ElGamal**; Diffie-Hellman serve para troca de chaves. Gerenciamento: 2n chaves.",
      "Para **confidencialidade**, o emissor cifra com a **chave pública do destinatário**. Se cifrar com a **própria chave privada**, qualquer um decifra com a pública: perde-se o sigilo, mas obtêm-se **autenticidade** e, assumindo mensagem íntegra, **não repúdio**.",
@@ -920,7 +920,7 @@
      "**Smartcards**: cartões com chip que guardam certificados digitais e chaves; exigem leitor e, em geral, PIN ou senha, formando autenticação de dois fatores. Servem também para assinatura digital e controle de acesso físico.",
      "**OTP** (senha de uso único) por aplicativos autenticadores: geram códigos no próprio aparelho, sem internet. **TOTP** muda com o tempo (30 ou 60 s); **HOTP** muda conforme um contador de uso. Códigos por SMS ou e-mail são menos seguros que apps e tokens.",
      "**Tokens** ('algo que você tem'): físicos (chaveiro ou cartão com visor, USB) ou digitais (aplicativos). Usados em autenticação em dois fatores.",
-     "**Autenticação forte**: exige dois ou mais fatores de **categorias diferentes** (ex.: senha + código do app; biometria + smartcard). **2FA** exige exatamente dois fatores distintos. Tecnicamente, toda autenticação forte é multifator, mas nem toda multifator (MFA) é forte; as bancas costumam tratá-las como sinônimas."
+     "💡 **Exemplo Prático:** **Autenticação forte**: exige dois ou mais fatores de **categorias diferentes** (ex.: senha + código do app; biometria + smartcard). **2FA** exige exatamente dois fatores distintos. Tecnicamente, toda autenticação forte é multifator, mas nem toda multifator (MFA) é forte; as bancas costumam tratá-las como sinônimas."
     ],
     "teoria": [
      {
@@ -1252,7 +1252,7 @@
      "**Colisão** = duas entradas diferentes com a mesma saída; é possível, mas rara em hashes modernos. Saídas maiores reduzem a chance. Analogias: dígito verificador de boleto e do CPF. Senhas são guardadas pelo hash; no login compara-se o hash digitado com o armazenado.",
      "**MD5**: 128 bits (1991); colisões encontradas, não recomendado para segurança. **SHA-1**: 160 bits (1995), obsoleto desde a colisão comprovada em 2017. **SHA-256**: 256 bits, família SHA-2, ainda considerado seguro (usado em blockchain, certificados, assinaturas, senhas com salting e stretching).",
      "**Forense digital**: o hash do dispositivo original é comparado ao da imagem forense (cópia bit a bit) para garantir a integridade da evidência na cadeia de custódia.",
-     "**Controle de acesso** em três etapas: **identificação** (quem é você?, ex.: login, matrícula), **autenticação** (prove, ex.: senha, biometria, MFA) e **autorização** (o que você pode fazer?, aplicada após a autenticação).",
+     "💡 **Exemplo Prático:** **Controle de acesso** em três etapas: **identificação** (quem é você?, ex.: login, matrícula), **autenticação** (prove, ex.: senha, biometria, MFA) e **autorização** (o que você pode fazer?, aplicada após a autenticação).",
      "**Classificação de dados** rotula informações por sensibilidade e criticidade para aplicar controles proporcionais. Níveis típicos: **público, interno, confidencial e restrito**. Apoia a LGPD e a ISO/IEC 27001."
     ],
     "teoria": [

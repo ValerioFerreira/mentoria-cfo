@@ -1,1851 +1,1851 @@
 {
-  "aula": "estatistica/a02",
-  "batch": "w2-bizu-estatistica",
-  "status": "DRAFT",
-  "segments": [
+ "aula": "estatistica/a02",
+ "batch": "w2-bizu-estatistica",
+ "status": "DRAFT",
+ "segments": [
+  {
+   "id": "estatistica/a02/s01",
+   "bizu": {
+    "summary": [
+     "**Separatrizes** dividem uma série ordenada em partes com o mesmo número de elementos: **mediana** (2 partes de 50%), **quartis** (4 partes de 25%), **quintis** (5 partes de 20%), **decis** (10 partes de 10%) e **percentis** (100 partes de 1%). A aula não aprofunda os quintis.",
+     "**Mediana (Md)** é, ao mesmo tempo, medida de posição, de tendência central e separatriz. Também aparece representada por x com til.",
+     "**Dados não agrupados**: primeiro **ordene** os valores (rol). Com **n ímpar**, a mediana é o termo central, de posição **(n + 1) / 2**.",
+     "Com **n par** há dois termos centrais, nas posições **n/2** e **n/2 + 1**. Por **convenção**, a mediana é a **média aritmética** deles; na verdade, qualquer valor entre os dois centrais divide a série em duas metades iguais.",
+     "A mediana só coincide com um elemento do conjunto quando **n é ímpar**; com n par, o valor obtido pela convenção pode não pertencer à série.",
+     "A mediana depende da **posição** e não dos valores de todos os elementos: é pouco sensível a valores extremos (discrepantes). A **média** é muito afetada por eles — trocar o maior valor por um número gigantesco muda a média, mas não a mediana.",
+     "**Dados agrupados por valor (sem classes)**: monte a coluna de **frequência acumulada**. Se n é ímpar, a mediana é o valor da primeira acumulada **igual ou superior** a (n + 1)/2; se n é par, acha-se os valores das primeiras acumuladas ≥ n/2 e ≥ n/2 + 1 e tira-se a média deles.",
+     "Com **frequências relativas**, a mediana é o valor em que a **relativa acumulada** ultrapassa (ou alcança) **50%**."
+    ],
+    "teoria": [
+     {
+      "statement": "Em um conjunto ordenado com n elementos, sendo n ímpar, a mediana é o termo que ocupa a posição (n + 1) / 2.",
+      "isTrue": true,
+      "explanation": "É o único termo com o mesmo número de elementos de cada lado; com n = 501, por exemplo, é o 251º."
+     },
+     {
+      "statement": "Em um conjunto com quantidade par de elementos, a mediana sempre coincide com um dos elementos do conjunto.",
+      "isTrue": false,
+      "explanation": "Com n par a convenção usa a média dos dois termos centrais, que pode resultar em um valor fora do conjunto (ex.: média de 8 e 9 = 8,5)."
+     },
+     {
+      "statement": "Substituir o maior valor de um conjunto por um número muito maior altera a média aritmética, mas não altera a mediana (se a posição central não mudar).",
+      "isTrue": true,
+      "explanation": "A mediana depende da posição central e não dos valores extremos, ao passo que a média incorpora todos os valores."
+     },
+     {
+      "statement": "A mediana é mais afetada por valores discrepantes do que a média aritmética.",
+      "isTrue": false,
+      "explanation": "É o contrário: a média é fortemente influenciada por valores extremos; a mediana, não."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "Quando n é par, por convenção a mediana é a média aritmética dos termos que ocupam as posições n/2 e n/2 + 1.",
+      "isTrue": true,
+      "explanation": "Qualquer valor entre os dois termos centrais serviria, mas adota-se a média deles."
+     },
+     {
+      "statement": "Os quintis dividem a série ordenada em cinco partes, cada uma contendo 25% dos valores.",
+      "isTrue": false,
+      "explanation": "Cinco partes iguais correspondem a 20% dos valores cada; 25% é a fração dos quartis."
+     },
+     {
+      "statement": "Em uma tabela de frequências com n ímpar, a mediana é o valor associado à primeira frequência acumulada igual ou superior à posição (n + 1) / 2.",
+      "isTrue": true,
+      "explanation": "Com n = 49, procura-se a primeira acumulada maior ou igual a 25."
+     },
+     {
+      "statement": "Para determinar a mediana de dados brutos, não é necessário ordená-los, bastando localizar o elemento do meio na ordem em que foram coletados.",
+      "isTrue": false,
+      "explanation": "A ordenação (rol) é a etapa prévia indispensável: a mediana é o termo central da série ORDENADA."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Separatrizes: mediana, quartis, quintis, decis, percentis",
+      "pageRef": 3
+     },
+     {
+      "topic": "Mediana: posição (n+1)/2 para n ímpar",
+      "pageRef": 4
+     },
+     {
+      "topic": "Mediana com n par: média dos termos n/2 e n/2+1",
+      "pageRef": 5
+     },
+     {
+      "topic": "Mediana pode ser qualquer valor entre os centrais (convenção)",
+      "pageRef": 6
+     },
+     {
+      "topic": "Mediana x média diante de valores extremos",
+      "pageRef": 8
+     },
+     {
+      "topic": "Mediana de dados agrupados por valor (frequência acumulada)",
+      "pageRef": 11
+     },
+     {
+      "topic": "Regra geral para tabela de frequências (n ímpar ou par)",
+      "pageRef": 13
+     },
+     {
+      "topic": "Mediana com frequência relativa acumulada (50%)",
+      "pageRef": 16
+     }
+    ]
+   },
+   "questions": [
     {
-      "id": "estatistica/a02/s01",
-      "bizu": {
-        "summary": [
-          "**Separatrizes** dividem uma série ordenada em partes com o mesmo número de elementos: **mediana** (2 partes de 50%), **quartis** (4 partes de 25%), **quintis** (5 partes de 20%), **decis** (10 partes de 10%) e **percentis** (100 partes de 1%). A aula não aprofunda os quintis.",
-          "**Mediana (Md)** é, ao mesmo tempo, medida de posição, de tendência central e separatriz. Também aparece representada por x com til.",
-          "**Dados não agrupados**: primeiro **ordene** os valores (rol). Com **n ímpar**, a mediana é o termo central, de posição **(n + 1) / 2**.",
-          "Com **n par** há dois termos centrais, nas posições **n/2** e **n/2 + 1**. Por **convenção**, a mediana é a **média aritmética** deles; na verdade, qualquer valor entre os dois centrais divide a série em duas metades iguais.",
-          "A mediana só coincide com um elemento do conjunto quando **n é ímpar**; com n par, o valor obtido pela convenção pode não pertencer à série.",
-          "A mediana depende da **posição** e não dos valores de todos os elementos: é pouco sensível a valores extremos (discrepantes). A **média** é muito afetada por eles — trocar o maior valor por um número gigantesco muda a média, mas não a mediana.",
-          "**Dados agrupados por valor (sem classes)**: monte a coluna de **frequência acumulada**. Se n é ímpar, a mediana é o valor da primeira acumulada **igual ou superior** a (n + 1)/2; se n é par, acha-se os valores das primeiras acumuladas ≥ n/2 e ≥ n/2 + 1 e tira-se a média deles.",
-          "Com **frequências relativas**, a mediana é o valor em que a **relativa acumulada** ultrapassa (ou alcança) **50%**."
-        ],
-        "teoria": [
-          {
-            "statement": "Em um conjunto ordenado com n elementos, sendo n ímpar, a mediana é o termo que ocupa a posição (n + 1) / 2.",
-            "isTrue": true,
-            "explanation": "É o único termo com o mesmo número de elementos de cada lado; com n = 501, por exemplo, é o 251º."
-          },
-          {
-            "statement": "Em um conjunto com quantidade par de elementos, a mediana sempre coincide com um dos elementos do conjunto.",
-            "isTrue": false,
-            "explanation": "Com n par a convenção usa a média dos dois termos centrais, que pode resultar em um valor fora do conjunto (ex.: média de 8 e 9 = 8,5)."
-          },
-          {
-            "statement": "Substituir o maior valor de um conjunto por um número muito maior altera a média aritmética, mas não altera a mediana (se a posição central não mudar).",
-            "isTrue": true,
-            "explanation": "A mediana depende da posição central e não dos valores extremos, ao passo que a média incorpora todos os valores."
-          },
-          {
-            "statement": "A mediana é mais afetada por valores discrepantes do que a média aritmética.",
-            "isTrue": false,
-            "explanation": "É o contrário: a média é fortemente influenciada por valores extremos; a mediana, não."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "Quando n é par, por convenção a mediana é a média aritmética dos termos que ocupam as posições n/2 e n/2 + 1.",
-            "isTrue": true,
-            "explanation": "Qualquer valor entre os dois termos centrais serviria, mas adota-se a média deles."
-          },
-          {
-            "statement": "Os quintis dividem a série ordenada em cinco partes, cada uma contendo 25% dos valores.",
-            "isTrue": false,
-            "explanation": "Cinco partes iguais correspondem a 20% dos valores cada; 25% é a fração dos quartis."
-          },
-          {
-            "statement": "Em uma tabela de frequências com n ímpar, a mediana é o valor associado à primeira frequência acumulada igual ou superior à posição (n + 1) / 2.",
-            "isTrue": true,
-            "explanation": "Com n = 49, procura-se a primeira acumulada maior ou igual a 25."
-          },
-          {
-            "statement": "Para determinar a mediana de dados brutos, não é necessário ordená-los, bastando localizar o elemento do meio na ordem em que foram coletados.",
-            "isTrue": false,
-            "explanation": "A ordenação (rol) é a etapa prévia indispensável: a mediana é o termo central da série ORDENADA."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Separatrizes: mediana, quartis, quintis, decis, percentis",
-            "pageRef": 3
-          },
-          {
-            "topic": "Mediana: posição (n+1)/2 para n ímpar",
-            "pageRef": 4
-          },
-          {
-            "topic": "Mediana com n par: média dos termos n/2 e n/2+1",
-            "pageRef": 5
-          },
-          {
-            "topic": "Mediana pode ser qualquer valor entre os centrais (convenção)",
-            "pageRef": 6
-          },
-          {
-            "topic": "Mediana x média diante de valores extremos",
-            "pageRef": 8
-          },
-          {
-            "topic": "Mediana de dados agrupados por valor (frequência acumulada)",
-            "pageRef": 11
-          },
-          {
-            "topic": "Regra geral para tabela de frequências (n ímpar ou par)",
-            "pageRef": 13
-          },
-          {
-            "topic": "Mediana com frequência relativa acumulada (50%)",
-            "pageRef": 16
-          }
-        ]
-      },
-      "questions": [
-        {
-          "topic": "Separatrizes: partes e porcentagens",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 3,
-          "statement": "Os quintis dividem uma série ordenada em cinco partes iguais. Assinale a alternativa que apresenta a correspondência correta entre a medida separatriz e a porcentagem dos valores contida em cada parte.",
-          "support": null,
-          "options": [
-            "Quartil, 20%.",
-            "Decil, 20%.",
-            "Percentil, 10%.",
-            "Mediana, 25%.",
-            "Quintil, 20%."
-          ],
-          "answer": "E",
-          "explanation": "Dividir em cinco partes iguais significa 20% dos valores em cada uma. Quartis dividem em quatro partes (25%), decis em dez (10%), percentis em cem (1%) e a mediana em duas (50%)."
-        },
-        {
-          "topic": "Mediana com n ímpar",
-          "pattern": "calculo",
-          "difficulty": 1,
-          "pageRef": 4,
-          "statement": "O número de pessoas atendidas por um posto de resgate em sete dias foi: 14, 3, 9, 21, 7, 11 e 5. A mediana dessa série é",
-          "support": null,
-          "options": [
-            "7",
-            "9",
-            "10",
-            "11",
-            "14"
-          ],
-          "answer": "B",
-          "explanation": "Ordenando: 3, 5, 7, 9, 11, 14, 21. Com n = 7 (ímpar), a mediana é o termo de posição (7 + 1) ÷ 2 = 4, ou seja, 9. O valor 10 é a média aritmética (70 ÷ 7), que não coincide com a mediana neste caso."
-        },
-        {
-          "topic": "Mediana com n par",
-          "pattern": "calculo",
-          "difficulty": 1,
-          "pageRef": 4,
-          "statement": "Os tempos, em minutos, de seis atendimentos foram 18, 25, 12, 30, 22 e 16. A mediana desses tempos é",
-          "support": null,
-          "options": [
-            "18",
-            "20",
-            "20,5",
-            "21",
-            "22"
-          ],
-          "answer": "B",
-          "explanation": "Em ordem crescente: 12, 16, 18, 22, 25, 30. Com n par, a mediana é a média dos termos centrais (3º e 4º): (18 + 22) ÷ 2 = 20. O valor 20,5 é a média aritmética dos seis tempos."
-        },
-        {
-          "topic": "Mediana com n par: valores possíveis",
-          "pattern": "correta",
-          "difficulty": 3,
-          "pageRef": 6,
-          "statement": "Em uma série ordenada com número par de observações, é correto afirmar que",
-          "support": null,
-          "options": [
-            "a mediana é sempre igual a um dos dois termos centrais.",
-            "a mediana é sempre igual à média aritmética de todos os elementos.",
-            "a mediana é o termo de posição (n + 1) ÷ 2, que sempre existe na série.",
-            "a mediana coincide necessariamente com a moda.",
-            "qualquer valor entre os dois termos centrais separa a série em duas metades iguais, e por convenção se adota a média aritmética deles."
-          ],
-          "answer": "E",
-          "explanation": "Quando n é par há dois termos centrais e existem infinitos valores entre eles que dividem a série em duas partes iguais; adota-se, por convenção, a média dos dois. Só com n ímpar a mediana coincide com um elemento da série, na posição (n + 1) ÷ 2."
-        },
-        {
-          "topic": "Mediana e valores extremos",
-          "pattern": "caso",
-          "difficulty": 2,
-          "pageRef": 8,
-          "statement": "Os salários de cinco servidores, em reais, são 3.000; 3.200; 3.500; 3.800 e 4.000. Se o maior salário for substituído por 40.000, mantidos os demais, o que ocorre com a média e com a mediana?",
-          "support": null,
-          "options": [
-            "A média aumenta bastante e a mediana permanece a mesma.",
-            "A mediana aumenta bastante e a média permanece a mesma.",
-            "Ambas aumentam na mesma proporção.",
-            "Ambas permanecem inalteradas.",
-            "A média permanece e a mediana passa a 40.000."
-          ],
-          "answer": "A",
-          "explanation": "A média passa de 3.500 para (3.000 + 3.200 + 3.500 + 3.800 + 40.000) ÷ 5 = 10.700. A mediana continua sendo o terceiro termo da série ordenada, 3.500, pois depende da posição e não do valor do maior elemento."
-        },
-        {
-          "topic": "Posição dos termos centrais",
-          "pattern": "lacuna",
-          "difficulty": 2,
-          "pageRef": 5,
-          "statement": "Uma série ordenada tem 840 observações. A mediana é a média aritmética dos termos que ocupam as posições",
-          "support": null,
-          "options": [
-            "420 e 421.",
-            "419 e 420.",
-            "421 e 422.",
-            "420 e 840.",
-            "840 e 841."
-          ],
-          "answer": "A",
-          "explanation": "Com n par, os termos centrais ocupam as posições n/2 e n/2 + 1; para n = 840, são as posições 420 e 421."
-        },
-        {
-          "topic": "Mediana de dados agrupados por valor",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 12,
-          "statement": "Em 35 dias, o número de acidentes registrados em um trecho de rodovia foi: 0 acidente em 12 dias, 1 em 6 dias, 2 em 8 dias, 3 em 5 dias e 4 em 4 dias. A mediana do número diário de acidentes é",
-          "support": null,
-          "options": [
-            "0",
-            "1",
-            "2",
-            "3",
-            "4"
-          ],
-          "answer": "B",
-          "explanation": "Com n = 35 (ímpar), a mediana ocupa a posição (35 + 1) ÷ 2 = 18. As frequências acumuladas são 12, 18, 26, 31 e 35; a primeira acumulada igual ou superior a 18 está no valor 1. O valor 0 é a moda, e a média (≈ 1,5) não é a mediana."
-        },
-        {
-          "topic": "Mediana com n par e dados agrupados",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 13,
-          "statement": "Trinta candidatos receberam notas inteiras de 2 a 6 em uma prova prática: nota 2, quatro candidatos; nota 3, onze; nota 4, sete; nota 5, cinco; nota 6, três. A mediana das notas é",
-          "support": null,
-          "options": [
-            "3",
-            "4",
-            "3,75",
-            "3,5",
-            "4,5"
-          ],
-          "answer": "D",
-          "explanation": "Com n = 30 (par), os termos centrais ocupam as posições 15 e 16. As acumuladas são 4, 15, 22, 27 e 30: a 15ª posição está na nota 3 e a 16ª, na nota 4. A mediana é (3 + 4) ÷ 2 = 3,5."
-        },
-        {
-          "topic": "Mediana com frequências relativas",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 16,
-          "statement": "A distribuição do número diário de ocorrências em um quartel é: 0 ocorrência, 25% dos dias; 1, 20%; 2, 15%; 3, 25%; 4, 15%. A mediana do número diário de ocorrências é",
-          "support": null,
-          "options": [
-            "3",
-            "1",
-            "1,85",
-            "2",
-            "0"
-          ],
-          "answer": "D",
-          "explanation": "As relativas acumuladas são 25%, 45%, 60%, 85% e 100%. O patamar de 50% é alcançado primeiro no valor 2, que é a mediana. O valor 1,85 é a média, e os valores 0 e 3 são as modas (25% cada)."
-        },
-        {
-          "topic": "Mediana: afirmativa incorreta",
-          "pattern": "incorreta",
-          "difficulty": 2,
-          "pageRef": 5,
-          "statement": "Sobre a mediana, assinale a alternativa INCORRETA.",
-          "support": null,
-          "options": [
-            "Com número ímpar de elementos, a mediana coincide com o termo de ordem (n + 1) ÷ 2.",
-            "A mediana é, ao mesmo tempo, medida de tendência central e separatriz.",
-            "A mediana depende da posição dos termos, e não do valor de todos eles.",
-            "Com número par de elementos, adota-se, por convenção, a média dos dois termos centrais.",
-            "Com número par de elementos, a mediana sempre pertence ao conjunto original."
-          ],
-          "answer": "E",
-          "explanation": "Com n par, a mediana convencionada é a média dos dois termos centrais, que pode não ser um dos valores observados (por exemplo, a mediana de 1, 2, 3 e 4 é 2,5). Apenas com n ímpar ela coincide com um elemento do conjunto."
-        },
-        {
-          "topic": "Média x mediana",
-          "pattern": "assertivas",
-          "difficulty": 2,
-          "pageRef": 8,
-          "statement": "Considere as afirmações. I. A mediana sofre menos influência de valores discrepantes do que a média aritmética. II. A mediana é calculada somando todos os valores e dividindo pelo número de observações. III. A média aritmética é muito sensível à presença de valores extremos. Está(ão) correta(s)",
-          "support": null,
-          "options": [
-            "I, apenas.",
-            "I e III, apenas.",
-            "II, apenas.",
-            "II e III, apenas.",
-            "I, II e III."
-          ],
-          "answer": "B",
-          "explanation": "I e III estão corretas: a mediana depende da posição central e resiste a valores discrepantes, enquanto a média usa todos os valores e é sensível a eles. A II descreve a média, e não a mediana."
-        },
-        {
-          "topic": "Valor desconhecido a partir da mediana",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 5,
-          "statement": "Os valores 4, 9, 15, x, 23 e 30 estão em ordem crescente, e a mediana do conjunto é 17. O valor de x é",
-          "support": null,
-          "options": [
-            "17",
-            "18",
-            "21",
-            "19",
-            "15"
-          ],
-          "answer": "D",
-          "explanation": "São seis valores, e os termos centrais são o 3º (15) e o 4º (x). A mediana é (15 + x) ÷ 2 = 17, logo x = 19, valor compatível com a ordem crescente (15 ≤ 19 ≤ 23)."
-        },
-        {
-          "topic": "Efeito de acrescentar um elemento",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 5,
-          "statement": "A série ordenada 4, 8, 15, 16, 23 e 42 tem mediana 15,5. Acrescentando-se o valor 50, a nova mediana passa a ser",
-          "support": null,
-          "options": [
-            "15",
-            "15,5",
-            "16",
-            "19,5",
-            "23"
-          ],
-          "answer": "C",
-          "explanation": "Com sete elementos, a mediana é o termo de posição (7 + 1) ÷ 2 = 4, que é 16 (4, 8, 15, 16, 23, 42, 50). Com n ímpar, a mediana coincide com um elemento da série."
-        }
-      ]
+     "topic": "Separatrizes: partes e porcentagens",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 3,
+     "statement": "Os quintis dividem uma série ordenada em cinco partes iguais. Assinale a alternativa que apresenta a correspondência correta entre a medida separatriz e a porcentagem dos valores contida em cada parte.",
+     "support": null,
+     "options": [
+      "Quartil, 20%.",
+      "Decil, 20%.",
+      "Percentil, 10%.",
+      "Mediana, 25%.",
+      "Quintil, 20%."
+     ],
+     "answer": "E",
+     "explanation": "Dividir em cinco partes iguais significa 20% dos valores em cada uma. Quartis dividem em quatro partes (25%), decis em dez (10%), percentis em cem (1%) e a mediana em duas (50%)."
     },
     {
-      "id": "estatistica/a02/s02",
-      "bizu": {
-        "summary": [
-          "**Mediana em classes**: não importa se n é par ou ímpar; usa-se um único procedimento. Primeiro monte a coluna de frequência acumulada e ache a **classe mediana**: a primeira em que a acumulada é **igual ou superior a Σf/2**.",
-          "**Fórmula**: **Md = l_inf + [ (Σf/2 − fac_ant) / f_i ] × h**, em que l_inf é o limite inferior da classe mediana, fac_ant a frequência acumulada da classe ANTERIOR, f_i a frequência simples da classe mediana e h a amplitude dessa classe.",
-          "A fórmula nasce da **interpolação linear** (semelhança de triângulos entre os pontos da reta de frequência acumulada). Ela também vale com frequências em porcentagem (Σf = 100%, metade = 50%).",
-          "Interpretação: metade dos valores está abaixo de Md e metade acima. Os valores mínimo e máximo da distribuição **não bastam** para determinar a mediana.",
-          "A fórmula da mediana é a base de quartis, decis e percentis: muda-se só o termo Σf/2.",
-          "**Propriedade 1**: somando (ou subtraindo) uma constante c de todos os valores, a mediana também é somada (ou subtraída) de c.",
-          "**Propriedade 2**: multiplicando (ou dividindo) todos os valores por uma constante c, a mediana também fica multiplicada (ou dividida) por c.",
-          "**Propriedade 3**: a soma dos **desvios absolutos** (em módulo) em relação a um número a é **mínima quando a é a mediana**; com n par, vale para qualquer valor entre os dois termos centrais."
-        ],
-        "teoria": [
-          {
-            "statement": "Para dados agrupados em classes, a classe mediana é a primeira cuja frequência acumulada é igual ou superior à metade da soma das frequências.",
-            "isTrue": true,
-            "explanation": "Compara-se Σf/2 com a coluna de frequências acumuladas, de cima para baixo, até alcançar ou ultrapassar esse valor."
-          },
-          {
-            "statement": "Na interpolação da mediana em classes, o termo fac_ant corresponde à frequência simples da própria classe mediana.",
-            "isTrue": false,
-            "explanation": "fac_ant é a frequência ACUMULADA até a classe que vem antes da classe mediana; a frequência simples da classe mediana é f_i."
-          },
-          {
-            "statement": "Somando-se uma constante c a todos os valores de um conjunto, a mediana do novo conjunto também fica acrescida de c.",
-            "isTrue": true,
-            "explanation": "Propriedade 1 da mediana: a posição central não muda e o valor acompanha a constante."
-          },
-          {
-            "statement": "Multiplicando-se todos os valores de um conjunto por uma constante c, a mediana permanece inalterada.",
-            "isTrue": false,
-            "explanation": "A mediana fica multiplicada por c, como a média."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "A soma dos desvios absolutos de uma série em relação a um número a é mínima quando a coincide com a mediana.",
-            "isTrue": true,
-            "explanation": "É a 3ª propriedade da mediana; com n par, qualquer valor entre os termos centrais também gera o mínimo."
-          },
-          {
-            "statement": "O cálculo da mediana por interpolação em classes exige fórmulas diferentes para n par e para n ímpar.",
-            "isTrue": false,
-            "explanation": "Em dados agrupados em classes adota-se um único procedimento, com Σf/2, independentemente da paridade de n."
-          },
-          {
-            "statement": "Conhecer apenas o menor e o maior valor de uma distribuição não é suficiente para determinar sua mediana.",
-            "isTrue": true,
-            "explanation": "A mediana depende da distribuição das frequências, e não apenas dos extremos."
-          },
-          {
-            "statement": "Na fórmula da mediana em classes, h representa a amplitude total da distribuição.",
-            "isTrue": false,
-            "explanation": "h é a amplitude do intervalo da classe mediana (diferença entre seus limites)."
-          },
-          {
-            "statement": "A fórmula da mediana para dados agrupados em classes é obtida pelo método da interpolação linear.",
-            "isTrue": true,
-            "explanation": "Admite-se que as observações se distribuem uniformemente na classe, o que leva a uma relação de proporcionalidade."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Classe mediana e frequências acumuladas",
-            "pageRef": 18
-          },
-          {
-            "topic": "Fórmula da mediana para dados em classes",
-            "pageRef": 19
-          },
-          {
-            "topic": "Interpretação do resultado (50% abaixo, 50% acima)",
-            "pageRef": 20
-          },
-          {
-            "topic": "Interpolação linear",
-            "pageRef": 21
-          },
-          {
-            "topic": "Mediana com frequências em porcentagem",
-            "pageRef": 25
-          },
-          {
-            "topic": "1ª propriedade: soma de constante",
-            "pageRef": 28
-          },
-          {
-            "topic": "2ª propriedade: multiplicação por constante",
-            "pageRef": 29
-          },
-          {
-            "topic": "3ª propriedade: desvios absolutos mínimos na mediana",
-            "pageRef": 30
-          }
-        ]
-      },
-      "questions": [
-        {
-          "topic": "Mediana em classes",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 19,
-          "statement": "O tempo (em minutos) de 50 atendimentos foi agrupado em classes: 10 ⊢ 20 (6 atendimentos), 20 ⊢ 30 (14), 30 ⊢ 40 (20) e 40 ⊢ 50 (10). Pelo método da interpolação linear, a mediana é",
-          "support": null,
-          "options": [
-            "30,0",
-            "31,5",
-            "32,5",
-            "34,0",
-            "35,0"
-          ],
-          "answer": "C",
-          "explanation": "A metade de Σf é 25. As acumuladas são 6, 20, 40 e 50; a classe mediana é 30 ⊢ 40 (primeira acumulada ≥ 25). Md = 30 + [(25 − 20) ÷ 20] × 10 = 32,5. O valor 35 seria o ponto médio da classe, e não a mediana interpolada."
-        },
-        {
-          "topic": "Classe mediana",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 18,
-          "statement": "Uma distribuição de 60 observações tem frequências acumuladas 8, 21, 37, 52 e 60 em suas cinco classes. A classe mediana é a",
-          "support": null,
-          "options": [
-            "2ª classe.",
-            "3ª classe.",
-            "4ª classe.",
-            "5ª classe.",
-            "1ª classe."
-          ],
-          "answer": "B",
-          "explanation": "A metade de Σf é 30. A classe mediana é a primeira cuja frequência acumulada é igual ou superior a 30; como 21 < 30 ≤ 37, trata-se da 3ª classe."
-        },
-        {
-          "topic": "Elementos da fórmula da mediana",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 19,
-          "statement": "Na fórmula da mediana para dados agrupados em classes, Md = l_inf + [(Σf/2 − fac_ant) ÷ f_i] × h, o termo fac_ant representa",
-          "support": null,
-          "options": [
-            "a frequência acumulada da própria classe mediana.",
-            "a frequência simples da classe anterior à classe mediana.",
-            "o ponto médio da classe mediana.",
-            "a frequência acumulada da classe anterior à classe mediana.",
-            "o número de classes anteriores à classe mediana."
-          ],
-          "answer": "D",
-          "explanation": "fac_ant é a frequência acumulada até a classe imediatamente anterior à classe mediana, ou seja, quantas observações ficam abaixo do limite inferior dessa classe. A frequência f_i e a amplitude h pertencem à classe mediana."
-        },
-        {
-          "topic": "Mediana com frequências percentuais",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 25,
-          "statement": "A distribuição das idades de candidatos é: 18 ⊢ 24, 15%; 24 ⊢ 30, 40%; 30 ⊢ 36, 25%; 36 ⊢ 48, 20%. Pelo método da interpolação linear, a idade mediana é, em anos,",
-          "support": null,
-          "options": [
-            "27,00",
-            "30,00",
-            "28,50",
-            "31,50",
-            "29,25"
-          ],
-          "answer": "E",
-          "explanation": "As acumuladas são 15%, 55%, 80% e 100%; a classe mediana é 24 ⊢ 30. Md = 24 + [(50 − 15) ÷ 40] × 6 = 24 + 5,25 = 29,25. O valor 27 é o ponto médio da classe mediana."
-        },
-        {
-          "topic": "Extremos não determinam a mediana",
-          "pattern": "caso",
-          "difficulty": 2,
-          "pageRef": 24,
-          "statement": "Em um relatório, consta que os vencimentos de um grupo de servidores variam entre R$ 2.000 e R$ 12.000. Com base apenas nessa informação, a respeito da mediana desses vencimentos, é correto afirmar que",
-          "support": null,
-          "options": [
-            "é igual a R$ 7.000, ponto médio entre o mínimo e o máximo.",
-            "é necessariamente maior que a média.",
-            "é necessariamente igual à média.",
-            "é inferior a R$ 7.000.",
-            "não pode ser determinada, pois depende de como os valores se distribuem entre os extremos."
-          ],
-          "answer": "E",
-          "explanation": "Os valores mínimo e máximo, por si sós, não bastam para determinar a mediana: ela depende das frequências, isto é, de como os dados se distribuem entre os extremos. O ponto médio entre os extremos não tem relação necessária com ela."
-        },
-        {
-          "topic": "Frequências definidas por expressão",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 26,
-          "statement": "Uma distribuição tem cinco classes de amplitude 10, a partir de 0 (0 ⊢ 10, 10 ⊢ 20, ..., 40 ⊢ 50). A frequência da i-ésima classe é dada por f_i = 2i + 2, para i de 1 a 5. A mediana, pelo método da interpolação linear, é",
-          "support": null,
-          "options": [
-            "30",
-            "35",
-            "28",
-            "34",
-            "32"
-          ],
-          "answer": "E",
-          "explanation": "As frequências são 4, 6, 8, 10 e 12 (Σf = 40). A metade é 20; as acumuladas são 4, 10, 18, 28 e 40, logo a classe mediana é a 4ª, 30 ⊢ 40. Md = 30 + [(20 − 18) ÷ 10] × 10 = 32."
-        },
-        {
-          "topic": "Interpolação linear",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 21,
-          "statement": "A fórmula da mediana para dados agrupados em classes decorre do método da interpolação linear. Esse método estima a mediana supondo que, dentro da classe mediana, as observações",
-          "support": null,
-          "options": [
-            "se distribuem de modo uniforme ao longo do intervalo.",
-            "se concentram no limite inferior da classe.",
-            "se concentram no ponto médio da classe.",
-            "coincidem com o limite superior da classe.",
-            "seguem uma distribuição em forma de sino."
-          ],
-          "answer": "A",
-          "explanation": "A interpolação linear trata a frequência acumulada como uma reta dentro da classe, o que equivale a supor distribuição uniforme das observações no intervalo e permite usar semelhança de triângulos para localizar o ponto de 50%."
-        },
-        {
-          "topic": "Propriedade da mediana: soma de constante",
-          "pattern": "calculo",
-          "difficulty": 1,
-          "pageRef": 28,
-          "statement": "A mediana dos salários de um grupo é R$ 3.400. Todos recebem um abono fixo de R$ 250. A nova mediana é",
-          "support": null,
-          "options": [
-            "R$ 3.400",
-            "R$ 3.425",
-            "R$ 3.900",
-            "R$ 3.650",
-            "R$ 3.150"
-          ],
-          "answer": "D",
-          "explanation": "Somando uma constante a todos os valores, a mediana também fica acrescida dessa constante: 3.400 + 250 = 3.650."
-        },
-        {
-          "topic": "Propriedade da mediana: transformação linear",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 29,
-          "statement": "A mediana de uma variável x é 18. Uma nova variável é definida por y = 4x + 6. A mediana de y é",
-          "support": null,
-          "options": [
-            "24",
-            "72",
-            "78",
-            "108",
-            "42"
-          ],
-          "answer": "C",
-          "explanation": "A multiplicação por uma constante multiplica a mediana, e a soma de uma constante a acrescenta: 4 × 18 + 6 = 78. O valor 72 desconsidera a soma de 6, e 108 resulta de multiplicar por (4 + 6)."
-        },
-        {
-          "topic": "Desvios absolutos e mediana",
-          "pattern": "caso",
-          "difficulty": 3,
-          "pageRef": 30,
-          "statement": "Para o conjunto {1, 4, 8, 31}, entre os valores a seguir, aquele que torna mínima a soma dos desvios absolutos em relação a ele, isto é, o somatório de |xi − a|, é",
-          "support": null,
-          "options": [
-            "3",
-            "9",
-            "11",
-            "15",
-            "6"
-          ],
-          "answer": "E",
-          "explanation": "A soma dos desvios absolutos é mínima quando a é a mediana; com n par, qualquer valor entre os dois termos centrais (4 e 8) serve, e a mediana convencionada é 6. Para a = 6 a soma é 5 + 2 + 2 + 25 = 34; para 3, 9, 11 e 15 é maior. O valor 11 é a média, que minimiza a soma dos quadrados, não a dos módulos."
-        },
-        {
-          "topic": "Desvios absolutos em relação à mediana",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 30,
-          "statement": "Para o conjunto {1, 2, 3, 4, 100}, a soma dos desvios absolutos em relação à mediana, isto é, o somatório de |xi − Md|, é",
-          "support": null,
-          "options": [
-            "156",
-            "110",
-            "103",
-            "101",
-            "98"
-          ],
-          "answer": "D",
-          "explanation": "A mediana é 3. Os módulos dos desvios são 2, 1, 0, 1 e 97, cuja soma é 101. Em relação à média (22), a soma seria 156, valor maior, pois a soma dos desvios absolutos é mínima na mediana."
-        },
-        {
-          "topic": "Propriedades da mediana: afirmativas",
-          "pattern": "assertivas",
-          "difficulty": 3,
-          "pageRef": 28,
-          "statement": "Considere as afirmações. I. Somando uma constante a todos os valores, a mediana fica aumentada dessa constante. II. Multiplicando todos os valores por uma constante, a mediana fica multiplicada por essa constante. III. A soma dos quadrados dos desvios é mínima quando calculada em relação à mediana. Está(ão) correta(s)",
-          "support": null,
-          "options": [
-            "I e II, apenas.",
-            "I, apenas.",
-            "III, apenas.",
-            "II e III, apenas.",
-            "I, II e III."
-          ],
-          "answer": "A",
-          "explanation": "I e II são propriedades da mediana. A III está errada: a soma dos quadrados dos desvios é mínima em relação à média; em relação à mediana é mínima a soma dos desvios absolutos."
-        },
-        {
-          "topic": "Classe mediana com acumulada igual à metade",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 18,
-          "statement": "Uma distribuição de 50 observações tem as classes 0 ⊢ 10 (10 observações), 10 ⊢ 20 (15), 20 ⊢ 30 (20) e 30 ⊢ 40 (5). A mediana pelo método da interpolação linear é",
-          "support": null,
-          "options": [
-            "25",
-            "22,5",
-            "20",
-            "15",
-            "10"
-          ],
-          "answer": "C",
-          "explanation": "A metade de Σf é 25. As acumuladas são 10, 25, 45 e 50; a primeira igual ou superior a 25 é a da 2ª classe (10 ⊢ 20). Md = 10 + [(25 − 10) ÷ 15] × 10 = 20, o limite superior da classe, pois a acumulada coincide exatamente com a metade."
-        }
-      ]
+     "topic": "Mediana com n ímpar",
+     "pattern": "calculo",
+     "difficulty": 1,
+     "pageRef": 4,
+     "statement": "O número de pessoas atendidas por um posto de resgate em sete dias foi: 14, 3, 9, 21, 7, 11 e 5. A mediana dessa série é",
+     "support": null,
+     "options": [
+      "7",
+      "9",
+      "10",
+      "11",
+      "14"
+     ],
+     "answer": "B",
+     "explanation": "Ordenando: 3, 5, 7, 9, 11, 14, 21. Com n = 7 (ímpar), a mediana é o termo de posição (7 + 1) ÷ 2 = 4, ou seja, 9. O valor 10 é a média aritmética (70 ÷ 7), que não coincide com a mediana neste caso."
     },
     {
-      "id": "estatistica/a02/s03",
-      "bizu": {
-        "summary": [
-          "**Quartis** são três valores (Q1, Q2, Q3) que dividem a série em quatro partes de 25%. Q1 deixa 25% abaixo; **Q2 = mediana** (50%); Q3 deixa 75% abaixo e 25% acima.",
-          "**Quintis** (5 partes), **decis** (10) e **percentis** (100) seguem a mesma lógica. A fórmula dos quartis é a da mediana com o termo Σf/2 trocado por **k · Σf / 4** (k = 1, 2, 3).",
-          "**Dados não agrupados**: ordene, calcule a posição **P(Qk) = k · n / 4**, tome a posição **mais próxima** no rol e leia o valor. Para Q2, use o procedimento da mediana ((n+1)/2 se ímpar; média das posições n/2 e n/2+1 se par).",
-          "A aproximação da posição faz com que a fórmula k·n/4 aplicada a Q2 nem sempre reproduza a mediana convencionada — por isso Q2 é tratado como mediana.",
-          "**Dados agrupados sem classes**: posição = **k · Σf / 4**; olhe a coluna de frequência acumulada e escolha a **primeira acumulada igual ou superior** à posição; o valor da variável nessa linha é o quartil.",
-          "**Dados agrupados em classes**: posição k · Σf / 4, identificar a classe correspondente e aplicar **Qk = l_inf + [ (k·Σf/4 − fac_ant) / f_Qk ] × h**, com os elementos tomados da classe do quartil."
-        ],
-        "teoria": [
-          {
-            "statement": "O segundo quartil (Q2) coincide com a mediana da distribuição.",
-            "isTrue": true,
-            "explanation": "Q2 separa 50% dos elementos abaixo e 50% acima, exatamente como a mediana."
-          },
-          {
-            "statement": "Existem quatro quartis, Q1, Q2, Q3 e Q4, que dividem a série em quatro partes iguais.",
-            "isTrue": false,
-            "explanation": "Para dividir em quatro partes bastam três separadores: Q1, Q2 e Q3."
-          },
-          {
-            "statement": "Para dados não agrupados, a posição do quartil de ordem k é obtida, de forma aproximada, por k · n / 4, com k = 1, 2 ou 3.",
-            "isTrue": true,
-            "explanation": "Após ordenar, identifica-se a posição mais próxima do resultado e lê-se o valor nessa posição."
-          },
-          {
-            "statement": "Na fórmula do quartil para dados em classes, o termo Σf/2 da mediana é mantido, sem alteração, para qualquer valor de k.",
-            "isTrue": false,
-            "explanation": "O termo é substituído por k · Σf / 4, em que k indica a ordem do quartil."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "O terceiro quartil deixa 75% dos elementos abaixo dele e 25% acima.",
-            "isTrue": true,
-            "explanation": "Q3 corresponde à separação dos primeiros 75% da série ordenada."
-          },
-          {
-            "statement": "Em dados agrupados sem classes, o quartil é o valor associado à última frequência acumulada menor que a posição k · Σf / 4.",
-            "isTrue": false,
-            "explanation": "Escolhe-se a primeira frequência acumulada IGUAL OU SUPERIOR à posição calculada."
-          },
-          {
-            "statement": "Em um rol com 16 valores, a posição de Q3 é a 12ª.",
-            "isTrue": true,
-            "explanation": "P(Q3) = 3 · 16 / 4 = 12."
-          },
-          {
-            "statement": "Para dados em classes, o quartil é lido diretamente na tabela de frequências acumuladas, sem necessidade de interpolação.",
-            "isTrue": false,
-            "explanation": "Depois de localizar a classe do quartil, aplica-se a fórmula de interpolação com l_inf, fac_ant, f e h dessa classe."
-          },
-          {
-            "statement": "No cálculo de um quartil para dados em classes, h é a amplitude da classe em que o quartil se encontra.",
-            "isTrue": true,
-            "explanation": "Todos os elementos da fórmula (l_inf, f, h) são tirados da classe do quartil considerado; fac_ant vem da classe anterior."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Quartis: Q1, Q2 e Q3; Q2 = mediana",
-            "pageRef": 33
-          },
-          {
-            "topic": "Quartil para dados não agrupados: posição k·n/4",
-            "pageRef": 34
-          },
-          {
-            "topic": "Exemplo de Q1, Q2 e Q3 com 16 valores",
-            "pageRef": 35
-          },
-          {
-            "topic": "Quartil para dados agrupados sem classes",
-            "pageRef": 36
-          },
-          {
-            "topic": "Tratamento de Q2 como mediana",
-            "pageRef": 37
-          },
-          {
-            "topic": "Quartil para dados em classes: fórmula",
-            "pageRef": 40
-          },
-          {
-            "topic": "Exemplo numérico com Q1, Q2 e Q3 em classes",
-            "pageRef": 41
-          }
-        ]
-      },
-      "questions": [
-        {
-          "topic": "Significado do terceiro quartil",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 33,
-          "statement": "O terceiro quartil (Q3) de uma série ordenada deixa",
-          "support": null,
-          "options": [
-            "75% dos valores abaixo dele e 25% acima.",
-            "25% dos valores abaixo dele e 75% acima.",
-            "50% dos valores abaixo dele e 50% acima.",
-            "90% dos valores abaixo dele e 10% acima.",
-            "33% dos valores abaixo dele e 67% acima."
-          ],
-          "answer": "A",
-          "explanation": "Os quartis dividem a série em quatro partes de 25% cada. Q1 deixa 25% abaixo; Q2 (a mediana) deixa 50%; e Q3 deixa 75% abaixo e 25% acima."
-        },
-        {
-          "topic": "Fórmula dos quartis",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 34,
-          "statement": "Na fórmula do quartil para dados agrupados em classes, em comparação com a fórmula da mediana, o termo Σf/2 é substituído por",
-          "support": null,
-          "options": [
-            "k · Σf / 10, com k de 1 a 9.",
-            "k · Σf / 4, com k de 1 a 3.",
-            "k · Σf / 100, com k de 1 a 99.",
-            "Σf / 4, para qualquer quartil.",
-            "k · Σf / 5, com k de 1 a 4."
-          ],
-          "answer": "B",
-          "explanation": "A posição do quartil de ordem k é k · Σf ÷ 4, com k = 1, 2 ou 3. Para decis e percentis a divisão é por 10 e por 100, respectivamente."
-        },
-        {
-          "topic": "Quartis em dados não agrupados",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 35,
-          "statement": "Os valores 37, 29, 41, 33, 26, 45, 31, 38, 28, 35, 43, 30, 39, 27, 34, 42, 32, 36, 40, 25 formam uma amostra de 20 observações. Os quartis Q1 e Q3, calculados pela posição k · n ÷ 4, são, respectivamente,",
-          "support": null,
-          "options": [
-            "28 e 38.",
-            "30 e 40.",
-            "29 e 38.",
-            "27 e 41.",
-            "29 e 39."
-          ],
-          "answer": "E",
-          "explanation": "Ordenando a amostra (25, 26, 27, 28, 29, 30, ..., 45, sem o 44), as posições são 1 · 20 ÷ 4 = 5 para Q1 e 3 · 20 ÷ 4 = 15 para Q3. O 5º termo é 29 e o 15º é 39."
-        },
-        {
-          "topic": "Posição aproximada do quartil",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 34,
-          "statement": "Em um rol de 15 valores (64, 52, 71, 58, 80, 47, 69, 75, 55, 62, 90, 49, 66, 73, 84), os quartis Q1 e Q3, calculados pela posição mais próxima de k · n ÷ 4, são, respectivamente,",
-          "support": null,
-          "options": [
-            "52 e 75.",
-            "55 e 73.",
-            "58 e 71.",
-            "55 e 75.",
-            "52 e 73."
-          ],
-          "answer": "B",
-          "explanation": "Ordenado: 47, 49, 52, 55, 58, 62, 64, 66, 69, 71, 73, 75, 80, 84, 90. A posição de Q1 é 15 ÷ 4 = 3,75, aproximada para a 4ª (55); a de Q3 é 45 ÷ 4 = 11,25, aproximada para a 11ª (73)."
-        },
-        {
-          "topic": "Segundo quartil",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 34,
-          "statement": "O rol 7, 9, 10, 12, 13, 15, 16, 18, 19, 22, 25, 30 tem 12 observações. O segundo quartil (Q2) desse rol é",
-          "support": null,
-          "options": [
-            "15",
-            "15,5",
-            "16",
-            "14",
-            "13"
-          ],
-          "answer": "B",
-          "explanation": "Para Q2 adota-se o procedimento da mediana. Com n = 12 (par), é a média dos termos de posição 6 e 7: (15 + 16) ÷ 2 = 15,5. Esse procedimento é preferido porque a posição 2 · n ÷ 4 depende de aproximação e nem sempre reproduz a mediana convencionada."
-        },
-        {
-          "topic": "Por que Q2 segue o procedimento da mediana",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 34,
-          "statement": "Para obter o segundo quartil (Q2) de dados não agrupados, a aula recomenda usar o procedimento da mediana, e não a posição 2 · n ÷ 4, porque",
-          "support": null,
-          "options": [
-            "Q2 não coincide com a mediana.",
-            "a posição 2 · n ÷ 4 só vale para dados agrupados em classes.",
-            "Q2 é calculado apenas com n ímpar.",
-            "a posição calculada depende de aproximação e nem sempre leva ao valor convencionado para a mediana.",
-            "a mediana é sempre um elemento da série, e Q2 não."
-          ],
-          "answer": "D",
-          "explanation": "Q2 coincide com a mediana, e o cálculo por 2 · n ÷ 4, por exigir arredondamento da posição, nem sempre reproduz a mediana convencionada (média dos dois centrais para n par). Por isso Q2 é tratado como a mediana."
-        },
-        {
-          "topic": "Quartis em dados agrupados por valor",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 36,
-          "statement": "O número de infrações por viatura em um mês é dado pela tabela: 0 infração, 6 viaturas; 1, 10; 2, 10; 3, 10; 4, 4. Os quartis Q1 e Q3 são, respectivamente,",
-          "support": null,
-          "options": [
-            "1 e 3.",
-            "0 e 3.",
-            "1 e 2.",
-            "2 e 3.",
-            "1 e 4."
-          ],
-          "answer": "A",
-          "explanation": "Com Σf = 40, as posições são 10 (Q1) e 30 (Q3). As acumuladas são 6, 16, 26, 36 e 40. A primeira acumulada ≥ 10 é a do valor 1, e a primeira ≥ 30 é a do valor 3."
-        },
-        {
-          "topic": "Primeiro quartil em classes",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 40,
-          "statement": "As idades de 80 candidatos foram agrupadas assim: 0 ⊢ 20 (8 candidatos), 20 ⊢ 40 (20), 40 ⊢ 60 (32) e 60 ⊢ 80 (20). Pelo método da interpolação linear, o primeiro quartil é",
-          "support": null,
-          "options": [
-            "25",
-            "28",
-            "30",
-            "32",
-            "36"
-          ],
-          "answer": "D",
-          "explanation": "A posição de Q1 é 80 ÷ 4 = 20. As acumuladas são 8, 28, 60 e 80; a classe de Q1 é 20 ⊢ 40. Q1 = 20 + [(20 − 8) ÷ 20] × 20 = 32."
-        },
-        {
-          "topic": "Terceiro quartil em classes",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 41,
-          "statement": "Na distribuição de 80 candidatos do exercício anterior (0 ⊢ 20: 8; 20 ⊢ 40: 20; 40 ⊢ 60: 32; 60 ⊢ 80: 20), o terceiro quartil, pelo método da interpolação linear, é",
-          "support": null,
-          "options": [
-            "50",
-            "55",
-            "60",
-            "65",
-            "70"
-          ],
-          "answer": "C",
-          "explanation": "A posição de Q3 é 3 · 80 ÷ 4 = 60. As acumuladas são 8, 28, 60 e 80; a primeira ≥ 60 é a da 3ª classe, 40 ⊢ 60. Q3 = 40 + [(60 − 28) ÷ 32] × 20 = 40 + 20 = 60, o limite superior da classe."
-        },
-        {
-          "topic": "Segundo quartil em classes",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 42,
-          "statement": "Uma distribuição de 60 observações tem as classes 0 ⊢ 10 (8), 10 ⊢ 20 (16), 20 ⊢ 30 (24) e 30 ⊢ 40 (12). Pelo método da interpolação linear, o segundo quartil é",
-          "support": null,
-          "options": [
-            "20",
-            "21",
-            "22,5",
-            "25",
-            "27,5"
-          ],
-          "answer": "C",
-          "explanation": "A posição de Q2 é 2 · 60 ÷ 4 = 30. As acumuladas são 8, 24, 48 e 60; a classe é 20 ⊢ 30. Q2 = 20 + [(30 − 24) ÷ 24] × 10 = 22,5, que é também a mediana da distribuição."
-        },
-        {
-          "topic": "Interpretação dos quartis",
-          "pattern": "caso",
-          "difficulty": 1,
-          "pageRef": 43,
-          "statement": "Em uma distribuição de pesos, o primeiro quartil é 48 kg e o terceiro quartil é 71 kg. Pode-se afirmar que",
-          "support": null,
-          "options": [
-            "50% dos pesos são inferiores a 48 kg.",
-            "75% dos pesos são inferiores a 48 kg.",
-            "25% dos pesos estão entre 48 kg e 71 kg.",
-            "25% dos pesos são inferiores a 48 kg e 25% são superiores a 71 kg.",
-            "75% dos pesos são superiores a 71 kg."
-          ],
-          "answer": "D",
-          "explanation": "Q1 deixa 25% dos valores abaixo e Q3 deixa 25% acima; portanto, 50% dos valores estão entre 48 kg e 71 kg."
-        },
-        {
-          "topic": "Posições aproximadas dos quartis",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 34,
-          "statement": "Em um rol de 17 valores, os quartis Q1 e Q3 são obtidos nas posições mais próximas de k · n ÷ 4. Essas posições são, respectivamente,",
-          "support": null,
-          "options": [
-            "4 e 12.",
-            "5 e 13.",
-            "4,25 e 12,75.",
-            "5 e 12.",
-            "4 e 13."
-          ],
-          "answer": "E",
-          "explanation": "As posições são 17 ÷ 4 = 4,25 e 51 ÷ 4 = 12,75. A posição mais próxima da primeira é a 4ª, e a da segunda é a 13ª."
-        },
-        {
-          "topic": "Quartis: afirmativas",
-          "pattern": "assertivas",
-          "difficulty": 2,
-          "pageRef": 33,
-          "statement": "Considere as afirmações. I. O segundo quartil coincide com a mediana. II. O terceiro quartil separa os primeiros 75% dos elementos da série, ou os últimos 25%. III. Os quartis dividem a série em cinco partes iguais. Está(ão) correta(s)",
-          "support": null,
-          "options": [
-            "I, apenas.",
-            "I e II, apenas.",
-            "III, apenas.",
-            "II e III, apenas.",
-            "I, II e III."
-          ],
-          "answer": "B",
-          "explanation": "I e II estão corretas. Os quartis são três valores (Q1, Q2 e Q3) que dividem a série em quatro partes de 25%; dividir em cinco partes é função dos quintis."
-        }
-      ]
+     "topic": "Mediana com n par",
+     "pattern": "calculo",
+     "difficulty": 1,
+     "pageRef": 4,
+     "statement": "Os tempos, em minutos, de seis atendimentos foram 18, 25, 12, 30, 22 e 16. A mediana desses tempos é",
+     "support": null,
+     "options": [
+      "18",
+      "20",
+      "20,5",
+      "21",
+      "22"
+     ],
+     "answer": "B",
+     "explanation": "Em ordem crescente: 12, 16, 18, 22, 25, 30. Com n par, a mediana é a média dos termos centrais (3º e 4º): (18 + 22) ÷ 2 = 20. O valor 20,5 é a média aritmética dos seis tempos."
     },
     {
-      "id": "estatistica/a02/s04",
-      "bizu": {
-        "summary": [
-          "**Decis** são nove valores (D1 a D9) que dividem a série em dez partes de 10%. **D5 coincide com a mediana**; D1 separa os primeiros 10% e D9 os primeiros 90% (ou os últimos 10%).",
-          "A fórmula é a da mediana com Σf/2 trocado por **k · Σf / 10**, com k de 1 a 9.",
-          "**Dados não agrupados**: ordene, calcule a posição **k · n / 10**, tome a posição mais próxima do rol e leia o valor. Ex.: com n = 10, D8 ocupa a 8ª posição.",
-          "**Dados agrupados sem classes**: posição **k · Σf / 10**; escolha a primeira frequência acumulada **igual ou superior** à posição e leia o valor da variável.",
-          "**Dados agrupados em classes**: **Dk = l_inf + [ (k·Σf/10 − fac_ant) / f_Dk ] × h**, com os dados da classe do decil (limite inferior, frequência simples, amplitude) e a acumulada da classe anterior.",
-          "Se a posição cai logo na primeira classe, fac_ant = 0 (não há classe anterior).",
-          "O resultado do decil em classes sempre fica dentro dos limites da classe em que ele foi localizado."
-        ],
-        "teoria": [
-          {
-            "statement": "Os decis são nove valores que dividem a série ordenada em dez partes com a mesma quantidade de elementos.",
-            "isTrue": true,
-            "explanation": "D1, D2, ..., D9 separam a série em partes de 10% cada."
-          },
-          {
-            "statement": "O quinto decil (D5) coincide com o primeiro quartil.",
-            "isTrue": false,
-            "explanation": "D5 separa 50% dos elementos e, por isso, coincide com a mediana (Q2)."
-          },
-          {
-            "statement": "Para dados não agrupados, a posição do decil de ordem k é, de forma aproximada, k · n / 10.",
-            "isTrue": true,
-            "explanation": "Depois da ordenação, usa-se a posição mais próxima do resultado."
-          },
-          {
-            "statement": "O nono decil (D9) deixa 10% dos elementos abaixo dele e 90% acima.",
-            "isTrue": false,
-            "explanation": "D9 deixa 90% abaixo e 10% acima."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "Em um conjunto ordenado com 10 elementos, o oitavo decil ocupa a 8ª posição do rol.",
-            "isTrue": true,
-            "explanation": "P(D8) = 8 · 10 / 10 = 8."
-          },
-          {
-            "statement": "Para dados agrupados em classes, a fórmula do decil usa o termo k · Σf / 100.",
-            "isTrue": false,
-            "explanation": "Para decis o termo é k · Σf / 10; é o percentil que usa k · Σf / 100."
-          },
-          {
-            "statement": "O segundo quartil, o quinto decil e a mediana representam o mesmo ponto de divisão da distribuição.",
-            "isTrue": true,
-            "explanation": "Todos separam 50% dos elementos abaixo e 50% acima."
-          },
-          {
-            "statement": "Em dados agrupados sem intervalos de classe, o decil é o valor da variável correspondente à primeira frequência acumulada igual ou superior à posição k · Σf / 10.",
-            "isTrue": true,
-            "explanation": "É o mesmo critério usado para quartis e percentis."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Decis: D1 a D9 e D5 = mediana",
-            "pageRef": 44
-          },
-          {
-            "topic": "Decil para dados não agrupados: posição k·n/10",
-            "pageRef": 44
-          },
-          {
-            "topic": "Exemplo de D1 e D8 em um rol",
-            "pageRef": 45
-          },
-          {
-            "topic": "Decil para dados agrupados sem classes",
-            "pageRef": 46
-          },
-          {
-            "topic": "Decil para dados em classes: fórmula",
-            "pageRef": 49
-          },
-          {
-            "topic": "Exemplo de D1, D2 e D7 em classes",
-            "pageRef": 51
-          }
-        ]
-      },
-      "questions": [
-        {
-          "topic": "Decil e mediana",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 44,
-          "statement": "Entre os decis D1 a D9, o que coincide com a mediana é o",
-          "support": null,
-          "options": [
-            "D5.",
-            "D1.",
-            "D4.",
-            "D9.",
-            "D10."
-          ],
-          "answer": "A",
-          "explanation": "O quinto decil separa 50% dos elementos, exatamente como a mediana (D5 = Md = Q2). Existem nove decis, de D1 a D9; não há D10."
-        },
-        {
-          "topic": "Decis em dados não agrupados",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 45,
-          "statement": "Os tempos de reação de 20 militares, em milissegundos ÷ 10, foram: 35, 30, 23, 38, 17, 15, 41, 9, 28, 3, 20, 14, 32, 18, 26, 8, 5, 25, 12, 21. Pela posição k · n ÷ 10, os decis D3 e D8 são, respectivamente,",
-          "support": null,
-          "options": [
-            "12 e 28.",
-            "14 e 30.",
-            "15 e 32.",
-            "14 e 28.",
-            "12 e 30."
-          ],
-          "answer": "B",
-          "explanation": "Ordenando os 20 valores, D3 ocupa a posição 3 · 20 ÷ 10 = 6 e D8, a posição 8 · 20 ÷ 10 = 16. O 6º termo é 14 e o 16º é 30."
-        },
-        {
-          "topic": "Posição aproximada do decil",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 44,
-          "statement": "Em um rol de 14 valores (46, 49, 27, 40, 55, 8, 21, 11, 29, 24, 15, 33, 38, 16), os decis D3 e D7, calculados pela posição mais próxima de k · n ÷ 10, são, respectivamente,",
-          "support": null,
-          "options": [
-            "15 e 40.",
-            "21 e 33.",
-            "16 e 40.",
-            "16 e 38.",
-            "15 e 38."
-          ],
-          "answer": "D",
-          "explanation": "Ordenado: 8, 11, 15, 16, 21, 24, 27, 29, 33, 38, 40, 46, 49, 55. D3 está na posição 3 · 14 ÷ 10 = 4,2, aproximada para a 4ª (16); D7 está em 7 · 14 ÷ 10 = 9,8, aproximada para a 10ª (38)."
-        },
-        {
-          "topic": "Decis em dados agrupados por valor",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 46,
-          "statement": "Em 100 viaturas, o número de manutenções corretivas no ano foi: 0 manutenção, 14 viaturas; 1, 22; 2, 30; 3, 24; 4, 8; 5, 2. Os decis D3 e D8 são, respectivamente,",
-          "support": null,
-          "options": [
-            "1 e 3.",
-            "1 e 2.",
-            "2 e 3.",
-            "0 e 3.",
-            "2 e 4."
-          ],
-          "answer": "A",
-          "explanation": "Com Σf = 100, as posições são 30 (D3) e 80 (D8). As acumuladas são 14, 36, 66, 90, 98 e 100. A primeira ≥ 30 é a do valor 1, e a primeira ≥ 80 é a do valor 3."
-        },
-        {
-          "topic": "Decil em classes",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 49,
-          "statement": "Uma distribuição de 40 observações tem as classes 0 ⊢ 10 (6), 10 ⊢ 20 (10), 20 ⊢ 30 (16) e 30 ⊢ 40 (8). Pelo método da interpolação linear, o terceiro decil (D3) é",
-          "support": null,
-          "options": [
-            "20",
-            "18",
-            "16",
-            "15",
-            "12"
-          ],
-          "answer": "C",
-          "explanation": "A posição de D3 é 3 · 40 ÷ 10 = 12. As acumuladas são 6, 16, 32 e 40; a classe de D3 é 10 ⊢ 20. D3 = 10 + [(12 − 6) ÷ 10] × 10 = 16."
-        },
-        {
-          "topic": "Decil na primeira classe",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 51,
-          "statement": "As alturas, em cm, de 40 recrutas foram agrupadas: 100 ⊢ 110 (8 recrutas), 110 ⊢ 120 (17) e 120 ⊢ 130 (15). Pelo método da interpolação linear, o primeiro decil (D1) é",
-          "support": null,
-          "options": [
-            "102,5",
-            "104",
-            "105",
-            "108",
-            "110"
-          ],
-          "answer": "C",
-          "explanation": "A posição de D1 é 40 ÷ 10 = 4, que está na primeira classe (acumulada 8 ≥ 4). Como não há classe anterior, fac_ant = 0: D1 = 100 + [(4 − 0) ÷ 8] × 10 = 105."
-        },
-        {
-          "topic": "Decil dentro da classe",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 52,
-          "statement": "O sétimo decil de uma distribuição em classes foi localizado na classe 60 ⊢ 70. Dos valores a seguir, o único que pode ser o D7 calculado pela interpolação linear é",
-          "support": null,
-          "options": [
-            "66,4",
-            "58,3",
-            "72,5",
-            "75,0",
-            "47,8"
-          ],
-          "answer": "A",
-          "explanation": "O resultado do decil em classes fica sempre dentro dos limites da classe em que foi localizado; logo, deve estar entre 60 e 70, e apenas 66,4 satisfaz essa condição."
-        },
-        {
-          "topic": "Interpretação do decil",
-          "pattern": "caso",
-          "difficulty": 1,
-          "pageRef": 44,
-          "statement": "Em uma turma, o quarto decil (D4) das massas corporais é 62 kg. Isso significa que",
-          "support": null,
-          "options": [
-            "60% dos alunos têm massa inferior a 62 kg.",
-            "40% dos alunos têm massa inferior a 62 kg e 60% têm massa superior.",
-            "4% dos alunos têm massa inferior a 62 kg.",
-            "40% dos alunos têm exatamente 62 kg.",
-            "metade dos alunos tem massa inferior a 62 kg."
-          ],
-          "answer": "B",
-          "explanation": "Os decis dividem a série em dez partes de 10%. O decil D4 deixa 40% dos valores abaixo dele e 60% acima. Somente D5 deixa 50% abaixo."
-        },
-        {
-          "topic": "Decis: afirmativa incorreta",
-          "pattern": "incorreta",
-          "difficulty": 2,
-          "pageRef": 44,
-          "statement": "Sobre os decis, assinale a alternativa INCORRETA.",
-          "support": null,
-          "options": [
-            "O nono decil deixa 90% dos valores acima dele.",
-            "Há nove decis, de D1 a D9.",
-            "O primeiro decil separa os primeiros 10% dos elementos.",
-            "O quinto decil coincide com a mediana.",
-            "A fórmula é a da mediana, trocando-se Σf/2 por k · Σf/10."
-          ],
-          "answer": "A",
-          "explanation": "D9 separa os primeiros 90% dos elementos: deixa 90% abaixo e 10% acima, e não o contrário. As demais afirmações descrevem corretamente os decis."
-        },
-        {
-          "topic": "Relação entre D5, Q2 e mediana",
-          "pattern": "relacao",
-          "difficulty": 1,
-          "pageRef": 44,
-          "statement": "Em uma mesma distribuição, o quinto decil (D5), o segundo quartil (Q2) e a mediana (Md) apresentam a seguinte relação:",
-          "support": null,
-          "options": [
-            "D5 < Q2 < Md.",
-            "D5 = Q2 = Md.",
-            "D5 > Q2 = Md.",
-            "D5 = Md, mas Q2 pode diferir de ambos.",
-            "Q2 = Md, mas D5 é sempre maior."
-          ],
-          "answer": "B",
-          "explanation": "As três medidas separam a série ao meio, com 50% dos valores de cada lado, e por isso coincidem: D5 = Q2 = Md."
-        }
-      ]
+     "topic": "Mediana com n par: valores possíveis",
+     "pattern": "correta",
+     "difficulty": 3,
+     "pageRef": 6,
+     "statement": "Em uma série ordenada com número par de observações, é correto afirmar que",
+     "support": null,
+     "options": [
+      "a mediana é sempre igual a um dos dois termos centrais.",
+      "a mediana é sempre igual à média aritmética de todos os elementos.",
+      "a mediana é o termo de posição (n + 1) ÷ 2, que sempre existe na série.",
+      "a mediana coincide necessariamente com a moda.",
+      "qualquer valor entre os dois termos centrais separa a série em duas metades iguais, e por convenção se adota a média aritmética deles."
+     ],
+     "answer": "E",
+     "explanation": "Quando n é par há dois termos centrais e existem infinitos valores entre eles que dividem a série em duas partes iguais; adota-se, por convenção, a média dos dois. Só com n ímpar a mediana coincide com um elemento da série, na posição (n + 1) ÷ 2."
     },
     {
-      "id": "estatistica/a02/s05",
-      "bizu": {
-        "summary": [
-          "**Percentis** são 99 valores (P1 a P99) que dividem a série em cem partes de 1%. **P50 = mediana**; P1 separa o primeiro 1% e P99 os primeiros 99% (ou o último 1%).",
-          "A fórmula é a da mediana com Σf/2 trocado por **k · Σf / 100**, com k de 1 a 99.",
-          "**Dados não agrupados**: ordene; posição **k · n / 100**; aproxime para a posição mais próxima e leia o valor. Ex.: com n = 11, P27 tem posição 2,97, que se aproxima da 3ª.",
-          "**Dados agrupados sem classes**: posição **k · Σf / 100**; escolha o valor associado à primeira frequência acumulada igual ou superior à posição.",
-          "**Dados agrupados em classes**: **Pk = l_inf + [ (k·Σf/100 − fac_ant) / f_Pk ] × h**, usando limite inferior, frequência simples e amplitude da classe do percentil e a acumulada da classe anterior.",
-          "Interpretação: o valor de Pk deixa k% das observações abaixo dele. Ex.: P45 deixa 45% abaixo.",
-          "Com frequências em porcentagem, trabalha-se com Σf = 100% e a posição passa a ser o próprio percentual k (ex.: P75 = onde a acumulada atinge 75%)."
-        ],
-        "teoria": [
-          {
-            "statement": "Existem 99 percentis, que dividem a série ordenada em cem partes com a mesma quantidade de elementos.",
-            "isTrue": true,
-            "explanation": "P1, P2, ..., P99 separam a série em partes de 1% cada."
-          },
-          {
-            "statement": "O percentil 50 coincide com o terceiro quartil.",
-            "isTrue": false,
-            "explanation": "P50 separa metade dos elementos e coincide com a mediana (Q2); o Q3 corresponde ao percentil 75."
-          },
-          {
-            "statement": "Para dados não agrupados, a posição do percentil de ordem k é, de forma aproximada, k · n / 100.",
-            "isTrue": true,
-            "explanation": "Após ordenar, toma-se a posição mais próxima e lê-se o valor."
-          },
-          {
-            "statement": "Na fórmula do percentil para dados em classes, o termo k · Σf / 100 substitui o Σf/2 da fórmula da mediana.",
-            "isTrue": true,
-            "explanation": "É a única alteração em relação à fórmula da mediana."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "O percentil 99 deixa apenas 1% das observações abaixo dele.",
-            "isTrue": false,
-            "explanation": "P99 deixa 99% das observações abaixo e 1% acima."
-          },
-          {
-            "statement": "Em um rol de 11 valores, a posição calculada para o percentil 27 é 2,97, que se aproxima da 3ª posição.",
-            "isTrue": true,
-            "explanation": "27 × 11 / 100 = 2,97, e a posição mais próxima do rol é 3."
-          },
-          {
-            "statement": "O cálculo de um percentil só é possível quando a soma das frequências é um múltiplo de 100.",
-            "isTrue": false,
-            "explanation": "A soma das frequências pode ser qualquer valor; a posição k · Σf / 100 pode ser fracionária e é tratada por aproximação ou interpolação."
-          },
-          {
-            "statement": "Em uma distribuição com frequências em porcentagem, o percentil 75 é encontrado na classe em que a frequência acumulada atinge ou ultrapassa 75%.",
-            "isTrue": true,
-            "explanation": "Localiza-se a classe e aplica-se a interpolação usando 75% no lugar de k·Σf/100."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Percentis: P1 a P99 e P50 = mediana",
-            "pageRef": 53
-          },
-          {
-            "topic": "Percentil para dados não agrupados: posição k·n/100",
-            "pageRef": 53
-          },
-          {
-            "topic": "Exemplo de P27 e P83 em um rol",
-            "pageRef": 54
-          },
-          {
-            "topic": "Percentil para dados agrupados sem classes",
-            "pageRef": 55
-          },
-          {
-            "topic": "Percentil para dados em classes: fórmula",
-            "pageRef": 58
-          },
-          {
-            "topic": "Exemplo de P45 e P77 em classes",
-            "pageRef": 59
-          },
-          {
-            "topic": "Questão-modelo de Q1 e mediana por interpolação",
-            "pageRef": 62
-          },
-          {
-            "topic": "Percentil com frequências relativas acumuladas",
-            "pageRef": 65
-          }
-        ]
-      },
-      "questions": [
-        {
-          "topic": "Número de percentis",
-          "pattern": "lacuna",
-          "difficulty": 1,
-          "pageRef": 53,
-          "statement": "Para dividir uma série ordenada em cem partes iguais, são necessários ____ percentis, de P1 a P99.",
-          "support": null,
-          "options": [
-            "50",
-            "98",
-            "99",
-            "100",
-            "101"
-          ],
-          "answer": "C",
-          "explanation": "Para separar uma série em cem partes bastam 99 pontos de corte, assim como três quartis separam em quatro partes e nove decis, em dez. O P50 coincide com a mediana."
-        },
-        {
-          "topic": "Percentis em dados não agrupados",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 54,
-          "statement": "Em um rol de 13 valores (11, 19, 6, 22, 31, 17, 9, 14, 38, 34, 45, 27, 24), os percentis P40 e P85, calculados pela posição mais próxima de k · n ÷ 100, são, respectivamente,",
-          "support": null,
-          "options": [
-            "14 e 31.",
-            "19 e 38.",
-            "17 e 31.",
-            "14 e 34.",
-            "17 e 34."
-          ],
-          "answer": "E",
-          "explanation": "Ordenado: 6, 9, 11, 14, 17, 19, 22, 24, 27, 31, 34, 38, 45. P40 está na posição 40 · 13 ÷ 100 = 5,2, aproximada para a 5ª (17); P85 está em 85 · 13 ÷ 100 = 11,05, aproximada para a 11ª (34)."
-        },
-        {
-          "topic": "Posição de percentis",
-          "pattern": "calculo",
-          "difficulty": 1,
-          "pageRef": 53,
-          "statement": "Em um rol de 80 observações, os percentis P35 e P85 ocupam, respectivamente, as posições",
-          "support": null,
-          "options": [
-            "28 e 68.",
-            "35 e 85.",
-            "28 e 80.",
-            "35 e 68.",
-            "30 e 70."
-          ],
-          "answer": "A",
-          "explanation": "A posição é k · n ÷ 100: 35 · 80 ÷ 100 = 28 e 85 · 80 ÷ 100 = 68. As posições 35 e 85 seriam as de um rol de 100 observações."
-        },
-        {
-          "topic": "Percentis em dados agrupados por valor",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 55,
-          "statement": "O número de ocorrências atendidas por equipe em um mês foi: 1 ocorrência, 10 equipes; 2, 25; 3, 30; 4, 20; 5, 10; 6, 5. Os percentis P45 e P93 são, respectivamente,",
-          "support": null,
-          "options": [
-            "2 e 5.",
-            "3 e 6.",
-            "2 e 4.",
-            "4 e 6.",
-            "3 e 5."
-          ],
-          "answer": "E",
-          "explanation": "Com Σf = 100, as posições são 45 (P45) e 93 (P93). As acumuladas são 10, 35, 65, 85, 95 e 100. A primeira acumulada ≥ 45 corresponde ao valor 3, e a primeira ≥ 93 corresponde ao valor 5."
-        },
-        {
-          "topic": "Percentil em classes",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 58,
-          "statement": "Os tempos de 50 provas foram agrupados em classes: 40 ⊢ 50 (6), 50 ⊢ 60 (14), 60 ⊢ 70 (20) e 70 ⊢ 80 (10). Pelo método da interpolação linear, o percentil P60 é",
-          "support": null,
-          "options": [
-            "60",
-            "63",
-            "65",
-            "67",
-            "68"
-          ],
-          "answer": "C",
-          "explanation": "A posição de P60 é 60 · 50 ÷ 100 = 30. As acumuladas são 6, 20, 40 e 50; a classe de P60 é 60 ⊢ 70. P60 = 60 + [(30 − 20) ÷ 20] × 10 = 65."
-        },
-        {
-          "topic": "Percentil com posição fracionária",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 59,
-          "statement": "As massas de 100 recrutas foram agrupadas em classes de amplitude 25: 0 ⊢ 25 (10), 25 ⊢ 50 (30), 50 ⊢ 75 (40) e 75 ⊢ 100 (20), com valores em quilogramas. Pelo método da interpolação linear, o percentil P85 é",
-          "support": null,
-          "options": [
-            "75,00",
-            "80,00",
-            "81,25",
-            "85,00",
-            "87,50"
-          ],
-          "answer": "C",
-          "explanation": "A posição de P85 é 85 · 100 ÷ 100 = 85. As acumuladas são 10, 40, 80 e 100; a classe é 75 ⊢ 100 (f = 20, fac_ant = 80, h = 25). P85 = 75 + [(85 − 80) ÷ 20] × 25 = 75 + 6,25 = 81,25."
-        },
-        {
-          "topic": "Interpretação do percentil",
-          "pattern": "caso",
-          "difficulty": 1,
-          "pageRef": 60,
-          "statement": "Em um processo seletivo, a nota de um candidato correspondeu ao percentil 80 da distribuição das notas. Isso significa que",
-          "support": null,
-          "options": [
-            "ele acertou 80% das questões.",
-            "apenas 20% dos candidatos obtiveram nota inferior à dele.",
-            "sua nota foi 80.",
-            "cerca de 80% dos candidatos obtiveram nota superior à dele.",
-            "cerca de 80% dos candidatos obtiveram nota inferior à dele."
-          ],
-          "answer": "E",
-          "explanation": "O percentil Pk deixa k% das observações abaixo dele; assim, o percentil 80 supera cerca de 80% dos demais e é superado por cerca de 20%. Ele nada diz sobre o percentual de acertos."
-        },
-        {
-          "topic": "Mediana e P75 com distribuição uniforme",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 64,
-          "statement": "Em uma pesquisa de deslocamento, 20% dos entrevistados gastam menos de 10 minutos para chegar ao quartel, 60% gastam menos de 20 minutos, 90% menos de 30 minutos, e ninguém gasta 40 minutos ou mais. Supondo distribuição uniforme dentro de cada faixa de 10 minutos, a mediana e o percentil 75 valem, respectivamente,",
-          "support": null,
-          "options": [
-            "15 min e 22,5 min.",
-            "20 min e 25 min.",
-            "17,5 min e 22,5 min.",
-            "15 min e 25 min.",
-            "17,5 min e 25 min."
-          ],
-          "answer": "E",
-          "explanation": "Pela interpolação linear, a mediana está na faixa 10 ⊢ 20 (acumulada passa de 20% para 60%): Md = 10 + [(50 − 20) ÷ 40] × 10 = 17,5. O P75 está na faixa 20 ⊢ 30 (de 60% a 90%): P75 = 20 + [(75 − 60) ÷ 30] × 10 = 25."
-        },
-        {
-          "topic": "Amplitude entre Q1 e mediana",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 61,
-          "statement": "As idades de 100 servidores estão distribuídas assim: 20 ⊢ 30 (20), 30 ⊢ 40 (50), 40 ⊢ 50 (20) e 50 ⊢ 60 (10). Pelo método da interpolação linear, a diferença entre a mediana e o primeiro quartil é, em anos,",
-          "support": null,
-          "options": [
-            "3",
-            "4",
-            "5",
-            "6",
-            "10"
-          ],
-          "answer": "C",
-          "explanation": "Q1: posição 25, classe 30 ⊢ 40 (acumuladas 20, 70, 90, 100): Q1 = 30 + [(25 − 20) ÷ 50] × 10 = 31. Md: posição 50, mesma classe: Md = 30 + [(50 − 20) ÷ 50] × 10 = 36. Diferença: 36 − 31 = 5."
-        },
-        {
-          "topic": "Percentil com frequências percentuais",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 66,
-          "statement": "As notas de um simulado estão distribuídas em percentuais: 0 ⊢ 10, 15%; 10 ⊢ 20, 25%; 20 ⊢ 30, 40%; 30 ⊢ 40, 20%. Pelo método da interpolação linear, o percentil P60 é",
-          "support": null,
-          "options": [
-            "25",
-            "22",
-            "20",
-            "27,5",
-            "30"
-          ],
-          "answer": "A",
-          "explanation": "Com Σf = 100%, a posição de P60 é 60%. As acumuladas são 15%, 40%, 80% e 100%; a classe é 20 ⊢ 30. P60 = 20 + [(60 − 40) ÷ 40] × 10 = 25."
-        },
-        {
-          "topic": "Equivalência entre separatrizes",
-          "pattern": "relacao",
-          "difficulty": 2,
-          "pageRef": 53,
-          "statement": "Entre as separatrizes, o terceiro quartil e o oitavo decil equivalem, respectivamente, aos percentis",
-          "support": null,
-          "options": [
-            "P25 e P80.",
-            "P75 e P80.",
-            "P75 e P70.",
-            "P50 e P80.",
-            "P25 e P70."
-          ],
-          "answer": "B",
-          "explanation": "Q3 deixa 75% dos valores abaixo (P75) e D8 deixa 80% (P80). Já Q1 = P25, D7 = P70 e Q2 = D5 = P50."
-        },
-        {
-          "topic": "Percentis: afirmativa incorreta",
-          "pattern": "incorreta",
-          "difficulty": 2,
-          "pageRef": 53,
-          "statement": "Sobre os percentis, assinale a alternativa INCORRETA.",
-          "support": null,
-          "options": [
-            "Os percentis dividem a série ordenada em cem partes iguais.",
-            "O percentil P50 coincide com a mediana.",
-            "O percentil P99 deixa 99% dos valores acima dele.",
-            "O percentil Pk deixa k% das observações abaixo dele.",
-            "A posição de Pk em dados agrupados é k · Σf ÷ 100."
-          ],
-          "answer": "C",
-          "explanation": "P99 separa os primeiros 99% das observações: deixa 99% abaixo e apenas 1% acima. As demais afirmações estão corretas."
-        },
-        {
-          "topic": "Percentis: afirmativas",
-          "pattern": "assertivas",
-          "difficulty": 3,
-          "pageRef": 58,
-          "statement": "Considere as afirmações. I. Para frequências em porcentagem (Σf = 100%), a posição do percentil Pk é o próprio percentual k. II. Em dados agrupados em classes, o percentil é obtido com a fórmula da mediana, trocando-se Σf/2 por k · Σf/100. III. O percentil P1 deixa 99% das observações abaixo dele. Está(ão) correta(s)",
-          "support": null,
-          "options": [
-            "I e II, apenas.",
-            "I, apenas.",
-            "III, apenas.",
-            "II e III, apenas.",
-            "I, II e III."
-          ],
-          "answer": "A",
-          "explanation": "I e II estão corretas. A III é falsa: P1 separa o primeiro 1% das observações, deixando 1% abaixo e 99% acima."
-        }
-      ]
+     "topic": "Mediana e valores extremos",
+     "pattern": "caso",
+     "difficulty": 2,
+     "pageRef": 8,
+     "statement": "Os salários de cinco servidores, em reais, são 3.000; 3.200; 3.500; 3.800 e 4.000. Se o maior salário for substituído por 40.000, mantidos os demais, o que ocorre com a média e com a mediana?",
+     "support": null,
+     "options": [
+      "A média aumenta bastante e a mediana permanece a mesma.",
+      "A mediana aumenta bastante e a média permanece a mesma.",
+      "Ambas aumentam na mesma proporção.",
+      "Ambas permanecem inalteradas.",
+      "A média permanece e a mediana passa a 40.000."
+     ],
+     "answer": "A",
+     "explanation": "A média passa de 3.500 para (3.000 + 3.200 + 3.500 + 3.800 + 40.000) ÷ 5 = 10.700. A mediana continua sendo o terceiro termo da série ordenada, 3.500, pois depende da posição e não do valor do maior elemento."
     },
     {
-      "id": "estatistica/a02/s06",
-      "bizu": {
-        "summary": [
-          "**Box plot** (diagrama de caixa) é um gráfico da análise exploratória que mostra a distribuição, a dispersão e os valores discrepantes (outliers). Resume **cinco medidas**: mínimo, Q1, mediana (Q2), Q3 e máximo.",
-          "Estrutura: uma **caixa** retangular que vai de Q1 a Q3, com uma linha interna na **mediana**, e duas hastes (**whiskers**, ou bigodes) ligando a caixa ao mínimo e ao máximo. Cada bigode reúne cerca de **25%** dos dados e a caixa cerca de **50%**.",
-          "**Distância (amplitude) interquartílica**: **DIQ = Q3 − Q1**.",
-          "**Outliers**: valores **abaixo de Q1 − 1,5·DIQ** ou **acima de Q3 + 1,5·DIQ**, marcados por pontos ou asteriscos.",
-          "Quando há outliers, os bigodes não chegam ao mínimo e ao máximo reais: terminam no **menor valor ≥ limite inferior** e no **maior valor ≤ limite superior**.",
-          "**Desvio quartílico (amplitude semi-interquartílica)**: **Dq = (Q3 − Q1) / 2**. Não confundir com a DIQ: aparece na aula de dispersão.",
-          "Se valores coincidem (ex.: mediana = Q3), as linhas se sobrepõem e a caixa ou o bigode some visualmente.",
-          "O box plot **não informa a quantidade de elementos** de cada grupo nem a média; permite **comparar distribuições** colocando vários diagramas no mesmo gráfico."
-        ],
-        "teoria": [
-          {
-            "statement": "Um box plot sintetiza a distribuição por cinco números, que são os extremos (mínimo e máximo) e os três quartis, incluindo a mediana.",
-            "isTrue": true,
-            "explanation": "Esses cinco números definem a caixa, a linha da mediana e os bigodes."
-          },
-          {
-            "statement": "A linha traçada no interior da caixa do box plot representa a média aritmética dos dados.",
-            "isTrue": false,
-            "explanation": "A linha central da caixa indica o segundo quartil, ou seja, a mediana."
-          },
-          {
-            "statement": "A distância interquartílica é calculada por Q3 − Q1.",
-            "isTrue": true,
-            "explanation": "DIQ = Q3 − Q1; é o comprimento da caixa."
-          },
-          {
-            "statement": "O desvio quartílico é igual à distância interquartílica, ambos definidos por Q3 − Q1.",
-            "isTrue": false,
-            "explanation": "O desvio quartílico é a metade dela: Dq = (Q3 − Q1) / 2."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "Valores menores que Q1 − 1,5·DIQ ou maiores que Q3 + 1,5·DIQ são considerados valores discrepantes (outliers).",
-            "isTrue": true,
-            "explanation": "Essa é a regra usada para marcar pontos isolados no box plot."
-          },
-          {
-            "statement": "Em um box plot, cada bigode contém cerca de 50% dos dados, e a caixa contém os 50% restantes.",
-            "isTrue": false,
-            "explanation": "Cada bigode reúne cerca de 25% dos dados; a caixa, entre Q1 e Q3, reúne cerca de 50%."
-          },
-          {
-            "statement": "Quando o box plot assinala outliers, o bigode superior termina no maior valor do conjunto que não ultrapassa Q3 + 1,5·DIQ.",
-            "isTrue": true,
-            "explanation": "Os bigodes ficam limitados a 1,5·DIQ; os valores além disso aparecem como pontos."
-          },
-          {
-            "statement": "Um box plot permite determinar o número de elementos de cada grupo comparado.",
-            "isTrue": false,
-            "explanation": "O diagrama mostra medidas de posição e dispersão (quartis, extremos, outliers), mas não a quantidade de observações."
-          },
-          {
-            "statement": "Se a mediana e o terceiro quartil de um conjunto têm o mesmo valor, as duas linhas se sobrepõem na extremidade da caixa.",
-            "isTrue": true,
-            "explanation": "Valores iguais para medidas descritivas alteram o aspecto visual do box plot."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Definição e cinco medidas do box plot",
-            "pageRef": 67
-          },
-          {
-            "topic": "Whiskers e outliers",
-            "pageRef": 67
-          },
-          {
-            "topic": "DIQ = Q3 - Q1 e limites de 1,5·DIQ",
-            "pageRef": 68
-          },
-          {
-            "topic": "Desvio quartílico (Q3-Q1)/2",
-            "pageRef": 68
-          },
-          {
-            "topic": "Exemplo completo de construção do box plot",
-            "pageRef": 70
-          },
-          {
-            "topic": "Box plot comparando duas distribuições",
-            "pageRef": 72
-          },
-          {
-            "topic": "Medidas coincidentes e aspecto do gráfico",
-            "pageRef": 73
-          },
-          {
-            "topic": "O que o box plot não informa (questões)",
-            "pageRef": 76
-          }
-        ]
-      },
-      "questions": [
-        {
-          "topic": "Medidas resumidas pelo box plot",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 67,
-          "statement": "O box plot (diagrama de caixa) resume um conjunto de dados por meio de cinco medidas descritivas, que são:",
-          "support": null,
-          "options": [
-            "média, mediana, moda, mínimo e máximo.",
-            "mínimo, média, desvio padrão, mediana e máximo.",
-            "primeiro decil, primeiro quartil, mediana, nono decil e máximo.",
-            "mínimo, primeiro quartil, mediana, terceiro quartil e máximo.",
-            "média, variância, mediana, Q1 e Q3."
-          ],
-          "answer": "D",
-          "explanation": "O box plot mostra mínimo, Q1, mediana (Q2), Q3 e máximo. Não traz a média nem o desvio padrão."
-        },
-        {
-          "topic": "Estrutura da caixa",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 67,
-          "statement": "Em um box plot, a caixa retangular vai do primeiro ao terceiro quartil, e cada bigode (whisker) comporta, aproximadamente, 25% dos dados. Logo, o percentual de dados no interior da caixa é de, aproximadamente,",
-          "support": null,
-          "options": [
-            "100%",
-            "75%",
-            "50%",
-            "25%",
-            "10%"
-          ],
-          "answer": "C",
-          "explanation": "De Q1 a Q3 situam-se cerca de 50% das observações; os outros 50% se dividem igualmente entre os dois bigodes (25% em cada), o que dá 25% + 50% + 25%."
-        },
-        {
-          "topic": "Limites para valores discrepantes",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 68,
-          "statement": "Em uma distribuição, Q1 = 34 e Q3 = 52. O valor a partir do qual uma observação passa a ser considerada discrepante (outlier) por excesso, segundo o critério do box plot, é superior a",
-          "support": null,
-          "options": [
-            "52",
-            "61",
-            "70",
-            "79",
-            "88"
-          ],
-          "answer": "D",
-          "explanation": "A distância interquartílica é DIQ = 52 − 34 = 18. O limite superior é Q3 + 1,5 × DIQ = 52 + 27 = 79; valores acima de 79 são discrepantes (e abaixo de 34 − 27 = 7)."
-        },
-        {
-          "topic": "Identificação de outliers",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 76,
-          "statement": "Em uma amostra, Q1 = 40 e Q3 = 56. Entre os valores 14, 62, 79 e 85, são considerados discrepantes pelo critério de 1,5 × DIQ",
-          "support": null,
-          "options": [
-            "apenas 85.",
-            "apenas 14.",
-            "14, 79 e 85.",
-            "nenhum deles.",
-            "14 e 85."
-          ],
-          "answer": "E",
-          "explanation": "DIQ = 56 − 40 = 16, e 1,5 × DIQ = 24. Os limites são 40 − 24 = 16 e 56 + 24 = 80. Assim, 14 (< 16) e 85 (> 80) são discrepantes; 62 e 79 estão dentro dos limites."
-        },
-        {
-          "topic": "Distância interquartílica e desvio quartílico",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 68,
-          "statement": "Se Q1 = 12 e Q3 = 30, a distância interquartílica (DIQ) e o desvio quartílico (Dq) valem, respectivamente,",
-          "support": null,
-          "options": [
-            "9 e 18.",
-            "18 e 18.",
-            "42 e 21.",
-            "18 e 9.",
-            "21 e 42."
-          ],
-          "answer": "D",
-          "explanation": "DIQ = Q3 − Q1 = 18, e o desvio quartílico (amplitude semi-interquartílica) é Dq = (Q3 − Q1) ÷ 2 = 9. Não se deve confundir as duas medidas."
-        },
-        {
-          "topic": "Extremos dos bigodes com outliers",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 70,
-          "statement": "Em um box plot construído com os 20 valores 38, 43, 40, 39, 48, 51, 52, 35, 36, 49, 44, 37, 46, 41, 47, 12, 50, 45, 42, 75, adota-se o critério de 1,5 × DIQ para valores discrepantes (Q1 e Q3 pelas posições k · n ÷ 4). O bigode inferior termina em",
-          "support": null,
-          "options": [
-            "12",
-            "23",
-            "35",
-            "36",
-            "38"
-          ],
-          "answer": "C",
-          "explanation": "Ordenados, Q1 = 5º termo = 38 e Q3 = 15º termo = 48; DIQ = 10 e o limite inferior é 38 − 15 = 23. O valor 12 está abaixo do limite (discrepante), e o bigode vai até o menor valor igual ou superior a 23, que é 35. O bigode superior termina em 52, pois 75 é discrepante (limite 63)."
-        },
-        {
-          "topic": "Bigodes com valores discrepantes",
-          "pattern": "correta",
-          "difficulty": 2,
-          "pageRef": 70,
-          "statement": "Em um box plot com valores discrepantes sinalizados, os bigodes (whiskers)",
-          "support": null,
-          "options": [
-            "sempre terminam no mínimo e no máximo do conjunto de dados.",
-            "sempre terminam em Q1 − 1,5·DIQ e Q3 + 1,5·DIQ, mesmo que não haja dados nesses pontos.",
-            "terminam na média menos e mais um desvio padrão.",
-            "terminam no menor e no maior valor observados que estão dentro dos limites Q1 − 1,5·DIQ e Q3 + 1,5·DIQ.",
-            "são omitidos, restando apenas a caixa."
-          ],
-          "answer": "D",
-          "explanation": "Os pontos fora dos limites são marcados individualmente, e os bigodes se estendem apenas até o menor e o maior valor ainda dentro dos limites, que podem ser maiores que o mínimo e menores que o máximo reais do conjunto."
-        },
-        {
-          "topic": "Medidas coincidentes no box plot",
-          "pattern": "caso",
-          "difficulty": 2,
-          "pageRef": 73,
-          "statement": "Em um conjunto de 11 observações, a mediana e o terceiro quartil têm o mesmo valor. No box plot desse conjunto,",
-          "support": null,
-          "options": [
-            "a linha da mediana se sobrepõe à borda superior da caixa, de modo que não aparecem três linhas distintas.",
-            "a caixa desaparece por completo.",
-            "a mediana passa a ser indicada fora da caixa.",
-            "o bigode superior ocupa metade do gráfico.",
-            "o gráfico não pode ser construído."
-          ],
-          "answer": "A",
-          "explanation": "Quando duas medidas de posição têm o mesmo valor, suas marcas se sobrepõem. Aqui a linha de Q2 coincide com a de Q3, na extremidade da caixa; o gráfico continua válido."
-        },
-        {
-          "topic": "Leitura de box plot",
-          "pattern": "caso",
-          "difficulty": 2,
-          "pageRef": 75,
-          "statement": "O box plot dos tempos de resposta de uma unidade (sem valores discrepantes) mostra: mínimo 4 min, Q1 = 8 min, mediana = 12 min, Q3 = 20 min e máximo 35 min. Assinale a alternativa correta.",
-          "support": null,
-          "options": [
-            "A distância interquartílica é de 31 min.",
-            "Cerca de metade dos tempos está entre 8 min e 20 min.",
-            "Cerca de 75% dos tempos são inferiores a 8 min.",
-            "A média dos tempos é de 12 min.",
-            "Cerca de 25% dos tempos são superiores a 20 min e 25% são inferiores a 4 min."
-          ],
-          "answer": "B",
-          "explanation": "A caixa vai de Q1 a Q3 e contém cerca de 50% dos dados. A DIQ é 20 − 8 = 12 min; 25% dos tempos ficam abaixo de 8 min; o box plot não informa a média; e nenhum valor fica abaixo do mínimo (4 min)."
-        },
-        {
-          "topic": "Informações do box plot",
-          "pattern": "incorreta",
-          "difficulty": 2,
-          "pageRef": 76,
-          "statement": "Sobre o box plot, assinale a alternativa INCORRETA.",
-          "support": null,
-          "options": [
-            "Permite visualizar valores discrepantes.",
-            "Permite comparar distribuições, ao colocar vários diagramas no mesmo gráfico.",
-            "Resume mínimo, quartis e máximo.",
-            "A linha interna da caixa indica a mediana.",
-            "Fornece a média aritmética e o número de observações de cada grupo."
-          ],
-          "answer": "E",
-          "explanation": "O box plot não informa a média nem a quantidade de elementos de cada grupo; ele mostra posição, dispersão e discrepâncias a partir dos quartis. Por isso não se pode concluir, por exemplo, que um grupo tem mais elementos que outro."
-        },
-        {
-          "topic": "Comparação de dispersões centrais",
-          "pattern": "caso",
-          "difficulty": 2,
-          "pageRef": 77,
-          "statement": "Dois box plots comparam os salários de dois setores: no setor A, Q1 = 10 e Q3 = 22; no setor B, Q1 = 14 e Q3 = 24 (valores em milhares de reais). Pode-se afirmar que",
-          "support": null,
-          "options": [
-            "o setor B tem mais funcionários que o setor A.",
-            "a distância interquartílica do setor A (12) é maior que a do setor B (10).",
-            "a distância interquartílica dos dois setores é igual.",
-            "a mediana do setor A é maior que a do setor B.",
-            "o setor A não tem valores discrepantes."
-          ],
-          "answer": "B",
-          "explanation": "DIQ(A) = 22 − 10 = 12 e DIQ(B) = 24 − 14 = 10. Os dados fornecidos não permitem comparar as medianas, o número de funcionários nem a presença de discrepantes."
-        },
-        {
-          "topic": "Box plot: afirmativas",
-          "pattern": "assertivas",
-          "difficulty": 3,
-          "pageRef": 68,
-          "statement": "Considere as afirmações sobre o box plot. I. São discrepantes os valores menores que Q1 − 1,5·DIQ ou maiores que Q3 + 1,5·DIQ. II. O desvio quartílico é igual a Q3 − Q1. III. Cada bigode comporta, aproximadamente, 25% dos dados. Está(ão) correta(s)",
-          "support": null,
-          "options": [
-            "I e III, apenas.",
-            "I, apenas.",
-            "II, apenas.",
-            "II e III, apenas.",
-            "I, II e III."
-          ],
-          "answer": "A",
-          "explanation": "I e III estão corretas. A II confunde as duas medidas: Q3 − Q1 é a distância interquartílica (DIQ), e o desvio quartílico é (Q3 − Q1) ÷ 2."
-        },
-        {
-          "topic": "Identificação de outliers com dados brutos",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 70,
-          "statement": "Uma amostra de 24 tempos tem os valores 38, 33, 47, 53, 34, 52, 43, 37, 48, 44, 51, 49, 31, 40, 46, 70, 41, 22, 36, 35, 39, 42, 50, 45. Com Q1 e Q3 obtidos pelas posições k · n ÷ 4, entre os extremos 22 e 70, pelo critério de 1,5 × DIQ é(são) discrepante(s)",
-          "support": null,
-          "options": [
-            "apenas o 22.",
-            "o 22 e o 70.",
-            "nenhum dos dois.",
-            "apenas o 70.",
-            "o 70 e também o 53."
-          ],
-          "answer": "D",
-          "explanation": "Ordenados, Q1 = 6º termo = 36 e Q3 = 18º termo = 48; DIQ = 12 e 1,5 × DIQ = 18. Os limites são 36 − 18 = 18 e 48 + 18 = 66. O valor 22 está dentro dos limites; o 70 supera 66 e é discrepante."
-        }
-      ]
+     "topic": "Posição dos termos centrais",
+     "pattern": "lacuna",
+     "difficulty": 2,
+     "pageRef": 5,
+     "statement": "Uma série ordenada tem 840 observações. A mediana é a média aritmética dos termos que ocupam as posições",
+     "support": null,
+     "options": [
+      "420 e 421.",
+      "419 e 420.",
+      "421 e 422.",
+      "420 e 840.",
+      "840 e 841."
+     ],
+     "answer": "A",
+     "explanation": "Com n par, os termos centrais ocupam as posições n/2 e n/2 + 1; para n = 840, são as posições 420 e 421."
+    },
+    {
+     "topic": "Mediana de dados agrupados por valor",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 12,
+     "statement": "Em 35 dias, o número de acidentes registrados em um trecho de rodovia foi: 0 acidente em 12 dias, 1 em 6 dias, 2 em 8 dias, 3 em 5 dias e 4 em 4 dias. A mediana do número diário de acidentes é",
+     "support": null,
+     "options": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "answer": "B",
+     "explanation": "Com n = 35 (ímpar), a mediana ocupa a posição (35 + 1) ÷ 2 = 18. As frequências acumuladas são 12, 18, 26, 31 e 35; a primeira acumulada igual ou superior a 18 está no valor 1. O valor 0 é a moda, e a média (≈ 1,5) não é a mediana."
+    },
+    {
+     "topic": "Mediana com n par e dados agrupados",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 13,
+     "statement": "Trinta candidatos receberam notas inteiras de 2 a 6 em uma prova prática: nota 2, quatro candidatos; nota 3, onze; nota 4, sete; nota 5, cinco; nota 6, três. A mediana das notas é",
+     "support": null,
+     "options": [
+      "3",
+      "4",
+      "3,75",
+      "3,5",
+      "4,5"
+     ],
+     "answer": "D",
+     "explanation": "Com n = 30 (par), os termos centrais ocupam as posições 15 e 16. As acumuladas são 4, 15, 22, 27 e 30: a 15ª posição está na nota 3 e a 16ª, na nota 4. A mediana é (3 + 4) ÷ 2 = 3,5."
+    },
+    {
+     "topic": "Mediana com frequências relativas",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 16,
+     "statement": "A distribuição do número diário de ocorrências em um quartel é: 0 ocorrência, 25% dos dias; 1, 20%; 2, 15%; 3, 25%; 4, 15%. A mediana do número diário de ocorrências é",
+     "support": null,
+     "options": [
+      "3",
+      "1",
+      "1,85",
+      "2",
+      "0"
+     ],
+     "answer": "D",
+     "explanation": "As relativas acumuladas são 25%, 45%, 60%, 85% e 100%. O patamar de 50% é alcançado primeiro no valor 2, que é a mediana. O valor 1,85 é a média, e os valores 0 e 3 são as modas (25% cada)."
+    },
+    {
+     "topic": "Mediana: afirmativa incorreta",
+     "pattern": "incorreta",
+     "difficulty": 2,
+     "pageRef": 5,
+     "statement": "Sobre a mediana, assinale a alternativa INCORRETA.",
+     "support": null,
+     "options": [
+      "Com número ímpar de elementos, a mediana coincide com o termo de ordem (n + 1) ÷ 2.",
+      "A mediana é, ao mesmo tempo, medida de tendência central e separatriz.",
+      "A mediana depende da posição dos termos, e não do valor de todos eles.",
+      "Com número par de elementos, adota-se, por convenção, a média dos dois termos centrais.",
+      "Com número par de elementos, a mediana sempre pertence ao conjunto original."
+     ],
+     "answer": "E",
+     "explanation": "Com n par, a mediana convencionada é a média dos dois termos centrais, que pode não ser um dos valores observados (por exemplo, a mediana de 1, 2, 3 e 4 é 2,5). Apenas com n ímpar ela coincide com um elemento do conjunto."
+    },
+    {
+     "topic": "Média x mediana",
+     "pattern": "assertivas",
+     "difficulty": 2,
+     "pageRef": 8,
+     "statement": "Considere as afirmações. I. A mediana sofre menos influência de valores discrepantes do que a média aritmética. II. A mediana é calculada somando todos os valores e dividindo pelo número de observações. III. A média aritmética é muito sensível à presença de valores extremos. Está(ão) correta(s)",
+     "support": null,
+     "options": [
+      "I, apenas.",
+      "I e III, apenas.",
+      "II, apenas.",
+      "II e III, apenas.",
+      "I, II e III."
+     ],
+     "answer": "B",
+     "explanation": "I e III estão corretas: a mediana depende da posição central e resiste a valores discrepantes, enquanto a média usa todos os valores e é sensível a eles. A II descreve a média, e não a mediana."
+    },
+    {
+     "topic": "Valor desconhecido a partir da mediana",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 5,
+     "statement": "Os valores 4, 9, 15, x, 23 e 30 estão em ordem crescente, e a mediana do conjunto é 17. O valor de x é",
+     "support": null,
+     "options": [
+      "17",
+      "18",
+      "21",
+      "19",
+      "15"
+     ],
+     "answer": "D",
+     "explanation": "São seis valores, e os termos centrais são o 3º (15) e o 4º (x). A mediana é (15 + x) ÷ 2 = 17, logo x = 19, valor compatível com a ordem crescente (15 ≤ 19 ≤ 23)."
+    },
+    {
+     "topic": "Efeito de acrescentar um elemento",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 5,
+     "statement": "A série ordenada 4, 8, 15, 16, 23 e 42 tem mediana 15,5. Acrescentando-se o valor 50, a nova mediana passa a ser",
+     "support": null,
+     "options": [
+      "15",
+      "15,5",
+      "16",
+      "19,5",
+      "23"
+     ],
+     "answer": "C",
+     "explanation": "Com sete elementos, a mediana é o termo de posição (7 + 1) ÷ 2 = 4, que é 16 (4, 8, 15, 16, 23, 42, 50). Com n ímpar, a mediana coincide com um elemento da série."
     }
-  ]
+   ]
+  },
+  {
+   "id": "estatistica/a02/s02",
+   "bizu": {
+    "summary": [
+     "**Mediana em classes**: não importa se n é par ou ímpar; usa-se um único procedimento. Primeiro monte a coluna de frequência acumulada e ache a **classe mediana**: a primeira em que a acumulada é **igual ou superior a Σf/2**.",
+     "**Fórmula**: **Md = l_inf + [ (Σf/2 − fac_ant) / f_i ] × h**, em que l_inf é o limite inferior da classe mediana, fac_ant a frequência acumulada da classe ANTERIOR, f_i a frequência simples da classe mediana e h a amplitude dessa classe.",
+     "A fórmula nasce da **interpolação linear** (semelhança de triângulos entre os pontos da reta de frequência acumulada). Ela também vale com frequências em porcentagem (Σf = 100%, metade = 50%).",
+     "Interpretação: metade dos valores está abaixo de Md e metade acima. Os valores mínimo e máximo da distribuição **não bastam** para determinar a mediana.",
+     "A fórmula da mediana é a base de quartis, decis e percentis: muda-se só o termo Σf/2.",
+     "**Propriedade 1**: somando (ou subtraindo) uma constante c de todos os valores, a mediana também é somada (ou subtraída) de c.",
+     "**Propriedade 2**: multiplicando (ou dividindo) todos os valores por uma constante c, a mediana também fica multiplicada (ou dividida) por c.",
+     "**Propriedade 3**: a soma dos **desvios absolutos** (em módulo) em relação a um número a é **mínima quando a é a mediana**; com n par, vale para qualquer valor entre os dois termos centrais."
+    ],
+    "teoria": [
+     {
+      "statement": "Para dados agrupados em classes, a classe mediana é a primeira cuja frequência acumulada é igual ou superior à metade da soma das frequências.",
+      "isTrue": true,
+      "explanation": "Compara-se Σf/2 com a coluna de frequências acumuladas, de cima para baixo, até alcançar ou ultrapassar esse valor."
+     },
+     {
+      "statement": "Na interpolação da mediana em classes, o termo fac_ant corresponde à frequência simples da própria classe mediana.",
+      "isTrue": false,
+      "explanation": "fac_ant é a frequência ACUMULADA até a classe que vem antes da classe mediana; a frequência simples da classe mediana é f_i."
+     },
+     {
+      "statement": "Somando-se uma constante c a todos os valores de um conjunto, a mediana do novo conjunto também fica acrescida de c.",
+      "isTrue": true,
+      "explanation": "Propriedade 1 da mediana: a posição central não muda e o valor acompanha a constante."
+     },
+     {
+      "statement": "Multiplicando-se todos os valores de um conjunto por uma constante c, a mediana permanece inalterada.",
+      "isTrue": false,
+      "explanation": "A mediana fica multiplicada por c, como a média."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "A soma dos desvios absolutos de uma série em relação a um número a é mínima quando a coincide com a mediana.",
+      "isTrue": true,
+      "explanation": "É a 3ª propriedade da mediana; com n par, qualquer valor entre os termos centrais também gera o mínimo."
+     },
+     {
+      "statement": "O cálculo da mediana por interpolação em classes exige fórmulas diferentes para n par e para n ímpar.",
+      "isTrue": false,
+      "explanation": "Em dados agrupados em classes adota-se um único procedimento, com Σf/2, independentemente da paridade de n."
+     },
+     {
+      "statement": "Conhecer apenas o menor e o maior valor de uma distribuição não é suficiente para determinar sua mediana.",
+      "isTrue": true,
+      "explanation": "A mediana depende da distribuição das frequências, e não apenas dos extremos."
+     },
+     {
+      "statement": "Na fórmula da mediana em classes, h representa a amplitude total da distribuição.",
+      "isTrue": false,
+      "explanation": "h é a amplitude do intervalo da classe mediana (diferença entre seus limites)."
+     },
+     {
+      "statement": "A fórmula da mediana para dados agrupados em classes é obtida pelo método da interpolação linear.",
+      "isTrue": true,
+      "explanation": "Admite-se que as observações se distribuem uniformemente na classe, o que leva a uma relação de proporcionalidade."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Classe mediana e frequências acumuladas",
+      "pageRef": 18
+     },
+     {
+      "topic": "Fórmula da mediana para dados em classes",
+      "pageRef": 19
+     },
+     {
+      "topic": "Interpretação do resultado (50% abaixo, 50% acima)",
+      "pageRef": 20
+     },
+     {
+      "topic": "Interpolação linear",
+      "pageRef": 21
+     },
+     {
+      "topic": "Mediana com frequências em porcentagem",
+      "pageRef": 25
+     },
+     {
+      "topic": "1ª propriedade: soma de constante",
+      "pageRef": 28
+     },
+     {
+      "topic": "2ª propriedade: multiplicação por constante",
+      "pageRef": 29
+     },
+     {
+      "topic": "3ª propriedade: desvios absolutos mínimos na mediana",
+      "pageRef": 30
+     }
+    ]
+   },
+   "questions": [
+    {
+     "topic": "Mediana em classes",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 19,
+     "statement": "O tempo (em minutos) de 50 atendimentos foi agrupado em classes: 10 ⊢ 20 (6 atendimentos), 20 ⊢ 30 (14), 30 ⊢ 40 (20) e 40 ⊢ 50 (10). Pelo método da interpolação linear, a mediana é",
+     "support": null,
+     "options": [
+      "30,0",
+      "31,5",
+      "32,5",
+      "34,0",
+      "35,0"
+     ],
+     "answer": "C",
+     "explanation": "A metade de Σf é 25. As acumuladas são 6, 20, 40 e 50; a classe mediana é 30 ⊢ 40 (primeira acumulada ≥ 25). Md = 30 + [(25 − 20) ÷ 20] × 10 = 32,5. O valor 35 seria o ponto médio da classe, e não a mediana interpolada."
+    },
+    {
+     "topic": "Classe mediana",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 18,
+     "statement": "Uma distribuição de 60 observações tem frequências acumuladas 8, 21, 37, 52 e 60 em suas cinco classes. A classe mediana é a",
+     "support": null,
+     "options": [
+      "2ª classe.",
+      "3ª classe.",
+      "4ª classe.",
+      "5ª classe.",
+      "1ª classe."
+     ],
+     "answer": "B",
+     "explanation": "A metade de Σf é 30. A classe mediana é a primeira cuja frequência acumulada é igual ou superior a 30; como 21 < 30 ≤ 37, trata-se da 3ª classe."
+    },
+    {
+     "topic": "Elementos da fórmula da mediana",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 19,
+     "statement": "Na fórmula da mediana para dados agrupados em classes, Md = l_inf + [(Σf/2 − fac_ant) ÷ f_i] × h, o termo fac_ant representa",
+     "support": null,
+     "options": [
+      "a frequência acumulada da própria classe mediana.",
+      "a frequência simples da classe anterior à classe mediana.",
+      "o ponto médio da classe mediana.",
+      "a frequência acumulada da classe anterior à classe mediana.",
+      "o número de classes anteriores à classe mediana."
+     ],
+     "answer": "D",
+     "explanation": "fac_ant é a frequência acumulada até a classe imediatamente anterior à classe mediana, ou seja, quantas observações ficam abaixo do limite inferior dessa classe. A frequência f_i e a amplitude h pertencem à classe mediana."
+    },
+    {
+     "topic": "Mediana com frequências percentuais",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 25,
+     "statement": "A distribuição das idades de candidatos é: 18 ⊢ 24, 15%; 24 ⊢ 30, 40%; 30 ⊢ 36, 25%; 36 ⊢ 48, 20%. Pelo método da interpolação linear, a idade mediana é, em anos,",
+     "support": null,
+     "options": [
+      "27,00",
+      "30,00",
+      "28,50",
+      "31,50",
+      "29,25"
+     ],
+     "answer": "E",
+     "explanation": "As acumuladas são 15%, 55%, 80% e 100%; a classe mediana é 24 ⊢ 30. Md = 24 + [(50 − 15) ÷ 40] × 6 = 24 + 5,25 = 29,25. O valor 27 é o ponto médio da classe mediana."
+    },
+    {
+     "topic": "Extremos não determinam a mediana",
+     "pattern": "caso",
+     "difficulty": 2,
+     "pageRef": 24,
+     "statement": "Em um relatório, consta que os vencimentos de um grupo de servidores variam entre R$ 2.000 e R$ 12.000. Com base apenas nessa informação, a respeito da mediana desses vencimentos, é correto afirmar que",
+     "support": null,
+     "options": [
+      "é igual a R$ 7.000, ponto médio entre o mínimo e o máximo.",
+      "é necessariamente maior que a média.",
+      "é necessariamente igual à média.",
+      "é inferior a R$ 7.000.",
+      "não pode ser determinada, pois depende de como os valores se distribuem entre os extremos."
+     ],
+     "answer": "E",
+     "explanation": "Os valores mínimo e máximo, por si sós, não bastam para determinar a mediana: ela depende das frequências, isto é, de como os dados se distribuem entre os extremos. O ponto médio entre os extremos não tem relação necessária com ela."
+    },
+    {
+     "topic": "Frequências definidas por expressão",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 26,
+     "statement": "Uma distribuição tem cinco classes de amplitude 10, a partir de 0 (0 ⊢ 10, 10 ⊢ 20, ..., 40 ⊢ 50). A frequência da i-ésima classe é dada por f_i = 2i + 2, para i de 1 a 5. A mediana, pelo método da interpolação linear, é",
+     "support": null,
+     "options": [
+      "30",
+      "35",
+      "28",
+      "34",
+      "32"
+     ],
+     "answer": "E",
+     "explanation": "As frequências são 4, 6, 8, 10 e 12 (Σf = 40). A metade é 20; as acumuladas são 4, 10, 18, 28 e 40, logo a classe mediana é a 4ª, 30 ⊢ 40. Md = 30 + [(20 − 18) ÷ 10] × 10 = 32."
+    },
+    {
+     "topic": "Interpolação linear",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 21,
+     "statement": "A fórmula da mediana para dados agrupados em classes decorre do método da interpolação linear. Esse método estima a mediana supondo que, dentro da classe mediana, as observações",
+     "support": null,
+     "options": [
+      "se distribuem de modo uniforme ao longo do intervalo.",
+      "se concentram no limite inferior da classe.",
+      "se concentram no ponto médio da classe.",
+      "coincidem com o limite superior da classe.",
+      "seguem uma distribuição em forma de sino."
+     ],
+     "answer": "A",
+     "explanation": "A interpolação linear trata a frequência acumulada como uma reta dentro da classe, o que equivale a supor distribuição uniforme das observações no intervalo e permite usar semelhança de triângulos para localizar o ponto de 50%."
+    },
+    {
+     "topic": "Propriedade da mediana: soma de constante",
+     "pattern": "calculo",
+     "difficulty": 1,
+     "pageRef": 28,
+     "statement": "A mediana dos salários de um grupo é R$ 3.400. Todos recebem um abono fixo de R$ 250. A nova mediana é",
+     "support": null,
+     "options": [
+      "R$ 3.400",
+      "R$ 3.425",
+      "R$ 3.900",
+      "R$ 3.650",
+      "R$ 3.150"
+     ],
+     "answer": "D",
+     "explanation": "Somando uma constante a todos os valores, a mediana também fica acrescida dessa constante: 3.400 + 250 = 3.650."
+    },
+    {
+     "topic": "Propriedade da mediana: transformação linear",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 29,
+     "statement": "A mediana de uma variável x é 18. Uma nova variável é definida por y = 4x + 6. A mediana de y é",
+     "support": null,
+     "options": [
+      "24",
+      "72",
+      "78",
+      "108",
+      "42"
+     ],
+     "answer": "C",
+     "explanation": "A multiplicação por uma constante multiplica a mediana, e a soma de uma constante a acrescenta: 4 × 18 + 6 = 78. O valor 72 desconsidera a soma de 6, e 108 resulta de multiplicar por (4 + 6)."
+    },
+    {
+     "topic": "Desvios absolutos e mediana",
+     "pattern": "caso",
+     "difficulty": 3,
+     "pageRef": 30,
+     "statement": "Para o conjunto {1, 4, 8, 31}, entre os valores a seguir, aquele que torna mínima a soma dos desvios absolutos em relação a ele, isto é, o somatório de |xi − a|, é",
+     "support": null,
+     "options": [
+      "3",
+      "9",
+      "11",
+      "15",
+      "6"
+     ],
+     "answer": "E",
+     "explanation": "A soma dos desvios absolutos é mínima quando a é a mediana; com n par, qualquer valor entre os dois termos centrais (4 e 8) serve, e a mediana convencionada é 6. Para a = 6 a soma é 5 + 2 + 2 + 25 = 34; para 3, 9, 11 e 15 é maior. O valor 11 é a média, que minimiza a soma dos quadrados, não a dos módulos."
+    },
+    {
+     "topic": "Desvios absolutos em relação à mediana",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 30,
+     "statement": "Para o conjunto {1, 2, 3, 4, 100}, a soma dos desvios absolutos em relação à mediana, isto é, o somatório de |xi − Md|, é",
+     "support": null,
+     "options": [
+      "156",
+      "110",
+      "103",
+      "101",
+      "98"
+     ],
+     "answer": "D",
+     "explanation": "A mediana é 3. Os módulos dos desvios são 2, 1, 0, 1 e 97, cuja soma é 101. Em relação à média (22), a soma seria 156, valor maior, pois a soma dos desvios absolutos é mínima na mediana."
+    },
+    {
+     "topic": "Propriedades da mediana: afirmativas",
+     "pattern": "assertivas",
+     "difficulty": 3,
+     "pageRef": 28,
+     "statement": "Considere as afirmações. I. Somando uma constante a todos os valores, a mediana fica aumentada dessa constante. II. Multiplicando todos os valores por uma constante, a mediana fica multiplicada por essa constante. III. A soma dos quadrados dos desvios é mínima quando calculada em relação à mediana. Está(ão) correta(s)",
+     "support": null,
+     "options": [
+      "I e II, apenas.",
+      "I, apenas.",
+      "III, apenas.",
+      "II e III, apenas.",
+      "I, II e III."
+     ],
+     "answer": "A",
+     "explanation": "I e II são propriedades da mediana. A III está errada: a soma dos quadrados dos desvios é mínima em relação à média; em relação à mediana é mínima a soma dos desvios absolutos."
+    },
+    {
+     "topic": "Classe mediana com acumulada igual à metade",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 18,
+     "statement": "Uma distribuição de 50 observações tem as classes 0 ⊢ 10 (10 observações), 10 ⊢ 20 (15), 20 ⊢ 30 (20) e 30 ⊢ 40 (5). A mediana pelo método da interpolação linear é",
+     "support": null,
+     "options": [
+      "25",
+      "22,5",
+      "20",
+      "15",
+      "10"
+     ],
+     "answer": "C",
+     "explanation": "A metade de Σf é 25. As acumuladas são 10, 25, 45 e 50; a primeira igual ou superior a 25 é a da 2ª classe (10 ⊢ 20). Md = 10 + [(25 − 10) ÷ 15] × 10 = 20, o limite superior da classe, pois a acumulada coincide exatamente com a metade."
+    }
+   ]
+  },
+  {
+   "id": "estatistica/a02/s03",
+   "bizu": {
+    "summary": [
+     "**Quartis** são três valores (Q1, Q2, Q3) que dividem a série em quatro partes de 25%. Q1 deixa 25% abaixo; **Q2 = mediana** (50%); Q3 deixa 75% abaixo e 25% acima.",
+     "**Quintis** (5 partes), **decis** (10) e **percentis** (100) seguem a mesma lógica. A fórmula dos quartis é a da mediana com o termo Σf/2 trocado por **k · Σf / 4** (k = 1, 2, 3).",
+     "**Dados não agrupados**: ordene, calcule a posição **P(Qk) = k · n / 4**, tome a posição **mais próxima** no rol e leia o valor. Para Q2, use o procedimento da mediana ((n+1)/2 se ímpar; média das posições n/2 e n/2+1 se par).",
+     "A aproximação da posição faz com que a fórmula k·n/4 aplicada a Q2 nem sempre reproduza a mediana convencionada — por isso Q2 é tratado como mediana.",
+     "**Dados agrupados sem classes**: posição = **k · Σf / 4**; olhe a coluna de frequência acumulada e escolha a **primeira acumulada igual ou superior** à posição; o valor da variável nessa linha é o quartil.",
+     "**Dados agrupados em classes**: posição k · Σf / 4, identificar a classe correspondente e aplicar **Qk = l_inf + [ (k·Σf/4 − fac_ant) / f_Qk ] × h**, com os elementos tomados da classe do quartil."
+    ],
+    "teoria": [
+     {
+      "statement": "O segundo quartil (Q2) coincide com a mediana da distribuição.",
+      "isTrue": true,
+      "explanation": "Q2 separa 50% dos elementos abaixo e 50% acima, exatamente como a mediana."
+     },
+     {
+      "statement": "Existem quatro quartis, Q1, Q2, Q3 e Q4, que dividem a série em quatro partes iguais.",
+      "isTrue": false,
+      "explanation": "Para dividir em quatro partes bastam três separadores: Q1, Q2 e Q3."
+     },
+     {
+      "statement": "Para dados não agrupados, a posição do quartil de ordem k é obtida, de forma aproximada, por k · n / 4, com k = 1, 2 ou 3.",
+      "isTrue": true,
+      "explanation": "Após ordenar, identifica-se a posição mais próxima do resultado e lê-se o valor nessa posição."
+     },
+     {
+      "statement": "Na fórmula do quartil para dados em classes, o termo Σf/2 da mediana é mantido, sem alteração, para qualquer valor de k.",
+      "isTrue": false,
+      "explanation": "O termo é substituído por k · Σf / 4, em que k indica a ordem do quartil."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "O terceiro quartil deixa 75% dos elementos abaixo dele e 25% acima.",
+      "isTrue": true,
+      "explanation": "Q3 corresponde à separação dos primeiros 75% da série ordenada."
+     },
+     {
+      "statement": "Em dados agrupados sem classes, o quartil é o valor associado à última frequência acumulada menor que a posição k · Σf / 4.",
+      "isTrue": false,
+      "explanation": "Escolhe-se a primeira frequência acumulada IGUAL OU SUPERIOR à posição calculada."
+     },
+     {
+      "statement": "Em um rol com 16 valores, a posição de Q3 é a 12ª.",
+      "isTrue": true,
+      "explanation": "P(Q3) = 3 · 16 / 4 = 12."
+     },
+     {
+      "statement": "Para dados em classes, o quartil é lido diretamente na tabela de frequências acumuladas, sem necessidade de interpolação.",
+      "isTrue": false,
+      "explanation": "Depois de localizar a classe do quartil, aplica-se a fórmula de interpolação com l_inf, fac_ant, f e h dessa classe."
+     },
+     {
+      "statement": "No cálculo de um quartil para dados em classes, h é a amplitude da classe em que o quartil se encontra.",
+      "isTrue": true,
+      "explanation": "Todos os elementos da fórmula (l_inf, f, h) são tirados da classe do quartil considerado; fac_ant vem da classe anterior."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Quartis: Q1, Q2 e Q3; Q2 = mediana",
+      "pageRef": 33
+     },
+     {
+      "topic": "Quartil para dados não agrupados: posição k·n/4",
+      "pageRef": 34
+     },
+     {
+      "topic": "Exemplo de Q1, Q2 e Q3 com 16 valores",
+      "pageRef": 35
+     },
+     {
+      "topic": "Quartil para dados agrupados sem classes",
+      "pageRef": 36
+     },
+     {
+      "topic": "Tratamento de Q2 como mediana",
+      "pageRef": 37
+     },
+     {
+      "topic": "Quartil para dados em classes: fórmula",
+      "pageRef": 40
+     },
+     {
+      "topic": "Exemplo numérico com Q1, Q2 e Q3 em classes",
+      "pageRef": 41
+     }
+    ]
+   },
+   "questions": [
+    {
+     "topic": "Significado do terceiro quartil",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 33,
+     "statement": "O terceiro quartil (Q3) de uma série ordenada deixa",
+     "support": null,
+     "options": [
+      "75% dos valores abaixo dele e 25% acima.",
+      "25% dos valores abaixo dele e 75% acima.",
+      "50% dos valores abaixo dele e 50% acima.",
+      "90% dos valores abaixo dele e 10% acima.",
+      "33% dos valores abaixo dele e 67% acima."
+     ],
+     "answer": "A",
+     "explanation": "Os quartis dividem a série em quatro partes de 25% cada. Q1 deixa 25% abaixo; Q2 (a mediana) deixa 50%; e Q3 deixa 75% abaixo e 25% acima."
+    },
+    {
+     "topic": "Fórmula dos quartis",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 34,
+     "statement": "Na fórmula do quartil para dados agrupados em classes, em comparação com a fórmula da mediana, o termo Σf/2 é substituído por",
+     "support": null,
+     "options": [
+      "k · Σf / 10, com k de 1 a 9.",
+      "k · Σf / 4, com k de 1 a 3.",
+      "k · Σf / 100, com k de 1 a 99.",
+      "Σf / 4, para qualquer quartil.",
+      "k · Σf / 5, com k de 1 a 4."
+     ],
+     "answer": "B",
+     "explanation": "A posição do quartil de ordem k é k · Σf ÷ 4, com k = 1, 2 ou 3. Para decis e percentis a divisão é por 10 e por 100, respectivamente."
+    },
+    {
+     "topic": "Quartis em dados não agrupados",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 35,
+     "statement": "Os valores 37, 29, 41, 33, 26, 45, 31, 38, 28, 35, 43, 30, 39, 27, 34, 42, 32, 36, 40, 25 formam uma amostra de 20 observações. Os quartis Q1 e Q3, calculados pela posição k · n ÷ 4, são, respectivamente,",
+     "support": null,
+     "options": [
+      "28 e 38.",
+      "30 e 40.",
+      "29 e 38.",
+      "27 e 41.",
+      "29 e 39."
+     ],
+     "answer": "E",
+     "explanation": "Ordenando a amostra (25, 26, 27, 28, 29, 30, ..., 45, sem o 44), as posições são 1 · 20 ÷ 4 = 5 para Q1 e 3 · 20 ÷ 4 = 15 para Q3. O 5º termo é 29 e o 15º é 39."
+    },
+    {
+     "topic": "Posição aproximada do quartil",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 34,
+     "statement": "Em um rol de 15 valores (64, 52, 71, 58, 80, 47, 69, 75, 55, 62, 90, 49, 66, 73, 84), os quartis Q1 e Q3, calculados pela posição mais próxima de k · n ÷ 4, são, respectivamente,",
+     "support": null,
+     "options": [
+      "52 e 75.",
+      "55 e 73.",
+      "58 e 71.",
+      "55 e 75.",
+      "52 e 73."
+     ],
+     "answer": "B",
+     "explanation": "Ordenado: 47, 49, 52, 55, 58, 62, 64, 66, 69, 71, 73, 75, 80, 84, 90. A posição de Q1 é 15 ÷ 4 = 3,75, aproximada para a 4ª (55); a de Q3 é 45 ÷ 4 = 11,25, aproximada para a 11ª (73)."
+    },
+    {
+     "topic": "Segundo quartil",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 34,
+     "statement": "O rol 7, 9, 10, 12, 13, 15, 16, 18, 19, 22, 25, 30 tem 12 observações. O segundo quartil (Q2) desse rol é",
+     "support": null,
+     "options": [
+      "15",
+      "15,5",
+      "16",
+      "14",
+      "13"
+     ],
+     "answer": "B",
+     "explanation": "Para Q2 adota-se o procedimento da mediana. Com n = 12 (par), é a média dos termos de posição 6 e 7: (15 + 16) ÷ 2 = 15,5. Esse procedimento é preferido porque a posição 2 · n ÷ 4 depende de aproximação e nem sempre reproduz a mediana convencionada."
+    },
+    {
+     "topic": "Por que Q2 segue o procedimento da mediana",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 34,
+     "statement": "Para obter o segundo quartil (Q2) de dados não agrupados, a aula recomenda usar o procedimento da mediana, e não a posição 2 · n ÷ 4, porque",
+     "support": null,
+     "options": [
+      "Q2 não coincide com a mediana.",
+      "a posição 2 · n ÷ 4 só vale para dados agrupados em classes.",
+      "Q2 é calculado apenas com n ímpar.",
+      "a posição calculada depende de aproximação e nem sempre leva ao valor convencionado para a mediana.",
+      "a mediana é sempre um elemento da série, e Q2 não."
+     ],
+     "answer": "D",
+     "explanation": "Q2 coincide com a mediana, e o cálculo por 2 · n ÷ 4, por exigir arredondamento da posição, nem sempre reproduz a mediana convencionada (média dos dois centrais para n par). Por isso Q2 é tratado como a mediana."
+    },
+    {
+     "topic": "Quartis em dados agrupados por valor",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 36,
+     "statement": "O número de infrações por viatura em um mês é dado pela tabela: 0 infração, 6 viaturas; 1, 10; 2, 10; 3, 10; 4, 4. Os quartis Q1 e Q3 são, respectivamente,",
+     "support": null,
+     "options": [
+      "1 e 3.",
+      "0 e 3.",
+      "1 e 2.",
+      "2 e 3.",
+      "1 e 4."
+     ],
+     "answer": "A",
+     "explanation": "Com Σf = 40, as posições são 10 (Q1) e 30 (Q3). As acumuladas são 6, 16, 26, 36 e 40. A primeira acumulada ≥ 10 é a do valor 1, e a primeira ≥ 30 é a do valor 3."
+    },
+    {
+     "topic": "Primeiro quartil em classes",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 40,
+     "statement": "As idades de 80 candidatos foram agrupadas assim: 0 ⊢ 20 (8 candidatos), 20 ⊢ 40 (20), 40 ⊢ 60 (32) e 60 ⊢ 80 (20). Pelo método da interpolação linear, o primeiro quartil é",
+     "support": null,
+     "options": [
+      "25",
+      "28",
+      "30",
+      "32",
+      "36"
+     ],
+     "answer": "D",
+     "explanation": "A posição de Q1 é 80 ÷ 4 = 20. As acumuladas são 8, 28, 60 e 80; a classe de Q1 é 20 ⊢ 40. Q1 = 20 + [(20 − 8) ÷ 20] × 20 = 32."
+    },
+    {
+     "topic": "Terceiro quartil em classes",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 41,
+     "statement": "Na distribuição de 80 candidatos do exercício anterior (0 ⊢ 20: 8; 20 ⊢ 40: 20; 40 ⊢ 60: 32; 60 ⊢ 80: 20), o terceiro quartil, pelo método da interpolação linear, é",
+     "support": null,
+     "options": [
+      "50",
+      "55",
+      "60",
+      "65",
+      "70"
+     ],
+     "answer": "C",
+     "explanation": "A posição de Q3 é 3 · 80 ÷ 4 = 60. As acumuladas são 8, 28, 60 e 80; a primeira ≥ 60 é a da 3ª classe, 40 ⊢ 60. Q3 = 40 + [(60 − 28) ÷ 32] × 20 = 40 + 20 = 60, o limite superior da classe."
+    },
+    {
+     "topic": "Segundo quartil em classes",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 42,
+     "statement": "Uma distribuição de 60 observações tem as classes 0 ⊢ 10 (8), 10 ⊢ 20 (16), 20 ⊢ 30 (24) e 30 ⊢ 40 (12). Pelo método da interpolação linear, o segundo quartil é",
+     "support": null,
+     "options": [
+      "20",
+      "21",
+      "22,5",
+      "25",
+      "27,5"
+     ],
+     "answer": "C",
+     "explanation": "A posição de Q2 é 2 · 60 ÷ 4 = 30. As acumuladas são 8, 24, 48 e 60; a classe é 20 ⊢ 30. Q2 = 20 + [(30 − 24) ÷ 24] × 10 = 22,5, que é também a mediana da distribuição."
+    },
+    {
+     "topic": "Interpretação dos quartis",
+     "pattern": "caso",
+     "difficulty": 1,
+     "pageRef": 43,
+     "statement": "Em uma distribuição de pesos, o primeiro quartil é 48 kg e o terceiro quartil é 71 kg. Pode-se afirmar que",
+     "support": null,
+     "options": [
+      "50% dos pesos são inferiores a 48 kg.",
+      "75% dos pesos são inferiores a 48 kg.",
+      "25% dos pesos estão entre 48 kg e 71 kg.",
+      "25% dos pesos são inferiores a 48 kg e 25% são superiores a 71 kg.",
+      "75% dos pesos são superiores a 71 kg."
+     ],
+     "answer": "D",
+     "explanation": "Q1 deixa 25% dos valores abaixo e Q3 deixa 25% acima; portanto, 50% dos valores estão entre 48 kg e 71 kg."
+    },
+    {
+     "topic": "Posições aproximadas dos quartis",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 34,
+     "statement": "Em um rol de 17 valores, os quartis Q1 e Q3 são obtidos nas posições mais próximas de k · n ÷ 4. Essas posições são, respectivamente,",
+     "support": null,
+     "options": [
+      "4 e 12.",
+      "5 e 13.",
+      "4,25 e 12,75.",
+      "5 e 12.",
+      "4 e 13."
+     ],
+     "answer": "E",
+     "explanation": "As posições são 17 ÷ 4 = 4,25 e 51 ÷ 4 = 12,75. A posição mais próxima da primeira é a 4ª, e a da segunda é a 13ª."
+    },
+    {
+     "topic": "Quartis: afirmativas",
+     "pattern": "assertivas",
+     "difficulty": 2,
+     "pageRef": 33,
+     "statement": "Considere as afirmações. I. O segundo quartil coincide com a mediana. II. O terceiro quartil separa os primeiros 75% dos elementos da série, ou os últimos 25%. III. Os quartis dividem a série em cinco partes iguais. Está(ão) correta(s)",
+     "support": null,
+     "options": [
+      "I, apenas.",
+      "I e II, apenas.",
+      "III, apenas.",
+      "II e III, apenas.",
+      "I, II e III."
+     ],
+     "answer": "B",
+     "explanation": "I e II estão corretas. Os quartis são três valores (Q1, Q2 e Q3) que dividem a série em quatro partes de 25%; dividir em cinco partes é função dos quintis."
+    }
+   ]
+  },
+  {
+   "id": "estatistica/a02/s04",
+   "bizu": {
+    "summary": [
+     "**Decis** são nove valores (D1 a D9) que dividem a série em dez partes de 10%. **D5 coincide com a mediana**; D1 separa os primeiros 10% e D9 os primeiros 90% (ou os últimos 10%).",
+     "A fórmula é a da mediana com Σf/2 trocado por **k · Σf / 10**, com k de 1 a 9.",
+     "💡 **Exemplo Prático:** **Dados não agrupados**: ordene, calcule a posição **k · n / 10**, tome a posição mais próxima do rol e leia o valor. Ex.: com n = 10, D8 ocupa a 8ª posição.",
+     "**Dados agrupados sem classes**: posição **k · Σf / 10**; escolha a primeira frequência acumulada **igual ou superior** à posição e leia o valor da variável.",
+     "**Dados agrupados em classes**: **Dk = l_inf + [ (k·Σf/10 − fac_ant) / f_Dk ] × h**, com os dados da classe do decil (limite inferior, frequência simples, amplitude) e a acumulada da classe anterior.",
+     "Se a posição cai logo na primeira classe, fac_ant = 0 (não há classe anterior).",
+     "O resultado do decil em classes sempre fica dentro dos limites da classe em que ele foi localizado."
+    ],
+    "teoria": [
+     {
+      "statement": "Os decis são nove valores que dividem a série ordenada em dez partes com a mesma quantidade de elementos.",
+      "isTrue": true,
+      "explanation": "D1, D2, ..., D9 separam a série em partes de 10% cada."
+     },
+     {
+      "statement": "O quinto decil (D5) coincide com o primeiro quartil.",
+      "isTrue": false,
+      "explanation": "D5 separa 50% dos elementos e, por isso, coincide com a mediana (Q2)."
+     },
+     {
+      "statement": "Para dados não agrupados, a posição do decil de ordem k é, de forma aproximada, k · n / 10.",
+      "isTrue": true,
+      "explanation": "Depois da ordenação, usa-se a posição mais próxima do resultado."
+     },
+     {
+      "statement": "O nono decil (D9) deixa 10% dos elementos abaixo dele e 90% acima.",
+      "isTrue": false,
+      "explanation": "D9 deixa 90% abaixo e 10% acima."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "Em um conjunto ordenado com 10 elementos, o oitavo decil ocupa a 8ª posição do rol.",
+      "isTrue": true,
+      "explanation": "P(D8) = 8 · 10 / 10 = 8."
+     },
+     {
+      "statement": "Para dados agrupados em classes, a fórmula do decil usa o termo k · Σf / 100.",
+      "isTrue": false,
+      "explanation": "Para decis o termo é k · Σf / 10; é o percentil que usa k · Σf / 100."
+     },
+     {
+      "statement": "O segundo quartil, o quinto decil e a mediana representam o mesmo ponto de divisão da distribuição.",
+      "isTrue": true,
+      "explanation": "Todos separam 50% dos elementos abaixo e 50% acima."
+     },
+     {
+      "statement": "Em dados agrupados sem intervalos de classe, o decil é o valor da variável correspondente à primeira frequência acumulada igual ou superior à posição k · Σf / 10.",
+      "isTrue": true,
+      "explanation": "É o mesmo critério usado para quartis e percentis."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Decis: D1 a D9 e D5 = mediana",
+      "pageRef": 44
+     },
+     {
+      "topic": "Decil para dados não agrupados: posição k·n/10",
+      "pageRef": 44
+     },
+     {
+      "topic": "Exemplo de D1 e D8 em um rol",
+      "pageRef": 45
+     },
+     {
+      "topic": "Decil para dados agrupados sem classes",
+      "pageRef": 46
+     },
+     {
+      "topic": "Decil para dados em classes: fórmula",
+      "pageRef": 49
+     },
+     {
+      "topic": "Exemplo de D1, D2 e D7 em classes",
+      "pageRef": 51
+     }
+    ]
+   },
+   "questions": [
+    {
+     "topic": "Decil e mediana",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 44,
+     "statement": "Entre os decis D1 a D9, o que coincide com a mediana é o",
+     "support": null,
+     "options": [
+      "D5.",
+      "D1.",
+      "D4.",
+      "D9.",
+      "D10."
+     ],
+     "answer": "A",
+     "explanation": "O quinto decil separa 50% dos elementos, exatamente como a mediana (D5 = Md = Q2). Existem nove decis, de D1 a D9; não há D10."
+    },
+    {
+     "topic": "Decis em dados não agrupados",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 45,
+     "statement": "Os tempos de reação de 20 militares, em milissegundos ÷ 10, foram: 35, 30, 23, 38, 17, 15, 41, 9, 28, 3, 20, 14, 32, 18, 26, 8, 5, 25, 12, 21. Pela posição k · n ÷ 10, os decis D3 e D8 são, respectivamente,",
+     "support": null,
+     "options": [
+      "12 e 28.",
+      "14 e 30.",
+      "15 e 32.",
+      "14 e 28.",
+      "12 e 30."
+     ],
+     "answer": "B",
+     "explanation": "Ordenando os 20 valores, D3 ocupa a posição 3 · 20 ÷ 10 = 6 e D8, a posição 8 · 20 ÷ 10 = 16. O 6º termo é 14 e o 16º é 30."
+    },
+    {
+     "topic": "Posição aproximada do decil",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 44,
+     "statement": "Em um rol de 14 valores (46, 49, 27, 40, 55, 8, 21, 11, 29, 24, 15, 33, 38, 16), os decis D3 e D7, calculados pela posição mais próxima de k · n ÷ 10, são, respectivamente,",
+     "support": null,
+     "options": [
+      "15 e 40.",
+      "21 e 33.",
+      "16 e 40.",
+      "16 e 38.",
+      "15 e 38."
+     ],
+     "answer": "D",
+     "explanation": "Ordenado: 8, 11, 15, 16, 21, 24, 27, 29, 33, 38, 40, 46, 49, 55. D3 está na posição 3 · 14 ÷ 10 = 4,2, aproximada para a 4ª (16); D7 está em 7 · 14 ÷ 10 = 9,8, aproximada para a 10ª (38)."
+    },
+    {
+     "topic": "Decis em dados agrupados por valor",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 46,
+     "statement": "Em 100 viaturas, o número de manutenções corretivas no ano foi: 0 manutenção, 14 viaturas; 1, 22; 2, 30; 3, 24; 4, 8; 5, 2. Os decis D3 e D8 são, respectivamente,",
+     "support": null,
+     "options": [
+      "1 e 3.",
+      "1 e 2.",
+      "2 e 3.",
+      "0 e 3.",
+      "2 e 4."
+     ],
+     "answer": "A",
+     "explanation": "Com Σf = 100, as posições são 30 (D3) e 80 (D8). As acumuladas são 14, 36, 66, 90, 98 e 100. A primeira ≥ 30 é a do valor 1, e a primeira ≥ 80 é a do valor 3."
+    },
+    {
+     "topic": "Decil em classes",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 49,
+     "statement": "Uma distribuição de 40 observações tem as classes 0 ⊢ 10 (6), 10 ⊢ 20 (10), 20 ⊢ 30 (16) e 30 ⊢ 40 (8). Pelo método da interpolação linear, o terceiro decil (D3) é",
+     "support": null,
+     "options": [
+      "20",
+      "18",
+      "16",
+      "15",
+      "12"
+     ],
+     "answer": "C",
+     "explanation": "A posição de D3 é 3 · 40 ÷ 10 = 12. As acumuladas são 6, 16, 32 e 40; a classe de D3 é 10 ⊢ 20. D3 = 10 + [(12 − 6) ÷ 10] × 10 = 16."
+    },
+    {
+     "topic": "Decil na primeira classe",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 51,
+     "statement": "As alturas, em cm, de 40 recrutas foram agrupadas: 100 ⊢ 110 (8 recrutas), 110 ⊢ 120 (17) e 120 ⊢ 130 (15). Pelo método da interpolação linear, o primeiro decil (D1) é",
+     "support": null,
+     "options": [
+      "102,5",
+      "104",
+      "105",
+      "108",
+      "110"
+     ],
+     "answer": "C",
+     "explanation": "A posição de D1 é 40 ÷ 10 = 4, que está na primeira classe (acumulada 8 ≥ 4). Como não há classe anterior, fac_ant = 0: D1 = 100 + [(4 − 0) ÷ 8] × 10 = 105."
+    },
+    {
+     "topic": "Decil dentro da classe",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 52,
+     "statement": "O sétimo decil de uma distribuição em classes foi localizado na classe 60 ⊢ 70. Dos valores a seguir, o único que pode ser o D7 calculado pela interpolação linear é",
+     "support": null,
+     "options": [
+      "66,4",
+      "58,3",
+      "72,5",
+      "75,0",
+      "47,8"
+     ],
+     "answer": "A",
+     "explanation": "O resultado do decil em classes fica sempre dentro dos limites da classe em que foi localizado; logo, deve estar entre 60 e 70, e apenas 66,4 satisfaz essa condição."
+    },
+    {
+     "topic": "Interpretação do decil",
+     "pattern": "caso",
+     "difficulty": 1,
+     "pageRef": 44,
+     "statement": "Em uma turma, o quarto decil (D4) das massas corporais é 62 kg. Isso significa que",
+     "support": null,
+     "options": [
+      "60% dos alunos têm massa inferior a 62 kg.",
+      "40% dos alunos têm massa inferior a 62 kg e 60% têm massa superior.",
+      "4% dos alunos têm massa inferior a 62 kg.",
+      "40% dos alunos têm exatamente 62 kg.",
+      "metade dos alunos tem massa inferior a 62 kg."
+     ],
+     "answer": "B",
+     "explanation": "Os decis dividem a série em dez partes de 10%. O decil D4 deixa 40% dos valores abaixo dele e 60% acima. Somente D5 deixa 50% abaixo."
+    },
+    {
+     "topic": "Decis: afirmativa incorreta",
+     "pattern": "incorreta",
+     "difficulty": 2,
+     "pageRef": 44,
+     "statement": "Sobre os decis, assinale a alternativa INCORRETA.",
+     "support": null,
+     "options": [
+      "O nono decil deixa 90% dos valores acima dele.",
+      "Há nove decis, de D1 a D9.",
+      "O primeiro decil separa os primeiros 10% dos elementos.",
+      "O quinto decil coincide com a mediana.",
+      "A fórmula é a da mediana, trocando-se Σf/2 por k · Σf/10."
+     ],
+     "answer": "A",
+     "explanation": "D9 separa os primeiros 90% dos elementos: deixa 90% abaixo e 10% acima, e não o contrário. As demais afirmações descrevem corretamente os decis."
+    },
+    {
+     "topic": "Relação entre D5, Q2 e mediana",
+     "pattern": "relacao",
+     "difficulty": 1,
+     "pageRef": 44,
+     "statement": "Em uma mesma distribuição, o quinto decil (D5), o segundo quartil (Q2) e a mediana (Md) apresentam a seguinte relação:",
+     "support": null,
+     "options": [
+      "D5 < Q2 < Md.",
+      "D5 = Q2 = Md.",
+      "D5 > Q2 = Md.",
+      "D5 = Md, mas Q2 pode diferir de ambos.",
+      "Q2 = Md, mas D5 é sempre maior."
+     ],
+     "answer": "B",
+     "explanation": "As três medidas separam a série ao meio, com 50% dos valores de cada lado, e por isso coincidem: D5 = Q2 = Md."
+    }
+   ]
+  },
+  {
+   "id": "estatistica/a02/s05",
+   "bizu": {
+    "summary": [
+     "**Percentis** são 99 valores (P1 a P99) que dividem a série em cem partes de 1%. **P50 = mediana**; P1 separa o primeiro 1% e P99 os primeiros 99% (ou o último 1%).",
+     "A fórmula é a da mediana com Σf/2 trocado por **k · Σf / 100**, com k de 1 a 99.",
+     "💡 **Exemplo Prático:** **Dados não agrupados**: ordene; posição **k · n / 100**; aproxime para a posição mais próxima e leia o valor. Ex.: com n = 11, P27 tem posição 2,97, que se aproxima da 3ª.",
+     "**Dados agrupados sem classes**: posição **k · Σf / 100**; escolha o valor associado à primeira frequência acumulada igual ou superior à posição.",
+     "**Dados agrupados em classes**: **Pk = l_inf + [ (k·Σf/100 − fac_ant) / f_Pk ] × h**, usando limite inferior, frequência simples e amplitude da classe do percentil e a acumulada da classe anterior.",
+     "💡 **Exemplo Prático:** Interpretação: o valor de Pk deixa k% das observações abaixo dele. Ex.: P45 deixa 45% abaixo.",
+     "💡 **Exemplo Prático:** Com frequências em porcentagem, trabalha-se com Σf = 100% e a posição passa a ser o próprio percentual k (ex.: P75 = onde a acumulada atinge 75%)."
+    ],
+    "teoria": [
+     {
+      "statement": "Existem 99 percentis, que dividem a série ordenada em cem partes com a mesma quantidade de elementos.",
+      "isTrue": true,
+      "explanation": "P1, P2, ..., P99 separam a série em partes de 1% cada."
+     },
+     {
+      "statement": "O percentil 50 coincide com o terceiro quartil.",
+      "isTrue": false,
+      "explanation": "P50 separa metade dos elementos e coincide com a mediana (Q2); o Q3 corresponde ao percentil 75."
+     },
+     {
+      "statement": "Para dados não agrupados, a posição do percentil de ordem k é, de forma aproximada, k · n / 100.",
+      "isTrue": true,
+      "explanation": "Após ordenar, toma-se a posição mais próxima e lê-se o valor."
+     },
+     {
+      "statement": "Na fórmula do percentil para dados em classes, o termo k · Σf / 100 substitui o Σf/2 da fórmula da mediana.",
+      "isTrue": true,
+      "explanation": "É a única alteração em relação à fórmula da mediana."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "O percentil 99 deixa apenas 1% das observações abaixo dele.",
+      "isTrue": false,
+      "explanation": "P99 deixa 99% das observações abaixo e 1% acima."
+     },
+     {
+      "statement": "Em um rol de 11 valores, a posição calculada para o percentil 27 é 2,97, que se aproxima da 3ª posição.",
+      "isTrue": true,
+      "explanation": "27 × 11 / 100 = 2,97, e a posição mais próxima do rol é 3."
+     },
+     {
+      "statement": "O cálculo de um percentil só é possível quando a soma das frequências é um múltiplo de 100.",
+      "isTrue": false,
+      "explanation": "A soma das frequências pode ser qualquer valor; a posição k · Σf / 100 pode ser fracionária e é tratada por aproximação ou interpolação."
+     },
+     {
+      "statement": "Em uma distribuição com frequências em porcentagem, o percentil 75 é encontrado na classe em que a frequência acumulada atinge ou ultrapassa 75%.",
+      "isTrue": true,
+      "explanation": "Localiza-se a classe e aplica-se a interpolação usando 75% no lugar de k·Σf/100."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Percentis: P1 a P99 e P50 = mediana",
+      "pageRef": 53
+     },
+     {
+      "topic": "Percentil para dados não agrupados: posição k·n/100",
+      "pageRef": 53
+     },
+     {
+      "topic": "Exemplo de P27 e P83 em um rol",
+      "pageRef": 54
+     },
+     {
+      "topic": "Percentil para dados agrupados sem classes",
+      "pageRef": 55
+     },
+     {
+      "topic": "Percentil para dados em classes: fórmula",
+      "pageRef": 58
+     },
+     {
+      "topic": "Exemplo de P45 e P77 em classes",
+      "pageRef": 59
+     },
+     {
+      "topic": "Questão-modelo de Q1 e mediana por interpolação",
+      "pageRef": 62
+     },
+     {
+      "topic": "Percentil com frequências relativas acumuladas",
+      "pageRef": 65
+     }
+    ]
+   },
+   "questions": [
+    {
+     "topic": "Número de percentis",
+     "pattern": "lacuna",
+     "difficulty": 1,
+     "pageRef": 53,
+     "statement": "Para dividir uma série ordenada em cem partes iguais, são necessários ____ percentis, de P1 a P99.",
+     "support": null,
+     "options": [
+      "50",
+      "98",
+      "99",
+      "100",
+      "101"
+     ],
+     "answer": "C",
+     "explanation": "Para separar uma série em cem partes bastam 99 pontos de corte, assim como três quartis separam em quatro partes e nove decis, em dez. O P50 coincide com a mediana."
+    },
+    {
+     "topic": "Percentis em dados não agrupados",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 54,
+     "statement": "Em um rol de 13 valores (11, 19, 6, 22, 31, 17, 9, 14, 38, 34, 45, 27, 24), os percentis P40 e P85, calculados pela posição mais próxima de k · n ÷ 100, são, respectivamente,",
+     "support": null,
+     "options": [
+      "14 e 31.",
+      "19 e 38.",
+      "17 e 31.",
+      "14 e 34.",
+      "17 e 34."
+     ],
+     "answer": "E",
+     "explanation": "Ordenado: 6, 9, 11, 14, 17, 19, 22, 24, 27, 31, 34, 38, 45. P40 está na posição 40 · 13 ÷ 100 = 5,2, aproximada para a 5ª (17); P85 está em 85 · 13 ÷ 100 = 11,05, aproximada para a 11ª (34)."
+    },
+    {
+     "topic": "Posição de percentis",
+     "pattern": "calculo",
+     "difficulty": 1,
+     "pageRef": 53,
+     "statement": "Em um rol de 80 observações, os percentis P35 e P85 ocupam, respectivamente, as posições",
+     "support": null,
+     "options": [
+      "28 e 68.",
+      "35 e 85.",
+      "28 e 80.",
+      "35 e 68.",
+      "30 e 70."
+     ],
+     "answer": "A",
+     "explanation": "A posição é k · n ÷ 100: 35 · 80 ÷ 100 = 28 e 85 · 80 ÷ 100 = 68. As posições 35 e 85 seriam as de um rol de 100 observações."
+    },
+    {
+     "topic": "Percentis em dados agrupados por valor",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 55,
+     "statement": "O número de ocorrências atendidas por equipe em um mês foi: 1 ocorrência, 10 equipes; 2, 25; 3, 30; 4, 20; 5, 10; 6, 5. Os percentis P45 e P93 são, respectivamente,",
+     "support": null,
+     "options": [
+      "2 e 5.",
+      "3 e 6.",
+      "2 e 4.",
+      "4 e 6.",
+      "3 e 5."
+     ],
+     "answer": "E",
+     "explanation": "Com Σf = 100, as posições são 45 (P45) e 93 (P93). As acumuladas são 10, 35, 65, 85, 95 e 100. A primeira acumulada ≥ 45 corresponde ao valor 3, e a primeira ≥ 93 corresponde ao valor 5."
+    },
+    {
+     "topic": "Percentil em classes",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 58,
+     "statement": "Os tempos de 50 provas foram agrupados em classes: 40 ⊢ 50 (6), 50 ⊢ 60 (14), 60 ⊢ 70 (20) e 70 ⊢ 80 (10). Pelo método da interpolação linear, o percentil P60 é",
+     "support": null,
+     "options": [
+      "60",
+      "63",
+      "65",
+      "67",
+      "68"
+     ],
+     "answer": "C",
+     "explanation": "A posição de P60 é 60 · 50 ÷ 100 = 30. As acumuladas são 6, 20, 40 e 50; a classe de P60 é 60 ⊢ 70. P60 = 60 + [(30 − 20) ÷ 20] × 10 = 65."
+    },
+    {
+     "topic": "Percentil com posição fracionária",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 59,
+     "statement": "As massas de 100 recrutas foram agrupadas em classes de amplitude 25: 0 ⊢ 25 (10), 25 ⊢ 50 (30), 50 ⊢ 75 (40) e 75 ⊢ 100 (20), com valores em quilogramas. Pelo método da interpolação linear, o percentil P85 é",
+     "support": null,
+     "options": [
+      "75,00",
+      "80,00",
+      "81,25",
+      "85,00",
+      "87,50"
+     ],
+     "answer": "C",
+     "explanation": "A posição de P85 é 85 · 100 ÷ 100 = 85. As acumuladas são 10, 40, 80 e 100; a classe é 75 ⊢ 100 (f = 20, fac_ant = 80, h = 25). P85 = 75 + [(85 − 80) ÷ 20] × 25 = 75 + 6,25 = 81,25."
+    },
+    {
+     "topic": "Interpretação do percentil",
+     "pattern": "caso",
+     "difficulty": 1,
+     "pageRef": 60,
+     "statement": "Em um processo seletivo, a nota de um candidato correspondeu ao percentil 80 da distribuição das notas. Isso significa que",
+     "support": null,
+     "options": [
+      "ele acertou 80% das questões.",
+      "apenas 20% dos candidatos obtiveram nota inferior à dele.",
+      "sua nota foi 80.",
+      "cerca de 80% dos candidatos obtiveram nota superior à dele.",
+      "cerca de 80% dos candidatos obtiveram nota inferior à dele."
+     ],
+     "answer": "E",
+     "explanation": "O percentil Pk deixa k% das observações abaixo dele; assim, o percentil 80 supera cerca de 80% dos demais e é superado por cerca de 20%. Ele nada diz sobre o percentual de acertos."
+    },
+    {
+     "topic": "Mediana e P75 com distribuição uniforme",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 64,
+     "statement": "Em uma pesquisa de deslocamento, 20% dos entrevistados gastam menos de 10 minutos para chegar ao quartel, 60% gastam menos de 20 minutos, 90% menos de 30 minutos, e ninguém gasta 40 minutos ou mais. Supondo distribuição uniforme dentro de cada faixa de 10 minutos, a mediana e o percentil 75 valem, respectivamente,",
+     "support": null,
+     "options": [
+      "15 min e 22,5 min.",
+      "20 min e 25 min.",
+      "17,5 min e 22,5 min.",
+      "15 min e 25 min.",
+      "17,5 min e 25 min."
+     ],
+     "answer": "E",
+     "explanation": "Pela interpolação linear, a mediana está na faixa 10 ⊢ 20 (acumulada passa de 20% para 60%): Md = 10 + [(50 − 20) ÷ 40] × 10 = 17,5. O P75 está na faixa 20 ⊢ 30 (de 60% a 90%): P75 = 20 + [(75 − 60) ÷ 30] × 10 = 25."
+    },
+    {
+     "topic": "Amplitude entre Q1 e mediana",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 61,
+     "statement": "As idades de 100 servidores estão distribuídas assim: 20 ⊢ 30 (20), 30 ⊢ 40 (50), 40 ⊢ 50 (20) e 50 ⊢ 60 (10). Pelo método da interpolação linear, a diferença entre a mediana e o primeiro quartil é, em anos,",
+     "support": null,
+     "options": [
+      "3",
+      "4",
+      "5",
+      "6",
+      "10"
+     ],
+     "answer": "C",
+     "explanation": "Q1: posição 25, classe 30 ⊢ 40 (acumuladas 20, 70, 90, 100): Q1 = 30 + [(25 − 20) ÷ 50] × 10 = 31. Md: posição 50, mesma classe: Md = 30 + [(50 − 20) ÷ 50] × 10 = 36. Diferença: 36 − 31 = 5."
+    },
+    {
+     "topic": "Percentil com frequências percentuais",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 66,
+     "statement": "As notas de um simulado estão distribuídas em percentuais: 0 ⊢ 10, 15%; 10 ⊢ 20, 25%; 20 ⊢ 30, 40%; 30 ⊢ 40, 20%. Pelo método da interpolação linear, o percentil P60 é",
+     "support": null,
+     "options": [
+      "25",
+      "22",
+      "20",
+      "27,5",
+      "30"
+     ],
+     "answer": "A",
+     "explanation": "Com Σf = 100%, a posição de P60 é 60%. As acumuladas são 15%, 40%, 80% e 100%; a classe é 20 ⊢ 30. P60 = 20 + [(60 − 40) ÷ 40] × 10 = 25."
+    },
+    {
+     "topic": "Equivalência entre separatrizes",
+     "pattern": "relacao",
+     "difficulty": 2,
+     "pageRef": 53,
+     "statement": "Entre as separatrizes, o terceiro quartil e o oitavo decil equivalem, respectivamente, aos percentis",
+     "support": null,
+     "options": [
+      "P25 e P80.",
+      "P75 e P80.",
+      "P75 e P70.",
+      "P50 e P80.",
+      "P25 e P70."
+     ],
+     "answer": "B",
+     "explanation": "Q3 deixa 75% dos valores abaixo (P75) e D8 deixa 80% (P80). Já Q1 = P25, D7 = P70 e Q2 = D5 = P50."
+    },
+    {
+     "topic": "Percentis: afirmativa incorreta",
+     "pattern": "incorreta",
+     "difficulty": 2,
+     "pageRef": 53,
+     "statement": "Sobre os percentis, assinale a alternativa INCORRETA.",
+     "support": null,
+     "options": [
+      "Os percentis dividem a série ordenada em cem partes iguais.",
+      "O percentil P50 coincide com a mediana.",
+      "O percentil P99 deixa 99% dos valores acima dele.",
+      "O percentil Pk deixa k% das observações abaixo dele.",
+      "A posição de Pk em dados agrupados é k · Σf ÷ 100."
+     ],
+     "answer": "C",
+     "explanation": "P99 separa os primeiros 99% das observações: deixa 99% abaixo e apenas 1% acima. As demais afirmações estão corretas."
+    },
+    {
+     "topic": "Percentis: afirmativas",
+     "pattern": "assertivas",
+     "difficulty": 3,
+     "pageRef": 58,
+     "statement": "Considere as afirmações. I. Para frequências em porcentagem (Σf = 100%), a posição do percentil Pk é o próprio percentual k. II. Em dados agrupados em classes, o percentil é obtido com a fórmula da mediana, trocando-se Σf/2 por k · Σf/100. III. O percentil P1 deixa 99% das observações abaixo dele. Está(ão) correta(s)",
+     "support": null,
+     "options": [
+      "I e II, apenas.",
+      "I, apenas.",
+      "III, apenas.",
+      "II e III, apenas.",
+      "I, II e III."
+     ],
+     "answer": "A",
+     "explanation": "I e II estão corretas. A III é falsa: P1 separa o primeiro 1% das observações, deixando 1% abaixo e 99% acima."
+    }
+   ]
+  },
+  {
+   "id": "estatistica/a02/s06",
+   "bizu": {
+    "summary": [
+     "**Box plot** (diagrama de caixa) é um gráfico da análise exploratória que mostra a distribuição, a dispersão e os valores discrepantes (outliers). Resume **cinco medidas**: mínimo, Q1, mediana (Q2), Q3 e máximo.",
+     "Estrutura: uma **caixa** retangular que vai de Q1 a Q3, com uma linha interna na **mediana**, e duas hastes (**whiskers**, ou bigodes) ligando a caixa ao mínimo e ao máximo. Cada bigode reúne cerca de **25%** dos dados e a caixa cerca de **50%**.",
+     "**Distância (amplitude) interquartílica**: **DIQ = Q3 − Q1**.",
+     "**Outliers**: valores **abaixo de Q1 − 1,5·DIQ** ou **acima de Q3 + 1,5·DIQ**, marcados por pontos ou asteriscos.",
+     "Quando há outliers, os bigodes não chegam ao mínimo e ao máximo reais: terminam no **menor valor ≥ limite inferior** e no **maior valor ≤ limite superior**.",
+     "**Desvio quartílico (amplitude semi-interquartílica)**: **Dq = (Q3 − Q1) / 2**. Não confundir com a DIQ: aparece na aula de dispersão.",
+     "💡 **Exemplo Prático:** Se valores coincidem (ex.: mediana = Q3), as linhas se sobrepõem e a caixa ou o bigode some visualmente.",
+     "O box plot **não informa a quantidade de elementos** de cada grupo nem a média; permite **comparar distribuições** colocando vários diagramas no mesmo gráfico."
+    ],
+    "teoria": [
+     {
+      "statement": "Um box plot sintetiza a distribuição por cinco números, que são os extremos (mínimo e máximo) e os três quartis, incluindo a mediana.",
+      "isTrue": true,
+      "explanation": "Esses cinco números definem a caixa, a linha da mediana e os bigodes."
+     },
+     {
+      "statement": "A linha traçada no interior da caixa do box plot representa a média aritmética dos dados.",
+      "isTrue": false,
+      "explanation": "A linha central da caixa indica o segundo quartil, ou seja, a mediana."
+     },
+     {
+      "statement": "A distância interquartílica é calculada por Q3 − Q1.",
+      "isTrue": true,
+      "explanation": "DIQ = Q3 − Q1; é o comprimento da caixa."
+     },
+     {
+      "statement": "O desvio quartílico é igual à distância interquartílica, ambos definidos por Q3 − Q1.",
+      "isTrue": false,
+      "explanation": "O desvio quartílico é a metade dela: Dq = (Q3 − Q1) / 2."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "Valores menores que Q1 − 1,5·DIQ ou maiores que Q3 + 1,5·DIQ são considerados valores discrepantes (outliers).",
+      "isTrue": true,
+      "explanation": "Essa é a regra usada para marcar pontos isolados no box plot."
+     },
+     {
+      "statement": "Em um box plot, cada bigode contém cerca de 50% dos dados, e a caixa contém os 50% restantes.",
+      "isTrue": false,
+      "explanation": "Cada bigode reúne cerca de 25% dos dados; a caixa, entre Q1 e Q3, reúne cerca de 50%."
+     },
+     {
+      "statement": "Quando o box plot assinala outliers, o bigode superior termina no maior valor do conjunto que não ultrapassa Q3 + 1,5·DIQ.",
+      "isTrue": true,
+      "explanation": "Os bigodes ficam limitados a 1,5·DIQ; os valores além disso aparecem como pontos."
+     },
+     {
+      "statement": "Um box plot permite determinar o número de elementos de cada grupo comparado.",
+      "isTrue": false,
+      "explanation": "O diagrama mostra medidas de posição e dispersão (quartis, extremos, outliers), mas não a quantidade de observações."
+     },
+     {
+      "statement": "Se a mediana e o terceiro quartil de um conjunto têm o mesmo valor, as duas linhas se sobrepõem na extremidade da caixa.",
+      "isTrue": true,
+      "explanation": "Valores iguais para medidas descritivas alteram o aspecto visual do box plot."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Definição e cinco medidas do box plot",
+      "pageRef": 67
+     },
+     {
+      "topic": "Whiskers e outliers",
+      "pageRef": 67
+     },
+     {
+      "topic": "DIQ = Q3 - Q1 e limites de 1,5·DIQ",
+      "pageRef": 68
+     },
+     {
+      "topic": "Desvio quartílico (Q3-Q1)/2",
+      "pageRef": 68
+     },
+     {
+      "topic": "Exemplo completo de construção do box plot",
+      "pageRef": 70
+     },
+     {
+      "topic": "Box plot comparando duas distribuições",
+      "pageRef": 72
+     },
+     {
+      "topic": "Medidas coincidentes e aspecto do gráfico",
+      "pageRef": 73
+     },
+     {
+      "topic": "O que o box plot não informa (questões)",
+      "pageRef": 76
+     }
+    ]
+   },
+   "questions": [
+    {
+     "topic": "Medidas resumidas pelo box plot",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 67,
+     "statement": "O box plot (diagrama de caixa) resume um conjunto de dados por meio de cinco medidas descritivas, que são:",
+     "support": null,
+     "options": [
+      "média, mediana, moda, mínimo e máximo.",
+      "mínimo, média, desvio padrão, mediana e máximo.",
+      "primeiro decil, primeiro quartil, mediana, nono decil e máximo.",
+      "mínimo, primeiro quartil, mediana, terceiro quartil e máximo.",
+      "média, variância, mediana, Q1 e Q3."
+     ],
+     "answer": "D",
+     "explanation": "O box plot mostra mínimo, Q1, mediana (Q2), Q3 e máximo. Não traz a média nem o desvio padrão."
+    },
+    {
+     "topic": "Estrutura da caixa",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 67,
+     "statement": "Em um box plot, a caixa retangular vai do primeiro ao terceiro quartil, e cada bigode (whisker) comporta, aproximadamente, 25% dos dados. Logo, o percentual de dados no interior da caixa é de, aproximadamente,",
+     "support": null,
+     "options": [
+      "100%",
+      "75%",
+      "50%",
+      "25%",
+      "10%"
+     ],
+     "answer": "C",
+     "explanation": "De Q1 a Q3 situam-se cerca de 50% das observações; os outros 50% se dividem igualmente entre os dois bigodes (25% em cada), o que dá 25% + 50% + 25%."
+    },
+    {
+     "topic": "Limites para valores discrepantes",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 68,
+     "statement": "Em uma distribuição, Q1 = 34 e Q3 = 52. O valor a partir do qual uma observação passa a ser considerada discrepante (outlier) por excesso, segundo o critério do box plot, é superior a",
+     "support": null,
+     "options": [
+      "52",
+      "61",
+      "70",
+      "79",
+      "88"
+     ],
+     "answer": "D",
+     "explanation": "A distância interquartílica é DIQ = 52 − 34 = 18. O limite superior é Q3 + 1,5 × DIQ = 52 + 27 = 79; valores acima de 79 são discrepantes (e abaixo de 34 − 27 = 7)."
+    },
+    {
+     "topic": "Identificação de outliers",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 76,
+     "statement": "Em uma amostra, Q1 = 40 e Q3 = 56. Entre os valores 14, 62, 79 e 85, são considerados discrepantes pelo critério de 1,5 × DIQ",
+     "support": null,
+     "options": [
+      "apenas 85.",
+      "apenas 14.",
+      "14, 79 e 85.",
+      "nenhum deles.",
+      "14 e 85."
+     ],
+     "answer": "E",
+     "explanation": "DIQ = 56 − 40 = 16, e 1,5 × DIQ = 24. Os limites são 40 − 24 = 16 e 56 + 24 = 80. Assim, 14 (< 16) e 85 (> 80) são discrepantes; 62 e 79 estão dentro dos limites."
+    },
+    {
+     "topic": "Distância interquartílica e desvio quartílico",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 68,
+     "statement": "Se Q1 = 12 e Q3 = 30, a distância interquartílica (DIQ) e o desvio quartílico (Dq) valem, respectivamente,",
+     "support": null,
+     "options": [
+      "9 e 18.",
+      "18 e 18.",
+      "42 e 21.",
+      "18 e 9.",
+      "21 e 42."
+     ],
+     "answer": "D",
+     "explanation": "DIQ = Q3 − Q1 = 18, e o desvio quartílico (amplitude semi-interquartílica) é Dq = (Q3 − Q1) ÷ 2 = 9. Não se deve confundir as duas medidas."
+    },
+    {
+     "topic": "Extremos dos bigodes com outliers",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 70,
+     "statement": "Em um box plot construído com os 20 valores 38, 43, 40, 39, 48, 51, 52, 35, 36, 49, 44, 37, 46, 41, 47, 12, 50, 45, 42, 75, adota-se o critério de 1,5 × DIQ para valores discrepantes (Q1 e Q3 pelas posições k · n ÷ 4). O bigode inferior termina em",
+     "support": null,
+     "options": [
+      "12",
+      "23",
+      "35",
+      "36",
+      "38"
+     ],
+     "answer": "C",
+     "explanation": "Ordenados, Q1 = 5º termo = 38 e Q3 = 15º termo = 48; DIQ = 10 e o limite inferior é 38 − 15 = 23. O valor 12 está abaixo do limite (discrepante), e o bigode vai até o menor valor igual ou superior a 23, que é 35. O bigode superior termina em 52, pois 75 é discrepante (limite 63)."
+    },
+    {
+     "topic": "Bigodes com valores discrepantes",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 70,
+     "statement": "Em um box plot com valores discrepantes sinalizados, os bigodes (whiskers)",
+     "support": null,
+     "options": [
+      "sempre terminam no mínimo e no máximo do conjunto de dados.",
+      "sempre terminam em Q1 − 1,5·DIQ e Q3 + 1,5·DIQ, mesmo que não haja dados nesses pontos.",
+      "terminam na média menos e mais um desvio padrão.",
+      "terminam no menor e no maior valor observados que estão dentro dos limites Q1 − 1,5·DIQ e Q3 + 1,5·DIQ.",
+      "são omitidos, restando apenas a caixa."
+     ],
+     "answer": "D",
+     "explanation": "Os pontos fora dos limites são marcados individualmente, e os bigodes se estendem apenas até o menor e o maior valor ainda dentro dos limites, que podem ser maiores que o mínimo e menores que o máximo reais do conjunto."
+    },
+    {
+     "topic": "Medidas coincidentes no box plot",
+     "pattern": "caso",
+     "difficulty": 2,
+     "pageRef": 73,
+     "statement": "Em um conjunto de 11 observações, a mediana e o terceiro quartil têm o mesmo valor. No box plot desse conjunto,",
+     "support": null,
+     "options": [
+      "a linha da mediana se sobrepõe à borda superior da caixa, de modo que não aparecem três linhas distintas.",
+      "a caixa desaparece por completo.",
+      "a mediana passa a ser indicada fora da caixa.",
+      "o bigode superior ocupa metade do gráfico.",
+      "o gráfico não pode ser construído."
+     ],
+     "answer": "A",
+     "explanation": "Quando duas medidas de posição têm o mesmo valor, suas marcas se sobrepõem. Aqui a linha de Q2 coincide com a de Q3, na extremidade da caixa; o gráfico continua válido."
+    },
+    {
+     "topic": "Leitura de box plot",
+     "pattern": "caso",
+     "difficulty": 2,
+     "pageRef": 75,
+     "statement": "O box plot dos tempos de resposta de uma unidade (sem valores discrepantes) mostra: mínimo 4 min, Q1 = 8 min, mediana = 12 min, Q3 = 20 min e máximo 35 min. Assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "A distância interquartílica é de 31 min.",
+      "Cerca de metade dos tempos está entre 8 min e 20 min.",
+      "Cerca de 75% dos tempos são inferiores a 8 min.",
+      "A média dos tempos é de 12 min.",
+      "Cerca de 25% dos tempos são superiores a 20 min e 25% são inferiores a 4 min."
+     ],
+     "answer": "B",
+     "explanation": "A caixa vai de Q1 a Q3 e contém cerca de 50% dos dados. A DIQ é 20 − 8 = 12 min; 25% dos tempos ficam abaixo de 8 min; o box plot não informa a média; e nenhum valor fica abaixo do mínimo (4 min)."
+    },
+    {
+     "topic": "Informações do box plot",
+     "pattern": "incorreta",
+     "difficulty": 2,
+     "pageRef": 76,
+     "statement": "Sobre o box plot, assinale a alternativa INCORRETA.",
+     "support": null,
+     "options": [
+      "Permite visualizar valores discrepantes.",
+      "Permite comparar distribuições, ao colocar vários diagramas no mesmo gráfico.",
+      "Resume mínimo, quartis e máximo.",
+      "A linha interna da caixa indica a mediana.",
+      "Fornece a média aritmética e o número de observações de cada grupo."
+     ],
+     "answer": "E",
+     "explanation": "O box plot não informa a média nem a quantidade de elementos de cada grupo; ele mostra posição, dispersão e discrepâncias a partir dos quartis. Por isso não se pode concluir, por exemplo, que um grupo tem mais elementos que outro."
+    },
+    {
+     "topic": "Comparação de dispersões centrais",
+     "pattern": "caso",
+     "difficulty": 2,
+     "pageRef": 77,
+     "statement": "Dois box plots comparam os salários de dois setores: no setor A, Q1 = 10 e Q3 = 22; no setor B, Q1 = 14 e Q3 = 24 (valores em milhares de reais). Pode-se afirmar que",
+     "support": null,
+     "options": [
+      "o setor B tem mais funcionários que o setor A.",
+      "a distância interquartílica do setor A (12) é maior que a do setor B (10).",
+      "a distância interquartílica dos dois setores é igual.",
+      "a mediana do setor A é maior que a do setor B.",
+      "o setor A não tem valores discrepantes."
+     ],
+     "answer": "B",
+     "explanation": "DIQ(A) = 22 − 10 = 12 e DIQ(B) = 24 − 14 = 10. Os dados fornecidos não permitem comparar as medianas, o número de funcionários nem a presença de discrepantes."
+    },
+    {
+     "topic": "Box plot: afirmativas",
+     "pattern": "assertivas",
+     "difficulty": 3,
+     "pageRef": 68,
+     "statement": "Considere as afirmações sobre o box plot. I. São discrepantes os valores menores que Q1 − 1,5·DIQ ou maiores que Q3 + 1,5·DIQ. II. O desvio quartílico é igual a Q3 − Q1. III. Cada bigode comporta, aproximadamente, 25% dos dados. Está(ão) correta(s)",
+     "support": null,
+     "options": [
+      "I e III, apenas.",
+      "I, apenas.",
+      "II, apenas.",
+      "II e III, apenas.",
+      "I, II e III."
+     ],
+     "answer": "A",
+     "explanation": "I e III estão corretas. A II confunde as duas medidas: Q3 − Q1 é a distância interquartílica (DIQ), e o desvio quartílico é (Q3 − Q1) ÷ 2."
+    },
+    {
+     "topic": "Identificação de outliers com dados brutos",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 70,
+     "statement": "Uma amostra de 24 tempos tem os valores 38, 33, 47, 53, 34, 52, 43, 37, 48, 44, 51, 49, 31, 40, 46, 70, 41, 22, 36, 35, 39, 42, 50, 45. Com Q1 e Q3 obtidos pelas posições k · n ÷ 4, entre os extremos 22 e 70, pelo critério de 1,5 × DIQ é(são) discrepante(s)",
+     "support": null,
+     "options": [
+      "apenas o 22.",
+      "o 22 e o 70.",
+      "nenhum dos dois.",
+      "apenas o 70.",
+      "o 70 e também o 53."
+     ],
+     "answer": "D",
+     "explanation": "Ordenados, Q1 = 6º termo = 36 e Q3 = 18º termo = 48; DIQ = 12 e 1,5 × DIQ = 18. Os limites são 36 − 18 = 18 e 48 + 18 = 66. O valor 22 está dentro dos limites; o 70 supera 66 e é discrepante."
+    }
+   ]
+  }
+ ]
 }
