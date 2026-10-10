@@ -1,6 +1,6 @@
-// Popula a estrutura do catálogo (disciplinas, aulas, trechos, tópicos, edital, admin)
+// Popula a estrutura do catálogo (disciplinas, aulas, trechos, tópicos, edital, admin, bizus e questões)
 // Executado no build da Vercel de forma ultrarrápida (em lote com createMany)
-// para garantir que o banco de produção sempre tenha todas as disciplinas.
+// para garantir que o banco de produção sempre tenha todas as disciplinas, bizus e questões.
 import "dotenv/config";
 import fs from "node:fs";
 import path from "node:path";
@@ -26,6 +26,8 @@ console.log(`[Seed Structure] Diretório de conteúdo: ${CONTENT}`);
 const read = <T>(...p: string[]) => JSON.parse(fs.readFileSync(path.join(CONTENT, ...p), "utf-8")) as T;
 const db = new PrismaClient({ adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL }) });
 
+const chunk = <T>(xs: T[], n: number) => Array.from({ length: Math.ceil(xs.length / n) }, (_, i) => xs.slice(i * n, i * n + n));
+
 interface CatalogAula {
   id: string; number: number; title: string; shortTitle: string; kind: "theory" | "practice";
   edital: "yes" | "partial" | "no"; selectable: boolean; note?: string | null;
@@ -48,18 +50,19 @@ interface EditalFile {
   subject: string;
   items: { id: string; item: string; where?: { aula: string }[] }[];
 }
+interface BizuItemJson { statement: string; isTrue: boolean; explanation: string }
+interface QuestionJson {
+  topic?: string; pattern: string; difficulty: number; pageRef?: number; support?: string | null;
+  statement: string; options: string[]; answer: string; explanation: string; literal?: boolean;
+}
+interface ItemsFile {
+  aula: string; batch: string; status?: "DRAFT" | "APPROVED";
+  segments: { id: string; bizu?: { summary: string[]; teoria: BizuItemJson[]; revisao: BizuItemJson[] }; questions?: QuestionJson[] }[];
+}
 
 export async function seedStructure() {
-  const subjectCount = await db.subject.count();
-  const segmentCount = await db.segment.count();
-
-  if (subjectCount >= 16 && segmentCount >= 800) {
-    console.log(`[Seed Structure] Banco já possui ${subjectCount} disciplinas e ${segmentCount} trechos. Estrutura pronta!`);
-    return;
-  }
-
   const catalog = read<Catalog>("catalog.json");
-  console.log(`[Seed Structure] 1/5 Semeando ${catalog.subjects.length} disciplinas...`);
+  console.log(`[Seed Structure] 1/6 Sincronizando ${catalog.subjects.length} disciplinas...`);
 
   // 1. Disciplinas
   for (const s of catalog.subjects) {
@@ -74,21 +77,22 @@ export async function seedStructure() {
 
   // 2. Aulas
   const aulas = catalog.subjects.flatMap((s) => s.aulas.map((a) => ({ s, a })));
-  console.log(`[Seed Structure] 2/5 Semeando ${aulas.length} aulas em lote...`);
-  const aulaRows = aulas.map(({ s, a }) => ({
-    id: a.id,
-    subjectId: s.id, number: a.number, title: a.title, shortTitle: a.shortTitle,
-    kind: a.kind === "practice" ? ("PRACTICE" as const) : ("THEORY" as const),
-    edital: a.edital.toUpperCase() as "YES" | "PARTIAL" | "NO",
-    selectable: a.selectable, totalPages: a.totalPages, theoryPages: a.theoryPages, segmentCount: a.segmentCount,
-    commentedPages: a.commentedPages, listPages: a.listPages, commentedRuns: a.commentedRuns,
-    practiceLinks: a.practiceLinks as object[], printedOffset: a.printedOffset, incidence: a.incidence, note: a.note ?? null,
-    source: a.source === "authored" ? ("AUTHORED" as const) : ("BASE" as const), materialPath: a.materialPath ?? null,
-  }));
-  await db.aula.createMany({ data: aulaRows, skipDuplicates: true });
+  console.log(`[Seed Structure] 2/6 Sincronizando ${aulas.length} aulas...`);
+  for (const { s, a } of aulas) {
+    const data = {
+      subjectId: s.id, number: a.number, title: a.title, shortTitle: a.shortTitle,
+      kind: a.kind === "practice" ? ("PRACTICE" as const) : ("THEORY" as const),
+      edital: a.edital.toUpperCase() as "YES" | "PARTIAL" | "NO",
+      selectable: a.selectable, totalPages: a.totalPages, theoryPages: a.theoryPages, segmentCount: a.segmentCount,
+      commentedPages: a.commentedPages, listPages: a.listPages, commentedRuns: a.commentedRuns,
+      practiceLinks: a.practiceLinks as object[], printedOffset: a.printedOffset, incidence: a.incidence, note: a.note ?? null,
+      source: a.source === "authored" ? ("AUTHORED" as const) : ("BASE" as const), materialPath: a.materialPath ?? null,
+    };
+    await db.aula.upsert({ where: { id: a.id }, create: { id: a.id, ...data }, update: data });
+  }
 
   // 3. Tópicos e Segmentos
-  console.log(`[Seed Structure] 3/5 Semeando tópicos e trechos em lote...`);
+  console.log(`[Seed Structure] 3/6 Sincronizando tópicos e trechos...`);
   const allTopicRows: { id: string; aulaId: string; level: number; title: string; pdfPage: number; printedPage: number | null; sortOrder: number; verified: boolean; auto: boolean }[] = [];
   const allSegRows: { id: string; aulaId: string; sortOrder: number; startPage: number; endPage: number; startPrinted: number | null; endPrinted: number | null; pages: number; load: number; startTopic: string | null; startsMidTopic: boolean; stopBeforeTopic: string | null; endsMidTopic: boolean; endTopic: string | null; endsTheory: boolean; topicsCovered: string[]; estMinutes: number }[] = [];
 
@@ -117,15 +121,14 @@ export async function seedStructure() {
     }
   }
 
-  if (allTopicRows.length) {
-    await db.topic.createMany({ data: allTopicRows, skipDuplicates: true });
-  }
-  if (allSegRows.length) {
-    await db.segment.createMany({ data: allSegRows, skipDuplicates: true });
+  const existingSegCount = await db.segment.count();
+  if (existingSegCount < allSegRows.length) {
+    for (const c of chunk(allTopicRows, 1000)) await db.topic.createMany({ data: c, skipDuplicates: true });
+    for (const c of chunk(allSegRows, 500)) await db.segment.createMany({ data: c, skipDuplicates: true });
   }
 
   // 4. Edital
-  console.log(`[Seed Structure] 4/5 Semeando itens do edital em lote...`);
+  console.log(`[Seed Structure] 4/6 Sincronizando itens do edital...`);
   const planavel = new Set(aulas.filter(({ a }) => a.selectable).map(({ a }) => a.id));
   const allEditalRows: { id: string; subjectId: string; code: string; title: string; aulaIds: string[]; sortOrder: number }[] = [];
 
@@ -146,12 +149,12 @@ export async function seedStructure() {
     }
   }
 
-  if (allEditalRows.length) {
-    await db.editalItem.createMany({ data: allEditalRows, skipDuplicates: true });
+  for (const c of chunk(allEditalRows, 500)) {
+    await db.editalItem.createMany({ data: c, skipDuplicates: true });
   }
 
   // 5. Lacunas
-  console.log(`[Seed Structure] 5/5 Semeando lacunas...`);
+  console.log(`[Seed Structure] 5/6 Sincronizando lacunas...`);
   const gapRows = catalog.gaps.map((g) => ({
     id: g.id,
     subjectId: g.subject,
@@ -162,9 +165,117 @@ export async function seedStructure() {
     resolved: !!g.resolved,
     resolution: g.resolution ?? null,
   }));
-  await db.gap.createMany({ data: gapRows, skipDuplicates: true });
+  for (const c of chunk(gapRows, 100)) {
+    await db.gap.createMany({ data: c, skipDuplicates: true });
+  }
 
-  console.log(`[Seed Structure] Concluído em lote: ${catalog.subjects.length} disciplinas, ${aulas.length} aulas, ${allTopicRows.length} tópicos, ${allSegRows.length} trechos, ${allEditalRows.length} edital, ${gapRows.length} lacunas.`);
+  // 6. Bizus, C/E e Questões em lote
+  console.log(`[Seed Structure] 6/6 Sincronizando Bizus e Questões em lote...`);
+  await seedItemsBatch();
+
+  console.log(`[Seed Structure] Concluído com sucesso!`);
+}
+
+export async function seedItemsBatch() {
+  const itemsDir = path.join(CONTENT, "items");
+  if (!fs.existsSync(itemsDir)) return;
+
+  const bizuRows: { id: string; segmentId: string; summary: string; version: number }[] = [];
+  const bizuItemRows: { id: string; bizuId: string; set: "TEORIA" | "REVISAO"; statement: string; isTrue: boolean; explanation: string; sortOrder: number }[] = [];
+  const questionRows: { id: string; subjectId: string; aulaId: string; segmentId: string; topic: string | null; support: string | null; statement: string; explanation: string; difficulty: number; pattern: string; pageRef: number | null; status: "DRAFT" | "APPROVED"; batch: string | null }[] = [];
+  const optionRows: { id: string; questionId: string; label: string; text: string; isCorrect: boolean }[] = [];
+
+  const subjects = fs.readdirSync(itemsDir).filter((d) => fs.statSync(path.join(itemsDir, d)).isDirectory());
+
+  for (const sub of subjects) {
+    const files = fs.readdirSync(path.join(itemsDir, sub)).filter((f) => f.endsWith(".json"));
+    for (const f of files) {
+      const doc: ItemsFile = JSON.parse(fs.readFileSync(path.join(itemsDir, sub, f), "utf-8"));
+      const subjectId = doc.aula.split("/")[0];
+      const status = doc.status ?? "DRAFT";
+
+      for (const seg of doc.segments) {
+        if (seg.bizu) {
+          const bizuId = `bizu/${seg.id}`;
+          const summaryText = seg.bizu.summary.map((b) => (b.startsWith("-") ? b : `- ${b}`)).join("\n");
+          bizuRows.push({
+            id: bizuId,
+            segmentId: seg.id,
+            summary: summaryText,
+            version: 1,
+          });
+
+          for (const [n, item] of seg.bizu.teoria.entries()) {
+            bizuItemRows.push({
+              id: `${seg.id}/b-t${n + 1}`,
+              bizuId,
+              set: "TEORIA",
+              statement: item.statement,
+              isTrue: item.isTrue,
+              explanation: item.explanation,
+              sortOrder: n,
+            });
+          }
+
+          for (const [n, item] of seg.bizu.revisao.entries()) {
+            bizuItemRows.push({
+              id: `${seg.id}/b-r${n + 1}`,
+              bizuId,
+              set: "REVISAO",
+              statement: item.statement,
+              isTrue: item.isTrue,
+              explanation: item.explanation,
+              sortOrder: n,
+            });
+          }
+        }
+
+        for (const [n, q] of (seg.questions ?? []).entries()) {
+          const qId = `${seg.id}/q${String(n + 1).padStart(3, "0")}`;
+          questionRows.push({
+            id: qId,
+            subjectId,
+            aulaId: doc.aula,
+            segmentId: seg.id,
+            topic: q.topic ?? null,
+            support: q.support ?? null,
+            statement: q.statement,
+            explanation: q.explanation,
+            difficulty: q.difficulty,
+            pattern: q.pattern,
+            pageRef: q.pageRef ?? null,
+            status,
+            batch: doc.batch ?? null,
+          });
+
+          for (let optIdx = 0; optIdx < q.options.length; optIdx++) {
+            const label = "ABCDE"[optIdx];
+            optionRows.push({
+              id: `${qId}/${label}`,
+              questionId: qId,
+              label,
+              text: q.options[optIdx],
+              isCorrect: label === q.answer,
+            });
+          }
+        }
+      }
+    }
+  }
+
+  for (const c of chunk(bizuRows, 500)) {
+    await db.bizu.createMany({ data: c, skipDuplicates: true });
+  }
+  for (const c of chunk(bizuItemRows, 1000)) {
+    await db.bizuItem.createMany({ data: c, skipDuplicates: true });
+  }
+  for (const c of chunk(questionRows, 1000)) {
+    await db.question.createMany({ data: c, skipDuplicates: true });
+  }
+  for (const c of chunk(optionRows, 2000)) {
+    await db.questionOption.createMany({ data: c, skipDuplicates: true });
+  }
+  console.log(`[Seed Items] Sincronizados: ${bizuRows.length} bizus, ${bizuItemRows.length} itens C/E, ${questionRows.length} questões, ${optionRows.length} alternativas.`);
 }
 
 export async function seedAdmin() {

@@ -1,0 +1,1761 @@
+{
+  "aula": "estatistica/a08",
+  "batch": "w2-bizu-estatistica",
+  "status": "DRAFT",
+  "segments": [
+    {
+      "id": "estatistica/a08/s01",
+      "bizu": {
+        "summary": [
+          "**Distribuição de Bernoulli**: um único experimento com apenas dois resultados, **sucesso (X = 1)** com probabilidade **p** e **fracasso (X = 0)** com probabilidade **q = 1 − p**. Indica-se **X ~ Ber(p)**; o parâmetro é p.",
+          "**Momentos da Bernoulli**: **E(X) = p** e **V(X) = p·q**. O mesmo experimento pode gerar variáveis diferentes conforme o que se observa (ex.: face múltipla de 3, probabilidade 1/3).",
+          "**Distribuição binomial**: surge ao repetir n vezes o mesmo ensaio de Bernoulli, desde que as repetições sejam **independentes** e a **probabilidade p de sucesso não mude**. Indica-se **X ~ B(n, p)**; os parâmetros são n e p.",
+          "**Variável binomial** = **número de sucessos** nos n ensaios (soma de n Bernoullis). Pode assumir qualquer valor inteiro de **0 a n**.",
+          "**Probabilidade de k sucessos**: P(X = k) = C(n, k)·p^k·q^(n−k). O fator C(n, k) conta as ordens possíveis e as potências dão a probabilidade de uma ordem específica (k sucessos e n − k fracassos).",
+          "**Intervalos**: some probabilidades de valores excludentes (ex.: 1 ou 2 sucessos); para \"pelo menos 1\", use o complementar, **1 − P(X = 0)**.",
+          "**Amostra de população de Bernoulli**: selecionar n peças ao acaso de uma população com 20% de defeituosas é B(n, 0,2), desde que as seleções sejam independentes (com reposição ou população muito grande)."
+        ],
+        "teoria": [
+          {
+            "statement": "Em uma distribuição de Bernoulli, a variância é dada por p·q.",
+            "isTrue": true,
+            "explanation": "E(X²) = p, logo V(X) = p − p² = p(1 − p)."
+          },
+          {
+            "statement": "Na distribuição binomial, os ensaios devem ser independentes e ter probabilidades de sucesso diferentes entre si.",
+            "isTrue": false,
+            "explanation": "A mesma probabilidade de sucesso p deve valer em todos os ensaios independentes."
+          },
+          {
+            "statement": "Uma variável binomial B(n, p) pode assumir qualquer valor inteiro de 0 a n.",
+            "isTrue": true,
+            "explanation": "Representa o número de sucessos em n ensaios, que varia entre nenhum e todos."
+          },
+          {
+            "statement": "Na binomial, a probabilidade de exatamente k sucessos é C(n, k)·p^k·q^(n−k).",
+            "isTrue": true,
+            "explanation": "Soma, sobre todas as ordens possíveis, a probabilidade p^k q^(n−k)."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Em uma distribuição de Bernoulli, a esperança da variável é igual a p, probabilidade de sucesso.",
+            "isTrue": true,
+            "explanation": "E(X) = 0·q + 1·p = p."
+          },
+          {
+            "statement": "A probabilidade de pelo menos um sucesso em n ensaios de uma binomial é P(X = 1).",
+            "isTrue": false,
+            "explanation": "Pelo menos um significa X ≥ 1, calculado como 1 − P(X = 0)."
+          },
+          {
+            "statement": "Em 3 lançamentos de uma moeda honesta, P(X = 1) = 0,375 para X = número de caras.",
+            "isTrue": true,
+            "explanation": "C(3,1)·0,5·0,5² = 3 × 0,125 = 0,375."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Bernoulli: sucesso, fracasso e parâmetro p",
+            "pageRef": 13
+          },
+          {
+            "topic": "Esperança e variância da Bernoulli",
+            "pageRef": 15
+          },
+          {
+            "topic": "Condições da binomial",
+            "pageRef": 17
+          },
+          {
+            "topic": "Valores possíveis da variável binomial",
+            "pageRef": 18
+          },
+          {
+            "topic": "Probabilidade de k sucessos",
+            "pageRef": 20
+          },
+          {
+            "topic": "Intervalos e complementar",
+            "pageRef": 21
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Distribuição de Bernoulli",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 13,
+          "statement": "Em uma vistoria, um 2º Tenente examina um único extintor e registra X = 1 se ele estiver com a carga vencida e X = 0 caso contrário. Essa variável aleatória segue distribuição",
+          "support": null,
+          "options": [
+            "normal.",
+            "de Poisson.",
+            "geométrica.",
+            "hipergeométrica.",
+            "de Bernoulli."
+          ],
+          "answer": "E",
+          "explanation": "Um único ensaio com apenas dois resultados (sucesso, X = 1, ou fracasso, X = 0) caracteriza a distribuição de Bernoulli, cujo parâmetro é p. A geométrica e a de Poisson envolvem repetições ou contagens em intervalos, a hipergeométrica exige amostra sem reposição e a normal é contínua."
+        },
+        {
+          "topic": "Variância da Bernoulli",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 15,
+          "statement": "Sabe-se que 30% dos extintores de um quartel estão com a carga vencida. Escolhendo-se um extintor ao acaso, seja X = 1 se ele estiver vencido e X = 0 caso contrário. A variância de X é igual a",
+          "support": null,
+          "options": [
+            "0,09.",
+            "0,30.",
+            "0,42.",
+            "0,21.",
+            "0,70."
+          ],
+          "answer": "D",
+          "explanation": "Na Bernoulli, V(X) = p · q = 0,3 × 0,7 = 0,21. O valor 0,30 é a esperança E(X) = p; 0,09 seria p², 0,70 é a probabilidade de fracasso q e 0,42 resultaria de 2pq."
+        },
+        {
+          "topic": "Mesmo experimento, variáveis distintas",
+          "pattern": "correta",
+          "difficulty": 3,
+          "pageRef": 14,
+          "statement": "Considere o lançamento de um dado honesto de seis faces. Sobre as variáveis aleatórias que podem ser definidas a partir desse experimento, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "Se o sucesso for obter face maior que 4, então X ~ Ber(1/2).",
+            "Se o sucesso for obter face de número primo, então E(X) = 1/3.",
+            "Se o sucesso for obter face par, então V(X) = 1/6.",
+            "O mesmo experimento não pode originar variáveis com distribuições diferentes.",
+            "Se o sucesso for obter face menor que 3, então X ~ Ber(1/3) e V(X) = 2/9."
+          ],
+          "answer": "E",
+          "explanation": "Faces 1 e 2 dão p = 2/6 = 1/3 e V = p·q = (1/3)(2/3) = 2/9. Face maior que 4 (5 e 6) tem p = 1/3; faces primas (2, 3 e 5) dão p = 1/2; face par tem V = 1/2 × 1/2 = 1/4. Um mesmo experimento pode gerar variáveis distintas conforme o que se observa."
+        },
+        {
+          "topic": "Condições da distribuição binomial",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 17,
+          "statement": "A distribuição binomial surge quando se repete n vezes o mesmo ensaio de Bernoulli. Para que o número de sucessos obtidos nessas repetições seja binomial, é necessário que os ensaios sejam",
+          "support": null,
+          "options": [
+            "dependentes, com probabilidade de sucesso decrescente.",
+            "independentes, com probabilidade de sucesso diferente em cada um.",
+            "independentes e tenham a mesma probabilidade de sucesso.",
+            "realizados até a ocorrência do primeiro sucesso.",
+            "em número infinito, com probabilidade de sucesso tendendo a zero."
+          ],
+          "answer": "C",
+          "explanation": "Repetir o mesmo ensaio exige a mesma probabilidade p em todas as repetições e independência entre elas; os parâmetros são n e p. Parar no primeiro sucesso leva à geométrica, e n infinito com p tendendo a zero leva à distribuição de Poisson."
+        },
+        {
+          "topic": "Identificação da binomial",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 17,
+          "statement": "Em qual das situações a seguir o número de sucessos pode ser modelado, em princípio, por uma distribuição binomial?",
+          "support": null,
+          "options": [
+            "Número de bolas vermelhas obtidas ao retirar 3 bolas, sem reposição, de uma urna com 8 bolas.",
+            "Número de aprovados entre 12 candidatos, cada um com 40% de chance, de modo independente.",
+            "Número de tentativas de partida em uma bomba até que o motor ligue pela primeira vez.",
+            "Número de acertos de um atirador em 10 disparos, com chance que cresce a cada tiro.",
+            "Número de chamadas recebidas por hora em uma central, com taxa média constante."
+          ],
+          "answer": "B",
+          "explanation": "A binomial exige n fixo, ensaios independentes e p constante, o que ocorre na alternativa B. A urna sem reposição gera dependência entre as extrações; contar tentativas até o primeiro êxito leva à geométrica; chance variável viola p constante; e contagens por hora em intervalo remetem à Poisson."
+        },
+        {
+          "topic": "Probabilidade de nenhum sucesso",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 18,
+          "statement": "Quatro hidrantes são vistoriados de forma independente, e cada um tem 30% de chance de apresentar vazamento. A probabilidade de que nenhum deles apresente vazamento é",
+          "support": null,
+          "options": [
+            "0,0081.",
+            "0,2401.",
+            "0,3000.",
+            "0,7000.",
+            "0,7599."
+          ],
+          "answer": "B",
+          "explanation": "Com X ~ B(4; 0,3), P(X = 0) = q^n = 0,7⁴ = 0,2401. O valor 0,0081 é 0,3⁴ (todos com vazamento), e 0,7599 é a probabilidade de pelo menos um vazamento."
+        },
+        {
+          "topic": "Probabilidade de k sucessos",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 20,
+          "statement": "Cinco militares fazem, de forma independente, um teste físico, e cada um tem 40% de chance de ser aprovado. A probabilidade de exatamente 2 serem aprovados é",
+          "support": null,
+          "options": [
+            "0,3456.",
+            "0,0346.",
+            "0,5760.",
+            "0,2304.",
+            "0,4000."
+          ],
+          "answer": "A",
+          "explanation": "P(X = 2) = C(5,2) · 0,4² · 0,6³ = 10 × 0,16 × 0,216 = 0,3456. Esquecer o fator C(5,2) leva a 0,0346; usar 0,6² no lugar de 0,6³ ou 0,4³ no lugar de 0,4² erra o número de fracassos ou de sucessos."
+        },
+        {
+          "topic": "Pelo menos um sucesso",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 21,
+          "statement": "Um prédio possui 6 detectores de fumaça independentes, e cada um tem 10% de chance de falhar durante um incêndio. A probabilidade de que pelo menos um detector falhe é, aproximadamente,",
+          "support": null,
+          "options": [
+            "0,5314.",
+            "0,4686.",
+            "0,3543.",
+            "0,6000.",
+            "0,1000."
+          ],
+          "answer": "B",
+          "explanation": "Pelo complementar, P(X ≥ 1) = 1 − P(X = 0) = 1 − 0,9⁶ = 1 − 0,5314 = 0,4686. O valor 0,5314 é a probabilidade de nenhuma falha, e 0,3543 é a de exatamente uma falha."
+        },
+        {
+          "topic": "Probabilidade de intervalo",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 21,
+          "statement": "Em 4 ensaios independentes, cada um com probabilidade de sucesso 0,3, a probabilidade de se obter 1 ou 2 sucessos é, aproximadamente,",
+          "support": null,
+          "options": [
+            "0,6762.",
+            "0,9163.",
+            "0,4116.",
+            "0,2646.",
+            "0,7599."
+          ],
+          "answer": "A",
+          "explanation": "Os eventos X = 1 e X = 2 são excludentes: 0,4116 + 0,2646 = 0,6762. O valor 0,9163 corresponde a \"no máximo 2\", e 0,7599 corresponde a \"pelo menos 1\"."
+        },
+        {
+          "topic": "Valores possíveis da binomial",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 18,
+          "statement": "Considere X ~ B(8; 0,25), isto é, binomial com n = 8 e p = 0,25. O conjunto dos valores que X pode assumir é",
+          "support": null,
+          "options": [
+            "{1, 2, ..., 8}.",
+            "{0, 1, 2, ..., 7}.",
+            "{0, 1, 2, 3, ...}, sem limite superior.",
+            "{0, 1, 2, ..., 8}.",
+            "{0; 0,25; 0,50; 0,75; 1}."
+          ],
+          "answer": "D",
+          "explanation": "A variável binomial conta sucessos em n ensaios e pode ir de nenhum sucesso (0) até todos (n = 8), assumindo apenas inteiros. A opção sem limite superior descreve variáveis como a geométrica."
+        },
+        {
+          "topic": "Soma de binomiais",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 17,
+          "statement": "X e Y são variáveis independentes, com X ~ B(6; 0,2) e Y ~ B(9; 0,2). Sobre a soma S = X + Y, é correto afirmar que ela",
+          "support": null,
+          "options": [
+            "segue distribuição binomial com n = 15 e p = 0,4.",
+            "segue distribuição binomial com n = 54 e p = 0,2.",
+            "segue distribuição binomial com n = 15 e p = 0,2.",
+            "segue distribuição de Poisson com λ = 3.",
+            "não tem distribuição conhecida, pois os valores de n diferem."
+          ],
+          "answer": "C",
+          "explanation": "Somando binomiais independentes com o mesmo p, o resultado é binomial com n igual à soma dos n (6 + 9 = 15) e o mesmo p. A Poisson com λ = 3 teria a mesma média (15 × 0,2), mas variância 3, diferente da variância 2,4 da binomial."
+        },
+        {
+          "topic": "Seleção em população de Bernoulli",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 22,
+          "statement": "Uma população de peças tem 20% de itens defeituosos. Para que o número de defeituosos em uma amostra possa ser tratado como binomial, as seleções precisam ser independentes, o que ocorre quando",
+          "support": null,
+          "options": [
+            "a retirada é feita sem reposição de um lote pequeno.",
+            "a proporção de defeituosos muda a cada peça retirada.",
+            "a retirada é feita com reposição ou a população é muito grande em relação à amostra.",
+            "o tamanho da amostra é igual ao da população.",
+            "a probabilidade de defeito é reestimada a cada extração."
+          ],
+          "answer": "C",
+          "explanation": "Para manter a proporção de defeituosos (p) constante a cada extração, devolve-se a peça ou usa-se população tão grande que a retirada pouco a altera. Sem reposição em lote pequeno, a proporção muda e as seleções deixam de ser independentes."
+        },
+        {
+          "topic": "Pelo menos dois sucessos",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 21,
+          "statement": "Uma amostra de 6 mangueiras é retirada, com reposição, de um grande lote em que 15% delas apresentam defeito. A probabilidade de que pelo menos 2 mangueiras da amostra sejam defeituosas é, aproximadamente,",
+          "support": null,
+          "options": [
+            "0,7765.",
+            "0,3993.",
+            "0,3771.",
+            "0,1762.",
+            "0,2235."
+          ],
+          "answer": "E",
+          "explanation": "P(X ≥ 2) = 1 − [P(X = 0) + P(X = 1)] = 1 − [0,3771 + 0,3993] = 0,2235. O valor 0,7765 é P(X ≤ 1), e 0,1762 é apenas P(X = 2)."
+        },
+        {
+          "topic": "Probabilidade de n sucessos",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 19,
+          "statement": "Uma manobra em simulador é repetida 5 vezes, de forma independente, e cada repetição é aprovada com probabilidade 0,8. A probabilidade de todas as 5 repetições serem aprovadas é",
+          "support": null,
+          "options": [
+            "0,3277.",
+            "0,6723.",
+            "0,8000.",
+            "0,0003.",
+            "0,4096."
+          ],
+          "answer": "A",
+          "explanation": "P(X = n) = pⁿ = 0,8⁵ = 0,3277. O valor 0,6723 é a probabilidade de pelo menos uma reprovação, 0,0003 é 0,2⁵ (todas reprovadas) e 0,4096 é 0,8⁴."
+        }
+      ]
+    },
+    {
+      "id": "estatistica/a08/s02",
+      "bizu": {
+        "summary": [
+          "**Aplicação da binomial**: identifique n (número de ensaios), p (probabilidade de sucesso) e o evento pedido. \"No máximo 1\" = P(0) + P(1); \"pelo menos 2\" = 1 − P(0) − P(1).",
+          "**Esperança da binomial**: **E(X) = n·p**; é n vezes a esperança da Bernoulli. O valor esperado pode ser não inteiro (média de 1,5 caras em 3 lançamentos).",
+          "**Variância da binomial**: **V(X) = n·p·q**; **desvio padrão = √(n·p·q)**. Também é n vezes a variância da Bernoulli.",
+          "**Relação útil**: V(X) = E(X) · q. Conhecendo média e variância (ex.: 20 e 4), obtém-se q = 0,2, p = 0,8 e n = 25.",
+          "**Simetria dos coeficientes**: C(n, k) = C(n, n − k). Por isso, com p = q = 0,5, P(X = k) = P(X = n − k).",
+          "**Forma da distribuição**: com **p = 0,5** é simétrica; com **p > 0,5**, assimétrica negativa; com **p < 0,5**, assimétrica positiva.",
+          "**Curiosidade cobrada**: se **n·p é inteiro**, esse valor é ao mesmo tempo a média, a mediana e a moda.",
+          "**Atenção ao enunciado**: o \"sucesso\" é o evento cuja probabilidade se calcula (ex.: peça defeituosa), não necessariamente algo bom."
+        ],
+        "teoria": [
+          {
+            "statement": "A esperança de uma variável binomial de parâmetros n e p é n·p.",
+            "isTrue": true,
+            "explanation": "É n vezes a esperança de uma Bernoulli de parâmetro p."
+          },
+          {
+            "statement": "A variância de uma binomial é n·p, a mesma expressão da esperança.",
+            "isTrue": false,
+            "explanation": "A variância é n·p·q; só no limite q ≈ 1 (caso de Poisson) coincide com n·p."
+          },
+          {
+            "statement": "Para uma binomial com p > 0,5, a distribuição é assimétrica negativa.",
+            "isTrue": true,
+            "explanation": "Com sucessos muito prováveis, a massa se concentra à direita e a cauda alonga-se à esquerda."
+          },
+          {
+            "statement": "Se n·p é um número inteiro, a média, a mediana e a moda da binomial coincidem com esse valor.",
+            "isTrue": true,
+            "explanation": "Propriedade que vale mesmo quando a distribuição é assimétrica."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Uma binomial com média 20 e variância 4 tem n = 25.",
+            "isTrue": true,
+            "explanation": "q = V/E = 0,2; p = 0,8; n = 20/0,8 = 25."
+          },
+          {
+            "statement": "O desvio padrão de uma binomial é n·p·q.",
+            "isTrue": false,
+            "explanation": "n·p·q é a variância; o desvio padrão é sua raiz quadrada."
+          },
+          {
+            "statement": "Em 5 clientes com valor esperado de 1 compra, a probabilidade de nenhuma compra é 0,8⁵ ≈ 0,33.",
+            "isTrue": true,
+            "explanation": "E(X) = 5p = 1 resulta p = 0,2; P(X = 0) = 0,8⁵ = 0,32768."
+          },
+          {
+            "statement": "Em B(n, p), C(n, k) é diferente de C(n, n − k).",
+            "isTrue": false,
+            "explanation": "As combinações são iguais: escolher k sucessos é o mesmo que escolher n − k fracassos."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Probabilidade de intervalo na binomial",
+            "pageRef": 24
+          },
+          {
+            "topic": "Esperança, variância e desvio padrão",
+            "pageRef": 28
+          },
+          {
+            "topic": "Forma da distribuição conforme p",
+            "pageRef": 29
+          },
+          {
+            "topic": "Quadro-resumo da binomial",
+            "pageRef": 29
+          },
+          {
+            "topic": "Média e variância para achar n e p",
+            "pageRef": 32
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Esperança e variância da binomial",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 27,
+          "statement": "Em um quartel, 25% das chamadas recebidas de madrugada são trotes. Considerando 120 chamadas independentes, o número esperado de trotes e a variância desse número são, respectivamente,",
+          "support": null,
+          "options": [
+            "30 e 30.",
+            "30 e 7,5.",
+            "90 e 22,5.",
+            "22,5 e 30.",
+            "30 e 22,5."
+          ],
+          "answer": "E",
+          "explanation": "Com X ~ B(120; 0,25): E(X) = n·p = 30 e V(X) = n·p·q = 120 × 0,25 × 0,75 = 22,5. A variância nunca supera a esperança, pois V = E · q, e as demais opções trocam ou confundem p e q."
+        },
+        {
+          "topic": "Desvio padrão da binomial",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 28,
+          "statement": "Seja X ~ B(48; 0,25). O desvio padrão de X é igual a",
+          "support": null,
+          "options": [
+            "9.",
+            "12.",
+            "6.",
+            "4,5.",
+            "3."
+          ],
+          "answer": "E",
+          "explanation": "DP(X) = √(n·p·q) = √(48 × 0,25 × 0,75) = √9 = 3. O valor 9 é a variância, e 12 é a esperança n·p."
+        },
+        {
+          "topic": "Determinação de n",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 31,
+          "statement": "O número de aprovados em um simulado, entre n candidatos independentes com a mesma probabilidade de aprovação, segue distribuição binomial com média 12 e variância 7,2. O número n de candidatos é",
+          "support": null,
+          "options": [
+            "20.",
+            "24.",
+            "30.",
+            "36.",
+            "40."
+          ],
+          "answer": "C",
+          "explanation": "Como V = E · q, temos q = 7,2/12 = 0,6 e p = 0,4. Então E = n·p dá 12 = n × 0,4, logo n = 30. O valor 20 resulta de dividir 12 por q em vez de por p."
+        },
+        {
+          "topic": "Probabilidade a partir da esperança",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 31,
+          "statement": "Em 8 saltos de treinamento independentes, o número esperado de saltos com sucesso é 2,4, e a variável segue distribuição binomial. A probabilidade de nenhum salto ter sucesso é, aproximadamente,",
+          "support": null,
+          "options": [
+            "0,0576.",
+            "0,1977.",
+            "0,0001.",
+            "0,3000.",
+            "0,2401."
+          ],
+          "answer": "A",
+          "explanation": "De E = n·p = 2,4 com n = 8, obtém-se p = 0,3. Logo P(X = 0) = 0,7⁸ = 0,0576. O valor 0,1977 é P(X = 1), e 0,0001 seria 0,3⁸ (sucesso em todos)."
+        },
+        {
+          "topic": "Probabilidade de sucesso a partir de E e DP",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 32,
+          "statement": "Uma variável aleatória binomial tem média 20 e desvio padrão 4. A probabilidade de sucesso em cada ensaio é",
+          "support": null,
+          "options": [
+            "0,8.",
+            "0,25.",
+            "0,4.",
+            "0,2.",
+            "0,05."
+          ],
+          "answer": "D",
+          "explanation": "O desvio padrão 4 implica variância 16. Como V = E · q, q = 16/20 = 0,8 e p = 0,2 (e n = 20/0,2 = 100). Usar a variância igual a 4 (sem elevar ao quadrado) levaria ao erro p = 0,8."
+        },
+        {
+          "topic": "Simetria e assimetria da binomial",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 29,
+          "statement": "Em relação à forma da distribuição binomial B(n, p), assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "Com p > 0,5, a distribuição apresenta assimetria positiva.",
+            "Com p < 0,5, a distribuição apresenta assimetria negativa.",
+            "A distribuição binomial é simétrica para qualquer valor de p.",
+            "Com p = 0,5, a distribuição é simétrica e P(X = 0) = P(X = n).",
+            "A simetria depende apenas de n, e não de p."
+          ],
+          "answer": "D",
+          "explanation": "Quando p = q = 0,5, C(n, k) = C(n, n − k) e as potências se igualam, de modo que P(X = k) = P(X = n − k). Com p > 0,5 a assimetria é negativa (cauda à esquerda) e com p < 0,5 é positiva."
+        },
+        {
+          "topic": "Média, mediana e moda da binomial",
+          "pattern": "relacao",
+          "difficulty": 2,
+          "pageRef": 29,
+          "statement": "Seja X ~ B(20; 0,3). Como o produto n·p é um número inteiro, o valor que coincide com a média, a mediana e a moda de X é",
+          "support": null,
+          "options": [
+            "5.",
+            "6.",
+            "7.",
+            "14.",
+            "3."
+          ],
+          "answer": "B",
+          "explanation": "Embora a binomial seja assimétrica quando p ≠ 0,5, se n·p é inteiro esse valor é média, mediana e moda: 20 × 0,3 = 6. O valor 14 é n·q."
+        },
+        {
+          "topic": "Variância da binomial e da Bernoulli",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 30,
+          "statement": "Cada ensaio de Bernoulli de um experimento tem variância igual a 0,16. Repetindo-se esse ensaio 25 vezes, de forma independente, a variância do número de sucessos é",
+          "support": null,
+          "options": [
+            "0,64.",
+            "16.",
+            "2.",
+            "4.",
+            "0,16."
+          ],
+          "answer": "D",
+          "explanation": "A variância da binomial é n vezes a da Bernoulli: 25 × 0,16 = 4 (o que equivale a n·p·q com p·q = 0,16). O valor 2 seria o desvio padrão, e 0,16 é a variância de um único ensaio."
+        },
+        {
+          "topic": "Pelo menos dois com tabela dada",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 27,
+          "statement": "Dez equipamentos independentes têm, cada um, 5% de chance de falhar em um dia. Considere 0,95¹⁰ = 0,5987 e 0,95⁹ = 0,6302. A probabilidade de que pelo menos dois equipamentos falhem é, aproximadamente,",
+          "support": null,
+          "options": [
+            "31,5%.",
+            "40,1%.",
+            "91,4%.",
+            "4,0%.",
+            "8,6%."
+          ],
+          "answer": "E",
+          "explanation": "P(X ≥ 2) = 1 − P(X = 0) − P(X = 1) = 1 − 0,5987 − 10 × 0,05 × 0,6302 = 1 − 0,5987 − 0,3151 = 0,0862, ou seja, cerca de 8,6%. O valor 31,5% é P(X = 1), 40,1% é P(X ≥ 1) e 91,4% é P(X ≤ 1)."
+        },
+        {
+          "topic": "No máximo um sucesso",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 25,
+          "statement": "Quatro sensores de um sistema funcionam de modo independente, e cada um tem 15% de chance de falhar. A probabilidade de que no máximo um sensor falhe é, aproximadamente,",
+          "support": null,
+          "options": [
+            "0,5220.",
+            "0,8905.",
+            "0,3685.",
+            "0,1095.",
+            "0,9880."
+          ],
+          "answer": "B",
+          "explanation": "P(X ≤ 1) = P(X = 0) + P(X = 1) = 0,85⁴ + 4 × 0,15 × 0,85³ = 0,5220 + 0,3685 = 0,8905. O valor 0,9880 corresponde a \"no máximo dois\" e 0,1095 é a probabilidade de dois ou mais falharem."
+        },
+        {
+          "topic": "Relação entre variância e esperança",
+          "pattern": "correta",
+          "difficulty": 3,
+          "pageRef": 32,
+          "statement": "Para uma variável X com distribuição binomial B(n, p), assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "A variância é sempre maior que a esperança.",
+            "A esperança é sempre um número inteiro.",
+            "A variância é igual ao produto da esperança por q e, por isso, nunca supera a esperança.",
+            "O desvio padrão é sempre igual à raiz quadrada da esperança.",
+            "A variância é igual a n·p²."
+          ],
+          "answer": "C",
+          "explanation": "Como E = n·p e V = n·p·q, vale V = E · q, com 0 < q < 1; logo V < E. A esperança pode ser fracionária (por exemplo, 1,5 em 3 lançamentos de uma moeda), e o desvio padrão é √(n·p·q), não √(n·p), a menos que q seja 1."
+        },
+        {
+          "topic": "Interpretação da esperança",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 28,
+          "statement": "Em 5 lançamentos independentes de uma moeda honesta, o número de caras tem valor esperado 2,5. Esse valor deve ser interpretado como",
+          "support": null,
+          "options": [
+            "um dos valores possíveis de X, com probabilidade de 50%.",
+            "a média do número de caras que se espera ao repetir muitas vezes o experimento, embora X só assuma inteiros.",
+            "um indício de que o experimento não é binomial, pois a esperança deveria ser inteira.",
+            "o número de caras que ocorrerá em cada série de 5 lançamentos.",
+            "a moda da distribuição, necessariamente igual a 2,5."
+          ],
+          "answer": "B",
+          "explanation": "A esperança é um valor médio de longo prazo e não precisa ser um valor possível da variável: X só assume 0, 1, ..., 5, mas E(X) = 5 × 0,5 = 2,5. Ela não prevê o resultado de uma série específica, nem é a moda."
+        }
+      ]
+    },
+    {
+      "id": "estatistica/a08/s03",
+      "bizu": {
+        "summary": [
+          "**Distribuição geométrica**: ensaios de Bernoulli independentes com mesma p; a variável **X é o número de ensaios até o primeiro sucesso**. Valores possíveis: **1, 2, 3, …** (sem limite superior).",
+          "**Probabilidade**: **P(X = k) = q^(k−1)·p** (k − 1 fracassos seguidos de um sucesso).",
+          "**Esperança e variância**: **E(X) = 1/p** e **V(X) = q/p²**. Com p = 1/6, espera-se 6 lançamentos e a variância é 30.",
+          "**Outra parametrização**: Y = número de **fracassos antes do primeiro sucesso**, com valores 0, 1, 2, …; **P(Y = k) = q^k·p**. A variância é a mesma; a esperança passa a **E(Y) = q/p** (uma unidade a menos que 1/p).",
+          "**Cauda**: **P(X ≥ k) = q^(k−1)** (os k − 1 primeiros ensaios falharam).",
+          "**Falta de memória**: P(X = k | X ≥ k) = p; já ter falhado várias vezes não altera a chance de sucesso no próximo ensaio.",
+          "**Dica de prova**: ao ver \"até que ocorra o primeiro defeito/sucesso\", pense em geométrica; confira se o enunciado conta ensaios totais (1/p) ou fracassos (q/p)."
+        ],
+        "teoria": [
+          {
+            "statement": "Na distribuição geométrica, a variável é o número de ensaios necessários até o primeiro sucesso.",
+            "isTrue": true,
+            "explanation": "É a definição da geométrica, cujos valores são 1, 2, 3, …"
+          },
+          {
+            "statement": "Se a probabilidade de sucesso é p, o número esperado de ensaios até o primeiro sucesso é 1/p.",
+            "isTrue": true,
+            "explanation": "E(X) = 1/p; com p = 0,5, espera-se 2 lançamentos de moeda."
+          },
+          {
+            "statement": "A distribuição geométrica admite no máximo n valores, como a binomial.",
+            "isTrue": false,
+            "explanation": "A geométrica é discreta infinita: qualquer inteiro positivo é possível."
+          },
+          {
+            "statement": "Na geométrica, P(X = k) = p^(k−1)·q.",
+            "isTrue": false,
+            "explanation": "Os k − 1 primeiros ensaios são fracassos: P(X = k) = q^(k−1)·p."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Na geométrica com p = 1/6, a variância é q/p² = 30.",
+            "isTrue": true,
+            "explanation": "(5/6)/(1/36) = 30."
+          },
+          {
+            "statement": "Se Y conta os fracassos antes do primeiro sucesso, então E(Y) = 1/p.",
+            "isTrue": false,
+            "explanation": "Nessa parametrização E(Y) = q/p; 1/p é a esperança do número de ensaios."
+          },
+          {
+            "statement": "Na geométrica, a probabilidade de precisar de pelo menos k ensaios é q^(k−1).",
+            "isTrue": true,
+            "explanation": "Equivale a falhar nos k − 1 primeiros ensaios."
+          },
+          {
+            "statement": "Sabendo que as k − 1 primeiras tentativas falharam, a probabilidade de sucesso na k-ésima continua sendo p.",
+            "isTrue": true,
+            "explanation": "É a propriedade de falta de memória da geométrica."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Definição e valores possíveis",
+            "pageRef": 33
+          },
+          {
+            "topic": "Função de probabilidade",
+            "pageRef": 34
+          },
+          {
+            "topic": "Esperança e variância",
+            "pageRef": 35
+          },
+          {
+            "topic": "Parametrização por número de fracassos",
+            "pageRef": 36
+          },
+          {
+            "topic": "Propriedades: P(X ≥ k) e falta de memória",
+            "pageRef": 40
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Definição da distribuição geométrica",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 33,
+          "statement": "Um operador tenta ligar um gerador que, em cada tentativa independente, parte com probabilidade 0,3. Se X é o número de tentativas realizadas até a primeira partida, X segue distribuição",
+          "support": null,
+          "options": [
+            "geométrica.",
+            "normal.",
+            "de Poisson.",
+            "hipergeométrica.",
+            "uniforme contínua."
+          ],
+          "answer": "A",
+          "explanation": "A geométrica conta os ensaios de Bernoulli independentes, com mesma probabilidade de sucesso, necessários até o primeiro sucesso. A de Poisson conta ocorrências em um intervalo, a hipergeométrica exige amostragem sem reposição e as demais são contínuas."
+        },
+        {
+          "topic": "Probabilidade de sucesso na k-ésima tentativa",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 33,
+          "statement": "Cada disparo de um atirador acerta o alvo com probabilidade 0,2, de forma independente. A probabilidade de o primeiro acerto ocorrer exatamente no 4º disparo é",
+          "support": null,
+          "options": [
+            "0,1024.",
+            "0,0064.",
+            "0,0819.",
+            "0,4096.",
+            "0,2000."
+          ],
+          "answer": "A",
+          "explanation": "Na geométrica, P(X = k) = q^(k−1) · p; com k = 4, P = 0,8³ × 0,2 = 0,1024. O valor 0,0819 usa o expoente k em vez de k − 1 (seria P(X = 5)), e 0,4096 é a probabilidade de os 4 primeiros disparos errarem."
+        },
+        {
+          "topic": "Valores possíveis da geométrica",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 34,
+          "statement": "Considere X, o número de ensaios de Bernoulli realizados até o primeiro sucesso. Assinale a alternativa correta sobre os valores de X.",
+          "support": null,
+          "options": [
+            "Pode assumir qualquer inteiro de 0 até n, sendo n o número de ensaios planejados.",
+            "É uma variável contínua definida no intervalo [1, ∞).",
+            "Pode assumir apenas os valores 0 e 1.",
+            "Pode assumir qualquer inteiro de 1 até um máximo que depende de p.",
+            "É uma variável discreta que pode assumir qualquer inteiro a partir de 1, sem limite superior."
+          ],
+          "answer": "E",
+          "explanation": "Sempre é possível precisar de mais uma tentativa, de modo que X = 1, 2, 3, ... não tem limite superior; o mínimo é 1, pois ao menos um ensaio é feito. Valores de 0 até n caracterizam a binomial."
+        },
+        {
+          "topic": "Probabilidade acumulada da geométrica",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 34,
+          "statement": "Uma central de comunicação tenta contato com uma equipe isolada e, em cada tentativa independente, consegue com probabilidade 0,25. A probabilidade de o contato ser obtido em no máximo 3 tentativas é",
+          "support": null,
+          "options": [
+            "0,4219.",
+            "0,1406.",
+            "0,5781.",
+            "0,3164.",
+            "0,6836."
+          ],
+          "answer": "C",
+          "explanation": "P(X ≤ 3) = 1 − P(X > 3) = 1 − q³ = 1 − 0,75³ = 0,5781. O valor 0,4219 é P(X ≥ 4), 0,1406 é apenas P(X = 3) e 0,6836 corresponde a até 4 tentativas."
+        },
+        {
+          "topic": "Variância da geométrica",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 35,
+          "statement": "Uma variável X tem distribuição geométrica com probabilidade de sucesso p = 0,2, contando o número de ensaios até o primeiro sucesso. A variância de X é",
+          "support": null,
+          "options": [
+            "20.",
+            "4.",
+            "5.",
+            "25.",
+            "16."
+          ],
+          "answer": "A",
+          "explanation": "V(X) = q/p² = 0,8/0,04 = 20. O valor 5 é a esperança 1/p, 4 resulta de esquecer de elevar p ao quadrado (q/p) e 25 é 1/p²."
+        },
+        {
+          "topic": "Esperança da geométrica",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 35,
+          "statement": "Em uma sequência de ensaios independentes, o número esperado de ensaios até o primeiro sucesso é 8. A probabilidade de sucesso em cada ensaio é",
+          "support": null,
+          "options": [
+            "8,0%.",
+            "12,5%.",
+            "87,5%.",
+            "50,0%.",
+            "6,25%."
+          ],
+          "answer": "B",
+          "explanation": "Na geométrica, E(X) = 1/p. Se E(X) = 8, então p = 1/8 = 12,5%. O valor 87,5% é a probabilidade de fracasso q."
+        },
+        {
+          "topic": "Parametrização alternativa: esperança e variância",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 36,
+          "statement": "Seja Y o número de fracassos antes do primeiro sucesso, em ensaios independentes com p = 0,25. A esperança e a variância de Y são, respectivamente,",
+          "support": null,
+          "options": [
+            "3 e 12.",
+            "4 e 12.",
+            "3 e 3.",
+            "4 e 16.",
+            "0,75 e 12."
+          ],
+          "answer": "A",
+          "explanation": "Para Y (que começa em 0), E(Y) = q/p = 0,75/0,25 = 3, e a variância continua V(Y) = q/p² = 0,75/0,0625 = 12. O valor 4 é a esperança do número de ensaios (1/p), que supera a de Y em uma unidade."
+        },
+        {
+          "topic": "Parametrização alternativa: probabilidade",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 36,
+          "statement": "Em cada tentativa, um equipamento é acionado com sucesso com probabilidade 0,4, de modo independente. Seja Y o número de tentativas FALHAS antes do primeiro sucesso. A probabilidade de que Y seja igual a 2 é",
+          "support": null,
+          "options": [
+            "0,144.",
+            "0,240.",
+            "0,096.",
+            "0,360.",
+            "0,216."
+          ],
+          "answer": "A",
+          "explanation": "Quando Y conta fracassos antes do primeiro sucesso, P(Y = k) = q^k · p. Assim, P(Y = 2) = 0,6² × 0,4 = 0,144. O valor 0,240 usa expoente k − 1, próprio da parametrização que conta ensaios."
+        },
+        {
+          "topic": "Falta de memória",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 39,
+          "statement": "Já foram realizadas 8 tentativas sem sucesso em um processo geométrico com p = 0,25. A probabilidade de que sejam necessárias mais de 2 tentativas adicionais até o primeiro sucesso é",
+          "support": null,
+          "options": [
+            "0,0563.",
+            "0,1001.",
+            "0,0625.",
+            "0,4219.",
+            "0,5625."
+          ],
+          "answer": "E",
+          "explanation": "Pela falta de memória, o histórico não importa: a probabilidade de mais de 2 tentativas adicionais é P(X > 2) = q² = 0,75² = 0,5625. O valor 0,0563 considera o histórico (0,75¹⁰), o que a propriedade dispensa."
+        },
+        {
+          "topic": "Propriedade de falta de memória",
+          "pattern": "correta",
+          "difficulty": 1,
+          "pageRef": 39,
+          "statement": "A distribuição geométrica possui a propriedade conhecida como \"falta de memória\". Isso significa que, em ensaios independentes com mesma probabilidade de sucesso,",
+          "support": null,
+          "options": [
+            "a probabilidade de sucesso aumenta a cada fracasso acumulado.",
+            "a probabilidade de serem necessárias mais de t tentativas adicionais não depende de quantas tentativas já foram feitas sem sucesso.",
+            "a probabilidade de sucesso diminui a cada fracasso acumulado.",
+            "o número esperado de tentativas restantes diminui conforme os fracassos aumentam.",
+            "o resultado de cada ensaio depende dos resultados dos ensaios anteriores."
+          ],
+          "answer": "B",
+          "explanation": "Como os ensaios são independentes e p é constante, o passado não altera o futuro: P(X > t + s | X ≥ s) = P(X > t). Nenhum fracasso torna o sucesso mais ou menos provável na próxima tentativa."
+        },
+        {
+          "topic": "Razão P(X = k)/P(X ≥ k)",
+          "pattern": "relacao",
+          "difficulty": 2,
+          "pageRef": 40,
+          "statement": "Seja X uma variável geométrica com parâmetro p = 0,35. A razão P(X = 7) / P(X ≥ 7) é igual a",
+          "support": null,
+          "options": [
+            "0,65.",
+            "0,35⁷.",
+            "0,65⁶.",
+            "1/0,35.",
+            "0,35."
+          ],
+          "answer": "E",
+          "explanation": "Para a geométrica, P(X = k)/P(X ≥ k) = p, que é a probabilidade condicional de sucesso na k-ésima tentativa dado que já houve k − 1 fracassos. A razão independe de k e vale 0,35."
+        },
+        {
+          "topic": "P(X > k) na geométrica",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 41,
+          "statement": "Cada disparo acerta o alvo com probabilidade 0,4, de modo independente. A probabilidade de serem necessários mais de 4 disparos até o primeiro acerto é",
+          "support": null,
+          "options": [
+            "0,1296.",
+            "0,2160.",
+            "0,0518.",
+            "0,8704.",
+            "0,0864."
+          ],
+          "answer": "A",
+          "explanation": "Serem necessários mais de 4 disparos significa errar os 4 primeiros: P(X > 4) = q⁴ = 0,6⁴ = 0,1296. O valor 0,2160 é P(X ≥ 4), 0,0518 é P(X = 5) e 0,8704 é P(X ≤ 4)."
+        },
+        {
+          "topic": "Disputa alternada",
+          "pattern": "caso",
+          "difficulty": 3,
+          "pageRef": 37,
+          "statement": "Carla e Davi lançam moedas diferentes, alternadamente, começando por Carla. A moeda de Carla dá cara com probabilidade 1/3 e a de Davi, com probabilidade 1/4, e o primeiro a obter cara vence. A probabilidade de Carla vencer exatamente em seu segundo lançamento é",
+          "support": null,
+          "options": [
+            "1/6.",
+            "2/9.",
+            "1/12.",
+            "1/3.",
+            "1/18."
+          ],
+          "answer": "A",
+          "explanation": "Carla vence no 2º lançamento se: erra o 1º (2/3), Davi erra o 1º (3/4) e Carla acerta o 2º (1/3). O produto é (2/3)(3/4)(1/3) = 1/6. O valor 2/9 ignora a falha de Davi entre os dois lançamentos de Carla, e 1/12 é o produto 1/3 × 1/4, que não corresponde a nenhuma sequência possível do jogo."
+        }
+      ]
+    },
+    {
+      "id": "estatistica/a08/s04",
+      "bizu": {
+        "summary": [
+          "**Distribuição hipergeométrica**: população **finita** de N elementos, S deles com o atributo \"sucesso\"; retira-se uma amostra de n elementos **sem reposição**. As extrações são **dependentes**, e X é o número de sucessos na amostra.",
+          "**Probabilidade**: **P(X = k) = C(S, k)·C(N − S, n − k) / C(N, n)**. Numerador: modos de escolher k sucessos e n − k fracassos; denominador: todas as amostras possíveis.",
+          "**Limites de X**: máximo = **mín{n, S}**; mínimo = máx{0, n − (N − S)}, pois pode ser impossível evitar sucessos se a amostra for maior que o total de fracassos.",
+          "**Esperança**: **E(X) = n·p**, com **p = S/N** (a proporção da população se mantém na amostra).",
+          "**Variância**: **V(X) = n·p·q·(N − n)/(N − 1)**: a da binomial multiplicada pelo **fator de correção para população finita**, sempre menor que 1.",
+          "**Aproximação**: quando N é muito maior que n, o fator se aproxima de 1 e a hipergeométrica se aproxima da binomial.",
+          "**Reconhecimento**: \"lote com N itens, S defeituosos, retiram-se n sem reposição\" = hipergeométrica. Sem especificação, muitas bancas consideram a extração sem reposição."
+        ],
+        "teoria": [
+          {
+            "statement": "A distribuição hipergeométrica descreve o número de sucessos em uma amostra sem reposição de uma população finita.",
+            "isTrue": true,
+            "explanation": "A ausência de reposição torna as extrações dependentes."
+          },
+          {
+            "statement": "A esperança da hipergeométrica é n·S, em que S é o número de sucessos da população.",
+            "isTrue": false,
+            "explanation": "E(X) = n·p, com p = S/N (proporção de sucessos); n·S superestima o valor."
+          },
+          {
+            "statement": "O fator (N − n)/(N − 1) reduz a variância da hipergeométrica em relação à da binomial.",
+            "isTrue": true,
+            "explanation": "O fator é menor que 1 e se aproxima de 1 quando N é muito maior que n."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Em P(X = k) da hipergeométrica, o denominador é C(N, n), o total de amostras de tamanho n.",
+            "isTrue": true,
+            "explanation": "Representa o espaço amostral, sem importar a ordem."
+          },
+          {
+            "statement": "Para uma amostra com reposição de uma população finita, a distribuição indicada é a hipergeométrica.",
+            "isTrue": false,
+            "explanation": "Com reposição as extrações são independentes e o modelo é a binomial."
+          },
+          {
+            "statement": "Com N = 10, S = 4 e n = 3, P(X = 2) = C(4,2)·C(6,1)/C(10,3) = 0,3.",
+            "isTrue": true,
+            "explanation": "6 × 6 / 120 = 0,3."
+          },
+          {
+            "statement": "O valor máximo de uma hipergeométrica é sempre n.",
+            "isTrue": false,
+            "explanation": "O máximo é mín{n, S}; com S = 4 e n = 8, por exemplo, X não passa de 4."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "População finita e sem reposição",
+            "pageRef": 43
+          },
+          {
+            "topic": "Fórmula da probabilidade",
+            "pageRef": 44
+          },
+          {
+            "topic": "Limites da variável",
+            "pageRef": 47
+          },
+          {
+            "topic": "Esperança da hipergeométrica",
+            "pageRef": 48
+          },
+          {
+            "topic": "Variância e fator de correção",
+            "pageRef": 49
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Hipergeométrica × binomial",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 43,
+          "statement": "A distribuição hipergeométrica e a binomial tratam de populações com dois atributos (sucesso e fracasso). A hipergeométrica se diferencia por considerar",
+          "support": null,
+          "options": [
+            "o número de extrações necessárias até o primeiro sucesso.",
+            "extrações independentes, com a mesma probabilidade de sucesso.",
+            "população finita e extrações sem reposição, o que torna as extrações dependentes.",
+            "probabilidade de sucesso tendendo a zero.",
+            "apenas populações infinitas."
+          ],
+          "answer": "C",
+          "explanation": "Na hipergeométrica a amostra é extraída sem reposição de população finita, de modo que a composição da população muda a cada extração. Extrações independentes com p constante caracterizam a binomial."
+        },
+        {
+          "topic": "Identificação da hipergeométrica",
+          "pattern": "caso",
+          "difficulty": 1,
+          "pageRef": 43,
+          "statement": "Qual das situações a seguir é modelada, em princípio, por uma distribuição hipergeométrica?",
+          "support": null,
+          "options": [
+            "Número de militares que passam por um portão a cada hora, com taxa média constante.",
+            "Número de socorristas entre 4 militares sorteados, sem reposição, de um pelotão de 20 militares com 6 socorristas.",
+            "Número de sorteios, com reposição, até que saia o primeiro socorrista.",
+            "Número de socorristas entre 4 militares sorteados, com reposição, do mesmo pelotão.",
+            "Número de sorteios, com reposição, até que saiam 3 socorristas."
+          ],
+          "answer": "B",
+          "explanation": "Há população finita (20 militares) e sorteio sem reposição, o que gera extrações dependentes: caso típico da hipergeométrica. Com reposição, a contagem de socorristas seria binomial; as demais opções remetem à Poisson, à geométrica e à binomial negativa."
+        },
+        {
+          "topic": "Probabilidade hipergeométrica",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 44,
+          "statement": "Em um almoxarifado há 12 cilindros de oxigênio, dos quais 5 estão com a carga incompleta. Quatro cilindros são sorteados, sem reposição. A probabilidade de que exatamente 2 deles estejam com a carga incompleta é, aproximadamente,",
+          "support": null,
+          "options": [
+            "0,354.",
+            "0,424.",
+            "0,212.",
+            "0,167.",
+            "0,625."
+          ],
+          "answer": "B",
+          "explanation": "P(X = 2) = C(5,2) · C(7,2) / C(12,4) = 10 × 21 / 495 = 0,424. O valor 0,354 resulta de usar a binomial (com reposição), que ignora a dependência das extrações."
+        },
+        {
+          "topic": "Limites da variável hipergeométrica",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 47,
+          "statement": "Uma urna tem 10 bolas, das quais 6 são brancas. Retiram-se 7 bolas, sem reposição, e X é o número de bolas brancas retiradas. Os valores que X pode assumir variam de",
+          "support": null,
+          "options": [
+            "0 a 6.",
+            "0 a 7.",
+            "1 a 6.",
+            "3 a 7.",
+            "3 a 6."
+          ],
+          "answer": "E",
+          "explanation": "O máximo é min{n, S} = min{7, 6} = 6. O mínimo é max{0, n − (N − S)} = max{0, 7 − 4} = 3, pois só há 4 bolas não brancas e, em 7 retiradas, ao menos 3 são brancas."
+        },
+        {
+          "topic": "Esperança hipergeométrica",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 48,
+          "statement": "Em um lote de 40 extintores, 14 apresentam algum defeito. Se 10 extintores são sorteados, sem reposição, o número esperado de extintores defeituosos na amostra é",
+          "support": null,
+          "options": [
+            "1,4.",
+            "4,0.",
+            "14,0.",
+            "6,5.",
+            "3,5."
+          ],
+          "answer": "E",
+          "explanation": "A esperança é E(X) = n · S/N = 10 × 14/40 = 3,5, a mesma da binomial com p = S/N. O valor 6,5 é o número esperado de extintores sem defeito (10 × 26/40), e 4,0 resultaria de arredondar a proporção de defeituosos para 0,4."
+        },
+        {
+          "topic": "Variância hipergeométrica",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 48,
+          "statement": "Uma população de 30 itens tem 12 itens com certa característica. Uma amostra de 6 itens é retirada sem reposição. A variância do número de itens com a característica na amostra é, aproximadamente,",
+          "support": null,
+          "options": [
+            "1,44.",
+            "1,19.",
+            "1,15.",
+            "2,40.",
+            "0,24."
+          ],
+          "answer": "B",
+          "explanation": "Var(X) = n·p·q·(N − n)/(N − 1) = 6 × 0,4 × 0,6 × 24/29 = 1,19. O valor 1,44 é a variância binomial, sem o fator de correção, e 1,15 usa N no lugar de N − 1 no denominador."
+        },
+        {
+          "topic": "Fator de correção para população finita",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 49,
+          "statement": "Sobre a variância da distribuição hipergeométrica em comparação com a da binomial de mesmos n e p = S/N, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "É a variância da binomial multiplicada por (N − 1)/(N − n), o que a torna maior.",
+            "É igual à da binomial, diferindo-se apenas as esperanças.",
+            "É a variância da binomial multiplicada por (N − n)/(N − 1), fator que se aproxima de 1 quando N é muito maior que n.",
+            "É a variância da binomial somada ao fator (N − n)/(N − 1).",
+            "A aproximação pela binomial é mais precisa quando n é próximo de N."
+          ],
+          "answer": "C",
+          "explanation": "O fator de correção para população finita, (N − n)/(N − 1), é menor que 1 e reduz a variância; quando N é muito maior que n, ele tende a 1 e a binomial passa a aproximar bem a hipergeométrica. As esperanças, n·S/N, são iguais nas duas."
+        },
+        {
+          "topic": "Pelo menos um sucesso na hipergeométrica",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 44,
+          "statement": "Em um grupo de 20 bombeiros, 8 são mergulhadores. Uma equipe de 4 bombeiros é sorteada, sem reposição. A probabilidade de que a equipe tenha pelo menos 1 mergulhador é, aproximadamente,",
+          "support": null,
+          "options": [
+            "0,898.",
+            "0,102.",
+            "0,870.",
+            "0,400.",
+            "0,500."
+          ],
+          "answer": "A",
+          "explanation": "Pelo complementar, P(X ≥ 1) = 1 − P(X = 0) = 1 − C(12,4)/C(20,4) = 1 − 495/4845 = 0,898. O valor 0,102 é P(X = 0), e 0,870 seria o resultado com reposição (binomial)."
+        },
+        {
+          "topic": "Probabilidade por extrações sucessivas",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 45,
+          "statement": "Uma urna contém 9 bolas, das quais 4 são vermelhas. Três bolas são retiradas, sem reposição. A probabilidade de que exatamente 2 sejam vermelhas é",
+          "support": null,
+          "options": [
+            "5/42.",
+            "80/243.",
+            "5/14.",
+            "4/9.",
+            "10/21."
+          ],
+          "answer": "C",
+          "explanation": "P(X = 2) = C(4,2) · C(5,1) / C(9,3) = 6 × 5 / 84 = 5/14. O valor 5/42 é a probabilidade de uma única ordem (V, V, B), sem multiplicar por 3 ordens possíveis, e 80/243 é o resultado da binomial, que supõe reposição."
+        },
+        {
+          "topic": "Variância com amostra igual à população",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 49,
+          "statement": "Uma urna contém 9 bolas, das quais 3 são pretas. Todas as 9 bolas são retiradas, sem reposição, e X é o número de bolas pretas obtidas. A variância de X é",
+          "support": null,
+          "options": [
+            "2.",
+            "3.",
+            "1,5.",
+            "0.",
+            "0,25."
+          ],
+          "answer": "D",
+          "explanation": "Com n = N, o fator de correção (N − n)/(N − 1) é zero, então Var(X) = 0. De fato, X = 3 com certeza. O valor 2 seria a variância binomial n·p·q = 9 × (1/3) × (2/3), que ignora a ausência de reposição."
+        },
+        {
+          "topic": "Parâmetros da hipergeométrica",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 43,
+          "statement": "Na notação X ~ Hgeo(N, S, n) para a distribuição hipergeométrica, o parâmetro S representa",
+          "support": null,
+          "options": [
+            "o número de elementos da população que possuem o atributo de sucesso.",
+            "o tamanho da amostra retirada.",
+            "o tamanho total da população.",
+            "o número de elementos com o atributo de fracasso.",
+            "a proporção de sucessos na amostra."
+          ],
+          "answer": "A",
+          "explanation": "Os três parâmetros são N (tamanho da população), S (elementos com o atributo sucesso na população) e n (tamanho da amostra); os fracassos são N − S. A proporção p = S/N é calculada a partir deles."
+        },
+        {
+          "topic": "Valor do fator de correção",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 49,
+          "statement": "Na variância da distribuição hipergeométrica, o fator de correção para população finita é (N − n)/(N − 1). Para N = 41 e n = 9, esse fator vale",
+          "support": null,
+          "options": [
+            "0,78.",
+            "1,25.",
+            "0,22.",
+            "0,80.",
+            "0,20."
+          ],
+          "answer": "D",
+          "explanation": "O fator é (41 − 9)/(41 − 1) = 32/40 = 0,80. O valor 0,78 resulta de dividir por N (32/41) e 1,25 é o inverso do fator correto. O resultado é menor que 1, como sempre."
+        }
+      ]
+    },
+    {
+      "id": "estatistica/a08/s05",
+      "bizu": {
+        "summary": [
+          "**Distribuição de Poisson**: número de ocorrências de um evento em um **intervalo** (tempo, área, volume) com **taxa média constante λ**. Eventos independentes, e a chance de dois eventos simultâneos é desprezível. Ex.: chamadas por hora.",
+          "**Probabilidade**: **P(X = k) = e^(−λ)·λ^k / k!**, com e ≈ 2,718 e k = 0, 1, 2, … (sem limite superior).",
+          "**Esperança e variância iguais ao parâmetro**: **E(X) = V(X) = λ**.",
+          "**Relação com a binomial**: é a aproximação da binomial quando **n é grande e p é pequeno**, com **λ = n·p** (pois q ≈ 1, e n·p·q ≈ n·p).",
+          "**Mudança de intervalo**: λ é proporcional ao intervalo. Se chegam 10 clientes em 8 h, em 1 h o parâmetro é 10/8. O **tempo médio entre ocorrências** é intervalo/λ.",
+          "**Soma de Poissons independentes** é Poisson com **λ = λ₁ + λ₂ + …**. Uma diferença como S − X = Y + Z também é Poisson (soma das demais).",
+          "**Moda**: com λ inteiro há duas modas, λ e λ − 1; com λ não inteiro, a moda é a parte inteira de λ.",
+          "**Cálculo prático**: \"mais de 1\" = 1 − P(0) − P(1). Ex.: com λ = 4, P(0) = e⁻⁴ e P(1) = 4e⁻⁴, logo P(X > 1) = 1 − 5e⁻⁴ ≈ 0,91."
+        ],
+        "teoria": [
+          {
+            "statement": "Na distribuição de Poisson, a esperança e a variância são iguais a λ.",
+            "isTrue": true,
+            "explanation": "É uma característica marcante da Poisson: média e variância coincidem."
+          },
+          {
+            "statement": "A distribuição de Poisson só pode assumir valores de 0 a n, como a binomial.",
+            "isTrue": false,
+            "explanation": "Não há limite superior: k pode ser qualquer inteiro não negativo."
+          },
+          {
+            "statement": "A Poisson aproxima a binomial quando n é grande e p é pequeno, com λ = n·p.",
+            "isTrue": true,
+            "explanation": "Nessas condições q ≈ 1 e a variância n·p·q ≈ n·p."
+          },
+          {
+            "statement": "A soma de duas variáveis de Poisson independentes, de parâmetros λ₁ e λ₂, segue Poisson de parâmetro λ₁ + λ₂.",
+            "isTrue": true,
+            "explanation": "A propriedade se estende a qualquer número de parcelas independentes."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Com média de 3 falhas por semana, a probabilidade de exatamente 2 falhas em uma semana é (9/2)·e⁻³.",
+            "isTrue": true,
+            "explanation": "e⁻³·3²/2! = 4,5·e⁻³."
+          },
+          {
+            "statement": "Quando λ é um inteiro, a distribuição de Poisson tem uma única moda, igual a λ.",
+            "isTrue": false,
+            "explanation": "Com λ inteiro há duas modas, λ e λ − 1 (as probabilidades de k = λ − 1 e k = λ coincidem)."
+          },
+          {
+            "statement": "Se a média é de 10 clientes por dia de 8 horas, o tempo médio entre chegadas é 0,8 hora.",
+            "isTrue": true,
+            "explanation": "8 h / 10 clientes = 0,8 h por cliente."
+          },
+          {
+            "statement": "A probabilidade de mais de uma ocorrência em uma Poisson de parâmetro 4 é 1 − 5e⁻⁴.",
+            "isTrue": true,
+            "explanation": "1 − P(0) − P(1) = 1 − e⁻⁴ − 4e⁻⁴."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Definição e hipóteses da Poisson",
+            "pageRef": 53
+          },
+          {
+            "topic": "Fórmula e variância",
+            "pageRef": 55
+          },
+          {
+            "topic": "Moda e quadro-resumo",
+            "pageRef": 57
+          },
+          {
+            "topic": "Mudança de intervalo",
+            "pageRef": 60
+          },
+          {
+            "topic": "Soma de Poissons independentes",
+            "pageRef": 61
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Quando usar Poisson",
+          "pattern": "caso",
+          "difficulty": 1,
+          "pageRef": 53,
+          "statement": "A central de emergências de um batalhão recebe, em média, uma taxa constante de chamadas por hora, e as chamadas ocorrem de forma independente. O número de chamadas recebidas em uma hora é bem modelado pela distribuição",
+          "support": null,
+          "options": [
+            "hipergeométrica.",
+            "geométrica.",
+            "de Bernoulli.",
+            "uniforme contínua.",
+            "de Poisson."
+          ],
+          "answer": "E",
+          "explanation": "A Poisson descreve o número de ocorrências aleatórias e independentes em um intervalo (tempo, espaço), com taxa média constante. A geométrica conta ensaios até o primeiro sucesso, a hipergeométrica exige amostra sem reposição e a Bernoulli trata de um único ensaio."
+        },
+        {
+          "topic": "Poisson como aproximação da binomial",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 53,
+          "statement": "A distribuição de Poisson pode ser usada como aproximação da binomial quando",
+          "support": null,
+          "options": [
+            "o número de ensaios n é pequeno e a probabilidade de sucesso p é próxima de 1.",
+            "o número de ensaios n é muito grande e a probabilidade de sucesso p é muito pequena.",
+            "a probabilidade de sucesso p é igual a 0,5 e n é pequeno.",
+            "as extrações são feitas sem reposição de uma população pequena.",
+            "o interesse é o número de ensaios até o primeiro sucesso."
+          ],
+          "answer": "B",
+          "explanation": "A Poisson é o limite da binomial para n → ∞ e p → 0, com λ = n·p. Nessas condições os cálculos binomiais ficam trabalhosos e a aproximação é conveniente. As demais situações remetem à hipergeométrica ou à geométrica."
+        },
+        {
+          "topic": "Características da Poisson",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 55,
+          "statement": "Sobre a distribuição de Poisson, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "Tem dois parâmetros, n e p, como a binomial.",
+            "Sua variância é igual ao quadrado do parâmetro λ.",
+            "Assume valores contínuos em um intervalo de tempo.",
+            "Exige que as ocorrências sejam dependentes entre si.",
+            "Tem um único parâmetro, λ, que é ao mesmo tempo a esperança e a variância."
+          ],
+          "answer": "E",
+          "explanation": "A Poisson é caracterizada apenas por λ, a taxa média de ocorrências no intervalo, e vale E(X) = Var(X) = λ. As ocorrências devem ser independentes e a variável é discreta, assumindo inteiros 0, 1, 2, ..."
+        },
+        {
+          "topic": "Probabilidade de Poisson",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 55,
+          "statement": "O número de pedidos de socorro recebidos por um posto em um turno segue distribuição de Poisson com média 1,5. Dado e^(−1,5) = 0,2231, a probabilidade de serem recebidos exatamente 2 pedidos é, aproximadamente,",
+          "support": null,
+          "options": [
+            "0,335.",
+            "0,223.",
+            "0,126.",
+            "0,251.",
+            "0,502."
+          ],
+          "answer": "D",
+          "explanation": "P(X = 2) = e^(−λ) · λ² / 2! = 0,2231 × 2,25 / 2 = 0,251. O valor 0,502 resulta de esquecer de dividir por 2!, 0,223 é P(X = 0) e 0,335 é P(X = 1)."
+        },
+        {
+          "topic": "Complementar na Poisson",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 56,
+          "statement": "O número de falhas de um equipamento por mês segue distribuição de Poisson com média 2. Dado e^(−2) = 0,1353, a probabilidade de ocorrerem 2 ou mais falhas em um mês é, aproximadamente,",
+          "support": null,
+          "options": [
+            "0,406.",
+            "0,271.",
+            "0,594.",
+            "0,865.",
+            "0,180."
+          ],
+          "answer": "C",
+          "explanation": "P(X ≥ 2) = 1 − P(X = 0) − P(X = 1) = 1 − e^(−2) − 2e^(−2) = 1 − 3 × 0,1353 = 0,594. O valor 0,406 é P(X ≤ 1) e 0,271 é P(X = 2)."
+        },
+        {
+          "topic": "Esperança e variância da Poisson",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 55,
+          "statement": "O número de ocorrências por dia em um posto de bombeiros segue distribuição de Poisson, com variância igual a 7,5. Logo, o número médio de ocorrências por dia é",
+          "support": null,
+          "options": [
+            "56,25.",
+            "2,74.",
+            "3,75.",
+            "7,5.",
+            "15,0."
+          ],
+          "answer": "D",
+          "explanation": "Na Poisson, esperança e variância são iguais ao parâmetro λ, de modo que a média é 7,5. O valor 2,74 seria o desvio padrão (√7,5) e 56,25 seria o quadrado da variância."
+        },
+        {
+          "topic": "Mudança do intervalo de tempo",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 60,
+          "statement": "Um canal de atendimento recebe, em média, 12 chamadas por hora, segundo uma distribuição de Poisson. A probabilidade de não chegar nenhuma chamada em um intervalo de 10 minutos é",
+          "support": null,
+          "options": [
+            "e^(−12).",
+            "e^(−10).",
+            "2e^(−2).",
+            "e^(−2).",
+            "e^(−0,2)."
+          ],
+          "answer": "D",
+          "explanation": "Em 10 minutos (1/6 de hora), λ = 12 × 10/60 = 2. Logo P(X = 0) = e^(−2) · 2⁰ / 0! = e^(−2). Usar λ = 12 ou λ = 10 ignora a conversão do intervalo, e 2e^(−2) seria P(X = 1)."
+        },
+        {
+          "topic": "Taxa para outro período",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 60,
+          "statement": "Em certa obra ocorrem, em média, 2 acidentes por semana (7 dias), segundo uma distribuição de Poisson. Dado e^(−4) = 0,0183, a probabilidade de ocorrer exatamente 1 acidente em 14 dias é, aproximadamente,",
+          "support": null,
+          "options": [
+            "0,037.",
+            "0,018.",
+            "0,073.",
+            "0,147.",
+            "0,293."
+          ],
+          "answer": "C",
+          "explanation": "Em 14 dias, λ = 2 × 14/7 = 4. Então P(X = 1) = 4 · e^(−4) = 4 × 0,0183 = 0,073. O valor 0,037 seria 2e^(−4) (λ = 2) e 0,018 é P(X = 0)."
+        },
+        {
+          "topic": "Moda com λ inteiro",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 57,
+          "statement": "Seja X uma variável com distribuição de Poisson de parâmetro λ = 6. A(s) moda(s) de X é (são)",
+          "support": null,
+          "options": [
+            "apenas 6.",
+            "6 e 7.",
+            "apenas 5.",
+            "5 e 6.",
+            "3."
+          ],
+          "answer": "D",
+          "explanation": "Quando λ é inteiro, P(X = λ − 1) = P(X = λ), pois a razão P(k)/P(k − 1) = λ/k vale 1 em k = λ. A distribuição é bimodal, com modas λ − 1 = 5 e λ = 6."
+        },
+        {
+          "topic": "Moda com λ não inteiro",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 57,
+          "statement": "Seja X uma variável com distribuição de Poisson de parâmetro λ = 4,7. A moda de X é",
+          "support": null,
+          "options": [
+            "5.",
+            "4 e 5.",
+            "4.",
+            "3 e 4.",
+            "4,7."
+          ],
+          "answer": "C",
+          "explanation": "Se λ não é inteiro, a moda é o maior inteiro menor que λ, isto é, ⌊λ⌋ = 4. As probabilidades crescem enquanto k < λ (razão λ/k > 1) e passam a decrescer a partir de k = 5, que já tem razão 4,7/5 < 1."
+        },
+        {
+          "topic": "Soma de variáveis de Poisson",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 61,
+          "statement": "X e Y são variáveis independentes, com X ~ Po(6) e Y ~ Po(4). Assinale a alternativa correta sobre S = X + Y.",
+          "support": null,
+          "options": [
+            "S segue distribuição de Poisson com λ = 10, logo média e variância iguais a 10.",
+            "S segue distribuição de Poisson com λ = 24.",
+            "S segue distribuição de Poisson com λ = 5.",
+            "S segue distribuição binomial com n = 10.",
+            "S não segue distribuição de Poisson, pois X e Y têm parâmetros diferentes."
+          ],
+          "answer": "A",
+          "explanation": "A soma de Poisson independentes é Poisson com parâmetro igual à soma dos parâmetros: 6 + 4 = 10. Em consequência, E(S) = Var(S) = 10. O fato de os parâmetros serem diferentes não impede a propriedade."
+        },
+        {
+          "topic": "Tempo médio entre ocorrências",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 61,
+          "statement": "Em um turno de 12 horas chegam, em média, 15 ocorrências a uma central. O tempo médio entre duas ocorrências consecutivas é de",
+          "support": null,
+          "options": [
+            "75 minutos.",
+            "36 minutos.",
+            "20 minutos.",
+            "48 minutos.",
+            "180 minutos."
+          ],
+          "answer": "D",
+          "explanation": "O tempo médio entre ocorrências é o intervalo dividido pela taxa: 12 h / 15 = 0,8 h = 48 minutos. O valor 75 minutos inverte a divisão (15/12 h)."
+        },
+        {
+          "topic": "Razão entre probabilidades consecutivas",
+          "pattern": "relacao",
+          "difficulty": 3,
+          "pageRef": 57,
+          "statement": "Se X tem distribuição de Poisson com λ = 3, a razão P(X = 5) / P(X = 4) é igual a",
+          "support": null,
+          "options": [
+            "1,67.",
+            "0,75.",
+            "0,25.",
+            "0,8.",
+            "0,6."
+          ],
+          "answer": "E",
+          "explanation": "Para a Poisson, P(X = k)/P(X = k − 1) = λ/k. Com λ = 3 e k = 5, a razão é 3/5 = 0,6, menor que 1, pois k > λ e as probabilidades já estão decrescendo. O valor 1,67 inverte a razão."
+        },
+        {
+          "topic": "Aproximação da binomial pela Poisson",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 54,
+          "statement": "Em um grande lote de componentes, 1,5% apresentam defeito. Uma amostra de 200 componentes é inspecionada. Usando a aproximação de Poisson para o número de defeituosos e sabendo que e^(−3) = 0,0498, a probabilidade de nenhum componente defeituoso é, aproximadamente,",
+          "support": null,
+          "options": [
+            "1,5%.",
+            "5,0%.",
+            "15,0%.",
+            "3,0%.",
+            "0,5%."
+          ],
+          "answer": "B",
+          "explanation": "O parâmetro é λ = n·p = 200 × 0,015 = 3. Então P(X = 0) = e^(−3) ≈ 0,0498, cerca de 5,0%. O valor 15,0% seria 3e^(−3), isto é, P(X = 1)."
+        }
+      ]
+    },
+    {
+      "id": "estatistica/a08/s06",
+      "bizu": {
+        "summary": [
+          "**Binomial negativa (Pascal)**: número de ensaios de Bernoulli **necessários para obter k sucessos**, com **k fixo**. Na binomial usual n é fixo e o número de sucessos varia; aqui é o contrário.",
+          "**Probabilidade**: **P(X = x) = C(x − 1, k − 1)·p^k·q^(x − k)**, com x = k, k + 1, … A combinação é de x − 1 por k − 1 porque o **último ensaio é necessariamente o k-ésimo sucesso**.",
+          "**Exemplo**: cinco caras na 8ª jogada → C(7, 4)·p⁵·q³; a binomial usual teria C(8, 5).",
+          "**Condição**: ensaios independentes (população infinita, muito grande ou com reposição).",
+          "**Esperança**: **E(X) = k/p**; cada sucesso exige em média 1/p ensaios. Com p = 0,5 e k = 5, espera-se 10 lançamentos. Variância: V(X) = k·q/p².",
+          "**Parametrização por fracassos**: Y = fracassos antes do k-ésimo sucesso, com P(Y = y) = C(k + y − 1, y)·p^k·q^y; o total de ensaios é y + k.",
+          "**Caso k = 1**: a binomial negativa vira a geométrica.",
+          "**Reconhecimento**: \"quantas vezes será preciso ir ao mercado para comprar o item k vezes\" é binomial negativa (número de ensaios até o k-ésimo sucesso)."
+        ],
+        "teoria": [
+          {
+            "statement": "A distribuição binomial negativa modela o número de ensaios necessários para se obter k sucessos.",
+            "isTrue": true,
+            "explanation": "Fixa-se o número de sucessos k, e o número de ensaios é a variável aleatória."
+          },
+          {
+            "statement": "Na binomial negativa, a probabilidade de que o k-ésimo sucesso ocorra no ensaio x envolve a combinação C(x, k).",
+            "isTrue": false,
+            "explanation": "O último ensaio é o sucesso k, logo a combinação é C(x − 1, k − 1)."
+          },
+          {
+            "statement": "A esperança do número de ensaios até o k-ésimo sucesso é k/p.",
+            "isTrue": true,
+            "explanation": "Cada sucesso demanda, em média, 1/p ensaios."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A geométrica é um caso particular da binomial negativa, com k = 1.",
+            "isTrue": true,
+            "explanation": "Esperar o primeiro sucesso é esperar k = 1 sucesso."
+          },
+          {
+            "statement": "A binomial negativa exige ensaios dependentes uns dos outros.",
+            "isTrue": false,
+            "explanation": "Exige ensaios independentes, como na binomial."
+          },
+          {
+            "statement": "Um consumidor compra um item com probabilidade 20%; a probabilidade de ele precisar ir 10 vezes ao supermercado para comprar 5 vezes é modelada pela binomial negativa.",
+            "isTrue": true,
+            "explanation": "A variável é o número de idas (ensaios) até o 5º sucesso."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Definição e diferença para a binomial",
+            "pageRef": 65
+          },
+          {
+            "topic": "Fórmula da probabilidade",
+            "pageRef": 66
+          },
+          {
+            "topic": "Esperança da binomial negativa",
+            "pageRef": 67
+          },
+          {
+            "topic": "Parametrização por fracassos",
+            "pageRef": 68
+          },
+          {
+            "topic": "Questões de reconhecimento",
+            "pageRef": 69
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Definição da binomial negativa",
+          "pattern": "caso",
+          "difficulty": 1,
+          "pageRef": 65,
+          "statement": "Uma equipe de resgate treina um salto até acumular 4 execuções corretas, e a probabilidade de acerto em cada execução, de modo independente, é constante. O número total de execuções realizadas até se atingir as 4 corretas segue distribuição",
+          "support": null,
+          "options": [
+            "binomial.",
+            "geométrica.",
+            "de Poisson.",
+            "binomial negativa.",
+            "hipergeométrica."
+          ],
+          "answer": "D",
+          "explanation": "A binomial negativa (ou de Pascal) conta os ensaios necessários para obter k sucessos, com k fixo (aqui, k = 4). A binomial fixa o número de ensaios, a geométrica para no primeiro sucesso e a de Poisson conta ocorrências em um intervalo."
+        },
+        {
+          "topic": "Probabilidade na binomial negativa",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 65,
+          "statement": "Em cada tentativa independente, um procedimento tem sucesso com probabilidade 0,4. A probabilidade de que o 3º sucesso ocorra exatamente na 5ª tentativa é",
+          "support": null,
+          "options": [
+            "0,0230.",
+            "0,2304.",
+            "0,3456.",
+            "0,0922.",
+            "0,1382."
+          ],
+          "answer": "E",
+          "explanation": "P(X = x) = C(x − 1, k − 1) · pᵏ · q^(x − k) = C(4,2) × 0,4³ × 0,6² = 6 × 0,064 × 0,36 = 0,1382. O valor 0,2304 usa C(5,3), a combinação da binomial comum, e 0,0230 esquece a combinação."
+        },
+        {
+          "topic": "Combinação da binomial negativa",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 66,
+          "statement": "Na fórmula da binomial negativa, P(X = x) = C(x − 1, k − 1) · pᵏ · q^(x − k), a combinação tem parâmetros x − 1 e k − 1 porque",
+          "support": null,
+          "options": [
+            "a última tentativa é necessariamente o k-ésimo sucesso, restando distribuir os outros k − 1 sucessos nas x − 1 tentativas anteriores.",
+            "o primeiro ensaio é sempre um fracasso e deve ser descartado.",
+            "os x ensaios podem ser reordenados livremente, inclusive o último.",
+            "a probabilidade de sucesso muda após o primeiro sucesso.",
+            "o número de fracassos deve ser igual ao de sucessos."
+          ],
+          "answer": "A",
+          "explanation": "Como o processo para ao obter o k-ésimo sucesso, a última tentativa já está fixada como sucesso; escolhem-se apenas as posições dos k − 1 sucessos anteriores entre as x − 1 tentativas restantes. Na binomial comum, as n tentativas são todas livres e a combinação é C(n, k)."
+        },
+        {
+          "topic": "Valores possíveis da binomial negativa",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 66,
+          "statement": "Seja X o número de ensaios até a obtenção de k = 4 sucessos. Os valores que X pode assumir são",
+          "support": null,
+          "options": [
+            "0, 1, 2, ..., 4.",
+            "1, 2, 3, ..., 4.",
+            "4, 5, 6, ..., sem limite superior.",
+            "1, 2, 3, ..., sem limite superior.",
+            "0, 1, 2, ..., sem limite superior."
+          ],
+          "answer": "C",
+          "explanation": "São necessários ao menos k = 4 ensaios para obter 4 sucessos, e sempre é possível precisar de mais uma tentativa; logo X = 4, 5, 6, ... Começar em 1 é próprio da geométrica (k = 1)."
+        },
+        {
+          "topic": "Variância da binomial negativa",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 67,
+          "statement": "Uma variável X conta o número de ensaios até o 3º sucesso, com probabilidade de sucesso p = 0,25 em cada ensaio independente. A variância de X é",
+          "support": null,
+          "options": [
+            "12.",
+            "36.",
+            "9.",
+            "48.",
+            "144."
+          ],
+          "answer": "B",
+          "explanation": "Na binomial negativa, Var(X) = k·q/p² = 3 × 0,75 / 0,0625 = 36. O valor 12 é a esperança k/p, 9 resulta de dividir por p em vez de p² e 48 resulta de usar k/p² sem o fator q."
+        },
+        {
+          "topic": "Soma de geométricas",
+          "pattern": "relacao",
+          "difficulty": 2,
+          "pageRef": 67,
+          "statement": "Cinco variáveis geométricas independentes, todas com p = 0,2 e contando o número de ensaios até o primeiro sucesso, são somadas. A soma segue distribuição binomial negativa, com valor esperado igual a",
+          "support": null,
+          "options": [
+            "5.",
+            "25.",
+            "20.",
+            "100.",
+            "1."
+          ],
+          "answer": "B",
+          "explanation": "A soma de k geométricas independentes de mesmo p é binomial negativa com parâmetros k e p, cuja esperança é k/p = 5/0,2 = 25. Isso equivale a somar cinco esperanças 1/p = 5."
+        },
+        {
+          "topic": "Condição de independência",
+          "pattern": "caso",
+          "difficulty": 3,
+          "pageRef": 67,
+          "statement": "Um lote com 12 peças contém 4 defeituosas. As peças são inspecionadas uma a uma, sem reposição, até que se encontrem 2 defeituosas. A distribuição binomial negativa",
+          "support": null,
+          "options": [
+            "é adequada, porque o processo continua até o 2º sucesso.",
+            "é adequada, desde que a probabilidade de defeito seja inferior a 50%.",
+            "não é adequada, pois a binomial negativa só se aplica a k = 1.",
+            "não é adequada, pois a retirada sem reposição em população pequena torna as extrações dependentes.",
+            "não é adequada, pois nessa distribuição o número de ensaios é fixo e o de sucessos varia."
+          ],
+          "answer": "D",
+          "explanation": "A binomial negativa exige ensaios independentes com p constante, o que requer reposição ou população infinita (muito grande). Em um lote de 12 peças, sem reposição, a proporção de defeituosas muda a cada retirada."
+        },
+        {
+          "topic": "Cálculo na inspeção",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 66,
+          "statement": "Em uma linha de produção com grande volume, 10% das lâmpadas são defeituosas. As lâmpadas são inspecionadas uma a uma. A probabilidade de que a 2ª lâmpada defeituosa seja encontrada exatamente na 6ª lâmpada inspecionada é, aproximadamente,",
+          "support": null,
+          "options": [
+            "0,66%.",
+            "9,84%.",
+            "3,28%.",
+            "2,95%.",
+            "10,00%."
+          ],
+          "answer": "C",
+          "explanation": "Com k = 2, x = 6, p = 0,1: P(X = 6) = C(5,1) × 0,1² × 0,9⁴ = 5 × 0,01 × 0,6561 = 0,032805 ≈ 3,28%. O valor 9,84% usa C(6,2) e 0,66% omite a combinação."
+        },
+        {
+          "topic": "Parametrização por fracassos",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 68,
+          "statement": "Uma moeda honesta é lançada até que se obtenham 4 caras. Seja Y o número de coroas (fracassos) obtidas até esse momento. Usando P(Y = y) = C(k + y − 1, k − 1) · pᵏ · qʸ, a probabilidade de Y = 2 é",
+          "support": null,
+          "options": [
+            "0,2344.",
+            "0,0625.",
+            "0,0156.",
+            "0,1562.",
+            "0,5000."
+          ],
+          "answer": "D",
+          "explanation": "Com k = 4, y = 2 e p = q = 0,5: C(5,3) × 0,5⁴ × 0,5² = 10/64 = 0,1562 (equivale a X = 6 lançamentos). O valor 0,2344 usa C(6,4) e 0,0625 usa C(4,3), ambos com combinações incorretas."
+        },
+        {
+          "topic": "Distinção entre distribuições discretas",
+          "pattern": "relacao",
+          "difficulty": 1,
+          "pageRef": 69,
+          "statement": "Considere as variáveis: (I) número de acertos em 10 disparos; (II) número de disparos até o primeiro acerto; (III) número de disparos até o quinto acerto. Supondo disparos independentes e com mesma probabilidade de acerto, elas seguem, respectivamente, as distribuições",
+          "support": null,
+          "options": [
+            "geométrica, binomial e binomial negativa.",
+            "binomial negativa, geométrica e binomial.",
+            "binomial, geométrica e binomial negativa.",
+            "binomial, binomial negativa e geométrica.",
+            "de Poisson, geométrica e binomial negativa."
+          ],
+          "answer": "C",
+          "explanation": "A binomial conta sucessos em n fixo (I); a geométrica conta ensaios até o 1º sucesso (II); a binomial negativa conta ensaios até o k-ésimo sucesso, aqui k = 5 (III). As demais opções trocam os papéis de n fixo e k fixo."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,311 @@
+{
+ "aula": "matematica/c02",
+ "batch": "w1-matematica",
+ "status": "DRAFT",
+ "segments": [
+  {
+   "id": "matematica/c02/s01",
+   "bizu": {
+    "summary": [
+     "**Simetrias planas:** **axial** (eixo de simetria), **central** (rotação de 180° em torno de um ponto), **rotacional** (gira 360° ÷ n) e **translação**. **Polígono regular de n lados:** **n eixos**, gira **360° ÷ n** e tem **centro de simetria só se n é par**.",
+     "**Quadro de figuras:** **paralelogramo comum** (nem retângulo, nem losango): **0 eixo** e **tem centro**; **retângulo**: 2 eixos (mediatrizes dos lados); **losango**: 2 eixos (as diagonais); **quadrado**: 4; triângulo equilátero: 3 (sem centro); isósceles: 1; trapézio isósceles: 1 (sem centro); hexágono regular: 6, com centro; pentágono regular: 5, sem centro.",
+     "**Gráficos:** função **par** → simétrica em relação ao **eixo y**; **ímpar** → em relação à **origem**; a **inversa** é a reflexão do gráfico em relação à reta **y = x**; a parábola é simétrica em relação a **x = −b ÷ 2a**. **Sólidos:** **cubo** com **9 planos** de simetria; **paralelepípedo reto-retângulo** com 3 planos e centro; **pirâmide regular** de base com n lados: **n planos**; **prisma regular**: **n + 1** planos.",
+     "**Retas no espaço:** **concorrentes**, **paralelas distintas** (coplanares) e **reversas** (sem ponto comum e **não coplanares**). “Não se encontram” **não basta** para serem paralelas. **Ortogonais:** formam 90° (inclui as reversas). **Três pontos não colineares** determinam um plano; **duas reversas não** determinam plano. No cubo há **24 pares** de arestas reversas.",
+     "**Critérios de divisibilidade:** **2** (último par), **3** (soma dos algarismos), **4** (dois últimos), **5**, **6** (por 2 e por 3), **8** (três últimos), **9** (soma), **10**, **11** (soma alternada), **12** (por 3 e por 4), **25**. Para divisor composto, use fatores **primos entre si**.",
+     "**Primos e divisores:** o **2** é o único primo par e o **1 não é primo**. Se n = p^a · q^b · r^c, o número de divisores é **(a + 1)(b + 1)(c + 1)**. Quantidade **ímpar** de divisores só em **quadrado perfeito**.",
+     "**Fatoração algébrica:** fator comum, agrupamento, **diferença de quadrados** (a² − b² = (a + b)(a − b)), **quadrado perfeito**, soma e diferença de cubos. Ao simplificar fração algébrica, **registre a restrição** do fator cancelado.",
+     "**MDC × MMC:** **MDC** quando o enunciado fala em **dividir, cortar ou repartir em partes iguais, o maior possível**; **MMC** em “**voltam a coincidir**” e “**o menor possível**”. **MDC · MMC = a · b** vale **só para dois números**. Algoritmo de Euclides: último resto não nulo.",
+     "**Divisão proporcional:** **direta** (k = total ÷ soma dos números); **inversa** (proporcional aos **inversos**: o **maior número recebe a menor parte**); **mista** (produto do número da direta pelo inverso da inversa).",
+     "**Polinômios:** **teorema do resto:** o resto de P(x) por (x − a) é **P(a)**; **D'Alembert:** P é divisível por (x − a) se, e somente se, **P(a) = 0**; **Briot-Ruffini** faz a divisão rápida (último número = resto). Grau n tem **n raízes complexas** (com multiplicidade); complexas de polinômio real vêm em **pares conjugados**.",
+     "**Raízes e Girard (grau 3):** soma = **−b ÷ a**; soma dos produtos dois a dois = **c ÷ a**; produto = **−d ÷ a**. **Soma dos quadrados** = (soma)² − 2 · (soma dos pares). Raiz de multiplicidade **par**: o gráfico **toca o eixo e volta**; **ímpar**: **atravessa**. **Raízes racionais** p/q: p divide o termo independente e q divide o coeficiente líder.",
+     "**Funções racionais:** o domínio exclui os zeros do denominador. **Assíntota vertical:** zero do denominador **não cancelado**. **Horizontal:** gr P < gr Q → **y = 0**; graus iguais → **razão dos coeficientes líderes**; gr P = gr Q + 1 → **oblíqua** (quociente). **Homográfica** (ax + b) ÷ (cx + d): vertical **x = −d ÷ c** e horizontal **y = a ÷ c**. Fator cancelado → **furo** no gráfico.",
+     "**Exponenciais:** **aˣ = aʸ ⇔ x = y** (a > 0 e a ≠ 1). Métodos: **mesma base**, **fator comum** (2ˣ + 2^(x+1) = 2ˣ · 3) e **mudança de variável** y = aˣ (descartar y ≤ 0). **Inequação:** base **maior que 1** mantém o sentido; base **entre 0 e 1** **inverte** o sentido."
+    ],
+    "teoria": [
+     {
+      "statement": "O paralelogramo que não é retângulo nem losango não possui eixos de simetria, mas possui centro de simetria.",
+      "isTrue": true,
+      "explanation": "É a pegadinha clássica: o paralelogramo comum se repete em rotação de 180°, mas nenhuma reta o “dobra” sobre si mesmo. Quem diz que ele tem eixos o confunde com o losango."
+     },
+     {
+      "statement": "Todo polígono regular possui centro de simetria, qualquer que seja o número de lados.",
+      "isTrue": false,
+      "explanation": "O polígono regular só tem centro de simetria quando o número de lados é par. O triângulo equilátero e o pentágono regular, por exemplo, não têm."
+     },
+     {
+      "statement": "Duas retas reversas não têm ponto em comum e não estão contidas em um mesmo plano.",
+      "isTrue": true,
+      "explanation": "É isso que as diferencia das paralelas, que também não têm ponto comum, mas são coplanares."
+     },
+     {
+      "statement": "O número 1 é um número primo, pois só é divisível por 1 e por ele mesmo.",
+      "isTrue": false,
+      "explanation": "Primo é o natural maior que 1 com exatamente dois divisores. O número 1 tem um único divisor e, por isso, não é primo."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "O resto da divisão de um polinômio P(x) por (x − a) é igual a P(a).",
+      "isTrue": true,
+      "explanation": "É o teorema do resto. Se P(a) = 0, o resto é zero, e P é divisível por (x − a) (teorema de D'Alembert)."
+     },
+     {
+      "statement": "Na divisão inversamente proporcional, o maior número recebe a maior parte.",
+      "isTrue": false,
+      "explanation": "Como a divisão é proporcional aos inversos, o maior número recebe a menor parte."
+     },
+     {
+      "statement": "No gráfico de f(x) = (ax + b) ÷ (cx + d), com c ≠ 0 e ad − bc ≠ 0, a assíntota horizontal é y = a/c e a vertical é x = −d/c.",
+      "isTrue": true,
+      "explanation": "O gráfico é a hipérbole de 1/x deslocada, com centro em (−d/c; a/c)."
+     },
+     {
+      "statement": "Em uma inequação exponencial de base entre 0 e 1, mantém-se o sentido da desigualdade ao comparar os expoentes.",
+      "isTrue": false,
+      "explanation": "Com base entre 0 e 1 a função exponencial é decrescente, e o sentido da desigualdade se inverte. Mantém-se só quando a base é maior que 1."
+     }
+    ]
+   },
+   "questions": [
+    {
+     "topic": "Simetria de figuras planas",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 2,
+     "statement": "Assinale a alternativa que apresenta a figura plana que possui centro de simetria, mas não possui nenhum eixo de simetria.",
+     "support": null,
+     "options": [
+      "Retângulo que não é quadrado.",
+      "Paralelogramo que não é retângulo nem losango.",
+      "Losango que não é quadrado.",
+      "Trapézio isósceles.",
+      "Triângulo isósceles que não é equilátero."
+     ],
+     "answer": "B",
+     "explanation": "O paralelogramo comum coincide consigo mesmo em uma rotação de 180° (tem centro), mas nenhuma reta o divide em duas metades coincidentes. O retângulo e o losango têm centro e 2 eixos, o trapézio isósceles e o triângulo isósceles têm 1 eixo e nenhum centro."
+    },
+    {
+     "topic": "Eixos de simetria de polígono regular",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 2,
+     "statement": "Um octógono regular possui, ao todo, quantos eixos de simetria?",
+     "support": null,
+     "options": [
+      "4.",
+      "6.",
+      "16.",
+      "8.",
+      "12."
+     ],
+     "answer": "D",
+     "explanation": "Um polígono regular de n lados tem n eixos de simetria. No octógono, 4 eixos passam por vértices opostos e 4 pelos pontos médios de lados opostos, num total de 8."
+    },
+    {
+     "topic": "Planos de simetria de sólidos",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 3,
+     "statement": "Uma pirâmide regular de base quadrada possui quantos planos de simetria?",
+     "support": null,
+     "options": [
+      "2.",
+      "3.",
+      "4.",
+      "5.",
+      "8."
+     ],
+     "answer": "C",
+     "explanation": "A pirâmide regular de base com n lados tem n planos de simetria. Na de base quadrada são 4: dois passam pelas diagonais da base e dois, pelos pontos médios de lados opostos."
+    },
+    {
+     "topic": "Retas reversas no cubo",
+     "pattern": "caso",
+     "difficulty": 3,
+     "pageRef": 4,
+     "statement": "No cubo ABCDEFGH, em que ABCD é a face da base e, F, G e H estão acima de A, B, C e D, respectivamente, as arestas CD e AE são",
+     "support": null,
+     "options": [
+      "reversas e ortogonais.",
+      "paralelas.",
+      "concorrentes e perpendiculares.",
+      "coincidentes.",
+      "reversas, mas não ortogonais."
+     ],
+     "answer": "A",
+     "explanation": "As arestas CD (horizontal, na base) e AE (vertical) não têm ponto em comum e não estão no mesmo plano: são reversas. Como AE é perpendicular à base, ela forma 90° com CD, e as retas são ortogonais."
+    },
+    {
+     "topic": "MDC: cortes em partes iguais",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 6,
+     "statement": "Duas cordas, de 360 m e de 270 m, devem ser cortadas em pedaços de mesmo comprimento, o maior possível, sem sobras. O número total de pedaços obtidos é",
+     "support": null,
+     "options": [
+      "3.",
+      "5.",
+      "9.",
+      "12.",
+      "7."
+     ],
+     "answer": "E",
+     "explanation": "Como se quer o maior comprimento comum, usa-se o MDC: MDC(360, 270) = 90 m. Há 360 ÷ 90 = 4 pedaços da primeira corda e 270 ÷ 90 = 3 da segunda, num total de 7."
+    },
+    {
+     "topic": "MMC: encontro de periodicidades",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 6,
+     "statement": "Três viaturas passam por um posto, respectivamente, a cada 10, 15 e 25 minutos. Se as três passaram juntas às 6 h, voltarão a passar juntas pela primeira vez às",
+     "support": null,
+     "options": [
+      "7 h 30 min.",
+      "8 h.",
+      "8 h 30 min.",
+      "9 h.",
+      "10 h."
+     ],
+     "answer": "C",
+     "explanation": "O menor intervalo comum é o MMC: MMC(10, 15, 25) = 150 minutos, isto é, 2 h 30 min. Então voltam a passar juntas às 6 h + 2 h 30 min = 8 h 30 min."
+    },
+    {
+     "topic": "Número de divisores",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 6,
+     "statement": "O número de divisores positivos de 600 é igual a",
+     "support": null,
+     "options": [
+      "12.",
+      "24.",
+      "18.",
+      "20.",
+      "30."
+     ],
+     "answer": "B",
+     "explanation": "600 = 2³ · 3 · 5². Somando 1 a cada expoente e multiplicando: (3 + 1)(1 + 1)(2 + 1) = 4 · 2 · 3 = 24."
+    },
+    {
+     "topic": "Critério de divisibilidade por 9",
+     "pattern": "calculo",
+     "difficulty": 1,
+     "pageRef": 5,
+     "statement": "Para que o número 3A41, em que A é um algarismo, seja divisível por 9, o valor de A deve ser",
+     "support": null,
+     "options": [
+      "0.",
+      "2.",
+      "5.",
+      "1.",
+      "9."
+     ],
+     "answer": "D",
+     "explanation": "Um número é divisível por 9 quando a soma dos algarismos é múltiplo de 9: 3 + A + 4 + 1 = 8 + A. O único algarismo que torna a soma múltipla de 9 é A = 1 (soma 9). Conferência: 3.141 = 9 · 349."
+    },
+    {
+     "topic": "Divisão inversamente proporcional",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 8,
+     "statement": "Dividindo-se R$ 3.600,00 em partes inversamente proporcionais a 3, 4 e 6, a maior parte, em reais, é igual a",
+     "support": null,
+     "options": [
+      "1.600.",
+      "800.",
+      "1.200.",
+      "1.800.",
+      "2.000."
+     ],
+     "answer": "A",
+     "explanation": "As partes são proporcionais aos inversos: 1/3, 1/4 e 1/6, que, no denominador comum 12, ficam 4/12, 3/12 e 2/12, ou seja, pesos 4, 3 e 2 (soma 9). A maior parte cabe ao menor número (3): 3.600 × 4 ÷ 9 = 1.600; as outras são 1.200 e 800."
+    },
+    {
+     "topic": "Teorema do resto",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 9,
+     "statement": "O resto da divisão do polinômio P(x) = x³ − 4x² + 2x + 7 por (x − 3) é",
+     "support": null,
+     "options": [
+      "−4.",
+      "0.",
+      "7.",
+      "10.",
+      "4."
+     ],
+     "answer": "E",
+     "explanation": "Pelo teorema do resto, o resto da divisão por (x − 3) é P(3) = 27 − 36 + 6 + 7 = 4. Não é preciso efetuar a divisão."
+    },
+    {
+     "topic": "Relações de Girard",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 10,
+     "statement": "Se a, b e c são as raízes da equação x³ − 9x² + 26x − 24 = 0, o valor de a² + b² + c² é",
+     "support": null,
+     "options": [
+      "13.",
+      "26.",
+      "29.",
+      "35.",
+      "81."
+     ],
+     "answer": "C",
+     "explanation": "Por Girard, a + b + c = 9 e ab + ac + bc = 26. Então a² + b² + c² = (a + b + c)² − 2(ab + ac + bc) = 81 − 52 = 29. Conferência: as raízes são 2, 3 e 4, e 4 + 9 + 16 = 29."
+    },
+    {
+     "topic": "Divisibilidade de polinômio",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 9,
+     "statement": "Para que o polinômio P(x) = x³ + kx² − 4x − 12 seja divisível por (x − 2), o valor de k deve ser",
+     "support": null,
+     "options": [
+      "3.",
+      "−3.",
+      "0.",
+      "2.",
+      "6."
+     ],
+     "answer": "A",
+     "explanation": "Pelo teorema de D'Alembert, P é divisível por (x − 2) se P(2) = 0: 8 + 4k − 8 − 12 = 4k − 12 = 0, logo k = 3. Conferência: x³ + 3x² − 4x − 12 = (x − 2)(x + 2)(x + 3)."
+    },
+    {
+     "topic": "Assíntotas de função racional",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 11,
+     "statement": "As assíntotas do gráfico da função f(x) = (3x − 1) ÷ (x + 2) são",
+     "support": null,
+     "options": [
+      "x = 2 e y = 3.",
+      "x = −2 e y = 3.",
+      "x = 3 e y = −2.",
+      "x = −2 e y = −1/2.",
+      "x = 2 e y = −3."
+     ],
+     "answer": "B",
+     "explanation": "A assíntota vertical é o zero do denominador (x + 2 = 0, logo x = −2). Como os graus do numerador e do denominador são iguais, a horizontal é a razão dos coeficientes líderes: y = 3 ÷ 1 = 3. Em (ax + b) ÷ (cx + d): x = −d/c e y = a/c."
+    },
+    {
+     "topic": "Equação exponencial",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 12,
+     "statement": "A solução da equação exponencial 3^(x + 1) − 3^x = 54 é igual a",
+     "support": null,
+     "options": [
+      "2.",
+      "4.",
+      "6.",
+      "3.",
+      "9."
+     ],
+     "answer": "D",
+     "explanation": "Colocando 3ˣ em evidência: 3ˣ · (3 − 1) = 54, logo 3ˣ = 27 = 3³ e x = 3. Conferência: 3⁴ − 3³ = 81 − 27 = 54."
+    }
+   ]
+  }
+ ]
+}

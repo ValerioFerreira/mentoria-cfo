@@ -1,0 +1,957 @@
+{
+  "aula": "estatistica/a03",
+  "batch": "w2-bizu-estatistica",
+  "status": "DRAFT",
+  "segments": [
+    {
+      "id": "estatistica/a03/s01",
+      "bizu": {
+        "summary": [
+          "**Moda (Mo)** = valor mais frequente do conjunto; é medida de posição e de tendência central. O termo foi introduzido na estatística por **Karl Pearson (1895)**.",
+          "Pode haver **uma moda (unimodal)**, **duas (bimodal)**, **três ou mais (multimodal/plurimodal)** ou **nenhuma (amodal)**. Diferente da média e da mediana, a moda **nem sempre existe** e nem sempre é única.",
+          "**Amodal**: todos os valores aparecem o mesmo número de vezes (ex.: nenhum se destaca). **Bimodal**: dois valores empatam na maior frequência.",
+          "A moda é útil quando o valor mais frequente é o mais relevante e é a medida de posição aplicável a **variáveis qualitativas nominais** (não numéricas e não ordenáveis).",
+          "**Dados não agrupados**: basta identificar o(s) elemento(s) de maior frequência.",
+          "**Dados agrupados por valor (sem classes)**: a moda é o **valor da variável** que tem a maior frequência absoluta — e não o número da frequência. No gráfico de hastes/colunas, é a barra mais alta.",
+          "**Dados agrupados em classes de mesma amplitude**: a **classe modal** é a de maior frequência; a moda está contida nela.",
+          "**Moda bruta** = **ponto médio da classe modal**: Mo = (l_inf + l_sup) / 2. É o método mais simples e raramente cobrado em provas."
+        ],
+        "teoria": [
+          {
+            "statement": "Um conjunto de dados pode ser amodal, unimodal, bimodal ou plurimodal, conforme o número de valores que atingem a maior frequência.",
+            "isTrue": true,
+            "explanation": "Sem moda: amodal; uma moda: unimodal; duas: bimodal; três ou mais: multimodal."
+          },
+          {
+            "statement": "A moda existe e é única em qualquer conjunto de dados.",
+            "isTrue": false,
+            "explanation": "Diferentemente de outras medidas de tendência central, a moda pode não existir (conjunto amodal) ou existir em mais de um valor."
+          },
+          {
+            "statement": "A moda pode ser empregada como medida de posição de variáveis qualitativas nominais.",
+            "isTrue": true,
+            "explanation": "Basta identificar a categoria mais frequente; não é preciso ordem nem valores numéricos."
+          },
+          {
+            "statement": "Em uma tabela de frequências por valor, a moda é o número correspondente à maior frequência absoluta.",
+            "isTrue": false,
+            "explanation": "A moda é o VALOR da variável que apresenta a maior frequência, e não a própria frequência."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Um conjunto em que todos os elementos aparecem o mesmo número de vezes é classificado como amodal.",
+            "isTrue": true,
+            "explanation": "Nenhum valor se destaca por maior frequência, logo não há moda."
+          },
+          {
+            "statement": "Quando dois valores empatam na maior frequência, e esta é superior à dos demais, o conjunto é bimodal.",
+            "isTrue": true,
+            "explanation": "Há duas modas, que são os dois valores empatados."
+          },
+          {
+            "statement": "Em dados agrupados em classes de mesma amplitude, a classe modal é aquela que apresenta a menor frequência.",
+            "isTrue": false,
+            "explanation": "A classe modal é a de MAIOR frequência."
+          },
+          {
+            "statement": "A moda bruta de uma distribuição em classes é o ponto médio da classe modal.",
+            "isTrue": true,
+            "explanation": "Mo bruta = (l_inf + l_sup) / 2, considerando a classe de maior frequência."
+          },
+          {
+            "statement": "A moda bruta é igual ao limite inferior da classe modal.",
+            "isTrue": false,
+            "explanation": "A moda bruta é o ponto médio (média dos limites) da classe modal."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Definição de moda e classificação (unimodal, bimodal, amodal)",
+            "pageRef": 3
+          },
+          {
+            "topic": "Moda para dados não agrupados e exemplos de conjuntos",
+            "pageRef": 5
+          },
+          {
+            "topic": "Moda para dados agrupados por valor",
+            "pageRef": 7
+          },
+          {
+            "topic": "Identificação gráfica da moda",
+            "pageRef": 8
+          },
+          {
+            "topic": "Tabela de frequências relativas com duas modas",
+            "pageRef": 9
+          },
+          {
+            "topic": "Moda bruta: ponto médio da classe modal",
+            "pageRef": 10
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Conceito de moda",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 3,
+          "statement": "A moda de um conjunto de observações é",
+          "support": null,
+          "options": [
+            "o valor que ocupa a posição central do conjunto ordenado.",
+            "o valor de maior frequência, medida de posição e de tendência central.",
+            "a soma dos valores dividida pelo número de observações.",
+            "a raiz n-ésima do produto dos valores.",
+            "a diferença entre o maior e o menor valor."
+          ],
+          "answer": "B",
+          "explanation": "A moda é o valor mais frequente do conjunto, sendo medida de posição e de tendência central. O valor central do rol é a mediana, a soma dividida por n é a média aritmética, e a raiz n-ésima do produto é a média geométrica."
+        },
+        {
+          "topic": "Classificação quanto ao número de modas",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 5,
+          "statement": "O conjunto de valores {4, 4, 7, 7, 9, 12, 15} é classificado, quanto ao número de modas, como",
+          "support": null,
+          "options": [
+            "unimodal, com moda 4.",
+            "amodal.",
+            "trimodal, com modas 4, 7 e 9.",
+            "unimodal, com moda 7.",
+            "bimodal, com modas 4 e 7."
+          ],
+          "answer": "E",
+          "explanation": "Os valores 4 e 7 aparecem duas vezes cada, e os demais, uma vez. Há empate na maior frequência entre dois valores; portanto, o conjunto é bimodal."
+        },
+        {
+          "topic": "Conjunto multimodal",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 5,
+          "statement": "O conjunto {6, 6, 8, 8, 10, 10, 12} apresenta",
+          "support": null,
+          "options": [
+            "uma única moda, 6.",
+            "duas modas, 6 e 10.",
+            "nenhuma moda, sendo amodal.",
+            "uma única moda, 12.",
+            "três modas (6, 8 e 10), sendo multimodal."
+          ],
+          "answer": "E",
+          "explanation": "Os valores 6, 8 e 10 têm a mesma frequência máxima (2), enquanto 12 aparece uma só vez. Três ou mais modas caracterizam um conjunto multimodal (ou plurimodal)."
+        },
+        {
+          "topic": "Conjunto amodal",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 5,
+          "statement": "Em qual dos conjuntos a seguir a moda não existe?",
+          "support": null,
+          "options": [
+            "{3, 5, 7, 9, 11}",
+            "{2, 2, 3, 5, 8}",
+            "{1, 1, 1, 4, 6}",
+            "{6, 6, 7, 7, 8}",
+            "{5, 5, 5, 5, 9}"
+          ],
+          "answer": "A",
+          "explanation": "Um conjunto é amodal quando todos os valores têm a mesma frequência; em {3, 5, 7, 9, 11}, cada valor aparece uma única vez. Nos demais há ao menos um valor que se destaca (ou empata em destaque) em frequência."
+        },
+        {
+          "topic": "Moda para variável qualitativa",
+          "pattern": "caso",
+          "difficulty": 1,
+          "pageRef": 3,
+          "statement": "Um batalhão deseja saber qual tipo de ocorrência (incêndio, salvamento ou atendimento pré-hospitalar) é o mais frequente em seus registros. A medida de posição adequada a essa variável qualitativa nominal é a",
+          "support": null,
+          "options": [
+            "média aritmética.",
+            "mediana.",
+            "média geométrica.",
+            "média harmônica.",
+            "moda."
+          ],
+          "answer": "E",
+          "explanation": "Para variáveis qualitativas nominais, não numéricas e não ordenáveis, só se pode identificar a categoria mais frequente, isto é, a moda. Média e mediana exigem valores numéricos (ou ordenáveis)."
+        },
+        {
+          "topic": "Moda de dados não agrupados",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 5,
+          "statement": "Os tempos de resposta, em minutos, de oito chamados foram 15, 22, 18, 22, 30, 15, 22 e 27. A moda desses tempos é",
+          "support": null,
+          "options": [
+            "30",
+            "22",
+            "21,375",
+            "18,5",
+            "15"
+          ],
+          "answer": "B",
+          "explanation": "O valor 22 aparece três vezes, o 15 aparece duas, e os demais, uma. A moda é, portanto, 22. O valor 21,375 é a média aritmética; a mediana, que também vale 22, é diferente de 18,5, e 18,5 não é medida central dos dados."
+        },
+        {
+          "topic": "Moda de dados agrupados por valor",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 8,
+          "statement": "O número de ocorrências diárias em um quartel foi: 0 ocorrência em 18 dias, 1 em 34, 2 em 41, 3 em 27 e 4 em 12. A moda do número diário de ocorrências é",
+          "support": null,
+          "options": [
+            "2",
+            "41",
+            "1",
+            "3",
+            "34"
+          ],
+          "answer": "A",
+          "explanation": "A moda é o valor da variável com maior frequência, e não a frequência em si: a maior frequência (41 dias) corresponde a 2 ocorrências por dia. O valor 41 é o número de dias, e não a moda."
+        },
+        {
+          "topic": "Moda com frequências relativas",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 9,
+          "statement": "A tabela mostra a distribuição relativa do número de falhas por equipamento: 1 falha, 15%; 2 falhas, 30%; 3 falhas, 10%; 4 falhas, 30%; 5 falhas, 15%. A distribuição é",
+          "support": null,
+          "options": [
+            "unimodal, com moda 2.",
+            "unimodal, com moda 30%.",
+            "amodal.",
+            "bimodal, com modas 2 e 4.",
+            "bimodal, com modas 1 e 5."
+          ],
+          "answer": "D",
+          "explanation": "Os valores 2 e 4 compartilham a maior frequência relativa (30%), de modo que a distribuição é bimodal, e as modas são 2 e 4 falhas, não o percentual."
+        },
+        {
+          "topic": "Moda bruta",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 10,
+          "statement": "Em uma distribuição em classes de mesma amplitude, as frequências são: 10 ⊢ 20, 4; 20 ⊢ 30, 9; 30 ⊢ 40, 15; 40 ⊢ 50, 7. A moda bruta é",
+          "support": null,
+          "options": [
+            "40",
+            "35",
+            "30",
+            "25",
+            "15"
+          ],
+          "answer": "B",
+          "explanation": "A classe modal é a de maior frequência (30 ⊢ 40). A moda bruta é o ponto médio dessa classe: (30 + 40) ÷ 2 = 35. O valor 15 é a frequência da classe modal."
+        },
+        {
+          "topic": "Média e moda bruta",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 12,
+          "statement": "Os pesos, em kg, de 20 recrutas foram agrupados: 60 ⊢ 70 (12 recrutas), 70 ⊢ 80 (5) e 80 ⊢ 90 (3). A média, calculada pelos pontos médios, e a moda bruta são, respectivamente,",
+          "support": null,
+          "options": [
+            "75 kg e 65 kg.",
+            "70,5 kg e 60 kg.",
+            "65 kg e 70,5 kg.",
+            "70,5 kg e 65 kg.",
+            "75 kg e 60 kg."
+          ],
+          "answer": "D",
+          "explanation": "A moda bruta é o ponto médio da classe modal (60 ⊢ 70): 65. A média é (65 · 12 + 75 · 5 + 85 · 3) ÷ 20 = 1.410 ÷ 20 = 70,5 kg."
+        },
+        {
+          "topic": "Classe modal",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 10,
+          "statement": "Em dados agrupados em classes de amplitudes iguais, é correto afirmar que a moda",
+          "support": null,
+          "options": [
+            "coincide sempre com o ponto médio da classe de maior frequência.",
+            "está contida na classe com maior limite superior.",
+            "é sempre igual à frequência da classe modal.",
+            "está contida na classe de maior frequência, chamada classe modal.",
+            "não existe, pois os dados deixam de ser individuais."
+          ],
+          "answer": "D",
+          "explanation": "Com amplitudes iguais, a classe modal é a de maior frequência, e a moda está nela. O ponto médio dessa classe é apenas uma aproximação, a moda bruta; métodos como Czuber e King refinam a estimativa."
+        },
+        {
+          "topic": "Moda: afirmativa incorreta",
+          "pattern": "incorreta",
+          "difficulty": 2,
+          "pageRef": 5,
+          "statement": "Sobre a moda, assinale a alternativa INCORRETA.",
+          "support": null,
+          "options": [
+            "Trata-se de uma medida de posição que indica tendência central.",
+            "A moda existe em qualquer conjunto de dados e é sempre única.",
+            "A moda pode ser aplicada a variáveis qualitativas nominais.",
+            "Um conjunto pode ser unimodal, bimodal ou multimodal.",
+            "Em dados agrupados por valor, a moda é o valor de maior frequência."
+          ],
+          "answer": "B",
+          "explanation": "A moda pode não existir (conjunto amodal) e pode ter mais de um valor (bimodal, multimodal). As demais afirmações estão corretas."
+        }
+      ]
+    },
+    {
+      "id": "estatistica/a03/s02",
+      "bizu": {
+        "summary": [
+          "**Moda de Pearson**: relação empírica para distribuições **moderadamente assimétricas**, que liga moda, mediana e média: **Mo = 3 · Md − 2 · x̄**. Pouco cobrada, mas aparece em questões de FCC com média por pontos médios e mediana por interpolação.",
+          "Roteiro de Pearson em classes: (1) média ponderada pelos pontos médios; (2) mediana por interpolação linear; (3) aplicar Mo = 3Md − 2x̄.",
+          "**Moda de Czuber**: método (gráfico, depois algébrico) que usa a classe modal e as duas vizinhas (anterior e posterior); exige classes de **mesma amplitude h**.",
+          "Com Δ1 = f_Mo − f_ant e Δ2 = f_Mo − f_post: **Mo = l_inf + [ Δ1 / (Δ1 + Δ2) ] × h**. Forma equivalente: Mo = l_inf + [ (f_Mo − f_ant) / (2·f_Mo − (f_ant + f_post)) ] × h.",
+          "Na fórmula de Czuber entram a frequência da **própria classe modal** e as das classes adjacentes. A hipótese é que a moda reparte a largura da classe modal em pedaços proporcionais às diferenças Δ1 e Δ2.",
+          "Se a classe modal for a **primeira**, use f_ant = 0; se for a **última**, use f_post = 0.",
+          "Se **f_ant = f_post**, então Δ1 = Δ2 e a moda de Czuber coincide com o **ponto médio** da classe modal.",
+          "O resultado de Czuber fica sempre dentro da classe modal (entre l_inf e l_sup)."
+        ],
+        "teoria": [
+          {
+            "statement": "A relação empírica de Pearson permite estimar a moda por Mo = 3 · Md − 2 · x̄, em distribuições moderadamente assimétricas.",
+            "isTrue": true,
+            "explanation": "Conhecidas média e mediana, obtém-se uma aproximação da moda."
+          },
+          {
+            "statement": "A relação de Pearson é dada por Mo = 3 · x̄ − 2 · Md.",
+            "isTrue": false,
+            "explanation": "Os coeficientes estão trocados: a mediana é multiplicada por 3 e a média por 2."
+          },
+          {
+            "statement": "A moda de Czuber leva em conta a frequência da classe modal e também as frequências das classes anterior e posterior.",
+            "isTrue": true,
+            "explanation": "Mo = l_inf + [(f_Mo − f_ant) / ((f_Mo − f_ant) + (f_Mo − f_post))] · h."
+          },
+          {
+            "statement": "Se a classe modal for a última da distribuição, o cálculo de Czuber considera f_post igual à frequência da própria classe modal.",
+            "isTrue": false,
+            "explanation": "Na última classe adota-se f_post = 0 (e f_ant = 0 se for a primeira)."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Se as classes anterior e posterior à classe modal têm a mesma frequência, a moda de Czuber coincide com o ponto médio da classe modal.",
+            "isTrue": true,
+            "explanation": "Com f_ant = f_post, Δ1 = Δ2 e a fração vale 1/2."
+          },
+          {
+            "statement": "A relação de Pearson fornece o valor exato da moda para qualquer distribuição de frequências.",
+            "isTrue": false,
+            "explanation": "É uma relação empírica, válida como aproximação para distribuições moderadamente assimétricas."
+          },
+          {
+            "statement": "As expressões Mo = l + Δ1/(Δ1 + Δ2) · h e Mo = l + (f_Mo − f_ant)/(2·f_Mo − f_ant − f_post) · h são equivalentes.",
+            "isTrue": true,
+            "explanation": "Como Δ1 + Δ2 = 2·f_Mo − f_ant − f_post, as duas formas dão o mesmo resultado."
+          },
+          {
+            "statement": "A moda de Czuber de uma distribuição em classes é igual ao ponto médio da classe modal.",
+            "isTrue": false,
+            "explanation": "O ponto médio da classe modal é a moda bruta; Czuber ajusta a posição pela diferença de frequências com as classes vizinhas."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Moda de Pearson: Mo = 3Md - 2x",
+            "pageRef": 13
+          },
+          {
+            "topic": "Pearson em tabela de classes (média e mediana)",
+            "pageRef": 14
+          },
+          {
+            "topic": "Questão FCC com relação de Pearson",
+            "pageRef": 15
+          },
+          {
+            "topic": "Czuber: ideia geométrica e semelhança de triângulos",
+            "pageRef": 21
+          },
+          {
+            "topic": "Fórmula de Czuber e suas formas equivalentes",
+            "pageRef": 22
+          },
+          {
+            "topic": "Primeira/última classe e hipótese de Czuber",
+            "pageRef": 23
+          },
+          {
+            "topic": "Exemplo numérico de Czuber",
+            "pageRef": 24
+          },
+          {
+            "topic": "Czuber com classes vizinhas de mesma frequência",
+            "pageRef": 27
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Relação de Pearson",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 13,
+          "statement": "Para distribuições moderadamente assimétricas, a relação empírica de Pearson permite estimar a moda a partir da média (x̄) e da mediana (Md) pela expressão",
+          "support": null,
+          "options": [
+            "Mo = 3 · x̄ − 2 · Md.",
+            "Mo = 2 · Md − 3 · x̄.",
+            "Mo = (x̄ + Md) ÷ 2.",
+            "Mo = 3 · Md − 2 · x̄.",
+            "Mo = x̄ − 3 · Md."
+          ],
+          "answer": "D",
+          "explanation": "A relação empírica é Mo = 3 · Md − 2 · x̄. Ela só é razoável para distribuições moderadamente assimétricas."
+        },
+        {
+          "topic": "Aplicação da relação de Pearson",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 13,
+          "statement": "Uma distribuição moderadamente assimétrica tem média 52 e mediana 50. Pela relação de Pearson, a moda é aproximadamente",
+          "support": null,
+          "options": [
+            "56",
+            "54",
+            "51",
+            "48",
+            "46"
+          ],
+          "answer": "E",
+          "explanation": "Mo = 3 · Md − 2 · x̄ = 3 · 50 − 2 · 52 = 150 − 104 = 46. A ordem mediana-média indica assimetria à direita (média maior que a mediana), e a moda fica abaixo da mediana."
+        },
+        {
+          "topic": "Mediana a partir de Pearson",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 13,
+          "statement": "Em uma distribuição moderadamente assimétrica, a média é 30 e a moda, obtida pela relação de Pearson, é 24. A mediana é, então,",
+          "support": null,
+          "options": [
+            "27",
+            "28",
+            "26",
+            "29",
+            "30"
+          ],
+          "answer": "B",
+          "explanation": "De Mo = 3 · Md − 2 · x̄ resulta Md = (Mo + 2 · x̄) ÷ 3 = (24 + 60) ÷ 3 = 28."
+        },
+        {
+          "topic": "Roteiro de Pearson em classes",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 14,
+          "statement": "Para obter a moda de Pearson de uma distribuição em classes, o roteiro correto é:",
+          "support": null,
+          "options": [
+            "identificar a classe modal e tomar seu ponto médio.",
+            "calcular as diferenças entre a frequência modal e as das classes vizinhas.",
+            "dividir a frequência posterior pela soma das frequências vizinhas.",
+            "calcular a densidade de frequência de cada classe e tomar a maior.",
+            "calcular a média pelos pontos médios, a mediana por interpolação linear e, então, aplicar Mo = 3Md − 2x̄."
+          ],
+          "answer": "E",
+          "explanation": "A moda de Pearson depende da média (pontos médios ponderados pelas frequências) e da mediana (interpolação linear). Tomar o ponto médio da classe modal é a moda bruta; usar diferenças com as vizinhas é Czuber."
+        },
+        {
+          "topic": "Moda de Pearson em classes",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 14,
+          "statement": "As frequências de cinco classes de amplitude 10 são: 0 ⊢ 10, 10; 10 ⊢ 20, 20; 20 ⊢ 30, 30; 30 ⊢ 40, 25; 40 ⊢ 50, 15. Com média calculada pelos pontos médios e mediana por interpolação linear, a moda de Pearson é",
+          "support": null,
+          "options": [
+            "25,0",
+            "26,5",
+            "26,7",
+            "27,0",
+            "30,0"
+          ],
+          "answer": "D",
+          "explanation": "A média é (5·10 + 15·20 + 25·30 + 35·25 + 45·15) ÷ 100 = 26,5. A mediana está na classe 20 ⊢ 30: 20 + [(50 − 30) ÷ 30] × 10 ≈ 26,67. Mo = 3 · 26,67 − 2 · 26,5 = 80 − 53 = 27,0."
+        },
+        {
+          "topic": "Pearson com valores maiores",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 15,
+          "statement": "As frequências de cinco classes de amplitude 4 são: 0 ⊢ 4, 6; 4 ⊢ 8, 14; 8 ⊢ 12, 40; 12 ⊢ 16, 28; 16 ⊢ 20, 12. Com média pelos pontos médios e mediana por interpolação linear, a moda de Pearson é aproximadamente",
+          "support": null,
+          "options": [
+            "10,00",
+            "10,92",
+            "11,00",
+            "11,04",
+            "12,00"
+          ],
+          "answer": "B",
+          "explanation": "A média é (2·6 + 6·14 + 10·40 + 14·28 + 18·12) ÷ 100 = 11,04. A mediana está na classe 8 ⊢ 12: 8 + [(50 − 20) ÷ 40] × 4 = 11. Mo = 3 · 11 − 2 · 11,04 = 33 − 22,08 = 10,92."
+        },
+        {
+          "topic": "Elementos da fórmula de Czuber",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 22,
+          "statement": "Na fórmula da moda de Czuber, Mo = l_inf + [Δ1 ÷ (Δ1 + Δ2)] × h, as diferenças Δ1 e Δ2 correspondem, respectivamente, a",
+          "support": null,
+          "options": [
+            "f_anterior − f_modal e f_posterior − f_modal.",
+            "f_posterior e f_anterior.",
+            "f_modal − f_posterior e f_modal − f_anterior.",
+            "f_modal + f_anterior e f_modal + f_posterior.",
+            "f_modal − f_anterior e f_modal − f_posterior."
+          ],
+          "answer": "E",
+          "explanation": "Δ1 é a diferença entre a frequência da classe modal e a da classe anterior, e Δ2 é a diferença entre a da classe modal e a da posterior. A fórmula usa, portanto, a frequência da própria classe modal e as das vizinhas."
+        },
+        {
+          "topic": "Moda de Czuber",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 24,
+          "statement": "Em classes de amplitude 5, as frequências são: 0 ⊢ 5, 6; 5 ⊢ 10, 14; 10 ⊢ 15, 20; 15 ⊢ 20, 11; 20 ⊢ 25, 4. A moda de Czuber é",
+          "support": null,
+          "options": [
+            "11",
+            "11,5",
+            "12",
+            "12,5",
+            "13"
+          ],
+          "answer": "C",
+          "explanation": "A classe modal é 10 ⊢ 15. Δ1 = 20 − 14 = 6 e Δ2 = 20 − 11 = 9. Mo = 10 + [6 ÷ (6 + 9)] × 5 = 10 + 2 = 12, abaixo do ponto médio (12,5), pois a classe anterior é mais populosa."
+        },
+        {
+          "topic": "Moda de Czuber com h diferente de 5",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 25,
+          "statement": "Em classes de amplitude 4, as frequências são: 10 ⊢ 14, 5; 14 ⊢ 18, 12; 18 ⊢ 22, 25; 22 ⊢ 26, 18; 26 ⊢ 30, 8. A moda de Czuber é",
+          "support": null,
+          "options": [
+            "21,4",
+            "21,0",
+            "20,6",
+            "20,0",
+            "19,8"
+          ],
+          "answer": "C",
+          "explanation": "A classe modal é 18 ⊢ 22. Δ1 = 25 − 12 = 13 e Δ2 = 25 − 18 = 7. Mo = 18 + [13 ÷ (13 + 7)] × 4 = 18 + 2,6 = 20,6."
+        },
+        {
+          "topic": "Czuber com classe modal inicial",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 23,
+          "statement": "Em classes de amplitude 20, as frequências são: 100 ⊢ 120, 36; 120 ⊢ 140, 24; 140 ⊢ 160, 12. A moda de Czuber é",
+          "support": null,
+          "options": [
+            "130",
+            "120",
+            "115",
+            "110",
+            "105"
+          ],
+          "answer": "C",
+          "explanation": "A classe modal é a primeira; por não haver classe anterior, usa-se f_ant = 0. Δ1 = 36 − 0 = 36 e Δ2 = 36 − 24 = 12. Mo = 100 + [36 ÷ (36 + 12)] × 20 = 100 + 15 = 115."
+        },
+        {
+          "topic": "Czuber com vizinhas de mesma frequência",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 27,
+          "statement": "Em uma distribuição de classes com a mesma amplitude, a classe modal é 30 ⊢ 40 (frequência 28), e as classes anterior e posterior têm, ambas, frequência 15. A moda de Czuber é",
+          "support": null,
+          "options": [
+            "35",
+            "30",
+            "40",
+            "33",
+            "37"
+          ],
+          "answer": "A",
+          "explanation": "Se f_ant = f_post, então Δ1 = Δ2 e a moda cai no ponto médio da classe modal: 30 + (13 ÷ 26) × 10 = 35."
+        },
+        {
+          "topic": "Hipótese de Czuber",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 23,
+          "statement": "Sobre a moda de Czuber, assinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "Pela hipótese de Czuber, a moda divide a classe modal em partes proporcionais às diferenças entre a frequência modal e as das classes adjacentes.",
+            "A fórmula utiliza apenas as frequências das classes adjacentes à classe modal.",
+            "O método dispensa que as classes tenham a mesma amplitude.",
+            "O resultado pode ficar fora da classe modal.",
+            "Quando a classe modal é a primeira, f_ant é igual à frequência da classe modal."
+          ],
+          "answer": "A",
+          "explanation": "Czuber usa a frequência da classe modal e as vizinhas, exige classes de mesma amplitude e fornece um valor dentro da classe modal. Se a classe modal for a primeira (ou a última), toma-se f_ant = 0 (ou f_post = 0)."
+        },
+        {
+          "topic": "Moda de Czuber: posição na classe",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 24,
+          "statement": "Em classes de amplitude 10, as frequências são: 10 ⊢ 20, 10; 20 ⊢ 30, 40; 30 ⊢ 40, 35. A moda de Czuber, aproximada para duas casas decimais, é",
+          "support": null,
+          "options": [
+            "21,43",
+            "25,00",
+            "26,67",
+            "28,57",
+            "30,00"
+          ],
+          "answer": "D",
+          "explanation": "A classe modal é 20 ⊢ 30. Δ1 = 40 − 10 = 30 e Δ2 = 40 − 35 = 5. Mo = 20 + [30 ÷ 35] × 10 ≈ 28,57. Como a classe posterior é bem mais populosa que a anterior, a moda se desloca para o limite superior da classe modal."
+        }
+      ]
+    },
+    {
+      "id": "estatistica/a03/s03",
+      "bizu": {
+        "summary": [
+          "**Moda de King**: método parecido com o de Czuber, mas baseado **apenas nas frequências das classes adjacentes** (anterior e posterior). Fórmula: **Mo = l_inf + [ f_post / (f_ant + f_post) ] × h**.",
+          "Hipótese de King: os pedaços em que a moda reparte a classe modal são **inversamente proporcionais** às frequências das vizinhas. Quanto maior a frequência posterior, mais a moda sobe na classe.",
+          "**Diferença Czuber x King**: Czuber usa também a frequência da classe modal; King usa só f_ant e f_post.",
+          "**Amplitudes de classe diferentes**: Czuber e King exigem classes de mesma largura. Quando as amplitudes variam, a classe modal deve ser identificada pela maior **densidade de frequência d = f / h** (e não pela maior frequência).",
+          "Nesse caso, substitui-se f por d em todas as fórmulas (Czuber: usa d_Mo, d_ant, d_post; King: usa d_ant e d_post), mantendo o h da classe modal.",
+          "No histograma com classes de larguras desiguais, a **altura** deve ser a densidade, para que a **área** de cada retângulo seja proporcional à frequência.",
+          "**Propriedade 1**: somando (ou subtraindo) uma constante c a todos os valores, a moda é somada (ou subtraída) de c.",
+          "**Propriedade 2**: multiplicando (ou dividindo) todos os valores por uma constante c, a moda também é multiplicada (ou dividida) por c."
+        ],
+        "teoria": [
+          {
+            "statement": "Na moda de King, Mo = l_inf + [f_post / (f_ant + f_post)] · h, em que f_ant e f_post são as frequências das classes vizinhas à classe modal.",
+            "isTrue": true,
+            "explanation": "A fórmula usa apenas as classes adjacentes."
+          },
+          {
+            "statement": "O método de King emprega a frequência da classe modal na fórmula, tal como o de Czuber.",
+            "isTrue": false,
+            "explanation": "King leva em conta somente as frequências adjacentes; é Czuber que inclui também a frequência da classe modal."
+          },
+          {
+            "statement": "Se as classes de uma distribuição têm amplitudes diferentes, a classe modal deve ser identificada pela maior densidade de frequência.",
+            "isTrue": true,
+            "explanation": "A maior frequência absoluta pode estar numa classe larga; a densidade (f/h) corrige esse efeito."
+          },
+          {
+            "statement": "Multiplicando todos os valores de um conjunto por uma constante c, a moda do conjunto permanece inalterada.",
+            "isTrue": false,
+            "explanation": "A moda fica multiplicada por c, como ocorre com a média e a mediana."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Somando-se uma constante c a todos os valores de um conjunto, a moda fica acrescida de c.",
+            "isTrue": true,
+            "explanation": "Os valores se deslocam, mas as frequências relativas não mudam; a moda acompanha o deslocamento."
+          },
+          {
+            "statement": "As fórmulas de Czuber e King podem ser aplicadas diretamente com frequências absolutas mesmo quando as classes têm larguras diferentes.",
+            "isTrue": false,
+            "explanation": "É preciso adaptá-las, substituindo as frequências pelas densidades de frequência."
+          },
+          {
+            "statement": "Em um histograma de classes com larguras desiguais, a altura de cada retângulo deve representar a densidade de frequência para que a área seja proporcional à frequência.",
+            "isTrue": true,
+            "explanation": "Com a altura igual à densidade, área = (f/h) · h = f."
+          },
+          {
+            "statement": "Pela fórmula de King, se f_post for maior que f_ant, a moda cai na metade superior da classe modal.",
+            "isTrue": true,
+            "explanation": "A fração f_post/(f_ant + f_post) é maior que 1/2 e, multiplicada por h, desloca a moda acima do ponto médio."
+          },
+          {
+            "statement": "Pela fórmula de King, a moda coincide sempre com o ponto médio da classe modal.",
+            "isTrue": false,
+            "explanation": "Só coincide quando f_ant = f_post; nos demais casos a moda se desloca em direção à classe de maior frequência vizinha."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Moda de King: fórmula e ideia geométrica",
+            "pageRef": 28
+          },
+          {
+            "topic": "Dedução da fórmula de King",
+            "pageRef": 29
+          },
+          {
+            "topic": "Diferença entre King e Czuber",
+            "pageRef": 29
+          },
+          {
+            "topic": "Exemplo numérico de King",
+            "pageRef": 31
+          },
+          {
+            "topic": "Amplitudes não constantes e densidade de frequência",
+            "pageRef": 34
+          },
+          {
+            "topic": "Czuber e King com densidades",
+            "pageRef": 35
+          },
+          {
+            "topic": "Propriedade da moda: soma de constante",
+            "pageRef": 38
+          },
+          {
+            "topic": "Propriedade da moda: multiplicação por constante",
+            "pageRef": 39
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Czuber x King",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 29,
+          "statement": "A principal diferença entre a moda de King e a moda de Czuber é que a de King utiliza",
+          "support": null,
+          "options": [
+            "apenas a frequência da classe modal.",
+            "a média e a mediana da distribuição.",
+            "a densidade de frequência de todas as classes.",
+            "o ponto médio da classe modal.",
+            "apenas as frequências das classes adjacentes à classe modal."
+          ],
+          "answer": "E",
+          "explanation": "King baseia-se apenas nas frequências das classes anterior e posterior; Czuber considera também a frequência da própria classe modal. Média e mediana intervêm na relação de Pearson."
+        },
+        {
+          "topic": "Moda de King",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 31,
+          "statement": "Em classes de amplitude 10, as frequências são: 20 ⊢ 30, 8; 30 ⊢ 40, 18; 40 ⊢ 50, 30; 50 ⊢ 60, 22; 60 ⊢ 70, 12. A moda de King é",
+          "support": null,
+          "options": [
+            "47,2",
+            "46,0",
+            "45,5",
+            "45,0",
+            "44,5"
+          ],
+          "answer": "C",
+          "explanation": "A classe modal é 40 ⊢ 50, com f_ant = 18 e f_post = 22. Mo = 40 + [22 ÷ (18 + 22)] × 10 = 40 + 5,5 = 45,5."
+        },
+        {
+          "topic": "King e Czuber para a mesma distribuição",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 31,
+          "statement": "Para a distribuição de classes de amplitude 10 com frequências 8, 18, 30, 22 e 12 (de 20 ⊢ 30 até 60 ⊢ 70), as modas de Czuber e de King valem, respectivamente,",
+          "support": null,
+          "options": [
+            "46,0 e 45,5.",
+            "45,5 e 46,0.",
+            "45,0 e 45,5.",
+            "46,0 e 46,0.",
+            "45,5 e 45,5."
+          ],
+          "answer": "A",
+          "explanation": "Classe modal: 40 ⊢ 50. Czuber: Δ1 = 30 − 18 = 12 e Δ2 = 30 − 22 = 8, logo Mo = 40 + (12 ÷ 20) × 10 = 46. King: Mo = 40 + (22 ÷ 40) × 10 = 45,5. Os dois métodos são parecidos, mas não coincidem em geral."
+        },
+        {
+          "topic": "Hipótese de King",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 30,
+          "statement": "Segundo a hipótese de King, a moda divide a amplitude da classe modal em partes que são",
+          "support": null,
+          "options": [
+            "diretamente proporcionais às frequências das classes adjacentes.",
+            "inversamente proporcionais às frequências das classes adjacentes.",
+            "proporcionais às diferenças entre a frequência modal e as das vizinhas.",
+            "iguais entre si, localizando a moda no ponto médio.",
+            "proporcionais às densidades de todas as classes."
+          ],
+          "answer": "B",
+          "explanation": "Na hipótese de King, quanto maior a frequência de uma classe vizinha, mais a moda se afasta do lado dessa vizinha. A proporcionalidade às diferenças com a classe modal é a hipótese de Czuber."
+        },
+        {
+          "topic": "Classe modal com amplitudes diferentes",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 34,
+          "statement": "Uma distribuição tem as classes 0 ⊢ 10 (20 observações), 10 ⊢ 20 (50), 20 ⊢ 40 (60) e 40 ⊢ 60 (30). Como as amplitudes são diferentes, a classe modal é",
+          "support": null,
+          "options": [
+            "20 ⊢ 40.",
+            "0 ⊢ 10.",
+            "10 ⊢ 20.",
+            "40 ⊢ 60.",
+            "nenhuma, pois a moda não existe."
+          ],
+          "answer": "C",
+          "explanation": "Com amplitudes desiguais, a classe modal é a de maior densidade (f ÷ h): 2, 5, 3 e 1,5, respectivamente. A classe 20 ⊢ 40 tem a maior frequência (60), mas sua densidade é menor que a de 10 ⊢ 20."
+        },
+        {
+          "topic": "Czuber com densidades",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 35,
+          "statement": "Uma distribuição tem as classes 0 ⊢ 12 (24 observações), 12 ⊢ 24 (72) e 24 ⊢ 48 (96). Utilizando as densidades de frequência, a moda de Czuber é",
+          "support": null,
+          "options": [
+            "16",
+            "18",
+            "20",
+            "22",
+            "24"
+          ],
+          "answer": "C",
+          "explanation": "As densidades são 2, 6 e 4. A classe modal é 12 ⊢ 24. Δ1 = 6 − 2 = 4 e Δ2 = 6 − 4 = 2. Mo = 12 + [4 ÷ (4 + 2)] × 12 = 12 + 8 = 20. Usar as frequências brutas conduziria a outra classe modal (24 ⊢ 48)."
+        },
+        {
+          "topic": "King com densidades",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 36,
+          "statement": "Uma distribuição tem as classes 0 ⊢ 10 (20 observações), 10 ⊢ 18 (80) e 18 ⊢ 30 (72). Utilizando as densidades de frequência, a moda de King é",
+          "support": null,
+          "options": [
+            "17",
+            "16",
+            "15",
+            "14",
+            "13"
+          ],
+          "answer": "B",
+          "explanation": "As densidades são 2, 10 e 6; a classe modal é 10 ⊢ 18 (h = 8), com d_ant = 2 e d_post = 6. Mo = 10 + [6 ÷ (2 + 6)] × 8 = 10 + 6 = 16."
+        },
+        {
+          "topic": "Altura do retângulo no histograma",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 35,
+          "statement": "Em um histograma com classes de larguras desiguais, para que a área de cada retângulo seja proporcional à frequência da classe, a altura do retângulo da classe 35 ⊢ 55, que tem 80 observações, deve ser",
+          "support": null,
+          "options": [
+            "0,25",
+            "1,6",
+            "4",
+            "20",
+            "80"
+          ],
+          "answer": "C",
+          "explanation": "A altura deve ser a densidade de frequência: 80 ÷ (55 − 35) = 4. Usar a frequência bruta como altura distorceria a comparação entre áreas."
+        },
+        {
+          "topic": "Propriedade da moda: soma de constante",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 38,
+          "statement": "A moda dos tempos de reação de um grupo é 42 ms. Todos os tempos serão aumentados em 8 ms por um atraso do equipamento. A nova moda será",
+          "support": null,
+          "options": [
+            "42 ms.",
+            "336 ms.",
+            "34 ms.",
+            "45 ms.",
+            "50 ms."
+          ],
+          "answer": "E",
+          "explanation": "Somando uma constante a todos os valores, a moda também fica aumentada nessa constante: 42 + 8 = 50."
+        },
+        {
+          "topic": "Propriedade da moda: transformação linear",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 39,
+          "statement": "A moda de uma variável x é 9. Uma nova variável é definida por y = 3x − 4. A moda de y é",
+          "support": null,
+          "options": [
+            "23",
+            "27",
+            "5",
+            "31",
+            "14"
+          ],
+          "answer": "A",
+          "explanation": "A multiplicação por 3 triplica a moda (27) e a subtração de 4 a reduz em 4 unidades: 27 − 4 = 23."
+        },
+        {
+          "topic": "Propriedades da moda: afirmativas",
+          "pattern": "assertivas",
+          "difficulty": 2,
+          "pageRef": 38,
+          "statement": "Considere as afirmações. I. Somando uma constante c a todos os valores, a moda fica acrescida de c. II. Multiplicando todos os valores por uma constante c, a moda fica multiplicada por c. III. Qualquer conjunto de dados possui ao menos uma moda. Está(ão) correta(s)",
+          "support": null,
+          "options": [
+            "I, apenas.",
+            "III, apenas.",
+            "I e II, apenas.",
+            "II e III, apenas.",
+            "I, II e III."
+          ],
+          "answer": "C",
+          "explanation": "I e II correspondem às propriedades da moda. A III é falsa: um conjunto em que todos os valores têm a mesma frequência é amodal."
+        },
+        {
+          "topic": "Larguras desiguais: ajuste necessário",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 34,
+          "statement": "Antes de aplicar os métodos de Czuber ou de King a uma distribuição cujas classes têm amplitudes diferentes, deve-se",
+          "support": null,
+          "options": [
+            "substituir as frequências pelas respectivas densidades de frequência.",
+            "usar apenas a relação de Pearson.",
+            "desprezar as classes de menor frequência.",
+            "agrupar todas as classes em uma só.",
+            "multiplicar as frequências pela amplitude total."
+          ],
+          "answer": "A",
+          "explanation": "Czuber e King exigem classes de mesma amplitude. Quando isso não ocorre, trabalha-se com a densidade de frequência (f ÷ h) na identificação da classe modal e nas fórmulas, mantendo-se o h da classe modal."
+        },
+        {
+          "topic": "Czuber com frequências relativas iguais",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 37,
+          "statement": "As classes 0 ⊢ 10, 10 ⊢ 15, 15 ⊢ 25 e 25 ⊢ 45 concentram, cada uma, 25% das observações. A moda de Czuber dessa distribuição é",
+          "support": null,
+          "options": [
+            "10,0",
+            "15,0",
+            "13,0",
+            "12,5",
+            "11,5"
+          ],
+          "answer": "D",
+          "explanation": "As densidades são 25 ÷ 10 = 2,5; 25 ÷ 5 = 5; 25 ÷ 10 = 2,5; e 25 ÷ 20 = 1,25. A classe modal é 10 ⊢ 15, e as densidades das vizinhas (2,5 e 2,5) são iguais; logo, a moda cai no ponto médio da classe modal: 12,5."
+        },
+        {
+          "topic": "Moda e densidade: afirmativa incorreta",
+          "pattern": "incorreta",
+          "difficulty": 2,
+          "pageRef": 34,
+          "statement": "Sobre a moda em distribuições com classes de amplitudes diferentes, assinale a alternativa INCORRETA.",
+          "support": null,
+          "options": [
+            "A classe modal é sempre a de maior frequência absoluta.",
+            "A classe modal é a de maior densidade de frequência.",
+            "A densidade é o quociente entre a frequência e a amplitude da classe.",
+            "Nos métodos de Czuber e King, as frequências são trocadas por densidades.",
+            "No histograma, a altura deve ser a densidade para que a área seja proporcional à frequência."
+          ],
+          "answer": "A",
+          "explanation": "Com amplitudes diferentes, a maior frequência não identifica a classe modal, pois classes mais largas acumulam mais observações; o critério é a maior densidade."
+        }
+      ]
+    }
+  ]
+}

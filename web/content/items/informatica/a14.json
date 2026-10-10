@@ -1,0 +1,3177 @@
+{
+ "aula": "informatica/a14",
+ "batch": "w2-bizu-informatica",
+ "status": "DRAFT",
+ "segments": [
+  {
+   "id": "informatica/a14/s01",
+   "bizu": {
+    "summary": [
+     "**Computador** é a máquina que realiza **computações** (processamento automático de dados). É formado por **hardware** (parte física: tudo o que se vê e toca) e **software** (parte lógica: programas, sistema operacional, BIOS, navegadores, jogos).",
+     "**Arquitetura de Von Neumann**: modelo básico dos computadores, com **cinco partes** — **entrada, saída, memória, ULA (unidade lógica e aritmética) e unidade de controle**. Fluxo funcional: **entrada → processamento → saída**.",
+     "**Sistemas de numeração**: o ser humano usa a base **decimal (10)**; o computador, a **binária (2)** com os algarismos 0 e 1; existem ainda octal (8) e **hexadecimal (16)**, cujos algarismos vão de 0 a 9 e de A F (A = 10 … F = 15).",
+     "**Binário → decimal**: soma das potências de 2 nas posições com bit 1 (…128, 64, 32, 16, 8, 4, 2, 1). Ex.: 1011 = 8+2+1 = **11**; 1111111 = **127**; 10011011 = **155**.",
+     "**Decimal → binário**: divisões sucessivas por 2 até o quociente zerar; o número binário é formado pelos **restos, lidos de baixo para cima**. Macete: subtrair a maior potência de 2 possível e marcar 1 nas posições usadas. Ex.: 156 = 10011100.",
+     "**Hexadecimal → decimal**: multiplica-se cada dígito pela potência de 16 da posição. Ex.: B2A(h) = 11·256 + 2·16 + 10 = **2858**. Decimal → hexadecimal: divisões sucessivas por 16 (ex.: 1069 = 42D(h))."
+    ],
+    "teoria": [
+     {
+      "statement": "O modelo de Von Neumann descreve um computador com entrada, saída, memória, unidade lógica e aritmética e unidade de controle.",
+      "isTrue": true,
+      "explanation": "Esse modelo é a base da arquitetura dos computadores."
+     },
+     {
+      "statement": "Os computadores usam internamente o sistema de numeração decimal, com dez algarismos.",
+      "isTrue": false,
+      "explanation": "Usam o sistema binário (base 2), com os algarismos 0 e 1."
+     },
+     {
+      "statement": "O número binário 1011 equivale ao decimal 11.",
+      "isTrue": true,
+      "explanation": "1·8 + 0·4 + 1·2 + 1·1 = 11."
+     },
+     {
+      "statement": "Hardware é a parte lógica do computador, como programas e sistema operacional.",
+      "isTrue": false,
+      "explanation": "Hardware é a parte física; a parte lógica é o software."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "O número binário 1111111 é igual a 127 em decimal.",
+      "isTrue": true,
+      "explanation": "É a soma das potências de 2 de 2⁰ a 2⁶."
+     },
+     {
+      "statement": "No sistema hexadecimal, a letra A representa o valor 10 e a letra F, o valor 15.",
+      "isTrue": true,
+      "explanation": "A base 16 usa os algarismos 0 a 9 e as letras A F."
+     },
+     {
+      "statement": "Para converter um decimal em binário, divide-se por 2 e lê-se a sequência dos restos de cima para baixo.",
+      "isTrue": false,
+      "explanation": "Os restos devem ser lidos de baixo para cima (do último ao primeiro)."
+     },
+     {
+      "statement": "A BIOS é um exemplo de software.",
+      "isTrue": true,
+      "explanation": "Fica gravada em memória não volátil da placa-mãe."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Conceitos básicos de hardware e software",
+      "pageRef": 3
+     },
+     {
+      "topic": "Exemplos de software",
+      "pageRef": 4
+     },
+     {
+      "topic": "Arquitetura de Von Neumann",
+      "pageRef": 5
+     },
+     {
+      "topic": "Conversão de base",
+      "pageRef": 7
+     },
+     {
+      "topic": "Binário para decimal",
+      "pageRef": 9
+     },
+     {
+      "topic": "Decimal para binário",
+      "pageRef": 10
+     },
+     {
+      "topic": "Hexadecimal",
+      "pageRef": 12
+     }
+    ]
+   },
+   "questions": [
+    {
+     "topic": "Hardware e software",
+     "pattern": "calculo",
+     "difficulty": 1,
+     "pageRef": 3,
+     "statement": "Um técnico listou os itens de um computador: placa de vídeo, editor de planilhas, cooler, navegador web, SSD e sistema Windows. Na lista, a quantidade de itens de hardware e de software é, respectivamente,",
+     "support": null,
+     "options": [
+      "2 e 4.",
+      "4 e 2.",
+      "3 e 3.",
+      "1 e 5.",
+      "5 e 1."
+     ],
+     "answer": "C",
+     "explanation": "Placa de vídeo, cooler e SSD são hardware (parte física), e editor de planilhas, navegador web e Windows são software (parte lógica). Logo, são 3 itens de cada tipo."
+    },
+    {
+     "topic": "Conceito de software",
+     "pattern": "correta",
+     "difficulty": 1,
+     "pageRef": 3,
+     "statement": "Em relação aos conceitos de hardware e software, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "Software é a parte lógica, formada por instruções interpretadas e executadas por um processador.",
+      "Hardware é a parte lógica do computador, formada por instruções executadas pelo usuário.",
+      "Software corresponde à parte física, formada por componentes que se tocam.",
+      "O sistema operacional é um exemplo de hardware, pois controla os componentes físicos.",
+      "Pendrive e SSD são exemplos de software, por armazenarem arquivos."
+     ],
+     "answer": "A",
+     "explanation": "Software é a parte lógica do computador, formada por instruções que o processador interpreta e executa. Hardware é a parte física, que se pode ver e tocar, e o sistema operacional é software, enquanto pendrive e SSD são hardware."
+    },
+    {
+     "topic": "Modelo de Von Neumann",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 5,
+     "statement": "O modelo de arquitetura de computadores associado a John von Neumann é composto por",
+     "support": null,
+     "options": [
+      "unidade de entrada, unidade de saída, memória, unidade de controle e unidade de rede.",
+      "processador, memória cache, placa-mãe, disco rígido e monitor.",
+      "unidade de criptografia, memória, unidade de controle, entrada e saída.",
+      "unidade lógica e aritmética, unidade de controle e barramento, apenas.",
+      "unidade de entrada, unidade de saída, memória, unidade de controle e unidade lógica e aritmética."
+     ],
+     "answer": "E",
+     "explanation": "O modelo tem cinco componentes: unidade de entrada, unidade de saída, memória, unidade de controle e unidade lógica e aritmética. Não existe unidade de rede ou de criptografia entre eles."
+    },
+    {
+     "topic": "Ideias de Von Neumann",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 5,
+     "statement": "Von Neumann notou que programar computadores com interruptores e cabos era lento e pouco flexível. Entre as ideias que ele propôs, está",
+     "support": null,
+     "options": [
+      "guardar o programa apenas em cartões perfurados, separados dos dados, usando aritmética decimal.",
+      "separar fisicamente a memória de programas da memória de dados, para usar aritmética decimal.",
+      "abolir a memória interna, mantendo os dados somente nos dispositivos de saída.",
+      "armazenar o programa na memória, em forma digital, junto com os dados, e adotar aritmética binária.",
+      "usar cabos e interruptores reconfigurados a cada novo programa, em aritmética octal."
+     ],
+     "answer": "D",
+     "explanation": "Ele propôs representar o programa em forma digital na memória, junto com os dados, e adotar a aritmética binária no lugar da decimal. Por isso os computadores usam bits e números binários."
+    },
+    {
+     "topic": "Visão em três componentes",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 5,
+     "statement": "Alguns autores resumem a arquitetura de Von Neumann em três componentes. Nessa visão, a unidade de controle e a unidade lógica e aritmética são agrupadas no",
+     "support": null,
+     "options": [
+      "bloco de memória.",
+      "processador.",
+      "dispositivo de entrada e saída.",
+      "barramento.",
+      "chipset."
+     ],
+     "answer": "B",
+     "explanation": "Nessa leitura, o processador reúne a unidade de controle e a ULA, e os outros dois componentes são a memória e os dispositivos de entrada e saída."
+    },
+    {
+     "topic": "Sistema hexadecimal",
+     "pattern": "correta",
+     "difficulty": 1,
+     "pageRef": 7,
+     "statement": "O sistema hexadecimal utiliza 16 símbolos. Assinale a alternativa correta a respeito deles.",
+     "support": null,
+     "options": [
+      "Usa apenas os algarismos de 0 a 15, escritos com dois dígitos a partir do 10.",
+      "Usa os algarismos de 0 a 9 e as letras de A G, e a letra F equivale a 16.",
+      "Além dos algarismos de 0 a 9, usa as letras de A F, e a letra D equivale a 13 no sistema decimal.",
+      "Usa as letras de A F para os valores de 1 a 6 e os dígitos de 0 a 9 para os demais.",
+      "Usa os algarismos de 0 a 7 e as letras de A H, e a letra D equivale a 4."
+     ],
+     "answer": "C",
+     "explanation": "O hexadecimal usa os algarismos de 0 a 9 e as letras de A F, sendo A = 10, B = 11, C = 12, D = 13, E = 14 e F = 15. Por isso a letra D vale 13 no sistema decimal."
+    },
+    {
+     "topic": "Quantidade de algarismos por base",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 7,
+     "statement": "O número decimal 255 equivale a 11111111 em binário, 377 em octal e FF em hexadecimal. A quantidade de algarismos usada para escrevê-lo em binário, octal, decimal e hexadecimal, nessa ordem, é",
+     "support": null,
+     "options": [
+      "8, 3, 3 e 2.",
+      "8, 3, 3 e 3.",
+      "8, 4, 3 e 2.",
+      "3, 3, 3 e 2.",
+      "2, 3, 3 e 8."
+     ],
+     "answer": "A",
+     "explanation": "Em binário são 8 algarismos, em octal 3, em decimal 3 e em hexadecimal 2. Quanto maior a base, menos algarismos são necessários para escrever o mesmo número."
+    },
+    {
+     "topic": "Peso posicional no sistema binário",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 8,
+     "statement": "No número binário 101101, os expoentes das potências de 2 começam em zero e crescem da direita para a esquerda. O peso, em decimal, do algarismo mais à esquerda é",
+     "support": null,
+     "options": [
+      "5.",
+      "16.",
+      "31.",
+      "32.",
+      "64."
+     ],
+     "answer": "D",
+     "explanation": "O número tem 6 algarismos, e o expoente do mais à esquerda é 5, de modo que o peso é 2^5 = 32. O valor 5 é apenas o expoente, e 64 seria o peso de um sétimo algarismo."
+    },
+    {
+     "topic": "Conversão binário para decimal",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 9,
+     "statement": "O número binário 10101101, convertido para o sistema decimal, é igual a",
+     "support": null,
+     "options": [
+      "171.",
+      "173.",
+      "175.",
+      "177.",
+      "181."
+     ],
+     "answer": "B",
+     "explanation": "Somando os pesos dos algarismos 1 (128 + 32 + 8 + 4 + 1), obtém-se 173. O valor 181 resultaria de ler os algarismos de trás para frente."
+    },
+    {
+     "topic": "Conversão decimal para binário",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 10,
+     "statement": "O número decimal 200, convertido para o sistema binário, é escrito como",
+     "support": null,
+     "options": [
+      "11000100.",
+      "11001001.",
+      "10101000.",
+      "11010000.",
+      "11001000."
+     ],
+     "answer": "E",
+     "explanation": "Subtraindo as maiores potências de 2 possíveis: 200 - 128 = 72, 72 - 64 = 8 e 8 - 8 = 0. Os pesos 128, 64 e 8 recebem 1, e o resultado é 11001000."
+    },
+    {
+     "topic": "Conversão decimal para octal",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 11,
+     "statement": "O número decimal 300, convertido para a base octal, é igual a",
+     "support": null,
+     "options": [
+      "454.",
+      "445.",
+      "544.",
+      "462.",
+      "372."
+     ],
+     "answer": "A",
+     "explanation": "Dividindo por 8: 300 / 8 = 37 e resto 4; 37 / 8 = 4 e resto 5; 4 / 8 = 0 e resto 4. Juntando os restos de baixo para cima, obtém-se 454. Conferindo: 4 x 64 + 5 x 8 + 4 = 300."
+    },
+    {
+     "topic": "Conversão hexadecimal para decimal",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 12,
+     "statement": "O número hexadecimal 3F4, convertido para o sistema decimal, é igual a",
+     "support": null,
+     "options": [
+      "996.",
+      "1004.",
+      "1012.",
+      "1028.",
+      "1204."
+     ],
+     "answer": "C",
+     "explanation": "Usando os pesos 16^2, 16^1 e 16^0: 3 x 256 + 15 x 16 + 4 x 1 = 768 + 240 + 4 = 1012. Os valores 996 e 1028 resultam de tomar F como 14 ou 16."
+    },
+    {
+     "topic": "Capacidade de oito algarismos binários",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 9,
+     "statement": "Com 8 algarismos binários, o maior valor decimal que se consegue representar é",
+     "support": null,
+     "options": [
+      "127.",
+      "255.",
+      "256.",
+      "511.",
+      "512."
+     ],
+     "answer": "B",
+     "explanation": "O maior valor tem todos os algarismos iguais a 1, ou seja, 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 = 255. O valor 256 é a quantidade de combinações possíveis contando o zero, e não o maior número representável."
+    }
+   ]
+  },
+  {
+   "id": "informatica/a14/s02",
+   "bizu": {
+    "summary": [
+     "**Unidades de medida** (alta incidência): **bit** é a menor unidade de informação (0 ou 1); **byte** = **8 bits**, o suficiente para representar um caractere. O código **ASCII** codifica 128 sinais (95 gráficos e 33 de controle).",
+     "**Múltiplos do byte** (ordem crescente): **KB, MB, GB, TB, PB** — cada degrau equivale a **1024** da unidade anterior. Mnemônico: *Byte-Kilo-Mega-Giga-Tera-Peta*.",
+     "**Bytes × bits**: em **armazenamento** (disco, RAM) usa-se **byte** (kilo = 1024); em **redes** usa-se **bit** por segundo (kilo = 1000), como 100 Mbps. Quando a prova só informa o prefixo, identifique se o contexto é armazenamento ou rede.",
+     "**Periféricos de E/S**: dispositivos ligados ao computador para entrada de dados (teclado, mouse, scanner), saída (monitor, impressora) ou ambos. Em operações intensas, o desempenho pode ser limitado pela E/S, e não pela CPU.",
+     "**Teclado**: unidade de entrada padrão; layouts **QWERTY** (padrão no Brasil, ABNT2) e DVORAK; conexão USB, sem fio, PS/2 (antigo). A tecla **AltGr** produz símbolos como ¹ ² ³ £ ¢ ¬ § ª º °.",
+     "**Apontadores**: **mouse** (principal), **touchpad/trackpad** (painel tátil, comum em notebooks), **trackball** (esfera, quase em desuso). São dispositivos de **entrada**.",
+     "**Scanner**: dispositivo de **entrada** que digitaliza documentos em imagem digital (tipos: de mão, de página e de mesa, o mais comum); com **OCR** converte imagem de texto em texto editável."
+    ],
+    "teoria": [
+     {
+      "statement": "Um byte é formado por 8 bits e pode representar um caractere.",
+      "isTrue": true,
+      "explanation": "O bit é a menor unidade de informação."
+     },
+     {
+      "statement": "Em medidas de armazenamento, o prefixo kilo equivale a 1000 bytes.",
+      "isTrue": false,
+      "explanation": "Em bytes, kilo equivale a 1024; em bits (redes), usa-se 1000."
+     },
+     {
+      "statement": "O scanner é um dispositivo de entrada que transforma documentos em papel em imagens digitais.",
+      "isTrue": true,
+      "explanation": "Com OCR, o texto da imagem pode ser reconhecido."
+     },
+     {
+      "statement": "O padrão de teclado mais usado no Brasil é o DVORAK.",
+      "isTrue": false,
+      "explanation": "O padrão é o QWERTY, no formato ABNT2."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "A sequência crescente KB, MB, GB, TB e PB tem cada unidade 1024 vezes maior que a anterior.",
+      "isTrue": true,
+      "explanation": "Valem 1024 para bytes."
+     },
+     {
+      "statement": "Taxas de rede como 500 Mbps usam bits por segundo, e não bytes.",
+      "isTrue": true,
+      "explanation": "Já a capacidade de discos costuma ser dada em bytes."
+     },
+     {
+      "statement": "O touchpad é um dispositivo de saída usado em notebooks.",
+      "isTrue": false,
+      "explanation": "É um apontador, portanto dispositivo de entrada."
+     },
+     {
+      "statement": "O código ASCII usa 8 bits por caractere nas tabelas apresentadas e codifica 128 sinais.",
+      "isTrue": true,
+      "explanation": "São 95 sinais gráficos e 33 de controle."
+     },
+     {
+      "statement": "Periféricos de E/S permitem enviar dados ao computador ou receber informações processadas por ele.",
+      "isTrue": true,
+      "explanation": "São a interface entre o usuário e o sistema."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Unidades de medida: bit e byte",
+      "pageRef": 14
+     },
+     {
+      "topic": "ASCII",
+      "pageRef": 16
+     },
+     {
+      "topic": "Múltiplos do byte",
+      "pageRef": 17
+     },
+     {
+      "topic": "Bytes × bits em redes",
+      "pageRef": 18
+     },
+     {
+      "topic": "Periféricos de entrada e saída",
+      "pageRef": 19
+     },
+     {
+      "topic": "Teclado",
+      "pageRef": 21
+     },
+     {
+      "topic": "Apontadores (mouse, touchpad)",
+      "pageRef": 23
+     },
+     {
+      "topic": "Scanner",
+      "pageRef": 25
+     }
+    ]
+   },
+   "questions": [
+    {
+     "topic": "Representação binária",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 14,
+     "statement": "Os primeiros projetos de computador esbarraram na dificuldade de representar cada símbolo com um valor distinto de voltagem. A solução atribuída a Von Neumann foi adotar a base binária, porque ela",
+     "support": null,
+     "options": [
+      "permite que cada símbolo da linguagem humana tenha um valor próprio de corrente elétrica.",
+      "dispensa a conversão da informação, pois letras e números são armazenados exatamente como digitados.",
+      "aumenta o número de valores de voltagem distintos, o que torna os circuitos mais confiáveis.",
+      "restringe o uso da lógica booleana a operações aritméticas decimais.",
+      "simplifica o projeto dos circuitos, pois exige apenas dois valores distintos, e facilita o uso da lógica booleana."
+     ],
+     "answer": "E",
+     "explanation": "Com apenas dois valores (0 e 1), o circuito eletrônico é mais simples, mais confiável e mais fácil de construir, e a lógica booleana (ligado/desligado, sim/não) passa a ser aplicada com facilidade. Representar cada símbolo por uma voltagem própria exigiria mais de cem níveis distintos."
+    },
+    {
+     "topic": "Bytes e caracteres",
+     "pattern": "calculo",
+     "difficulty": 1,
+     "pageRef": 15,
+     "statement": "Um arquivo de texto simples contém 2.048 caracteres, e cada caractere é representado por 1 byte. Considerando que 1 KB equivale a 1024 bytes, o tamanho desse arquivo é de",
+     "support": null,
+     "options": [
+      "0,25 KB.",
+      "1 KB.",
+      "1,5 KB.",
+      "2 KB.",
+      "16 KB."
+     ],
+     "answer": "D",
+     "explanation": "Como 1 caractere ocupa 1 byte, o arquivo tem 2.048 bytes, e 2.048 / 1024 = 2 KB. O valor 16 KB resultaria de multiplicar por 8 em vez de dividir por 1024."
+    },
+    {
+     "topic": "Código ASCII",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 16,
+     "statement": "Sobre o código ASCII, é correto afirmar que ele",
+     "support": null,
+     "options": [
+      "é a menor unidade de dado de um computador, equivalente a um único bit de memória.",
+      "codifica 128 sinais, entre gráficos e de controle, associando cada caractere a bits.",
+      "codifica apenas as letras maiúsculas do alfabeto latino, sem pontuação nem sinais de controle.",
+      "é um protocolo de rede que define a velocidade de transmissão de dados entre computadores.",
+      "representa cada caractere com 1 bit, razão pela qual só admite dois caracteres distintos."
+     ],
+     "answer": "B",
+     "explanation": "O ASCII é uma tabela de codificação que mapeia caracteres para conjuntos de bits e codifica 128 sinais, dos quais 95 são gráficos (letras, pontuação, acentos e sinais matemáticos) e 33 são de controle. Não é unidade de medida nem protocolo de rede."
+    },
+    {
+     "topic": "Combinações de bits",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 16,
+     "statement": "Um sistema de codificação usa 5 bits para representar cada símbolo. A quantidade máxima de símbolos distintos que ele consegue representar é",
+     "support": null,
+     "options": [
+      "5.",
+      "10.",
+      "25.",
+      "32.",
+      "64."
+     ],
+     "answer": "D",
+     "explanation": "Com n bits é possível formar 2^n combinações: 1 bit permite 2, 2 bits permitem 4 e 3 bits permitem 8. Com 5 bits, são 2^5 = 32 símbolos."
+    },
+    {
+     "topic": "KB e Kb",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 17,
+     "statement": "Em relação às unidades de medida de informação, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "1 KB equivale a 1024 bytes, enquanto 1 Kb equivale a 1000 bits.",
+      "1 KB e 1 Kb são unidades idênticas, e a diferença de letras é apenas estilística.",
+      "1 KB equivale a 1000 bits, enquanto 1 Kb equivale a 1024 bytes.",
+      "O b minúsculo indica bytes, e o B maiúsculo indica bits.",
+      "1 Kb equivale a 1024 bytes, pois o prefixo kilo sempre vale 1024."
+     ],
+     "answer": "A",
+     "explanation": "O B maiúsculo indica bytes, e o b minúsculo indica bits. Para bytes, o prefixo kilo vale 1024 (1 KB = 1024 bytes), e para bits vale 1000 (1 Kb = 1000 bits)."
+    },
+    {
+     "topic": "Taxa de transferência",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 18,
+     "statement": "Um arquivo de 50 MB é baixado por um enlace de 100 Mbps, que opera na velocidade nominal durante todo o download. Desconsiderando cabeçalhos e perdas, o tempo mínimo de transferência é de",
+     "support": null,
+     "options": [
+      "0,5 segundo.",
+      "2 segundos.",
+      "4 segundos.",
+      "5 segundos.",
+      "8 segundos."
+     ],
+     "answer": "C",
+     "explanation": "Um byte tem 8 bits, então 50 MB correspondem a 400 Mb. Dividindo por 100 Mbps, obtêm-se 4 segundos. O valor 0,5 segundo resultaria de confundir megabytes com megabits."
+    },
+    {
+     "topic": "Conversão de bytes em bits",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 17,
+     "statement": "Considerando 1 KB igual a 1024 bytes, a quantidade de bits existente em 4 KB é igual a",
+     "support": null,
+     "options": [
+      "4.000.",
+      "4.096.",
+      "32.000.",
+      "32.768.",
+      "65.536."
+     ],
+     "answer": "D",
+     "explanation": "4 KB correspondem a 4 x 1024 = 4096 bytes, e como cada byte tem 8 bits, o total é 4096 x 8 = 32.768 bits. O valor 4.096 é a quantidade de bytes, e 32.000 resultaria de usar 1000 no lugar de 1024."
+    },
+    {
+     "topic": "Dispositivos de entrada",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 19,
+     "statement": "Assinale a alternativa em que todos os dispositivos citados são exclusivamente de entrada de dados.",
+     "support": null,
+     "options": [
+      "Teclado, monitor, microfone e webcam.",
+      "Mouse, scanner, impressora e microfone.",
+      "Mesa digitalizadora, pendrive, teclado e mouse.",
+      "Webcam, scanner, caixa de som e touchpad.",
+      "Teclado, scanner, microfone e webcam."
+     ],
+     "answer": "E",
+     "explanation": "Teclado, scanner, microfone e webcam enviam dados ao computador. Monitor, impressora e caixa de som são de saída, e pendrive e modem são híbridos (entrada e saída)."
+    },
+    {
+     "topic": "Dispositivos híbridos",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 19,
+     "statement": "Entre os dispositivos abaixo, aquele que atua ao mesmo tempo como dispositivo de entrada e de saída é o",
+     "support": null,
+     "options": [
+      "scanner de mesa.",
+      "monitor touchscreen.",
+      "plotter de grande formato.",
+      "microfone de lapela.",
+      "caixa de som amplificada."
+     ],
+     "answer": "B",
+     "explanation": "O monitor touchscreen exibe informações (saída) e recebe toques do usuário (entrada), sendo um dispositivo híbrido. Scanner e microfone são de entrada, e plotter e caixa de som são de saída."
+    },
+    {
+     "topic": "Gargalo de entrada e saída",
+     "pattern": "conceito",
+     "difficulty": 3,
+     "pageRef": 19,
+     "statement": "Em certas operações intensivas, o desempenho do sistema é limitado pelos dispositivos de entrada e saída. Nessas situações, é correto afirmar que",
+     "support": null,
+     "options": [
+      "o processador é sempre o fator limitante, pois executa toda operação de leitura e gravação.",
+      "o desempenho depende apenas da quantidade de núcleos do processador instalado.",
+      "o processador costuma ficar ocioso, pois o tempo é gasto esperando dados serem lidos ou gravados.",
+      "o gargalo ocorre exclusivamente no teclado e no mouse, por serem os dispositivos mais lentos.",
+      "os dispositivos de entrada e saída são dispensáveis, pois o processamento ocorre apenas na memória."
+     ],
+     "answer": "C",
+     "explanation": "Nesses casos o gargalo está em discos, rede ou periféricos, e a CPU fica ociosa esperando dados chegarem ou serem gravados. Trocar o processador por um mais rápido, portanto, não resolveria o problema."
+    },
+    {
+     "topic": "Layouts ABNT e ABNT2",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 21,
+     "statement": "Sobre os layouts de teclado ABNT e ABNT2, usados no Brasil, é correto afirmar que a diferença do ABNT2 em relação ao ABNT é a",
+     "support": null,
+     "options": [
+      "presença da tecla AltGr, ao lado direito da barra de espaço.",
+      "presença da tecla Ç, ausente no layout ABNT.",
+      "ordem das letras, que no ABNT2 segue o padrão Dvorak.",
+      "ausência de acentos, que o ABNT2 só obtém com programas especiais.",
+      "exigência de conector PS/2, incompatível com teclados sem fio."
+     ],
+     "answer": "A",
+     "explanation": "Ambos os layouts têm a tecla Ç, acentos e caracteres especiais. A diferença do ABNT2 é a tecla AltGr, à direita da barra de espaço, que permite escrever caracteres como ¹, ², ³ e §."
+    },
+    {
+     "topic": "Conectores de teclado",
+     "pattern": "incorreta",
+     "difficulty": 2,
+     "pageRef": 21,
+     "statement": "Assinale a alternativa que NíO apresenta um tipo de conector utilizado em teclados.",
+     "support": null,
+     "options": [
+      "PS/2.",
+      "QWERTY.",
+      "MiniDIN.",
+      "USB.",
+      "DIN."
+     ],
+     "answer": "B",
+     "explanation": "PS/2, DIN, MiniDIN e USB são conectores usados em teclados. QWERTY é um padrão de disposição das teclas (layout), e não um conector físico."
+    },
+    {
+     "topic": "Tipos de mouse",
+     "pattern": "caso",
+     "difficulty": 2,
+     "pageRef": 23,
+     "statement": "Um oficial usa um mouse sem fio que acompanha um pequeno receptor, geralmente conectado a uma porta USB, e sofre interferência de roteadores. Outro colega usa um mouse que se conecta diretamente ao receptor interno do notebook. Esses mouses são, respectivamente, do tipo",
+     "support": null,
+     "options": [
+      "óptico e laser.",
+      "laser e wireless.",
+      "Bluetooth e wireless.",
+      "trackball e touchpad.",
+      "wireless e Bluetooth."
+     ],
+     "answer": "E",
+     "explanation": "O mouse wireless funciona por radiofrequência (2,4 GHz), com receptor USB, e está sujeito a interferências de telefones sem fio e roteadores. O mouse Bluetooth se liga ao receptor bluetooth interno do computador, sem receptor USB."
+    },
+    {
+     "topic": "Scanner e OCR",
+     "pattern": "caso",
+     "difficulty": 2,
+     "pageRef": 25,
+     "statement": "Ao digitalizar uma página impressa, um usuário deseja que o texto da imagem possa ser editado em um editor de textos. Para isso, o software que acompanha o scanner deve aplicar a tecnologia",
+     "support": null,
+     "options": [
+      "ASCII, que reduz a imagem do documento a 128 sinais gráficos.",
+      "PS/2, que transmite a imagem digitalizada ao editor de textos.",
+      "OCR, que reconhece caracteres na imagem e os converte em texto editável.",
+      "Touchscreen, que identifica o texto por meio de toques na imagem.",
+      "Plotter, que converte a imagem em um arquivo de texto."
+     ],
+     "answer": "C",
+     "explanation": "O OCR (Optical Character Recognition) reconhece caracteres a partir da imagem e os converte em texto editável. O scanner, por si só, apenas digitaliza o documento em imagem."
+    }
+   ]
+  },
+  {
+   "id": "informatica/a14/s03",
+   "bizu": {
+    "summary": [
+     "**Mesa digitalizadora**: dispositivo de **entrada** com caneta; converte o traço analógico em **pares de coordenadas** digitais. **Webcam** e **microfone**: dispositivos de **entrada** (captam imagem e som), mesmo usados em videoconferência e VoIP.",
+     "**Drives**: equipamentos que manipulam discos removíveis; **entrada** ao ler e **saída** ao gravar (CD-ROM = só entrada; CD-RW = entrada e saída). **Drive ≠ driver**: o driver é o **software** que faz o sistema operacional se comunicar com o hardware.",
+     "**Modem** (modulador/demodulador): dispositivo de **entrada e saída** que converte sinais digitais em analógicos (e vice-versa) para trafegar, por exemplo, em linha telefônica; pode ser interno (dial-up), combinado com roteador ou portátil (3G/4G).",
+     "**Impressora**: dispositivo de **saída** (hard copy). **Matricial**: impacto com agulhas contra fita, permite várias vias (carbono). **Jato de tinta (deskjet)**: cartuchos, silenciosa, uso doméstico, baixo custo de aquisição e **alto custo por página**; cores **CMYK** (ciano, magenta, amarelo e preto). **Laser**: usa **toner** (pó) fixado por **fusor** (calor), melhor resolução e velocidade, menor custo por página.",
+     "**Plotter**: dispositivo de **saída** para desenhos em **grande formato** (plantas, mapas, CAD), com canetas, jato de tinta ou cortadores.",
+     "**Monitor**: saída padrão, recebe as imagens da **placa de vídeo**. Cores da luz (aditivas): **RGB** (vermelho, verde e azul), cerca de **16,7 milhões** de cores com 256 tons por ponto. **Dot pitch** menor = imagem mais nítida. **Resolução** = pixels na horizontal × vertical.",
+     "**Resoluções 16:9**: HD **1280×720**; Full HD **1920×1080**; 4K UHD **3840×2160**; 8K **7680×4320**. **Tipos**: **CRT** (canhão de elétrons e fósforo, volumoso), **plasma** (gases ionizados), **LCD/LED** (cristal líquido com luz de fundo) e **OLED** (diodos orgânicos autoemissivos)."
+    ],
+    "teoria": [
+     {
+      "statement": "A webcam é um dispositivo de entrada, pois captura imagens e as envia ao computador.",
+      "isTrue": true,
+      "explanation": "O uso em videoconferência não a torna dispositivo de saída."
+     },
+     {
+      "statement": "Driver é o equipamento físico que lê e grava discos removíveis, como o CD-ROM.",
+      "isTrue": false,
+      "explanation": "Esse equipamento é o drive; driver é o software de comunicação com o hardware."
+     },
+     {
+      "statement": "A impressora matricial forma os caracteres por impacto de agulhas contra uma fita.",
+      "isTrue": true,
+      "explanation": "É a única que permite várias vias com papel carbono."
+     },
+     {
+      "statement": "A resolução 1920 x 1080 corresponde ao padrão Full HD na proporção 16:9.",
+      "isTrue": true,
+      "explanation": "4K tem 3840 x 2160."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "A impressora laser utiliza toner e um fusor que fixa o pó no papel com calor.",
+      "isTrue": true,
+      "explanation": "Tem menor custo por impressão que a jato de tinta."
+     },
+     {
+      "statement": "O monitor CRT forma a imagem por cristal líquido e luz de fundo de LED.",
+      "isTrue": false,
+      "explanation": "O CRT usa canhão de elétrons e fósforo; cristal líquido é do LCD."
+     },
+     {
+      "statement": "A impressora jato de tinta colorida trabalha com o padrão CMYK.",
+      "isTrue": true,
+      "explanation": "Ciano, magenta, amarelo e preto."
+     },
+     {
+      "statement": "O plotter é um dispositivo de saída usado em desenhos de grande formato.",
+      "isTrue": true,
+      "explanation": "É comum em engenharia e CAD."
+     },
+     {
+      "statement": "O modem é um dispositivo de saída que apenas imprime documentos.",
+      "isTrue": false,
+      "explanation": "Ele é de entrada e saída e converte sinais digitais em analógicos e vice-versa."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Mesa digitalizadora",
+      "pageRef": 26
+     },
+     {
+      "topic": "Drives e drivers",
+      "pageRef": 27
+     },
+     {
+      "topic": "Webcam e microfone",
+      "pageRef": 28
+     },
+     {
+      "topic": "Modem",
+      "pageRef": 30
+     },
+     {
+      "topic": "Impressoras",
+      "pageRef": 31
+     },
+     {
+      "topic": "Plotter",
+      "pageRef": 35
+     },
+     {
+      "topic": "Monitor, cores e resolução",
+      "pageRef": 36
+     },
+     {
+      "topic": "Tipos de monitor",
+      "pageRef": 38
+     }
+    ]
+   },
+   "questions": [
+    {
+     "topic": "Mesa digitalizadora",
+     "pattern": "caso",
+     "difficulty": 1,
+     "pageRef": 26,
+     "statement": "Um projetista desenha com uma caneta própria sobre uma superfície sensível, e o traço aparece em um programa gráfico do computador. Esse dispositivo, que converte o movimento analógico em coordenadas digitais, é a",
+     "support": null,
+     "options": [
+      "mesa digitalizadora, dispositivo de entrada.",
+      "mesa digitalizadora, dispositivo de saída.",
+      "plotter, dispositivo de saída.",
+      "webcam, dispositivo de saída.",
+      "impressora, dispositivo de entrada e saída."
+     ],
+     "answer": "A",
+     "explanation": "A mesa digitalizadora é um dispositivo de entrada que transforma o desenho feito com a caneta em um conjunto de coordenadas digitais. Plotter e impressora são de saída, e o scanner digitaliza documentos em papel."
+    },
+    {
+     "topic": "Drive e driver",
+     "pattern": "caso",
+     "difficulty": 1,
+     "pageRef": 27,
+     "statement": "Ao instalar uma impressora nova, um técnico precisou instalar o software que faz a interface entre o equipamento e o sistema operacional. Esse software e o equipamento físico que manipula discos removíveis são chamados, respectivamente, de",
+     "support": null,
+     "options": [
+      "drive e driver.",
+      "drive e drive.",
+      "driver e driver.",
+      "driver e drive.",
+      "BIOS e drive."
+     ],
+     "answer": "D",
+     "explanation": "Driver é o software que permite a comunicação entre um equipamento e o sistema operacional, e drive é o equipamento físico usado para manipular discos removíveis. Os termos não são sinônimos."
+    },
+    {
+     "topic": "Drives de CD",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 27,
+     "statement": "Em relação aos drives de discos removíveis, é correto afirmar que",
+     "support": null,
+     "options": [
+      "ambos são exclusivamente dispositivos de saída, pois manipulam discos.",
+      "o drive de CD-ROM é de entrada e saída, e o gravador de CD-RW é apenas de entrada.",
+      "ambos são apenas de entrada, pois nenhum deles permite gravar dados.",
+      "o drive de CD-ROM é dispositivo de saída, pois exibe os dados do disco na tela.",
+      "o drive de CD-ROM é apenas de entrada, e o gravador de CD-RW é de entrada e saída."
+     ],
+     "answer": "E",
+     "explanation": "O drive de CD-ROM só lê discos, sendo apenas de entrada, enquanto o gravador de CD-RW lê e grava, sendo de entrada e saída. Um drive atua como entrada ao ler e como saída ao gravar."
+    },
+    {
+     "topic": "Modem",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 30,
+     "statement": "O nome modem vem da junção de duas operações. A conversão do sinal digital do computador em sinal analógico, para trafegar em uma linha telefônica, e a operação inversa denominam-se, respectivamente,",
+     "support": null,
+     "options": [
+      "demodulação e modulação.",
+      "modulação e demodulação.",
+      "compressão e descompressão.",
+      "criptografia e descriptografia.",
+      "codificação e decodificação."
+     ],
+     "answer": "B",
+     "explanation": "Modulação converte sinais digitais em analógicos para a linha telefônica, e demodulação faz o caminho inverso. Como o modem recebe e envia dados, ele é classificado como dispositivo de entrada e saída."
+    },
+    {
+     "topic": "Impressora matricial",
+     "pattern": "caso",
+     "difficulty": 1,
+     "pageRef": 31,
+     "statement": "Uma empresa precisa imprimir documentos fiscais em várias vias, usando papel carbonado, e aceita baixa resolução e certo barulho em troca de baixo custo. O tipo de impressora mais adequado, cuja velocidade é medida em caracteres por segundo, é",
+     "support": null,
+     "options": [
+      "laser.",
+      "jato de tinta.",
+      "matricial.",
+      "térmica.",
+      "multifuncional."
+     ],
+     "answer": "C",
+     "explanation": "A matricial usa impacto de agulhas contra uma fita, o que permite imprimir várias vias com papel carbono, tem baixo custo e baixa resolução, e sua velocidade é medida em CPS. Laser e jato de tinta não imprimem por impacto."
+    },
+    {
+     "topic": "Impressora jato de tinta",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 32,
+     "statement": "A respeito da impressora jato de tinta colorida, é correto afirmar que",
+     "support": null,
+     "options": [
+      "usa quatro cartuchos, no padrão CMYK, e tem custo de impressão alto.",
+      "usa toner e fusor, com custo de aquisição alto e custo de impressão baixo.",
+      "imprime por impacto de agulhas contra uma fita, sendo muito barulhenta.",
+      "usa três cartuchos, no padrão RGB, e tem alto custo de aquisição.",
+      "funciona por um cilindro fotorreceptor eletrostático, como as copiadoras."
+     ],
+     "answer": "A",
+     "explanation": "A jato de tinta colorida usa normalmente quatro cartuchos, no padrão CMYK (ciano, magenta, amarelo e preto), e tem baixo custo de aquisição, mas alto custo de impressão. Toner e fusor são da laser, e o impacto de agulhas é da matricial."
+    },
+    {
+     "topic": "Impressora laser",
+     "pattern": "caso",
+     "difficulty": 2,
+     "pageRef": 33,
+     "statement": "Um departamento com grande demanda de impressão busca um equipamento de melhor resolução e velocidade, com menor custo por página, ainda que o custo de aquisição seja maior que o de uma jato de tinta. O equipamento mais indicado emprega",
+     "support": null,
+     "options": [
+      "agulhas que colidem contra uma fita impregnada de tinta.",
+      "cartuchos de tinta líquida expelida por bolhas aquecidas.",
+      "cera transferida para um filme, que desbota com o tempo.",
+      "canetas e marcadores que desenham linhas contínuas.",
+      "toner e um fusor que fixa o pó no papel por alta temperatura."
+     ],
+     "answer": "E",
+     "explanation": "A impressora laser usa toner, um pó fino, e um fusor que o fixa no papel por alta temperatura. Tem as melhores resolução e velocidade e menor custo por impressão, apesar do custo de aquisição maior que o da jato de tinta."
+    },
+    {
+     "topic": "Impressora térmica",
+     "pattern": "caso",
+     "difficulty": 1,
+     "pageRef": 33,
+     "statement": "As impressoras que usam cera ou plástico sobre um filme com as cores básicas, empregadas em caixas eletrônicos para emitir extratos, apresentam como desvantagem",
+     "support": null,
+     "options": [
+      "o ressecamento fácil dos cartuchos quando ficam sem uso.",
+      "a baixíssima resolução, medida em caracteres por segundo.",
+      "a necessidade de toner e fusor, de manutenção complexa.",
+      "o fato de o material impresso desbotar com o passar do tempo.",
+      "o ruído intenso causado pelo impacto de agulhas."
+     ],
+     "answer": "D",
+     "explanation": "As impressoras térmicas têm como desvantagem o fato de o material impresso desbotar com o tempo. Cartuchos que ressecam são característica da jato de tinta, e o ruído de agulhas é da matricial."
+    },
+    {
+     "topic": "Resolução e velocidade de impressão",
+     "pattern": "correta",
+     "difficulty": 3,
+     "pageRef": 33,
+     "statement": "Quanto às unidades de medida usadas em impressoras, é correto afirmar que",
+     "support": null,
+     "options": [
+      "a resolução é medida em DPI, a velocidade em geral em PPM e a das matriciais em CPS.",
+      "a resolução é medida em PPM, e a velocidade, em DPI, para qualquer tipo de impressora.",
+      "a velocidade das matriciais é medida em PPM, e a das laser, em CPS.",
+      "o DPI mede as páginas impressas por minuto, e o PPM, os pontos por polegada.",
+      "a resolução é medida em CPS, que indica a quantidade de pontos de tinta por polegada."
+     ],
+     "answer": "A",
+     "explanation": "A resolução é medida em DPI (pontos por polegada), a velocidade em geral em PPM (páginas por minuto) e a das matriciais em CPS (caracteres por segundo). DPI e PPM não podem ser trocados entre si."
+    },
+    {
+     "topic": "Plotter",
+     "pattern": "caso",
+     "difficulty": 1,
+     "pageRef": 35,
+     "statement": "Um escritório de engenharia precisa imprimir plantas e mapas em formato muito maior que o das impressoras comuns, com linhas contínuas e alta precisão. O dispositivo de saída indicado é o",
+     "support": null,
+     "options": [
+      "scanner.",
+      "modem.",
+      "plotter.",
+      "drive de CD-RW.",
+      "mesa digitalizadora."
+     ],
+     "answer": "C",
+     "explanation": "O plotter é um dispositivo de saída voltado à impressão de desenhos em grande formato com alta precisão, útil em engenharia e CAD. Scanner e mesa digitalizadora são de entrada, e o modem é de comunicação."
+    },
+    {
+     "topic": "Monitor e sistema RGB",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 36,
+     "statement": "Os monitores formam a imagem a partir de feixes de luz. O sistema de cores que combina intensidades de vermelho, verde e azul para obter qualquer cor visível é o",
+     "support": null,
+     "options": [
+      "CMYK.",
+      "RYB.",
+      "Dot Pitch.",
+      "UHD.",
+      "RGB."
+     ],
+     "answer": "E",
+     "explanation": "Monitores usam luz e, portanto, o sistema RGB (Red, Green, Blue). O CMYK é o padrão de pigmentos usado em cartuchos de impressoras, e o RYB é o sistema clássico de pigmentos da pintura."
+    },
+    {
+     "topic": "Cálculo de resolução 16:9",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 38,
+     "statement": "Aplicando a regra do multiplicador 120 à proporção 16:9, a resolução obtida e o total de pixels correspondente são, respectivamente,",
+     "support": null,
+     "options": [
+      "1280 x 720 e 921.600 pixels.",
+      "3840 x 2160 e 8.294.400 pixels.",
+      "1600 x 900 e 1.440.000 pixels.",
+      "1920 x 1080 e 2.073.600 pixels.",
+      "1920 x 1080 e 1.036.800 pixels."
+     ],
+     "answer": "D",
+     "explanation": "Multiplicando 16 e 9 por 120, obtêm-se 1920 x 1080, que é a resolução Full HD, e 1920 x 1080 = 2.073.600 pixels. O multiplicador 80 daria HD (1280 x 720) e o 240 daria 4K (3840 x 2160)."
+    },
+    {
+     "topic": "Resolução e área útil",
+     "pattern": "correta",
+     "difficulty": 3,
+     "pageRef": 37,
+     "statement": "Em relação à resolução e à qualidade de imagem dos monitores, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "Com mais pixels, ícones e janelas ficam maiores e a área útil de trabalho diminui.",
+      "Com mais pixels, ícones e janelas ficam menores e a área útil de trabalho na tela aumenta.",
+      "Quanto maior o dot pitch, melhor é a qualidade da imagem apresentada.",
+      "A resolução indica a distância entre os grupos de pontos de cor da tela.",
+      "O pixel é o maior elemento da imagem digital ao qual se pode atribuir uma cor."
+     ],
+     "answer": "B",
+     "explanation": "Mais pixels na tela significa elementos menores (ícones, janelas) e maior área útil de trabalho. O dot pitch é a distância entre grupos de pontos, e quanto menor, melhor a qualidade da imagem. O pixel é o menor elemento ao qual se atribui cor."
+    },
+    {
+     "topic": "Tipos de monitor",
+     "pattern": "relacao",
+     "difficulty": 3,
+     "pageRef": 38,
+     "statement": "Sobre os tipos de monitores, assinale a alternativa que associa corretamente a tecnologia à sua característica.",
+     "support": null,
+     "options": [
+      "CRT: usa canhão de elétrons e ocupa muito espaço; LCD TFT: usa matriz ativa, presente nos LCDs atuais.",
+      "CRT: painel fino baseado na ionização de gases nobres; LCD TFT: usa matriz passiva, já obsoleta.",
+      "Plasma: usa canhão de elétrons em um tubo de raios catódicos; LED: contém mercúrio na lâmpada.",
+      "LCD DSTN: usa matriz ativa, a mais avançada; LCD TFT: é uma tecnologia obsoleta.",
+      "LED: baseia-se na ionização de gases nobres com fósforo; CRT: painel fino de baixo consumo."
+     ],
+     "answer": "A",
+     "explanation": "O CRT usa canhão de elétrons contra células de fósforo e ocupa muito espaço, e o LCD TFT usa matriz ativa, tecnologia dos LCDs atuais. O plasma se baseia na ionização de gases, e o LCD com matriz passiva (DSTN) é obsoleto."
+    }
+   ]
+  },
+  {
+   "id": "informatica/a14/s04",
+   "bizu": {
+    "summary": [
+     "**Placa de vídeo**: dispositivo de **saída** que gera as imagens enviadas ao monitor; influencia resolução e tempo de formação da imagem. Pode ser **onboard** (integrada à placa-mãe) ou **offboard** (dedicada, com memória própria — importante para jogos e edição de vídeo).",
+     "**Tablet**: dispositivo de **entrada e saída** (tela sensível ao toque), que usa **memória flash**, capaz de retomar do ponto em que parou ao religar. **Caixas de som**: dispositivo de **saída** (reprodução de áudio).",
+     "**Placa-mãe (motherboard)**: principal placa do computador; interliga e alimenta CPU, memória, disco e demais componentes por meio dos **barramentos**. É a \"espinha dorsal\" do equipamento. A **ROM**, a **BIOS** e a RAM encaixam-se nela ou integram-se a ela.",
+     "**Firmware**: software de baixo nível gravado pelo fabricante em ROM, entre o hardware e o sistema operacional. **BIOS**: principal firmware da placa-mãe; verifica os componentes, detecta os dispositivos e inicia o sistema operacional.",
+     "**SETUP**: programa de configuração do equipamento (ordem de boot, data, velocidade de memória). **POST (Power-On Self Test)**: autoteste realizado ao ligar o computador para verificar se há os recursos mínimos de funcionamento.",
+     "**Boot**: processo de inicialização até carregar o SO. Sequência: POST → BIOS lê o **MBR** → carrega o **boot loader** → inicia o **kernel** → tela de logon. **EFI/UEFI** é o firmware moderno que sucede a BIOS.",
+     "**Bateria da placa-mãe (CR2032)**: mantém a **memória CMOS** (volátil), que guarda a configuração do SETUP (data, hora, ordem de boot) com o computador desligado."
+    ],
+    "teoria": [
+     {
+      "statement": "A placa de vídeo é responsável por gerar as imagens que aparecem no monitor.",
+      "isTrue": true,
+      "explanation": "Pode ser onboard ou offboard."
+     },
+     {
+      "statement": "As configurações do SETUP ficam gravadas na memória ROM e não precisam de bateria.",
+      "isTrue": false,
+      "explanation": "Ficam na CMOS, memória volátil mantida por uma pequena bateria."
+     },
+     {
+      "statement": "O POST é um conjunto de testes feito ao ligar a máquina para verificar o funcionamento do equipamento.",
+      "isTrue": true,
+      "explanation": "Ocorre antes de o sistema operacional ser carregado."
+     },
+     {
+      "statement": "A BIOS é um firmware gravado em memória ROM da placa-mãe.",
+      "isTrue": true,
+      "explanation": "Ela inicializa o hardware e carrega o sistema operacional."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "O termo boot designa a inicialização do computador até o carregamento completo do sistema operacional.",
+      "isTrue": true,
+      "explanation": "EFI/UEFI substitui a BIOS tradicional."
+     },
+     {
+      "statement": "A placa-mãe é um dispositivo de periférico de entrada, usada para digitar dados.",
+      "isTrue": false,
+      "explanation": "Ela é a placa principal que conecta e alimenta os componentes."
+     },
+     {
+      "statement": "O tablet utiliza memória flash, o que permite retomar o trabalho do ponto em que parou após religá-lo.",
+      "isTrue": true,
+      "explanation": "Também reúne entrada (toque) e saída (tela)."
+     },
+     {
+      "statement": "Caixas de som são dispositivos de entrada de dados.",
+      "isTrue": false,
+      "explanation": "São dispositivos de saída, pois reproduzem áudio."
+     },
+     {
+      "statement": "O SETUP permite configurar parâmetros como a sequência de dispositivos de inicialização.",
+      "isTrue": true,
+      "explanation": "Os dados ficam armazenados na CMOS."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Placa de vídeo",
+      "pageRef": 40
+     },
+     {
+      "topic": "Tablet",
+      "pageRef": 41
+     },
+     {
+      "topic": "Caixas de som",
+      "pageRef": 43
+     },
+     {
+      "topic": "Placa-mãe",
+      "pageRef": 44
+     },
+     {
+      "topic": "BIOS e firmware",
+      "pageRef": 46
+     },
+     {
+      "topic": "SETUP e POST",
+      "pageRef": 47
+     },
+     {
+      "topic": "Processo de boot",
+      "pageRef": 48
+     },
+     {
+      "topic": "Bateria e CMOS",
+      "pageRef": 50
+     }
+    ]
+   },
+   "questions": [
+    {
+     "topic": "Placa de vídeo",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 40,
+     "statement": "Um computador com placa de vídeo dedicada (off-board) possui, além do processador gráfico, uma memória volátil exclusiva para vídeo. Esses dois componentes são denominados, respectivamente,",
+     "support": null,
+     "options": [
+      "VRAM e GPU.",
+      "GPU e VRAM.",
+      "CPU e ROM.",
+      "GPU e ROM.",
+      "BIOS e CMOS."
+     ],
+     "answer": "B",
+     "explanation": "O processador da placa de vídeo é a GPU (Graphics Processing Unit), e a memória volátil exclusiva para vídeo é a VRAM. CPU e ROM são componentes de outras funções, e BIOS e CMOS pertencem à placa-mãe."
+    },
+    {
+     "topic": "Tablet e memória flash",
+     "pattern": "caso",
+     "difficulty": 2,
+     "pageRef": 41,
+     "statement": "Um tablet é desligado no meio de uma anotação e, ao ser religado, permite continuar exatamente do ponto em que o trabalho parou. Esse comportamento está associado à memória",
+     "support": null,
+     "options": [
+      "RAM, que preserva o conteúdo mesmo sem energia.",
+      "cache, que guarda as configurações do SETUP.",
+      "VRAM, memória volátil exclusiva da placa de vídeo.",
+      "flash, que mantém os dados armazenados mesmo sem energia.",
+      "CMOS, mantida por bateria para guardar a hora."
+     ],
+     "answer": "D",
+     "explanation": "Tablets usam memória flash, que é não volátil e mantém os dados armazenados mesmo sem energia, o que permite retomar o trabalho. RAM e VRAM são voláteis, e a CMOS guarda configurações iniciais mantidas por bateria."
+    },
+    {
+     "topic": "Placa-mãe",
+     "pattern": "correta",
+     "difficulty": 1,
+     "pageRef": 44,
+     "statement": "Sobre a placa-mãe, é correto afirmar que ela",
+     "support": null,
+     "options": [
+      "é a placa principal e faz a comunicação entre os componentes por barramentos.",
+      "armazena todos os arquivos do usuário, substituindo o disco rígido do computador.",
+      "tem como função exclusiva gerar as imagens exibidas no monitor do computador.",
+      "não fornece energia a nenhum componente, pois isso é feito apenas pela bateria.",
+      "dispensa o uso de chipset e BIOS, que ficam apenas nos periféricos conectados."
+     ],
+     "answer": "A",
+     "explanation": "A placa-mãe é a principal placa do computador e conecta os componentes por meio de barramentos, além de alimentar alguns periféricos com a energia recebida da fonte. Não substitui o disco rígido nem se limita a gerar imagens."
+    },
+    {
+     "topic": "Componentes on-board e off-board",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 45,
+     "statement": "Sobre componentes on-board e off-board, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "O componente off-board vem soldado à placa-mãe e não pode ser trocado em caso de defeito.",
+      "Placas on-board têm memória e processamento próprios, por isso superam as off-board.",
+      "O componente on-board vem integrado e soldado à placa-mãe, e o off-board é adquirido e instalado separadamente.",
+      "Placas off-board são mais baratas e menores, indicadas quando o desempenho gráfico não importa.",
+      "O termo on-board refere-se a componentes externos, conectados ao computador por USB."
+     ],
+     "answer": "C",
+     "explanation": "O componente on-board vem integrado e soldado à placa-mãe, enquanto o off-board é adquirido e instalado separadamente. As on-board são menores e mais baratas, mas têm menor desempenho por compartilharem recursos do computador."
+    },
+    {
+     "topic": "Placa de vídeo on-board e off-board",
+     "pattern": "caso",
+     "difficulty": 2,
+     "pageRef": 45,
+     "statement": "Uma pessoa que edita vídeos e usa jogos avançados precisa de alto desempenho gráfico e quer poder trocar o componente caso ele queime. A melhor opção, em vez de uma placa de vídeo on-board, é uma placa",
+     "support": null,
+     "options": [
+      "on-board, que usa memória própria e pode ser trocada com facilidade.",
+      "on-board, soldada à placa-mãe e que compartilha a memória do computador.",
+      "off-board, que depende apenas da memória principal e é soldada à placa-mãe.",
+      "on-board, que oferece maior desempenho justamente por ser a mais barata.",
+      "off-board, com memória e processamento próprios, que pode ser substituída."
+     ],
+     "answer": "E",
+     "explanation": "A placa off-board tem memória e processamento próprios e pode ser desencaixada e substituída, sendo indicada para alto desempenho gráfico. A on-board é soldada, usa recursos do computador e perde em desempenho."
+    },
+    {
+     "topic": "Firmware",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 46,
+     "statement": "Sobre firmware, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "É um componente físico da placa-mãe, que só pode ser corrigido com a troca do chip.",
+      "É um software de baixo nível, em geral gravado em ROM pelo fabricante, atualizável sem trocar o hardware.",
+      "É um aplicativo instalado pelo usuário sobre o sistema operacional, como um editor de textos.",
+      "É o sistema operacional do computador, carregado do disco após a inicialização.",
+      "É a memória volátil que guarda as configurações iniciais do computador."
+     ],
+     "answer": "B",
+     "explanation": "Firmware é um software de baixo nível, em geral gravado em ROM pelo fabricante, que se comunica de perto com o hardware e pode ser atualizado sem trocar o componente. A BIOS é o principal firmware da placa-mãe."
+    },
+    {
+     "topic": "Função da BIOS",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 46,
+     "statement": "A BIOS, principal firmware da placa-mãe, é responsável por",
+     "support": null,
+     "options": [
+      "dar suporte ao hardware na inicialização e carregar o sistema operacional.",
+      "armazenar de forma definitiva os arquivos e programas instalados pelo usuário.",
+      "gerar as imagens do monitor e processar gráficos tridimensionais em jogos.",
+      "alimentar a CMOS com energia quando o computador é desligado da tomada.",
+      "substituir o sistema operacional durante a execução dos aplicativos do usuário."
+     ],
+     "answer": "A",
+     "explanation": "A BIOS é o primeiro software a ser executado ao ligar o computador: dá o suporte básico de acesso ao hardware, verifica os componentes, detecta dispositivos de entrada e saída e carrega o sistema operacional (boot)."
+    },
+    {
+     "topic": "POST e SETUP",
+     "pattern": "relacao",
+     "difficulty": 3,
+     "pageRef": 47,
+     "statement": "Ao ligar o computador, a máquina executa autotestes para verificar se tem os recursos mínimos de operação. Em outro momento, o usuário acessa um programa para definir a sequência de leitura dos discos de inicialização. Esses dois programas são, respectivamente,",
+     "support": null,
+     "options": [
+      "SETUP e POST.",
+      "BIOS e UEFI.",
+      "POST e SETUP.",
+      "MBR e POST.",
+      "Kernel e SETUP."
+     ],
+     "answer": "C",
+     "explanation": "O POST (Power-On Self Test) realiza os autotestes iniciais, e o SETUP é o programa de configuração da máquina, no qual se define, por exemplo, a sequência de leitura dos discos. UEFI é uma tecnologia que substitui a BIOS, e MBR é uma área do disco."
+    },
+    {
+     "topic": "Etapas da inicialização",
+     "pattern": "relacao",
+     "difficulty": 3,
+     "pageRef": 47,
+     "statement": "No processo de inicialização conduzido pela BIOS, a ordem correta das etapas é",
+     "support": null,
+     "options": [
+      "leitura da MBR, POST, carga do kernel e leitura do boot loader.",
+      "carga do kernel, leitura do boot loader, POST e leitura da MBR.",
+      "leitura do boot loader, leitura da MBR, POST e carga do kernel.",
+      "POST, leitura da MBR, leitura do boot loader e carga do kernel.",
+      "tela de logon, POST, leitura da MBR e carga do kernel."
+     ],
+     "answer": "D",
+     "explanation": "Após a BIOS iniciar o processo, o POST testa os recursos mínimos, depois a MBR é lida, em seguida o boot loader e, por fim, o kernel do sistema operacional é carregado, seguido da tela de logon."
+    },
+    {
+     "topic": "UEFI",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 48,
+     "statement": "Computadores mais modernos vêm substituindo a BIOS pela UEFI. Entre as vantagens dessa tecnologia, está",
+     "support": null,
+     "options": [
+      "dispensa de qualquer firmware, pois o sistema operacional controla sozinho todo o hardware.",
+      "armazenamento dos arquivos do usuário em memória volátil de alta velocidade e baixo custo.",
+      "substituição da memória RAM por uma memória não volátil do tipo flash, mais rápida que ela.",
+      "eliminação do teste dos componentes, por não precisar verificar o hardware na inicialização.",
+      "inicialização mais rápida e interface gráfica com suporte ao mouse."
+     ],
+     "answer": "E",
+     "explanation": "A UEFI permite inicialização mais rápida, oferece interface gráfica com suporte ao mouse e dá maior proteção contra certos softwares maliciosos. Ela continua sendo um firmware, e não elimina o teste dos componentes nem a memória do computador."
+    },
+    {
+     "topic": "SETUP e CMOS",
+     "pattern": "correta",
+     "difficulty": 3,
+     "pageRef": 50,
+     "statement": "Sobre o SETUP e a CMOS, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "O SETUP é um firmware de configuração, e a CMOS é a memória volátil que guarda os dados, mantida por bateria.",
+      "O SETUP é uma memória volátil mantida por bateria, e a CMOS é o programa que realiza a configuração inicial.",
+      "SETUP e CMOS são o mesmo componente da placa-mãe, e a bateria alimenta apenas o processador e a fonte.",
+      "A CMOS é um firmware gravado em memória não volátil e, por isso, dispensa a bateria da placa-mãe.",
+      "O SETUP guarda a data e a hora em uma memória ROM, que se apaga ao desligar o computador."
+     ],
+     "answer": "A",
+     "explanation": "O SETUP é um firmware, gravado em memória não volátil, que realiza a configuração inicial. A CMOS é a memória volátil que guarda essas configurações, e a bateria da placa-mãe a mantém alimentada para que os dados não se percam ao desligar o computador."
+    },
+    {
+     "topic": "Bateria da placa-mãe",
+     "pattern": "caso",
+     "difficulty": 1,
+     "pageRef": 50,
+     "statement": "Um computador passou a perder a data e a hora sempre que fica desligado da tomada, e o relógio volta a um valor antigo. A causa mais provável é",
+     "support": null,
+     "options": [
+      "defeito na memória RAM, que guarda a data e a hora do sistema.",
+      "a bateria da placa-mãe esgotada, que alimenta a CMOS.",
+      "aquecimento do chipset durante a inicialização do computador.",
+      "excesso de programas instalados no disco rígido do computador.",
+      "falta de atualização do driver da placa de vídeo do computador."
+     ],
+     "answer": "B",
+     "explanation": "A bateria da placa-mãe mantém a CMOS alimentada, e é ela que guarda as configurações, inclusive data e hora. Relógio atrasado ou configuração perdida indica esgotamento da bateria, e não defeito na RAM ou no chipset."
+    },
+    {
+     "topic": "Memória volátil",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 50,
+     "statement": "Quanto à volatilidade das memórias, é correto afirmar que a memória volátil é aquela que",
+     "support": null,
+     "options": [
+      "mantém os dados armazenados mesmo sem energia elétrica, como o disco rígido.",
+      "só pode ser lida, não podendo ser regravada pelo usuário em nenhuma situação.",
+      "precisa de energia para manter os dados, que se perdem ao desligar.",
+      "armazena dados apenas em discos magnéticos removíveis, como disquetes e fitas.",
+      "é gravada pelo fabricante e só é atualizada com a troca do chip da placa."
+     ],
+     "answer": "C",
+     "explanation": "A memória volátil precisa de energia para manter os dados, que se perdem quando o computador é desligado, ao passo que a não volátil os mantém mesmo sem energia. A CMOS é volátil, e por isso depende de bateria."
+    }
+   ]
+  },
+  {
+   "id": "informatica/a14/s05",
+   "bizu": {
+    "summary": [
+     "**Chipset**: conjunto de chips controladores da placa-mãe, que **define suas capacidades** (tipo, velocidade e quantidade de memória, barramentos, vídeo, disco). Divide-se tradicionalmente em **ponte norte** (processador, memória, vídeo) e **ponte sul** (periféricos, discos, USB).",
+     "**Barramento**: conjunto de linhas condutoras por onde trafegam dados, endereços e sinais de controle entre componentes. Tipos: **local** (CPU–memória/cache), **slot** (placas de expansão), **porta** (dispositivos externos: USB, HDMI, PS/2) e **soquete** (encaixe do processador: LGA, PGA).",
+     "**Serial × paralelo**: serial envia um bit por vez; paralelo envia vários bits simultaneamente (tende a ter problemas de sincronismo em altas frequências, por isso o mercado migrou para o serial).",
+     "**Evolução dos slots**: ISA (8/16 bits) → EISA (32 bits) → VLB → **PCI** (Plug and Play, sem compatibilidade com ISA) → **AGP** (exclusivo para placas de vídeo 3D) → **PCI Express (PCIe)**, serial por **lanes**, que substituiu PCI e AGP e hoje liga placas de vídeo e SSDs.",
+     "**USB**: barramento **serial**, bidirecional e universal, com **Plug and Play** e **Hot Swap**; fornece alimentação de **5 V**. Um controlador pode suportar até **127 dispositivos** (com hubs). Versões: 1.1 (12 Mbps), **2.0 (480 Mbps)**, **3.0 (5 Gbps)**, 3.1 (10 Gbps), 3.2 (20 Gbps). Conectores tipos A, B e C. Modos de transferência: interrupção (teclado/mouse), isocrônico (áudio/vídeo) e bulk (grandes volumes).",
+     "**Interfaces de armazenamento**: **IDE = ATA = PATA** (paralelo); **SATA** (serial, sucessor: 150, 300 e 600 MB/s nas versões I, II e III); **SCSI** (paralelo, servidores, até 16 dispositivos, hot swap); **SAS** (serial, sucessor do SCSI, aceita HD SATA, mas HD SAS não funciona em SATA)."
+    ],
+    "teoria": [
+     {
+      "statement": "O chipset da placa-mãe é um conjunto de circuitos que define as capacidades de memória, barramentos e processamento suportadas.",
+      "isTrue": true,
+      "explanation": "É dividido em ponte norte e ponte sul."
+     },
+     {
+      "statement": "O barramento USB é paralelo e exige desligar o computador para conectar um novo dispositivo.",
+      "isTrue": false,
+      "explanation": "O USB é serial e permite Hot Swap, ligando e desligando com a máquina ligada."
+     },
+     {
+      "statement": "O barramento PCI Express substituiu o PCI e o AGP, e suporta placas aceleradoras gráficas.",
+      "isTrue": true,
+      "explanation": "Usa interconexões seriais chamadas lanes."
+     },
+     {
+      "statement": "Na ordem de taxas do USB, a versão 2.0 é mais rápida que a 3.0.",
+      "isTrue": false,
+      "explanation": "USB 3.0 (5 Gbps) é bem mais rápido que o 2.0 (480 Mbps)."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "IDE, ATA e PATA se referem ao mesmo padrão paralelo de conexão de discos.",
+      "isTrue": true,
+      "explanation": "O SATA é o sucessor, de transmissão serial."
+     },
+     {
+      "statement": "O SATA III alcança taxa de 600 MB/s.",
+      "isTrue": true,
+      "explanation": "SATA I tem 150 MB/s e SATA II, 300 MB/s."
+     },
+     {
+      "statement": "Um HD SAS funciona normalmente em interface SATA, pois os conectores são iguais.",
+      "isTrue": false,
+      "explanation": "A compatibilidade é só em um sentido: HD SATA funciona em SAS, mas HD SAS não funciona em SATA."
+     },
+     {
+      "statement": "O soquete é o barramento específico para encaixar o processador na placa-mãe.",
+      "isTrue": true,
+      "explanation": "Exemplos: LGA e PGA."
+     },
+     {
+      "statement": "O USB pode fornecer alimentação elétrica de 5 V aos dispositivos conectados.",
+      "isTrue": true,
+      "explanation": "É uma das vantagens do padrão."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Chipset (pontes norte e sul)",
+      "pageRef": 52
+     },
+     {
+      "topic": "Barramentos: tipos e transmissão serial/paralela",
+      "pageRef": 54
+     },
+     {
+      "topic": "ISA, EISA e VLB",
+      "pageRef": 56
+     },
+     {
+      "topic": "PCI",
+      "pageRef": 59
+     },
+     {
+      "topic": "AGP",
+      "pageRef": 60
+     },
+     {
+      "topic": "PCI Express",
+      "pageRef": 61
+     },
+     {
+      "topic": "USB",
+      "pageRef": 63
+     },
+     {
+      "topic": "IDE/ATA e SATA",
+      "pageRef": 65
+     },
+     {
+      "topic": "SCSI e SAS",
+      "pageRef": 67
+     }
+    ]
+   },
+   "questions": [
+    {
+     "topic": "Chipset",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 52,
+     "statement": "Na placa-mãe, o conjunto de chips que determina, por exemplo, o tipo, a frequência e a capacidade máxima de memória aceitos, além da velocidade dos barramentos, é o",
+     "support": null,
+     "options": [
+      "clock.",
+      "registrador.",
+      "barramento SATA.",
+      "chipset.",
+      "cooler."
+     ],
+     "answer": "D",
+     "explanation": "O chipset é o conjunto de chips controladores que gerencia a placa-mãe e define suas capacidades. É considerado o cérebro da placa-mãe, enquanto o processador é o cérebro do computador."
+    },
+    {
+     "topic": "Ponte norte e ponte sul",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 52,
+     "statement": "Sobre o chipset tradicional, dividido em ponte norte e ponte sul, é correto afirmar que a ponte norte",
+     "support": null,
+     "options": [
+      "é o chip mais simples e responsável por tudo o que não é controlado pela ponte sul.",
+      "controla apenas periféricos lentos, como teclado e mouse, ficando longe do processador.",
+      "é o local em que o processador é encaixado na placa-mãe, também chamado de soquete.",
+      "armazena a BIOS e as configurações iniciais do computador, mantidas pela bateria.",
+      "fica próxima do processador e controla a memória principal e a placa de vídeo."
+     ],
+     "answer": "E",
+     "explanation": "A ponte norte é o chip mais complexo, fica mais próxima do processador e controla a memória principal e dispositivos de alta velocidade, como a placa de vídeo. A ponte sul é menor e cuida do que resta. O soquete é o local de encaixe do processador."
+    },
+    {
+     "topic": "Tipos de barramento",
+     "pattern": "relacao",
+     "difficulty": 2,
+     "pageRef": 54,
+     "statement": "Os barramentos da placa-mãe podem ser classificados em local, slot, porta e soquete. A associação correta entre o tipo e seu uso é",
+     "support": null,
+     "options": [
+      "slot: conectar placas de expansão, como as de vídeo; porta: conectar dispositivos externos, como USB e HDMI.",
+      "local: conectar placas de expansão; soquete: conectar dispositivos externos, como pendrives.",
+      "porta: conectar o processador à placa-mãe; slot: ligar o processador à memória cache.",
+      "soquete: conectar o processador à memória RAM; local: encaixar o processador na placa-mãe.",
+      "slot: conectar dispositivos externos, como USB; porta: encaixar o processador na placa-mãe."
+     ],
+     "answer": "A",
+     "explanation": "Slot é o barramento interno para placas de expansão, como PCI e AGP, e porta é o barramento externo para dispositivos, como USB, HDMI e PS/2. O local liga o processador à memória RAM ou cache, e o soquete encaixa o processador na placa-mãe."
+    },
+    {
+     "topic": "Transmissão serial e paralela",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 54,
+     "statement": "Quanto aos tipos de transmissão de dados, a transmissão serial se caracteriza por",
+     "support": null,
+     "options": [
+      "enviar todos os bits de um byte simultaneamente, enquanto a paralela envia um bit por vez.",
+      "enviar um bit por vez por uma única linha, enquanto a paralela envia todos os bits do byte ao mesmo tempo.",
+      "usar sempre várias linhas de dados, mas com frequência baixa, ao contrário da paralela.",
+      "ser exclusiva dos barramentos antigos, como ISA e VLB, e não existir mais.",
+      "transmitir somente dados de áudio, enquanto a paralela transmite apenas vídeo."
+     ],
+     "answer": "B",
+     "explanation": "Na transmissão serial, os bits de um byte seguem em sequência, um por vez, por uma linha, e na paralela os bits do byte são enviados simultaneamente. Barramentos seriais, como USB e PCI Express, são os atuais."
+    },
+    {
+     "topic": "Evolução dos barramentos ISA, EISA e VLB",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 58,
+     "statement": "Entre os barramentos antigos de expansão, aquele que sucedeu o EISA, manteve a compatibilidade com os padrões anteriores, operava em 32 bits a 33 MHz e ganhou o apelido de Very Long Bus por seu tamanho físico foi o",
+     "support": null,
+     "options": [
+      "ISA.",
+      "PCI.",
+      "VLB.",
+      "AGP.",
+      "SCSI."
+     ],
+     "answer": "C",
+     "explanation": "O VLB (VESA Local Bus) sucedeu o EISA, operava a 33 MHz com 32 bits e era fisicamente muito grande. O PCI, que veio depois, reduziu o tamanho e não manteve a compatibilidade com o ISA."
+    },
+    {
+     "topic": "Barramento PCI",
+     "pattern": "conceito",
+     "difficulty": 3,
+     "pageRef": 59,
+     "statement": "O barramento PCI trouxe recursos como o Plug and Play e o Bus Mastering. Este último permite que",
+     "support": null,
+     "options": [
+      "o processador seja encaixado diretamente no barramento, sem uso de soquete.",
+      "o computador reconheça automaticamente os dispositivos, sem precisar de configuração manual.",
+      "o barramento opere apenas com 8 bits, mantendo compatibilidade com o ISA.",
+      "o próprio periférico dê início a acessos diretos à memória.",
+      "o dispositivo troque dados apenas por transmissão serial de um bit por vez."
+     ],
+     "answer": "D",
+     "explanation": "Pelo Bus Mastering, o próprio periférico dá início a acessos diretos à memória. Já o reconhecimento automático dos dispositivos conectados é o Plug and Play, que é outro recurso do PCI."
+    },
+    {
+     "topic": "Barramento AGP",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 60,
+     "statement": "O barramento AGP foi desenvolvido com a finalidade de",
+     "support": null,
+     "options": [
+      "conectar discos rígidos e drives de CD/DVD por transmissão paralela.",
+      "conectar mouse, teclado e outros periféricos com troca a quente.",
+      "ligar o processador à memória cache, com maior taxa de transferência.",
+      "conectar placas de rede, som e modem em computadores do tipo PC XT.",
+      "conectar placas de vídeo 3D de alto desempenho à placa-mãe."
+     ],
+     "answer": "E",
+     "explanation": "O AGP foi criado exclusivamente para conectar placas de vídeo 3D de alto desempenho, com maior taxa de transferência até a placa-mãe, permitindo que a placa use a memória RAM como extensão da memória de vídeo."
+    },
+    {
+     "topic": "Barramento PCI Express",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 61,
+     "statement": "O PCI Express (PCIe) substituiu o PCI e o AGP. Uma característica desse barramento é",
+     "support": null,
+     "options": [
+      "usar conexões seriais chamadas lanes, e um dispositivo pode usar 1, 4 ou até 16 delas.",
+      "operar em transmissão paralela de 32 bits, com clock fixo de 33 MHz.",
+      "ser dedicado exclusivamente a placas de vídeo, sem suporte a placas de rede.",
+      "manter total compatibilidade com o padrão ISA de 16 bits.",
+      "conectar apenas dispositivos de armazenamento, como HDs e SSDs, em servidores."
+     ],
+     "answer": "A",
+     "explanation": "O PCIe usa conexões seriais chamadas lanes, e um dispositivo pode usar 1, 4 ou até 16 delas (1X a 16X). A transmissão serial rápida substituiu o paralelismo, que gerava interferência e problemas de sincronismo em altas frequências."
+    },
+    {
+     "topic": "Barramento USB",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 63,
+     "statement": "Sobre o barramento USB, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "Transmite dados em paralelo e exige desligar o computador para conectar um novo dispositivo.",
+      "Transmite dados em série, é bidirecional e aceita conexão com a máquina ligada (hot swap).",
+      "Fornece alimentação de 12 V e dispensa o Plug and Play, exigindo instalação manual.",
+      "Tem conectores com 16 contatos, todos usados para dados, sem pinos de energia.",
+      "É restrito a teclados e mouses, não aceitando pendrives ou HDs externos."
+     ],
+     "answer": "B",
+     "explanation": "O USB transmite dados em série, é bidirecional, permite conectar dispositivos sem desligar a máquina (hot swap), segue o Plug and Play e fornece alimentação de 5 V. Os conectores têm apenas quatro contatos, dois deles para dados."
+    },
+    {
+     "topic": "Taxa de transferência USB 2.0",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 64,
+     "statement": "Um arquivo de 600 MB é copiado para um pendrive por uma porta USB 2.0, que opera na taxa teórica de 480 Mbps. Desconsiderando perdas, o tempo mínimo da cópia é de",
+     "support": null,
+     "options": [
+      "1,25 s.",
+      "10 s.",
+      "80 s.",
+      "100 s.",
+      "480 s."
+     ],
+     "answer": "B",
+     "explanation": "A taxa de 480 Mbps equivale a 480 / 8 = 60 MB/s. Assim, 600 MB / 60 MB/s = 10 segundos. O valor 80 s resultaria de converter o arquivo em megabits e dividi-lo pela taxa em MB/s."
+    },
+    {
+     "topic": "Modos de operação do USB",
+     "pattern": "relacao",
+     "difficulty": 3,
+     "pageRef": 64,
+     "statement": "Quando vários dispositivos compartilham um hub USB, existem modos de operação que priorizam o tráfego. A associação correta entre o modo e o dispositivo típico é",
+     "support": null,
+     "options": [
+      "interrupção: HD externo; isocrônico: teclado e mouse; grande volume: caixas de som.",
+      "interrupção: caixas de som; isocrônico: HD externo; grande volume: teclado.",
+      "interrupção: HD externo; isocrônico: caixas de som; grande volume: mouse.",
+      "interrupção: teclado e mouse; isocrônico: caixas de som e fones; grande volume: HD externo.",
+      "interrupção: fones de ouvido; isocrônico: HD externo; grande volume: teclado e mouse."
+     ],
+     "answer": "D",
+     "explanation": "O modo de interrupção atende teclados e mouses, que mandam poucos dados mas com urgência, o isocrônico atende dispositivos de streaming, como caixas de som e fones, e o de grande volume atende transferências grandes e de baixa prioridade, como o HD externo."
+    },
+    {
+     "topic": "IDE, ATA e SATA",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 65,
+     "statement": "A respeito dos padrões de interface para discos rígidos, é correto afirmar que",
+     "support": null,
+     "options": [
+      "SATA e IDE são o mesmo padrão de interface, diferindo apenas no nome comercial.",
+      "o SATA é o padrão antigo e paralelo, substituído pelo IDE nos computadores atuais.",
+      "o IDE transmite em série e, por isso, é mais rápido que o SATA nos computadores atuais.",
+      "o PATA é o nome dado ao SATA depois de ele ser renomeado como Serial ATA.",
+      "IDE, ATA e PATA designam o mesmo padrão paralelo, e o SATA é seu sucessor serial."
+     ],
+     "answer": "E",
+     "explanation": "Com a chegada do Serial ATA, o ATA original passou a se chamar Parallel ATA, de modo que IDE, ATA e PATA designam o mesmo padrão paralelo. O SATA é seu sucessor e transmite em série, o que permite frequências e taxas maiores."
+    },
+    {
+     "topic": "Taxas do SATA",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 66,
+     "statement": "Um arquivo de 1.500 MB é lido de um disco rígido pela interface SATA II, na taxa teórica máxima de 300 MB/s. Se o mesmo disco operasse em uma interface SATA III, na taxa teórica de 600 MB/s, o tempo de leitura seria menor em",
+     "support": null,
+     "options": [
+      "0,5 s.",
+      "1,25 s.",
+      "2,5 s.",
+      "5 s.",
+      "7,5 s."
+     ],
+     "answer": "C",
+     "explanation": "No SATA II, a leitura leva 1500 / 300 = 5 segundos, e no SATA III, 1500 / 600 = 2,5 segundos. A diferença é de 2,5 segundos."
+    },
+    {
+     "topic": "SCSI e SAS",
+     "pattern": "correta",
+     "difficulty": 3,
+     "pageRef": 68,
+     "statement": "Sobre os barramentos SCSI e SAS, usados principalmente em servidores, é correto afirmar que",
+     "support": null,
+     "options": [
+      "o SCSI é serial e o SAS é paralelo, e ambos funcionam em interfaces SATA comuns.",
+      "o SAS é voltado para desktops domésticos, e um HD SATA não funciona em interface SAS.",
+      "o SAS usa transmissão serial, e um HD SAS não funciona em interface SATA.",
+      "o SCSI conecta até dois dispositivos por porta, enquanto o SAS conecta um único disco.",
+      "um HD SAS funciona em interface SATA, mas um HD SATA não funciona em interface SAS comum."
+     ],
+     "answer": "C",
+     "explanation": "O SAS é a versão serial do SCSI, que é paralelo. A compatibilidade vale em uma direção apenas: um HD SATA roda em interface SAS, mas um HD SAS não roda em interface SATA, apesar de os conectores serem idênticos."
+    }
+   ]
+  },
+  {
+   "id": "informatica/a14/s06",
+   "bizu": {
+    "summary": [
+     "**CPU/processador/microprocessador**: controla os componentes e executa o processamento de dados. Não confundir CPU com **gabinete**. Processadores modernos têm vários núcleos; cada **núcleo** (core) funciona como uma CPU.",
+     "**Clock**: frequência de trabalho do processador, medida em **hertz** (ciclos por segundo; GHz hoje). Mais clock → mais instruções por segundo, mas o desempenho também depende de núcleos, cache e arquitetura (um dual-core não é simplesmente \"o dobro\" do single-core).",
+     "**Multicore**: dois ou mais núcleos no mesmo chip dividem tarefas; por isso, hoje, processador e CPU não são tecnicamente sinônimos.",
+     "**Resfriamento (cooler)**: dissipador + ventoinha retiram o calor gerado; o processador realiza bilhões de cálculos por segundo. Fabricantes principais: **Intel** e **AMD**.",
+     "**Arquitetura**: **RISC** (conjunto reduzido de instruções simples) e **CISC** (conjunto complexo, instruções que fazem mais por vez). **Palavra** é a unidade de dados da arquitetura; processadores **x64** processam 64 bits (8 bytes) por ciclo.",
+     "**Unidade de Controle (UC)**: \"guarda de trânsito\" que coordena o fluxo e comanda o **ciclo de instrução: buscar, decodificar e executar**.",
+     "**ULA (Unidade Lógica e Aritmética)**: realiza operações aritméticas (soma, subtração…) e lógicas (AND, OR, XOR, NOT). **Registradores**: pequenas memórias **voláteis**, dentro da CPU, as **mais rápidas** de todas; guardam resultados temporários e informações de controle (ex.: contador de instruções)."
+    ],
+    "teoria": [
+     {
+      "statement": "Um processador multicore tem dois ou mais núcleos de processamento no mesmo chip.",
+      "isTrue": true,
+      "explanation": "Por isso processador e CPU não são sinônimos exatos."
+     },
+     {
+      "statement": "Um processador de 2 GHz com dois núcleos é, necessariamente, exatamente duas vezes mais rápido que o de um núcleo e mesmo clock.",
+      "isTrue": false,
+      "explanation": "O desempenho depende de vários fatores; o dobro de núcleos não implica dobro de velocidade."
+     },
+     {
+      "statement": "A unidade de controle executa as operações aritméticas e lógicas do processador.",
+      "isTrue": false,
+      "explanation": "Essa é a função da ULA; a UC coordena o fluxo e o ciclo buscar-decodificar-executar."
+     },
+     {
+      "statement": "Os registradores são as memórias mais rápidas do computador e ficam dentro da CPU.",
+      "isTrue": true,
+      "explanation": "Guardam resultados temporários e informações de controle."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "O ciclo de instrução da CPU compreende as etapas buscar, decodificar e executar.",
+      "isTrue": true,
+      "explanation": "É coordenado pela unidade de controle."
+     },
+     {
+      "statement": "A arquitetura RISC se caracteriza por um conjunto complexo e extenso de instruções.",
+      "isTrue": false,
+      "explanation": "Essa descrição é a da CISC; RISC usa um conjunto reduzido de instruções."
+     },
+     {
+      "statement": "O clock é a frequência com que o processador executa suas operações, medida em hertz.",
+      "isTrue": true,
+      "explanation": "Hoje se mede em gigahertz."
+     },
+     {
+      "statement": "Processadores x64 conseguem processar blocos de 64 bits por ciclo de clock.",
+      "isTrue": true,
+      "explanation": "Equivale a 8 bytes."
+     },
+     {
+      "statement": "A CPU é o gabinete onde ficam instalados os componentes do computador.",
+      "isTrue": false,
+      "explanation": "A CPU é o processador, acoplado à placa-mãe; o gabinete é a caixa que abriga o hardware."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "CPU e microprocessador",
+      "pageRef": 69
+     },
+     {
+      "topic": "Histórico dos processadores",
+      "pageRef": 70
+     },
+     {
+      "topic": "Clock",
+      "pageRef": 71
+     },
+     {
+      "topic": "Núcleos",
+      "pageRef": 73
+     },
+     {
+      "topic": "Resfriamento",
+      "pageRef": 74
+     },
+     {
+      "topic": "Famílias de processadores",
+      "pageRef": 75
+     },
+     {
+      "topic": "RISC e CISC",
+      "pageRef": 76
+     },
+     {
+      "topic": "Tamanho da palavra",
+      "pageRef": 77
+     },
+     {
+      "topic": "Unidade de controle e ciclo de instrução",
+      "pageRef": 79
+     },
+     {
+      "topic": "ULA",
+      "pageRef": 81
+     },
+     {
+      "topic": "Registradores",
+      "pageRef": 82
+     }
+    ]
+   },
+   "questions": [
+    {
+     "topic": "CPU e gabinete",
+     "pattern": "caso",
+     "difficulty": 1,
+     "pageRef": 69,
+     "statement": "Um usuário afirma que a CPU de seu computador é a caixa metálica onde ficam a placa-mãe e os demais componentes. Em relação a essa afirmação, é correto dizer que",
+     "support": null,
+     "options": [
+      "a caixa é o gabinete, e a CPU é o processador, que executa as instruções.",
+      "a afirmação está certa, pois CPU e gabinete são sinônimos em qualquer computador.",
+      "a CPU é o monitor e o gabinete juntos, que formam a unidade de saída do computador.",
+      "a CPU é a memória RAM, que fica instalada dentro do gabinete, junto à fonte.",
+      "a CPU é a placa-mãe, e o gabinete é apenas o nome popular do processador."
+     ],
+     "answer": "A",
+     "explanation": "A caixa é o gabinete. A CPU (processador) fica acoplada à placa-mãe, dentro do gabinete, e executa as instruções dos programas. Os dois termos não são sinônimos."
+    },
+    {
+     "topic": "Clock do processador",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 71,
+     "statement": "O clock de um processador, medido em hertz, representa",
+     "support": null,
+     "options": [
+      "a quantidade de núcleos de processamento existentes dentro do chip do processador.",
+      "a capacidade de armazenamento de dados, em kilobytes, da memória cache do processador.",
+      "o tamanho da palavra, em bits, com que o processador consegue trabalhar com eficiência.",
+      "o tempo total, em segundos, que o computador leva para ser ligado e carregar o sistema.",
+      "a quantidade de ciclos por segundo, que sincroniza as operações dos componentes."
+     ],
+     "answer": "E",
+     "explanation": "O clock indica quantos ciclos por segundo o processador realiza e serve também para sincronizar as operações dos componentes internos e externos. Não indica número de núcleos, capacidade da cache nem tamanho da palavra."
+    },
+    {
+     "topic": "Clock em ciclos por segundo",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 71,
+     "statement": "Um processador opera com clock de 3,2 GHz. Como 1 Hz equivale a 1 ciclo por segundo, o número de ciclos executados por segundo é de",
+     "support": null,
+     "options": [
+      "3,2 milhões.",
+      "32 milhões.",
+      "320 milhões.",
+      "3,2 bilhões.",
+      "32 bilhões."
+     ],
+     "answer": "D",
+     "explanation": "Como 1 GHz equivale a 1 bilhão de hertz, 3,2 GHz correspondem a 3,2 bilhões de ciclos por segundo. Os demais valores resultam de erro na potência de dez."
+    },
+    {
+     "topic": "Overclock",
+     "pattern": "caso",
+     "difficulty": 1,
+     "pageRef": 72,
+     "statement": "Um entusiasta forçou o processador de seu computador a operar em frequência superior à especificada pelo fabricante, buscando mais desempenho. Esse procedimento é conhecido como",
+     "support": null,
+     "options": [
+      "multithreading.",
+      "overclock.",
+      "boot.",
+      "hot swap.",
+      "Plug and Play."
+     ],
+     "answer": "B",
+     "explanation": "Overclock é o processo de forçar um componente, como o processador, a operar em frequência mais alta que a especificada pelo fabricante, em geral para aumentar o desempenho. Hot swap, boot e Plug and Play têm outros significados."
+    },
+    {
+     "topic": "Processadores multicore",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 73,
+     "statement": "Em um processador multicore, é correto afirmar que",
+     "support": null,
+     "options": [
+      "os núcleos dividem um único fluxo de instruções, sem nunca executá-las ao mesmo tempo.",
+      "processador e CPU continuam sendo sinônimos exatos, como nos antigos processadores de núcleo único.",
+      "cada núcleo é considerado uma CPU, e o sistema operacional os trata como processadores distintos.",
+      "há dois ou mais chips independentes na placa-mãe, cada um com seu soquete.",
+      "o sistema operacional enxerga todos os núcleos como um só processador lógico."
+     ],
+     "answer": "C",
+     "explanation": "Em processadores multicore, cada núcleo é considerado uma CPU, e o sistema operacional trata cada um como um processador distinto, o que permite processar várias instruções simultaneamente. Por isso, processador e CPU deixaram de ser sinônimos exatos."
+    },
+    {
+     "topic": "Clock e número de núcleos",
+     "pattern": "caso",
+     "difficulty": 2,
+     "pageRef": 73,
+     "statement": "Um técnico compara dois processadores: o primeiro tem 4 núcleos e clock de 2,5 GHz, e o segundo tem 2 núcleos e clock de 3,0 GHz. Com base apenas nesses dados, é correto afirmar que",
+     "support": null,
+     "options": [
+      "não é possível concluir qual é mais rápido, pois o desempenho depende também de arquitetura e cache.",
+      "o primeiro é sempre mais rápido, pois possui o dobro de núcleos.",
+      "o segundo é sempre mais rápido, pois possui o maior clock.",
+      "o segundo é exatamente 20% mais rápido, proporcionalmente à diferença de clock.",
+      "o primeiro é duas vezes mais rápido, pois a velocidade é proporcional ao número de núcleos."
+     ],
+     "answer": "A",
+     "explanation": "Nem o clock nem o número de núcleos determinam sozinhos o desempenho, que também depende de arquitetura, memória cache e outros fatores. Por isso, não é possível concluir, só por esses dados, qual é o mais rápido."
+    },
+    {
+     "topic": "Resfriamento do processador",
+     "pattern": "correta",
+     "difficulty": 1,
+     "pageRef": 74,
+     "statement": "Sobre o resfriamento do processador, é correto afirmar que",
+     "support": null,
+     "options": [
+      "a pasta térmica alimenta o processador com energia, e o cooler armazena os dados.",
+      "o cooler fornece energia elétrica ao processador, e a pasta térmica o ventila.",
+      "a pasta térmica é aplicada sobre a memória RAM para aumentar sua frequência.",
+      "o cooler é um programa que reduz o clock do processador para economizar energia.",
+      "a pasta térmica ajuda a passar o calor ao dissipador, e o cooler o dispersa."
+     ],
+     "answer": "E",
+     "explanation": "A pasta térmica facilita a passagem do calor do processador para o dissipador, e o cooler, ventilador instalado sobre o processador, dispersa esse calor. O cooler não fornece energia nem altera o clock."
+    },
+    {
+     "topic": "Vantagens do multicore",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 75,
+     "statement": "Entre as vantagens dos processadores multicore em relação aos de núcleo único, está",
+     "support": null,
+     "options": [
+      "o consumo de energia sempre maior, compensado pelo clock mais baixo.",
+      "a eliminação da necessidade de resfriamento, pois o calor se divide entre os núcleos.",
+      "a garantia de desempenho exatamente proporcional ao número de núcleos.",
+      "a possibilidade de continuar funcionando mesmo que um núcleo falhe.",
+      "a substituição da memória RAM pela memória cache em todas as operações."
+     ],
+     "answer": "D",
+     "explanation": "Os multicore permitem melhor aproveitamento do processamento paralelo e maior segurança, pois continuam funcionando mesmo que um núcleo falhe. O desempenho não é exatamente proporcional ao número de núcleos."
+    },
+    {
+     "topic": "Arquiteturas RISC e CISC",
+     "pattern": "relacao",
+     "difficulty": 2,
+     "pageRef": 76,
+     "statement": "Sobre as arquiteturas de processadores RISC e CISC, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "A RISC usa mais instruções complexas, de tamanhos variados; a CISC usa menos instruções simples.",
+      "A RISC usa menos instruções, simples e de tamanho fixo; a CISC, mais instruções e complexas.",
+      "A RISC é centrada no hardware e tem menos registradores; a CISC é centrada no software.",
+      "Ambas executam o mesmo número de instruções, diferindo apenas no fabricante, Intel ou AMD.",
+      "Quanto maior o número de instruções da CISC, mais rápido é, sempre, o processamento."
+     ],
+     "answer": "B",
+     "explanation": "A RISC tem menos instruções, mais simples e de tamanho fixo, e mais registradores. A CISC tem mais instruções, mais complexas e de tamanhos variados, e menos registradores. Mais instruções na CISC não significam mais velocidade."
+    },
+    {
+     "topic": "Tamanho da palavra e memória",
+     "pattern": "caso",
+     "difficulty": 3,
+     "pageRef": 77,
+     "statement": "Um técnico instalou um pente de memória de 8 GB em um computador com processador de 32 bits e notou que o sistema só aproveita 4 GB. A explicação é que um processador de 32 bits",
+     "support": null,
+     "options": [
+      "trabalha apenas com memórias do tipo cache, que são limitadas a 4 GB.",
+      "exige que a memória seja instalada aos pares para usar mais de 4 GB.",
+      "trabalha com valores de até 2^32, o que limita a memória a 4 GB.",
+      "só consegue usar memória do tipo DDR, que não passa de 4 GB de capacidade.",
+      "limita a memória ao valor do clock do processador, que é de 4 GHz."
+     ],
+     "answer": "C",
+     "explanation": "O tamanho da palavra é o tamanho máximo com que o processador trabalha eficientemente. Com 32 bits, o limite é 2^32 bytes, ou seja, 4.294.967.296 bytes (4 GB). Para usar 8 GB seria preciso uma arquitetura de 64 bits."
+    },
+    {
+     "topic": "Arquiteturas x86 e x64",
+     "pattern": "caso",
+     "difficulty": 2,
+     "pageRef": 77,
+     "statement": "Um usuário abre a janela de informações do sistema (msinfo32) e, no item Tipo de Sistema, vê a indicação x64. Isso significa que o computador",
+     "support": null,
+     "options": [
+      "trabalha com arquitetura de 64 bits, ao passo que x86 indica a de 32 bits.",
+      "trabalha com arquitetura de 32 bits, ao passo que x86 indica a de 64 bits.",
+      "possui 64 núcleos de processamento no processador instalado no computador.",
+      "possui 64 GB de memória RAM instalada nos pentes de memória.",
+      "tem clock de 64 MHz, ao passo que x86 indica clock de 86 MHz."
+     ],
+     "answer": "A",
+     "explanation": "A indicação x64 refere-se à arquitetura de 64 bits, e x86 refere-se à de 32 bits. Não tem relação com número de núcleos, quantidade de memória ou clock."
+    },
+    {
+     "topic": "Unidade de controle",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 79,
+     "statement": "A unidade da CPU comparada a um guarda de trânsito, por controlar o fluxo de dados e decidir se uma informação deve ir à ULA ou diretamente à memória, é a",
+     "support": null,
+     "options": [
+      "unidade lógica e aritmética.",
+      "registrador.",
+      "memória cache.",
+      "barramento local.",
+      "unidade de controle."
+     ],
+     "answer": "E",
+     "explanation": "A unidade de controle administra o processamento das instruções, organiza a transferência interna de dados e sincroniza as operações. A ULA executa os cálculos, o registrador guarda dados temporários e a cache acelera o acesso à memória."
+    },
+    {
+     "topic": "Ciclo da unidade de controle",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 80,
+     "statement": "O ciclo básico de funcionamento da unidade de controle, na ordem correta, é",
+     "support": null,
+     "options": [
+      "decodificar, buscar, armazenar e executar.",
+      "executar, buscar, decodificar e armazenar.",
+      "armazenar, buscar, executar e decodificar.",
+      "buscar, decodificar, executar e armazenar.",
+      "buscar, executar, decodificar e armazenar."
+     ],
+     "answer": "D",
+     "explanation": "A unidade de controle busca a próxima instrução na memória, decodifica o tipo de instrução, executa-a, atribuindo ações aos componentes, e armazena o resultado na memória principal ou em um registrador."
+    },
+    {
+     "topic": "Unidade lógica e aritmética",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 81,
+     "statement": "Sobre a unidade lógica e aritmética (ULA), é correto afirmar que ela",
+     "support": null,
+     "options": [
+      "interpreta a instrução e decide quais componentes serão usados, função da unidade de controle.",
+      "executa operações aritméticas e lógicas, como adição e AND, e costuma usar os registradores como memória.",
+      "armazena de forma permanente o sistema operacional e os programas.",
+      "fica no disco rígido e é acionada somente quando há gravação de arquivos.",
+      "controla a entrada e a saída de dados entre o computador e os periféricos."
+     ],
+     "answer": "B",
+     "explanation": "A ULA é o circuito que realiza operações aritméticas (adição, subtração) e lógicas (AND, OR, XOR, NOT) e usa, em geral, os registradores como memória. Decidir o que fazer com a instrução é função da unidade de controle."
+    },
+    {
+     "topic": "Registradores",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 82,
+     "statement": "Os registradores, localizados no interior do núcleo da CPU, são",
+     "support": null,
+     "options": [
+      "memórias não voláteis, de grande capacidade, que guardam o sistema operacional e os programas.",
+      "memórias lentas e baratas, localizadas na placa-mãe, que guardam os arquivos do usuário.",
+      "memórias voláteis, muito rápidas, que guardam resultados temporários de operações.",
+      "memórias somente de leitura, gravadas pelo fabricante, que guardam a BIOS e o POST.",
+      "memórias com a menor velocidade entre todas, usadas para backup dos dados do usuário."
+     ],
+     "answer": "C",
+     "explanation": "Registradores são memórias voláteis, as mais rápidas do computador, com pequena capacidade e custo alto, que guardam resultados temporários e informações de controle durante o processamento."
+    }
+   ]
+  },
+  {
+   "id": "informatica/a14/s07",
+   "bizu": {
+    "summary": [
+     "**Memória** é o componente que armazena dados e programas; divide-se em **primária** (acessada diretamente pelo processador) e **secundária**. **Volátil** perde o conteúdo sem energia; **não volátil** o mantém.",
+     "**Memória primária**: **RAM, ROM e cache**. Exemplos de **secundária**: HD, SSD, pendrive, CD/DVD (não são primárias).",
+     "**RAM (Random Access Memory)**: memória **principal**, **volátil**, de **leitura e escrita**; guarda programas e dados em execução e é indispensável para o funcionamento enquanto o computador está ligado.",
+     "**Módulos**: **SIMM** e **DIMM** são tipos de pentes de RAM (DIMM é o usado hoje, sob a forma DDR-SDRAM-DIMM).",
+     "**DRAM (dinâmica)**: usa transistor + capacitor e precisa de **atualização (refresh)** constante; mais barata e densa, é a RAM comum. Versões **DDR** (DDR2, DDR3, DDR4…) aumentam a taxa de transferência e reduzem o consumo, mas **não são compatíveis entre si** na mesma placa-mãe.",
+     "**SRAM (estática)**: não precisa de refresh, **mais rápida** e econômica em energia, porém **muito mais cara** e com menor densidade — por isso é usada em **cache**, e não como RAM principal."
+    ],
+    "teoria": [
+     {
+      "statement": "A memória RAM é volátil e permite leitura e escrita de dados.",
+      "isTrue": true,
+      "explanation": "Perde o conteúdo quando o computador é desligado."
+     },
+     {
+      "statement": "O HD e o pendrive são exemplos de memória primária.",
+      "isTrue": false,
+      "explanation": "São memórias secundárias; as primárias são RAM, ROM e cache."
+     },
+     {
+      "statement": "Em uma mesma placa-mãe é possível misturar módulos de memória DDR de gerações diferentes, pois são compatíveis.",
+      "isTrue": false,
+      "explanation": "Gerações DDR distintas não são compatíveis entre si."
+     },
+     {
+      "statement": "SIMM e DIMM são tipos de módulos de memória RAM.",
+      "isTrue": true,
+      "explanation": "Não são cache nem firmware."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "A SRAM é mais rápida que a DRAM, porém mais cara e menos densa.",
+      "isTrue": true,
+      "explanation": "Por isso é usada em memórias cache."
+     },
+     {
+      "statement": "A DRAM precisa ter seus dados atualizados frequentemente porque usa capacitores.",
+      "isTrue": true,
+      "explanation": "É o processo de refresh."
+     },
+     {
+      "statement": "Memória volátil é aquela que mantém os dados armazenados mesmo sem energia elétrica.",
+      "isTrue": false,
+      "explanation": "Volátil perde o conteúdo sem energia; não volátil o mantém."
+     },
+     {
+      "statement": "A memória primária é aquela que o processador acessa diretamente.",
+      "isTrue": true,
+      "explanation": "Inclui RAM, ROM e cache."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Unidade de memória",
+      "pageRef": 83
+     },
+     {
+      "topic": "Memória primária",
+      "pageRef": 84
+     },
+     {
+      "topic": "Memória RAM",
+      "pageRef": 85
+     },
+     {
+      "topic": "Módulos SIMM e DIMM",
+      "pageRef": 86
+     },
+     {
+      "topic": "DRAM",
+      "pageRef": 87
+     },
+     {
+      "topic": "DDR",
+      "pageRef": 88
+     },
+     {
+      "topic": "SRAM",
+      "pageRef": 89
+     }
+    ]
+   },
+   "questions": [
+    {
+     "topic": "Memória volátil e não volátil",
+     "pattern": "correta",
+     "difficulty": 1,
+     "pageRef": 83,
+     "statement": "Quanto à volatilidade, é correto afirmar que a memória",
+     "support": null,
+     "options": [
+      "volátil mantém as informações mesmo sem energia, e a não volátil as perde ao desligar o computador.",
+      "volátil e a não volátil dependem igualmente de energia para manter os dados.",
+      "não volátil só existe em computadores de grande porte, como servidores.",
+      "não volátil mantém as informações mesmo sem energia, e a volátil as perde quando a energia é interrompida.",
+      "volátil é aquela que só permite leitura, e a não volátil, leitura e escrita."
+     ],
+     "answer": "D",
+     "explanation": "A memória volátil precisa de energia para manter os dados, que se perdem quando a energia é interrompida, e a não volátil os mantém mesmo sem energia. É o caso da RAM (volátil) e do HD e do SSD (não voláteis)."
+    },
+    {
+     "topic": "Memória primária e secundária",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 84,
+     "statement": "Um técnico organiza os componentes de um computador em memória primária e memória secundária. Pertence ao grupo da memória primária",
+     "support": null,
+     "options": [
+      "o SSD.",
+      "o disco rígido.",
+      "o cartão de memória.",
+      "o Blu-ray.",
+      "a memória RAM."
+     ],
+     "answer": "E",
+     "explanation": "A memória primária é aquela a que o processador acessa diretamente, como RAM, ROM e cache. SSD, disco rígido, cartão de memória e Blu-ray são memórias secundárias."
+    },
+    {
+     "topic": "Memória RAM",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 85,
+     "statement": "Sobre a memória RAM, é correto afirmar que ela é",
+     "support": null,
+     "options": [
+      "não volátil, de acesso sequencial e somente leitura, usada para guardar a BIOS.",
+      "volátil, de acesso aleatório e de leitura e escrita.",
+      "volátil, de acesso sequencial, como a fita magnética, e somente leitura.",
+      "não volátil, de acesso aleatório, usada para armazenar o backup do usuário.",
+      "volátil e de leitura e escrita, mas indispensável apenas após a inicialização."
+     ],
+     "answer": "B",
+     "explanation": "A RAM é volátil, de acesso aleatório (direto) e de leitura e escrita, e guarda programas, processos e dados em execução. É indispensável para a inicialização do computador, e a BIOS fica em ROM."
+    },
+    {
+     "topic": "Acesso direto e sequencial",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 85,
+     "statement": "Em relação às formas de acesso à memória, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "No acesso aleatório, os dados são lidos onde estão; no sequencial, na ordem de gravação.",
+      "No acesso direto, os dados precisam ser lidos na ordem em que foram gravados.",
+      "A RAM usa acesso sequencial, e a fita magnética usa acesso aleatório, ao contrário do que se pensa.",
+      "O acesso sequencial é mais rápido, pois dispensa a busca individual de cada dado.",
+      "Acesso aleatório significa que os dados são gravados em posições escolhidas ao acaso."
+     ],
+     "answer": "A",
+     "explanation": "No acesso direto (aleatório), os dados são acessados onde estão, sem percorrer os anteriores, como a RAM. No sequencial, é preciso respeitar a ordem de gravação, como na fita magnética, e isso o torna mais lento para achar um dado."
+    },
+    {
+     "topic": "Módulos SIMM e DIMM",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 85,
+     "statement": "Sobre os módulos de memória RAM, é correto afirmar que o DIMM",
+     "support": null,
+     "options": [
+      "tem uma única via de contatos e transmite 32 bits por vez, estando obsoleto há anos.",
+      "é o módulo da memória ROM, que mantém a BIOS e o SETUP gravados sem energia.",
+      "é o tipo de memória estática, mais cara e rápida, usada na cache do processador.",
+      "tem contatos nos dois lados do pente e transmite 64 bits por vez, sendo o padrão atual.",
+      "é incompatível com a memória DDR, por transmitir apenas 32 bits por vez e já estar obsoleto."
+     ],
+     "answer": "D",
+     "explanation": "O DIMM tem contatos nos dois lados do pente e transmite 64 bits por vez, sendo o padrão atual. O SIMM, com uma única via de contatos e 32 bits por vez, está obsoleto. Ambos são módulos de RAM, e não de ROM."
+    },
+    {
+     "topic": "Memória DRAM",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 87,
+     "statement": "Sobre a memória DRAM, é correto afirmar que",
+     "support": null,
+     "options": [
+      "dispensa qualquer atualização dos dados, por isso é mais rápida e mais cara que a SRAM.",
+      "é a memória mais cara do computador, usada apenas como memória cache do processador.",
+      "guarda os dados mesmo sem energia, por isso substitui o disco rígido nos computadores.",
+      "tem baixa densidade, pois seus chips são grandes e armazenam poucos bits cada.",
+      "tem capacitores que precisam ser recarregados em milissegundos, mas é densa e barata."
+     ],
+     "answer": "E",
+     "explanation": "A DRAM usa transistores e capacitores, que perdem carga e precisam ser recarregados em intervalos de milissegundos. Por ser mais densa e barata, compõe a maior parte da memória principal dos computadores atuais."
+    },
+    {
+     "topic": "SDR e DDR",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 87,
+     "statement": "A diferença entre as memórias SDR SDRAM e DDR SDRAM está em que a DDR",
+     "support": null,
+     "options": [
+      "realiza uma transferência por ciclo, enquanto a SDR realiza duas por ciclo de clock.",
+      "é uma memória estática, enquanto a SDR é uma memória dinâmica síncrona.",
+      "realiza duas transferências por ciclo de clock, e a SDR, apenas uma.",
+      "é não volátil, enquanto a SDR perde os dados quando o computador é desligado.",
+      "é a mais antiga, tendo sido substituída pela SDR nos computadores atuais."
+     ],
+     "answer": "C",
+     "explanation": "A DDR (Double Data Rate) faz duas transferências de dados por ciclo de clock, o dobro da SDR, que faz apenas uma. Ambas são memórias dinâmicas, síncronas e voláteis."
+    },
+    {
+     "topic": "Versões da memória DDR",
+     "pattern": "correta",
+     "difficulty": 3,
+     "pageRef": 88,
+     "statement": "Sobre as versões da memória DDR, é correto afirmar que",
+     "support": null,
+     "options": [
+      "a tensão aumenta a cada geração, e módulos de tipos diferentes podem ser misturados.",
+      "a DDR4 usa 2,5 V, que é a maior tensão entre as gerações, por ser a mais rápida delas.",
+      "todas as gerações são compatíveis entre si e usam a mesma tensão de alimentação.",
+      "a tensão diminui a cada geração, e tipos diferentes de DDR não são compatíveis.",
+      "a DDR3 é mais antiga que a DDR2 e, por isso, opera com tensão maior que a dela."
+     ],
+     "answer": "D",
+     "explanation": "A tensão diminui a cada geração: 2,5 V na DDR, 1,8 V na DDR2, 1,5 V na DDR3 e 1,2 V na DDR4. Além disso, não se pode ter dois tipos de DDR instalados na mesma placa-mãe, pois não são compatíveis."
+    },
+    {
+     "topic": "Memória SRAM",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 89,
+     "statement": "A memória SRAM, comparada à DRAM, caracteriza-se por",
+     "support": null,
+     "options": [
+      "ser mais lenta e barata, razão pela qual compõe a memória principal do computador.",
+      "precisar de recarga constante dos capacitores, o que consome tempo do processador.",
+      "ser não volátil, o que a torna adequada para guardar a BIOS e o SETUP.",
+      "ser mais densa, armazenando mais bits em um chip menor e mais barato.",
+      "ser mais rápida e econômica em energia, mas mais cara e menos densa."
+     ],
+     "answer": "E",
+     "explanation": "A SRAM é estática: dispensa recarga constante, é mais rápida e consome menos energia, mas é bem mais cara e menos densa. Por isso só aparece em pequena quantidade, como memória cache, e não como memória principal."
+    },
+    {
+     "topic": "Taxa de transferência da DDR",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 88,
+     "statement": "Uma memória DDR tem clock básico de 200 MHz, realiza duas transferências de dados por ciclo e usa módulo DIMM de 64 bits. Considerando 1 GB/s igual a 1000 MB/s, a taxa teórica de transferência é de",
+     "support": null,
+     "options": [
+      "400 MB/s.",
+      "1,6 GB/s.",
+      "3,2 GB/s.",
+      "6,4 GB/s.",
+      "12,8 GB/s."
+     ],
+     "answer": "C",
+     "explanation": "Com duas transferências por ciclo a 200 MHz, são 400 milhões de transferências por segundo. Cada uma leva 64 bits, ou seja, 8 bytes, e 400 milhões x 8 bytes = 3.200 MB/s, que é 3,2 GB/s."
+    }
+   ]
+  },
+  {
+   "id": "informatica/a14/s08",
+   "bizu": {
+    "summary": [
+     "**Memória cache** (altíssima incidência): tipo de **SRAM**, volátil, de altíssima velocidade, pequena capacidade e alto custo; fica **entre o processador e a RAM** para reduzir o tempo de espera, guardando dados e instruções usados com mais frequência.",
+     "**Níveis de cache**: **L1** (primária, dentro do núcleo; a mais rápida e menor, consultada primeiro), **L2** (secundária) e **L3** (compartilhada entre núcleos, em processadores como o AMD Phenom). Quanto **menor o nível, maior a velocidade e menor a capacidade**; a latência de L2 é maior que a de L1.",
+     "**ROM (Read Only Memory)**: memória **não volátil**, gravada de fábrica (ROM de máscara) na placa-mãe, normalmente apenas lida; guarda firmware como a BIOS e tabelas fixas.",
+     "**PROM**: programável **uma única vez** após a fabricação. **EPROM**: apagável por **luz ultravioleta** (cerca de dez minutos) e regravável, com desgaste após cerca de mil regravações. **EEPROM**: apagável **eletricamente**, sem retirar do circuito, podendo ser apagada parcialmente.",
+     "**Memória flash**: variação da EEPROM, **não volátil**, apagada e gravada em **blocos**; usada em pendrives, cartões de memória, tablets e SSDs.",
+     "**Resumo**: RAM e cache são **voláteis**; ROM, PROM, EPROM, EEPROM e flash são **não voláteis**."
+    ],
+    "teoria": [
+     {
+      "statement": "A memória cache é um tipo de SRAM, volátil e mais rápida que a DRAM, situada entre o processador e a memória principal.",
+      "isTrue": true,
+      "explanation": "Reduz o tempo de espera do processador."
+     },
+     {
+      "statement": "A cache L2 tem latência menor que a cache L1.",
+      "isTrue": false,
+      "explanation": "A L1 é a mais rápida; a L2 tem latência maior."
+     },
+     {
+      "statement": "A memória flash é um tipo de EEPROM e é não volátil.",
+      "isTrue": true,
+      "explanation": "Usada em pendrives, cartões de memória e SSDs."
+     },
+     {
+      "statement": "A PROM pode ser reprogramada quantas vezes o usuário desejar.",
+      "isTrue": false,
+      "explanation": "A PROM é programável uma única vez; a EPROM e a EEPROM admitem regravação."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "A BIOS costuma ficar gravada em uma memória ROM da placa-mãe.",
+      "isTrue": true,
+      "explanation": "A ROM é não volátil."
+     },
+     {
+      "statement": "Uma EPROM é apagada por exposição a luz ultravioleta antes de ser regravada.",
+      "isTrue": true,
+      "explanation": "A EEPROM é apagada eletricamente."
+     },
+     {
+      "statement": "RAM e cache são memórias não voláteis, mantendo dados sem energia elétrica.",
+      "isTrue": false,
+      "explanation": "RAM e cache são voláteis."
+     },
+     {
+      "statement": "Na hierarquia da cache, quanto menor o nível, maior a velocidade e menor a capacidade.",
+      "isTrue": true,
+      "explanation": "L1 é a menor e mais veloz."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Memória cache",
+      "pageRef": 90
+     },
+     {
+      "topic": "Níveis de cache (L1, L2, L3)",
+      "pageRef": 92
+     },
+     {
+      "topic": "Memória ROM",
+      "pageRef": 94
+     },
+     {
+      "topic": "PROM",
+      "pageRef": 96
+     },
+     {
+      "topic": "EPROM",
+      "pageRef": 97
+     },
+     {
+      "topic": "EEPROM",
+      "pageRef": 98
+     },
+     {
+      "topic": "Memória flash",
+      "pageRef": 99
+     }
+    ]
+   },
+   "questions": [
+    {
+     "topic": "Características da memória cache",
+     "pattern": "correta",
+     "difficulty": 1,
+     "pageRef": 90,
+     "statement": "A memória cache é caracterizada por ser",
+     "support": null,
+     "options": [
+      "não volátil, de grande capacidade, situada entre a memória principal e o disco rígido.",
+      "volátil, rápida e de pequena capacidade, situada entre o processador e a RAM.",
+      "dinâmica (DRAM), de baixo custo, usada como memória principal dos computadores atuais.",
+      "somente de leitura, gravada pelo fabricante, destinada a armazenar a BIOS da placa-mãe.",
+      "magnética, de acesso sequencial, situada entre o disco rígido e o processador."
+     ],
+     "answer": "B",
+     "explanation": "A cache é um tipo de SRAM: volátil, estática, de alta velocidade e pequena capacidade. Fica logicamente entre o processador e a memória principal, e seu custo alto impede o uso como memória principal."
+    },
+    {
+     "topic": "Função da memória cache",
+     "pattern": "caso",
+     "difficulty": 1,
+     "pageRef": 90,
+     "statement": "O processador de um computador executa instruções muito mais rápido do que a memória RAM consegue fornecê-las. Para reduzir a ociosidade decorrente dessa diferença, os computadores usam",
+     "support": null,
+     "options": [
+      "a memória ROM, que passa a substituir a RAM nos momentos de maior carga do sistema.",
+      "o disco rígido, que fornece os dados mais frequentes com maior velocidade que a RAM.",
+      "o overclock, que aumenta a velocidade da memória RAM acima da especificada pelo fabricante.",
+      "a memória cache, que guarda dados de uso frequente e é consultada antes da RAM.",
+      "o cooler, que acelera a transferência de dados entre a memória RAM e o processador."
+     ],
+     "answer": "D",
+     "explanation": "A cache guarda dados e instruções de uso frequente e é a primeira memória consultada pelo processador, que só vai à RAM se não achar a informação. Assim, diminui-se o tempo ocioso e melhora-se o desempenho."
+    },
+    {
+     "topic": "Busca antecipada de instruções",
+     "pattern": "conceito",
+     "difficulty": 3,
+     "pageRef": 90,
+     "statement": "Em geral, a unidade de busca do processador, em vez de trazer só a próxima instrução, traz um bloco de instruções da memória principal para a cache. A vantagem dessa estratégia é que",
+     "support": null,
+     "options": [
+      "as instruções seguintes já estarão na cache, evitando novo acesso à RAM caso o programa continue.",
+      "a memória RAM deixa de ser necessária durante a execução do programa.",
+      "a cache passa a armazenar permanentemente o programa, mesmo sem energia.",
+      "a taxa de acerto da cache é sempre de 100%, pois o bloco trazido é sempre o correto.",
+      "o processador passa a executar uma instrução por vez, mais devagar, porém com segurança."
+     ],
+     "answer": "A",
+     "explanation": "Com o bloco já na cache, se o programa continuar, as instruções seguintes não exigem novo acesso à RAM. Nem sempre o bloco trazido é o correto, mas a taxa de acerto é bem alta. A cache continua volátil e não substitui a RAM."
+    },
+    {
+     "topic": "Níveis de cache",
+     "pattern": "relacao",
+     "difficulty": 2,
+     "pageRef": 92,
+     "statement": "Quando a unidade de busca do processador precisa de um dado, ela o procura primeiro no cache L1 e, se não o encontra, segue para os demais níveis. A sequência correta de consulta e a relação de latência entre os níveis são:",
+     "support": null,
+     "options": [
+      "RAM, L4, L3, L2 e L1; a latência diminui de L1 para L4.",
+      "L2, L1, L3, L4 e RAM; a latência é igual em todos os níveis.",
+      "L1, RAM, L2, L3 e L4; a latência cresce de L4 para L1.",
+      "L4, L3, L2, L1 e RAM; a latência diminui de L1 para L4.",
+      "L1, L2, L3, L4 e, por fim, a RAM; a latência cresce de L1 para L4."
+     ],
+     "answer": "E",
+     "explanation": "A consulta segue L1, L2, L3, L4 e, por fim, a memória RAM. A latência cresce com o nível (L1 < L2 < L3 < L4), de modo que quanto menor o nível, maior a velocidade e menor a capacidade."
+    },
+    {
+     "topic": "Cache L1",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 92,
+     "statement": "Sobre a cache L1, é correto afirmar que",
+     "support": null,
+     "options": [
+      "fica na placa-mãe, é a mais lenta e maior dos níveis, e guarda apenas dados.",
+      "fica fora do pacote do processador e é compartilhada com toda a memória RAM.",
+      "fica integrada ao núcleo, é a mais rápida e menor, e se divide em instruções e dados.",
+      "é chamada de cache terciária, é a mais lenta e tem capacidade maior que a da L2.",
+      "é memória não volátil e, por isso, conserva os dados quando o computador é desligado."
+     ],
+     "answer": "C",
+     "explanation": "A L1 (cache primária) fica integrada ao núcleo do processador, é a mais rápida e a menor entre os níveis e se divide em memória de instruções e memória de dados, o que agiliza ainda mais a busca."
+    },
+    {
+     "topic": "Memória ROM",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 94,
+     "statement": "Sobre a memória ROM, é correto afirmar que",
+     "support": null,
+     "options": [
+      "é volátil, de leitura e escrita, e armazena os programas em execução.",
+      "é não volátil, vem integrada à placa-mãe e armazena firmwares como BIOS, POST e SETUP.",
+      "é expansível por meio de pentes de memória encaixados em slots da placa-mãe.",
+      "é de acesso sequencial, motivo pelo qual só permite leitura de dados em ordem.",
+      "é gravada pelo usuário toda vez que o computador é desligado da tomada."
+     ],
+     "answer": "B",
+     "explanation": "A ROM é não volátil e vem integrada à placa-mãe, armazenando firmwares como BIOS, POST e SETUP. Não é expansível como a RAM, pois já vem com o tamanho necessário, e também é de acesso aleatório."
+    },
+    {
+     "topic": "ROM e RAM comparadas",
+     "pattern": "relacao",
+     "difficulty": 3,
+     "pageRef": 94,
+     "statement": "Comparando a memória ROM com a memória RAM, é correto afirmar que",
+     "support": null,
+     "options": [
+      "a ROM é de acesso sequencial, e a RAM, de acesso aleatório.",
+      "ambas são voláteis, mas apenas a ROM é expansível pela compra de novos pentes.",
+      "a ROM é expansível, e a RAM vem integrada à placa-mãe com tamanho fixo.",
+      "ambas são de acesso aleatório, mas apenas a RAM é expansível pela compra de novos pentes.",
+      "ambas são de leitura e escrita, mas só a ROM é de acesso aleatório."
+     ],
+     "answer": "D",
+     "explanation": "Ambas são de acesso aleatório (direto). A RAM pode ser expandida com novos pentes, enquanto a ROM vem integrada à placa-mãe com o tamanho exato de que precisa. A RAM é volátil, e a ROM não."
+    },
+    {
+     "topic": "PROM",
+     "pattern": "caso",
+     "difficulty": 2,
+     "pageRef": 96,
+     "statement": "Uma fabricante de eletrônicos quer testar um firmware em poucas unidades, usando uma memória que vem vazia de fábrica, é programada pela própria empresa uma única vez e não pode ser alterada depois. Essa memória é a",
+     "support": null,
+     "options": [
+      "PROM.",
+      "ROM de máscara.",
+      "EPROM.",
+      "EEPROM.",
+      "SRAM."
+     ],
+     "answer": "A",
+     "explanation": "A PROM vem vazia, é programada por terceiros e só aceita uma gravação, sem alteração posterior. A ROM de máscara é gravada na fabricação, e EPROM e EEPROM podem ser apagadas e regravadas."
+    },
+    {
+     "topic": "EPROM",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 97,
+     "statement": "Sobre a memória EPROM, é correto afirmar que",
+     "support": null,
+     "options": [
+      "é apagada eletricamente, byte a byte, sem ser retirada do circuito onde está instalada.",
+      "só pode ser programada uma única vez e, depois de gravada, seu conteúdo nunca mais se altera.",
+      "é volátil e, por isso, perde todo o conteúdo quando o computador é desligado da tomada.",
+      "é gravada de fábrica e não admite regravação por nenhum meio, sendo chamada de ROM de máscara.",
+      "pode ser reprogramada após ser apagada por luz ultravioleta, que remove todo o conteúdo."
+     ],
+     "answer": "E",
+     "explanation": "A EPROM é reprogramável após o apagamento por luz ultravioleta, que não consegue apagar trechos e remove tudo. É o tipo geralmente usado para armazenar a BIOS. O apagamento elétrico parcial é da EEPROM."
+    },
+    {
+     "topic": "EEPROM",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 98,
+     "statement": "Sobre a memória EEPROM, é correto afirmar que",
+     "support": null,
+     "options": [
+      "é apagada por luz ultravioleta e precisa ser retirada do circuito para ser regravada.",
+      "só pode ser programada uma vez e é mais barata e rápida que as memórias DRAM.",
+      "pode ser apagada eletricamente, até parcialmente, mas tem vida útil limitada.",
+      "tem capacidade e velocidade maiores que a SRAM, sendo usada como memória cache.",
+      "pode ser regravada indefinidamente, pois não sofre desgaste com o uso."
+     ],
+     "answer": "C",
+     "explanation": "A EEPROM é apagada eletricamente, inclusive de forma parcial, sem ser retirada do circuito, e tem vida útil limitada (cerca de um milhão de escritas). É bem mais lenta e cara que DRAM e SRAM."
+    },
+    {
+     "topic": "Família ROM: PROM, EPROM e EEPROM",
+     "pattern": "relacao",
+     "difficulty": 3,
+     "pageRef": 98,
+     "statement": "Assinale a alternativa que associa corretamente cada tipo de memória da família ROM à sua característica.",
+     "support": null,
+     "options": [
+      "PROM: apagada por luz ultravioleta; EPROM: programada uma única vez; EEPROM: gravada só de fábrica.",
+      "PROM: programada uma única vez; EPROM: apagada por luz ultravioleta; EEPROM: apagada eletricamente.",
+      "PROM: apagada eletricamente; EPROM: gravada somente pelo fabricante; EEPROM: apagada por luz ultravioleta.",
+      "PROM: gravada pelo fabricante; EPROM: apagada eletricamente; EEPROM: programada uma única vez.",
+      "PROM: apagada por luz ultravioleta; EPROM: apagada eletricamente; EEPROM: gravada somente pelo fabricante."
+     ],
+     "answer": "B",
+     "explanation": "A PROM é programada uma única vez, a EPROM é apagada por luz ultravioleta e a EEPROM é apagada eletricamente. Todas são não voláteis e pertencem à família da memória ROM."
+    },
+    {
+     "topic": "Memória flash",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 99,
+     "statement": "Sobre a memória flash, é correto afirmar que",
+     "support": null,
+     "options": [
+      "é uma memória volátil, de leitura e escrita, usada como memória principal.",
+      "é uma memória somente de leitura, que não aceita regravação pelo usuário.",
+      "é uma memória ROM de máscara, gravada pelo fabricante e usada em SSDs e pendrives.",
+      "é uma variação da EEPROM, não volátil, usada em pendrives e cartões.",
+      "é uma memória que dispensa apagamento antes de ser reescrita e tem vida útil ilimitada."
+     ],
+     "answer": "D",
+     "explanation": "A flash é uma variação da EEPROM, não volátil e facilmente reprogramável, usada em pendrives, cartões de memória, tablets e SSDs. Tem número finito de ciclos de escrita e precisa ser apagada antes de ser reescrita."
+    },
+    {
+     "topic": "Flash e EEPROM",
+     "pattern": "conceito",
+     "difficulty": 3,
+     "pageRef": 99,
+     "statement": "A diferença entre a memória EEPROM e a memória flash está em que a primeira permite o apagamento",
+     "support": null,
+     "options": [
+      "por bytes, e a segunda, por páginas, sendo apagada antes de ser reescrita.",
+      "por páginas, e a segunda, por bytes, sendo reescrita sem apagamento prévio.",
+      "por luz ultravioleta, e a segunda, por radiação infravermelha, em ambos os casos.",
+      "somente na fábrica, e a segunda, somente pelo usuário final, em casa.",
+      "total do conteúdo, e a segunda, nunca, pois não admite apagar nenhum dado."
+     ],
+     "answer": "A",
+     "explanation": "A EEPROM permite apagar por bytes, e a flash apaga por páginas (blocos de bytes), sendo sempre apagada antes de ser reescrita. Ambas são eletricamente apagáveis, e nenhuma delas usa luz ultravioleta."
+    },
+    {
+     "topic": "NVMe",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 100,
+     "statement": "O NVMe, usado em SSDs baseados em memória flash, é",
+     "support": null,
+     "options": [
+      "um tipo de memória ROM, gravada de fábrica, destinada a guardar a BIOS dos SSDs.",
+      "um padrão de módulo de memória RAM, com contatos nos dois lados do pente de memória.",
+      "uma interface paralela para discos rígidos, que antecedeu o SATA e foi chamada de PATA.",
+      "um nível de memória cache, o L4, integrado ao núcleo de cada processador.",
+      "um protocolo que aproveita o PCIe, com maior taxa de transferência e menor latência."
+     ],
+     "answer": "E",
+     "explanation": "O NVMe é um protocolo de comunicação de alta velocidade que aproveita as interfaces PCIe, com taxa de transferência maior e latência menor que as do SATA e do SAS. Não é memória ROM, módulo de RAM nem nível de cache."
+    }
+   ]
+  },
+  {
+   "id": "informatica/a14/s09",
+   "bizu": {
+    "summary": [
+     "**Memória secundária** (auxiliar ou de massa): armazena dados de forma **não volátil** e permanente; pode ser removível ou não. Exemplos: fita magnética, disquete, HD, CD, DVD, Blu-ray, SSD, pendrive. **Não é usada só quando a principal enche**: é o local normal de armazenamento duradouro.",
+     "**Classificação** por tecnologia: **magnética** (fita, disquete, HD), **óptica** (CD, DVD, Blu-ray, via laser) e **sólida** (SSD, flash, sem partes mecânicas).",
+     "**Fita magnética**: acesso **sequencial**, grande capacidade e baixo custo; muito usada em **backup** (ex.: fita DAT). **Disquete** (floppy): 3½\" com apenas **1,44 MB**, obsoleto.",
+     "**HD (Hard Disk, HDD, disco rígido)**: armazenamento **permanente** em **discos magnéticos**, com cabeçotes de leitura e gravação em braço mecânico; hoje na casa dos terabytes. Dados são gravados e lidos magneticamente.",
+     "**Memória virtual**: técnica que simula RAM usando parte do HD (arquivo de paginação), permitindo continuar a execução quando a memória principal enche; é mais lenta que a RAM.",
+     "**Histórico do HD**: primeiro disco da IBM em 1956 (5 MB, tamanho de geladeira); desde então a capacidade cresceu e o tamanho diminuiu."
+    ],
+    "teoria": [
+     {
+      "statement": "O HD armazena dados de forma permanente, em discos magnéticos lidos por cabeçotes.",
+      "isTrue": true,
+      "explanation": "É a principal memória secundária magnética."
+     },
+     {
+      "statement": "A memória secundária só é utilizada quando a memória principal está cheia.",
+      "isTrue": false,
+      "explanation": "É o armazenamento permanente normal; a principal guarda apenas o que está em uso."
+     },
+     {
+      "statement": "A fita magnética é muito usada para backup, por sua grande capacidade e baixo custo.",
+      "isTrue": true,
+      "explanation": "O acesso é sequencial."
+     },
+     {
+      "statement": "Memória virtual é uma técnica que utiliza parte do disco rígido para simular memória RAM.",
+      "isTrue": true,
+      "explanation": "Evita que o processamento pare quando a RAM enche."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "Um disquete de 3½ polegadas armazena cerca de 1,44 MB.",
+      "isTrue": true,
+      "explanation": "É inadequado para arquivos grandes."
+     },
+     {
+      "statement": "O pendrive é um exemplo de memória magnética.",
+      "isTrue": false,
+      "explanation": "É memória flash, de tecnologia sólida."
+     },
+     {
+      "statement": "As memórias secundárias podem ser magnéticas, ópticas ou sólidas.",
+      "isTrue": true,
+      "explanation": "Cada tecnologia usa um meio diferente de gravação."
+     },
+     {
+      "statement": "A memória virtual é mais rápida que a memória RAM, pois usa o disco rígido.",
+      "isTrue": false,
+      "explanation": "Como usa o HD, é mais lenta que a RAM."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Memória secundária",
+      "pageRef": 101
+     },
+     {
+      "topic": "Memórias magnéticas e fita",
+      "pageRef": 102
+     },
+     {
+      "topic": "Disquete",
+      "pageRef": 105
+     },
+     {
+      "topic": "HD",
+      "pageRef": 107
+     },
+     {
+      "topic": "Histórico do disco rígido",
+      "pageRef": 108
+     },
+     {
+      "topic": "Memória virtual",
+      "pageRef": 109
+     }
+    ]
+   },
+   "questions": [
+    {
+     "topic": "Memória secundária",
+     "pattern": "correta",
+     "difficulty": 1,
+     "pageRef": 101,
+     "statement": "A memória secundária, também chamada de auxiliar ou de massa, caracteriza-se por",
+     "support": null,
+     "options": [
+      "armazenar dados de forma não volátil, em dispositivos removíveis ou não, para recuperação posterior.",
+      "armazenar apenas os programas em execução, perdendo os dados ao desligar o computador.",
+      "ser acessada diretamente pelo processador, sem passar pela memória principal.",
+      "ser composta somente por memórias de semicondutor volátil, como a DRAM.",
+      "ter custo por byte maior que o da memória principal."
+     ],
+     "answer": "A",
+     "explanation": "A memória secundária armazena dados de forma não volátil, em dispositivos removíveis ou não, permitindo recuperá-los depois. Exemplos são HD, SSD, CD, DVD, Blu-ray e pendrives. Os programas em uso ficam na memória principal."
+    },
+    {
+     "topic": "Memória secundária e memória principal",
+     "pattern": "relacao",
+     "difficulty": 2,
+     "pageRef": 101,
+     "statement": "Sobre as diferenças entre a memória secundária e a memória principal (RAM), é correto afirmar que a secundária",
+     "support": null,
+     "options": [
+      "guarda os programas em uso no momento e perde os dados ao desligar o computador.",
+      "só é utilizada nos momentos em que a memória principal está completamente cheia.",
+      "é mais rápida, e também mais cara por byte, que a memória principal do computador.",
+      "é volátil, razão pela qual precisa de bateria para manter os dados guardados.",
+      "mantém os dados sem energia e custa menos por byte, ao contrário da RAM."
+     ],
+     "answer": "E",
+     "explanation": "A memória secundária mantém os dados sem energia e custa menos por byte, ao passo que a RAM guarda os programas em uso naquele momento e perde o conteúdo ao desligar. A secundária é usada sempre, e não apenas quando a RAM está cheia."
+    },
+    {
+     "topic": "Fita magnética",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 102,
+     "statement": "Sobre a fita magnética, é correto afirmar que ela",
+     "support": null,
+     "options": [
+      "permite acesso direto a qualquer trecho, sendo mais rápida que os discos magnéticos.",
+      "armazena muitos dados a baixo custo, é usada em backup e tem acesso sequencial.",
+      "é uma memória óptica gravada por laser, de capacidade limitada a 700 MB por unidade.",
+      "é volátil e, por isso, só serve para guardar dados temporários durante o uso.",
+      "tem custo por byte mais alto que o do pendrive, sendo usada como memória cache."
+     ],
+     "answer": "B",
+     "explanation": "A fita magnética guarda grandes volumes de dados a baixo custo, sendo muito usada em backup de sistemas, mas seu acesso é sequencial, o que torna a busca de um dado específico mais lenta que em discos."
+    },
+    {
+     "topic": "Capacidade do disquete",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 105,
+     "statement": "Um disquete de 3,5 polegadas tem capacidade de 1,44 MB. Para guardar um arquivo de 10 MB usando apenas disquetes, o número mínimo necessário é de",
+     "support": null,
+     "options": [
+      "5 disquetes.",
+      "6 disquetes.",
+      "7 disquetes.",
+      "8 disquetes.",
+      "10 disquetes."
+     ],
+     "answer": "C",
+     "explanation": "Dividindo 10 MB por 1,44 MB, obtêm-se cerca de 6,94. Como não há fração de disquete, são necessários 7 disquetes."
+    },
+    {
+     "topic": "Capacidade das mídias de backup",
+     "pattern": "excecao",
+     "difficulty": 2,
+     "pageRef": 105,
+     "statement": "Um técnico precisa copiar um arquivo de 3 GB, inteiro, em uma única mídia. Considerando as capacidades usuais, a mídia que NíO comportaria esse arquivo é o",
+     "support": null,
+     "options": [
+      "DVD de camada simples, de 4,7 GB.",
+      "pendrive comum, de 16 GB.",
+      "HD externo, de 1 TB.",
+      "disco CD-RW, de até 700 MB.",
+      "disco Blu-ray, de 25 GB."
+     ],
+     "answer": "D",
+     "explanation": "Um CD-RW comporta até 700 MB e, por isso, não cabe um arquivo de 3 GB. Um DVD de camada simples guarda 4,7 GB, e pendrive de 16 GB, HD externo de 1 TB e disco Blu-ray têm capacidade suficiente."
+    },
+    {
+     "topic": "Disco rígido",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 107,
+     "statement": "Sobre o disco rígido (HD), é correto afirmar que ele",
+     "support": null,
+     "options": [
+      "armazena dados em discos magnéticos, lidos por cabeçotes movidos por um braço mecânico.",
+      "armazena dados em chips de memória flash, sem partes mecânicas, e por isso é mais silencioso.",
+      "é uma memória volátil, usada como principal apoio do processador durante a execução dos programas.",
+      "usa laser para ler e gravar os dados, e por isso é mais rápido que o SSD.",
+      "tem custo por gigabyte maior que o da memória RAM, embora seja mais lento que ela."
+     ],
+     "answer": "A",
+     "explanation": "O HD armazena dados em discos magnéticos, lidos e gravados por cabeçotes movidos por um braço. Como tem partes mecânicas, seu desempenho depende do deslocamento dos cabeçotes. Tem baixo custo por gigabyte e é não volátil."
+    },
+    {
+     "topic": "Rotações do disco rígido",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 107,
+     "statement": "Um disco rígido gira a 7200 rotações por minuto (RPM). Em um segundo, o disco completa",
+     "support": null,
+     "options": [
+      "1,2 rotação.",
+      "12 rotações.",
+      "60 rotações.",
+      "120 rotações.",
+      "432.000 rotações."
+     ],
+     "answer": "D",
+     "explanation": "Como um minuto tem 60 segundos, 7200 / 60 = 120 rotações por segundo. O valor 432.000 resultaria de multiplicar 7200 por 60 em vez de dividir."
+    },
+    {
+     "topic": "Tecnologias de armazenamento",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 108,
+     "statement": "Quanto à tecnologia de gravação e leitura, o HD, o CD e o pendrive utilizam, respectivamente, tecnologia",
+     "support": null,
+     "options": [
+      "óptica, magnética e de memória flash.",
+      "magnética, óptica e de memória flash.",
+      "magnética, de memória flash e óptica.",
+      "de memória flash, óptica e magnética.",
+      "óptica, de memória flash e magnética."
+     ],
+     "answer": "B",
+     "explanation": "O HD usa gravação magnética, o CD usa tecnologia óptica (laser) e o pendrive usa memória flash, que é eletrônica. Memória RAM e flash não utilizam magnetismo."
+    },
+    {
+     "topic": "Memória virtual",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 109,
+     "statement": "A memória virtual é uma técnica que",
+     "support": null,
+     "options": [
+      "amplia de forma definitiva a capacidade da memória ROM do computador.",
+      "usa a memória cache para ampliar a capacidade de armazenamento do disco rígido.",
+      "dispensa o uso do disco rígido, mantendo todos os dados na memória principal.",
+      "torna a execução dos programas mais rápida do que na memória RAM física instalada.",
+      "simula memória RAM usando parte do disco rígido, ainda que mais lentamente."
+     ],
+     "answer": "E",
+     "explanation": "A memória virtual simula RAM usando parte do disco rígido, o que permite que os programas continuem em execução quando a memória principal enche, ainda que mais lentamente, porque o disco é mais lento. Não amplia a ROM nem dispensa o disco."
+    },
+    {
+     "topic": "Memória virtual em uso",
+     "pattern": "caso",
+     "difficulty": 2,
+     "pageRef": 109,
+     "statement": "O notebook de uma arquiteta não consegue rodar um programa de modelagem 3D por falta de memória principal. Sem trocar o hardware, uma solução seria aumentar a memória virtual, o que",
+     "support": null,
+     "options": [
+      "aumenta a velocidade do processamento, pois o disco é mais rápido do que a memória RAM.",
+      "interrompe a execução do programa até que um novo pente de memória seja instalado.",
+      "permite o programa continuar, ainda que mais devagar, pois o disco é mais lento.",
+      "troca a memória principal por uma memória ROM de maior capacidade e velocidade.",
+      "só é possível se o computador tiver memória cache de nível L4 no processador."
+     ],
+     "answer": "C",
+     "explanation": "Com mais memória virtual, o programa continua executando, embora com velocidade menor, pois o disco é mais lento que a RAM. A técnica não interrompe a execução nem depende de cache ou de ROM."
+    }
+   ]
+  },
+  {
+   "id": "informatica/a14/s10",
+   "bizu": {
+    "summary": [
+     "**Memórias ópticas** usam **laser**. **CD**: 650–700 MB; **DVD**: 4,7 GB; **Blu-ray**: **25 GB** (camada simples) e **50 GB** (camada dupla). Versões **ROM** (já gravado, só lê), **R** (grava uma vez) e **RW** (regravável). São de armazenamento, não memórias ROM de verdade.",
+     "**SSD (Solid State Drive)**: armazenamento **não volátil** em chips semicondutores (memória flash), **sem partes mecânicas**. Mais **rápido**, silencioso, leve, econômico em energia e resistente a choques; desvantagem: **preço por GB maior** que o do HD. Trocar HD por SSD acelera o computador.",
+     "**SSHD**: disco **híbrido** que combina um HD com pequena memória flash. **Pendrive (flash drive)**: memória flash portátil ligada por USB, usada em backup e transporte de dados.",
+     "**Hierarquia de memórias** (do topo à base): **registradores → cache → memória principal (RAM) → memória secundária**. Descendo: **aumentam capacidade e tempo de acesso**; **diminuem custo por byte e velocidade**.",
+     "**Ordens de grandeza**: registradores em bytes; cache em KB a MB; RAM em MB a GB; secundária em GB a TB.",
+     "**Desafio de configuração**: ao comparar máquinas, avalie processador (modelo, clock, cache e soquete), RAM (tipo DDR e quantidade) e armazenamento (HD ou SSD)."
+    ],
+    "teoria": [
+     {
+      "statement": "Um disco Blu-ray de camada simples armazena 25 GB e o de camada dupla, 50 GB.",
+      "isTrue": true,
+      "explanation": "O DVD comum tem 4,7 GB."
+     },
+     {
+      "statement": "O SSD é um dispositivo de memória magnética, com cabeçotes e discos giratórios.",
+      "isTrue": false,
+      "explanation": "O SSD usa chips semicondutores e não tem partes mecânicas."
+     },
+     {
+      "statement": "Na hierarquia de memórias, os registradores ocupam o topo, por serem os mais rápidos e caros.",
+      "isTrue": true,
+      "explanation": "A secundária fica na base."
+     },
+     {
+      "statement": "O SSHD combina características de HD e SSD em um único dispositivo.",
+      "isTrue": true,
+      "explanation": "É um disco híbrido."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "CD-ROM é um disco óptico já gravado de fábrica, que só permite leitura.",
+      "isTrue": true,
+      "explanation": "CD-R grava uma vez e CD-RW é regravável."
+     },
+     {
+      "statement": "O preço por gigabyte do SSD costuma ser menor que o do HD.",
+      "isTrue": false,
+      "explanation": "O SSD ainda costuma custar mais por GB."
+     },
+     {
+      "statement": "Descendo na hierarquia de memórias, aumentam a capacidade e o tempo de acesso.",
+      "isTrue": true,
+      "explanation": "O custo por byte diminui."
+     },
+     {
+      "statement": "O pendrive utiliza memória flash e é conectado ao computador por porta USB.",
+      "isTrue": true,
+      "explanation": "É não volátil e portátil."
+     },
+     {
+      "statement": "Ao trocar um HD por um SSD, o desempenho do computador tende a ser pior.",
+      "isTrue": false,
+      "explanation": "O SSD costuma acelerar sensivelmente o sistema."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "CD",
+      "pageRef": 110
+     },
+     {
+      "topic": "DVD",
+      "pageRef": 112
+     },
+     {
+      "topic": "Blu-ray",
+      "pageRef": 113
+     },
+     {
+      "topic": "SSD",
+      "pageRef": 114
+     },
+     {
+      "topic": "SSHD",
+      "pageRef": 116
+     },
+     {
+      "topic": "Pendrive",
+      "pageRef": 117
+     },
+     {
+      "topic": "Hierarquia de memórias",
+      "pageRef": 118
+     },
+     {
+      "topic": "Desafio de configuração",
+      "pageRef": 120
+     }
+    ]
+   },
+   "questions": [
+    {
+     "topic": "CD-R e CD-RW",
+     "pattern": "caso",
+     "difficulty": 2,
+     "pageRef": 110,
+     "statement": "Um técnico grava 100 MB e, depois, mais 300 MB em um CD virgem de 700 MB, sem apagar o que já havia gravado. Em seguida, quer apagar o primeiro arquivo para reutilizar o espaço. Isso só é possível se o disco for do tipo",
+     "support": null,
+     "options": [
+      "CD-R.",
+      "CD-ROM.",
+      "CD-RW.",
+      "CD-DA.",
+      "DVD-ROM."
+     ],
+     "answer": "C",
+     "explanation": "O CD-R aceita várias sessões de gravação, mas não permite apagar nem regravar, ao contrário do CD-RW, que pode ser apagado e reescrito inúmeras vezes. O CD-ROM já vem gravado, e o CD-DA é o de áudio."
+    },
+    {
+     "topic": "CD-ROM não é memória ROM",
+     "pattern": "conceito",
+     "difficulty": 3,
+     "pageRef": 110,
+     "statement": "Apesar da sigla, o CD-ROM não é uma memória ROM. O motivo é que ele",
+     "support": null,
+     "options": [
+      "não se baseia em circuitos integrados, e sim em um disco óptico lido por laser.",
+      "é um disco magnético lido por cabeçotes, e não uma mídia eletrônica de estado sólido.",
+      "é uma memória volátil, enquanto a memória ROM é não volátil.",
+      "pode ser apagado e regravado diversas vezes, ao contrário da memória ROM.",
+      "é uma memória elétrica que usa luz ultravioleta para ser apagada e reescrita."
+     ],
+     "answer": "A",
+     "explanation": "O CD-ROM é um disco óptico, gravado com laser de baixa potência, e não se baseia em circuitos integrados, como a memória ROM. Também não é volátil nem apagável por luz ultravioleta."
+    },
+    {
+     "topic": "DVD+RW e DVD-RW",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 112,
+     "statement": "Sobre as mídias DVD regraváveis, é correto afirmar que, no DVD+RW,",
+     "support": null,
+     "options": [
+      "é preciso limpar todo o conteúdo para nova gravação, ao contrário do DVD-RW.",
+      "os dados já vêm gravados de fábrica e não podem ser alterados, como no DVD-ROM.",
+      "o disco só pode ser gravado uma única vez, e depois não admite apagar nada, como no DVD-R.",
+      "a capacidade é de apenas 700 MB, igual à de um CD-RW comum, e não de 4,7 GB.",
+      "dados podem ser adicionados ou apagados a qualquer momento, ao contrário do DVD-RW."
+     ],
+     "answer": "E",
+     "explanation": "No DVD+RW, os dados podem ser adicionados ou apagados a qualquer momento, enquanto no DVD-RW é preciso limpar todo o conteúdo para fazer uma nova gravação. O DVD-ROM já vem gravado, e o DVD-R só é gravado uma vez."
+    },
+    {
+     "topic": "Capacidade das mídias ópticas",
+     "pattern": "relacao",
+     "difficulty": 1,
+     "pageRef": 113,
+     "statement": "Considerando mídias ópticas de camada única, a ordem crescente de capacidade de armazenamento é",
+     "support": null,
+     "options": [
+      "DVD, CD e Blu-ray.",
+      "CD, DVD e Blu-ray.",
+      "Blu-ray, DVD e CD.",
+      "CD, Blu-ray e DVD.",
+      "DVD, Blu-ray e CD."
+     ],
+     "answer": "B",
+     "explanation": "Um CD armazena de 650 a 700 MB, um DVD armazena 4,7 GB, e um Blu-ray, sucessor do DVD, armazena 25 GB (50 GB na versão de dupla camada). Logo, a ordem crescente é CD, DVD e Blu-ray."
+    },
+    {
+     "topic": "Capacidade do Blu-ray",
+     "pattern": "caso",
+     "difficulty": 2,
+     "pageRef": 113,
+     "statement": "Um tenente precisa gravar, inteiro, um arquivo de 40 GB em uma única mídia óptica. Entre as opções, a única que comporta o arquivo, segundo as capacidades usuais, é",
+     "support": null,
+     "options": [
+      "o DVD de camada simples, com 4,7 GB.",
+      "o DVD de camada dupla, com 8,5 GB.",
+      "o Blu-ray de camada única, com 25 GB.",
+      "o Blu-ray de duas camadas, com até 50 GB.",
+      "o CD-RW, com até 700 MB."
+     ],
+     "answer": "D",
+     "explanation": "O Blu-ray de duas camadas armazena até 50 GB e comporta os 40 GB do arquivo. O Blu-ray de camada única tem 25 GB, o DVD de camada simples tem 4,7 GB, o de camada dupla tem 8,5 GB e o CD-RW tem até 700 MB."
+    },
+    {
+     "topic": "Conceito de SSD",
+     "pattern": "correta",
+     "difficulty": 1,
+     "pageRef": 114,
+     "statement": "Sobre o SSD, é correto afirmar que ele",
+     "support": null,
+     "options": [
+      "armazena dados em discos magnéticos lidos por cabeçotes e, por isso, é volátil.",
+      "usa laser para gravar dados em discos ópticos, como o Blu-ray e o DVD.",
+      "armazena dados em chips de memória flash, sem partes móveis, e é não volátil.",
+      "é uma memória RAM de alta velocidade, que perde os dados ao ser desligada.",
+      "é um tipo de memória ROM de máscara, gravada de fábrica e não regravável."
+     ],
+     "answer": "C",
+     "explanation": "O SSD é composto de memória flash, não volátil, e não tem discos, braços ou cabeçotes, o que o torna mais rápido e com menor tempo de acesso que o HD. Não usa laser nem é memória RAM."
+    },
+    {
+     "topic": "SSD no lugar do HD",
+     "pattern": "caso",
+     "difficulty": 2,
+     "pageRef": 115,
+     "statement": "Um tenente pretende trocar o HD de um notebook por um SSD. Entre os efeitos esperados dessa troca, segundo o material, está",
+     "support": null,
+     "options": [
+      "menor tempo de acesso, funcionamento silencioso e menor consumo de energia.",
+      "maior tempo de acesso aos dados, mas com maior capacidade pelo mesmo preço.",
+      "emissão de ruído pelos discos em movimento, mas com maior expectativa de vida.",
+      "maior consumo de energia, compensado pela ausência de memória flash no equipamento.",
+      "menor desempenho geral, pois o SSD possui partes eletromecânicas sensíveis a quedas."
+     ],
+     "answer": "A",
+     "explanation": "O SSD tem menor tempo de acesso, é mais silencioso, consome menos energia e é mais leve e resistente a quedas, mas é proporcionalmente mais caro, em geral tem menor capacidade e menor expectativa de vida que o HD."
+    },
+    {
+     "topic": "Comparação entre HD e SSD",
+     "pattern": "relacao",
+     "difficulty": 3,
+     "pageRef": 115,
+     "statement": "Em relação às diferenças entre HD e SSD, a associação correta é",
+     "support": null,
+     "options": [
+      "HD: chips de memória flash e mais leve; SSD: discos magnéticos e mais pesado.",
+      "HD: discos magnéticos e maior vida útil; SSD: chips flash e menor vida útil.",
+      "HD: menor tempo de acesso aos dados; SSD: maior tempo de acesso aos dados.",
+      "HD: não emite ruído algum; SSD: emite ruído por conter braços e cabeçotes móveis.",
+      "HD: proporcionalmente mais caro por gigabyte; SSD: proporcionalmente mais barato."
+     ],
+     "answer": "B",
+     "explanation": "O HD usa discos magnéticos e tem maior expectativa de vida, enquanto o SSD usa chips de memória flash, cujas células têm número limitado de gravações, o que resulta em menor expectativa de vida. As demais alternativas invertem características."
+    },
+    {
+     "topic": "SSHD",
+     "pattern": "correta",
+     "difficulty": 3,
+     "pageRef": 116,
+     "statement": "Sobre o SSHD (Solid State Hybrid Disc), é correto afirmar que ele",
+     "support": null,
+     "options": [
+      "é composto apenas por memória flash e tem capacidade menor que a do SSD comum.",
+      "é uma memória volátil, usada para ampliar a quantidade de memória RAM do computador.",
+      "é um disco óptico de dupla camada, com 50 GB de capacidade, semelhante ao Blu-ray.",
+      "é recomendado exclusivamente para servidores de rede, por ser muito popular.",
+      "combina memória flash com discos magnéticos, sendo mais rápido que um HD comum."
+     ],
+     "answer": "E",
+     "explanation": "O SSHD é um disco híbrido: reúne pouca memória flash e discos magnéticos, acessa dados mais depressa que um HD comum e armazena mais que um SSD. Não é uma memória volátil nem um disco óptico."
+    },
+    {
+     "topic": "Pendrive",
+     "pattern": "correta",
+     "difficulty": 1,
+     "pageRef": 117,
+     "statement": "Sobre o pendrive, é correto afirmar que ele",
+     "support": null,
+     "options": [
+      "é um dispositivo magnético, que usa cabeçotes e discos para gravar os dados.",
+      "é um tipo de memória volátil, que perde os dados assim que é removido do computador.",
+      "é um dispositivo óptico, gravado por laser como o CD, e lido por um drive próprio.",
+      "é um dispositivo de memória flash não volátil, conectado por porta USB.",
+      "só funciona se o computador tiver um drive próprio, pois não se conecta a portas USB."
+     ],
+     "answer": "D",
+     "explanation": "O pendrive é um dispositivo de memória flash, não volátil, conectado por porta USB e reconhecido automaticamente, muito usado para armazenamento, backup e migração de dados. Não usa discos magnéticos nem laser."
+    },
+    {
+     "topic": "Capacidade na hierarquia de memórias",
+     "pattern": "relacao",
+     "difficulty": 2,
+     "pageRef": 118,
+     "statement": "A ordem crescente de capacidade de armazenamento típica dos níveis da hierarquia de memórias é",
+     "support": null,
+     "options": [
+      "cache, registradores, memória principal, HD/SSD e discos ópticos/fita.",
+      "registradores, memória principal, cache, HD/SSD e discos ópticos/fita.",
+      "registradores, cache, memória principal, HD/SSD e discos ópticos/fita.",
+      "registradores, cache, HD/SSD, memória principal e discos ópticos/fita.",
+      "discos ópticos/fita, HD/SSD, memória principal, cache e registradores."
+     ],
+     "answer": "C",
+     "explanation": "Os registradores guardam bytes, a cache, de KB a MB, a memória principal, de MB a GB, HD e SSD, de GB a TB, e discos ópticos e fitas, na ordem de TB. Essa é a ordem crescente de capacidade."
+    },
+    {
+     "topic": "Critérios da hierarquia de memórias",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 118,
+     "statement": "À medida que se desce na hierarquia de memórias, dos registradores em direção às fitas e aos discos ópticos, é correto afirmar que",
+     "support": null,
+     "options": [
+      "a capacidade e o tempo de acesso aumentam, enquanto o custo de aquisição diminui.",
+      "a capacidade e o custo de aquisição aumentam, enquanto o tempo de acesso diminui.",
+      "a capacidade diminui, e o tempo de acesso e o custo aumentam.",
+      "o tempo de acesso diminui, e a capacidade e o custo permanecem iguais.",
+      "a capacidade aumenta, e o tempo de acesso e o custo de aquisição também aumentam."
+     ],
+     "answer": "A",
+     "explanation": "Descendo na hierarquia, a capacidade aumenta, o tempo de acesso aumenta (o acesso fica mais lento) e o custo de aquisição diminui. No topo, os registradores são os mais rápidos, mais caros e de menor capacidade."
+    },
+    {
+     "topic": "Leitura de configuração de computador",
+     "pattern": "caso",
+     "difficulty": 2,
+     "pageRef": 120,
+     "statement": "Considere a configuração de um computador: Intel Core i7-8700, 3,2 GHz, 12 MB, LGA 1151, DDR4-2666 MHz, 16 GB, HD 1 TB. Com base nela, é correto afirmar que",
+     "support": null,
+     "options": [
+      "o clock da RAM é 3,2 GHz, e o processador tem 16 MB de memória cache.",
+      "o soquete é o LGA 1151, a RAM é DDR4 de 16 GB e há um HD de 1 TB.",
+      "a cache é de 16 GB, e a RAM é do tipo DDR3, com clock de 2666 MHz.",
+      "o clock do processador é 2666 MHz, e a memória secundária é um SSD de 1 TB.",
+      "o soquete é o DDR4, e a RAM tem 12 MB de capacidade total."
+     ],
+     "answer": "B",
+     "explanation": "O soquete do processador é o LGA 1151, a memória RAM é do tipo DDR4, com 16 GB e clock de 2666 MHz, o processador tem clock de 3,2 GHz e 12 MB de cache, e a memória secundária é um HD de 1 TB."
+    }
+   ]
+  }
+ ]
+}

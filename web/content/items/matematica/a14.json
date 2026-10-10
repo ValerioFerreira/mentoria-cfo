@@ -1,0 +1,932 @@
+{
+  "aula": "matematica/a14",
+  "batch": "w2-bizu-matematica",
+  "status": "DRAFT",
+  "segments": [
+    {
+      "id": "matematica/a14/s01",
+      "bizu": {
+        "summary": [
+          "**Sequência numérica**: lista de números cujos termos obedecem a uma **regra de sucessão**, escrita (a₁, a₂, a₃, …). O índice indica a **ordem** do termo; aₙ é o termo genérico (\"a índice n\") e pode ser dado por uma **lei de formação**.",
+          "**Lei de formação**: substitui-se n por 1, 2, 3… para obter os termos. Ex.: aₙ = 2ⁿ + 5·(−1)ⁿ⁻¹ gera (7, −1, 13, 11, …): todos ímpares (2ⁿ é par e 5·(−1)ⁿ⁻¹ é ímpar), com diferenças variáveis — não é PA.",
+          "**Sequência de Fibonacci**: começa com 1 e 1 (F₁ = F₂ = 1) e cada termo seguinte é a **soma dos dois anteriores**: **Fₙ = Fₙ₋₁ + Fₙ₋₂**, para n ≥ 3. Os primeiros valores são 1, 1, 2, 3, 5, 8, 13 e 21. Algumas provas começam do 0 (0, 1, 1, 2, 3, 5, …).",
+          "**Propriedade de Fibonacci**: Fₙ₊₁ − Fₙ = Fₙ₋₁. Com o 0 como primeiro termo, o termo 34 é o **décimo**. A sequência não é formada só por primos.",
+          "**Sequência recorrente**: cada termo, a partir de certo ponto, é definido pelos **termos anteriores** (lei de recorrência). Ex.: 7, 14, 28, 56… com aₙ = 2·aₙ₋₁ e a₁ = 7. Fibonacci também tem **fórmula explícita**, além da recorrência.",
+          "**Questão-modelo**: a₁ = 5 e aₙ₊₁ − 2aₙ = 3 ⇒ aₙ₊₁ = 2aₙ + 3: 5, 13, 29, 61, 125, 253, 509, **1021** (oitavo termo)."
+        ],
+        "teoria": [
+          {
+            "statement": "Em uma sequência numérica, o índice subscrito ao termo indica a ordem desse termo na sequência.",
+            "isTrue": true,
+            "explanation": "a₁ é o primeiro termo, a₂ o segundo e assim por diante."
+          },
+          {
+            "statement": "Na sequência de Fibonacci (1, 1, 2, 3, 5, …), cada termo, a partir do terceiro, é a soma dos dois termos anteriores.",
+            "isTrue": true,
+            "explanation": "Fₙ = Fₙ₋₁ + Fₙ₋₂."
+          },
+          {
+            "statement": "Na sequência de lei aₙ = 2ⁿ + 5·(−1)ⁿ⁻¹, a diferença entre termos consecutivos é sempre a mesma.",
+            "isTrue": false,
+            "explanation": "Os termos são 7, −1, 13, 11…; as diferenças variam."
+          },
+          {
+            "statement": "Uma sequência recorrente tem cada termo definido a partir de termos anteriores por uma lei de recorrência.",
+            "isTrue": true,
+            "explanation": "Ex.: aₙ = 2·aₙ₋₁."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Com aₙ₊₁ − 2aₙ = 3 e a₁ = 5, o segundo termo é 13.",
+            "isTrue": true,
+            "explanation": "a₂ = 2·5 + 3 = 13."
+          },
+          {
+            "statement": "A sequência de Fibonacci é formada apenas por números primos.",
+            "isTrue": false,
+            "explanation": "Contém compostos, como 8, 21 e 144."
+          },
+          {
+            "statement": "Se o primeiro termo for considerado 0 (0, 1, 1, 2, 3, 5, …), o número 34 será o décimo termo.",
+            "isTrue": true,
+            "explanation": "A sequência é a mesma, deslocada em uma posição."
+          },
+          {
+            "statement": "A sequência de Fibonacci só pode ser descrita por lei de recorrência, nunca por fórmula explícita.",
+            "isTrue": false,
+            "explanation": "Também existe fórmula explícita, que envolve a raiz de 5."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Sequências numéricas e notação",
+            "pageRef": 3
+          },
+          {
+            "topic": "Lei de formação",
+            "pageRef": 4
+          },
+          {
+            "topic": "Sequência de Fibonacci",
+            "pageRef": 6
+          },
+          {
+            "topic": "Questão de Fibonacci",
+            "pageRef": 7
+          },
+          {
+            "topic": "Sequências recorrentes",
+            "pageRef": 8
+          },
+          {
+            "topic": "Recorrência: oitavo termo",
+            "pageRef": 9
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Termo geral de uma sequência",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 3,
+          "statement": "Uma sequência é definida por aₙ = 3n² − 2, com n pertencente aos naturais não nulos. O valor de a₄ é",
+          "support": null,
+          "options": [
+            "22",
+            "34",
+            "46",
+            "142",
+            "144"
+          ],
+          "answer": "C",
+          "explanation": "Substitui-se n = 4: a₄ = 3 · 4² − 2 = 3 · 16 − 2 = 46. O valor 142 vem de elevar (3 · 4) ao quadrado, e 22 de multiplicar 3 por 8 (4 · 2) no lugar de 4²."
+        },
+        {
+          "topic": "Lei de formação com alternância de sinal",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 4,
+          "statement": "Seja a sequência de lei aₙ = n · (−1)ⁿ + 3, com n = 1, 2, 3, … A soma dos quatro primeiros termos é",
+          "support": null,
+          "options": [
+            "6",
+            "10",
+            "16",
+            "20",
+            "14"
+          ],
+          "answer": "E",
+          "explanation": "Calculando: a₁ = −1 + 3 = 2; a₂ = 2 + 3 = 5; a₃ = −3 + 3 = 0; a₄ = 4 + 3 = 7. A soma é 2 + 5 + 0 + 7 = 14. O fator (−1)ⁿ vale −1 para n ímpar e +1 para n par; ignorá-lo daria resultados maiores."
+        },
+        {
+          "topic": "Análise de uma sequência",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 5,
+          "statement": "Considere a sequência de lei aₙ = 7 − 2n, com n = 1, 2, 3, … É correto afirmar que",
+          "support": null,
+          "options": [
+            "todos os termos são números ímpares.",
+            "a sequência é crescente.",
+            "o termo a₄ é positivo.",
+            "não há termos negativos.",
+            "o primeiro termo é igual a 7."
+          ],
+          "answer": "A",
+          "explanation": "Como 7 é ímpar e 2n é sempre par, a diferença é sempre ímpar. Os primeiros termos são 5, 3, 1, −1, …: o primeiro é 5 (não 7), há termos negativos (a₄ = −1) e a sequência é decrescente, pois cada termo é 2 unidades menor que o anterior."
+        },
+        {
+          "topic": "Sequência de Fibonacci",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 6,
+          "statement": "Na sequência de Fibonacci, F₁ = F₂ = 1 e, para n ≥ 3, Fₙ = Fₙ₋₁ + Fₙ₋₂. Sabendo que F₈ = 21 e F₉ = 34, o valor de F₁₁ é",
+          "support": null,
+          "options": [
+            "55",
+            "76",
+            "89",
+            "110",
+            "144"
+          ],
+          "answer": "C",
+          "explanation": "F₁₀ = F₉ + F₈ = 34 + 21 = 55 e F₁₁ = F₁₀ + F₉ = 55 + 34 = 89. O valor 55 é F₁₀, parada um termo antes; 144 é F₁₂."
+        },
+        {
+          "topic": "Sequência do tipo Fibonacci",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 6,
+          "statement": "Em uma sequência, a₁ = 3, a₂ = 4 e, a partir do terceiro, cada termo é a soma dos dois termos anteriores. O sétimo termo dessa sequência é",
+          "support": null,
+          "options": [
+            "29",
+            "47",
+            "58",
+            "76",
+            "123"
+          ],
+          "answer": "B",
+          "explanation": "Aplicando a regra: a₃ = 7, a₄ = 11, a₅ = 18, a₆ = 29, a₇ = 47. O valor 29 é o sexto termo e 76 seria o oitavo."
+        },
+        {
+          "topic": "Sequências recorrentes",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 8,
+          "statement": "Uma sequência é chamada de recorrente quando",
+          "support": null,
+          "options": [
+            "ela nunca pode ser descrita por uma fórmula explícita.",
+            "todos os termos são calculados apenas pela posição n, sem usar outros termos.",
+            "a diferença entre termos consecutivos é sempre a mesma.",
+            "os termos se repetem periodicamente.",
+            "cada termo, a partir de certo ponto, é determinado por termos anteriores por meio de uma lei de recorrência."
+          ],
+          "answer": "E",
+          "explanation": "Em uma sequência recorrente, cada termo (a partir de certo ponto) é definido pelos anteriores, como na de Fibonacci. Isso não impede a existência de fórmula explícita, e a diferença constante entre termos é característica da PA, e não da recorrência em geral."
+        },
+        {
+          "topic": "Lei de recorrência",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 9,
+          "statement": "Uma sequência é definida por a₁ = 2 e aₙ₊₁ = 3aₙ − 1, para todo n ≥ 1. O valor de a₅ é",
+          "support": null,
+          "options": [
+            "41",
+            "121",
+            "122",
+            "123",
+            "365"
+          ],
+          "answer": "C",
+          "explanation": "Termo a termo: a₂ = 3 · 2 − 1 = 5; a₃ = 3 · 5 − 1 = 14; a₄ = 3 · 14 − 1 = 41; a₅ = 3 · 41 − 1 = 122. O valor 41 é a₄; 365 viria de esquecer de subtrair 1 em cada passo."
+        },
+        {
+          "topic": "Recorrência em contexto",
+          "pattern": "caso",
+          "difficulty": 3,
+          "pageRef": 9,
+          "statement": "Em um quartel, o número de ocorrências atendidas no mês n é aₙ, com a₁ = 10 e aₙ₊₁ = aₙ + 2n, para n ≥ 1. O número de ocorrências atendidas no 6º mês é",
+          "support": null,
+          "options": [
+            "36",
+            "30",
+            "50",
+            "42",
+            "40"
+          ],
+          "answer": "E",
+          "explanation": "Calculando: a₂ = 10 + 2 · 1 = 12; a₃ = 12 + 4 = 16; a₄ = 16 + 6 = 22; a₅ = 22 + 8 = 30; a₆ = 30 + 10 = 40. Note que, ao passar de a₅ para a₆, usa-se n = 5. Quem usa n = 6 obtém 42."
+        },
+        {
+          "topic": "Recorrência e fórmula explícita",
+          "pattern": "assertivas",
+          "difficulty": 2,
+          "pageRef": 8,
+          "statement": "Considere as afirmações sobre a sequência de Fibonacci: I. Ela é uma sequência recorrente. II. Ela pode ser escrita por uma fórmula explícita que fornece Fₙ sem conhecer os termos anteriores. III. Ela é uma progressão aritmética, pois todos os termos são somas de números inteiros. Está correto o que se afirma em",
+          "support": null,
+          "options": [
+            "I e II, apenas.",
+            "II, apenas.",
+            "I, II e III.",
+            "I, apenas.",
+            "I e III, apenas."
+          ],
+          "answer": "A",
+          "explanation": "A sequência é recorrente (cada termo depende dos dois anteriores) e também possui fórmula explícita, que usa apenas n. Não é PA: as diferenças entre termos consecutivos (0, 1, 1, 2, 3, …) não são constantes."
+        },
+        {
+          "topic": "Lei de formação",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 3,
+          "statement": "A lei de formação da sequência (5, 8, 11, 14, …), com n = 1, 2, 3, …, é",
+          "support": null,
+          "options": [
+            "aₙ = 3n + 2",
+            "aₙ = n + 4",
+            "aₙ = 3n − 2",
+            "aₙ = 5n + 3",
+            "aₙ = 3n + 5"
+          ],
+          "answer": "A",
+          "explanation": "Os termos crescem de 3 em 3, então o coeficiente de n é 3. Para n = 1 deve resultar 5, logo aₙ = 3n + 2. A opção 3n + 5 dá 8 para n = 1; 3n − 2 dá 1."
+        }
+      ]
+    },
+    {
+      "id": "matematica/a14/s02",
+      "bizu": {
+        "summary": [
+          "**Progressão aritmética (PA)**: cada termo difere do anterior por uma **constante**, a **razão r** (r = aₙ − aₙ₋₁). **r > 0**: crescente; **r < 0**: decrescente; **r = 0**: constante. A letra usada (a, b…) é só convenção.",
+          "**Termo geral**: **aₙ = a₁ + (n − 1)·r**. Ex.: (2, 4, 6, …) ⇒ a₅₀ = 2 + 49·2 = 100; (21, 14, 7, …) com r = −7 ⇒ a₇₅ = 21 − 74·7 = −497; a₁ = 23 e r = 24 ⇒ a₁₀₀ = 23 + 99·24 = **2399**.",
+          "**PA de 3 termos**: o termo central é a **média aritmética** dos extremos: **a₂ = (a₁ + a₃)/2**. Aplicação: lados (x − 1, x + y, 2x + 1) com perímetro 45 ⇒ 4x + y = 45 e x = 2y ⇒ y = 5, x = 10 ⇒ lados 9, 15 e 21 (menor = **9 cm**).",
+          "**Interpolação**: achar termos **entre** dois dados. Com k termos entre a₁ e o último, a PA tem k + 2 termos. Ex.: (8, …, 29) com 6 termos no meio ⇒ 8 termos: a₈ = 8 + 7r = 29 ⇒ r = 3 ⇒ a₆ = 8 + 5·3 = **23**.",
+          "**Soma dos n primeiros termos**: **Sₙ = (a₁ + aₙ)·n / 2** (pares equidistantes dos extremos somam o mesmo valor; há n/2 pares). Ex.: 1 + 2 + … + 100 = (1 + 100)·50 = **5050**.",
+          "**Dados dois termos**: a₁₃ = −9 e a₆₃ = 25 ⇒ subtrai-se: 50r = 34 ⇒ r = 0,68; a₁ = −17,16; a₇₅ = 33,16; S₇₅ = (−17,16 + 33,16)·75/2 = **600**."
+        ],
+        "teoria": [
+          {
+            "statement": "Em uma PA, a razão é a diferença constante entre um termo e o seu antecessor.",
+            "isTrue": true,
+            "explanation": "Cada termo é o anterior somado à razão."
+          },
+          {
+            "statement": "O termo geral de uma PA é aₙ = a₁ · rⁿ⁻¹.",
+            "isTrue": false,
+            "explanation": "Essa é a forma da PG; na PA, aₙ = a₁ + (n − 1)·r."
+          },
+          {
+            "statement": "Em uma PA de três termos, o termo do meio é a média aritmética dos outros dois.",
+            "isTrue": true,
+            "explanation": "a₂ = (a₁ + a₃)/2."
+          },
+          {
+            "statement": "A soma dos 100 primeiros números naturais não nulos é 5050.",
+            "isTrue": true,
+            "explanation": "S = (1 + 100)·100/2."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Uma PA com razão negativa é decrescente.",
+            "isTrue": true,
+            "explanation": "Ex.: (21, 14, 7, 0, −7, …) tem r = −7."
+          },
+          {
+            "statement": "Em uma PA de a₁ = 23 e r = 24, o centésimo termo é 2376.",
+            "isTrue": false,
+            "explanation": "a₁₀₀ = 23 + 99·24 = 2399."
+          },
+          {
+            "statement": "Se há 6 termos entre o 1º e o último de uma PA, ela tem 8 termos ao todo.",
+            "isTrue": true,
+            "explanation": "Por isso o último termo é a₈."
+          },
+          {
+            "statement": "Na soma dos n primeiros termos de uma PA, multiplica-se (a₁ + aₙ) por n/2.",
+            "isTrue": true,
+            "explanation": "São n/2 pares com soma igual."
+          },
+          {
+            "statement": "Uma PA com razão zero é crescente.",
+            "isTrue": false,
+            "explanation": "Com r = 0, a PA é constante."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Conceito de PA e razão",
+            "pageRef": 10
+          },
+          {
+            "topic": "Termo geral da PA",
+            "pageRef": 11
+          },
+          {
+            "topic": "PA de três termos",
+            "pageRef": 13
+          },
+          {
+            "topic": "Interpolação de termos em PA",
+            "pageRef": 16
+          },
+          {
+            "topic": "Soma dos n primeiros termos",
+            "pageRef": 17
+          },
+          {
+            "topic": "Questão com dois termos conhecidos",
+            "pageRef": 18
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Classificação da PA",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 10,
+          "statement": "Entre as sequências a seguir, a única que é uma progressão aritmética decrescente é",
+          "support": null,
+          "options": [
+            "(9, 9, 9, 9, …)",
+            "(9, 3, 1, 1/3, …)",
+            "(−9, −5, −1, 3, …)",
+            "(9, 6, 4, 3, …)",
+            "(9, 5, 1, −3, …)"
+          ],
+          "answer": "E",
+          "explanation": "Em (9, 5, 1, −3, …) cada termo é 4 unidades menor que o anterior: razão −4, logo PA decrescente. A sequência (9, 6, 4, 3, …) tem diferenças variáveis; (9, 9, 9, …) é PA constante; (−9, −5, −1, 3, …) é PA crescente (razão 4); e (9, 3, 1, 1/3, …) tem razão multiplicativa 1/3, sendo uma PG."
+        },
+        {
+          "topic": "Termo geral da PA",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 12,
+          "statement": "O 30º termo da progressão aritmética (7, 12, 17, 22, …) é",
+          "support": null,
+          "options": [
+            "145",
+            "150",
+            "152",
+            "157",
+            "1.050"
+          ],
+          "answer": "C",
+          "explanation": "a₁ = 7 e r = 5. Pelo termo geral, a₃₀ = 7 + (30 − 1) · 5 = 7 + 145 = 152. O valor 157 usa n em vez de n − 1, e 145 esquece de somar o primeiro termo."
+        },
+        {
+          "topic": "Termo geral com razão negativa",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 12,
+          "statement": "Em uma progressão aritmética de primeiro termo 50 e razão −3, o 21º termo é",
+          "support": null,
+          "options": [
+            "−13",
+            "−10",
+            "−7",
+            "10",
+            "110"
+          ],
+          "answer": "B",
+          "explanation": "a₂₁ = 50 + (21 − 1) · (−3) = 50 − 60 = −10. O valor −13 ocorre ao usar 21 no lugar de 20, e 110 ao ignorar o sinal da razão."
+        },
+        {
+          "topic": "Posição de um termo",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 13,
+          "statement": "Na progressão aritmética (3, 8, 13, 18, …), o número 198 ocupa a posição",
+          "support": null,
+          "options": [
+            "38ª",
+            "39ª",
+            "40ª",
+            "41ª",
+            "42ª"
+          ],
+          "answer": "C",
+          "explanation": "Impondo aₙ = 198: 3 + (n − 1) · 5 = 198, logo (n − 1) · 5 = 195 e n − 1 = 39, ou seja, n = 40. Esquecer de somar 1 após dividir leva a 39."
+        },
+        {
+          "topic": "PA de três termos",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 14,
+          "statement": "Para que os números x − 2, 2x + 1 e 4x − 3, nessa ordem, formem uma progressão aritmética, o valor de x deve ser",
+          "support": null,
+          "options": [
+            "5",
+            "3",
+            "9",
+            "7",
+            "11"
+          ],
+          "answer": "D",
+          "explanation": "O termo central é a média dos extremos: 2x + 1 = [(x − 2) + (4x − 3)]/2, ou seja, 4x + 2 = 5x − 5, e daí x = 7. Os termos ficam 5, 15 e 25, com razão 10."
+        },
+        {
+          "topic": "PA de três termos",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 14,
+          "statement": "Três números positivos, em progressão aritmética crescente, têm soma 30 e produto 750. O maior deles é",
+          "support": null,
+          "options": [
+            "12",
+            "13",
+            "15",
+            "16",
+            "20"
+          ],
+          "answer": "C",
+          "explanation": "Chamando os termos de 10 − r, 10 e 10 + r (a soma 30 dá termo central 10), o produto é 10 · (100 − r²) = 750, logo r² = 25 e r = 5. Os números são 5, 10 e 15, e o maior é 15."
+        },
+        {
+          "topic": "Interpolação em uma PA",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 16,
+          "statement": "Interpolando 5 termos entre 4 e 40 de modo a formar uma progressão aritmética, o terceiro dos termos interpolados é",
+          "support": null,
+          "options": [
+            "28",
+            "16",
+            "24",
+            "22",
+            "20"
+          ],
+          "answer": "D",
+          "explanation": "Com 7 termos no total, 40 = 4 + 6r e r = 6. A PA é 4, 10, 16, 22, 28, 34, 40; o terceiro termo interpolado é 22. O valor 16 é o terceiro termo da PA inteira, não o terceiro dos interpolados."
+        },
+        {
+          "topic": "Soma dos termos da PA",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 17,
+          "statement": "A soma dos 20 primeiros termos da progressão aritmética (4, 7, 10, 13, …) é",
+          "support": null,
+          "options": [
+            "610",
+            "630",
+            "650",
+            "670",
+            "1.300"
+          ],
+          "answer": "C",
+          "explanation": "a₂₀ = 4 + 19 · 3 = 61. Logo S₂₀ = (4 + 61) · 20 / 2 = 650. O valor 1.300 esquece a divisão por 2."
+        },
+        {
+          "topic": "Soma da PA com termos não consecutivos",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 19,
+          "statement": "Em uma progressão aritmética, o 4º termo é 11 e o 9º termo é 31. A soma dos 10 primeiros termos é",
+          "support": null,
+          "options": [
+            "160",
+            "170",
+            "180",
+            "190",
+            "200"
+          ],
+          "answer": "B",
+          "explanation": "De a₉ − a₄ = 5r = 20 vem r = 4, e a₁ = 11 − 3 · 4 = −1. Então a₁₀ = −1 + 9 · 4 = 35 e S₁₀ = (−1 + 35) · 10/2 = 170."
+        },
+        {
+          "topic": "Soma da PA em contexto",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 18,
+          "statement": "Um 2º Tenente do CBMPE organiza um treinamento em que o soldado faz 12 flexões no primeiro dia e, a cada dia seguinte, 3 flexões a mais que no dia anterior. Ao final de 15 dias, o total de flexões é",
+          "support": null,
+          "options": [
+            "450",
+            "495",
+            "540",
+            "810",
+            "990"
+          ],
+          "answer": "B",
+          "explanation": "As quantidades formam uma PA com a₁ = 12 e r = 3, logo a₁₅ = 12 + 14 · 3 = 54. A soma é (12 + 54) · 15/2 = 495. O valor 990 é o dobro: esquece de dividir por 2."
+        },
+        {
+          "topic": "Soma da PA em contexto",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 18,
+          "statement": "A soma de todos os múltiplos positivos de 7 menores que 100 é",
+          "support": null,
+          "options": [
+            "805",
+            "700",
+            "693",
+            "742",
+            "735"
+          ],
+          "answer": "E",
+          "explanation": "Os múltiplos são 7, 14, …, 98, uma PA de razão 7 com a₁ = 7 e aₙ = 98, logo n = 14. A soma é (7 + 98) · 14/2 = 735. O valor 693 omite o 98, e 805 inclui o 105, que não é menor que 100."
+        },
+        {
+          "topic": "Conceito de PA",
+          "pattern": "incorreta",
+          "difficulty": 1,
+          "pageRef": 10,
+          "statement": "Em relação às progressões aritméticas, assinale a alternativa INCORRETA.",
+          "support": null,
+          "options": [
+            "O quociente entre dois termos consecutivos é sempre constante.",
+            "A razão é obtida subtraindo-se de um termo o seu antecessor.",
+            "Se a razão é zero, a PA é constante.",
+            "Se a razão é negativa, a PA é decrescente.",
+            "Se a razão é positiva, a PA é crescente."
+          ],
+          "answer": "A",
+          "explanation": "Na PA o que é constante é a diferença entre termos consecutivos (a razão r); o quociente constante caracteriza a PG. As demais afirmações classificam corretamente a PA conforme o sinal da razão e a definição de r."
+        },
+        {
+          "topic": "Propriedade da PA de três termos",
+          "pattern": "caso",
+          "difficulty": 1,
+          "pageRef": 13,
+          "statement": "As idades de três irmãos, em ordem crescente, formam uma progressão aritmética. Se a soma das idades dos dois extremos é 38 anos, a idade do irmão do meio é",
+          "support": null,
+          "options": [
+            "19 anos.",
+            "16 anos.",
+            "18 anos.",
+            "21 anos.",
+            "20 anos."
+          ],
+          "answer": "A",
+          "explanation": "Em uma PA de três termos, o termo central é a média aritmética dos extremos: 38/2 = 19 anos. Não é preciso conhecer a razão."
+        }
+      ]
+    },
+    {
+      "id": "matematica/a14/s03",
+      "bizu": {
+        "summary": [
+          "**Progressão geométrica (PG)**: cada termo é o anterior **multiplicado** por uma constante, a razão **q** (q = aₙ/aₙ₋₁, ou aₙ = q·aₙ₋₁). Na PA soma-se; na PG, multiplica-se.",
+          "**Classificação**: depende de a₁ e q. **Crescente**: a₁ > 0 e q > 1, ou a₁ < 0 e 0 < q < 1. **Decrescente**: a₁ > 0 e 0 < q < 1, ou a₁ < 0 e q > 1. **Constante**: q = 1. **Alternada**: q < 0 (os sinais se alternam).",
+          "**Termo geral**: **aₙ = a₁·qⁿ⁻¹**. Ex.: (2, 4, 8, …) ⇒ a₁₁ = 2¹¹ = 2048; a₁ = 3 e q = 2 ⇒ a₁₀ = 3·2⁹ = **1536**.",
+          "**PG de 3 termos**: o quadrado do termo central é o produto dos extremos: **a₂² = a₁·a₃**. Ex.: (x, x + 1, 2x) ⇒ (x + 1)² = 2x² ⇒ x² − 2x − 1 = 0 ⇒ x = 1 + √2 (positivo).",
+          "**Interpolação**: determinar a razão pelo termo geral e depois os termos do meio. Ex.: a₁ = 1000 e a₅ = 8/5 ⇒ q⁴ = 1/625 ⇒ **q = 1/5**; termos intermediários 200, 40 e 8 (soma 248).",
+          "**Soma dos n primeiros termos**: **Sₙ = a₁·(qⁿ − 1)/(q − 1)**. Ex.: (2, 4, 8, …) com 11 termos ⇒ 2·2047 = 4094; 10 níveis de 2, 4, 8… ⇒ S₁₀ = 2·1023 = **2046**.",
+          "**Soma infinita**: **S∞ = a₁/(1 − q)**, válida só se **|q| < 1**. Ex.: 2/10 + 2/100 + … ⇒ (2/10)/(9/10) = 2/9; Σ 4/5ⁱ (i ≥ 0) ⇒ 4/(1 − 1/5) = **5**.",
+          "**Somatório (Σ)**: i é o índice, com valor inicial embaixo e final em cima; pode representar soma de PA ou PG (ex.: Σ 2ⁱ de 1 a 5 = 2 + 4 + 8 + 16 + 32). **Produto dos n primeiros termos**: **Pₙ = a₁ⁿ · q^(n(n−1)/2)**, equivalente a (a₁·aₙ)^(n/2)."
+        ],
+        "teoria": [
+          {
+            "statement": "Em uma PG, a razão é obtida dividindo-se um termo pelo seu antecessor.",
+            "isTrue": true,
+            "explanation": "aₙ/aₙ₋₁ = q."
+          },
+          {
+            "statement": "Uma PG de primeiro termo negativo e razão maior que 1 é crescente.",
+            "isTrue": false,
+            "explanation": "Com a₁ < 0 e q > 1, a PG é decrescente."
+          },
+          {
+            "statement": "Em uma PG de três termos, o quadrado do termo central é igual ao produto dos termos extremos.",
+            "isTrue": true,
+            "explanation": "a₂² = a₁·a₃."
+          },
+          {
+            "statement": "A fórmula S∞ = a₁/(1 − q) só vale quando o módulo da razão é menor que 1.",
+            "isTrue": true,
+            "explanation": "Caso contrário a soma não converge."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Em uma PG com a₁ = 3 e q = 2, o décimo termo é 1536.",
+            "isTrue": true,
+            "explanation": "a₁₀ = 3·2⁹ = 3·512."
+          },
+          {
+            "statement": "A PG de razão q = −2 é alternada.",
+            "isTrue": true,
+            "explanation": "Os sinais dos termos se alternam: (1, −2, 4, −8, …)."
+          },
+          {
+            "statement": "A soma dos n primeiros termos de uma PG é Sₙ = (a₁ + aₙ)·n/2.",
+            "isTrue": false,
+            "explanation": "Essa é a soma da PA; na PG, Sₙ = a₁·(qⁿ − 1)/(q − 1)."
+          },
+          {
+            "statement": "A soma infinita 2/10 + 2/100 + 2/1000 + … vale 2/9.",
+            "isTrue": true,
+            "explanation": "a₁ = 2/10 e q = 1/10."
+          },
+          {
+            "statement": "Uma PG com razão igual a 1 é constante.",
+            "isTrue": true,
+            "explanation": "Ex.: (2, 2, 2, 2, …)."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Conceito de PG e razão",
+            "pageRef": 21
+          },
+          {
+            "topic": "Classificação da PG",
+            "pageRef": 22
+          },
+          {
+            "topic": "Termo geral da PG",
+            "pageRef": 24
+          },
+          {
+            "topic": "PG de três termos",
+            "pageRef": 25
+          },
+          {
+            "topic": "Interpolação de termos em PG",
+            "pageRef": 27
+          },
+          {
+            "topic": "Soma dos n primeiros termos",
+            "pageRef": 29
+          },
+          {
+            "topic": "Soma infinita",
+            "pageRef": 30
+          },
+          {
+            "topic": "Somatório",
+            "pageRef": 32
+          },
+          {
+            "topic": "Produto dos n primeiros termos",
+            "pageRef": 35
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Razão da PG",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 23,
+          "statement": "A razão da progressão geométrica (−3, 6, −12, 24, …) é",
+          "support": null,
+          "options": [
+            "2",
+            "−1/2",
+            "−3",
+            "−2",
+            "9"
+          ],
+          "answer": "D",
+          "explanation": "A razão é o quociente de dois termos consecutivos: 6/(−3) = −2 (e −12/6 = −2). Como a razão é negativa, os termos alternam de sinal. O valor 2 ignora o sinal."
+        },
+        {
+          "topic": "Classificação da PG",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 23,
+          "statement": "Entre as progressões geométricas a seguir, a única que é crescente é",
+          "support": null,
+          "options": [
+            "(3, −6, 12, −24, …)",
+            "(5, 5, 5, 5, …)",
+            "(−2, −6, −18, −54, …)",
+            "(8, 4, 2, 1, …)",
+            "(−8, −4, −2, −1, …)"
+          ],
+          "answer": "E",
+          "explanation": "Com primeiro termo negativo e razão entre 0 e 1 (aqui 1/2), os termos aumentam: −8 < −4 < −2 < −1. A sequência (8, 4, 2, 1, …) é decrescente (a₁ > 0 e 0 < q < 1); (−2, −6, −18, …) também (a₁ < 0 e q > 1); (3, −6, 12, …) é alternada (q < 0); e (5, 5, 5, …) é constante (q = 1)."
+        },
+        {
+          "topic": "Classificação da PG",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 22,
+          "statement": "Considere uma progressão geométrica de razão q = 3. É correto afirmar que ela",
+          "support": null,
+          "options": [
+            "é alternada.",
+            "é sempre crescente.",
+            "é sempre decrescente.",
+            "é constante, pois a razão é fixa.",
+            "é crescente se a₁ > 0 e decrescente se a₁ < 0."
+          ],
+          "answer": "E",
+          "explanation": "Para q > 1 o sentido do crescimento depende do sinal do primeiro termo: com a₁ > 0 os termos aumentam e com a₁ < 0 diminuem (ficam cada vez mais negativos). Alternada é a PG de razão negativa, e constante é a de razão 1."
+        },
+        {
+          "topic": "Termo geral da PG",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 24,
+          "statement": "O sétimo termo da progressão geométrica (5, 10, 20, 40, …) é",
+          "support": null,
+          "options": [
+            "1.280",
+            "160",
+            "100",
+            "320",
+            "640"
+          ],
+          "answer": "D",
+          "explanation": "a₁ = 5 e q = 2. Pelo termo geral, a₇ = 5 · 2⁶ = 5 · 64 = 320. O valor 640 usa expoente 7 (n no lugar de n − 1)."
+        },
+        {
+          "topic": "Termo geral da PG com razão fracionária",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 24,
+          "statement": "O primeiro termo de uma progressão geométrica é 486 e a razão é 1/3. O sexto termo dessa progressão é",
+          "support": null,
+          "options": [
+            "2",
+            "6",
+            "18",
+            "54",
+            "162"
+          ],
+          "answer": "A",
+          "explanation": "a₆ = 486 · (1/3)⁵ = 486/243 = 2. O valor 6 resulta de usar o expoente 4 (486/81)."
+        },
+        {
+          "topic": "PG de três termos",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 26,
+          "statement": "O valor positivo de x para que os números x, x + 4 e 3x + 4, nessa ordem, formem uma progressão geométrica é",
+          "support": null,
+          "options": [
+            "2",
+            "4",
+            "6",
+            "8",
+            "16"
+          ],
+          "answer": "B",
+          "explanation": "Em uma PG de três termos, o quadrado do termo central é o produto dos extremos: (x + 4)² = x(3x + 4), o que dá x² − 2x − 8 = 0, com raízes 4 e −2. A positiva é 4 (termos 4, 8 e 16, razão 2)."
+        },
+        {
+          "topic": "PG de três termos",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 26,
+          "statement": "Três números positivos, em progressão geométrica crescente, têm produto 216 e soma 26. O maior deles é",
+          "support": null,
+          "options": [
+            "12",
+            "14",
+            "16",
+            "18",
+            "24"
+          ],
+          "answer": "D",
+          "explanation": "O produto dos três é a₂³ = 216, logo o termo central é 6. Os extremos somam 20 e têm produto a₂² = 36, portanto são raízes de t² − 20t + 36 = 0, isto é, 2 e 18. A PG é 2, 6, 18 (razão 3) e o maior termo é 18."
+        },
+        {
+          "topic": "Interpolação em uma PG",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 28,
+          "statement": "Interpolando três termos entre 3 e 768 para formar uma progressão geométrica crescente, a soma dos três termos interpolados é",
+          "support": null,
+          "options": [
+            "192",
+            "236",
+            "240",
+            "252",
+            "256"
+          ],
+          "answer": "D",
+          "explanation": "A PG tem 5 termos: 768 = 3 · q⁴, logo q⁴ = 256 e q = 4. Os termos interpolados são 12, 48 e 192, cuja soma é 252."
+        },
+        {
+          "topic": "Soma dos termos de uma PG",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 29,
+          "statement": "A soma dos 8 primeiros termos da progressão geométrica (3, 6, 12, 24, …) é",
+          "support": null,
+          "options": [
+            "381",
+            "765",
+            "768",
+            "1.530",
+            "255"
+          ],
+          "answer": "B",
+          "explanation": "Com a₁ = 3 e q = 2: S₈ = 3 · (2⁸ − 1)/(2 − 1) = 3 · 255 = 765. O valor 768 é 3 · 2⁸, isto é, o nono termo da PG, e 255 esquece de multiplicar por a₁."
+        },
+        {
+          "topic": "Soma da PG em contexto",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 30,
+          "statement": "Para repassar um aviso, o comando informa 3 bombeiros no primeiro nível; a cada nível seguinte, cada bombeiro que recebeu o aviso o repassa a 3 novos bombeiros, sem repetições. O total de bombeiros avisados até o quinto nível é",
+          "support": null,
+          "options": [
+            "243",
+            "363",
+            "364",
+            "729",
+            "1.092"
+          ],
+          "answer": "B",
+          "explanation": "Os números por nível formam a PG 3, 9, 27, 81, 243 (a₁ = 3, q = 3). A soma é 3 · (3⁵ − 1)/(3 − 1) = 3 · 242/2 = 363. O valor 243 é só o quinto nível."
+        },
+        {
+          "topic": "Condição da soma infinita",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 30,
+          "statement": "A fórmula S∞ = a₁/(1 − q) para a soma dos infinitos termos de uma progressão geométrica só é válida quando",
+          "support": null,
+          "options": [
+            "|q| < 1.",
+            "q > 1.",
+            "q ≠ 1.",
+            "a₁ > 0.",
+            "q > 0."
+          ],
+          "answer": "A",
+          "explanation": "Para a soma infinita convergir é preciso que os termos tendam a zero, o que ocorre quando o módulo da razão é menor que 1. Com q > 1 a soma cresce indefinidamente, e o sinal de a₁ ou de q isoladamente não garante convergência."
+        },
+        {
+          "topic": "Soma infinita",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 31,
+          "statement": "O valor da soma infinita 5/4 + 3/10 + 3/100 + 3/1000 + … é",
+          "support": null,
+          "options": [
+            "1/3",
+            "17/12",
+            "19/12",
+            "5/3",
+            "23/12"
+          ],
+          "answer": "C",
+          "explanation": "A partir de 3/10 temos uma PG infinita com a₁ = 3/10 e q = 1/10, cuja soma é (3/10)/(9/10) = 1/3. Somando o termo inicial 5/4: 5/4 + 1/3 = 15/12 + 4/12 = 19/12. O valor 1/3 esquece o primeiro termo."
+        },
+        {
+          "topic": "Soma infinita com razão negativa",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 30,
+          "statement": "O valor da soma infinita 1 − 1/2 + 1/4 − 1/8 + … é",
+          "support": null,
+          "options": [
+            "1/2",
+            "2/3",
+            "1",
+            "3/2",
+            "2"
+          ],
+          "answer": "B",
+          "explanation": "É uma PG com a₁ = 1 e q = −1/2, com |q| < 1. Logo S∞ = 1/(1 − (−1/2)) = 1/(3/2) = 2/3. O valor 2 seria a soma com razão +1/2; o sinal negativo da razão reduz a soma."
+        },
+        {
+          "topic": "Somatório",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 33,
+          "statement": "O valor do somatório de (2i + 1), com i variando de 1 a 6, é",
+          "support": null,
+          "options": [
+            "42",
+            "36",
+            "49",
+            "48",
+            "54"
+          ],
+          "answer": "D",
+          "explanation": "Os termos 3, 5, 7, 9, 11, 13 formam uma PA de razão 2. A soma é (3 + 13) · 6/2 = 48. O valor 49 corresponde a incluir o termo de i = 0 e o de i = 6 (1 + 3 + … + 13); por isso confira sempre os limites do índice."
+        },
+        {
+          "topic": "Produto dos termos de uma PG",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 35,
+          "statement": "O produto dos cinco primeiros termos da progressão geométrica (1, 3, 9, 27, …) é",
+          "support": null,
+          "options": [
+            "363",
+            "6.561",
+            "19.683",
+            "59.049",
+            "177.147"
+          ],
+          "answer": "D",
+          "explanation": "Com a₁ = 1 e q = 3: P₅ = a₁⁵ · q^(5·4/2) = 3¹⁰ = 59.049. De forma equivalente, P₅ = (a₁ · a₅)^(5/2) = 81^(5/2) = 9⁵. O valor 363 é a soma dos termos, e não o produto."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,895 @@
+{
+  "aula": "matematica/a05",
+  "batch": "w2-bizu-matematica",
+  "status": "DRAFT",
+  "segments": [
+    {
+      "id": "matematica/a05/s01",
+      "bizu": {
+        "summary": [
+          "**Porcentagem** é uma razão com denominador **100** (do latim per centum): **k% = k/100**. Pode ultrapassar 100%: 235% = 2,35.",
+          "**Três formas de representação**: **percentual** (15%), **fracionária** (15/100) e **unitária** (0,15). Da fracionária para a unitária divide-se por 100, isto é, a vírgula \"anda\" duas casas para a esquerda.",
+          "**Porcentagem de um número**: multiplica-se a razão centesimal pelo valor. A palavra **\"de\" indica multiplicação**: 15% de 600 = 15/100 x 600 = 90.",
+          "Na matemática financeira, a taxa de juros entra nas fórmulas na **forma unitária** (0,15), o que não altera o resultado em relação à forma fracionária.",
+          "**Armadilha da vírgula**: 0,89% = 0,89/100 = 0,0089. Nunca se deve usar o valor percentual \"cru\" na conta: 0,89% de 400 vale 3,56, e não 356. Em 1.700% de 18, a taxa equivale a 17, e o resultado é 306.",
+          "Identifique **sobre qual base** incide a taxa. Se 40% de um público são homens, 60% são mulheres; e \"35% das mulheres são casadas\" significa 35% de 60% do público, e não 35% do total.",
+          "Problemas contextualizados costumam compor várias parcelas: valor pago = mensalidade + multa (percentual do valor) + juros por dia de atraso (percentual vezes o número de dias); lucro = venda - aquisição - reforma - corretagem, e o imposto incide sobre o lucro.",
+          "**Fração para taxa percentual**: multiplica-se a fração por 100. 4/5 = 80%; 7/8 = 87,5%; 15/12 = 125%.",
+          "**Parte em relação ao todo**: (parte / todo) x 100. Se 16 kg de 64 kg são gordura, o percentual é 1/4 x 100 = 25%.",
+          "Com incógnita: se Pedro aplicou 25% das reservas x e sobraram 3.240, então x - 0,25x = 3.240, ou seja, 0,75x = 3.240 e x = 4.320."
+        ],
+        "teoria": [
+          {
+            "statement": "A porcentagem 36,3% corresponde ao número decimal 0,363.",
+            "isTrue": true,
+            "explanation": "k% = k/100; dividir 36,3 por 100 equivale a deslocar a vírgula duas casas para a esquerda."
+          },
+          {
+            "statement": "O valor de 0,89% de 400 é 356.",
+            "isTrue": false,
+            "explanation": "0,89% = 0,89/100. Portanto, 0,89/100 x 400 = 0,89 x 4 = 3,56. Resultado 356 só sai se a taxa for usada sem dividir por 100."
+          },
+          {
+            "statement": "Uma porcentagem pode ser maior que 100%, como 235%, que corresponde a 2,35.",
+            "isTrue": true,
+            "explanation": "Nada impede que o resultado numérico da razão centesimal seja maior que 1."
+          },
+          {
+            "statement": "Nos problemas de porcentagem, a palavra \"de\" indica, em regra, uma divisão.",
+            "isTrue": false,
+            "explanation": "\"De\" indica multiplicação: 15% de 600 = 15/100 x 600."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Para transformar uma fração ordinária em taxa percentual, multiplica-se a fração por 100.",
+            "isTrue": true,
+            "explanation": "O resultado já aparece na forma percentual: 4/5 x 100 = 80, ou seja, 80%."
+          },
+          {
+            "statement": "Se 40% do público de um evento são homens e 35% das mulheres são casadas, então 35% do público total é formado por mulheres casadas.",
+            "isTrue": false,
+            "explanation": "Os 35% incidem apenas sobre as mulheres (60% do público). As casadas correspondem a 35% de 60% do total."
+          },
+          {
+            "statement": "A forma unitária de 15% é 0,15.",
+            "isTrue": true,
+            "explanation": "A forma unitária é o resultado da divisão da forma fracionária: 15 dividido por 100."
+          },
+          {
+            "statement": "Para passar da forma fracionária (15/100) à forma unitária, multiplica-se o numerador por 100.",
+            "isTrue": false,
+            "explanation": "Divide-se por 100 (a vírgula anda duas casas para a esquerda), obtendo 0,15."
+          },
+          {
+            "statement": "A forma unitária da taxa é a utilizada nas fórmulas da matemática financeira.",
+            "isTrue": true,
+            "explanation": "Os juros, por exemplo, entram nas fórmulas como 0,15 e não como 15%."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Definição de porcentagem como razão de denominador 100",
+            "pageRef": 3
+          },
+          {
+            "topic": "Formas percentual, fracionária e unitária",
+            "pageRef": 4
+          },
+          {
+            "topic": "Porcentagem de um número e a palavra \"de\"",
+            "pageRef": 5
+          },
+          {
+            "topic": "Cuidado com taxa percentual com vírgula",
+            "pageRef": 7
+          },
+          {
+            "topic": "Multa e juros por dia de atraso",
+            "pageRef": 9
+          },
+          {
+            "topic": "Porcentagem sobre parte do total (mulheres casadas)",
+            "pageRef": 10
+          },
+          {
+            "topic": "Lucro, corretagem e imposto sobre o lucro",
+            "pageRef": 11
+          },
+          {
+            "topic": "Equação com incógnita para a base de cálculo",
+            "pageRef": 13
+          },
+          {
+            "topic": "Fração ordinária em taxa percentual",
+            "pageRef": 14
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Formas de representação",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 4,
+          "statement": "A taxa 0,8%, escrita na forma unitária, é igual a",
+          "support": null,
+          "options": [
+            "0,008.",
+            "0,08.",
+            "0,8.",
+            "8.",
+            "0,0008."
+          ],
+          "answer": "A",
+          "explanation": "A forma unitária é a fração k/100 em decimal. Para 0,8%, divide-se 0,8 por 100, o que resulta 0,008. O valor 0,8 seria a forma unitária de 80%, e 0,08 a de 8%."
+        },
+        {
+          "topic": "Percentual acima de 100",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 3,
+          "statement": "O valor de 240% de 75 é igual a",
+          "support": null,
+          "options": [
+            "180.",
+            "18.",
+            "1.800.",
+            "31,25.",
+            "315."
+          ],
+          "answer": "A",
+          "explanation": "A porcentagem pode ser maior que 100%: 240% = 2,4, e 2,4 × 75 = 180. O valor 31,25 resulta de dividir 75 por 2,4, em vez de multiplicar."
+        },
+        {
+          "topic": "Taxa percentual com casas decimais",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 7,
+          "statement": "O valor de 0,4% de 2.500 é",
+          "support": null,
+          "options": [
+            "10.",
+            "1.000.",
+            "100.",
+            "1.",
+            "0,1."
+          ],
+          "answer": "A",
+          "explanation": "A taxa 0,4% corresponde a 0,4/100 = 0,004, e 0,004 × 2.500 = 10. O valor 1.000 aparece quando se usa 0,4 diretamente, ignorando que o número está na forma percentual."
+        },
+        {
+          "topic": "Porcentagem de porcentagem",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 5,
+          "statement": "O valor de 30% de 20% de 500 é igual a",
+          "support": null,
+          "options": [
+            "50.",
+            "100.",
+            "30.",
+            "150.",
+            "300."
+          ],
+          "answer": "C",
+          "explanation": "A palavra \"de\" indica multiplicação: 0,3 × 0,2 × 500 = 30. Pode-se também calcular 20% de 500 = 100 e depois 30% de 100 = 30. O valor 100 é só a primeira etapa."
+        },
+        {
+          "topic": "Verificação de igualdades",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 7,
+          "statement": "Assinale a igualdade que é verdadeira.",
+          "support": null,
+          "options": [
+            "0,25% de 800 é igual a 200.",
+            "12% de 0,5 é igual a 0,06.",
+            "150% de 40 é igual a 6.",
+            "5% de 90 é igual a 45.",
+            "40% de 25 é igual a 1."
+          ],
+          "answer": "B",
+          "explanation": "Em 12% de 0,5, tem-se 0,12 × 0,5 = 0,06. As outras são erros de casas decimais: 0,25% de 800 = 2; 150% de 40 = 60; 5% de 90 = 4,5; 40% de 25 = 10."
+        },
+        {
+          "topic": "Multa e juros sobre uma conta",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 9,
+          "statement": "Uma conta de R$ 480,00 paga com atraso tem multa de 2% sobre o valor e juros de 0,1% ao dia, também sobre o valor. Se o pagamento ocorre com 15 dias de atraso, o total pago é de",
+          "support": null,
+          "options": [
+            "R$ 489,60.",
+            "R$ 487,20.",
+            "R$ 496,80.",
+            "R$ 504,00.",
+            "R$ 576,00."
+          ],
+          "answer": "C",
+          "explanation": "Multa: 2% de 480 = 9,60. Juros: 0,1% × 15 dias = 1,5%, e 1,5% de 480 = 7,20. Total: 480 + 9,60 + 7,20 = 496,80. O valor 489,60 inclui só a multa."
+        },
+        {
+          "topic": "Porcentagem do resto",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 10,
+          "statement": "Um evento teve 2.000 participantes, dos quais 35% eram crianças. Dos participantes que não eram crianças, 20% eram idosos. O número de idosos é",
+          "support": null,
+          "options": [
+            "400.",
+            "140.",
+            "260.",
+            "130.",
+            "700."
+          ],
+          "answer": "C",
+          "explanation": "Os não crianças são 65% de 2.000 = 1.300. Os idosos são 20% desse grupo: 0,2 × 1.300 = 260. O valor 400 aplica os 20% sobre o total, e não sobre os 1.300."
+        },
+        {
+          "topic": "Valor total a partir de gasto percentual",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 13,
+          "statement": "Após gastar 40% de suas economias, um militar ainda possui R$ 2.700,00. As economias iniciais eram de",
+          "support": null,
+          "options": [
+            "R$ 3.780,00.",
+            "R$ 1.080,00.",
+            "R$ 6.750,00.",
+            "R$ 4.860,00.",
+            "R$ 4.500,00."
+          ],
+          "answer": "E",
+          "explanation": "Se gastou 40%, restaram 60%: 0,6 × x = 2.700, logo x = 4.500. O valor 6.750 divide 2.700 por 0,4, que é a parte gasta, e 3.780 soma 40% de 2.700 ao saldo."
+        },
+        {
+          "topic": "Imposto sobre lucro",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 11,
+          "statement": "Um imóvel comprado por R$ 180 mil foi vendido por R$ 300 mil. O lucro é a venda menos a compra e menos a corretagem de 5% sobre o valor da venda. Se o imposto é de 20% sobre o lucro, ele é de",
+          "support": null,
+          "options": [
+            "R$ 24.000,00.",
+            "R$ 21.000,00.",
+            "R$ 15.750,00.",
+            "R$ 60.000,00.",
+            "R$ 4.200,00."
+          ],
+          "answer": "B",
+          "explanation": "Corretagem: 5% de 300 mil = 15 mil. Lucro: 300 − 180 − 15 = 105 mil. Imposto: 20% de 105 mil = 21 mil. O valor 24 mil desconsidera a corretagem, e 60 mil aplica 20% sobre a venda."
+        },
+        {
+          "topic": "Fração em taxa percentual",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 14,
+          "statement": "A fração 9/40, escrita como taxa percentual, é",
+          "support": null,
+          "options": [
+            "2,25%.",
+            "225%.",
+            "9,40%.",
+            "4,5%.",
+            "22,5%."
+          ],
+          "answer": "E",
+          "explanation": "Multiplica-se a fração por 100: 9/40 × 100 = 900/40 = 22,5. Conferência: 9 ÷ 40 = 0,225 = 22,5%."
+        },
+        {
+          "topic": "Parte em relação ao todo",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 15,
+          "statement": "Em um grupo de 25 bombeiros, 7 são mulheres. O percentual de mulheres no grupo é",
+          "support": null,
+          "options": [
+            "28%.",
+            "7%.",
+            "72%.",
+            "35%.",
+            "3,6%."
+          ],
+          "answer": "A",
+          "explanation": "A porcentagem é a razão entre a parte e o todo: 7/25 × 100 = 28. O valor 72% é o percentual de homens (18/25), e 35% resulta de dividir 7 por 20."
+        },
+        {
+          "topic": "Comparação entre formas",
+          "pattern": "relacao",
+          "difficulty": 2,
+          "pageRef": 4,
+          "statement": "Considere os valores 7/20, 0,36 e 34,5%. Em ordem decrescente, eles aparecem como",
+          "support": null,
+          "options": [
+            "0,36; 7/20; 34,5%.",
+            "7/20; 0,36; 34,5%.",
+            "34,5%; 7/20; 0,36.",
+            "0,36; 34,5%; 7/20.",
+            "7/20; 34,5%; 0,36."
+          ],
+          "answer": "A",
+          "explanation": "Passando todos à forma percentual: 7/20 = 35%, 0,36 = 36% e 34,5% já está pronta. Em ordem decrescente: 36% > 35% > 34,5%, isto é, 0,36; 7/20; 34,5%."
+        }
+      ]
+    },
+    {
+      "id": "matematica/a05/s02",
+      "bizu": {
+        "summary": [
+          "**Aumento percentual**: o valor final é o inicial multiplicado por **(1 + i)**. Um aumento de 8% equivale ao fator 1,08.",
+          "**Desconto percentual**: o valor final é o inicial multiplicado por **(1 - i)**. Um desconto de 8% equivale ao fator 0,92.",
+          "**Aumentos/descontos sucessivos**: multiplicam-se todos os fatores: V x (1 + i1) x (1 + i2) x (1 - i3)... Cada taxa incide sobre o valor já modificado pela anterior.",
+          "**Não se somam taxas sucessivas**: dois aumentos de 8% e 9% sobre 1.000 levam a 1.177,20, e não a 1.170 (que seria o resultado de um único aumento de 17%).",
+          "**Aumento de i% seguido de desconto de i% não devolve o valor inicial**: sobre 100, +10% e depois -10% resulta em 100 x 1,1 x 0,9 = 99.",
+          "Dois aumentos de 8% e 9% seguidos de desconto de 17% sobre 1.000 resultam em 977,08, e não nos 1.000 iniciais.",
+          "Descontos sucessivos de 15% e 6% sobre 100 levam a 100 x 0,85 x 0,94 = 79,9; dois aumentos de 20% e dois descontos de 20% levam a 92,16.",
+          "Quando não há valor, vale **arbitrar o valor inicial como 100**, o que simplifica as contas dos exemplos sucessivos."
+        ],
+        "teoria": [
+          {
+            "statement": "Para obter o valor após um aumento percentual de taxa i, multiplica-se o valor inicial por (1 + i).",
+            "isTrue": true,
+            "explanation": "V + i.V = V.(1 + i); por exemplo, aumento de 8% corresponde a multiplicar por 1,08."
+          },
+          {
+            "statement": "Dois aumentos sucessivos, de 8% e de 9%, equivalem a um único aumento de 17%.",
+            "isTrue": false,
+            "explanation": "O segundo aumento incide sobre o valor já aumentado. O fator é 1,08 x 1,09 = 1,1772, ou seja, 17,72%."
+          },
+          {
+            "statement": "Um desconto de 8% equivale a multiplicar o valor inicial por 0,92.",
+            "isTrue": true,
+            "explanation": "O fator do desconto é (1 - i) = 1 - 0,08 = 0,92."
+          },
+          {
+            "statement": "Após elevar um preço em 10% e, na sequência, reduzi-lo em 10%, o preço retorna exatamente ao valor de partida.",
+            "isTrue": false,
+            "explanation": "Os fatores são 1,1 e 0,9, e 1,1 x 0,9 = 0,99. Sobre 100, o resultado final é 99."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Em reajustes sucessivos, cada taxa incide sobre o valor obtido após o reajuste anterior, e não sobre o valor original.",
+            "isTrue": true,
+            "explanation": "Por isso as taxas não são somadas; multiplicam-se os fatores (1 +/- i)."
+          },
+          {
+            "statement": "Um desconto de 15% seguido de um desconto de 6% equivale a multiplicar o valor por 0,79.",
+            "isTrue": false,
+            "explanation": "O fator correto é 0,85 x 0,94 = 0,799, e não 1 - 0,21 = 0,79; as taxas sucessivas não se somam."
+          },
+          {
+            "statement": "Dois aumentos sucessivos de 10% sobre um valor de 100 resultam em 121.",
+            "isTrue": true,
+            "explanation": "100 x 1,1 x 1,1 = 121: o segundo aumento incide sobre 110, e não sobre 100."
+          },
+          {
+            "statement": "O fator multiplicativo de um aumento percentual de 20% é 0,8.",
+            "isTrue": false,
+            "explanation": "O aumento de 20% usa o fator 1 + 0,20 = 1,2; o fator 0,8 corresponde a um desconto de 20%."
+          },
+          {
+            "statement": "Em problemas sem valor informado, é possível arbitrar o valor inicial como 100 para calcular o valor final após as taxas sucessivas.",
+            "isTrue": true,
+            "explanation": "Como a resposta é relativa (percentual), o valor arbitrado não altera o resultado e simplifica as contas."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Aumento percentual: fator (1 + i)",
+            "pageRef": 17
+          },
+          {
+            "topic": "Taxas sucessivas não se somam",
+            "pageRef": 17
+          },
+          {
+            "topic": "Aumentos sucessivos: produto de fatores",
+            "pageRef": 18
+          },
+          {
+            "topic": "Desconto percentual: fator (1 - i)",
+            "pageRef": 19
+          },
+          {
+            "topic": "Aumentos e descontos combinados",
+            "pageRef": 20
+          },
+          {
+            "topic": "Aumento e desconto de mesma taxa não se anulam",
+            "pageRef": 21
+          },
+          {
+            "topic": "Exemplos com valor arbitrado igual a 100",
+            "pageRef": 22
+          },
+          {
+            "topic": "Dois aumentos e dois descontos de 20%",
+            "pageRef": 23
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Desconto percentual",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 19,
+          "statement": "Um produto de R$ 840,00 recebe desconto de 35%. O novo preço é",
+          "support": null,
+          "options": [
+            "R$ 294,00.",
+            "R$ 1.134,00.",
+            "R$ 805,00.",
+            "R$ 504,00.",
+            "R$ 546,00."
+          ],
+          "answer": "E",
+          "explanation": "Multiplica-se pelo fator (1 − 0,35) = 0,65: 840 × 0,65 = 546. O valor 294 é o próprio desconto (35% de 840), e 1.134 seria o preço com aumento de 35%."
+        },
+        {
+          "topic": "Aumentos sucessivos",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 17,
+          "statement": "Um equipamento de R$ 2.000,00 sofreu um aumento de 10% e, em seguida, outro de 20%, incidindo sobre o novo valor. O preço final é",
+          "support": null,
+          "options": [
+            "R$ 2.600,00.",
+            "R$ 2.640,00.",
+            "R$ 2.440,00.",
+            "R$ 2.880,00.",
+            "R$ 2.400,00."
+          ],
+          "answer": "B",
+          "explanation": "O valor final é 2.000 × 1,10 × 1,20 = 2.640. Somar as taxas (30%) daria 2.600, resultado incorreto, pois o segundo aumento incide sobre o valor já reajustado."
+        },
+        {
+          "topic": "Aumento seguido de desconto",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 21,
+          "statement": "Um produto de R$ 800,00 teve um aumento de 25% e, depois, um desconto de 20% sobre o preço já aumentado. O preço final é",
+          "support": null,
+          "options": [
+            "R$ 840,00.",
+            "R$ 760,00.",
+            "R$ 1.000,00.",
+            "R$ 800,00.",
+            "R$ 810,00."
+          ],
+          "answer": "D",
+          "explanation": "O fator é 1,25 × 0,80 = 1,00, de modo que o preço volta a R$ 800,00. Isto só acontece porque 0,80 é o inverso de 1,25; com taxas iguais (por exemplo 25% e 25%), o valor não retornaria ao original."
+        },
+        {
+          "topic": "Aumento e desconto de mesma taxa",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 22,
+          "statement": "O preço de um produto aumenta 20% e, em seguida, sofre desconto de 20% sobre o preço aumentado. Em relação ao preço original, o preço final",
+          "support": null,
+          "options": [
+            "permaneceu o mesmo.",
+            "aumentou 4%.",
+            "diminuiu 2%.",
+            "diminuiu 4%.",
+            "diminuiu 20%."
+          ],
+          "answer": "D",
+          "explanation": "O fator acumulado é 1,2 × 0,8 = 0,96, ou seja, uma queda de 4%. Um aumento de i% seguido de desconto de i% não devolve o valor inicial, porque o desconto incide sobre uma base maior."
+        },
+        {
+          "topic": "Sequência com três reajustes",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 21,
+          "statement": "Um item custava R$ 1.500,00 e teve dois aumentos sucessivos de 10% cada, seguidos de um desconto de 15% sobre o valor então vigente. O preço final é",
+          "support": null,
+          "options": [
+            "R$ 1.575,00.",
+            "R$ 1.815,00.",
+            "R$ 1.402,50.",
+            "R$ 1.485,00.",
+            "R$ 1.542,75."
+          ],
+          "answer": "E",
+          "explanation": "O fator total é 1,10 × 1,10 × 0,85 = 1,0285, e 1.500 × 1,0285 = 1.542,75. O valor 1.575 usa a soma das taxas (+5%), e 1.815 esquece o desconto."
+        },
+        {
+          "topic": "Descontos sucessivos",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 20,
+          "statement": "Dois descontos sucessivos, o primeiro de 20% e o segundo de 5%, equivalem a um único desconto de",
+          "support": null,
+          "options": [
+            "25%.",
+            "15%.",
+            "24%.",
+            "24,5%.",
+            "76%."
+          ],
+          "answer": "C",
+          "explanation": "O fator acumulado é 0,80 × 0,95 = 0,76, isto é, o preço fica em 76% do original e o desconto único é 100% − 76% = 24%. A soma simples, 25%, não vale para taxas sucessivas."
+        },
+        {
+          "topic": "Validade de afirmações sobre taxas sucessivas",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 22,
+          "statement": "Em relação a aumentos e descontos percentuais sucessivos, assinale a afirmação verdadeira.",
+          "support": null,
+          "options": [
+            "Dois aumentos sucessivos de 10% equivalem a um único aumento de 20%.",
+            "Um aumento de 30% seguido de desconto de 30% devolve o valor original.",
+            "Dois descontos sucessivos de 50% anulam o valor.",
+            "Um aumento de 100% seguido de desconto de 100% devolve o valor original.",
+            "Dois aumentos sucessivos de 10% equivalem a um único aumento de 21%."
+          ],
+          "answer": "E",
+          "explanation": "Dois aumentos de 10% dão 1,10 × 1,10 = 1,21, ou seja, 21%. Aumento e desconto de mesma taxa não se compensam; dois descontos de 50% deixam 25% do valor; e um desconto de 100% zera o preço."
+        },
+        {
+          "topic": "Orçamento com redução e acréscimo",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 21,
+          "statement": "O orçamento anual de um quartel para equipamentos era de R$ 50.000,00. Houve um corte de 20% e, em seguida, um acréscimo de 10% sobre o valor já cortado. O novo valor é",
+          "support": null,
+          "options": [
+            "R$ 45.000,00.",
+            "R$ 55.000,00.",
+            "R$ 40.000,00.",
+            "R$ 44.000,00.",
+            "R$ 49.500,00."
+          ],
+          "answer": "D",
+          "explanation": "Após o corte, o orçamento é 50.000 × 0,80 = 40.000; o acréscimo de 10% sobre esse valor leva a 40.000 × 1,10 = 44.000. O valor 45.000 resulta da soma das taxas (−10%) sobre o orçamento inicial."
+        },
+        {
+          "topic": "Erro de somar taxas",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 18,
+          "statement": "Um produto de R$ 2.000,00 teve dois reajustes sucessivos, de 6% e de 5%. A diferença entre o preço correto e o obtido ao somar as taxas (11%) e aplicá-las de uma só vez é de",
+          "support": null,
+          "options": [
+            "R$ 0,00.",
+            "R$ 12,00.",
+            "R$ 60,00.",
+            "R$ 2,00.",
+            "R$ 6,00."
+          ],
+          "answer": "E",
+          "explanation": "Preço correto: 2.000 × 1,06 × 1,05 = 2.226. Pela soma das taxas: 2.000 × 1,11 = 2.220. A diferença, 6, vem do termo de composição (6% × 5% de 2.000). Somar taxas ignora que o segundo reajuste incide sobre o valor novo."
+        },
+        {
+          "topic": "Fator multiplicativo do aumento",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 17,
+          "statement": "Para obter o valor final após um aumento percentual de 12%, o valor inicial deve ser multiplicado por",
+          "support": null,
+          "options": [
+            "0,12.",
+            "1,012.",
+            "1,12.",
+            "0,88.",
+            "12."
+          ],
+          "answer": "C",
+          "explanation": "O aumento de i% corresponde ao fator (1 + i) com i na forma unitária: 1 + 0,12 = 1,12. O fator 0,88 seria o de um desconto de 12%, e 0,12 representa só o acréscimo, sem o valor inicial."
+        }
+      ]
+    },
+    {
+      "id": "matematica/a05/s03",
+      "bizu": {
+        "summary": [
+          "**Variação percentual**: Δ% = (V final - V inicial) / V inicial x 100. Pode ser **negativa** (queda). Quando o valor inicial é 100, ela se lê direto: V final - 100.",
+          "Uma sequência de aumentos e descontos equivale a **um único aumento ou desconto**: dois aumentos de 20% e dois descontos de 20% equivalem a um desconto único de 7,84%.",
+          "**Variação acumulada**: (1 + i acumulada) = (1 +/- i1) x (1 +/- i2) x ... x (1 +/- in). Depois, i acumulada = produto - 1. Reajustes de 10%, 5% e 6% dão 1,2243, ou seja, 22,43%.",
+          "**Descontos sucessivos** não se somam: 40% e 30% equivalem a 1 - 0,6 x 0,7 = 58% (e não 70%); 15% e 10% equivalem a 23,5% (e não 25%).",
+          "**Aumentos sucessivos**: dois reajustes de 30% equivalem a 1,3 x 1,3 = 1,69, ou seja, correção de 69% (e não 60%).",
+          "**Valor inicial a partir do final**: V final = V inicial x (1 + i), logo V inicial = V final / (1 + i). Salário de R$ 3.500 após aumento de 40%: 3.500 / 1,4 = R$ 2.500. Não se deve subtrair 40% do valor final.",
+          "**Variação entre dois valores**: de 54 para 29 a redução é (29 - 54)/54 x 100, cerca de -46,3%. A base do cálculo é sempre o valor inicial.",
+          "**Equacionando textos**: se Estela tem 76% do preço P e, com 30% de desconto (preço de 70% de P), ainda sobram R$ 426, então 0,76P = 0,70P + 426. O dinheiro disponível é igual ao preço com desconto mais a sobra; a sobra corresponde a 6% de P, e P = R$ 7.100."
+        ],
+        "teoria": [
+          {
+            "statement": "A variação percentual entre um valor inicial e um valor final é calculada por (V final - V inicial) dividido por V inicial, multiplicado por 100.",
+            "isTrue": true,
+            "explanation": "A base de comparação é o valor inicial; o resultado é positivo para aumento e negativo para redução."
+          },
+          {
+            "statement": "Conceder 15% de desconto e, depois, mais 10% sobre o preço já reduzido equivale a um desconto único de 25%.",
+            "isTrue": false,
+            "explanation": "O fator é 0,85 x 0,90 = 0,765, o que corresponde a desconto único de 23,5%."
+          },
+          {
+            "statement": "Para obter a variação acumulada de várias taxas, multiplicam-se os fatores (1 +/- i) e subtrai-se 1 do produto.",
+            "isTrue": true,
+            "explanation": "(1 + i acumulada) = produto dos fatores; depois i acumulada = produto - 1."
+          },
+          {
+            "statement": "Dois reajustes anuais consecutivos de 30% resultam em uma correção total de 60%.",
+            "isTrue": false,
+            "explanation": "O segundo reajuste incide sobre o valor já corrigido: 1,3 x 1,3 = 1,69, ou seja, 69%."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A variação percentual pode ser negativa, o que indica redução do valor.",
+            "isTrue": true,
+            "explanation": "Se o valor final é menor que o inicial, o numerador é negativo e a variação é negativa."
+          },
+          {
+            "statement": "Se, após um aumento de 40%, um salário passou a ser R$ 3.500, o salário anterior era R$ 2.100, obtido subtraindo-se 40% de R$ 3.500.",
+            "isTrue": false,
+            "explanation": "O aumento incidiu sobre o valor antigo: 3.500 = S x 1,4, logo S = R$ 2.500."
+          },
+          {
+            "statement": "Ao arbitrar o valor inicial como 100, a variação percentual obtida é simplesmente o valor final menos 100.",
+            "isTrue": true,
+            "explanation": "Com base 100, a razão (V final - 100)/100 x 100 se reduz a V final - 100."
+          },
+          {
+            "statement": "Uma redução de 54 para 29 microgramas por m3 corresponde a uma queda de aproximadamente 25%.",
+            "isTrue": false,
+            "explanation": "A diferença absoluta é 25, mas a queda percentual é 25/54, cerca de 46,3%; a base é o valor inicial."
+          },
+          {
+            "statement": "Se o fator acumulado de três reajustes é 1,2243, a variação acumulada é de 22,43%.",
+            "isTrue": true,
+            "explanation": "i acumulada = 1,2243 - 1 = 0,2243, ou seja, 22,43%."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Fórmula da variação percentual",
+            "pageRef": 24
+          },
+          {
+            "topic": "Variação percentual negativa e taxa única equivalente",
+            "pageRef": 25
+          },
+          {
+            "topic": "Arbitrar valor inicial igual a 100",
+            "pageRef": 26
+          },
+          {
+            "topic": "Achar o valor inicial a partir do final",
+            "pageRef": 27
+          },
+          {
+            "topic": "Descontos sucessivos não se somam",
+            "pageRef": 28
+          },
+          {
+            "topic": "Reajustes sucessivos de 30%",
+            "pageRef": 28
+          },
+          {
+            "topic": "Descontos de 40% e 30%",
+            "pageRef": 30
+          },
+          {
+            "topic": "Variação acumulada por fatores",
+            "pageRef": 34
+          },
+          {
+            "topic": "Montagem da equação com desconto e sobra",
+            "pageRef": 32
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Fórmula da variação percentual",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 24,
+          "statement": "O preço de um produto passou de R$ 80,00 para R$ 92,00. A variação percentual do preço foi de",
+          "support": null,
+          "options": [
+            "15%.",
+            "12%.",
+            "13%.",
+            "17,5%.",
+            "1,15%."
+          ],
+          "answer": "A",
+          "explanation": "A variação é (92 − 80)/80 × 100 = 15%, tomando o valor inicial como base. Usar o valor final como base (12/92 ≈ 13%) é o erro clássico."
+        },
+        {
+          "topic": "Variação percentual negativa",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 25,
+          "statement": "O consumo mensal de água de um quartel caiu de 250 mil litros para 190 mil litros. A redução percentual foi de",
+          "support": null,
+          "options": [
+            "24%.",
+            "31,6%.",
+            "76%.",
+            "60%.",
+            "19%."
+          ],
+          "answer": "A",
+          "explanation": "Variação = (190 − 250)/250 × 100 = −24%, isto é, redução de 24%. O valor 31,6% divide a diferença pelo valor final e não pelo inicial."
+        },
+        {
+          "topic": "Variação acumulada",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 34,
+          "statement": "Um preço sofreu três reajustes sucessivos, de 5%, 10% e 20%. A variação percentual acumulada foi de",
+          "support": null,
+          "options": [
+            "35%.",
+            "33,0%.",
+            "38,6%.",
+            "40,2%.",
+            "38,0%."
+          ],
+          "answer": "C",
+          "explanation": "Fator acumulado: 1,05 × 1,10 × 1,20 = 1,386, o que corresponde a 38,6%. A soma 5 + 10 + 20 = 35 desconsidera que cada reajuste incide sobre o valor anterior."
+        },
+        {
+          "topic": "Aumento seguido de redução",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 34,
+          "statement": "Um valor teve aumento de 40% e, em seguida, redução de 25% sobre o valor aumentado. Em relação ao valor original, a variação final é de",
+          "support": null,
+          "options": [
+            "aumento de 15%.",
+            "aumento de 10%.",
+            "redução de 5%.",
+            "aumento de 5%.",
+            "nenhuma variação."
+          ],
+          "answer": "D",
+          "explanation": "O fator acumulado é 1,40 × 0,75 = 1,05, portanto há aumento de 5%. A soma simples (40% − 25% = 15%) é incorreta, pois a redução incide sobre a base já aumentada."
+        },
+        {
+          "topic": "Aumento e desconto sucessivos",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 34,
+          "statement": "Um aumento de 50% seguido de um desconto de 40% sobre o novo valor equivale, em relação ao valor original, a",
+          "support": null,
+          "options": [
+            "aumento de 10%.",
+            "nenhuma variação.",
+            "redução de 10%.",
+            "redução de 90%.",
+            "aumento de 90%."
+          ],
+          "answer": "C",
+          "explanation": "O fator é 1,5 × 0,6 = 0,9, que representa 90% do valor original, ou seja, uma redução de 10%. A soma simples das taxas (+10%) leva ao sinal errado."
+        },
+        {
+          "topic": "Valor inicial após aumento",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 27,
+          "statement": "Depois de um reajuste de 20%, um equipamento passou a custar R$ 540,00. Antes do reajuste, ele custava",
+          "support": null,
+          "options": [
+            "R$ 432,00.",
+            "R$ 648,00.",
+            "R$ 520,00.",
+            "R$ 450,00.",
+            "R$ 420,00."
+          ],
+          "answer": "D",
+          "explanation": "Como valor final = inicial × 1,2, o valor inicial é 540 ÷ 1,2 = 450. O valor 432 usa o fator 0,8 (desconto de 20% sobre 540), operação que não desfaz um aumento de 20%."
+        },
+        {
+          "topic": "Valor inicial após desconto",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 27,
+          "statement": "Após um desconto de 25%, um produto passou a custar R$ 180,00. O preço antes do desconto era",
+          "support": null,
+          "options": [
+            "R$ 225,00.",
+            "R$ 135,00.",
+            "R$ 205,00.",
+            "R$ 240,00.",
+            "R$ 270,00."
+          ],
+          "answer": "D",
+          "explanation": "O preço final é 75% do original: 0,75 × P = 180, e P = 240. O valor 225 aplica um aumento de 25% sobre 180, que não é a operação inversa de um desconto de 25%."
+        },
+        {
+          "topic": "Valor inicial após descontos sucessivos",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 28,
+          "statement": "Dois descontos sucessivos, de 20% e de 10%, levaram o preço de um item a R$ 360,00. O preço original era",
+          "support": null,
+          "options": [
+            "R$ 468,00.",
+            "R$ 400,00.",
+            "R$ 450,00.",
+            "R$ 514,29.",
+            "R$ 500,00."
+          ],
+          "answer": "E",
+          "explanation": "O fator acumulado é 0,80 × 0,90 = 0,72, e 0,72 × P = 360, logo P = 500. Os valores 400 e 450 desfazem só um dos descontos, e 468 aplica um aumento de 30% sobre 360."
+        },
+        {
+          "topic": "Equação com porcentagens",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 32,
+          "statement": "Camila tem 80% do valor de um equipamento. Com um desconto de 30% sobre o preço, a quantia que ela possui é suficiente para comprá-lo e ainda sobrar R$ 540,00. O preço do equipamento, sem desconto, é de",
+          "support": null,
+          "options": [
+            "R$ 4.320,00.",
+            "R$ 5.400,00.",
+            "R$ 6.750,00.",
+            "R$ 3.780,00.",
+            "R$ 7.200,00."
+          ],
+          "answer": "B",
+          "explanation": "Seja P o preço. Camila tem 0,8P; o preço com desconto é 0,7P. Então 0,8P = 0,7P + 540, o que dá 0,1P = 540 e P = 5.400. Os 540 correspondem a 10% de P (80% − 70%)."
+        },
+        {
+          "topic": "Assimetria da variação percentual",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 24,
+          "statement": "Se o valor de A é 25% maior que o valor de B, então o valor de B é menor que o de A em",
+          "support": null,
+          "options": [
+            "25%.",
+            "15%.",
+            "5%.",
+            "12,5%.",
+            "20%."
+          ],
+          "answer": "E",
+          "explanation": "Se A = 1,25B, então B = A ÷ 1,25 = 0,8A, o que equivale a uma redução de 20% de A para B. A base de comparação muda: o aumento é medido sobre B e a redução, sobre A."
+        },
+        {
+          "topic": "Variação acumulada com taxa negativa",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 34,
+          "statement": "A inflação de um produto foi de 2% em janeiro, 3% em fevereiro e −1% em março. A variação acumulada no trimestre, com duas casas decimais, foi de",
+          "support": null,
+          "options": [
+            "4,00%.",
+            "4,01%.",
+            "3,97%.",
+            "5,06%.",
+            "6,12%."
+          ],
+          "answer": "B",
+          "explanation": "Usando (1 + i) = 1,02 × 1,03 × 0,99 = 1,040094, a variação acumulada é 4,0094%, cerca de 4,01%. A soma simples 2 + 3 − 1 = 4,00% não considera a composição das taxas."
+        },
+        {
+          "topic": "Dois reajustes salariais",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 34,
+          "statement": "Um salário de R$ 4.000,00 recebeu reajuste de 6% em março e de 4% em setembro, este incidindo sobre o salário já reajustado. O salário após os dois reajustes é de",
+          "support": null,
+          "options": [
+            "R$ 4.400,00.",
+            "R$ 4.409,60.",
+            "R$ 4.240,00.",
+            "R$ 4.160,00.",
+            "R$ 4.505,60."
+          ],
+          "answer": "B",
+          "explanation": "Após março, o salário é 4.000 × 1,06 = 4.240; em setembro, 4.240 × 1,04 = 4.409,60. O valor 4.400 soma as taxas (10%), e 4.240 considera só o primeiro reajuste."
+        }
+      ]
+    }
+  ]
+}
