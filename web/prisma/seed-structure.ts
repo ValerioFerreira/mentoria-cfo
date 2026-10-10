@@ -197,7 +197,7 @@ export async function seedItemsBatch() {
       for (const seg of doc.segments) {
         if (seg.bizu) {
           const bizuId = `bizu/${seg.id}`;
-          const summaryText = seg.bizu.summary.map((b) => (b.startsWith("-") ? b : `- ${b}`)).join("\n");
+          const summaryText = seg.bizu.summary.join("\n\n");
           bizuRows.push({
             id: bizuId,
             segmentId: seg.id,

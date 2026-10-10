@@ -7,14 +7,15 @@
    "id": "estatistica/a06/s01",
    "bizu": {
     "summary": [
-     "**Teoria da Probabilidade** estuda **experimentos aleatórios**: resultado incerto, mas com padrão conhecido, e que podem ser **repetidos indefinidamente sob condições inalteradas**.",
-     "💡 **Exemplo Prático:** **Espaço amostral (U ou Ω)** = conjunto de todos os resultados possíveis; cada resultado é um **ponto amostral**. Ex.: um dado → {1,...,6}; duas moedas → 4 pontos.",
-     "**Evento** = qualquer subconjunto do espaço amostral. **Evento simples (elementar)**: um único ponto, n(A) = 1. **Evento impossível**: conjunto vazio, n = 0. **Evento certo**: coincide com U, n(A) = n(U).",
-     "**Definição clássica**: **P(A) = n(A) / n(U)** = casos favoráveis / casos totais.",
-     "💡 **Exemplo Prático:** Condição crucial: todos os pontos do espaço amostral devem ser **igualmente prováveis**. Com moeda viciada, por exemplo, a definição clássica **não** pode ser usada.",
-     "Em muitas questões, n(A) e n(U) vêm da **análise combinatória**: combinação (ordem não importa) ou arranjo (ordem importa).",
+     "### 1. Fundamentação Teórica e Conceitos Centrais",
+     "**Teoria da Probabilidade** estuda **experimentos aleatórios**: resultado incerto, mas com padrão conhecido, e que podem ser **repetidos indefinidamente sob condições inalteradas**. **Evento** = qualquer subconjunto do espaço amostral. **Evento simples (elementar)**: um único ponto, n(A) = 1. **Evento impossível**: conjunto vazio, n = 0. **Evento certo**: coincide com U, n(A) = n(U).",
+     "**Definição clássica**: **P(A) = n(A) / n(U)** = casos favoráveis / casos totais. Em muitas questões, n(A) e n(U) vêm da **análise combinatória**: combinação (ordem não importa) ou arranjo (ordem importa).",
      "Se o numerador e o denominador seguem o **mesmo critério** (ambos com ordem ou ambos sem ordem), **o resultado é o mesmo**: P = C(5,2)/C(11,2) = A(5,2)/A(11,2).",
-     "⚠️ **Ponto de Atenção:** Exemplo: sortear 1 dentre 25 alunos, dos quais 6 torcem pelo Vasco → P = 6/25 = 24%. Cuidado para definir bem o universo (n(U)) antes de contar os favoráveis."
+     "### 2. Análise Prática e Desdobramentos",
+     "• **Aplicação:** **Espaço amostral (U ou Ω)** = conjunto de todos os resultados possíveis; cada resultado é um **ponto amostral**. Ex.: um dado → {1,...,6}; duas moedas → 4 pontos.",
+     "• **Aplicação:** Condição crucial: todos os pontos do espaço amostral devem ser **igualmente prováveis**. Com moeda viciada, por exemplo, a definição clássica **não** pode ser usada.",
+     "### 3. Diretrizes de Prova e Pontos de Atenção",
+     "> ⚠️ **Atenção de Prova:** Exemplo: sortear 1 dentre 25 alunos, dos quais 6 torcem pelo Vasco → P = 6/25 = 24%. Cuidado para definir bem o universo (n(U)) antes de contar os favoráveis."
     ],
     "teoria": [
      {
@@ -302,14 +303,11 @@
    "id": "estatistica/a06/s02",
    "bizu": {
     "summary": [
-     "**Probabilidade frequentista (empírica)**: se um evento ocorre n vezes em N repetições, a frequência relativa é f = n/N. Quanto maior N, mais f se aproxima da probabilidade: **P = lim (n/N) quando N tende ao infinito**.",
-     "Essa definição serve para eventos **não equiprováveis** (moeda desequilibrada, taxa de tijolos danificados) em que a clássica falha. Frequência observada não é exatamente igual à probabilidade com poucas repetições.",
-     "**União A ∪ B**: ocorre A **ou** B (ou ambos). **Interseção A ∩ B**: ocorrem A **e** B.",
-     "**Eventos exaustivos**: A ∪ B = U. **Mutuamente excludentes (disjuntos)**: A ∩ B = ∅, e então P(A ∩ B) = 0.",
-     "**Para a união de dois eventos quaisquer**, soma-se as duas probabilidades e tira-se a da interseção, para não contá-la duas vezes: **P(A ∪ B) = P(B) + P(A) − P(B ∩ A)**.",
-     "**Eventos excludentes**: a interseção vale zero e fica só a soma, **P(B ∪ A) = P(B) + P(A)**.",
-     "**União de três eventos**: soma das três, menos as três interseções duas a duas, mais a interseção tripla: **P(A∪B∪C) = P(C) + P(B) + P(A) − P(B∩C) − P(A∩C) − P(A∩B) + P(A∩B∩C)**. Alternativa prática: preencher o **diagrama de Venn** começando pela interseção tripla.",
-     "No Venn, a parte exclusiva de cada interseção dupla é P(A∩B) − P(A∩B∩C); \"consome apenas uma marca\" = soma das regiões que pertencem a um só conjunto."
+     "### 1. Fundamentação Teórica e Conceitos Centrais",
+     "**Probabilidade frequentista (empírica)**: se um evento ocorre n vezes em N repetições, a frequência relativa é f = n/N. Quanto maior N, mais f se aproxima da probabilidade: **P = lim (n/N) quando N tende ao infinito**. Essa definição serve para eventos **não equiprováveis** (moeda desequilibrada, taxa de tijolos danificados) em que a clássica falha. Frequência observada não é exatamente igual à probabilidade com poucas repetições.",
+     "**União A ∪ B**: ocorre A **ou** B (ou ambos). **Interseção A ∩ B**: ocorrem A **e** B. **Eventos exaustivos**: A ∪ B = U. **Mutuamente excludentes (disjuntos)**: A ∩ B = ∅, e então P(A ∩ B) = 0.",
+     "**Para a união de dois eventos quaisquer**, soma-se as duas probabilidades e tira-se a da interseção, para não contá-la duas vezes: **P(A ∪ B) = P(B) + P(A) − P(B ∩ A)**. **Eventos excludentes**: a interseção vale zero e fica só a soma, **P(B ∪ A) = P(B) + P(A)**.",
+     "**União de três eventos**: soma das três, menos as três interseções duas a duas, mais a interseção tripla: **P(A∪B∪C) = P(C) + P(B) + P(A) − P(B∩C) − P(A∩C) − P(A∩B) + P(A∩B∩C)**. Alternativa prática: preencher o **diagrama de Venn** começando pela interseção tripla. No Venn, a parte exclusiva de cada interseção dupla é P(A∩B) − P(A∩B∩C); \"consome apenas uma marca\" = soma das regiões que pertencem a um só conjunto."
     ],
     "teoria": [
      {
@@ -606,14 +604,11 @@
    "id": "estatistica/a06/s03",
    "bizu": {
     "summary": [
-     "**Evento complementar**: Ā é formado por todos os pontos de U que não estão em A. Vale n(A) + n(Ā) = n(U), logo **P(Ā) = 1 − P(A)**. Muito útil em \"pelo menos um\" e \"não\".",
-     "O teorema vale também para eventos compostos: **P(complementar da união) = 1 − P(A ∪ B)** e **P(complementar da interseção) = 1 − P(A ∩ B)**.",
-     "**Leis de Morgan**: **Ā ∩ B̄ = complementar de (A ∪ B)**, \"nem A nem B\" → **P = 1 − P(A ∪ B)**. **Ā ∪ B̄ = complementar de (A ∩ B)**, \"não A ou não B\" → **P = 1 − P(A ∩ B)**. Vale também para três eventos (complementar da união tripla e da interseção tripla).",
-     "**Axiomas de Kolmogorov**: (1) **P(A) ≥ 0**; (2) **P(U) = 1**; (3) se A e B são mutuamente excludentes, **P(A ∪ B) = P(A) + P(B)**.",
-     "Propriedades deduzidas: evento impossível tem probabilidade 0 (**mas probabilidade 0 não implica evento impossível**); evento certo tem probabilidade 1 (mas probabilidade 1 não implica evento certo).",
-     "**0 ≤ P(A) ≤ 1** para qualquer evento.",
-     "**P(A − B) = P(A) − P(A ∩ B)**: probabilidade de ocorrer A e não ocorrer B.",
-     "**Se A ⊆ B, então P(A) ≤ P(B)**. A fórmula da união geral e o complementar também decorrem dos axiomas.",
+     "### 1. Fundamentação Teórica e Conceitos Centrais",
+     "**Evento complementar**: Ā é formado por todos os pontos de U que não estão em A. Vale n(A) + n(Ā) = n(U), logo **P(Ā) = 1 − P(A)**. Muito útil em \"pelo menos um\" e \"não\". O teorema vale também para eventos compostos: **P(complementar da união) = 1 − P(A ∪ B)** e **P(complementar da interseção) = 1 − P(A ∩ B)**.",
+     "**Leis de Morgan**: **Ā ∩ B̄ = complementar de (A ∪ B)**, \"nem A nem B\" → **P = 1 − P(A ∪ B)**. **Ā ∪ B̄ = complementar de (A ∩ B)**, \"não A ou não B\" → **P = 1 − P(A ∩ B)**. Vale também para três eventos (complementar da união tripla e da interseção tripla). **Axiomas de Kolmogorov**: (1) **P(A) ≥ 0**; (2) **P(U) = 1**; (3) se A e B são mutuamente excludentes, **P(A ∪ B) = P(A) + P(B)**.",
+     "Propriedades deduzidas: evento impossível tem probabilidade 0 (**mas probabilidade 0 não implica evento impossível**); evento certo tem probabilidade 1 (mas probabilidade 1 não implica evento certo). **0 ≤ P(A) ≤ 1** para qualquer evento.",
+     "**P(A − B) = P(A) − P(A ∩ B)**: probabilidade de ocorrer A e não ocorrer B. **Se A ⊆ B, então P(A) ≤ P(B)**. A fórmula da união geral e o complementar também decorrem dos axiomas.",
      "Armadilha: a soma das probabilidades de eventos só vale para eventos mutuamente excludentes; com interseção não nula, a soma simples falha."
     ],
     "teoria": [
@@ -945,15 +940,13 @@
    "id": "estatistica/a06/s04",
    "bizu": {
     "summary": [
-     "**Probabilidade condicional** P(B|A) = probabilidade de B **sabendo que A ocorreu**. O universo se reduz ao evento A (evento **a priori**, já ocorrido); B é o evento **a posteriori**.",
-     "**Fórmula**: **P(B|A) = P(A ∩ B) / P(A)**, com P(A) > 0. Em tabelas: n(A ∩ B) / n(A).",
-     "Quando o evento a posteriori está contido no a priori, a interseção é o próprio evento: P(X|E) = P(X)/P(E).",
-     "**Complementar condicional**: **P(Ē|H) = 1 − P(E|H)**; o evento a priori não muda.",
-     "**Teorema da multiplicação**: **P(A ∩ B) = P(B|A) · P(A)** (ou P(A|B) · P(B)). Para três eventos: **P(A∩B∩C) = P(A) · P(B|A) · P(C|A∩B)**.",
-     "Árvores de probabilidades: multiplica-se ao longo de um caminho (E) e somam-se os caminhos alternativos (OU).",
-     "**Independência**: A e B são independentes quando a ocorrência de um não altera a probabilidade do outro: **P(B|A) = P(B)**. Equivale a **P(A ∩ B) = P(A) · P(B)** (propriedade de \"ida e volta\").",
-     "💡 **Exemplo Prático:** Se A e B são independentes, **seus complementares também são**: P(B|Ā) = P(B), P(B̄|A) = P(B̄), P(B̄|Ā) = P(B̄). Exemplo: dois lançamentos de dado.",
-     "Com eventos independentes, \"**pelo menos um**\" = 1 − produto das probabilidades de **nenhum** ocorrer; a união é P(A) + P(B) − P(A)·P(B)."
+     "### 1. Fundamentação Teórica e Conceitos Centrais",
+     "**Probabilidade condicional** P(B|A) = probabilidade de B **sabendo que A ocorreu**. O universo se reduz ao evento A (evento **a priori**, já ocorrido); B é o evento **a posteriori**. **Fórmula**: **P(B|A) = P(A ∩ B) / P(A)**, com P(A) > 0. Em tabelas: n(A ∩ B) / n(A).",
+     "Quando o evento a posteriori está contido no a priori, a interseção é o próprio evento: P(X|E) = P(X)/P(E). **Complementar condicional**: **P(Ē|H) = 1 − P(E|H)**; o evento a priori não muda.",
+     "**Teorema da multiplicação**: **P(A ∩ B) = P(B|A) · P(A)** (ou P(A|B) · P(B)). Para três eventos: **P(A∩B∩C) = P(A) · P(B|A) · P(C|A∩B)**. Árvores de probabilidades: multiplica-se ao longo de um caminho (E) e somam-se os caminhos alternativos (OU).",
+     "**Independência**: A e B são independentes quando a ocorrência de um não altera a probabilidade do outro: **P(B|A) = P(B)**. Equivale a **P(A ∩ B) = P(A) · P(B)** (propriedade de \"ida e volta\"). Com eventos independentes, \"**pelo menos um**\" = 1 − produto das probabilidades de **nenhum** ocorrer; a união é P(A) + P(B) − P(A)·P(B).",
+     "### 2. Análise Prática e Desdobramentos",
+     "• **Aplicação:** Se A e B são independentes, **seus complementares também são**: P(B|Ā) = P(B), P(B̄|A) = P(B̄), P(B̄|Ā) = P(B̄). Exemplo: dois lançamentos de dado."
     ],
     "teoria": [
      {
@@ -1296,15 +1289,15 @@
    "id": "estatistica/a06/s05",
    "bizu": {
     "summary": [
-     "**Independência de três eventos** exige que o produto das probabilidades valha **dois a dois** (A,B), (A,C), (B,C) **e também para os três juntos**, isto é, a interseção tripla tem probabilidade igual ao produto das três individuais.",
-     "Atenção às recíprocas: **o produto triplo sozinho não garante** independência; eventos **independentes dois a dois** podem não ser independentes entre si; e se A⊥B e B⊥C, **não se conclui** que A⊥C.",
-     "Para n eventos independentes: **P(A1∩...∩An) = P(A1) · ... · P(An)** (a recíproca também não vale).",
-     "**Teorema da probabilidade total**: se o evento I ocorre dentro de grupos A, B, C (que cobrem todos os casos), então **P(I) = P(I|A)·P(A) + P(I|B)·P(B) + P(I|C)·P(C)**. Cada condicional é ponderada pela participação do grupo.",
-     "Com dois grupos complementares: **P(I) = P(I|A)·P(A) + P(I|Ā)·P(Ā)**.",
-     "💡 **Exemplo Prático:** Exemplo da aula: grupos A, B e C com 50%, 30% e 20% dos clientes e inadimplência de 1%, 5% e 10% → P(I) = 0,005 + 0,015 + 0,02 = 4%.",
-     "**Teorema de Bayes**: inverte os eventos a priori e a posteriori — conhecidas P(I|Ai) e P(Ai), obtém-se **P(A|I) = P(I|A)·P(A) / [P(I|A)·P(A) + P(I|B)·P(B) + P(I|C)·P(C)]**. O denominador é a probabilidade total.",
-     "💡 **Exemplo Prático:** No exemplo: P(A|I) = (0,01 × 0,5)/0,04 = 12,5%.",
-     "Reconhecimento: dados do tipo \"P(evento | grupo)\" e pergunta \"P(grupo | evento)\" → Bayes; pergunta sobre o evento em geral → probabilidade total."
+     "### 1. Fundamentação Teórica e Conceitos Centrais",
+     "**Independência de três eventos** exige que o produto das probabilidades valha **dois a dois** (A,B), (A,C), (B,C) **e também para os três juntos**, isto é, a interseção tripla tem probabilidade igual ao produto das três individuais. Para n eventos independentes: **P(A1∩...∩An) = P(A1) · ... · P(An)** (a recíproca também não vale).",
+     "**Teorema da probabilidade total**: se o evento I ocorre dentro de grupos A, B, C (que cobrem todos os casos), então **P(I) = P(I|A)·P(A) + P(I|B)·P(B) + P(I|C)·P(C)**. Cada condicional é ponderada pela participação do grupo. Com dois grupos complementares: **P(I) = P(I|A)·P(A) + P(I|Ā)·P(Ā)**.",
+     "**Teorema de Bayes**: inverte os eventos a priori e a posteriori — conhecidas P(I|Ai) e P(Ai), obtém-se **P(A|I) = P(I|A)·P(A) / [P(I|A)·P(A) + P(I|B)·P(B) + P(I|C)·P(C)]**. O denominador é a probabilidade total. Reconhecimento: dados do tipo \"P(evento | grupo)\" e pergunta \"P(grupo | evento)\" → Bayes; pergunta sobre o evento em geral → probabilidade total.",
+     "### 2. Análise Prática e Desdobramentos",
+     "• **Aplicação:** Exemplo da aula: grupos A, B e C com 50%, 30% e 20% dos clientes e inadimplência de 1%, 5% e 10% → P(I) = 0,005 + 0,015 + 0,02 = 4%.",
+     "• **Aplicação:** No exemplo: P(A|I) = (0,01 × 0,5)/0,04 = 12,5%.",
+     "### 3. Diretrizes de Prova e Pontos de Atenção",
+     "> ⚠️ **Atenção de Prova:** Atenção às recíprocas: **o produto triplo sozinho não garante** independência; eventos **independentes dois a dois** podem não ser independentes entre si; e se A⊥B e B⊥C, **não se conclui** que A⊥C."
     ],
     "teoria": [
      {

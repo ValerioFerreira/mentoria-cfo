@@ -7,16 +7,14 @@
    "id": "informatica/a01/s01",
    "bizu": {
     "summary": [
-     "**Três ambientes**: **Internet** (pública e global), **Intranet** (privada, restrita aos membros de uma organização) e **Extranet** (ponte segura entre a rede interna e usuários externos autorizados).",
-     "**Internet** = rede de redes: conjunto de redes públicas interconectadas pelo mundo por **backbones** e roteadores, que trocam dados por protocolos comuns (**TCP/IP**). Tecnicamente é classificada como **WAN**, embora seja formada por milhões de LANs.",
-     "**Pública não significa gratuita**: a rede é aberta a qualquer pessoa que tenha dispositivo e conexão, normalmente paga a um **provedor** (Claro, Vivo, Oi). O controle é **descentralizado e distribuído** entre provedores, empresas e governos.",
-     "**Serviços da Internet**: web (páginas HTML), correio eletrônico, grupos de discussão, mensagens instantâneas, FTP (upload e download), bate-papo e redes sociais. A navegação por **hiperlinks** permite leitura não sequencial.",
-     "A segurança na Internet é menos controlada: há risco de ataques, vazamentos e interceptações, o que exige camadas extras (firewalls, criptografia).",
-     "**Intranet** = rede corporativa **privada e restrita** que usa as **mesmas tecnologias, protocolos e serviços da Internet** (TCP/IP, HTTP, HTTPS, FTP, e-mail, chat, compartilhamento de arquivos e impressoras). É, em geral, uma LAN. É o tema mais cobrado da aula.",
-     "**Pegadinha clássica**: Internet e intranet NíO usam protocolos diferentes. A diferença está no **acesso e no controle**: a Internet é aberta; a intranet é limitada a usuários autorizados e controlada de forma centralizada pela organização.",
-     "A intranet pode ser acessada de fora por **VPN** ou autenticação remota, mas o usuário precisa se identificar com credenciais válidas.",
-     "A intranet **não depende da Internet**: pode ficar totalmente isolada, mas também pode ser ligada a ela. Usar endereços IP numa rede local, por si só, não define uma intranet.",
-     "Usos e características da intranet: compartilhar documentos, reduzir papel e distâncias, acelerar processos e transferir conhecimento. Tem alta segurança (autenticação, **firewall**, controle de permissões) e costuma ter velocidade maior que a da Internet."
+     "### 1. Fundamentação Teórica e Conceitos Centrais",
+     "**Três ambientes**: **Internet** (pública e global), **Intranet** (privada, restrita aos membros de uma organização) e **Extranet** (ponte segura entre a rede interna e usuários externos autorizados). **Internet** = rede de redes: conjunto de redes públicas interconectadas pelo mundo por **backbones** e roteadores, que trocam dados por protocolos comuns (**TCP/IP**). Tecnicamente é classificada como **WAN**, embora seja formada por milhões de LANs.",
+     "**Pública não significa gratuita**: a rede é aberta a qualquer pessoa que tenha dispositivo e conexão, normalmente paga a um **provedor** (Claro, Vivo, Oi). O controle é **descentralizado e distribuído** entre provedores, empresas e governos. **Serviços da Internet**: web (páginas HTML), correio eletrônico, grupos de discussão, mensagens instantâneas, FTP (upload e download), bate-papo e redes sociais. A navegação por **hiperlinks** permite leitura não sequencial.",
+     "A segurança na Internet é menos controlada: há risco de ataques, vazamentos e interceptações, o que exige camadas extras (firewalls, criptografia). **Intranet** = rede corporativa **privada e restrita** que usa as **mesmas tecnologias, protocolos e serviços da Internet** (TCP/IP, HTTP, HTTPS, FTP, e-mail, chat, compartilhamento de arquivos e impressoras). É, em geral, uma LAN. É o tema mais cobrado da aula.",
+     "A intranet pode ser acessada de fora por **VPN** ou autenticação remota, mas o usuário precisa se identificar com credenciais válidas. A intranet **não depende da Internet**: pode ficar totalmente isolada, mas também pode ser ligada a ela. Usar endereços IP numa rede local, por si só, não define uma intranet.",
+     "Usos e características da intranet: compartilhar documentos, reduzir papel e distâncias, acelerar processos e transferir conhecimento. Tem alta segurança (autenticação, **firewall**, controle de permissões) e costuma ter velocidade maior que a da Internet.",
+     "### 3. Diretrizes de Prova e Pontos de Atenção",
+     "> ⚠️ **Atenção de Prova:** **Pegadinha clássica**: Internet e intranet NíO usam protocolos diferentes. A diferença está no **acesso e no controle**: a Internet é aberta; a intranet é limitada a usuários autorizados e controlada de forma centralizada pela organização."
     ],
     "teoria": [
      {
@@ -313,16 +311,14 @@
    "id": "informatica/a01/s02",
    "bizu": {
     "summary": [
-     "**Extranet** = rede privada que funciona como **extensão da intranet** para usuários externos autorizados (parceiros, fornecedores, clientes), usando a Internet como meio. O acesso é restrito, autenticado e controlado.",
-     "Ambas, intranet e extranet, são redes de **uso restrito**. A diferença é o público: a intranet atende os membros internos; a extranet estende o acesso a externos autorizados.",
-     "**Cenários**: colaborador na sede = intranet; colaborador remoto = intranet acessada remotamente; parceiro comercial externo = **extranet**. Em sentido genérico, qualquer acesso externo à rede interna seria extranet, mas o termo é mais associado a parceiros.",
-     "**Extranet** mantém gestão centralizada: os dados são compartilhados apenas parcialmente, com controle do que o externo pode ver ou alterar. Usa autenticação, criptografia, firewalls e controle de acesso.",
-     "**VPN** (Virtual Private Network, rede privada virtual): usa a infraestrutura pública da Internet para transmitir informações com segurança, **criptografando** requisições e respostas e criando um 'túnel'. Oculta o IP do usuário do site visitado e do provedor.",
-     "💡 **Exemplo Prático:** Exemplo da urna eletrônica: os votos são enviados ao TSE por VPN, o que impede identificar o pacote como sendo da urna e conhecer seu conteúdo.",
-     "**Tunelamento**: encapsulamento de um protocolo dentro de outro. O pacote é criptografado, encapsulado (ganha cabeçalho adicional), enviado pela rede pública e, no destino, desencapsulado e descriptografado. Protocolos: IPSec, L2TP.",
-     "**VPN Site-to-Site** (gateway a gateway): liga duas redes, como escritórios de uma empresa. **VPN Client-to-Site** (acesso remoto): liga um único dispositivo a uma rede remota, caso típico do teletrabalho e do usuário doméstico.",
-     "**Aplicações da extranet**: acesso remoto de vendedores, aplicações B2B, melhoria da cadeia de suprimentos, projetos colaborativos entre empresas e agilização de transações comerciais.",
-     "Fazer login no site público de uma empresa **não** é acessar a intranet dela: o site fica em servidor web público; a rede interna é outra coisa."
+     "### 1. Fundamentação Teórica e Conceitos Centrais",
+     "**Extranet** = rede privada que funciona como **extensão da intranet** para usuários externos autorizados (parceiros, fornecedores, clientes), usando a Internet como meio. O acesso é restrito, autenticado e controlado. Ambas, intranet e extranet, são redes de **uso restrito**. A diferença é o público: a intranet atende os membros internos; a extranet estende o acesso a externos autorizados.",
+     "**Cenários**: colaborador na sede = intranet; colaborador remoto = intranet acessada remotamente; parceiro comercial externo = **extranet**. Em sentido genérico, qualquer acesso externo à rede interna seria extranet, mas o termo é mais associado a parceiros. **Extranet** mantém gestão centralizada: os dados são compartilhados apenas parcialmente, com controle do que o externo pode ver ou alterar. Usa autenticação, criptografia, firewalls e controle de acesso.",
+     "**VPN** (Virtual Private Network, rede privada virtual): usa a infraestrutura pública da Internet para transmitir informações com segurança, **criptografando** requisições e respostas e criando um 'túnel'. Oculta o IP do usuário do site visitado e do provedor. **Tunelamento**: encapsulamento de um protocolo dentro de outro. O pacote é criptografado, encapsulado (ganha cabeçalho adicional), enviado pela rede pública e, no destino, desencapsulado e descriptografado. Protocolos: IPSec, L2TP.",
+     "**VPN Site-to-Site** (gateway a gateway): liga duas redes, como escritórios de uma empresa. **VPN Client-to-Site** (acesso remoto): liga um único dispositivo a uma rede remota, caso típico do teletrabalho e do usuário doméstico. **Aplicações da extranet**: acesso remoto de vendedores, aplicações B2B, melhoria da cadeia de suprimentos, projetos colaborativos entre empresas e agilização de transações comerciais.",
+     "Fazer login no site público de uma empresa **não** é acessar a intranet dela: o site fica em servidor web público; a rede interna é outra coisa.",
+     "### 2. Análise Prática e Desdobramentos",
+     "• **Aplicação:** Exemplo da urna eletrônica: os votos são enviados ao TSE por VPN, o que impede identificar o pacote como sendo da urna e conhecer seu conteúdo."
     ],
     "teoria": [
      {

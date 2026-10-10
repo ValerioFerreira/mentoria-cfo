@@ -1,345 +1,340 @@
 {
-  "aula": "fisica/c02",
-  "batch": "w1-fisica",
-  "status": "DRAFT",
-  "segments": [
+ "aula": "fisica/c02",
+ "batch": "w1-fisica",
+ "status": "DRAFT",
+ "segments": [
+  {
+   "id": "fisica/c02/s01",
+   "bizu": {
+    "summary": [
+     "### 1. Fundamentação Teórica e Conceitos Centrais",
+     "**Referencial inercial** é aquele em que vale a **lei da inércia**; todo referencial em **MRU** em relação a um inercial também é inercial. É **não inercial** o que tem **aceleração** (freia, acelera, faz curva ou gira). Para Galileu, **não existe repouso absoluto**: nenhum experimento mecânico distingue repouso de MRU. **Força fictícia (de inércia):** **F = −m · a**, com sentido oposto à aceleração do referencial, e sem par de ação e reação. A **centrífuga é fictícia**; para quem está na calçada só existe a **centrípeta**, resultante **real**. **Coriolis** desvia ventos para a **direita no Hemisfério Norte** e para a **esquerda no Sul**.",
+     "**Peso aparente (elevador):** o que importa é o **sentido da aceleração**, não o da velocidade. Aceleração **para cima** (sobe acelerando ou desce freando): **N = m(g + a)**. Aceleração **para baixo** (desce acelerando ou sobe freando): **N = m(g − a)**. Em **queda livre**, **N = 0**. **Diagrama de corpo livre:** só as forças que **agem sobre o corpo** (peso, normal, tração, atrito, aplicadas). **Não existe “força do movimento”**, e a reação da normal **não** entra no diagrama (age em outro corpo). Depois, aplica-se **ΣF = m · a** em cada eixo.",
+     "**História:** **Aristóteles**: manter o movimento exige força (força → **velocidade**), e os corpos pesados caem mais depressa. **Galileu**: sem atrito, o movimento se mantém (**inércia**); a força só **muda** a velocidade. **Newton**: **F = m · a**, a força produz **aceleração**. **Marés:** causadas sobretudo pela **Lua** (cerca de 2,2 vezes o efeito do Sol), pois a força de maré varia com **M ÷ d³**. **Sizígia** (lua nova e cheia, astros alinhados): **maior** amplitude. **Quadratura** (quartos): **menor**. Não têm relação com a inclinação do eixo da Terra.",
+     "**Estações do ano:** causadas pela **inclinação do eixo (≈ 23,5°)**, e **não** pela distância ao Sol (o **periélio** é por volta de 3 de janeiro, verão no Sul). **El Niño** tende a **reduzir** as chuvas no semiárido do Nordeste; **La Niña**, o oposto. **Efeito estufa** natural: ≈ 15 °C em vez de ≈ −18 °C. **Big Bang:** universo com **≈ 13,8 bilhões de anos**, em **expansão do próprio espaço** (não é explosão num ponto, e não há centro). **Evidências:** afastamento das galáxias (**v = H₀ · d**, H₀ ≈ 70 km/s por Mpc), **radiação cósmica de fundo (≈ 2,7 K)** e abundância de **H (≈ 75 %) e He (≈ 25 %)**. Átomos e galáxias **não** se expandem.",
+     "**Poder das pontas:** a carga se concentra onde o raio de curvatura é **menor**; a **densidade σ** e o campo são **maiores nas pontas**. Duas esferas ligadas (mesmo potencial): **Q₁ ÷ Q₂ = R₁ ÷ R₂** e **σ₁ ÷ σ₂ = R₂ ÷ R₁**. O ar rompe a **≈ 3 × 10⁶ V/m**. O para-raios **oferece caminho seguro**, não “atrai” raios. **Blindagem eletrostática:** dentro de um condutor em equilíbrio, **E = 0** e o potencial é constante. A **gaiola de Faraday** (inclusive de malha) protege o interior: carro e avião em tempestade, micro-ondas, cabo coaxial. Quem protege é a **carcaça metálica**, e **não** os pneus de borracha. Não blinda campo magnético estático.",
+     "**CC × CA:** na **CC** o sentido é constante; na **CA** ele se inverte (rede brasileira: **60 Hz**). **V_ef = V₀ ÷ √2**, e os 127 V e 220 V da tomada são **valores eficazes**. O **transformador** só funciona com CA (variação de fluxo): **V_p ÷ V_s = N_p ÷ N_s**. Alta tensão → **menor corrente** → menor perda **R · I²**. **Medidores:** **amperímetro** em **série**, resistência interna **baixa** (ideal: zero); **voltímetro** em **paralelo**, resistência **alta** (ideal: infinita); **ohmímetro** com o componente **isolado e desenergizado**. Galvanômetro → amperímetro: resistor em **paralelo** (shunt); → voltímetro: resistor em **série**. Amperímetro em paralelo causa **curto-circuito**.",
+     "**Ciclo da água:** **evaporação** ocorre em **qualquer temperatura**, só na superfície, e **retira calor** (**Q = m · L**, L_v ≈ **540 cal/g**); a **condensação libera** esse calor e alimenta as tempestades. **Nuvens** são gotículas (ou gelo), **não vapor**; **orvalho** é condensação; **UR = p_vapor ÷ p_saturação**."
+    ],
+    "teoria": [
+     {
+      "statement": "Para um observador parado na calçada, o passageiro de um ônibus em curva não sofre força centrífuga: o que existe é a força centrípeta, uma resultante real que o puxa para o centro da curva.",
+      "isTrue": true,
+      "explanation": "A centrífuga só aparece no referencial não inercial (o do ônibus), como força fictícia. No referencial inercial, o corpo tende a seguir em linha reta por inércia, e o banco e o atrito o desviam para dentro."
+     },
+     {
+      "statement": "Segundo Galileu, é preciso aplicar uma força constante a um corpo para que ele se mantenha em movimento retilíneo e uniforme.",
+      "isTrue": false,
+      "explanation": "Essa é a visão de Aristóteles. Para Galileu (e depois para Newton), sem atrito o movimento se mantém por inércia, e a força só é necessária para variar a velocidade."
+     },
+     {
+      "statement": "As marés de maior amplitude, chamadas de sizígia, ocorrem na lua nova e na lua cheia, quando Sol, Terra e Lua estão alinhados.",
+      "isTrue": true,
+      "explanation": "Nesses alinhamentos, os efeitos do Sol e da Lua se somam. Nos quartos (quadratura), eles se compensam em parte e as marés são mortas."
+     },
+     {
+      "statement": "No Hemisfério Sul, é verão porque, nessa época, a Terra se encontra mais próxima do Sol.",
+      "isTrue": false,
+      "explanation": "As estações decorrem da inclinação do eixo terrestre. A Terra está mais próxima do Sol (periélio) por volta de 3 de janeiro, mas a distância não é a causa das estações."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "O voltímetro ideal tem resistência interna infinita e deve ser ligado em paralelo com o elemento cuja tensão se quer medir.",
+      "isTrue": true,
+      "explanation": "A resistência elevada evita que ele desvie corrente do circuito. Já o amperímetro ideal tem resistência nula e é ligado em série."
+     },
+     {
+      "statement": "Um transformador funciona normalmente quando ligado a uma bateria, desde que a tensão da bateria seja suficientemente alta.",
+      "isTrue": false,
+      "explanation": "O transformador depende de fluxo magnético variável. Com corrente contínua constante não há variação de fluxo, e o secundário não recebe tensão induzida."
+     },
+     {
+      "statement": "Elevar a tensão de transmissão reduz a corrente na linha e, com ela, as perdas por efeito Joule.",
+      "isTrue": true,
+      "explanation": "Para a mesma potência (P = V · I), mais tensão significa menos corrente. Como a perda é R · I², elevar a tensão 10 vezes reduz a perda 100 vezes."
+     },
+     {
+      "statement": "As nuvens são formadas por vapor de água, que é visível porque está em suspensão no ar.",
+      "isTrue": false,
+      "explanation": "O vapor de água é invisível. As nuvens são formadas por gotículas de água líquida (ou cristais de gelo), resultantes da condensação do vapor."
+     }
+    ]
+   },
+   "questions": [
     {
-      "id": "fisica/c02/s01",
-      "bizu": {
-        "summary": [
-          "**Referencial inercial** é aquele em que vale a **lei da inércia**; todo referencial em **MRU** em relação a um inercial também é inercial. É **não inercial** o que tem **aceleração** (freia, acelera, faz curva ou gira). Para Galileu, **não existe repouso absoluto**: nenhum experimento mecânico distingue repouso de MRU.",
-          "**Força fictícia (de inércia):** **F = −m · a**, com sentido oposto à aceleração do referencial, e sem par de ação e reação. A **centrífuga é fictícia**; para quem está na calçada só existe a **centrípeta**, resultante **real**. **Coriolis** desvia ventos para a **direita no Hemisfério Norte** e para a **esquerda no Sul**.",
-          "**Peso aparente (elevador):** o que importa é o **sentido da aceleração**, não o da velocidade. Aceleração **para cima** (sobe acelerando ou desce freando): **N = m(g + a)**. Aceleração **para baixo** (desce acelerando ou sobe freando): **N = m(g − a)**. Em **queda livre**, **N = 0**.",
-          "**Diagrama de corpo livre:** só as forças que **agem sobre o corpo** (peso, normal, tração, atrito, aplicadas). **Não existe “força do movimento”**, e a reação da normal **não** entra no diagrama (age em outro corpo). Depois, aplica-se **ΣF = m · a** em cada eixo.",
-          "**História:** **Aristóteles**: manter o movimento exige força (força → **velocidade**), e os corpos pesados caem mais depressa. **Galileu**: sem atrito, o movimento se mantém (**inércia**); a força só **muda** a velocidade. **Newton**: **F = m · a**, a força produz **aceleração**.",
-          "**Marés:** causadas sobretudo pela **Lua** (cerca de 2,2 vezes o efeito do Sol), pois a força de maré varia com **M ÷ d³**. **Sizígia** (lua nova e cheia, astros alinhados): **maior** amplitude. **Quadratura** (quartos): **menor**. Não têm relação com a inclinação do eixo da Terra.",
-          "**Estações do ano:** causadas pela **inclinação do eixo (≈ 23,5°)**, e **não** pela distância ao Sol (o **periélio** é por volta de 3 de janeiro, verão no Sul). **El Niño** tende a **reduzir** as chuvas no semiárido do Nordeste; **La Niña**, o oposto. **Efeito estufa** natural: ≈ 15 °C em vez de ≈ −18 °C.",
-          "**Big Bang:** universo com **≈ 13,8 bilhões de anos**, em **expansão do próprio espaço** (não é explosão num ponto, e não há centro). **Evidências:** afastamento das galáxias (**v = H₀ · d**, H₀ ≈ 70 km/s por Mpc), **radiação cósmica de fundo (≈ 2,7 K)** e abundância de **H (≈ 75 %) e He (≈ 25 %)**. Átomos e galáxias **não** se expandem.",
-          "**Poder das pontas:** a carga se concentra onde o raio de curvatura é **menor**; a **densidade σ** e o campo são **maiores nas pontas**. Duas esferas ligadas (mesmo potencial): **Q₁ ÷ Q₂ = R₁ ÷ R₂** e **σ₁ ÷ σ₂ = R₂ ÷ R₁**. O ar rompe a **≈ 3 × 10⁶ V/m**. O para-raios **oferece caminho seguro**, não “atrai” raios.",
-          "**Blindagem eletrostática:** dentro de um condutor em equilíbrio, **E = 0** e o potencial é constante. A **gaiola de Faraday** (inclusive de malha) protege o interior: carro e avião em tempestade, micro-ondas, cabo coaxial. Quem protege é a **carcaça metálica**, e **não** os pneus de borracha. Não blinda campo magnético estático.",
-          "**CC × CA:** na **CC** o sentido é constante; na **CA** ele se inverte (rede brasileira: **60 Hz**). **V_ef = V₀ ÷ √2**, e os 127 V e 220 V da tomada são **valores eficazes**. O **transformador** só funciona com CA (variação de fluxo): **V_p ÷ V_s = N_p ÷ N_s**. Alta tensão → **menor corrente** → menor perda **R · I²**.",
-          "**Medidores:** **amperímetro** em **série**, resistência interna **baixa** (ideal: zero); **voltímetro** em **paralelo**, resistência **alta** (ideal: infinita); **ohmímetro** com o componente **isolado e desenergizado**. Galvanômetro → amperímetro: resistor em **paralelo** (shunt); → voltímetro: resistor em **série**. Amperímetro em paralelo causa **curto-circuito**.",
-          "**Ciclo da água:** **evaporação** ocorre em **qualquer temperatura**, só na superfície, e **retira calor** (**Q = m · L**, L_v ≈ **540 cal/g**); a **condensação libera** esse calor e alimenta as tempestades. **Nuvens** são gotículas (ou gelo), **não vapor**; **orvalho** é condensação; **UR = p_vapor ÷ p_saturação**."
-        ],
-        "teoria": [
-          {
-            "statement": "Para um observador parado na calçada, o passageiro de um ônibus em curva não sofre força centrífuga: o que existe é a força centrípeta, uma resultante real que o puxa para o centro da curva.",
-            "isTrue": true,
-            "explanation": "A centrífuga só aparece no referencial não inercial (o do ônibus), como força fictícia. No referencial inercial, o corpo tende a seguir em linha reta por inércia, e o banco e o atrito o desviam para dentro."
-          },
-          {
-            "statement": "Segundo Galileu, é preciso aplicar uma força constante a um corpo para que ele se mantenha em movimento retilíneo e uniforme.",
-            "isTrue": false,
-            "explanation": "Essa é a visão de Aristóteles. Para Galileu (e depois para Newton), sem atrito o movimento se mantém por inércia, e a força só é necessária para variar a velocidade."
-          },
-          {
-            "statement": "As marés de maior amplitude, chamadas de sizígia, ocorrem na lua nova e na lua cheia, quando Sol, Terra e Lua estão alinhados.",
-            "isTrue": true,
-            "explanation": "Nesses alinhamentos, os efeitos do Sol e da Lua se somam. Nos quartos (quadratura), eles se compensam em parte e as marés são mortas."
-          },
-          {
-            "statement": "No Hemisfério Sul, é verão porque, nessa época, a Terra se encontra mais próxima do Sol.",
-            "isTrue": false,
-            "explanation": "As estações decorrem da inclinação do eixo terrestre. A Terra está mais próxima do Sol (periélio) por volta de 3 de janeiro, mas a distância não é a causa das estações."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "O voltímetro ideal tem resistência interna infinita e deve ser ligado em paralelo com o elemento cuja tensão se quer medir.",
-            "isTrue": true,
-            "explanation": "A resistência elevada evita que ele desvie corrente do circuito. Já o amperímetro ideal tem resistência nula e é ligado em série."
-          },
-          {
-            "statement": "Um transformador funciona normalmente quando ligado a uma bateria, desde que a tensão da bateria seja suficientemente alta.",
-            "isTrue": false,
-            "explanation": "O transformador depende de fluxo magnético variável. Com corrente contínua constante não há variação de fluxo, e o secundário não recebe tensão induzida."
-          },
-          {
-            "statement": "Elevar a tensão de transmissão reduz a corrente na linha e, com ela, as perdas por efeito Joule.",
-            "isTrue": true,
-            "explanation": "Para a mesma potência (P = V · I), mais tensão significa menos corrente. Como a perda é R · I², elevar a tensão 10 vezes reduz a perda 100 vezes."
-          },
-          {
-            "statement": "As nuvens são formadas por vapor de água, que é visível porque está em suspensão no ar.",
-            "isTrue": false,
-            "explanation": "O vapor de água é invisível. As nuvens são formadas por gotículas de água líquida (ou cristais de gelo), resultantes da condensação do vapor."
-          }
-        ]
-      },
-      "questions": [
-        {
-          "topic": "Referenciais inerciais",
-          "pattern": "correta",
-          "difficulty": 1,
-          "pageRef": 1,
-          "statement": "Sobre referenciais inerciais e não inerciais, assinale a alternativa correta.",
-          "support": null,
-          "options": [
-            "Um referencial que se move com velocidade constante em relação a um referencial inercial deixa de ser inercial.",
-            "Em um referencial inercial, um corpo sobre o qual a força resultante é nula permanece em repouso ou em movimento retilíneo uniforme.",
-            "Um ônibus que freia bruscamente constitui um referencial inercial, pois nele a lei da inércia continua valendo.",
-            "Existe um referencial de repouso absoluto, em relação ao qual as leis da Mecânica têm forma privilegiada.",
-            "Todo referencial que gira é inercial, desde que gire com velocidade angular constante."
-          ],
-          "answer": "B",
-          "explanation": "Em um referencial inercial vale a lei da inércia: sem força resultante, o corpo fica em repouso ou em MRU. Qualquer referencial em MRU em relação a um inercial também é inercial (A é falsa). Um ônibus que freia tem aceleração, logo é não inercial (C). Pelo princípio da relatividade de Galileu não existe repouso absoluto (D). Um referencial que gira tem aceleração centrípeta, portanto é não inercial (E)."
-        },
-        {
-          "topic": "Força centrífuga e centrípeta",
-          "pattern": "caso",
-          "difficulty": 2,
-          "pageRef": 2,
-          "statement": "Um passageiro de um ônibus que faz uma curva para a direita sente-se “empurrado” para a esquerda. Do ponto de vista de um observador parado na calçada, essa sensação é explicada",
-          "support": null,
-          "options": [
-            "pela ação de uma força centrífuga real, aplicada pelo ônibus ao passageiro e dirigida para fora da curva.",
-            "pela reação à força centrípeta, que atua sobre o próprio passageiro com mesma intensidade e sentido oposto.",
-            "pela ausência de qualquer força horizontal sobre o passageiro, que por isso passa a acelerar para a esquerda.",
-            "pela inércia do passageiro, que tende a seguir em linha reta, enquanto o banco e o atrito o puxam para dentro da curva.",
-            "pela força de Coriolis, que é a única força horizontal atuando sobre o passageiro durante a curva."
-          ],
-          "answer": "D",
-          "explanation": "No referencial inercial (a calçada), o passageiro tende a manter a velocidade em linha reta; o banco e o atrito aplicam uma força real para dentro da curva (centrípeta). A “força para fora” é a centrífuga, uma força fictícia que só existe no referencial do ônibus. A reação da centrípeta atua em outro corpo (o banco), e não no passageiro."
-        },
-        {
-          "topic": "Peso aparente no elevador",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 2,
-          "statement": "Uma pessoa de 60 kg está sobre uma balança dentro de um elevador que sobe, mas freia, com aceleração de módulo 1,5 m/s². Adotando g = 10 m/s², a indicação da balança, em newtons, é de",
-          "support": null,
-          "options": [
-            "510.",
-            "600.",
-            "690.",
-            "90.",
-            "900."
-          ],
-          "answer": "A",
-          "explanation": "Ao subir freando, a velocidade aponta para cima, mas a aceleração aponta para baixo. Então N = m(g − a) = 60 × (10 − 1,5) = 510 N, menor que o peso real (600 N). O valor 690 N seria o de um elevador que sobe acelerando. A pegadinha é confundir o sentido da velocidade com o da aceleração."
-        },
-        {
-          "topic": "Aceleração centrípeta e força resultante",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 2,
-          "statement": "Um carro faz uma curva horizontal de raio 50 m com velocidade de módulo constante igual a 15 m/s. Um passageiro de 80 kg está sentado no banco. Segundo um observador parado na calçada, a força horizontal que o banco e o atrito exercem sobre o passageiro vale, em módulo,",
-          "support": null,
-          "options": [
-            "24 N.",
-            "180 N.",
-            "360 N.",
-            "720 N.",
-            "1.200 N."
-          ],
-          "answer": "C",
-          "explanation": "A aceleração centrípeta é a = v² ÷ R = 15² ÷ 50 = 4,5 m/s². A força real que mantém o passageiro na curva é a resultante centrípeta: F = m · a = 80 × 4,5 = 360 N, voltada para o centro da curva. Para quem está no carro, aparece a centrífuga fictícia de mesmo módulo, apontando para fora."
-        },
-        {
-          "topic": "Força e movimento: Aristóteles, Galileu e Newton",
-          "pattern": "relacao",
-          "difficulty": 2,
-          "pageRef": 3,
-          "statement": "Assinale a alternativa que relaciona corretamente o pensamento de cada autor sobre a relação entre força e movimento.",
-          "support": null,
-          "options": [
-            "Aristóteles: um corpo em MRU não precisa de força para se manter; Galileu: o estado natural dos corpos é o repouso.",
-            "Galileu: para manter um corpo em movimento é preciso uma força constante; Newton: a força é proporcional à velocidade.",
-            "Newton: no vácuo, os corpos pesados caem mais depressa que os leves; Aristóteles: a queda independe da massa.",
-            "Aristóteles: a força produz aceleração nos corpos; Newton: a velocidade é proporcional à força aplicada.",
-            "Aristóteles: manter o movimento exige força; Galileu e Newton: a força é necessária para variar a velocidade, e não para manter um MRU."
-          ],
-          "answer": "E",
-          "explanation": "Para Aristóteles, a força (constante) mantinha a velocidade; ignorava o atrito. Galileu, idealizando a ausência de atrito, formulou o princípio da inércia, e Newton sintetizou: F = m · a, ou seja, a força produz aceleração. As demais alternativas trocam ou invertem as ideias dos autores."
-        },
-        {
-          "topic": "Marés",
-          "pattern": "correta",
-          "difficulty": 2,
-          "pageRef": 5,
-          "statement": "A respeito das marés oceânicas, assinale a alternativa correta.",
-          "support": null,
-          "options": [
-            "Resultam da inclinação do eixo da Terra e, por isso, variam ao longo das estações do ano.",
-            "As maiores amplitudes (marés de sizígia) ocorrem na lua nova e na lua cheia, quando Sol, Terra e Lua estão alinhados.",
-            "A influência do Sol sobre as marés é cerca de duas vezes maior que a da Lua, porque a massa do Sol é muito maior.",
-            "São causadas por força magnética exercida pela Lua sobre a água salgada dos oceanos.",
-            "Ocorrem apenas quando há eclipses, pois só então o alinhamento entre Sol, Terra e Lua produz força de maré."
-          ],
-          "answer": "B",
-          "explanation": "A sizígia ocorre no alinhamento (lua nova e cheia), quando os efeitos do Sol e da Lua se somam. A força de maré varia com M ÷ d³, e por isso a Lua, bem mais próxima, tem efeito cerca de 2,2 vezes maior que o do Sol (C é falsa). A causa é gravitacional, não magnética (D), e a inclinação do eixo explica as estações, não as marés (A). Marés ocorrem todos os dias, não só em eclipses (E)."
-        },
-        {
-          "topic": "Estações do ano e distância ao Sol",
-          "pattern": "incorreta",
-          "difficulty": 2,
-          "pageRef": 5,
-          "statement": "Sobre as estações do ano, assinale a alternativa INCORRETA.",
-          "support": null,
-          "options": [
-            "São consequência da inclinação do eixo de rotação da Terra, de cerca de 23,5°, em relação ao plano de sua órbita.",
-            "A Terra está mais próxima do Sol por volta de janeiro, em pleno verão do Hemisfério Sul.",
-            "Nos equinócios, os dias e as noites têm durações aproximadamente iguais.",
-            "As estações ocorrem porque a distância entre a Terra e o Sol varia muito ao longo do ano, sendo o verão sempre o período de maior proximidade.",
-            "Perto do equador, as estações térmicas são pouco marcadas, porque o Sol incide quase na vertical durante o ano todo."
-          ],
-          "answer": "D",
-          "explanation": "A distância não é a causa das estações: a Terra passa pelo periélio por volta de 3 de janeiro (verão no Sul) e pelo afélio por volta de 4 de julho (inverno no Sul), mas o Hemisfério Norte tem verão em julho. A causa é a inclinação do eixo terrestre. As demais alternativas estão corretas."
-        },
-        {
-          "topic": "Big Bang e evidências",
-          "pattern": "correta",
-          "difficulty": 2,
-          "pageRef": 6,
-          "statement": "Sobre a teoria do Big Bang, assinale a alternativa correta.",
-          "support": null,
-          "options": [
-            "Foi uma explosão ocorrida em um ponto do espaço vazio, em torno do qual as galáxias se afastam até hoje.",
-            "A radiação cósmica de fundo em micro-ondas contradiz o modelo, pois mostra que o universo sempre esteve frio.",
-            "O afastamento das galáxias e a radiação cósmica de fundo estão entre as evidências que sustentam o modelo.",
-            "A lei de Hubble mostra que a velocidade de afastamento das galáxias é inversamente proporcional à sua distância.",
-            "Segundo o modelo, os átomos e o Sistema Solar também se expandem junto com o universo, na mesma proporção das galáxias."
-          ],
-          "answer": "C",
-          "explanation": "O desvio para o vermelho (afastamento das galáxias), a radiação cósmica de fundo (≈ 2,7 K, o “eco” do universo quente e denso) e a abundância de hidrogênio e hélio sustentam o modelo. O Big Bang foi a expansão do próprio espaço, sem centro (A). Pela lei de Hubble, v = H₀ · d: a velocidade é diretamente proporcional à distância (D). Átomos e sistemas ligados gravitacionalmente não se expandem (E)."
-        },
-        {
-          "topic": "Lei de Hubble",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 7,
-          "statement": "Considere a lei de Hubble, v = H₀ · d, com H₀ = 70 km/s por megaparsec (Mpc). Uma galáxia situada a 250 Mpc da Terra afasta-se com velocidade de",
-          "support": null,
-          "options": [
-            "17.500 km/s.",
-            "1.750 km/s.",
-            "320 km/s.",
-            "3,6 km/s.",
-            "175.000 km/s."
-          ],
-          "answer": "A",
-          "explanation": "v = H₀ · d = 70 × 250 = 17.500 km/s. A alternativa de 3,6 km/s resulta de dividir 250 por 70 (o erro de operação mais comum), e a de 175.000 km/s erra a ordem de grandeza (fator 10 a mais)."
-        },
-        {
-          "topic": "Poder das pontas",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 7,
-          "statement": "Duas esferas condutoras, de raios 6 cm e 2 cm, estão muito afastadas uma da outra e ligadas por um fio condutor fino. A carga total do sistema é de 40 nC. No equilíbrio, as cargas das esferas maior e menor e a relação entre as densidades superficiais de carga (σ da maior ÷ σ da menor) são, respectivamente,",
-          "support": null,
-          "options": [
-            "20 nC e 20 nC; 3.",
-            "10 nC e 30 nC; 3.",
-            "30 nC e 10 nC; 3.",
-            "30 nC e 10 nC; 9.",
-            "30 nC e 10 nC; 1/3."
-          ],
-          "answer": "E",
-          "explanation": "Ligadas por um fio, as esferas têm o mesmo potencial, V = k · Q ÷ R, logo Q₁ ÷ Q₂ = R₁ ÷ R₂ = 3. Com Q₁ + Q₂ = 40 nC: Q₁ = 30 nC e Q₂ = 10 nC. A razão entre as densidades é σ₁ ÷ σ₂ = R₂ ÷ R₁ = 2 ÷ 6 = 1/3: a esfera menor tem densidade 3 vezes maior (poder das pontas)."
-        },
-        {
-          "topic": "Gaiola de Faraday",
-          "pattern": "caso",
-          "difficulty": 1,
-          "pageRef": 8,
-          "statement": "Durante uma tempestade com raios, uma família permanece dentro de um carro fechado, de carroceria metálica. A principal razão de os ocupantes estarem protegidos é que",
-          "support": null,
-          "options": [
-            "os pneus de borracha isolam o carro do solo e impedem a passagem da corrente do raio.",
-            "a carroceria metálica se comporta como uma gaiola de Faraday: o campo elétrico no interior é nulo e a corrente percorre a superfície externa.",
-            "o carro atrai os raios para o para-brisa, desviando-os dos ocupantes.",
-            "o vidro das janelas é isolante e cria uma barreira eficaz contra o campo magnético do raio.",
-            "o movimento do carro descarrega continuamente as cargas no ar, evitando a queda de raios."
-          ],
-          "answer": "B",
-          "explanation": "É a blindagem eletrostática: em um condutor oco em equilíbrio, o campo elétrico no interior é nulo, e as cargas e a corrente do raio ficam na superfície externa. Os pneus não são o que protege (A): as descargas atravessam metros de ar, e a proteção vem da carcaça metálica. As demais alternativas inventam mecanismos que não existem."
-        },
-        {
-          "topic": "Transformador",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 9,
-          "statement": "Um transformador ideal, usado no carregador de um aparelho, reduz a tensão de 220 V para 11 V. Se o enrolamento secundário tem 50 espiras, o enrolamento primário tem",
-          "support": null,
-          "options": [
-            "2,5 espiras.",
-            "20 espiras.",
-            "1.000 espiras.",
-            "4.000 espiras.",
-            "11.000 espiras."
-          ],
-          "answer": "C",
-          "explanation": "Num transformador ideal, V_p ÷ V_s = N_p ÷ N_s. Logo N_p = N_s · V_p ÷ V_s = 50 × 220 ÷ 11 = 1.000 espiras. Como o transformador abaixa a tensão, o primário (que recebe os 220 V) tem muito mais espiras que o secundário; e a corrente do secundário é maior que a do primário."
-        },
-        {
-          "topic": "Transmissão em alta tensão",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 9,
-          "statement": "Uma usina transmite 2 MW por uma linha de resistência total 5 Ω. A perda por efeito Joule na linha, quando a tensão de transmissão é de 20 kV e quando ela é elevada para 200 kV, vale, respectivamente,",
-          "support": null,
-          "options": [
-            "5 kW e 5 kW.",
-            "500 kW e 5 kW.",
-            "50 kW e 5 kW.",
-            "50 kW e 500 W.",
-            "100 kW e 1 kW."
-          ],
-          "answer": "D",
-          "explanation": "A corrente é I = P ÷ V. A 20 kV: I = 2 × 10⁶ ÷ 2 × 10⁴ = 100 A, e a perda é R · I² = 5 × 100² = 50.000 W = 50 kW. A 200 kV: I = 10 A e a perda é 5 × 10² = 500 W. Elevar a tensão 10 vezes reduz a corrente 10 vezes e a perda 100 vezes, por isso a rede usa corrente alternada e transformadores."
-        },
-        {
-          "topic": "Amperímetro e voltímetro",
-          "pattern": "incorreta",
-          "difficulty": 1,
-          "pageRef": 10,
-          "statement": "Sobre medidores elétricos, assinale a alternativa INCORRETA.",
-          "support": null,
-          "options": [
-            "Ligar um amperímetro em paralelo com um resistor é seguro, pois sua resistência elevada impede a passagem de corrente por ele.",
-            "O voltímetro ideal tem resistência interna infinita e é ligado em paralelo com o elemento cuja tensão se quer medir.",
-            "O amperímetro ideal tem resistência interna nula e é ligado em série com o trecho cuja corrente se quer medir.",
-            "O ohmímetro deve medir o componente isolado do circuito e desenergizado.",
-            "Um amperímetro real, ligado em série, pode indicar corrente menor que a existente antes de sua inserção no circuito."
-          ],
-          "answer": "A",
-          "explanation": "O amperímetro tem resistência interna muito baixa (ideal: zero). Ligado em paralelo, funciona como curto-circuito: a corrente se desvia para ele, que pode queimar. As demais estão corretas: o amperímetro real tem resistência não nula e, em série, diminui um pouco a corrente do circuito."
-        },
-        {
-          "topic": "Adaptação de galvanômetro",
-          "pattern": "calculo",
-          "difficulty": 3,
-          "pageRef": 11,
-          "statement": "Um galvanômetro tem resistência interna de 40 Ω e suporta, no máximo, 5 mA. Para transformá-lo em um voltímetro com fundo de escala de 10 V, deve-se associar a ele um resistor de",
-          "support": null,
-          "options": [
-            "1.960 Ω, em paralelo.",
-            "2.000 Ω, em série.",
-            "0,2 Ω, em paralelo.",
-            "40 Ω, em série.",
-            "1.960 Ω, em série."
-          ],
-          "answer": "E",
-          "explanation": "Para medir 10 V com 5 mA no fundo de escala, a resistência total deve ser 10 ÷ 0,005 = 2.000 Ω. Como o galvanômetro já tem 40 Ω, o resistor multiplicador, ligado em série, vale 2.000 − 40 = 1.960 Ω. Para transformar em amperímetro seria o contrário: resistor de baixo valor em paralelo (shunt)."
-        },
-        {
-          "topic": "Evaporação e calor latente",
-          "pattern": "calculo",
-          "difficulty": 2,
-          "pageRef": 13,
-          "statement": "Uma pessoa perde 50 g de água por evaporação do suor. Adotando calor latente de vaporização da água igual a 540 cal/g, a quantidade de calor retirada do corpo e o efeito sobre a temperatura da pele são, respectivamente,",
-          "support": null,
-          "options": [
-            "27.000 cal; aquecimento da pele.",
-            "27.000 cal; resfriamento da pele.",
-            "2.700 cal; resfriamento da pele.",
-            "9,3 cal; resfriamento da pele.",
-            "27.000 cal; nenhuma alteração, pois o calor é latente."
-          ],
-          "answer": "B",
-          "explanation": "Q = m · L = 50 × 540 = 27.000 cal. A evaporação absorve esse calor da superfície do corpo, que se resfria: é por isso que suar refrigera. “Latente” significa que o calor trocado é usado na mudança de estado do suor sem alterar a temperatura dele, mas o corpo, que cede o calor, esfria."
-        }
-      ]
+     "topic": "Referenciais inerciais",
+     "pattern": "correta",
+     "difficulty": 1,
+     "pageRef": 1,
+     "statement": "Sobre referenciais inerciais e não inerciais, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "Um referencial que se move com velocidade constante em relação a um referencial inercial deixa de ser inercial.",
+      "Em um referencial inercial, um corpo sobre o qual a força resultante é nula permanece em repouso ou em movimento retilíneo uniforme.",
+      "Um ônibus que freia bruscamente constitui um referencial inercial, pois nele a lei da inércia continua valendo.",
+      "Existe um referencial de repouso absoluto, em relação ao qual as leis da Mecânica têm forma privilegiada.",
+      "Todo referencial que gira é inercial, desde que gire com velocidade angular constante."
+     ],
+     "answer": "B",
+     "explanation": "Em um referencial inercial vale a lei da inércia: sem força resultante, o corpo fica em repouso ou em MRU. Qualquer referencial em MRU em relação a um inercial também é inercial (A é falsa). Um ônibus que freia tem aceleração, logo é não inercial (C). Pelo princípio da relatividade de Galileu não existe repouso absoluto (D). Um referencial que gira tem aceleração centrípeta, portanto é não inercial (E)."
+    },
+    {
+     "topic": "Força centrífuga e centrípeta",
+     "pattern": "caso",
+     "difficulty": 2,
+     "pageRef": 2,
+     "statement": "Um passageiro de um ônibus que faz uma curva para a direita sente-se “empurrado” para a esquerda. Do ponto de vista de um observador parado na calçada, essa sensação é explicada",
+     "support": null,
+     "options": [
+      "pela ação de uma força centrífuga real, aplicada pelo ônibus ao passageiro e dirigida para fora da curva.",
+      "pela reação à força centrípeta, que atua sobre o próprio passageiro com mesma intensidade e sentido oposto.",
+      "pela ausência de qualquer força horizontal sobre o passageiro, que por isso passa a acelerar para a esquerda.",
+      "pela inércia do passageiro, que tende a seguir em linha reta, enquanto o banco e o atrito o puxam para dentro da curva.",
+      "pela força de Coriolis, que é a única força horizontal atuando sobre o passageiro durante a curva."
+     ],
+     "answer": "D",
+     "explanation": "No referencial inercial (a calçada), o passageiro tende a manter a velocidade em linha reta; o banco e o atrito aplicam uma força real para dentro da curva (centrípeta). A “força para fora” é a centrífuga, uma força fictícia que só existe no referencial do ônibus. A reação da centrípeta atua em outro corpo (o banco), e não no passageiro."
+    },
+    {
+     "topic": "Peso aparente no elevador",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 2,
+     "statement": "Uma pessoa de 60 kg está sobre uma balança dentro de um elevador que sobe, mas freia, com aceleração de módulo 1,5 m/s². Adotando g = 10 m/s², a indicação da balança, em newtons, é de",
+     "support": null,
+     "options": [
+      "510.",
+      "600.",
+      "690.",
+      "90.",
+      "900."
+     ],
+     "answer": "A",
+     "explanation": "Ao subir freando, a velocidade aponta para cima, mas a aceleração aponta para baixo. Então N = m(g − a) = 60 × (10 − 1,5) = 510 N, menor que o peso real (600 N). O valor 690 N seria o de um elevador que sobe acelerando. A pegadinha é confundir o sentido da velocidade com o da aceleração."
+    },
+    {
+     "topic": "Aceleração centrípeta e força resultante",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 2,
+     "statement": "Um carro faz uma curva horizontal de raio 50 m com velocidade de módulo constante igual a 15 m/s. Um passageiro de 80 kg está sentado no banco. Segundo um observador parado na calçada, a força horizontal que o banco e o atrito exercem sobre o passageiro vale, em módulo,",
+     "support": null,
+     "options": [
+      "24 N.",
+      "180 N.",
+      "360 N.",
+      "720 N.",
+      "1.200 N."
+     ],
+     "answer": "C",
+     "explanation": "A aceleração centrípeta é a = v² ÷ R = 15² ÷ 50 = 4,5 m/s². A força real que mantém o passageiro na curva é a resultante centrípeta: F = m · a = 80 × 4,5 = 360 N, voltada para o centro da curva. Para quem está no carro, aparece a centrífuga fictícia de mesmo módulo, apontando para fora."
+    },
+    {
+     "topic": "Força e movimento: Aristóteles, Galileu e Newton",
+     "pattern": "relacao",
+     "difficulty": 2,
+     "pageRef": 3,
+     "statement": "Assinale a alternativa que relaciona corretamente o pensamento de cada autor sobre a relação entre força e movimento.",
+     "support": null,
+     "options": [
+      "Aristóteles: um corpo em MRU não precisa de força para se manter; Galileu: o estado natural dos corpos é o repouso.",
+      "Galileu: para manter um corpo em movimento é preciso uma força constante; Newton: a força é proporcional à velocidade.",
+      "Newton: no vácuo, os corpos pesados caem mais depressa que os leves; Aristóteles: a queda independe da massa.",
+      "Aristóteles: a força produz aceleração nos corpos; Newton: a velocidade é proporcional à força aplicada.",
+      "Aristóteles: manter o movimento exige força; Galileu e Newton: a força é necessária para variar a velocidade, e não para manter um MRU."
+     ],
+     "answer": "E",
+     "explanation": "Para Aristóteles, a força (constante) mantinha a velocidade; ignorava o atrito. Galileu, idealizando a ausência de atrito, formulou o princípio da inércia, e Newton sintetizou: F = m · a, ou seja, a força produz aceleração. As demais alternativas trocam ou invertem as ideias dos autores."
+    },
+    {
+     "topic": "Marés",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 5,
+     "statement": "A respeito das marés oceânicas, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "Resultam da inclinação do eixo da Terra e, por isso, variam ao longo das estações do ano.",
+      "As maiores amplitudes (marés de sizígia) ocorrem na lua nova e na lua cheia, quando Sol, Terra e Lua estão alinhados.",
+      "A influência do Sol sobre as marés é cerca de duas vezes maior que a da Lua, porque a massa do Sol é muito maior.",
+      "São causadas por força magnética exercida pela Lua sobre a água salgada dos oceanos.",
+      "Ocorrem apenas quando há eclipses, pois só então o alinhamento entre Sol, Terra e Lua produz força de maré."
+     ],
+     "answer": "B",
+     "explanation": "A sizígia ocorre no alinhamento (lua nova e cheia), quando os efeitos do Sol e da Lua se somam. A força de maré varia com M ÷ d³, e por isso a Lua, bem mais próxima, tem efeito cerca de 2,2 vezes maior que o do Sol (C é falsa). A causa é gravitacional, não magnética (D), e a inclinação do eixo explica as estações, não as marés (A). Marés ocorrem todos os dias, não só em eclipses (E)."
+    },
+    {
+     "topic": "Estações do ano e distância ao Sol",
+     "pattern": "incorreta",
+     "difficulty": 2,
+     "pageRef": 5,
+     "statement": "Sobre as estações do ano, assinale a alternativa INCORRETA.",
+     "support": null,
+     "options": [
+      "São consequência da inclinação do eixo de rotação da Terra, de cerca de 23,5°, em relação ao plano de sua órbita.",
+      "A Terra está mais próxima do Sol por volta de janeiro, em pleno verão do Hemisfério Sul.",
+      "Nos equinócios, os dias e as noites têm durações aproximadamente iguais.",
+      "As estações ocorrem porque a distância entre a Terra e o Sol varia muito ao longo do ano, sendo o verão sempre o período de maior proximidade.",
+      "Perto do equador, as estações térmicas são pouco marcadas, porque o Sol incide quase na vertical durante o ano todo."
+     ],
+     "answer": "D",
+     "explanation": "A distância não é a causa das estações: a Terra passa pelo periélio por volta de 3 de janeiro (verão no Sul) e pelo afélio por volta de 4 de julho (inverno no Sul), mas o Hemisfério Norte tem verão em julho. A causa é a inclinação do eixo terrestre. As demais alternativas estão corretas."
+    },
+    {
+     "topic": "Big Bang e evidências",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 6,
+     "statement": "Sobre a teoria do Big Bang, assinale a alternativa correta.",
+     "support": null,
+     "options": [
+      "Foi uma explosão ocorrida em um ponto do espaço vazio, em torno do qual as galáxias se afastam até hoje.",
+      "A radiação cósmica de fundo em micro-ondas contradiz o modelo, pois mostra que o universo sempre esteve frio.",
+      "O afastamento das galáxias e a radiação cósmica de fundo estão entre as evidências que sustentam o modelo.",
+      "A lei de Hubble mostra que a velocidade de afastamento das galáxias é inversamente proporcional à sua distância.",
+      "Segundo o modelo, os átomos e o Sistema Solar também se expandem junto com o universo, na mesma proporção das galáxias."
+     ],
+     "answer": "C",
+     "explanation": "O desvio para o vermelho (afastamento das galáxias), a radiação cósmica de fundo (≈ 2,7 K, o “eco” do universo quente e denso) e a abundância de hidrogênio e hélio sustentam o modelo. O Big Bang foi a expansão do próprio espaço, sem centro (A). Pela lei de Hubble, v = H₀ · d: a velocidade é diretamente proporcional à distância (D). Átomos e sistemas ligados gravitacionalmente não se expandem (E)."
+    },
+    {
+     "topic": "Lei de Hubble",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 7,
+     "statement": "Considere a lei de Hubble, v = H₀ · d, com H₀ = 70 km/s por megaparsec (Mpc). Uma galáxia situada a 250 Mpc da Terra afasta-se com velocidade de",
+     "support": null,
+     "options": [
+      "17.500 km/s.",
+      "1.750 km/s.",
+      "320 km/s.",
+      "3,6 km/s.",
+      "175.000 km/s."
+     ],
+     "answer": "A",
+     "explanation": "v = H₀ · d = 70 × 250 = 17.500 km/s. A alternativa de 3,6 km/s resulta de dividir 250 por 70 (o erro de operação mais comum), e a de 175.000 km/s erra a ordem de grandeza (fator 10 a mais)."
+    },
+    {
+     "topic": "Poder das pontas",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 7,
+     "statement": "Duas esferas condutoras, de raios 6 cm e 2 cm, estão muito afastadas uma da outra e ligadas por um fio condutor fino. A carga total do sistema é de 40 nC. No equilíbrio, as cargas das esferas maior e menor e a relação entre as densidades superficiais de carga (σ da maior ÷ σ da menor) são, respectivamente,",
+     "support": null,
+     "options": [
+      "20 nC e 20 nC; 3.",
+      "10 nC e 30 nC; 3.",
+      "30 nC e 10 nC; 3.",
+      "30 nC e 10 nC; 9.",
+      "30 nC e 10 nC; 1/3."
+     ],
+     "answer": "E",
+     "explanation": "Ligadas por um fio, as esferas têm o mesmo potencial, V = k · Q ÷ R, logo Q₁ ÷ Q₂ = R₁ ÷ R₂ = 3. Com Q₁ + Q₂ = 40 nC: Q₁ = 30 nC e Q₂ = 10 nC. A razão entre as densidades é σ₁ ÷ σ₂ = R₂ ÷ R₁ = 2 ÷ 6 = 1/3: a esfera menor tem densidade 3 vezes maior (poder das pontas)."
+    },
+    {
+     "topic": "Gaiola de Faraday",
+     "pattern": "caso",
+     "difficulty": 1,
+     "pageRef": 8,
+     "statement": "Durante uma tempestade com raios, uma família permanece dentro de um carro fechado, de carroceria metálica. A principal razão de os ocupantes estarem protegidos é que",
+     "support": null,
+     "options": [
+      "os pneus de borracha isolam o carro do solo e impedem a passagem da corrente do raio.",
+      "a carroceria metálica se comporta como uma gaiola de Faraday: o campo elétrico no interior é nulo e a corrente percorre a superfície externa.",
+      "o carro atrai os raios para o para-brisa, desviando-os dos ocupantes.",
+      "o vidro das janelas é isolante e cria uma barreira eficaz contra o campo magnético do raio.",
+      "o movimento do carro descarrega continuamente as cargas no ar, evitando a queda de raios."
+     ],
+     "answer": "B",
+     "explanation": "É a blindagem eletrostática: em um condutor oco em equilíbrio, o campo elétrico no interior é nulo, e as cargas e a corrente do raio ficam na superfície externa. Os pneus não são o que protege (A): as descargas atravessam metros de ar, e a proteção vem da carcaça metálica. As demais alternativas inventam mecanismos que não existem."
+    },
+    {
+     "topic": "Transformador",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 9,
+     "statement": "Um transformador ideal, usado no carregador de um aparelho, reduz a tensão de 220 V para 11 V. Se o enrolamento secundário tem 50 espiras, o enrolamento primário tem",
+     "support": null,
+     "options": [
+      "2,5 espiras.",
+      "20 espiras.",
+      "1.000 espiras.",
+      "4.000 espiras.",
+      "11.000 espiras."
+     ],
+     "answer": "C",
+     "explanation": "Num transformador ideal, V_p ÷ V_s = N_p ÷ N_s. Logo N_p = N_s · V_p ÷ V_s = 50 × 220 ÷ 11 = 1.000 espiras. Como o transformador abaixa a tensão, o primário (que recebe os 220 V) tem muito mais espiras que o secundário; e a corrente do secundário é maior que a do primário."
+    },
+    {
+     "topic": "Transmissão em alta tensão",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 9,
+     "statement": "Uma usina transmite 2 MW por uma linha de resistência total 5 Ω. A perda por efeito Joule na linha, quando a tensão de transmissão é de 20 kV e quando ela é elevada para 200 kV, vale, respectivamente,",
+     "support": null,
+     "options": [
+      "5 kW e 5 kW.",
+      "500 kW e 5 kW.",
+      "50 kW e 5 kW.",
+      "50 kW e 500 W.",
+      "100 kW e 1 kW."
+     ],
+     "answer": "D",
+     "explanation": "A corrente é I = P ÷ V. A 20 kV: I = 2 × 10⁶ ÷ 2 × 10⁴ = 100 A, e a perda é R · I² = 5 × 100² = 50.000 W = 50 kW. A 200 kV: I = 10 A e a perda é 5 × 10² = 500 W. Elevar a tensão 10 vezes reduz a corrente 10 vezes e a perda 100 vezes, por isso a rede usa corrente alternada e transformadores."
+    },
+    {
+     "topic": "Amperímetro e voltímetro",
+     "pattern": "incorreta",
+     "difficulty": 1,
+     "pageRef": 10,
+     "statement": "Sobre medidores elétricos, assinale a alternativa INCORRETA.",
+     "support": null,
+     "options": [
+      "Ligar um amperímetro em paralelo com um resistor é seguro, pois sua resistência elevada impede a passagem de corrente por ele.",
+      "O voltímetro ideal tem resistência interna infinita e é ligado em paralelo com o elemento cuja tensão se quer medir.",
+      "O amperímetro ideal tem resistência interna nula e é ligado em série com o trecho cuja corrente se quer medir.",
+      "O ohmímetro deve medir o componente isolado do circuito e desenergizado.",
+      "Um amperímetro real, ligado em série, pode indicar corrente menor que a existente antes de sua inserção no circuito."
+     ],
+     "answer": "A",
+     "explanation": "O amperímetro tem resistência interna muito baixa (ideal: zero). Ligado em paralelo, funciona como curto-circuito: a corrente se desvia para ele, que pode queimar. As demais estão corretas: o amperímetro real tem resistência não nula e, em série, diminui um pouco a corrente do circuito."
+    },
+    {
+     "topic": "Adaptação de galvanômetro",
+     "pattern": "calculo",
+     "difficulty": 3,
+     "pageRef": 11,
+     "statement": "Um galvanômetro tem resistência interna de 40 Ω e suporta, no máximo, 5 mA. Para transformá-lo em um voltímetro com fundo de escala de 10 V, deve-se associar a ele um resistor de",
+     "support": null,
+     "options": [
+      "1.960 Ω, em paralelo.",
+      "2.000 Ω, em série.",
+      "0,2 Ω, em paralelo.",
+      "40 Ω, em série.",
+      "1.960 Ω, em série."
+     ],
+     "answer": "E",
+     "explanation": "Para medir 10 V com 5 mA no fundo de escala, a resistência total deve ser 10 ÷ 0,005 = 2.000 Ω. Como o galvanômetro já tem 40 Ω, o resistor multiplicador, ligado em série, vale 2.000 − 40 = 1.960 Ω. Para transformar em amperímetro seria o contrário: resistor de baixo valor em paralelo (shunt)."
+    },
+    {
+     "topic": "Evaporação e calor latente",
+     "pattern": "calculo",
+     "difficulty": 2,
+     "pageRef": 13,
+     "statement": "Uma pessoa perde 50 g de água por evaporação do suor. Adotando calor latente de vaporização da água igual a 540 cal/g, a quantidade de calor retirada do corpo e o efeito sobre a temperatura da pele são, respectivamente,",
+     "support": null,
+     "options": [
+      "27.000 cal; aquecimento da pele.",
+      "27.000 cal; resfriamento da pele.",
+      "2.700 cal; resfriamento da pele.",
+      "9,3 cal; resfriamento da pele.",
+      "27.000 cal; nenhuma alteração, pois o calor é latente."
+     ],
+     "answer": "B",
+     "explanation": "Q = m · L = 50 × 540 = 27.000 cal. A evaporação absorve esse calor da superfície do corpo, que se resfria: é por isso que suar refrigera. “Latente” significa que o calor trocado é usado na mudança de estado do suor sem alterar a temperatura dele, mas o corpo, que cede o calor, esfria."
     }
-  ]
+   ]
+  }
+ ]
 }

@@ -9,13 +9,15 @@ import React, {
   ReactNode,
   FC,
 } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cx } from "@/components/ui";
 
 interface ProgressSliderContextType {
   active: string;
   progress: number;
   handleButtonClick: (value: string) => void;
+  nextSlide: () => void;
+  prevSlide: () => void;
   vertical: boolean;
 }
 
@@ -79,9 +81,10 @@ export const ProgressSlider: FC<ProgressSliderProps> = ({
   const [progress, setProgress] = useState<number>(0);
   const [isFastForward, setIsFastForward] = useState<boolean>(false);
   const frame = useRef<number>(0);
-  const firstFrameTime = useRef<number>(performance.now());
+  const firstFrameTime = useRef<number>(0);
   const targetValue = useRef<string | null>(null);
   const [sliderValues, setSliderValues] = useState<string[]>(explicitValues ?? []);
+  const [isPaused, setIsPaused] = useState<boolean>(false);
 
   useEffect(() => {
     if (explicitValues && explicitValues.length > 0) {
@@ -109,43 +112,47 @@ export const ProgressSlider: FC<ProgressSliderProps> = ({
   }, [children, explicitValues]);
 
   useEffect(() => {
-    if (sliderValues.length > 0) {
-      firstFrameTime.current = performance.now();
-      frame.current = requestAnimationFrame(animate);
-    }
-    return () => {
-      cancelAnimationFrame(frame.current);
-    };
-  }, [sliderValues, active, isFastForward]);
+    if (sliderValues.length === 0 || isPaused) return;
 
-  const animate = (now: number) => {
-    const currentDuration = isFastForward ? fastDuration : duration;
-    const elapsedTime = now - firstFrameTime.current;
-    const timeFraction = elapsedTime / currentDuration;
+    firstFrameTime.current = typeof window !== "undefined" ? performance.now() : 0;
 
-    if (timeFraction <= 1) {
-      setProgress(
-        isFastForward
-          ? progress + (100 - progress) * timeFraction
-          : timeFraction * 100
-      );
-      frame.current = requestAnimationFrame(animate);
-    } else {
-      if (isFastForward) {
-        setIsFastForward(false);
-        if (targetValue.current !== null) {
-          setActive(targetValue.current);
-          targetValue.current = null;
-        }
+    const animate = (now: number) => {
+      const currentDuration = isFastForward ? fastDuration : duration;
+      const elapsedTime = now - firstFrameTime.current;
+      const timeFraction = elapsedTime / currentDuration;
+
+      if (timeFraction <= 1) {
+        setProgress(
+          isFastForward
+            ? progress + (100 - progress) * timeFraction
+            : timeFraction * 100
+        );
+        frame.current = requestAnimationFrame(animate);
       } else {
-        const currentIndex = sliderValues.indexOf(active);
-        const nextIndex = (currentIndex + 1) % sliderValues.length;
-        setActive(sliderValues[nextIndex]);
+        if (isFastForward) {
+          setIsFastForward(false);
+          if (targetValue.current !== null) {
+            setActive(targetValue.current);
+            targetValue.current = null;
+          }
+        } else {
+          const currentIndex = sliderValues.indexOf(active);
+          const nextIndex = (currentIndex + 1) % sliderValues.length;
+          setActive(sliderValues[nextIndex]);
+        }
+        setProgress(0);
+        firstFrameTime.current = performance.now();
       }
-      setProgress(0);
-      firstFrameTime.current = performance.now();
-    }
-  };
+    };
+
+    frame.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (typeof window !== "undefined") {
+        cancelAnimationFrame(frame.current);
+      }
+    };
+  }, [sliderValues, active, isFastForward, isPaused, duration, fastDuration, progress]);
 
   const handleButtonClick = (value: string) => {
     if (value !== active) {
@@ -158,11 +165,31 @@ export const ProgressSlider: FC<ProgressSliderProps> = ({
     }
   };
 
+  const nextSlide = () => {
+    if (sliderValues.length === 0) return;
+    const currentIndex = sliderValues.indexOf(active);
+    const nextIndex = (currentIndex + 1) % sliderValues.length;
+    handleButtonClick(sliderValues[nextIndex]);
+  };
+
+  const prevSlide = () => {
+    if (sliderValues.length === 0) return;
+    const currentIndex = sliderValues.indexOf(active);
+    const prevIndex = (currentIndex - 1 + sliderValues.length) % sliderValues.length;
+    handleButtonClick(sliderValues[prevIndex]);
+  };
+
   return (
     <ProgressSliderContext.Provider
-      value={{ active, progress, handleButtonClick, vertical }}
+      value={{ active, progress, handleButtonClick, nextSlide, prevSlide, vertical }}
     >
-      <div className={cx("relative", className)}>{children}</div>
+      <div
+        className={cx("relative group", className)}
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        {children}
+      </div>
     </ProgressSliderContext.Provider>
   );
 };
@@ -171,7 +198,7 @@ export const SliderContent: FC<SliderContentProps> = ({
   children,
   className,
 }) => {
-  return <div className={cx("", className)}>{children}</div>;
+  return <div className={cx("relative overflow-hidden", className)}>{children}</div>;
 };
 
 export const SliderWrapper: FC<SliderWrapperProps> = ({
@@ -180,22 +207,21 @@ export const SliderWrapper: FC<SliderWrapperProps> = ({
   className,
 }) => {
   const { active } = useProgressSliderContext();
+  const isSelected = active === value;
 
   return (
-    <AnimatePresence mode="popLayout">
-      {active === value && (
-        <motion.div
-          key={value}
-          initial={{ opacity: 0, y: 8, scale: 0.99 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: -8, scale: 0.99 }}
-          transition={{ duration: 0.35, ease: "easeOut" }}
-          className={cx("", className)}
-        >
-          {children}
-        </motion.div>
+    <div
+      className={cx(
+        "transition-all duration-500 ease-out",
+        isSelected
+          ? "opacity-100 scale-100 relative z-10 block pointer-events-auto"
+          : "opacity-0 scale-98 absolute inset-0 -z-10 pointer-events-none hidden",
+        className
       )}
-    </AnimatePresence>
+      aria-hidden={!isSelected}
+    >
+      {children}
+    </div>
   );
 };
 
@@ -222,7 +248,9 @@ export const SliderBtn: FC<SliderBtnProps> = ({
       type="button"
       className={cx(
         "relative text-left transition-all duration-300",
-        isSelected ? "opacity-100 ring-1 ring-primary/40 bg-surface/90 shadow-md" : "opacity-60 hover:opacity-90 bg-surface/50",
+        isSelected
+          ? "opacity-100 ring-2 ring-primary/60 bg-surface shadow-md border-primary/40"
+          : "opacity-60 hover:opacity-90 bg-surface/50 border-border",
         className
       )}
       onClick={() => handleButtonClick(value)}
@@ -247,3 +275,28 @@ export const SliderBtn: FC<SliderBtnProps> = ({
     </button>
   );
 };
+
+export function SliderNavControls({ className }: { className?: string }) {
+  const { prevSlide, nextSlide } = useProgressSliderContext();
+
+  return (
+    <div className={cx("flex items-center gap-2", className)}>
+      <button
+        type="button"
+        onClick={prevSlide}
+        aria-label="Slide anterior"
+        className="grid h-9 w-9 place-items-center rounded-xl border border-border bg-surface text-muted transition hover:bg-surface-2 hover:text-text cursor-pointer active:scale-95 shadow-xs"
+      >
+        <ChevronLeft className="h-5 w-5" />
+      </button>
+      <button
+        type="button"
+        onClick={nextSlide}
+        aria-label="Próximo slide"
+        className="grid h-9 w-9 place-items-center rounded-xl border border-border bg-surface text-muted transition hover:bg-surface-2 hover:text-text cursor-pointer active:scale-95 shadow-xs"
+      >
+        <ChevronRight className="h-5 w-5" />
+      </button>
+    </div>
+  );
+}

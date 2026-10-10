@@ -8,6 +8,7 @@ import {
   SliderBtn,
   SliderBtnGroup,
   SliderContent,
+  SliderNavControls,
   SliderWrapper,
 } from "@/components/progressive-carousel";
 
@@ -134,6 +135,13 @@ export default function ComoFuncionaPage() {
             sliderValues={CAROUSEL_STEPS.map((s) => s.sliderName)}
             className="space-y-4"
           >
+            <div className="flex items-center justify-between px-1">
+              <span className="text-xs font-semibold uppercase tracking-wider text-muted">
+                Visualização do Sistema
+              </span>
+              <SliderNavControls />
+            </div>
+
             <SliderContent>
               {CAROUSEL_STEPS.map((step) => (
                 <SliderWrapper key={step.sliderName} value={step.sliderName}>

@@ -7,14 +7,14 @@
    "id": "estatistica/a14/s01",
    "bizu": {
     "summary": [
-     "**ANOVA de um fator (one-way)**: teste de hipóteses que compara as **médias de três ou mais grupos**. **H₀**: todas as médias são iguais; **H₁**: pelo menos uma média é diferente. Foi desenvolvida por R. A. Fisher.",
-     "**Ideia**: separa a variação **entre os grupos** (atribuída ao tratamento/fator) da variação **dentro dos grupos** (atribuída ao erro, resíduo ou componente aleatória).",
-     "**Modelo**: x_ij = μ + α_i + ε_ij, em que μ é a média geral, α_i o efeito do tratamento i e ε_ij o erro aleatório.",
-     "**Pressupostos**: erros **normais**, com **média zero** e **variância constante** (homocedasticidade) e **independentes** (sem autocorrelação, que pode ser investigada por gráfico dos erros ou testes específicos).",
-     "**Decomposição**: x_ij − x̿ = (x̄_i − x̿) + (x_ij − x̄_i), ou seja, desvio total = desvio do tratamento + desvio do erro.",
+     "### 1. Fundamentação Teórica e Conceitos Centrais",
+     "**Ideia**: separa a variação **entre os grupos** (atribuída ao tratamento/fator) da variação **dentro dos grupos** (atribuída ao erro, resíduo ou componente aleatória). **Modelo**: x_ij = μ + α_i + ε_ij, em que μ é a média geral, α_i o efeito do tratamento i e ε_ij o erro aleatório.",
+     "**Pressupostos**: erros **normais**, com **média zero** e **variância constante** (homocedasticidade) e **independentes** (sem autocorrelação, que pode ser investigada por gráfico dos erros ou testes específicos). **Decomposição**: x_ij − x̿ = (x̄_i − x̿) + (x_ij − x̄_i), ou seja, desvio total = desvio do tratamento + desvio do erro.",
      "**Somas de quadrados**: **SQTrat = Σ n·(x̄_i − x̿)²**; **SQErro = ΣΣ(x_ij − x̄_i)²**; **SQTotal = SQTrat + SQErro**.",
-     "💡 **Exemplo Prático:** **Fórmula alternativa**: SQTrat = Σ(T_i²/n) − (ΣΣx)²/N, com T_i o total do tratamento i. Ex.: (40² + 35² + 30²)/5 − 105²/15 = 745 − 735 = 10.",
-     "💡 **Exemplo da aula**: 3 professores com 5 alunos cada; SQTrat = 10, SQErro = 30 e SQTotal = 40."
+     "### 2. Análise Prática e Desdobramentos",
+     "• **Aplicação:** **ANOVA de um fator (one-way)**: teste de hipóteses que compara as **médias de três ou mais grupos**. **H₀**: todas as médias são iguais; **H₁**: pelo menos uma média é diferente. Foi desenvolvida por R. A. Fisher.",
+     "• **Aplicação:** **Fórmula alternativa**: SQTrat = Σ(T_i²/n) − (ΣΣx)²/N, com T_i o total do tratamento i. Ex.: (40² + 35² + 30²)/5 − 105²/15 = 745 − 735 = 10.",
+     "• **Aplicação:** 💡 **Exemplo da aula**: 3 professores com 5 alunos cada; SQTrat = 10, SQErro = 30 e SQTotal = 40."
     ],
     "teoria": [
      {
@@ -310,16 +310,16 @@
    "id": "estatistica/a14/s02",
    "bizu": {
     "summary": [
-     "**Graus de liberdade** (k tratamentos, n repetições cada, N total): **GL_Total = N − 1**; **GL_Trat = k − 1**; **GL_Erro = N − k = k(n − 1)**. Eles se somam: GL_Total = GL_Trat + GL_Erro.",
-     "**Quadrados médios**: **QM_Trat = SQ_Trat/GL_Trat** e **QM_Erro = SQ_Erro/GL_Erro**. O QM_Erro é a estimativa da **variância dos erros** σ².",
-     "**Estatística F**: **F = QM_Trat/QM_Erro**, que sob H₀ segue **F de Snedecor com (k − 1; N − k) g.l.** Valores grandes de F indicam que a variação entre grupos supera o esperado pelo acaso.",
-     "💡 **Exemplo**: SQ_Trat = 10 (GL 2), SQ_Erro = 30 (GL 12) → QM_Trat = 5, QM_Erro = 2,5 e F = 2. Com f₀,₀₅;₂;₁₂ = 3,885, F < crítico e **não se rejeita** H₀.",
-     "**Decisão por p-valor**: se p < α, rejeita-se H₀. O p-valor é a probabilidade de um resultado tão ou mais extremo supondo H₀.",
-     "**Tabela ANOVA**: cada linha é uma fonte (tratamento, erro e total) e as colunas trazem GL, SQ, QM e F. Preencher a tabela é o resumo final do teste.",
-     "💡 **Exemplo Prático:** **Efeito aleatório**: o componente de variância do tratamento é estimado por (QM_Trat − QM_Erro)/n. Ex.: (360 − 60)/4 = 75.",
-     "**Blocos**: SQ_Total = SQ_Trat + SQ_Bloco + SQ_Erro, e há duas estatísticas F (tratamento e bloco), ambas divididas pelo QM_Erro.",
+     "### 1. Fundamentação Teórica e Conceitos Centrais",
+     "**Graus de liberdade** (k tratamentos, n repetições cada, N total): **GL_Total = N − 1**; **GL_Trat = k − 1**; **GL_Erro = N − k = k(n − 1)**. Eles se somam: GL_Total = GL_Trat + GL_Erro. **Quadrados médios**: **QM_Trat = SQ_Trat/GL_Trat** e **QM_Erro = SQ_Erro/GL_Erro**. O QM_Erro é a estimativa da **variância dos erros** σ².",
+     "**Estatística F**: **F = QM_Trat/QM_Erro**, que sob H₀ segue **F de Snedecor com (k − 1; N − k) g.l.** Valores grandes de F indicam que a variação entre grupos supera o esperado pelo acaso. **Decisão por p-valor**: se p < α, rejeita-se H₀. O p-valor é a probabilidade de um resultado tão ou mais extremo supondo H₀.",
+     "**Tabela ANOVA**: cada linha é uma fonte (tratamento, erro e total) e as colunas trazem GL, SQ, QM e F. Preencher a tabela é o resumo final do teste. **Blocos**: SQ_Total = SQ_Trat + SQ_Bloco + SQ_Erro, e há duas estatísticas F (tratamento e bloco), ambas divididas pelo QM_Erro.",
      "**Repetições desiguais** (n_i diferentes): SQ_Trat = Σ n_i·(x̄_i − x̿)²; GL_Erro = N − k.",
-     "⚠️ **Atenção**: rejeitar H₀ mostra que há ao menos uma média diferente, mas **não diz quais** são diferentes (exige comparações múltiplas)."
+     "### 2. Análise Prática e Desdobramentos",
+     "• **Aplicação:** 💡 **Exemplo**: SQ_Trat = 10 (GL 2), SQ_Erro = 30 (GL 12) → QM_Trat = 5, QM_Erro = 2,5 e F = 2. Com f₀,₀₅;₂;₁₂ = 3,885, F < crítico e **não se rejeita** H₀.",
+     "• **Aplicação:** **Efeito aleatório**: o componente de variância do tratamento é estimado por (QM_Trat − QM_Erro)/n. Ex.: (360 − 60)/4 = 75.",
+     "### 3. Diretrizes de Prova e Pontos de Atenção",
+     "> ⚠️ **Atenção de Prova:** ⚠️ **Atenção**: rejeitar H₀ mostra que há ao menos uma média diferente, mas **não diz quais** são diferentes (exige comparações múltiplas)."
     ],
     "teoria": [
      {
@@ -654,14 +654,13 @@
    "id": "estatistica/a14/s03",
    "bizu": {
     "summary": [
-     "**ANOVA da regressão**: avalia se vale usar o modelo de regressão, comparando-o ao modelo apenas com a média. **H₀: β = 0** (X não explica Y) contra H₁: β ≠ 0. Na regressão múltipla, H₀: todos os coeficientes são nulos; H₁: ao menos um é diferente de zero.",
-     "**Fontes de variação**: **Modelo** (variação explicada), **Erro/resíduo** (não explicada) e **Total**. Vale **SQ_Total = SQ_Modelo + SQ_Erro**; os valores calculados com arredondamentos podem divergir ligeiramente.",
-     "**Graus de liberdade**: o do **modelo** é igual ao **número de variáveis explicativas** (1 na simples); o do **erro** é **n − 2** na simples (n − p na múltipla); o **total** é **n − 1**.",
-     "**Quadrados médios**: QM_Modelo = SQ_Modelo/GL_Modelo e QM_Erro = SQ_Erro/(n − 2) (erro quadrático médio). **F = QM_Modelo/QM_Erro**, com (1; n − 2) g.l. na regressão simples.",
-     "💡 **Exemplo**: SQ_Modelo = 1,79, SQ_Erro = 8,39 e n = 5 → QM_Erro = 8,39/3 ≈ 2,80 e F ≈ 0,64, muito abaixo do crítico (g.l. 1 e 3, 5%): não se rejeita H₀.",
-     "**Coeficiente de determinação**: **R² = SQ_Modelo/SQ_Total**, entre 0 e 1; fração da variância total explicada pelo modelo. Tabela ANOVA: R² = 4096,1644/6300,1 ≈ 65%.",
-     "**Correlação**: **|R| = √R²**, com o sinal do coeficiente angular b. Com b = −0,36 e R² ≈ 0,18, R ≈ −0,4.",
-     "💡 **Exemplo Prático:** **R² ajustado**: **R²_aj = 1 − (1 − R²)(n − 1)/(n − p)**. É **sempre menor** que R² e pode ser **negativo** (ex.: −0,12). Penaliza variáveis que pouco acrescentam."
+     "### 1. Fundamentação Teórica e Conceitos Centrais",
+     "**ANOVA da regressão**: avalia se vale usar o modelo de regressão, comparando-o ao modelo apenas com a média. **H₀: β = 0** (X não explica Y) contra H₁: β ≠ 0. Na regressão múltipla, H₀: todos os coeficientes são nulos; H₁: ao menos um é diferente de zero. **Fontes de variação**: **Modelo** (variação explicada), **Erro/resíduo** (não explicada) e **Total**. Vale **SQ_Total = SQ_Modelo + SQ_Erro**; os valores calculados com arredondamentos podem divergir ligeiramente.",
+     "**Graus de liberdade**: o do **modelo** é igual ao **número de variáveis explicativas** (1 na simples); o do **erro** é **n − 2** na simples (n − p na múltipla); o **total** é **n − 1**. **Quadrados médios**: QM_Modelo = SQ_Modelo/GL_Modelo e QM_Erro = SQ_Erro/(n − 2) (erro quadrático médio). **F = QM_Modelo/QM_Erro**, com (1; n − 2) g.l. na regressão simples.",
+     "**Coeficiente de determinação**: **R² = SQ_Modelo/SQ_Total**, entre 0 e 1; fração da variância total explicada pelo modelo. Tabela ANOVA: R² = 4096,1644/6300,1 ≈ 65%. **Correlação**: **|R| = √R²**, com o sinal do coeficiente angular b. Com b = −0,36 e R² ≈ 0,18, R ≈ −0,4.",
+     "### 2. Análise Prática e Desdobramentos",
+     "• **Aplicação:** 💡 **Exemplo**: SQ_Modelo = 1,79, SQ_Erro = 8,39 e n = 5 → QM_Erro = 8,39/3 ≈ 2,80 e F ≈ 0,64, muito abaixo do crítico (g.l. 1 e 3, 5%): não se rejeita H₀.",
+     "• **Aplicação:** **R² ajustado**: **R²_aj = 1 − (1 − R²)(n − 1)/(n − p)**. É **sempre menor** que R² e pode ser **negativo** (ex.: −0,12). Penaliza variáveis que pouco acrescentam."
     ],
     "teoria": [
      {
@@ -978,14 +977,13 @@
    "id": "estatistica/a14/s04",
    "bizu": {
     "summary": [
-     "**Intervalo de confiança do coeficiente angular**: **β̂ ± t_GLE·s_β**, em que t_GLE vem da t de Student com os **graus de liberdade do erro** (n − 2 na simples) e s_β é o **erro padrão** de β̂.",
-     "**Erro padrão do coeficiente angular**: **s²_β = QM_Erro / Σ(Xᵢ − X̄)²**. Quanto maior a variação das estimativas entre amostras, menos precisas elas são. Na regressão múltipla, os erros padrão vêm da diagonal de σ²·(XᵀX)⁻¹.",
-     "💡 **Exemplo Prático:** **Intervalo do intercepto**: α̂ ± t·s_α, com **s_α = √(QM_Erro·[1/n + X̄²/Σ(Xᵢ − X̄)²])**. Ex.: QME = 2,8, n = 5, X̄ = 7, Σ(X − X̄)² = 14 → s_α ≈ 3,22.",
-     "**Intervalo da previsão individual** para X₀: **Ŷ₀ ± t·s_Y**, em que a variância da predição inclui o termo 1 (variância do próprio erro) além de 1/n e (X₀ − X̄)²/Σ(Xᵢ − X̄)², sendo maior que a variância do valor médio estimado.",
-     "**Amostras grandes**: a t de Student pode ser aproximada pela normal padrão.",
-     "**Teste de significância individual**: H₀: β = 0 (ou outro valor dado). **t = β̂/s_β**, com **GL_Erro** graus de liberdade. Rejeita-se H₀ se o p-valor < α.",
-     "**Teste t × teste F**: o F testa a significância **global** da regressão; o t, a significância **individual** de cada coeficiente. Na regressão **simples**, **F = t²** (sob H₀: β = 0).",
-     "**Dica**: se o enunciado não indica o valor de H₀, presuma H₀: β = 0."
+     "### 1. Fundamentação Teórica e Conceitos Centrais",
+     "**Intervalo de confiança do coeficiente angular**: **β̂ ± t_GLE·s_β**, em que t_GLE vem da t de Student com os **graus de liberdade do erro** (n − 2 na simples) e s_β é o **erro padrão** de β̂. **Erro padrão do coeficiente angular**: **s²_β = QM_Erro / Σ(Xᵢ − X̄)²**. Quanto maior a variação das estimativas entre amostras, menos precisas elas são. Na regressão múltipla, os erros padrão vêm da diagonal de σ²·(XᵀX)⁻¹.",
+     "**Intervalo da previsão individual** para X₀: **Ŷ₀ ± t·s_Y**, em que a variância da predição inclui o termo 1 (variância do próprio erro) além de 1/n e (X₀ − X̄)²/Σ(Xᵢ − X̄)², sendo maior que a variância do valor médio estimado. **Amostras grandes**: a t de Student pode ser aproximada pela normal padrão.",
+     "**Teste de significância individual**: H₀: β = 0 (ou outro valor dado). **t = β̂/s_β**, com **GL_Erro** graus de liberdade. Rejeita-se H₀ se o p-valor < α. **Teste t × teste F**: o F testa a significância **global** da regressão; o t, a significância **individual** de cada coeficiente. Na regressão **simples**, **F = t²** (sob H₀: β = 0).",
+     "**Dica**: se o enunciado não indica o valor de H₀, presuma H₀: β = 0.",
+     "### 2. Análise Prática e Desdobramentos",
+     "• **Aplicação:** **Intervalo do intercepto**: α̂ ± t·s_α, com **s_α = √(QM_Erro·[1/n + X̄²/Σ(Xᵢ − X̄)²])**. Ex.: QME = 2,8, n = 5, X̄ = 7, Σ(X − X̄)² = 14 → s_α ≈ 3,22."
     ],
     "teoria": [
      {

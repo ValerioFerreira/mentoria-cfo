@@ -1,311 +1,306 @@
 {
-  "aula": "informatica/c01",
-  "batch": "w1-informatica",
-  "status": "DRAFT",
-  "segments": [
+ "aula": "informatica/c01",
+ "batch": "w1-informatica",
+ "status": "DRAFT",
+ "segments": [
+  {
+   "id": "informatica/c01/s01",
+   "bizu": {
+    "summary": [
+     "### 1. Fundamentação Teórica e Conceitos Centrais",
+     "**Navegador** solicita, recebe e exibe páginas da web (HTTP/HTTPS). O padrão do **Windows 11** é o **Microsoft Edge**; também caem **Chrome** e **Firefox**. No Edge fala-se em **Favoritos**; no Chrome e no Firefox, em **Marcadores**. O **Internet Explorer** foi aposentado em junho de 2022 (o Edge tem **modo IE**). **Cookies** são **arquivos de dados** (não são vírus) que os sites gravam: de **sessão** × **persistentes**, **primários** × **de terceiros** (rastreamento). **Cache** é cópia local de partes das páginas, para **acelerar** o carregamento. **Histórico** é a lista de endereços visitados. Apagar cookies faz o usuário **sair das contas**.",
+     "**Navegação privativa:** **InPrivate** (Edge, **Ctrl + Shift + N**), **Anônima** (Chrome, **Ctrl + Shift + N**), **Janela privativa** (Firefox, **Ctrl + Shift + P**). Ao fechar **todas** as janelas privativas, descartam-se **histórico, cookies e dados de formulário** da sessão. **Não** apaga **downloads** nem **favoritos** e **não** torna o usuário anônimo para o **provedor**, o **empregador** e os **sites**. **Segurança no navegador:** **HTTPS e cadeado** indicam tráfego cifrado, mas **não** garantem que o site seja honesto; **SmartScreen** (Edge) e **Navegação segura** (Chrome); **prevenção de rastreamento** do Edge em três níveis (**Básico, Equilibrado e Estrito**); permissões por site e bloqueador de pop-ups.",
+     "**Atalhos essenciais:** **Ctrl + T** (nova guia), **Ctrl + W** (fechar guia), **Ctrl + Shift + T** (reabrir a última guia fechada), **Ctrl + N** (nova janela), **Ctrl + L** (barra de endereços), **F5** (atualizar) e **Ctrl + F5** (ignorando o cache), **Ctrl + H** (histórico), **Ctrl + J** (downloads), **Ctrl + D** (favorito), **Ctrl + Shift + Delete** (limpar dados de navegação), **F11** (tela cheia). **Operadores do Google:** **\" \"** (frase exata), **−** (exclui), **OR**, **site:** (restringe ao domínio), **filetype:**, **intitle:**, **..** (intervalo) e **before:/after:**. Sem operador, os termos se unem por **E** implícito.",
+     "**Prompt de Comando:** abre-se com **Win + R > cmd**; **não diferencia maiúsculas**; **comando /?** mostra a ajuda; **Tab** completa nomes; **Ctrl + C** interrompe; cls limpa a tela. **Arquivos e pastas:** dir (/a /s /b /p /w), cd (.., \\, /d), md, rd (/s /q), copy, xcopy, robocopy, move, ren, del, type, tree, attrib. **DELTREE não existe no Windows 11** (era do MS-DOS e do Windows 9x): para apagar pasta com tudo dentro usa-se **rd /s**. del e rd /s **não** enviam para a Lixeira. **Curingas:** o asterisco substitui vários caracteres, e a interrogação (?), um só caractere.",
+     "**Redirecionamento e encadeamento:** > **sobrescreve** o arquivo; >> **acrescenta** ao final; < lê de arquivo; | (pipe) passa a saída ao comando seguinte; & executa em sequência; && só executa o segundo se o primeiro der certo. **Rede:** **ipconfig** (/all detalha MAC, DNS e DHCP; /release libera o IP; /renew renova; **/flushdns** limpa o cache DNS); **ping** (-t contínuo, -n nº de pacotes); tracert (rota); nslookup (DNS); netstat (-a -n -o -b); getmac; hostname.",
+     "**Processos e sistema:** tasklist lista processos; **taskkill** encerra (/pid número, **/im** nome da imagem, **/f** força); chkdsk (/f corrige, /r setores defeituosos; **administrador**); **sfc /scannow** verifica e repara arquivos de sistema; dism repara a imagem; shutdown (/s /r /t /a /l); systeminfo; format; diskpart. **Periféricos:** **entrada** (teclado, mouse, scanner), **saída** (monitor, impressora) e **mistos** (tela sensível ao toque, **multifuncional**, HD externo e pendrive). **USB:** “hot plug”; **Type-C** é o **formato do conector**, e não uma velocidade (USB 2.0 = 480 Mbps; USB 3.x = 5, 10 ou 20 Gbps; USB4 = até 40 Gbps). **HDMI/DisplayPort** levam vídeo e áudio; **VGA** é analógico.",
+     "**Driver** é o software que permite ao SO usar o hardware; **Plug and Play** detecta o dispositivo e instala/configura o driver automaticamente. **Gerenciador de Dispositivos** (**Win + X** ou devmgmt.msc): **“!” amarelo** = problema; ações: **atualizar, reverter, desabilitar, desinstalar**. **Win + P**: somente a tela do PC, duplicar, estender, somente a segunda tela. Impressoras: **Configurações > Bluetooth e dispositivos > Impressoras e scanners**."
+    ],
+    "teoria": [
+     {
+      "statement": "A navegação privativa não oculta a atividade do usuário do provedor de internet nem dos sites visitados.",
+      "isTrue": true,
+      "explanation": "O modo privativo só evita que histórico, cookies e dados de formulário fiquem no computador. O provedor, a rede da instituição e os sites continuam podendo ver o acesso."
+     },
+     {
+      "statement": "O cache do navegador é o local em que ficam armazenadas as senhas do usuário.",
+      "isTrue": false,
+      "explanation": "O cache guarda cópias locais de partes das páginas (imagens, scripts, estilos) para acelerar o carregamento. As senhas ficam no gerenciador de senhas do navegador."
+     },
+     {
+      "statement": "O comando DELTREE, do MS-DOS, não existe no Windows 11; para apagar uma pasta com todo o seu conteúdo usa-se o comando rd com a opção /s.",
+      "isTrue": true,
+      "explanation": "O DELTREE existiu no MS-DOS e no Windows 9x e não faz parte do Windows NT e posteriores. O comando rd /s remove a pasta com todos os arquivos e subpastas."
+     },
+     {
+      "statement": "No Prompt de Comando, o símbolo >> sobrescreve o conteúdo do arquivo de destino.",
+      "isTrue": false,
+      "explanation": "O símbolo > é que sobrescreve. O >> acrescenta a saída ao final do arquivo, preservando o conteúdo que já estava nele."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "O recurso Plug and Play detecta automaticamente o dispositivo conectado e instala ou configura o driver adequado.",
+      "isTrue": true,
+      "explanation": "O driver é o software que permite ao sistema operacional se comunicar com o hardware, e o Plug and Play é o recurso que automatiza a sua detecção e instalação."
+     },
+     {
+      "statement": "O USB Type-C é um padrão de velocidade que substitui o USB 3.0.",
+      "isTrue": false,
+      "explanation": "Type-C é o formato do conector (reversível). A velocidade depende do padrão USB suportado pela porta, pelo cabo e pelo dispositivo."
+     },
+     {
+      "statement": "O atalho Win + P abre as opções de projeção: somente a tela do PC, duplicar, estender e somente a segunda tela.",
+      "isTrue": true,
+      "explanation": "No modo estender, a área de trabalho ocupa as duas telas; no modo duplicar, ambas mostram a mesma imagem."
+     },
+     {
+      "statement": "O comando ipconfig /flushdns libera o endereço IP atribuído ao computador pelo servidor DHCP.",
+      "isTrue": false,
+      "explanation": "O /flushdns limpa o cache de DNS. Quem libera o endereço IP é o ipconfig /release (e o /renew solicita um novo)."
+     }
+    ]
+   },
+   "questions": [
     {
-      "id": "informatica/c01/s01",
-      "bizu": {
-        "summary": [
-          "**Navegador** solicita, recebe e exibe páginas da web (HTTP/HTTPS). O padrão do **Windows 11** é o **Microsoft Edge**; também caem **Chrome** e **Firefox**. No Edge fala-se em **Favoritos**; no Chrome e no Firefox, em **Marcadores**. O **Internet Explorer** foi aposentado em junho de 2022 (o Edge tem **modo IE**).",
-          "**Cookies** são **arquivos de dados** (não são vírus) que os sites gravam: de **sessão** × **persistentes**, **primários** × **de terceiros** (rastreamento). **Cache** é cópia local de partes das páginas, para **acelerar** o carregamento. **Histórico** é a lista de endereços visitados. Apagar cookies faz o usuário **sair das contas**.",
-          "**Navegação privativa:** **InPrivate** (Edge, **Ctrl + Shift + N**), **Anônima** (Chrome, **Ctrl + Shift + N**), **Janela privativa** (Firefox, **Ctrl + Shift + P**). Ao fechar **todas** as janelas privativas, descartam-se **histórico, cookies e dados de formulário** da sessão. **Não** apaga **downloads** nem **favoritos** e **não** torna o usuário anônimo para o **provedor**, o **empregador** e os **sites**.",
-          "**Segurança no navegador:** **HTTPS e cadeado** indicam tráfego cifrado, mas **não** garantem que o site seja honesto; **SmartScreen** (Edge) e **Navegação segura** (Chrome); **prevenção de rastreamento** do Edge em três níveis (**Básico, Equilibrado e Estrito**); permissões por site e bloqueador de pop-ups.",
-          "**Atalhos essenciais:** **Ctrl + T** (nova guia), **Ctrl + W** (fechar guia), **Ctrl + Shift + T** (reabrir a última guia fechada), **Ctrl + N** (nova janela), **Ctrl + L** (barra de endereços), **F5** (atualizar) e **Ctrl + F5** (ignorando o cache), **Ctrl + H** (histórico), **Ctrl + J** (downloads), **Ctrl + D** (favorito), **Ctrl + Shift + Delete** (limpar dados de navegação), **F11** (tela cheia).",
-          "**Operadores do Google:** **\" \"** (frase exata), **−** (exclui), **OR**, **site:** (restringe ao domínio), **filetype:**, **intitle:**, **..** (intervalo) e **before:/after:**. Sem operador, os termos se unem por **E** implícito.",
-          "**Prompt de Comando:** abre-se com **Win + R > cmd**; **não diferencia maiúsculas**; **comando /?** mostra a ajuda; **Tab** completa nomes; **Ctrl + C** interrompe; cls limpa a tela. **Arquivos e pastas:** dir (/a /s /b /p /w), cd (.., \\, /d), md, rd (/s /q), copy, xcopy, robocopy, move, ren, del, type, tree, attrib.",
-          "**DELTREE não existe no Windows 11** (era do MS-DOS e do Windows 9x): para apagar pasta com tudo dentro usa-se **rd /s**. del e rd /s **não** enviam para a Lixeira. **Curingas:** o asterisco substitui vários caracteres, e a interrogação (?), um só caractere.",
-          "**Redirecionamento e encadeamento:** > **sobrescreve** o arquivo; >> **acrescenta** ao final; < lê de arquivo; | (pipe) passa a saída ao comando seguinte; & executa em sequência; && só executa o segundo se o primeiro der certo.",
-          "**Rede:** **ipconfig** (/all detalha MAC, DNS e DHCP; /release libera o IP; /renew renova; **/flushdns** limpa o cache DNS); **ping** (-t contínuo, -n nº de pacotes); tracert (rota); nslookup (DNS); netstat (-a -n -o -b); getmac; hostname.",
-          "**Processos e sistema:** tasklist lista processos; **taskkill** encerra (/pid número, **/im** nome da imagem, **/f** força); chkdsk (/f corrige, /r setores defeituosos; **administrador**); **sfc /scannow** verifica e repara arquivos de sistema; dism repara a imagem; shutdown (/s /r /t /a /l); systeminfo; format; diskpart.",
-          "**Periféricos:** **entrada** (teclado, mouse, scanner), **saída** (monitor, impressora) e **mistos** (tela sensível ao toque, **multifuncional**, HD externo e pendrive). **USB:** “hot plug”; **Type-C** é o **formato do conector**, e não uma velocidade (USB 2.0 = 480 Mbps; USB 3.x = 5, 10 ou 20 Gbps; USB4 = até 40 Gbps). **HDMI/DisplayPort** levam vídeo e áudio; **VGA** é analógico.",
-          "**Driver** é o software que permite ao SO usar o hardware; **Plug and Play** detecta o dispositivo e instala/configura o driver automaticamente. **Gerenciador de Dispositivos** (**Win + X** ou devmgmt.msc): **“!” amarelo** = problema; ações: **atualizar, reverter, desabilitar, desinstalar**. **Win + P**: somente a tela do PC, duplicar, estender, somente a segunda tela. Impressoras: **Configurações > Bluetooth e dispositivos > Impressoras e scanners**."
-        ],
-        "teoria": [
-          {
-            "statement": "A navegação privativa não oculta a atividade do usuário do provedor de internet nem dos sites visitados.",
-            "isTrue": true,
-            "explanation": "O modo privativo só evita que histórico, cookies e dados de formulário fiquem no computador. O provedor, a rede da instituição e os sites continuam podendo ver o acesso."
-          },
-          {
-            "statement": "O cache do navegador é o local em que ficam armazenadas as senhas do usuário.",
-            "isTrue": false,
-            "explanation": "O cache guarda cópias locais de partes das páginas (imagens, scripts, estilos) para acelerar o carregamento. As senhas ficam no gerenciador de senhas do navegador."
-          },
-          {
-            "statement": "O comando DELTREE, do MS-DOS, não existe no Windows 11; para apagar uma pasta com todo o seu conteúdo usa-se o comando rd com a opção /s.",
-            "isTrue": true,
-            "explanation": "O DELTREE existiu no MS-DOS e no Windows 9x e não faz parte do Windows NT e posteriores. O comando rd /s remove a pasta com todos os arquivos e subpastas."
-          },
-          {
-            "statement": "No Prompt de Comando, o símbolo >> sobrescreve o conteúdo do arquivo de destino.",
-            "isTrue": false,
-            "explanation": "O símbolo > é que sobrescreve. O >> acrescenta a saída ao final do arquivo, preservando o conteúdo que já estava nele."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "O recurso Plug and Play detecta automaticamente o dispositivo conectado e instala ou configura o driver adequado.",
-            "isTrue": true,
-            "explanation": "O driver é o software que permite ao sistema operacional se comunicar com o hardware, e o Plug and Play é o recurso que automatiza a sua detecção e instalação."
-          },
-          {
-            "statement": "O USB Type-C é um padrão de velocidade que substitui o USB 3.0.",
-            "isTrue": false,
-            "explanation": "Type-C é o formato do conector (reversível). A velocidade depende do padrão USB suportado pela porta, pelo cabo e pelo dispositivo."
-          },
-          {
-            "statement": "O atalho Win + P abre as opções de projeção: somente a tela do PC, duplicar, estender e somente a segunda tela.",
-            "isTrue": true,
-            "explanation": "No modo estender, a área de trabalho ocupa as duas telas; no modo duplicar, ambas mostram a mesma imagem."
-          },
-          {
-            "statement": "O comando ipconfig /flushdns libera o endereço IP atribuído ao computador pelo servidor DHCP.",
-            "isTrue": false,
-            "explanation": "O /flushdns limpa o cache de DNS. Quem libera o endereço IP é o ipconfig /release (e o /renew solicita um novo)."
-          }
-        ]
-      },
-      "questions": [
-        {
-          "topic": "Navegação privativa: nome e atalho",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 2,
-          "statement": "No Microsoft Edge, o modo de navegação privativa chama-se e pode ser aberto, no Windows, pelo atalho",
-          "support": null,
-          "options": [
-            "Anônima; Ctrl + Shift + P.",
-            "Janela privativa; Ctrl + Shift + N.",
-            "InPrivate; Ctrl + Shift + N.",
-            "InPrivate; Ctrl + Shift + P.",
-            "Anônima; Ctrl + Alt + N."
-          ],
-          "answer": "C",
-          "explanation": "No Edge, o modo privativo é o InPrivate, aberto com Ctrl + Shift + N (o mesmo atalho do modo Anônimo do Chrome). No Firefox, a Janela privativa é aberta com Ctrl + Shift + P."
-        },
-        {
-          "topic": "Navegação privativa: o que faz e o que não faz",
-          "pattern": "correta",
-          "difficulty": 2,
-          "pageRef": 2,
-          "statement": "A respeito da navegação privativa dos navegadores, é correto afirmar que",
-          "support": null,
-          "options": [
-            "ao fechar todas as janelas privativas, o histórico, os cookies e os dados de formulário da sessão são descartados, mas os arquivos baixados permanecem no computador.",
-            "ela torna o usuário anônimo na internet, impedindo que o provedor de acesso e os sites visitados vejam a navegação.",
-            "ela apaga os arquivos baixados durante a sessão, assim que a janela privativa é fechada pelo usuário.",
-            "ela protege o computador contra vírus e contra programas que registram as teclas digitadas.",
-            "as extensões instaladas ficam sempre ativas nesse modo, sem possibilidade de bloqueio pelo usuário."
-          ],
-          "answer": "A",
-          "explanation": "O modo privativo descarta histórico, cookies e dados de formulário ao fechar todas as janelas privativas, mas não apaga downloads nem favoritos. Ele não torna o usuário anônimo para o provedor ou para os sites e não protege contra malware; por padrão, as extensões ficam desativadas."
-        },
-        {
-          "topic": "Cookies",
-          "pattern": "correta",
-          "difficulty": 2,
-          "pageRef": 2,
-          "statement": "Sobre os cookies utilizados pelos navegadores, é correto afirmar que",
-          "support": null,
-          "options": [
-            "são programas executáveis que podem danificar o sistema, e por isso devem ser sempre bloqueados.",
-            "são cópias locais de imagens e scripts das páginas, usadas apenas para acelerar o carregamento.",
-            "são a lista de endereços visitados, com data e hora, mantida pelo navegador.",
-            "só existem em navegadores desatualizados e deixaram de ser usados pelos sites modernos.",
-            "são pequenos arquivos de dados gravados pelos sites, que servem para manter login e preferências e também para rastrear a navegação."
-          ],
-          "answer": "E",
-          "explanation": "Cookie é um arquivo de dados, e não um programa executável (nem um vírus). Serve para manter login, carrinho e preferências, mas também pode rastrear a navegação (principalmente os de terceiros). As cópias locais são o cache, e a lista de endereços é o histórico."
-        },
-        {
-          "topic": "Atalhos: reabrir guia",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 3,
-          "statement": "No Microsoft Edge e no Google Chrome, o atalho de teclado que reabre a última guia fechada é",
-          "support": null,
-          "options": [
-            "Ctrl + T.",
-            "Ctrl + Shift + T.",
-            "Ctrl + W.",
-            "Ctrl + Shift + N.",
-            "Ctrl + Shift + Delete."
-          ],
-          "answer": "B",
-          "explanation": "Ctrl + Shift + T reabre a última guia fechada (o Shift costuma inverter a ação: Ctrl + T abre uma guia nova). Ctrl + W fecha a guia, Ctrl + Shift + N abre a janela privativa e Ctrl + Shift + Delete abre a limpeza de dados de navegação."
-        },
-        {
-          "topic": "Operadores de pesquisa do Google",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 3,
-          "statement": "Na pesquisa do Google, o termo “concurso site:gov.br” restringe os resultados",
-          "support": null,
-          "options": [
-            "às páginas que contêm exatamente a frase “site:gov.br”.",
-            "às páginas que não pertencem ao domínio gov.br.",
-            "aos arquivos do tipo gov.br.",
-            "às páginas do domínio gov.br que contêm a palavra “concurso”.",
-            "às páginas cujo título contém a palavra “concurso”, em qualquer domínio."
-          ],
-          "answer": "D",
-          "explanation": "O operador site: limita a pesquisa a um site ou domínio, e os demais termos (aqui, “concurso”) continuam valendo. Restringir ao tipo de arquivo é função de filetype:, e restringir ao título, de intitle:."
-        },
-        {
-          "topic": "Prompt de Comando: remover pasta",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 5,
-          "statement": "No Prompt de Comando do Windows 11, para remover uma pasta juntamente com todo o seu conteúdo (arquivos e subpastas), usa-se o comando",
-          "support": null,
-          "options": [
-            "rd /s Relatorios",
-            "deltree Relatorios",
-            "del Relatorios",
-            "md Relatorios",
-            "move Relatorios"
-          ],
-          "answer": "A",
-          "explanation": "O rd (ou rmdir) com a opção /s remove a pasta com todo o conteúdo. O deltree era do MS-DOS e não existe no Windows 11; o del apaga arquivos (não pastas), o md cria pasta e o move desloca arquivos ou pastas."
-        },
-        {
-          "topic": "Prompt de Comando: configuração de rede",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 6,
-          "statement": "No Prompt de Comando, o comando que exibe a configuração de rede detalhada (endereço MAC, servidores DNS, DHCP) de todos os adaptadores é",
-          "support": null,
-          "options": [
-            "ping /all",
-            "tracert /all",
-            "ipconfig /all",
-            "netstat /all",
-            "nslookup /all"
-          ],
-          "answer": "C",
-          "explanation": "O ipconfig /all mostra a configuração completa de cada adaptador de rede. O ping testa conectividade, o tracert mostra a rota até o destino, o netstat lista conexões e portas e o nslookup consulta o DNS."
-        },
-        {
-          "topic": "Prompt de Comando: encerrar processo",
-          "pattern": "caso",
-          "difficulty": 3,
-          "pageRef": 7,
-          "statement": "Um processo chamado notepad.exe travou e precisa ser encerrado à força pelo Prompt de Comando, usando-se o nome da imagem do processo. O comando adequado é",
-          "support": null,
-          "options": [
-            "tasklist /im notepad.exe /f",
-            "taskkill /pid notepad.exe /f",
-            "kill notepad.exe /force",
-            "taskkill notepad.exe /stop",
-            "taskkill /im notepad.exe /f"
-          ],
-          "answer": "E",
-          "explanation": "O taskkill encerra processos: /im indica o nome da imagem e /f força o encerramento. O /pid exige o número do processo (e não o nome), e o tasklist só lista processos."
-        },
-        {
-          "topic": "Redirecionamento de saída",
-          "pattern": "caso",
-          "difficulty": 3,
-          "pageRef": 6,
-          "statement": "No Prompt de Comando, um usuário executa, em sequência, os comandos “dir > lista.txt” e, depois, “echo fim >> lista.txt”. O resultado é um arquivo lista.txt que contém",
-          "support": null,
-          "options": [
-            "somente a palavra “fim”, pois o segundo comando sobrescreve o conteúdo anterior.",
-            "somente a listagem de arquivos, pois o segundo comando gera erro.",
-            "a palavra “fim” seguida da listagem de arquivos.",
-            "a listagem de arquivos e, ao final, a palavra “fim”.",
-            "duas cópias da listagem de arquivos."
-          ],
-          "answer": "D",
-          "explanation": "O símbolo > cria o arquivo (ou sobrescreve) com a saída do dir. O >> acrescenta ao final, preservando o conteúdo: a listagem vem primeiro, e “fim”, depois."
-        },
-        {
-          "topic": "Prompt de Comando: SFC",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 7,
-          "statement": "No Windows 11, o comando sfc /scannow, executado como administrador, tem a função de",
-          "support": null,
-          "options": [
-            "formatar a unidade do sistema e reinstalar o Windows.",
-            "verificar os arquivos de sistema protegidos e reparar os que estiverem corrompidos.",
-            "listar os processos em execução e encerrar os que não respondem.",
-            "verificar o disco em busca de setores defeituosos e corrigir erros do sistema de arquivos.",
-            "testar a conectividade com um computador remoto."
-          ],
-          "answer": "B",
-          "explanation": "O SFC (System File Checker) verifica e repara arquivos de sistema protegidos. A verificação do disco é feita pelo chkdsk, a lista de processos, pelo tasklist, e o teste de conectividade, pelo ping."
-        },
-        {
-          "topic": "Classificação dos periféricos",
-          "pattern": "conceito",
-          "difficulty": 2,
-          "pageRef": 8,
-          "statement": "Assinale a alternativa que apresenta apenas periféricos de entrada e saída (mistos).",
-          "support": null,
-          "options": [
-            "Tela sensível ao toque e impressora multifuncional.",
-            "Teclado e mouse.",
-            "Monitor e caixas de som.",
-            "Scanner e microfone.",
-            "Projetor e impressora comum."
-          ],
-          "answer": "A",
-          "explanation": "Dispositivos mistos enviam e recebem dados: a tela sensível ao toque (exibe e recebe toques) e a multifuncional (imprime e digitaliza). Teclado, mouse, scanner e microfone são de entrada; monitor, caixas de som, projetor e impressora comum são de saída."
-        },
-        {
-          "topic": "Driver",
-          "pattern": "conceito",
-          "difficulty": 1,
-          "pageRef": 9,
-          "statement": "Em computação, um driver (controlador de dispositivo) é",
-          "support": null,
-          "options": [
-            "o dispositivo físico que conecta o periférico à placa-mãe.",
-            "o recurso que detecta automaticamente o dispositivo ao ser conectado, sem necessidade de software.",
-            "o software que permite ao sistema operacional se comunicar com um hardware.",
-            "a porta de entrada do computador que recebe os cabos USB.",
-            "o programa antivírus que verifica o periférico recém-conectado."
-          ],
-          "answer": "C",
-          "explanation": "O driver é o software que ensina o sistema a se comunicar com o hardware. O recurso que detecta e instala o driver automaticamente é o Plug and Play, e a alternativa B descreve esse recurso, e não o driver."
-        },
-        {
-          "topic": "Gerenciador de Dispositivos: reverter driver",
-          "pattern": "caso",
-          "difficulty": 2,
-          "pageRef": 10,
-          "statement": "Após a atualização do driver da placa de vídeo, o monitor passou a apresentar falhas. No Gerenciador de Dispositivos, a opção mais adequada para voltar à versão anterior do driver é",
-          "support": null,
-          "options": [
-            "Desabilitar dispositivo.",
-            "Reverter driver.",
-            "Desinstalar dispositivo.",
-            "Atualizar driver.",
-            "Verificar alterações de hardware."
-          ],
-          "answer": "B",
-          "explanation": "“Reverter driver” (na aba Driver das Propriedades) restaura a versão anterior, útil quando uma atualização causa problema. Desabilitar apenas desliga o dispositivo; desinstalar o remove (e o Plug and Play pode reinstalá-lo); e verificar alterações de hardware só procura novos dispositivos."
-        },
-        {
-          "topic": "USB: Type-C e velocidades",
-          "pattern": "correta",
-          "difficulty": 3,
-          "pageRef": 9,
-          "statement": "Em relação às interfaces USB, é correto afirmar que",
-          "support": null,
-          "options": [
-            "o USB Type-C é um padrão de velocidade, que sempre transfere dados a 40 Gbps.",
-            "o USB 2.0 tem taxa de transferência de até 5 Gbps.",
-            "os dispositivos USB 3.0 não funcionam em portas USB 2.0.",
-            "o USB Type-C é o formato do conector, e a velocidade depende do padrão USB suportado pela porta, pelo cabo e pelo dispositivo.",
-            "o USB4 tem taxa de transferência de até 480 Mbps."
-          ],
-          "answer": "D",
-          "explanation": "Type-C é o formato do conector (reversível) e pode transportar USB 3.x, USB4, vídeo e carga. Os padrões são compatíveis entre si, mas a velocidade fica limitada pelo elo mais lento. O USB 2.0 tem 480 Mbps e o USB4, até 40 Gbps."
-        }
-      ]
+     "topic": "Navegação privativa: nome e atalho",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 2,
+     "statement": "No Microsoft Edge, o modo de navegação privativa chama-se e pode ser aberto, no Windows, pelo atalho",
+     "support": null,
+     "options": [
+      "Anônima; Ctrl + Shift + P.",
+      "Janela privativa; Ctrl + Shift + N.",
+      "InPrivate; Ctrl + Shift + N.",
+      "InPrivate; Ctrl + Shift + P.",
+      "Anônima; Ctrl + Alt + N."
+     ],
+     "answer": "C",
+     "explanation": "No Edge, o modo privativo é o InPrivate, aberto com Ctrl + Shift + N (o mesmo atalho do modo Anônimo do Chrome). No Firefox, a Janela privativa é aberta com Ctrl + Shift + P."
+    },
+    {
+     "topic": "Navegação privativa: o que faz e o que não faz",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 2,
+     "statement": "A respeito da navegação privativa dos navegadores, é correto afirmar que",
+     "support": null,
+     "options": [
+      "ao fechar todas as janelas privativas, o histórico, os cookies e os dados de formulário da sessão são descartados, mas os arquivos baixados permanecem no computador.",
+      "ela torna o usuário anônimo na internet, impedindo que o provedor de acesso e os sites visitados vejam a navegação.",
+      "ela apaga os arquivos baixados durante a sessão, assim que a janela privativa é fechada pelo usuário.",
+      "ela protege o computador contra vírus e contra programas que registram as teclas digitadas.",
+      "as extensões instaladas ficam sempre ativas nesse modo, sem possibilidade de bloqueio pelo usuário."
+     ],
+     "answer": "A",
+     "explanation": "O modo privativo descarta histórico, cookies e dados de formulário ao fechar todas as janelas privativas, mas não apaga downloads nem favoritos. Ele não torna o usuário anônimo para o provedor ou para os sites e não protege contra malware; por padrão, as extensões ficam desativadas."
+    },
+    {
+     "topic": "Cookies",
+     "pattern": "correta",
+     "difficulty": 2,
+     "pageRef": 2,
+     "statement": "Sobre os cookies utilizados pelos navegadores, é correto afirmar que",
+     "support": null,
+     "options": [
+      "são programas executáveis que podem danificar o sistema, e por isso devem ser sempre bloqueados.",
+      "são cópias locais de imagens e scripts das páginas, usadas apenas para acelerar o carregamento.",
+      "são a lista de endereços visitados, com data e hora, mantida pelo navegador.",
+      "só existem em navegadores desatualizados e deixaram de ser usados pelos sites modernos.",
+      "são pequenos arquivos de dados gravados pelos sites, que servem para manter login e preferências e também para rastrear a navegação."
+     ],
+     "answer": "E",
+     "explanation": "Cookie é um arquivo de dados, e não um programa executável (nem um vírus). Serve para manter login, carrinho e preferências, mas também pode rastrear a navegação (principalmente os de terceiros). As cópias locais são o cache, e a lista de endereços é o histórico."
+    },
+    {
+     "topic": "Atalhos: reabrir guia",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 3,
+     "statement": "No Microsoft Edge e no Google Chrome, o atalho de teclado que reabre a última guia fechada é",
+     "support": null,
+     "options": [
+      "Ctrl + T.",
+      "Ctrl + Shift + T.",
+      "Ctrl + W.",
+      "Ctrl + Shift + N.",
+      "Ctrl + Shift + Delete."
+     ],
+     "answer": "B",
+     "explanation": "Ctrl + Shift + T reabre a última guia fechada (o Shift costuma inverter a ação: Ctrl + T abre uma guia nova). Ctrl + W fecha a guia, Ctrl + Shift + N abre a janela privativa e Ctrl + Shift + Delete abre a limpeza de dados de navegação."
+    },
+    {
+     "topic": "Operadores de pesquisa do Google",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 3,
+     "statement": "Na pesquisa do Google, o termo “concurso site:gov.br” restringe os resultados",
+     "support": null,
+     "options": [
+      "às páginas que contêm exatamente a frase “site:gov.br”.",
+      "às páginas que não pertencem ao domínio gov.br.",
+      "aos arquivos do tipo gov.br.",
+      "às páginas do domínio gov.br que contêm a palavra “concurso”.",
+      "às páginas cujo título contém a palavra “concurso”, em qualquer domínio."
+     ],
+     "answer": "D",
+     "explanation": "O operador site: limita a pesquisa a um site ou domínio, e os demais termos (aqui, “concurso”) continuam valendo. Restringir ao tipo de arquivo é função de filetype:, e restringir ao título, de intitle:."
+    },
+    {
+     "topic": "Prompt de Comando: remover pasta",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 5,
+     "statement": "No Prompt de Comando do Windows 11, para remover uma pasta juntamente com todo o seu conteúdo (arquivos e subpastas), usa-se o comando",
+     "support": null,
+     "options": [
+      "rd /s Relatorios",
+      "deltree Relatorios",
+      "del Relatorios",
+      "md Relatorios",
+      "move Relatorios"
+     ],
+     "answer": "A",
+     "explanation": "O rd (ou rmdir) com a opção /s remove a pasta com todo o conteúdo. O deltree era do MS-DOS e não existe no Windows 11; o del apaga arquivos (não pastas), o md cria pasta e o move desloca arquivos ou pastas."
+    },
+    {
+     "topic": "Prompt de Comando: configuração de rede",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 6,
+     "statement": "No Prompt de Comando, o comando que exibe a configuração de rede detalhada (endereço MAC, servidores DNS, DHCP) de todos os adaptadores é",
+     "support": null,
+     "options": [
+      "ping /all",
+      "tracert /all",
+      "ipconfig /all",
+      "netstat /all",
+      "nslookup /all"
+     ],
+     "answer": "C",
+     "explanation": "O ipconfig /all mostra a configuração completa de cada adaptador de rede. O ping testa conectividade, o tracert mostra a rota até o destino, o netstat lista conexões e portas e o nslookup consulta o DNS."
+    },
+    {
+     "topic": "Prompt de Comando: encerrar processo",
+     "pattern": "caso",
+     "difficulty": 3,
+     "pageRef": 7,
+     "statement": "Um processo chamado notepad.exe travou e precisa ser encerrado à força pelo Prompt de Comando, usando-se o nome da imagem do processo. O comando adequado é",
+     "support": null,
+     "options": [
+      "tasklist /im notepad.exe /f",
+      "taskkill /pid notepad.exe /f",
+      "kill notepad.exe /force",
+      "taskkill notepad.exe /stop",
+      "taskkill /im notepad.exe /f"
+     ],
+     "answer": "E",
+     "explanation": "O taskkill encerra processos: /im indica o nome da imagem e /f força o encerramento. O /pid exige o número do processo (e não o nome), e o tasklist só lista processos."
+    },
+    {
+     "topic": "Redirecionamento de saída",
+     "pattern": "caso",
+     "difficulty": 3,
+     "pageRef": 6,
+     "statement": "No Prompt de Comando, um usuário executa, em sequência, os comandos “dir > lista.txt” e, depois, “echo fim >> lista.txt”. O resultado é um arquivo lista.txt que contém",
+     "support": null,
+     "options": [
+      "somente a palavra “fim”, pois o segundo comando sobrescreve o conteúdo anterior.",
+      "somente a listagem de arquivos, pois o segundo comando gera erro.",
+      "a palavra “fim” seguida da listagem de arquivos.",
+      "a listagem de arquivos e, ao final, a palavra “fim”.",
+      "duas cópias da listagem de arquivos."
+     ],
+     "answer": "D",
+     "explanation": "O símbolo > cria o arquivo (ou sobrescreve) com a saída do dir. O >> acrescenta ao final, preservando o conteúdo: a listagem vem primeiro, e “fim”, depois."
+    },
+    {
+     "topic": "Prompt de Comando: SFC",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 7,
+     "statement": "No Windows 11, o comando sfc /scannow, executado como administrador, tem a função de",
+     "support": null,
+     "options": [
+      "formatar a unidade do sistema e reinstalar o Windows.",
+      "verificar os arquivos de sistema protegidos e reparar os que estiverem corrompidos.",
+      "listar os processos em execução e encerrar os que não respondem.",
+      "verificar o disco em busca de setores defeituosos e corrigir erros do sistema de arquivos.",
+      "testar a conectividade com um computador remoto."
+     ],
+     "answer": "B",
+     "explanation": "O SFC (System File Checker) verifica e repara arquivos de sistema protegidos. A verificação do disco é feita pelo chkdsk, a lista de processos, pelo tasklist, e o teste de conectividade, pelo ping."
+    },
+    {
+     "topic": "Classificação dos periféricos",
+     "pattern": "conceito",
+     "difficulty": 2,
+     "pageRef": 8,
+     "statement": "Assinale a alternativa que apresenta apenas periféricos de entrada e saída (mistos).",
+     "support": null,
+     "options": [
+      "Tela sensível ao toque e impressora multifuncional.",
+      "Teclado e mouse.",
+      "Monitor e caixas de som.",
+      "Scanner e microfone.",
+      "Projetor e impressora comum."
+     ],
+     "answer": "A",
+     "explanation": "Dispositivos mistos enviam e recebem dados: a tela sensível ao toque (exibe e recebe toques) e a multifuncional (imprime e digitaliza). Teclado, mouse, scanner e microfone são de entrada; monitor, caixas de som, projetor e impressora comum são de saída."
+    },
+    {
+     "topic": "Driver",
+     "pattern": "conceito",
+     "difficulty": 1,
+     "pageRef": 9,
+     "statement": "Em computação, um driver (controlador de dispositivo) é",
+     "support": null,
+     "options": [
+      "o dispositivo físico que conecta o periférico à placa-mãe.",
+      "o recurso que detecta automaticamente o dispositivo ao ser conectado, sem necessidade de software.",
+      "o software que permite ao sistema operacional se comunicar com um hardware.",
+      "a porta de entrada do computador que recebe os cabos USB.",
+      "o programa antivírus que verifica o periférico recém-conectado."
+     ],
+     "answer": "C",
+     "explanation": "O driver é o software que ensina o sistema a se comunicar com o hardware. O recurso que detecta e instala o driver automaticamente é o Plug and Play, e a alternativa B descreve esse recurso, e não o driver."
+    },
+    {
+     "topic": "Gerenciador de Dispositivos: reverter driver",
+     "pattern": "caso",
+     "difficulty": 2,
+     "pageRef": 10,
+     "statement": "Após a atualização do driver da placa de vídeo, o monitor passou a apresentar falhas. No Gerenciador de Dispositivos, a opção mais adequada para voltar à versão anterior do driver é",
+     "support": null,
+     "options": [
+      "Desabilitar dispositivo.",
+      "Reverter driver.",
+      "Desinstalar dispositivo.",
+      "Atualizar driver.",
+      "Verificar alterações de hardware."
+     ],
+     "answer": "B",
+     "explanation": "“Reverter driver” (na aba Driver das Propriedades) restaura a versão anterior, útil quando uma atualização causa problema. Desabilitar apenas desliga o dispositivo; desinstalar o remove (e o Plug and Play pode reinstalá-lo); e verificar alterações de hardware só procura novos dispositivos."
+    },
+    {
+     "topic": "USB: Type-C e velocidades",
+     "pattern": "correta",
+     "difficulty": 3,
+     "pageRef": 9,
+     "statement": "Em relação às interfaces USB, é correto afirmar que",
+     "support": null,
+     "options": [
+      "o USB Type-C é um padrão de velocidade, que sempre transfere dados a 40 Gbps.",
+      "o USB 2.0 tem taxa de transferência de até 5 Gbps.",
+      "os dispositivos USB 3.0 não funcionam em portas USB 2.0.",
+      "o USB Type-C é o formato do conector, e a velocidade depende do padrão USB suportado pela porta, pelo cabo e pelo dispositivo.",
+      "o USB4 tem taxa de transferência de até 480 Mbps."
+     ],
+     "answer": "D",
+     "explanation": "Type-C é o formato do conector (reversível) e pode transportar USB 3.x, USB4, vídeo e carga. Os padrões são compatíveis entre si, mas a velocidade fica limitada pelo elo mais lento. O USB 2.0 tem 480 Mbps e o USB4, até 40 Gbps."
     }
-  ]
+   ]
+  }
+ ]
 }

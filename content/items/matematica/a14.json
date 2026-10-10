@@ -7,12 +7,12 @@
    "id": "matematica/a14/s01",
    "bizu": {
     "summary": [
-     "**Sequência numérica**: lista de números cujos termos obedecem a uma **regra de sucessão**, escrita (a₁, a₂, a₃, …). O índice indica a **ordem** do termo; aₙ é o termo genérico (\"a índice n\") e pode ser dado por uma **lei de formação**.",
-     "💡 **Exemplo Prático:** **Lei de formação**: substitui-se n por 1, 2, 3… para obter os termos. Ex.: aₙ = 2ⁿ + 5·(−1)ⁿ⁻¹ gera (7, −1, 13, 11, …): todos ímpares (2ⁿ é par e 5·(−1)ⁿ⁻¹ é ímpar), com diferenças variáveis — não é PA.",
-     "**Sequência de Fibonacci**: começa com 1 e 1 (F₁ = F₂ = 1) e cada termo seguinte é a **soma dos dois anteriores**: **Fₙ = Fₙ₋₁ + Fₙ₋₂**, para n ≥ 3. Os primeiros valores são 1, 1, 2, 3, 5, 8, 13 e 21. Algumas provas começam do 0 (0, 1, 1, 2, 3, 5, …).",
-     "**Propriedade de Fibonacci**: Fₙ₊₁ − Fₙ = Fₙ₋₁. Com o 0 como primeiro termo, o termo 34 é o **décimo**. A sequência não é formada só por primos.",
-     "💡 **Exemplo Prático:** **Sequência recorrente**: cada termo, a partir de certo ponto, é definido pelos **termos anteriores** (lei de recorrência). Ex.: 7, 14, 28, 56… com aₙ = 2·aₙ₋₁ e a₁ = 7. Fibonacci também tem **fórmula explícita**, além da recorrência.",
-     "**Questão-modelo**: a₁ = 5 e aₙ₊₁ − 2aₙ = 3 ⇒ aₙ₊₁ = 2aₙ + 3: 5, 13, 29, 61, 125, 253, 509, **1021** (oitavo termo)."
+     "### 1. Fundamentação Teórica e Conceitos Centrais",
+     "**Sequência numérica**: lista de números cujos termos obedecem a uma **regra de sucessão**, escrita (a₁, a₂, a₃, …). O índice indica a **ordem** do termo; aₙ é o termo genérico (\"a índice n\") e pode ser dado por uma **lei de formação**. **Sequência de Fibonacci**: começa com 1 e 1 (F₁ = F₂ = 1) e cada termo seguinte é a **soma dos dois anteriores**: **Fₙ = Fₙ₋₁ + Fₙ₋₂**, para n ≥ 3. Os primeiros valores são 1, 1, 2, 3, 5, 8, 13 e 21. Algumas provas começam do 0 (0, 1, 1, 2, 3, 5, …).",
+     "**Propriedade de Fibonacci**: Fₙ₊₁ − Fₙ = Fₙ₋₁. Com o 0 como primeiro termo, o termo 34 é o **décimo**. A sequência não é formada só por primos. **Questão-modelo**: a₁ = 5 e aₙ₊₁ − 2aₙ = 3 ⇒ aₙ₊₁ = 2aₙ + 3: 5, 13, 29, 61, 125, 253, 509, **1021** (oitavo termo).",
+     "### 2. Análise Prática e Desdobramentos",
+     "• **Aplicação:** **Lei de formação**: substitui-se n por 1, 2, 3… para obter os termos. Ex.: aₙ = 2ⁿ + 5·(−1)ⁿ⁻¹ gera (7, −1, 13, 11, …): todos ímpares (2ⁿ é par e 5·(−1)ⁿ⁻¹ é ímpar), com diferenças variáveis — não é PA.",
+     "• **Aplicação:** **Sequência recorrente**: cada termo, a partir de certo ponto, é definido pelos **termos anteriores** (lei de recorrência). Ex.: 7, 14, 28, 56… com aₙ = 2·aₙ₋₁ e a₁ = 7. Fibonacci também tem **fórmula explícita**, além da recorrência."
     ],
     "teoria": [
      {
@@ -262,12 +262,13 @@
    "id": "matematica/a14/s02",
    "bizu": {
     "summary": [
-     "**Progressão aritmética (PA)**: cada termo difere do anterior por uma **constante**, a **razão r** (r = aₙ − aₙ₋₁). **r > 0**: crescente; **r < 0**: decrescente; **r = 0**: constante. A letra usada (a, b…) é só convenção.",
-     "💡 **Exemplo Prático:** **Termo geral**: **aₙ = a₁ + (n − 1)·r**. Ex.: (2, 4, 6, …) ⇒ a₅₀ = 2 + 49·2 = 100; (21, 14, 7, …) com r = −7 ⇒ a₇₅ = 21 − 74·7 = −497; a₁ = 23 e r = 24 ⇒ a₁₀₀ = 23 + 99·24 = **2399**.",
-     "**PA de 3 termos**: o termo central é a **média aritmética** dos extremos: **a₂ = (a₁ + a₃)/2**. Aplicação: lados (x − 1, x + y, 2x + 1) com perímetro 45 ⇒ 4x + y = 45 e x = 2y ⇒ y = 5, x = 10 ⇒ lados 9, 15 e 21 (menor = **9 cm**).",
-     "💡 **Exemplo Prático:** **Interpolação**: achar termos **entre** dois dados. Com k termos entre a₁ e o último, a PA tem k + 2 termos. Ex.: (8, …, 29) com 6 termos no meio ⇒ 8 termos: a₈ = 8 + 7r = 29 ⇒ r = 3 ⇒ a₆ = 8 + 5·3 = **23**.",
-     "💡 **Exemplo Prático:** **Soma dos n primeiros termos**: **Sₙ = (a₁ + aₙ)·n / 2** (pares equidistantes dos extremos somam o mesmo valor; há n/2 pares). Ex.: 1 + 2 + … + 100 = (1 + 100)·50 = **5050**.",
-     "**Dados dois termos**: a₁₃ = −9 e a₆₃ = 25 ⇒ subtrai-se: 50r = 34 ⇒ r = 0,68; a₁ = −17,16; a₇₅ = 33,16; S₇₅ = (−17,16 + 33,16)·75/2 = **600**."
+     "### 1. Fundamentação Teórica e Conceitos Centrais",
+     "**Progressão aritmética (PA)**: cada termo difere do anterior por uma **constante**, a **razão r** (r = aₙ − aₙ₋₁). **r > 0**: crescente; **r < 0**: decrescente; **r = 0**: constante. A letra usada (a, b…) é só convenção. **PA de 3 termos**: o termo central é a **média aritmética** dos extremos: **a₂ = (a₁ + a₃)/2**. Aplicação: lados (x − 1, x + y, 2x + 1) com perímetro 45 ⇒ 4x + y = 45 e x = 2y ⇒ y = 5, x = 10 ⇒ lados 9, 15 e 21 (menor = **9 cm**).",
+     "**Dados dois termos**: a₁₃ = −9 e a₆₃ = 25 ⇒ subtrai-se: 50r = 34 ⇒ r = 0,68; a₁ = −17,16; a₇₅ = 33,16; S₇₅ = (−17,16 + 33,16)·75/2 = **600**.",
+     "### 2. Análise Prática e Desdobramentos",
+     "• **Aplicação:** **Termo geral**: **aₙ = a₁ + (n − 1)·r**. Ex.: (2, 4, 6, …) ⇒ a₅₀ = 2 + 49·2 = 100; (21, 14, 7, …) com r = −7 ⇒ a₇₅ = 21 − 74·7 = −497; a₁ = 23 e r = 24 ⇒ a₁₀₀ = 23 + 99·24 = **2399**.",
+     "• **Aplicação:** **Interpolação**: achar termos **entre** dois dados. Com k termos entre a₁ e o último, a PA tem k + 2 termos. Ex.: (8, …, 29) com 6 termos no meio ⇒ 8 termos: a₈ = 8 + 7r = 29 ⇒ r = 3 ⇒ a₆ = 8 + 5·3 = **23**.",
+     "• **Aplicação:** **Soma dos n primeiros termos**: **Sₙ = (a₁ + aₙ)·n / 2** (pares equidistantes dos extremos somam o mesmo valor; há n/2 pares). Ex.: 1 + 2 + … + 100 = (1 + 100)·50 = **5050**."
     ],
     "teoria": [
      {
@@ -573,14 +574,15 @@
    "id": "matematica/a14/s03",
    "bizu": {
     "summary": [
-     "**Progressão geométrica (PG)**: cada termo é o anterior **multiplicado** por uma constante, a razão **q** (q = aₙ/aₙ₋₁, ou aₙ = q·aₙ₋₁). Na PA soma-se; na PG, multiplica-se.",
-     "**Classificação**: depende de a₁ e q. **Crescente**: a₁ > 0 e q > 1, ou a₁ < 0 e 0 < q < 1. **Decrescente**: a₁ > 0 e 0 < q < 1, ou a₁ < 0 e q > 1. **Constante**: q = 1. **Alternada**: q < 0 (os sinais se alternam).",
-     "💡 **Exemplo Prático:** **Termo geral**: **aₙ = a₁·qⁿ⁻¹**. Ex.: (2, 4, 8, …) ⇒ a₁₁ = 2¹¹ = 2048; a₁ = 3 e q = 2 ⇒ a₁₀ = 3·2⁹ = **1536**.",
-     "💡 **Exemplo Prático:** **PG de 3 termos**: o quadrado do termo central é o produto dos extremos: **a₂² = a₁·a₃**. Ex.: (x, x + 1, 2x) ⇒ (x + 1)² = 2x² ⇒ x² − 2x − 1 = 0 ⇒ x = 1 + √2 (positivo).",
-     "💡 **Exemplo Prático:** **Interpolação**: determinar a razão pelo termo geral e depois os termos do meio. Ex.: a₁ = 1000 e a₅ = 8/5 ⇒ q⁴ = 1/625 ⇒ **q = 1/5**; termos intermediários 200, 40 e 8 (soma 248).",
-     "💡 **Exemplo Prático:** **Soma dos n primeiros termos**: **Sₙ = a₁·(qⁿ − 1)/(q − 1)**. Ex.: (2, 4, 8, …) com 11 termos ⇒ 2·2047 = 4094; 10 níveis de 2, 4, 8… ⇒ S₁₀ = 2·1023 = **2046**.",
-     "💡 **Exemplo Prático:** **Soma infinita**: **S∞ = a₁/(1 − q)**, válida só se **|q| < 1**. Ex.: 2/10 + 2/100 + … ⇒ (2/10)/(9/10) = 2/9; Σ 4/5ⁱ (i ≥ 0) ⇒ 4/(1 − 1/5) = **5**.",
-     "💡 **Exemplo Prático:** **Somatório (Σ)**: i é o índice, com valor inicial embaixo e final em cima; pode representar soma de PA ou PG (ex.: Σ 2ⁱ de 1 a 5 = 2 + 4 + 8 + 16 + 32). **Produto dos n primeiros termos**: **Pₙ = a₁ⁿ · q^(n(n−1)/2)**, equivalente a (a₁·aₙ)^(n/2)."
+     "### 1. Fundamentação Teórica e Conceitos Centrais",
+     "**Progressão geométrica (PG)**: cada termo é o anterior **multiplicado** por uma constante, a razão **q** (q = aₙ/aₙ₋₁, ou aₙ = q·aₙ₋₁). Na PA soma-se; na PG, multiplica-se. **Classificação**: depende de a₁ e q. **Crescente**: a₁ > 0 e q > 1, ou a₁ < 0 e 0 < q < 1. **Decrescente**: a₁ > 0 e 0 < q < 1, ou a₁ < 0 e q > 1. **Constante**: q = 1. **Alternada**: q < 0 (os sinais se alternam).",
+     "### 2. Análise Prática e Desdobramentos",
+     "• **Aplicação:** **Termo geral**: **aₙ = a₁·qⁿ⁻¹**. Ex.: (2, 4, 8, …) ⇒ a₁₁ = 2¹¹ = 2048; a₁ = 3 e q = 2 ⇒ a₁₀ = 3·2⁹ = **1536**.",
+     "• **Aplicação:** **PG de 3 termos**: o quadrado do termo central é o produto dos extremos: **a₂² = a₁·a₃**. Ex.: (x, x + 1, 2x) ⇒ (x + 1)² = 2x² ⇒ x² − 2x − 1 = 0 ⇒ x = 1 + √2 (positivo).",
+     "• **Aplicação:** **Interpolação**: determinar a razão pelo termo geral e depois os termos do meio. Ex.: a₁ = 1000 e a₅ = 8/5 ⇒ q⁴ = 1/625 ⇒ **q = 1/5**; termos intermediários 200, 40 e 8 (soma 248).",
+     "• **Aplicação:** **Soma dos n primeiros termos**: **Sₙ = a₁·(qⁿ − 1)/(q − 1)**. Ex.: (2, 4, 8, …) com 11 termos ⇒ 2·2047 = 4094; 10 níveis de 2, 4, 8… ⇒ S₁₀ = 2·1023 = **2046**.",
+     "• **Aplicação:** **Soma infinita**: **S∞ = a₁/(1 − q)**, válida só se **|q| < 1**. Ex.: 2/10 + 2/100 + … ⇒ (2/10)/(9/10) = 2/9; Σ 4/5ⁱ (i ≥ 0) ⇒ 4/(1 − 1/5) = **5**.",
+     "• **Aplicação:** **Somatório (Σ)**: i é o índice, com valor inicial embaixo e final em cima; pode representar soma de PA ou PG (ex.: Σ 2ⁱ de 1 a 5 = 2 + 4 + 8 + 16 + 32). **Produto dos n primeiros termos**: **Pₙ = a₁ⁿ · q^(n(n−1)/2)**, equivalente a (a₁·aₙ)^(n/2)."
     ],
     "teoria": [
      {

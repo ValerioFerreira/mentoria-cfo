@@ -7,14 +7,13 @@
    "id": "informatica/a13/s01",
    "bizu": {
     "summary": [
-     "**Nuvem** é uma **metáfora para a Internet**: o desenho de nuvem representa, em diagramas, a infraestrutura de rede (servidores, redes, data centers). **Computação em nuvem** = conjunto de recursos virtuais (processamento, armazenamento, software) acessados pela internet, normalmente com cobrança por uso.",
-     "**Principal vantagem: redução de custos** — a empresa não precisa manter um CPD próprio (servidores, refrigeração, equipe 24x7); a **responsabilidade** por manutenção, atualização, backup e escalonamento é, em regra, **do provedor**.",
-     "**Mobilidade e independência de plataforma**: o usuário acessa serviços e arquivos de qualquer lugar e dispositivo conectado, sem depender de instalar licenças no equipamento local.",
-     "**Cinco características essenciais (NIST)**: **autosserviço sob demanda**, **amplo acesso à rede**, **agrupamento de recursos**, **elasticidade rápida** e **serviço mensurado**.",
-     "**Serviço mensurado**: uso de recursos é monitorado, controlado e relatado automaticamente; permite **cobrança pelo consumo efetivo** (pague pelo que usar).",
-     "💡 **Exemplo Prático:** **Elasticidade rápida**: aumentar ou reduzir recursos quase instantaneamente conforme a demanda (ex.: pico da Black Friday). **Escalabilidade**: capacidade de crescer ou diminuir (vertical = mais CPU/memória num servidor; horizontal = mais servidores), em geral planejada a longo prazo.",
-     "**Amplo acesso à rede**: recursos disponíveis pela rede, acessados por mecanismos padronizados em celulares, tablets e computadores. **Agrupamento de recursos (resource pooling)**: o provedor atende vários clientes com a mesma infraestrutura (multi-tenant), com isolamento e realocação dinâmica.",
-     "**Autosserviço sob demanda**: o cliente provisiona recursos (máquina virtual, armazenamento) sozinho, por painel ou API, **sem intervenção humana do provedor**. Diferente da elasticidade, que é o ajuste automático à demanda."
+     "### 1. Fundamentação Teórica e Conceitos Centrais",
+     "**Nuvem** é uma **metáfora para a Internet**: o desenho de nuvem representa, em diagramas, a infraestrutura de rede (servidores, redes, data centers). **Computação em nuvem** = conjunto de recursos virtuais (processamento, armazenamento, software) acessados pela internet, normalmente com cobrança por uso. **Principal vantagem: redução de custos** — a empresa não precisa manter um CPD próprio (servidores, refrigeração, equipe 24x7); a **responsabilidade** por manutenção, atualização, backup e escalonamento é, em regra, **do provedor**.",
+     "**Mobilidade e independência de plataforma**: o usuário acessa serviços e arquivos de qualquer lugar e dispositivo conectado, sem depender de instalar licenças no equipamento local. **Cinco características essenciais (NIST)**: **autosserviço sob demanda**, **amplo acesso à rede**, **agrupamento de recursos**, **elasticidade rápida** e **serviço mensurado**.",
+     "**Serviço mensurado**: uso de recursos é monitorado, controlado e relatado automaticamente; permite **cobrança pelo consumo efetivo** (pague pelo que usar). **Amplo acesso à rede**: recursos disponíveis pela rede, acessados por mecanismos padronizados em celulares, tablets e computadores. **Agrupamento de recursos (resource pooling)**: o provedor atende vários clientes com a mesma infraestrutura (multi-tenant), com isolamento e realocação dinâmica.",
+     "**Autosserviço sob demanda**: o cliente provisiona recursos (máquina virtual, armazenamento) sozinho, por painel ou API, **sem intervenção humana do provedor**. Diferente da elasticidade, que é o ajuste automático à demanda.",
+     "### 2. Análise Prática e Desdobramentos",
+     "• **Aplicação:** **Elasticidade rápida**: aumentar ou reduzir recursos quase instantaneamente conforme a demanda (ex.: pico da Black Friday). **Escalabilidade**: capacidade de crescer ou diminuir (vertical = mais CPU/memória num servidor; horizontal = mais servidores), em geral planejada a longo prazo."
     ],
     "teoria": [
      {
@@ -349,14 +348,16 @@
    "id": "informatica/a13/s02",
    "bizu": {
     "summary": [
-     "**Modelos de serviço** (altíssima incidência): **IaaS** (infraestrutura), **PaaS** (plataforma) e **SaaS** (software). Quanto mais para o SaaS, **mais responsabilidades do provedor**.",
-     "💡 **Exemplo Prático:** **IaaS**: provedor oferece infraestrutura (servidores virtuais, armazenamento, rede); o cliente controla **sistema operacional, aplicativos e máquinas virtuais**, mas não a infraestrutura física. Ex.: Amazon Web Services (EC2).",
-     "💡 **Exemplo Prático:** **PaaS**: plataforma para **desenvolver, testar e hospedar aplicações**; o cliente controla aplicações e suas configurações, não rede, servidores nem sistema operacional. Ex.: Google App Engine, Microsoft Azure.",
-     "💡 **Exemplo Prático:** **SaaS**: aplicativos prontos, acessados pelo **navegador**; o provedor gerencia tudo (rede, servidores, SO e aplicação). Ex.: Google Drive, OneDrive, iCloud, Salesforce, Gmail.",
-     "📌 **Bizu de Prova:** **Macete**: on-premises = o cliente gerencia tudo; IaaS = terceiriza rede, armazenamento e servidores; PaaS = terceiriza também o SO e as ferramentas de execução; SaaS = terceiriza tudo, inclusive o software.",
-     "**Outros \"aaS\"**: CaaS (comunicação: VoIP, mensagens, videoconferência), DevaaS (desenvolvimento), entre outros, menos cobrados.",
+     "### 1. Fundamentação Teórica e Conceitos Centrais",
+     "**Modelos de serviço** (altíssima incidência): **IaaS** (infraestrutura), **PaaS** (plataforma) e **SaaS** (software). Quanto mais para o SaaS, **mais responsabilidades do provedor**. **Outros \"aaS\"**: CaaS (comunicação: VoIP, mensagens, videoconferência), DevaaS (desenvolvimento), entre outros, menos cobrados.",
      "**Nuvem pública**: serviços oferecidos ao público pela internet por terceiros, em infraestrutura compartilhada (multi-tenant), pagos por uso (com camadas gratuitas limitadas). **Nuvem privada**: infraestrutura dedicada a **uma única organização**, hospedada internamente ou por terceiro; mais controle e segurança.",
-     "💡 **Exemplo Prático:** **Nuvem híbrida**: combinação de duas ou mais nuvens (privada + pública, por exemplo) que permanecem entidades distintas, mas integradas, com **portabilidade de dados e aplicações**. **Nuvem comunitária**: infraestrutura compartilhada por organizações com **interesses em comum** (ex.: mesmas normas, setor)."
+     "### 2. Análise Prática e Desdobramentos",
+     "• **Aplicação:** **IaaS**: provedor oferece infraestrutura (servidores virtuais, armazenamento, rede); o cliente controla **sistema operacional, aplicativos e máquinas virtuais**, mas não a infraestrutura física. Ex.: Amazon Web Services (EC2).",
+     "• **Aplicação:** **PaaS**: plataforma para **desenvolver, testar e hospedar aplicações**; o cliente controla aplicações e suas configurações, não rede, servidores nem sistema operacional. Ex.: Google App Engine, Microsoft Azure.",
+     "• **Aplicação:** **SaaS**: aplicativos prontos, acessados pelo **navegador**; o provedor gerencia tudo (rede, servidores, SO e aplicação). Ex.: Google Drive, OneDrive, iCloud, Salesforce, Gmail.",
+     "• **Aplicação:** **Nuvem híbrida**: combinação de duas ou mais nuvens (privada + pública, por exemplo) que permanecem entidades distintas, mas integradas, com **portabilidade de dados e aplicações**. **Nuvem comunitária**: infraestrutura compartilhada por organizações com **interesses em comum** (ex.: mesmas normas, setor).",
+     "### 3. Diretrizes de Prova e Pontos de Atenção",
+     "> 📌 **Bizu Estratégico:** **Macete**: on-premises = o cliente gerencia tudo; IaaS = terceiriza rede, armazenamento e servidores; PaaS = terceiriza também o SO e as ferramentas de execução; SaaS = terceiriza tudo, inclusive o software."
     ],
     "teoria": [
      {
@@ -691,12 +692,12 @@
    "id": "informatica/a13/s03",
    "bizu": {
     "summary": [
-     "💡 **Exemplo Prático:** **Armazenamento em nuvem** (alta incidência): guarda arquivos em **servidores na internet**, acessíveis de qualquer dispositivo; funciona como **backup online** e permite sincronização e compartilhamento. Exemplos: Google Drive, Dropbox, OneDrive e iCloud.",
-     "**Desvantagens**: depende de **conexão com a internet** e levanta preocupações de **privacidade** e conformidade com leis de proteção de dados (**LGPD** no Brasil, GDPR na Europa).",
-     "**Uso corporativo**: serviços de maior escala, como o S3 (Amazon), o Blob Storage (Azure) e o Cloud Storage (Google), ligados a rotinas de backup, recuperação de desastres e análise de dados.",
-     "**Google Drive**: **15 GB gratuitos** (compartilhados com Gmail e Fotos), integração com Documentos, Planilhas e Apresentações, criptografia, autenticação em dois fatores e recuperação de arquivos excluídos.",
-     "**Dropbox**: **2 GB gratuitos**, sincronização entre dispositivos e links de compartilhamento com senha e validade. **OneDrive**: **5 GB gratuitos**, da Microsoft, **pré-instalado no Windows** e integrado ao Microsoft 365. **iCloud**: **5 GB gratuitos**, da Apple, para iOS e macOS (o espaço gratuito é limitado).",
-     "💡 **Exemplo Prático:** **Azure**: plataforma de computação em nuvem da Microsoft (lançada em 2010), que oferece IaaS, PaaS, máquinas virtuais, bancos de dados e IA, concorrente de AWS e Google Cloud; exemplo clássico de nuvem em prova (criação de VMs)."
+     "### 1. Fundamentação Teórica e Conceitos Centrais",
+     "**Desvantagens**: depende de **conexão com a internet** e levanta preocupações de **privacidade** e conformidade com leis de proteção de dados (**LGPD** no Brasil, GDPR na Europa). **Uso corporativo**: serviços de maior escala, como o S3 (Amazon), o Blob Storage (Azure) e o Cloud Storage (Google), ligados a rotinas de backup, recuperação de desastres e análise de dados.",
+     "**Google Drive**: **15 GB gratuitos** (compartilhados com Gmail e Fotos), integração com Documentos, Planilhas e Apresentações, criptografia, autenticação em dois fatores e recuperação de arquivos excluídos. **Dropbox**: **2 GB gratuitos**, sincronização entre dispositivos e links de compartilhamento com senha e validade. **OneDrive**: **5 GB gratuitos**, da Microsoft, **pré-instalado no Windows** e integrado ao Microsoft 365. **iCloud**: **5 GB gratuitos**, da Apple, para iOS e macOS (o espaço gratuito é limitado).",
+     "### 2. Análise Prática e Desdobramentos",
+     "• **Aplicação:** **Armazenamento em nuvem** (alta incidência): guarda arquivos em **servidores na internet**, acessíveis de qualquer dispositivo; funciona como **backup online** e permite sincronização e compartilhamento. Exemplos: Google Drive, Dropbox, OneDrive e iCloud.",
+     "• **Aplicação:** **Azure**: plataforma de computação em nuvem da Microsoft (lançada em 2010), que oferece IaaS, PaaS, máquinas virtuais, bancos de dados e IA, concorrente de AWS e Google Cloud; exemplo clássico de nuvem em prova (criação de VMs)."
     ],
     "teoria": [
      {
@@ -954,12 +955,10 @@
    "id": "informatica/a13/s04",
    "bizu": {
     "summary": [
-     "**Ferramentas colaborativas**: costumam funcionar na nuvem e deixam várias pessoas trabalharem juntas, ao mesmo tempo, no mesmo arquivo, dispensando o envio de anexos por e-mail.",
-     "**Benefícios**: compartilhamento de arquivos, desenvolvimento coletivo de tarefas, visão geral do andamento do trabalho e disponibilidade em qualquer lugar e hora. O uso **não é exclusivo** para fins profissionais (há muitos usuários domésticos).",
-     "**Trello**: gerenciamento de projetos em quadros com cartões, inspirado no método **Kanban**. **Asana**: gestão de projetos, metas, tarefas e cronogramas para equipes.",
-     "**Zoom**: videoconferência (reuniões com muitos participantes, compartilhamento de tela, gravação, quadro branco). **Microsoft Teams**: reuniões por vídeo, chat e edição colaborativa de Word, PowerPoint e OneNote, integrado ao Microsoft 365.",
-     "**Microsoft 365 / Google Workspace**: suítes de produtividade em nuvem com edição simultânea de documentos, e-mail, agenda e armazenamento corporativo.",
-     "**Modelos de serviço (resumo)**: IaaS = infraestrutura; PaaS = plataforma de desenvolvimento; SaaS = software pronto; CaaS = comunicação; BDaaS = análise de big data; DaaS = dados sob demanda; EaaS = serviços corporativos completos."
+     "### 1. Fundamentação Teórica e Conceitos Centrais",
+     "**Ferramentas colaborativas**: costumam funcionar na nuvem e deixam várias pessoas trabalharem juntas, ao mesmo tempo, no mesmo arquivo, dispensando o envio de anexos por e-mail. **Benefícios**: compartilhamento de arquivos, desenvolvimento coletivo de tarefas, visão geral do andamento do trabalho e disponibilidade em qualquer lugar e hora. O uso **não é exclusivo** para fins profissionais (há muitos usuários domésticos).",
+     "**Trello**: gerenciamento de projetos em quadros com cartões, inspirado no método **Kanban**. **Asana**: gestão de projetos, metas, tarefas e cronogramas para equipes. **Zoom**: videoconferência (reuniões com muitos participantes, compartilhamento de tela, gravação, quadro branco). **Microsoft Teams**: reuniões por vídeo, chat e edição colaborativa de Word, PowerPoint e OneNote, integrado ao Microsoft 365.",
+     "**Microsoft 365 / Google Workspace**: suítes de produtividade em nuvem com edição simultânea de documentos, e-mail, agenda e armazenamento corporativo. **Modelos de serviço (resumo)**: IaaS = infraestrutura; PaaS = plataforma de desenvolvimento; SaaS = software pronto; CaaS = comunicação; BDaaS = análise de big data; DaaS = dados sob demanda; EaaS = serviços corporativos completos."
     ],
     "teoria": [
      {

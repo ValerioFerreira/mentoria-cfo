@@ -1,10 +1,11 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { AppearanceMenu } from "@/components/appearance-menu";
 import { Brand } from "@/components/brand";
 import { getTheme } from "@/lib/theme";
 
 /** Casca das páginas públicas (escolha do concurso e lista de espera). */
-export default async function PublicLayout({ children }: LayoutProps<"/">) {
+export default async function PublicLayout({ children }: { children: ReactNode }) {
   const theme = await getTheme();
   return (
     <div className="flex min-h-screen flex-col">

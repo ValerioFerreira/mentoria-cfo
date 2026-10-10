@@ -7,13 +7,14 @@
    "id": "estatistica/a11/s01",
    "bizu": {
     "summary": [
-     "**Teste de hipóteses**: confronta uma suposição sobre um **parâmetro populacional** com a estatística calculada em uma amostra, para decidir se a suposição é plausível.",
-     "**Hipótese nula (H₀)** é a suposição a ser testada e contém sempre a **igualdade** (θ = θ₀, ou ≥ / ≤). **Hipótese alternativa (H₁ ou Hₐ)** é a que se aceita se H₀ for rejeitada.",
-     "**Regiões**: a **região de não rejeição (RNR)** é o intervalo construído em torno do parâmetro de H₀ e tem probabilidade **1 − α**; a **região crítica (RC)** é a externa e tem probabilidade **α** (nível de significância).",
-     "💡 **Exemplo Prático:** **Decisão por intervalo de confiança**: rejeita-se H₀ se o intervalo de confiança calculado a partir da amostra **não contiver** o valor de H₀. Ex.: para testar 50% de intenção de voto, só se rejeita nas regiões cujo intervalo exclui 50%.",
-     "**Tipos de teste**: **bilateral** (H₁: θ ≠ θ₀, RC nos dois extremos); **unilateral à esquerda** (H₁: θ < θ₀, RC só à esquerda); **unilateral à direita** (H₁: θ > θ₀, RC só à direita). A H₁ é **direcional** nos unicaudais e **não direcional** no bilateral.",
-     "**Identificação quando o enunciado é implícito**: a hipótese que se deseja comprovar vira **H₁**, pois só é aceita se o teste for estatisticamente significativo.",
-     "**Rejeitar é a decisão forte**: só se rejeita H₀ diante de forte indício de que ela é falsa; é improvável (mas possível) observar um valor extremo sendo H₀ verdadeira."
+     "### 1. Fundamentação Teórica e Conceitos Centrais",
+     "**Regiões**: a **região de não rejeição (RNR)** é o intervalo construído em torno do parâmetro de H₀ e tem probabilidade **1 − α**; a **região crítica (RC)** é a externa e tem probabilidade **α** (nível de significância). **Tipos de teste**: **bilateral** (H₁: θ ≠ θ₀, RC nos dois extremos); **unilateral à esquerda** (H₁: θ < θ₀, RC só à esquerda); **unilateral à direita** (H₁: θ > θ₀, RC só à direita). A H₁ é **direcional** nos unicaudais e **não direcional** no bilateral.",
+     "**Rejeitar é a decisão forte**: só se rejeita H₀ diante de forte indício de que ela é falsa; é improvável (mas possível) observar um valor extremo sendo H₀ verdadeira.",
+     "### 2. Análise Prática e Desdobramentos",
+     "• **Aplicação:** **Teste de hipóteses**: confronta uma suposição sobre um **parâmetro populacional** com a estatística calculada em uma amostra, para decidir se a suposição é plausível.",
+     "• **Aplicação:** **Hipótese nula (H₀)** é a suposição a ser testada e contém sempre a **igualdade** (θ = θ₀, ou ≥ / ≤). **Hipótese alternativa (H₁ ou Hₐ)** é a que se aceita se H₀ for rejeitada.",
+     "• **Aplicação:** **Decisão por intervalo de confiança**: rejeita-se H₀ se o intervalo de confiança calculado a partir da amostra **não contiver** o valor de H₀. Ex.: para testar 50% de intenção de voto, só se rejeita nas regiões cujo intervalo exclui 50%.",
+     "• **Aplicação:** **Identificação quando o enunciado é implícito**: a hipótese que se deseja comprovar vira **H₁**, pois só é aceita se o teste for estatisticamente significativo."
     ],
     "teoria": [
      {
@@ -258,14 +259,13 @@
    "id": "estatistica/a11/s02",
    "bizu": {
     "summary": [
-     "**Erro tipo I**: rejeitar H₀ quando ela é **verdadeira** (falso positivo). Sua probabilidade é o **nível de significância α**.",
-     "**Erro tipo II**: **não rejeitar H₀ quando ela é falsa**; probabilidade **β**. Para calculá-lo, usa-se a distribuição com o **parâmetro da hipótese alternativa** (o valor verdadeiro).",
-     "**α e β não são complementares**: α + β ≠ 1, pois pertencem a distribuições distintas (sob H₀ e sob o parâmetro verdadeiro).",
-     "**Poder do teste = 1 − β**: probabilidade de rejeitar H₀ quando ela é falsa.",
-     "**Fatores que aumentam o poder**: maior **tamanho amostral n**, maior **nível de significância α** e maior **distância** entre o parâmetro verdadeiro e o de H₀.",
-     "**Função potência**: poder em função do parâmetro verdadeiro. No unilateral à esquerda é decrescente, no unilateral à direita é crescente e no bilateral tem forma de U, com mínimo igual a α quando o parâmetro verdadeiro coincide com o de H₀.",
-     "**Teste ótimo**: o que minimiza uma combinação linear de α e β; usa a razão de verossimilhanças.",
-     "**Uniformes**: se X ~ U(1, 5) e a regra rejeita H₀ para 4 < X < 5, α = (5 − 4)/(5 − 1); β usa a uniforme verdadeira dada no enunciado e o trecho de não rejeição."
+     "### 1. Fundamentação Teórica e Conceitos Centrais",
+     "**Erro tipo I**: rejeitar H₀ quando ela é **verdadeira** (falso positivo). Sua probabilidade é o **nível de significância α**. **α e β não são complementares**: α + β ≠ 1, pois pertencem a distribuições distintas (sob H₀ e sob o parâmetro verdadeiro).",
+     "**Poder do teste = 1 − β**: probabilidade de rejeitar H₀ quando ela é falsa. **Fatores que aumentam o poder**: maior **tamanho amostral n**, maior **nível de significância α** e maior **distância** entre o parâmetro verdadeiro e o de H₀.",
+     "**Função potência**: poder em função do parâmetro verdadeiro. No unilateral à esquerda é decrescente, no unilateral à direita é crescente e no bilateral tem forma de U, com mínimo igual a α quando o parâmetro verdadeiro coincide com o de H₀. **Teste ótimo**: o que minimiza uma combinação linear de α e β; usa a razão de verossimilhanças.",
+     "**Uniformes**: se X ~ U(1, 5) e a regra rejeita H₀ para 4 < X < 5, α = (5 − 4)/(5 − 1); β usa a uniforme verdadeira dada no enunciado e o trecho de não rejeição.",
+     "### 2. Análise Prática e Desdobramentos",
+     "• **Aplicação:** **Erro tipo II**: **não rejeitar H₀ quando ela é falsa**; probabilidade **β**. Para calculá-lo, usa-se a distribuição com o **parâmetro da hipótese alternativa** (o valor verdadeiro)."
     ],
     "teoria": [
      {
@@ -595,14 +595,15 @@
    "id": "estatistica/a11/s03",
    "bizu": {
     "summary": [
-     "**Média com variância populacional conhecida**: usa a distribuição **normal padrão**. A estatística do teste é **z = (x̄ − μ₀)/(σ/√n)**, em que σ/√n é o desvio padrão da média amostral.",
-     "**Limites da região crítica**: L = μ₀ ± z_c·σ/√n (bilateral). **Rejeita-se H₀ se |z| > z_c** (ou se x̄ cair fora do intervalo).",
-     "💡 **Exemplo Prático:** **Valor crítico**: no bilateral, cada cauda tem α/2 (ex.: α = 1% → 0,5% em cada lado); no unilateral, α inteiro em uma cauda. Para α = 5% bilateral, z_c ≈ 1,96; unilateral, ≈ 1,64.",
-     "💡 **Exemplo Prático:** **Poder do teste**: acha-se o limite crítico sob H₀ (ex.: 600 + 2·20/10 = 604) e calcula-se, com a **média verdadeira** (ex.: 608), a probabilidade de a média amostral ultrapassar esse limite.",
-     "**Variância desconhecida**: usa-se a variância amostral **s²** (divisor **n − 1**), estimador não viesado, e a distribuição **t de Student com n − 1 graus de liberdade**.",
-     "**Estatística t**: **t = (x̄ − μ₀)/(s/√n)**, comparada com o valor crítico t_c da tabela (pelo nível α, pelo tipo de teste e por n − 1 g.l.).",
-     "💡 **Exemplo**: n = 16, x̄ = 1.000.000, s = 500.000 e H₀: μ = 750.000 → erro padrão = 125.000 e t = 2, com 15 g.l.",
-     "⚠️ **Cuidado**: s² divide por n − 1; a variância populacional divide por n. Se o enunciado fornece σ (não s), use a normal."
+     "### 1. Fundamentação Teórica e Conceitos Centrais",
+     "**Média com variância populacional conhecida**: usa a distribuição **normal padrão**. A estatística do teste é **z = (x̄ − μ₀)/(σ/√n)**, em que σ/√n é o desvio padrão da média amostral. **Limites da região crítica**: L = μ₀ ± z_c·σ/√n (bilateral). **Rejeita-se H₀ se |z| > z_c** (ou se x̄ cair fora do intervalo).",
+     "**Variância desconhecida**: usa-se a variância amostral **s²** (divisor **n − 1**), estimador não viesado, e a distribuição **t de Student com n − 1 graus de liberdade**. **Estatística t**: **t = (x̄ − μ₀)/(s/√n)**, comparada com o valor crítico t_c da tabela (pelo nível α, pelo tipo de teste e por n − 1 g.l.).",
+     "### 2. Análise Prática e Desdobramentos",
+     "• **Aplicação:** **Valor crítico**: no bilateral, cada cauda tem α/2 (ex.: α = 1% → 0,5% em cada lado); no unilateral, α inteiro em uma cauda. Para α = 5% bilateral, z_c ≈ 1,96; unilateral, ≈ 1,64.",
+     "• **Aplicação:** **Poder do teste**: acha-se o limite crítico sob H₀ (ex.: 600 + 2·20/10 = 604) e calcula-se, com a **média verdadeira** (ex.: 608), a probabilidade de a média amostral ultrapassar esse limite.",
+     "• **Aplicação:** 💡 **Exemplo**: n = 16, x̄ = 1.000.000, s = 500.000 e H₀: μ = 750.000 → erro padrão = 125.000 e t = 2, com 15 g.l.",
+     "### 3. Diretrizes de Prova e Pontos de Atenção",
+     "> ⚠️ **Atenção de Prova:** ⚠️ **Cuidado**: s² divide por n − 1; a variância populacional divide por n. Se o enunciado fornece σ (não s), use a normal."
     ],
     "teoria": [
      {
@@ -898,13 +899,12 @@
    "id": "estatistica/a11/s04",
    "bizu": {
     "summary": [
-     "**Comparação de duas médias** (H₀: μ₁ = μ₂, ou μ₁ − μ₂ = 0): a variável do teste é a **diferença das médias amostrais** x̄₁ − x̄₂, com média 0 sob H₀.",
-     "**Populações normais com variâncias conhecidas**: a variância da diferença é a **soma** σ₁²/n₁ + σ₂²/n₂ (amostras independentes) e a estatística é **z = (x̄₁ − x̄₂)/√(σ₁²/n₁ + σ₂²/n₂)**, normal padrão.",
-     "**Variâncias desconhecidas e iguais**: estimador combinado **s_p² = [(n₁−1)s₁² + (n₂−1)s₂²]/(n₁ + n₂ − 2)**, média ponderada pelos graus de liberdade. Estatística **t = (x̄₁ − x̄₂)/√[s_p²(1/n₁ + 1/n₂)]**, com **n₁ + n₂ − 2** g.l.",
-     "**Variâncias desconhecidas e diferentes**: t aproximado, sem variância combinada, com graus de liberdade calculados por fórmula que considera as variâncias amostrais e os tamanhos das amostras.",
-     "**Amostras pareadas**: as duas medidas vêm dos **mesmos indivíduos** (antes/depois), então não são independentes. Calculam-se as **diferenças d** por indivíduo e testa-se H₀: μ_d = 0 com **t = d̄/(s_d/√n)**, **n − 1** g.l.",
-     "**Média das diferenças = diferença das médias**: d̄ = x̄ − ȳ, atalho útil no teste pareado.",
-     "💡 **Exemplo**: s_p² com n₁ = 9, s₁² = 10, n₂ = 4, s₂² = 21: (8·10 + 3·21)/11 = 13."
+     "### 1. Fundamentação Teórica e Conceitos Centrais",
+     "**Comparação de duas médias** (H₀: μ₁ = μ₂, ou μ₁ − μ₂ = 0): a variável do teste é a **diferença das médias amostrais** x̄₁ − x̄₂, com média 0 sob H₀. **Populações normais com variâncias conhecidas**: a variância da diferença é a **soma** σ₁²/n₁ + σ₂²/n₂ (amostras independentes) e a estatística é **z = (x̄₁ − x̄₂)/√(σ₁²/n₁ + σ₂²/n₂)**, normal padrão.",
+     "**Variâncias desconhecidas e iguais**: estimador combinado **s_p² = [(n₁−1)s₁² + (n₂−1)s₂²]/(n₁ + n₂ − 2)**, média ponderada pelos graus de liberdade. Estatística **t = (x̄₁ − x̄₂)/√[s_p²(1/n₁ + 1/n₂)]**, com **n₁ + n₂ − 2** g.l. **Variâncias desconhecidas e diferentes**: t aproximado, sem variância combinada, com graus de liberdade calculados por fórmula que considera as variâncias amostrais e os tamanhos das amostras.",
+     "**Amostras pareadas**: as duas medidas vêm dos **mesmos indivíduos** (antes/depois), então não são independentes. Calculam-se as **diferenças d** por indivíduo e testa-se H₀: μ_d = 0 com **t = d̄/(s_d/√n)**, **n − 1** g.l. **Média das diferenças = diferença das médias**: d̄ = x̄ − ȳ, atalho útil no teste pareado.",
+     "### 2. Análise Prática e Desdobramentos",
+     "• **Aplicação:** 💡 **Exemplo**: s_p² com n₁ = 9, s₁² = 10, n₂ = 4, s₂² = 21: (8·10 + 3·21)/11 = 13."
     ],
     "teoria": [
      {
@@ -1222,14 +1222,14 @@
    "id": "estatistica/a11/s05",
    "bizu": {
     "summary": [
-     "💡 **Exemplo Prático:** **Teste para proporção**: aplica-se a populações de Bernoulli (sucesso/fracasso). H₀: p = p₀. A estatística usa a **proporção amostral p̂ = x/n** e a aproximação normal (TCL).",
-     "**Variância da proporção amostral**: **Var(p̂) = p₀·q₀/n** (calculada sob H₀). Estatística: **z = (p̂ − p₀)/√(p₀q₀/n)**. É chamada de escore reduzido.",
-     "💡 **Exemplo**: H₀: p = 0,5, n = 100 e 55 homens → p̂ = 0,55, erro padrão = 0,05 e z = 1.",
-     "**Teste unilateral de proporção**: se o interesse é que a proporção de defeitos **não supere** o limite, a região crítica fica só à direita (proporção menor é desejável).",
-     "**Duas proporções** (H₀: p₁ = p₂): usa-se a proporção combinada **p = (x₁ + x₂)/(n₁ + n₂)**; a variância da diferença é **p·q·(1/n₁ + 1/n₂)** e **z = (p̂₁ − p̂₂)/√[p·q·(1/n₁ + 1/n₂)]**.",
-     "**Teste binomial exato**: sem aproximar para a normal, trabalha com P(X = k) = C(n, k)·pᵏ·qⁿ⁻ᵏ. O nível de significância é a **soma das probabilidades dos valores da região de rejeição** sob H₀; o poder usa o p de H₁.",
-     "💡 **Exemplo exato**: 4 lançamentos de moeda justa, rejeitando H₀ se saírem 0 ou 4 caras: α = 0,0625 + 0,0625 = 12,5%. Com p = 0,6, P(4 caras) = 0,1296.",
-     "**Sinais + e −**: dados classificados em duas categorias também seguem o teste de proporções."
+     "### 1. Fundamentação Teórica e Conceitos Centrais",
+     "**Variância da proporção amostral**: **Var(p̂) = p₀·q₀/n** (calculada sob H₀). Estatística: **z = (p̂ − p₀)/√(p₀q₀/n)**. É chamada de escore reduzido. **Teste unilateral de proporção**: se o interesse é que a proporção de defeitos **não supere** o limite, a região crítica fica só à direita (proporção menor é desejável).",
+     "**Duas proporções** (H₀: p₁ = p₂): usa-se a proporção combinada **p = (x₁ + x₂)/(n₁ + n₂)**; a variância da diferença é **p·q·(1/n₁ + 1/n₂)** e **z = (p̂₁ − p̂₂)/√[p·q·(1/n₁ + 1/n₂)]**. **Teste binomial exato**: sem aproximar para a normal, trabalha com P(X = k) = C(n, k)·pᵏ·qⁿ⁻ᵏ. O nível de significância é a **soma das probabilidades dos valores da região de rejeição** sob H₀; o poder usa o p de H₁.",
+     "**Sinais + e −**: dados classificados em duas categorias também seguem o teste de proporções.",
+     "### 2. Análise Prática e Desdobramentos",
+     "• **Aplicação:** **Teste para proporção**: aplica-se a populações de Bernoulli (sucesso/fracasso). H₀: p = p₀. A estatística usa a **proporção amostral p̂ = x/n** e a aproximação normal (TCL).",
+     "• **Aplicação:** 💡 **Exemplo**: H₀: p = 0,5, n = 100 e 55 homens → p̂ = 0,55, erro padrão = 0,05 e z = 1.",
+     "• **Aplicação:** 💡 **Exemplo exato**: 4 lançamentos de moeda justa, rejeitando H₀ se saírem 0 ou 4 caras: α = 0,0625 + 0,0625 = 12,5%. Com p = 0,6, P(4 caras) = 0,1296."
     ],
     "teoria": [
      {
@@ -1525,14 +1525,14 @@
    "id": "estatistica/a11/s06",
    "bizu": {
     "summary": [
-     "**Teste para a variância** (população normal): H₀: σ² = σ₀². A estatística é **χ² = (n − 1)·s²/σ₀²**, com **n − 1** graus de liberdade (qui-quadrado).",
-     "💡 **Exemplo Prático:** **Decisão**: compare com os valores críticos inferior e superior da tabela (bilateral) ou com um deles (unilateral). Ex.: n = 10, s² = 1,5 e σ₀² = 3,6 → χ² = 9·1,5/3,6 = 3,75.",
-     "**Comparação de duas variâncias** (teste de homogeneidade): H₀: σ_A² = σ_B². A estatística é a razão das variâncias amostrais **F = s_A²/s_B²**, com **(n_A − 1, n_B − 1)** graus de liberdade (F de Snedecor).",
-     "**Valores críticos de F**: o superior vem da tabela; o inferior é o **inverso** do crítico superior com os graus de liberdade **trocados** (numerador ↔ denominador).",
-     "**Outras razões**: para H₀: σ_A² = 2σ_B², a estatística passa a ser F = s_A²/(2·s_B²).",
-     "**P-valor (nível descritivo)**: probabilidade de obter um resultado **tão extremo ou mais** que o observado, **supondo H₀ verdadeira**. Rejeita-se H₀ se **p < α**; se p > α, não se rejeita.",
-     "**Teste bilateral**: o p-valor é o **dobro** do unilateral (na distribuição simétrica).",
-     "⚠️ **Pegadinha**: o p-valor não é o maior nível de significância a partir do qual H₀ não é rejeitada; é uma probabilidade calculada sob H₀. Quando p < α, o resultado é estatisticamente significante."
+     "### 1. Fundamentação Teórica e Conceitos Centrais",
+     "**Teste para a variância** (população normal): H₀: σ² = σ₀². A estatística é **χ² = (n − 1)·s²/σ₀²**, com **n − 1** graus de liberdade (qui-quadrado). **Comparação de duas variâncias** (teste de homogeneidade): H₀: σ_A² = σ_B². A estatística é a razão das variâncias amostrais **F = s_A²/s_B²**, com **(n_A − 1, n_B − 1)** graus de liberdade (F de Snedecor).",
+     "**Valores críticos de F**: o superior vem da tabela; o inferior é o **inverso** do crítico superior com os graus de liberdade **trocados** (numerador ↔ denominador). **Outras razões**: para H₀: σ_A² = 2σ_B², a estatística passa a ser F = s_A²/(2·s_B²).",
+     "**P-valor (nível descritivo)**: probabilidade de obter um resultado **tão extremo ou mais** que o observado, **supondo H₀ verdadeira**. Rejeita-se H₀ se **p < α**; se p > α, não se rejeita. **Teste bilateral**: o p-valor é o **dobro** do unilateral (na distribuição simétrica).",
+     "### 2. Análise Prática e Desdobramentos",
+     "• **Aplicação:** **Decisão**: compare com os valores críticos inferior e superior da tabela (bilateral) ou com um deles (unilateral). Ex.: n = 10, s² = 1,5 e σ₀² = 3,6 → χ² = 9·1,5/3,6 = 3,75.",
+     "### 3. Diretrizes de Prova e Pontos de Atenção",
+     "> ⚠️ **Atenção de Prova:** ⚠️ **Pegadinha**: o p-valor não é o maior nível de significância a partir do qual H₀ não é rejeitada; é uma probabilidade calculada sob H₀. Quando p < α, o resultado é estatisticamente significante."
     ],
     "teoria": [
      {

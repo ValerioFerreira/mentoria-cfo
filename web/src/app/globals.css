@@ -574,3 +574,30 @@ body::before {
     scroll-behavior: auto !important;
   }
 }
+
+/* ───────── Impressão / Baixar PDF do Resumo (Bizu Sheet) ───────── */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .bizu-sheet,
+  .bizu-sheet * {
+    visibility: visible;
+  }
+  .bizu-sheet {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 12mm !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: #ffffff !important;
+    color: #0e1b2e !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
+

@@ -1,8 +1,19 @@
 "use client";
 
-import { AlertTriangle, BookOpen, Check, Lightbulb, PartyPopper, Sparkles, X } from "lucide-react";
+import {
+  AlertTriangle,
+  BookOpen,
+  Check,
+  Download,
+  FileText,
+  Lightbulb,
+  PartyPopper,
+  Printer,
+  Sparkles,
+  X,
+} from "lucide-react";
 import { useState, useTransition, type ReactNode } from "react";
-import { Card, cx } from "@/components/ui";
+import { Button, Card, cx } from "@/components/ui";
 import { answerBizuItem } from "@/lib/study/actions";
 
 export interface BizuItemView {
@@ -20,9 +31,9 @@ export function BizuItems({ activityId, items }: { activityId: string; items: Bi
   const answered = Object.keys(answers).length;
   const hits = items.filter((i) => answers[i.id] === i.isTrue).length;
   return (
-    <div className="space-y-3">
+    <div className="space-y-3 pt-2">
       <div className="flex items-center justify-between gap-3">
-        <p className="eyebrow">Certo ou Errado</p>
+        <p className="eyebrow">Certo ou Errado · Fixação Imediata</p>
         <div className="flex items-center gap-1.5" aria-label={`${answered} de ${items.length} respondidos`}>
           {items.map((it) => {
             const g = answers[it.id];
@@ -108,120 +119,140 @@ function formatInline(text: string): ReactNode[] {
   });
 }
 
-export function BizuSummary({ markdown }: { markdown: string }) {
-  const rawLines = markdown.split("\n").map((l) => l.trim()).filter(Boolean);
+export function BizuSummary({
+  markdown,
+  title,
+}: {
+  markdown: string;
+  title?: string;
+}) {
+  const rawParagraphs = markdown
+    .split(/\n\s*\n/)
+    .map((p) => p.trim())
+    .filter(Boolean);
+
+  const handleDownloadPdf = () => {
+    if (typeof window !== "undefined") {
+      window.print();
+    }
+  };
 
   return (
-    <Card className="relative overflow-hidden border border-border/80 bg-surface/90 p-5 shadow-card sm:p-6 space-y-4">
-      {/* Barra superior de identificação no estilo apostila */}
-      <div className="flex items-center justify-between border-b border-border/60 pb-3">
-        <div className="flex items-center gap-2">
-          <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-gold/15 text-gold">
-            <BookOpen className="h-3.5 w-3.5" aria-hidden />
+    <article className="bizu-sheet relative rounded-2xl border border-border/80 bg-surface p-6 shadow-sm sm:p-9 space-y-6 print:p-0 print:border-none print:shadow-none print:bg-transparent">
+      {/* Cabeçalho da Folha de PDF */}
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border/60 pb-4">
+        <div className="space-y-1">
+          <div className="flex items-center gap-2">
+            <span className="grid h-6 w-6 place-items-center rounded-lg bg-primary/10 text-primary">
+              <FileText className="h-3.5 w-3.5" aria-hidden />
+            </span>
+            <span className="font-display text-xs font-bold uppercase tracking-wider text-muted">
+              MentorIA · Caderno Teórico & Síntese Analítica
+            </span>
           </div>
-          <span className="font-display text-xs font-bold uppercase tracking-wider text-muted">
-            Caderno Teórico · Bizu Direcionado
-          </span>
+          {title && (
+            <h2 className="font-display text-xl font-bold uppercase text-text sm:text-2xl">
+              {title}
+            </h2>
+          )}
         </div>
-        <span className="rounded-full bg-gold/10 px-2.5 py-0.5 text-[11px] font-bold text-gold-text">
-          Síntese Essencial
-        </span>
+
+        <Button
+          type="button"
+          onClick={handleDownloadPdf}
+          size="sm"
+          variant="secondary"
+          className="no-print gap-1.5 text-xs font-semibold"
+          title="Baixar PDF / Imprimir resumo"
+        >
+          <Download className="h-3.5 w-3.5 text-primary" aria-hidden />
+          <span>Baixar PDF</span>
+        </Button>
       </div>
 
-      {/* Conteúdo estruturado */}
-      <div className="space-y-3.5 pt-1 text-[15px] leading-relaxed">
-        {rawLines.map((raw, i) => {
-          const clean = raw.replace(/^[-*]\s*/, "");
-
-          // 1. Títulos / Cabeçalhos (ex: ### ou ##)
-          if (clean.startsWith("#")) {
-            const titleText = clean.replace(/^#+\s*/, "");
+      {/* Corpo de Leitura Contínua e Analítica (Estilo Apostila / Livro) */}
+      <div className="space-y-4 text-[15.5px] leading-[1.75] text-text/90">
+        {rawParagraphs.map((para, i) => {
+          // 1. Cabeçalho / Título de Seção (###)
+          if (para.startsWith("#")) {
+            const titleText = para.replace(/^#+\s*/, "");
             return (
-              <div key={i} className="flex items-center gap-2.5 pt-2 pb-1">
-                <span className="h-4 w-1 rounded-full bg-gold" />
-                <h3 className="font-display text-base font-bold uppercase tracking-wide text-text">
+              <div key={i} className="pt-4 pb-1">
+                <h3 className="flex items-center gap-2.5 font-display text-base font-bold uppercase tracking-wide text-text">
+                  <span className="h-4 w-1.5 rounded-full bg-primary" />
                   {titleText}
                 </h3>
               </div>
             );
           }
 
-          // 2. Pontos de Atenção / Pegadinhas / Cuidado
+          // 2. Quadro de Atenção / Pegadinha da Banca (> ⚠️ ou ⚠️)
           if (
-            clean.includes("⚠️") ||
-            clean.startsWith("**Atenção") ||
-            clean.startsWith("**Cuidado") ||
-            clean.startsWith("**Pegadinha") ||
-            clean.startsWith("**Importante")
+            para.startsWith("> ⚠️") ||
+            para.includes("⚠️") ||
+            para.startsWith("**Atenção") ||
+            para.startsWith("**Cuidado")
           ) {
+            const clean = para.replace(/^>\s*/, "").replace(/^⚠️\s*/, "");
             return (
               <div
                 key={i}
-                className="my-2 flex items-start gap-3 rounded-2xl border border-amber-500/30 bg-amber-500/10 p-4 text-[14.5px] leading-relaxed text-amber-950 shadow-xs dark:text-amber-100"
+                className="my-3 flex items-start gap-3 rounded-xl border-l-4 border-amber-500 bg-amber-500/10 p-4 text-[14.5px] leading-relaxed text-amber-950 dark:text-amber-100"
               >
-                <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-amber-500/20 text-amber-600 dark:text-amber-400">
+                <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded bg-amber-500/20 text-amber-600 dark:text-amber-400">
                   <AlertTriangle className="h-3.5 w-3.5" aria-hidden />
                 </div>
-                <div className="min-w-0 flex-1">{formatInline(clean.replace(/^⚠️\s*/, ""))}</div>
+                <div className="min-w-0 flex-1">{formatInline(clean)}</div>
               </div>
             );
           }
 
-          // 3. Exemplos Práticos / Aplicação
+          // 3. Quadro de Bizu Estratégico / Mnemônico (> 📌 ou 📌)
           if (
-            clean.includes("💡") ||
-            clean.startsWith("**Exemplo") ||
-            clean.startsWith("**Aplicação")
+            para.startsWith("> 📌") ||
+            para.includes("📌") ||
+            para.startsWith("**Bizu") ||
+            para.startsWith("**Mnemônico")
           ) {
+            const clean = para.replace(/^>\s*/, "").replace(/^📌\s*/, "");
             return (
               <div
                 key={i}
-                className="my-2 flex items-start gap-3 rounded-2xl border border-sky-500/30 bg-sky-500/10 p-4 text-[14.5px] leading-relaxed text-sky-950 shadow-xs dark:text-sky-100"
+                className="my-3 flex items-start gap-3 rounded-xl border-l-4 border-gold bg-gold/10 p-4 text-[14.5px] leading-relaxed text-text shadow-xs"
               >
-                <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-sky-500/20 text-sky-600 dark:text-sky-400">
-                  <Lightbulb className="h-3.5 w-3.5" aria-hidden />
-                </div>
-                <div className="min-w-0 flex-1">{formatInline(clean.replace(/^💡\s*/, ""))}</div>
-              </div>
-            );
-          }
-
-          // 4. Bizus de Prova / Mnemônicos / Memorize
-          if (
-            clean.includes("📌") ||
-            clean.startsWith("**Bizu") ||
-            clean.startsWith("**Mnemônico") ||
-            clean.startsWith("**Memorize") ||
-            clean.startsWith("**Dica")
-          ) {
-            return (
-              <div
-                key={i}
-                className="my-2 flex items-start gap-3 rounded-2xl border border-gold/40 bg-gold/10 p-4 text-[14.5px] leading-relaxed text-text shadow-xs"
-              >
-                <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-gold/20 text-gold">
+                <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded bg-gold/20 text-gold">
                   <Sparkles className="h-3.5 w-3.5" aria-hidden />
                 </div>
-                <div className="min-w-0 flex-1">{formatInline(clean.replace(/^📌\s*/, ""))}</div>
+                <div className="min-w-0 flex-1">{formatInline(clean)}</div>
               </div>
             );
           }
 
-          // 5. Tópico normal (Apresentação elegante com indicador e destaque visual)
-          return (
-            <div
-              key={i}
-              className="flex items-start gap-3 rounded-xl border border-border/40 bg-surface-2/60 p-3.5 transition-colors hover:border-border-strong hover:bg-surface-2"
-            >
-              <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-gold shadow-xs" aria-hidden />
-              <div className="min-w-0 flex-1 text-text/95">
-                {formatInline(clean)}
+          // 4. Aplicação Prática / Exemplos (• **Aplicação:**)
+          if (para.startsWith("•") || para.startsWith("-")) {
+            const clean = para.replace(/^[-•*]\s*/, "");
+            return (
+              <div key={i} className="flex items-start gap-2.5 pl-2">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/70" />
+                <p className="min-w-0 flex-1">{formatInline(clean)}</p>
               </div>
-            </div>
+            );
+          }
+
+          // 5. Parágrafo analítico de texto corrido
+          return (
+            <p key={i} className="text-justify font-normal">
+              {formatInline(para)}
+            </p>
           );
         })}
       </div>
-    </Card>
+
+      {/* Rodapé Editorial da Folha */}
+      <div className="border-t border-dashed border-border/60 pt-4 flex flex-wrap items-center justify-between text-xs text-muted">
+        <span>MentorIA · Preparação Individualizada</span>
+        <span className="font-mono">Caderno Teórico de Alta Retenção</span>
+      </div>
+    </article>
   );
 }
-
