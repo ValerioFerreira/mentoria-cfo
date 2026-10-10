@@ -550,7 +550,7 @@ function TurboOption({ preview, on, onChange }: { preview: Preview | null; on: b
             Atenção ao Modo Turbo
           </div>
           <p className={cx("text-sm leading-relaxed", on ? "text-on-ink" : "text-text")}>
-            <strong>Atenção ao Modo Turbo:</strong> este modo prioriza a cobertura teórica de todo o edital, reduzindo o tempo disponível para revisões e resolução de questões. Se você já estudou boa parte do conteúdo e está relativamente próximo de concluir o edital — especialmente se já atingiu mais de 80% —, o planejamento normal tende a ser mais adequado. Ele permite priorizar os assuntos de maior peso e incidência, reduzindo proporcionalmente o esforço dedicado às disciplinas e aos temas menos importantes, sem comprometer desnecessariamente a revisão e a prática por questões.
+            <strong>Atenção ao Modo Turbo:</strong> este modo prioriza a cobertura teórica de todo o edital, reduzindo o tempo disponível para revisões e resolução de questões. Se o sistema calculou que seu planejamento já cobre boa parte do conteúdo — mais de 80% —, o planejamento normal tende a ser mais adequado. Ele permite priorizar os assuntos de maior peso e incidência, reduzindo proporcionalmente o esforço dedicado às disciplinas e aos temas menos importantes, sem comprometer desnecessariamente a revisão e a prática por questões.
           </p>
         </div>
       )}
