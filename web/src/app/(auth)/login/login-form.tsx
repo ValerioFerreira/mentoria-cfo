@@ -11,14 +11,14 @@ export function LoginForm() {
   const [show, setShow] = useState(false);
   return (
     <div className="space-y-8">
-      <form action={action} className="space-y-5">
+      <form id="login-form" method="POST" action={action} className="space-y-5">
         <div className="space-y-1">
           <h1 className="font-display text-5xl font-bold uppercase leading-none sm:text-6xl">Entrar</h1>
           <p className="text-sm text-muted">Acesse o seu plano de estudos.</p>
         </div>
         {state?.message && <Alert tone="danger">{state.message}</Alert>}
         <Field label="E-mail" error={state?.errors?.email}>
-          <input name="email" type="email" autoComplete="email" required className={inputCls} />
+          <input id="email" name="email" type="email" autoComplete="username email" required className={inputCls} />
         </Field>
         <div className="space-y-1.5">
           <div className="flex items-center justify-between">

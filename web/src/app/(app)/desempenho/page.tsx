@@ -1,4 +1,4 @@
-import { CheckCircle2, ChevronRight, CircleAlert, CircleHelp, ClipboardList, Clock3, Flame, ListChecks, Target } from "lucide-react";
+import { CheckCircle2, ChevronRight, CircleAlert, CircleHelp, ClipboardList, Clock3, Flame, ListChecks, Target, Trophy, Users } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import type { CSSProperties } from "react";
@@ -235,6 +235,171 @@ export default async function PerformancePage() {
                         )}
                       </td>
                       <td className="px-5 py-3.5"><Badge tone={mst.tone}>{mst.label}</Badge></td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </Card>
+        )}
+      </section>
+
+      {/* ───────── COMPARATIVO COM A COMUNIDADE ───────── */}
+      <section aria-labelledby="community">
+        <SectionTitle
+          id="community"
+          info="Comparações anônimas entre o seu desempenho e o dos concurseiros ativos na plataforma. Inclui apenas alunos com volume mínimo de dados (no mínimo 15 questões e 2h de estudo)."
+          aside={`Amostra ativa: ${perf.community.qualifiedUsersCount} ${perf.community.qualifiedUsersCount === 1 ? "aluno qualificado" : "alunos qualificados"}`}
+        >
+          Você vs. Comunidade
+        </SectionTitle>
+
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {/* Card 1: Taxa de Acerto Geral */}
+          <Card className="space-y-4">
+            <div className="flex items-center justify-between">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <Target className="h-5 w-5" />
+              </span>
+              {perf.community.userPercentile !== null ? (
+                <Badge tone="ok">Top {Math.max(1, 100 - perf.community.userPercentile)}%</Badge>
+              ) : (
+                <Badge tone="neutral">Poucos dados</Badge>
+              )}
+            </div>
+
+            <div>
+              <p className="eyebrow">Taxa Geral de Acerto</p>
+              <div className="mt-1 flex items-baseline gap-2">
+                <span className="font-display text-4xl font-bold">{pct(perf.accuracy)}</span>
+                <span className="text-xs font-semibold text-muted">seu acerto</span>
+              </div>
+            </div>
+
+            <div className="space-y-2 border-t border-border pt-3 text-xs">
+              <div className="flex items-center justify-between">
+                <span className="text-muted">Média dos alunos ativos:</span>
+                <strong className="font-semibold text-text">{pct(perf.community.communityAvgAccuracy)}</strong>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-muted">Top 10% mais preparados:</span>
+                <strong className="font-semibold text-ok">{pct(perf.community.top10Accuracy)}</strong>
+              </div>
+            </div>
+
+            {perf.community.userPercentile !== null ? (
+              <p className="rounded-lg bg-surface-2 p-2 text-center text-xs font-semibold text-text">
+                Você está à frente de <span className="text-ok font-bold">{perf.community.userPercentile}%</span> dos candidatos ativos!
+              </p>
+            ) : (
+              <p className="text-[11px] text-muted">
+                Resolva pelo menos {perf.community.minQuestions} questões para desbloquear seu percentil exato.
+              </p>
+            )}
+          </Card>
+
+          {/* Card 2: Horas de Estudo */}
+          <Card className="space-y-4">
+            <div className="flex items-center justify-between">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gold/15 text-gold-text">
+                <Trophy className="h-5 w-5" />
+              </span>
+              <Badge tone="gold">Dedicação</Badge>
+            </div>
+
+            <div>
+              <p className="eyebrow">Horas de Estudo</p>
+              <div className="mt-1 flex items-baseline gap-2">
+                <span className="font-display text-4xl font-bold">{num(perf.community.userStudyHours ?? 0)}h</span>
+                <span className="text-xs font-semibold text-muted">acumuladas</span>
+              </div>
+            </div>
+
+            <div className="space-y-2 border-t border-border pt-3 text-xs">
+              <div className="flex items-center justify-between">
+                <span className="text-muted">Média da comunidade ativa:</span>
+                <strong className="font-semibold text-text">{perf.community.communityAvgHours !== null ? `${num(perf.community.communityAvgHours)}h` : "—"}</strong>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-muted">Critério de qualificação:</span>
+                <span className="text-muted">mínimo {perf.community.minStudyHours}h registradas</span>
+              </div>
+            </div>
+
+            <p className="rounded-lg bg-surface-2 p-2 text-center text-xs font-semibold text-text">
+              {perf.community.userStudyHours && perf.community.communityAvgHours && perf.community.userStudyHours >= perf.community.communityAvgHours
+                ? "Seu volume de dedicação está acima da média!"
+                : "Mantenha a regularidade diária para avançar."}
+            </p>
+          </Card>
+
+          {/* Card 3: Ranking e Amostragem */}
+          <Card className="space-y-4 sm:col-span-2 lg:col-span-1">
+            <div className="flex items-center justify-between">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-ok/15 text-ok">
+                <Users className="h-5 w-5" />
+              </span>
+              <Badge tone="primary">Filtro Antidistorsão</Badge>
+            </div>
+
+            <div>
+              <p className="eyebrow">Amostragem Qualificada</p>
+              <p className="mt-1 font-display text-xl font-bold uppercase leading-snug">
+                Concorrentes Reais
+              </p>
+            </div>
+
+            <p className="text-xs leading-relaxed text-muted">
+              Contas sem atividade ou com menos de {perf.community.minQuestions} questões são <strong>desconsideradas</strong> para manter as comparações estatisticamente válidas.
+            </p>
+
+            <div className="rounded-xl border border-border bg-surface-2 p-3 text-xs space-y-1">
+              <p className="font-semibold text-text">Amostra qualificada atual:</p>
+              <p className="text-muted">
+                {perf.community.qualifiedUsersCount} alunos em questões · {perf.community.qualifiedStudyUsersCount} em tempo de estudo.
+              </p>
+            </div>
+          </Card>
+        </div>
+
+        {/* Tabela de Comparação por Matéria */}
+        {perf.community.subjectStats.length > 0 && (
+          <Card className="mt-4 overflow-x-auto p-0">
+            <table className="w-full text-left text-sm">
+              <thead className="border-b border-border bg-surface-2 text-xs font-semibold uppercase tracking-wider text-muted">
+                <tr>
+                  <th className="px-5 py-3">Disciplina</th>
+                  <th className="px-4 py-3 text-right">Seu Acerto</th>
+                  <th className="px-4 py-3 text-right">Média dos Concorrentes</th>
+                  <th className="px-4 py-3 text-right">Comparativo</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border">
+                {perf.community.subjectStats.map((st) => {
+                  const diff = st.userAccuracy !== null && st.communityAccuracy !== null ? st.userAccuracy - st.communityAccuracy : null;
+                  return (
+                    <tr key={st.subjectId} className="transition hover:bg-surface-2/60">
+                      <td className="px-5 py-3">
+                        <p className="font-semibold">{st.subjectName}</p>
+                        <p className="text-xs text-muted">{st.userTotal} questões feitas por você · {st.qualifiedCount} concorrentes na amostra</p>
+                      </td>
+                      <td className="px-4 py-3 text-right font-display text-lg font-bold tabular">
+                        <span style={{ color: accColor(st.userAccuracy) }}>{pct(st.userAccuracy)}</span>
+                      </td>
+                      <td className="px-4 py-3 text-right font-display text-lg font-bold tabular text-muted">
+                        {pct(st.communityAccuracy)}
+                      </td>
+                      <td className="px-4 py-3 text-right">
+                        {diff === null ? (
+                          <Badge tone="neutral">Sem base</Badge>
+                        ) : diff >= 0.05 ? (
+                          <Badge tone="ok" className="tabular">+{Math.round(diff * 100)}% acima</Badge>
+                        ) : diff <= -0.05 ? (
+                          <Badge tone="primary" className="tabular">{Math.round(diff * 100)}% abaixo</Badge>
+                        ) : (
+                          <Badge tone="gold" className="tabular">Na média</Badge>
+                        )}
+                      </td>
                     </tr>
                   );
                 })}

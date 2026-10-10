@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, CircleAlert, Copy, Loader2, Send, ShieldCheck } from "lucide-react";
+import { Check, CheckCircle2, CircleAlert, Clock, Copy, Loader2, Send, ShieldCheck, X } from "lucide-react";
 import Image from "next/image";
 import { useActionState, useRef, useState } from "react";
 import { Star } from "@/components/brand";
@@ -162,6 +162,8 @@ function Payment({ p }: { p: NonNullable<NonNullable<Awaited<ReturnType<typeof j
   const [copied, setCopied] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
 
+  const [showModal, setShowModal] = useState(false);
+
   async function copy() {
     try {
       await navigator.clipboard.writeText(p.payload);
@@ -228,15 +230,71 @@ function Payment({ p }: { p: NonNullable<NonNullable<Awaited<ReturnType<typeof j
         <div className="min-w-0 flex-1 space-y-3">
           <p className="text-xs font-semibold uppercase tracking-wider text-muted">Pix copia e cola</p>
           <textarea readOnly value={p.payload} rows={5} className={`${inputCls} resize-none break-all font-mono text-[11px] leading-snug`} onFocus={(e) => e.currentTarget.select()} aria-label="Código Pix copia e cola" />
-          <Button type="button" variant={copied ? "secondary" : "primary"} onClick={copy} className="w-full sm:w-auto">
-            {copied ? <Check className="h-4 w-4 text-ok" aria-hidden /> : <Copy className="h-4 w-4" aria-hidden />}
-            {copied ? "Código copiado" : "Copiar código Pix"}
-          </Button>
+          <div className="flex flex-wrap gap-2.5">
+            <Button type="button" variant={copied ? "secondary" : "primary"} onClick={copy} className="w-full sm:w-auto">
+              {copied ? <Check className="h-4 w-4 text-ok" aria-hidden /> : <Copy className="h-4 w-4" aria-hidden />}
+              {copied ? "Código copiado" : "Copiar código Pix"}
+            </Button>
+            <Button type="button" variant="secondary" onClick={() => setShowModal(true)} className="w-full sm:w-auto">
+              <CheckCircle2 className="h-4 w-4 text-ok" aria-hidden />
+              Confirmar pagamento
+            </Button>
+          </div>
         </div>
       </div>
       <p className="border-t border-dashed border-border-strong pt-4 text-sm text-muted">
         Assim que seu pagamento for confirmado pela administração, você receberá no seu e-mail as credenciais de acesso com a sua senha temporária.
       </p>
+
+      {showModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="pix-modal-title"
+        >
+          <div className="relative w-full max-w-md rounded-2xl border border-border bg-surface p-6 shadow-lift space-y-4">
+            <button
+              type="button"
+              onClick={() => setShowModal(false)}
+              className="absolute right-4 top-4 rounded-lg p-1.5 text-muted transition hover:bg-surface-2 hover:text-text cursor-pointer"
+              aria-label="Fechar"
+            >
+              <X className="h-5 w-5" />
+            </button>
+
+            <div className="flex items-center gap-3">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-ok/15 text-ok">
+                <Clock className="h-6 w-6" />
+              </span>
+              <div>
+                <p className="eyebrow text-ok">Solicitação Confirmada</p>
+                <h3 id="pix-modal-title" className="font-display text-xl font-bold uppercase">
+                  Pagamento em Análise
+                </h3>
+              </div>
+            </div>
+
+            <div className="space-y-3 text-sm leading-relaxed text-muted">
+              <p>
+                A sua solicitação foi confirmada e o comprovante está sendo verificado pela nossa equipe.
+              </p>
+              <div className="rounded-xl border border-ok/30 bg-ok/10 p-3.5 text-xs text-text space-y-1">
+                <p className="font-semibold text-ok flex items-center gap-1.5">
+                  <Check className="h-4 w-4" /> Liberação em até 1 hora
+                </p>
+                <p className="text-muted leading-relaxed">
+                  Em até <strong>1 hora</strong> você receberá um e-mail de confirmação contendo o seu login e as instruções de acesso ao MentorIA.
+                </p>
+              </div>
+            </div>
+
+            <Button type="button" variant="primary" onClick={() => setShowModal(false)} className="w-full">
+              Entendi, vou aguardar o e-mail
+            </Button>
+          </div>
+        </div>
+      )}
     </Card>
   );
 }
