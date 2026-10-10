@@ -14,6 +14,25 @@ export function buildAulaCycle(bp: AulaBlueprint, tier: Tier): PlannedActivity[]
   const shape = tierShape(bp, tier);
   const out: PlannedActivity[] = [];
 
+  // Modo Turbo: consolida todas as teorias da aula em uma única atividade com intervalo unificado de páginas
+  if (bp.turbo) {
+    const allSegmentIds = bp.teoria.flatMap((u) => u.segmentIds);
+    const totalMinutes = bp.teoria.reduce((n, u) => n + teoriaMinutes(u, bp), 0);
+    return [
+      {
+        key: `${aulaId}#TURBO`,
+        type: "TEORIA",
+        subjectId,
+        aulaId,
+        minutes: totalMinutes,
+        segmentIds: allSegmentIds,
+        refKeys: [],
+        scope: "AULA",
+        turbo: true,
+      },
+    ];
+  }
+
   const teorias: PlannedActivity[] = bp.teoria.map((u, i) => ({
     key: `${aulaId}#T${i + 1}`,
     type: "TEORIA",
@@ -23,7 +42,6 @@ export function buildAulaCycle(bp: AulaBlueprint, tier: Tier): PlannedActivity[]
     segmentIds: u.segmentIds,
     refKeys: [],
     scope: "AULA",
-    ...(bp.turbo ? { turbo: true } : {}),
   }));
 
   // sem Revisão (camada Essencial): a teoria corre direto; o caderno vem ao final

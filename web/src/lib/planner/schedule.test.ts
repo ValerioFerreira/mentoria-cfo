@@ -91,10 +91,11 @@ describe("buildAulaCycle", () => {
       seen.add(a.key);
     }
   });
-  it("Modo Turbo: só Teorias marcadas como resumo, sem Revisão, Fixação ou cadernos", () => {
+  it("Modo Turbo: consolida as unidades em uma única atividade de resumo cobrindo todos os trechos", () => {
     const cyc = buildAulaCycle({ ...bp(6, { runs: [[1, 48]] }), turbo: true }, 3);
     expect(cyc.every((a) => a.type === "TEORIA" && a.turbo === true)).toBe(true);
-    expect(cyc).toHaveLength(6);
+    expect(cyc).toHaveLength(1);
+    expect(cyc[0].segmentIds).toHaveLength(6);
   });
   it("cada Teoria cobre exatamente os trechos da sua unidade e os minutos seguem o blueprint", () => {
     const b = bp(3, { load: 12 });

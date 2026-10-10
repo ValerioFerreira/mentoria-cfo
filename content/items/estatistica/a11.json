@@ -1,1906 +1,1906 @@
 {
- "aula": "estatistica/a11",
- "batch": "w2-bizu-estatistica",
- "status": "DRAFT",
- "segments": [
-  {
-   "id": "estatistica/a11/s01",
-   "bizu": {
-    "summary": [
-     "### 1. Definições, Fórmulas e Propriedades Centrais",
-     "- **Regiões:** a região de não rejeição (RNR) é o intervalo construído em torno do parâmetro de H₀ e tem probabilidade 1 − α.",
-     "- a **região crítica (RC)** é a externa e tem probabilidade **α** (nível de significância).",
-     "- **Decisão por intervalo de confiança:** rejeita-se H₀ se o intervalo de confiança calculado a partir da amostra não contiver o valor de H₀.",
-     "- **Tipos de teste:** bilateral (H₁: θ ≠ θ₀, RC nos dois extremos).",
-     "**unilateral à esquerda** (H₁: θ < θ₀, RC só à esquerda). **unilateral à direita** (H₁: θ > θ₀, RC só à direita). Rejeitar é a decisão forte: só se rejeita H₀ diante de forte indício de que ela é falsa.",
-     "### 2. Métodos de Resolução e Classificações",
-     "- **A H₁:** é **direcional** nos unicaudais e **não direcional** no bilateral.",
-     "- é improvável (mas possível) observar um valor extremo sendo H₀ verdadeira.",
-     "### 3. Exemplos de Aplicação e Procedimentos",
-     "> 💡 **Exemplo Prático:** Teste de hipóteses: confronta uma suposição sobre um parâmetro populacional com a estatística calculada em uma amostra, para decidir se a suposição é plausível.",
-     "> 💡 **Exemplo Prático:** Hipótese nula (H₀) é a suposição a ser testada e contém sempre a igualdade (θ = θ₀, ou ≥ / ≤). Hipótese alternativa (H₁ ou Hₐ) é a que se aceita se H₀ for rejeitada.",
-     "> 💡 **Exemplo Prático:** Ex.: para testar 50% de intenção de voto, só se rejeita nas regiões cujo intervalo exclui 50%.",
-     "### 4. Pontos Críticos e Cuidados nos Cálculos",
-     "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
-    ],
-    "teoria": [
-     {
-      "statement": "A hipótese nula contém sempre a igualdade (=, ≥ ou ≤), enquanto a alternativa traz o sentido de desigualdade.",
-      "isTrue": true,
-      "explanation": "Essa é a forma padrão de H₀ e H₁ nos testes paramétricos."
-     },
-     {
-      "statement": "A probabilidade associada à região de não rejeição é α.",
-      "isTrue": false,
-      "explanation": "A RNR tem probabilidade 1 − α; α é a probabilidade da região crítica."
-     },
-     {
-      "statement": "Em um teste unilateral, a hipótese alternativa é direcional.",
-      "isTrue": true,
-      "explanation": "Indica se o parâmetro é menor ou maior que o valor da hipótese nula."
-     },
-     {
-      "statement": "Se o intervalo de confiança construído com a amostra não contém o valor de H₀, a hipótese nula deve ser rejeitada.",
-      "isTrue": true,
-      "explanation": "O valor de H₀ seria incompatível com o intervalo estimado ao nível de confiança adotado."
-     }
-    ],
-    "revisao": [
-     {
-      "statement": "No teste unilateral à esquerda, a hipótese alternativa é H₁: θ < θ₀.",
-      "isTrue": true,
-      "explanation": "A região crítica fica totalmente concentrada à esquerda."
-     },
-     {
-      "statement": "Quando o enunciado não indica as hipóteses, a afirmação que se quer comprovar deve ser colocada em H₀.",
-      "isTrue": false,
-      "explanation": "A afirmação que se deseja comprovar vai em H₁, pois só é confirmada se H₀ for rejeitada."
-     },
-     {
-      "statement": "A região crítica de um teste bilateral é dividida entre os dois extremos da distribuição.",
-      "isTrue": true,
-      "explanation": "Cada cauda recebe α/2."
-     }
-    ],
-    "pointers": [
-     {
-      "topic": "Ideia do teste de hipóteses",
-      "pageRef": 5
-     },
-     {
-      "topic": "Região de não rejeição e região crítica",
-      "pageRef": 6
-     },
-     {
-      "topic": "Decisão por intervalo de confiança",
-      "pageRef": 7
-     },
-     {
-      "topic": "Testes unilaterais e bilateral",
-      "pageRef": 9
-     },
-     {
-      "topic": "Hipótese direcional",
-      "pageRef": 11
-     },
-     {
-      "topic": "Como definir H₀ e H₁ a partir do texto",
-      "pageRef": 12
-     }
-    ]
-   },
-   "questions": [
+  "aula": "estatistica/a11",
+  "batch": "w2-bizu-estatistica",
+  "status": "DRAFT",
+  "segments": [
     {
-     "topic": "Hipótese nula",
-     "pattern": "conceito",
-     "difficulty": 1,
-     "pageRef": 5,
-     "statement": "Uma fornecedora afirma que o conteúdo médio de cada recipiente é de 2 L. Para testar a afirmação, formulam-se H0: μ = 2 e H1: μ ≠ 2. Nesse teste, a hipótese nula é aquela que",
-     "support": null,
-     "options": [
-      "é considerada verdadeira no início do teste e só é rejeitada se a amostra trouxer forte evidência contra ela.",
-      "o pesquisador deseja necessariamente comprovar por meio da amostra.",
-      "é aceita sempre que a média amostral for maior que 2 L.",
-      "descreve o parâmetro com sinal de desigualdade.",
-      "nunca pode ser rejeitada, por ser a hipótese de referência."
-     ],
-     "answer": "A",
-     "explanation": "A hipótese nula é a suposição inicial (aqui, μ = 2), tomada como verdadeira na construção do teste; a alternativa é o seu oposto, mutuamente excludente. A rejeição é a decisão forte e só ocorre diante de resultado improvável sob H0."
+      "id": "estatistica/a11/s01",
+      "bizu": {
+        "summary": [
+          "### 1. Definições, Fórmulas e Propriedades Centrais",
+          "- **Regiões:** a região de não rejeição (RNR) é o intervalo construído em torno do parâmetro de H₀ e tem probabilidade 1 − α.",
+          "- a **região crítica (RC)** é a externa e tem probabilidade **α** (nível de significância).",
+          "- **Decisão por intervalo de confiança:** rejeita-se H₀ se o intervalo de confiança calculado a partir da amostra não contiver o valor de H₀.",
+          "- **Tipos de teste:** bilateral (H₁: θ ≠ θ₀, RC nos dois extremos).",
+          "**unilateral à esquerda** (H₁: θ < θ₀, RC só à esquerda). **unilateral à direita** (H₁: θ > θ₀, RC só à direita). Rejeitar é a decisão forte: só se rejeita H₀ diante de forte indício de que ela é falsa.",
+          "### 2. Métodos de Resolução e Classificações",
+          "- **A H₁:** é **direcional** nos unicaudais e **não direcional** no bilateral.",
+          "- é improvável (mas possível) observar um valor extremo sendo H₀ verdadeira.",
+          "### 3. Exemplos de Aplicação e Procedimentos",
+          "> 💡 **Exemplo Prático:** Teste de hipóteses: confronta uma suposição sobre um parâmetro populacional com a estatística calculada em uma amostra, para decidir se a suposição é plausível.",
+          "> 💡 **Exemplo Prático:** Hipótese nula (H₀) é a suposição a ser testada e contém sempre a igualdade (θ = θ₀, ou ≥ / ≤). Hipótese alternativa (H₁ ou Hₐ) é a que se aceita se H₀ for rejeitada.",
+          "> 💡 **Exemplo Prático:** Ex.: para testar 50% de intenção de voto, só se rejeita nas regiões cujo intervalo exclui 50%.",
+          "### 4. Pontos Críticos e Cuidados nos Cálculos",
+          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+        ],
+        "teoria": [
+          {
+            "statement": "A hipótese nula contém sempre a igualdade (=, ≥ ou ≤), enquanto a alternativa traz o sentido de desigualdade.",
+            "isTrue": true,
+            "explanation": "Essa é a forma padrão de H₀ e H₁ nos testes paramétricos."
+          },
+          {
+            "statement": "A probabilidade associada à região de não rejeição é α.",
+            "isTrue": false,
+            "explanation": "A RNR tem probabilidade 1 − α; α é a probabilidade da região crítica."
+          },
+          {
+            "statement": "Em um teste unilateral, a hipótese alternativa é direcional.",
+            "isTrue": true,
+            "explanation": "Indica se o parâmetro é menor ou maior que o valor da hipótese nula."
+          },
+          {
+            "statement": "Se o intervalo de confiança construído com a amostra não contém o valor de H₀, a hipótese nula deve ser rejeitada.",
+            "isTrue": true,
+            "explanation": "O valor de H₀ seria incompatível com o intervalo estimado ao nível de confiança adotado."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "No teste unilateral à esquerda, a hipótese alternativa é H₁: θ < θ₀.",
+            "isTrue": true,
+            "explanation": "A região crítica fica totalmente concentrada à esquerda."
+          },
+          {
+            "statement": "Quando o enunciado não indica as hipóteses, a afirmação que se quer comprovar deve ser colocada em H₀.",
+            "isTrue": false,
+            "explanation": "A afirmação que se deseja comprovar vai em H₁, pois só é confirmada se H₀ for rejeitada."
+          },
+          {
+            "statement": "A região crítica de um teste bilateral é dividida entre os dois extremos da distribuição.",
+            "isTrue": true,
+            "explanation": "Cada cauda recebe α/2."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Ideia do teste de hipóteses",
+            "pageRef": 5
+          },
+          {
+            "topic": "Região de não rejeição e região crítica",
+            "pageRef": 6
+          },
+          {
+            "topic": "Decisão por intervalo de confiança",
+            "pageRef": 7
+          },
+          {
+            "topic": "Testes unilaterais e bilateral",
+            "pageRef": 9
+          },
+          {
+            "topic": "Hipótese direcional",
+            "pageRef": 11
+          },
+          {
+            "topic": "Como definir H₀ e H₁ a partir do texto",
+            "pageRef": 12
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Hipótese nula",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 5,
+          "statement": "Uma fornecedora afirma que o conteúdo médio de cada recipiente é de 2 L. Para testar a afirmação, formulam-se H0: μ = 2 e H1: μ ≠ 2. Nesse teste, a hipótese nula é aquela que",
+          "support": null,
+          "options": [
+            "é considerada verdadeira no início do teste e só é rejeitada se a amostra trouxer forte evidência contra ela.",
+            "o pesquisador deseja necessariamente comprovar por meio da amostra.",
+            "é aceita sempre que a média amostral for maior que 2 L.",
+            "descreve o parâmetro com sinal de desigualdade.",
+            "nunca pode ser rejeitada, por ser a hipótese de referência."
+          ],
+          "answer": "A",
+          "explanation": "A hipótese nula é a suposição inicial (aqui, μ = 2), tomada como verdadeira na construção do teste; a alternativa é o seu oposto, mutuamente excludente. A rejeição é a decisão forte e só ocorre diante de resultado improvável sob H0."
+        },
+        {
+          "topic": "Nível de significância",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 6,
+          "statement": "No teste de hipóteses, o nível de significância α corresponde",
+          "support": null,
+          "options": [
+            "à probabilidade de a hipótese nula ser verdadeira.",
+            "à chance de H0 não ser rejeitada quando é verdadeira.",
+            "à chance de H0 ser rejeitada quando é falsa.",
+            "ao tamanho da região de não rejeição.",
+            "à probabilidade de a amostra cair na região crítica quando a hipótese nula é verdadeira."
+          ],
+          "answer": "E",
+          "explanation": "Sob H0, a região de não rejeição tem probabilidade 1 − α e a região crítica tem probabilidade α, que é a chance de rejeitar H0 sendo ela verdadeira. Rejeitar H0 sendo ela falsa é o poder do teste."
+        },
+        {
+          "topic": "Caudas da região crítica",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 6,
+          "statement": "Em um teste bilateral com nível de significância de 6%, a probabilidade da região crítica em cada extremo, sob a hipótese nula, é de",
+          "support": null,
+          "options": [
+            "3%.",
+            "6%.",
+            "12%.",
+            "94%.",
+            "47%."
+          ],
+          "answer": "A",
+          "explanation": "No teste bilateral a probabilidade α da região crítica se divide igualmente entre as duas caudas: α/2 = 3% em cada uma. O valor 94% é a probabilidade da região de não rejeição (1 − α)."
+        },
+        {
+          "topic": "Significado da não rejeição",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 6,
+          "statement": "Em um teste de hipóteses, quando a estatística da amostra cai na região de não rejeição, é correto afirmar que",
+          "support": null,
+          "options": [
+            "H0 foi aceita e provada verdadeira.",
+            "o teste é estatisticamente significante.",
+            "o teste gerou evidência estatística a favor de H0.",
+            "não há evidência estatística suficiente para rejeitar H0, o que não prova que H0 seja verdadeira.",
+            "H1 foi comprovada com probabilidade 1 − α."
+          ],
+          "answer": "D",
+          "explanation": "A rejeição é a decisão forte: só ela gera evidência estatística (teste significante). Na não rejeição, apenas não se encontrou evidência contra H0, e por isso não é correto dizer que H0 foi aceita ou provada."
+        },
+        {
+          "topic": "Teste pelo intervalo de confiança",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 7,
+          "statement": "Deseja-se testar H0: μ = 120 para o tempo médio, em segundos, de uma operação. Cada alternativa traz um intervalo de confiança construído a partir de uma amostra. A única amostra que leva à rejeição de H0 é a de intervalo",
+          "support": null,
+          "options": [
+            "[118; 126].",
+            "[115; 125].",
+            "[100; 130].",
+            "[110; 119].",
+            "[119,5; 130]."
+          ],
+          "answer": "D",
+          "explanation": "Rejeita-se H0 quando o intervalo construído a partir da amostra não contém o parâmetro da hipótese nula. Somente [110; 119] não contém 120."
+        },
+        {
+          "topic": "Teste unilateral à esquerda",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 8,
+          "statement": "Um batalhão só rejeitará um lote de cabos se a resistência média for menor que a especificada, de 800 N. As hipóteses e a região crítica do teste são",
+          "support": null,
+          "options": [
+            "H0: μ ≥ 800 e H1: μ < 800, com região crítica na cauda esquerda.",
+            "H0: μ ≤ 800 e H1: μ > 800, com região crítica na cauda direita.",
+            "H0: μ = 800 e H1: μ ≠ 800, com região crítica nas duas caudas.",
+            "H0: μ < 800 e H1: μ ≥ 800, com região crítica na cauda esquerda.",
+            "H0: μ ≥ 800 e H1: μ < 800, com região crítica na cauda direita."
+          ],
+          "answer": "A",
+          "explanation": "Rejeita-se o lote (e H0) apenas diante de resistência muito baixa, o que define um teste unilateral à esquerda: H1: μ < 800, com a região crítica concentrada à esquerda. A hipótese nula pode ser escrita como μ ≥ 800 (ou μ = 800)."
+        },
+        {
+          "topic": "Hipótese direcional",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 10,
+          "statement": "Considere as hipóteses alternativas:\n\n**I.** H1: μ ≠ 30; \n\n**II.** H1: μ > 30; \n\n**III.** H1: μ < 30. São hipóteses alternativas direcionais (de testes unilaterais) apenas",
+          "support": null,
+          "options": [
+            "I e II.",
+            "I e III.",
+            "II e III.",
+            "I.",
+            "I, II e III."
+          ],
+          "answer": "C",
+          "explanation": "Nos testes unilaterais a alternativa supõe que o parâmetro seja maior ou menor que certo valor (direcional); nos bilaterais ela só supõe que seja diferente (não direcional)."
+        },
+        {
+          "topic": "Formulação das hipóteses",
+          "pattern": "caso",
+          "difficulty": 3,
+          "pageRef": 12,
+          "statement": "O comando deseja demonstrar, com evidência estatística, que o tempo médio de embarque da guarnição é superior a 4 minutos. As hipóteses H0 e H1 do teste são, respectivamente,",
+          "support": null,
+          "options": [
+            "H0: μ > 4 e H1: μ ≤ 4.",
+            "H0: μ = 4 e H1: μ < 4.",
+            "H0: μ ≥ 4 e H1: μ < 4.",
+            "H0: μ ≤ 4 e H1: μ > 4.",
+            "H0: μ ≠ 4 e H1: μ = 4."
+          ],
+          "answer": "D",
+          "explanation": "O que se deseja comprovar entra como hipótese alternativa, pois só será aceito se o teste for significante (rejeição de H0). Logo H1: μ > 4 e H0: μ ≤ 4."
+        },
+        {
+          "topic": "Hipóteses simples e compostas",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 10,
+          "statement": "Considere as hipóteses H0: μ = 15 e H1: μ > 15. Quanto à classificação, é correto afirmar que",
+          "support": null,
+          "options": [
+            "ambas são simples.",
+            "H0 é simples e H1 é composta.",
+            "H0 é composta e H1 é simples.",
+            "ambas são compostas.",
+            "ambas são não direcionais."
+          ],
+          "answer": "B",
+          "explanation": "Hipótese simples especifica o parâmetro com sinal de igualdade (μ = 15); composta apenas dá uma informação sobre a distribuição, sem igualdade (μ > 15). Se H0 fosse escrita como μ ≤ 15, ambas seriam compostas."
+        },
+        {
+          "topic": "Decisão pela região de não rejeição",
+          "pattern": "caso",
+          "difficulty": 3,
+          "pageRef": 6,
+          "statement": "Para H0: μ = 2, a região de não rejeição ao nível de 95% é [1,8; 2,2].\n\nAssinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "Com X̄ = 2,15 rejeita-se H0, pois o valor excede a média 2.",
+            "Com X̄ = 1,95 aceita-se H0, o que prova que μ = 2.",
+            "O nível de significância desse teste é de 95%.",
+            "Com X̄ = 1,75 rejeita-se H0 e o teste é estatisticamente significante.",
+            "A região de não rejeição tem probabilidade α = 5% sob H0."
+          ],
+          "answer": "D",
+          "explanation": "Com X̄ = 1,75, fora de [1,8; 2,2], o resultado está na região crítica e H0 é rejeitada. Com 2,15 ou 1,95 não há rejeição, e isso não prova H0. O nível de confiança é 95% (α = 5%), e a região de não rejeição tem probabilidade 1 − α."
+        }
+      ]
     },
     {
-     "topic": "Nível de significância",
-     "pattern": "conceito",
-     "difficulty": 1,
-     "pageRef": 6,
-     "statement": "No teste de hipóteses, o nível de significância α corresponde",
-     "support": null,
-     "options": [
-      "à probabilidade de a hipótese nula ser verdadeira.",
-      "à chance de H0 não ser rejeitada quando é verdadeira.",
-      "à chance de H0 ser rejeitada quando é falsa.",
-      "ao tamanho da região de não rejeição.",
-      "à probabilidade de a amostra cair na região crítica quando a hipótese nula é verdadeira."
-     ],
-     "answer": "E",
-     "explanation": "Sob H0, a região de não rejeição tem probabilidade 1 − α e a região crítica tem probabilidade α, que é a chance de rejeitar H0 sendo ela verdadeira. Rejeitar H0 sendo ela falsa é o poder do teste."
+      "id": "estatistica/a11/s02",
+      "bizu": {
+        "summary": [
+          "### 1. Definições, Fórmulas e Propriedades Centrais",
+          "- **Erro tipo I:** rejeitar H₀ quando ela é verdadeira (falso positivo).",
+          "- **Sua probabilidade:** é o **nível de significância α**.",
+          "- **Erro tipo II:** não rejeitar H₀ quando ela é falsa.",
+          "- **α e β não são complementares:** α + β ≠ 1, pois pertencem a distribuições distintas (sob H₀ e sob o parâmetro verdadeiro).",
+          "Poder do teste = 1 − β: probabilidade de rejeitar H₀ quando ela é falsa. Fatores que aumentam o poder: maior tamanho amostral n, maior nível de significância α e maior distância entre o parâmetro verdadeiro e o de H₀. Função potência: poder em função do parâmetro verdadeiro.",
+          "### 2. Métodos de Resolução e Classificações",
+          "- probabilidade **β**.",
+          "- **No unilateral à esquerda:** é decrescente, no unilateral à direita é crescente e no bilateral tem forma de U, com mínimo igual a α quando o parâmetro verdadeiro coincide com o de H₀.",
+          "- usa a razão de verossimilhanças.",
+          "- β usa a uniforme verdadeira dada no enunciado e o trecho de não rejeição.",
+          "### 3. Exemplos de Aplicação e Procedimentos",
+          "> 💡 **Exemplo Prático:** Para calculá-lo, usa-se a distribuição com o **parâmetro da hipótese alternativa** (o valor verdadeiro).",
+          "### 4. Pontos Críticos e Cuidados nos Cálculos",
+          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+        ],
+        "teoria": [
+          {
+            "statement": "O erro tipo I ocorre quando se descarta uma hipótese nula que na realidade é verdadeira, e sua probabilidade é o nível de significância α.",
+            "isTrue": true,
+            "explanation": "Rejeitar H₀ verdadeira é o falso positivo, cuja chance é controlada por α."
+          },
+          {
+            "statement": "O erro tipo II consiste em rejeitar a hipótese nula quando ela é falsa.",
+            "isTrue": false,
+            "explanation": "Rejeitar H₀ falsa é decisão correta; o erro tipo II é não rejeitar H₀ falsa."
+          },
+          {
+            "statement": "As probabilidades dos erros tipo I e tipo II sempre somam 1.",
+            "isTrue": false,
+            "explanation": "Elas se referem a distribuições diferentes e não são complementares."
+          },
+          {
+            "statement": "O poder do teste é igual a 1 − β.",
+            "isTrue": true,
+            "explanation": "É a probabilidade de rejeitar H₀ falsa."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Aumentar o tamanho da amostra eleva o poder do teste, mantendo-se o nível de significância.",
+            "isTrue": true,
+            "explanation": "A RNR se estreita em torno do parâmetro, reduzindo β."
+          },
+          {
+            "statement": "Em um teste unilateral à direita, a função potência é decrescente em relação ao parâmetro verdadeiro.",
+            "isTrue": false,
+            "explanation": "No teste à direita o poder cresce com o parâmetro verdadeiro; é decrescente no teste à esquerda."
+          },
+          {
+            "statement": "Reduzir α, mantendo-se o restante, tende a diminuir o poder do teste.",
+            "isTrue": true,
+            "explanation": "Quanto menor α, maior a região de não rejeição e maior β."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Erro tipo I e nível de significância",
+            "pageRef": 14
+          },
+          {
+            "topic": "Erro tipo II e cálculo de β",
+            "pageRef": 15
+          },
+          {
+            "topic": "Teste ótimo e razão de verossimilhanças",
+            "pageRef": 17
+          },
+          {
+            "topic": "Função potência",
+            "pageRef": 19
+          },
+          {
+            "topic": "Fatores do poder",
+            "pageRef": 21
+          },
+          {
+            "topic": "Testes para distribuições uniformes",
+            "pageRef": 25
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Erro tipo I",
+          "pattern": "caso",
+          "difficulty": 1,
+          "pageRef": 14,
+          "statement": "Um laboratório testa H0: o lote atende à especificação. Nesse contexto, o erro tipo I consiste em",
+          "support": null,
+          "options": [
+            "aceitar um lote que, na verdade, não atende à especificação.",
+            "rejeitar um lote que, de fato, não atende à especificação.",
+            "aceitar um lote que, de fato, atende à especificação.",
+            "definir o nível de significância após ver a amostra.",
+            "rejeitar um lote que, na verdade, atende à especificação."
+          ],
+          "answer": "E",
+          "explanation": "O erro tipo I é rejeitar H0 sendo ela verdadeira (falso positivo), com probabilidade α. Aceitar (não rejeitar) um lote não conforme é o erro tipo II; as outras duas opções são decisões corretas."
+        },
+        {
+          "topic": "Erro tipo II",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 14,
+          "statement": "Em um teste de hipóteses, o erro tipo II, cuja probabilidade é indicada por β, ocorre quando",
+          "support": null,
+          "options": [
+            "se rejeita H0 e ela é verdadeira.",
+            "se rejeita H0 e ela é falsa.",
+            "não se rejeita H0 e ela é falsa.",
+            "não se rejeita H0 e ela é verdadeira.",
+            "o nível de significância é muito alto."
+          ],
+          "answer": "C",
+          "explanation": "O erro tipo II (falso negativo) é não rejeitar a hipótese nula quando ela é falsa. Rejeitar H0 verdadeira é o erro tipo I (α)."
+        },
+        {
+          "topic": "α e β não são complementares",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 16,
+          "statement": "Sobre as probabilidades α e β dos erros tipo I e tipo II,\n\nassinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "α e β não são complementares: pertencem a distribuições diferentes, e sua soma pode até superar 1.",
+            "α + β = 1 em qualquer teste de hipóteses.",
+            "1 − α é o poder do teste.",
+            "1 − β é o nível de confiança do teste.",
+            "β é a probabilidade de rejeitar H0 sendo ela falsa."
+          ],
+          "answer": "A",
+          "explanation": "α é calculado com o parâmetro de H0 e β com o parâmetro verdadeiro (ou o de H1), logo não somam 1. O complementar de α é o nível de confiança (1 − α), e o de β é o poder (1 − β), que é a probabilidade de rejeitar H0 falsa."
+        },
+        {
+          "topic": "Nível de confiança e poder",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 16,
+          "statement": "Um teste de hipóteses tem probabilidade de erro tipo I igual a 5% e probabilidade de erro tipo II igual a 20%. O nível de confiança e o poder do teste valem, respectivamente,",
+          "support": null,
+          "options": [
+            "95% e 80%.",
+            "80% e 95%.",
+            "95% e 20%.",
+            "5% e 20%.",
+            "75% e 95%."
+          ],
+          "answer": "A",
+          "explanation": "O nível de confiança é 1 − α = 95% e o poder é 1 − β = 80%. Os valores dos erros (5% e 20%) não são complementares entre si."
+        },
+        {
+          "topic": "Cálculo do erro tipo II",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 15,
+          "statement": "Em relação ao erro tipo II, é correto afirmar que",
+          "support": null,
+          "options": [
+            "sua probabilidade é a área da região crítica na distribuição construída com o parâmetro de H0.",
+            "ocorre quando H0 é verdadeira e é rejeitada.",
+            "sua probabilidade é calculada com a distribuição que tem o parâmetro verdadeiro (ou o indicado em H1), e não o de H0.",
+            "sua probabilidade é complementar à do nível de significância.",
+            "sua probabilidade diminui quando o parâmetro verdadeiro se aproxima do valor de H0."
+          ],
+          "answer": "C",
+          "explanation": "A região de β só aparece no gráfico construído com o parâmetro verdadeiro (ou o da H1): é a probabilidade de a estatística cair na região de não rejeição. Quanto mais próximo de H0 o parâmetro verdadeiro, maior β."
+        },
+        {
+          "topic": "Como reduzir o nível de significância",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 14,
+          "statement": "Mantido o tamanho da amostra, para diminuir o nível de significância de um teste deve-se",
+          "support": null,
+          "options": [
+            "reduzir a região de não rejeição.",
+            "aumentar a região crítica.",
+            "aumentar o valor do parâmetro da hipótese nula.",
+            "ampliar a região de não rejeição, reduzindo a região crítica.",
+            "trocar a hipótese nula pela alternativa."
+          ],
+          "answer": "D",
+          "explanation": "O nível de significância é a probabilidade da região crítica sob H0; para diminuí-lo sem mudar n, amplia-se a região de não rejeição. O custo é um aumento em β (menos poder)."
+        },
+        {
+          "topic": "Fatores do poder",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 21,
+          "statement": "Mantidas as demais condições, o poder de um teste de hipóteses aumenta quando",
+          "support": null,
+          "options": [
+            "diminui o tamanho da amostra.",
+            "diminui o nível de significância.",
+            "o parâmetro verdadeiro se aproxima do valor indicado na H0.",
+            "a hipótese nula passa de simples a composta.",
+            "aumenta o tamanho da amostra."
+          ],
+          "answer": "E",
+          "explanation": "O poder cresce com o tamanho da amostra, com o nível de significância e com a distância entre o parâmetro verdadeiro e o da H0: tudo o que reduz a região de não rejeição (e, assim, β)."
+        },
+        {
+          "topic": "Função potência bilateral",
+          "pattern": "conceito",
+          "difficulty": 3,
+          "pageRef": 20,
+          "statement": "No teste bilateral de H0: μ = μ0, a função potência π(μ1), em função do parâmetro verdadeiro μ1,",
+          "support": null,
+          "options": [
+            "decresce para μ1 < μ0 e cresce para μ1 > μ0, não sendo monótona.",
+            "é estritamente crescente em todo o seu domínio.",
+            "é estritamente decrescente em todo o seu domínio.",
+            "é constante e igual ao nível de significância.",
+            "é sempre igual a 1 − α."
+          ],
+          "answer": "A",
+          "explanation": "No teste bilateral o poder aumenta à medida que o parâmetro verdadeiro se afasta de μ0 em qualquer direção, de modo que a função potência desce até μ0 e depois sobe. Só nos testes unilaterais ela é estritamente monótona."
+        },
+        {
+          "topic": "Função potência unilateral",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 20,
+          "statement": "Em um teste unilateral à esquerda (H1: μ < μ0), a função potência, vista como função do parâmetro verdadeiro μ1,",
+          "support": null,
+          "options": [
+            "é estritamente crescente: quanto menor o μ1, menor o poder.",
+            "decresce até μ0 e depois cresce.",
+            "é constante em todo o domínio.",
+            "é estritamente decrescente: quanto menor o μ1, maior o poder.",
+            "é decrescente apenas para μ1 > μ0."
+          ],
+          "answer": "D",
+          "explanation": "Com a região crítica à esquerda, valores verdadeiros cada vez menores tornam mais provável a rejeição de H0, e o poder só aumenta nessa direção; a função, vista de μ1 crescente, é estritamente decrescente."
+        },
+        {
+          "topic": "Poder em μ1 = μ0",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 22,
+          "statement": "No gráfico da função potência de um teste com nível de significância de 5%, o valor da função no ponto em que o parâmetro verdadeiro coincide com o da hipótese nula (μ1 = μ0) é",
+          "support": null,
+          "options": [
+            "0%.",
+            "50%.",
+            "95%.",
+            "5%, o tamanho do teste (α).",
+            "100%."
+          ],
+          "answer": "D",
+          "explanation": "Quando μ1 = μ0 a hipótese nula é verdadeira, e a probabilidade de rejeitá-la é exatamente o nível de significância. Esse é o valor mínimo da função potência, também chamado de tamanho do teste."
+        },
+        {
+          "topic": "Teste uniformemente mais poderoso",
+          "pattern": "correta",
+          "difficulty": 3,
+          "pageRef": 22,
+          "statement": "Sobre o teste uniformemente mais poderoso (UMP),\n\nassinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "É o teste que tem o menor nível de significância possível, qualquer que seja o poder.",
+            "Existe para qualquer par de hipóteses e para qualquer distribuição.",
+            "Para um mesmo nível α, maximiza o poder (minimiza β) frente à hipótese alternativa, e só existe em situações especiais.",
+            "Garante que os erros α e β sejam iguais.",
+            "É o teste com o maior tamanho amostral possível."
+          ],
+          "answer": "C",
+          "explanation": "O UMP é o teste de maior poder (menor β) entre todos os testes de mesmo nível α. Sua existência é restrita a situações especiais, como certas distribuições da família exponencial."
+        },
+        {
+          "topic": "Nível de significância na uniforme",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 25,
+          "statement": "Testa-se H0: X é uniforme no intervalo (2, 12). A hipótese nula será rejeitada se uma única observação for maior que 10. O nível de significância desse teste é",
+          "support": null,
+          "options": [
+            "10%.",
+            "20%.",
+            "80%.",
+            "2%.",
+            "25%."
+          ],
+          "answer": "B",
+          "explanation": "α = P(X > 10) calculada com a distribuição de H0: (12 − 10)/(12 − 2) = 2/10 = 20%. O valor 80% é a probabilidade de não rejeitar H0 sendo ela verdadeira (1 − α)."
+        },
+        {
+          "topic": "Erro tipo II na uniforme",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 26,
+          "statement": "Uma variável X é uniforme no intervalo (0, θ). Testa-se H0: θ = 20 contra H1: θ > 20, rejeitando-se H0 se uma observação for maior que 15. Se o verdadeiro valor for θ = 24, a probabilidade do erro tipo II é",
+          "support": null,
+          "options": [
+            "3/8.",
+            "5/8.",
+            "3/4.",
+            "1/4.",
+            "5/12."
+          ],
+          "answer": "B",
+          "explanation": "Não se rejeita H0 se X ≤ 15; com a distribuição verdadeira, uniforme em (0, 24): β = P(X ≤ 15) = 15/24 = 5/8. O valor 3/8 é o poder (1 − β), e 3/4 é P(X ≤ 15) calculada sob H0 (1 − α)."
+        },
+        {
+          "topic": "Poder na uniforme",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 26,
+          "statement": "Uma variável X é uniforme no intervalo (0, θ). Testa-se H0: θ = 6 contra H1: θ > 6, rejeitando-se H0 se uma observação for maior que 5. Se o verdadeiro valor for θ = 9, o poder do teste é",
+          "support": null,
+          "options": [
+            "5/9.",
+            "1/6.",
+            "4/9.",
+            "5/6.",
+            "1/3."
+          ],
+          "answer": "C",
+          "explanation": "O poder é P(rejeitar H0) com a distribuição verdadeira, uniforme em (0, 9): P(X > 5) = (9 − 5)/9 = 4/9. O valor 5/9 é β, e 1/6 é o nível de significância (P(X > 5) sob H0)."
+        },
+        {
+          "topic": "Razão de verossimilhanças",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 17,
+          "statement": "No teste ótimo baseado na razão de verossimilhanças RV = p0/p1, em que p0 e p1 são as verossimilhanças sob H0 e sob H1, a regra de decisão é",
+          "support": null,
+          "options": [
+            "rejeitar H0 quando RV for maior que k, isto é, quando for grande.",
+            "rejeitar H0 sempre que RV for diferente de 1.",
+            "não rejeitar H0 quando RV for pequena.",
+            "rejeitar H0 quando RV for menor que uma constante k, isto é, quando for pequena.",
+            "rejeitar H0 apenas quando RV for exatamente igual a k."
+          ],
+          "answer": "D",
+          "explanation": "Uma razão pequena indica que a amostra é muito mais verossímil sob H1 que sob H0, o que leva à rejeição. Se RV > k, não se rejeita H0; se RV = k, o teste é inconclusivo."
+        }
+      ]
     },
     {
-     "topic": "Caudas da região crítica",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 6,
-     "statement": "Em um teste bilateral com nível de significância de 6%, a probabilidade da região crítica em cada extremo, sob a hipótese nula, é de",
-     "support": null,
-     "options": [
-      "3%.",
-      "6%.",
-      "12%.",
-      "94%.",
-      "47%."
-     ],
-     "answer": "A",
-     "explanation": "No teste bilateral a probabilidade α da região crítica se divide igualmente entre as duas caudas: α/2 = 3% em cada uma. O valor 94% é a probabilidade da região de não rejeição (1 − α)."
+      "id": "estatistica/a11/s03",
+      "bizu": {
+        "summary": [
+          "### 1. Definições, Fórmulas e Propriedades Centrais",
+          "- Média com variância populacional conhecida: usa a distribuição normal padrão.",
+          "- **A estatística do teste é z:** (x̄ − μ₀)/(σ/√n)**, em que σ/√n é o desvio padrão da média amostral.",
+          "- **Limites da região crítica: L:** μ₀ ± z_c·σ/√n (bilateral). Rejeita-se H₀ se |z| > z_c (ou se x̄ cair fora do intervalo).",
+          "- **Para α:** 5% bilateral, z_c ≈ 1,96.",
+          "Variância desconhecida: usa-se a variância amostral s² (divisor n − 1), estimador não viesado, e a distribuição t de Student com n − 1 graus de liberdade. Estatística t: t = (x̄ − μ₀)/(s/√n), comparada com o valor crítico t_c da tabela (pelo nível α, pelo tipo de teste e por n − 1 g.l.).",
+          "### 2. Métodos de Resolução e Classificações",
+          "- no unilateral, α inteiro em uma cauda.",
+          "- unilateral, ≈ 1,64.",
+          "- a variância populacional divide por n.",
+          "- Se o enunciado fornece σ (não s), use a normal.",
+          "### 3. Exemplos de Aplicação e Procedimentos",
+          "> 💡 **Exemplo Prático:** Valor crítico: no bilateral, cada cauda tem α/2 (ex.: α = 1% → 0,5% em cada lado).",
+          "> 💡 **Exemplo Prático:** Poder do teste: acha-se o limite crítico sob H₀ (ex.: 600 + 2·20/10 = 604) e calcula-se, com a média verdadeira (ex.: 608), a probabilidade de a média amostral ultrapassar esse limite.",
+          "> 💡 **Exemplo Prático:** Exemplo: n = 16, x̄ = 1.000.000, s = 500.000 e H₀: μ = 750.000 → erro padrão = 125.000 e t = 2, com 15 g.l.",
+          "### 4. Pontos Críticos e Cuidados nos Cálculos",
+          "> ⚠️ **Atenção de Prova:** Cuidado: s² divide por n − 1."
+        ],
+        "teoria": [
+          {
+            "statement": "No teste para a média com variância populacional conhecida, a estatística do teste segue a distribuição normal padrão.",
+            "isTrue": true,
+            "explanation": "z = (x̄ − μ₀)/(σ/√n) tem distribuição N(0, 1) sob H₀."
+          },
+          {
+            "statement": "Quando a variância populacional é desconhecida e se usa s², a estatística segue t de Student com n graus de liberdade.",
+            "isTrue": false,
+            "explanation": "Os graus de liberdade são n − 1."
+          },
+          {
+            "statement": "O desvio padrão da média amostral é σ/√n.",
+            "isTrue": true,
+            "explanation": "A variância da média é σ²/n."
+          },
+          {
+            "statement": "A variância amostral não viesada divide a soma dos quadrados dos desvios por n − 1.",
+            "isTrue": true,
+            "explanation": "É o estimador s², não tendencioso para σ²."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Em um teste bilateral ao nível de 5%, a hipótese nula é rejeitada se |z| for maior que o valor crítico z_c.",
+            "isTrue": true,
+            "explanation": "Valores de z fora de ±z_c caem na região crítica."
+          },
+          {
+            "statement": "Com σ = 20, n = 4, μ₀ = 500 e x̄ = 485, a estatística z vale −3.",
+            "isTrue": false,
+            "explanation": "σ/√n = 10 e z = (485 − 500)/10 = −1,5."
+          },
+          {
+            "statement": "O poder do teste é calculado com a distribuição sob a média verdadeira, e não sob H₀.",
+            "isTrue": true,
+            "explanation": "O poder é a probabilidade de rejeitar H₀ quando o parâmetro real é o da alternativa."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Média com variância conhecida",
+            "pageRef": 28
+          },
+          {
+            "topic": "Limites de rejeição",
+            "pageRef": 30
+          },
+          {
+            "topic": "Estatística do teste z",
+            "pageRef": 31
+          },
+          {
+            "topic": "Poder do teste para a média",
+            "pageRef": 35
+          },
+          {
+            "topic": "Variância desconhecida e estimador s²",
+            "pageRef": 36
+          },
+          {
+            "topic": "Estatística t com n − 1 g.l.",
+            "pageRef": 38
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Teste Z e teste T",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 28,
+          "statement": "Nos testes de hipóteses para a média, a distribuição utilizada quando a variância populacional é conhecida e quando é desconhecida é, respectivamente,",
+          "support": null,
+          "options": [
+            "a t de Student (teste T) e a normal (teste Z).",
+            "a normal (teste Z) e a t de Student (teste T).",
+            "a qui-quadrado e a F de Snedecor.",
+            "a normal em ambos os casos.",
+            "a t de Student em ambos os casos."
+          ],
+          "answer": "B",
+          "explanation": "Com variância conhecida (e população normal, ou amostra grande), a média amostral é normal e usa-se o teste Z. Com variância desconhecida, estima-se σ² por s² e usa-se a t de Student com n − 1 graus de liberdade."
+        },
+        {
+          "topic": "Limites da região de não rejeição (teste Z)",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 30,
+          "statement": "Testa-se H0: μ = 40 contra H1: μ ≠ 40, com σ = 6, n = 36 e nível de significância de 5% (zc = 1,96). Os limites da região de não rejeição para a média amostral são, aproximadamente,",
+          "support": null,
+          "options": [
+            "38,04 e 41,96.",
+            "28,24 e 51,76.",
+            "38,36 e 41,64.",
+            "37,42 e 42,58.",
+            "36,08 e 43,92."
+          ],
+          "answer": "A",
+          "explanation": "O desvio padrão da média amostral é 6/√36 = 1, e os limites são μ ± zc·σ/√n = 40 ± 1,96 = 38,04 e 41,96. O par 28,24 e 51,76 usa σ = 6 sem dividir por √n, e 38,36 e 41,64 usa zc = 1,64."
+        },
+        {
+          "topic": "Estatística do teste Z",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 31,
+          "statement": "Testa-se H0: μ = 100 com σ = 10 e n = 64. A média amostral observada foi 103,5. A estatística do teste (escore reduzido) é",
+          "support": null,
+          "options": [
+            "0,35.",
+            "3,5.",
+            "22,4.",
+            "0,28.",
+            "2,8."
+          ],
+          "answer": "E",
+          "explanation": "z = (x̄ − μ)/(σ/√n) = (103,5 − 100)/(10/8) = 3,5/1,25 = 2,8. O valor 0,35 omite a divisão por √n, e 22,4 usa n no lugar de √n."
+        },
+        {
+          "topic": "Decisão por níveis de significância",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 34,
+          "statement": "Em um teste bilateral para a média com variância conhecida, a estatística do teste foi |z| = 2,8. Os valores críticos são 1,96 (α = 5%), 2,58 (α = 1%) e 2,81 (α = 0,5%). A hipótese nula é rejeitada",
+          "support": null,
+          "options": [
+            "a 5%, mas não a 1% nem a 0,5%.",
+            "a 5%, 1% e 0,5%.",
+            "a 5% e a 1%, mas não a 0,5%.",
+            "somente a 0,5%.",
+            "a nenhum desses níveis."
+          ],
+          "answer": "C",
+          "explanation": "Rejeita-se H0 se |z| superar o valor crítico: 2,8 > 1,96 e 2,8 > 2,58, mas 2,8 < 2,81. Se rejeita a um nível, rejeita a todos os níveis maiores; para níveis menores, o valor crítico cresce."
+        },
+        {
+          "topic": "Escolha do teste unilateral",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 31,
+          "statement": "Uma bomba só é reprovada se a pressão média de operação superar 8 bar, e o teste usa nível de significância de 5% (P(Z < 1,64) = 0,95). O teste adequado e seu valor crítico são",
+          "support": null,
+          "options": [
+            "unilateral à esquerda, com zc = −1,64.",
+            "unilateral à direita, com zc = 1,64.",
+            "bilateral, com zc = ±1,64.",
+            "bilateral, com zc = ±1,96.",
+            "unilateral à direita, com zc = 1,96."
+          ],
+          "answer": "B",
+          "explanation": "A rejeição ocorre apenas para pressão muito alta, logo o teste é unilateral à direita, com 5% na cauda superior: P(Z < zc) = 0,95, isto é, zc = 1,64. O valor 1,96 é o crítico do teste bilateral a 5%."
+        },
+        {
+          "topic": "Desvio padrão a partir da estatística",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 33,
+          "statement": "Em um teste para a média, com μ0 = 500 e variância populacional desconhecida, a amostra de n = 25 forneceu x̄ = 508. Sabendo que o valor reduzido do teste foi 2, o desvio padrão populacional que o originou é",
+          "support": null,
+          "options": [
+            "10.",
+            "8.",
+            "40.",
+            "20.",
+            "100."
+          ],
+          "answer": "D",
+          "explanation": "De z = (x̄ − μ)/(σ/√n), vem 2 = 8/(σ/5), logo σ/5 = 4 e σ = 20. Os valores 10 e 40 produziriam estatísticas de 4 e 1, respectivamente, e não 2."
+        },
+        {
+          "topic": "Nível de significância e estatística do teste",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 34,
+          "statement": "Testa-se H0: μ = 100 contra H1: μ < 100, com σ = 15 e n = 9, e observou-se x̄ = 92. Considere os valores críticos z = 1,28 (α = 10%), 1,64 (α = 5%) e 2,33 (α = 1%). A hipótese nula é rejeitada",
+          "support": null,
+          "options": [
+            "a 5% e a 10%, mas não a 1%.",
+            "a 10%, mas não a 5% nem a 1%.",
+            "a 1%, 5% e 10%.",
+            "somente a 1%.",
+            "a nenhum desses níveis."
+          ],
+          "answer": "B",
+          "explanation": "O desvio padrão da média é 15/3 = 5, e z = (92 − 100)/5 = −1,6. Em módulo, 1,6 > 1,28 (rejeita a 10%), mas 1,6 < 1,64 e < 2,33 (não rejeita a 5% nem a 1%)."
+        },
+        {
+          "topic": "Poder do teste Z",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 35,
+          "statement": "Testa-se H0: μ = 100 contra H1: μ > 100, com σ = 20, n = 100 e nível de significância aproximado de 2,5% (valor crítico z ≈ 2). Se a média verdadeira for 106 e dado P(Z > 1) = 0,1587, o poder do teste é, aproximadamente,",
+          "support": null,
+          "options": [
+            "84,1%.",
+            "15,9%.",
+            "97,7%.",
+            "50,0%.",
+            "68,3%."
+          ],
+          "answer": "A",
+          "explanation": "O limite crítico é L = 100 + 2 × 20/10 = 104. Com μ = 106, z = (104 − 106)/2 = −1, e o poder é P(Z > −1) = 1 − 0,1587 = 0,8413. O valor 15,9% é β (probabilidade de não rejeitar H0)."
+        },
+        {
+          "topic": "Variância amostral",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 36,
+          "statement": "Os tempos de resposta de 5 viaturas foram 12, 14, 16, 18 e 20 minutos. A estimativa não tendenciosa da variância populacional (variância amostral) é",
+          "support": null,
+          "options": [
+            "8.",
+            "40.",
+            "2,5.",
+            "100.",
+            "10."
+          ],
+          "answer": "E",
+          "explanation": "A média é 16 e a soma dos quadrados dos desvios é 16 + 4 + 0 + 4 + 16 = 40. A variância amostral divide por n − 1 = 4: s² = 10. O valor 8 divide por n (variância populacional)."
+        },
+        {
+          "topic": "Estatística t e graus de liberdade",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 38,
+          "statement": "Uma amostra de n = 25 itens de uma população normal, de variância desconhecida, forneceu x̄ = 52 e s = 10. Para testar H0: μ = 50, a estatística do teste e os graus de liberdade da distribuição t são, respectivamente,",
+          "support": null,
+          "options": [
+            "1,0 e 25.",
+            "0,2 e 24.",
+            "5,0 e 24.",
+            "0,2 e 25.",
+            "1,0 e 24."
+          ],
+          "answer": "E",
+          "explanation": "t = (x̄ − μ)/(s/√n) = (52 − 50)/(10/5) = 1,0, com n − 1 = 24 graus de liberdade. O valor 0,2 omite a divisão por √n, e 25 ignora o grau de liberdade perdido na estimação da média."
+        },
+        {
+          "topic": "Limites com t de Student",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 38,
+          "statement": "Testa-se H0: μ = 50 contra H1: μ ≠ 50 em uma população normal com variância desconhecida. A amostra tem n = 9 e s = 6. Com 95% de confiança e 8 graus de liberdade, tC = 2,31. Os limites da região de não rejeição para x̄ são, aproximadamente,",
+          "support": null,
+          "options": [
+            "45,38 e 54,62.",
+            "46,08 e 53,92.",
+            "36,14 e 63,86.",
+            "47,69 e 52,31.",
+            "44,00 e 56,00."
+          ],
+          "answer": "A",
+          "explanation": "O erro padrão estimado é s/√n = 6/3 = 2, e os limites são μ ± tC·s/√n = 50 ± 2,31 × 2 = 45,38 e 54,62. O par 46,08 e 53,92 usa z = 1,96 em vez de t, e 36,14 e 63,86 multiplica por s sem dividir por √n."
+        },
+        {
+          "topic": "Escolha do teste para a média",
+          "pattern": "caso",
+          "difficulty": 1,
+          "pageRef": 39,
+          "statement": "Mediram-se as resistências de 12 cabos de uma população normal, de variância desconhecida, para testar se a resistência média difere de um valor de referência. O teste adequado e seus graus de liberdade são",
+          "support": null,
+          "options": [
+            "teste Z, com 11 graus de liberdade.",
+            "teste T, com 11 graus de liberdade.",
+            "teste T, com 12 graus de liberdade.",
+            "teste Z, com variância conhecida.",
+            "teste F, com 11 graus de liberdade."
+          ],
+          "answer": "B",
+          "explanation": "Como a variância é desconhecida, usa-se a variância amostral e a distribuição t de Student com n − 1 = 11 graus de liberdade (teste T). O teste F compara variâncias."
+        },
+        {
+          "topic": "Maior média amostral na região de não rejeição",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 40,
+          "statement": "Testa-se H0: μ = 60 contra H1: μ ≠ 60 em uma população normal. A amostra tem n = 16 e s = 8, e o valor crítico para 15 graus de liberdade, ao nível de 5% bilateral, é tC = 2,13. O maior valor de x̄ para o qual H0 não é rejeitada é",
+          "support": null,
+          "options": [
+            "68,26.",
+            "62,00.",
+            "63,92.",
+            "64,26.",
+            "60,53."
+          ],
+          "answer": "D",
+          "explanation": "O erro padrão é 8/√16 = 2, e o limite superior da região de não rejeição é μ + tC · s/√n = 60 + 2,13 × 2 = 64,26. O valor 68,26 multiplica por s = 8 sem dividir por √n, e 63,92 usa z = 1,96."
+        }
+      ]
     },
     {
-     "topic": "Significado da não rejeição",
-     "pattern": "correta",
-     "difficulty": 2,
-     "pageRef": 6,
-     "statement": "Em um teste de hipóteses, quando a estatística da amostra cai na região de não rejeição, é correto afirmar que",
-     "support": null,
-     "options": [
-      "H0 foi aceita e provada verdadeira.",
-      "o teste é estatisticamente significante.",
-      "o teste gerou evidência estatística a favor de H0.",
-      "não há evidência estatística suficiente para rejeitar H0, o que não prova que H0 seja verdadeira.",
-      "H1 foi comprovada com probabilidade 1 − α."
-     ],
-     "answer": "D",
-     "explanation": "A rejeição é a decisão forte: só ela gera evidência estatística (teste significante). Na não rejeição, apenas não se encontrou evidência contra H0, e por isso não é correto dizer que H0 foi aceita ou provada."
+      "id": "estatistica/a11/s04",
+      "bizu": {
+        "summary": [
+          "### 1. Definições, Fórmulas e Propriedades Centrais",
+          "- **Comparação de duas médias (H₀: μ₁:** μ₂, ou μ₁ − μ₂ = 0): a variável do teste é a diferença das médias amostrais x̄₁ − x̄₂, com média 0 sob H₀.",
+          "- **Populações normais com variâncias conhecidas: a variância da diferença é a soma σ₁²/n₁ + σ₂²/n₂ (amostras independentes) e a estatística é z:** (x̄₁ − x̄₂)/√(σ₁²/n₁ + σ₂²/n₂), normal padrão.",
+          "- **Variâncias desconhecidas e iguais: estimador combinado s_p²:** [(n₁−1)s₁² + (n₂−1)s₂²]/(n₁ + n₂ − 2), média ponderada pelos graus de liberdade.",
+          "- **Estatística t:** (x̄₁ − x̄₂)/√[s_p²(1/n₁ + 1/n₂)]**, com **n₁ + n₂ − 2** g.l.",
+          "Variâncias desconhecidas e diferentes: t aproximado, sem variância combinada, com graus de liberdade calculados por fórmula que considera as variâncias amostrais e os tamanhos das amostras. Amostras pareadas: as duas medidas vêm dos mesmos indivíduos (antes/depois), então não são independentes. Calculam-se as **diferenças d** por indivíduo e testa-se H₀: μ_d = 0 com **t = d̄/(s_d/√n)**, **n − 1** g.l.",
+          "### 3. Exemplos de Aplicação e Procedimentos",
+          "> 💡 **Exemplo Prático:** Exemplo: s_p² com n₁ = 9, s₁² = 10, n₂ = 4, s₂² = 21: (8·10 + 3·21)/11 = 13.",
+          "### 4. Pontos Críticos e Cuidados nos Cálculos",
+          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+        ],
+        "teoria": [
+          {
+            "statement": "Em duas amostras independentes com variâncias conhecidas, a variância da diferença das médias amostrais é a soma σ₁²/n₁ + σ₂²/n₂.",
+            "isTrue": true,
+            "explanation": "Para variáveis independentes, as variâncias se somam, mesmo na subtração."
+          },
+          {
+            "statement": "No teste t para variâncias iguais e desconhecidas de duas populações, os graus de liberdade são n₁ + n₂ − 1.",
+            "isTrue": false,
+            "explanation": "O número correto é n₁ + n₂ − 2."
+          },
+          {
+            "statement": "O estimador combinado da variância é a média ponderada de s₁² e s₂², com pesos n₁ − 1 e n₂ − 1.",
+            "isTrue": true,
+            "explanation": "Os pesos são os respectivos graus de liberdade."
+          },
+          {
+            "statement": "No teste t pareado, as amostras são tratadas como independentes.",
+            "isTrue": false,
+            "explanation": "No teste pareado as observações vêm dos mesmos indivíduos; o teste usa as diferenças."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "No teste pareado, a média das diferenças é igual à diferença das médias das duas séries.",
+            "isTrue": true,
+            "explanation": "d̄ = Σ(xᵢ − yᵢ)/n = x̄ − ȳ."
+          },
+          {
+            "statement": "Com n = 4 pares, a estatística do teste t pareado tem 4 graus de liberdade.",
+            "isTrue": false,
+            "explanation": "Os graus de liberdade são n − 1 = 3."
+          },
+          {
+            "statement": "Sob H₀: μ₁ = μ₂, a média da diferença x̄₁ − x̄₂ é zero.",
+            "isTrue": true,
+            "explanation": "A diferença das médias populacionais é nula sob a hipótese nula."
+          },
+          {
+            "statement": "Com n₁ = 9, s₁² = 10, n₂ = 4 e s₂² = 21, a variância combinada é 13.",
+            "isTrue": true,
+            "explanation": "(8×10 + 3×21)/(9 + 4 − 2) = 143/11 = 13."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Hipótese de igualdade de médias",
+            "pageRef": 41
+          },
+          {
+            "topic": "Variâncias conhecidas: estatística z",
+            "pageRef": 43
+          },
+          {
+            "topic": "Variâncias desconhecidas e iguais",
+            "pageRef": 47
+          },
+          {
+            "topic": "Variâncias diferentes: t aproximado",
+            "pageRef": 49
+          },
+          {
+            "topic": "Teste t pareado",
+            "pageRef": 51
+          },
+          {
+            "topic": "Quadro-resumo dos testes de média",
+            "pageRef": 55
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Hipótese nula na comparação de médias",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 41,
+          "statement": "No teste de comparação das médias de duas populações independentes, a hipótese nula é",
+          "support": null,
+          "options": [
+            "μ1 = μ2, o que equivale a dizer que a diferença μ1 − μ2 é nula.",
+            "μ1 ≠ μ2, pois a diferença deve ser comprovada.",
+            "μ1 > μ2, quando o teste é unilateral.",
+            "x̄1 = x̄2, isto é, que as médias amostrais sejam iguais.",
+            "σ1² = σ2², isto é, que as variâncias sejam iguais."
+          ],
+          "answer": "A",
+          "explanation": "A hipótese nula afirma que as médias populacionais são iguais (mesma população), ou seja, μ1 − μ2 = 0. As médias amostrais quase nunca são idênticas, e a igualdade de variâncias é objeto de outro teste."
+        },
+        {
+          "topic": "Teste unilateral na comparação de médias",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 42,
+          "statement": "Uma empresa só rejeitará o lote 1 se a média dele for muito menor que a do lote 2. As hipóteses e a regra de rejeição são",
+          "support": null,
+          "options": [
+            "H0: μ1 = μ2 contra H1: μ1 ≠ μ2, rejeitando-se |x̄1 − x̄2| for grande.",
+            "H0: μ1 = μ2 contra H1: μ1 > μ2, rejeitando-se x̄1 − x̄2 for muito positiva.",
+            "H0: μ1 = μ2 contra H1: μ1 < μ2, rejeitando-se x̄1 − x̄2 for muito negativa.",
+            "H0: μ1 < μ2 contra H1: μ1 = μ2, rejeitando-se x̄1 − x̄2 for muito negativa.",
+            "H0: μ1 − μ2 ≠ 0 contra H1: μ1 − μ2 = 0."
+          ],
+          "answer": "C",
+          "explanation": "Só interessa a possibilidade de o lote 1 ter média menor, o que gera H1: μ1 < μ2 (μ1 − μ2 < 0) e região crítica à esquerda. A hipótese nula mantém a igualdade das médias."
+        },
+        {
+          "topic": "Desvio padrão da diferença das médias",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 43,
+          "statement": "Duas populações normais independentes têm variâncias σ1² = 81 e σ2² = 64, e são extraídas amostras de tamanhos n1 = 9 e n2 = 4. O desvio padrão da diferença das médias amostrais é",
+          "support": null,
+          "options": [
+            "7.",
+            "5.",
+            "25.",
+            "12.",
+            "2,5."
+          ],
+          "answer": "B",
+          "explanation": "A variância da diferença é a soma das variâncias das médias: 81/9 + 64/4 = 9 + 16 = 25, e o desvio padrão é √25 = 5. Somar os desvios padrão (3 + 4 = 7) é erro comum, e 25 é a variância."
+        },
+        {
+          "topic": "Estatística do teste Z para duas médias",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 44,
+          "statement": "Duas populações normais independentes têm σ1² = 36 e σ2² = 45, e de cada uma foi extraída uma amostra de 9 elementos. A diferença entre as médias amostrais foi 7,5. A estatística do teste de H0: μ1 = μ2 é",
+          "support": null,
+          "options": [
+            "1,77.",
+            "0,83.",
+            "2,50.",
+            "3,75.",
+            "7,50."
+          ],
+          "answer": "C",
+          "explanation": "O desvio padrão da diferença é √(36/9 + 45/9) = √9 = 3, e z = 7,5/3 = 2,50. O valor 1,77 divide por 2 + √5 (soma dos desvios padrão) e 0,83 divide pela variância da diferença (9)."
+        },
+        {
+          "topic": "Decisão com diferença de médias",
+          "pattern": "caso",
+          "difficulty": 3,
+          "pageRef": 45,
+          "statement": "No teste bilateral de H0: μ1 = μ2 com variâncias conhecidas, o desvio padrão da diferença das médias amostrais é 2 e a diferença observada é 4,4. Os valores críticos são 1,96 (5%) e 2,58 (1%). A hipótese nula é",
+          "support": null,
+          "options": [
+            "rejeitada a 5% e a 1%.",
+            "rejeitada a 5%, mas não a 1%.",
+            "não rejeitada a 5% nem a 1%.",
+            "rejeitada somente a 1%.",
+            "rejeitada a 1%, mas não a 5%."
+          ],
+          "answer": "B",
+          "explanation": "z = 4,4/2 = 2,2, que supera 1,96 mas não 2,58. Os limites da diferença são 1,96 × 2 = 3,92 (5%) e 2,58 × 2 = 5,16 (1%): 4,4 fica fora do primeiro e dentro do segundo."
+        },
+        {
+          "topic": "Hipótese nula com diferença não nula",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 45,
+          "statement": "Testa-se H0: μ1 − μ2 = 4 com variâncias conhecidas. As médias amostrais foram 30 e 24, e o desvio padrão da diferença é 1. A estatística do teste é",
+          "support": null,
+          "options": [
+            "6.",
+            "1.",
+            "2.",
+            "10.",
+            "5."
+          ],
+          "answer": "C",
+          "explanation": "Quando a hipótese nula traz Δ0 ≠ 0, z = (x̄1 − x̄2 − Δ0)/σ = (30 − 24 − 4)/1 = 2. O valor 6 ignora Δ0, e 10 soma Δ0 em vez de subtraí-lo."
+        },
+        {
+          "topic": "Estimador combinado da variância",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 47,
+          "statement": "Amostras independentes de duas populações normais de mesma variância desconhecida forneceram n1 = 11 com s1² = 6 e n2 = 16 com s2² = 14. A estimativa combinada da variância é",
+          "support": null,
+          "options": [
+            "10,0.",
+            "10,7.",
+            "12,0.",
+            "10,8.",
+            "20,0."
+          ],
+          "answer": "D",
+          "explanation": "A média ponderada pelos graus de liberdade é sp² = [(11 − 1)·6 + (16 − 1)·14]/(11 + 16 − 2) = (60 + 210)/25 = 10,8. O valor 10,0 é a média simples, e 10,7 usa n em vez de n − 1 nos pesos."
+        },
+        {
+          "topic": "Estatística t com variância combinada",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 47,
+          "statement": "Duas amostras independentes de tamanho 6 cada, de populações normais com mesma variância, têm diferença de médias igual a 5 e variância combinada sp² = 12. A estatística t do teste de igualdade das médias e seus graus de liberdade são, respectivamente,",
+          "support": null,
+          "options": [
+            "2,5 e 12.",
+            "2,5 e 5.",
+            "5,0 e 10.",
+            "1,25 e 10.",
+            "2,5 e 10."
+          ],
+          "answer": "E",
+          "explanation": "O erro padrão é √[sp²(1/6 + 1/6)] = √4 = 2, de modo que t = 5/2 = 2,5, com n1 + n2 − 2 = 10 graus de liberdade. O valor 1,25 divide pela variância do erro padrão (4), em vez de pelo erro padrão."
+        },
+        {
+          "topic": "Variâncias desconhecidas e diferentes",
+          "pattern": "correta",
+          "difficulty": 3,
+          "pageRef": 49,
+          "statement": "Quando as variâncias de duas populações normais são desconhecidas e diferentes, a estatística do teste de igualdade das médias é",
+          "support": null,
+          "options": [
+            "z = (x̄1 − x̄2)/√(s1²/n1 + s2²/n2), com distribuição normal padrão exata.",
+            "t = (x̄1 − x̄2)/√(s1²/n1 + s2²/n2), com distribuição t aproximada e graus de liberdade calculados com base nas variâncias dos estimadores.",
+            "t = (x̄1 − x̄2)/√[sp²(1/n1 + 1/n2)], com n1 + n2 − 2 graus de liberdade exatos.",
+            "χ² = (n − 1)s²/σ², com n − 1 graus de liberdade.",
+            "F = s1²/s2², com n1 − 1 e n2 − 1 graus de liberdade."
+          ],
+          "answer": "B",
+          "explanation": "Sem variância comum, não se usa o estimador combinado: o erro padrão é √(s1²/n1 + s2²/n2) e a estatística segue aproximadamente uma t, com graus de liberdade dados pela expressão dos quadrados das variâncias dos estimadores."
+        },
+        {
+          "topic": "Estatística t com variâncias diferentes",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 49,
+          "statement": "Duas amostras independentes forneceram s1² = 20 (n1 = 5) e s2² = 45 (n2 = 9), de populações normais com variâncias diferentes e desconhecidas. A diferença entre as médias amostrais foi 6. A estatística do teste é",
+          "support": null,
+          "options": [
+            "1,0.",
+            "0,67.",
+            "2,0.",
+            "3,0.",
+            "1,33."
+          ],
+          "answer": "C",
+          "explanation": "O erro padrão é √(20/5 + 45/9) = √(4 + 5) = 3, e t = 6/3 = 2,0. O valor 0,67 divide pela variância do erro padrão (9), em vez de pelo erro padrão (3)."
+        },
+        {
+          "topic": "Escolha do teste pareado",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 51,
+          "statement": "Um comandante mede o tempo de 8 bombeiros em um percurso, antes e depois de um treinamento, e quer saber se o treinamento reduziu o tempo médio. O teste adequado é",
+          "support": null,
+          "options": [
+            "t para duas amostras independentes, com 14 graus de liberdade.",
+            "Z para duas amostras independentes, com variâncias conhecidas.",
+            "t para amostras pareadas, aplicado às diferenças, com 7 graus de liberdade.",
+            "qui-quadrado para a variância das diferenças.",
+            "F para comparar as variâncias antes e depois, com 7 e 7 graus de liberdade."
+          ],
+          "answer": "C",
+          "explanation": "Os mesmos indivíduos são medidos duas vezes, então as amostras não são independentes e o teste é o t pareado, calculado sobre as n diferenças, com n − 1 = 7 graus de liberdade."
+        },
+        {
+          "topic": "Estatística do teste pareado",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 51,
+          "statement": "Em um teste t pareado com n = 9 pares, a média das diferenças foi 6 e o desvio padrão das diferenças foi 9. A estatística do teste e os graus de liberdade são, respectivamente,",
+          "support": null,
+          "options": [
+            "2,0 e 9.",
+            "0,67 e 8.",
+            "6,0 e 8.",
+            "2,0 e 8.",
+            "18,0 e 8."
+          ],
+          "answer": "D",
+          "explanation": "t = x̄_dif/(s_dif/√n) = 6/(9/3) = 2,0, com n − 1 = 8 graus de liberdade. O valor 0,67 omite a divisão por √n, e 18 multiplica por √n em vez de dividir."
+        },
+        {
+          "topic": "Média das diferenças",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 53,
+          "statement": "Os tempos, em segundos, de 4 militares antes de um treinamento foram 102, 98, 110 e 106, e depois do treinamento foram 96, 95, 101 e 100 (na mesma ordem). A média das diferenças (antes − depois) é",
+          "support": null,
+          "options": [
+            "24.",
+            "1,5.",
+            "104.",
+            "98.",
+            "6."
+          ],
+          "answer": "E",
+          "explanation": "As diferenças são 6, 3, 9 e 6, com média 24/4 = 6, que também é a diferença das médias (104 − 98). O valor 24 é a soma, e 1,5 divide 6 por 4."
+        },
+        {
+          "topic": "Decisão no teste pareado",
+          "pattern": "caso",
+          "difficulty": 3,
+          "pageRef": 54,
+          "statement": "Em um teste t pareado com n = 5, a média das diferenças foi 3,2 e o desvio padrão das diferenças foi 2 (considere √5 = 2,2). O valor crítico unilateral a 5%, com 4 graus de liberdade, é 2,13.\n\nAssinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "Não se rejeita H0, pois a estatística t ≈ 1,6 é inferior ao valor crítico 2,13.",
+            "Não se rejeita H0, pois a estatística t ≈ 3,5 está na região de não rejeição.",
+            "Não se rejeita H0, pois o teste pareado exige n ≥ 30.",
+            "Rejeita-se H0, pois a estatística t ≈ 5,1 supera o valor crítico 2,13.",
+            "Rejeita-se H0, pois a estatística t ≈ 3,5 supera o valor crítico 2,13."
+          ],
+          "answer": "E",
+          "explanation": "O erro padrão das diferenças é 2/√5 = 2/2,2 ≈ 0,91, e t = 3,2/0,91 ≈ 3,5, com 4 graus de liberdade. Como 3,5 > 2,13, rejeita-se H0. O valor 1,6 resulta de omitir a divisão por √n."
+        }
+      ]
     },
     {
-     "topic": "Teste pelo intervalo de confiança",
-     "pattern": "caso",
-     "difficulty": 2,
-     "pageRef": 7,
-     "statement": "Deseja-se testar H0: μ = 120 para o tempo médio, em segundos, de uma operação. Cada alternativa traz um intervalo de confiança construído a partir de uma amostra. A única amostra que leva à rejeição de H0 é a de intervalo",
-     "support": null,
-     "options": [
-      "[118; 126].",
-      "[115; 125].",
-      "[100; 130].",
-      "[110; 119].",
-      "[119,5; 130]."
-     ],
-     "answer": "D",
-     "explanation": "Rejeita-se H0 quando o intervalo construído a partir da amostra não contém o parâmetro da hipótese nula. Somente [110; 119] não contém 120."
+      "id": "estatistica/a11/s05",
+      "bizu": {
+        "summary": [
+          "### 1. Definições, Fórmulas e Propriedades Centrais",
+          "- **Teste para proporção:** aplica-se a populações de Bernoulli (sucesso/fracasso).",
+          "- **H₀: p:** p₀.",
+          "- **A estatística usa a proporção amostral p̂:** x/n** e a aproximação normal (TCL).",
+          "- **Variância da proporção amostral: Var(p̂):** p₀·q₀/n (calculada sob H₀).",
+          "Estatística: **z = (p̂ − p₀)/√(p₀q₀/n)**. É chamada de escore reduzido. Teste unilateral de proporção: se o interesse é que a proporção de defeitos não supere o limite, a região crítica fica só à direita (proporção menor é desejável). Duas proporções (H₀: p₁ = p₂): usa-se a proporção combinada p = (x₁ + x₂)/(n₁ + n₂).",
+          "### 2. Métodos de Resolução e Classificações",
+          "- o poder usa o p de H₁.",
+          "### 3. Exemplos de Aplicação e Procedimentos",
+          "> 💡 **Exemplo Prático:** Exemplo: H₀: p = 0,5, n = 100 e 55 homens → p̂ = 0,55, erro padrão = 0,05 e z = 1.",
+          "> 💡 **Exemplo Prático:** Exemplo exato: 4 lançamentos de moeda justa, rejeitando H₀ se saírem 0 ou 4 caras: α = 0,0625 + 0,0625 = 12,5%.",
+          "### 4. Pontos Críticos e Cuidados nos Cálculos",
+          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+        ],
+        "teoria": [
+          {
+            "statement": "No teste para uma proporção, a variância da proporção amostral é calculada com p₀ e q₀ da hipótese nula, dividida por n.",
+            "isTrue": true,
+            "explanation": "Var(p̂) = p₀q₀/n sob H₀."
+          },
+          {
+            "statement": "No teste para duas proporções, usa-se a proporção combinada das duas amostras para estimar p sob H₀.",
+            "isTrue": true,
+            "explanation": "Sob H₀, p₁ = p₂, e a melhor estimativa de p é (x₁ + x₂)/(n₁ + n₂)."
+          },
+          {
+            "statement": "O teste binomial exato depende da aproximação da binomial pela normal.",
+            "isTrue": false,
+            "explanation": "O teste binomial usa a distribuição exata da proporção e dispensa aproximação normal."
+          },
+          {
+            "statement": "Com 55 homens em 100 colaboradores e H₀: p = 0,5, a estatística z é 1.",
+            "isTrue": true,
+            "explanation": "p̂ = 0,55, erro padrão = √(0,25/100) = 0,05, logo z = 0,05/0,05 = 1."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Em 4 lançamentos de uma moeda justa, rejeitar H₀ (p = 0,5) com 0 ou 4 caras produz α = 12,5%.",
+            "isTrue": true,
+            "explanation": "0,0625 + 0,0625 = 0,125."
+          },
+          {
+            "statement": "No teste para duas proporções, a variância da diferença é p·q/(n₁ + n₂).",
+            "isTrue": false,
+            "explanation": "É p·q·(1/n₁ + 1/n₂), pois as variâncias das duas proporções se somam."
+          },
+          {
+            "statement": "No teste binomial, o poder é calculado com a probabilidade de sucesso indicada na hipótese alternativa.",
+            "isTrue": true,
+            "explanation": "A região de rejeição é fixada sob H₀ e as probabilidades dessa região são recalculadas com p de H₁."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Teste para proporção de uma população",
+            "pageRef": 56
+          },
+          {
+            "topic": "Cálculo do escore reduzido",
+            "pageRef": 57
+          },
+          {
+            "topic": "Proporção de defeitos (unilateral)",
+            "pageRef": 58
+          },
+          {
+            "topic": "Teste para duas proporções",
+            "pageRef": 60
+          },
+          {
+            "topic": "Teste para a distribuição binomial",
+            "pageRef": 62
+          },
+          {
+            "topic": "Poder e erro tipo II no teste binomial",
+            "pageRef": 63
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Distribuição do teste para proporção",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 56,
+          "statement": "O teste de hipóteses para a proporção p de uma população de Bernoulli, com amostra suficientemente grande, utiliza a distribuição",
+          "support": null,
+          "options": [
+            "t de Student com n − 1 graus de liberdade.",
+            "normal padrão, por aproximação baseada no Teorema Central do Limite.",
+            "qui-quadrado com n − 1 graus de liberdade.",
+            "F de Snedecor com n e n − 1 graus de liberdade.",
+            "uniforme contínua no intervalo (0, 1)."
+          ],
+          "answer": "B",
+          "explanation": "Com n grande, a proporção amostral é aproximadamente normal (TCL), com média p e variância p·q/n. A estatística é, então, escore z, comparado ao valor crítico da normal padrão."
+        },
+        {
+          "topic": "Desvio padrão da proporção amostral",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 57,
+          "statement": "Testa-se H0: p = 0,20 com amostra de n = 400. O desvio padrão da proporção amostral, sob H0, é",
+          "support": null,
+          "options": [
+            "0,0004.",
+            "0,4.",
+            "0,02.",
+            "0,008.",
+            "0,0016."
+          ],
+          "answer": "C",
+          "explanation": "σ_p̂ = √(p·q/n) = √(0,2 × 0,8/400) = √0,0004 = 0,02. O valor 0,0004 é a variância da proporção amostral, e 0,4 é o desvio padrão populacional (√0,16)."
+        },
+        {
+          "topic": "Estatística do teste para proporção",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 57,
+          "statement": "Uma empresa afirma que metade de seus clientes está satisfeita (H0: p = 0,5). Em uma amostra de 400 clientes, 224 estão satisfeitos. A estatística do teste (escore reduzido) é",
+          "support": null,
+          "options": [
+            "1,2.",
+            "0,06.",
+            "4,8.",
+            "2,4.",
+            "2,0."
+          ],
+          "answer": "D",
+          "explanation": "p̂ = 224/400 = 0,56 e σ_p̂ = √(0,5 × 0,5/400) = 0,025. Então z = (0,56 − 0,50)/0,025 = 2,4. O valor 0,06 é só a diferença, sem padronizar."
+        },
+        {
+          "topic": "Limite crítico para a proporção",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 57,
+          "statement": "Testa-se H0: p = 0,10 contra H1: p > 0,10, com n = 400 e nível de significância de 5% (zc = 1,65). A maior proporção amostral para a qual H0 não é rejeitada é, aproximadamente,",
+          "support": null,
+          "options": [
+            "12,9%.",
+            "7,5%.",
+            "11,5%.",
+            "16,5%.",
+            "12,5%."
+          ],
+          "answer": "E",
+          "explanation": "σ_p̂ = √(0,1 × 0,9/400) = 0,015, e L = p + z·σ_p̂ = 0,10 + 1,65 × 0,015 = 12,47% ≈ 12,5%. O valor 12,9% usa zc = 1,96, e 7,5% seria o limite do teste unilateral à esquerda."
+        },
+        {
+          "topic": "Hipóteses para proporção",
+          "pattern": "caso",
+          "difficulty": 1,
+          "pageRef": 59,
+          "statement": "O chefe da produção afirma que 4% dos itens apresentam defeito, e o controle de qualidade só se interessa em saber se a proporção real é maior que isso (se for menor, é melhor para a empresa). As hipóteses do teste são",
+          "support": null,
+          "options": [
+            "H0: p = 0,04 e H1: p ≠ 0,04.",
+            "H0: p = 0,04 e H1: p < 0,04.",
+            "H0: p > 0,04 e H1: p = 0,04.",
+            "H0: p = 0,04 e H1: p > 0,04.",
+            "H0: p ≠ 0,04 e H1: p = 0,04."
+          ],
+          "answer": "D",
+          "explanation": "Só importa o desvio para cima, o que leva a H1: p > 0,04 e a um teste unilateral à direita, com H0: p = 0,04. A alternativa bilateral ignoraria que uma proporção menor é favorável."
+        },
+        {
+          "topic": "Fator de correção para população finita",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 57,
+          "statement": "Testa-se H0: p = 0,5 em uma população finita de N = 500 itens, com amostra sem reposição de n = 100. Usando o fator de correção para população finita, o desvio padrão da proporção amostral é, aproximadamente,",
+          "support": null,
+          "options": [
+            "0,0500.",
+            "0,0025.",
+            "0,0448.",
+            "0,0020.",
+            "0,0400."
+          ],
+          "answer": "C",
+          "explanation": "A variância é p·q/n × (N − n)/(N − 1) = 0,0025 × 400/499 ≈ 0,0020, e o desvio padrão é √0,0020 ≈ 0,0448. O valor 0,0500 é o desvio padrão sem correção, e 0,0020 é a variância corrigida."
+        },
+        {
+          "topic": "Estatística para duas proporções",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 61,
+          "statement": "Duas empresas alegam ter metade de homens em seu quadro (p = 0,5 em ambas). De cada uma foi extraída uma amostra de 50 pessoas, com 32 homens na empresa A e 22 na B. A estatística do teste de igualdade das proporções é",
+          "support": null,
+          "options": [
+            "2,0.",
+            "0,2.",
+            "4,0.",
+            "1,0.",
+            "2,83."
+          ],
+          "answer": "A",
+          "explanation": "p̂A = 0,64 e p̂B = 0,44, diferença 0,20. O desvio padrão da diferença é √(0,25/50 + 0,25/50) = 0,1, logo z = 0,20/0,1 = 2,0. O valor 0,2 não padroniza a diferença."
+        },
+        {
+          "topic": "Limite para a diferença de proporções",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 61,
+          "statement": "No teste bilateral de igualdade de duas proporções, o desvio padrão da diferença das proporções amostrais é 0,05. Ao nível de 1% (zc = 2,58), o módulo da diferença a partir do qual H0 é rejeitada é",
+          "support": null,
+          "options": [
+            "0,129.",
+            "0,098.",
+            "0,082.",
+            "0,258.",
+            "0,050."
+          ],
+          "answer": "A",
+          "explanation": "O limite é zc × σ = 2,58 × 0,05 = 0,129 (em módulo). O valor 0,098 usa 1,96 (nível de 5%), e 0,082 usa 1,64 (unilateral a 5%)."
+        },
+        {
+          "topic": "Teste binomial: nível de significância",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 62,
+          "statement": "Para testar se uma moeda é honesta (H0: p = 0,5 para cara), ela é lançada 5 vezes, e H0 é rejeitada se todas as faces saírem iguais. O nível de significância do teste é",
+          "support": null,
+          "options": [
+            "3,13%.",
+            "6,25%.",
+            "12,5%.",
+            "31,25%.",
+            "1,56%."
+          ],
+          "answer": "B",
+          "explanation": "α = P(X = 0) + P(X = 5) com p = 0,5 e n = 5: 1/32 + 1/32 = 2/32 = 6,25%. O valor 3,13% considera apenas uma das duas situações extremas."
+        },
+        {
+          "topic": "Teste binomial unilateral",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 62,
+          "statement": "Testa-se H0: p = 0,6 com uma amostra de n = 5 ensaios independentes, rejeitando-se H0 se houver no máximo 1 sucesso. O nível de significância do teste é, aproximadamente,",
+          "support": null,
+          "options": [
+            "7,68%.",
+            "1,02%.",
+            "8,70%.",
+            "91,30%.",
+            "31,74%."
+          ],
+          "answer": "C",
+          "explanation": "α = P(X ≤ 1) com p = 0,6: P(0) + P(1) = 0,4⁵ + 5 × 0,6 × 0,4⁴ = 0,01024 + 0,07680 = 8,70%. O valor 91,30% é a probabilidade de não rejeitar H0 sendo verdadeira."
+        },
+        {
+          "topic": "Poder do teste binomial",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 63,
+          "statement": "Testa-se H0: p = 0,5 contra H1: p = 0,8, com n = 5 ensaios, e H0 é rejeitada se houver 4 ou mais sucessos. O poder do teste é, aproximadamente,",
+          "support": null,
+          "options": [
+            "26,3%.",
+            "73,7%.",
+            "18,8%.",
+            "32,8%.",
+            "41,0%."
+          ],
+          "answer": "B",
+          "explanation": "O poder é a probabilidade de rejeitar H0 com o parâmetro de H1 (p = 0,8): P(4) + P(5) = 5 × 0,8⁴ × 0,2 + 0,8⁵ = 0,4096 + 0,3277 = 73,7%. O valor 26,3% é β, e 18,8% é o nível de significância (P(X ≥ 4) com p = 0,5)."
+        },
+        {
+          "topic": "Erro tipo II no teste binomial",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 64,
+          "statement": "Para testar H0: p = 0,2 contra H1: p = 0,6, retira-se uma amostra de n = 3 ensaios independentes, rejeitando-se H0 se e somente se ocorrerem 3 sucessos. A probabilidade do erro tipo II é",
+          "support": null,
+          "options": [
+            "0,8%.",
+            "21,6%.",
+            "99,2%.",
+            "36,0%.",
+            "78,4%."
+          ],
+          "answer": "E",
+          "explanation": "β = P(não rejeitar H0 | p = 0,6) = 1 − P(X = 3) = 1 − 0,6³ = 1 − 0,216 = 78,4%. O valor 0,8% é α = 0,2³, e 21,6% é o poder do teste."
+        },
+        {
+          "topic": "Natureza do teste binomial",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 62,
+          "statement": "Sobre o teste de hipóteses para a distribuição binomial,\n\nassinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "Usa a distribuição binomial exata, sem aproximação normal, e o nível de significância é a soma das probabilidades dos resultados da região de rejeição, calculadas com o p de H0.",
+            "Usa sempre a aproximação normal, mesmo para n pequeno.",
+            "O nível de significância é calculado com o parâmetro de H1.",
+            "Só pode ser aplicado quando n for maior que 30.",
+            "Não permite calcular o erro tipo II nem o poder do teste."
+          ],
+          "answer": "A",
+          "explanation": "O teste binomial trabalha com as probabilidades exatas P(X = k) = C(n,k)·pᵏ·qⁿ⁻ᵏ. O nível α usa o parâmetro de H0, enquanto β e o poder usam o parâmetro de H1 (ou o verdadeiro)."
+        }
+      ]
     },
     {
-     "topic": "Teste unilateral à esquerda",
-     "pattern": "caso",
-     "difficulty": 2,
-     "pageRef": 8,
-     "statement": "Um batalhão só rejeitará um lote de cabos se a resistência média for menor que a especificada, de 800 N. As hipóteses e a região crítica do teste são",
-     "support": null,
-     "options": [
-      "H0: μ ≥ 800 e H1: μ < 800, com região crítica na cauda esquerda.",
-      "H0: μ ≤ 800 e H1: μ > 800, com região crítica na cauda direita.",
-      "H0: μ = 800 e H1: μ ≠ 800, com região crítica nas duas caudas.",
-      "H0: μ < 800 e H1: μ ≥ 800, com região crítica na cauda esquerda.",
-      "H0: μ ≥ 800 e H1: μ < 800, com região crítica na cauda direita."
-     ],
-     "answer": "A",
-     "explanation": "Rejeita-se o lote (e H0) apenas diante de resistência muito baixa, o que define um teste unilateral à esquerda: H1: μ < 800, com a região crítica concentrada à esquerda. A hipótese nula pode ser escrita como μ ≥ 800 (ou μ = 800)."
-    },
-    {
-     "topic": "Hipótese direcional",
-     "pattern": "conceito",
-     "difficulty": 1,
-     "pageRef": 10,
-     "statement": "Considere as hipóteses alternativas: I. H1: μ ≠ 30; II. H1: μ > 30; III. H1: μ < 30. São hipóteses alternativas direcionais (de testes unilaterais) apenas",
-     "support": null,
-     "options": [
-      "I e II.",
-      "I e III.",
-      "II e III.",
-      "I.",
-      "I, II e III."
-     ],
-     "answer": "C",
-     "explanation": "Nos testes unilaterais a alternativa supõe que o parâmetro seja maior ou menor que certo valor (direcional); nos bilaterais ela só supõe que seja diferente (não direcional)."
-    },
-    {
-     "topic": "Formulação das hipóteses",
-     "pattern": "caso",
-     "difficulty": 3,
-     "pageRef": 12,
-     "statement": "O comando deseja demonstrar, com evidência estatística, que o tempo médio de embarque da guarnição é superior a 4 minutos. As hipóteses H0 e H1 do teste são, respectivamente,",
-     "support": null,
-     "options": [
-      "H0: μ > 4 e H1: μ ≤ 4.",
-      "H0: μ = 4 e H1: μ < 4.",
-      "H0: μ ≥ 4 e H1: μ < 4.",
-      "H0: μ ≤ 4 e H1: μ > 4.",
-      "H0: μ ≠ 4 e H1: μ = 4."
-     ],
-     "answer": "D",
-     "explanation": "O que se deseja comprovar entra como hipótese alternativa, pois só será aceito se o teste for significante (rejeição de H0). Logo H1: μ > 4 e H0: μ ≤ 4."
-    },
-    {
-     "topic": "Hipóteses simples e compostas",
-     "pattern": "conceito",
-     "difficulty": 2,
-     "pageRef": 10,
-     "statement": "Considere as hipóteses H0: μ = 15 e H1: μ > 15. Quanto à classificação, é correto afirmar que",
-     "support": null,
-     "options": [
-      "ambas são simples.",
-      "H0 é simples e H1 é composta.",
-      "H0 é composta e H1 é simples.",
-      "ambas são compostas.",
-      "ambas são não direcionais."
-     ],
-     "answer": "B",
-     "explanation": "Hipótese simples especifica o parâmetro com sinal de igualdade (μ = 15); composta apenas dá uma informação sobre a distribuição, sem igualdade (μ > 15). Se H0 fosse escrita como μ ≤ 15, ambas seriam compostas."
-    },
-    {
-     "topic": "Decisão pela região de não rejeição",
-     "pattern": "caso",
-     "difficulty": 3,
-     "pageRef": 6,
-     "statement": "Para H0: μ = 2, a região de não rejeição ao nível de 95% é [1,8; 2,2]. Assinale a alternativa correta.",
-     "support": null,
-     "options": [
-      "Com X̄ = 2,15 rejeita-se H0, pois o valor excede a média 2.",
-      "Com X̄ = 1,95 aceita-se H0, o que prova que μ = 2.",
-      "O nível de significância desse teste é de 95%.",
-      "Com X̄ = 1,75 rejeita-se H0 e o teste é estatisticamente significante.",
-      "A região de não rejeição tem probabilidade α = 5% sob H0."
-     ],
-     "answer": "D",
-     "explanation": "Com X̄ = 1,75, fora de [1,8; 2,2], o resultado está na região crítica e H0 é rejeitada. Com 2,15 ou 1,95 não há rejeição, e isso não prova H0. O nível de confiança é 95% (α = 5%), e a região de não rejeição tem probabilidade 1 − α."
+      "id": "estatistica/a11/s06",
+      "bizu": {
+        "summary": [
+          "### 1. Definições, Fórmulas e Propriedades Centrais",
+          "- **Teste para a variância (população normal): H₀: σ²:** σ₀².",
+          "- **A estatística é χ²:** (n − 1)·s²/σ₀²**, com **n − 1** graus de liberdade (qui-quadrado).",
+          "- **Decisão:** compare com os valores críticos inferior e superior da tabela (bilateral) ou com um deles (unilateral).",
+          "- **Comparação de duas variâncias (teste de homogeneidade): H₀: σ_A²:** σ_B².",
+          "A estatística é a razão das variâncias amostrais **F = s_A²/s_B²**, com **(n_A − 1, n_B − 1)** graus de liberdade (F de Snedecor). Valores críticos de F: o superior vem da tabela. o inferior é o **inverso** do crítico superior com os graus de liberdade **trocados** (numerador ↔ denominador).",
+          "### 2. Métodos de Resolução e Classificações",
+          "- Rejeita-se H₀ se **p < α**.",
+          "- se p > α, não se rejeita.",
+          "- é uma probabilidade calculada sob H₀.",
+          "- Quando p < α, o resultado é estatisticamente significante.",
+          "### 3. Exemplos de Aplicação e Procedimentos",
+          "> 💡 **Exemplo Prático:** Ex.: n = 10, s² = 1,5 e σ₀² = 3,6 → χ² = 9·1,5/3,6 = 3,75.",
+          "### 4. Pontos Críticos e Cuidados nos Cálculos",
+          "> ⚠️ **Atenção de Prova:** Pegadinha: o p-valor não é o maior nível de significância a partir do qual H₀ não é rejeitada."
+        ],
+        "teoria": [
+          {
+            "statement": "No teste para a variância de uma população normal, a estatística (n − 1)s²/σ₀² segue qui-quadrado com n − 1 graus de liberdade.",
+            "isTrue": true,
+            "explanation": "É a base do teste de variância."
+          },
+          {
+            "statement": "O teste para comparar duas variâncias usa a distribuição F de Snedecor.",
+            "isTrue": true,
+            "explanation": "A razão s_A²/s_B² segue F com n_A − 1 e n_B − 1 graus de liberdade sob H₀."
+          },
+          {
+            "statement": "O p-valor é a probabilidade de a hipótese nula ser verdadeira.",
+            "isTrue": false,
+            "explanation": "É a probabilidade de um resultado tão extremo ou mais, supondo H₀ verdadeira."
+          },
+          {
+            "statement": "Se o p-valor é menor que o nível de significância α, a hipótese nula é rejeitada.",
+            "isTrue": true,
+            "explanation": "Regra de decisão geral, válida para qualquer tipo de teste."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Em distribuição simétrica, o p-valor de um teste bilateral é o dobro do p-valor do teste unilateral.",
+            "isTrue": true,
+            "explanation": "As duas caudas contribuem igualmente."
+          },
+          {
+            "statement": "No teste de homogeneidade de variâncias, o limite crítico inferior de F é igual ao crítico superior com os mesmos graus de liberdade.",
+            "isTrue": false,
+            "explanation": "O inferior é o inverso do crítico superior com os graus de liberdade invertidos."
+          },
+          {
+            "statement": "Com n = 10, s² = 1,5 e σ₀² = 3,6, a estatística qui-quadrado do teste vale 3,75.",
+            "isTrue": true,
+            "explanation": "(10 − 1)·1,5/3,6 = 3,75."
+          },
+          {
+            "statement": "Com p-valor de 0,07, rejeita-se H₀ ao nível de 5% e não se rejeita ao nível de 10%.",
+            "isTrue": false,
+            "explanation": "É o contrário: p > 0,05 não rejeita ao nível de 5%; p < 0,10 rejeita ao nível de 10%."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Teste para a variância (qui-quadrado)",
+            "pageRef": 66
+          },
+          {
+            "topic": "Valores críticos do qui-quadrado",
+            "pageRef": 67
+          },
+          {
+            "topic": "Comparação de duas variâncias (F)",
+            "pageRef": 70
+          },
+          {
+            "topic": "Limite crítico inferior de F",
+            "pageRef": 73
+          },
+          {
+            "topic": "Definição do p-valor",
+            "pageRef": 76
+          },
+          {
+            "topic": "p-valor × nível de significância",
+            "pageRef": 78
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Estatística do teste para a variância",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 66,
+          "statement": "Para testar H0: σ² = σ0² em uma população normal, a partir de uma amostra de tamanho n com variância amostral s², a estatística do teste é",
+          "support": null,
+          "options": [
+            "z = (s² − σ0²)/(σ0²/√n), com distribuição normal padrão.",
+            "χ² = (n − 1)·s²/σ0², com distribuição qui-quadrado de n − 1 graus de liberdade.",
+            "t = (s² − σ0²)/(s/√n), com n − 1 graus de liberdade.",
+            "F = s²/σ0², com n − 1 e n graus de liberdade.",
+            "χ² = n·s²/σ0², com n graus de liberdade."
+          ],
+          "answer": "B",
+          "explanation": "A variância amostral, multiplicada por (n − 1)/σ0², segue uma qui-quadrado com n − 1 graus de liberdade sob H0. Z e t testam médias, e a F compara variâncias de duas populações."
+        },
+        {
+          "topic": "Cálculo do qui-quadrado",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 66,
+          "statement": "Testa-se H0: σ² = 4 com uma amostra de n = 9 que forneceu s² = 6. A estatística do teste é",
+          "support": null,
+          "options": [
+            "13,5.",
+            "12,0.",
+            "5,3.",
+            "1,5.",
+            "48,0."
+          ],
+          "answer": "B",
+          "explanation": "χ² = (n − 1)·s²/σ0² = (8/4) × 6 = 12,0, com 8 graus de liberdade. O valor 13,5 usa n no lugar de n − 1, e 5,3 inverte a razão."
+        },
+        {
+          "topic": "Valores críticos assimétricos",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 66,
+          "statement": "No teste bilateral para a variância, com a estatística qui-quadrado, os valores críticos inferior e superior",
+          "support": null,
+          "options": [
+            "têm o mesmo módulo, por simetria da curva qui-quadrado.",
+            "são ambos negativos, pois a variância é sempre menor que a hipótese nula.",
+            "coincidem com os valores críticos da normal padrão.",
+            "têm módulos diferentes, pois a distribuição qui-quadrado é positiva e assimétrica.",
+            "não existem, pois o teste só pode ser unilateral."
+          ],
+          "answer": "D",
+          "explanation": "Diferentemente dos testes Z e t, a qui-quadrado não é simétrica nem assume valores negativos; por isso o limite superior tabelado difere do inferior, e ambos são lidos na tabela."
+        },
+        {
+          "topic": "Decisão no teste da variância (bilateral)",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 67,
+          "statement": "Testa-se H0: σ² = 1,5 com n = 5 (4 graus de liberdade), bilateral, α = 10%, e s² = 6. Os valores críticos são 0,71 e 9,49.\n\nAssinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "A estatística vale 16,0 e H0 é rejeitada, pois supera o limite superior 9,49.",
+            "A estatística vale 16,0 e H0 não é rejeitada, pois está na região de não rejeição [0,71; 9,49].",
+            "A estatística vale 1,0 e H0 não é rejeitada, pois está na região de não rejeição.",
+            "H0 só poderia ser rejeitada se a estatística fosse menor que 0,71.",
+            "O teste é inconclusivo, pois a estatística é maior que s²."
+          ],
+          "answer": "A",
+          "explanation": "A estatística é (n − 1)s²/σ0² = 4 × 6/1,5 = 16,0, que ultrapassa 9,49 e cai na região crítica superior. No teste bilateral rejeita-se H0 tanto para valores abaixo de 0,71 quanto acima de 9,49."
+        },
+        {
+          "topic": "Teste unilateral para a variância",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 68,
+          "statement": "Testa-se H0: σ² = 8 contra H1: σ² < 8, com n = 13 e s² = 4. Para 12 graus de liberdade, P(χ² < 6,30) = 0,10 e P(χ² < 5,23) = 0,05. A hipótese nula é",
+          "support": null,
+          "options": [
+            "rejeitada ao nível de 5% e ao de 10%.",
+            "rejeitada ao nível de 10%, mas não ao de 5%.",
+            "rejeitada ao nível de 5%, mas não ao de 10%.",
+            "não rejeitada em nenhum dos dois níveis.",
+            "rejeitada somente ao nível de 1%."
+          ],
+          "answer": "B",
+          "explanation": "A estatística é 12 × 4/8 = 6,0. No teste à esquerda, rejeita-se for menor que o crítico: 6,0 < 6,30 (10%) rejeita, mas 6,0 > 5,23 (5%) não rejeita."
+        },
+        {
+          "topic": "Estatística F para duas variâncias",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 71,
+          "statement": "Para testar a igualdade das variâncias de duas populações normais, obteve-se n_A = 10 com soma dos quadrados dos desvios 180 e n_B = 6 com soma 75. A estatística do teste e os graus de liberdade (numerador e denominador) são",
+          "support": null,
+          "options": [
+            "1,33, com 9 e 5.",
+            "1,33, com 10 e 6.",
+            "0,75, com 9 e 5.",
+            "1,44, com 10 e 6.",
+            "2,40, com 9 e 5."
+          ],
+          "answer": "A",
+          "explanation": "s_A² = 180/9 = 20 e s_B² = 75/5 = 15, logo F = 20/15 = 1,33, com n_A − 1 = 9 graus no numerador e n_B − 1 = 5 no denominador. O valor 1,44 divide as somas por n (18/12,5)."
+        },
+        {
+          "topic": "Limite crítico inferior da F",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 72,
+          "statement": "Em um teste bilateral de igualdade de variâncias, precisa-se do valor crítico inferior (5% na cauda) da distribuição F com 12 graus de liberdade no numerador e 6 no denominador. Sabe-se que 95% da distribuição F com 6 e 12 graus de liberdade está abaixo de 3,00. O valor crítico inferior é, aproximadamente,",
+          "support": null,
+          "options": [
+            "3,00.",
+            "0,67.",
+            "0,05.",
+            "0,30.",
+            "0,33."
+          ],
+          "answer": "E",
+          "explanation": "Vale F(1−α; n, m) = 1/F(α; m, n): o crítico inferior para (12, 6) é o inverso do crítico superior com os graus de liberdade invertidos (6, 12): 1/3,00 ≈ 0,33."
+        },
+        {
+          "topic": "Hipóteses do teste de homogeneidade",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 70,
+          "statement": "No teste para comparar as variâncias de duas populações normais independentes, a hipótese nula e a estatística do teste (sob H0) são, respectivamente,",
+          "support": null,
+          "options": [
+            "H0: σA² ≠ σB², com F = sA²/sB², com nA e nB graus de liberdade.",
+            "H0: σA² = σB², com χ² = (n − 1)sA²/sB², com nA − 1 graus de liberdade.",
+            "H0: sA² = sB², com t = (sA² − sB²)/√(sA²/nA + sB²/nB).",
+            "H0: σA = σB, com Z = sA − sB, com distribuição normal padrão.",
+            "H0: σA² = σB², com F = sA²/sB², com nA − 1 e nB − 1 graus de liberdade."
+          ],
+          "answer": "E",
+          "explanation": "A hipótese nula é de igualdade das variâncias populacionais; sob ela, os σ² se cancelam e F = sA²/sB² segue uma F de Snedecor com nA − 1 e nB − 1 graus de liberdade."
+        },
+        {
+          "topic": "Variância com razão diferente de 1",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 74,
+          "statement": "Testa-se H0: σA² = 2·σB² (a variância de A é o dobro da de B). As amostras forneceram sA² = 18 e sB² = 4. A estatística F do teste é",
+          "support": null,
+          "options": [
+            "4,50.",
+            "1,13.",
+            "2,25.",
+            "0,44.",
+            "9,00."
+          ],
+          "answer": "C",
+          "explanation": "Sob H0, F = sA²/(2·sB²) = 18/(2 × 4) = 2,25. O valor 4,50 corresponde a sA²/sB², que testaria a igualdade simples."
+        },
+        {
+          "topic": "Ordem dos testes para média e variância",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 73,
+          "statement": "Para comparar tanto as médias quanto as variâncias de duas populações normais, o procedimento descrito é",
+          "support": null,
+          "options": [
+            "testar primeiro as médias e depois aplicar o teste F às diferenças.",
+            "aplicar apenas o teste de médias, pois a variância não influencia a escolha.",
+            "testar primeiro a igualdade das variâncias (teste F) e, conforme o resultado, escolher o teste de comparação de médias.",
+            "aplicar o teste qui-quadrado para as médias e o teste Z para as variâncias.",
+            "testar as médias com o teste F e as variâncias com o teste t."
+          ],
+          "answer": "C",
+          "explanation": "O resultado do teste de variâncias indica se as variâncias podem ser consideradas iguais (usando estimador combinado) ou devem ser tratadas como diferentes no teste de médias."
+        },
+        {
+          "topic": "Definição de p-valor",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 76,
+          "statement": "O p-valor de um teste de hipóteses é",
+          "support": null,
+          "options": [
+            "a probabilidade de a hipótese nula ser verdadeira, dada a amostra.",
+            "a probabilidade de a hipótese alternativa ser falsa.",
+            "o nível de significância escolhido antes do teste.",
+            "a probabilidade do erro tipo II.",
+            "a probabilidade de obter um resultado igual ou mais extremo que o observado, supondo a hipótese nula verdadeira."
+          ],
+          "answer": "E",
+          "explanation": "O p-valor é calculado sob a hipótese nula e comparado com α: rejeita-se H0 se p < α. Ele não é a probabilidade de H0 ser verdadeira, nem é o nível de significância (definido previamente)."
+        },
+        {
+          "topic": "Decisão pelo p-valor",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 77,
+          "statement": "Em um teste de hipóteses, o p-valor encontrado foi de 3%.\n\nAssinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "H0 é rejeitada aos níveis de 5% e 1%, mas não ao de 10%.",
+            "H0 é rejeitada somente ao nível de 1%.",
+            "H0 não é rejeitada a nenhum desses níveis.",
+            "H0 é rejeitada aos níveis de 10% e 5%, mas não ao de 1%.",
+            "H0 é rejeitada aos níveis de 10%, 5% e 1%."
+          ],
+          "answer": "D",
+          "explanation": "Rejeita-se H0 quando p < α. Com p = 3%: 3% < 10% e 3% < 5% (rejeita), mas 3% > 1% (não rejeita)."
+        },
+        {
+          "topic": "P-valor bilateral",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 78,
+          "statement": "Em um teste bilateral para a média com variância conhecida, a estatística do teste foi z = 2,0. Dado P(0 < Z < 2,0) = 0,4772, o p-valor do teste é",
+          "support": null,
+          "options": [
+            "2,28%.",
+            "95,44%.",
+            "47,72%.",
+            "9,12%.",
+            "4,56%."
+          ],
+          "answer": "E",
+          "explanation": "No teste bilateral, o p-valor soma as duas caudas: 2 × P(Z > 2) = 2 × (0,5 − 0,4772) = 4,56%. O valor 2,28% é o p-valor do teste unilateral."
+        },
+        {
+          "topic": "P-valor unilateral à direita",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 77,
+          "statement": "Testa-se H0: μ = 50 contra H1: μ > 50, com σ = 10 e n = 100, e obteve-se x̄ = 52,5. Dado P(0 < Z < 2,5) = 0,4938, o p-valor do teste é",
+          "support": null,
+          "options": [
+            "0,62%.",
+            "1,24%.",
+            "49,38%.",
+            "99,38%.",
+            "2,50%."
+          ],
+          "answer": "A",
+          "explanation": "z = (52,5 − 50)/(10/10) = 2,5, e no teste unilateral à direita p = P(Z > 2,5) = 0,5 − 0,4938 = 0,62%. O valor 1,24% seria o p-valor bilateral."
+        },
+        {
+          "topic": "Afirmações sobre o p-valor",
+          "pattern": "incorreta",
+          "difficulty": 2,
+          "pageRef": 79,
+          "statement": "Sobre o p-valor,\n\nassinale a alternativa INCORRETA.",
+          "support": null,
+          "options": [
+            "Rejeita-se H0 sempre que o p-valor é inferior ao nível de significância fixado.",
+            "Em testes com a distribuição normal, o p-valor bilateral é o dobro do unilateral.",
+            "É a probabilidade de obter um resultado igual ou mais extremo que o observado, supondo H0 verdadeira.",
+            "Quando p < α, diz-se que o resultado é estatisticamente significante.",
+            "O p-valor é a probabilidade de a hipótese nula ser verdadeira."
+          ],
+          "answer": "E",
+          "explanation": "O p-valor é calculado supondo H0 verdadeira; não é a probabilidade de H0 ser verdadeira. As demais afirmações descrevem corretamente a regra de decisão e a significância estatística."
+        }
+      ]
     }
-   ]
-  },
-  {
-   "id": "estatistica/a11/s02",
-   "bizu": {
-    "summary": [
-     "### 1. Definições, Fórmulas e Propriedades Centrais",
-     "- **Erro tipo I:** rejeitar H₀ quando ela é verdadeira (falso positivo).",
-     "- **Sua probabilidade:** é o **nível de significância α**.",
-     "- **Erro tipo II:** não rejeitar H₀ quando ela é falsa.",
-     "- **α e β não são complementares:** α + β ≠ 1, pois pertencem a distribuições distintas (sob H₀ e sob o parâmetro verdadeiro).",
-     "Poder do teste = 1 − β: probabilidade de rejeitar H₀ quando ela é falsa. Fatores que aumentam o poder: maior tamanho amostral n, maior nível de significância α e maior distância entre o parâmetro verdadeiro e o de H₀. Função potência: poder em função do parâmetro verdadeiro.",
-     "### 2. Métodos de Resolução e Classificações",
-     "- probabilidade **β**.",
-     "- **No unilateral à esquerda:** é decrescente, no unilateral à direita é crescente e no bilateral tem forma de U, com mínimo igual a α quando o parâmetro verdadeiro coincide com o de H₀.",
-     "- usa a razão de verossimilhanças.",
-     "- β usa a uniforme verdadeira dada no enunciado e o trecho de não rejeição.",
-     "### 3. Exemplos de Aplicação e Procedimentos",
-     "> 💡 **Exemplo Prático:** Para calculá-lo, usa-se a distribuição com o **parâmetro da hipótese alternativa** (o valor verdadeiro).",
-     "### 4. Pontos Críticos e Cuidados nos Cálculos",
-     "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
-    ],
-    "teoria": [
-     {
-      "statement": "O erro tipo I ocorre quando se descarta uma hipótese nula que na realidade é verdadeira, e sua probabilidade é o nível de significância α.",
-      "isTrue": true,
-      "explanation": "Rejeitar H₀ verdadeira é o falso positivo, cuja chance é controlada por α."
-     },
-     {
-      "statement": "O erro tipo II consiste em rejeitar a hipótese nula quando ela é falsa.",
-      "isTrue": false,
-      "explanation": "Rejeitar H₀ falsa é decisão correta; o erro tipo II é não rejeitar H₀ falsa."
-     },
-     {
-      "statement": "As probabilidades dos erros tipo I e tipo II sempre somam 1.",
-      "isTrue": false,
-      "explanation": "Elas se referem a distribuições diferentes e não são complementares."
-     },
-     {
-      "statement": "O poder do teste é igual a 1 − β.",
-      "isTrue": true,
-      "explanation": "É a probabilidade de rejeitar H₀ falsa."
-     }
-    ],
-    "revisao": [
-     {
-      "statement": "Aumentar o tamanho da amostra eleva o poder do teste, mantendo-se o nível de significância.",
-      "isTrue": true,
-      "explanation": "A RNR se estreita em torno do parâmetro, reduzindo β."
-     },
-     {
-      "statement": "Em um teste unilateral à direita, a função potência é decrescente em relação ao parâmetro verdadeiro.",
-      "isTrue": false,
-      "explanation": "No teste à direita o poder cresce com o parâmetro verdadeiro; é decrescente no teste à esquerda."
-     },
-     {
-      "statement": "Reduzir α, mantendo-se o restante, tende a diminuir o poder do teste.",
-      "isTrue": true,
-      "explanation": "Quanto menor α, maior a região de não rejeição e maior β."
-     }
-    ],
-    "pointers": [
-     {
-      "topic": "Erro tipo I e nível de significância",
-      "pageRef": 14
-     },
-     {
-      "topic": "Erro tipo II e cálculo de β",
-      "pageRef": 15
-     },
-     {
-      "topic": "Teste ótimo e razão de verossimilhanças",
-      "pageRef": 17
-     },
-     {
-      "topic": "Função potência",
-      "pageRef": 19
-     },
-     {
-      "topic": "Fatores do poder",
-      "pageRef": 21
-     },
-     {
-      "topic": "Testes para distribuições uniformes",
-      "pageRef": 25
-     }
-    ]
-   },
-   "questions": [
-    {
-     "topic": "Erro tipo I",
-     "pattern": "caso",
-     "difficulty": 1,
-     "pageRef": 14,
-     "statement": "Um laboratório testa H0: o lote atende à especificação. Nesse contexto, o erro tipo I consiste em",
-     "support": null,
-     "options": [
-      "aceitar um lote que, na verdade, não atende à especificação.",
-      "rejeitar um lote que, de fato, não atende à especificação.",
-      "aceitar um lote que, de fato, atende à especificação.",
-      "definir o nível de significância após ver a amostra.",
-      "rejeitar um lote que, na verdade, atende à especificação."
-     ],
-     "answer": "E",
-     "explanation": "O erro tipo I é rejeitar H0 sendo ela verdadeira (falso positivo), com probabilidade α. Aceitar (não rejeitar) um lote não conforme é o erro tipo II; as outras duas opções são decisões corretas."
-    },
-    {
-     "topic": "Erro tipo II",
-     "pattern": "conceito",
-     "difficulty": 1,
-     "pageRef": 14,
-     "statement": "Em um teste de hipóteses, o erro tipo II, cuja probabilidade é indicada por β, ocorre quando",
-     "support": null,
-     "options": [
-      "se rejeita H0 e ela é verdadeira.",
-      "se rejeita H0 e ela é falsa.",
-      "não se rejeita H0 e ela é falsa.",
-      "não se rejeita H0 e ela é verdadeira.",
-      "o nível de significância é muito alto."
-     ],
-     "answer": "C",
-     "explanation": "O erro tipo II (falso negativo) é não rejeitar a hipótese nula quando ela é falsa. Rejeitar H0 verdadeira é o erro tipo I (α)."
-    },
-    {
-     "topic": "α e β não são complementares",
-     "pattern": "correta",
-     "difficulty": 2,
-     "pageRef": 16,
-     "statement": "Sobre as probabilidades α e β dos erros tipo I e tipo II, assinale a alternativa correta.",
-     "support": null,
-     "options": [
-      "α e β não são complementares: pertencem a distribuições diferentes, e sua soma pode até superar 1.",
-      "α + β = 1 em qualquer teste de hipóteses.",
-      "1 − α é o poder do teste.",
-      "1 − β é o nível de confiança do teste.",
-      "β é a probabilidade de rejeitar H0 sendo ela falsa."
-     ],
-     "answer": "A",
-     "explanation": "α é calculado com o parâmetro de H0 e β com o parâmetro verdadeiro (ou o de H1), logo não somam 1. O complementar de α é o nível de confiança (1 − α), e o de β é o poder (1 − β), que é a probabilidade de rejeitar H0 falsa."
-    },
-    {
-     "topic": "Nível de confiança e poder",
-     "pattern": "calculo",
-     "difficulty": 1,
-     "pageRef": 16,
-     "statement": "Um teste de hipóteses tem probabilidade de erro tipo I igual a 5% e probabilidade de erro tipo II igual a 20%. O nível de confiança e o poder do teste valem, respectivamente,",
-     "support": null,
-     "options": [
-      "95% e 80%.",
-      "80% e 95%.",
-      "95% e 20%.",
-      "5% e 20%.",
-      "75% e 95%."
-     ],
-     "answer": "A",
-     "explanation": "O nível de confiança é 1 − α = 95% e o poder é 1 − β = 80%. Os valores dos erros (5% e 20%) não são complementares entre si."
-    },
-    {
-     "topic": "Cálculo do erro tipo II",
-     "pattern": "correta",
-     "difficulty": 2,
-     "pageRef": 15,
-     "statement": "Em relação ao erro tipo II, é correto afirmar que",
-     "support": null,
-     "options": [
-      "sua probabilidade é a área da região crítica na distribuição construída com o parâmetro de H0.",
-      "ocorre quando H0 é verdadeira e é rejeitada.",
-      "sua probabilidade é calculada com a distribuição que tem o parâmetro verdadeiro (ou o indicado em H1), e não o de H0.",
-      "sua probabilidade é complementar à do nível de significância.",
-      "sua probabilidade diminui quando o parâmetro verdadeiro se aproxima do valor de H0."
-     ],
-     "answer": "C",
-     "explanation": "A região de β só aparece no gráfico construído com o parâmetro verdadeiro (ou o da H1): é a probabilidade de a estatística cair na região de não rejeição. Quanto mais próximo de H0 o parâmetro verdadeiro, maior β."
-    },
-    {
-     "topic": "Como reduzir o nível de significância",
-     "pattern": "conceito",
-     "difficulty": 2,
-     "pageRef": 14,
-     "statement": "Mantido o tamanho da amostra, para diminuir o nível de significância de um teste deve-se",
-     "support": null,
-     "options": [
-      "reduzir a região de não rejeição.",
-      "aumentar a região crítica.",
-      "aumentar o valor do parâmetro da hipótese nula.",
-      "ampliar a região de não rejeição, reduzindo a região crítica.",
-      "trocar a hipótese nula pela alternativa."
-     ],
-     "answer": "D",
-     "explanation": "O nível de significância é a probabilidade da região crítica sob H0; para diminuí-lo sem mudar n, amplia-se a região de não rejeição. O custo é um aumento em β (menos poder)."
-    },
-    {
-     "topic": "Fatores do poder",
-     "pattern": "conceito",
-     "difficulty": 2,
-     "pageRef": 21,
-     "statement": "Mantidas as demais condições, o poder de um teste de hipóteses aumenta quando",
-     "support": null,
-     "options": [
-      "diminui o tamanho da amostra.",
-      "diminui o nível de significância.",
-      "o parâmetro verdadeiro se aproxima do valor indicado na H0.",
-      "a hipótese nula passa de simples a composta.",
-      "aumenta o tamanho da amostra."
-     ],
-     "answer": "E",
-     "explanation": "O poder cresce com o tamanho da amostra, com o nível de significância e com a distância entre o parâmetro verdadeiro e o da H0: tudo o que reduz a região de não rejeição (e, assim, β)."
-    },
-    {
-     "topic": "Função potência bilateral",
-     "pattern": "conceito",
-     "difficulty": 3,
-     "pageRef": 20,
-     "statement": "No teste bilateral de H0: μ = μ0, a função potência π(μ1), em função do parâmetro verdadeiro μ1,",
-     "support": null,
-     "options": [
-      "decresce para μ1 < μ0 e cresce para μ1 > μ0, não sendo monótona.",
-      "é estritamente crescente em todo o seu domínio.",
-      "é estritamente decrescente em todo o seu domínio.",
-      "é constante e igual ao nível de significância.",
-      "é sempre igual a 1 − α."
-     ],
-     "answer": "A",
-     "explanation": "No teste bilateral o poder aumenta à medida que o parâmetro verdadeiro se afasta de μ0 em qualquer direção, de modo que a função potência desce até μ0 e depois sobe. Só nos testes unilaterais ela é estritamente monótona."
-    },
-    {
-     "topic": "Função potência unilateral",
-     "pattern": "conceito",
-     "difficulty": 2,
-     "pageRef": 20,
-     "statement": "Em um teste unilateral à esquerda (H1: μ < μ0), a função potência, vista como função do parâmetro verdadeiro μ1,",
-     "support": null,
-     "options": [
-      "é estritamente crescente: quanto menor o μ1, menor o poder.",
-      "decresce até μ0 e depois cresce.",
-      "é constante em todo o domínio.",
-      "é estritamente decrescente: quanto menor o μ1, maior o poder.",
-      "é decrescente apenas para μ1 > μ0."
-     ],
-     "answer": "D",
-     "explanation": "Com a região crítica à esquerda, valores verdadeiros cada vez menores tornam mais provável a rejeição de H0, e o poder só aumenta nessa direção; a função, vista de μ1 crescente, é estritamente decrescente."
-    },
-    {
-     "topic": "Poder em μ1 = μ0",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 22,
-     "statement": "No gráfico da função potência de um teste com nível de significância de 5%, o valor da função no ponto em que o parâmetro verdadeiro coincide com o da hipótese nula (μ1 = μ0) é",
-     "support": null,
-     "options": [
-      "0%.",
-      "50%.",
-      "95%.",
-      "5%, o tamanho do teste (α).",
-      "100%."
-     ],
-     "answer": "D",
-     "explanation": "Quando μ1 = μ0 a hipótese nula é verdadeira, e a probabilidade de rejeitá-la é exatamente o nível de significância. Esse é o valor mínimo da função potência, também chamado de tamanho do teste."
-    },
-    {
-     "topic": "Teste uniformemente mais poderoso",
-     "pattern": "correta",
-     "difficulty": 3,
-     "pageRef": 22,
-     "statement": "Sobre o teste uniformemente mais poderoso (UMP), assinale a alternativa correta.",
-     "support": null,
-     "options": [
-      "É o teste que tem o menor nível de significância possível, qualquer que seja o poder.",
-      "Existe para qualquer par de hipóteses e para qualquer distribuição.",
-      "Para um mesmo nível α, maximiza o poder (minimiza β) frente à hipótese alternativa, e só existe em situações especiais.",
-      "Garante que os erros α e β sejam iguais.",
-      "É o teste com o maior tamanho amostral possível."
-     ],
-     "answer": "C",
-     "explanation": "O UMP é o teste de maior poder (menor β) entre todos os testes de mesmo nível α. Sua existência é restrita a situações especiais, como certas distribuições da família exponencial."
-    },
-    {
-     "topic": "Nível de significância na uniforme",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 25,
-     "statement": "Testa-se H0: X é uniforme no intervalo (2, 12). A hipótese nula será rejeitada se uma única observação for maior que 10. O nível de significância desse teste é",
-     "support": null,
-     "options": [
-      "10%.",
-      "20%.",
-      "80%.",
-      "2%.",
-      "25%."
-     ],
-     "answer": "B",
-     "explanation": "α = P(X > 10) calculada com a distribuição de H0: (12 − 10)/(12 − 2) = 2/10 = 20%. O valor 80% é a probabilidade de não rejeitar H0 sendo ela verdadeira (1 − α)."
-    },
-    {
-     "topic": "Erro tipo II na uniforme",
-     "pattern": "calculo",
-     "difficulty": 3,
-     "pageRef": 26,
-     "statement": "Uma variável X é uniforme no intervalo (0, θ). Testa-se H0: θ = 20 contra H1: θ > 20, rejeitando-se H0 se uma observação for maior que 15. Se o verdadeiro valor for θ = 24, a probabilidade do erro tipo II é",
-     "support": null,
-     "options": [
-      "3/8.",
-      "5/8.",
-      "3/4.",
-      "1/4.",
-      "5/12."
-     ],
-     "answer": "B",
-     "explanation": "Não se rejeita H0 se X ≤ 15; com a distribuição verdadeira, uniforme em (0, 24): β = P(X ≤ 15) = 15/24 = 5/8. O valor 3/8 é o poder (1 − β), e 3/4 é P(X ≤ 15) calculada sob H0 (1 − α)."
-    },
-    {
-     "topic": "Poder na uniforme",
-     "pattern": "calculo",
-     "difficulty": 3,
-     "pageRef": 26,
-     "statement": "Uma variável X é uniforme no intervalo (0, θ). Testa-se H0: θ = 6 contra H1: θ > 6, rejeitando-se H0 se uma observação for maior que 5. Se o verdadeiro valor for θ = 9, o poder do teste é",
-     "support": null,
-     "options": [
-      "5/9.",
-      "1/6.",
-      "4/9.",
-      "5/6.",
-      "1/3."
-     ],
-     "answer": "C",
-     "explanation": "O poder é P(rejeitar H0) com a distribuição verdadeira, uniforme em (0, 9): P(X > 5) = (9 − 5)/9 = 4/9. O valor 5/9 é β, e 1/6 é o nível de significância (P(X > 5) sob H0)."
-    },
-    {
-     "topic": "Razão de verossimilhanças",
-     "pattern": "conceito",
-     "difficulty": 2,
-     "pageRef": 17,
-     "statement": "No teste ótimo baseado na razão de verossimilhanças RV = p0/p1, em que p0 e p1 são as verossimilhanças sob H0 e sob H1, a regra de decisão é",
-     "support": null,
-     "options": [
-      "rejeitar H0 quando RV for maior que k, isto é, quando for grande.",
-      "rejeitar H0 sempre que RV for diferente de 1.",
-      "não rejeitar H0 quando RV for pequena.",
-      "rejeitar H0 quando RV for menor que uma constante k, isto é, quando for pequena.",
-      "rejeitar H0 apenas quando RV for exatamente igual a k."
-     ],
-     "answer": "D",
-     "explanation": "Uma razão pequena indica que a amostra é muito mais verossímil sob H1 que sob H0, o que leva à rejeição. Se RV > k, não se rejeita H0; se RV = k, o teste é inconclusivo."
-    }
-   ]
-  },
-  {
-   "id": "estatistica/a11/s03",
-   "bizu": {
-    "summary": [
-     "### 1. Definições, Fórmulas e Propriedades Centrais",
-     "- Média com variância populacional conhecida: usa a distribuição normal padrão.",
-     "- **A estatística do teste é z:** (x̄ − μ₀)/(σ/√n)**, em que σ/√n é o desvio padrão da média amostral.",
-     "- **Limites da região crítica: L:** μ₀ ± z_c·σ/√n (bilateral). Rejeita-se H₀ se |z| > z_c (ou se x̄ cair fora do intervalo).",
-     "- **Para α:** 5% bilateral, z_c ≈ 1,96.",
-     "Variância desconhecida: usa-se a variância amostral s² (divisor n − 1), estimador não viesado, e a distribuição t de Student com n − 1 graus de liberdade. Estatística t: t = (x̄ − μ₀)/(s/√n), comparada com o valor crítico t_c da tabela (pelo nível α, pelo tipo de teste e por n − 1 g.l.).",
-     "### 2. Métodos de Resolução e Classificações",
-     "- no unilateral, α inteiro em uma cauda.",
-     "- unilateral, ≈ 1,64.",
-     "- a variância populacional divide por n.",
-     "- Se o enunciado fornece σ (não s), use a normal.",
-     "### 3. Exemplos de Aplicação e Procedimentos",
-     "> 💡 **Exemplo Prático:** Valor crítico: no bilateral, cada cauda tem α/2 (ex.: α = 1% → 0,5% em cada lado).",
-     "> 💡 **Exemplo Prático:** Poder do teste: acha-se o limite crítico sob H₀ (ex.: 600 + 2·20/10 = 604) e calcula-se, com a média verdadeira (ex.: 608), a probabilidade de a média amostral ultrapassar esse limite.",
-     "> 💡 **Exemplo Prático:** Exemplo: n = 16, x̄ = 1.000.000, s = 500.000 e H₀: μ = 750.000 → erro padrão = 125.000 e t = 2, com 15 g.l.",
-     "### 4. Pontos Críticos e Cuidados nos Cálculos",
-     "> ⚠️ **Atenção de Prova:** Cuidado: s² divide por n − 1."
-    ],
-    "teoria": [
-     {
-      "statement": "No teste para a média com variância populacional conhecida, a estatística do teste segue a distribuição normal padrão.",
-      "isTrue": true,
-      "explanation": "z = (x̄ − μ₀)/(σ/√n) tem distribuição N(0, 1) sob H₀."
-     },
-     {
-      "statement": "Quando a variância populacional é desconhecida e se usa s², a estatística segue t de Student com n graus de liberdade.",
-      "isTrue": false,
-      "explanation": "Os graus de liberdade são n − 1."
-     },
-     {
-      "statement": "O desvio padrão da média amostral é σ/√n.",
-      "isTrue": true,
-      "explanation": "A variância da média é σ²/n."
-     },
-     {
-      "statement": "A variância amostral não viesada divide a soma dos quadrados dos desvios por n − 1.",
-      "isTrue": true,
-      "explanation": "É o estimador s², não tendencioso para σ²."
-     }
-    ],
-    "revisao": [
-     {
-      "statement": "Em um teste bilateral ao nível de 5%, a hipótese nula é rejeitada se |z| for maior que o valor crítico z_c.",
-      "isTrue": true,
-      "explanation": "Valores de z fora de ±z_c caem na região crítica."
-     },
-     {
-      "statement": "Com σ = 20, n = 4, μ₀ = 500 e x̄ = 485, a estatística z vale −3.",
-      "isTrue": false,
-      "explanation": "σ/√n = 10 e z = (485 − 500)/10 = −1,5."
-     },
-     {
-      "statement": "O poder do teste é calculado com a distribuição sob a média verdadeira, e não sob H₀.",
-      "isTrue": true,
-      "explanation": "O poder é a probabilidade de rejeitar H₀ quando o parâmetro real é o da alternativa."
-     }
-    ],
-    "pointers": [
-     {
-      "topic": "Média com variância conhecida",
-      "pageRef": 28
-     },
-     {
-      "topic": "Limites de rejeição",
-      "pageRef": 30
-     },
-     {
-      "topic": "Estatística do teste z",
-      "pageRef": 31
-     },
-     {
-      "topic": "Poder do teste para a média",
-      "pageRef": 35
-     },
-     {
-      "topic": "Variância desconhecida e estimador s²",
-      "pageRef": 36
-     },
-     {
-      "topic": "Estatística t com n − 1 g.l.",
-      "pageRef": 38
-     }
-    ]
-   },
-   "questions": [
-    {
-     "topic": "Teste Z e teste T",
-     "pattern": "conceito",
-     "difficulty": 1,
-     "pageRef": 28,
-     "statement": "Nos testes de hipóteses para a média, a distribuição utilizada quando a variância populacional é conhecida e quando é desconhecida é, respectivamente,",
-     "support": null,
-     "options": [
-      "a t de Student (teste T) e a normal (teste Z).",
-      "a normal (teste Z) e a t de Student (teste T).",
-      "a qui-quadrado e a F de Snedecor.",
-      "a normal em ambos os casos.",
-      "a t de Student em ambos os casos."
-     ],
-     "answer": "B",
-     "explanation": "Com variância conhecida (e população normal, ou amostra grande), a média amostral é normal e usa-se o teste Z. Com variância desconhecida, estima-se σ² por s² e usa-se a t de Student com n − 1 graus de liberdade."
-    },
-    {
-     "topic": "Limites da região de não rejeição (teste Z)",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 30,
-     "statement": "Testa-se H0: μ = 40 contra H1: μ ≠ 40, com σ = 6, n = 36 e nível de significância de 5% (zc = 1,96). Os limites da região de não rejeição para a média amostral são, aproximadamente,",
-     "support": null,
-     "options": [
-      "38,04 e 41,96.",
-      "28,24 e 51,76.",
-      "38,36 e 41,64.",
-      "37,42 e 42,58.",
-      "36,08 e 43,92."
-     ],
-     "answer": "A",
-     "explanation": "O desvio padrão da média amostral é 6/√36 = 1, e os limites são μ ± zc·σ/√n = 40 ± 1,96 = 38,04 e 41,96. O par 28,24 e 51,76 usa σ = 6 sem dividir por √n, e 38,36 e 41,64 usa zc = 1,64."
-    },
-    {
-     "topic": "Estatística do teste Z",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 31,
-     "statement": "Testa-se H0: μ = 100 com σ = 10 e n = 64. A média amostral observada foi 103,5. A estatística do teste (escore reduzido) é",
-     "support": null,
-     "options": [
-      "0,35.",
-      "3,5.",
-      "22,4.",
-      "0,28.",
-      "2,8."
-     ],
-     "answer": "E",
-     "explanation": "z = (x̄ − μ)/(σ/√n) = (103,5 − 100)/(10/8) = 3,5/1,25 = 2,8. O valor 0,35 omite a divisão por √n, e 22,4 usa n no lugar de √n."
-    },
-    {
-     "topic": "Decisão por níveis de significância",
-     "pattern": "caso",
-     "difficulty": 2,
-     "pageRef": 34,
-     "statement": "Em um teste bilateral para a média com variância conhecida, a estatística do teste foi |z| = 2,8. Os valores críticos são 1,96 (α = 5%), 2,58 (α = 1%) e 2,81 (α = 0,5%). A hipótese nula é rejeitada",
-     "support": null,
-     "options": [
-      "a 5%, mas não a 1% nem a 0,5%.",
-      "a 5%, 1% e 0,5%.",
-      "a 5% e a 1%, mas não a 0,5%.",
-      "somente a 0,5%.",
-      "a nenhum desses níveis."
-     ],
-     "answer": "C",
-     "explanation": "Rejeita-se H0 se |z| superar o valor crítico: 2,8 > 1,96 e 2,8 > 2,58, mas 2,8 < 2,81. Se rejeita a um nível, rejeita a todos os níveis maiores; para níveis menores, o valor crítico cresce."
-    },
-    {
-     "topic": "Escolha do teste unilateral",
-     "pattern": "caso",
-     "difficulty": 2,
-     "pageRef": 31,
-     "statement": "Uma bomba só é reprovada se a pressão média de operação superar 8 bar, e o teste usa nível de significância de 5% (P(Z < 1,64) = 0,95). O teste adequado e seu valor crítico são",
-     "support": null,
-     "options": [
-      "unilateral à esquerda, com zc = −1,64.",
-      "unilateral à direita, com zc = 1,64.",
-      "bilateral, com zc = ±1,64.",
-      "bilateral, com zc = ±1,96.",
-      "unilateral à direita, com zc = 1,96."
-     ],
-     "answer": "B",
-     "explanation": "A rejeição ocorre apenas para pressão muito alta, logo o teste é unilateral à direita, com 5% na cauda superior: P(Z < zc) = 0,95, isto é, zc = 1,64. O valor 1,96 é o crítico do teste bilateral a 5%."
-    },
-    {
-     "topic": "Desvio padrão a partir da estatística",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 33,
-     "statement": "Em um teste para a média, com μ0 = 500 e variância populacional desconhecida, a amostra de n = 25 forneceu x̄ = 508. Sabendo que o valor reduzido do teste foi 2, o desvio padrão populacional que o originou é",
-     "support": null,
-     "options": [
-      "10.",
-      "8.",
-      "40.",
-      "20.",
-      "100."
-     ],
-     "answer": "D",
-     "explanation": "De z = (x̄ − μ)/(σ/√n), vem 2 = 8/(σ/5), logo σ/5 = 4 e σ = 20. Os valores 10 e 40 produziriam estatísticas de 4 e 1, respectivamente, e não 2."
-    },
-    {
-     "topic": "Nível de significância e estatística do teste",
-     "pattern": "calculo",
-     "difficulty": 3,
-     "pageRef": 34,
-     "statement": "Testa-se H0: μ = 100 contra H1: μ < 100, com σ = 15 e n = 9, e observou-se x̄ = 92. Considere os valores críticos z = 1,28 (α = 10%), 1,64 (α = 5%) e 2,33 (α = 1%). A hipótese nula é rejeitada",
-     "support": null,
-     "options": [
-      "a 5% e a 10%, mas não a 1%.",
-      "a 10%, mas não a 5% nem a 1%.",
-      "a 1%, 5% e 10%.",
-      "somente a 1%.",
-      "a nenhum desses níveis."
-     ],
-     "answer": "B",
-     "explanation": "O desvio padrão da média é 15/3 = 5, e z = (92 − 100)/5 = −1,6. Em módulo, 1,6 > 1,28 (rejeita a 10%), mas 1,6 < 1,64 e < 2,33 (não rejeita a 5% nem a 1%)."
-    },
-    {
-     "topic": "Poder do teste Z",
-     "pattern": "calculo",
-     "difficulty": 3,
-     "pageRef": 35,
-     "statement": "Testa-se H0: μ = 100 contra H1: μ > 100, com σ = 20, n = 100 e nível de significância aproximado de 2,5% (valor crítico z ≈ 2). Se a média verdadeira for 106 e dado P(Z > 1) = 0,1587, o poder do teste é, aproximadamente,",
-     "support": null,
-     "options": [
-      "84,1%.",
-      "15,9%.",
-      "97,7%.",
-      "50,0%.",
-      "68,3%."
-     ],
-     "answer": "A",
-     "explanation": "O limite crítico é L = 100 + 2 × 20/10 = 104. Com μ = 106, z = (104 − 106)/2 = −1, e o poder é P(Z > −1) = 1 − 0,1587 = 0,8413. O valor 15,9% é β (probabilidade de não rejeitar H0)."
-    },
-    {
-     "topic": "Variância amostral",
-     "pattern": "calculo",
-     "difficulty": 1,
-     "pageRef": 36,
-     "statement": "Os tempos de resposta de 5 viaturas foram 12, 14, 16, 18 e 20 minutos. A estimativa não tendenciosa da variância populacional (variância amostral) é",
-     "support": null,
-     "options": [
-      "8.",
-      "40.",
-      "2,5.",
-      "100.",
-      "10."
-     ],
-     "answer": "E",
-     "explanation": "A média é 16 e a soma dos quadrados dos desvios é 16 + 4 + 0 + 4 + 16 = 40. A variância amostral divide por n − 1 = 4: s² = 10. O valor 8 divide por n (variância populacional)."
-    },
-    {
-     "topic": "Estatística t e graus de liberdade",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 38,
-     "statement": "Uma amostra de n = 25 itens de uma população normal, de variância desconhecida, forneceu x̄ = 52 e s = 10. Para testar H0: μ = 50, a estatística do teste e os graus de liberdade da distribuição t são, respectivamente,",
-     "support": null,
-     "options": [
-      "1,0 e 25.",
-      "0,2 e 24.",
-      "5,0 e 24.",
-      "0,2 e 25.",
-      "1,0 e 24."
-     ],
-     "answer": "E",
-     "explanation": "t = (x̄ − μ)/(s/√n) = (52 − 50)/(10/5) = 1,0, com n − 1 = 24 graus de liberdade. O valor 0,2 omite a divisão por √n, e 25 ignora o grau de liberdade perdido na estimação da média."
-    },
-    {
-     "topic": "Limites com t de Student",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 38,
-     "statement": "Testa-se H0: μ = 50 contra H1: μ ≠ 50 em uma população normal com variância desconhecida. A amostra tem n = 9 e s = 6. Com 95% de confiança e 8 graus de liberdade, tC = 2,31. Os limites da região de não rejeição para x̄ são, aproximadamente,",
-     "support": null,
-     "options": [
-      "45,38 e 54,62.",
-      "46,08 e 53,92.",
-      "36,14 e 63,86.",
-      "47,69 e 52,31.",
-      "44,00 e 56,00."
-     ],
-     "answer": "A",
-     "explanation": "O erro padrão estimado é s/√n = 6/3 = 2, e os limites são μ ± tC·s/√n = 50 ± 2,31 × 2 = 45,38 e 54,62. O par 46,08 e 53,92 usa z = 1,96 em vez de t, e 36,14 e 63,86 multiplica por s sem dividir por √n."
-    },
-    {
-     "topic": "Escolha do teste para a média",
-     "pattern": "caso",
-     "difficulty": 1,
-     "pageRef": 39,
-     "statement": "Mediram-se as resistências de 12 cabos de uma população normal, de variância desconhecida, para testar se a resistência média difere de um valor de referência. O teste adequado e seus graus de liberdade são",
-     "support": null,
-     "options": [
-      "teste Z, com 11 graus de liberdade.",
-      "teste T, com 11 graus de liberdade.",
-      "teste T, com 12 graus de liberdade.",
-      "teste Z, com variância conhecida.",
-      "teste F, com 11 graus de liberdade."
-     ],
-     "answer": "B",
-     "explanation": "Como a variância é desconhecida, usa-se a variância amostral e a distribuição t de Student com n − 1 = 11 graus de liberdade (teste T). O teste F compara variâncias."
-    },
-    {
-     "topic": "Maior média amostral na região de não rejeição",
-     "pattern": "calculo",
-     "difficulty": 3,
-     "pageRef": 40,
-     "statement": "Testa-se H0: μ = 60 contra H1: μ ≠ 60 em uma população normal. A amostra tem n = 16 e s = 8, e o valor crítico para 15 graus de liberdade, ao nível de 5% bilateral, é tC = 2,13. O maior valor de x̄ para o qual H0 não é rejeitada é",
-     "support": null,
-     "options": [
-      "68,26.",
-      "62,00.",
-      "63,92.",
-      "64,26.",
-      "60,53."
-     ],
-     "answer": "D",
-     "explanation": "O erro padrão é 8/√16 = 2, e o limite superior da região de não rejeição é μ + tC · s/√n = 60 + 2,13 × 2 = 64,26. O valor 68,26 multiplica por s = 8 sem dividir por √n, e 63,92 usa z = 1,96."
-    }
-   ]
-  },
-  {
-   "id": "estatistica/a11/s04",
-   "bizu": {
-    "summary": [
-     "### 1. Definições, Fórmulas e Propriedades Centrais",
-     "- **Comparação de duas médias (H₀: μ₁:** μ₂, ou μ₁ − μ₂ = 0): a variável do teste é a diferença das médias amostrais x̄₁ − x̄₂, com média 0 sob H₀.",
-     "- **Populações normais com variâncias conhecidas: a variância da diferença é a soma σ₁²/n₁ + σ₂²/n₂ (amostras independentes) e a estatística é z:** (x̄₁ − x̄₂)/√(σ₁²/n₁ + σ₂²/n₂), normal padrão.",
-     "- **Variâncias desconhecidas e iguais: estimador combinado s_p²:** [(n₁−1)s₁² + (n₂−1)s₂²]/(n₁ + n₂ − 2), média ponderada pelos graus de liberdade.",
-     "- **Estatística t:** (x̄₁ − x̄₂)/√[s_p²(1/n₁ + 1/n₂)]**, com **n₁ + n₂ − 2** g.l.",
-     "Variâncias desconhecidas e diferentes: t aproximado, sem variância combinada, com graus de liberdade calculados por fórmula que considera as variâncias amostrais e os tamanhos das amostras. Amostras pareadas: as duas medidas vêm dos mesmos indivíduos (antes/depois), então não são independentes. Calculam-se as **diferenças d** por indivíduo e testa-se H₀: μ_d = 0 com **t = d̄/(s_d/√n)**, **n − 1** g.l.",
-     "### 3. Exemplos de Aplicação e Procedimentos",
-     "> 💡 **Exemplo Prático:** Exemplo: s_p² com n₁ = 9, s₁² = 10, n₂ = 4, s₂² = 21: (8·10 + 3·21)/11 = 13.",
-     "### 4. Pontos Críticos e Cuidados nos Cálculos",
-     "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
-    ],
-    "teoria": [
-     {
-      "statement": "Em duas amostras independentes com variâncias conhecidas, a variância da diferença das médias amostrais é a soma σ₁²/n₁ + σ₂²/n₂.",
-      "isTrue": true,
-      "explanation": "Para variáveis independentes, as variâncias se somam, mesmo na subtração."
-     },
-     {
-      "statement": "No teste t para variâncias iguais e desconhecidas de duas populações, os graus de liberdade são n₁ + n₂ − 1.",
-      "isTrue": false,
-      "explanation": "O número correto é n₁ + n₂ − 2."
-     },
-     {
-      "statement": "O estimador combinado da variância é a média ponderada de s₁² e s₂², com pesos n₁ − 1 e n₂ − 1.",
-      "isTrue": true,
-      "explanation": "Os pesos são os respectivos graus de liberdade."
-     },
-     {
-      "statement": "No teste t pareado, as amostras são tratadas como independentes.",
-      "isTrue": false,
-      "explanation": "No teste pareado as observações vêm dos mesmos indivíduos; o teste usa as diferenças."
-     }
-    ],
-    "revisao": [
-     {
-      "statement": "No teste pareado, a média das diferenças é igual à diferença das médias das duas séries.",
-      "isTrue": true,
-      "explanation": "d̄ = Σ(xᵢ − yᵢ)/n = x̄ − ȳ."
-     },
-     {
-      "statement": "Com n = 4 pares, a estatística do teste t pareado tem 4 graus de liberdade.",
-      "isTrue": false,
-      "explanation": "Os graus de liberdade são n − 1 = 3."
-     },
-     {
-      "statement": "Sob H₀: μ₁ = μ₂, a média da diferença x̄₁ − x̄₂ é zero.",
-      "isTrue": true,
-      "explanation": "A diferença das médias populacionais é nula sob a hipótese nula."
-     },
-     {
-      "statement": "Com n₁ = 9, s₁² = 10, n₂ = 4 e s₂² = 21, a variância combinada é 13.",
-      "isTrue": true,
-      "explanation": "(8×10 + 3×21)/(9 + 4 − 2) = 143/11 = 13."
-     }
-    ],
-    "pointers": [
-     {
-      "topic": "Hipótese de igualdade de médias",
-      "pageRef": 41
-     },
-     {
-      "topic": "Variâncias conhecidas: estatística z",
-      "pageRef": 43
-     },
-     {
-      "topic": "Variâncias desconhecidas e iguais",
-      "pageRef": 47
-     },
-     {
-      "topic": "Variâncias diferentes: t aproximado",
-      "pageRef": 49
-     },
-     {
-      "topic": "Teste t pareado",
-      "pageRef": 51
-     },
-     {
-      "topic": "Quadro-resumo dos testes de média",
-      "pageRef": 55
-     }
-    ]
-   },
-   "questions": [
-    {
-     "topic": "Hipótese nula na comparação de médias",
-     "pattern": "conceito",
-     "difficulty": 1,
-     "pageRef": 41,
-     "statement": "No teste de comparação das médias de duas populações independentes, a hipótese nula é",
-     "support": null,
-     "options": [
-      "μ1 = μ2, o que equivale a dizer que a diferença μ1 − μ2 é nula.",
-      "μ1 ≠ μ2, pois a diferença deve ser comprovada.",
-      "μ1 > μ2, quando o teste é unilateral.",
-      "x̄1 = x̄2, isto é, que as médias amostrais sejam iguais.",
-      "σ1² = σ2², isto é, que as variâncias sejam iguais."
-     ],
-     "answer": "A",
-     "explanation": "A hipótese nula afirma que as médias populacionais são iguais (mesma população), ou seja, μ1 − μ2 = 0. As médias amostrais quase nunca são idênticas, e a igualdade de variâncias é objeto de outro teste."
-    },
-    {
-     "topic": "Teste unilateral na comparação de médias",
-     "pattern": "caso",
-     "difficulty": 2,
-     "pageRef": 42,
-     "statement": "Uma empresa só rejeitará o lote 1 se a média dele for muito menor que a do lote 2. As hipóteses e a regra de rejeição são",
-     "support": null,
-     "options": [
-      "H0: μ1 = μ2 contra H1: μ1 ≠ μ2, rejeitando-se |x̄1 − x̄2| for grande.",
-      "H0: μ1 = μ2 contra H1: μ1 > μ2, rejeitando-se x̄1 − x̄2 for muito positiva.",
-      "H0: μ1 = μ2 contra H1: μ1 < μ2, rejeitando-se x̄1 − x̄2 for muito negativa.",
-      "H0: μ1 < μ2 contra H1: μ1 = μ2, rejeitando-se x̄1 − x̄2 for muito negativa.",
-      "H0: μ1 − μ2 ≠ 0 contra H1: μ1 − μ2 = 0."
-     ],
-     "answer": "C",
-     "explanation": "Só interessa a possibilidade de o lote 1 ter média menor, o que gera H1: μ1 < μ2 (μ1 − μ2 < 0) e região crítica à esquerda. A hipótese nula mantém a igualdade das médias."
-    },
-    {
-     "topic": "Desvio padrão da diferença das médias",
-     "pattern": "calculo",
-     "difficulty": 1,
-     "pageRef": 43,
-     "statement": "Duas populações normais independentes têm variâncias σ1² = 81 e σ2² = 64, e são extraídas amostras de tamanhos n1 = 9 e n2 = 4. O desvio padrão da diferença das médias amostrais é",
-     "support": null,
-     "options": [
-      "7.",
-      "5.",
-      "25.",
-      "12.",
-      "2,5."
-     ],
-     "answer": "B",
-     "explanation": "A variância da diferença é a soma das variâncias das médias: 81/9 + 64/4 = 9 + 16 = 25, e o desvio padrão é √25 = 5. Somar os desvios padrão (3 + 4 = 7) é erro comum, e 25 é a variância."
-    },
-    {
-     "topic": "Estatística do teste Z para duas médias",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 44,
-     "statement": "Duas populações normais independentes têm σ1² = 36 e σ2² = 45, e de cada uma foi extraída uma amostra de 9 elementos. A diferença entre as médias amostrais foi 7,5. A estatística do teste de H0: μ1 = μ2 é",
-     "support": null,
-     "options": [
-      "1,77.",
-      "0,83.",
-      "2,50.",
-      "3,75.",
-      "7,50."
-     ],
-     "answer": "C",
-     "explanation": "O desvio padrão da diferença é √(36/9 + 45/9) = √9 = 3, e z = 7,5/3 = 2,50. O valor 1,77 divide por 2 + √5 (soma dos desvios padrão) e 0,83 divide pela variância da diferença (9)."
-    },
-    {
-     "topic": "Decisão com diferença de médias",
-     "pattern": "caso",
-     "difficulty": 3,
-     "pageRef": 45,
-     "statement": "No teste bilateral de H0: μ1 = μ2 com variâncias conhecidas, o desvio padrão da diferença das médias amostrais é 2 e a diferença observada é 4,4. Os valores críticos são 1,96 (5%) e 2,58 (1%). A hipótese nula é",
-     "support": null,
-     "options": [
-      "rejeitada a 5% e a 1%.",
-      "rejeitada a 5%, mas não a 1%.",
-      "não rejeitada a 5% nem a 1%.",
-      "rejeitada somente a 1%.",
-      "rejeitada a 1%, mas não a 5%."
-     ],
-     "answer": "B",
-     "explanation": "z = 4,4/2 = 2,2, que supera 1,96 mas não 2,58. Os limites da diferença são 1,96 × 2 = 3,92 (5%) e 2,58 × 2 = 5,16 (1%): 4,4 fica fora do primeiro e dentro do segundo."
-    },
-    {
-     "topic": "Hipótese nula com diferença não nula",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 45,
-     "statement": "Testa-se H0: μ1 − μ2 = 4 com variâncias conhecidas. As médias amostrais foram 30 e 24, e o desvio padrão da diferença é 1. A estatística do teste é",
-     "support": null,
-     "options": [
-      "6.",
-      "1.",
-      "2.",
-      "10.",
-      "5."
-     ],
-     "answer": "C",
-     "explanation": "Quando a hipótese nula traz Δ0 ≠ 0, z = (x̄1 − x̄2 − Δ0)/σ = (30 − 24 − 4)/1 = 2. O valor 6 ignora Δ0, e 10 soma Δ0 em vez de subtraí-lo."
-    },
-    {
-     "topic": "Estimador combinado da variância",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 47,
-     "statement": "Amostras independentes de duas populações normais de mesma variância desconhecida forneceram n1 = 11 com s1² = 6 e n2 = 16 com s2² = 14. A estimativa combinada da variância é",
-     "support": null,
-     "options": [
-      "10,0.",
-      "10,7.",
-      "12,0.",
-      "10,8.",
-      "20,0."
-     ],
-     "answer": "D",
-     "explanation": "A média ponderada pelos graus de liberdade é sp² = [(11 − 1)·6 + (16 − 1)·14]/(11 + 16 − 2) = (60 + 210)/25 = 10,8. O valor 10,0 é a média simples, e 10,7 usa n em vez de n − 1 nos pesos."
-    },
-    {
-     "topic": "Estatística t com variância combinada",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 47,
-     "statement": "Duas amostras independentes de tamanho 6 cada, de populações normais com mesma variância, têm diferença de médias igual a 5 e variância combinada sp² = 12. A estatística t do teste de igualdade das médias e seus graus de liberdade são, respectivamente,",
-     "support": null,
-     "options": [
-      "2,5 e 12.",
-      "2,5 e 5.",
-      "5,0 e 10.",
-      "1,25 e 10.",
-      "2,5 e 10."
-     ],
-     "answer": "E",
-     "explanation": "O erro padrão é √[sp²(1/6 + 1/6)] = √4 = 2, de modo que t = 5/2 = 2,5, com n1 + n2 − 2 = 10 graus de liberdade. O valor 1,25 divide pela variância do erro padrão (4), em vez de pelo erro padrão."
-    },
-    {
-     "topic": "Variâncias desconhecidas e diferentes",
-     "pattern": "correta",
-     "difficulty": 3,
-     "pageRef": 49,
-     "statement": "Quando as variâncias de duas populações normais são desconhecidas e diferentes, a estatística do teste de igualdade das médias é",
-     "support": null,
-     "options": [
-      "z = (x̄1 − x̄2)/√(s1²/n1 + s2²/n2), com distribuição normal padrão exata.",
-      "t = (x̄1 − x̄2)/√(s1²/n1 + s2²/n2), com distribuição t aproximada e graus de liberdade calculados com base nas variâncias dos estimadores.",
-      "t = (x̄1 − x̄2)/√[sp²(1/n1 + 1/n2)], com n1 + n2 − 2 graus de liberdade exatos.",
-      "χ² = (n − 1)s²/σ², com n − 1 graus de liberdade.",
-      "F = s1²/s2², com n1 − 1 e n2 − 1 graus de liberdade."
-     ],
-     "answer": "B",
-     "explanation": "Sem variância comum, não se usa o estimador combinado: o erro padrão é √(s1²/n1 + s2²/n2) e a estatística segue aproximadamente uma t, com graus de liberdade dados pela expressão dos quadrados das variâncias dos estimadores."
-    },
-    {
-     "topic": "Estatística t com variâncias diferentes",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 49,
-     "statement": "Duas amostras independentes forneceram s1² = 20 (n1 = 5) e s2² = 45 (n2 = 9), de populações normais com variâncias diferentes e desconhecidas. A diferença entre as médias amostrais foi 6. A estatística do teste é",
-     "support": null,
-     "options": [
-      "1,0.",
-      "0,67.",
-      "2,0.",
-      "3,0.",
-      "1,33."
-     ],
-     "answer": "C",
-     "explanation": "O erro padrão é √(20/5 + 45/9) = √(4 + 5) = 3, e t = 6/3 = 2,0. O valor 0,67 divide pela variância do erro padrão (9), em vez de pelo erro padrão (3)."
-    },
-    {
-     "topic": "Escolha do teste pareado",
-     "pattern": "caso",
-     "difficulty": 2,
-     "pageRef": 51,
-     "statement": "Um comandante mede o tempo de 8 bombeiros em um percurso, antes e depois de um treinamento, e quer saber se o treinamento reduziu o tempo médio. O teste adequado é",
-     "support": null,
-     "options": [
-      "t para duas amostras independentes, com 14 graus de liberdade.",
-      "Z para duas amostras independentes, com variâncias conhecidas.",
-      "t para amostras pareadas, aplicado às diferenças, com 7 graus de liberdade.",
-      "qui-quadrado para a variância das diferenças.",
-      "F para comparar as variâncias antes e depois, com 7 e 7 graus de liberdade."
-     ],
-     "answer": "C",
-     "explanation": "Os mesmos indivíduos são medidos duas vezes, então as amostras não são independentes e o teste é o t pareado, calculado sobre as n diferenças, com n − 1 = 7 graus de liberdade."
-    },
-    {
-     "topic": "Estatística do teste pareado",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 51,
-     "statement": "Em um teste t pareado com n = 9 pares, a média das diferenças foi 6 e o desvio padrão das diferenças foi 9. A estatística do teste e os graus de liberdade são, respectivamente,",
-     "support": null,
-     "options": [
-      "2,0 e 9.",
-      "0,67 e 8.",
-      "6,0 e 8.",
-      "2,0 e 8.",
-      "18,0 e 8."
-     ],
-     "answer": "D",
-     "explanation": "t = x̄_dif/(s_dif/√n) = 6/(9/3) = 2,0, com n − 1 = 8 graus de liberdade. O valor 0,67 omite a divisão por √n, e 18 multiplica por √n em vez de dividir."
-    },
-    {
-     "topic": "Média das diferenças",
-     "pattern": "calculo",
-     "difficulty": 1,
-     "pageRef": 53,
-     "statement": "Os tempos, em segundos, de 4 militares antes de um treinamento foram 102, 98, 110 e 106, e depois do treinamento foram 96, 95, 101 e 100 (na mesma ordem). A média das diferenças (antes − depois) é",
-     "support": null,
-     "options": [
-      "24.",
-      "1,5.",
-      "104.",
-      "98.",
-      "6."
-     ],
-     "answer": "E",
-     "explanation": "As diferenças são 6, 3, 9 e 6, com média 24/4 = 6, que também é a diferença das médias (104 − 98). O valor 24 é a soma, e 1,5 divide 6 por 4."
-    },
-    {
-     "topic": "Decisão no teste pareado",
-     "pattern": "caso",
-     "difficulty": 3,
-     "pageRef": 54,
-     "statement": "Em um teste t pareado com n = 5, a média das diferenças foi 3,2 e o desvio padrão das diferenças foi 2 (considere √5 = 2,2). O valor crítico unilateral a 5%, com 4 graus de liberdade, é 2,13. Assinale a alternativa correta.",
-     "support": null,
-     "options": [
-      "Não se rejeita H0, pois a estatística t ≈ 1,6 é inferior ao valor crítico 2,13.",
-      "Não se rejeita H0, pois a estatística t ≈ 3,5 está na região de não rejeição.",
-      "Não se rejeita H0, pois o teste pareado exige n ≥ 30.",
-      "Rejeita-se H0, pois a estatística t ≈ 5,1 supera o valor crítico 2,13.",
-      "Rejeita-se H0, pois a estatística t ≈ 3,5 supera o valor crítico 2,13."
-     ],
-     "answer": "E",
-     "explanation": "O erro padrão das diferenças é 2/√5 = 2/2,2 ≈ 0,91, e t = 3,2/0,91 ≈ 3,5, com 4 graus de liberdade. Como 3,5 > 2,13, rejeita-se H0. O valor 1,6 resulta de omitir a divisão por √n."
-    }
-   ]
-  },
-  {
-   "id": "estatistica/a11/s05",
-   "bizu": {
-    "summary": [
-     "### 1. Definições, Fórmulas e Propriedades Centrais",
-     "- **Teste para proporção:** aplica-se a populações de Bernoulli (sucesso/fracasso).",
-     "- **H₀: p:** p₀.",
-     "- **A estatística usa a proporção amostral p̂:** x/n** e a aproximação normal (TCL).",
-     "- **Variância da proporção amostral: Var(p̂):** p₀·q₀/n (calculada sob H₀).",
-     "Estatística: **z = (p̂ − p₀)/√(p₀q₀/n)**. É chamada de escore reduzido. Teste unilateral de proporção: se o interesse é que a proporção de defeitos não supere o limite, a região crítica fica só à direita (proporção menor é desejável). Duas proporções (H₀: p₁ = p₂): usa-se a proporção combinada p = (x₁ + x₂)/(n₁ + n₂).",
-     "### 2. Métodos de Resolução e Classificações",
-     "- o poder usa o p de H₁.",
-     "### 3. Exemplos de Aplicação e Procedimentos",
-     "> 💡 **Exemplo Prático:** Exemplo: H₀: p = 0,5, n = 100 e 55 homens → p̂ = 0,55, erro padrão = 0,05 e z = 1.",
-     "> 💡 **Exemplo Prático:** Exemplo exato: 4 lançamentos de moeda justa, rejeitando H₀ se saírem 0 ou 4 caras: α = 0,0625 + 0,0625 = 12,5%.",
-     "### 4. Pontos Críticos e Cuidados nos Cálculos",
-     "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
-    ],
-    "teoria": [
-     {
-      "statement": "No teste para uma proporção, a variância da proporção amostral é calculada com p₀ e q₀ da hipótese nula, dividida por n.",
-      "isTrue": true,
-      "explanation": "Var(p̂) = p₀q₀/n sob H₀."
-     },
-     {
-      "statement": "No teste para duas proporções, usa-se a proporção combinada das duas amostras para estimar p sob H₀.",
-      "isTrue": true,
-      "explanation": "Sob H₀, p₁ = p₂, e a melhor estimativa de p é (x₁ + x₂)/(n₁ + n₂)."
-     },
-     {
-      "statement": "O teste binomial exato depende da aproximação da binomial pela normal.",
-      "isTrue": false,
-      "explanation": "O teste binomial usa a distribuição exata da proporção e dispensa aproximação normal."
-     },
-     {
-      "statement": "Com 55 homens em 100 colaboradores e H₀: p = 0,5, a estatística z é 1.",
-      "isTrue": true,
-      "explanation": "p̂ = 0,55, erro padrão = √(0,25/100) = 0,05, logo z = 0,05/0,05 = 1."
-     }
-    ],
-    "revisao": [
-     {
-      "statement": "Em 4 lançamentos de uma moeda justa, rejeitar H₀ (p = 0,5) com 0 ou 4 caras produz α = 12,5%.",
-      "isTrue": true,
-      "explanation": "0,0625 + 0,0625 = 0,125."
-     },
-     {
-      "statement": "No teste para duas proporções, a variância da diferença é p·q/(n₁ + n₂).",
-      "isTrue": false,
-      "explanation": "É p·q·(1/n₁ + 1/n₂), pois as variâncias das duas proporções se somam."
-     },
-     {
-      "statement": "No teste binomial, o poder é calculado com a probabilidade de sucesso indicada na hipótese alternativa.",
-      "isTrue": true,
-      "explanation": "A região de rejeição é fixada sob H₀ e as probabilidades dessa região são recalculadas com p de H₁."
-     }
-    ],
-    "pointers": [
-     {
-      "topic": "Teste para proporção de uma população",
-      "pageRef": 56
-     },
-     {
-      "topic": "Cálculo do escore reduzido",
-      "pageRef": 57
-     },
-     {
-      "topic": "Proporção de defeitos (unilateral)",
-      "pageRef": 58
-     },
-     {
-      "topic": "Teste para duas proporções",
-      "pageRef": 60
-     },
-     {
-      "topic": "Teste para a distribuição binomial",
-      "pageRef": 62
-     },
-     {
-      "topic": "Poder e erro tipo II no teste binomial",
-      "pageRef": 63
-     }
-    ]
-   },
-   "questions": [
-    {
-     "topic": "Distribuição do teste para proporção",
-     "pattern": "conceito",
-     "difficulty": 1,
-     "pageRef": 56,
-     "statement": "O teste de hipóteses para a proporção p de uma população de Bernoulli, com amostra suficientemente grande, utiliza a distribuição",
-     "support": null,
-     "options": [
-      "t de Student com n − 1 graus de liberdade.",
-      "normal padrão, por aproximação baseada no Teorema Central do Limite.",
-      "qui-quadrado com n − 1 graus de liberdade.",
-      "F de Snedecor com n e n − 1 graus de liberdade.",
-      "uniforme contínua no intervalo (0, 1)."
-     ],
-     "answer": "B",
-     "explanation": "Com n grande, a proporção amostral é aproximadamente normal (TCL), com média p e variância p·q/n. A estatística é, então, escore z, comparado ao valor crítico da normal padrão."
-    },
-    {
-     "topic": "Desvio padrão da proporção amostral",
-     "pattern": "calculo",
-     "difficulty": 1,
-     "pageRef": 57,
-     "statement": "Testa-se H0: p = 0,20 com amostra de n = 400. O desvio padrão da proporção amostral, sob H0, é",
-     "support": null,
-     "options": [
-      "0,0004.",
-      "0,4.",
-      "0,02.",
-      "0,008.",
-      "0,0016."
-     ],
-     "answer": "C",
-     "explanation": "σ_p̂ = √(p·q/n) = √(0,2 × 0,8/400) = √0,0004 = 0,02. O valor 0,0004 é a variância da proporção amostral, e 0,4 é o desvio padrão populacional (√0,16)."
-    },
-    {
-     "topic": "Estatística do teste para proporção",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 57,
-     "statement": "Uma empresa afirma que metade de seus clientes está satisfeita (H0: p = 0,5). Em uma amostra de 400 clientes, 224 estão satisfeitos. A estatística do teste (escore reduzido) é",
-     "support": null,
-     "options": [
-      "1,2.",
-      "0,06.",
-      "4,8.",
-      "2,4.",
-      "2,0."
-     ],
-     "answer": "D",
-     "explanation": "p̂ = 224/400 = 0,56 e σ_p̂ = √(0,5 × 0,5/400) = 0,025. Então z = (0,56 − 0,50)/0,025 = 2,4. O valor 0,06 é só a diferença, sem padronizar."
-    },
-    {
-     "topic": "Limite crítico para a proporção",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 57,
-     "statement": "Testa-se H0: p = 0,10 contra H1: p > 0,10, com n = 400 e nível de significância de 5% (zc = 1,65). A maior proporção amostral para a qual H0 não é rejeitada é, aproximadamente,",
-     "support": null,
-     "options": [
-      "12,9%.",
-      "7,5%.",
-      "11,5%.",
-      "16,5%.",
-      "12,5%."
-     ],
-     "answer": "E",
-     "explanation": "σ_p̂ = √(0,1 × 0,9/400) = 0,015, e L = p + z·σ_p̂ = 0,10 + 1,65 × 0,015 = 12,47% ≈ 12,5%. O valor 12,9% usa zc = 1,96, e 7,5% seria o limite do teste unilateral à esquerda."
-    },
-    {
-     "topic": "Hipóteses para proporção",
-     "pattern": "caso",
-     "difficulty": 1,
-     "pageRef": 59,
-     "statement": "O chefe da produção afirma que 4% dos itens apresentam defeito, e o controle de qualidade só se interessa em saber se a proporção real é maior que isso (se for menor, é melhor para a empresa). As hipóteses do teste são",
-     "support": null,
-     "options": [
-      "H0: p = 0,04 e H1: p ≠ 0,04.",
-      "H0: p = 0,04 e H1: p < 0,04.",
-      "H0: p > 0,04 e H1: p = 0,04.",
-      "H0: p = 0,04 e H1: p > 0,04.",
-      "H0: p ≠ 0,04 e H1: p = 0,04."
-     ],
-     "answer": "D",
-     "explanation": "Só importa o desvio para cima, o que leva a H1: p > 0,04 e a um teste unilateral à direita, com H0: p = 0,04. A alternativa bilateral ignoraria que uma proporção menor é favorável."
-    },
-    {
-     "topic": "Fator de correção para população finita",
-     "pattern": "calculo",
-     "difficulty": 3,
-     "pageRef": 57,
-     "statement": "Testa-se H0: p = 0,5 em uma população finita de N = 500 itens, com amostra sem reposição de n = 100. Usando o fator de correção para população finita, o desvio padrão da proporção amostral é, aproximadamente,",
-     "support": null,
-     "options": [
-      "0,0500.",
-      "0,0025.",
-      "0,0448.",
-      "0,0020.",
-      "0,0400."
-     ],
-     "answer": "C",
-     "explanation": "A variância é p·q/n × (N − n)/(N − 1) = 0,0025 × 400/499 ≈ 0,0020, e o desvio padrão é √0,0020 ≈ 0,0448. O valor 0,0500 é o desvio padrão sem correção, e 0,0020 é a variância corrigida."
-    },
-    {
-     "topic": "Estatística para duas proporções",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 61,
-     "statement": "Duas empresas alegam ter metade de homens em seu quadro (p = 0,5 em ambas). De cada uma foi extraída uma amostra de 50 pessoas, com 32 homens na empresa A e 22 na B. A estatística do teste de igualdade das proporções é",
-     "support": null,
-     "options": [
-      "2,0.",
-      "0,2.",
-      "4,0.",
-      "1,0.",
-      "2,83."
-     ],
-     "answer": "A",
-     "explanation": "p̂A = 0,64 e p̂B = 0,44, diferença 0,20. O desvio padrão da diferença é √(0,25/50 + 0,25/50) = 0,1, logo z = 0,20/0,1 = 2,0. O valor 0,2 não padroniza a diferença."
-    },
-    {
-     "topic": "Limite para a diferença de proporções",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 61,
-     "statement": "No teste bilateral de igualdade de duas proporções, o desvio padrão da diferença das proporções amostrais é 0,05. Ao nível de 1% (zc = 2,58), o módulo da diferença a partir do qual H0 é rejeitada é",
-     "support": null,
-     "options": [
-      "0,129.",
-      "0,098.",
-      "0,082.",
-      "0,258.",
-      "0,050."
-     ],
-     "answer": "A",
-     "explanation": "O limite é zc × σ = 2,58 × 0,05 = 0,129 (em módulo). O valor 0,098 usa 1,96 (nível de 5%), e 0,082 usa 1,64 (unilateral a 5%)."
-    },
-    {
-     "topic": "Teste binomial: nível de significância",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 62,
-     "statement": "Para testar se uma moeda é honesta (H0: p = 0,5 para cara), ela é lançada 5 vezes, e H0 é rejeitada se todas as faces saírem iguais. O nível de significância do teste é",
-     "support": null,
-     "options": [
-      "3,13%.",
-      "6,25%.",
-      "12,5%.",
-      "31,25%.",
-      "1,56%."
-     ],
-     "answer": "B",
-     "explanation": "α = P(X = 0) + P(X = 5) com p = 0,5 e n = 5: 1/32 + 1/32 = 2/32 = 6,25%. O valor 3,13% considera apenas uma das duas situações extremas."
-    },
-    {
-     "topic": "Teste binomial unilateral",
-     "pattern": "calculo",
-     "difficulty": 3,
-     "pageRef": 62,
-     "statement": "Testa-se H0: p = 0,6 com uma amostra de n = 5 ensaios independentes, rejeitando-se H0 se houver no máximo 1 sucesso. O nível de significância do teste é, aproximadamente,",
-     "support": null,
-     "options": [
-      "7,68%.",
-      "1,02%.",
-      "8,70%.",
-      "91,30%.",
-      "31,74%."
-     ],
-     "answer": "C",
-     "explanation": "α = P(X ≤ 1) com p = 0,6: P(0) + P(1) = 0,4⁵ + 5 × 0,6 × 0,4⁴ = 0,01024 + 0,07680 = 8,70%. O valor 91,30% é a probabilidade de não rejeitar H0 sendo verdadeira."
-    },
-    {
-     "topic": "Poder do teste binomial",
-     "pattern": "calculo",
-     "difficulty": 3,
-     "pageRef": 63,
-     "statement": "Testa-se H0: p = 0,5 contra H1: p = 0,8, com n = 5 ensaios, e H0 é rejeitada se houver 4 ou mais sucessos. O poder do teste é, aproximadamente,",
-     "support": null,
-     "options": [
-      "26,3%.",
-      "73,7%.",
-      "18,8%.",
-      "32,8%.",
-      "41,0%."
-     ],
-     "answer": "B",
-     "explanation": "O poder é a probabilidade de rejeitar H0 com o parâmetro de H1 (p = 0,8): P(4) + P(5) = 5 × 0,8⁴ × 0,2 + 0,8⁵ = 0,4096 + 0,3277 = 73,7%. O valor 26,3% é β, e 18,8% é o nível de significância (P(X ≥ 4) com p = 0,5)."
-    },
-    {
-     "topic": "Erro tipo II no teste binomial",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 64,
-     "statement": "Para testar H0: p = 0,2 contra H1: p = 0,6, retira-se uma amostra de n = 3 ensaios independentes, rejeitando-se H0 se e somente se ocorrerem 3 sucessos. A probabilidade do erro tipo II é",
-     "support": null,
-     "options": [
-      "0,8%.",
-      "21,6%.",
-      "99,2%.",
-      "36,0%.",
-      "78,4%."
-     ],
-     "answer": "E",
-     "explanation": "β = P(não rejeitar H0 | p = 0,6) = 1 − P(X = 3) = 1 − 0,6³ = 1 − 0,216 = 78,4%. O valor 0,8% é α = 0,2³, e 21,6% é o poder do teste."
-    },
-    {
-     "topic": "Natureza do teste binomial",
-     "pattern": "correta",
-     "difficulty": 2,
-     "pageRef": 62,
-     "statement": "Sobre o teste de hipóteses para a distribuição binomial, assinale a alternativa correta.",
-     "support": null,
-     "options": [
-      "Usa a distribuição binomial exata, sem aproximação normal, e o nível de significância é a soma das probabilidades dos resultados da região de rejeição, calculadas com o p de H0.",
-      "Usa sempre a aproximação normal, mesmo para n pequeno.",
-      "O nível de significância é calculado com o parâmetro de H1.",
-      "Só pode ser aplicado quando n for maior que 30.",
-      "Não permite calcular o erro tipo II nem o poder do teste."
-     ],
-     "answer": "A",
-     "explanation": "O teste binomial trabalha com as probabilidades exatas P(X = k) = C(n,k)·pᵏ·qⁿ⁻ᵏ. O nível α usa o parâmetro de H0, enquanto β e o poder usam o parâmetro de H1 (ou o verdadeiro)."
-    }
-   ]
-  },
-  {
-   "id": "estatistica/a11/s06",
-   "bizu": {
-    "summary": [
-     "### 1. Definições, Fórmulas e Propriedades Centrais",
-     "- **Teste para a variância (população normal): H₀: σ²:** σ₀².",
-     "- **A estatística é χ²:** (n − 1)·s²/σ₀²**, com **n − 1** graus de liberdade (qui-quadrado).",
-     "- **Decisão:** compare com os valores críticos inferior e superior da tabela (bilateral) ou com um deles (unilateral).",
-     "- **Comparação de duas variâncias (teste de homogeneidade): H₀: σ_A²:** σ_B².",
-     "A estatística é a razão das variâncias amostrais **F = s_A²/s_B²**, com **(n_A − 1, n_B − 1)** graus de liberdade (F de Snedecor). Valores críticos de F: o superior vem da tabela. o inferior é o **inverso** do crítico superior com os graus de liberdade **trocados** (numerador ↔ denominador).",
-     "### 2. Métodos de Resolução e Classificações",
-     "- Rejeita-se H₀ se **p < α**.",
-     "- se p > α, não se rejeita.",
-     "- é uma probabilidade calculada sob H₀.",
-     "- Quando p < α, o resultado é estatisticamente significante.",
-     "### 3. Exemplos de Aplicação e Procedimentos",
-     "> 💡 **Exemplo Prático:** Ex.: n = 10, s² = 1,5 e σ₀² = 3,6 → χ² = 9·1,5/3,6 = 3,75.",
-     "### 4. Pontos Críticos e Cuidados nos Cálculos",
-     "> ⚠️ **Atenção de Prova:** Pegadinha: o p-valor não é o maior nível de significância a partir do qual H₀ não é rejeitada."
-    ],
-    "teoria": [
-     {
-      "statement": "No teste para a variância de uma população normal, a estatística (n − 1)s²/σ₀² segue qui-quadrado com n − 1 graus de liberdade.",
-      "isTrue": true,
-      "explanation": "É a base do teste de variância."
-     },
-     {
-      "statement": "O teste para comparar duas variâncias usa a distribuição F de Snedecor.",
-      "isTrue": true,
-      "explanation": "A razão s_A²/s_B² segue F com n_A − 1 e n_B − 1 graus de liberdade sob H₀."
-     },
-     {
-      "statement": "O p-valor é a probabilidade de a hipótese nula ser verdadeira.",
-      "isTrue": false,
-      "explanation": "É a probabilidade de um resultado tão extremo ou mais, supondo H₀ verdadeira."
-     },
-     {
-      "statement": "Se o p-valor é menor que o nível de significância α, a hipótese nula é rejeitada.",
-      "isTrue": true,
-      "explanation": "Regra de decisão geral, válida para qualquer tipo de teste."
-     }
-    ],
-    "revisao": [
-     {
-      "statement": "Em distribuição simétrica, o p-valor de um teste bilateral é o dobro do p-valor do teste unilateral.",
-      "isTrue": true,
-      "explanation": "As duas caudas contribuem igualmente."
-     },
-     {
-      "statement": "No teste de homogeneidade de variâncias, o limite crítico inferior de F é igual ao crítico superior com os mesmos graus de liberdade.",
-      "isTrue": false,
-      "explanation": "O inferior é o inverso do crítico superior com os graus de liberdade invertidos."
-     },
-     {
-      "statement": "Com n = 10, s² = 1,5 e σ₀² = 3,6, a estatística qui-quadrado do teste vale 3,75.",
-      "isTrue": true,
-      "explanation": "(10 − 1)·1,5/3,6 = 3,75."
-     },
-     {
-      "statement": "Com p-valor de 0,07, rejeita-se H₀ ao nível de 5% e não se rejeita ao nível de 10%.",
-      "isTrue": false,
-      "explanation": "É o contrário: p > 0,05 não rejeita ao nível de 5%; p < 0,10 rejeita ao nível de 10%."
-     }
-    ],
-    "pointers": [
-     {
-      "topic": "Teste para a variância (qui-quadrado)",
-      "pageRef": 66
-     },
-     {
-      "topic": "Valores críticos do qui-quadrado",
-      "pageRef": 67
-     },
-     {
-      "topic": "Comparação de duas variâncias (F)",
-      "pageRef": 70
-     },
-     {
-      "topic": "Limite crítico inferior de F",
-      "pageRef": 73
-     },
-     {
-      "topic": "Definição do p-valor",
-      "pageRef": 76
-     },
-     {
-      "topic": "p-valor × nível de significância",
-      "pageRef": 78
-     }
-    ]
-   },
-   "questions": [
-    {
-     "topic": "Estatística do teste para a variância",
-     "pattern": "conceito",
-     "difficulty": 1,
-     "pageRef": 66,
-     "statement": "Para testar H0: σ² = σ0² em uma população normal, a partir de uma amostra de tamanho n com variância amostral s², a estatística do teste é",
-     "support": null,
-     "options": [
-      "z = (s² − σ0²)/(σ0²/√n), com distribuição normal padrão.",
-      "χ² = (n − 1)·s²/σ0², com distribuição qui-quadrado de n − 1 graus de liberdade.",
-      "t = (s² − σ0²)/(s/√n), com n − 1 graus de liberdade.",
-      "F = s²/σ0², com n − 1 e n graus de liberdade.",
-      "χ² = n·s²/σ0², com n graus de liberdade."
-     ],
-     "answer": "B",
-     "explanation": "A variância amostral, multiplicada por (n − 1)/σ0², segue uma qui-quadrado com n − 1 graus de liberdade sob H0. Z e t testam médias, e a F compara variâncias de duas populações."
-    },
-    {
-     "topic": "Cálculo do qui-quadrado",
-     "pattern": "calculo",
-     "difficulty": 1,
-     "pageRef": 66,
-     "statement": "Testa-se H0: σ² = 4 com uma amostra de n = 9 que forneceu s² = 6. A estatística do teste é",
-     "support": null,
-     "options": [
-      "13,5.",
-      "12,0.",
-      "5,3.",
-      "1,5.",
-      "48,0."
-     ],
-     "answer": "B",
-     "explanation": "χ² = (n − 1)·s²/σ0² = (8/4) × 6 = 12,0, com 8 graus de liberdade. O valor 13,5 usa n no lugar de n − 1, e 5,3 inverte a razão."
-    },
-    {
-     "topic": "Valores críticos assimétricos",
-     "pattern": "correta",
-     "difficulty": 2,
-     "pageRef": 66,
-     "statement": "No teste bilateral para a variância, com a estatística qui-quadrado, os valores críticos inferior e superior",
-     "support": null,
-     "options": [
-      "têm o mesmo módulo, por simetria da curva qui-quadrado.",
-      "são ambos negativos, pois a variância é sempre menor que a hipótese nula.",
-      "coincidem com os valores críticos da normal padrão.",
-      "têm módulos diferentes, pois a distribuição qui-quadrado é positiva e assimétrica.",
-      "não existem, pois o teste só pode ser unilateral."
-     ],
-     "answer": "D",
-     "explanation": "Diferentemente dos testes Z e t, a qui-quadrado não é simétrica nem assume valores negativos; por isso o limite superior tabelado difere do inferior, e ambos são lidos na tabela."
-    },
-    {
-     "topic": "Decisão no teste da variância (bilateral)",
-     "pattern": "caso",
-     "difficulty": 2,
-     "pageRef": 67,
-     "statement": "Testa-se H0: σ² = 1,5 com n = 5 (4 graus de liberdade), bilateral, α = 10%, e s² = 6. Os valores críticos são 0,71 e 9,49. Assinale a alternativa correta.",
-     "support": null,
-     "options": [
-      "A estatística vale 16,0 e H0 é rejeitada, pois supera o limite superior 9,49.",
-      "A estatística vale 16,0 e H0 não é rejeitada, pois está na região de não rejeição [0,71; 9,49].",
-      "A estatística vale 1,0 e H0 não é rejeitada, pois está na região de não rejeição.",
-      "H0 só poderia ser rejeitada se a estatística fosse menor que 0,71.",
-      "O teste é inconclusivo, pois a estatística é maior que s²."
-     ],
-     "answer": "A",
-     "explanation": "A estatística é (n − 1)s²/σ0² = 4 × 6/1,5 = 16,0, que ultrapassa 9,49 e cai na região crítica superior. No teste bilateral rejeita-se H0 tanto para valores abaixo de 0,71 quanto acima de 9,49."
-    },
-    {
-     "topic": "Teste unilateral para a variância",
-     "pattern": "calculo",
-     "difficulty": 3,
-     "pageRef": 68,
-     "statement": "Testa-se H0: σ² = 8 contra H1: σ² < 8, com n = 13 e s² = 4. Para 12 graus de liberdade, P(χ² < 6,30) = 0,10 e P(χ² < 5,23) = 0,05. A hipótese nula é",
-     "support": null,
-     "options": [
-      "rejeitada ao nível de 5% e ao de 10%.",
-      "rejeitada ao nível de 10%, mas não ao de 5%.",
-      "rejeitada ao nível de 5%, mas não ao de 10%.",
-      "não rejeitada em nenhum dos dois níveis.",
-      "rejeitada somente ao nível de 1%."
-     ],
-     "answer": "B",
-     "explanation": "A estatística é 12 × 4/8 = 6,0. No teste à esquerda, rejeita-se for menor que o crítico: 6,0 < 6,30 (10%) rejeita, mas 6,0 > 5,23 (5%) não rejeita."
-    },
-    {
-     "topic": "Estatística F para duas variâncias",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 71,
-     "statement": "Para testar a igualdade das variâncias de duas populações normais, obteve-se n_A = 10 com soma dos quadrados dos desvios 180 e n_B = 6 com soma 75. A estatística do teste e os graus de liberdade (numerador e denominador) são",
-     "support": null,
-     "options": [
-      "1,33, com 9 e 5.",
-      "1,33, com 10 e 6.",
-      "0,75, com 9 e 5.",
-      "1,44, com 10 e 6.",
-      "2,40, com 9 e 5."
-     ],
-     "answer": "A",
-     "explanation": "s_A² = 180/9 = 20 e s_B² = 75/5 = 15, logo F = 20/15 = 1,33, com n_A − 1 = 9 graus no numerador e n_B − 1 = 5 no denominador. O valor 1,44 divide as somas por n (18/12,5)."
-    },
-    {
-     "topic": "Limite crítico inferior da F",
-     "pattern": "calculo",
-     "difficulty": 3,
-     "pageRef": 72,
-     "statement": "Em um teste bilateral de igualdade de variâncias, precisa-se do valor crítico inferior (5% na cauda) da distribuição F com 12 graus de liberdade no numerador e 6 no denominador. Sabe-se que 95% da distribuição F com 6 e 12 graus de liberdade está abaixo de 3,00. O valor crítico inferior é, aproximadamente,",
-     "support": null,
-     "options": [
-      "3,00.",
-      "0,67.",
-      "0,05.",
-      "0,30.",
-      "0,33."
-     ],
-     "answer": "E",
-     "explanation": "Vale F(1−α; n, m) = 1/F(α; m, n): o crítico inferior para (12, 6) é o inverso do crítico superior com os graus de liberdade invertidos (6, 12): 1/3,00 ≈ 0,33."
-    },
-    {
-     "topic": "Hipóteses do teste de homogeneidade",
-     "pattern": "correta",
-     "difficulty": 2,
-     "pageRef": 70,
-     "statement": "No teste para comparar as variâncias de duas populações normais independentes, a hipótese nula e a estatística do teste (sob H0) são, respectivamente,",
-     "support": null,
-     "options": [
-      "H0: σA² ≠ σB², com F = sA²/sB², com nA e nB graus de liberdade.",
-      "H0: σA² = σB², com χ² = (n − 1)sA²/sB², com nA − 1 graus de liberdade.",
-      "H0: sA² = sB², com t = (sA² − sB²)/√(sA²/nA + sB²/nB).",
-      "H0: σA = σB, com Z = sA − sB, com distribuição normal padrão.",
-      "H0: σA² = σB², com F = sA²/sB², com nA − 1 e nB − 1 graus de liberdade."
-     ],
-     "answer": "E",
-     "explanation": "A hipótese nula é de igualdade das variâncias populacionais; sob ela, os σ² se cancelam e F = sA²/sB² segue uma F de Snedecor com nA − 1 e nB − 1 graus de liberdade."
-    },
-    {
-     "topic": "Variância com razão diferente de 1",
-     "pattern": "calculo",
-     "difficulty": 3,
-     "pageRef": 74,
-     "statement": "Testa-se H0: σA² = 2·σB² (a variância de A é o dobro da de B). As amostras forneceram sA² = 18 e sB² = 4. A estatística F do teste é",
-     "support": null,
-     "options": [
-      "4,50.",
-      "1,13.",
-      "2,25.",
-      "0,44.",
-      "9,00."
-     ],
-     "answer": "C",
-     "explanation": "Sob H0, F = sA²/(2·sB²) = 18/(2 × 4) = 2,25. O valor 4,50 corresponde a sA²/sB², que testaria a igualdade simples."
-    },
-    {
-     "topic": "Ordem dos testes para média e variância",
-     "pattern": "conceito",
-     "difficulty": 2,
-     "pageRef": 73,
-     "statement": "Para comparar tanto as médias quanto as variâncias de duas populações normais, o procedimento descrito é",
-     "support": null,
-     "options": [
-      "testar primeiro as médias e depois aplicar o teste F às diferenças.",
-      "aplicar apenas o teste de médias, pois a variância não influencia a escolha.",
-      "testar primeiro a igualdade das variâncias (teste F) e, conforme o resultado, escolher o teste de comparação de médias.",
-      "aplicar o teste qui-quadrado para as médias e o teste Z para as variâncias.",
-      "testar as médias com o teste F e as variâncias com o teste t."
-     ],
-     "answer": "C",
-     "explanation": "O resultado do teste de variâncias indica se as variâncias podem ser consideradas iguais (usando estimador combinado) ou devem ser tratadas como diferentes no teste de médias."
-    },
-    {
-     "topic": "Definição de p-valor",
-     "pattern": "conceito",
-     "difficulty": 1,
-     "pageRef": 76,
-     "statement": "O p-valor de um teste de hipóteses é",
-     "support": null,
-     "options": [
-      "a probabilidade de a hipótese nula ser verdadeira, dada a amostra.",
-      "a probabilidade de a hipótese alternativa ser falsa.",
-      "o nível de significância escolhido antes do teste.",
-      "a probabilidade do erro tipo II.",
-      "a probabilidade de obter um resultado igual ou mais extremo que o observado, supondo a hipótese nula verdadeira."
-     ],
-     "answer": "E",
-     "explanation": "O p-valor é calculado sob a hipótese nula e comparado com α: rejeita-se H0 se p < α. Ele não é a probabilidade de H0 ser verdadeira, nem é o nível de significância (definido previamente)."
-    },
-    {
-     "topic": "Decisão pelo p-valor",
-     "pattern": "caso",
-     "difficulty": 2,
-     "pageRef": 77,
-     "statement": "Em um teste de hipóteses, o p-valor encontrado foi de 3%. Assinale a alternativa correta.",
-     "support": null,
-     "options": [
-      "H0 é rejeitada aos níveis de 5% e 1%, mas não ao de 10%.",
-      "H0 é rejeitada somente ao nível de 1%.",
-      "H0 não é rejeitada a nenhum desses níveis.",
-      "H0 é rejeitada aos níveis de 10% e 5%, mas não ao de 1%.",
-      "H0 é rejeitada aos níveis de 10%, 5% e 1%."
-     ],
-     "answer": "D",
-     "explanation": "Rejeita-se H0 quando p < α. Com p = 3%: 3% < 10% e 3% < 5% (rejeita), mas 3% > 1% (não rejeita)."
-    },
-    {
-     "topic": "P-valor bilateral",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 78,
-     "statement": "Em um teste bilateral para a média com variância conhecida, a estatística do teste foi z = 2,0. Dado P(0 < Z < 2,0) = 0,4772, o p-valor do teste é",
-     "support": null,
-     "options": [
-      "2,28%.",
-      "95,44%.",
-      "47,72%.",
-      "9,12%.",
-      "4,56%."
-     ],
-     "answer": "E",
-     "explanation": "No teste bilateral, o p-valor soma as duas caudas: 2 × P(Z > 2) = 2 × (0,5 − 0,4772) = 4,56%. O valor 2,28% é o p-valor do teste unilateral."
-    },
-    {
-     "topic": "P-valor unilateral à direita",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 77,
-     "statement": "Testa-se H0: μ = 50 contra H1: μ > 50, com σ = 10 e n = 100, e obteve-se x̄ = 52,5. Dado P(0 < Z < 2,5) = 0,4938, o p-valor do teste é",
-     "support": null,
-     "options": [
-      "0,62%.",
-      "1,24%.",
-      "49,38%.",
-      "99,38%.",
-      "2,50%."
-     ],
-     "answer": "A",
-     "explanation": "z = (52,5 − 50)/(10/10) = 2,5, e no teste unilateral à direita p = P(Z > 2,5) = 0,5 − 0,4938 = 0,62%. O valor 1,24% seria o p-valor bilateral."
-    },
-    {
-     "topic": "Afirmações sobre o p-valor",
-     "pattern": "incorreta",
-     "difficulty": 2,
-     "pageRef": 79,
-     "statement": "Sobre o p-valor, assinale a alternativa INCORRETA.",
-     "support": null,
-     "options": [
-      "Rejeita-se H0 sempre que o p-valor é inferior ao nível de significância fixado.",
-      "Em testes com a distribuição normal, o p-valor bilateral é o dobro do unilateral.",
-      "É a probabilidade de obter um resultado igual ou mais extremo que o observado, supondo H0 verdadeira.",
-      "Quando p < α, diz-se que o resultado é estatisticamente significante.",
-      "O p-valor é a probabilidade de a hipótese nula ser verdadeira."
-     ],
-     "answer": "E",
-     "explanation": "O p-valor é calculado supondo H0 verdadeira; não é a probabilidade de H0 ser verdadeira. As demais afirmações descrevem corretamente a regra de decisão e a significância estatística."
-    }
-   ]
-  }
- ]
+  ]
 }

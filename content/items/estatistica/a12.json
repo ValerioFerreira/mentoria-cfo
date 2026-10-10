@@ -1,1309 +1,1309 @@
 {
- "aula": "estatistica/a12",
- "batch": "w2-bizu-estatistica",
- "status": "DRAFT",
- "segments": [
-  {
-   "id": "estatistica/a12/s01",
-   "bizu": {
-    "summary": [
-     "### 1. Definições, Fórmulas e Propriedades Centrais",
-     "- **O diagrama de dispersão (pontos x, y) sugere o tipo: pontos crescendo juntos:** correlação positiva.",
-     "- **um sobe e outro desce:** negativa.",
-     "- **sem padrão:** nula.",
-     "- **pontos exatamente em uma reta:** perfeita.",
-     "Coeficiente de correlação de Pearson (r): r = Σ(Xᵢ − X̄)(Yᵢ − Ȳ) / √[Σ(Xᵢ − X̄)² · Σ(Yᵢ − Ȳ)²], o mesmo que S_XY/√(S_XX·S_YY). Fórmulas alternativas (sem calcular desvios): numerador ΣXᵢYᵢ − n·X̄·Ȳ. Equivale a r = [n·ΣXY − ΣX·ΣY]/√{[n·ΣX² − (ΣX)²]·[n·ΣY² − (ΣY)²]}.",
-     "### 2. Métodos de Resolução e Classificações",
-     "- Correlação linear mede a força da relação entre duas variáveis.",
-     "- denominadores **ΣXᵢ² − n·X̄²** e **ΣYᵢ² − n·Ȳ²**.",
-     "- Um r próximo de 0 não impede relação não linear.",
-     "### 3. Exemplos de Aplicação e Procedimentos",
-     "> 💡 **Exemplo Prático:** Exemplo prático: com somas de quadrados 5,00 e 5,20 e soma de produtos 5,00, r = 5/√(5·5,2) ≈ 0,98, relação linear intensa.",
-     "### 4. Pontos Críticos e Cuidados nos Cálculos",
-     "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
-    ],
-    "teoria": [
-     {
-      "statement": "O coeficiente de correlação linear de Pearson assume valores entre −1 e 1.",
-      "isTrue": true,
-      "explanation": "É um coeficiente normalizado: o valor absoluto de r nunca excede 1."
-     },
-     {
-      "statement": "Se r = 1, os pontos do diagrama de dispersão estão todos sobre uma reta decrescente.",
-      "isTrue": false,
-      "explanation": "r = 1 indica reta perfeita crescente; a reta decrescente corresponde a r = −1."
-     },
-     {
-      "statement": "Um coeficiente de correlação próximo de zero indica ausência de relação linear entre as variáveis.",
-      "isTrue": true,
-      "explanation": "Pode haver outro tipo de relação (não linear), que r não captura."
-     },
-     {
-      "statement": "O numerador do coeficiente de Pearson pode ser calculado por ΣXᵢYᵢ − n·X̄·Ȳ.",
-      "isTrue": true,
-      "explanation": "É a forma desenvolvida de Σ(Xᵢ − X̄)(Yᵢ − Ȳ)."
-     }
-    ],
-    "revisao": [
-     {
-      "statement": "O sinal do coeficiente de correlação é o sinal da soma dos produtos dos desvios Σ(Xᵢ − X̄)(Yᵢ − Ȳ).",
-      "isTrue": true,
-      "explanation": "O denominador é sempre positivo."
-     },
-     {
-      "statement": "Um valor de r igual a −0,99 indica correlação negativa fraca.",
-      "isTrue": false,
-      "explanation": "Valor próximo de −1 é correlação negativa forte."
-     },
-     {
-      "statement": "O coeficiente de correlação mede a força de qualquer tipo de relação entre as variáveis, inclusive curvilíneas.",
-      "isTrue": false,
-      "explanation": "O coeficiente de Pearson mede apenas a relação linear."
-     }
-    ],
-    "pointers": [
-     {
-      "topic": "Diagrama de dispersão e tipos de correlação",
-      "pageRef": 3
-     },
-     {
-      "topic": "Fórmula de Pearson",
-      "pageRef": 7
-     },
-     {
-      "topic": "Fórmulas alternativas",
-      "pageRef": 8
-     },
-     {
-      "topic": "Correlação positiva e negativa perfeitas",
-      "pageRef": 10
-     },
-     {
-      "topic": "Correlação nula",
-      "pageRef": 12
-     },
-     {
-      "topic": "Exemplo numérico",
-      "pageRef": 13
-     }
-    ]
-   },
-   "questions": [
+  "aula": "estatistica/a12",
+  "batch": "w2-bizu-estatistica",
+  "status": "DRAFT",
+  "segments": [
     {
-     "topic": "Gráfico de dispersão",
-     "pattern": "conceito",
-     "difficulty": 1,
-     "pageRef": 3,
-     "statement": "O gráfico de dispersão, usado na análise de correlação linear, é",
-     "support": null,
-     "options": [
-      "a representação de pares ordenados (X, Y) em um plano cartesiano, que permite avaliar se há relação entre duas variáveis.",
-      "a representação das frequências de uma única variável em colunas contíguas.",
-      "a tabela que reúne as médias e os desvios padrão de duas variáveis.",
-      "o gráfico que divide os dados em quatro partes de mesma frequência.",
-      "a reta que minimiza a soma dos desvios absolutos dos pontos."
-     ],
-     "answer": "A",
-     "explanation": "O diagrama de dispersão coloca cada observação (X, Y) como um ponto no plano, com eixos vertical (ordenada) e horizontal (abscissa), e mostra se as variáveis variam em conjunto. As demais opções descrevem histograma, tabela-resumo, quartis e um critério de ajuste de reta."
+      "id": "estatistica/a12/s01",
+      "bizu": {
+        "summary": [
+          "### 1. Definições, Fórmulas e Propriedades Centrais",
+          "- **O diagrama de dispersão (pontos x, y) sugere o tipo: pontos crescendo juntos:** correlação positiva.",
+          "- **um sobe e outro desce:** negativa.",
+          "- **sem padrão:** nula.",
+          "- **pontos exatamente em uma reta:** perfeita.",
+          "Coeficiente de correlação de Pearson (r): r = Σ(Xᵢ − X̄)(Yᵢ − Ȳ) / √[Σ(Xᵢ − X̄)² · Σ(Yᵢ − Ȳ)²], o mesmo que S_XY/√(S_XX·S_YY). Fórmulas alternativas (sem calcular desvios): numerador ΣXᵢYᵢ − n·X̄·Ȳ. Equivale a r = [n·ΣXY − ΣX·ΣY]/√{[n·ΣX² − (ΣX)²]·[n·ΣY² − (ΣY)²]}.",
+          "### 2. Métodos de Resolução e Classificações",
+          "- Correlação linear mede a força da relação entre duas variáveis.",
+          "- denominadores **ΣXᵢ² − n·X̄²** e **ΣYᵢ² − n·Ȳ²**.",
+          "- Um r próximo de 0 não impede relação não linear.",
+          "### 3. Exemplos de Aplicação e Procedimentos",
+          "> 💡 **Exemplo Prático:** Exemplo prático: com somas de quadrados 5,00 e 5,20 e soma de produtos 5,00, r = 5/√(5·5,2) ≈ 0,98, relação linear intensa.",
+          "### 4. Pontos Críticos e Cuidados nos Cálculos",
+          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+        ],
+        "teoria": [
+          {
+            "statement": "O coeficiente de correlação linear de Pearson assume valores entre −1 e 1.",
+            "isTrue": true,
+            "explanation": "É um coeficiente normalizado: o valor absoluto de r nunca excede 1."
+          },
+          {
+            "statement": "Se r = 1, os pontos do diagrama de dispersão estão todos sobre uma reta decrescente.",
+            "isTrue": false,
+            "explanation": "r = 1 indica reta perfeita crescente; a reta decrescente corresponde a r = −1."
+          },
+          {
+            "statement": "Um coeficiente de correlação próximo de zero indica ausência de relação linear entre as variáveis.",
+            "isTrue": true,
+            "explanation": "Pode haver outro tipo de relação (não linear), que r não captura."
+          },
+          {
+            "statement": "O numerador do coeficiente de Pearson pode ser calculado por ΣXᵢYᵢ − n·X̄·Ȳ.",
+            "isTrue": true,
+            "explanation": "É a forma desenvolvida de Σ(Xᵢ − X̄)(Yᵢ − Ȳ)."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O sinal do coeficiente de correlação é o sinal da soma dos produtos dos desvios Σ(Xᵢ − X̄)(Yᵢ − Ȳ).",
+            "isTrue": true,
+            "explanation": "O denominador é sempre positivo."
+          },
+          {
+            "statement": "Um valor de r igual a −0,99 indica correlação negativa fraca.",
+            "isTrue": false,
+            "explanation": "Valor próximo de −1 é correlação negativa forte."
+          },
+          {
+            "statement": "O coeficiente de correlação mede a força de qualquer tipo de relação entre as variáveis, inclusive curvilíneas.",
+            "isTrue": false,
+            "explanation": "O coeficiente de Pearson mede apenas a relação linear."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Diagrama de dispersão e tipos de correlação",
+            "pageRef": 3
+          },
+          {
+            "topic": "Fórmula de Pearson",
+            "pageRef": 7
+          },
+          {
+            "topic": "Fórmulas alternativas",
+            "pageRef": 8
+          },
+          {
+            "topic": "Correlação positiva e negativa perfeitas",
+            "pageRef": 10
+          },
+          {
+            "topic": "Correlação nula",
+            "pageRef": 12
+          },
+          {
+            "topic": "Exemplo numérico",
+            "pageRef": 13
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Gráfico de dispersão",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 3,
+          "statement": "O gráfico de dispersão, usado na análise de correlação linear, é",
+          "support": null,
+          "options": [
+            "a representação de pares ordenados (X, Y) em um plano cartesiano, que permite avaliar se há relação entre duas variáveis.",
+            "a representação das frequências de uma única variável em colunas contíguas.",
+            "a tabela que reúne as médias e os desvios padrão de duas variáveis.",
+            "o gráfico que divide os dados em quatro partes de mesma frequência.",
+            "a reta que minimiza a soma dos desvios absolutos dos pontos."
+          ],
+          "answer": "A",
+          "explanation": "O diagrama de dispersão coloca cada observação (X, Y) como um ponto no plano, com eixos vertical (ordenada) e horizontal (abscissa), e mostra se as variáveis variam em conjunto. As demais opções descrevem histograma, tabela-resumo, quartis e um critério de ajuste de reta."
+        },
+        {
+          "topic": "Tipos de correlação",
+          "pattern": "caso",
+          "difficulty": 1,
+          "pageRef": 5,
+          "statement": "Em um estudo de uma brigada, observou-se que, quanto maior a carga horária de treinamento, menor o tempo gasto na prova prática. A correlação linear entre essas variáveis é",
+          "support": null,
+          "options": [
+            "direta (positiva).",
+            "inversa (negativa).",
+            "nula.",
+            "perfeita e positiva.",
+            "inexistente, pois as variáveis são de naturezas diferentes."
+          ],
+          "answer": "B",
+          "explanation": "Quando os fenômenos variam em sentidos contrários (um aumenta, o outro diminui), a correlação é inversa ou negativa, com r < 0. Correlação direta exigiria variação no mesmo sentido."
+        },
+        {
+          "topic": "Intervalo de variação de r",
+          "pattern": "excecao",
+          "difficulty": 1,
+          "pageRef": 9,
+          "statement": "Assinale o valor que NíO pode ser o coeficiente de correlação linear de Pearson entre duas variáveis.",
+          "support": null,
+          "options": [
+            "−1,00.",
+            "0,00.",
+            "0,48.",
+            "1,05.",
+            "−0,95."
+          ],
+          "answer": "D",
+          "explanation": "O coeficiente de Pearson varia de −1 a +1 (−1 ≤ r ≤ 1). Valores como −1,00 indicam correlação negativa perfeita, 0,00 ausência de relação linear, e 1,05 é impossível."
+        },
+        {
+          "topic": "Interpretação do coeficiente de correlação",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 10,
+          "statement": "Um analista obteve r = −0,97 entre o número de horas de sono de uma guarnição e o número de erros em um exercício. Esse resultado indica",
+          "support": null,
+          "options": [
+            "forte relação linear negativa: os erros tendem a diminuir quando as horas de sono aumentam.",
+            "forte relação linear positiva entre as variáveis.",
+            "ausência de relação linear entre as variáveis.",
+            "relação linear perfeita, com todos os pontos sobre a mesma reta.",
+            "pontos dispersos sem nenhum padrão no diagrama."
+          ],
+          "answer": "A",
+          "explanation": "Um r muito próximo de −1 indica forte correlação negativa, com pontos praticamente sobre uma reta decrescente. A correlação perfeita exigiria r = −1 exatamente, e r próximo de zero indicaria dispersão sem padrão linear."
+        },
+        {
+          "topic": "Cálculo de r com somatórios",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 8,
+          "statement": "Para n = 5 pares de observações, obtiveram-se ΣX = 20, ΣY = 35, ΣXY = 164, ΣX² = 105 e ΣY² = 281. O coeficiente de correlação linear de Pearson entre X e Y é",
+          "support": null,
+          "options": [
+            "0,64.",
+            "0,96.",
+            "0,80.",
+            "0,67.",
+            "1,00."
+          ],
+          "answer": "C",
+          "explanation": "ΣXY − n·X̄·Ȳ = 164 − 5 × 4 × 7 = 24; ΣX² − n·X̄² = 105 − 80 = 25; ΣY² − n·Ȳ² = 281 − 245 = 36. Logo r = 24/√(25 × 36) = 24/30 = 0,80. O valor 0,64 é r², e 0,96 divide só por 25."
+        },
+        {
+          "topic": "Fórmula com somas de produtos",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 9,
+          "statement": "Em uma amostra de n = 10 pares, tem-se ΣX = 50, ΣY = 100, ΣXY = 536, ΣX² = 290 e ΣY² = 1.090. Usando r = [nΣXY − ΣXΣY] / [√(nΣX² − (ΣX)²) · √(nΣY² − (ΣY)²)], o valor de r é",
+          "support": null,
+          "options": [
+            "0,36.",
+            "0,67.",
+            "1,20.",
+            "0,18.",
+            "0,60."
+          ],
+          "answer": "E",
+          "explanation": "Numerador: 10 × 536 − 50 × 100 = 360. Denominador: √(2.900 − 2.500) = 20 e √(10.900 − 10.000) = 30. Então r = 360/(20 × 30) = 0,60. O valor 0,36 é r²."
+        },
+        {
+          "topic": "Correlação a partir da covariância",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 18,
+          "statement": "Duas variáveis X e Y têm covariância −9, variância de X igual a 16 e variância de Y igual a 25. O coeficiente de correlação entre elas é",
+          "support": null,
+          "options": [
+            "−0,45.",
+            "−0,02.",
+            "−1,80.",
+            "−0,23.",
+            "0,45."
+          ],
+          "answer": "A",
+          "explanation": "r = Cov(X, Y)/(σX · σY) = −9/(4 × 5) = −0,45. O valor −0,02 usa as variâncias no denominador (−9/400), e −1,80 divide apenas por σY."
+        },
+        {
+          "topic": "Covariância pela esperança do produto",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 18,
+          "statement": "São conhecidos E(X) = 3, E(Y) = 5, E(XY) = 17, σX = 1 e σY = 4. O coeficiente de correlação entre X e Y é",
+          "support": null,
+          "options": [
+            "2,00.",
+            "0,125.",
+            "0,50.",
+            "4,25.",
+            "0,25."
+          ],
+          "answer": "C",
+          "explanation": "Cov(X, Y) = E(XY) − E(X)·E(Y) = 17 − 15 = 2, e r = 2/(1 × 4) = 0,50. O valor 2,00 é a covariância, e 0,125 divide pelo produto das variâncias (16)."
+        },
+        {
+          "topic": "Fórmula alternativa do numerador",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 8,
+          "statement": "Em uma amostra de n = 8 pares, tem-se ΣXY = 620, X̄ = 5 e Ȳ = 14. O valor de Σ(Xi − X̄)(Yi − Ȳ) é",
+          "support": null,
+          "options": [
+            "1.180.",
+            "550.",
+            "7,5.",
+            "60.",
+            "620."
+          ],
+          "answer": "D",
+          "explanation": "Σ(Xi − X̄)(Yi − Ȳ) = ΣXiYi − n·X̄·Ȳ = 620 − 8 × 5 × 14 = 620 − 560 = 60. O valor 1.180 soma em vez de subtrair, e 7,5 é 60/8."
+        },
+        {
+          "topic": "Cálculo completo de r",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 14,
+          "statement": "Cinco alunos fizeram X = 1, 2, 3, 4, 5 questões e obtiveram as notas Y = 2, 4, 5, 4, 5. O coeficiente de correlação linear de Pearson é, aproximadamente,",
+          "support": null,
+          "options": [
+            "0,60.",
+            "0,86.",
+            "0,77.",
+            "1,00.",
+            "0,36."
+          ],
+          "answer": "C",
+          "explanation": "As médias são 3 e 4. Σ(X − 3)(Y − 4) = 6, Σ(X − 3)² = 10 e Σ(Y − 4)² = 6. Então r = 6/√(10 × 6) = 6/√60 ≈ 0,77. O valor 0,60 divide por 10 e ignora a variação de Y."
+        },
+        {
+          "topic": "Correlação negativa perfeita",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 11,
+          "statement": "Todos os pontos de um diagrama de dispersão estão exatamente sobre uma reta decrescente. Nesse caso, o coeficiente de correlação linear vale",
+          "support": null,
+          "options": [
+            "0.",
+            "1.",
+            "−0,5.",
+            "−1.",
+            "um valor entre 0 e 1, que depende da inclinação."
+          ],
+          "answer": "D",
+          "explanation": "Se todos os pontos estão sobre uma mesma reta, a correlação é perfeita: r = +1 para reta crescente e r = −1 para reta decrescente, qualquer que seja a inclinação (desde que não nula)."
+        },
+        {
+          "topic": "Tipos de correlação (alternativa incorreta)",
+          "pattern": "incorreta",
+          "difficulty": 1,
+          "pageRef": 5,
+          "statement": "Sobre correlação linear,\n\nassinale a alternativa INCORRETA.",
+          "support": null,
+          "options": [
+            "Na correlação inversa, quando uma variável aumenta, a outra tende a diminuir.",
+            "Na correlação nula, o coeficiente de Pearson é zero ou aproximadamente zero.",
+            "Na correlação perfeita, todos os pontos do diagrama estão sobre uma mesma reta.",
+            "O gráfico de dispersão ajuda a identificar se há relação linear entre duas variáveis.",
+            "A correlação positiva ocorre quando as variáveis variam em sentidos contrários."
+          ],
+          "answer": "E",
+          "explanation": "A correlação positiva (direta) ocorre quando as variáveis variam no mesmo sentido; quando variam em sentidos contrários, a correlação é negativa (inversa). As demais afirmações estão corretas."
+        },
+        {
+          "topic": "Soma dos quadrados dos desvios de X",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 8,
+          "statement": "Para n = 6 observações de X, tem-se ΣX = 24 e ΣX² = 130. A soma dos quadrados dos desvios em relação à média, Σ(Xi − X̄)², é",
+          "support": null,
+          "options": [
+            "106.",
+            "130.",
+            "−34.",
+            "34.",
+            "4."
+          ],
+          "answer": "D",
+          "explanation": "Σ(Xi − X̄)² = ΣXi² − n·X̄² = 130 − 6 × 4² = 130 − 96 = 34. O valor 106 subtrai ΣX (24), e 130 ignora o termo n·X̄²."
+        },
+        {
+          "topic": "Coeficiente com variáveis centradas",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 9,
+          "statement": "Sejam xi = Xi − X̄ e yi = Yi − Ȳ. Se Σxiyi = −18, Σxi² = 20 e Σyi² = 20, o coeficiente de correlação r = Σxiyi / (√Σxi² · √Σyi²) é",
+          "support": null,
+          "options": [
+            "−0,45.",
+            "0,90.",
+            "−0,09.",
+            "−0,90.",
+            "−1,80."
+          ],
+          "answer": "D",
+          "explanation": "r = −18/(√20 × √20) = −18/20 = −0,90. O valor −0,45 divide por 40 (soma dos quadrados), e −1,80 divide por 10."
+        }
+      ]
     },
     {
-     "topic": "Tipos de correlação",
-     "pattern": "caso",
-     "difficulty": 1,
-     "pageRef": 5,
-     "statement": "Em um estudo de uma brigada, observou-se que, quanto maior a carga horária de treinamento, menor o tempo gasto na prova prática. A correlação linear entre essas variáveis é",
-     "support": null,
-     "options": [
-      "direta (positiva).",
-      "inversa (negativa).",
-      "nula.",
-      "perfeita e positiva.",
-      "inexistente, pois as variáveis são de naturezas diferentes."
-     ],
-     "answer": "B",
-     "explanation": "Quando os fenômenos variam em sentidos contrários (um aumenta, o outro diminui), a correlação é inversa ou negativa, com r < 0. Correlação direta exigiria variação no mesmo sentido."
+      "id": "estatistica/a12/s02",
+      "bizu": {
+        "summary": [
+          "### 1. Definições, Fórmulas e Propriedades Centrais",
+          "- **Correlação parcial:** mede a relação entre X e Y controlando o efeito de uma terceira variável Z.",
+          "- **Fórmula: r_XY·Z:** (r_XY − r_XZ·r_YZ) / √[(1 − r_XZ²)(1 − r_YZ²)]**.",
+          "- **Autocorrelação:** relação de uma variável consigo mesma em momentos diferentes (série temporal e sua defasagem), em vez de duas variáveis distintas.",
+          "- **Invariância a deslocamentos:** somar constantes a X e/ou Y não altera r (os desvios em relação às médias permanecem iguais).",
+          "também r(X − 200, Y − 300) = r(X, Y). Multiplicação por constantes de mesmo sinal: não altera r (nem o sinal). Multiplicação por constantes de sinais contrários: inverte o sinal de r: r(2X, −2Y) = −r(X, Y), mantendo o módulo.",
+          "### 2. Métodos de Resolução e Classificações",
+          "- correlação parcial ≈ 0,404.",
+          "- O valor menor que 0,6 mostra o efeito de Z.",
+          "### 3. Exemplos de Aplicação e Procedimentos",
+          "> 💡 **Exemplo Prático:** Exemplo: r_XY = 0,6, r_XZ = 0,5 e r_YZ = 0,7 → numerador 0,6 − 0,35 = 0,25 e denominador √(0,75·0,51) ≈ 0,6185.",
+          "> 💡 **Exemplo Prático:** Ex.: r(X + 3, Y + 5) = r(X, Y).",
+          "> 💡 **Exemplo Prático:** Ex.: r(2X, 2Y) = r(−2X, −2Y) = r(X, Y).",
+          "### 4. Pontos Críticos e Cuidados nos Cálculos",
+          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+        ],
+        "teoria": [
+          {
+            "statement": "Somar uma constante a uma das variáveis não altera o coeficiente de correlação de Pearson.",
+            "isTrue": true,
+            "explanation": "Os desvios em relação à média permanecem os mesmos."
+          },
+          {
+            "statement": "Multiplicar X por 2 e Y por −2 mantém o valor do coeficiente de correlação, inclusive o sinal.",
+            "isTrue": false,
+            "explanation": "Constantes de sinais contrários invertem o sinal de r, preservando o módulo."
+          },
+          {
+            "statement": "A correlação parcial entre X e Y controla a influência de uma terceira variável Z.",
+            "isTrue": true,
+            "explanation": "Mostra o que resta da relação entre X e Y depois de descontar o efeito de Z."
+          },
+          {
+            "statement": "A autocorrelação mede a relação entre duas variáveis diferentes medidas no mesmo instante.",
+            "isTrue": false,
+            "explanation": "A autocorrelação compara uma variável com ela mesma em instantes diferentes."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Multiplicar ambas as variáveis por −2 não altera o coeficiente de correlação.",
+            "isTrue": true,
+            "explanation": "As constantes têm o mesmo sinal, então r preserva valor e sinal."
+          },
+          {
+            "statement": "Com r_XY = 0,6, r_XZ = 0,5 e r_YZ = 0,7, a correlação parcial é maior que 0,6.",
+            "isTrue": false,
+            "explanation": "Vale cerca de 0,404, menor que 0,6, pois parte da relação era explicada por Z."
+          },
+          {
+            "statement": "Se r(X, Y) = 0,984, então r(X − 200, Y − 300) também vale 0,984.",
+            "isTrue": true,
+            "explanation": "A subtração de constantes não afeta o coeficiente."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Correlação parcial",
+            "pageRef": 19
+          },
+          {
+            "topic": "Exemplo da correlação parcial",
+            "pageRef": 20
+          },
+          {
+            "topic": "Autocorrelação",
+            "pageRef": 20
+          },
+          {
+            "topic": "Efeito da soma de constantes",
+            "pageRef": 22
+          },
+          {
+            "topic": "Multiplicação por constantes",
+            "pageRef": 25
+          },
+          {
+            "topic": "Constantes de sinais contrários",
+            "pageRef": 28
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Correlação parcial",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 19,
+          "statement": "A correlação parcial r_XY,Z mede",
+          "support": null,
+          "options": [
+            "a relação linear entre X e Y ao longo do tempo.",
+            "a relação linear entre X e Y, controlando (ajustando) o efeito de uma terceira variável Z.",
+            "a relação linear entre X e Z, descontado o efeito de Y.",
+            "a soma das correlações de X e de Y com Z.",
+            "a relação não linear entre X e Y."
+          ],
+          "answer": "B",
+          "explanation": "A correlação parcial extrai o efeito de uma terceira variável (aqui, Z) sobre a relação entre X e Y, mostrando como elas se relacionam independentemente do impacto de Z."
+        },
+        {
+          "topic": "Cálculo da correlação parcial",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 19,
+          "statement": "Em um estudo, r_XY = 0,70, r_XZ = 0,60 e r_YZ = 0,50. A correlação parcial entre X e Y, controlando Z, é, aproximadamente,",
+          "support": null,
+          "options": [
+            "0,40.",
+            "0,83.",
+            "0,70.",
+            "0,31.",
+            "0,58."
+          ],
+          "answer": "E",
+          "explanation": "r_XY,Z = (r_XY − r_XZ·r_YZ)/√[(1 − r_XZ²)(1 − r_YZ²)] = (0,70 − 0,30)/√(0,64 × 0,75) = 0,40/0,6928 ≈ 0,58. O valor 0,40 é só o numerador, e 0,83 omite a raiz quadrada."
+        },
+        {
+          "topic": "Interpretação da correlação parcial",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 19,
+          "statement": "A correlação de Pearson entre horas de estudo (X) e desempenho (Y) foi 0,80. Controlando-se o nível de estresse (Z), a correlação parcial caiu para 0,10. Isso indica que",
+          "support": null,
+          "options": [
+            "o estresse não tem relação com X nem com Y.",
+            "o estresse (Z) influenciava fortemente a correlação original entre X e Y.",
+            "a correlação original entre X e Y era nula.",
+            "o coeficiente de Pearson foi calculado de modo incorreto.",
+            "a relação entre X e Y é perfeita após o controle de Z."
+          ],
+          "answer": "B",
+          "explanation": "Se a correlação parcial difere muito da correlação original, a terceira variável estava influenciando a relação: grande parte da associação entre X e Y vinha de Z."
+        },
+        {
+          "topic": "Autocorrelação",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 20,
+          "statement": "Em estatística, a autocorrelação de uma variável avalia",
+          "support": null,
+          "options": [
+            "a relação entre duas variáveis distintas, no mesmo instante.",
+            "a relação entre a média e a variância de uma variável.",
+            "a relação entre uma variável e o seu quadrado.",
+            "o erro de medição de uma variável.",
+            "o grau em que seus valores, em certo instante ou posição, se relacionam com os de outros instantes ou posições."
+          ],
+          "answer": "E",
+          "explanation": "Em vez de comparar duas variáveis diferentes, a autocorrelação compara a variável consigo mesma em diferentes pontos do tempo (séries temporais) ou do espaço."
+        },
+        {
+          "topic": "Autocorrelação dos resíduos",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 20,
+          "statement": "Em um modelo de regressão, os resíduos apresentam alta autocorrelação. Isso",
+          "support": null,
+          "options": [
+            "sugere violação da suposição de independência dos erros e possível problema de especificação do modelo.",
+            "indica que o modelo está bem ajustado, pois os erros são previsíveis.",
+            "mostra que a variância dos erros é nula.",
+            "prova que a variável independente não influencia a dependente.",
+            "é uma exigência do modelo de regressão linear."
+          ],
+          "answer": "A",
+          "explanation": "Uma das suposições do modelo é que os erros sejam independentes. Resíduos com forte autocorrelação violam essa condição e podem indicar que o modelo foi mal especificado."
+        },
+        {
+          "topic": "Propriedade: soma de constantes",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 23,
+          "statement": "O coeficiente de correlação entre X e Y é 0,62. A correlação entre X + 200 e Y − 35 é",
+          "support": null,
+          "options": [
+            "0,27.",
+            "0,43.",
+            "1,00.",
+            "0,62.",
+            "−0,62."
+          ],
+          "answer": "D",
+          "explanation": "Somar ou subtrair constantes não altera o coeficiente de correlação, pois os desvios em relação às médias permanecem os mesmos."
+        },
+        {
+          "topic": "Propriedade: constantes com sinais contrários",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 28,
+          "statement": "Sabe-se que r(X, Y) = 0,70. O valor de r(−3X, 2Y + 4) é",
+          "support": null,
+          "options": [
+            "0,70.",
+            "−2,10.",
+            "−0,70.",
+            "1,40.",
+            "−0,35."
+          ],
+          "answer": "C",
+          "explanation": "Multiplicar por constantes de sinais contrários inverte o sinal do coeficiente, sem alterar seu módulo (a constante somada não importa): r = −0,70. O valor −2,10 multiplicaria r por −3."
+        },
+        {
+          "topic": "Simplificação por subtração de constantes",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 23,
+          "statement": "Os pares (X, Y) são (400; 801), (401; 803), (402; 804) e (403; 808). Usando a propriedade de que subtrair constantes não altera r, o coeficiente de correlação é, aproximadamente,",
+          "support": null,
+          "options": [
+            "0,50.",
+            "0,96.",
+            "0,82.",
+            "1,00.",
+            "0,77."
+          ],
+          "answer": "B",
+          "explanation": "Subtraindo 400 de X e 800 de Y, obtêm-se (0; 1), (1; 3), (2; 4) e (3; 8). As médias são 1,5 e 4; Σ(x)(y) = 11, Σx² = 5 e Σy² = 26. Logo r = 11/√(5 × 26) = 11/√130 ≈ 0,96."
+        },
+        {
+          "topic": "Propriedades do coeficiente de correlação",
+          "pattern": "incorreta",
+          "difficulty": 2,
+          "pageRef": 25,
+          "statement": "Sobre as propriedades do coeficiente de correlação linear,\n\nassinale a alternativa INCORRETA.",
+          "support": null,
+          "options": [
+            "Somar 20 a X e subtrair 7 de Y não altera o coeficiente.",
+            "Multiplicar X e Y por 5 não altera o coeficiente.",
+            "Multiplicar X por −2 e Y por −3 não altera o coeficiente.",
+            "Multiplicar X por 2 e Y por −2 inverte o sinal do coeficiente.",
+            "Multiplicar X por −4 e Y por 3 mantém o sinal do coeficiente de correlação."
+          ],
+          "answer": "E",
+          "explanation": "Constantes de sinais contrários (−4 e 3) invertem o sinal de r; constantes de mesmo sinal ou constantes somadas não alteram o coeficiente. A afirmação do enunciado trata erroneamente o caso de sinais contrários."
+        },
+        {
+          "topic": "Correlação parcial com Z não correlacionada",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 19,
+          "statement": "Sabe-se que r_XY = 0,45, r_XZ = 0 e r_YZ = 0. A correlação parcial entre X e Y, controlando Z, é",
+          "support": null,
+          "options": [
+            "0,45.",
+            "0,00.",
+            "0,225.",
+            "0,90.",
+            "1,00."
+          ],
+          "answer": "A",
+          "explanation": "Com r_XZ = r_YZ = 0, a fórmula reduz-se a r_XY,Z = r_XY/√(1 × 1) = 0,45: se Z não se relaciona com X nem com Y, controlá-la não muda a correlação."
+        },
+        {
+          "topic": "Sinal da correlação parcial",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 20,
+          "statement": "Em um estudo, r_XY = 0,20, r_XZ = 0,60 e r_YZ = 0,50. A correlação parcial entre X e Y, controlando Z, é, aproximadamente,",
+          "support": null,
+          "options": [
+            "0,14.",
+            "0,20.",
+            "−0,10.",
+            "-0,14.",
+            "−0,29."
+          ],
+          "answer": "D",
+          "explanation": "r_XY,Z = (0,20 − 0,60 × 0,50)/√[(1 − 0,36)(1 − 0,25)] = (0,20 − 0,30)/0,6928 ≈ -0,14. O numerador é negativo, de modo que o sinal da correlação muda ao se controlar Z. O valor −0,10 é só o numerador."
+        }
+      ]
     },
     {
-     "topic": "Intervalo de variação de r",
-     "pattern": "excecao",
-     "difficulty": 1,
-     "pageRef": 9,
-     "statement": "Assinale o valor que NíO pode ser o coeficiente de correlação linear de Pearson entre duas variáveis.",
-     "support": null,
-     "options": [
-      "−1,00.",
-      "0,00.",
-      "0,48.",
-      "1,05.",
-      "−0,95."
-     ],
-     "answer": "D",
-     "explanation": "O coeficiente de Pearson varia de −1 a +1 (−1 ≤ r ≤ 1). Valores como −1,00 indicam correlação negativa perfeita, 0,00 ausência de relação linear, e 1,05 é impossível."
+      "id": "estatistica/a12/s03",
+      "bizu": {
+        "summary": [
+          "### 1. Definições, Fórmulas e Propriedades Centrais",
+          "- **Regressão linear simples explica uma variável dependente Y por uma independente X: Yᵢ:** α + β·Xᵢ + εᵢ.",
+          "- **A parte α + βX é o valor esperado: E(Y|X):** α + βX. ε é o **erro aleatório**.",
+          "- **Pressupostos sobre o erro: E(ε):** 0.",
+          "- **Var(ε) = σ²** constante (**homocedasticidade**).",
+          "erros **independentes** (Cov(εᵢ, εⱼ) = 0). Esses três pressupostos não obrigam o erro a seguir a normal **padrão**: basta ter média 0 e variância σ². Método dos mínimos quadrados ordinários (MQO): escolhe a e b que minimizam Σ(Yᵢ − a − bXᵢ)² (soma dos quadrados dos resíduos).",
+          "### 2. Métodos de Resolução e Classificações",
+          "- Quando as variâncias dos erros diferem, há **heterocedasticidade**.",
+          "- quando os erros se correlacionam, há **autocorrelação**.",
+          "- Obtém-se derivando em relação a e b e igualando a zero.",
+          "- A reta ajustada **passa pelo ponto das médias (X̄, Ȳ)**.",
+          "- **A soma dos resíduos:** é zero.",
+          "### 3. Exemplos de Aplicação e Procedimentos",
+          "> 💡 **Exemplo Prático:** Ex.: com a = 2 e b = 0,8, o valor para t = 13 é 12,4.",
+          "### 4. Pontos Críticos e Cuidados nos Cálculos",
+          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+        ],
+        "teoria": [
+          {
+            "statement": "No modelo de regressão linear simples, o erro aleatório tem média zero e variância constante.",
+            "isTrue": true,
+            "explanation": "São pressupostos do modelo (homocedasticidade e(ε) = 0)."
+          },
+          {
+            "statement": "No modelo de regressão linear simples, o erro aleatório obrigatoriamente segue a distribuição normal padrão.",
+            "isTrue": false,
+            "explanation": "Exige-se média 0 e variância σ² (constante); não necessariamente variância 1."
+          },
+          {
+            "statement": "A reta de regressão obtida por mínimos quadrados passa pelo ponto (X̄, Ȳ).",
+            "isTrue": true,
+            "explanation": "De a = Ȳ − bX̄ conclui-se Ȳ = a + bX̄."
+          },
+          {
+            "statement": "O estimador da inclinação é b = S_XY/S_XX.",
+            "isTrue": true,
+            "explanation": "Razão entre a soma dos produtos dos desvios e a soma dos quadrados dos desvios de X."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O método dos mínimos quadrados minimiza a soma dos quadrados dos resíduos.",
+            "isTrue": true,
+            "explanation": "É a definição do MQO."
+          },
+          {
+            "statement": "O intercepto estimado é a = X̄ − b·Ȳ.",
+            "isTrue": false,
+            "explanation": "O intercepto é a = Ȳ − b·X̄."
+          },
+          {
+            "statement": "Em uma regressão pela origem, o coeficiente angular é ΣXY/ΣX².",
+            "isTrue": true,
+            "explanation": "Com α = 0, minimiza-se Σ(Y − bX)²."
+          },
+          {
+            "statement": "Em uma regressão que passa pela origem, a soma dos resíduos é sempre igual a zero.",
+            "isTrue": false,
+            "explanation": "Sem intercepto, não há garantia de que os resíduos somem zero."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Variável dependente e independente",
+            "pageRef": 30
+          },
+          {
+            "topic": "Modelo Y = α + βX + ε e pressupostos",
+            "pageRef": 32
+          },
+          {
+            "topic": "Mínimos quadrados: condições de primeira ordem",
+            "pageRef": 34
+          },
+          {
+            "topic": "Estimador de b",
+            "pageRef": 35
+          },
+          {
+            "topic": "Estimador do intercepto a",
+            "pageRef": 36
+          },
+          {
+            "topic": "Previsões com a reta",
+            "pageRef": 41
+          },
+          {
+            "topic": "Reta passando pela origem",
+            "pageRef": 43
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Equação da reta por dois pontos",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 30,
+          "statement": "A reta que passa pelos pontos (3, 10) e (7, 22) tem equação",
+          "support": null,
+          "options": [
+            "y = 3x + 1.",
+            "y = 3x + 2.",
+            "y = 4x − 2.",
+            "y = 3x + 10.",
+            "y = x/3 + 9."
+          ],
+          "answer": "A",
+          "explanation": "O coeficiente angular é m = (22 − 10)/(7 − 3) = 3. Usando (3, 10): 10 = 3 × 3 + b, logo b = 1 e y = 3x + 1."
+        },
+        {
+          "topic": "Coeficiente angular e linear",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 30,
+          "statement": "Na função y = −2x + 8, é correto afirmar que",
+          "support": null,
+          "options": [
+            "a função é crescente e a reta intercepta o eixo y no ponto (0, 8).",
+            "a função é decrescente e a reta intercepta o eixo y no ponto (0, −2).",
+            "a função é constante e a reta intercepta o eixo x em 8.",
+            "a função é crescente e a reta passa pela origem.",
+            "a função é decrescente e a reta intercepta o eixo y no ponto (0, 8)."
+          ],
+          "answer": "E",
+          "explanation": "O coeficiente angular m = −2 < 0 indica função decrescente, e o coeficiente linear b = 8 é o ponto em que a reta cruza o eixo y, (0, 8)."
+        },
+        {
+          "topic": "Pressupostos sobre o erro",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 32,
+          "statement": "No modelo de regressão linear simples Yi = α + βXi + εi, as suposições básicas sobre o erro εi são:",
+          "support": null,
+          "options": [
+            "E(εi) = 1, variância constante e erros correlacionados.",
+            "E(εi) = 0, variância constante (homocedasticidade) e erros não correlacionados entre si.",
+            "E(εi) = 0, variância crescente com Xi (heterocedasticidade) e erros independentes.",
+            "E(εi) = σ², variância nula e erros independentes.",
+            "E(εi) = 0, variância constante e erros com autocorrelação positiva."
+          ],
+          "answer": "B",
+          "explanation": "Os erros devem ter média zero, variância constante (homocedasticidade) e covariância nula entre si (sem autocorrelação). Variância que muda com X é heterocedasticidade, e erros dependentes caracterizam autocorrelação."
+        },
+        {
+          "topic": "Critério dos mínimos quadrados",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 33,
+          "statement": "O método dos mínimos quadrados ordinários escolhe a reta de regressão estimada de modo a minimizar",
+          "support": null,
+          "options": [
+            "a soma das diferenças entre os valores observados e os ajustados, sem elevá-las ao quadrado.",
+            "a soma dos valores absolutos das diferenças entre observados e ajustados.",
+            "a soma dos quadrados dos resíduos, isto é, dos desvios entre o que se observou e o que o modelo estima.",
+            "o maior resíduo individual do conjunto de dados.",
+            "a soma dos quadrados dos valores observados de Y."
+          ],
+          "answer": "C",
+          "explanation": "O MQO minimiza Σ(Yi − Ŷi)² = Σei². Sem o quadrado, resíduos positivos e negativos se cancelariam, e minimizar o valor absoluto ou o maior resíduo seriam critérios distintos."
+        },
+        {
+          "topic": "Estimativas de a e b com somatórios",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 35,
+          "statement": "Para n = 10 pares, tem-se ΣX = 50, ΣY = 120, ΣXY = 680 e ΣX² = 290. As estimativas de mínimos quadrados da reta Ŷ = a + bX são",
+          "support": null,
+          "options": [
+            "b = 0,5 e a = 9,5.",
+            "b = 2 e a = 12.",
+            "b = 2 e a = −8.",
+            "b = 4 e a = −8.",
+            "b = 2 e a = 2."
+          ],
+          "answer": "E",
+          "explanation": "b = (ΣXY − n·X̄·Ȳ)/(ΣX² − n·X̄²) = (680 − 10 × 5 × 12)/(290 − 250) = 80/40 = 2, e a = Ȳ − b·X̄ = 12 − 2 × 5 = 2. O valor a = 12 é a média de Y, sem descontar b·X̄."
+        },
+        {
+          "topic": "Coeficiente angular pela correlação",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 35,
+          "statement": "Em uma regressão linear simples de Y sobre X, o coeficiente de correlação é 0,6, o desvio padrão de X é 5 e o de Y é 10. A estimativa do coeficiente angular b é",
+          "support": null,
+          "options": [
+            "0,3.",
+            "3,0.",
+            "0,83.",
+            "1,2.",
+            "6,0."
+          ],
+          "answer": "D",
+          "explanation": "b = ρ · σY/σX = 0,6 × 10/5 = 1,2. O valor 0,3 inverte a razão dos desvios (σX/σY), e 6,0 multiplica ρ por σY sem dividir por σX."
+        },
+        {
+          "topic": "Coeficiente angular pela covariância",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 34,
+          "statement": "Em uma amostra, Cov(X, Y) = 18, Var(X) = 9, X̄ = 4 e Ȳ = 10. A reta de regressão estimada de Y sobre X é",
+          "support": null,
+          "options": [
+            "Ŷ = 8 + 2X.",
+            "Ŷ = 10 + 2X.",
+            "Ŷ = 2 + 0,5X.",
+            "Ŷ = 18 + 9X.",
+            "Ŷ = 2 + 2X."
+          ],
+          "answer": "E",
+          "explanation": "b = Cov(X, Y)/Var(X) = 18/9 = 2 e a = Ȳ − b·X̄ = 10 − 2 × 4 = 2, logo Ŷ = 2 + 2X. O valor 0,5 seria Var(X)/Cov(X, Y)."
+        },
+        {
+          "topic": "Reta passa pelas médias",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 36,
+          "statement": "Uma reta de regressão por mínimos quadrados é Ŷ = 3 + 0,5X, e a média de X na amostra é 14. A média de Y na amostra é",
+          "support": null,
+          "options": [
+            "10.",
+            "7.",
+            "3,5.",
+            "17.",
+            "14."
+          ],
+          "answer": "A",
+          "explanation": "A reta estimada passa pelo ponto (X̄, Ȳ), então Ȳ = 3 + 0,5 × 14 = 10. O valor 7 é apenas 0,5 × 14, sem o intercepto."
+        },
+        {
+          "topic": "Estimador da variância dos erros",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 36,
+          "statement": "Em uma regressão linear simples com n = 14 observações, a soma dos quadrados dos resíduos é 72. A estimativa da variância dos erros σ² é",
+          "support": null,
+          "options": [
+            "6,0.",
+            "5,14.",
+            "5,54.",
+            "72.",
+            "12,0."
+          ],
+          "answer": "A",
+          "explanation": "σ̂² = Σ(Yi − Ŷi)²/(n − 2) = 72/12 = 6,0; perdem-se 2 graus de liberdade por causa dos 2 parâmetros estimados. O valor 5,14 divide por n (72/14), e 5,54 por n − 1 (72/13)."
+        },
+        {
+          "topic": "Variância do estimador de b",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 36,
+          "statement": "Em uma regressão linear simples, a estimativa da variância dos erros é 6 e Σ(Xi − X̄)² = 24. A variância estimada do coeficiente angular b é",
+          "support": null,
+          "options": [
+            "4,00.",
+            "0,50.",
+            "0,25.",
+            "144,00.",
+            "0,06."
+          ],
+          "answer": "C",
+          "explanation": "Var(b) = σ̂²/Σ(Xi − X̄)² = 6/24 = 0,25. O valor 4,00 inverte a razão, e 0,50 é a raiz quadrada (erro padrão)."
+        },
+        {
+          "topic": "Variância do estimador do intercepto",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 37,
+          "statement": "Em uma regressão com n = 10, σ̂² = 4, X̄ = 5 e Σ(Xi − X̄)² = 40, a variância estimada do intercepto a, dada por σ̂²·[1/n + X̄²/Σ(Xi − X̄)²], é",
+          "support": null,
+          "options": [
+            "2,9.",
+            "2,5.",
+            "0,29.",
+            "16,1.",
+            "0,725."
+          ],
+          "answer": "A",
+          "explanation": "Var(a) = 4 × (1/10 + 25/40) = 4 × (0,1 + 0,625) = 2,9. O valor 0,725 é o fator entre parênteses, sem multiplicar por σ̂²."
+        },
+        {
+          "topic": "Utilidade da variância dos coeficientes",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 37,
+          "statement": "A variância dos estimadores dos coeficientes a e b de uma regressão linear simples é necessária, principalmente, para",
+          "support": null,
+          "options": [
+            "calcular a média de X e de Y.",
+            "determinar a inclinação da reta de regressão.",
+            "garantir que a soma dos resíduos seja zero.",
+            "construir intervalos de confiança e testar hipóteses, como a de que b é diferente de zero.",
+            "transformar a variável dependente em independente."
+          ],
+          "answer": "D",
+          "explanation": "A variância dos coeficientes mede a incerteza das estimativas, permitindo construir intervalos de confiança, realizar testes (como H0: β = 0) e avaliar a precisão das previsões. As estimativas em si vêm do MQO."
+        },
+        {
+          "topic": "Previsão pela reta ajustada",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 37,
+          "statement": "Cinco observações de (X, Y) são (1, 3), (2, 5), (3, 4), (4, 8) e (5, 10). Pela reta de mínimos quadrados, a previsão de Y para X = 6 é",
+          "support": null,
+          "options": [
+            "10,2.",
+            "11,1.",
+            "12,0.",
+            "9,3.",
+            "11,7."
+          ],
+          "answer": "B",
+          "explanation": "Médias: X̄ = 3 e Ȳ = 6. Σ(X − 3)(Y − 6) = 17 e Σ(X − 3)² = 10, logo b = 1,7 e a = 6 − 1,7 × 3 = 0,9. Então Ŷ(6) = 0,9 + 1,7 × 6 = 11,1. O valor 10,2 é 1,7 × 6, sem o intercepto."
+        },
+        {
+          "topic": "Regressão pela origem",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 43,
+          "statement": "Ajusta-se uma reta que passa pela origem, Ŷ = bX, por mínimos quadrados, a dados em que ΣXY = 210 e ΣX² = 100. A estimativa de b é",
+          "support": null,
+          "options": [
+            "0,48.",
+            "2,1.",
+            "210.",
+            "1,0.",
+            "21."
+          ],
+          "answer": "B",
+          "explanation": "No modelo sem intercepto, b = ΣXiYi/ΣXi² = 210/100 = 2,1. O valor 0,48 inverte a razão."
+        },
+        {
+          "topic": "Resíduos no modelo sem intercepto",
+          "pattern": "correta",
+          "difficulty": 3,
+          "pageRef": 43,
+          "statement": "Sobre os resíduos da regressão linear por mínimos quadrados,\n\nassinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "No modelo que passa pela origem, a soma dos resíduos é sempre zero.",
+            "No modelo com intercepto, a soma dos resíduos nunca é zero.",
+            "No modelo que passa obrigatoriamente pela origem, não há garantia de que a soma dos resíduos seja zero.",
+            "Nos dois modelos, a soma dos resíduos é igual à soma dos valores observados.",
+            "No modelo com intercepto, a soma dos quadrados dos resíduos é sempre igual a zero."
+          ],
+          "answer": "C",
+          "explanation": "No modelo com intercepto, a reta passa pelo ponto médio e os resíduos somam zero; forçando a reta pela origem (α = 0) isso deixa de valer. A soma dos quadrados dos resíduos só é nula quando todos os pontos estão sobre a reta."
+        }
+      ]
     },
     {
-     "topic": "Interpretação do coeficiente de correlação",
-     "pattern": "conceito",
-     "difficulty": 2,
-     "pageRef": 10,
-     "statement": "Um analista obteve r = −0,97 entre o número de horas de sono de uma guarnição e o número de erros em um exercício. Esse resultado indica",
-     "support": null,
-     "options": [
-      "forte relação linear negativa: os erros tendem a diminuir quando as horas de sono aumentam.",
-      "forte relação linear positiva entre as variáveis.",
-      "ausência de relação linear entre as variáveis.",
-      "relação linear perfeita, com todos os pontos sobre a mesma reta.",
-      "pontos dispersos sem nenhum padrão no diagrama."
-     ],
-     "answer": "A",
-     "explanation": "Um r muito próximo de −1 indica forte correlação negativa, com pontos praticamente sobre uma reta decrescente. A correlação perfeita exigiria r = −1 exatamente, e r próximo de zero indicaria dispersão sem padrão linear."
-    },
-    {
-     "topic": "Cálculo de r com somatórios",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 8,
-     "statement": "Para n = 5 pares de observações, obtiveram-se ΣX = 20, ΣY = 35, ΣXY = 164, ΣX² = 105 e ΣY² = 281. O coeficiente de correlação linear de Pearson entre X e Y é",
-     "support": null,
-     "options": [
-      "0,64.",
-      "0,96.",
-      "0,80.",
-      "0,67.",
-      "1,00."
-     ],
-     "answer": "C",
-     "explanation": "ΣXY − n·X̄·Ȳ = 164 − 5 × 4 × 7 = 24; ΣX² − n·X̄² = 105 − 80 = 25; ΣY² − n·Ȳ² = 281 − 245 = 36. Logo r = 24/√(25 × 36) = 24/30 = 0,80. O valor 0,64 é r², e 0,96 divide só por 25."
-    },
-    {
-     "topic": "Fórmula com somas de produtos",
-     "pattern": "calculo",
-     "difficulty": 3,
-     "pageRef": 9,
-     "statement": "Em uma amostra de n = 10 pares, tem-se ΣX = 50, ΣY = 100, ΣXY = 536, ΣX² = 290 e ΣY² = 1.090. Usando r = [nΣXY − ΣXΣY] / [√(nΣX² − (ΣX)²) · √(nΣY² − (ΣY)²)], o valor de r é",
-     "support": null,
-     "options": [
-      "0,36.",
-      "0,67.",
-      "1,20.",
-      "0,18.",
-      "0,60."
-     ],
-     "answer": "E",
-     "explanation": "Numerador: 10 × 536 − 50 × 100 = 360. Denominador: √(2.900 − 2.500) = 20 e √(10.900 − 10.000) = 30. Então r = 360/(20 × 30) = 0,60. O valor 0,36 é r²."
-    },
-    {
-     "topic": "Correlação a partir da covariância",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 18,
-     "statement": "Duas variáveis X e Y têm covariância −9, variância de X igual a 16 e variância de Y igual a 25. O coeficiente de correlação entre elas é",
-     "support": null,
-     "options": [
-      "−0,45.",
-      "−0,02.",
-      "−1,80.",
-      "−0,23.",
-      "0,45."
-     ],
-     "answer": "A",
-     "explanation": "r = Cov(X, Y)/(σX · σY) = −9/(4 × 5) = −0,45. O valor −0,02 usa as variâncias no denominador (−9/400), e −1,80 divide apenas por σY."
-    },
-    {
-     "topic": "Covariância pela esperança do produto",
-     "pattern": "calculo",
-     "difficulty": 3,
-     "pageRef": 18,
-     "statement": "São conhecidos E(X) = 3, E(Y) = 5, E(XY) = 17, σX = 1 e σY = 4. O coeficiente de correlação entre X e Y é",
-     "support": null,
-     "options": [
-      "2,00.",
-      "0,125.",
-      "0,50.",
-      "4,25.",
-      "0,25."
-     ],
-     "answer": "C",
-     "explanation": "Cov(X, Y) = E(XY) − E(X)·E(Y) = 17 − 15 = 2, e r = 2/(1 × 4) = 0,50. O valor 2,00 é a covariância, e 0,125 divide pelo produto das variâncias (16)."
-    },
-    {
-     "topic": "Fórmula alternativa do numerador",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 8,
-     "statement": "Em uma amostra de n = 8 pares, tem-se ΣXY = 620, X̄ = 5 e Ȳ = 14. O valor de Σ(Xi − X̄)(Yi − Ȳ) é",
-     "support": null,
-     "options": [
-      "1.180.",
-      "550.",
-      "7,5.",
-      "60.",
-      "620."
-     ],
-     "answer": "D",
-     "explanation": "Σ(Xi − X̄)(Yi − Ȳ) = ΣXiYi − n·X̄·Ȳ = 620 − 8 × 5 × 14 = 620 − 560 = 60. O valor 1.180 soma em vez de subtrair, e 7,5 é 60/8."
-    },
-    {
-     "topic": "Cálculo completo de r",
-     "pattern": "calculo",
-     "difficulty": 3,
-     "pageRef": 14,
-     "statement": "Cinco alunos fizeram X = 1, 2, 3, 4, 5 questões e obtiveram as notas Y = 2, 4, 5, 4, 5. O coeficiente de correlação linear de Pearson é, aproximadamente,",
-     "support": null,
-     "options": [
-      "0,60.",
-      "0,86.",
-      "0,77.",
-      "1,00.",
-      "0,36."
-     ],
-     "answer": "C",
-     "explanation": "As médias são 3 e 4. Σ(X − 3)(Y − 4) = 6, Σ(X − 3)² = 10 e Σ(Y − 4)² = 6. Então r = 6/√(10 × 6) = 6/√60 ≈ 0,77. O valor 0,60 divide por 10 e ignora a variação de Y."
-    },
-    {
-     "topic": "Correlação negativa perfeita",
-     "pattern": "conceito",
-     "difficulty": 2,
-     "pageRef": 11,
-     "statement": "Todos os pontos de um diagrama de dispersão estão exatamente sobre uma reta decrescente. Nesse caso, o coeficiente de correlação linear vale",
-     "support": null,
-     "options": [
-      "0.",
-      "1.",
-      "−0,5.",
-      "−1.",
-      "um valor entre 0 e 1, que depende da inclinação."
-     ],
-     "answer": "D",
-     "explanation": "Se todos os pontos estão sobre uma mesma reta, a correlação é perfeita: r = +1 para reta crescente e r = −1 para reta decrescente, qualquer que seja a inclinação (desde que não nula)."
-    },
-    {
-     "topic": "Tipos de correlação (alternativa incorreta)",
-     "pattern": "incorreta",
-     "difficulty": 1,
-     "pageRef": 5,
-     "statement": "Sobre correlação linear, assinale a alternativa INCORRETA.",
-     "support": null,
-     "options": [
-      "Na correlação inversa, quando uma variável aumenta, a outra tende a diminuir.",
-      "Na correlação nula, o coeficiente de Pearson é zero ou aproximadamente zero.",
-      "Na correlação perfeita, todos os pontos do diagrama estão sobre uma mesma reta.",
-      "O gráfico de dispersão ajuda a identificar se há relação linear entre duas variáveis.",
-      "A correlação positiva ocorre quando as variáveis variam em sentidos contrários."
-     ],
-     "answer": "E",
-     "explanation": "A correlação positiva (direta) ocorre quando as variáveis variam no mesmo sentido; quando variam em sentidos contrários, a correlação é negativa (inversa). As demais afirmações estão corretas."
-    },
-    {
-     "topic": "Soma dos quadrados dos desvios de X",
-     "pattern": "calculo",
-     "difficulty": 1,
-     "pageRef": 8,
-     "statement": "Para n = 6 observações de X, tem-se ΣX = 24 e ΣX² = 130. A soma dos quadrados dos desvios em relação à média, Σ(Xi − X̄)², é",
-     "support": null,
-     "options": [
-      "106.",
-      "130.",
-      "−34.",
-      "34.",
-      "4."
-     ],
-     "answer": "D",
-     "explanation": "Σ(Xi − X̄)² = ΣXi² − n·X̄² = 130 − 6 × 4² = 130 − 96 = 34. O valor 106 subtrai ΣX (24), e 130 ignora o termo n·X̄²."
-    },
-    {
-     "topic": "Coeficiente com variáveis centradas",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 9,
-     "statement": "Sejam xi = Xi − X̄ e yi = Yi − Ȳ. Se Σxiyi = −18, Σxi² = 20 e Σyi² = 20, o coeficiente de correlação r = Σxiyi / (√Σxi² · √Σyi²) é",
-     "support": null,
-     "options": [
-      "−0,45.",
-      "0,90.",
-      "−0,09.",
-      "−0,90.",
-      "−1,80."
-     ],
-     "answer": "D",
-     "explanation": "r = −18/(√20 × √20) = −18/20 = −0,90. O valor −0,45 divide por 40 (soma dos quadrados), e −1,80 divide por 10."
+      "id": "estatistica/a12/s04",
+      "bizu": {
+        "summary": [
+          "### 1. Definições, Fórmulas e Propriedades Centrais",
+          "- Estimativa por máxima verossimilhança (EMV): com erros normais, maximizar a log-verossimilhança leva a estimadores de α e β iguais aos de mínimos quadrados.",
+          "- **Somas de quadrados: SQT:** Σ(Yᵢ − Ȳ)² (total).",
+          "- **SQM = Σ(Ŷᵢ − Ȳ)²** (explicada pelo modelo) **= b²·S_XX = b·S_XY**.",
+          "- **SQR = Σ(Yᵢ − Ŷᵢ)²** (resíduos).",
+          "Vale **SQT = SQM + SQR**. Coeficiente de determinação: R² = SQM/SQT = 1 − SQR/SQT, com 0 ≤ R² ≤ 1. É a fração da variação de Y explicada pelo modelo. na regressão simples, **R² = r²**.",
+          "### 2. Métodos de Resolução e Classificações",
+          "- F grande leva a rejeitar H₀.",
+          "### 3. Exemplos de Aplicação e Procedimentos",
+          "> 💡 **Exemplo Prático:** Exemplo de tabela ANOVA: SQT = 1000 e SQM = 900 → R² = 0,9 e r = √0,9 em módulo.",
+          "### 4. Pontos Críticos e Cuidados nos Cálculos",
+          "> ⚠️ **Atenção de Prova:** Análise de variância da regressão: compara o modelo de regressão com o modelo sem X (apenas média). Graus de liberdade: modelo = 1, resíduos = n − 2, total = n − 1."
+        ],
+        "teoria": [
+          {
+            "statement": "Na regressão linear simples, os graus de liberdade dos resíduos são n − 2.",
+            "isTrue": true,
+            "explanation": "Dois parâmetros (α e β) são estimados a partir de n observações."
+          },
+          {
+            "statement": "A soma dos quadrados totais é a soma da soma dos quadrados do modelo com a dos resíduos.",
+            "isTrue": true,
+            "explanation": "SQT = SQM + SQR."
+          },
+          {
+            "statement": "O coeficiente de determinação R² pode assumir valores negativos na regressão linear simples.",
+            "isTrue": false,
+            "explanation": "R² = SQM/SQT, sempre entre 0 e 1."
+          },
+          {
+            "statement": "A estatística F* = QMM/QMR, sob H₀: β = 0, segue F de Snedecor com 1 e n − 2 graus de liberdade.",
+            "isTrue": true,
+            "explanation": "O numerador tem 1 g.l. (modelo) e o denominador, n − 2 (resíduos)."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O quadrado médio dos resíduos é uma estimativa da variância dos erros σ².",
+            "isTrue": true,
+            "explanation": "QMR = SQR/(n − 2)."
+          },
+          {
+            "statement": "Quando R² está próximo de zero, o modelo de regressão explica grande parte da variação de Y.",
+            "isTrue": false,
+            "explanation": "R² próximo de 1 indica grande parte explicada; próximo de 0 indica pouca explicação."
+          },
+          {
+            "statement": "Com SQT = 1000 e SQM = 900, o coeficiente de determinação é 0,9.",
+            "isTrue": true,
+            "explanation": "R² = 900/1000."
+          },
+          {
+            "statement": "Na regressão linear simples, o coeficiente de determinação é igual ao quadrado do coeficiente de correlação de Pearson.",
+            "isTrue": true,
+            "explanation": "R² = r² quando há uma única variável explicativa."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Estimativa por máxima verossimilhança",
+            "pageRef": 46
+          },
+          {
+            "topic": "Graus de liberdade da regressão",
+            "pageRef": 48
+          },
+          {
+            "topic": "Somas de quadrados SQT, SQM e SQR",
+            "pageRef": 49
+          },
+          {
+            "topic": "Coeficiente de determinação",
+            "pageRef": 52
+          },
+          {
+            "topic": "Quadrados médios e R² ajustado",
+            "pageRef": 54
+          },
+          {
+            "topic": "Estatística F e tabela ANOVA",
+            "pageRef": 55
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Máxima verossimilhança e MQO",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 47,
+          "statement": "Na regressão linear simples com erros independentes, normais, de média zero e variância constante, as estimativas de a e b obtidas pela máxima verossimilhança",
+          "support": null,
+          "options": [
+            "diferem sempre das obtidas por mínimos quadrados, por usarem outra função objetivo.",
+            "só podem ser obtidas se a reta passar pela origem.",
+            "independem dos valores observados de Y.",
+            "minimizam a soma dos valores absolutos dos resíduos.",
+            "coincidem com as obtidas pelo método dos mínimos quadrados ordinários."
+          ],
+          "answer": "E",
+          "explanation": "Sob normalidade dos erros, maximizar a log-verossimilhança equivale a minimizar Σ(Yi − a − bXi)², o critério dos mínimos quadrados, e as estimativas de a e b são as mesmas."
+        },
+        {
+          "topic": "Interpretação dos coeficientes",
+          "pattern": "caso",
+          "difficulty": 1,
+          "pageRef": 47,
+          "statement": "Em uma análise, Y é o desempenho em uma prova física e X são as horas semanais de treino, com Ŷ = 12 + 0,8X. É correto afirmar que",
+          "support": null,
+          "options": [
+            "cada hora a mais de treino está associada a um aumento médio de 0,8 no desempenho, e o valor esperado para X = 0 é 12.",
+            "cada hora a mais de treino aumenta o desempenho em 12, e o valor esperado para X = 0 é 0,8.",
+            "o desempenho médio é 0,8, e o treino não tem efeito.",
+            "o desempenho é sempre 12 + 0,8, qualquer que seja o treino.",
+            "a reta passa pela origem, pois 12 + 0,8 × 0 = 0."
+          ],
+          "answer": "A",
+          "explanation": "O coeficiente b = 0,8 é a mudança esperada em Y para cada unidade de aumento em X, e a = 12 é o valor médio estimado de Y quando X = 0."
+        },
+        {
+          "topic": "Hipótese testada na ANOVA da regressão",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 48,
+          "statement": "Na análise de variância da regressão linear simples, a hipótese nula testada é",
+          "support": null,
+          "options": [
+            "H0: α = 0, isto é, a reta passa pela origem.",
+            "H0: R² = 1, isto é, o ajuste é perfeito.",
+            "H0: β = 0, isto é, não existe relação linear entre X e Y.",
+            "H0: σ² = 0, isto é, não há erro aleatório.",
+            "H0: β ≠ 0, isto é, existe relação linear entre X e Y."
+          ],
+          "answer": "C",
+          "explanation": "A ANOVA da regressão (razão F) testa se a inclinação β é nula contra β ≠ 0. Aceitar H0 significaria que o modelo linear não reduz o resíduo de forma relevante em relação ao modelo constante."
+        },
+        {
+          "topic": "Graus de liberdade da regressão",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 48,
+          "statement": "Em uma regressão linear simples ajustada com n = 25 observações, os graus de liberdade do modelo, dos resíduos e do total são, respectivamente,",
+          "support": null,
+          "options": [
+            "2, 23 e 25.",
+            "1, 23 e 24.",
+            "1, 24 e 25.",
+            "1, 22 e 24.",
+            "2, 22 e 24."
+          ],
+          "answer": "B",
+          "explanation": "GL do modelo = 1; GL dos resíduos = n − 2 = 23; GL total = n − 1 = 24, com GL total = GL modelo + GL resíduos (24 = 1 + 23)."
+        },
+        {
+          "topic": "Coeficiente de determinação",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 52,
+          "statement": "Em uma regressão linear simples, SQT = 500 e SQR (soma dos quadrados dos resíduos) = 120. O coeficiente de determinação R² é",
+          "support": null,
+          "options": [
+            "0,24.",
+            "0,87.",
+            "0,76.",
+            "3,17.",
+            "0,63."
+          ],
+          "answer": "C",
+          "explanation": "SQM = SQT − SQR = 380, e R² = SQM/SQT = 380/500 = 0,76. O valor 0,24 é SQR/SQT, 0,87 é a raiz de R², e 3,17 é SQM/SQR."
+        },
+        {
+          "topic": "SQM pela inclinação",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 52,
+          "statement": "Em uma regressão linear simples, a inclinação estimada é b = 2,5, Σ(Xi − X̄)² = 16 e a soma dos quadrados totais é SQT = 130. A soma dos quadrados dos resíduos (SQR) é",
+          "support": null,
+          "options": [
+            "100.",
+            "230.",
+            "40.",
+            "30.",
+            "65."
+          ],
+          "answer": "D",
+          "explanation": "SQM = b² · Σ(Xi − X̄)² = 6,25 × 16 = 100, e SQR = SQT − SQM = 130 − 100 = 30. O valor 100 é o SQM, e 230 soma as duas parcelas."
+        },
+        {
+          "topic": "Estatística F",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 55,
+          "statement": "Em uma regressão linear simples com n = 12 observações, SQM = 450 e SQR = 150. A estatística F* = QMM/QMR é",
+          "support": null,
+          "options": [
+            "3.",
+            "45.",
+            "37,5.",
+            "450.",
+            "30."
+          ],
+          "answer": "E",
+          "explanation": "QMM = SQM/1 = 450 e QMR = SQR/(n − 2) = 150/10 = 15, logo F* = 450/15 = 30. O valor 3 é SQM/SQR, sem dividir pelos graus de liberdade."
+        },
+        {
+          "topic": "Distribuição da estatística F",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 55,
+          "statement": "Em uma regressão linear simples com n = 18 observações, sob H0: β = 0, a estatística F* segue distribuição F de Snedecor com",
+          "support": null,
+          "options": [
+            "1 grau de liberdade no numerador e 17 no denominador.",
+            "2 graus de liberdade no numerador e 16 no denominador.",
+            "1 grau de liberdade no numerador e 16 no denominador.",
+            "16 graus de liberdade no numerador e 1 no denominador.",
+            "18 graus de liberdade no numerador e 1 no denominador."
+          ],
+          "answer": "C",
+          "explanation": "O numerador (modelo) tem 1 grau de liberdade e o denominador (resíduos) tem n − 2 = 16. A ordem importa: modelo no numerador, resíduos no denominador."
+        },
+        {
+          "topic": "Coeficiente de determinação ajustado",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 54,
+          "statement": "Em uma regressão linear simples com n = 12 observações, R² = 0,80. O coeficiente de determinação ajustado, R̄² = 1 − (1 − R²)(n − 1)/(n − 2), é",
+          "support": null,
+          "options": [
+            "0,80.",
+            "0,78.",
+            "0,82.",
+            "0,72.",
+            "0,22."
+          ],
+          "answer": "B",
+          "explanation": "R̄² = 1 − 0,20 × 11/10 = 1 − 0,22 = 0,78. O ajuste pelos graus de liberdade reduz R² (0,80). O valor 0,22 é o termo subtraído."
+        },
+        {
+          "topic": "Tabela ANOVA incompleta",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 55,
+          "statement": "Em uma tabela ANOVA de regressão linear simples com n = 22 observações, sabe-se que SQT = 840 e que o quadrado médio dos resíduos é QMR = 8. O coeficiente de determinação do modelo é, aproximadamente,",
+          "support": null,
+          "options": [
+            "0,19.",
+            "0,95.",
+            "0,81.",
+            "0,86.",
+            "0,76."
+          ],
+          "answer": "C",
+          "explanation": "GL dos resíduos = n − 2 = 20, então SQR = 8 × 20 = 160 e SQM = 840 − 160 = 680. R² = 680/840 ≈ 0,81. O valor 0,19 é SQR/SQT."
+        },
+        {
+          "topic": "Soma de quadrados",
+          "pattern": "correta",
+          "difficulty": 2,
+          "pageRef": 50,
+          "statement": "Na análise de variância da regressão linear simples, a decomposição da variação total é:",
+          "support": null,
+          "options": [
+            "SQT = SQM − SQR, em que SQM = Σ(Yi − Ȳ)².",
+            "SQT = SQM + SQR, em que SQT = Σ(Yi − Ȳ)², SQM = Σ(Ŷi − Ȳ)² e SQR = Σ(Yi − Ŷi)².",
+            "SQM = SQT + SQR, em que SQR = Σ(Ŷi − Ȳ)².",
+            "SQT = SQM × SQR, em que SQT = Σ(Yi − Ŷi)².",
+            "SQR = SQT + SQM, em que SQM = Σ(Yi − Ŷi)²."
+          ],
+          "answer": "B",
+          "explanation": "A variação total em torno da média (SQT) divide-se na parte explicada pelo modelo (SQM = Σ(Ŷi − Ȳ)²) e na parte residual (SQR = Σ(Yi − Ŷi)²), pois o termo cruzado se anula. Em algumas provas, SQR designa a soma dos quadrados da regressão, o que o enunciado costuma esclarecer."
+        },
+        {
+          "topic": "Correlação a partir de R²",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 52,
+          "statement": "Em uma regressão linear simples com R² = 0,64 e inclinação b negativa, o coeficiente de correlação linear entre X e Y é",
+          "support": null,
+          "options": [
+            "0,80.",
+            "−0,64.",
+            "0,64.",
+            "−0,80.",
+            "−0,40."
+          ],
+          "answer": "D",
+          "explanation": "O módulo do coeficiente de correlação é √R² = √0,64 = 0,80, e o sinal acompanha o da inclinação (b = ρ·σY/σX), logo r = −0,80. O valor −0,64 confunde r com R²."
+        },
+        {
+          "topic": "Leitura de uma tabela ANOVA",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 55,
+          "statement": "Uma tabela ANOVA de regressão linear simples traz: Modelo, SQM = 360, 1 g.l.; Erro, SQR = 40, 8 g.l.; Total, SQT = 400, 9 g.l.\n\nAssinale a alternativa correta.",
+          "support": null,
+          "options": [
+            "A estatística F* é 72 e a estimativa de σ² é 5.",
+            "O número de observações é 9 e F* é 72.",
+            "A estatística F* é 9 e a estimativa de σ² é 5.",
+            "O coeficiente de determinação é 0,10 e a estimativa de σ² é 5.",
+            "A estatística F* é 72 e a estimativa de σ² é 40."
+          ],
+          "answer": "A",
+          "explanation": "GL total = 9 implica n = 10. QMM = 360, QMR = 40/8 = 5 (estimativa de σ²) e F* = 360/5 = 72. R² = 360/400 = 0,90, e não 0,10."
+        },
+        {
+          "topic": "Decisão pelo teste F",
+          "pattern": "caso",
+          "difficulty": 3,
+          "pageRef": 55,
+          "statement": "Em uma regressão linear simples com n = 10, obteve-se F* = 72. O valor crítico da F de Snedecor com 1 e 8 graus de liberdade, a 5%, é 5,32. A conclusão do teste de H0: β = 0 é",
+          "support": null,
+          "options": [
+            "não rejeitar H0, pois F* é maior que o valor crítico.",
+            "rejeitar H0, havendo evidência de relação linear significativa entre X e Y.",
+            "rejeitar H0, mas concluir que não há relação linear entre X e Y.",
+            "não rejeitar H0, pois o teste é unilateral.",
+            "o teste é inconclusivo, pois F* excede 1."
+          ],
+          "answer": "B",
+          "explanation": "Como F* = 72 > 5,32, rejeita-se H0: β = 0 e conclui-se que existe relação linear significativa. Quando F* é maior que o crítico, a hipótese nula é rejeitada, e não o contrário."
+        },
+        {
+          "topic": "Interpretação do R²",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 53,
+          "statement": "Em uma regressão linear simples, o coeficiente de determinação foi R² = 0,82. Isso significa que",
+          "support": null,
+          "options": [
+            "82% dos pontos estão exatamente sobre a reta de regressão.",
+            "o coeficiente de correlação linear é 0,82.",
+            "a inclinação da reta é 0,82.",
+            "82% da variação de X é explicada por Y.",
+            "do total de variação observada em Y, 82% é atribuída ao modelo ajustado."
+          ],
+          "answer": "E",
+          "explanation": "R² = SQM/SQT é a proporção da variação total de Y explicada pela regressão; os 18% restantes decorrem de fatores não capturados pelo modelo. O coeficiente de correlação é a raiz de R² (cerca de 0,91)."
+        }
+      ]
     }
-   ]
-  },
-  {
-   "id": "estatistica/a12/s02",
-   "bizu": {
-    "summary": [
-     "### 1. Definições, Fórmulas e Propriedades Centrais",
-     "- **Correlação parcial:** mede a relação entre X e Y controlando o efeito de uma terceira variável Z.",
-     "- **Fórmula: r_XY·Z:** (r_XY − r_XZ·r_YZ) / √[(1 − r_XZ²)(1 − r_YZ²)]**.",
-     "- **Autocorrelação:** relação de uma variável consigo mesma em momentos diferentes (série temporal e sua defasagem), em vez de duas variáveis distintas.",
-     "- **Invariância a deslocamentos:** somar constantes a X e/ou Y não altera r (os desvios em relação às médias permanecem iguais).",
-     "também r(X − 200, Y − 300) = r(X, Y). Multiplicação por constantes de mesmo sinal: não altera r (nem o sinal). Multiplicação por constantes de sinais contrários: inverte o sinal de r: r(2X, −2Y) = −r(X, Y), mantendo o módulo.",
-     "### 2. Métodos de Resolução e Classificações",
-     "- correlação parcial ≈ 0,404.",
-     "- O valor menor que 0,6 mostra o efeito de Z.",
-     "### 3. Exemplos de Aplicação e Procedimentos",
-     "> 💡 **Exemplo Prático:** Exemplo: r_XY = 0,6, r_XZ = 0,5 e r_YZ = 0,7 → numerador 0,6 − 0,35 = 0,25 e denominador √(0,75·0,51) ≈ 0,6185.",
-     "> 💡 **Exemplo Prático:** Ex.: r(X + 3, Y + 5) = r(X, Y).",
-     "> 💡 **Exemplo Prático:** Ex.: r(2X, 2Y) = r(−2X, −2Y) = r(X, Y).",
-     "### 4. Pontos Críticos e Cuidados nos Cálculos",
-     "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
-    ],
-    "teoria": [
-     {
-      "statement": "Somar uma constante a uma das variáveis não altera o coeficiente de correlação de Pearson.",
-      "isTrue": true,
-      "explanation": "Os desvios em relação à média permanecem os mesmos."
-     },
-     {
-      "statement": "Multiplicar X por 2 e Y por −2 mantém o valor do coeficiente de correlação, inclusive o sinal.",
-      "isTrue": false,
-      "explanation": "Constantes de sinais contrários invertem o sinal de r, preservando o módulo."
-     },
-     {
-      "statement": "A correlação parcial entre X e Y controla a influência de uma terceira variável Z.",
-      "isTrue": true,
-      "explanation": "Mostra o que resta da relação entre X e Y depois de descontar o efeito de Z."
-     },
-     {
-      "statement": "A autocorrelação mede a relação entre duas variáveis diferentes medidas no mesmo instante.",
-      "isTrue": false,
-      "explanation": "A autocorrelação compara uma variável com ela mesma em instantes diferentes."
-     }
-    ],
-    "revisao": [
-     {
-      "statement": "Multiplicar ambas as variáveis por −2 não altera o coeficiente de correlação.",
-      "isTrue": true,
-      "explanation": "As constantes têm o mesmo sinal, então r preserva valor e sinal."
-     },
-     {
-      "statement": "Com r_XY = 0,6, r_XZ = 0,5 e r_YZ = 0,7, a correlação parcial é maior que 0,6.",
-      "isTrue": false,
-      "explanation": "Vale cerca de 0,404, menor que 0,6, pois parte da relação era explicada por Z."
-     },
-     {
-      "statement": "Se r(X, Y) = 0,984, então r(X − 200, Y − 300) também vale 0,984.",
-      "isTrue": true,
-      "explanation": "A subtração de constantes não afeta o coeficiente."
-     }
-    ],
-    "pointers": [
-     {
-      "topic": "Correlação parcial",
-      "pageRef": 19
-     },
-     {
-      "topic": "Exemplo da correlação parcial",
-      "pageRef": 20
-     },
-     {
-      "topic": "Autocorrelação",
-      "pageRef": 20
-     },
-     {
-      "topic": "Efeito da soma de constantes",
-      "pageRef": 22
-     },
-     {
-      "topic": "Multiplicação por constantes",
-      "pageRef": 25
-     },
-     {
-      "topic": "Constantes de sinais contrários",
-      "pageRef": 28
-     }
-    ]
-   },
-   "questions": [
-    {
-     "topic": "Correlação parcial",
-     "pattern": "conceito",
-     "difficulty": 1,
-     "pageRef": 19,
-     "statement": "A correlação parcial r_XY,Z mede",
-     "support": null,
-     "options": [
-      "a relação linear entre X e Y ao longo do tempo.",
-      "a relação linear entre X e Y, controlando (ajustando) o efeito de uma terceira variável Z.",
-      "a relação linear entre X e Z, descontado o efeito de Y.",
-      "a soma das correlações de X e de Y com Z.",
-      "a relação não linear entre X e Y."
-     ],
-     "answer": "B",
-     "explanation": "A correlação parcial extrai o efeito de uma terceira variável (aqui, Z) sobre a relação entre X e Y, mostrando como elas se relacionam independentemente do impacto de Z."
-    },
-    {
-     "topic": "Cálculo da correlação parcial",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 19,
-     "statement": "Em um estudo, r_XY = 0,70, r_XZ = 0,60 e r_YZ = 0,50. A correlação parcial entre X e Y, controlando Z, é, aproximadamente,",
-     "support": null,
-     "options": [
-      "0,40.",
-      "0,83.",
-      "0,70.",
-      "0,31.",
-      "0,58."
-     ],
-     "answer": "E",
-     "explanation": "r_XY,Z = (r_XY − r_XZ·r_YZ)/√[(1 − r_XZ²)(1 − r_YZ²)] = (0,70 − 0,30)/√(0,64 × 0,75) = 0,40/0,6928 ≈ 0,58. O valor 0,40 é só o numerador, e 0,83 omite a raiz quadrada."
-    },
-    {
-     "topic": "Interpretação da correlação parcial",
-     "pattern": "caso",
-     "difficulty": 2,
-     "pageRef": 19,
-     "statement": "A correlação de Pearson entre horas de estudo (X) e desempenho (Y) foi 0,80. Controlando-se o nível de estresse (Z), a correlação parcial caiu para 0,10. Isso indica que",
-     "support": null,
-     "options": [
-      "o estresse não tem relação com X nem com Y.",
-      "o estresse (Z) influenciava fortemente a correlação original entre X e Y.",
-      "a correlação original entre X e Y era nula.",
-      "o coeficiente de Pearson foi calculado de modo incorreto.",
-      "a relação entre X e Y é perfeita após o controle de Z."
-     ],
-     "answer": "B",
-     "explanation": "Se a correlação parcial difere muito da correlação original, a terceira variável estava influenciando a relação: grande parte da associação entre X e Y vinha de Z."
-    },
-    {
-     "topic": "Autocorrelação",
-     "pattern": "conceito",
-     "difficulty": 1,
-     "pageRef": 20,
-     "statement": "Em estatística, a autocorrelação de uma variável avalia",
-     "support": null,
-     "options": [
-      "a relação entre duas variáveis distintas, no mesmo instante.",
-      "a relação entre a média e a variância de uma variável.",
-      "a relação entre uma variável e o seu quadrado.",
-      "o erro de medição de uma variável.",
-      "o grau em que seus valores, em certo instante ou posição, se relacionam com os de outros instantes ou posições."
-     ],
-     "answer": "E",
-     "explanation": "Em vez de comparar duas variáveis diferentes, a autocorrelação compara a variável consigo mesma em diferentes pontos do tempo (séries temporais) ou do espaço."
-    },
-    {
-     "topic": "Autocorrelação dos resíduos",
-     "pattern": "conceito",
-     "difficulty": 2,
-     "pageRef": 20,
-     "statement": "Em um modelo de regressão, os resíduos apresentam alta autocorrelação. Isso",
-     "support": null,
-     "options": [
-      "sugere violação da suposição de independência dos erros e possível problema de especificação do modelo.",
-      "indica que o modelo está bem ajustado, pois os erros são previsíveis.",
-      "mostra que a variância dos erros é nula.",
-      "prova que a variável independente não influencia a dependente.",
-      "é uma exigência do modelo de regressão linear."
-     ],
-     "answer": "A",
-     "explanation": "Uma das suposições do modelo é que os erros sejam independentes. Resíduos com forte autocorrelação violam essa condição e podem indicar que o modelo foi mal especificado."
-    },
-    {
-     "topic": "Propriedade: soma de constantes",
-     "pattern": "calculo",
-     "difficulty": 1,
-     "pageRef": 23,
-     "statement": "O coeficiente de correlação entre X e Y é 0,62. A correlação entre X + 200 e Y − 35 é",
-     "support": null,
-     "options": [
-      "0,27.",
-      "0,43.",
-      "1,00.",
-      "0,62.",
-      "−0,62."
-     ],
-     "answer": "D",
-     "explanation": "Somar ou subtrair constantes não altera o coeficiente de correlação, pois os desvios em relação às médias permanecem os mesmos."
-    },
-    {
-     "topic": "Propriedade: constantes com sinais contrários",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 28,
-     "statement": "Sabe-se que r(X, Y) = 0,70. O valor de r(−3X, 2Y + 4) é",
-     "support": null,
-     "options": [
-      "0,70.",
-      "−2,10.",
-      "−0,70.",
-      "1,40.",
-      "−0,35."
-     ],
-     "answer": "C",
-     "explanation": "Multiplicar por constantes de sinais contrários inverte o sinal do coeficiente, sem alterar seu módulo (a constante somada não importa): r = −0,70. O valor −2,10 multiplicaria r por −3."
-    },
-    {
-     "topic": "Simplificação por subtração de constantes",
-     "pattern": "calculo",
-     "difficulty": 3,
-     "pageRef": 23,
-     "statement": "Os pares (X, Y) são (400; 801), (401; 803), (402; 804) e (403; 808). Usando a propriedade de que subtrair constantes não altera r, o coeficiente de correlação é, aproximadamente,",
-     "support": null,
-     "options": [
-      "0,50.",
-      "0,96.",
-      "0,82.",
-      "1,00.",
-      "0,77."
-     ],
-     "answer": "B",
-     "explanation": "Subtraindo 400 de X e 800 de Y, obtêm-se (0; 1), (1; 3), (2; 4) e (3; 8). As médias são 1,5 e 4; Σ(x)(y) = 11, Σx² = 5 e Σy² = 26. Logo r = 11/√(5 × 26) = 11/√130 ≈ 0,96."
-    },
-    {
-     "topic": "Propriedades do coeficiente de correlação",
-     "pattern": "incorreta",
-     "difficulty": 2,
-     "pageRef": 25,
-     "statement": "Sobre as propriedades do coeficiente de correlação linear, assinale a alternativa INCORRETA.",
-     "support": null,
-     "options": [
-      "Somar 20 a X e subtrair 7 de Y não altera o coeficiente.",
-      "Multiplicar X e Y por 5 não altera o coeficiente.",
-      "Multiplicar X por −2 e Y por −3 não altera o coeficiente.",
-      "Multiplicar X por 2 e Y por −2 inverte o sinal do coeficiente.",
-      "Multiplicar X por −4 e Y por 3 mantém o sinal do coeficiente de correlação."
-     ],
-     "answer": "E",
-     "explanation": "Constantes de sinais contrários (−4 e 3) invertem o sinal de r; constantes de mesmo sinal ou constantes somadas não alteram o coeficiente. A afirmação do enunciado trata erroneamente o caso de sinais contrários."
-    },
-    {
-     "topic": "Correlação parcial com Z não correlacionada",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 19,
-     "statement": "Sabe-se que r_XY = 0,45, r_XZ = 0 e r_YZ = 0. A correlação parcial entre X e Y, controlando Z, é",
-     "support": null,
-     "options": [
-      "0,45.",
-      "0,00.",
-      "0,225.",
-      "0,90.",
-      "1,00."
-     ],
-     "answer": "A",
-     "explanation": "Com r_XZ = r_YZ = 0, a fórmula reduz-se a r_XY,Z = r_XY/√(1 × 1) = 0,45: se Z não se relaciona com X nem com Y, controlá-la não muda a correlação."
-    },
-    {
-     "topic": "Sinal da correlação parcial",
-     "pattern": "calculo",
-     "difficulty": 3,
-     "pageRef": 20,
-     "statement": "Em um estudo, r_XY = 0,20, r_XZ = 0,60 e r_YZ = 0,50. A correlação parcial entre X e Y, controlando Z, é, aproximadamente,",
-     "support": null,
-     "options": [
-      "0,14.",
-      "0,20.",
-      "−0,10.",
-      "-0,14.",
-      "−0,29."
-     ],
-     "answer": "D",
-     "explanation": "r_XY,Z = (0,20 − 0,60 × 0,50)/√[(1 − 0,36)(1 − 0,25)] = (0,20 − 0,30)/0,6928 ≈ -0,14. O numerador é negativo, de modo que o sinal da correlação muda ao se controlar Z. O valor −0,10 é só o numerador."
-    }
-   ]
-  },
-  {
-   "id": "estatistica/a12/s03",
-   "bizu": {
-    "summary": [
-     "### 1. Definições, Fórmulas e Propriedades Centrais",
-     "- **Regressão linear simples explica uma variável dependente Y por uma independente X: Yᵢ:** α + β·Xᵢ + εᵢ.",
-     "- **A parte α + βX é o valor esperado: E(Y|X):** α + βX. ε é o **erro aleatório**.",
-     "- **Pressupostos sobre o erro: E(ε):** 0.",
-     "- **Var(ε) = σ²** constante (**homocedasticidade**).",
-     "erros **independentes** (Cov(εᵢ, εⱼ) = 0). Esses três pressupostos não obrigam o erro a seguir a normal **padrão**: basta ter média 0 e variância σ². Método dos mínimos quadrados ordinários (MQO): escolhe a e b que minimizam Σ(Yᵢ − a − bXᵢ)² (soma dos quadrados dos resíduos).",
-     "### 2. Métodos de Resolução e Classificações",
-     "- Quando as variâncias dos erros diferem, há **heterocedasticidade**.",
-     "- quando os erros se correlacionam, há **autocorrelação**.",
-     "- Obtém-se derivando em relação a e b e igualando a zero.",
-     "- A reta ajustada **passa pelo ponto das médias (X̄, Ȳ)**.",
-     "- **A soma dos resíduos:** é zero.",
-     "### 3. Exemplos de Aplicação e Procedimentos",
-     "> 💡 **Exemplo Prático:** Ex.: com a = 2 e b = 0,8, o valor para t = 13 é 12,4.",
-     "### 4. Pontos Críticos e Cuidados nos Cálculos",
-     "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
-    ],
-    "teoria": [
-     {
-      "statement": "No modelo de regressão linear simples, o erro aleatório tem média zero e variância constante.",
-      "isTrue": true,
-      "explanation": "São pressupostos do modelo (homocedasticidade e(ε) = 0)."
-     },
-     {
-      "statement": "No modelo de regressão linear simples, o erro aleatório obrigatoriamente segue a distribuição normal padrão.",
-      "isTrue": false,
-      "explanation": "Exige-se média 0 e variância σ² (constante); não necessariamente variância 1."
-     },
-     {
-      "statement": "A reta de regressão obtida por mínimos quadrados passa pelo ponto (X̄, Ȳ).",
-      "isTrue": true,
-      "explanation": "De a = Ȳ − bX̄ conclui-se Ȳ = a + bX̄."
-     },
-     {
-      "statement": "O estimador da inclinação é b = S_XY/S_XX.",
-      "isTrue": true,
-      "explanation": "Razão entre a soma dos produtos dos desvios e a soma dos quadrados dos desvios de X."
-     }
-    ],
-    "revisao": [
-     {
-      "statement": "O método dos mínimos quadrados minimiza a soma dos quadrados dos resíduos.",
-      "isTrue": true,
-      "explanation": "É a definição do MQO."
-     },
-     {
-      "statement": "O intercepto estimado é a = X̄ − b·Ȳ.",
-      "isTrue": false,
-      "explanation": "O intercepto é a = Ȳ − b·X̄."
-     },
-     {
-      "statement": "Em uma regressão pela origem, o coeficiente angular é ΣXY/ΣX².",
-      "isTrue": true,
-      "explanation": "Com α = 0, minimiza-se Σ(Y − bX)²."
-     },
-     {
-      "statement": "Em uma regressão que passa pela origem, a soma dos resíduos é sempre igual a zero.",
-      "isTrue": false,
-      "explanation": "Sem intercepto, não há garantia de que os resíduos somem zero."
-     }
-    ],
-    "pointers": [
-     {
-      "topic": "Variável dependente e independente",
-      "pageRef": 30
-     },
-     {
-      "topic": "Modelo Y = α + βX + ε e pressupostos",
-      "pageRef": 32
-     },
-     {
-      "topic": "Mínimos quadrados: condições de primeira ordem",
-      "pageRef": 34
-     },
-     {
-      "topic": "Estimador de b",
-      "pageRef": 35
-     },
-     {
-      "topic": "Estimador do intercepto a",
-      "pageRef": 36
-     },
-     {
-      "topic": "Previsões com a reta",
-      "pageRef": 41
-     },
-     {
-      "topic": "Reta passando pela origem",
-      "pageRef": 43
-     }
-    ]
-   },
-   "questions": [
-    {
-     "topic": "Equação da reta por dois pontos",
-     "pattern": "calculo",
-     "difficulty": 1,
-     "pageRef": 30,
-     "statement": "A reta que passa pelos pontos (3, 10) e (7, 22) tem equação",
-     "support": null,
-     "options": [
-      "y = 3x + 1.",
-      "y = 3x + 2.",
-      "y = 4x − 2.",
-      "y = 3x + 10.",
-      "y = x/3 + 9."
-     ],
-     "answer": "A",
-     "explanation": "O coeficiente angular é m = (22 − 10)/(7 − 3) = 3. Usando (3, 10): 10 = 3 × 3 + b, logo b = 1 e y = 3x + 1."
-    },
-    {
-     "topic": "Coeficiente angular e linear",
-     "pattern": "conceito",
-     "difficulty": 1,
-     "pageRef": 30,
-     "statement": "Na função y = −2x + 8, é correto afirmar que",
-     "support": null,
-     "options": [
-      "a função é crescente e a reta intercepta o eixo y no ponto (0, 8).",
-      "a função é decrescente e a reta intercepta o eixo y no ponto (0, −2).",
-      "a função é constante e a reta intercepta o eixo x em 8.",
-      "a função é crescente e a reta passa pela origem.",
-      "a função é decrescente e a reta intercepta o eixo y no ponto (0, 8)."
-     ],
-     "answer": "E",
-     "explanation": "O coeficiente angular m = −2 < 0 indica função decrescente, e o coeficiente linear b = 8 é o ponto em que a reta cruza o eixo y, (0, 8)."
-    },
-    {
-     "topic": "Pressupostos sobre o erro",
-     "pattern": "correta",
-     "difficulty": 2,
-     "pageRef": 32,
-     "statement": "No modelo de regressão linear simples Yi = α + βXi + εi, as suposições básicas sobre o erro εi são:",
-     "support": null,
-     "options": [
-      "E(εi) = 1, variância constante e erros correlacionados.",
-      "E(εi) = 0, variância constante (homocedasticidade) e erros não correlacionados entre si.",
-      "E(εi) = 0, variância crescente com Xi (heterocedasticidade) e erros independentes.",
-      "E(εi) = σ², variância nula e erros independentes.",
-      "E(εi) = 0, variância constante e erros com autocorrelação positiva."
-     ],
-     "answer": "B",
-     "explanation": "Os erros devem ter média zero, variância constante (homocedasticidade) e covariância nula entre si (sem autocorrelação). Variância que muda com X é heterocedasticidade, e erros dependentes caracterizam autocorrelação."
-    },
-    {
-     "topic": "Critério dos mínimos quadrados",
-     "pattern": "conceito",
-     "difficulty": 1,
-     "pageRef": 33,
-     "statement": "O método dos mínimos quadrados ordinários escolhe a reta de regressão estimada de modo a minimizar",
-     "support": null,
-     "options": [
-      "a soma das diferenças entre os valores observados e os ajustados, sem elevá-las ao quadrado.",
-      "a soma dos valores absolutos das diferenças entre observados e ajustados.",
-      "a soma dos quadrados dos resíduos, isto é, dos desvios entre o que se observou e o que o modelo estima.",
-      "o maior resíduo individual do conjunto de dados.",
-      "a soma dos quadrados dos valores observados de Y."
-     ],
-     "answer": "C",
-     "explanation": "O MQO minimiza Σ(Yi − Ŷi)² = Σei². Sem o quadrado, resíduos positivos e negativos se cancelariam, e minimizar o valor absoluto ou o maior resíduo seriam critérios distintos."
-    },
-    {
-     "topic": "Estimativas de a e b com somatórios",
-     "pattern": "calculo",
-     "difficulty": 3,
-     "pageRef": 35,
-     "statement": "Para n = 10 pares, tem-se ΣX = 50, ΣY = 120, ΣXY = 680 e ΣX² = 290. As estimativas de mínimos quadrados da reta Ŷ = a + bX são",
-     "support": null,
-     "options": [
-      "b = 0,5 e a = 9,5.",
-      "b = 2 e a = 12.",
-      "b = 2 e a = −8.",
-      "b = 4 e a = −8.",
-      "b = 2 e a = 2."
-     ],
-     "answer": "E",
-     "explanation": "b = (ΣXY − n·X̄·Ȳ)/(ΣX² − n·X̄²) = (680 − 10 × 5 × 12)/(290 − 250) = 80/40 = 2, e a = Ȳ − b·X̄ = 12 − 2 × 5 = 2. O valor a = 12 é a média de Y, sem descontar b·X̄."
-    },
-    {
-     "topic": "Coeficiente angular pela correlação",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 35,
-     "statement": "Em uma regressão linear simples de Y sobre X, o coeficiente de correlação é 0,6, o desvio padrão de X é 5 e o de Y é 10. A estimativa do coeficiente angular b é",
-     "support": null,
-     "options": [
-      "0,3.",
-      "3,0.",
-      "0,83.",
-      "1,2.",
-      "6,0."
-     ],
-     "answer": "D",
-     "explanation": "b = ρ · σY/σX = 0,6 × 10/5 = 1,2. O valor 0,3 inverte a razão dos desvios (σX/σY), e 6,0 multiplica ρ por σY sem dividir por σX."
-    },
-    {
-     "topic": "Coeficiente angular pela covariância",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 34,
-     "statement": "Em uma amostra, Cov(X, Y) = 18, Var(X) = 9, X̄ = 4 e Ȳ = 10. A reta de regressão estimada de Y sobre X é",
-     "support": null,
-     "options": [
-      "Ŷ = 8 + 2X.",
-      "Ŷ = 10 + 2X.",
-      "Ŷ = 2 + 0,5X.",
-      "Ŷ = 18 + 9X.",
-      "Ŷ = 2 + 2X."
-     ],
-     "answer": "E",
-     "explanation": "b = Cov(X, Y)/Var(X) = 18/9 = 2 e a = Ȳ − b·X̄ = 10 − 2 × 4 = 2, logo Ŷ = 2 + 2X. O valor 0,5 seria Var(X)/Cov(X, Y)."
-    },
-    {
-     "topic": "Reta passa pelas médias",
-     "pattern": "calculo",
-     "difficulty": 1,
-     "pageRef": 36,
-     "statement": "Uma reta de regressão por mínimos quadrados é Ŷ = 3 + 0,5X, e a média de X na amostra é 14. A média de Y na amostra é",
-     "support": null,
-     "options": [
-      "10.",
-      "7.",
-      "3,5.",
-      "17.",
-      "14."
-     ],
-     "answer": "A",
-     "explanation": "A reta estimada passa pelo ponto (X̄, Ȳ), então Ȳ = 3 + 0,5 × 14 = 10. O valor 7 é apenas 0,5 × 14, sem o intercepto."
-    },
-    {
-     "topic": "Estimador da variância dos erros",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 36,
-     "statement": "Em uma regressão linear simples com n = 14 observações, a soma dos quadrados dos resíduos é 72. A estimativa da variância dos erros σ² é",
-     "support": null,
-     "options": [
-      "6,0.",
-      "5,14.",
-      "5,54.",
-      "72.",
-      "12,0."
-     ],
-     "answer": "A",
-     "explanation": "σ̂² = Σ(Yi − Ŷi)²/(n − 2) = 72/12 = 6,0; perdem-se 2 graus de liberdade por causa dos 2 parâmetros estimados. O valor 5,14 divide por n (72/14), e 5,54 por n − 1 (72/13)."
-    },
-    {
-     "topic": "Variância do estimador de b",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 36,
-     "statement": "Em uma regressão linear simples, a estimativa da variância dos erros é 6 e Σ(Xi − X̄)² = 24. A variância estimada do coeficiente angular b é",
-     "support": null,
-     "options": [
-      "4,00.",
-      "0,50.",
-      "0,25.",
-      "144,00.",
-      "0,06."
-     ],
-     "answer": "C",
-     "explanation": "Var(b) = σ̂²/Σ(Xi − X̄)² = 6/24 = 0,25. O valor 4,00 inverte a razão, e 0,50 é a raiz quadrada (erro padrão)."
-    },
-    {
-     "topic": "Variância do estimador do intercepto",
-     "pattern": "calculo",
-     "difficulty": 3,
-     "pageRef": 37,
-     "statement": "Em uma regressão com n = 10, σ̂² = 4, X̄ = 5 e Σ(Xi − X̄)² = 40, a variância estimada do intercepto a, dada por σ̂²·[1/n + X̄²/Σ(Xi − X̄)²], é",
-     "support": null,
-     "options": [
-      "2,9.",
-      "2,5.",
-      "0,29.",
-      "16,1.",
-      "0,725."
-     ],
-     "answer": "A",
-     "explanation": "Var(a) = 4 × (1/10 + 25/40) = 4 × (0,1 + 0,625) = 2,9. O valor 0,725 é o fator entre parênteses, sem multiplicar por σ̂²."
-    },
-    {
-     "topic": "Utilidade da variância dos coeficientes",
-     "pattern": "conceito",
-     "difficulty": 2,
-     "pageRef": 37,
-     "statement": "A variância dos estimadores dos coeficientes a e b de uma regressão linear simples é necessária, principalmente, para",
-     "support": null,
-     "options": [
-      "calcular a média de X e de Y.",
-      "determinar a inclinação da reta de regressão.",
-      "garantir que a soma dos resíduos seja zero.",
-      "construir intervalos de confiança e testar hipóteses, como a de que b é diferente de zero.",
-      "transformar a variável dependente em independente."
-     ],
-     "answer": "D",
-     "explanation": "A variância dos coeficientes mede a incerteza das estimativas, permitindo construir intervalos de confiança, realizar testes (como H0: β = 0) e avaliar a precisão das previsões. As estimativas em si vêm do MQO."
-    },
-    {
-     "topic": "Previsão pela reta ajustada",
-     "pattern": "calculo",
-     "difficulty": 3,
-     "pageRef": 37,
-     "statement": "Cinco observações de (X, Y) são (1, 3), (2, 5), (3, 4), (4, 8) e (5, 10). Pela reta de mínimos quadrados, a previsão de Y para X = 6 é",
-     "support": null,
-     "options": [
-      "10,2.",
-      "11,1.",
-      "12,0.",
-      "9,3.",
-      "11,7."
-     ],
-     "answer": "B",
-     "explanation": "Médias: X̄ = 3 e Ȳ = 6. Σ(X − 3)(Y − 6) = 17 e Σ(X − 3)² = 10, logo b = 1,7 e a = 6 − 1,7 × 3 = 0,9. Então Ŷ(6) = 0,9 + 1,7 × 6 = 11,1. O valor 10,2 é 1,7 × 6, sem o intercepto."
-    },
-    {
-     "topic": "Regressão pela origem",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 43,
-     "statement": "Ajusta-se uma reta que passa pela origem, Ŷ = bX, por mínimos quadrados, a dados em que ΣXY = 210 e ΣX² = 100. A estimativa de b é",
-     "support": null,
-     "options": [
-      "0,48.",
-      "2,1.",
-      "210.",
-      "1,0.",
-      "21."
-     ],
-     "answer": "B",
-     "explanation": "No modelo sem intercepto, b = ΣXiYi/ΣXi² = 210/100 = 2,1. O valor 0,48 inverte a razão."
-    },
-    {
-     "topic": "Resíduos no modelo sem intercepto",
-     "pattern": "correta",
-     "difficulty": 3,
-     "pageRef": 43,
-     "statement": "Sobre os resíduos da regressão linear por mínimos quadrados, assinale a alternativa correta.",
-     "support": null,
-     "options": [
-      "No modelo que passa pela origem, a soma dos resíduos é sempre zero.",
-      "No modelo com intercepto, a soma dos resíduos nunca é zero.",
-      "No modelo que passa obrigatoriamente pela origem, não há garantia de que a soma dos resíduos seja zero.",
-      "Nos dois modelos, a soma dos resíduos é igual à soma dos valores observados.",
-      "No modelo com intercepto, a soma dos quadrados dos resíduos é sempre igual a zero."
-     ],
-     "answer": "C",
-     "explanation": "No modelo com intercepto, a reta passa pelo ponto médio e os resíduos somam zero; forçando a reta pela origem (α = 0) isso deixa de valer. A soma dos quadrados dos resíduos só é nula quando todos os pontos estão sobre a reta."
-    }
-   ]
-  },
-  {
-   "id": "estatistica/a12/s04",
-   "bizu": {
-    "summary": [
-     "### 1. Definições, Fórmulas e Propriedades Centrais",
-     "- Estimativa por máxima verossimilhança (EMV): com erros normais, maximizar a log-verossimilhança leva a estimadores de α e β iguais aos de mínimos quadrados.",
-     "- **Somas de quadrados: SQT:** Σ(Yᵢ − Ȳ)² (total).",
-     "- **SQM = Σ(Ŷᵢ − Ȳ)²** (explicada pelo modelo) **= b²·S_XX = b·S_XY**.",
-     "- **SQR = Σ(Yᵢ − Ŷᵢ)²** (resíduos).",
-     "Vale **SQT = SQM + SQR**. Coeficiente de determinação: R² = SQM/SQT = 1 − SQR/SQT, com 0 ≤ R² ≤ 1. É a fração da variação de Y explicada pelo modelo. na regressão simples, **R² = r²**.",
-     "### 2. Métodos de Resolução e Classificações",
-     "- F grande leva a rejeitar H₀.",
-     "### 3. Exemplos de Aplicação e Procedimentos",
-     "> 💡 **Exemplo Prático:** Exemplo de tabela ANOVA: SQT = 1000 e SQM = 900 → R² = 0,9 e r = √0,9 em módulo.",
-     "### 4. Pontos Críticos e Cuidados nos Cálculos",
-     "> ⚠️ **Atenção de Prova:** Análise de variância da regressão: compara o modelo de regressão com o modelo sem X (apenas média). Graus de liberdade: modelo = 1, resíduos = n − 2, total = n − 1."
-    ],
-    "teoria": [
-     {
-      "statement": "Na regressão linear simples, os graus de liberdade dos resíduos são n − 2.",
-      "isTrue": true,
-      "explanation": "Dois parâmetros (α e β) são estimados a partir de n observações."
-     },
-     {
-      "statement": "A soma dos quadrados totais é a soma da soma dos quadrados do modelo com a dos resíduos.",
-      "isTrue": true,
-      "explanation": "SQT = SQM + SQR."
-     },
-     {
-      "statement": "O coeficiente de determinação R² pode assumir valores negativos na regressão linear simples.",
-      "isTrue": false,
-      "explanation": "R² = SQM/SQT, sempre entre 0 e 1."
-     },
-     {
-      "statement": "A estatística F* = QMM/QMR, sob H₀: β = 0, segue F de Snedecor com 1 e n − 2 graus de liberdade.",
-      "isTrue": true,
-      "explanation": "O numerador tem 1 g.l. (modelo) e o denominador, n − 2 (resíduos)."
-     }
-    ],
-    "revisao": [
-     {
-      "statement": "O quadrado médio dos resíduos é uma estimativa da variância dos erros σ².",
-      "isTrue": true,
-      "explanation": "QMR = SQR/(n − 2)."
-     },
-     {
-      "statement": "Quando R² está próximo de zero, o modelo de regressão explica grande parte da variação de Y.",
-      "isTrue": false,
-      "explanation": "R² próximo de 1 indica grande parte explicada; próximo de 0 indica pouca explicação."
-     },
-     {
-      "statement": "Com SQT = 1000 e SQM = 900, o coeficiente de determinação é 0,9.",
-      "isTrue": true,
-      "explanation": "R² = 900/1000."
-     },
-     {
-      "statement": "Na regressão linear simples, o coeficiente de determinação é igual ao quadrado do coeficiente de correlação de Pearson.",
-      "isTrue": true,
-      "explanation": "R² = r² quando há uma única variável explicativa."
-     }
-    ],
-    "pointers": [
-     {
-      "topic": "Estimativa por máxima verossimilhança",
-      "pageRef": 46
-     },
-     {
-      "topic": "Graus de liberdade da regressão",
-      "pageRef": 48
-     },
-     {
-      "topic": "Somas de quadrados SQT, SQM e SQR",
-      "pageRef": 49
-     },
-     {
-      "topic": "Coeficiente de determinação",
-      "pageRef": 52
-     },
-     {
-      "topic": "Quadrados médios e R² ajustado",
-      "pageRef": 54
-     },
-     {
-      "topic": "Estatística F e tabela ANOVA",
-      "pageRef": 55
-     }
-    ]
-   },
-   "questions": [
-    {
-     "topic": "Máxima verossimilhança e MQO",
-     "pattern": "conceito",
-     "difficulty": 2,
-     "pageRef": 47,
-     "statement": "Na regressão linear simples com erros independentes, normais, de média zero e variância constante, as estimativas de a e b obtidas pela máxima verossimilhança",
-     "support": null,
-     "options": [
-      "diferem sempre das obtidas por mínimos quadrados, por usarem outra função objetivo.",
-      "só podem ser obtidas se a reta passar pela origem.",
-      "independem dos valores observados de Y.",
-      "minimizam a soma dos valores absolutos dos resíduos.",
-      "coincidem com as obtidas pelo método dos mínimos quadrados ordinários."
-     ],
-     "answer": "E",
-     "explanation": "Sob normalidade dos erros, maximizar a log-verossimilhança equivale a minimizar Σ(Yi − a − bXi)², o critério dos mínimos quadrados, e as estimativas de a e b são as mesmas."
-    },
-    {
-     "topic": "Interpretação dos coeficientes",
-     "pattern": "caso",
-     "difficulty": 1,
-     "pageRef": 47,
-     "statement": "Em uma análise, Y é o desempenho em uma prova física e X são as horas semanais de treino, com Ŷ = 12 + 0,8X. É correto afirmar que",
-     "support": null,
-     "options": [
-      "cada hora a mais de treino está associada a um aumento médio de 0,8 no desempenho, e o valor esperado para X = 0 é 12.",
-      "cada hora a mais de treino aumenta o desempenho em 12, e o valor esperado para X = 0 é 0,8.",
-      "o desempenho médio é 0,8, e o treino não tem efeito.",
-      "o desempenho é sempre 12 + 0,8, qualquer que seja o treino.",
-      "a reta passa pela origem, pois 12 + 0,8 × 0 = 0."
-     ],
-     "answer": "A",
-     "explanation": "O coeficiente b = 0,8 é a mudança esperada em Y para cada unidade de aumento em X, e a = 12 é o valor médio estimado de Y quando X = 0."
-    },
-    {
-     "topic": "Hipótese testada na ANOVA da regressão",
-     "pattern": "conceito",
-     "difficulty": 2,
-     "pageRef": 48,
-     "statement": "Na análise de variância da regressão linear simples, a hipótese nula testada é",
-     "support": null,
-     "options": [
-      "H0: α = 0, isto é, a reta passa pela origem.",
-      "H0: R² = 1, isto é, o ajuste é perfeito.",
-      "H0: β = 0, isto é, não existe relação linear entre X e Y.",
-      "H0: σ² = 0, isto é, não há erro aleatório.",
-      "H0: β ≠ 0, isto é, existe relação linear entre X e Y."
-     ],
-     "answer": "C",
-     "explanation": "A ANOVA da regressão (razão F) testa se a inclinação β é nula contra β ≠ 0. Aceitar H0 significaria que o modelo linear não reduz o resíduo de forma relevante em relação ao modelo constante."
-    },
-    {
-     "topic": "Graus de liberdade da regressão",
-     "pattern": "calculo",
-     "difficulty": 1,
-     "pageRef": 48,
-     "statement": "Em uma regressão linear simples ajustada com n = 25 observações, os graus de liberdade do modelo, dos resíduos e do total são, respectivamente,",
-     "support": null,
-     "options": [
-      "2, 23 e 25.",
-      "1, 23 e 24.",
-      "1, 24 e 25.",
-      "1, 22 e 24.",
-      "2, 22 e 24."
-     ],
-     "answer": "B",
-     "explanation": "GL do modelo = 1; GL dos resíduos = n − 2 = 23; GL total = n − 1 = 24, com GL total = GL modelo + GL resíduos (24 = 1 + 23)."
-    },
-    {
-     "topic": "Coeficiente de determinação",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 52,
-     "statement": "Em uma regressão linear simples, SQT = 500 e SQR (soma dos quadrados dos resíduos) = 120. O coeficiente de determinação R² é",
-     "support": null,
-     "options": [
-      "0,24.",
-      "0,87.",
-      "0,76.",
-      "3,17.",
-      "0,63."
-     ],
-     "answer": "C",
-     "explanation": "SQM = SQT − SQR = 380, e R² = SQM/SQT = 380/500 = 0,76. O valor 0,24 é SQR/SQT, 0,87 é a raiz de R², e 3,17 é SQM/SQR."
-    },
-    {
-     "topic": "SQM pela inclinação",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 52,
-     "statement": "Em uma regressão linear simples, a inclinação estimada é b = 2,5, Σ(Xi − X̄)² = 16 e a soma dos quadrados totais é SQT = 130. A soma dos quadrados dos resíduos (SQR) é",
-     "support": null,
-     "options": [
-      "100.",
-      "230.",
-      "40.",
-      "30.",
-      "65."
-     ],
-     "answer": "D",
-     "explanation": "SQM = b² · Σ(Xi − X̄)² = 6,25 × 16 = 100, e SQR = SQT − SQM = 130 − 100 = 30. O valor 100 é o SQM, e 230 soma as duas parcelas."
-    },
-    {
-     "topic": "Estatística F",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 55,
-     "statement": "Em uma regressão linear simples com n = 12 observações, SQM = 450 e SQR = 150. A estatística F* = QMM/QMR é",
-     "support": null,
-     "options": [
-      "3.",
-      "45.",
-      "37,5.",
-      "450.",
-      "30."
-     ],
-     "answer": "E",
-     "explanation": "QMM = SQM/1 = 450 e QMR = SQR/(n − 2) = 150/10 = 15, logo F* = 450/15 = 30. O valor 3 é SQM/SQR, sem dividir pelos graus de liberdade."
-    },
-    {
-     "topic": "Distribuição da estatística F",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 55,
-     "statement": "Em uma regressão linear simples com n = 18 observações, sob H0: β = 0, a estatística F* segue distribuição F de Snedecor com",
-     "support": null,
-     "options": [
-      "1 grau de liberdade no numerador e 17 no denominador.",
-      "2 graus de liberdade no numerador e 16 no denominador.",
-      "1 grau de liberdade no numerador e 16 no denominador.",
-      "16 graus de liberdade no numerador e 1 no denominador.",
-      "18 graus de liberdade no numerador e 1 no denominador."
-     ],
-     "answer": "C",
-     "explanation": "O numerador (modelo) tem 1 grau de liberdade e o denominador (resíduos) tem n − 2 = 16. A ordem importa: modelo no numerador, resíduos no denominador."
-    },
-    {
-     "topic": "Coeficiente de determinação ajustado",
-     "pattern": "calculo",
-     "difficulty": 3,
-     "pageRef": 54,
-     "statement": "Em uma regressão linear simples com n = 12 observações, R² = 0,80. O coeficiente de determinação ajustado, R̄² = 1 − (1 − R²)(n − 1)/(n − 2), é",
-     "support": null,
-     "options": [
-      "0,80.",
-      "0,78.",
-      "0,82.",
-      "0,72.",
-      "0,22."
-     ],
-     "answer": "B",
-     "explanation": "R̄² = 1 − 0,20 × 11/10 = 1 − 0,22 = 0,78. O ajuste pelos graus de liberdade reduz R² (0,80). O valor 0,22 é o termo subtraído."
-    },
-    {
-     "topic": "Tabela ANOVA incompleta",
-     "pattern": "calculo",
-     "difficulty": 3,
-     "pageRef": 55,
-     "statement": "Em uma tabela ANOVA de regressão linear simples com n = 22 observações, sabe-se que SQT = 840 e que o quadrado médio dos resíduos é QMR = 8. O coeficiente de determinação do modelo é, aproximadamente,",
-     "support": null,
-     "options": [
-      "0,19.",
-      "0,95.",
-      "0,81.",
-      "0,86.",
-      "0,76."
-     ],
-     "answer": "C",
-     "explanation": "GL dos resíduos = n − 2 = 20, então SQR = 8 × 20 = 160 e SQM = 840 − 160 = 680. R² = 680/840 ≈ 0,81. O valor 0,19 é SQR/SQT."
-    },
-    {
-     "topic": "Soma de quadrados",
-     "pattern": "correta",
-     "difficulty": 2,
-     "pageRef": 50,
-     "statement": "Na análise de variância da regressão linear simples, a decomposição da variação total é:",
-     "support": null,
-     "options": [
-      "SQT = SQM − SQR, em que SQM = Σ(Yi − Ȳ)².",
-      "SQT = SQM + SQR, em que SQT = Σ(Yi − Ȳ)², SQM = Σ(Ŷi − Ȳ)² e SQR = Σ(Yi − Ŷi)².",
-      "SQM = SQT + SQR, em que SQR = Σ(Ŷi − Ȳ)².",
-      "SQT = SQM × SQR, em que SQT = Σ(Yi − Ŷi)².",
-      "SQR = SQT + SQM, em que SQM = Σ(Yi − Ŷi)²."
-     ],
-     "answer": "B",
-     "explanation": "A variação total em torno da média (SQT) divide-se na parte explicada pelo modelo (SQM = Σ(Ŷi − Ȳ)²) e na parte residual (SQR = Σ(Yi − Ŷi)²), pois o termo cruzado se anula. Em algumas provas, SQR designa a soma dos quadrados da regressão, o que o enunciado costuma esclarecer."
-    },
-    {
-     "topic": "Correlação a partir de R²",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 52,
-     "statement": "Em uma regressão linear simples com R² = 0,64 e inclinação b negativa, o coeficiente de correlação linear entre X e Y é",
-     "support": null,
-     "options": [
-      "0,80.",
-      "−0,64.",
-      "0,64.",
-      "−0,80.",
-      "−0,40."
-     ],
-     "answer": "D",
-     "explanation": "O módulo do coeficiente de correlação é √R² = √0,64 = 0,80, e o sinal acompanha o da inclinação (b = ρ·σY/σX), logo r = −0,80. O valor −0,64 confunde r com R²."
-    },
-    {
-     "topic": "Leitura de uma tabela ANOVA",
-     "pattern": "caso",
-     "difficulty": 2,
-     "pageRef": 55,
-     "statement": "Uma tabela ANOVA de regressão linear simples traz: Modelo, SQM = 360, 1 g.l.; Erro, SQR = 40, 8 g.l.; Total, SQT = 400, 9 g.l. Assinale a alternativa correta.",
-     "support": null,
-     "options": [
-      "A estatística F* é 72 e a estimativa de σ² é 5.",
-      "O número de observações é 9 e F* é 72.",
-      "A estatística F* é 9 e a estimativa de σ² é 5.",
-      "O coeficiente de determinação é 0,10 e a estimativa de σ² é 5.",
-      "A estatística F* é 72 e a estimativa de σ² é 40."
-     ],
-     "answer": "A",
-     "explanation": "GL total = 9 implica n = 10. QMM = 360, QMR = 40/8 = 5 (estimativa de σ²) e F* = 360/5 = 72. R² = 360/400 = 0,90, e não 0,10."
-    },
-    {
-     "topic": "Decisão pelo teste F",
-     "pattern": "caso",
-     "difficulty": 3,
-     "pageRef": 55,
-     "statement": "Em uma regressão linear simples com n = 10, obteve-se F* = 72. O valor crítico da F de Snedecor com 1 e 8 graus de liberdade, a 5%, é 5,32. A conclusão do teste de H0: β = 0 é",
-     "support": null,
-     "options": [
-      "não rejeitar H0, pois F* é maior que o valor crítico.",
-      "rejeitar H0, havendo evidência de relação linear significativa entre X e Y.",
-      "rejeitar H0, mas concluir que não há relação linear entre X e Y.",
-      "não rejeitar H0, pois o teste é unilateral.",
-      "o teste é inconclusivo, pois F* excede 1."
-     ],
-     "answer": "B",
-     "explanation": "Como F* = 72 > 5,32, rejeita-se H0: β = 0 e conclui-se que existe relação linear significativa. Quando F* é maior que o crítico, a hipótese nula é rejeitada, e não o contrário."
-    },
-    {
-     "topic": "Interpretação do R²",
-     "pattern": "conceito",
-     "difficulty": 1,
-     "pageRef": 53,
-     "statement": "Em uma regressão linear simples, o coeficiente de determinação foi R² = 0,82. Isso significa que",
-     "support": null,
-     "options": [
-      "82% dos pontos estão exatamente sobre a reta de regressão.",
-      "o coeficiente de correlação linear é 0,82.",
-      "a inclinação da reta é 0,82.",
-      "82% da variação de X é explicada por Y.",
-      "do total de variação observada em Y, 82% é atribuída ao modelo ajustado."
-     ],
-     "answer": "E",
-     "explanation": "R² = SQM/SQT é a proporção da variação total de Y explicada pela regressão; os 18% restantes decorrem de fatores não capturados pelo modelo. O coeficiente de correlação é a raiz de R² (cerca de 0,91)."
-    }
-   ]
-  }
- ]
+  ]
 }

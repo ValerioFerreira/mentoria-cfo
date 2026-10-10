@@ -53,15 +53,22 @@ export default async function QuizPage({ params }: PageProps<"/caderno/[id]">) {
           startedAtMs={session.startedAt.getTime()}
           limitSeconds={session.limitSeconds}
           serverNowMs={serverNow()}
-          questions={session.answers.map((a) => ({
-            position: a.position,
-            topic: a.question.topic,
-            support: a.question.support,
-            statement: a.question.statement,
-            options: a.question.options.map((o) => ({ label: o.label, text: o.text })), // sem isCorrect
-            chosen: a.chosenLabel,
-            flagged: a.flagged,
-          }))}
+          questions={session.answers.map((a) => {
+            const isAnswered = a.chosenLabel !== null;
+            const correctOpt = a.question.options.find((o) => o.isCorrect);
+            return {
+              position: a.position,
+              topic: a.question.topic,
+              support: a.question.support,
+              statement: a.question.statement,
+              options: a.question.options.map((o) => ({ label: o.label, text: o.text })),
+              chosen: a.chosenLabel,
+              flagged: a.flagged,
+              correctLabel: isAnswered ? (correctOpt?.label ?? null) : null,
+              explanation: isAnswered ? a.question.explanation : null,
+              isCorrect: isAnswered ? a.isCorrect : null,
+            };
+          })}
         />
       </div>
     );

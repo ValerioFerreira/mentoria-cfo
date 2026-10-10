@@ -72,7 +72,8 @@ export async function saveAnswer(input: { sessionId: string; position: number; l
   const row = await db.quizAnswer.findUnique({ where: { sessionId_position: { sessionId: s.id, position: input.position } }, include: { question: { include: { options: true } } } });
   if (!row) return { error: "Questão inválida." } as const;
   const label = input.label && "ABCDE".includes(input.label) ? input.label : null;
-  const correct = label ? row.question.options.find((o) => o.isCorrect)?.label === label : null;
+  const correctOption = row.question.options.find((o) => o.isCorrect);
+  const correct = label && correctOption ? correctOption.label === label : null;
   await db.quizAnswer.update({
     where: { id: row.id },
     data: {
@@ -81,7 +82,12 @@ export async function saveAnswer(input: { sessionId: string; position: number; l
       answeredAt: label ? new Date() : null,
     },
   });
-  return { ok: true } as const;
+  return {
+    ok: true,
+    isCorrect: correct ?? false,
+    correctLabel: correctOption?.label ?? "",
+    explanation: row.question.explanation,
+  } as const;
 }
 
 export async function finishQuiz(sessionId: string, auto: boolean) {

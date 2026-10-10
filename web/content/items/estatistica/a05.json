@@ -1,1722 +1,1722 @@
 {
- "aula": "estatistica/a05",
- "batch": "w2-bizu-estatistica",
- "status": "DRAFT",
- "segments": [
-  {
-   "id": "estatistica/a05/s01",
-   "bizu": {
-    "summary": [
-     "### 1. Definições, Fórmulas e Propriedades Centrais",
-     "- **Princípio aditivo:** para eventos mutuamente exclusivos (se um ocorre, o outro não), o número de maneiras de ocorrer um deles (A OU B) é m + n.",
-     "- **Resumo:** **E multiplica, OU soma**.",
-     "- **Contagem de divisores:** fatore o número em primos.",
-     "- **se N:** a^e1 · b^e2 · c^e3 ..., o número de divisores positivos é **(e1 + 1)(e2 + 1)(e3 + 1)...**.",
-     "Princípio da casa dos pombos: se n pombos devem ocupar m casas e n > m, pelo menos uma casa terá mais de um pombo. para garantir pelo menos k em alguma casa, no pior cenário há k − 1 em cada uma das m casas, e o próximo elemento garante: **m · (k − 1) + 1**. Contagem de jogos em torneio eliminatório: cada jogo elimina exatamente um participante.",
-     "### 2. Métodos de Resolução e Classificações",
-     "- Análise combinatória estuda técnicas de contagem em conjuntos finitos, sem precisar listar todos os casos.",
-     "- A garantia exige raciocinar no **pior cenário** (distribuição mais espalhada possível).",
-     "- Para garantir pelo menos 2 em uma casa, são necessários m + 1 elementos.",
-     "- 4 cargos e 4 do mesmo cargo → 13 funcionários.",
-     "- Pergunta sempre pelo **menor** número que garante o resultado (qualquer número maior também garante).",
-     "#### Quadro Comparativo:",
-     "| Instituto / Conceito | Regra / Distinção | Confronto / Exceção |\n| :--- | :--- | :--- |\n| **Princípio multiplicativo** | se um evento ocorre de m maneiras e, para cada uma, outro ocorre de n maneiras, ambos juntos (A E B) ocorrem de m | n maneiras |\n| **Vale para qualquer número de etapas** | **p1 | p2 × ... × pn** |",
-     "### 3. Exemplos de Aplicação e Procedimentos",
-     "> 💡 **Exemplo Prático:** Questões mistas combinam os dois (ex.: vestido OU saia E blusa, E sapato).",
-     "> 💡 **Exemplo Prático:** Exemplo: 60 = 2² · 3 · 5 tem 3·2·2 = 12 divisores.",
-     "> 💡 **Exemplo Prático:** Ex.: 12 meses → 13 pessoas para 2 aniversários no mesmo mês.",
-     "### 4. Pontos Críticos e Cuidados nos Cálculos",
-     "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
-    ],
-    "teoria": [
-     {
-      "statement": "Quando duas decisões devem ser tomadas em sequência, com m opções para a primeira e n opções para a segunda, o número de combinações possíveis é m × n.",
-      "isTrue": true,
-      "explanation": "É o princípio multiplicativo: eventos que ocorrem em conjunto (E) têm suas possibilidades multiplicadas."
-     },
-     {
-      "statement": "O princípio aditivo é aplicado a eventos que ocorrem juntos, somando-se as possibilidades de cada um.",
-      "isTrue": false,
-      "explanation": "Soma-se quando os eventos são mutuamente exclusivos (OU). Eventos que ocorrem juntos (E) têm as possibilidades multiplicadas."
-     },
-     {
-      "statement": "Se a fatoração de um número natural tem expoentes e1, e2, ..., ek, a quantidade de divisores positivos desse número é (e1 + 1) × (e2 + 1) × ... × (ek + 1).",
-      "isTrue": true,
-      "explanation": "Cada expoente pode variar de 0 até o seu valor, o que dá e + 1 possibilidades; o princípio multiplicativo une as escolhas."
-     },
-     {
-      "statement": "Em um torneio eliminatório com N participantes em que cada partida elimina um deles e há um único campeão, o número total de partidas é N/2.",
-      "isTrue": false,
-      "explanation": "Para restar um campeão, N − 1 participantes precisam ser eliminados; como cada jogo elimina um, o número de jogos é N − 1."
-     }
-    ],
-    "revisao": [
-     {
-      "statement": "Com 4 casas disponíveis, 9 pombos são suficientes para garantir que alguma casa tenha ao menos 3 pombos.",
-      "isTrue": true,
-      "explanation": "No pior cenário há 2 pombos em cada casa (8 pombos); o nono obriga uma casa a ter 3."
-     },
-     {
-      "statement": "Se n pombos são colocados em m casas, com n maior que m, é possível que cada casa receba no máximo um pombo.",
-      "isTrue": false,
-      "explanation": "Pelo princípio da casa dos pombos, quando n > m pelo menos uma casa recebe mais de um pombo."
-     },
-     {
-      "statement": "Para garantir que pelo menos duas pessoas de um grupo façam aniversário no mesmo mês, basta reunir 12 pessoas.",
-      "isTrue": false,
-      "explanation": "Com 12 pessoas é possível que cada uma nasça em um mês diferente; a garantia só vem com 13."
-     },
-     {
-      "statement": "Na contagem de possibilidades, o conectivo E indica multiplicação das possibilidades e o conectivo OU, entre eventos excludentes, indica soma.",
-      "isTrue": true,
-      "explanation": "Resumo prático dos princípios multiplicativo e aditivo."
-     }
-    ],
-    "pointers": [
-     {
-      "topic": "Objetivo da análise combinatória",
-      "pageRef": 4
-     },
-     {
-      "topic": "Princípio multiplicativo",
-      "pageRef": 4
-     },
-     {
-      "topic": "Contagem de divisores de um número",
-      "pageRef": 7
-     },
-     {
-      "topic": "Princípio aditivo e eventos mutuamente exclusivos",
-      "pageRef": 10
-     },
-     {
-      "topic": "Exemplo combinando os dois princípios",
-      "pageRef": 11
-     },
-     {
-      "topic": "Princípio da casa dos pombos",
-      "pageRef": 13
-     },
-     {
-      "topic": "Pior cenário e número mínimo para garantir",
-      "pageRef": 14
-     },
-     {
-      "topic": "Contagem de jogos (N - 1)",
-      "pageRef": 16
-     }
-    ]
-   },
-   "questions": [
+  "aula": "estatistica/a05",
+  "batch": "w2-bizu-estatistica",
+  "status": "DRAFT",
+  "segments": [
     {
-     "topic": "Princípio multiplicativo",
-     "pattern": "calculo",
-     "difficulty": 1,
-     "pageRef": 4,
-     "statement": "Um batalhão dispõe de 4 modelos de capacete, 3 modelos de bota e 2 modelos de luva. Quantos conjuntos distintos, cada um com um capacete, uma bota e uma luva, podem ser montados?",
-     "support": null,
-     "options": [
-      "9",
-      "12",
-      "18",
-      "24",
-      "36"
-     ],
-     "answer": "D",
-     "explanation": "As escolhas ocorrem em conjunto (capacete E bota E luva); pelo princípio multiplicativo, 4 × 3 × 2 = 24. Somar os modelos (9) trataria as escolhas como excludentes."
+      "id": "estatistica/a05/s01",
+      "bizu": {
+        "summary": [
+          "### 1. Definições, Fórmulas e Propriedades Centrais",
+          "- **Princípio aditivo:** para eventos mutuamente exclusivos (se um ocorre, o outro não), o número de maneiras de ocorrer um deles (A OU B) é m + n.",
+          "- **Resumo:** **E multiplica, OU soma**.",
+          "- **Contagem de divisores:** fatore o número em primos.",
+          "- **se N:** a^e1 · b^e2 · c^e3 ..., o número de divisores positivos é **(e1 + 1)(e2 + 1)(e3 + 1)...**.",
+          "Princípio da casa dos pombos: se n pombos devem ocupar m casas e n > m, pelo menos uma casa terá mais de um pombo. para garantir pelo menos k em alguma casa, no pior cenário há k − 1 em cada uma das m casas, e o próximo elemento garante: **m · (k − 1) + 1**. Contagem de jogos em torneio eliminatório: cada jogo elimina exatamente um participante.",
+          "### 2. Métodos de Resolução e Classificações",
+          "- Análise combinatória estuda técnicas de contagem em conjuntos finitos, sem precisar listar todos os casos.",
+          "- A garantia exige raciocinar no **pior cenário** (distribuição mais espalhada possível).",
+          "- Para garantir pelo menos 2 em uma casa, são necessários m + 1 elementos.",
+          "- 4 cargos e 4 do mesmo cargo → 13 funcionários.",
+          "- Pergunta sempre pelo **menor** número que garante o resultado (qualquer número maior também garante).",
+          "#### Quadro Comparativo:",
+          "| Instituto / Conceito | Regra / Distinção | Confronto / Exceção |\n| :--- | :--- | :--- |\n| **Princípio multiplicativo** | se um evento ocorre de m maneiras e, para cada uma, outro ocorre de n maneiras, ambos juntos (A E B) ocorrem de m | n maneiras |\n| **Vale para qualquer número de etapas** | **p1 | p2 × ... × pn** |",
+          "### 3. Exemplos de Aplicação e Procedimentos",
+          "> 💡 **Exemplo Prático:** Questões mistas combinam os dois (ex.: vestido OU saia E blusa, E sapato).",
+          "> 💡 **Exemplo Prático:** Exemplo: 60 = 2² · 3 · 5 tem 3·2·2 = 12 divisores.",
+          "> 💡 **Exemplo Prático:** Ex.: 12 meses → 13 pessoas para 2 aniversários no mesmo mês.",
+          "### 4. Pontos Críticos e Cuidados nos Cálculos",
+          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+        ],
+        "teoria": [
+          {
+            "statement": "Quando duas decisões devem ser tomadas em sequência, com m opções para a primeira e n opções para a segunda, o número de combinações possíveis é m × n.",
+            "isTrue": true,
+            "explanation": "É o princípio multiplicativo: eventos que ocorrem em conjunto (E) têm suas possibilidades multiplicadas."
+          },
+          {
+            "statement": "O princípio aditivo é aplicado a eventos que ocorrem juntos, somando-se as possibilidades de cada um.",
+            "isTrue": false,
+            "explanation": "Soma-se quando os eventos são mutuamente exclusivos (OU). Eventos que ocorrem juntos (E) têm as possibilidades multiplicadas."
+          },
+          {
+            "statement": "Se a fatoração de um número natural tem expoentes e1, e2, ..., ek, a quantidade de divisores positivos desse número é (e1 + 1) × (e2 + 1) × ... × (ek + 1).",
+            "isTrue": true,
+            "explanation": "Cada expoente pode variar de 0 até o seu valor, o que dá e + 1 possibilidades; o princípio multiplicativo une as escolhas."
+          },
+          {
+            "statement": "Em um torneio eliminatório com N participantes em que cada partida elimina um deles e há um único campeão, o número total de partidas é N/2.",
+            "isTrue": false,
+            "explanation": "Para restar um campeão, N − 1 participantes precisam ser eliminados; como cada jogo elimina um, o número de jogos é N − 1."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Com 4 casas disponíveis, 9 pombos são suficientes para garantir que alguma casa tenha ao menos 3 pombos.",
+            "isTrue": true,
+            "explanation": "No pior cenário há 2 pombos em cada casa (8 pombos); o nono obriga uma casa a ter 3."
+          },
+          {
+            "statement": "Se n pombos são colocados em m casas, com n maior que m, é possível que cada casa receba no máximo um pombo.",
+            "isTrue": false,
+            "explanation": "Pelo princípio da casa dos pombos, quando n > m pelo menos uma casa recebe mais de um pombo."
+          },
+          {
+            "statement": "Para garantir que pelo menos duas pessoas de um grupo façam aniversário no mesmo mês, basta reunir 12 pessoas.",
+            "isTrue": false,
+            "explanation": "Com 12 pessoas é possível que cada uma nasça em um mês diferente; a garantia só vem com 13."
+          },
+          {
+            "statement": "Na contagem de possibilidades, o conectivo E indica multiplicação das possibilidades e o conectivo OU, entre eventos excludentes, indica soma.",
+            "isTrue": true,
+            "explanation": "Resumo prático dos princípios multiplicativo e aditivo."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Objetivo da análise combinatória",
+            "pageRef": 4
+          },
+          {
+            "topic": "Princípio multiplicativo",
+            "pageRef": 4
+          },
+          {
+            "topic": "Contagem de divisores de um número",
+            "pageRef": 7
+          },
+          {
+            "topic": "Princípio aditivo e eventos mutuamente exclusivos",
+            "pageRef": 10
+          },
+          {
+            "topic": "Exemplo combinando os dois princípios",
+            "pageRef": 11
+          },
+          {
+            "topic": "Princípio da casa dos pombos",
+            "pageRef": 13
+          },
+          {
+            "topic": "Pior cenário e número mínimo para garantir",
+            "pageRef": 14
+          },
+          {
+            "topic": "Contagem de jogos (N - 1)",
+            "pageRef": 16
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Princípio multiplicativo",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 4,
+          "statement": "Um batalhão dispõe de 4 modelos de capacete, 3 modelos de bota e 2 modelos de luva. Quantos conjuntos distintos, cada um com um capacete, uma bota e uma luva, podem ser montados?",
+          "support": null,
+          "options": [
+            "9",
+            "12",
+            "18",
+            "24",
+            "36"
+          ],
+          "answer": "D",
+          "explanation": "As escolhas ocorrem em conjunto (capacete E bota E luva); pelo princípio multiplicativo, 4 × 3 × 2 = 24. Somar os modelos (9) trataria as escolhas como excludentes."
+        },
+        {
+          "topic": "Princípio aditivo e multiplicativo combinados",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 11,
+          "statement": "Para comunicar uma ocorrência, uma equipe pode usar um de 3 canais de rádio ou uma de 2 linhas de telefone e, em seguida, deve registrá-la em um de 4 formulários. O número de maneiras distintas de comunicar e registrar é",
+          "support": null,
+          "options": [
+            "20",
+            "24",
+            "9",
+            "14",
+            "10"
+          ],
+          "answer": "A",
+          "explanation": "A escolha do meio de comunicação é excludente (3 + 2 = 5 opções), e a do formulário ocorre em conjunto com ela: 5 × 4 = 20."
+        },
+        {
+          "topic": "Soma e produto em etapas",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 11,
+          "statement": "Um militar deve compor sua vestimenta de reserva com 3 macacões ou, alternativamente, com uma calça (entre 2) e uma camisa (entre 4); depois, escolhe 1 de 2 pares de coturnos. De quantas maneiras pode fazê-lo?",
+          "support": null,
+          "options": [
+            "14",
+            "16",
+            "22",
+            "28",
+            "48"
+          ],
+          "answer": "C",
+          "explanation": "Calça e camisa são concomitantes (2 × 4 = 8); o macacão e esse conjunto são excludentes (3 + 8 = 11); e o coturno é concomitante com o resultado: 11 × 2 = 22."
+        },
+        {
+          "topic": "Escolha de elementos de classes diferentes",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 12,
+          "statement": "Uma estante tem 5 manuais de combate a incêndio, 4 de salvamento e 2 de atendimento pré-hospitalar. De quantas maneiras é possível escolher dois manuais de áreas diferentes?",
+          "support": null,
+          "options": [
+            "55",
+            "47",
+            "38",
+            "20",
+            "11"
+          ],
+          "answer": "C",
+          "explanation": "Há três casos excludentes: incêndio e salvamento (5 × 4 = 20), incêndio e APH (5 × 2 = 10) e salvamento e APH (4 × 2 = 8). Somando-os: 38."
+        },
+        {
+          "topic": "Número de divisores",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 8,
+          "statement": "O número 360 = 2³ × 3² × 5 possui quantos divisores naturais?",
+          "support": null,
+          "options": [
+            "10",
+            "12",
+            "18",
+            "24",
+            "30"
+          ],
+          "answer": "D",
+          "explanation": "O número de divisores é o produto dos expoentes acrescidos de 1: (3 + 1)(2 + 1)(1 + 1) = 4 × 3 × 2 = 24. A soma dos expoentes (6) ou dos expoentes mais 1 não conduz ao resultado."
+        },
+        {
+          "topic": "Divisores e tabelas retangulares",
+          "pattern": "caso",
+          "difficulty": 3,
+          "pageRef": 9,
+          "statement": "De quantas maneiras é possível organizar 144 campos de preenchimento em uma tabela retangular, considerando que uma tabela de a linhas por b colunas é diferente de uma de b linhas por a colunas?",
+          "support": null,
+          "options": [
+            "24",
+            "18",
+            "15",
+            "12",
+            "9"
+          ],
+          "answer": "C",
+          "explanation": "Cada tabela corresponde a um par ordenado (a, b) com a · b = 144, isto é, a um divisor a de 144. Como 144 = 2⁴ × 3², o número de divisores é (4 + 1)(2 + 1) = 15."
+        },
+        {
+          "topic": "Quando usar o princípio aditivo",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 10,
+          "statement": "O princípio aditivo é aplicado, para contar as maneiras de ocorrer um evento A ou um evento B, quando A e B são",
+          "support": null,
+          "options": [
+            "concomitantes, isto é, ocorrem juntos.",
+            "sempre iguais em número de maneiras.",
+            "dependentes do número de elementos.",
+            "sempre em número par.",
+            "mutuamente exclusivos."
+          ],
+          "answer": "E",
+          "explanation": "Se A e B são mutuamente exclusivos (a ocorrência de um impede a do outro), o número de maneiras de ocorrer um deles é a soma. Para eventos concomitantes (A e B), usa-se o princípio multiplicativo."
+        },
+        {
+          "topic": "Pombos: pelo menos três no mesmo mês",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 14,
+          "statement": "Qual é o menor número de militares que se deve reunir para que se tenha certeza de que pelo menos três deles nasceram no mesmo mês do ano?",
+          "support": null,
+          "options": [
+            "36",
+            "26",
+            "25",
+            "24",
+            "13"
+          ],
+          "answer": "C",
+          "explanation": "No pior cenário, há 2 aniversariantes em cada um dos 12 meses (24 pessoas) sem que haja 3 no mesmo mês. A 25ª pessoa garante o resultado: 12 × 2 + 1 = 25."
+        },
+        {
+          "topic": "Pombos: pior cenário",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 15,
+          "statement": "Cartas são retiradas ao acaso de um baralho comum de 52 cartas, com 4 naipes de 13 cartas cada. Para ter certeza de que haverá 4 cartas de um mesmo naipe entre as retiradas, o menor número de cartas é",
+          "support": null,
+          "options": [
+            "12",
+            "16",
+            "14",
+            "40",
+            "13"
+          ],
+          "answer": "E",
+          "explanation": "No pior cenário, saem 3 cartas de cada naipe (12 cartas) sem completar 4 de um naipe. A 13ª carta garante: 4 × 3 + 1 = 13."
+        },
+        {
+          "topic": "Contagem de jogos em torneio",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 16,
+          "statement": "Em um torneio eliminatório de tênis, cada partida elimina exatamente um jogador, e o torneio termina com um campeão. Com 213 inscritos, o número total de partidas é",
+          "support": null,
+          "options": [
+            "424",
+            "213",
+            "212",
+            "107",
+            "106"
+          ],
+          "answer": "C",
+          "explanation": "Para restar um único campeão, devem ser eliminados 212 jogadores. Como cada partida elimina um, são necessárias 212 partidas."
+        },
+        {
+          "topic": "Raciocínio do pior cenário",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 13,
+          "statement": "Para obter garantias com o princípio da casa dos pombos, o raciocínio correto consiste em",
+          "support": null,
+          "options": [
+            "considerar o cenário mais provável.",
+            "considerar o pior cenário, ou seja, a distribuição mais espalhada possível.",
+            "considerar a média dos cenários possíveis.",
+            "considerar o melhor cenário.",
+            "sortear os elementos nas casas."
+          ],
+          "answer": "B",
+          "explanation": "A garantia vale para qualquer distribuição; por isso se raciocina com o pior cenário (os elementos o mais espalhados possível) e se acrescenta mais um elemento."
+        },
+        {
+          "topic": "Restrição entre vértices",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 7,
+          "statement": "Os três vértices de um triângulo serão pintados, cada um com uma de 4 cores, de modo que quaisquer dois vértices tenham cores diferentes. O número de maneiras de pintá-lo é",
+          "support": null,
+          "options": [
+            "64",
+            "36",
+            "12",
+            "48",
+            "24"
+          ],
+          "answer": "E",
+          "explanation": "O primeiro vértice admite 4 cores, o segundo, 3 (diferente do primeiro) e o terceiro, 2 (diferente dos dois): 4 × 3 × 2 = 24."
+        },
+        {
+          "topic": "Princípios de contagem: afirmativas",
+          "pattern": "assertivas",
+          "difficulty": 2,
+          "pageRef": 10,
+          "statement": "Considere as afirmações:\n\n**I.** No princípio multiplicativo, a contagem é feita para eventos que ocorrem em conjunto (A e B). \n\n**II.** Em um torneio eliminatório com N participantes, o número de jogos é N − 1. \n\n**III.** Para garantir 2 elementos em uma mesma casa, com m casas, bastam m elementos.\n\nEstá(ão) correta(s):",
+          "support": null,
+          "options": [
+            "I, apenas.",
+            "III, apenas.",
+            "II e III, apenas.",
+            "I, II e III.",
+            "I e II, apenas."
+          ],
+          "answer": "E",
+          "explanation": "I e II estão corretas. A III é falsa: com m elementos, todos podem ocupar casas diferentes; para garantir 2 na mesma casa são necessários m + 1."
+        }
+      ]
     },
     {
-     "topic": "Princípio aditivo e multiplicativo combinados",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 11,
-     "statement": "Para comunicar uma ocorrência, uma equipe pode usar um de 3 canais de rádio ou uma de 2 linhas de telefone e, em seguida, deve registrá-la em um de 4 formulários. O número de maneiras distintas de comunicar e registrar é",
-     "support": null,
-     "options": [
-      "20",
-      "24",
-      "9",
-      "14",
-      "10"
-     ],
-     "answer": "A",
-     "explanation": "A escolha do meio de comunicação é excludente (3 + 2 = 5 opções), e a do formulário ocorre em conjunto com ela: 5 × 4 = 20."
+      "id": "estatistica/a05/s02",
+      "bizu": {
+        "summary": [
+          "### 1. Definições, Fórmulas e Propriedades Centrais",
+          "- **Fatorial: n!:** n · (n − 1) · (n − 2) · ... · 2 · 1.",
+          "- **Pode-se parar em qualquer fator: n!:** n · (n − 1)! = n · (n − 1) · (n − 2)!, o que simplifica divisões (10!/7! = 10 · 9 · 8).",
+          "- **Casos especiais: 1!:** 1** e **0! = 1** (convenção coerente com n! = (n + 1)!/(n + 1)).",
+          "- **2 · 4!:** 48, mas (2 · 4)! = 8! = 40.320.",
+          "2 + 4! = 26, mas (2 + 4)! = 720. Permutação simples: ordenar n elementos distintos: P_n = n!. Restrição por posição fixa: se p dos n elementos ficam em posições determinadas, permutam-se os demais: (n − p)!.",
+          "### 2. Métodos de Resolução e Classificações",
+          "#### Sequência e Funcionamento:",
+          "1. Elementos juntos: tratando os j elementos como um único bloco, em ordem determinada, o total é (n − j + 1)!",
+          "2. **(ii) elementos que ficam juntos** → bloco único + permutação interna, se a ordem interna for livre.",
+          "- Serve para filas, anagramas de palavras sem letras repetidas, números com algarismos distintos.",
+          "- **Distinção:** (calcula os fatoriais antes) é diferente de (6/3)! = 2!",
+          "### 3. Exemplos de Aplicação e Procedimentos",
+          "> 💡 **Exemplo Prático:** Exemplo de fila alternada: com 5 meninas e 4 meninos, a fila só alterna começando e terminando por menina, e resulta 5! · 4! = 2.880.",
+          "### 4. Pontos Críticos e Cuidados nos Cálculos",
+          "> ⚠️ **Atenção de Prova:** Cuidado com parênteses: 6!/3!"
+        ],
+        "teoria": [
+          {
+            "statement": "Por convenção, 0! vale 1, o que é coerente com a relação 0! = 1!/1.",
+            "isTrue": true,
+            "explanation": "Escrevendo n! = (n + 1)!/(n + 1), obtém-se 0! = 1!/1 = 1."
+          },
+          {
+            "statement": "O valor de 6!/3! é igual a (6/3)!, isto é, a 2.",
+            "isTrue": false,
+            "explanation": "6!/3! = 6 · 5 · 4 = 120; já (6/3)! = 2! = 2. A posição dos parênteses muda o resultado."
+          },
+          {
+            "statement": "O número de anagramas de uma palavra com n letras todas distintas é n!.",
+            "isTrue": true,
+            "explanation": "É a permutação simples de n elementos."
+          },
+          {
+            "statement": "Ao se fixar 2 de 8 elementos em posições determinadas, o número de ordenações dos demais é obtido dividindo-se 8! por 2.",
+            "isTrue": false,
+            "explanation": "Restam 6 elementos livres em 6 posições, e o total é 6! = (8 − 2)!."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Se j elementos devem ficar sempre juntos, mas podem trocar de lugar entre si, o total de ordenações de n elementos é (n − j + 1)! × j!.",
+            "isTrue": true,
+            "explanation": "Permuta-se o bloco com os demais elementos e multiplica-se pelas permutações internas do bloco."
+          },
+          {
+            "statement": "Se j elementos devem ficar juntos em uma ordem fixa, o número de ordenações de n elementos é (n − j)!.",
+            "isTrue": false,
+            "explanation": "O bloco conta como um elemento a mais: o resultado é (n − j + 1)!."
+          },
+          {
+            "statement": "O valor de 2 × 4! é 48, enquanto o valor de (2 × 4)! é 40.320.",
+            "isTrue": true,
+            "explanation": "No primeiro caso o fatorial só atinge o 4; no segundo, atinge o produto 8."
+          },
+          {
+            "statement": "O fatorial de n pode ser escrito como n × (n + 1)!.",
+            "isTrue": false,
+            "explanation": "A relação correta é n! = n × (n − 1)!."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Definição de fatorial e simplificação de divisões",
+            "pageRef": 18
+          },
+          {
+            "topic": "Cuidados com parênteses e operações com fatorial",
+            "pageRef": 19
+          },
+          {
+            "topic": "Casos 1! e 0!",
+            "pageRef": 20
+          },
+          {
+            "topic": "Permutação simples: raciocínio posição a posição",
+            "pageRef": 22
+          },
+          {
+            "topic": "Fórmula P_n = n! e anagramas",
+            "pageRef": 24
+          },
+          {
+            "topic": "Restrição: elementos em posições fixas",
+            "pageRef": 25
+          },
+          {
+            "topic": "Elementos em posições designadas sem fixar cada um",
+            "pageRef": 26
+          },
+          {
+            "topic": "Elementos juntos, com ou sem reordenação interna",
+            "pageRef": 29
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Simplificação de fatoriais",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 19,
+          "statement": "O valor de 8! ÷ 6! é",
+          "support": null,
+          "options": [
+            "336",
+            "56",
+            "8",
+            "2",
+            "1,33"
+          ],
+          "answer": "B",
+          "explanation": "Escrevendo 8! = 8 · 7 · 6!, o 6! se cancela e sobra 8 × 7 = 56. Efetua-se o fatorial antes da divisão; (8 ÷ 6)! teria outro sentido."
+        },
+        {
+          "topic": "Equação com fatoriais",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 19,
+          "statement": "Se (n + 2)! ÷ n! = 90, o valor de n é",
+          "support": null,
+          "options": [
+            "7",
+            "8",
+            "9",
+            "10",
+            "88"
+          ],
+          "answer": "B",
+          "explanation": "(n + 2)! = (n + 2)(n + 1) · n!, de modo que (n + 2)(n + 1) = 90. Como 10 × 9 = 90, n + 2 = 10 e n = 8."
+        },
+        {
+          "topic": "Parênteses e fatorial",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 19,
+          "statement": "O valor de (2 · 3)! − 2 · 3! é",
+          "support": null,
+          "options": [
+            "0",
+            "6",
+            "12",
+            "708",
+            "720"
+          ],
+          "answer": "D",
+          "explanation": "(2 · 3)! = 6! = 720 e 2 · 3! = 2 · 6 = 12; a diferença é 720 − 12 = 708. O fatorial atua sobre o termo imediatamente anterior, e os parênteses mudam o resultado."
+        },
+        {
+          "topic": "0! e 1!",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 19,
+          "statement": "Sobre os valores de 0! e de 1!, é correto afirmar que",
+          "support": null,
+          "options": [
+            "0! vale 0 e 1! vale 1.",
+            "ambos valem 1, o que é coerente com n! = (n + 1)! ÷ (n + 1).",
+            "0! não está definido.",
+            "ambos valem 0.",
+            "0! vale 1 e 1! vale 2."
+          ],
+          "answer": "B",
+          "explanation": "Por convenção, 0! = 1; além disso, 1! = 1. Isso é coerente com n! = (n + 1)! ÷ (n + 1): 1! = 2! ÷ 2 = 1 e 0! = 1! ÷ 1 = 1."
+        },
+        {
+          "topic": "Permutação simples",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 24,
+          "statement": "O número de anagramas da sigla CBMPE, formada por cinco letras distintas, é",
+          "support": null,
+          "options": [
+            "720",
+            "120",
+            "60",
+            "25",
+            "24"
+          ],
+          "answer": "B",
+          "explanation": "Com letras todas distintas, o número de anagramas é a permutação simples: 5! = 120."
+        },
+        {
+          "topic": "Duas posições extremas designadas",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 26,
+          "statement": "Sete candidatos serão enfileirados. O primeiro colocado e o segundo colocado do concurso devem ocupar as extremidades da fila, em qualquer ordem. O número de filas possíveis é",
+          "support": null,
+          "options": [
+            "120",
+            "240",
+            "720",
+            "1.440",
+            "5.040"
+          ],
+          "answer": "B",
+          "explanation": "Os dois candidatos ocupam as extremidades de 2! maneiras, e os 5 demais se ordenam nas posições intermediárias de 5! maneiras: 2! × 5! = 240."
+        },
+        {
+          "topic": "Posições de acordo com a paridade",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 27,
+          "statement": "Com os algarismos 1, 2, 3, 4, 5 e 6, formam-se números de seis algarismos distintos em que os ímpares ocupam as posições ímpares e os pares, as posições pares. Quantos números podem ser formados?",
+          "support": null,
+          "options": [
+            "720",
+            "72",
+            "36",
+            "18",
+            "6"
+          ],
+          "answer": "C",
+          "explanation": "Os 3 ímpares se permutam nas 3 posições ímpares (3! = 6) e os 3 pares nas 3 pares (3! = 6): 6 × 6 = 36."
+        },
+        {
+          "topic": "Elementos juntos em ordem determinada",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 29,
+          "statement": "De quantas maneiras sete pessoas podem formar uma fila se três delas, A, B e C, devem ficar juntas e exatamente nessa ordem?",
+          "support": null,
+          "options": [
+            "5.040",
+            "840",
+            "720",
+            "120",
+            "24"
+          ],
+          "answer": "D",
+          "explanation": "Tratando A-B-C como um bloco único, ordenam-se 7 − 3 + 1 = 5 elementos: 5! = 120."
+        },
+        {
+          "topic": "Elementos juntos em qualquer ordem",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 30,
+          "statement": "De quantas maneiras sete pessoas podem formar uma fila se três delas devem ficar juntas, em qualquer ordem entre si?",
+          "support": null,
+          "options": [
+            "120",
+            "720",
+            "5.040",
+            "36",
+            "840"
+          ],
+          "answer": "B",
+          "explanation": "O bloco com as três pessoas é permutado com as outras quatro (5! = 120), e, dentro do bloco, as três podem trocar de lugar (3! = 6): 120 × 6 = 720."
+        },
+        {
+          "topic": "Fila alternada",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 29,
+          "statement": "Em uma fila com 4 meninas e 3 meninos, a alternância de gênero exige que a fila comece e termine por menina. O número de filas possíveis nessa condição é",
+          "support": null,
+          "options": [
+            "5.040",
+            "576",
+            "288",
+            "144",
+            "24"
+          ],
+          "answer": "D",
+          "explanation": "As meninas ocupam as posições 1, 3, 5 e 7 (4! = 24) e os meninos, as posições 2, 4 e 6 (3! = 6): 24 × 6 = 144."
+        },
+        {
+          "topic": "Anagramas com posições fixas",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 25,
+          "statement": "Os anagramas da palavra PERNAMBUCO, formada por 10 letras distintas, que começam com P e terminam com O, são em número de",
+          "support": null,
+          "options": [
+            "3.628.800",
+            "40.320",
+            "5.040",
+            "362.880",
+            "80.640"
+          ],
+          "answer": "B",
+          "explanation": "Com P e O nas extremidades fixas, as 8 letras restantes se permutam: 8! = 40.320. Se P e O pudessem trocar de lugar, o resultado seria dobrado."
+        },
+        {
+          "topic": "Permutação com restrição: afirmativa incorreta",
+          "pattern": "incorreta",
+          "difficulty": 2,
+          "pageRef": 30,
+          "statement": "Em relação à permutação simples com restrição,\n\nassinale a alternativa INCORRETA.",
+          "support": null,
+          "options": [
+            "Se p elementos estão fixos em posições determinadas, permutam-se os n − p restantes.",
+            "Se j elementos devem ficar juntos em ordem determinada, o total é (n − j + 1)!.",
+            "Se p elementos ocupam posições designadas, mas podem trocar entre si, o total é (n − p)! · p!.",
+            "Os elementos que ficam juntos são tratados como um bloco único.",
+            "Se j elementos devem ficar juntos em qualquer ordem, o total é (n − j + 1)!, sem multiplicar pela permutação interna."
+          ],
+          "answer": "E",
+          "explanation": "Quando os j elementos podem se reordenar dentro do bloco, multiplica-se (n − j + 1)! por j!. Sem essa multiplicação, só se conta a ordem determinada."
+        },
+        {
+          "topic": "Fatorial e permutação: afirmativas",
+          "pattern": "assertivas",
+          "difficulty": 2,
+          "pageRef": 18,
+          "statement": "Considere as afirmações:\n\n**I.** O número de maneiras de ordenar n elementos distintos é n!. \n\n**II.** 10! ÷ 8! é igual a 90. \n\n**III.** (3 + 2)! é igual a 3! + 2!.\n\nEstá(ão) correta(s):",
+          "support": null,
+          "options": [
+            "I e II, apenas.",
+            "I, apenas.",
+            "II, apenas.",
+            "II e III, apenas.",
+            "I, II e III."
+          ],
+          "answer": "A",
+          "explanation": "I está correta (permutação simples) e II também (10! ÷ 8! = 10 · 9 = 90). A III é falsa: (3 + 2)! = 120, enquanto 3! + 2! = 8."
+        }
+      ]
     },
     {
-     "topic": "Soma e produto em etapas",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 11,
-     "statement": "Um militar deve compor sua vestimenta de reserva com 3 macacões ou, alternativamente, com uma calça (entre 2) e uma camisa (entre 4); depois, escolhe 1 de 2 pares de coturnos. De quantas maneiras pode fazê-lo?",
-     "support": null,
-     "options": [
-      "14",
-      "16",
-      "22",
-      "28",
-      "48"
-     ],
-     "answer": "C",
-     "explanation": "Calça e camisa são concomitantes (2 × 4 = 8); o macacão e esse conjunto são excludentes (3 + 8 = 11); e o coturno é concomitante com o resultado: 11 × 2 = 22."
+      "id": "estatistica/a05/s03",
+      "bizu": {
+        "summary": [
+          "### 1. Definições, Fórmulas e Propriedades Centrais",
+          "- **Permutação com repetição:** com n elementos totais, dos quais m1, m2, ..., mk são iguais entre si, divide-se a permutação simples pelas permutações dos repetidos: n! / (m1! · m2! · ... · mk!).",
+          "- **Permutação circular: sem posição de início, fixa-se um elemento e permutam-se os demais: PC_n:** (n − 1)!.",
+          "- **Permutação caótica (desarranjo): nenhum elemento volta à posição original. D_n:** n! · [1/2! − 1/3! + 1/4! − ... + (−1)^n / n!].",
+          "- **Valores úteis: D_2:** 1, D_3 = 2, D_4 = 9**.",
+          "Arranjo simples (sem reposição): A(n,k) = n! / (n − k)! (n possibilidades para o 1º, n − 1 para o 2º, etc.). Arranjo com reposição: n^k, pois cada escolha tem sempre n opções. Questões mistas (letras distintas + dígitos repetidos) multiplicam arranjos sem e com reposição: 26 · 25 · 10⁴ = 6.500.000.",
+          "### 2. Métodos de Resolução e Classificações",
+          "#### Sequência e Funcionamento:",
+          "1. Permutação com elementos ordenados: se k dos n elementos precisam seguir uma ordem definida (não necessariamente consecutivos), o total é n! / k!.",
+          "2. Com dois grupos de ordem: **n! / (k1! · k2!)**.",
+          "3. Se a ordem também for consecutiva, trata-se como bloco.",
+          "4. Arranjo e combinação selecionam k dentre n elementos: no arranjo a ordem importa.",
+          "- Rotações do círculo contam como a mesma disposição.",
+          "- na **combinação não**.",
+          "### 3. Exemplos de Aplicação e Procedimentos",
+          "> 💡 **Exemplo Prático:** Ex.: CASA (2 A) → 4!/2! = 12 anagramas.",
+          "> 💡 **Exemplo Prático:** Circular com restrições (ex.: meninos e meninas alternados): resolve-se em etapas — primeiro um grupo em círculo ((n−1)!), depois o outro grupo nas posições entre eles (permutação simples).",
+          "> 💡 **Exemplo Prático:** Ex.: 4 meninos e 4 meninas → 3! · 4! = 144.",
+          "### 4. Pontos Críticos e Cuidados nos Cálculos",
+          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+        ],
+        "teoria": [
+          {
+            "statement": "O número de anagramas da palavra CASA é 4!/2!, pois a letra A aparece duas vezes.",
+            "isTrue": true,
+            "explanation": "Na permutação com repetição divide-se n! pelo fatorial do número de vezes que cada elemento se repete."
+          },
+          {
+            "statement": "A permutação circular de n elementos é igual a n!.",
+            "isTrue": false,
+            "explanation": "Como as rotações do círculo são consideradas a mesma disposição, fixa-se um elemento e o resultado é (n − 1)!."
+          },
+          {
+            "statement": "Em um arranjo a ordem em que os elementos são selecionados é relevante, ao passo que em uma combinação não é.",
+            "isTrue": true,
+            "explanation": "Essa é a distinção central entre as duas técnicas."
+          },
+          {
+            "statement": "Se k dos n elementos devem respeitar uma ordem definida, o número de ordenações possíveis é n! multiplicado por k!.",
+            "isTrue": false,
+            "explanation": "A restrição reduz as possibilidades: divide-se n! por k!, ou seja, n!/k!."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O número de permutações caóticas de 3 elementos é 2.",
+            "isTrue": true,
+            "explanation": "D_3 = 3!·(1/2! − 1/3!) = 3 − 1 = 2."
+          },
+          {
+            "statement": "O arranjo com reposição de k elementos dentre n é dado por n!/(n − k)!.",
+            "isTrue": false,
+            "explanation": "Essa é a fórmula do arranjo SEM reposição. Com reposição, o total é n^k."
+          },
+          {
+            "statement": "Na permutação com elementos ordenados, os elementos que seguem a ordem exigida não precisam estar em posições consecutivas.",
+            "isTrue": true,
+            "explanation": "Só se exige a ordem relativa; para exigir também que fiquem consecutivos, trata-se o grupo como bloco."
+          },
+          {
+            "statement": "O número de maneiras de reorganizar 4 funcionários em 4 mesas, de modo que nenhum fique na mesa que ocupava antes, é 12.",
+            "isTrue": false,
+            "explanation": "Trata-se de desarranjo de 4 elementos: D_4 = 9."
+          },
+          {
+            "statement": "Uma senha com 2 letras distintas, escolhidas dentre 26, seguidas de 4 dígitos que podem se repetir, admite 26 × 25 × 10^4 possibilidades.",
+            "isTrue": true,
+            "explanation": "As letras formam um arranjo sem reposição (26 × 25) e os dígitos, um arranjo com reposição (10 × 10 × 10 × 10)."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Permutação com repetição",
+            "pageRef": 32
+          },
+          {
+            "topic": "Fórmula geral e exemplo CASA/GEÓLOGO",
+            "pageRef": 33
+          },
+          {
+            "topic": "Permutação circular: (n-1)!",
+            "pageRef": 36
+          },
+          {
+            "topic": "Permutação circular com restrições",
+            "pageRef": 36
+          },
+          {
+            "topic": "Permutação com elementos ordenados: n!/k!",
+            "pageRef": 40
+          },
+          {
+            "topic": "Permutação caótica (desarranjo): fórmula",
+            "pageRef": 43
+          },
+          {
+            "topic": "Arranjo simples: A(n,k)",
+            "pageRef": 47
+          },
+          {
+            "topic": "Arranjo com reposição",
+            "pageRef": 47
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Permutação com repetição",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 33,
+          "statement": "O número de anagramas da palavra BOMBEIRO, em que as letras B e O aparecem duas vezes cada, é",
+          "support": null,
+          "options": [
+            "2.520",
+            "5.040",
+            "10.080",
+            "20.160",
+            "40.320"
+          ],
+          "answer": "C",
+          "explanation": "São 8 letras, com B repetido 2 vezes e O repetido 2 vezes: 8! ÷ (2! · 2!) = 40.320 ÷ 4 = 10.080."
+        },
+        {
+          "topic": "Permutação com repetição simples",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 33,
+          "statement": "O número de anagramas da palavra ARARA, que tem 3 letras A e 2 letras R, é",
+          "support": null,
+          "options": [
+            "120",
+            "20",
+            "5",
+            "60",
+            "10"
+          ],
+          "answer": "E",
+          "explanation": "5! ÷ (3! · 2!) = 120 ÷ 12 = 10. Dividir apenas por 3! daria 20, desconsiderando a repetição das letras R."
+        },
+        {
+          "topic": "Permutação com várias repetições",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 33,
+          "statement": "A palavra MATEMÁTICA, ignorando o acento, tem 10 letras, com M repetido 2 vezes, A repetido 3 vezes e T repetido 2 vezes. O número de seus anagramas é",
+          "support": null,
+          "options": [
+            "3.628.800",
+            "302.400",
+            "75.600",
+            "453.600",
+            "151.200"
+          ],
+          "answer": "E",
+          "explanation": "10! ÷ (2! · 3! · 2!) = 3.628.800 ÷ 24 = 151.200. Cada letra repetida exige uma divisão pelo fatorial de suas ocorrências."
+        },
+        {
+          "topic": "Permutação circular",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 36,
+          "statement": "Seis amigos vão sentar-se em torno de uma mesa circular, sem lugares marcados. Considerando como iguais as disposições que coincidem por rotação, o número de maneiras de acomodá-los é",
+          "support": null,
+          "options": [
+            "720",
+            "120",
+            "60",
+            "36",
+            "24"
+          ],
+          "answer": "B",
+          "explanation": "Na permutação circular de n elementos, (n − 1)! = 5! = 120. Fixa-se um dos amigos e permutam-se os demais."
+        },
+        {
+          "topic": "Permutação circular com alternância",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 36,
+          "statement": "Cinco oficiais e cinco praças sentam-se em uma mesa circular de modo que cada oficial fique entre dois praças. O número de disposições distintas é",
+          "support": null,
+          "options": [
+            "14.400",
+            "120",
+            "86.400",
+            "2.880",
+            "24"
+          ],
+          "answer": "D",
+          "explanation": "Primeiro dispõem-se os oficiais em círculo: (5 − 1)! = 24. Os praças ocupam então os 5 espaços entre eles, cuja posição já é distinguível: 5! = 120. Total: 24 × 120 = 2.880."
+        },
+        {
+          "topic": "Rotação e permutação circular",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 35,
+          "statement": "Na permutação circular, fixa-se um dos elementos e permutam-se os demais porque",
+          "support": null,
+          "options": [
+            "as disposições obtidas por rotação do círculo são consideradas a mesma disposição.",
+            "o círculo possui sempre um elemento maior que os demais.",
+            "os elementos de um círculo são sempre iguais entre si.",
+            "a ordem dos elementos é irrelevante no círculo.",
+            "a permutação circular dispensa o uso do fatorial."
+          ],
+          "answer": "A",
+          "explanation": "Em um círculo não há posição inicial; girar o círculo não gera nova disposição. Fixando um elemento, as posições dos demais passam a ser relativas a ele, e a ordem delas importa."
+        },
+        {
+          "topic": "Permutação com elementos ordenados",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 41,
+          "statement": "Seis corredores disputam uma prova sem empates. O número de resultados possíveis em que o corredor A chega antes do corredor B é",
+          "support": null,
+          "options": [
+            "720",
+            "360",
+            "240",
+            "180",
+            "120"
+          ],
+          "answer": "B",
+          "explanation": "Em metade das 6! = 720 ordenações A está à frente de B, e na outra metade ocorre o contrário: 6! ÷ 2! = 360."
+        },
+        {
+          "topic": "Duas ordenações exigidas",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 41,
+          "statement": "Com as sete letras distintas da palavra COMBATE, o número de anagramas em que as letras C, O e M aparecem nessa ordem (não necessariamente juntas) e as letras A, T e também aparecem nessa ordem é",
+          "support": null,
+          "options": [
+            "420",
+            "5.040",
+            "70",
+            "840",
+            "140"
+          ],
+          "answer": "E",
+          "explanation": "São 7! permutações; dividindo pelas 3! ordenações possíveis de C-O-M e pelas 3! de A-T-E, obtém-se 7! ÷ (3! · 3!) = 5.040 ÷ 36 = 140."
+        },
+        {
+          "topic": "Permutação caótica: D4",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 43,
+          "statement": "Quatro militares trabalham em quatro mesas diferentes. Se todos trocarem de mesa, de modo que nenhum fique na mesa que ocupava, o número de maneiras de fazê-lo é",
+          "support": null,
+          "options": [
+            "6",
+            "8",
+            "9",
+            "12",
+            "24"
+          ],
+          "answer": "C",
+          "explanation": "Trata-se de permutação caótica de 4 elementos: D4 = 4! · (1/2! − 1/3! + 1/4!) = 12 − 4 + 1 = 9. A permutação simples (24) incluiria casos em que alguém permanece na mesa original."
+        },
+        {
+          "topic": "Cálculo de desarranjo",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 43,
+          "statement": "O número de permutações caóticas (desarranjos) de 5 elementos, D5, é",
+          "support": null,
+          "options": [
+            "44",
+            "120",
+            "60",
+            "53",
+            "9"
+          ],
+          "answer": "A",
+          "explanation": "D5 = 5! · (1/2! − 1/3! + 1/4! − 1/5!) = 60 − 20 + 5 − 1 = 44."
+        },
+        {
+          "topic": "Arranjo simples",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 47,
+          "statement": "Oito candidatos disputam três cargos distintos (comandante, subcomandante e chefe de operações), sem que um candidato ocupe mais de um cargo. O número de maneiras de preencher os cargos é",
+          "support": null,
+          "options": [
+            "24",
+            "56",
+            "336",
+            "512",
+            "40.320"
+          ],
+          "answer": "C",
+          "explanation": "Como os cargos são distintos, a ordem importa: A(8,3) = 8 · 7 · 6 = 336. A combinação C(8,3) = 56 desconsideraria a diferença entre cargos."
+        },
+        {
+          "topic": "Arranjo com e sem reposição",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 48,
+          "statement": "Uma senha é formada por 2 letras distintas, escolhidas entre as 26 do alfabeto, seguidas de 3 dígitos de 0 a 9, que podem se repetir. O número de senhas possíveis é",
+          "support": null,
+          "options": [
+            "676.000",
+            "15.600",
+            "17.576.000",
+            "650.000",
+            "260.000"
+          ],
+          "answer": "D",
+          "explanation": "As letras distintas formam um arranjo sem reposição (26 · 25 = 650), e os dígitos formam um arranjo com reposição (10³ = 1.000): 650 × 1.000 = 650.000."
+        },
+        {
+          "topic": "Arranjo ou combinação",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 46,
+          "statement": "Em um grupo de 7 militares, deseja-se escolher (I) um coordenador e um auxiliar para uma operação e (II) uma dupla de plantão, sem diferenciação de função. Quanto à técnica de contagem, (I) e (II) correspondem, respectivamente, a",
+          "support": null,
+          "options": [
+            "combinação e arranjo.",
+            "arranjo e combinação.",
+            "arranjo e arranjo.",
+            "combinação e combinação.",
+            "permutação e combinação."
+          ],
+          "answer": "B",
+          "explanation": "Em (I) as funções são distintas, de modo que a ordem da escolha importa (arranjo: 7 · 6 = 42). Em (II) a ordem é irrelevante (combinação: C(7,2) = 21)."
+        },
+        {
+          "topic": "Equação com arranjo",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 47,
+          "statement": "Se o arranjo simples A(n, 2) é igual a 56, o valor de n é",
+          "support": null,
+          "options": [
+            "28",
+            "14",
+            "9",
+            "8",
+            "7"
+          ],
+          "answer": "D",
+          "explanation": "A(n, 2) = n(n − 1) = 56. Como 8 × 7 = 56, n = 8."
+        },
+        {
+          "topic": "Arranjo e permutação: afirmativas",
+          "pattern": "assertivas",
+          "difficulty": 3,
+          "pageRef": 46,
+          "statement": "Considere as afirmações:\n\n**I.** No arranjo simples, a ordem de seleção dos elementos importa. \n\n**II.** A(n, k) = n! ÷ (n − k)!. \n\n**III.** No arranjo com reposição de k elementos dentre n, o total é n! ÷ k!.\n\nEstá(ão) correta(s):",
+          "support": null,
+          "options": [
+            "I e II, apenas.",
+            "I, apenas.",
+            "III, apenas.",
+            "II e III, apenas.",
+            "I, II e III."
+          ],
+          "answer": "A",
+          "explanation": "I e II estão corretas. A III é falsa: o arranjo com reposição de k dentre n elementos é n^k, já que cada escolha tem n opções."
+        }
+      ]
     },
     {
-     "topic": "Escolha de elementos de classes diferentes",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 12,
-     "statement": "Uma estante tem 5 manuais de combate a incêndio, 4 de salvamento e 2 de atendimento pré-hospitalar. De quantas maneiras é possível escolher dois manuais de áreas diferentes?",
-     "support": null,
-     "options": [
-      "55",
-      "47",
-      "38",
-      "20",
-      "11"
-     ],
-     "answer": "C",
-     "explanation": "Há três casos excludentes: incêndio e salvamento (5 × 4 = 20), incêndio e APH (5 × 2 = 10) e salvamento e APH (4 × 2 = 8). Somando-os: 38."
+      "id": "estatistica/a05/s04",
+      "bizu": {
+        "summary": [
+          "### 1. Definições, Fórmulas e Propriedades Centrais",
+          "- **Notações:** C(n,k), C_n^k ou o binomial n sobre k.",
+          "- **Casos particulares: C(n,n):** 1.",
+          "- **C(n,0):** 1.",
+          "- **C(n,1):** n.",
+          "C(n,n−1) = n. **C(n,k) = C(n,n−k)** (escolher k é o mesmo que escolher quem fica de fora). Teorema das linhas: C(n,0) + C(n,1) + ... + C(n,n) = 2^n. Útil em questões como \"cada caixa recebe pelo menos uma pasta\" (2^10 − 2 = 1022).",
+          "### 2. Métodos de Resolução e Classificações",
+          "#### Sequência e Funcionamento:",
+          "1. Combinação simples: escolhe-se k dentre n elementos sem importar a ordem. C(n,k) = n! / [(n − k)! · k!] = A(n,k) / P_k.",
+          "- Use combinação para comissões, grupos, times, duplas.",
+          "- use arranjo quando as posições/cargos são distintos.",
+          "- Se as incógnitas devem ser positivas, distribui-se 1 unidade a cada uma antes (sobram p − n) e aplica-se CR(n, p − n).",
+          "#### Quadro Comparativo:",
+          "| Instituto / Conceito | Regra / Distinção | Confronto / Exceção |\n| :--- | :--- | :--- |\n| **Aspecto 1** | Combinação | arranjo: cada combinação corresponde a k! arranjos (mudanças de ordem) |",
+          "### 3. Exemplos de Aplicação e Procedimentos",
+          "> 💡 **Exemplo Prático:** \"Pelo menos um\": calcule o total sem restrição e subtraia os casos que não atendem (ex.: grupos de 3 entre 5 mulheres e 4 homens com pelo menos 1 mulher = C(9,3) − C(4,3) = 80).",
+          "### 4. Pontos Críticos e Cuidados nos Cálculos",
+          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+        ],
+        "teoria": [
+          {
+            "statement": "A combinação simples de k elementos dentre n é igual ao arranjo de k dentre n dividido pela permutação de k elementos.",
+            "isTrue": true,
+            "explanation": "C(n,k) = A(n,k)/k!, pois as k! reordenações dos mesmos elementos formam a mesma combinação."
+          },
+          {
+            "statement": "A combinação de k elementos dentre n e a combinação de n − k elementos dentre n são, em geral, valores diferentes.",
+            "isTrue": false,
+            "explanation": "C(n,k) = C(n,n−k): escolher quem entra equivale a escolher quem fica de fora."
+          },
+          {
+            "statement": "A soma das combinações de n elementos tomados 0 a 0, 1 a 1, ..., n a n é igual a 2^n.",
+            "isTrue": true,
+            "explanation": "É o teorema das linhas do triângulo de Pascal."
+          },
+          {
+            "statement": "O número de soluções inteiras não negativas da equação x1 + x2 + x3 = 5 é C(5,3).",
+            "isTrue": false,
+            "explanation": "São CR(3,5) = C(3 − 1 + 5, 5) = C(7,5) = 21; C(5,3) é 10."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Escolher um único elemento dentre n possíveis pode ser feito de n maneiras, ou seja, C(n,1) = n.",
+            "isTrue": true,
+            "explanation": "É um dos casos particulares da combinação."
+          },
+          {
+            "statement": "A combinação C(n,0) vale zero, pois não há como escolher nenhum elemento.",
+            "isTrue": false,
+            "explanation": "Há uma única forma de não escolher nada: C(n,0) = 1."
+          },
+          {
+            "statement": "Em problemas com a expressão \"pelo menos um\", pode-se calcular o total de possibilidades sem restrição e subtrair as possibilidades em que nenhum elemento desejado é escolhido.",
+            "isTrue": true,
+            "explanation": "É o método do complementar, que evita somar várias combinações."
+          },
+          {
+            "statement": "Pela relação de Stifel, C(n,k) + C(n,k+1) é igual a C(n+1,k).",
+            "isTrue": false,
+            "explanation": "A relação de Stifel dá C(n,k) + C(n,k+1) = C(n+1,k+1)."
+          },
+          {
+            "statement": "A combinação completa de p objetos dentre n tipos pode ser calculada como C(n − 1 + p, p).",
+            "isTrue": true,
+            "explanation": "Equivale à permutação de p objetos e n − 1 divisórias."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Combinação simples: definição e fórmula",
+            "pageRef": 49
+          },
+          {
+            "topic": "Combinação x arranjo (divisão por P_k)",
+            "pageRef": 49
+          },
+          {
+            "topic": "Restrição \"pelo menos um\" pelo complementar",
+            "pageRef": 51
+          },
+          {
+            "topic": "Casos particulares C(n,n), C(n,0), C(n,1), C(n,n-1)",
+            "pageRef": 52
+          },
+          {
+            "topic": "C(n,k) = C(n,n-k) e soma das combinações = 2^n",
+            "pageRef": 53
+          },
+          {
+            "topic": "Triângulo de Pascal, Stifel e teorema das colunas",
+            "pageRef": 55
+          },
+          {
+            "topic": "Combinação completa: fórmula",
+            "pageRef": 59
+          },
+          {
+            "topic": "Número de soluções inteiras de equações",
+            "pageRef": 62
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Combinação simples",
+          "pattern": "calculo",
+          "difficulty": 1,
+          "pageRef": 50,
+          "statement": "Uma equipe de 3 bombeiros será escolhida entre 8 candidatos, sem distinção de função entre os escolhidos. O número de equipes possíveis é",
+          "support": null,
+          "options": [
+            "24",
+            "56",
+            "120",
+            "336",
+            "512"
+          ],
+          "answer": "B",
+          "explanation": "A ordem não importa: C(8,3) = 8! ÷ (5! · 3!) = 56. O arranjo A(8,3) = 336 contaria cada equipe 3! = 6 vezes."
+        },
+        {
+          "topic": "Relação entre arranjo e combinação",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 49,
+          "statement": "Em um grupo de 7 pessoas, o número de maneiras de escolher 3 delas, sem considerar a ordem, é 35. O número de maneiras de escolher 3 pessoas para três cargos distintos é",
+          "support": null,
+          "options": [
+            "35",
+            "105",
+            "210",
+            "343",
+            "5.040"
+          ],
+          "answer": "C",
+          "explanation": "Cada combinação de 3 pessoas corresponde a 3! = 6 arranjos (mudanças de ordem/cargo): A(7,3) = C(7,3) · 3! = 35 × 6 = 210."
+        },
+        {
+          "topic": "Pelo menos um",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 51,
+          "statement": "De um grupo de 6 homens e 4 mulheres, formam-se comissões de 3 pessoas com pelo menos uma mulher. O número de comissões possíveis é",
+          "support": null,
+          "options": [
+            "120",
+            "20",
+            "80",
+            "40",
+            "100"
+          ],
+          "answer": "E",
+          "explanation": "Total de comissões: C(10,3) = 120. Subtraem-se as formadas só por homens: C(6,3) = 20. Logo, 120 − 20 = 100."
+        },
+        {
+          "topic": "Produto de combinações",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 56,
+          "statement": "Uma equipe de resgate terá 2 enfermeiros (entre 5), 1 médico (entre 3) e 2 socorristas (entre 6). O número de equipes diferentes é",
+          "support": null,
+          "options": [
+            "30",
+            "150",
+            "225",
+            "450",
+            "900"
+          ],
+          "answer": "D",
+          "explanation": "As escolhas são concomitantes: C(5,2) · C(3,1) · C(6,2) = 10 · 3 · 15 = 450."
+        },
+        {
+          "topic": "Combinações complementares",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 53,
+          "statement": "O valor de C(12,9) é",
+          "support": null,
+          "options": [
+            "220",
+            "55",
+            "1.320",
+            "165",
+            "495"
+          ],
+          "answer": "A",
+          "explanation": "C(n,k) = C(n, n − k): C(12,9) = C(12,3) = 12 · 11 · 10 ÷ 6 = 220. Escolher 9 é o mesmo que escolher os 3 que ficam de fora."
+        },
+        {
+          "topic": "Teorema das linhas aplicado",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 57,
+          "statement": "Oito processos diferentes devem ser guardados em duas gavetas diferentes, e cada gaveta deve conter ao menos um processo. O número de maneiras de fazê-lo é",
+          "support": null,
+          "options": [
+            "256",
+            "252",
+            "126",
+            "28",
+            "254"
+          ],
+          "answer": "E",
+          "explanation": "Pelo teorema das linhas, a soma de todas as combinações de 8 elementos é 2⁸ = 256. Excluem-se os casos de gaveta vazia (nenhum ou todos os processos na primeira): 256 − 2 = 254."
+        },
+        {
+          "topic": "Soma de combinações",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 54,
+          "statement": "O valor da soma C(7,1) + C(7,2) + C(7,3) + C(7,4) + C(7,5) + C(7,6) é",
+          "support": null,
+          "options": [
+            "128",
+            "127",
+            "64",
+            "63",
+            "126"
+          ],
+          "answer": "E",
+          "explanation": "A soma de todas as combinações de 7 elementos (de C(7,0) a C(7,7)) é 2⁷ = 128. Retirando C(7,0) = 1 e C(7,7) = 1: 128 − 2 = 126."
+        },
+        {
+          "topic": "Relação de Stifel",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 55,
+          "statement": "Pela relação de Stifel, C(7,3) + C(7,4) é igual a",
+          "support": null,
+          "options": [
+            "C(8,3), isto é, 56.",
+            "C(7,7), isto é, 1.",
+            "C(14,7), isto é, 3.432.",
+            "C(8,4), isto é, 70.",
+            "C(8,5), isto é, 56."
+          ],
+          "answer": "D",
+          "explanation": "A relação de Stifel estabelece C(n,k) + C(n,k+1) = C(n+1,k+1): C(7,3) + C(7,4) = C(8,4) = 70. Conferindo: 35 + 35 = 70."
+        },
+        {
+          "topic": "Teorema das colunas",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 55,
+          "statement": "O valor da soma C(3,3) + C(4,3) + C(5,3) + C(6,3) é",
+          "support": null,
+          "options": [
+            "20",
+            "28",
+            "30",
+            "35",
+            "56"
+          ],
+          "answer": "D",
+          "explanation": "Pelo teorema das colunas, a soma é igual a C(7,4) = 35. Conferindo: 1 + 4 + 10 + 20 = 35."
+        },
+        {
+          "topic": "Combinação completa",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 59,
+          "statement": "Uma lanchonete oferece 4 tipos de salgado. De quantas maneiras é possível comprar 6 salgados, podendo repetir o tipo?",
+          "support": null,
+          "options": [
+            "4.096",
+            "210",
+            "84",
+            "24",
+            "15"
+          ],
+          "answer": "C",
+          "explanation": "É combinação completa de 4 tipos, escolhendo 6: CR(4,6) = C(4 − 1 + 6, 6) = C(9,6) = 84. A combinação simples C(4,6) não existe, e 4⁶ contaria ordens distintas."
+        },
+        {
+          "topic": "Distribuição com mínimo por pessoa",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 60,
+          "statement": "Doze coletes idênticos serão distribuídos entre três equipes, e cada equipe deve receber ao menos dois coletes. De quantas maneiras isso pode ser feito?",
+          "support": null,
+          "options": [
+            "28",
+            "55",
+            "66",
+            "36",
+            "220"
+          ],
+          "answer": "A",
+          "explanation": "Distribuem-se primeiro 2 coletes a cada equipe (6 coletes), restando 6 para distribuição livre entre 3 equipes: CR(3,6) = C(8,6) = 28."
+        },
+        {
+          "topic": "Soluções inteiras não negativas",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 62,
+          "statement": "O número de soluções inteiras e não negativas da equação x + y + z + w = 8 é",
+          "support": null,
+          "options": [
+            "70",
+            "120",
+            "165",
+            "330",
+            "495"
+          ],
+          "answer": "C",
+          "explanation": "É a combinação completa de n = 4 variáveis e p = 8: CR(4,8) = C(11,8) = 165."
+        },
+        {
+          "topic": "Soluções inteiras positivas",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 63,
+          "statement": "O número de soluções inteiras e positivas da equação a + b + c + d = 11 é",
+          "support": null,
+          "options": [
+            "330",
+            "210",
+            "165",
+            "120",
+            "84"
+          ],
+          "answer": "D",
+          "explanation": "Atribui-se 1 a cada variável (sobram 11 − 4 = 7 unidades) e contam-se as soluções não negativas de a + b + c + d = 7: CR(4,7) = C(10,7) = 120."
+        },
+        {
+          "topic": "Soluções finitas",
+          "pattern": "conceito",
+          "difficulty": 2,
+          "pageRef": 62,
+          "statement": "O número de soluções de uma equação linear do tipo x1 + x2 + ... + xn = p só é finito se as incógnitas forem restritas a inteiros não negativos porque, caso contrário,",
+          "support": null,
+          "options": [
+            "sempre seria possível subtrair de uma variável e somar a outra, mantendo a soma e gerando infinitas soluções.",
+            "a soma deixaria de ser igual a p.",
+            "o princípio multiplicativo não seria válido.",
+            "a combinação completa seria igual a zero.",
+            "o fatorial de números negativos não existiria, e a equação seria impossível."
+          ],
+          "answer": "A",
+          "explanation": "Com valores negativos ou reais, bastaria transferir uma quantidade qualquer de uma incógnita para outra para obter nova solução com a mesma soma, o que geraria infinitas soluções. Restringir a inteiros não negativos torna o conjunto finito."
+        },
+        {
+          "topic": "Combinação: afirmativa incorreta",
+          "pattern": "incorreta",
+          "difficulty": 2,
+          "pageRef": 52,
+          "statement": "Sobre a combinação simples,\n\nassinale a alternativa INCORRETA.",
+          "support": null,
+          "options": [
+            "C(n,n) = 1.",
+            "C(n,0) = 1.",
+            "C(n,k) = C(n, n − k).",
+            "C(n, n − 1) = n.",
+            "C(n,1) = 1, qualquer que seja n."
+          ],
+          "answer": "E",
+          "explanation": "Escolher 1 elemento entre n pode ser feito de n maneiras: C(n,1) = n. As demais igualdades são casos particulares válidos."
+        }
+      ]
     },
     {
-     "topic": "Número de divisores",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 8,
-     "statement": "O número 360 = 2³ × 3² × 5 possui quantos divisores naturais?",
-     "support": null,
-     "options": [
-      "10",
-      "12",
-      "18",
-      "24",
-      "30"
-     ],
-     "answer": "D",
-     "explanation": "O número de divisores é o produto dos expoentes acrescidos de 1: (3 + 1)(2 + 1)(1 + 1) = 4 × 3 × 2 = 24. A soma dos expoentes (6) ou dos expoentes mais 1 não conduz ao resultado."
-    },
-    {
-     "topic": "Divisores e tabelas retangulares",
-     "pattern": "caso",
-     "difficulty": 3,
-     "pageRef": 9,
-     "statement": "De quantas maneiras é possível organizar 144 campos de preenchimento em uma tabela retangular, considerando que uma tabela de a linhas por b colunas é diferente de uma de b linhas por a colunas?",
-     "support": null,
-     "options": [
-      "24",
-      "18",
-      "15",
-      "12",
-      "9"
-     ],
-     "answer": "C",
-     "explanation": "Cada tabela corresponde a um par ordenado (a, b) com a · b = 144, isto é, a um divisor a de 144. Como 144 = 2⁴ × 3², o número de divisores é (4 + 1)(2 + 1) = 15."
-    },
-    {
-     "topic": "Quando usar o princípio aditivo",
-     "pattern": "conceito",
-     "difficulty": 1,
-     "pageRef": 10,
-     "statement": "O princípio aditivo é aplicado, para contar as maneiras de ocorrer um evento A ou um evento B, quando A e B são",
-     "support": null,
-     "options": [
-      "concomitantes, isto é, ocorrem juntos.",
-      "sempre iguais em número de maneiras.",
-      "dependentes do número de elementos.",
-      "sempre em número par.",
-      "mutuamente exclusivos."
-     ],
-     "answer": "E",
-     "explanation": "Se A e B são mutuamente exclusivos (a ocorrência de um impede a do outro), o número de maneiras de ocorrer um deles é a soma. Para eventos concomitantes (A e B), usa-se o princípio multiplicativo."
-    },
-    {
-     "topic": "Pombos: pelo menos três no mesmo mês",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 14,
-     "statement": "Qual é o menor número de militares que se deve reunir para que se tenha certeza de que pelo menos três deles nasceram no mesmo mês do ano?",
-     "support": null,
-     "options": [
-      "36",
-      "26",
-      "25",
-      "24",
-      "13"
-     ],
-     "answer": "C",
-     "explanation": "No pior cenário, há 2 aniversariantes em cada um dos 12 meses (24 pessoas) sem que haja 3 no mesmo mês. A 25ª pessoa garante o resultado: 12 × 2 + 1 = 25."
-    },
-    {
-     "topic": "Pombos: pior cenário",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 15,
-     "statement": "Cartas são retiradas ao acaso de um baralho comum de 52 cartas, com 4 naipes de 13 cartas cada. Para ter certeza de que haverá 4 cartas de um mesmo naipe entre as retiradas, o menor número de cartas é",
-     "support": null,
-     "options": [
-      "12",
-      "16",
-      "14",
-      "40",
-      "13"
-     ],
-     "answer": "E",
-     "explanation": "No pior cenário, saem 3 cartas de cada naipe (12 cartas) sem completar 4 de um naipe. A 13ª carta garante: 4 × 3 + 1 = 13."
-    },
-    {
-     "topic": "Contagem de jogos em torneio",
-     "pattern": "calculo",
-     "difficulty": 1,
-     "pageRef": 16,
-     "statement": "Em um torneio eliminatório de tênis, cada partida elimina exatamente um jogador, e o torneio termina com um campeão. Com 213 inscritos, o número total de partidas é",
-     "support": null,
-     "options": [
-      "424",
-      "213",
-      "212",
-      "107",
-      "106"
-     ],
-     "answer": "C",
-     "explanation": "Para restar um único campeão, devem ser eliminados 212 jogadores. Como cada partida elimina um, são necessárias 212 partidas."
-    },
-    {
-     "topic": "Raciocínio do pior cenário",
-     "pattern": "conceito",
-     "difficulty": 1,
-     "pageRef": 13,
-     "statement": "Para obter garantias com o princípio da casa dos pombos, o raciocínio correto consiste em",
-     "support": null,
-     "options": [
-      "considerar o cenário mais provável.",
-      "considerar o pior cenário, ou seja, a distribuição mais espalhada possível.",
-      "considerar a média dos cenários possíveis.",
-      "considerar o melhor cenário.",
-      "sortear os elementos nas casas."
-     ],
-     "answer": "B",
-     "explanation": "A garantia vale para qualquer distribuição; por isso se raciocina com o pior cenário (os elementos o mais espalhados possível) e se acrescenta mais um elemento."
-    },
-    {
-     "topic": "Restrição entre vértices",
-     "pattern": "caso",
-     "difficulty": 2,
-     "pageRef": 7,
-     "statement": "Os três vértices de um triângulo serão pintados, cada um com uma de 4 cores, de modo que quaisquer dois vértices tenham cores diferentes. O número de maneiras de pintá-lo é",
-     "support": null,
-     "options": [
-      "64",
-      "36",
-      "12",
-      "48",
-      "24"
-     ],
-     "answer": "E",
-     "explanation": "O primeiro vértice admite 4 cores, o segundo, 3 (diferente do primeiro) e o terceiro, 2 (diferente dos dois): 4 × 3 × 2 = 24."
-    },
-    {
-     "topic": "Princípios de contagem: afirmativas",
-     "pattern": "assertivas",
-     "difficulty": 2,
-     "pageRef": 10,
-     "statement": "Considere as afirmações. I. No princípio multiplicativo, a contagem é feita para eventos que ocorrem em conjunto (A e B). II. Em um torneio eliminatório com N participantes, o número de jogos é N − 1. III. Para garantir 2 elementos em uma mesma casa, com m casas, bastam m elementos. Está(ão) correta(s)",
-     "support": null,
-     "options": [
-      "I, apenas.",
-      "III, apenas.",
-      "II e III, apenas.",
-      "I, II e III.",
-      "I e II, apenas."
-     ],
-     "answer": "E",
-     "explanation": "I e II estão corretas. A III é falsa: com m elementos, todos podem ocupar casas diferentes; para garantir 2 na mesma casa são necessários m + 1."
+      "id": "estatistica/a05/s05",
+      "bizu": {
+        "summary": [
+          "### 1. Definições, Fórmulas e Propriedades Centrais",
+          "- **Partição:** divisão de um conjunto em subconjuntos cuja soma de elementos dá o total do conjunto (como fatias de uma pizza).",
+          "- **Resolve-se também por combinações sucessivas (C(10,1) · C(9,2) · C(7,7):** 360).",
+          "- Partição não ordenada (grupos equivalentes, mesma tarefa): divide-se o resultado ordenado pelo número de maneiras de permutar os grupos.",
+          "- **Para m grupos de p elementos:** **(m·p)! / [m! · (p!)^m]**.",
+          "1º lema (fila: os extremos NíO são vizinhos): f(n,p) = C(n − p + 1, p). Raciocínio: n − p elementos não escolhidos criam n − p + 1 espaços onde colocar os p escolhidos. 2º lema (círculo: os extremos SíO vizinhos, como meses do ano ou fatias de pizza): g(n,p) = [n / (n − p)] · C(n − p, p).",
+          "### 2. Métodos de Resolução e Classificações",
+          "#### Sequência e Funcionamento:",
+          "1. Nos grupos, a ordem dos elementos **dentro** do subconjunto não importa.",
+          "2. Lemas de Kaplansky: contam subconjuntos de p elementos, escolhidos dentre n dispostos em ordem, sem elementos vizinhos.",
+          "- 10 pessoas em 2 grupos de 5 → 126.",
+          "- para combinações com várias quantidades, use o princípio aditivo sobre cada p.",
+          "### 3. Exemplos de Aplicação e Procedimentos",
+          "> 💡 **Exemplo Prático:** Partição ordenada (grupos distintos, ex.: gerente, coordenadores, trabalhadores): n! / (p1! · p2! · ... · pm!).",
+          "> 💡 **Exemplo Prático:** Ex.: 6 pessoas em 3 duplas → 90/6 = 15.",
+          "> 💡 **Exemplo Prático:** Ex.: 3 dias não consecutivos de segunda a sábado → C(4,3) = 4.",
+          "### 4. Pontos Críticos e Cuidados nos Cálculos",
+          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+        ],
+        "teoria": [
+          {
+            "statement": "Na partição ordenada de n elementos em subconjuntos de tamanhos p1, p2, ..., pm, o número de possibilidades é n!/(p1!·p2!·...·pm!).",
+            "isTrue": true,
+            "explanation": "Os grupos são distintos entre si; dentro de cada um, a ordem não importa."
+          },
+          {
+            "statement": "Na partição não ordenada em grupos equivalentes, não é necessário dividir o resultado da partição ordenada por m!.",
+            "isTrue": false,
+            "explanation": "Como trocar a ordem dos grupos equivalentes não gera nova partição, divide-se por m! (permutação dos m grupos)."
+          },
+          {
+            "statement": "O 1º lema de Kaplansky, f(n,p) = C(n − p + 1, p), vale para elementos dispostos em fila, em que os extremos não são considerados vizinhos.",
+            "isTrue": true,
+            "explanation": "O 2º lema é o usado quando os extremos são vizinhos (disposição circular)."
+          },
+          {
+            "statement": "O 2º lema de Kaplansky deve ser usado quando o primeiro e o último elemento do conjunto não são considerados vizinhos.",
+            "isTrue": false,
+            "explanation": "O 2º lema trata o conjunto como um círculo: o primeiro e o último elemento são vizinhos."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O número de maneiras de dividir 6 pessoas em 3 duplas equivalentes é 15.",
+            "isTrue": true,
+            "explanation": "6!/(2!·2!·2!) = 90 na versão ordenada; dividindo por 3! = 6, obtém-se 15."
+          },
+          {
+            "statement": "O número de modos de dividir 10 pessoas em dois grupos equivalentes de 5 pessoas é C(10,5) = 252.",
+            "isTrue": false,
+            "explanation": "Como os grupos são equivalentes, divide-se por 2!: 252/2 = 126."
+          },
+          {
+            "statement": "O 2º lema de Kaplansky é dado por g(n,p) = [n/(n − p)] · C(n − p, p).",
+            "isTrue": true,
+            "explanation": "Para n = 8 e p = 3, g(8,3) = (8/5) × 10 = 16."
+          },
+          {
+            "statement": "Para escolher 3 dias não consecutivos de segunda a sábado, o número de possibilidades é C(6,3) = 20.",
+            "isTrue": false,
+            "explanation": "Os dias estão em fila (extremos não vizinhos); aplica-se f(6,3) = C(6 − 3 + 1, 3) = C(4,3) = 4."
+          },
+          {
+            "statement": "Dentro de cada subconjunto de uma partição, a ordem dos elementos não é relevante.",
+            "isTrue": true,
+            "explanation": "Na partição ordenada a ordem que importa é a dos subconjuntos, e não a dos elementos dentro de cada um."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Conceito de partição e diferença para combinação",
+            "pageRef": 65
+          },
+          {
+            "topic": "Partição ordenada: fórmula e dedução",
+            "pageRef": 66
+          },
+          {
+            "topic": "Questões com partição ordenada",
+            "pageRef": 68
+          },
+          {
+            "topic": "Partição não ordenada e divisão por m!",
+            "pageRef": 69
+          },
+          {
+            "topic": "Fórmula (m·p)!/(m!(p!)^m)",
+            "pageRef": 70
+          },
+          {
+            "topic": "Primeiro lema de Kaplansky",
+            "pageRef": 72
+          },
+          {
+            "topic": "Exemplo das lâmpadas e dos dias de trabalho",
+            "pageRef": 74
+          },
+          {
+            "topic": "Segundo lema de Kaplansky",
+            "pageRef": 75
+          }
+        ]
+      },
+      "questions": [
+        {
+          "topic": "Partição ordenada",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 66,
+          "statement": "Doze militares serão divididos em três grupos distintos, com 2, 4 e 6 integrantes, que cumprirão missões diferentes. O número de maneiras de formar os grupos é",
+          "support": null,
+          "options": [
+            "13.860",
+            "6.930",
+            "479.001.600",
+            "27.720",
+            "3.465"
+          ],
+          "answer": "A",
+          "explanation": "Como os grupos são distintos, aplica-se a partição ordenada: 12! ÷ (2! · 4! · 6!) = 13.860. O mesmo resultado sai de C(12,2) · C(10,4) · C(6,6) = 66 · 210 · 1."
+        },
+        {
+          "topic": "Distribuição de projetos entre setores distintos",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 68,
+          "statement": "Nove projetos diferentes serão distribuídos entre três setores distintos: 4 para o primeiro, 3 para o segundo e 2 para o terceiro. O número de maneiras de distribuí-los é",
+          "support": null,
+          "options": [
+            "216",
+            "630",
+            "1.260",
+            "2.520",
+            "362.880"
+          ],
+          "answer": "C",
+          "explanation": "Partição ordenada: 9! ÷ (4! · 3! · 2!) = 362.880 ÷ 288 = 1.260."
+        },
+        {
+          "topic": "Partição ordenada x não ordenada",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 65,
+          "statement": "Oito pessoas serão divididas em dois grupos de quatro, que executarão exatamente a mesma tarefa. O número de maneiras de formar os grupos é",
+          "support": null,
+          "options": [
+            "70",
+            "35",
+            "40.320",
+            "56",
+            "140"
+          ],
+          "answer": "B",
+          "explanation": "Os grupos são equivalentes (partição não ordenada). A partição ordenada daria 8! ÷ (4! · 4!) = 70, e é preciso dividir por 2! (a ordem dos grupos não importa): 70 ÷ 2 = 35."
+        },
+        {
+          "topic": "Partição não ordenada: duplas",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 70,
+          "statement": "Oito pessoas serão divididas em quatro duplas que realizarão o mesmo trabalho. O número de maneiras de formar as duplas é",
+          "support": null,
+          "options": [
+            "105",
+            "210",
+            "630",
+            "2.520",
+            "40.320"
+          ],
+          "answer": "A",
+          "explanation": "Com m = 4 grupos de p = 2 elementos, a partição não ordenada é (4 · 2)! ÷ [4! · (2!)⁴] = 40.320 ÷ (24 · 16) = 105."
+        },
+        {
+          "topic": "Partição não ordenada: trios e quartetos",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 70,
+          "statement": "Doze pessoas serão divididas em três grupos de quatro, equivalentes entre si. O número de maneiras de formá-los é",
+          "support": null,
+          "options": [
+            "34.650",
+            "11.550",
+            "5.775",
+            "1.925",
+            "495"
+          ],
+          "answer": "C",
+          "explanation": "Partição não ordenada: 12! ÷ [3! · (4!)³] = 479.001.600 ÷ (6 · 13.824) = 5.775. A partição ordenada seria 34.650 (= 5.775 · 3!)."
+        },
+        {
+          "topic": "Característica das partições",
+          "pattern": "conceito",
+          "difficulty": 1,
+          "pageRef": 65,
+          "statement": "O que diferencia as partições dos problemas gerais de combinação é o fato de que, nas partições,",
+          "support": null,
+          "options": [
+            "a soma dos elementos dos subconjuntos é igual ao total de elementos do conjunto.",
+            "a ordem dos elementos dentro de cada subconjunto importa.",
+            "os subconjuntos têm sempre o mesmo número de elementos.",
+            "só se podem formar dois subconjuntos.",
+            "os elementos podem se repetir."
+          ],
+          "answer": "A",
+          "explanation": "Na partição, o conjunto é dividido em subconjuntos cuja soma de elementos recompõe o total. A ordem dentro dos subconjuntos não importa, e o número e o tamanho dos subconjuntos são livres."
+        },
+        {
+          "topic": "Primeiro lema de Kaplansky",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 73,
+          "statement": "Um chefe de equipe precisa escolher 3 dias de plantão entre 10 dias consecutivos em fila, sem que dois dias escolhidos sejam vizinhos. O número de maneiras é",
+          "support": null,
+          "options": [
+            "120",
+            "84",
+            "56",
+            "35",
+            "28"
+          ],
+          "answer": "C",
+          "explanation": "No 1º lema, f(n,p) = C(n − p + 1, p): f(10,3) = C(8,3) = 56. Os 7 dias não escolhidos criam 8 espaços onde alocar os 3 escolhidos."
+        },
+        {
+          "topic": "Lâmpadas não adjacentes",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 74,
+          "statement": "Quatro lâmpadas estão em fileira, e duas lâmpadas adjacentes nunca podem ficar acesas ao mesmo tempo. O número de configurações possíveis, incluindo a de todas apagadas, é",
+          "support": null,
+          "options": [
+            "8",
+            "16",
+            "7",
+            "6",
+            "10"
+          ],
+          "answer": "A",
+          "explanation": "Somam-se os casos por número de lâmpadas acesas: 0 acesas, 1; 1 acesa, 4; 2 acesas, C(3,2) = 3 (1º lema); 3 ou mais acesas, nenhum caso válido. Total: 1 + 4 + 3 = 8."
+        },
+        {
+          "topic": "Segundo lema de Kaplansky",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 75,
+          "statement": "Dez cadeiras estão dispostas em círculo, e 3 pessoas devem ocupar cadeiras de modo que não haja duas ocupadas lado a lado. O número de maneiras de escolher as cadeiras é",
+          "support": null,
+          "options": [
+            "56",
+            "35",
+            "120",
+            "40",
+            "50"
+          ],
+          "answer": "E",
+          "explanation": "Como as cadeiras formam um círculo, aplica-se o 2º lema: g(n,p) = [n ÷ (n − p)] · C(n − p, p) = (10 ÷ 7) · C(7,3) = (10 ÷ 7) · 35 = 50."
+        },
+        {
+          "topic": "Escolha do lema",
+          "pattern": "caso",
+          "difficulty": 2,
+          "pageRef": 72,
+          "statement": "Um oficial deve escolher 3 meses não consecutivos do ano para um treinamento, considerando que dezembro e janeiro também são vizinhos. O lema de Kaplansky adequado e a razão da escolha são:",
+          "support": null,
+          "options": [
+            "o primeiro lema, pois os meses são sempre distintos.",
+            "o primeiro lema, pois o ano é uma fila.",
+            "o segundo lema, pois a escolha tem de ser de 3 elementos.",
+            "o segundo lema, pois os extremos (dezembro e janeiro) são considerados vizinhos.",
+            "nenhum lema, pois a escolha depende da ordem."
+          ],
+          "answer": "D",
+          "explanation": "O 2º lema se aplica quando os extremos do conjunto são considerados vizinhos, como em meses do ano ou fatias de pizza; no 1º lema, os extremos não são vizinhos (por exemplo, dias de segunda a sábado)."
+        },
+        {
+          "topic": "Primeiro lema com p = 2",
+          "pattern": "calculo",
+          "difficulty": 2,
+          "pageRef": 73,
+          "statement": "Entre os seis dias de segunda a sábado, escolhem-se dois dias não consecutivos. O número de escolhas possíveis é",
+          "support": null,
+          "options": [
+            "5",
+            "9",
+            "10",
+            "15",
+            "20"
+          ],
+          "answer": "C",
+          "explanation": "Pelo 1º lema, f(6,2) = C(5,2) = 10. Conferindo: há C(6,2) = 15 pares e 5 pares de dias consecutivos, e 15 − 5 = 10."
+        },
+        {
+          "topic": "Segundo lema: decomposição em casos",
+          "pattern": "calculo",
+          "difficulty": 3,
+          "pageRef": 76,
+          "statement": "Nove elementos estão dispostos em círculo, e se devem escolher 3, sem que dois sejam vizinhos. Considerando o caso em que um elemento específico é escolhido (f(6,2) = 10) e o caso em que ele não é (f(8,3) = 20), o total de escolhas é",
+          "support": null,
+          "options": [
+            "84",
+            "36",
+            "30",
+            "20",
+            "10"
+          ],
+          "answer": "C",
+          "explanation": "Os casos são excludentes: 10 + 20 = 30, valor que coincide com a fórmula do 2º lema: g(9,3) = (9 ÷ 6) · C(6,3) = 1,5 · 20 = 30."
+        },
+        {
+          "topic": "Partições e lemas: afirmativas",
+          "pattern": "assertivas",
+          "difficulty": 2,
+          "pageRef": 69,
+          "statement": "Considere as afirmações:\n\n**I.** Na partição ordenada, os grupos são distintos entre si. \n\n**II.** Na partição não ordenada, divide-se o resultado ordenado pelo número de maneiras de permutar os grupos. \n\n**III.** No primeiro lema de Kaplansky, os elementos extremos do conjunto são considerados vizinhos.\n\nEstá(ão) correta(s):",
+          "support": null,
+          "options": [
+            "I e II, apenas.",
+            "I, apenas.",
+            "III, apenas.",
+            "II e III, apenas.",
+            "I, II e III."
+          ],
+          "answer": "A",
+          "explanation": "I e II estão corretas. A III descreve o segundo lema: no primeiro, os extremos não são vizinhos."
+        }
+      ]
     }
-   ]
-  },
-  {
-   "id": "estatistica/a05/s02",
-   "bizu": {
-    "summary": [
-     "### 1. Definições, Fórmulas e Propriedades Centrais",
-     "- **Fatorial: n!:** n · (n − 1) · (n − 2) · ... · 2 · 1.",
-     "- **Pode-se parar em qualquer fator: n!:** n · (n − 1)! = n · (n − 1) · (n − 2)!, o que simplifica divisões (10!/7! = 10 · 9 · 8).",
-     "- **Casos especiais: 1!:** 1** e **0! = 1** (convenção coerente com n! = (n + 1)!/(n + 1)).",
-     "- **2 · 4!:** 48, mas (2 · 4)! = 8! = 40.320.",
-     "2 + 4! = 26, mas (2 + 4)! = 720. Permutação simples: ordenar n elementos distintos: P_n = n!. Restrição por posição fixa: se p dos n elementos ficam em posições determinadas, permutam-se os demais: (n − p)!.",
-     "### 2. Métodos de Resolução e Classificações",
-     "#### Sequência e Funcionamento:",
-     "1. Elementos juntos: tratando os j elementos como um único bloco, em ordem determinada, o total é (n − j + 1)!",
-     "2. **(ii) elementos que ficam juntos** → bloco único + permutação interna, se a ordem interna for livre.",
-     "- Serve para filas, anagramas de palavras sem letras repetidas, números com algarismos distintos.",
-     "- **Distinção:** (calcula os fatoriais antes) é diferente de (6/3)! = 2!",
-     "### 3. Exemplos de Aplicação e Procedimentos",
-     "> 💡 **Exemplo Prático:** Exemplo de fila alternada: com 5 meninas e 4 meninos, a fila só alterna começando e terminando por menina, e resulta 5! · 4! = 2.880.",
-     "### 4. Pontos Críticos e Cuidados nos Cálculos",
-     "> ⚠️ **Atenção de Prova:** Cuidado com parênteses: 6!/3!"
-    ],
-    "teoria": [
-     {
-      "statement": "Por convenção, 0! vale 1, o que é coerente com a relação 0! = 1!/1.",
-      "isTrue": true,
-      "explanation": "Escrevendo n! = (n + 1)!/(n + 1), obtém-se 0! = 1!/1 = 1."
-     },
-     {
-      "statement": "O valor de 6!/3! é igual a (6/3)!, isto é, a 2.",
-      "isTrue": false,
-      "explanation": "6!/3! = 6 · 5 · 4 = 120; já (6/3)! = 2! = 2. A posição dos parênteses muda o resultado."
-     },
-     {
-      "statement": "O número de anagramas de uma palavra com n letras todas distintas é n!.",
-      "isTrue": true,
-      "explanation": "É a permutação simples de n elementos."
-     },
-     {
-      "statement": "Ao se fixar 2 de 8 elementos em posições determinadas, o número de ordenações dos demais é obtido dividindo-se 8! por 2.",
-      "isTrue": false,
-      "explanation": "Restam 6 elementos livres em 6 posições, e o total é 6! = (8 − 2)!."
-     }
-    ],
-    "revisao": [
-     {
-      "statement": "Se j elementos devem ficar sempre juntos, mas podem trocar de lugar entre si, o total de ordenações de n elementos é (n − j + 1)! × j!.",
-      "isTrue": true,
-      "explanation": "Permuta-se o bloco com os demais elementos e multiplica-se pelas permutações internas do bloco."
-     },
-     {
-      "statement": "Se j elementos devem ficar juntos em uma ordem fixa, o número de ordenações de n elementos é (n − j)!.",
-      "isTrue": false,
-      "explanation": "O bloco conta como um elemento a mais: o resultado é (n − j + 1)!."
-     },
-     {
-      "statement": "O valor de 2 × 4! é 48, enquanto o valor de (2 × 4)! é 40.320.",
-      "isTrue": true,
-      "explanation": "No primeiro caso o fatorial só atinge o 4; no segundo, atinge o produto 8."
-     },
-     {
-      "statement": "O fatorial de n pode ser escrito como n × (n + 1)!.",
-      "isTrue": false,
-      "explanation": "A relação correta é n! = n × (n − 1)!."
-     }
-    ],
-    "pointers": [
-     {
-      "topic": "Definição de fatorial e simplificação de divisões",
-      "pageRef": 18
-     },
-     {
-      "topic": "Cuidados com parênteses e operações com fatorial",
-      "pageRef": 19
-     },
-     {
-      "topic": "Casos 1! e 0!",
-      "pageRef": 20
-     },
-     {
-      "topic": "Permutação simples: raciocínio posição a posição",
-      "pageRef": 22
-     },
-     {
-      "topic": "Fórmula P_n = n! e anagramas",
-      "pageRef": 24
-     },
-     {
-      "topic": "Restrição: elementos em posições fixas",
-      "pageRef": 25
-     },
-     {
-      "topic": "Elementos em posições designadas sem fixar cada um",
-      "pageRef": 26
-     },
-     {
-      "topic": "Elementos juntos, com ou sem reordenação interna",
-      "pageRef": 29
-     }
-    ]
-   },
-   "questions": [
-    {
-     "topic": "Simplificação de fatoriais",
-     "pattern": "calculo",
-     "difficulty": 1,
-     "pageRef": 19,
-     "statement": "O valor de 8! ÷ 6! é",
-     "support": null,
-     "options": [
-      "336",
-      "56",
-      "8",
-      "2",
-      "1,33"
-     ],
-     "answer": "B",
-     "explanation": "Escrevendo 8! = 8 · 7 · 6!, o 6! se cancela e sobra 8 × 7 = 56. Efetua-se o fatorial antes da divisão; (8 ÷ 6)! teria outro sentido."
-    },
-    {
-     "topic": "Equação com fatoriais",
-     "pattern": "calculo",
-     "difficulty": 3,
-     "pageRef": 19,
-     "statement": "Se (n + 2)! ÷ n! = 90, o valor de n é",
-     "support": null,
-     "options": [
-      "7",
-      "8",
-      "9",
-      "10",
-      "88"
-     ],
-     "answer": "B",
-     "explanation": "(n + 2)! = (n + 2)(n + 1) · n!, de modo que (n + 2)(n + 1) = 90. Como 10 × 9 = 90, n + 2 = 10 e n = 8."
-    },
-    {
-     "topic": "Parênteses e fatorial",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 19,
-     "statement": "O valor de (2 · 3)! − 2 · 3! é",
-     "support": null,
-     "options": [
-      "0",
-      "6",
-      "12",
-      "708",
-      "720"
-     ],
-     "answer": "D",
-     "explanation": "(2 · 3)! = 6! = 720 e 2 · 3! = 2 · 6 = 12; a diferença é 720 − 12 = 708. O fatorial atua sobre o termo imediatamente anterior, e os parênteses mudam o resultado."
-    },
-    {
-     "topic": "0! e 1!",
-     "pattern": "conceito",
-     "difficulty": 1,
-     "pageRef": 19,
-     "statement": "Sobre os valores de 0! e de 1!, é correto afirmar que",
-     "support": null,
-     "options": [
-      "0! vale 0 e 1! vale 1.",
-      "ambos valem 1, o que é coerente com n! = (n + 1)! ÷ (n + 1).",
-      "0! não está definido.",
-      "ambos valem 0.",
-      "0! vale 1 e 1! vale 2."
-     ],
-     "answer": "B",
-     "explanation": "Por convenção, 0! = 1; além disso, 1! = 1. Isso é coerente com n! = (n + 1)! ÷ (n + 1): 1! = 2! ÷ 2 = 1 e 0! = 1! ÷ 1 = 1."
-    },
-    {
-     "topic": "Permutação simples",
-     "pattern": "calculo",
-     "difficulty": 1,
-     "pageRef": 24,
-     "statement": "O número de anagramas da sigla CBMPE, formada por cinco letras distintas, é",
-     "support": null,
-     "options": [
-      "720",
-      "120",
-      "60",
-      "25",
-      "24"
-     ],
-     "answer": "B",
-     "explanation": "Com letras todas distintas, o número de anagramas é a permutação simples: 5! = 120."
-    },
-    {
-     "topic": "Duas posições extremas designadas",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 26,
-     "statement": "Sete candidatos serão enfileirados. O primeiro colocado e o segundo colocado do concurso devem ocupar as extremidades da fila, em qualquer ordem. O número de filas possíveis é",
-     "support": null,
-     "options": [
-      "120",
-      "240",
-      "720",
-      "1.440",
-      "5.040"
-     ],
-     "answer": "B",
-     "explanation": "Os dois candidatos ocupam as extremidades de 2! maneiras, e os 5 demais se ordenam nas posições intermediárias de 5! maneiras: 2! × 5! = 240."
-    },
-    {
-     "topic": "Posições de acordo com a paridade",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 27,
-     "statement": "Com os algarismos 1, 2, 3, 4, 5 e 6, formam-se números de seis algarismos distintos em que os ímpares ocupam as posições ímpares e os pares, as posições pares. Quantos números podem ser formados?",
-     "support": null,
-     "options": [
-      "720",
-      "72",
-      "36",
-      "18",
-      "6"
-     ],
-     "answer": "C",
-     "explanation": "Os 3 ímpares se permutam nas 3 posições ímpares (3! = 6) e os 3 pares nas 3 pares (3! = 6): 6 × 6 = 36."
-    },
-    {
-     "topic": "Elementos juntos em ordem determinada",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 29,
-     "statement": "De quantas maneiras sete pessoas podem formar uma fila se três delas, A, B e C, devem ficar juntas e exatamente nessa ordem?",
-     "support": null,
-     "options": [
-      "5.040",
-      "840",
-      "720",
-      "120",
-      "24"
-     ],
-     "answer": "D",
-     "explanation": "Tratando A-B-C como um bloco único, ordenam-se 7 − 3 + 1 = 5 elementos: 5! = 120."
-    },
-    {
-     "topic": "Elementos juntos em qualquer ordem",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 30,
-     "statement": "De quantas maneiras sete pessoas podem formar uma fila se três delas devem ficar juntas, em qualquer ordem entre si?",
-     "support": null,
-     "options": [
-      "120",
-      "720",
-      "5.040",
-      "36",
-      "840"
-     ],
-     "answer": "B",
-     "explanation": "O bloco com as três pessoas é permutado com as outras quatro (5! = 120), e, dentro do bloco, as três podem trocar de lugar (3! = 6): 120 × 6 = 720."
-    },
-    {
-     "topic": "Fila alternada",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 29,
-     "statement": "Em uma fila com 4 meninas e 3 meninos, a alternância de gênero exige que a fila comece e termine por menina. O número de filas possíveis nessa condição é",
-     "support": null,
-     "options": [
-      "5.040",
-      "576",
-      "288",
-      "144",
-      "24"
-     ],
-     "answer": "D",
-     "explanation": "As meninas ocupam as posições 1, 3, 5 e 7 (4! = 24) e os meninos, as posições 2, 4 e 6 (3! = 6): 24 × 6 = 144."
-    },
-    {
-     "topic": "Anagramas com posições fixas",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 25,
-     "statement": "Os anagramas da palavra PERNAMBUCO, formada por 10 letras distintas, que começam com P e terminam com O, são em número de",
-     "support": null,
-     "options": [
-      "3.628.800",
-      "40.320",
-      "5.040",
-      "362.880",
-      "80.640"
-     ],
-     "answer": "B",
-     "explanation": "Com P e O nas extremidades fixas, as 8 letras restantes se permutam: 8! = 40.320. Se P e O pudessem trocar de lugar, o resultado seria dobrado."
-    },
-    {
-     "topic": "Permutação com restrição: afirmativa incorreta",
-     "pattern": "incorreta",
-     "difficulty": 2,
-     "pageRef": 30,
-     "statement": "Em relação à permutação simples com restrição, assinale a alternativa INCORRETA.",
-     "support": null,
-     "options": [
-      "Se p elementos estão fixos em posições determinadas, permutam-se os n − p restantes.",
-      "Se j elementos devem ficar juntos em ordem determinada, o total é (n − j + 1)!.",
-      "Se p elementos ocupam posições designadas, mas podem trocar entre si, o total é (n − p)! · p!.",
-      "Os elementos que ficam juntos são tratados como um bloco único.",
-      "Se j elementos devem ficar juntos em qualquer ordem, o total é (n − j + 1)!, sem multiplicar pela permutação interna."
-     ],
-     "answer": "E",
-     "explanation": "Quando os j elementos podem se reordenar dentro do bloco, multiplica-se (n − j + 1)! por j!. Sem essa multiplicação, só se conta a ordem determinada."
-    },
-    {
-     "topic": "Fatorial e permutação: afirmativas",
-     "pattern": "assertivas",
-     "difficulty": 2,
-     "pageRef": 18,
-     "statement": "Considere as afirmações. I. O número de maneiras de ordenar n elementos distintos é n!. II. 10! ÷ 8! é igual a 90. III. (3 + 2)! é igual a 3! + 2!. Está(ão) correta(s)",
-     "support": null,
-     "options": [
-      "I e II, apenas.",
-      "I, apenas.",
-      "II, apenas.",
-      "II e III, apenas.",
-      "I, II e III."
-     ],
-     "answer": "A",
-     "explanation": "I está correta (permutação simples) e II também (10! ÷ 8! = 10 · 9 = 90). A III é falsa: (3 + 2)! = 120, enquanto 3! + 2! = 8."
-    }
-   ]
-  },
-  {
-   "id": "estatistica/a05/s03",
-   "bizu": {
-    "summary": [
-     "### 1. Definições, Fórmulas e Propriedades Centrais",
-     "- **Permutação com repetição:** com n elementos totais, dos quais m1, m2, ..., mk são iguais entre si, divide-se a permutação simples pelas permutações dos repetidos: n! / (m1! · m2! · ... · mk!).",
-     "- **Permutação circular: sem posição de início, fixa-se um elemento e permutam-se os demais: PC_n:** (n − 1)!.",
-     "- **Permutação caótica (desarranjo): nenhum elemento volta à posição original. D_n:** n! · [1/2! − 1/3! + 1/4! − ... + (−1)^n / n!].",
-     "- **Valores úteis: D_2:** 1, D_3 = 2, D_4 = 9**.",
-     "Arranjo simples (sem reposição): A(n,k) = n! / (n − k)! (n possibilidades para o 1º, n − 1 para o 2º, etc.). Arranjo com reposição: n^k, pois cada escolha tem sempre n opções. Questões mistas (letras distintas + dígitos repetidos) multiplicam arranjos sem e com reposição: 26 · 25 · 10⁴ = 6.500.000.",
-     "### 2. Métodos de Resolução e Classificações",
-     "#### Sequência e Funcionamento:",
-     "1. Permutação com elementos ordenados: se k dos n elementos precisam seguir uma ordem definida (não necessariamente consecutivos), o total é n! / k!.",
-     "2. Com dois grupos de ordem: **n! / (k1! · k2!)**.",
-     "3. Se a ordem também for consecutiva, trata-se como bloco.",
-     "4. Arranjo e combinação selecionam k dentre n elementos: no arranjo a ordem importa.",
-     "- Rotações do círculo contam como a mesma disposição.",
-     "- na **combinação não**.",
-     "### 3. Exemplos de Aplicação e Procedimentos",
-     "> 💡 **Exemplo Prático:** Ex.: CASA (2 A) → 4!/2! = 12 anagramas.",
-     "> 💡 **Exemplo Prático:** Circular com restrições (ex.: meninos e meninas alternados): resolve-se em etapas — primeiro um grupo em círculo ((n−1)!), depois o outro grupo nas posições entre eles (permutação simples).",
-     "> 💡 **Exemplo Prático:** Ex.: 4 meninos e 4 meninas → 3! · 4! = 144.",
-     "### 4. Pontos Críticos e Cuidados nos Cálculos",
-     "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
-    ],
-    "teoria": [
-     {
-      "statement": "O número de anagramas da palavra CASA é 4!/2!, pois a letra A aparece duas vezes.",
-      "isTrue": true,
-      "explanation": "Na permutação com repetição divide-se n! pelo fatorial do número de vezes que cada elemento se repete."
-     },
-     {
-      "statement": "A permutação circular de n elementos é igual a n!.",
-      "isTrue": false,
-      "explanation": "Como as rotações do círculo são consideradas a mesma disposição, fixa-se um elemento e o resultado é (n − 1)!."
-     },
-     {
-      "statement": "Em um arranjo a ordem em que os elementos são selecionados é relevante, ao passo que em uma combinação não é.",
-      "isTrue": true,
-      "explanation": "Essa é a distinção central entre as duas técnicas."
-     },
-     {
-      "statement": "Se k dos n elementos devem respeitar uma ordem definida, o número de ordenações possíveis é n! multiplicado por k!.",
-      "isTrue": false,
-      "explanation": "A restrição reduz as possibilidades: divide-se n! por k!, ou seja, n!/k!."
-     }
-    ],
-    "revisao": [
-     {
-      "statement": "O número de permutações caóticas de 3 elementos é 2.",
-      "isTrue": true,
-      "explanation": "D_3 = 3!·(1/2! − 1/3!) = 3 − 1 = 2."
-     },
-     {
-      "statement": "O arranjo com reposição de k elementos dentre n é dado por n!/(n − k)!.",
-      "isTrue": false,
-      "explanation": "Essa é a fórmula do arranjo SEM reposição. Com reposição, o total é n^k."
-     },
-     {
-      "statement": "Na permutação com elementos ordenados, os elementos que seguem a ordem exigida não precisam estar em posições consecutivas.",
-      "isTrue": true,
-      "explanation": "Só se exige a ordem relativa; para exigir também que fiquem consecutivos, trata-se o grupo como bloco."
-     },
-     {
-      "statement": "O número de maneiras de reorganizar 4 funcionários em 4 mesas, de modo que nenhum fique na mesa que ocupava antes, é 12.",
-      "isTrue": false,
-      "explanation": "Trata-se de desarranjo de 4 elementos: D_4 = 9."
-     },
-     {
-      "statement": "Uma senha com 2 letras distintas, escolhidas dentre 26, seguidas de 4 dígitos que podem se repetir, admite 26 × 25 × 10^4 possibilidades.",
-      "isTrue": true,
-      "explanation": "As letras formam um arranjo sem reposição (26 × 25) e os dígitos, um arranjo com reposição (10 × 10 × 10 × 10)."
-     }
-    ],
-    "pointers": [
-     {
-      "topic": "Permutação com repetição",
-      "pageRef": 32
-     },
-     {
-      "topic": "Fórmula geral e exemplo CASA/GEÓLOGO",
-      "pageRef": 33
-     },
-     {
-      "topic": "Permutação circular: (n-1)!",
-      "pageRef": 36
-     },
-     {
-      "topic": "Permutação circular com restrições",
-      "pageRef": 36
-     },
-     {
-      "topic": "Permutação com elementos ordenados: n!/k!",
-      "pageRef": 40
-     },
-     {
-      "topic": "Permutação caótica (desarranjo): fórmula",
-      "pageRef": 43
-     },
-     {
-      "topic": "Arranjo simples: A(n,k)",
-      "pageRef": 47
-     },
-     {
-      "topic": "Arranjo com reposição",
-      "pageRef": 47
-     }
-    ]
-   },
-   "questions": [
-    {
-     "topic": "Permutação com repetição",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 33,
-     "statement": "O número de anagramas da palavra BOMBEIRO, em que as letras B e O aparecem duas vezes cada, é",
-     "support": null,
-     "options": [
-      "2.520",
-      "5.040",
-      "10.080",
-      "20.160",
-      "40.320"
-     ],
-     "answer": "C",
-     "explanation": "São 8 letras, com B repetido 2 vezes e O repetido 2 vezes: 8! ÷ (2! · 2!) = 40.320 ÷ 4 = 10.080."
-    },
-    {
-     "topic": "Permutação com repetição simples",
-     "pattern": "calculo",
-     "difficulty": 1,
-     "pageRef": 33,
-     "statement": "O número de anagramas da palavra ARARA, que tem 3 letras A e 2 letras R, é",
-     "support": null,
-     "options": [
-      "120",
-      "20",
-      "5",
-      "60",
-      "10"
-     ],
-     "answer": "E",
-     "explanation": "5! ÷ (3! · 2!) = 120 ÷ 12 = 10. Dividir apenas por 3! daria 20, desconsiderando a repetição das letras R."
-    },
-    {
-     "topic": "Permutação com várias repetições",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 33,
-     "statement": "A palavra MATEMÁTICA, ignorando o acento, tem 10 letras, com M repetido 2 vezes, A repetido 3 vezes e T repetido 2 vezes. O número de seus anagramas é",
-     "support": null,
-     "options": [
-      "3.628.800",
-      "302.400",
-      "75.600",
-      "453.600",
-      "151.200"
-     ],
-     "answer": "E",
-     "explanation": "10! ÷ (2! · 3! · 2!) = 3.628.800 ÷ 24 = 151.200. Cada letra repetida exige uma divisão pelo fatorial de suas ocorrências."
-    },
-    {
-     "topic": "Permutação circular",
-     "pattern": "calculo",
-     "difficulty": 1,
-     "pageRef": 36,
-     "statement": "Seis amigos vão sentar-se em torno de uma mesa circular, sem lugares marcados. Considerando como iguais as disposições que coincidem por rotação, o número de maneiras de acomodá-los é",
-     "support": null,
-     "options": [
-      "720",
-      "120",
-      "60",
-      "36",
-      "24"
-     ],
-     "answer": "B",
-     "explanation": "Na permutação circular de n elementos, (n − 1)! = 5! = 120. Fixa-se um dos amigos e permutam-se os demais."
-    },
-    {
-     "topic": "Permutação circular com alternância",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 36,
-     "statement": "Cinco oficiais e cinco praças sentam-se em uma mesa circular de modo que cada oficial fique entre dois praças. O número de disposições distintas é",
-     "support": null,
-     "options": [
-      "14.400",
-      "120",
-      "86.400",
-      "2.880",
-      "24"
-     ],
-     "answer": "D",
-     "explanation": "Primeiro dispõem-se os oficiais em círculo: (5 − 1)! = 24. Os praças ocupam então os 5 espaços entre eles, cuja posição já é distinguível: 5! = 120. Total: 24 × 120 = 2.880."
-    },
-    {
-     "topic": "Rotação e permutação circular",
-     "pattern": "conceito",
-     "difficulty": 1,
-     "pageRef": 35,
-     "statement": "Na permutação circular, fixa-se um dos elementos e permutam-se os demais porque",
-     "support": null,
-     "options": [
-      "as disposições obtidas por rotação do círculo são consideradas a mesma disposição.",
-      "o círculo possui sempre um elemento maior que os demais.",
-      "os elementos de um círculo são sempre iguais entre si.",
-      "a ordem dos elementos é irrelevante no círculo.",
-      "a permutação circular dispensa o uso do fatorial."
-     ],
-     "answer": "A",
-     "explanation": "Em um círculo não há posição inicial; girar o círculo não gera nova disposição. Fixando um elemento, as posições dos demais passam a ser relativas a ele, e a ordem delas importa."
-    },
-    {
-     "topic": "Permutação com elementos ordenados",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 41,
-     "statement": "Seis corredores disputam uma prova sem empates. O número de resultados possíveis em que o corredor A chega antes do corredor B é",
-     "support": null,
-     "options": [
-      "720",
-      "360",
-      "240",
-      "180",
-      "120"
-     ],
-     "answer": "B",
-     "explanation": "Em metade das 6! = 720 ordenações A está à frente de B, e na outra metade ocorre o contrário: 6! ÷ 2! = 360."
-    },
-    {
-     "topic": "Duas ordenações exigidas",
-     "pattern": "calculo",
-     "difficulty": 3,
-     "pageRef": 41,
-     "statement": "Com as sete letras distintas da palavra COMBATE, o número de anagramas em que as letras C, O e M aparecem nessa ordem (não necessariamente juntas) e as letras A, T e também aparecem nessa ordem é",
-     "support": null,
-     "options": [
-      "420",
-      "5.040",
-      "70",
-      "840",
-      "140"
-     ],
-     "answer": "E",
-     "explanation": "São 7! permutações; dividindo pelas 3! ordenações possíveis de C-O-M e pelas 3! de A-T-E, obtém-se 7! ÷ (3! · 3!) = 5.040 ÷ 36 = 140."
-    },
-    {
-     "topic": "Permutação caótica: D4",
-     "pattern": "caso",
-     "difficulty": 2,
-     "pageRef": 43,
-     "statement": "Quatro militares trabalham em quatro mesas diferentes. Se todos trocarem de mesa, de modo que nenhum fique na mesa que ocupava, o número de maneiras de fazê-lo é",
-     "support": null,
-     "options": [
-      "6",
-      "8",
-      "9",
-      "12",
-      "24"
-     ],
-     "answer": "C",
-     "explanation": "Trata-se de permutação caótica de 4 elementos: D4 = 4! · (1/2! − 1/3! + 1/4!) = 12 − 4 + 1 = 9. A permutação simples (24) incluiria casos em que alguém permanece na mesa original."
-    },
-    {
-     "topic": "Cálculo de desarranjo",
-     "pattern": "calculo",
-     "difficulty": 3,
-     "pageRef": 43,
-     "statement": "O número de permutações caóticas (desarranjos) de 5 elementos, D5, é",
-     "support": null,
-     "options": [
-      "44",
-      "120",
-      "60",
-      "53",
-      "9"
-     ],
-     "answer": "A",
-     "explanation": "D5 = 5! · (1/2! − 1/3! + 1/4! − 1/5!) = 60 − 20 + 5 − 1 = 44."
-    },
-    {
-     "topic": "Arranjo simples",
-     "pattern": "calculo",
-     "difficulty": 1,
-     "pageRef": 47,
-     "statement": "Oito candidatos disputam três cargos distintos (comandante, subcomandante e chefe de operações), sem que um candidato ocupe mais de um cargo. O número de maneiras de preencher os cargos é",
-     "support": null,
-     "options": [
-      "24",
-      "56",
-      "336",
-      "512",
-      "40.320"
-     ],
-     "answer": "C",
-     "explanation": "Como os cargos são distintos, a ordem importa: A(8,3) = 8 · 7 · 6 = 336. A combinação C(8,3) = 56 desconsideraria a diferença entre cargos."
-    },
-    {
-     "topic": "Arranjo com e sem reposição",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 48,
-     "statement": "Uma senha é formada por 2 letras distintas, escolhidas entre as 26 do alfabeto, seguidas de 3 dígitos de 0 a 9, que podem se repetir. O número de senhas possíveis é",
-     "support": null,
-     "options": [
-      "676.000",
-      "15.600",
-      "17.576.000",
-      "650.000",
-      "260.000"
-     ],
-     "answer": "D",
-     "explanation": "As letras distintas formam um arranjo sem reposição (26 · 25 = 650), e os dígitos formam um arranjo com reposição (10³ = 1.000): 650 × 1.000 = 650.000."
-    },
-    {
-     "topic": "Arranjo ou combinação",
-     "pattern": "caso",
-     "difficulty": 2,
-     "pageRef": 46,
-     "statement": "Em um grupo de 7 militares, deseja-se escolher (I) um coordenador e um auxiliar para uma operação e (II) uma dupla de plantão, sem diferenciação de função. Quanto à técnica de contagem, (I) e (II) correspondem, respectivamente, a",
-     "support": null,
-     "options": [
-      "combinação e arranjo.",
-      "arranjo e combinação.",
-      "arranjo e arranjo.",
-      "combinação e combinação.",
-      "permutação e combinação."
-     ],
-     "answer": "B",
-     "explanation": "Em (I) as funções são distintas, de modo que a ordem da escolha importa (arranjo: 7 · 6 = 42). Em (II) a ordem é irrelevante (combinação: C(7,2) = 21)."
-    },
-    {
-     "topic": "Equação com arranjo",
-     "pattern": "calculo",
-     "difficulty": 3,
-     "pageRef": 47,
-     "statement": "Se o arranjo simples A(n, 2) é igual a 56, o valor de n é",
-     "support": null,
-     "options": [
-      "28",
-      "14",
-      "9",
-      "8",
-      "7"
-     ],
-     "answer": "D",
-     "explanation": "A(n, 2) = n(n − 1) = 56. Como 8 × 7 = 56, n = 8."
-    },
-    {
-     "topic": "Arranjo e permutação: afirmativas",
-     "pattern": "assertivas",
-     "difficulty": 3,
-     "pageRef": 46,
-     "statement": "Considere as afirmações. I. No arranjo simples, a ordem de seleção dos elementos importa. II. A(n, k) = n! ÷ (n − k)!. III. No arranjo com reposição de k elementos dentre n, o total é n! ÷ k!. Está(ão) correta(s)",
-     "support": null,
-     "options": [
-      "I e II, apenas.",
-      "I, apenas.",
-      "III, apenas.",
-      "II e III, apenas.",
-      "I, II e III."
-     ],
-     "answer": "A",
-     "explanation": "I e II estão corretas. A III é falsa: o arranjo com reposição de k dentre n elementos é n^k, já que cada escolha tem n opções."
-    }
-   ]
-  },
-  {
-   "id": "estatistica/a05/s04",
-   "bizu": {
-    "summary": [
-     "### 1. Definições, Fórmulas e Propriedades Centrais",
-     "- **Notações:** C(n,k), C_n^k ou o binomial n sobre k.",
-     "- **Casos particulares: C(n,n):** 1.",
-     "- **C(n,0):** 1.",
-     "- **C(n,1):** n.",
-     "C(n,n−1) = n. **C(n,k) = C(n,n−k)** (escolher k é o mesmo que escolher quem fica de fora). Teorema das linhas: C(n,0) + C(n,1) + ... + C(n,n) = 2^n. Útil em questões como \"cada caixa recebe pelo menos uma pasta\" (2^10 − 2 = 1022).",
-     "### 2. Métodos de Resolução e Classificações",
-     "#### Sequência e Funcionamento:",
-     "1. Combinação simples: escolhe-se k dentre n elementos sem importar a ordem. C(n,k) = n! / [(n − k)! · k!] = A(n,k) / P_k.",
-     "- Use combinação para comissões, grupos, times, duplas.",
-     "- use arranjo quando as posições/cargos são distintos.",
-     "- Se as incógnitas devem ser positivas, distribui-se 1 unidade a cada uma antes (sobram p − n) e aplica-se CR(n, p − n).",
-     "#### Quadro Comparativo:",
-     "| Instituto / Conceito | Regra / Distinção | Confronto / Exceção |\n| :--- | :--- | :--- |\n| **Aspecto 1** | Combinação | arranjo: cada combinação corresponde a k! arranjos (mudanças de ordem) |",
-     "### 3. Exemplos de Aplicação e Procedimentos",
-     "> 💡 **Exemplo Prático:** \"Pelo menos um\": calcule o total sem restrição e subtraia os casos que não atendem (ex.: grupos de 3 entre 5 mulheres e 4 homens com pelo menos 1 mulher = C(9,3) − C(4,3) = 80).",
-     "### 4. Pontos Críticos e Cuidados nos Cálculos",
-     "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
-    ],
-    "teoria": [
-     {
-      "statement": "A combinação simples de k elementos dentre n é igual ao arranjo de k dentre n dividido pela permutação de k elementos.",
-      "isTrue": true,
-      "explanation": "C(n,k) = A(n,k)/k!, pois as k! reordenações dos mesmos elementos formam a mesma combinação."
-     },
-     {
-      "statement": "A combinação de k elementos dentre n e a combinação de n − k elementos dentre n são, em geral, valores diferentes.",
-      "isTrue": false,
-      "explanation": "C(n,k) = C(n,n−k): escolher quem entra equivale a escolher quem fica de fora."
-     },
-     {
-      "statement": "A soma das combinações de n elementos tomados 0 a 0, 1 a 1, ..., n a n é igual a 2^n.",
-      "isTrue": true,
-      "explanation": "É o teorema das linhas do triângulo de Pascal."
-     },
-     {
-      "statement": "O número de soluções inteiras não negativas da equação x1 + x2 + x3 = 5 é C(5,3).",
-      "isTrue": false,
-      "explanation": "São CR(3,5) = C(3 − 1 + 5, 5) = C(7,5) = 21; C(5,3) é 10."
-     }
-    ],
-    "revisao": [
-     {
-      "statement": "Escolher um único elemento dentre n possíveis pode ser feito de n maneiras, ou seja, C(n,1) = n.",
-      "isTrue": true,
-      "explanation": "É um dos casos particulares da combinação."
-     },
-     {
-      "statement": "A combinação C(n,0) vale zero, pois não há como escolher nenhum elemento.",
-      "isTrue": false,
-      "explanation": "Há uma única forma de não escolher nada: C(n,0) = 1."
-     },
-     {
-      "statement": "Em problemas com a expressão \"pelo menos um\", pode-se calcular o total de possibilidades sem restrição e subtrair as possibilidades em que nenhum elemento desejado é escolhido.",
-      "isTrue": true,
-      "explanation": "É o método do complementar, que evita somar várias combinações."
-     },
-     {
-      "statement": "Pela relação de Stifel, C(n,k) + C(n,k+1) é igual a C(n+1,k).",
-      "isTrue": false,
-      "explanation": "A relação de Stifel dá C(n,k) + C(n,k+1) = C(n+1,k+1)."
-     },
-     {
-      "statement": "A combinação completa de p objetos dentre n tipos pode ser calculada como C(n − 1 + p, p).",
-      "isTrue": true,
-      "explanation": "Equivale à permutação de p objetos e n − 1 divisórias."
-     }
-    ],
-    "pointers": [
-     {
-      "topic": "Combinação simples: definição e fórmula",
-      "pageRef": 49
-     },
-     {
-      "topic": "Combinação x arranjo (divisão por P_k)",
-      "pageRef": 49
-     },
-     {
-      "topic": "Restrição \"pelo menos um\" pelo complementar",
-      "pageRef": 51
-     },
-     {
-      "topic": "Casos particulares C(n,n), C(n,0), C(n,1), C(n,n-1)",
-      "pageRef": 52
-     },
-     {
-      "topic": "C(n,k) = C(n,n-k) e soma das combinações = 2^n",
-      "pageRef": 53
-     },
-     {
-      "topic": "Triângulo de Pascal, Stifel e teorema das colunas",
-      "pageRef": 55
-     },
-     {
-      "topic": "Combinação completa: fórmula",
-      "pageRef": 59
-     },
-     {
-      "topic": "Número de soluções inteiras de equações",
-      "pageRef": 62
-     }
-    ]
-   },
-   "questions": [
-    {
-     "topic": "Combinação simples",
-     "pattern": "calculo",
-     "difficulty": 1,
-     "pageRef": 50,
-     "statement": "Uma equipe de 3 bombeiros será escolhida entre 8 candidatos, sem distinção de função entre os escolhidos. O número de equipes possíveis é",
-     "support": null,
-     "options": [
-      "24",
-      "56",
-      "120",
-      "336",
-      "512"
-     ],
-     "answer": "B",
-     "explanation": "A ordem não importa: C(8,3) = 8! ÷ (5! · 3!) = 56. O arranjo A(8,3) = 336 contaria cada equipe 3! = 6 vezes."
-    },
-    {
-     "topic": "Relação entre arranjo e combinação",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 49,
-     "statement": "Em um grupo de 7 pessoas, o número de maneiras de escolher 3 delas, sem considerar a ordem, é 35. O número de maneiras de escolher 3 pessoas para três cargos distintos é",
-     "support": null,
-     "options": [
-      "35",
-      "105",
-      "210",
-      "343",
-      "5.040"
-     ],
-     "answer": "C",
-     "explanation": "Cada combinação de 3 pessoas corresponde a 3! = 6 arranjos (mudanças de ordem/cargo): A(7,3) = C(7,3) · 3! = 35 × 6 = 210."
-    },
-    {
-     "topic": "Pelo menos um",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 51,
-     "statement": "De um grupo de 6 homens e 4 mulheres, formam-se comissões de 3 pessoas com pelo menos uma mulher. O número de comissões possíveis é",
-     "support": null,
-     "options": [
-      "120",
-      "20",
-      "80",
-      "40",
-      "100"
-     ],
-     "answer": "E",
-     "explanation": "Total de comissões: C(10,3) = 120. Subtraem-se as formadas só por homens: C(6,3) = 20. Logo, 120 − 20 = 100."
-    },
-    {
-     "topic": "Produto de combinações",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 56,
-     "statement": "Uma equipe de resgate terá 2 enfermeiros (entre 5), 1 médico (entre 3) e 2 socorristas (entre 6). O número de equipes diferentes é",
-     "support": null,
-     "options": [
-      "30",
-      "150",
-      "225",
-      "450",
-      "900"
-     ],
-     "answer": "D",
-     "explanation": "As escolhas são concomitantes: C(5,2) · C(3,1) · C(6,2) = 10 · 3 · 15 = 450."
-    },
-    {
-     "topic": "Combinações complementares",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 53,
-     "statement": "O valor de C(12,9) é",
-     "support": null,
-     "options": [
-      "220",
-      "55",
-      "1.320",
-      "165",
-      "495"
-     ],
-     "answer": "A",
-     "explanation": "C(n,k) = C(n, n − k): C(12,9) = C(12,3) = 12 · 11 · 10 ÷ 6 = 220. Escolher 9 é o mesmo que escolher os 3 que ficam de fora."
-    },
-    {
-     "topic": "Teorema das linhas aplicado",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 57,
-     "statement": "Oito processos diferentes devem ser guardados em duas gavetas diferentes, e cada gaveta deve conter ao menos um processo. O número de maneiras de fazê-lo é",
-     "support": null,
-     "options": [
-      "256",
-      "252",
-      "126",
-      "28",
-      "254"
-     ],
-     "answer": "E",
-     "explanation": "Pelo teorema das linhas, a soma de todas as combinações de 8 elementos é 2⁸ = 256. Excluem-se os casos de gaveta vazia (nenhum ou todos os processos na primeira): 256 − 2 = 254."
-    },
-    {
-     "topic": "Soma de combinações",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 54,
-     "statement": "O valor da soma C(7,1) + C(7,2) + C(7,3) + C(7,4) + C(7,5) + C(7,6) é",
-     "support": null,
-     "options": [
-      "128",
-      "127",
-      "64",
-      "63",
-      "126"
-     ],
-     "answer": "E",
-     "explanation": "A soma de todas as combinações de 7 elementos (de C(7,0) a C(7,7)) é 2⁷ = 128. Retirando C(7,0) = 1 e C(7,7) = 1: 128 − 2 = 126."
-    },
-    {
-     "topic": "Relação de Stifel",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 55,
-     "statement": "Pela relação de Stifel, C(7,3) + C(7,4) é igual a",
-     "support": null,
-     "options": [
-      "C(8,3), isto é, 56.",
-      "C(7,7), isto é, 1.",
-      "C(14,7), isto é, 3.432.",
-      "C(8,4), isto é, 70.",
-      "C(8,5), isto é, 56."
-     ],
-     "answer": "D",
-     "explanation": "A relação de Stifel estabelece C(n,k) + C(n,k+1) = C(n+1,k+1): C(7,3) + C(7,4) = C(8,4) = 70. Conferindo: 35 + 35 = 70."
-    },
-    {
-     "topic": "Teorema das colunas",
-     "pattern": "calculo",
-     "difficulty": 3,
-     "pageRef": 55,
-     "statement": "O valor da soma C(3,3) + C(4,3) + C(5,3) + C(6,3) é",
-     "support": null,
-     "options": [
-      "20",
-      "28",
-      "30",
-      "35",
-      "56"
-     ],
-     "answer": "D",
-     "explanation": "Pelo teorema das colunas, a soma é igual a C(7,4) = 35. Conferindo: 1 + 4 + 10 + 20 = 35."
-    },
-    {
-     "topic": "Combinação completa",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 59,
-     "statement": "Uma lanchonete oferece 4 tipos de salgado. De quantas maneiras é possível comprar 6 salgados, podendo repetir o tipo?",
-     "support": null,
-     "options": [
-      "4.096",
-      "210",
-      "84",
-      "24",
-      "15"
-     ],
-     "answer": "C",
-     "explanation": "É combinação completa de 4 tipos, escolhendo 6: CR(4,6) = C(4 − 1 + 6, 6) = C(9,6) = 84. A combinação simples C(4,6) não existe, e 4⁶ contaria ordens distintas."
-    },
-    {
-     "topic": "Distribuição com mínimo por pessoa",
-     "pattern": "calculo",
-     "difficulty": 3,
-     "pageRef": 60,
-     "statement": "Doze coletes idênticos serão distribuídos entre três equipes, e cada equipe deve receber ao menos dois coletes. De quantas maneiras isso pode ser feito?",
-     "support": null,
-     "options": [
-      "28",
-      "55",
-      "66",
-      "36",
-      "220"
-     ],
-     "answer": "A",
-     "explanation": "Distribuem-se primeiro 2 coletes a cada equipe (6 coletes), restando 6 para distribuição livre entre 3 equipes: CR(3,6) = C(8,6) = 28."
-    },
-    {
-     "topic": "Soluções inteiras não negativas",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 62,
-     "statement": "O número de soluções inteiras e não negativas da equação x + y + z + w = 8 é",
-     "support": null,
-     "options": [
-      "70",
-      "120",
-      "165",
-      "330",
-      "495"
-     ],
-     "answer": "C",
-     "explanation": "É a combinação completa de n = 4 variáveis e p = 8: CR(4,8) = C(11,8) = 165."
-    },
-    {
-     "topic": "Soluções inteiras positivas",
-     "pattern": "calculo",
-     "difficulty": 3,
-     "pageRef": 63,
-     "statement": "O número de soluções inteiras e positivas da equação a + b + c + d = 11 é",
-     "support": null,
-     "options": [
-      "330",
-      "210",
-      "165",
-      "120",
-      "84"
-     ],
-     "answer": "D",
-     "explanation": "Atribui-se 1 a cada variável (sobram 11 − 4 = 7 unidades) e contam-se as soluções não negativas de a + b + c + d = 7: CR(4,7) = C(10,7) = 120."
-    },
-    {
-     "topic": "Soluções finitas",
-     "pattern": "conceito",
-     "difficulty": 2,
-     "pageRef": 62,
-     "statement": "O número de soluções de uma equação linear do tipo x1 + x2 + ... + xn = p só é finito se as incógnitas forem restritas a inteiros não negativos porque, caso contrário,",
-     "support": null,
-     "options": [
-      "sempre seria possível subtrair de uma variável e somar a outra, mantendo a soma e gerando infinitas soluções.",
-      "a soma deixaria de ser igual a p.",
-      "o princípio multiplicativo não seria válido.",
-      "a combinação completa seria igual a zero.",
-      "o fatorial de números negativos não existiria, e a equação seria impossível."
-     ],
-     "answer": "A",
-     "explanation": "Com valores negativos ou reais, bastaria transferir uma quantidade qualquer de uma incógnita para outra para obter nova solução com a mesma soma, o que geraria infinitas soluções. Restringir a inteiros não negativos torna o conjunto finito."
-    },
-    {
-     "topic": "Combinação: afirmativa incorreta",
-     "pattern": "incorreta",
-     "difficulty": 2,
-     "pageRef": 52,
-     "statement": "Sobre a combinação simples, assinale a alternativa INCORRETA.",
-     "support": null,
-     "options": [
-      "C(n,n) = 1.",
-      "C(n,0) = 1.",
-      "C(n,k) = C(n, n − k).",
-      "C(n, n − 1) = n.",
-      "C(n,1) = 1, qualquer que seja n."
-     ],
-     "answer": "E",
-     "explanation": "Escolher 1 elemento entre n pode ser feito de n maneiras: C(n,1) = n. As demais igualdades são casos particulares válidos."
-    }
-   ]
-  },
-  {
-   "id": "estatistica/a05/s05",
-   "bizu": {
-    "summary": [
-     "### 1. Definições, Fórmulas e Propriedades Centrais",
-     "- **Partição:** divisão de um conjunto em subconjuntos cuja soma de elementos dá o total do conjunto (como fatias de uma pizza).",
-     "- **Resolve-se também por combinações sucessivas (C(10,1) · C(9,2) · C(7,7):** 360).",
-     "- Partição não ordenada (grupos equivalentes, mesma tarefa): divide-se o resultado ordenado pelo número de maneiras de permutar os grupos.",
-     "- **Para m grupos de p elementos:** **(m·p)! / [m! · (p!)^m]**.",
-     "1º lema (fila: os extremos NíO são vizinhos): f(n,p) = C(n − p + 1, p). Raciocínio: n − p elementos não escolhidos criam n − p + 1 espaços onde colocar os p escolhidos. 2º lema (círculo: os extremos SíO vizinhos, como meses do ano ou fatias de pizza): g(n,p) = [n / (n − p)] · C(n − p, p).",
-     "### 2. Métodos de Resolução e Classificações",
-     "#### Sequência e Funcionamento:",
-     "1. Nos grupos, a ordem dos elementos **dentro** do subconjunto não importa.",
-     "2. Lemas de Kaplansky: contam subconjuntos de p elementos, escolhidos dentre n dispostos em ordem, sem elementos vizinhos.",
-     "- 10 pessoas em 2 grupos de 5 → 126.",
-     "- para combinações com várias quantidades, use o princípio aditivo sobre cada p.",
-     "### 3. Exemplos de Aplicação e Procedimentos",
-     "> 💡 **Exemplo Prático:** Partição ordenada (grupos distintos, ex.: gerente, coordenadores, trabalhadores): n! / (p1! · p2! · ... · pm!).",
-     "> 💡 **Exemplo Prático:** Ex.: 6 pessoas em 3 duplas → 90/6 = 15.",
-     "> 💡 **Exemplo Prático:** Ex.: 3 dias não consecutivos de segunda a sábado → C(4,3) = 4.",
-     "### 4. Pontos Críticos e Cuidados nos Cálculos",
-     "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
-    ],
-    "teoria": [
-     {
-      "statement": "Na partição ordenada de n elementos em subconjuntos de tamanhos p1, p2, ..., pm, o número de possibilidades é n!/(p1!·p2!·...·pm!).",
-      "isTrue": true,
-      "explanation": "Os grupos são distintos entre si; dentro de cada um, a ordem não importa."
-     },
-     {
-      "statement": "Na partição não ordenada em grupos equivalentes, não é necessário dividir o resultado da partição ordenada por m!.",
-      "isTrue": false,
-      "explanation": "Como trocar a ordem dos grupos equivalentes não gera nova partição, divide-se por m! (permutação dos m grupos)."
-     },
-     {
-      "statement": "O 1º lema de Kaplansky, f(n,p) = C(n − p + 1, p), vale para elementos dispostos em fila, em que os extremos não são considerados vizinhos.",
-      "isTrue": true,
-      "explanation": "O 2º lema é o usado quando os extremos são vizinhos (disposição circular)."
-     },
-     {
-      "statement": "O 2º lema de Kaplansky deve ser usado quando o primeiro e o último elemento do conjunto não são considerados vizinhos.",
-      "isTrue": false,
-      "explanation": "O 2º lema trata o conjunto como um círculo: o primeiro e o último elemento são vizinhos."
-     }
-    ],
-    "revisao": [
-     {
-      "statement": "O número de maneiras de dividir 6 pessoas em 3 duplas equivalentes é 15.",
-      "isTrue": true,
-      "explanation": "6!/(2!·2!·2!) = 90 na versão ordenada; dividindo por 3! = 6, obtém-se 15."
-     },
-     {
-      "statement": "O número de modos de dividir 10 pessoas em dois grupos equivalentes de 5 pessoas é C(10,5) = 252.",
-      "isTrue": false,
-      "explanation": "Como os grupos são equivalentes, divide-se por 2!: 252/2 = 126."
-     },
-     {
-      "statement": "O 2º lema de Kaplansky é dado por g(n,p) = [n/(n − p)] · C(n − p, p).",
-      "isTrue": true,
-      "explanation": "Para n = 8 e p = 3, g(8,3) = (8/5) × 10 = 16."
-     },
-     {
-      "statement": "Para escolher 3 dias não consecutivos de segunda a sábado, o número de possibilidades é C(6,3) = 20.",
-      "isTrue": false,
-      "explanation": "Os dias estão em fila (extremos não vizinhos); aplica-se f(6,3) = C(6 − 3 + 1, 3) = C(4,3) = 4."
-     },
-     {
-      "statement": "Dentro de cada subconjunto de uma partição, a ordem dos elementos não é relevante.",
-      "isTrue": true,
-      "explanation": "Na partição ordenada a ordem que importa é a dos subconjuntos, e não a dos elementos dentro de cada um."
-     }
-    ],
-    "pointers": [
-     {
-      "topic": "Conceito de partição e diferença para combinação",
-      "pageRef": 65
-     },
-     {
-      "topic": "Partição ordenada: fórmula e dedução",
-      "pageRef": 66
-     },
-     {
-      "topic": "Questões com partição ordenada",
-      "pageRef": 68
-     },
-     {
-      "topic": "Partição não ordenada e divisão por m!",
-      "pageRef": 69
-     },
-     {
-      "topic": "Fórmula (m·p)!/(m!(p!)^m)",
-      "pageRef": 70
-     },
-     {
-      "topic": "Primeiro lema de Kaplansky",
-      "pageRef": 72
-     },
-     {
-      "topic": "Exemplo das lâmpadas e dos dias de trabalho",
-      "pageRef": 74
-     },
-     {
-      "topic": "Segundo lema de Kaplansky",
-      "pageRef": 75
-     }
-    ]
-   },
-   "questions": [
-    {
-     "topic": "Partição ordenada",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 66,
-     "statement": "Doze militares serão divididos em três grupos distintos, com 2, 4 e 6 integrantes, que cumprirão missões diferentes. O número de maneiras de formar os grupos é",
-     "support": null,
-     "options": [
-      "13.860",
-      "6.930",
-      "479.001.600",
-      "27.720",
-      "3.465"
-     ],
-     "answer": "A",
-     "explanation": "Como os grupos são distintos, aplica-se a partição ordenada: 12! ÷ (2! · 4! · 6!) = 13.860. O mesmo resultado sai de C(12,2) · C(10,4) · C(6,6) = 66 · 210 · 1."
-    },
-    {
-     "topic": "Distribuição de projetos entre setores distintos",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 68,
-     "statement": "Nove projetos diferentes serão distribuídos entre três setores distintos: 4 para o primeiro, 3 para o segundo e 2 para o terceiro. O número de maneiras de distribuí-los é",
-     "support": null,
-     "options": [
-      "216",
-      "630",
-      "1.260",
-      "2.520",
-      "362.880"
-     ],
-     "answer": "C",
-     "explanation": "Partição ordenada: 9! ÷ (4! · 3! · 2!) = 362.880 ÷ 288 = 1.260."
-    },
-    {
-     "topic": "Partição ordenada x não ordenada",
-     "pattern": "caso",
-     "difficulty": 2,
-     "pageRef": 65,
-     "statement": "Oito pessoas serão divididas em dois grupos de quatro, que executarão exatamente a mesma tarefa. O número de maneiras de formar os grupos é",
-     "support": null,
-     "options": [
-      "70",
-      "35",
-      "40.320",
-      "56",
-      "140"
-     ],
-     "answer": "B",
-     "explanation": "Os grupos são equivalentes (partição não ordenada). A partição ordenada daria 8! ÷ (4! · 4!) = 70, e é preciso dividir por 2! (a ordem dos grupos não importa): 70 ÷ 2 = 35."
-    },
-    {
-     "topic": "Partição não ordenada: duplas",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 70,
-     "statement": "Oito pessoas serão divididas em quatro duplas que realizarão o mesmo trabalho. O número de maneiras de formar as duplas é",
-     "support": null,
-     "options": [
-      "105",
-      "210",
-      "630",
-      "2.520",
-      "40.320"
-     ],
-     "answer": "A",
-     "explanation": "Com m = 4 grupos de p = 2 elementos, a partição não ordenada é (4 · 2)! ÷ [4! · (2!)⁴] = 40.320 ÷ (24 · 16) = 105."
-    },
-    {
-     "topic": "Partição não ordenada: trios e quartetos",
-     "pattern": "calculo",
-     "difficulty": 3,
-     "pageRef": 70,
-     "statement": "Doze pessoas serão divididas em três grupos de quatro, equivalentes entre si. O número de maneiras de formá-los é",
-     "support": null,
-     "options": [
-      "34.650",
-      "11.550",
-      "5.775",
-      "1.925",
-      "495"
-     ],
-     "answer": "C",
-     "explanation": "Partição não ordenada: 12! ÷ [3! · (4!)³] = 479.001.600 ÷ (6 · 13.824) = 5.775. A partição ordenada seria 34.650 (= 5.775 · 3!)."
-    },
-    {
-     "topic": "Característica das partições",
-     "pattern": "conceito",
-     "difficulty": 1,
-     "pageRef": 65,
-     "statement": "O que diferencia as partições dos problemas gerais de combinação é o fato de que, nas partições,",
-     "support": null,
-     "options": [
-      "a soma dos elementos dos subconjuntos é igual ao total de elementos do conjunto.",
-      "a ordem dos elementos dentro de cada subconjunto importa.",
-      "os subconjuntos têm sempre o mesmo número de elementos.",
-      "só se podem formar dois subconjuntos.",
-      "os elementos podem se repetir."
-     ],
-     "answer": "A",
-     "explanation": "Na partição, o conjunto é dividido em subconjuntos cuja soma de elementos recompõe o total. A ordem dentro dos subconjuntos não importa, e o número e o tamanho dos subconjuntos são livres."
-    },
-    {
-     "topic": "Primeiro lema de Kaplansky",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 73,
-     "statement": "Um chefe de equipe precisa escolher 3 dias de plantão entre 10 dias consecutivos em fila, sem que dois dias escolhidos sejam vizinhos. O número de maneiras é",
-     "support": null,
-     "options": [
-      "120",
-      "84",
-      "56",
-      "35",
-      "28"
-     ],
-     "answer": "C",
-     "explanation": "No 1º lema, f(n,p) = C(n − p + 1, p): f(10,3) = C(8,3) = 56. Os 7 dias não escolhidos criam 8 espaços onde alocar os 3 escolhidos."
-    },
-    {
-     "topic": "Lâmpadas não adjacentes",
-     "pattern": "calculo",
-     "difficulty": 3,
-     "pageRef": 74,
-     "statement": "Quatro lâmpadas estão em fileira, e duas lâmpadas adjacentes nunca podem ficar acesas ao mesmo tempo. O número de configurações possíveis, incluindo a de todas apagadas, é",
-     "support": null,
-     "options": [
-      "8",
-      "16",
-      "7",
-      "6",
-      "10"
-     ],
-     "answer": "A",
-     "explanation": "Somam-se os casos por número de lâmpadas acesas: 0 acesas, 1; 1 acesa, 4; 2 acesas, C(3,2) = 3 (1º lema); 3 ou mais acesas, nenhum caso válido. Total: 1 + 4 + 3 = 8."
-    },
-    {
-     "topic": "Segundo lema de Kaplansky",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 75,
-     "statement": "Dez cadeiras estão dispostas em círculo, e 3 pessoas devem ocupar cadeiras de modo que não haja duas ocupadas lado a lado. O número de maneiras de escolher as cadeiras é",
-     "support": null,
-     "options": [
-      "56",
-      "35",
-      "120",
-      "40",
-      "50"
-     ],
-     "answer": "E",
-     "explanation": "Como as cadeiras formam um círculo, aplica-se o 2º lema: g(n,p) = [n ÷ (n − p)] · C(n − p, p) = (10 ÷ 7) · C(7,3) = (10 ÷ 7) · 35 = 50."
-    },
-    {
-     "topic": "Escolha do lema",
-     "pattern": "caso",
-     "difficulty": 2,
-     "pageRef": 72,
-     "statement": "Um oficial deve escolher 3 meses não consecutivos do ano para um treinamento, considerando que dezembro e janeiro também são vizinhos. O lema de Kaplansky adequado e a razão da escolha são:",
-     "support": null,
-     "options": [
-      "o primeiro lema, pois os meses são sempre distintos.",
-      "o primeiro lema, pois o ano é uma fila.",
-      "o segundo lema, pois a escolha tem de ser de 3 elementos.",
-      "o segundo lema, pois os extremos (dezembro e janeiro) são considerados vizinhos.",
-      "nenhum lema, pois a escolha depende da ordem."
-     ],
-     "answer": "D",
-     "explanation": "O 2º lema se aplica quando os extremos do conjunto são considerados vizinhos, como em meses do ano ou fatias de pizza; no 1º lema, os extremos não são vizinhos (por exemplo, dias de segunda a sábado)."
-    },
-    {
-     "topic": "Primeiro lema com p = 2",
-     "pattern": "calculo",
-     "difficulty": 2,
-     "pageRef": 73,
-     "statement": "Entre os seis dias de segunda a sábado, escolhem-se dois dias não consecutivos. O número de escolhas possíveis é",
-     "support": null,
-     "options": [
-      "5",
-      "9",
-      "10",
-      "15",
-      "20"
-     ],
-     "answer": "C",
-     "explanation": "Pelo 1º lema, f(6,2) = C(5,2) = 10. Conferindo: há C(6,2) = 15 pares e 5 pares de dias consecutivos, e 15 − 5 = 10."
-    },
-    {
-     "topic": "Segundo lema: decomposição em casos",
-     "pattern": "calculo",
-     "difficulty": 3,
-     "pageRef": 76,
-     "statement": "Nove elementos estão dispostos em círculo, e se devem escolher 3, sem que dois sejam vizinhos. Considerando o caso em que um elemento específico é escolhido (f(6,2) = 10) e o caso em que ele não é (f(8,3) = 20), o total de escolhas é",
-     "support": null,
-     "options": [
-      "84",
-      "36",
-      "30",
-      "20",
-      "10"
-     ],
-     "answer": "C",
-     "explanation": "Os casos são excludentes: 10 + 20 = 30, valor que coincide com a fórmula do 2º lema: g(9,3) = (9 ÷ 6) · C(6,3) = 1,5 · 20 = 30."
-    },
-    {
-     "topic": "Partições e lemas: afirmativas",
-     "pattern": "assertivas",
-     "difficulty": 2,
-     "pageRef": 69,
-     "statement": "Considere as afirmações. I. Na partição ordenada, os grupos são distintos entre si. II. Na partição não ordenada, divide-se o resultado ordenado pelo número de maneiras de permutar os grupos. III. No primeiro lema de Kaplansky, os elementos extremos do conjunto são considerados vizinhos. Está(ão) correta(s)",
-     "support": null,
-     "options": [
-      "I e II, apenas.",
-      "I, apenas.",
-      "III, apenas.",
-      "II e III, apenas.",
-      "I, II e III."
-     ],
-     "answer": "A",
-     "explanation": "I e II estão corretas. A III descreve o segundo lema: no primeiro, os extremos não são vizinhos."
-    }
-   ]
-  }
- ]
+  ]
 }
