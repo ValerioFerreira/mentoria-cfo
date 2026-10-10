@@ -14,6 +14,9 @@ export const SUBJECT_SHORT: Record<string, string> = {
   "direito-administrativo": "D. Administrativo",
   "legislacoes-pe": "Legislações PE",
   "direito-penal-militar": "D. Penal Militar",
+  "raciocinio-logico": "R. Lógico",
+  "historia-pe": "História PE",
+  atualidades: "Atualidades",
 };
 
 export const subjectShort = (id: string) => SUBJECT_SHORT[id] ?? id;
@@ -33,6 +36,9 @@ export const SUBJECT_NAME: Record<string, string> = {
   "direito-administrativo": "Direito Administrativo",
   "legislacoes-pe": "Legislações Militares de PE",
   "direito-penal-militar": "Direito Penal Militar",
+  "raciocinio-logico": "Raciocínio Lógico",
+  "historia-pe": "História de Pernambuco",
+  atualidades: "Atualidades",
 };
 export const subjectName = (id: string) => SUBJECT_NAME[id] ?? id;
 

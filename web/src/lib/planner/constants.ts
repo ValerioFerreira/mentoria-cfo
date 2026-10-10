@@ -48,7 +48,7 @@ export const MAX_SUBJECTS_PER_DAY = 3;
 export const MAX_SAME_SUBJECT_MINUTES_PER_DAY = 150;
 
 /** Famílias de assunto: matérias parecidas competem na memória, então não ficam coladas no mesmo dia. */
-export const FAMILY: Record<string, "JURIDICA" | "LINGUAGEM" | "EXATAS" | "NATUREZA"> = {
+export const FAMILY: Record<string, "JURIDICA" | "LINGUAGEM" | "EXATAS" | "NATUREZA" | "HUMANAS"> = {
   "direito-constitucional": "JURIDICA",
   "direito-administrativo": "JURIDICA",
   "direito-penal-militar": "JURIDICA",
@@ -60,6 +60,10 @@ export const FAMILY: Record<string, "JURIDICA" | "LINGUAGEM" | "EXATAS" | "NATUR
   estatistica: "EXATAS",
   fisica: "EXATAS",
   quimica: "EXATAS",
+  "raciocinio-logico": "EXATAS",
+  "historia-pe": "HUMANAS",
+  atualidades: "HUMANAS",
   biologia: "NATUREZA",
   informatica: "NATUREZA",
 };
+

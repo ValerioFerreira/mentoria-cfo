@@ -55,9 +55,9 @@ describe("datas da interface (UTC)", () => {
 });
 
 describe("rótulos de disciplina", () => {
-  it("conhece todas as 13 disciplinas e devolve o próprio id quando desconhecida", () => {
-    expect(Object.keys(SUBJECT_SHORT)).toHaveLength(13);
-    expect(Object.keys(SUBJECT_NAME)).toHaveLength(13);
+  it("conhece todas as 16 disciplinas e devolve o próprio id quando desconhecida", () => {
+    expect(Object.keys(SUBJECT_SHORT)).toHaveLength(16);
+    expect(Object.keys(SUBJECT_NAME)).toHaveLength(16);
     expect(subjectShort("matematica")).toBe("Matemática");
     expect(subjectName("legislacoes-pe")).toBe("Legislações Militares de PE");
     expect(subjectShort("nao-existe")).toBe("nao-existe");
