@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, ArrowRight, CalendarDays, Check, ChevronDown, Flame, Gauge, Loader2, Rocket, Sparkles, Zap } from "lucide-react";
+import { AlertTriangle, ArrowLeft, ArrowRight, CalendarDays, Check, ChevronDown, Flame, Gauge, Loader2, Rocket, Sparkles, Zap } from "lucide-react";
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { Alert, BLOCK_COLOR, Badge, Button, Card, Count, InfoTip, Progress, Ring, cx } from "@/components/ui";
 import { knownFromMarks, type Mark } from "@/lib/anamnesis";
@@ -522,7 +522,7 @@ function PreviewBox({ preview, subjects, hours, detailed, onUseHours }: { previe
 function TurboOption({ preview, on, onChange }: { preview: Preview | null; on: boolean; onChange: (v: boolean) => void }) {
   if (!preview || "error" in preview || preview.editalFits) return null;
   return (
-    <Card tone={on ? "ink" : undefined} className="space-y-3">
+    <Card tone={on ? "ink" : undefined} className="space-y-4">
       <label className="flex cursor-pointer items-start gap-3">
         <input type="checkbox" checked={on} onChange={(e) => onChange(e.target.checked)} className="mt-1 h-5 w-5 shrink-0 cursor-pointer accent-[var(--primary)]" />
         <span className="min-w-0 space-y-1.5">
@@ -538,6 +538,22 @@ function TurboOption({ preview, on, onChange }: { preview: Preview | null; on: b
           )}
         </span>
       </label>
+
+      {on && (
+        <div
+          role="region"
+          aria-label="Aviso sobre o Modo Turbo"
+          className="rounded-2xl border border-amber-500/40 bg-amber-500/10 p-4 sm:p-5 text-sm space-y-2.5 transition-all animate-in fade-in slide-in-from-top-2"
+        >
+          <div className="flex items-center gap-2 font-display text-base font-bold uppercase text-amber-400">
+            <AlertTriangle className="h-4 w-4 shrink-0 text-amber-400" aria-hidden />
+            Atenção ao Modo Turbo
+          </div>
+          <p className={cx("text-sm leading-relaxed", on ? "text-on-ink" : "text-text")}>
+            <strong>Atenção ao Modo Turbo:</strong> este modo prioriza a cobertura teórica de todo o edital, reduzindo o tempo disponível para revisões e resolução de questões. Se você já estudou boa parte do conteúdo e está relativamente próximo de concluir o edital — especialmente se já atingiu mais de 80% —, o planejamento normal tende a ser mais adequado. Ele permite priorizar os assuntos de maior peso e incidência, reduzindo proporcionalmente o esforço dedicado às disciplinas e aos temas menos importantes, sem comprometer desnecessariamente a revisão e a prática por questões.
+          </p>
+        </div>
+      )}
     </Card>
   );
 }

@@ -1,8 +1,8 @@
-// Transforma as aulas selecionadas em atividades e as distribui em semanas (em minutos).
 import {
   fixacaoMinutes, pickFixChunks, questoesMinutes, QUIZ_DEFAULT, revisaoMinutes, splitEven, teoriaMinutes, tierShape,
   type AulaBlueprint,
 } from "./blueprint";
+import { MAX_SAME_SUBJECT_MINUTES_PER_DAY } from "./constants";
 import { addDays } from "./dates";
 import { assignDays, weekFraction } from "./days";
 import type { PlannedActivity, PlannedWeek, Tier } from "./types";
@@ -14,17 +14,16 @@ export function buildAulaCycle(bp: AulaBlueprint, tier: Tier): PlannedActivity[]
   const shape = tierShape(bp, tier);
   const out: PlannedActivity[] = [];
 
-  // Modo Turbo: consolida todas as teorias da aula em uma única atividade com intervalo unificado de páginas
+  // Modo Turbo: consolida teorias da aula em uma única atividade de resumo de 60 min cobrindo todos os trechos
   if (bp.turbo) {
     const allSegmentIds = bp.teoria.flatMap((u) => u.segmentIds);
-    const totalMinutes = bp.teoria.reduce((n, u) => n + teoriaMinutes(u, bp), 0);
     return [
       {
         key: `${aulaId}#TURBO`,
         type: "TEORIA",
         subjectId,
         aulaId,
-        minutes: totalMinutes,
+        minutes: 60,
         segmentIds: allSegmentIds,
         refKeys: [],
         scope: "AULA",
@@ -163,12 +162,29 @@ export function scheduleStreams(
     let used = 0;
 
     const hardCap = weekMinutes * 1.05;
+    const maxDays = 7 - (w === 1 ? firstDay : 0);
+    const maxSubWeekMin = maxDays * MAX_SAME_SUBJECT_MINUTES_PER_DAY;
+    const maxSubWeekActs = maxDays * 2;
     const takenMin = (id: string) => sumMinutes(taken.get(id) ?? []);
+    const takenCount = (id: string) => (taken.get(id) ?? []).length;
     for (let guard = 0; guard < 500; guard++) {
-      let pool = focus.filter((s) => next(s) && used + next(s)!.minutes <= hardCap);
+      let pool = focus.filter(
+        (s) =>
+          next(s) &&
+          used + next(s)!.minutes <= hardCap &&
+          takenMin(s.subjectId) + next(s)!.minutes <= maxSubWeekMin &&
+          takenCount(s.subjectId) < maxSubWeekActs,
+      );
       if (pool.length === 0) {
         // o foco acabou antes de fechar a semana: amplia com a próxima disciplina
-        const extra = active.find((s) => !focus.includes(s) && next(s) && used + next(s)!.minutes <= hardCap);
+        const extra = active.find(
+          (s) =>
+            !focus.includes(s) &&
+            next(s) &&
+            used + next(s)!.minutes <= hardCap &&
+            takenMin(s.subjectId) + next(s)!.minutes <= maxSubWeekMin &&
+            takenCount(s.subjectId) < maxSubWeekActs,
+        );
         if (!extra || used >= capacity * 0.9) break;
         focus.push(extra);
         quota.set(extra.subjectId, Math.max(0, capacity - used));

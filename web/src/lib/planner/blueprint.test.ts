@@ -16,17 +16,19 @@ const bp = (n: number, opts: { level?: Level; known?: 0 | 1 | 2; pages?: number;
   );
 
 describe("roundMinutes", () => {
-  it("arredonda para múltiplos de 5 com piso de 20 minutos", () => {
-    expect(roundMinutes(0)).toBe(20);
-    expect(roundMinutes(19)).toBe(20);
-    expect(roundMinutes(22)).toBe(20);
-    expect(roundMinutes(23)).toBe(25);
-    expect(roundMinutes(37.4)).toBe(35);
-    expect(roundMinutes(37.5)).toBe(40);
+  it("arredonda para múltiplos de 5 com piso de 50 minutos e teto de 80 minutos", () => {
+    expect(roundMinutes(0)).toBe(50);
+    expect(roundMinutes(19)).toBe(50);
+    expect(roundMinutes(49)).toBe(50);
+    expect(roundMinutes(53)).toBe(55);
+    expect(roundMinutes(57.4)).toBe(55);
+    expect(roundMinutes(57.5)).toBe(60);
     expect(roundMinutes(60)).toBe(60);
+    expect(roundMinutes(78)).toBe(80);
+    expect(roundMinutes(95)).toBe(80);
   });
   it("é monotônico e sempre múltiplo de 5", () => {
-    let prev = 0;
+    let prev = 50;
     for (let m = 0; m <= 200; m += 0.5) {
       const r = roundMinutes(m);
       expect(r % 5).toBe(0);
@@ -72,15 +74,15 @@ describe("bundleSegments", () => {
 
 describe("buildBlueprint", () => {
   it("ritmo por nível e agrupamento de revisão", () => {
-    expect([0, 1, 2, 3].map((l) => bp(2, { level: l as Level }).pace)).toEqual([1, 0.9, 0.75, 0.6]);
+    expect([0, 1, 2, 3].map((l) => bp(2, { level: l as Level }).pace)).toEqual([1, 0.9, 0.8, 0.7]);
     expect([0, 1, 2, 3].map((l) => reviewGroupFor(l as Level))).toEqual([2, 3, 3, 4]);
   });
-  it("'já estudei' multiplica o ritmo de leitura por 0,65; 'nunca estudei' não muda", () => {
-    expect(bp(2, { level: 0, known: 1 }).readPace).toBeCloseTo(0.65);
-    expect(bp(2, { level: 2, known: 1 }).readPace).toBeCloseTo(0.75 * 0.65);
-    expect(bp(2, { level: 2, known: 0 }).readPace).toBe(0.75);
+  it("'já estudei' multiplica o ritmo de leitura por 0,75; 'nunca estudei' não muda", () => {
+    expect(bp(2, { level: 0, known: 1 }).readPace).toBeCloseTo(0.75);
+    expect(bp(2, { level: 2, known: 1 }).readPace).toBeCloseTo(0.8 * 0.75);
+    expect(bp(2, { level: 2, known: 0 }).readPace).toBe(0.8);
     // a prática (Fixação/Questões) usa só o ritmo do nível
-    expect(bp(2, { level: 2, known: 1 }).pace).toBe(0.75);
+    expect(bp(2, { level: 2, known: 1 }).pace).toBe(0.8);
   });
   it("faixas de Fixação juntam as questões comentadas da aula e as de aulas de prática vinculadas", () => {
     const b = bp(2, { runs: [[30, 41]], links: [{ startPage: 5, endPage: 9, sourceAula: "p/a14" }] });
@@ -97,46 +99,46 @@ describe("buildBlueprint", () => {
 
 describe("minutos de cada atividade", () => {
   const u = (load: number, ids = 1) => ({ segmentIds: Array.from({ length: ids }, (_, i) => `s${i}`), pages: 12, load });
-  it("Teoria: 60 min para carga 12, com piso de 30 e teto de 75 antes do ritmo", () => {
+  it("Teoria: 60 min para carga 12, com piso de 50 e teto de 80 antes do ritmo", () => {
     const b = bp(1);
     expect(teoriaMinutes(u(12), b)).toBe(60);
-    expect(teoriaMinutes(u(6), b)).toBe(30);
-    expect(teoriaMinutes(u(1), b)).toBe(30);
+    expect(teoriaMinutes(u(6), b)).toBe(50);
+    expect(teoriaMinutes(u(1), b)).toBe(50);
     expect(teoriaMinutes(u(15), b)).toBe(75);
-    expect(teoriaMinutes(u(40), b)).toBe(75);
+    expect(teoriaMinutes(u(40), b)).toBe(80);
   });
-  it("Teoria: cada nível encurta o tempo e 'já estudei' encurta mais", () => {
+  it("Teoria: cada nível encurta o tempo com piso de 50 min e teto de 80 min", () => {
     expect(teoriaMinutes(u(12), bp(1, { level: 1 }))).toBe(55); // 54 → 55
-    expect(teoriaMinutes(u(12), bp(1, { level: 2 }))).toBe(45);
-    expect(teoriaMinutes(u(12), bp(1, { level: 3 }))).toBe(35); // 36 → 35
-    expect(teoriaMinutes(u(12), bp(1, { level: 0, known: 1 }))).toBe(40); // 39 → 40
+    expect(teoriaMinutes(u(12), bp(1, { level: 2 }))).toBe(50); // piso 50
+    expect(teoriaMinutes(u(12), bp(1, { level: 3 }))).toBe(50); // piso 50
+    expect(teoriaMinutes(u(12), bp(1, { level: 0, known: 1 }))).toBe(50); // piso 50
   });
-  it("Teoria nunca fica abaixo de 20 min nem sai da grade de 5 min, para qualquer carga e nível", () => {
+  it("Teoria nunca fica abaixo de 50 min nem acima de 80 min nem sai da grade de 5 min, para qualquer carga e nível", () => {
     for (const level of [0, 1, 2, 3] as Level[])
       for (const known of [0, 1] as const)
         for (let load = 0; load <= 40; load++) {
           const m = teoriaMinutes(u(load), bp(1, { level, known }));
-          expect(m).toBeGreaterThanOrEqual(20);
+          expect(m).toBeGreaterThanOrEqual(50);
+          expect(m).toBeLessThanOrEqual(80);
           expect(m % 5).toBe(0);
         }
   });
-  it("Modo Turbo: 15 min por trecho (mínimo 20), ajustado ao ritmo", () => {
+  it("Modo Turbo: dimensionado com piso de 50 e teto de 80 min", () => {
     const t = { ...bp(2), turbo: true };
-    expect(teoriaMinutes(u(12, 1), t)).toBe(20);
-    expect(teoriaMinutes(u(12, 2), t)).toBe(30);
-    expect(teoriaMinutes(u(12, 4), t)).toBe(60);
-    expect(teoriaMinutes(u(12, 4), { ...t, readPace: 0.6 })).toBe(35);
+    expect(teoriaMinutes(u(12, 1), t)).toBe(50);
+    expect(teoriaMinutes(u(12, 2), t)).toBe(50);
+    expect(teoriaMinutes(u(12, 4), t)).toBe(80);
+    expect(teoriaMinutes(u(12, 4), { ...t, readPace: 0.6 })).toBe(50);
   });
-  it("Revisão: 15 min + 10 por Teoria revista, entre 30 e 50, vezes o ritmo", () => {
+  it("Revisão: entre 50 e 80 min", () => {
     const b = bp(1);
-    expect([1, 2, 3, 4, 5].map((n) => revisaoMinutes(n, b))).toEqual([30, 35, 45, 50, 50]);
-    expect(revisaoMinutes(3, bp(1, { level: 3 }))).toBe(25); // 45 * 0,6 = 27 → 25
+    expect([1, 2, 3, 4, 5].map((n) => revisaoMinutes(n, b))).toEqual([50, 55, 65, 75, 80]);
   });
-  it("Fixação: 60 min vezes o ritmo", () => {
-    expect([0, 1, 2, 3].map((l) => fixacaoMinutes(bp(1, { level: l as Level })))).toEqual([60, 55, 45, 35]);
+  it("Fixação: 60 min vezes o ritmo, clampado em [50, 80]", () => {
+    expect([0, 1, 2, 3].map((l) => fixacaoMinutes(bp(1, { level: l as Level })))).toEqual([60, 55, 50, 50]);
   });
-  it("Questões: 60 min, mas o ritmo não passa de 0,75 (piso de 45 min para quem domina)", () => {
-    expect([0, 1, 2, 3].map((l) => questoesMinutes(bp(1, { level: l as Level })))).toEqual([60, 55, 45, 45]);
+  it("Questões: 60 min com piso de 50 min", () => {
+    expect([0, 1, 2, 3].map((l) => questoesMinutes(bp(1, { level: l as Level })))).toEqual([60, 55, 50, 50]);
   });
 });
 

@@ -16,7 +16,7 @@ interface SaveArgs {
 export async function savePlan({ userId, input, result, diagnostics, foreignLanguage, hoursBand }: SaveArgs): Promise<string> {
   return db.$transaction(
     async (tx) => {
-      const prev = await tx.plan.findFirst({ where: { userId, status: "ACTIVE" }, orderBy: { version: "desc" } });
+      const prev = await tx.plan.findFirst({ where: { userId, status: { in: ["ACTIVE", "PENDING_ANALYSIS"] } }, orderBy: { version: "desc" } });
       if (prev) await tx.plan.update({ where: { id: prev.id }, data: { status: "ARCHIVED" } });
 
       await tx.profile.upsert({
@@ -28,6 +28,7 @@ export async function savePlan({ userId, input, result, diagnostics, foreignLang
       const plan = await tx.plan.create({
         data: {
           userId,
+          status: "PENDING_ANALYSIS",
           version: (prev?.version ?? 0) + 1,
           startDate: new Date(input.startDate),
           examDate: new Date(input.examDate),

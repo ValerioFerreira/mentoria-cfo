@@ -17,7 +17,7 @@ export default async function WeekPage({ params }: PageProps<"/semana/[n]">) {
   const index = Number(n);
   if (!Number.isInteger(index) || index < 1) notFound();
   const plan = await getActivePlan(user.id);
-  if (!plan) redirect("/onboarding");
+  if (!plan) redirect("/plano");
   const data = await getWeek(user.id, plan.id, index);
   if (!data) notFound();
   const { week, seconds } = data;

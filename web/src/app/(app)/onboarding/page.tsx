@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 import { requireUser } from "@/lib/auth/dal";
 import { loadPlannerData } from "@/lib/data/planner-data";
 import { db } from "@/lib/db";
+import { getPendingPlan } from "@/lib/data/study";
 import { todayISO } from "@/lib/plan-time";
 import { getUserContest } from "@/lib/user-contest";
 import { CONTEST_SUBJECTS } from "@/lib/contests";
@@ -11,6 +13,10 @@ export const metadata: Metadata = { title: "Montar plano" };
 
 export default async function OnboardingPage() {
   const user = await requireUser();
+  const pending = await getPendingPlan(user.id);
+  if (pending) {
+    redirect("/plano");
+  }
   const contest = await getUserContest(user.email);
   const allowed = new Set(CONTEST_SUBJECTS[contest] ?? CONTEST_SUBJECTS.CBMPE_OFICIAL);
 

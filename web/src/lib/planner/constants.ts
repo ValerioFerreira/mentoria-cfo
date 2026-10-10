@@ -22,30 +22,32 @@ export const FIXACAO_PAGES_PER_HOUR = 12;
 export const EXAM_TOTAL_QUESTIONS = 70;
 
 // ───────────────────────── Tempo por atividade ─────────────────────────
-/** Teoria: 60 min para uma carga de 12 (≈ 10–17 págs. conforme a densidade); trechos leves levam menos, densos mais. */
-export const TEORIA_MINUTES = { perLoadUnit: 60 / SEGMENT.targetLoad, min: 30, max: 75 } as const;
-/** Revisão: 10 min por Teoria revista + 15 min de base (recuperação ativa do resumo + Bizu). */
-export const REVISAO_MINUTES = { base: 15, perTeoria: 10, min: 30, max: 50 } as const;
+/** Teoria: 50 a 80 min (alvo preferencial de 60 min), ajustada pela carga de páginas e densidade. */
+export const TEORIA_MINUTES = { perLoadUnit: 60 / SEGMENT.targetLoad, min: 50, max: 80 } as const;
+/** Revisão: base 35 min + 10 min por teoria revista, com intervalo estrito de 50 a 80 min. */
+export const REVISAO_MINUTES = { base: 35, perTeoria: 10, min: 50, max: 80 } as const;
 export const FIXACAO_MINUTES = 60;
-/** Modo Turbo: leitura do resumo (Bizu) + Certo/Errado no lugar da Teoria, por trecho. */
-export const TURBO_MINUTES_PER_SEGMENT = 15;
+/** Modo Turbo: leitura do resumo (Bizu) + Certo/Errado em bloco estruturado de ~60 min (50–80 min). */
+export const TURBO_MINUTES_PER_SEGMENT = 20;
 export const QUESTOES_MINUTES = 60;
-export const MIN_ACTIVITY_MINUTES = 20;
+export const MIN_ACTIVITY_MINUTES = 50;
+export const MAX_ACTIVITY_MINUTES = 80;
+export const TARGET_ACTIVITY_MINUTES = 60;
 
 /**
  * Ritmo por nível do aluno na disciplina (multiplica o tempo das atividades): quem já domina o assunto lê,
  * revisa e resolve mais rápido. Nível 0 = referência (10–17 págs. por hora).
  */
-export const LEVEL_PACE = { 0: 1, 1: 0.9, 2: 0.75, 3: 0.6 } as const;
-/** Aula marcada como "já estudei" na anamnese: leitura de consolidação, bem mais rápida. */
-export const KNOWN_PACE = { 1: 0.65 } as const;
+export const LEVEL_PACE = { 0: 1, 1: 0.9, 2: 0.8, 3: 0.7 } as const;
+/** Aula marcada como "já estudei" na anamnese: leitura de consolidação. */
+export const KNOWN_PACE = { 1: 0.75 } as const;
 
 // ───────────────────────── Distribuição diária ─────────────────────────
 /** Peso de cada dia da semana (seg…dom). O domingo é um dia leve de fechamento (revisão e cadernos). */
 export const DAY_WEIGHTS = [1, 1, 1, 1, 1, 1, 0.45] as const;
 export const DAY_NAMES = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"] as const;
 export const MAX_SUBJECTS_PER_DAY = 3;
-export const MAX_SAME_SUBJECT_MINUTES_PER_DAY = 150;
+export const MAX_SAME_SUBJECT_MINUTES_PER_DAY = 120;
 
 /** Famílias de assunto: matérias parecidas competem na memória, então não ficam coladas no mesmo dia. */
 export const FAMILY: Record<string, "JURIDICA" | "LINGUAGEM" | "EXATAS" | "NATUREZA" | "HUMANAS"> = {

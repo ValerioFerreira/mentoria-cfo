@@ -5,6 +5,6 @@ import { currentWeekIndex, getActivePlan } from "@/lib/data/study";
 export default async function CurrentWeekRedirect() {
   const user = await requireUser();
   const plan = await getActivePlan(user.id);
-  if (!plan) redirect("/onboarding");
+  if (!plan) redirect("/plano");
   redirect(`/semana/${currentWeekIndex(plan.startDate, plan.weeks.length)}`);
 }

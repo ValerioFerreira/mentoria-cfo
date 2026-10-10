@@ -7,8 +7,10 @@ import { ActivityRow, activityTitle, fmtMinutes } from "@/components/activity-ro
 import { Card, EmptyState, LinkButton, PageHeader, Progress } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
 import { getMission } from "@/lib/data/mission";
-import { getActivePlan } from "@/lib/data/study";
+import { db } from "@/lib/db";
+import { getActivePlan, getPendingPlan } from "@/lib/data/study";
 import { dayOfWeekIndex, longDate, shortDate, weekdayName } from "@/lib/plan-time";
+import { PendingPlanView } from "@/components/pending-plan-view";
 
 export const metadata: Metadata = { title: "Missão de hoje" };
 
@@ -18,6 +20,19 @@ export default async function MissionPage() {
   const plan = await getActivePlan(user.id);
 
   if (!plan) {
+    const pending = await getPendingPlan(user.id);
+    if (pending) {
+      const profile = await db.profile.findUnique({ where: { userId: user.id } });
+      return (
+        <PendingPlanView
+          userName={user.name}
+          createdAt={pending.createdAt}
+          examDate={pending.examDate}
+          hoursPerWeek={profile?.hoursPerWeek}
+        />
+      );
+    }
+
     return (
       <div className="mx-auto max-w-3xl space-y-8 py-6">
         <section className="relative overflow-hidden rounded-3xl bg-ink p-8 text-on-ink sm:p-12">

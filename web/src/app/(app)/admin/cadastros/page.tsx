@@ -48,15 +48,39 @@ export default async function AdminCadastrosPage() {
     };
   });
 
+  const pendingPlansRaw = await db.plan.findMany({
+    where: { status: "PENDING_ANALYSIS" },
+    orderBy: { createdAt: "desc" },
+    include: {
+      user: { select: { id: true, name: true, email: true } },
+      subjects: { select: { subjectId: true } },
+    },
+  });
+
+  const formattedPlans = pendingPlansRaw.map((p) => {
+    const params = p.params as { hoursPerWeek?: number; totalWeeks?: number } | null;
+    return {
+      id: p.id,
+      userId: p.user.id,
+      userName: p.user.name || p.user.email,
+      userEmail: p.user.email,
+      createdAt: p.createdAt.toISOString(),
+      examDate: p.examDate.toISOString().slice(0, 10),
+      version: p.version,
+      hoursPerWeek: params?.hoursPerWeek ?? null,
+      subjectCount: p.subjects.length,
+    };
+  });
+
   return (
     <div className="space-y-6">
       <PageHeader
         eyebrow="Administração"
         title="Gestão de Cadastros"
-        description="Aprove ou recuse os cadastros da lista de espera. Ao aprovar, defina o período de validade (30 dias ou indeterminado) e envie a senha temporária por e-mail."
+        description="Aprove ou recuse os cadastros da lista de espera e libere os planejamentos personalizados solicitados pelos alunos."
       />
 
-      <CadastrosView entries={formatted} />
+      <CadastrosView entries={formatted} pendingPlans={formattedPlans} />
     </div>
   );
 }

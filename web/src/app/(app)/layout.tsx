@@ -20,7 +20,9 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
   const user = await requireUser();
   const theme = await getTheme();
   const contestSubtitle = await getUserContestSubtitle(user.email);
-  if (user.role !== "ADMIN" && process.env.APP_ENABLED !== "true") {
+  const launchTime = new Date("2026-10-10T20:00:00-03:00").getTime();
+  const isLaunched = Date.now() >= launchTime;
+  if (user.role !== "ADMIN" && process.env.APP_ENABLED !== "true" && !isLaunched) {
     return (
       <main className="mx-auto flex min-h-screen max-w-xl flex-1 flex-col items-center justify-center gap-4 px-6 text-center">
         <h1 className="font-display text-3xl font-bold">Cadastro confirmado!</h1>

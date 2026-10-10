@@ -83,14 +83,12 @@ describe("invariantes do plano (matriz de entradas)", () => {
       }
     }
   });
-  it("Teoria tem 20–75 min e 1+ trecho; Revisão 20–50; Fixação e Questões até 60; tudo em múltiplos de 5", () => {
+  it("atividades duram entre 50 e 80 min (alvo 60 min), tudo em múltiplos de 5", () => {
     for (const { plan } of plans) {
       for (const a of acts(plan)) {
         expect(a.minutes % 5).toBe(0);
-        expect(a.minutes).toBeGreaterThanOrEqual(20);
-        if (a.type === "TEORIA") expect(a.minutes).toBeLessThanOrEqual(75);
-        if (a.type === "REVISAO") expect(a.minutes).toBeLessThanOrEqual(60);
-        if (a.type === "FIXACAO" || a.type === "QUESTOES") expect(a.minutes).toBeLessThanOrEqual(60);
+        expect(a.minutes).toBeGreaterThanOrEqual(50);
+        expect(a.minutes).toBeLessThanOrEqual(80);
         if (a.type === "TEORIA") expect(a.segmentIds.length).toBeGreaterThan(0);
         if (a.type === "FIXACAO") expect(a.fixRanges!.length).toBeGreaterThan(0);
         if (a.type === "QUESTOES") expect(a.quiz).toBeDefined();

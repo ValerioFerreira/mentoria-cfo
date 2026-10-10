@@ -11,10 +11,10 @@ const MIN_QUESTIONS = 5;
 
 async function ownedQuizActivity(userId: string, activityId: string) {
   const a = await db.activity.findFirst({
-    where: { id: activityId, type: "QUESTOES", week: { plan: { userId } } },
+    where: { id: activityId, type: "QUESTOES", week: { plan: { userId, status: "ACTIVE" } } },
     include: { segments: { select: { segmentId: true } } },
   });
-  if (!a) throw new Error("Atividade de questões não encontrada.");
+  if (!a) throw new Error("Atividade de questões não encontrada ou plano não liberado.");
   return a;
 }
 

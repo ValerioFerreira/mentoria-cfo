@@ -6,7 +6,9 @@ import { Heatmap } from "@/components/heatmap";
 import { Alert, BLOCK_COLOR, Badge, Card, ChartEmpty, Count, EmptyState, LinkButton, PageHeader, Progress, Ring, SectionTitle, Stat } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
 import { getPerformance } from "@/lib/data/performance";
-import { getActivePlan } from "@/lib/data/study";
+import { getActivePlan, getPendingPlan } from "@/lib/data/study";
+import { PendingPlanView } from "@/components/pending-plan-view";
+import { db } from "@/lib/db";
 import { MIN_HEAT_DAYS, MIN_QUESTIONS_FOR_PROJECTION, MIN_TREND_CADERNOS, MIN_WEEKS_WITH_STUDY, chartReadiness, weeksWithStudy } from "@/lib/metrics";
 import { dateOfPlanDay, firstStudyISO, effectiveDays, planPosition, todayISO } from "@/lib/plan-time";
 import { fmtDuration, subjectName, subjectShort } from "@/lib/ui-format";
@@ -31,6 +33,20 @@ function mastery(acc: number | null, total: number): { label: string; tone: "ok"
 export default async function PerformancePage() {
   const user = await requireUser();
   const plan = await getActivePlan(user.id);
+  if (!plan) {
+    const pending = await getPendingPlan(user.id);
+    if (pending) {
+      const profile = await db.profile.findUnique({ where: { userId: user.id } });
+      return (
+        <PendingPlanView
+          userName={user.name}
+          createdAt={pending.createdAt}
+          examDate={pending.examDate}
+          hoursPerWeek={profile?.hoursPerWeek}
+        />
+      );
+    }
+  }
   const planSubjects = plan?.subjects.map((s) => s.subjectId) ?? [];
   const totalWeeks = plan?.weeks.length ?? 0;
   const perf = await getPerformance(user.id, plan?.startDate ?? null, totalWeeks, planSubjects);

@@ -5,7 +5,8 @@ import type { CSSProperties } from "react";
 import { BLOCK_COLOR, EmptyState, PageHeader } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
 import { getSummaryCounts } from "@/lib/data/summaries";
-import { getActivePlan } from "@/lib/data/study";
+import { getActivePlan, getPendingPlan } from "@/lib/data/study";
+import { PendingPlanView } from "@/components/pending-plan-view";
 import { db } from "@/lib/db";
 import { subjectName } from "@/lib/ui-format";
 
@@ -13,8 +14,23 @@ export const metadata: Metadata = { title: "Meus resumos" };
 
 export default async function SummariesPage() {
   const user = await requireUser();
-  const [plan, counts, subjects] = await Promise.all([
-    getActivePlan(user.id),
+  const plan = await getActivePlan(user.id);
+  if (!plan) {
+    const pending = await getPendingPlan(user.id);
+    if (pending) {
+      const profile = await db.profile.findUnique({ where: { userId: user.id } });
+      return (
+        <PendingPlanView
+          userName={user.name}
+          createdAt={pending.createdAt}
+          examDate={pending.examDate}
+          hoursPerWeek={profile?.hoursPerWeek}
+        />
+      );
+    }
+  }
+
+  const [counts, subjects] = await Promise.all([
     getSummaryCounts(user.id),
     db.subject.findMany({ orderBy: { sortOrder: "asc" }, select: { id: true, block: true } }),
   ]);

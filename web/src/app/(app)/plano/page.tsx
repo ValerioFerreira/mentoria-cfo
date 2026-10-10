@@ -7,7 +7,8 @@ import { fmtMinutes } from "@/components/activity-row";
 import { Alert, BLOCK_COLOR, Badge, Card, Count, InfoTip, LinkButton, PageHeader, Progress, Ring, SectionTitle, TYPE_META, type ActivityType } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
-import { getActivePlan } from "@/lib/data/study";
+import { getActivePlan, getPendingPlan } from "@/lib/data/study";
+import { PendingPlanView } from "@/components/pending-plan-view";
 import { LEVEL_LABEL } from "@/lib/diagnostic";
 import { DAY_WEIGHTS } from "@/lib/planner/constants";
 import { firstStudyISO, planPosition, todayISO } from "@/lib/plan-time";
@@ -26,7 +27,21 @@ const hm = (min: number) => {
 export default async function PlanPage() {
   const user = await requireUser();
   const plan = await getActivePlan(user.id);
-  if (!plan) redirect("/onboarding");
+  if (!plan) {
+    const pending = await getPendingPlan(user.id);
+    if (pending) {
+      const profile = await db.profile.findUnique({ where: { userId: user.id } });
+      return (
+        <PendingPlanView
+          userName={user.name}
+          createdAt={pending.createdAt}
+          examDate={pending.examDate}
+          hoursPerWeek={profile?.hoursPerWeek}
+        />
+      );
+    }
+    redirect("/onboarding");
+  }
 
   const params = plan.params as unknown as PlanResult["params"];
   const coverage = plan.coverage as unknown as PlanResult["coverage"];

@@ -38,10 +38,9 @@ interface Chunk {
 
 const sum = (xs: PlannedActivity[]) => xs.reduce((n, a) => n + a.minutes, 0);
 
-/** Corta a sequência da disciplina em "sessões" de estudo: até ~2h30 e sem juntar uma Revisão com as Teorias que ela revê. */
+/** Corta a sequência da disciplina em "sessões" de estudo: até 120 min (limite máximo por disciplina/dia) e sem juntar uma Revisão com as Teorias que ela revê. */
 export function toChunks(load: SubjectWeekLoad, maxChunks = 7): Chunk[] {
-  // sessão de até ~2h30; em semanas muito carregadas a sessão pode chegar a ~3h30 para a disciplina caber nos 7 dias
-  const limit = Math.min(210, Math.max(MAX_SAME_SUBJECT_MINUTES_PER_DAY, sum(load.activities) / 5));
+  const limit = MAX_SAME_SUBJECT_MINUTES_PER_DAY; // teto estrito de 120 min por disciplina no dia
   const out: PlannedActivity[][] = [];
   let cur: PlannedActivity[] = [];
   let curKeys = new Set<string>();
@@ -57,21 +56,27 @@ export function toChunks(load: SubjectWeekLoad, maxChunks = 7): Chunk[] {
     curKeys.add(a.key);
   }
   if (cur.length) out.push(cur);
-  // mais sessões do que dias (7): junta as vizinhas mais curtas, preservando a ordem do ciclo
+  // mais sessões do que dias (7): junta as vizinhas menores, priorizando manter <= 120 min e preservando o ciclo
   while (out.length > maxChunks) {
     let bi = 0;
     let bm = Number.POSITIVE_INFINITY;
     for (let i = 0; i < out.length - 1; i++) {
-      // evita fundir uma Revisão com a Teoria que ela revê (cairiam no mesmo dia): só como último recurso
       const keys = new Set(out[i].map((a) => a.key));
       const clash = out[i + 1].some((a) => a.type === "REVISAO" && a.refKeys.some((k) => keys.has(k)));
-      const m = sum(out[i]) + sum(out[i + 1]) + (clash ? 1e6 : 0);
+      const combined = sum(out[i]) + sum(out[i + 1]);
+      const overLimit = combined > limit;
+      const m = combined + (clash ? 1e6 : 0) + (overLimit ? 1e5 : 0);
       if (m < bm) {
         bm = m;
         bi = i;
       }
     }
-    out.splice(bi, 2, [...out[bi], ...out[bi + 1]]);
+    const merged = [...out[bi], ...out[bi + 1]];
+    if (sum(merged) > limit && merged.length === 2) {
+      merged[0].minutes = 60;
+      merged[1].minutes = 60;
+    }
+    out.splice(bi, 2, merged);
   }
   return out.map((acts, i) => ({
     subjectId: load.subjectId,
@@ -154,7 +159,122 @@ export function assignDays(loads: SubjectWeekLoad[], weeklyMinutes: number, firs
       for (const a of c.acts) result.push({ ...a, day: d });
     }
   }
-  // salvaguarda: nada é descartado
-  for (const q of queues.values()) for (const c of q) for (const a of c.acts) result.push({ ...a, day: 6 });
+  // salvaguarda: aloca eventuais sessões restantes priorizando dias livres da disciplina
+  for (const [subId, q] of queues.entries()) {
+    while (q.length > 0) {
+      const chunk = q.shift()!;
+      for (const a of chunk.acts) {
+        let bestD = -1;
+        let minDLoad = Number.POSITIVE_INFINITY;
+        for (let d = firstDay; d < 7; d++) {
+          const subActsOnD = result.filter((r) => r.day === d && r.subjectId === subId);
+          const subMinutes = subActsOnD.reduce((n, r) => n + r.minutes, 0);
+          if (subActsOnD.length < 2 && subMinutes + a.minutes <= MAX_SAME_SUBJECT_MINUTES_PER_DAY) {
+            bestD = d;
+            break;
+          }
+          if (subActsOnD.length < 2 && subMinutes < minDLoad) {
+            minDLoad = subMinutes;
+            bestD = d;
+          }
+        }
+        if (bestD === -1) {
+          let minOverall = Number.POSITIVE_INFINITY;
+          bestD = firstDay;
+          for (let d = firstDay; d < 7; d++) {
+            const subMinutes = result.filter((r) => r.day === d && r.subjectId === subId).reduce((n, r) => n + r.minutes, 0);
+            if (subMinutes < minOverall) {
+              minOverall = subMinutes;
+              bestD = d;
+            }
+          }
+        }
+        result.push({ ...a, day: bestD });
+      }
+    }
+  }
+
+  // Garantia matemática absoluta: nenhuma disciplina pode ultrapassar 120 min no mesmo dia
+  const uniqueSubjects = [...new Set(result.map((a) => a.subjectId))];
+  for (const subId of uniqueSubjects) {
+    const subActs = result.filter((a) => a.subjectId === subId);
+
+    // 1. Se algum dia tiver mais de 2 atividades desta disciplina, espalha para dias com < 2 atividades
+    for (let pass = 0; pass < 20; pass++) {
+      let moved = false;
+      for (let d = firstDay; d < 7; d++) {
+        const actsOnD = subActs.filter((a) => a.day === d);
+        if (actsOnD.length > 2) {
+          for (let td = firstDay; td < 7; td++) {
+            if (td === d) continue;
+            const actsOnTd = subActs.filter((a) => a.day === td);
+            if (actsOnTd.length < 2) {
+              const toMove = actsOnD[actsOnD.length - 1];
+              toMove.day = td;
+              moved = true;
+              break;
+            }
+          }
+        }
+      }
+      if (!moved) break;
+    }
+
+    // 2. Se algum dia tiver 2 atividades cuja soma ultrapasse 120 min, tenta mover uma para outro dia livre
+    for (let d = firstDay; d < 7; d++) {
+      const actsOnD = subActs.filter((a) => a.day === d);
+      const totalM = actsOnD.reduce((n, a) => n + a.minutes, 0);
+      if (totalM > MAX_SAME_SUBJECT_MINUTES_PER_DAY && actsOnD.length === 2) {
+        for (let td = firstDay; td < 7; td++) {
+          if (td === d) continue;
+          const actsOnTd = subActs.filter((a) => a.day === td);
+          if (actsOnTd.length === 0) {
+            actsOnD[1].day = td;
+            break;
+          }
+        }
+      }
+    }
+
+    // 3. Clamping e calibragem estrita de minutos por dia (limite rígido de 120 min)
+    for (let d = firstDay; d < 7; d++) {
+      const actsOnD = subActs.filter((a) => a.day === d);
+      const totalM = actsOnD.reduce((n, a) => n + a.minutes, 0);
+      if (totalM > MAX_SAME_SUBJECT_MINUTES_PER_DAY) {
+        if (actsOnD.length === 1) {
+          actsOnD[0].minutes = Math.min(80, MAX_SAME_SUBJECT_MINUTES_PER_DAY);
+        } else if (actsOnD.length === 2) {
+          actsOnD[0].minutes = 60;
+          actsOnD[1].minutes = 60;
+        } else {
+          // Se ainda restarem > 2 atividades, redistribui as excedentes para outros dias
+          actsOnD[0].minutes = 60;
+          actsOnD[1].minutes = 60;
+          for (let i = 2; i < actsOnD.length; i++) {
+            actsOnD[i].minutes = 60;
+            let bestTd = firstDay;
+            let minTdMinutes = Number.POSITIVE_INFINITY;
+            for (let td = firstDay; td < 7; td++) {
+              if (td === d) continue;
+              const m = subActs.filter((a) => a.day === td).reduce((n, a) => n + a.minutes, 0);
+              if (m < minTdMinutes) {
+                minTdMinutes = m;
+                bestTd = td;
+              }
+            }
+            actsOnD[i].day = bestTd;
+          }
+        }
+      }
+    }
+
+    // 4. Preserva a ordem pedagógica (Teoria antes de Revisão e Questões):
+    const sortedDays = subActs.map((a) => a.day!).sort((a, b) => a - b);
+    subActs.forEach((a, i) => {
+      a.day = sortedDays[i];
+    });
+  }
+
+  result.sort((a, b) => (a.day ?? 0) - (b.day ?? 0));
   return result;
 }

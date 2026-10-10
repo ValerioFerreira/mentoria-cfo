@@ -6,8 +6,8 @@ import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 
 async function ownedActivity(userId: string, id: string) {
-  const a = await db.activity.findFirst({ where: { id, week: { plan: { userId } } }, select: { id: true, status: true } });
-  if (!a) throw new Error("Atividade não encontrada.");
+  const a = await db.activity.findFirst({ where: { id, week: { plan: { userId, status: "ACTIVE" } } }, select: { id: true, status: true } });
+  if (!a) throw new Error("Atividade não encontrada ou plano não liberado.");
   return a;
 }
 

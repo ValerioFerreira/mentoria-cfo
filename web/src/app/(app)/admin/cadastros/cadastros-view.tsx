@@ -12,10 +12,23 @@ import {
   Trash2,
   UserCheck,
   UserX,
+  Sparkles,
 } from "lucide-react";
 import { useState, useTransition } from "react";
 import { Alert, Badge, Button, Card, SectionTitle } from "@/components/ui";
-import { approveRegistration, rejectRegistration, deleteWaitlistEntry, type AdminActionResult } from "@/lib/admin/cadastros-actions";
+import { approveRegistration, rejectRegistration, deleteWaitlistEntry, approvePlan, type AdminActionResult } from "@/lib/admin/cadastros-actions";
+
+export interface PendingPlanRow {
+  id: string;
+  userId: string;
+  userName: string;
+  userEmail: string;
+  createdAt: string;
+  examDate: string;
+  version: number;
+  hoursPerWeek: number | null;
+  subjectCount: number;
+}
 
 export interface WaitlistRow {
   id: string;
@@ -49,8 +62,10 @@ const PLAN_LABELS: Record<string, string> = {
   UNTIL_EXAM: "R$ 50 até a prova (50% de lançamento)",
 };
 
-export function CadastrosView({ entries }: { entries: WaitlistRow[] }) {
-  const [activeTab, setActiveTab] = useState<"PENDING" | "APPROVED" | "REJECTED">("PENDING");
+export function CadastrosView({ entries, pendingPlans = [] }: { entries: WaitlistRow[]; pendingPlans?: PendingPlanRow[] }) {
+  const [activeTab, setActiveTab] = useState<"PENDING" | "APPROVED" | "REJECTED" | "PLANS">(
+    pendingPlans.length > 0 ? "PLANS" : "PENDING"
+  );
   const [selectedEntry, setSelectedEntry] = useState<WaitlistRow | null>(null);
   const [duration, setDuration] = useState<"30_DAYS" | "INDEFINITE">("30_DAYS");
   const [rejectEntry, setRejectEntry] = useState<WaitlistRow | null>(null);
@@ -161,6 +176,22 @@ export function CadastrosView({ entries }: { entries: WaitlistRow[] }) {
           Aprovados (Alunos Ativos)
           <span className="rounded-full bg-surface-3 px-2 py-0.5 text-xs tabular font-bold text-text">
             {approvedList.length}
+          </span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setActiveTab("PLANS")}
+          className={`flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition cursor-pointer ${
+            activeTab === "PLANS"
+              ? "border-gold bg-gold/15 text-gold font-bold ring-1 ring-gold"
+              : "border-border bg-surface text-muted hover:border-border-strong hover:text-text"
+          }`}
+        >
+          <Sparkles className="h-4 w-4 text-gold" />
+          Planos para Liberação
+          <span className="rounded-full bg-gold/20 px-2 py-0.5 text-xs tabular font-bold text-gold">
+            {pendingPlans.length}
           </span>
         </button>
 
@@ -311,6 +342,63 @@ export function CadastrosView({ entries }: { entries: WaitlistRow[] }) {
       )}
 
       {/* Listagem */}
+      {activeTab === "PLANS" ? (
+        <section className="space-y-3" aria-labelledby="sec-planos">
+          <SectionTitle id="sec-planos">
+            Planejamentos em Análise / Aguardando Liberação ({pendingPlans.length})
+          </SectionTitle>
+
+          {pendingPlans.length === 0 ? (
+            <Card className="p-8 text-center text-sm text-muted">
+              Nenhum planejamento aguardando liberação no momento. Todos os alunos com questionário respondido já possuem plano ativo.
+            </Card>
+          ) : (
+            <div className="space-y-3">
+              {pendingPlans.map((p) => (
+                <Card key={p.id} className="p-5 space-y-4 border border-gold/30">
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div className="space-y-1">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h4 className="font-display text-xl font-bold uppercase text-text">{p.userName}</h4>
+                        <Badge tone="warn">EM ANÁLISE (24H)</Badge>
+                        <Badge tone="neutral">{p.subjectCount} disciplinas</Badge>
+                        {p.hoursPerWeek && <Badge tone="neutral">{p.hoursPerWeek}h/semana</Badge>}
+                        <Badge tone="neutral">Prova: {p.examDate}</Badge>
+                      </div>
+
+                      <p className="text-xs text-muted flex flex-wrap items-center gap-x-3 gap-y-1">
+                        <span>E-mail: <strong className="text-text">{p.userEmail}</strong></span>
+                        <span>·</span>
+                        <span>Solicitado em: {new Date(p.createdAt).toLocaleString("pt-BR")}</span>
+                        <span>·</span>
+                        <span>Versão do plano: #{p.version}</span>
+                      </p>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <Button
+                        size="sm"
+                        variant="primary"
+                        onClick={() => {
+                          startTransition(async () => {
+                            const res = await approvePlan(p.id);
+                            setStatusMessage(res);
+                          });
+                        }}
+                        disabled={isPending}
+                        className="bg-gold text-on-gold hover:opacity-90"
+                      >
+                        {isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4" />}
+                        Liberar Planejamento
+                      </Button>
+                    </div>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          )}
+        </section>
+      ) : (
       <section className="space-y-3" aria-labelledby="sec-cadastros">
         <SectionTitle id="sec-cadastros">
           {activeTab === "PENDING"
@@ -454,6 +542,7 @@ export function CadastrosView({ entries }: { entries: WaitlistRow[] }) {
           </div>
         )}
       </section>
+      )}
     </div>
   );
 }

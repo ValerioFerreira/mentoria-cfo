@@ -85,19 +85,22 @@ export function buildBlueprint(aula: CatalogAula, segs: SegmentLite[], level: Le
 }
 
 // ───────────────────────── Tempo de cada atividade ─────────────────────────
-/** Arredonda para múltiplos de 5 min, com piso. */
+/** Arredonda para múltiplos de 5 min, com piso de 50 min e teto de 80 min (alvo preferencial de 60 min). */
 export function roundMinutes(m: number): number {
-  return Math.max(MIN_ACTIVITY_MINUTES, Math.round(m / 5) * 5);
+  return Math.min(80, Math.max(MIN_ACTIVITY_MINUTES, Math.round(m / 5) * 5));
 }
 
-/** Teoria: ~1 h para cada 12 de carga (10–17 págs., conforme a densidade), ajustada pelo ritmo do aluno. */
+/** Teoria: 50 a 80 min (alvo preferencial de 60 min), ajustada pela carga de páginas e ritmo do aluno. */
 export function teoriaMinutes(u: TeoriaUnit, bp: AulaBlueprint): number {
-  if (bp.turbo) return roundMinutes(TURBO_MINUTES_PER_SEGMENT * u.segmentIds.length * bp.readPace);
+  if (bp.turbo) {
+    const raw = Math.max(50, Math.min(80, Math.round((u.segmentIds.length * 20 * bp.readPace) / 5) * 5));
+    return roundMinutes(raw);
+  }
   const base = Math.min(Math.max(u.load * TEORIA_MINUTES.perLoadUnit, TEORIA_MINUTES.min), TEORIA_MINUTES.max);
   return roundMinutes(base * bp.readPace);
 }
 
-/** Revisão de `n` Teorias. */
+/** Revisão de `n` Teorias: estritamente entre 50 e 80 min. */
 export function revisaoMinutes(n: number, bp: AulaBlueprint): number {
   const base = Math.min(Math.max(REVISAO_MINUTES.base + REVISAO_MINUTES.perTeoria * n, REVISAO_MINUTES.min), REVISAO_MINUTES.max);
   return roundMinutes(base * bp.readPace);
@@ -107,9 +110,9 @@ export function fixacaoMinutes(bp: AulaBlueprint): number {
   return roundMinutes(FIXACAO_MINUTES * bp.pace);
 }
 
-/** O caderno tem 60 min de limite; quem domina o assunto termina antes, mas ainda corrige os erros (piso de 45 min). */
+/** O caderno tem 60 min de limite (intervalo de 50 a 80 min). */
 export function questoesMinutes(bp: AulaBlueprint): number {
-  return roundMinutes(QUESTOES_MINUTES * Math.max(bp.pace, 0.75));
+  return roundMinutes(QUESTOES_MINUTES * Math.max(bp.pace, 0.85));
 }
 
 export interface TierShape {
@@ -151,7 +154,7 @@ export interface TierMinutes {
 
 export function tierMinutes(bp: AulaBlueprint, tier: Tier): TierMinutes {
   const s = tierShape(bp, tier);
-  const teoria = bp.teoria.reduce((n, u) => n + teoriaMinutes(u, bp), 0);
+  const teoria = bp.turbo ? 60 : bp.teoria.reduce((n, u) => n + teoriaMinutes(u, bp), 0);
   const groups = splitEven(bp.teoria.length, s.reviews);
   const revisao = groups.reduce((n, g) => n + revisaoMinutes(g.length, bp), 0);
   const fixacao = s.fixChunks * fixacaoMinutes(bp);

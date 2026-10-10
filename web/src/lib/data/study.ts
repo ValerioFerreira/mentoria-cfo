@@ -16,6 +16,21 @@ export async function getActivePlan(userId: string) {
   });
 }
 
+export async function getPendingPlan(userId: string) {
+  return db.plan.findFirst({
+    where: { userId, status: "PENDING_ANALYSIS" },
+    orderBy: { version: "desc" },
+    select: {
+      id: true,
+      status: true,
+      createdAt: true,
+      examDate: true,
+      params: true,
+      subjects: { select: { subjectId: true } },
+    },
+  });
+}
+
 /** Segundos estudados por atividade (soma dos registros de tempo). */
 export async function secondsByActivity(userId: string, activityIds?: string[]): Promise<Map<string, number>> {
   const rows = await db.timeLog.groupBy({
@@ -32,7 +47,7 @@ export function currentWeekIndex(startDate: Date, totalWeeks: number, now = new 
 
 export async function getWeek(userId: string, planId: string, index: number) {
   const week = await db.week.findFirst({
-    where: { planId, index, plan: { userId } },
+    where: { planId, index, plan: { userId, status: "ACTIVE" } },
     include: {
       activities: {
         orderBy: { sortOrder: "asc" },
@@ -47,7 +62,7 @@ export async function getWeek(userId: string, planId: string, index: number) {
 
 export async function getActivity(userId: string, id: string) {
   return db.activity.findFirst({
-    where: { id, week: { plan: { userId } } },
+    where: { id, week: { plan: { userId, status: "ACTIVE" } } },
     include: {
       subject: { select: { id: true, name: true } },
       aula: { select: { id: true, number: true, shortTitle: true, printedOffset: true } },

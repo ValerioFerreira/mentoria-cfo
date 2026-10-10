@@ -126,3 +126,27 @@ export async function deleteWaitlistEntry(entryId: string): Promise<AdminActionR
   revalidatePath("/admin/cadastros");
   return { success: true, message: "Registro removido com sucesso." };
 }
+
+export async function approvePlan(planId: string): Promise<AdminActionResult> {
+  await requireAdmin();
+
+  const plan = await db.plan.findUnique({
+    where: { id: planId },
+    include: { user: { select: { name: true, email: true } } },
+  });
+  if (!plan) {
+    return { success: false, message: "Planejamento não encontrado." };
+  }
+
+  await db.plan.update({
+    where: { id: planId },
+    data: { status: "ACTIVE" },
+  });
+
+  revalidatePath("/admin/cadastros");
+  revalidatePath("/", "layout");
+  return {
+    success: true,
+    message: `Planejamento de ${plan.user.name ?? plan.user.email} liberado com sucesso!`,
+  };
+}

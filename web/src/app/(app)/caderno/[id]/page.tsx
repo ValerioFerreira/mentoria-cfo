@@ -30,7 +30,7 @@ export default async function QuizPage({ params }: PageProps<"/caderno/[id]">) {
   const user = await requireUser();
   const { id } = await params; // id da atividade
   const activity = await db.activity.findFirst({
-    where: { id, type: "QUESTOES", week: { plan: { userId: user.id } } },
+    where: { id, type: "QUESTOES", week: { plan: { userId: user.id, status: "ACTIVE" } } },
     include: { aula: { select: { number: true, shortTitle: true } }, segments: { select: { segmentId: true } }, week: { select: { index: true } } },
   });
   if (!activity) notFound();
