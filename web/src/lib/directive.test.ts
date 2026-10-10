@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { aulaLabel, fixacaoSteps, pageLabel, teoriaDirective, teoriaStep, type AulaRef, type SegmentRef } from "./directive";
+import { aulaLabel, fixacaoSteps, pageLabel, pageRangeLocation, teoriaDirective, teoriaStep, turboDirective, type AulaRef, type SegmentRef } from "./directive";
 
 const seg = (over: Partial<SegmentRef> = {}): SegmentRef => ({
   id: "x/a02/s01", startPage: 12, endPage: 24, startPrinted: 12, endPrinted: 24,
@@ -44,3 +44,18 @@ describe("diretriz de Fixação", () => {
     expect(steps[0]).toContain("págs. 4 a 8 da Aula 14 (extra)");
   });
 });
+
+describe("diretriz de Modo Turbo e localização de páginas", () => {
+  it("formata intervalo como 'da pág. X à pág. Y' e página única como 'na pág. X'", () => {
+    expect(pageRangeLocation(5, null, 62, null)).toBe("da pág. 5 à pág. 62");
+    expect(pageRangeLocation(5, 4, 62, 61)).toBe("da pág. 5 (impressa 4) à pág. 62 (impressa 61)");
+    expect(pageRangeLocation(10, null, 10, null)).toBe("na pág. 10");
+
+    const t = turboDirective(aula, [
+      seg({ startPage: 5, endPage: 20, startPrinted: null, endPrinted: null }),
+      seg({ startPage: 21, endPage: 62, startPrinted: null, endPrinted: null }),
+    ]);
+    expect(t.steps[2]).toContain("está da pág. 5 à pág. 62 (Aula 02 — Adjetivos e Advérbios)");
+  });
+});
+

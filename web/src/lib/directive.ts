@@ -41,6 +41,19 @@ export function pageLabel(pdf: number, printed: number | null | undefined): stri
   return printed != null && printed !== pdf ? `pág. ${pdf} (impressa ${printed})` : `pág. ${pdf}`;
 }
 
+/** Formata a localização de página ou intervalo: "na pág. 5" ou "da pág. 5 à pág. 62" */
+export function pageRangeLocation(
+  firstPdf: number,
+  firstPrinted: number | null | undefined,
+  lastPdf: number,
+  lastPrinted: number | null | undefined,
+): string {
+  if (firstPdf === lastPdf) {
+    return `na ${pageLabel(firstPdf, firstPrinted)}`;
+  }
+  return `da ${pageLabel(firstPdf, firstPrinted)} à ${pageLabel(lastPdf, lastPrinted)}`;
+}
+
 export function aulaLabel(a: Pick<AulaRef, "number" | "shortTitle">): string {
   if (a.number > COMPLEMENT_BASE) return `Complemento ${String(a.number - COMPLEMENT_BASE).padStart(2, "0")} — ${a.shortTitle}`;
   return `Aula ${String(a.number).padStart(2, "0")} — ${a.shortTitle}`;
@@ -86,7 +99,7 @@ export function turboDirective(aula: AulaRef, segs: SegmentRef[]): TeoriaDirecti
     "Responda aos itens de Certo/Errado do Bizu e confira o que errou. Depois, anote no campo “Meu resumo” o que você lembra.",
   ];
   if (first && last && !aula.authored) {
-    steps.push(`Se um ponto ficar confuso, a teoria completa está na ${first.startPage === last.endPage ? pageLabel(first.startPage, first.startPrinted) : `${pageLabel(first.startPage, first.startPrinted)} a ${pageLabel(last.endPage, last.endPrinted)}`} (${aulaLabel(aula)}).`);
+    steps.push(`Se um ponto ficar confuso, a teoria completa está ${pageRangeLocation(first.startPage, first.startPrinted, last.endPage, last.endPrinted)} (${aulaLabel(aula)}).`);
   }
   return { heading: `${aula.subjectName} · ${aulaLabel(aula)}`, steps, pages: 0 };
 }

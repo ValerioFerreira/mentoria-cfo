@@ -85,8 +85,10 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
     <>
       <AppNav items={nav} user={who} appearance={<AppearanceMenu initial={theme} inverse />} subtitle={contestSubtitle} />
       <div className="flex flex-1 flex-col lg:pl-64">
-        <div className="sticky top-0 z-20 hidden justify-end px-10 pt-4 lg:flex">
-          <AppearanceMenu initial={theme} />
+        <div className="sticky top-0 z-20 pointer-events-none hidden justify-end px-10 pt-4 lg:flex">
+          <div className="pointer-events-auto">
+            <AppearanceMenu initial={theme} />
+          </div>
         </div>
         <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-6 pb-32 lg:px-10 lg:pb-24 lg:pt-4">{children}</main>
       </div>

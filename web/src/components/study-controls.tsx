@@ -5,38 +5,202 @@ import { useRouter } from "next/navigation";
 import { useEffect, useOptimistic, useRef, useState, useTransition } from "react";
 import { Alert, Button, Card, InfoTip, cx, inputCls } from "@/components/ui";
 import { fmtDuration } from "@/lib/ui-format";
-import { deleteTimeLog, logManualTime, saveNote, setActivityStatus } from "@/lib/study/actions";
+import { completeActivityWithTime, deleteTimeLog, logManualTime, saveNote, setActivityStatus } from "@/lib/study/actions";
 
 export { TypeBadge } from "@/components/ui";
 
-/** Marcador redondo de conclusão. Atualiza na hora (otimista) e confirma no servidor. */
+/** Modal obrigatório de tempo ao concluir a atividade */
+export function CompleteModal({
+  id,
+  open,
+  onClose,
+}: {
+  id: string;
+  open: boolean;
+  onClose: () => void;
+}) {
+  const [hours, setHours] = useState("");
+  const [minutes, setMinutes] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [pending, start] = useTransition();
+  const router = useRouter();
+
+  if (!open) return null;
+
+  const h = hours === "" ? 0 : Number(hours);
+  const m = minutes === "" ? 0 : Number(minutes);
+  const total = h * 60 + m;
+
+  const setPreset = (hVal: number, mVal: number) => {
+    setHours(hVal > 0 ? String(hVal) : "");
+    setMinutes(String(mVal));
+    setError(null);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (total < 1) {
+      setError("Quanto tempo você dedicou a esta atividade? O registro de tempo é obrigatório para concluir (mínimo de 1 minuto).");
+      return;
+    }
+    setError(null);
+    start(async () => {
+      const res = await completeActivityWithTime(id, h, m);
+      if (res.error) {
+        setError(res.error);
+      } else {
+        onClose();
+        router.refresh();
+      }
+    });
+  };
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-xs animate-in fade-in"
+      onClick={onClose}
+    >
+      <div
+        className="w-full max-w-md rounded-2xl border border-border bg-surface p-6 shadow-lift text-text space-y-4"
+        onClick={(e) => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="complete-modal-title"
+      >
+        <div className="space-y-1">
+          <h2 id="complete-modal-title" className="font-display text-2xl font-bold uppercase tracking-wide">
+            Concluir Atividade
+          </h2>
+          <p className="text-sm text-muted">
+            Quanto tempo você dedicou a esta atividade? Informe o tempo real de estudo para confirmar a conclusão.
+          </p>
+        </div>
+
+        {/* Atalhos rápidos */}
+        <div className="space-y-1.5">
+          <span className="text-xs font-semibold text-muted">Sugestões rápidas:</span>
+          <div className="flex flex-wrap gap-2">
+            {[
+              { label: "30 min", h: 0, m: 30 },
+              { label: "45 min", h: 0, m: 45 },
+              { label: "1h", h: 1, m: 0 },
+              { label: "1h 15m", h: 1, m: 15 },
+              { label: "1h 30m", h: 1, m: 30 },
+            ].map((preset) => (
+              <button
+                key={preset.label}
+                type="button"
+                onClick={() => setPreset(preset.h, preset.m)}
+                className="rounded-lg border border-border bg-surface-2 px-2.5 py-1 text-xs font-medium text-text transition hover:border-primary hover:bg-surface-3 cursor-pointer"
+              >
+                {preset.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-4 pt-1">
+          <div className="flex items-center gap-3">
+            <label className="flex-1">
+              <span className="mb-1 block text-xs font-semibold text-muted">Horas (0–16)</span>
+              <input
+                type="number"
+                min={0}
+                max={16}
+                inputMode="numeric"
+                placeholder="0"
+                value={hours}
+                onChange={(e) => {
+                  setHours(e.target.value);
+                  setError(null);
+                }}
+                className={cx(inputCls, "text-center text-base font-semibold")}
+                autoFocus
+              />
+            </label>
+            <label className="flex-1">
+              <span className="mb-1 block text-xs font-semibold text-muted">Minutos (0–59)</span>
+              <input
+                type="number"
+                min={0}
+                max={59}
+                inputMode="numeric"
+                placeholder="0"
+                value={minutes}
+                onChange={(e) => {
+                  setMinutes(e.target.value);
+                  setError(null);
+                }}
+                className={cx(inputCls, "text-center text-base font-semibold")}
+              />
+            </label>
+          </div>
+
+          {error && <Alert tone="danger">{error}</Alert>}
+
+          <div className="flex items-center justify-end gap-2.5 pt-2">
+            <Button type="button" variant="secondary" onClick={onClose} disabled={pending}>
+              Cancelar
+            </Button>
+            <Button type="submit" variant="primary" disabled={pending}>
+              {pending ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
+                  Salvando…
+                </>
+              ) : (
+                <>
+                  <CircleCheck className="h-4 w-4" aria-hidden />
+                  Concluir com {total > 0 ? fmtDuration(total * 60) : "tempo"}
+                </>
+              )}
+            </Button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+/** Marcador redondo de conclusão. Atualiza na hora (otimista) ou abre modal de tempo se for para concluir. */
 export function StatusToggle({ id, status, compact }: { id: string; status: string; compact?: boolean }) {
   const [, start] = useTransition();
   const router = useRouter();
   const done = status === "DONE";
   const [shownDone, setShownDone] = useOptimistic(done);
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
-    <button
-      type="button"
-      aria-pressed={shownDone}
-      aria-label={shownDone ? "Marcar como não concluída" : "Marcar como concluída"}
-      onClick={(e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        start(async () => {
-          setShownDone(!done);
-          await setActivityStatus(id, done ? "PENDING" : "DONE");
-          router.refresh();
-        });
-      }}
-      className={cx(
-        "group/check flex shrink-0 cursor-pointer items-center justify-center rounded-full border-2 transition duration-200 active:scale-90",
-        compact ? "h-7 w-7" : "h-9 w-9",
-        shownDone ? "border-ok bg-ok text-white shadow-[0_6px_14px_-6px_var(--ok)]" : "border-border-strong bg-surface hover:border-ok hover:bg-ok/10",
-      )}
-    >
-      {shownDone ? <Check key="on" className="pop h-4 w-4" strokeWidth={3} aria-hidden /> : <Check className="h-4 w-4 text-ok opacity-0 transition group-hover/check:opacity-60" strokeWidth={3} aria-hidden />}
-    </button>
+    <>
+      <button
+        type="button"
+        aria-pressed={shownDone}
+        aria-label={shownDone ? "Reabrir atividade" : "Concluir atividade"}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          if (done) {
+            // Reabrir atividade
+            start(async () => {
+              setShownDone(false);
+              await setActivityStatus(id, "PENDING");
+              router.refresh();
+            });
+          } else {
+            // Exige tempo para concluir
+            setModalOpen(true);
+          }
+        }}
+        className={cx(
+          "group/check flex shrink-0 cursor-pointer items-center justify-center rounded-full border-2 transition duration-200 active:scale-90",
+          compact ? "h-7 w-7" : "h-9 w-9",
+          shownDone ? "border-ok bg-ok text-white shadow-[0_6px_14px_-6px_var(--ok)]" : "border-border-strong bg-surface hover:border-ok hover:bg-ok/10",
+        )}
+      >
+        {shownDone ? <Check key="on" className="pop h-4 w-4" strokeWidth={3} aria-hidden /> : <Check className="h-4 w-4 text-ok opacity-0 transition group-hover/check:opacity-60" strokeWidth={3} aria-hidden />}
+      </button>
+      <CompleteModal id={id} open={modalOpen} onClose={() => setModalOpen(false)} />
+    </>
   );
 }
 
@@ -44,37 +208,46 @@ export function ActivityActions({ id, status }: { id: string; status: string }) 
   const [pending, start] = useTransition();
   const router = useRouter();
   const done = status === "DONE";
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
-    <div className="flex flex-wrap items-center gap-2">
-      <Button
-        disabled={pending}
-        variant={done ? "secondary" : "primary"}
-        onClick={() =>
-          start(async () => {
-            await setActivityStatus(id, done ? "PENDING" : "DONE");
-            router.refresh();
-          })
-        }
-      >
-        {done ? <Undo2 className="h-4 w-4" aria-hidden /> : <CircleCheck className="h-4 w-4" aria-hidden />}
-        {done ? "Reabrir atividade" : "Concluir atividade"}
-      </Button>
-      {!done && status !== "SKIPPED" && (
+    <>
+      <div className="flex flex-wrap items-center gap-2">
         <Button
-          variant="ghost"
           disabled={pending}
-          onClick={() =>
-            start(async () => {
-              await setActivityStatus(id, "SKIPPED");
-              router.refresh();
-            })
-          }
+          variant={done ? "secondary" : "primary"}
+          onClick={() => {
+            if (done) {
+              start(async () => {
+                await setActivityStatus(id, "PENDING");
+                router.refresh();
+              });
+            } else {
+              setModalOpen(true);
+            }
+          }}
         >
-          <SkipForward className="h-4 w-4" aria-hidden />
-          Pular
+          {done ? <Undo2 className="h-4 w-4" aria-hidden /> : <CircleCheck className="h-4 w-4" aria-hidden />}
+          {done ? "Reabrir atividade" : "Concluir atividade"}
         </Button>
-      )}
-    </div>
+        {!done && status !== "SKIPPED" && (
+          <Button
+            variant="ghost"
+            disabled={pending}
+            onClick={() =>
+              start(async () => {
+                await setActivityStatus(id, "SKIPPED");
+                router.refresh();
+              })
+            }
+          >
+            <SkipForward className="h-4 w-4" aria-hidden />
+            Pular
+          </Button>
+        )}
+      </div>
+      <CompleteModal id={id} open={modalOpen} onClose={() => setModalOpen(false)} />
+    </>
   );
 }
 

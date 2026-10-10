@@ -18,6 +18,34 @@ export async function setActivityStatus(activityId: string, status: "PENDING" | 
   revalidatePath("/", "layout");
 }
 
+/** Conclui a atividade exigindo o registro de tempo de forma transacional. */
+export async function completeActivityWithTime(activityId: string, hours: number, minutes: number): Promise<{ error?: string }> {
+  const user = await requireUser();
+  const h = Hours.safeParse(hours);
+  const m = Mins.safeParse(minutes);
+  if (!h.success || !m.success) return { error: "Informe horas (0 a 16) e minutos (0 a 59)." };
+  const total = h.data * 60 + m.data;
+  if (total < 1) return { error: "O tempo de atividade é obrigatório (mínimo de 1 minuto)." };
+
+  await ownedActivity(user.id, activityId);
+  const seconds = total * 60;
+  const now = new Date();
+
+  await db.$transaction([
+    db.timeLog.create({
+      data: { userId: user.id, activityId, seconds, startedAt: now, endedAt: now, source: "MANUAL" },
+    }),
+    db.activity.update({
+      where: { id: activityId },
+      data: { status: "DONE", completedAt: now },
+    }),
+  ]);
+
+  revalidatePath("/", "layout");
+  return {};
+}
+
+
 const Hours = z.number().int().min(0).max(16);
 const Mins = z.number().int().min(0).max(59);
 

@@ -130,7 +130,7 @@ export default function ComoFuncionaPage() {
 
         <div className="rounded-2xl border border-border bg-surface p-3 sm:p-6 shadow-card">
           <ProgressSlider
-            duration={6500}
+            duration={5000}
             activeSlider="passo-1"
             sliderValues={CAROUSEL_STEPS.map((s) => s.sliderName)}
             className="space-y-4"
