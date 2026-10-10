@@ -15,8 +15,12 @@ export async function hashPassword(password: string): Promise<string> {
 
 export async function verifyPassword(password: string, stored: string): Promise<boolean> {
   const [scheme, N, r, p, saltB64, hashB64] = stored.split("$");
-  if (scheme !== "scrypt") return false;
+  if (scheme !== "scrypt" || !hashB64 || !saltB64) return false; // registro truncado/corrompido: falha fechado
   const expected = Buffer.from(hashB64, "base64");
-  const key = await scrypt(password, Buffer.from(saltB64, "base64"), expected.length, { N: Number(N), r: Number(r), p: Number(p) });
-  return key.length === expected.length && timingSafeEqual(key, expected);
+  try {
+    const key = await scrypt(password, Buffer.from(saltB64, "base64"), expected.length, { N: Number(N), r: Number(r), p: Number(p) });
+    return key.length === expected.length && timingSafeEqual(key, expected);
+  } catch {
+    return false; // parâmetros inválidos no registro
+  }
 }

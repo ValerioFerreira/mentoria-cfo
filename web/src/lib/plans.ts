@@ -18,5 +18,5 @@ export const WAITLIST_PLANS: Record<WaitlistPlan, PlanInfo> = {
 export const PLAN_KEYS = Object.keys(WAITLIST_PLANS) as WaitlistPlan[];
 
 export function isPlan(v: unknown): v is WaitlistPlan {
-  return typeof v === "string" && v in WAITLIST_PLANS;
+  return typeof v === "string" && Object.hasOwn(WAITLIST_PLANS, v);
 }
