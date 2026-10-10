@@ -46,13 +46,18 @@ def subject_by_prefix() -> dict[str, Subject]:
     return {s.folder_prefix: s for s in load_subjects()}
 
 
-_AULA_RE = re.compile(r"^\s*(\d{3})\s*-\s*Aula\s+(\d+)", re.IGNORECASE)
+_AULA_RE = re.compile(r"^\s*(\d{3})\s*-\s*Aula\s+(\d+|[úu]nica)", re.IGNORECASE)
 
 
 def parse_pdf_name(filename: str) -> tuple[int, int] | None:
     """'002 - Aula 01 Substantivos...pdf' -> (ordem=2, aula=1)."""
     m = _AULA_RE.match(filename)
-    return (int(m.group(1)), int(m.group(2))) if m else None
+    if not m:
+        return None
+    ordem = int(m.group(1))
+    raw_num = m.group(2).lower()
+    aula = 0 if raw_num in ("única", "unica") else int(raw_num)
+    return (ordem, aula)
 
 
 def aula_id(subject_id: str, aula_number: int) -> str:

@@ -16,9 +16,20 @@ def _segments(subject_id):
     return json.loads((CONTENT / "segments" / f"{subject_id}.json").read_text(encoding="utf-8"))["segments"]
 
 
+OFICIAL_IDS = {
+    "lingua-portuguesa", "lingua-inglesa", "informatica", "matematica", "estatistica",
+    "fisica", "quimica", "biologia", "direito-constitucional", "direito-administrativo",
+    "direito-penal-militar", "legislacoes-pe"
+}
+PRACA_IDS = {
+    "lingua-portuguesa", "raciocinio-logico", "historia-pe", "atualidades",
+    "informatica", "biologia", "direito-constitucional", "legislacoes-pe"
+}
+
+
 def test_exam_weights_match_edital(catalog):
-    # Inglês e Espanhol são mutuamente exclusivos: o candidato faz só uma (5 questões)
-    subjects = [s for s in catalog["subjects"] if s["id"] != "lingua-espanhola"]
+    # CFO-BM Oficial: Inglês e Espanhol são mutuamente exclusivos (70 questões no total do edital)
+    subjects = [s for s in catalog["subjects"] if s["id"] in OFICIAL_IDS]
     assert sum(s["examQuestions"] for s in subjects) == catalog["exam"]["totalQuestions"] == 70
     by_block = {}
     for s in subjects:
@@ -26,9 +37,9 @@ def test_exam_weights_match_edital(catalog):
     assert by_block == {"I": 20, "II": 20, "III": 30}
 
 
-def test_all_190_aulas_present(catalog):
-    # 190 aulas do Estratégia; as demais são complementos autorais do MentorIA (source = authored)
-    assert sum(1 for s in catalog["subjects"] for a in s["aulas"] if a.get("source") != "authored") == 190
+def test_all_213_aulas_present(catalog):
+    # 190 aulas de Oficial + 23 aulas de Praça do Estratégia = 213 aulas base
+    assert sum(1 for s in catalog["subjects"] for a in s["aulas"] if a.get("source") != "authored") == 213
 
 
 def test_segments_never_exceed_17_pages_and_cover_theory_exactly(catalog):

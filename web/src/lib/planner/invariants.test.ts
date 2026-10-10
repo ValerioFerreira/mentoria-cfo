@@ -4,12 +4,13 @@ import { describe, expect, it } from "vitest";
 import { generatePlan, PlanInputError } from "./index";
 import { addDays, dayIndexOf } from "./dates";
 import { loadCatalog, loadSegments } from "./fixtures";
+import { CONTEST_SUBJECTS } from "../contests";
 import { FINAL_REVIEW_WEEKS, MIN_FINAL_REVIEW_WEEKS } from "./constants";
 import type { Level, PlanInput, PlanResult } from "./types";
 
 const catalog = loadCatalog();
 const segments = loadSegments();
-const ALL = catalog.subjects.filter((s) => s.id !== "lingua-espanhola").map((s) => s.id);
+const ALL = CONTEST_SUBJECTS.CBMPE_OFICIAL.filter((id) => id !== "lingua-espanhola");
 const SMALL = ["lingua-portuguesa", "matematica", "direito-constitucional"];
 
 const input = (hours: number, subjects: string[] = ALL, level: Level = 1, extra: Partial<PlanInput> = {}): PlanInput => ({

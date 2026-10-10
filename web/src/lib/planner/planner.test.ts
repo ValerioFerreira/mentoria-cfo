@@ -2,10 +2,11 @@ import { describe, expect, it } from "vitest";
 import { bandOf, generatePlan, hoursPerDayLabel, nextMonday, PlanInputError, type Level, type PlanInput, type PlanResult } from "./index";
 import { dayIndexOf, mondayOf, weeksUntil } from "./dates";
 import { loadCatalog, loadSegments } from "./fixtures";
+import { CONTEST_SUBJECTS } from "../contests";
 
 const catalog = loadCatalog();
 const segments = loadSegments();
-const ALL_PT = catalog.subjects.filter((s) => s.id !== "lingua-espanhola").map((s) => s.id);
+const ALL_PT = CONTEST_SUBJECTS.CBMPE_OFICIAL.filter((id) => id !== "lingua-espanhola");
 
 function input(hours: number, subjects = ALL_PT, level: Level = 1, extra: Partial<PlanInput> = {}): PlanInput {
   return {

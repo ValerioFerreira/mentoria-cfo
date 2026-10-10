@@ -53,7 +53,7 @@ export async function seedStructure() {
   const subjectCount = await db.subject.count();
   const segmentCount = await db.segment.count();
 
-  if (subjectCount >= 13 && segmentCount >= 700) {
+  if (subjectCount >= 16 && segmentCount >= 800) {
     console.log(`[Seed Structure] Banco já possui ${subjectCount} disciplinas e ${segmentCount} trechos. Estrutura pronta!`);
     return;
   }

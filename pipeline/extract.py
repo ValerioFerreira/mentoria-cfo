@@ -24,7 +24,7 @@ from config import DOCS_DIR, PAGES_DIR, aula_id, parse_pdf_name, pdf_key, subjec
 
 _CPF_LINE = re.compile(r"^\d{11}\s*-\s*.+$")
 _FOOTER_SITE = "www.estrategiaconcursos.com.br"
-_FOOTER_COURSE = re.compile(r"^CBM-PE \(Oficial\)\s+.+$")
+_FOOTER_COURSE = re.compile(r"^(?:CBM-PE|CBMP-PE)\s+\((?:Oficial|Praça|Praca)\)\s+.+$", re.IGNORECASE)
 _HEADER = re.compile(r"^.{3,80}\sAula\s+\d+\s*$")
 _HIGHLIGHT = re.compile(r"==[0-9a-fA-F]{6}==")
 
