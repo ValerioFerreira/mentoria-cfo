@@ -25,10 +25,13 @@ export async function savePlan({ userId, input, result, diagnostics, foreignLang
         update: { examDate: new Date(input.examDate), hoursBand, hoursPerWeek: input.hoursPerWeek, foreignLanguage },
       });
 
+      const user = await tx.user.findUnique({ where: { id: userId }, select: { role: true } });
+      const initialStatus = user?.role === "ADMIN" ? "ACTIVE" : "PENDING_ANALYSIS";
+
       const plan = await tx.plan.create({
         data: {
           userId,
-          status: "PENDING_ANALYSIS",
+          status: initialStatus,
           version: (prev?.version ?? 0) + 1,
           startDate: new Date(input.startDate),
           examDate: new Date(input.examDate),

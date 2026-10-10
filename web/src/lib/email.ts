@@ -248,3 +248,68 @@ Equipe MentorIA CBMPE`;
 
   return sendEmail({ to: params.to, subject, html, text });
 }
+
+export async function sendPlanReadyEmail(params: {
+  to: string;
+  name?: string | null;
+  loginUrl: string;
+}) {
+  const greeting = params.name ? `Olá, ${params.name}!` : "Olá!";
+  const subject = "Seu planejamento de estudos personalizado está pronto! — MentorIA";
+
+  const text = `${greeting}
+
+Temos uma ótima notícia: a elaboração do seu planejamento de estudos foi concluída com sucesso!
+
+Sua rota de estudos individualizada já foi calibrada e está disponível para acesso na plataforma MentorIA.
+
+Acesse a plataforma para iniciar sua preparação: ${params.loginUrl}
+
+Bons estudos e conte conosco rumo à aprovação!
+Equipe MentorIA CBMPE`;
+
+  const html = `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>${subject}</title>
+</head>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f7f7f8; margin: 0; padding: 32px 16px; color: #1c1c1e;">
+  <div style="max-width: 560px; margin: 0 auto; background: #ffffff; border-radius: 16px; border: 1px solid #e5e5ea; padding: 32px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+    <div style="text-align: center; margin-bottom: 24px;">
+      <h2 style="font-size: 22px; font-weight: 800; color: #c41c1c; text-transform: uppercase; margin: 0; letter-spacing: 0.5px;">MentorIA</h2>
+      <p style="font-size: 12px; font-weight: 600; color: #8e8e93; margin: 4px 0 0; text-transform: uppercase;">Missão Oficial · CBMPE</p>
+    </div>
+    
+    <h1 style="font-size: 20px; font-weight: 700; color: #111111; margin-bottom: 16px;">${greeting}</h1>
+    <p style="font-size: 15px; line-height: 1.6; color: #3a3a3c; margin-bottom: 20px;">
+      Temos uma excelente notícia: a calibração do seu <strong>planejamento de estudos personalizado</strong> foi finalizada com sucesso!
+    </p>
+
+    <div style="background-color: #f2f2f7; border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+      <p style="margin: 0 0 10px; font-size: 14px; color: #1c1c1e; font-weight: 600;">
+        ✓ Metas e ritmo individual calibrados
+      </p>
+      <p style="margin: 0 0 10px; font-size: 14px; color: #1c1c1e; font-weight: 600;">
+        ✓ Rota de estudos e cadernos de questões disponíveis
+      </p>
+      <p style="margin: 0; font-size: 14px; color: #1c1c1e; font-weight: 600;">
+        ✓ Plataforma 100% liberada para a sua rotina
+      </p>
+    </div>
+
+    <div style="text-align: center; margin-bottom: 24px;">
+      <a href="${params.loginUrl}" style="display: inline-block; background-color: #c41c1c; color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; padding: 14px 28px; border-radius: 10px; box-shadow: 0 2px 6px rgba(196, 28, 28, 0.3);">
+        Acessar Meu Planejamento
+      </a>
+    </div>
+
+    <p style="font-size: 13px; color: #8e8e93; line-height: 1.5; margin: 0; border-top: 1px dashed #d1d1d6; padding-top: 16px;">
+      Bons estudos e conte com o MentorIA até a sua posse no Corpo de Bombeiros Militar de Pernambuco!
+    </p>
+  </div>
+</body>
+</html>`;
+
+  return sendEmail({ to: params.to, subject, html, text });
+}

@@ -17,6 +17,14 @@ export async function getActivePlan(userId: string) {
 }
 
 export async function getPendingPlan(userId: string) {
+  const user = await db.user.findUnique({ where: { id: userId }, select: { role: true } });
+  if (user?.role === "ADMIN") {
+    await db.plan.updateMany({
+      where: { userId, status: "PENDING_ANALYSIS" },
+      data: { status: "ACTIVE" },
+    });
+    return null;
+  }
   return db.plan.findFirst({
     where: { userId, status: "PENDING_ANALYSIS" },
     orderBy: { version: "desc" },

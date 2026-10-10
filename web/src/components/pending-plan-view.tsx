@@ -1,5 +1,8 @@
-import { Clock, CheckCircle2, ShieldCheck, LogOut, RefreshCw } from "lucide-react";
-import Link from "next/link";
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Clock, CheckCircle2, ShieldCheck, LogOut, RefreshCw, Mail, Loader2 } from "lucide-react";
 import { logout } from "@/app/(auth)/actions";
 import { fmtDate } from "@/lib/ui-format";
 
@@ -16,6 +19,10 @@ export function PendingPlanView({
   examDate,
   hoursPerWeek,
 }: PendingPlanViewProps) {
+  const router = useRouter();
+  const [isChecking, setIsChecking] = useState(false);
+  const [statusMessage, setStatusMessage] = useState<string | null>(null);
+
   const firstName = userName ? userName.split(" ")[0] : "aluno";
 
   const requestDateFormatted = createdAt
@@ -25,6 +32,19 @@ export function PendingPlanView({
         timeStyle: "short",
       }).format(new Date(createdAt))
     : "Recentemente";
+
+  const handleCheckAvailability = () => {
+    setIsChecking(true);
+    setStatusMessage(null);
+
+    // Tenta atualizar a página caso o plano já tenha sido aprovado no servidor
+    router.refresh();
+
+    setTimeout(() => {
+      setIsChecking(false);
+      setStatusMessage("Seu plano ainda está em elaboração! Assim que for concluído, você receberá um e-mail de aviso.");
+    }, 700);
+  };
 
   return (
     <div className="mx-auto max-w-3xl space-y-8 py-4 sm:py-8">
@@ -112,14 +132,35 @@ export function PendingPlanView({
           </div>
         )}
 
-        <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-border/80">
-          <Link
-            href="/plano"
-            className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-bold uppercase text-on-primary shadow-sm hover:opacity-90 transition"
+        {statusMessage && (
+          <div
+            role="status"
+            className="rounded-xl border border-amber-500/40 bg-amber-500/10 p-4 text-sm space-y-1.5 transition-all animate-in fade-in slide-in-from-top-2"
           >
-            <RefreshCw className="h-4 w-4" aria-hidden />
-            Verificar disponibilidade
-          </Link>
+            <div className="flex items-center gap-2 font-display text-xs font-bold uppercase tracking-wider text-amber-500">
+              <Mail className="h-4 w-4 shrink-0 text-amber-500" aria-hidden />
+              Aviso de Disponibilidade
+            </div>
+            <p className="text-sm font-semibold leading-relaxed text-text">
+              {statusMessage}
+            </p>
+          </div>
+        )}
+
+        <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-border/80">
+          <button
+            type="button"
+            onClick={handleCheckAvailability}
+            disabled={isChecking}
+            className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-bold uppercase text-on-primary shadow-sm hover:opacity-90 transition cursor-pointer disabled:opacity-75"
+          >
+            {isChecking ? (
+              <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
+            ) : (
+              <RefreshCw className="h-4 w-4" aria-hidden />
+            )}
+            {isChecking ? "Consultando status..." : "Verificar disponibilidade"}
+          </button>
 
           <form action={logout}>
             <button

@@ -43,6 +43,7 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
       ? [
           ...NAV,
           { href: "/admin/cadastros", label: "Cadastros", icon: "users" },
+          { href: "/admin/liberacao", label: "Liberação", icon: "release" },
           { href: "/admin/revisao", label: "Revisão", icon: "admin" },
         ]
       : NAV;
