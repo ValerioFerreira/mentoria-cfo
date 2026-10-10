@@ -7,14 +7,26 @@
    "id": "informatica/c01/s01",
    "bizu": {
     "summary": [
-     "### 1. Fundamentação Teórica e Conceitos Centrais",
-     "**Navegador** solicita, recebe e exibe páginas da web (HTTP/HTTPS). O padrão do **Windows 11** é o **Microsoft Edge**; também caem **Chrome** e **Firefox**. No Edge fala-se em **Favoritos**; no Chrome e no Firefox, em **Marcadores**. O **Internet Explorer** foi aposentado em junho de 2022 (o Edge tem **modo IE**). **Cookies** são **arquivos de dados** (não são vírus) que os sites gravam: de **sessão** × **persistentes**, **primários** × **de terceiros** (rastreamento). **Cache** é cópia local de partes das páginas, para **acelerar** o carregamento. **Histórico** é a lista de endereços visitados. Apagar cookies faz o usuário **sair das contas**.",
-     "**Navegação privativa:** **InPrivate** (Edge, **Ctrl + Shift + N**), **Anônima** (Chrome, **Ctrl + Shift + N**), **Janela privativa** (Firefox, **Ctrl + Shift + P**). Ao fechar **todas** as janelas privativas, descartam-se **histórico, cookies e dados de formulário** da sessão. **Não** apaga **downloads** nem **favoritos** e **não** torna o usuário anônimo para o **provedor**, o **empregador** e os **sites**. **Segurança no navegador:** **HTTPS e cadeado** indicam tráfego cifrado, mas **não** garantem que o site seja honesto; **SmartScreen** (Edge) e **Navegação segura** (Chrome); **prevenção de rastreamento** do Edge em três níveis (**Básico, Equilibrado e Estrito**); permissões por site e bloqueador de pop-ups.",
-     "**Atalhos essenciais:** **Ctrl + T** (nova guia), **Ctrl + W** (fechar guia), **Ctrl + Shift + T** (reabrir a última guia fechada), **Ctrl + N** (nova janela), **Ctrl + L** (barra de endereços), **F5** (atualizar) e **Ctrl + F5** (ignorando o cache), **Ctrl + H** (histórico), **Ctrl + J** (downloads), **Ctrl + D** (favorito), **Ctrl + Shift + Delete** (limpar dados de navegação), **F11** (tela cheia). **Operadores do Google:** **\" \"** (frase exata), **−** (exclui), **OR**, **site:** (restringe ao domínio), **filetype:**, **intitle:**, **..** (intervalo) e **before:/after:**. Sem operador, os termos se unem por **E** implícito.",
-     "**Prompt de Comando:** abre-se com **Win + R > cmd**; **não diferencia maiúsculas**; **comando /?** mostra a ajuda; **Tab** completa nomes; **Ctrl + C** interrompe; cls limpa a tela. **Arquivos e pastas:** dir (/a /s /b /p /w), cd (.., \\, /d), md, rd (/s /q), copy, xcopy, robocopy, move, ren, del, type, tree, attrib. **DELTREE não existe no Windows 11** (era do MS-DOS e do Windows 9x): para apagar pasta com tudo dentro usa-se **rd /s**. del e rd /s **não** enviam para a Lixeira. **Curingas:** o asterisco substitui vários caracteres, e a interrogação (?), um só caractere.",
-     "**Redirecionamento e encadeamento:** > **sobrescreve** o arquivo; >> **acrescenta** ao final; < lê de arquivo; | (pipe) passa a saída ao comando seguinte; & executa em sequência; && só executa o segundo se o primeiro der certo. **Rede:** **ipconfig** (/all detalha MAC, DNS e DHCP; /release libera o IP; /renew renova; **/flushdns** limpa o cache DNS); **ping** (-t contínuo, -n nº de pacotes); tracert (rota); nslookup (DNS); netstat (-a -n -o -b); getmac; hostname.",
-     "**Processos e sistema:** tasklist lista processos; **taskkill** encerra (/pid número, **/im** nome da imagem, **/f** força); chkdsk (/f corrige, /r setores defeituosos; **administrador**); **sfc /scannow** verifica e repara arquivos de sistema; dism repara a imagem; shutdown (/s /r /t /a /l); systeminfo; format; diskpart. **Periféricos:** **entrada** (teclado, mouse, scanner), **saída** (monitor, impressora) e **mistos** (tela sensível ao toque, **multifuncional**, HD externo e pendrive). **USB:** “hot plug”; **Type-C** é o **formato do conector**, e não uma velocidade (USB 2.0 = 480 Mbps; USB 3.x = 5, 10 ou 20 Gbps; USB4 = até 40 Gbps). **HDMI/DisplayPort** levam vídeo e áudio; **VGA** é analógico.",
-     "**Driver** é o software que permite ao SO usar o hardware; **Plug and Play** detecta o dispositivo e instala/configura o driver automaticamente. **Gerenciador de Dispositivos** (**Win + X** ou devmgmt.msc): **“!” amarelo** = problema; ações: **atualizar, reverter, desabilitar, desinstalar**. **Win + P**: somente a tela do PC, duplicar, estender, somente a segunda tela. Impressoras: **Configurações > Bluetooth e dispositivos > Impressoras e scanners**."
+     "### 1. Contextualização e Conceitos Centrais",
+     "- O padrão do **Windows 11** é o **Microsoft Edge**.",
+     "- **Navegação privativa:** InPrivate (Edge, Ctrl + Shift + N), Anônima (Chrome, Ctrl + Shift + N), Janela privativa (Firefox, Ctrl + Shift + P).",
+     "- **Segurança no navegador:** HTTPS e cadeado indicam tráfego cifrado, mas não garantem que o site seja honesto.",
+     "- **Atalhos essenciais:** Ctrl + T (nova guia), Ctrl + W (fechar guia), Ctrl + Shift + T (reabrir a última guia fechada), Ctrl + N (nova janela), Ctrl + L (barra de endereços), F5 (atualizar) e Ctrl + F5 (ignorando o cache), Ctrl + H (histórico), Ctrl + J (downloads), Ctrl + D (favorito), Ctrl + Shift + Delete (limpar dados de navegação), F11 (tela cheia).",
+     "Operadores do Google: \" \" (frase exata), − (exclui), OR, site: (restringe ao domínio), filetype:, intitle:, .. (intervalo) e before:/after:. Prompt de Comando: abre-se com Win + R > cmd. DELTREE não existe no Windows 11 (era do MS-DOS e do Windows 9x): para apagar pasta com tudo dentro usa-se rd /s. del e rd /s não enviam para a Lixeira. Curingas: o asterisco substitui vários caracteres, e a interrogação (?), um só caractere.",
+     "### 2. Características, Fatores e Desdobramentos",
+     "#### Sequência e Funcionamento:",
+     "1. && só executa o segundo se o primeiro der certo.",
+     "- Navegador solicita, recebe e exibe páginas da web (HTTP/HTTPS).",
+     "- também caem **Chrome** e **Firefox**.",
+     "- No Edge fala-se em **Favoritos**.",
+     "- no Chrome e no Firefox, em **Marcadores**.",
+     "- O **Internet Explorer** foi aposentado em junho de 2022 (o Edge tem **modo IE**).",
+     "#### Quadro Comparativo:",
+     "| Instituto / Conceito | Regra / Distinção | Confronto / Exceção |\n| :--- | :--- | :--- |\n| **Cookies são arquivos de dados (não são vírus) que os sites gravam** | de sessão | persistentes, primários × de terceiros (rastreamento). Cache é cópia local de partes das páginas, para acelerar o carregamento. Histórico é a lista de endereços visitados |",
+     "### 3. Aplicações e Dinâmica dos Fatos",
+     "> ⚖️ **Fundamento Normativo / Jurisprudência:** diskpart.",
+     "### 4. Síntese e Diretrizes de Prova",
+     "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
     ],
     "teoria": [
      {

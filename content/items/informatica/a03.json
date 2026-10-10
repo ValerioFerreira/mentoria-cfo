@@ -7,13 +7,24 @@
    "id": "informatica/a03/s01",
    "bizu": {
     "summary": [
-     "### 1. Fundamentação Teórica e Conceitos Centrais",
-     "**Malware** (software malicioso, praga virtual) = programa ou código criado para invadir, danificar, espionar ou obter acesso indevido a sistemas, dispositivos ou redes. Pode se disfarçar de software legítimo ou agir em silêncio. Motivos comuns: ganho financeiro, roubo de dados, notoriedade e vandalismo. **Formas de infecção**: exploração de vulnerabilidades, autoexecução de mídias removíveis, páginas web maliciosas, anexos de e-mail, redes sociais, arquivos de outros computadores. A **Internet é a principal porta de entrada**.",
-     "**Categorias principais**: vírus, worm, bot, trojan, spyware, backdoor e rootkit. **Terminologia**: **hacker** (invade para provar habilidade ou demonstrar falhas, sem intenção de dano), **cracker** (invade para roubar, violar sistemas ou quebrar proteções de software), **script kiddie** (iniciante com ferramentas prontas), **insider** (ameaça interna), **phreaking** (hacking de telefonia), **warez** (software pirata) e **spam** (e-mail não solicitado em massa).",
-     "**Vírus** = código malicioso que se espalha **infectando arquivos e programas** existentes. Exige **autorreplicação** e não é autônomo: só age quando o arquivo hospedeiro é executado (um anexo de e-mail precisa ser aberto). Nem todo vírus é destrutivo. **Partes do vírus**: mecanismo de infecção (vetor), mecanismo de ativação (às vezes chamado de bomba lógica) e carga útil (o que faz além de se espalhar).",
-     "**Fases do vírus**: dormência (nem todos têm), propagação, ativação e ação. A propagação pode gerar cópias diferentes para escapar da detecção. Vírus costumam ser específicos para um sistema operacional (e às vezes hardware). **Nenhum sistema é imune**: o Windows é mais atacado por ser o mais usado; Linux e macOS também podem ser alvos.",
-     "### 3. Diretrizes de Prova e Pontos de Atenção",
-     "> ⚠️ **Atenção de Prova:** **Prevenção** (base no CERT.br): manter sistema e programas atualizados, instalar só software original e de fontes confiáveis, usar antivírus e firewall, fazer backup, usar configurações de segurança, cuidado em locais públicos e com manutenção do equipamento."
+     "### 1. Contextualização e Conceitos Centrais",
+     "- **Motivos comuns:** ganho financeiro, roubo de dados, notoriedade e vandalismo.",
+     "- **Formas de infecção:** exploração de vulnerabilidades, autoexecução de mídias removíveis, páginas web maliciosas, anexos de e-mail, redes sociais, arquivos de outros computadores.",
+     "- A **Internet é a principal porta de entrada**.",
+     "- **Categorias principais:** vírus, worm, bot, trojan, spyware, backdoor e rootkit.",
+     "Terminologia: hacker (invade para provar habilidade ou demonstrar falhas, sem intenção de dano), cracker (invade para roubar, violar sistemas ou quebrar proteções de software), script kiddie (iniciante com ferramentas prontas), insider (ameaça interna), phreaking (hacking de telefonia), warez (software pirata) e spam (e-mail não solicitado em massa). Exige **autorreplicação** e não é autônomo: só age quando o arquivo hospedeiro é executado (um anexo de e-mail precisa ser aberto). Partes do vírus: mecanismo de infecção (vetor), mecanismo de ativação (às vezes chamado de bomba lógica) e carga útil (o que faz além de se espalhar).",
+     "### 2. Características, Fatores e Desdobramentos",
+     "#### Sequência e Funcionamento:",
+     "1. Fases do vírus: dormência (nem todos têm), propagação, ativação e ação.",
+     "- Pode se disfarçar de software legítimo ou agir em silêncio.",
+     "- **Nem todo vírus:** é destrutivo.",
+     "- A propagação pode gerar cópias diferentes para escapar da detecção.",
+     "- Linux e macOS também podem ser alvos.",
+     "### 3. Aplicações e Dinâmica dos Fatos",
+     "> ⚖️ **Fundamento Normativo / Jurisprudência:** Malware (software malicioso, praga virtual) = programa ou código criado para invadir, danificar, espionar ou obter acesso indevido a sistemas, dispositivos ou redes.",
+     "> ⚖️ **Fundamento Normativo / Jurisprudência:** Vírus = código malicioso que se espalha infectando arquivos e programas existentes.",
+     "### 4. Síntese e Diretrizes de Prova",
+     "> ⚠️ **Atenção de Prova:** Prevenção (base no CERT.br): manter sistema e programas atualizados, instalar só software original e de fontes confiáveis, usar antivírus e firewall, fazer backup, usar configurações de segurança, cuidado em locais públicos e com manutenção do equipamento."
     ],
     "teoria": [
      {
@@ -251,14 +262,24 @@
    "id": "informatica/a03/s02",
    "bizu": {
     "summary": [
-     "### 1. Fundamentação Teórica e Conceitos Centrais",
-     "**Vírus de script**: escrito em linguagens como JavaScript ou VBScript; chega por páginas web maliciosas e-mails (anexo ou corpo HTML). Conforme a configuração do navegador ou do leitor de e-mail, pode ser executado automaticamente. **Vírus de macro** (tipo de vírus de script): infecta **documentos**, e não programas, em aplicativos que usam macros (Word, Excel, PowerPoint, Access). Propaga-se por anexos de e-mail; só age quando o arquivo é aberto. Prevenção: bloquear a execução de macros no Office. Controles de acesso a arquivos são pouco efetivos.",
-     "**Vírus de boot** (de setor de inicialização): infecta o primeiro setor/MBR e é carregado **antes do sistema operacional**; pode afetar pendrives. **Formatação rápida não garante a remoção**. **Vírus de arquivo** (de programa ou parasitário): o mais tradicional; infecta **executáveis** (principalmente .exe), podendo sobrescrever o código original.",
-     "**Vírus polimórfico (mutante)**: muda sua assinatura a cada infecção, mantendo as funcionalidades, para burlar o antivírus. **Metamórfico**: reescreve-se por completo, mudando assinatura e comportamento. **Vírus stealth (furtivo)**: projetado para não ser detectado; consegue se remover temporariamente da memória para escapar do antivírus.",
-     "**Vírus de e-mail**: chega como anexo que induz o clique; ao agir, envia cópias aos contatos do computador. Recomenda-se desabilitar a autoexecução de anexos e checar a extensão. **Vírus multipartite**: combina características de vírus de arquivo e de boot, infectando várias áreas; é difícil de remover e pode reinfectar o sistema. Todo multipartite pode conter componente de boot; nem todo vírus de boot é multipartite.",
-     "**Vírus de substituição** (tipo de vírus de arquivo): troca todo o conteúdo do executável por cópia de si mesmo, de forma destrutiva e irreversível; só a restauração de backup recupera o arquivo.",
-     "### 2. Análise Prática e Desdobramentos",
-     "• **Aplicação:** **Vírus time bomb (bomba-relógio)**: fica latente, apenas se replicando, e executa sua carga em momento determinado pelo criador (exemplos: Sexta-feira 13, I Love You, Chernobyl)."
+     "### 1. Contextualização e Conceitos Centrais",
+     "- **Vírus de script:** escrito em linguagens como JavaScript ou VBScript.",
+     "- Vírus de macro (tipo de vírus de script): infecta documentos, e não programas, em aplicativos que usam macros (Word, Excel, PowerPoint, Access).",
+     "- **só age quando o arquivo:** é aberto.",
+     "- **Prevenção:** bloquear a execução de macros no Office.",
+     "Vírus de arquivo (de programa ou parasitário): o mais tradicional. Vírus polimórfico (mutante): muda sua assinatura a cada infecção, mantendo as funcionalidades, para burlar o antivírus. Metamórfico: reescreve-se por completo, mudando assinatura e comportamento. Vírus stealth (furtivo): projetado para não ser detectado.",
+     "### 2. Características, Fatores e Desdobramentos",
+     "#### Sequência e Funcionamento:",
+     "1. Vírus de boot (de setor de inicialização): infecta o primeiro setor/MBR e é carregado antes do sistema operacional.",
+     "- chega por páginas web maliciosas e-mails (anexo ou corpo HTML).",
+     "- Conforme a configuração do navegador ou do leitor de e-mail, pode ser executado automaticamente.",
+     "- Propaga-se por anexos de e-mail.",
+     "- **Controles de acesso a arquivos:** são pouco efetivos.",
+     "- pode afetar pendrives. **Formatação rápida não garante a remoção**.",
+     "### 3. Aplicações e Dinâmica dos Fatos",
+     "> ⚖️ **Fundamento Normativo / Jurisprudência:** infecta **executáveis** (principalmente .exe), podendo sobrescrever o código original.",
+     "### 4. Síntese e Diretrizes de Prova",
+     "> ⚠️ **Atenção de Prova:** Vírus time bomb (bomba-relógio): fica latente, apenas se replicando, e executa sua carga em momento determinado pelo criador (exemplos: Sexta-feira 13, I Love You, Chernobyl)."
     ],
     "teoria": [
      {
@@ -546,11 +567,24 @@
    "id": "informatica/a03/s03",
    "bizu": {
     "summary": [
-     "### 1. Fundamentação Teórica e Conceitos Centrais",
-     "**Worm (verme)**: programa que se replica sozinho, enviando cópias de computador para computador, explorando vulnerabilidades ou executando suas cópias. **Não infecta outros arquivos**: ele mesmo é o arquivo. Consome muitos recursos de rede e disco. Propagação do worm em quatro fases: **identificação dos alvos (scanning)**, **envio de cópias**, **ativação das cópias** e **reinício do processo**. Pode entrar na máquina sem interação do usuário.",
-     "**Bot**: programa com mecanismo de comunicação que permite controle remoto pelo invasor; propaga-se como um worm. O computador infectado é um **zumbi**. **Botnet** = rede de zumbis, que potencializa ataques (negação de serviço, spam, coleta de dados) e pode ser alugada. Ideal ao detectar: desconectar da rede. **Trojan (cavalo de Troia)**: aparenta ser programa útil (cartão virtual, jogo, protetor de tela), mas executa também funções maliciosas sem o conhecimento do usuário. **Não se replica automaticamente** e precisa ser executado. Há bancas que o tratam como tipo de vírus, mas a justificativa de um gabarito de 2024 o descreveu como malware que pode ou não conter vírus.",
-     "**Tipos de trojan**: downloader (baixa outros códigos da Internet), dropper (instala códigos embutidos nele), backdoor, DoS, destrutivo, clicker (redireciona a navegação), proxy (navegação anônima e spam), spy e banker (dados bancários). **Spyware**: software espião que coleta dados e os entrega a terceiros. Uso **legítimo** (monitorar uso abusivo, com consentimento do dono) ou **malicioso**. Precisa ser executado pelo usuário e **não se propaga**. Combate: anti-spyware. Tipos comuns: keylogger, screenlogger e adware.",
-     "**Backdoor** (porta dos fundos): garante o **retorno do invasor** ao computador comprometido, abrindo portas TCP. Pode ser incluído por outro malware, por atacante ou até pelo fabricante. **Backdoors não se propagam; bots sim**. **Rootkit**: conjunto de programas e técnicas para **esconder e manter** a presença do invasor ou de outro malware. O nome não indica obtenção de privilégios, mas a manutenção deles. Atua em modo usuário ou em **modo kernel**, é difícil de detectar e remover e pode apagar logs e instalar backdoors."
+     "### 1. Contextualização e Conceitos Centrais",
+     "- **Worm (verme):** programa que se replica sozinho, enviando cópias de computador para computador, explorando vulnerabilidades ou executando suas cópias. Não infecta outros arquivos: ele mesmo é o arquivo.",
+     "- **Bot:** programa com mecanismo de comunicação que permite controle remoto pelo invasor.",
+     "- **O computador infectado é um zumbi. Botnet:** rede de zumbis, que potencializa ataques (negação de serviço, spam, coleta de dados) e pode ser alugada.",
+     "- **Ideal ao detectar:** desconectar da rede.",
+     "Trojan (cavalo de Troia): aparenta ser programa útil (cartão virtual, jogo, protetor de tela), mas executa também funções maliciosas sem o conhecimento do usuário. Não se replica automaticamente e precisa ser executado. Spyware: software espião que coleta dados e os entrega a terceiros. Combate: anti-spyware.",
+     "### 2. Características, Fatores e Desdobramentos",
+     "#### Sequência e Funcionamento:",
+     "1. Propagação do worm em quatro fases: **identificação dos alvos (scanning)**, **envio de cópias**, **ativação das cópias** e **reinício do processo**.",
+     "- Consome muitos recursos de rede e disco.",
+     "- Pode entrar na máquina sem interação do usuário.",
+     "- propaga-se como um worm.",
+     "- Há bancas que o tratam como tipo de vírus, mas a justificativa de um gabarito de 2024 o descreveu como malware que pode ou não conter vírus.",
+     "- Uso **legítimo** (monitorar uso abusivo, com consentimento do dono) ou **malicioso**.",
+     "### 3. Aplicações e Dinâmica dos Fatos",
+     "> ⚖️ **Fundamento Normativo / Jurisprudência:** Tipos de trojan: downloader (baixa outros códigos da Internet), dropper (instala códigos embutidos nele), backdoor, DoS, destrutivo, clicker (redireciona a navegação), proxy (navegação anônima e spam), spy e banker (dados bancários).",
+     "### 4. Síntese e Diretrizes de Prova",
+     "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
     ],
     "teoria": [
      {
@@ -914,14 +948,24 @@
    "id": "informatica/a03/s04",
    "bizu": {
     "summary": [
-     "### 1. Fundamentação Teórica e Conceitos Centrais",
-     "**Comparativo de códigos maliciosos**: o vírus se propaga inserindo cópia em arquivos; worm e bot enviam cópias automaticamente pela rede; **trojan, spyware, backdoor e rootkit não se propagam**. **Ransomware**: torna dados ou o equipamento inacessíveis, em geral por **criptografia**, e exige **resgate** (extorsão virtual), normalmente em moeda digital. Tipos: **locker** (impede o acesso ao equipamento) e **crypto** (impede o acesso aos dados). O pagamento não garante a recuperação; a defesa essencial é o **backup** atualizado. O WannaCry foi um ransomware com características de worm (2017).",
-     "**Screenlogger**: spyware que registra a **tela** ou a região em torno do cursor no momento do clique; surgiu para capturar o que se clica em teclados virtuais. **Adware**: spyware voltado a exibir propagandas (muitas vezes pop-ups). Pode ser **legítimo** (patrocínio de programas gratuitos) ou **malicioso**, quando direciona anúncios conforme a navegação sem o usuário saber.",
-     "**Sniffer** (farejador): analisador de pacotes que monitora, intercepta e registra o tráfego da rede. Uso **legítimo** (administradores) ou malicioso (capturar senhas não criptografadas, em modo promíscuo). Pode ficar em **qualquer máquina da rede local**, inclusive diferente da monitorada. **Exploit**: software que explora vulnerabilidades conhecidas e permite invasão sem grande conhecimento técnico. **Zero-day** = vulnerabilidade ainda desconhecida do administrador do sistema.",
-     "**Browser hijacker**: sequestra o navegador, alterando registros do sistema, página inicial e abrindo páginas automaticamente; o criador pode ganhar por cliques.",
-     "### 2. Análise Prática e Desdobramentos",
-     "• **Aplicação:** **Keylogger**: spyware que captura e armazena as **teclas digitadas** e as envia ao invasor, buscando senhas. Ativação frequentemente condicionada a ação do usuário (ex.: acessar internet banking). Contramedida: **teclado virtual**.",
-     "• **Aplicação:** **Bomba lógica**: código malicioso em geral deixado por usuário autorizado (ex.: administrador) que causa dano quando ocorre determinado evento. Disparo **positivo** (ativa quando o evento ocorre) ou **negativo** (ativa a menos que o evento ocorra). Diferente do vírus time bomb, pode ser usada por outros tipos de malware."
+     "### 1. Contextualização e Conceitos Centrais",
+     "- **Ransomware:** torna dados ou o equipamento inacessíveis, em geral por criptografia, e exige resgate (extorsão virtual), normalmente em moeda digital.",
+     "- **Tipos:** **locker** (impede o acesso ao equipamento) e **crypto** (impede o acesso aos dados).",
+     "- **a defesa essencial:** é o **backup** atualizado.",
+     "- **Keylogger:** spyware que captura e armazena as teclas digitadas e as envia ao invasor, buscando senhas.",
+     "Contramedida: **teclado virtual**. Screenlogger: spyware que registra a tela ou a região em torno do cursor no momento do clique. Adware: spyware voltado a exibir propagandas (muitas vezes pop-ups).",
+     "### 2. Características, Fatores e Desdobramentos",
+     "- worm e bot enviam cópias automaticamente pela rede.",
+     "- **trojan, spyware, backdoor e rootkit não se propagam**.",
+     "- O pagamento não garante a recuperação.",
+     "- O WannaCry foi um ransomware com características de worm (2017).",
+     "- surgiu para capturar o que se clica em teclados virtuais.",
+     "### 3. Aplicações e Dinâmica dos Fatos",
+     "> 💡 **Exemplo Prático:** Ativação frequentemente condicionada a ação do usuário (ex.: acessar internet banking).",
+     "> ⚖️ **Fundamento Normativo / Jurisprudência:** Comparativo de códigos maliciosos: o vírus se propaga inserindo cópia em arquivos.",
+     "> ⚖️ **Fundamento Normativo / Jurisprudência:** Bomba lógica: código malicioso em geral deixado por usuário autorizado (ex.: administrador) que causa dano quando ocorre determinado evento.",
+     "### 4. Síntese e Diretrizes de Prova",
+     "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
     ],
     "teoria": [
      {
@@ -1260,12 +1304,22 @@
    "id": "informatica/a03/s05",
    "bizu": {
     "summary": [
-     "### 1. Fundamentação Teórica e Conceitos Centrais",
-     "**Força bruta (brute force)**: adivinhar usuário e senha por **tentativa e erro**, para agir com os privilégios da vítima. Usa dicionários, listas de palavras comuns, substituições óbvias (a por @), sequências numéricas e dados pessoais. Pode bloquear contas e até resultar em **negação de serviço**. **DoS (negação de serviço)**: tira de operação um serviço, computador ou rede, **exaurindo recursos**; não visa invadir nem coletar dados. O alvo volta ao normal ao fim do ataque, sem vazamento de informações. **DDoS** = ataque distribuído, com muitos equipamentos (frequentemente zumbis de botnets).",
-     "**IP spoofing**: falsificação do endereço IP, usada quando a autenticação da rede se baseia no IP; o atacante se faz passar por usuário autorizado. **E-mail spoofing**: alteração de campos do cabeçalho do e-mail para parecer enviado por outra origem, possível por características do **protocolo SMTP**. É usado em propagação de malware, spam e phishing.",
-     "Indícios de e-mail spoofing: receber respostas ou devoluções de mensagens que você não enviou, ou e-mails aparentemente enviados por você mesmo. Há ainda ARP, MAC e DNS spoofing.",
-     "### 2. Análise Prática e Desdobramentos",
-     "• **Aplicação:** **Engenharia social**: técnica de persuasão que explora confiança, ingenuidade, ganância ou boa-fé das pessoas para obter informações sigilosas ou aplicar golpes, geralmente por telefone, e-mail ou chat. O fator humano é o elo explorado; o phishing é um exemplo comum."
+     "### 1. Contextualização e Conceitos Centrais",
+     "- **Engenharia social:** técnica de persuasão que explora confiança, ingenuidade, ganância ou boa-fé das pessoas para obter informações sigilosas ou aplicar golpes, geralmente por telefone, e-mail ou chat.",
+     "- **O fator humano:** é o elo explorado.",
+     "- **Força bruta (brute force):** adivinhar usuário e senha por tentativa e erro, para agir com os privilégios da vítima.",
+     "- **DoS (negação de serviço):** tira de operação um serviço, computador ou rede, exaurindo recursos.",
+     "O alvo volta ao normal ao fim do ataque, sem vazamento de informações. **DDoS** = ataque distribuído, com muitos equipamentos (frequentemente zumbis de botnets). IP spoofing: falsificação do endereço IP, usada quando a autenticação da rede se baseia no IP. E-mail spoofing: alteração de campos do cabeçalho do e-mail para parecer enviado por outra origem, possível por características do protocolo SMTP. É usado em propagação de malware, spam e phishing.",
+     "### 2. Características, Fatores e Desdobramentos",
+     "- Usa dicionários, listas de palavras comuns, substituições óbvias (a por @), sequências numéricas e dados pessoais.",
+     "- Pode bloquear contas e até resultar em **negação de serviço**.",
+     "- não visa invadir nem coletar dados.",
+     "- o atacante se faz passar por usuário autorizado.",
+     "- Há ainda ARP, MAC e DNS spoofing.",
+     "### 3. Aplicações e Dinâmica dos Fatos",
+     "> 💡 **Exemplo Prático:** o phishing é um exemplo comum.",
+     "### 4. Síntese e Diretrizes de Prova",
+     "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
     ],
     "teoria": [
      {
@@ -1550,13 +1604,24 @@
    "id": "informatica/a03/s06",
    "bizu": {
     "summary": [
-     "### 1. Fundamentação Teórica e Conceitos Centrais",
-     "**Phishing scam**: fraude que combina técnicas computacionais e **engenharia social** para obter dados pessoais e financeiros. As mensagens se passam por instituições conhecidas, atraem por curiosidade, caridade ou vantagem, ameaçam com consequências e levam a páginas falsas, formulários ou arquivos maliciosos. **Prevenção do phishing**: desconfiar de mensagens que pedem dados ou cliques, digitar o endereço no navegador, passar o mouse sobre o link para ver o destino real, usar antimalware, firewall e filtros antiphishing, conferir a conexão segura e o **certificado**, e consultar a instituição pelos canais oficiais.",
-     "**Smishing** = phishing por **SMS** (SMS + phishing): mensagem alarmante ou tentadora com link ou telefone que leva a site falso ou ao download de malware. Não clicar em links, não fornecer dados por mensagem. **Pharming**: tipo de phishing que **corrompe o DNS** para redirecionar, de forma transparente, o usuário que digita o endereço correto para um site fraudulento. O método mais comum é o envenenamento de cache; o DNS spoofing (poisoning) atinge o servidor DNS de um provedor.",
-     "Redirecionamento do pharming: comprometimento do servidor DNS do provedor, código malicioso que altera o DNS do computador ou invasor que acessa as configurações do DNS do computador ou do modem. Verifique se há conexão segura e se o certificado corresponde ao site verdadeiro. **Vishing** = phishing por **telefone** (voice + phishing): o golpista se passa por banco, suporte ou operadora, cria urgência e pode falsificar o número de origem (spoofing). Desligar e ligar para o canal oficial.",
-     "### 2. Análise Prática e Desdobramentos",
-     "• **Aplicação:** **Baiting** (isca): explora curiosidade e ganância; exemplo clássico é o **pendrive deixado em local público** com rótulo atraente, que instala malware ao ser conectado. Também ocorre com links de brindes. Desativar a execução automática de mídias removíveis.",
-     "• **Aplicação:** **Whaling** (caça à baleia): phishing direcionado a **executivos e altos cargos**, personalizado e com urgência (ex.: e-mail falso do CEO pedindo transferência). Defesas: autenticação multifator, treinamento e confirmação de ordens incomuns por outro canal."
+     "### 1. Contextualização e Conceitos Centrais",
+     "- **Phishing scam:** fraude que combina técnicas computacionais e engenharia social para obter dados pessoais e financeiros.",
+     "- **Prevenção do phishing:** desconfiar de mensagens que pedem dados ou cliques, digitar o endereço no navegador, passar o mouse sobre o link para ver o destino real, usar antimalware, firewall e filtros antiphishing, conferir a conexão segura e o certificado, e consultar a instituição pelos canais oficiais.",
+     "- **Smishing:** phishing por SMS (SMS + phishing): mensagem alarmante ou tentadora com link ou telefone que leva a site falso ou ao download de malware.",
+     "- **Pharming:** tipo de phishing que corrompe o DNS para redirecionar, de forma transparente, o usuário que digita o endereço correto para um site fraudulento.",
+     "O método mais comum é o envenenamento de cache. Vishing = phishing por telefone (voice + phishing): o golpista se passa por banco, suporte ou operadora, cria urgência e pode falsificar o número de origem (spoofing). Baiting (isca): explora curiosidade e ganância.",
+     "### 2. Características, Fatores e Desdobramentos",
+     "- As mensagens se passam por instituições conhecidas, atraem por curiosidade, caridade ou vantagem, ameaçam com consequências e levam a páginas falsas, formulários ou arquivos maliciosos.",
+     "- Não clicar em links, não fornecer dados por mensagem.",
+     "- o DNS spoofing (poisoning) atinge o servidor DNS de um provedor.",
+     "- Verifique se há conexão segura e se o certificado corresponde ao site verdadeiro.",
+     "- Desligar e ligar para o canal oficial.",
+     "### 3. Aplicações e Dinâmica dos Fatos",
+     "> 💡 **Exemplo Prático:** exemplo clássico é o **pendrive deixado em local público** com rótulo atraente, que instala malware ao ser conectado.",
+     "> 💡 **Exemplo Prático:** Whaling (caça à baleia): phishing direcionado a executivos e altos cargos, personalizado e com urgência (ex.: e-mail falso do CEO pedindo transferência).",
+     "> ⚖️ **Fundamento Normativo / Jurisprudência:** Redirecionamento do pharming: comprometimento do servidor DNS do provedor, código malicioso que altera o DNS do computador ou invasor que acessa as configurações do DNS do computador ou do modem.",
+     "### 4. Síntese e Diretrizes de Prova",
+     "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
     ],
     "teoria": [
      {
@@ -1874,11 +1939,18 @@
    "id": "informatica/a03/s07",
    "bizu": {
     "summary": [
-     "### 1. Fundamentação Teórica e Conceitos Centrais",
-     "**Spear phishing**: phishing **altamente direcionado** a uma ou poucas vítimas, com mensagens personalizadas a partir de pesquisa prévia em redes sociais e vazamentos. Costuma passar por filtros tradicionais e abre caminho para ransomware ou acesso persistente. Proteção: checar remetente, desconfiar de urgência, autenticação multifator e treinamento. **Hoax (boato)**: mensagem de conteúdo alarmante ou falso, geralmente atribuída a instituição ou órgão público (correntes, pirâmides). Prejudica a credibilidade de quem repassa, sobrecarrega servidores e banda e pode induzir ações danosas. É preciso conferir a procedência, mesmo quando o remetente é conhecido.",
-     "**Man in the Middle (homem no meio)**: o atacante intercepta, registra e possivelmente altera a comunicação entre duas partes sem que percebam, retransmitindo-a inalterada, modificada ou bloqueada em parte. **Defacement (desfiguração/pichação)**: alteração do conteúdo de uma página web, geralmente a principal. O atacante é o defacer e pode explorar vulnerabilidades da aplicação, invadir o servidor ou furtar senhas de administração.",
-     "**SQL Injection**: o invasor insere instruções SQL em campos de formulário ou parâmetros de URL, manipulando o banco de dados quando a entrada não é validada. Mitigação: validação e sanitização de entradas, consultas parametrizadas, software atualizado e **menor privilégio**. **Furto de identidade**: alguém se passa por outra pessoa para obter vantagens (abrir conta ou empresa em seu nome, criar perfil falso). Pode ser crime de falsa identidade. Indícios: problemas com proteção ao crédito, transações desconhecidas no extrato e acessos em horários ou locais estranhos.",
-     "**Fraude de antecipação de recursos (advance fee fraud)**: o golpista induz a vítima a fornecer dados ou **pagar adiantado** em troca de benefício futuro inexistente. Variações: golpe da Nigéria, loteria internacional, crédito fácil, oferta de emprego, doação de animais e noiva russa. Sinais da fraude de antecipação: valores astronômicos, pedido de sigilo e rapidez, termos como urgente e confidencial, erros de ortografia. **Nunca responder** a esse tipo de mensagem, pois confirma que o e-mail é válido."
+     "### 1. Contextualização e Conceitos Centrais",
+     "- **Spear phishing:** phishing altamente direcionado a uma ou poucas vítimas, com mensagens personalizadas a partir de pesquisa prévia em redes sociais e vazamentos.",
+     "- **Proteção:** checar remetente, desconfiar de urgência, autenticação multifator e treinamento.",
+     "- **Hoax (boato):** mensagem de conteúdo alarmante ou falso, geralmente atribuída a instituição ou órgão público (correntes, pirâmides).",
+     "- **Man in the Middle (homem no meio):** o atacante intercepta, registra e possivelmente altera a comunicação entre duas partes sem que percebam, retransmitindo-a inalterada, modificada ou bloqueada em parte.",
+     "Defacement (desfiguração/pichação): alteração do conteúdo de uma página web, geralmente a principal. O atacante é o defacer e pode explorar vulnerabilidades da aplicação, invadir o servidor ou furtar senhas de administração. SQL Injection: o invasor insere instruções SQL em campos de formulário ou parâmetros de URL, manipulando o banco de dados quando a entrada não é validada.",
+     "### 2. Características, Fatores e Desdobramentos",
+     "- Costuma passar por filtros tradicionais e abre caminho para ransomware ou acesso persistente.",
+     "- Prejudica a credibilidade de quem repassa, sobrecarrega servidores e banda e pode induzir ações danosas. É preciso conferir a procedência, mesmo quando o remetente é conhecido.",
+     "- Pode ser crime de falsa identidade.",
+     "### 4. Síntese e Diretrizes de Prova",
+     "> ⚠️ **Atenção de Prova:** Sinais da fraude de antecipação: valores astronômicos, pedido de sigilo e rapidez, termos como urgente e confidencial, erros de ortografia. **Nunca responder** a esse tipo de mensagem, pois confirma que o e-mail é válido."
     ],
     "teoria": [
      {

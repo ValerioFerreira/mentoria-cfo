@@ -7,15 +7,26 @@
    "id": "informatica/a05/s01",
    "bizu": {
     "summary": [
-     "### 1. Fundamentação Teórica e Conceitos Centrais",
-     "**Backup** (becape) = cópia de segurança que permite recuperar informações de forma confiável e tempestiva após corrupção, desastre, furto ou exclusão acidental. Protege principalmente a **integridade** e a disponibilidade dos dados. **Local do backup**: **on-site** (na própria instituição) ou **off-site** (local geograficamente remoto). O off-site é preferível, pois um desastre no local principal não atinge a cópia.",
-     "**Escolha da mídia**: considere volume de dados, tempo de leitura/escrita, tempo de restauração e custo. Opções: pendrive, fitas, cartões, HD externo e nuvem. **Memória RAM não serve**, pois é volátil. A **nuvem** é o meio mais indicado atualmente, por redundância e segurança física, e o backup pode ser criptografado. **Fita x disco**: a fita é indicada para grandes volumes por longo prazo e baixo custo, mas a gravação é sequencial e a recuperação é lenta; o disco grava aleatoriamente e restaura mais rápido, sendo melhor para arquivos individuais.",
-     "**Atributo de arquivamento** (bit archive, flag archive): marca de cada arquivo, representada pela letra **A**, indicando que ele **ainda não sofreu backup**. É ligado (bit = 1, atributo marcado) sempre que o arquivo é criado ou modificado e desligado (bit = 0, desmarcado) quando o backup o arquiva. Os outros atributos citados são R (somente leitura), H (oculto) e S (sistema). **Backup completo (total, normal, full)**: copia **todos** os dados selecionados, independentemente do atributo, e **desmarca** o atributo. Vantagens: operação simples e restauração rápida (basta o último completo). Desvantagens: maior tempo de execução e espaço. Costuma ser feito periodicamente, em geral aos domingos, e combinado com incrementais ou diferenciais.",
-     "**Backup incremental**: copia apenas o que foi criado ou modificado desde o último backup completo ou incremental e **desmarca** o atributo. É o mais rápido e o que menos ocupa espaço, mas a restauração é mais lenta e complexa: exige o último completo mais **todos** os incrementais subsequentes. **Backup diferencial** (incremental cumulativo): copia o que foi criado ou modificado desde o último backup completo ou incremental e **NíO desmarca** o atributo. Por isso cada diferencial repete o conteúdo do anterior: ocupa mais espaço e tempo que o incremental, mas a restauração é mais rápida (último completo + último diferencial).",
-     "**Backup de cópia**: copia os arquivos selecionados, mas **não altera** o atributo de arquivamento; usado em situações emergenciais entre outros backups. **Backup diário**: copia os arquivos modificados **na data** da execução, usando apenas a data como critério, e também não altera o atributo. **Práticas recomendadas**: definir periodicidade, manter várias cópias em mídias e locais diferentes (ao menos uma off-site), agendar backups, **testar restaurações** e simular desastres, documentar procedimentos, usar criptografia, monitorar espaço e integridade, e conscientizar usuários.",
-     "### 3. Diretrizes de Prova e Pontos de Atenção",
+     "### 1. Contextualização e Conceitos Centrais",
+     "- **Backup (becape):** cópia de segurança que permite recuperar informações de forma confiável e tempestiva após corrupção, desastre, furto ou exclusão acidental.",
+     "- **Local do backup:** on-site (na própria instituição) ou off-site (local geograficamente remoto).",
+     "- **Escolha da mídia:** considere volume de dados, tempo de leitura/escrita, tempo de restauração e custo.",
+     "- **Opções:** pendrive, fitas, cartões, HD externo e nuvem. **Memória RAM não serve**, pois é volátil.",
+     "A **nuvem** é o meio mais indicado atualmente, por redundância e segurança física, e o backup pode ser criptografado. Atributo de arquivamento (bit archive, flag archive): marca de cada arquivo, representada pela letra A, indicando que ele ainda não sofreu backup. É ligado (bit = 1, atributo marcado) sempre que o arquivo é criado ou modificado e desligado (bit = 0, desmarcado) quando o backup o arquiva. Backup completo (total, normal, full): copia todos os dados selecionados, independentemente do atributo, e desmarca o atributo.",
+     "### 2. Características, Fatores e Desdobramentos",
+     "#### Sequência e Funcionamento:",
+     "1. Práticas recomendadas: definir periodicidade, manter várias cópias em mídias e locais diferentes (ao menos uma off-site), agendar backups, testar restaurações e simular desastres, documentar procedimentos, usar criptografia, monitorar espaço e integridade, e conscientizar usuários.",
+     "- Protege principalmente a **integridade** e a disponibilidade dos dados.",
+     "- O off-site é preferível, pois um desastre no local principal não atinge a cópia.",
+     "- o disco grava aleatoriamente e restaura mais rápido, sendo melhor para arquivos individuais.",
+     "- **Os outros atributos citados:** são R (somente leitura), H (oculto) e S (sistema).",
+     "- Costuma ser feito periodicamente, em geral aos domingos, e combinado com incrementais ou diferenciais.",
+     "- **Distinção:** Fita x disco: a fita é indicada para grandes volumes por longo prazo e baixo custo, mas a gravação é sequencial e a recuperação é lenta.",
+     "### 4. Síntese e Diretrizes de Prova",
+     "> ⚠️ **Atenção de Prova:** Backup incremental: copia apenas o que foi criado ou modificado desde o último backup completo ou incremental e desmarca o atributo. É o mais rápido e o que menos ocupa espaço, mas a restauração é mais lenta e complexa: exige o último completo mais todos os incrementais subsequentes.",
      "> ⚠️ **Atenção de Prova:** Atenção: dizer que o incremental copia o que mudou desde o último backup de qualquer tipo só vale em arranjos sem diferencial, pois o diferencial não desmarca o atributo.",
-     "> ⚠️ **Atenção de Prova:** Pegadinha: muitas questões definem o diferencial como cópia do que mudou desde o último backup completo (definição válida em arranjos só com completo e diferencial). A definição mais genérica cita o último completo ou incremental."
+     "> ⚠️ **Atenção de Prova:** Pegadinha: muitas questões definem o diferencial como cópia do que mudou desde o último backup completo (definição válida em arranjos só com completo e diferencial).",
+     "> ⚠️ **Atenção de Prova:** usado em situações emergenciais entre outros backups. **Backup diário**: copia os arquivos modificados **na data** da execução, usando apenas a data como critério, e também não altera o atributo."
     ],
     "teoria": [
      {

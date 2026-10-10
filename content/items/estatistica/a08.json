@@ -7,13 +7,25 @@
    "id": "estatistica/a08/s01",
    "bizu": {
     "summary": [
-     "### 1. Fundamentação Teórica e Conceitos Centrais",
-     "**Distribuição de Bernoulli**: um único experimento com apenas dois resultados, **sucesso (X = 1)** com probabilidade **p** e **fracasso (X = 0)** com probabilidade **q = 1 − p**. Indica-se **X ~ Ber(p)**; o parâmetro é p. **Distribuição binomial**: surge ao repetir n vezes o mesmo ensaio de Bernoulli, desde que as repetições sejam **independentes** e a **probabilidade p de sucesso não mude**. Indica-se **X ~ B(n, p)**; os parâmetros são n e p.",
-     "**Variável binomial** = **número de sucessos** nos n ensaios (soma de n Bernoullis). Pode assumir qualquer valor inteiro de **0 a n**. **Probabilidade de k sucessos**: P(X = k) = C(n, k)·p^k·q^(n−k). O fator C(n, k) conta as ordens possíveis e as potências dão a probabilidade de uma ordem específica (k sucessos e n − k fracassos).",
-     "**Amostra de população de Bernoulli**: selecionar n peças ao acaso de uma população com 20% de defeituosas é B(n, 0,2), desde que as seleções sejam independentes (com reposição ou população muito grande).",
-     "### 2. Análise Prática e Desdobramentos",
-     "• **Aplicação:** **Momentos da Bernoulli**: **E(X) = p** e **V(X) = p·q**. O mesmo experimento pode gerar variáveis diferentes conforme o que se observa (ex.: face múltipla de 3, probabilidade 1/3).",
-     "• **Aplicação:** **Intervalos**: some probabilidades de valores excludentes (ex.: 1 ou 2 sucessos); para \"pelo menos 1\", use o complementar, **1 − P(X = 0)**."
+     "### 1. Definições, Fórmulas e Propriedades Centrais",
+     "- **Momentos da Bernoulli: E(X):** p e V(X) = p·q.",
+     "- **Distribuição binomial:** surge ao repetir n vezes o mesmo ensaio de Bernoulli, desde que as repetições sejam independentes e a probabilidade p de sucesso não mude.",
+     "- **Variável binomial:** número de sucessos nos n ensaios (soma de n Bernoullis).",
+     "- **Probabilidade de k sucessos: P(X:** k) = C(n, k)·p^k·q^(n−k).",
+     "para \"pelo menos 1\", use o complementar, **1 − P(X = 0)**. Amostra de população de Bernoulli: selecionar n peças ao acaso de uma população com 20% de defeituosas é B(n, 0,2), desde que as seleções sejam independentes (com reposição ou população muito grande).",
+     "### 2. Métodos de Resolução e Classificações",
+     "#### Sequência e Funcionamento:",
+     "1. O fator C(n, k) conta as ordens possíveis e as potências dão a probabilidade de uma ordem específica (k sucessos e n − k fracassos).",
+     "- Indica-se **X ~ Ber(p)**.",
+     "- **o parâmetro:** é p.",
+     "- Indica-se **X ~ B(n, p)**.",
+     "- **os parâmetros:** são n e p.",
+     "- Pode assumir qualquer valor inteiro de **0 a n**.",
+     "### 3. Exemplos de Aplicação e Procedimentos",
+     "> 💡 **Exemplo Prático:** O mesmo experimento pode gerar variáveis diferentes conforme o que se observa (ex.: face múltipla de 3, probabilidade 1/3).",
+     "> 💡 **Exemplo Prático:** Intervalos: some probabilidades de valores excludentes (ex.: 1 ou 2 sucessos).",
+     "### 4. Pontos Críticos e Cuidados nos Cálculos",
+     "> ⚠️ **Atenção de Prova:** Distribuição de Bernoulli: um único experimento com apenas dois resultados, sucesso (X = 1) com probabilidade p e fracasso (X = 0) com probabilidade q = 1 − p."
     ],
     "teoria": [
      {
@@ -326,14 +338,22 @@
    "id": "estatistica/a08/s02",
    "bizu": {
     "summary": [
-     "### 1. Fundamentação Teórica e Conceitos Centrais",
-     "**Aplicação da binomial**: identifique n (número de ensaios), p (probabilidade de sucesso) e o evento pedido. \"No máximo 1\" = P(0) + P(1); \"pelo menos 2\" = 1 − P(0) − P(1). **Esperança da binomial**: **E(X) = n·p**; é n vezes a esperança da Bernoulli. O valor esperado pode ser não inteiro (média de 1,5 caras em 3 lançamentos).",
-     "**Variância da binomial**: **V(X) = n·p·q**; **desvio padrão = √(n·p·q)**. Também é n vezes a variância da Bernoulli. **Simetria dos coeficientes**: C(n, k) = C(n, n − k). Por isso, com p = q = 0,5, P(X = k) = P(X = n − k).",
-     "**Forma da distribuição**: com **p = 0,5** é simétrica; com **p > 0,5**, assimétrica negativa; com **p < 0,5**, assimétrica positiva. **Curiosidade cobrada**: se **n·p é inteiro**, esse valor é ao mesmo tempo a média, a mediana e a moda.",
-     "### 2. Análise Prática e Desdobramentos",
-     "• **Aplicação:** **Relação útil**: V(X) = E(X) · q. Conhecendo média e variância (ex.: 20 e 4), obtém-se q = 0,2, p = 0,8 e n = 25.",
-     "### 3. Diretrizes de Prova e Pontos de Atenção",
-     "> ⚠️ **Atenção de Prova:** ⚠️ **Atenção ao enunciado**: o \"sucesso\" é o evento cuja probabilidade se calcula (ex.: peça defeituosa), não necessariamente algo bom."
+     "### 1. Definições, Fórmulas e Propriedades Centrais",
+     "- **Aplicação da binomial:** identifique n (número de ensaios), p (probabilidade de sucesso) e o evento pedido.",
+     "- **\"No máximo 1\":** P(0) + P(1).",
+     "- **\"pelo menos 2\":** 1 − P(0) − P(1).",
+     "- **Esperança da binomial: E(X):** n·p.",
+     "Variância da binomial: V(X) = n·p·q. **desvio padrão = √(n·p·q)**. Relação útil: V(X) = E(X) · q.",
+     "### 2. Métodos de Resolução e Classificações",
+     "- é n vezes a esperança da Bernoulli.",
+     "- O valor esperado pode ser não inteiro (média de 1,5 caras em 3 lançamentos).",
+     "- **Também:** é n vezes a variância da Bernoulli.",
+     "- com **p > 0,5**, assimétrica negativa.",
+     "- com **p < 0,5**, assimétrica positiva.",
+     "### 3. Exemplos de Aplicação e Procedimentos",
+     "> 💡 **Exemplo Prático:** Conhecendo média e variância (ex.: 20 e 4), obtém-se q = 0,2, p = 0,8 e n = 25.",
+     "### 4. Pontos Críticos e Cuidados nos Cálculos",
+     "> ⚠️ **Atenção de Prova:** Atenção ao enunciado: o \"sucesso\" é o evento cuja probabilidade se calcula (ex.: peça defeituosa), não necessariamente algo bom."
     ],
     "teoria": [
      {
@@ -613,12 +633,21 @@
    "id": "estatistica/a08/s03",
    "bizu": {
     "summary": [
-     "### 1. Fundamentação Teórica e Conceitos Centrais",
-     "**Distribuição geométrica**: ensaios de Bernoulli independentes com mesma p; a variável **X é o número de ensaios até o primeiro sucesso**. Valores possíveis: **1, 2, 3, …** (sem limite superior). **Probabilidade**: **P(X = k) = q^(k−1)·p** (k − 1 fracassos seguidos de um sucesso).",
-     "**Esperança e variância**: **E(X) = 1/p** e **V(X) = q/p²**. Com p = 1/6, espera-se 6 lançamentos e a variância é 30. **Outra parametrização**: Y = número de **fracassos antes do primeiro sucesso**, com valores 0, 1, 2, …; **P(Y = k) = q^k·p**. A variância é a mesma; a esperança passa a **E(Y) = q/p** (uma unidade a menos que 1/p).",
-     "**Cauda**: **P(X ≥ k) = q^(k−1)** (os k − 1 primeiros ensaios falharam). **Falta de memória**: P(X = k | X ≥ k) = p; já ter falhado várias vezes não altera a chance de sucesso no próximo ensaio.",
-     "### 3. Diretrizes de Prova e Pontos de Atenção",
-     "> 📌 **Bizu Estratégico:** 📌 **Dica de prova**: ao ver \"até que ocorra o primeiro defeito/sucesso\", pense em geométrica; confira se o enunciado conta ensaios totais (1/p) ou fracassos (q/p)."
+     "### 1. Definições, Fórmulas e Propriedades Centrais",
+     "- **Distribuição geométrica:** ensaios de Bernoulli independentes com mesma p.",
+     "- **Valores possíveis:** **1, 2, 3, …** (sem limite superior).",
+     "- **Probabilidade: P(X:** k) = q^(k−1)·p (k − 1 fracassos seguidos de um sucesso).",
+     "- **Esperança e variância: E(X):** 1/p e V(X) = q/p².",
+     "Com p = 1/6, espera-se 6 lançamentos e a variância é 30. **P(Y = k) = q^k·p**. A variância é a mesma.",
+     "### 2. Métodos de Resolução e Classificações",
+     "#### Sequência e Funcionamento:",
+     "1. a variável **X é o número de ensaios até o primeiro sucesso**.",
+     "2. Outra parametrização: Y = número de fracassos antes do primeiro sucesso, com valores 0, 1, 2, ….",
+     "3. Cauda: P(X ≥ k) = q^(k−1) (os k − 1 primeiros ensaios falharam).",
+     "- já ter falhado várias vezes não altera a chance de sucesso no próximo ensaio.",
+     "- confira se o enunciado conta ensaios totais (1/p) ou fracassos (q/p).",
+     "### 4. Pontos Críticos e Cuidados nos Cálculos",
+     "> 📌 **Bizu Estratégico:** Dica de prova: ao ver \"até que ocorra o primeiro defeito/sucesso\", pense em geométrica."
     ],
     "teoria": [
      {
@@ -915,11 +944,17 @@
    "id": "estatistica/a08/s04",
    "bizu": {
     "summary": [
-     "### 1. Fundamentação Teórica e Conceitos Centrais",
-     "**Distribuição hipergeométrica**: população **finita** de N elementos, S deles com o atributo \"sucesso\"; retira-se uma amostra de n elementos **sem reposição**. As extrações são **dependentes**, e X é o número de sucessos na amostra. **Probabilidade**: **P(X = k) = C(S, k)·C(N − S, n − k) / C(N, n)**. Numerador: modos de escolher k sucessos e n − k fracassos; denominador: todas as amostras possíveis.",
-     "**Limites de X**: máximo = **mín{n, S}**; mínimo = máx{0, n − (N − S)}, pois pode ser impossível evitar sucessos se a amostra for maior que o total de fracassos. **Esperança**: **E(X) = n·p**, com **p = S/N** (a proporção da população se mantém na amostra).",
-     "**Variância**: **V(X) = n·p·q·(N − n)/(N − 1)**: a da binomial multiplicada pelo **fator de correção para população finita**, sempre menor que 1. **Aproximação**: quando N é muito maior que n, o fator se aproxima de 1 e a hipergeométrica se aproxima da binomial.",
-     "**Reconhecimento**: \"lote com N itens, S defeituosos, retiram-se n sem reposição\" = hipergeométrica. Sem especificação, muitas bancas consideram a extração sem reposição."
+     "### 1. Definições, Fórmulas e Propriedades Centrais",
+     "- **Distribuição hipergeométrica:** população finita de N elementos, S deles com o atributo \"sucesso\".",
+     "- **As extrações:** são **dependentes**, e X é o número de sucessos na amostra.",
+     "- **Probabilidade: P(X:** k) = C(S, k)·C(N − S, n − k) / C(N, n).",
+     "- **Numerador:** modos de escolher k sucessos e n − k fracassos.",
+     "denominador: todas as amostras possíveis. Limites de X: máximo = mín{n, S}. mínimo = máx{0, n − (N − S)}, pois pode ser impossível evitar sucessos se a amostra for maior que o total de fracassos.",
+     "### 2. Métodos de Resolução e Classificações",
+     "- retira-se uma amostra de n elementos **sem reposição**.",
+     "- Sem especificação, muitas bancas consideram a extração sem reposição.",
+     "### 4. Pontos Críticos e Cuidados nos Cálculos",
+     "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
     ],
     "teoria": [
      {
@@ -1194,13 +1229,21 @@
    "id": "estatistica/a08/s05",
    "bizu": {
     "summary": [
-     "### 1. Fundamentação Teórica e Conceitos Centrais",
-     "**Probabilidade**: **P(X = k) = e^(−λ)·λ^k / k!**, com e ≈ 2,718 e k = 0, 1, 2, … (sem limite superior). **Esperança e variância iguais ao parâmetro**: **E(X) = V(X) = λ**.",
-     "**Relação com a binomial**: é a aproximação da binomial quando **n é grande e p é pequeno**, com **λ = n·p** (pois q ≈ 1, e n·p·q ≈ n·p). **Mudança de intervalo**: λ é proporcional ao intervalo. Se chegam 10 clientes em 8 h, em 1 h o parâmetro é 10/8. O **tempo médio entre ocorrências** é intervalo/λ.",
-     "**Soma de Poissons independentes** é Poisson com **λ = λ₁ + λ₂ + …**. Uma diferença como S − X = Y + Z também é Poisson (soma das demais). **Moda**: com λ inteiro há duas modas, λ e λ − 1; com λ não inteiro, a moda é a parte inteira de λ.",
-     "### 2. Análise Prática e Desdobramentos",
-     "• **Aplicação:** **Distribuição de Poisson**: número de ocorrências de um evento em um **intervalo** (tempo, área, volume) com **taxa média constante λ**. Eventos independentes, e a chance de dois eventos simultâneos é desprezível. Ex.: chamadas por hora.",
-     "• **Aplicação:** **Cálculo prático**: \"mais de 1\" = 1 − P(0) − P(1). Ex.: com λ = 4, P(0) = e⁻⁴ e P(1) = 4e⁻⁴, logo P(X > 1) = 1 − 5e⁻⁴ ≈ 0,91."
+     "### 1. Definições, Fórmulas e Propriedades Centrais",
+     "- **Distribuição de Poisson:** número de ocorrências de um evento em um intervalo (tempo, área, volume) com taxa média constante λ.",
+     "- **Probabilidade: P(X:** k) = e^(−λ)·λ^k / k!, com e ≈ 2,718 e k = 0, 1, 2, … (sem limite superior).",
+     "- **Esperança e variância iguais ao parâmetro: E(X):** V(X) = λ.",
+     "- **Relação com a binomial: é a aproximação da binomial quando n é grande e p é pequeno, com λ:** n·p (pois q ≈ 1, e n·p·q ≈ n·p).",
+     "Mudança de intervalo: λ é proporcional ao intervalo. Soma de Poissons independentes é Poisson com λ = λ₁ + λ₂ + …. Uma diferença como S − X = Y + Z também é Poisson (soma das demais).",
+     "### 2. Métodos de Resolução e Classificações",
+     "- Eventos independentes, e a chance de dois eventos simultâneos é desprezível.",
+     "- Se chegam 10 clientes em 8 h, em 1 h o parâmetro é 10/8.",
+     "- O **tempo médio entre ocorrências** é intervalo/λ.",
+     "### 3. Exemplos de Aplicação e Procedimentos",
+     "> 💡 **Exemplo Prático:** Ex.: chamadas por hora.",
+     "> 💡 **Exemplo Prático:** Ex.: com λ = 4, P(0) = e⁻⁴ e P(1) = 4e⁻⁴, logo P(X > 1) = 1 − 5e⁻⁴ ≈ 0,91.",
+     "### 4. Pontos Críticos e Cuidados nos Cálculos",
+     "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
     ],
     "teoria": [
      {
@@ -1514,13 +1557,23 @@
    "id": "estatistica/a08/s06",
    "bizu": {
     "summary": [
-     "### 1. Fundamentação Teórica e Conceitos Centrais",
-     "**Binomial negativa (Pascal)**: número de ensaios de Bernoulli **necessários para obter k sucessos**, com **k fixo**. Na binomial usual n é fixo e o número de sucessos varia; aqui é o contrário. **Probabilidade**: **P(X = x) = C(x − 1, k − 1)·p^k·q^(x − k)**, com x = k, k + 1, … A combinação é de x − 1 por k − 1 porque o **último ensaio é necessariamente o k-ésimo sucesso**.",
-     "**Condição**: ensaios independentes (população infinita, muito grande ou com reposição). **Esperança**: **E(X) = k/p**; cada sucesso exige em média 1/p ensaios. Com p = 0,5 e k = 5, espera-se 10 lançamentos. Variância: V(X) = k·q/p².",
-     "**Parametrização por fracassos**: Y = fracassos antes do k-ésimo sucesso, com P(Y = y) = C(k + y − 1, y)·p^k·q^y; o total de ensaios é y + k. **Caso k = 1**: a binomial negativa vira a geométrica.",
-     "**Reconhecimento**: \"quantas vezes será preciso ir ao mercado para comprar o item k vezes\" é binomial negativa (número de ensaios até o k-ésimo sucesso).",
-     "### 2. Análise Prática e Desdobramentos",
-     "• **Aplicação:** 💡 **Exemplo**: cinco caras na 8ª jogada → C(7, 4)·p⁵·q³; a binomial usual teria C(8, 5)."
+     "### 1. Definições, Fórmulas e Propriedades Centrais",
+     "- **Binomial negativa (Pascal):** número de ensaios de Bernoulli necessários para obter k sucessos, com k fixo.",
+     "- **aqui:** é o contrário.",
+     "- **Condição:** ensaios independentes (população infinita, muito grande ou com reposição).",
+     "- **Esperança: E(X):** k/p.",
+     "Com p = 0,5 e k = 5, espera-se 10 lançamentos. Variância: V(X) = k·q/p². Parametrização por fracassos: Y = fracassos antes do k-ésimo sucesso, com P(Y = y) = C(k + y − 1, y)·p^k·q^y.",
+     "### 2. Métodos de Resolução e Classificações",
+     "- **Na binomial usual n:** é fixo e o número de sucessos varia.",
+     "- a binomial usual teria C(8, 5).",
+     "- cada sucesso exige em média 1/p ensaios.",
+     "- **o total de ensaios:** é y + k.",
+     "#### Quadro Comparativo:",
+     "| Instituto / Conceito | Regra / Distinção | Confronto / Exceção |\n| :--- | :--- | :--- |\n| **Probabilidade: P(X** | x) = C(x − 1, k − 1)·p^k·q^(x − k), com | = k, k + 1, … A combinação é de x − 1 por k − 1 porque o último ensaio é necessariamente o k-ésimo sucesso |",
+     "### 3. Exemplos de Aplicação e Procedimentos",
+     "> 💡 **Exemplo Prático:** Exemplo: cinco caras na 8ª jogada → C(7, 4)·p⁵·q³.",
+     "### 4. Pontos Críticos e Cuidados nos Cálculos",
+     "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
     ],
     "teoria": [
      {

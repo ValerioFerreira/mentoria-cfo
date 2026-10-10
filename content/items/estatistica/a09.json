@@ -7,11 +7,22 @@
    "id": "estatistica/a09/s01",
    "bizu": {
     "summary": [
-     "### 1. Fundamentação Teórica e Conceitos Centrais",
-     "**Variável discreta × contínua**: a discreta assume valores enumeráveis (nº de caras, face do dado); a **contínua** assume qualquer valor de um intervalo (tempo, peso, temperatura), em quantidade não enumerável. **Função densidade de probabilidade (f.d.p.) f(x)**: descreve a distribuição da variável contínua. Condições: **f(x) ≥ 0** e **área total sob a curva = 1** (probabilidade do espaço amostral).",
-     "**Probabilidade de um intervalo** = **área sob f(x)** entre a e b: P(a < X < b) = ∫ f(x) dx de a até b. Quando o gráfico é figura simples, use geometria (retângulo = base × altura; triângulo = base × altura / 2; trapézio = (B + b) × altura / 2). **Integral definida**: ache a primitiva F(x), calcule **F(b) − F(a)** e **não** F(b − a). Regras: ∫xⁿ dx = xⁿ⁺¹/(n + 1) (n ≠ −1); ∫a dx = a·x; ∫eˣ dx = eˣ; constantes multiplicativas saem da integral.",
-     "**Probabilidade pontual nula**: P(X = x) = 0 em variável contínua. Logo, **tanto faz usar < ou ≤** nos extremos do intervalo. **F.d.p. por partes**: pode haver fórmulas diferentes em intervalos diferentes; integre cada pedaço separadamente e some.",
-     "**Constante da f.d.p.**: para achar k (ou α) em f(x) dada, imponha que a integral em todo o intervalo vale 1. Uma f.d.p. linear pode ser tratada como reta (triângulo ou trapézio) para calcular áreas sem integrar."
+     "### 1. Definições, Fórmulas e Propriedades Centrais",
+     "- Função densidade de probabilidade (f.d.p.) f(x): descreve a distribuição da variável contínua.",
+     "- **Condições: f(x) ≥ 0 e área total sob a curva:** 1** (probabilidade do espaço amostral).",
+     "- **Probabilidade de um intervalo:** área sob f(x) entre a e b: P(a < X < b) = ∫ f(x) dx de a até b.",
+     "- **Integral definida:** ache a primitiva F(x), calcule F(b) − F(a) e não F(b − a).",
+     "Regras: ∫xⁿ dx = xⁿ⁺¹/(n + 1) (n ≠ −1). ∫a dx = a·x. ∫eˣ dx = eˣ.",
+     "### 2. Métodos de Resolução e Classificações",
+     "- a **contínua** assume qualquer valor de um intervalo (tempo, peso, temperatura), em quantidade não enumerável.",
+     "- constantes multiplicativas saem da integral.",
+     "- Logo, **tanto faz usar < ou ≤** nos extremos do intervalo.",
+     "- integre cada pedaço separadamente e some.",
+     "- Uma f.d.p. linear pode ser tratada como reta (triângulo ou trapézio) para calcular áreas sem integrar.",
+     "#### Quadro Comparativo:",
+     "| Instituto / Conceito | Regra / Distinção | Confronto / Exceção |\n| :--- | :--- | :--- |\n| **Aspecto 1** | Variável discreta | contínua: a discreta assume valores enumeráveis (nº de caras, face do dado) |\n| **Quando o gráfico é figura simples, use geometria (retângulo** | base | altura |\n| **triângulo** | base | altura / 2 |\n| **trapézio** | (B + b) | altura / 2) |",
+     "### 4. Pontos Críticos e Cuidados nos Cálculos",
+     "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
     ],
     "teoria": [
      {
@@ -290,11 +301,20 @@
    "id": "estatistica/a09/s02",
    "bizu": {
     "summary": [
-     "### 1. Fundamentação Teórica e Conceitos Centrais",
-     "**Função de distribuição acumulada (f.d.a.)**: **F(x) = P(X ≤ x)**. Na variável contínua é a **integral da f.d.p.** desde o extremo inferior até x. **Propriedades da f.d.a.**: **não decrescente**; 0 ≤ F(x) ≤ 1; vale 0 para x menor ou igual ao extremo inferior e **1 para x maior ou igual ao extremo superior**.",
-     "**Cálculo**: F(x) = G(x) − G(x_I), em que G é a primitiva da f.d.p. e x_I, o extremo inferior. Em f.d.p. por partes, **acumule**: a parcela de cada intervalo soma-se ao valor de F no fim do intervalo anterior. **Derivada**: a f.d.p. é a derivada da f.d.a. (f(x) = F′(x)).",
-     "**Mediana**: valor x_Md que divide a distribuição ao meio, **F(x_Md) = 0,5**. Somar, subtrair, multiplicar ou dividir a variável por uma constante faz a mediana sofrer a mesma operação (Md(2X) = 2·Md(X)). **Moda**: valor em que a f.d.p. é **máxima**. Se f for crescente no intervalo, a moda é o maior valor; se decrescente, o menor. Em parábola com concavidade para cima, teste os extremos (pode haver duas modas).",
-     "**Achar a moda com derivada**: derive f(x) e iguale a zero. Para f(x) = 12x²(1 − x), f′ = 24x − 36x² = 0 → x = 2/3. Derivadas úteis: (xᵃ)′ = a·xᵃ⁻¹, constante → 0, (eˣ)′ = eˣ, soma → soma das derivadas."
+     "### 1. Definições, Fórmulas e Propriedades Centrais",
+     "- **Função de distribuição acumulada (f.d.a.): F(x):** P(X ≤ x).",
+     "- **Na variável contínua:** é a **integral da f.d.p.** desde o extremo inferior até x.",
+     "- **Propriedades da f.d.a.:** não decrescente.",
+     "- **Cálculo: F(x):** G(x) − G(x_I), em que G é a primitiva da f.d.p. e x_I, o extremo inferior.",
+     "Em f.d.p. por partes, **acumule**: a parcela de cada intervalo soma-se ao valor de F no fim do intervalo anterior. Derivada: a f.d.p. é a derivada da f.d.a. (f(x) = F′(x)).",
+     "### 2. Métodos de Resolução e Classificações",
+     "- 0 ≤ F(x) ≤ 1.",
+     "- se decrescente, o menor.",
+     "- Em parábola com concavidade para cima, teste os extremos (pode haver duas modas).",
+     "#### Quadro Comparativo:",
+     "| Instituto / Conceito | Regra / Distinção | Confronto / Exceção |\n| :--- | :--- | :--- |\n| **Aspecto 1** | vale 0 para | menor ou igual ao extremo inferior e **1 para x maior ou igual ao extremo superior** |\n| **Para f(x)** | 12x²(1 − x), f′ = 24x − 36x² = 0 → | = 2/3 |",
+     "### 4. Pontos Críticos e Cuidados nos Cálculos",
+     "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
     ],
     "teoria": [
      {
@@ -595,14 +615,23 @@
    "id": "estatistica/a09/s03",
    "bizu": {
     "summary": [
-     "### 1. Fundamentação Teórica e Conceitos Centrais",
-     "**Esperança contínua**: **E(X) = ∫ x·f(x) dx**, no intervalo da variável. Em f.d.p. por partes, calcule uma integral para cada trecho e some. **Simetria**: em distribuição simétrica e unimodal, **média = mediana = moda**. Verifique que o intervalo é simétrico em torno do ponto, não só a fórmula.",
-     "**Variância**: **V(X) = E(X²) − [E(X)]²**, em que E(X²) = ∫ x²·f(x) dx (segundo momento). **Covariância**: **Cov(X, Y) = E(XY) − E(X)·E(Y)**. Propriedades: simétrica; Cov(X, X) = V(X); Cov(k, X) = 0; Cov(kX, Y) = k·Cov(X, Y); linear na soma.",
-     "**Variância de soma/diferença sem independência**: **V(X ± Y) = V(X) + V(Y) ± 2·Cov(X, Y)**.",
-     "### 2. Análise Prática e Desdobramentos",
-     "• **Aplicação:** **Propriedades da esperança** (valem como no caso discreto): E(X ± Y) = E(X) ± E(Y); E(k·X) = k·E(X); E(k) = k; se X e Y são independentes, E(X·Y) = E(X)·E(Y).",
-     "• **Aplicação:** **Propriedades da variância**: **V(X + k) = V(X)**; **V(k·X) = k²·V(X)**; se X e Y independentes, **V(X + Y) = V(X) + V(Y)**. Desvio padrão = √variância. Ex.: V(3X) = 9·V(X).",
-     "• **Aplicação:** **Correlação**: **ρ = Cov(X, Y)/(σx·σy)**. Ex.: variâncias 8 e 2, covariância 3 → ρ = 3/(√8·√2) = 3/4."
+     "### 1. Definições, Fórmulas e Propriedades Centrais",
+     "- **Esperança contínua: E(X):** ∫ x·f(x) dx, no intervalo da variável.",
+     "- **Propriedades da esperança (valem como no caso discreto): E(X ± Y):** E(X) ± E(Y).",
+     "- **E(k·X):** k·E(X).",
+     "- **E(k):** k.",
+     "se X e Y são independentes, E(X·Y) = E(X)·E(Y). Simetria: em distribuição simétrica e unimodal, média = mediana = moda. Propriedades da variância: V(X + k) = V(X).",
+     "### 2. Métodos de Resolução e Classificações",
+     "#### Sequência e Funcionamento:",
+     "1. Variância: V(X) = E(X²) − [E(X)]², em que E(X²) = ∫ x²·f(x) dx (segundo momento).",
+     "- Em f.d.p. por partes, calcule uma integral para cada trecho e some.",
+     "- **Verifique que o intervalo:** é simétrico em torno do ponto, não só a fórmula.",
+     "- linear na soma.",
+     "### 3. Exemplos de Aplicação e Procedimentos",
+     "> 💡 **Exemplo Prático:** Ex.: V(3X) = 9·V(X).",
+     "> 💡 **Exemplo Prático:** Ex.: variâncias 8 e 2, covariância 3 → ρ = 3/(√8·√2) = 3/4.",
+     "### 4. Pontos Críticos e Cuidados nos Cálculos",
+     "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
     ],
     "teoria": [
      {
@@ -920,15 +949,19 @@
    "id": "estatistica/a09/s04",
    "bizu": {
     "summary": [
-     "### 1. Fundamentação Teórica e Conceitos Centrais",
-     "**Desigualdades de probabilidade** estimam um limite para a probabilidade conhecendo apenas a **média e a variância** da variável (qualquer distribuição). **Chebyshev**: **P(|X − μ| ≥ δ) ≤ σ²/δ²**, para qualquer δ > 0. Em desvios padrão (δ = k·σ): **P(|X − μ| ≥ k·σ) ≤ 1/k²**.",
-     "**Uso para achar variância**: com P(|X − 20| ≥ 5) ≤ 0,0625, tem-se σ²/25 = 0,0625, então σ² = 1,5625 e σ = 1,25. **Chebyshev é um limite superior**: não dá a probabilidade exata, só garante que ela não excede o valor.",
-     "**Aplicação**: com E(X) = 1 e(X²) = 4, σ² = 3; P(X > 4) corresponde a δ = 3 e é no máximo 3/(3 + 9) = 0,25.",
-     "### 2. Análise Prática e Desdobramentos",
-     "• **Aplicação:** **Complementar**: P(|X − μ| < δ) ≥ 1 − σ²/δ². Ex.: fábrica com μ = 1000 e σ² = 200; P(X < 900 ou X > 1100) ≤ 200/100² = 0,02, e a chance de ficar entre 900 e 1100 é de pelo menos 0,98.",
-     "• **Aplicação:** **Desigualdade unilateral (Cantelli)**: **P(X − μ ≥ δ) ≤ σ²/(σ² + δ²)**. Aplica-se a um só lado da média.",
-     "### 3. Diretrizes de Prova e Pontos de Atenção",
-     "> 📌 **Bizu Estratégico:** 📌 **Dica de prova**: determine primeiro μ, σ² e δ (a distância ao centro, em módulo) e depois substitua na fórmula."
+     "### 1. Definições, Fórmulas e Propriedades Centrais",
+     "- **Chebyshev:** P(|X − μ| ≥ δ) ≤ σ²/δ², para qualquer δ > 0.",
+     "- **Em desvios padrão (δ:** k·σ): **P(|X − μ| ≥ k·σ) ≤ 1/k²**.",
+     "- **Complementar:** P(|X − μ| < δ) ≥ 1 − σ²/δ².",
+     "- **P(X < 900 ou X > 1100) ≤ 200/100²:** 0,02, e a chance de ficar entre 900 e 1100 é de pelo menos 0,98.",
+     "Uso para achar variância: com P(|X − 20| ≥ 5) ≤ 0,0625, tem-se σ²/25 = 0,0625, então σ² = 1,5625 e σ = 1,25. Chebyshev é um limite superior: não dá a probabilidade exata, só garante que ela não excede o valor. Desigualdade unilateral (Cantelli): P(X − μ ≥ δ) ≤ σ²/(σ² + δ²).",
+     "### 2. Métodos de Resolução e Classificações",
+     "- Aplica-se a um só lado da média.",
+     "### 3. Exemplos de Aplicação e Procedimentos",
+     "> 💡 **Exemplo Prático:** Ex.: fábrica com μ = 1000 e σ² = 200.",
+     "### 4. Pontos Críticos e Cuidados nos Cálculos",
+     "> ⚠️ **Atenção de Prova:** Desigualdades de probabilidade estimam um limite para a probabilidade conhecendo apenas a média e a variância da variável (qualquer distribuição).",
+     "> 📌 **Bizu Estratégico:** Dica de prova: determine primeiro μ, σ² e δ (a distância ao centro, em módulo) e depois substitua na fórmula."
     ],
     "teoria": [
      {

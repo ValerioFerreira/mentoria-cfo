@@ -7,14 +7,24 @@
    "id": "estatistica/a04/s01",
    "bizu": {
     "summary": [
-     "### 1. Fundamentação Teórica e Conceitos Centrais",
-     "**Medidas de dispersão (variabilidade)** mostram o quanto os dados variam. Conjuntos com a **mesma média** podem ter dispersões muito diferentes; a média sozinha não indica homogeneidade. **Dispersão absoluta** (mesma unidade dos dados, ou o quadrado dela): amplitude total, amplitude interquartílica (e desvio quartílico), desvio médio, variância e desvio-padrão. **Dispersão relativa**: coeficiente de variação e variância relativa. Média, mediana e moda são medidas de **posição**, e não de dispersão.",
-     "Em **tabela de frequências sem classes**, o mínimo e o máximo são tomados independentemente das frequências. **Em classes**: AT = L_sup (da última) − l_inf (da primeira) ou, pelo segundo método, PM da última − PM da primeira (resultado menor, pois desconsidera os extremos). **Propriedades da AT**: somando ou subtraindo uma constante c dos valores, a amplitude **não muda**; multiplicando ou dividindo por c, a amplitude fica **multiplicada ou dividida por c**.",
-     "Q1 deixa 25% dos dados abaixo e 75% acima; Q3 deixa 75% abaixo e 25% acima; **Q3 não é a mediana** (a mediana é Q2). AIQ e DQ têm as **mesmas propriedades da amplitude total**: invariantes à soma de constante e multiplicados por c na multiplicação por c.",
-     "### 2. Análise Prática e Desdobramentos",
-     "• **Aplicação:** **Amplitude total**: **AT = x_máx − x_mín**. É simples, mas **instável**: só usa os extremos, é muito afetada por valor discrepante e tende a crescer com o tamanho da amostra. Serve bem para visão rápida (ex.: variação de temperatura no dia).",
-     "### 3. Diretrizes de Prova e Pontos de Atenção",
-     "> ⚠️ **Atenção de Prova:** **Amplitude interquartílica**: **AIQ = Q3 − Q1**. **Desvio quartílico** (amplitude semi-interquartílica): **DQ = (Q3 − Q1) / 2**. Cuidado: as fórmulas são parecidas e podem ser confundidas."
+     "### 1. Definições, Fórmulas e Propriedades Centrais",
+     "- Dispersão absoluta (mesma unidade dos dados, ou o quadrado dela): amplitude total, amplitude interquartílica (e desvio quartílico), desvio médio, variância e desvio-padrão. Dispersão relativa: coeficiente de variação e variância relativa.",
+     "- **Amplitude total: AT:** x_máx − x_mín. É simples, mas instável: só usa os extremos, é muito afetada por valor discrepante e tende a crescer com o tamanho da amostra.",
+     "- **Propriedades da AT:** somando ou subtraindo uma constante c dos valores, a amplitude não muda.",
+     "- **Amplitude interquartílica: AIQ:** Q3 − Q1. Desvio quartílico (amplitude semi-interquartílica): DQ = (Q3 − Q1) / 2.",
+     "**Q3 não é a mediana** (a mediana é Q2). AIQ e DQ têm as **mesmas propriedades da amplitude total**: invariantes à soma de constante e multiplicados por c na multiplicação por c.",
+     "### 2. Métodos de Resolução e Classificações",
+     "#### Sequência e Funcionamento:",
+     "1. Em **tabela de frequências sem classes**, o mínimo e o máximo são tomados independentemente das frequências. **Em classes**: AT = L_sup (da última) − l_inf (da primeira) ou, pelo segundo método, PM da última − PM da primeira (resultado menor, pois desconsidera os extremos).",
+     "- Medidas de dispersão (variabilidade) mostram o quanto os dados variam.",
+     "- Conjuntos com a **mesma média** podem ter dispersões muito diferentes.",
+     "- a média sozinha não indica homogeneidade.",
+     "- Média, mediana e moda são medidas de **posição**, e não de dispersão.",
+     "- multiplicando ou dividindo por c, a amplitude fica **multiplicada ou dividida por c**.",
+     "### 3. Exemplos de Aplicação e Procedimentos",
+     "> 💡 **Exemplo Prático:** Serve bem para visão rápida (ex.: variação de temperatura no dia).",
+     "### 4. Pontos Críticos e Cuidados nos Cálculos",
+     "> ⚠️ **Atenção de Prova:** Cuidado: as fórmulas são parecidas e podem ser confundidas."
     ],
     "teoria": [
      {
@@ -328,12 +338,21 @@
    "id": "estatistica/a04/s02",
    "bizu": {
     "summary": [
-     "### 1. Fundamentação Teórica e Conceitos Centrais",
-     "**Desvio** = distância com sinal entre uma observação e uma medida descritiva: **d = x − x̄** (em relação à média) ou **d = x − Md** (em relação à mediana). Desvios pequenos em torno de uma medida indicam observações concentradas (baixa variabilidade); desvios grandes indicam dados dispersos (alta variabilidade).",
-     "Desvio **negativo** = observação abaixo da medida; **positivo** = acima; nulo = igual a ela. **Propriedade 1**: somando os desvios com seus sinais, tomados a partir da **média**, o resultado é **zero**: Σ(x_i − x̄) = 0.",
-     "**Propriedade 2**: a **soma dos quadrados** dos desvios em relação a um número a é **mínima quando a = média**. **Propriedade 3**: a **soma dos módulos** dos desvios é **mínima quando a = mediana**. Com n par, também é mínima para qualquer valor entre os dois termos centrais.",
-     "### 3. Diretrizes de Prova e Pontos de Atenção",
-     "> ⚠️ **Atenção de Prova:** Pegadinhas clássicas: a soma dos desvios é nula em relação à **média** (não à moda nem à mediana, em geral); e a soma dos desvios absolutos em relação à média só seria zero se todos os valores fossem iguais."
+     "### 1. Definições, Fórmulas e Propriedades Centrais",
+     "- **Desvio negativo:** observação abaixo da medida.",
+     "- **positivo** = acima.",
+     "- **nulo:** igual a ela.",
+     "- **Propriedade 1: somando os desvios com seus sinais, tomados a partir da média, o resultado é zero: Σ(x_i − x̄):** 0.",
+     "Propriedade 2: a soma dos quadrados dos desvios em relação a um número a é mínima quando a = média. Propriedade 3: a soma dos módulos dos desvios é mínima quando a = mediana.",
+     "### 2. Métodos de Resolução e Classificações",
+     "- Desvios pequenos em torno de uma medida indicam observações concentradas (baixa variabilidade).",
+     "- desvios grandes indicam dados dispersos (alta variabilidade).",
+     "- Com n par, também é mínima para qualquer valor entre os dois termos centrais.",
+     "- e a soma dos desvios absolutos em relação à média só seria zero se todos os valores fossem iguais.",
+     "#### Quadro Comparativo:",
+     "| Instituto / Conceito | Regra / Distinção | Confronto / Exceção |\n| :--- | :--- | :--- |\n| **Desvio** | distância com sinal entre uma observação e uma medida descritiva: d = | − x̄ (em relação à média) ou d = x − Md (em relação à mediana) |",
+     "### 4. Pontos Críticos e Cuidados nos Cálculos",
+     "> ⚠️ **Atenção de Prova:** Pegadinhas clássicas: a soma dos desvios é nula em relação à **média** (não à moda nem à mediana, em geral)."
     ],
     "teoria": [
      {
@@ -613,13 +632,22 @@
    "id": "estatistica/a04/s03",
    "bizu": {
     "summary": [
-     "### 1. Fundamentação Teórica e Conceitos Centrais",
-     "**Desvio médio (absoluto)** mede a dispersão em torno da média usando **módulos** dos desvios, já que a soma dos desvios com sinal é sempre zero. **Dados não agrupados**: **Dm = Σ |x_i − x̄| / n**.",
-     "**Dados em tabela de frequências**: **Dm = Σ ( |x_i − x̄| · f_i ) / Σ f_i**. Primeiro calcula-se a média ponderada; depois, os módulos dos desvios multiplicados pelas frequências. **Dados em classes**: mesma fórmula, assumindo que os valores coincidem com os **pontos médios** das classes.",
-     "É mais robusto que a amplitude total e a interquartílica porque considera **todos** os valores. O inconveniente é a operação de módulo, que dificulta o estudo matemático de suas propriedades. **Propriedade 1**: somando ou subtraindo uma constante dos valores, o desvio médio **não muda**.",
-     "**Propriedade 2**: multiplicando ou dividindo os valores por uma constante, o desvio médio fica **multiplicado ou dividido** por ela.",
-     "### 2. Análise Prática e Desdobramentos",
-     "• **Aplicação:** Interpretação: Dm pequeno = dados próximos da média; Dm grande = dados espalhados. Exemplo da aula: {1, 2, 3, 5, 9} tem média 4 e Dm = 2,4."
+     "### 1. Definições, Fórmulas e Propriedades Centrais",
+     "- **Dados não agrupados: Dm:** Σ |x_i − x̄| / n.",
+     "- **Dados em tabela de frequências: Dm:** Σ ( |x_i − x̄| · f_i ) / Σ f_i.",
+     "- **Dados em classes:** mesma fórmula, assumindo que os valores coincidem com os pontos médios das classes.",
+     "- **O inconveniente:** é a operação de módulo, que dificulta o estudo matemático de suas propriedades.",
+     "Propriedade 1: somando ou subtraindo uma constante dos valores, o desvio médio não muda. Propriedade 2: multiplicando ou dividindo os valores por uma constante, o desvio médio fica multiplicado ou dividido por ela. Interpretação: Dm pequeno = dados próximos da média.",
+     "### 2. Métodos de Resolução e Classificações",
+     "#### Sequência e Funcionamento:",
+     "1. Primeiro calcula-se a média ponderada.",
+     "- Desvio médio (absoluto) mede a dispersão em torno da média usando módulos dos desvios, já que a soma dos desvios com sinal é sempre zero.",
+     "- depois, os módulos dos desvios multiplicados pelas frequências.",
+     "- É mais robusto que a amplitude total e a interquartílica porque considera **todos** os valores.",
+     "### 3. Exemplos de Aplicação e Procedimentos",
+     "> 💡 **Exemplo Prático:** Exemplo da aula: {1, 2, 3, 5, 9} tem média 4 e Dm = 2,4.",
+     "### 4. Pontos Críticos e Cuidados nos Cálculos",
+     "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
     ],
     "teoria": [
      {
@@ -911,13 +939,22 @@
    "id": "estatistica/a04/s04",
    "bizu": {
     "summary": [
-     "### 1. Fundamentação Teórica e Conceitos Centrais",
-     "**Variância** = média dos **quadrados dos desvios** em relação à média. Quanto maior, mais dispersos os dados. Considera todos os valores (por isso é estável) e complementa as medidas de tendência central. **Populacional**: **σ² = Σ(x_i − μ)² / n**. **Amostral**: **s² = Σ(x_i − x̄)² / (n − 1)**. A amostral usa **n − 1** porque é melhor estimador do parâmetro e porque só n − 1 desvios são independentes (a soma deles é zero).",
-     "Para amostras grandes (n > 30), usar n ou n − 1 dá resultados muito próximos. **Fórmula prática**: **σ² = média dos quadrados − quadrado da média**. Para a amostra, multiplica-se por **n/(n − 1)**: s² = [média dos quadrados − (média)²] · n/(n − 1). Também: s² = σ² · n/(n − 1).",
-     "**Tabela de frequências**: σ² = Σ[(X_i − μ)² · f_i] / n; s² = Σ[(X_i − x̄)² · f_i] / (n − 1). **Em classes**, trocam-se X_i pelos pontos médios. A variância é **sempre ≥ 0** e é **zero** quando todos os valores são iguais. Sua unidade é o **quadrado** da unidade dos dados (kg → kg²); por isso tem pouco uso descritivo, mas é central na inferência.",
-     "**Propriedade 1**: somando ou subtraindo uma constante c dos valores, a variância **não se altera**. **Propriedade 2**: multiplicando ou dividindo os valores por c, a variância fica multiplicada ou dividida pelo **quadrado** de c.",
-     "### 2. Análise Prática e Desdobramentos",
-     "• **Aplicação:** Exemplo clássico: {5, 10, 15, 20, 25} tem soma dos quadrados dos desvios 250, logo σ² = 50 e s² = 62,5."
+     "### 1. Definições, Fórmulas e Propriedades Centrais",
+     "- **Variância:** média dos quadrados dos desvios em relação à média.",
+     "- **Populacional: σ²:** Σ(x_i − μ)² / n. Amostral: s² = Σ(x_i − x̄)² / (n − 1).",
+     "- **Fórmula prática: σ²:** média dos quadrados − quadrado da média.",
+     "- **Para a amostra, multiplica-se por n/(n − 1): s²:** [média dos quadrados − (média)²] · n/(n − 1).",
+     "Também: s² = σ² · n/(n − 1). Tabela de frequências: σ² = Σ[(X_i − μ)² · f_i] / n. s² = Σ[(X_i − x̄)² · f_i] / (n − 1). **Em classes**, trocam-se X_i pelos pontos médios.",
+     "### 2. Métodos de Resolução e Classificações",
+     "- Quanto maior, mais dispersos os dados.",
+     "- Considera todos os valores (por isso é estável) e complementa as medidas de tendência central.",
+     "- A amostral usa **n − 1** porque é melhor estimador do parâmetro e porque só n − 1 desvios são independentes (a soma deles é zero).",
+     "- Para amostras grandes (n > 30), usar n ou n − 1 dá resultados muito próximos.",
+     "- **A variância:** é **sempre ≥ 0** e é **zero** quando todos os valores são iguais.",
+     "### 3. Exemplos de Aplicação e Procedimentos",
+     "> 💡 **Exemplo Prático:** Exemplo clássico: {5, 10, 15, 20, 25} tem soma dos quadrados dos desvios 250, logo σ² = 50 e s² = 62,5.",
+     "### 4. Pontos Críticos e Cuidados nos Cálculos",
+     "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
     ],
     "teoria": [
      {
@@ -1214,13 +1251,22 @@
    "id": "estatistica/a04/s05",
    "bizu": {
     "summary": [
-     "### 1. Fundamentação Teórica e Conceitos Centrais",
-     "**Desvio-padrão** = **raiz quadrada da variância**. Populacional: σ = raiz[Σ(x_i − μ)² / n]. Amostral: s = raiz[Σ(x_i − x̄)² / (n − 1)]. É uma das medidas de variabilidade mais usadas e é expresso **na mesma unidade dos dados** (ao contrário da variância).",
-     "É sempre **≥ 0** e é **zero** quando todos os elementos são iguais. Serve para comparar a variabilidade de dois conjuntos quando as **médias são aproximadamente iguais** e as **unidades são as mesmas**.",
-     "Com tabela de frequências: s = raiz{Σ[(X_i − x̄)² · f_i] / (n − 1)}. Em classes, usam-se os pontos médios dos intervalos. **Propriedade 1**: somando ou subtraindo uma constante c, o desvio-padrão **não muda**.",
-     "**Propriedade 2**: multiplicando ou dividindo os valores por c, o desvio-padrão fica multiplicado ou dividido por **c** (e não por c²). Se a variância é zero, o desvio-padrão também é zero. Isso **não** implica média, mediana ou moda iguais a zero.",
-     "### 2. Análise Prática e Desdobramentos",
-     "• **Aplicação:** Exemplo da aula: {1, 2, 3, 5, 9} tem média 4, soma dos quadrados dos desvios 40 e s = raiz(40/4) = raiz de 10, aproximadamente 3,16."
+     "### 1. Definições, Fórmulas e Propriedades Centrais",
+     "- **Desvio-padrão:** raiz quadrada da variância.",
+     "- **Populacional: σ:** raiz[Σ(x_i − μ)² / n].",
+     "- **Amostral: s:** raiz[Σ(x_i − x̄)² / (n − 1)].",
+     "- **Com tabela de frequências: s:** raiz{Σ[(X_i − x̄)² · f_i] / (n − 1)}.",
+     "Propriedade 1: somando ou subtraindo uma constante c, o desvio-padrão não muda. Propriedade 2: multiplicando ou dividindo os valores por c, o desvio-padrão fica multiplicado ou dividido por c (e não por c²).",
+     "### 2. Métodos de Resolução e Classificações",
+     "- É uma das medidas de variabilidade mais usadas e é expresso **na mesma unidade dos dados** (ao contrário da variância).",
+     "- É sempre **≥ 0** e é **zero** quando todos os elementos são iguais.",
+     "- Serve para comparar a variabilidade de dois conjuntos quando as **médias são aproximadamente iguais** e as **unidades são as mesmas**.",
+     "- Em classes, usam-se os pontos médios dos intervalos.",
+     "- **Se a variância:** é zero, o desvio-padrão também é zero.",
+     "### 3. Exemplos de Aplicação e Procedimentos",
+     "> 💡 **Exemplo Prático:** Exemplo da aula: {1, 2, 3, 5, 9} tem média 4, soma dos quadrados dos desvios 40 e s = raiz(40/4) = raiz de 10, aproximadamente 3,16.",
+     "### 4. Pontos Críticos e Cuidados nos Cálculos",
+     "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
     ],
     "teoria": [
      {
@@ -1512,13 +1558,22 @@
    "id": "estatistica/a04/s06",
    "bizu": {
     "summary": [
-     "### 1. Fundamentação Teórica e Conceitos Centrais",
-     "**Coeficiente de variação (CV)** é a dispersão relativa: **CV = (desvio-padrão / média) × 100%**. Populacional: σ/μ; amostral: s/x̄. Permite comparar a variabilidade de conjuntos com **unidades diferentes** (kg x cm) ou **médias muito diferentes**, pois é **adimensional** (percentual).",
-     "Regras empíricas da aula: **CV < 15%** = baixa dispersão; **15% a 30%** = média dispersão; **CV > 30%** = elevada dispersão. **Quanto menor o CV, mais homogêneos os dados.** Distribuição **homogênea** quando CV < 30%; **heterogênea** quando CV > 30%.",
-     "**Variância relativa (VR)** = **quadrado do coeficiente de variação**: **VR = σ² / μ²** (ou s² / x̄²). Também é **adimensional**, pois numerador e denominador têm a mesma unidade. Em questões, o caminho usual é: CV dá o desvio-padrão (σ = CV · média); o quadrado do desvio-padrão dá a variância; a variância e a média dão a média dos quadrados (σ² + média²).",
-     "Ao excluir ou incluir elementos, recalcule soma e soma dos quadrados para obter a nova média e a nova variância antes da variância relativa.",
-     "### 3. Diretrizes de Prova e Pontos de Atenção",
-     "> ⚠️ **Atenção de Prova:** Cuidado ao comparar: pode haver desvio-padrão absoluto maior em um grupo e dispersão **relativa** maior em outro (ex.: DP de 810 com média de 1.800 dá CV de 45%; DP de 705 com média de 1.500 dá 47%)."
+     "### 1. Definições, Fórmulas e Propriedades Centrais",
+     "- **Populacional:** σ/μ.",
+     "- **amostral:** s/x̄.",
+     "- **Regras empíricas da aula: CV < 15%:** baixa dispersão.",
+     "- **15% a 30%** = média dispersão.",
+     "**CV > 30%** = elevada dispersão. Variância relativa (VR) = quadrado do coeficiente de variação: VR = σ² / μ² (ou s² / x̄²). Em questões, o caminho usual é: CV dá o desvio-padrão (σ = CV · média).",
+     "### 2. Métodos de Resolução e Classificações",
+     "- Quanto menor o CV, mais homogêneos os dados. Distribuição homogênea quando CV < 30%.",
+     "- **heterogênea** quando CV > 30%.",
+     "- DP de 705 com média de 1.500 dá 47%).",
+     "- **Também:** é **adimensional**, pois numerador e denominador têm a mesma unidade.",
+     "- o quadrado do desvio-padrão dá a variância.",
+     "#### Quadro Comparativo:",
+     "| Instituto / Conceito | Regra / Distinção | Confronto / Exceção |\n| :--- | :--- | :--- |\n| **Coeficiente de variação (CV) é a dispersão relativa: CV** | (desvio-padrão / média) | 100% |\n| **Aspecto 2** | Permite comparar a variabilidade de conjuntos com **unidades diferentes** (kg | cm) ou **médias muito diferentes**, pois é **adimensional** (percentual) |",
+     "### 4. Pontos Críticos e Cuidados nos Cálculos",
+     "> ⚠️ **Atenção de Prova:** Cuidado ao comparar: pode haver desvio-padrão absoluto maior em um grupo e dispersão **relativa** maior em outro (ex.: DP de 810 com média de 1.800 dá CV de 45%."
     ],
     "teoria": [
      {

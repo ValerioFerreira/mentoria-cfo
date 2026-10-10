@@ -7,14 +7,25 @@
    "id": "estatistica/a13/s01",
    "bizu": {
     "summary": [
-     "### 1. Fundamentação Teórica e Conceitos Centrais",
-     "**Regressão linear múltipla**: uma variável dependente Y e **duas ou mais variáveis independentes** X₁, X₂, …, Xₖ. Modelo: Y = α + β₁X₁ + … + βₖXₖ + ε. Na simples, a equação descreve uma reta; na múltipla, um plano ou hiperplano. **Pressupostos do erro** (iguais aos da simples): **E(εᵢ) = 0**; **Var(εᵢ) = σ²** constante (**homocedasticidade**); **erros não correlacionados** (Corr(εᵢ, εⱼ) = 0 para i ≠ j); e, para os testes, normalidade dos erros.",
-     "**Forma matricial**: **y = Xβ + ε**. y é o vetor-coluna (n × 1) dos valores observados; X é a matriz das variáveis explicativas, cuja **primeira coluna é só de 1** (representa o intercepto); β é o vetor dos parâmetros; ε, o vetor dos erros. **Estimador de mínimos quadrados**: **β̂ = (XᵀX)⁻¹ Xᵀy**, em que Xᵀ é a transposta de X e (XᵀX)⁻¹, a inversa de XᵀX.",
-     "**Valores ajustados e resíduos**: ŷ = Xβ̂ e = y − ŷ. **Dimensões**: com n observações e p parâmetros (incluindo o intercepto), X é n × p; XᵀX é p × p e Xᵀy é p × 1. Multiplicar uma matriz 3 × 5 por uma 5 × 3 resulta em 3 × 3.",
-     "### 2. Análise Prática e Desdobramentos",
-     "• **Aplicação:** 💡 **Exemplo da aula**: o modelo ajustado foi Y = −0,5 + 2·x₁ − 0,5·x₂ + ε (5 observações e 3 parâmetros).",
-     "### 3. Diretrizes de Prova e Pontos de Atenção",
-     "> ⚠️ **Atenção de Prova:** 📌 **Dica de prova**: raramente se exige o cálculo completo (inversa de matriz); é comum já fornecerem (XᵀX)⁻¹ e Xᵀy para multiplicar. Atenção à **ordem** das multiplicações."
+     "### 1. Definições, Fórmulas e Propriedades Centrais",
+     "- **Regressão linear múltipla:** uma variável dependente Y e duas ou mais variáveis independentes X₁, X₂, …, Xₖ.",
+     "- **Modelo: Y:** α + β₁X₁ + … + βₖXₖ + ε.",
+     "- **Pressupostos do erro (iguais aos da simples): E(εᵢ):** 0.",
+     "- **Var(εᵢ) = σ²** constante (**homocedasticidade**).",
+     "**erros não correlacionados** (Corr(εᵢ, εⱼ) = 0 para i ≠ j). X é a matriz das variáveis explicativas, cuja **primeira coluna é só de 1** (representa o intercepto). β é o vetor dos parâmetros.",
+     "### 2. Métodos de Resolução e Classificações",
+     "- Na simples, a equação descreve uma reta.",
+     "- na múltipla, um plano ou hiperplano.",
+     "- e, para os testes, normalidade dos erros.",
+     "- ε, o vetor dos erros.",
+     "- é comum já fornecerem (XᵀX)⁻¹ e Xᵀy para multiplicar.",
+     "#### Quadro Comparativo:",
+     "| Instituto / Conceito | Regra / Distinção | Confronto / Exceção |\n| :--- | :--- | :--- |\n| **Forma matricial: y** | Xβ + ε. y é o vetor-coluna (n | 1) dos valores observados |\n| **Aspecto 2** | XᵀX é p | p e Xᵀy é p × 1 |\n| **Aspecto 3** | Multiplicar uma matriz 3 | 5 por uma 5 × 3 resulta em 3 × 3 |",
+     "### 3. Exemplos de Aplicação e Procedimentos",
+     "> 💡 **Exemplo Prático:** Exemplo da aula: o modelo ajustado foi Y = −0,5 + 2·x₁ − 0,5·x₂ + ε (5 observações e 3 parâmetros).",
+     "### 4. Pontos Críticos e Cuidados nos Cálculos",
+     "> ⚠️ **Atenção de Prova:** Atenção à **ordem** das multiplicações.",
+     "> 📌 **Bizu Estratégico:** Dica de prova: raramente se exige o cálculo completo (inversa de matriz)."
     ],
     "teoria": [
      {
@@ -310,13 +321,23 @@
    "id": "estatistica/a13/s02",
    "bizu": {
     "summary": [
-     "### 1. Fundamentação Teórica e Conceitos Centrais",
-     "**Equação estimada**: Ŷ = a + b₁X₁ + b₂X₂. O intercepto a é o valor estimado de Y quando todas as variáveis valem zero; b₁ e b₂ são **efeitos parciais** (efeito de uma variável mantendo a outra constante). **Graus de liberdade** (p = número de parâmetros, incluindo o intercepto): **total = n − 1**; **modelo = p − 1**; **resíduos = n − p**. Vale gl_total = gl_resíduos + gl_modelo. Se a fórmula usa k variáveis explicativas: gl_resíduos = n − k − 1.",
-     "**R² nunca diminui** ao incluir variáveis; a inclusão excessiva consome graus de liberdade. Por isso usa-se o **R² ajustado**: **R²_aj = 1 − (1 − R²)(n − 1)/(n − p)**. **Quadrados médios**: **QMM = SQM/(p − 1)**, **QMR = SQR/(n − p)** e **QMT = SQT/(n − 1)**.",
-     "**Teste F global**: H₀: β₁ = β₂ = … = βₖ = 0 (nenhuma variável explica Y). **F* = QMM/QMR**, que segue **F com p − 1 e n − p graus de liberdade**. Se F* > F_crítico, rejeita-se H₀. **Estimador da variância dos erros**: **σ̂² = SQR/(n − p) = QMR** (não viesado). O estimador de máxima verossimilhança divide por n (é viesado).",
-     "### 2. Análise Prática e Desdobramentos",
-     "• **Aplicação:** **Decomposição da variação**: **SQT = SQM + SQR** (total = modelo + resíduos). **R² = SQM/SQT = 1 − SQR/SQT**. Exemplo: SQM = 60.000 e SQR = 15.000 → SQT = 75.000 e R² = 0,80.",
-     "• **Aplicação:** 💡 **Exemplo de tabela F**: com 5 observações e 3 parâmetros, o teste global usa 2 g.l. no numerador e 2 no denominador, e o valor crítico tabelado é 19,00 (a 5%). Se F* ficar abaixo disso, não se rejeita H₀."
+     "### 1. Definições, Fórmulas e Propriedades Centrais",
+     "- **Equação estimada: Ŷ:** a + b₁X₁ + b₂X₂.",
+     "- **O intercepto a:** é o valor estimado de Y quando todas as variáveis valem zero.",
+     "- **Decomposição da variação: SQT:** SQM + SQR (total = modelo + resíduos). R² = SQM/SQT = 1 − SQR/SQT.",
+     "- **Graus de liberdade (p:** número de parâmetros, incluindo o intercepto): total = n − 1.",
+     "**modelo = p − 1**. **resíduos = n − p**. Vale gl_total = gl_resíduos + gl_modelo.",
+     "### 2. Métodos de Resolução e Classificações",
+     "- **b₁ e b₂:** são **efeitos parciais** (efeito de uma variável mantendo a outra constante).",
+     "- a inclusão excessiva consome graus de liberdade.",
+     "- Se F > F_crítico, rejeita-se H₀.",
+     "- O estimador de máxima verossimilhança divide por n (é viesado).",
+     "- Se F ficar abaixo disso, não se rejeita H₀.",
+     "### 3. Exemplos de Aplicação e Procedimentos",
+     "> 💡 **Exemplo Prático:** Exemplo: SQM = 60.000 e SQR = 15.000 → SQT = 75.000 e R² = 0,80.",
+     "> 💡 **Exemplo Prático:** Exemplo de tabela F: com 5 observações e 3 parâmetros, o teste global usa 2 g.l. no numerador e 2 no denominador, e o valor crítico tabelado é 19,00 (a 5%).",
+     "### 4. Pontos Críticos e Cuidados nos Cálculos",
+     "> ⚠️ **Atenção de Prova:** R² nunca diminui ao incluir variáveis."
     ],
     "teoria": [
      {
@@ -629,10 +650,18 @@
    "id": "estatistica/a13/s03",
    "bizu": {
     "summary": [
-     "### 1. Fundamentação Teórica e Conceitos Centrais",
-     "**Problema da especificação**: escolher a forma matemática (função) e as **variáveis** que compõem o modelo de regressão. Um modelo mal especificado produz estimativas inadequadas. **Formas funcionais possíveis**: linear (Y = α + βX), exponencial (Y = αβˣ), logarítmica (Y = α + β·log X), quadrática (Y = α + βX + γX²), entre outras.",
-     "**Como escolher**: pelo **conhecimento teórico prévio** do fenômeno ou pela **análise gráfica** dos dados (diagrama de dispersão). O R² de cada ajuste ajuda, mas não substitui o critério teórico. **Variável omitida** (subespecificação): se o modelo correto tem X₃ e ela é excluída, o estimador de b₁ passa a ter esperança **E(b₁) = β₁ + θ₁·β₃**, ou seja, fica **viesado**, absorvendo o efeito de X₃ (quando X₃ é correlacionada com X₁).",
-     "**Termo omitido vai para o erro**: se um termo quadrático (experiência²) é omitido, ele passa a fazer parte do **termo de erro**, e o erro deixa de ter média zero, violando o pressuposto. **Resumo**: especificar bem significa incluir as variáveis relevantes e usar a forma funcional adequada; omitir variáveis relevantes gera viés e erro contaminado."
+     "### 1. Definições, Fórmulas e Propriedades Centrais",
+     "- **Problema da especificação:** escolher a forma matemática (função) e as variáveis que compõem o modelo de regressão.",
+     "- **Formas funcionais possíveis: linear (Y:** α + βX), exponencial (Y = αβˣ), logarítmica (Y = α + β·log X), quadrática (Y = α + βX + γX²), entre outras.",
+     "- **Como escolher:** pelo conhecimento teórico prévio do fenômeno ou pela análise gráfica dos dados (diagrama de dispersão).",
+     "- **Variável omitida (subespecificação): se o modelo correto tem X₃ e ela é excluída, o estimador de b₁ passa a ter esperança E(b₁):** β₁ + θ₁·β₃, ou seja, fica viesado, absorvendo o efeito de X₃ (quando X₃ é correlacionada com X₁).",
+     "Termo omitido vai para o erro: se um termo quadrático (experiência²) é omitido, ele passa a fazer parte do termo de erro, e o erro deixa de ter média zero, violando o pressuposto. Resumo: especificar bem significa incluir as variáveis relevantes e usar a forma funcional adequada.",
+     "### 2. Métodos de Resolução e Classificações",
+     "- Um modelo mal especificado produz estimativas inadequadas.",
+     "- O R² de cada ajuste ajuda, mas não substitui o critério teórico.",
+     "- omitir variáveis relevantes gera viés e erro contaminado.",
+     "### 4. Pontos Críticos e Cuidados nos Cálculos",
+     "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
     ],
     "teoria": [
      {
