@@ -1,6 +1,6 @@
 "use client";
 
-import { Eye, EyeOff, Loader2, LogIn } from "lucide-react";
+import { Eye, EyeOff, HelpCircle, Loader2, LogIn } from "lucide-react";
 import Link from "next/link";
 import { useActionState, useState } from "react";
 import { Alert, Button, Field, LinkButton, inputCls } from "@/components/ui";
@@ -57,6 +57,10 @@ export function LoginForm() {
         <p className="text-center text-sm text-muted">Ainda não tem conta?</p>
         <LinkButton href="/concursos" variant="secondary" size="lg" className="w-full">
           Criar conta
+        </LinkButton>
+        <LinkButton href="/como-funciona" variant="ghost" size="md" className="w-full">
+          <HelpCircle className="h-4 w-4" aria-hidden />
+          Como funciona a plataforma?
         </LinkButton>
       </div>
     </div>
