@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, CheckCircle2, CircleAlert, Clock, Copy, Loader2, Send, ShieldCheck, X } from "lucide-react";
+import { AlertTriangle, Check, CheckCircle2, CircleAlert, Clock, Copy, Loader2, Send, ShieldCheck, X } from "lucide-react";
 import Image from "next/image";
 import { useActionState, useRef, useState } from "react";
 import { Star } from "@/components/brand";
@@ -160,8 +160,6 @@ function RefundNotice() {
 
 function Payment({ p }: { p: NonNullable<NonNullable<Awaited<ReturnType<typeof joinWaitlist>>>["payment"]> }) {
   const [copied, setCopied] = useState(false);
-  const [copiedEmail, setCopiedEmail] = useState(false);
-
   const [showModal, setShowModal] = useState(false);
 
   async function copy() {
@@ -171,16 +169,6 @@ function Payment({ p }: { p: NonNullable<NonNullable<Awaited<ReturnType<typeof j
       setTimeout(() => setCopied(false), 2500);
     } catch {
       /* sem permissão de área de transferência */
-    }
-  }
-
-  async function copyEmail() {
-    try {
-      await navigator.clipboard.writeText(p.email);
-      setCopiedEmail(true);
-      setTimeout(() => setCopiedEmail(false), 2500);
-    } catch {
-      /* sem permissão */
     }
   }
 
@@ -197,27 +185,13 @@ function Payment({ p }: { p: NonNullable<NonNullable<Awaited<ReturnType<typeof j
 
       <RefundNotice />
 
-      <div className="rounded-xl border border-primary/30 bg-primary-soft p-4 space-y-2 text-xs leading-relaxed text-text">
-        <p className="font-bold text-sm text-primary flex items-center gap-1.5">
-          ⚠️ Identificação do seu Pagamento no Banco
+      <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-4 space-y-1.5 text-xs leading-relaxed text-amber-950 dark:text-amber-100">
+        <p className="font-bold text-sm text-amber-700 dark:text-amber-400 flex items-center gap-1.5">
+          <AlertTriangle className="h-4 w-4" /> Atenção!
         </p>
         <p>
-          A maioria dos aplicativos bancários (Nubank, Itaú, Bradesco, BB, etc.) deixa o campo <strong>Descrição / Mensagem</strong> em branco. Para localizarmos seu pagamento sem demora, <strong>cole seu e-mail</strong> no campo de mensagem do Pix no app do seu banco:
+          A plataforma baseia o planejamento de estudos no material do <strong>Estratégia Concursos</strong>. Recomendamos que só conclua seu cadastro se você tiver acesso ao material.
         </p>
-        <div className="flex flex-wrap items-center gap-2 pt-1">
-          <span className="font-mono font-bold bg-surface px-2.5 py-1 rounded border border-border text-xs break-all">
-            {p.email}
-          </span>
-          <Button type="button" size="sm" variant="secondary" onClick={copyEmail} className="text-xs">
-            {copiedEmail ? <Check className="h-3.5 w-3.5 text-ok" /> : <Copy className="h-3.5 w-3.5" />}
-            {copiedEmail ? "E-mail copiado!" : "Copiar meu e-mail"}
-          </Button>
-        </div>
-        {p.txId && (
-          <p className="text-[11px] text-muted pt-1">
-            Identificador único da transação: <code className="font-bold text-text">{p.txId}</code>
-          </p>
-        )}
       </div>
 
       <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 rounded-xl bg-surface-2 px-4 py-3">
