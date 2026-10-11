@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
+import { canUserAccessCoreFeatures } from "@/lib/system-settings";
 import { SimuladoRunner, type SimuladoQuestionItem } from "@/components/simulado-runner";
 
 export const metadata: Metadata = {
@@ -14,6 +15,10 @@ export default async function SimuladoSessionPage({
   params: Promise<{ id: string }>;
 }) {
   const user = await requireUser();
+  if (!(await canUserAccessCoreFeatures(user.role))) {
+    redirect("/simulados");
+  }
+
   const { id } = await params;
 
   const session = await db.quizSession.findFirst({

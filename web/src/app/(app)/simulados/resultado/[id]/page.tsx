@@ -22,6 +22,7 @@ import { Badge, Card, Count, LinkButton, PageHeader, Progress, Ring } from "@/co
 import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { EXAM_CONFIGS } from "@/lib/data/simulados";
+import { canUserAccessCoreFeatures } from "@/lib/system-settings";
 import { fmtDuration } from "@/lib/ui-format";
 
 export const metadata: Metadata = {
@@ -34,6 +35,10 @@ export default async function SimuladoResultadoPage({
   params: Promise<{ id: string }>;
 }) {
   const user = await requireUser();
+  if (!(await canUserAccessCoreFeatures(user.role))) {
+    redirect("/simulados");
+  }
+
   const { id } = await params;
 
   const session = await db.quizSession.findFirst({

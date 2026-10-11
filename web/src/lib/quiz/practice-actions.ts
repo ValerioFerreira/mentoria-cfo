@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { subjectName } from "@/lib/ui-format";
+import { canUserAccessCoreFeatures } from "@/lib/system-settings";
 
 function shuffle<T>(arr: T[]): T[] {
   const copy = [...arr];
@@ -20,6 +21,9 @@ export async function startSubjectPracticeQuiz(input: {
   limit?: number;
 }): Promise<{ error: string } | never> {
   const user = await requireUser();
+  if (!(await canUserAccessCoreFeatures(user.role))) {
+    return { error: "O Banco de Questões está em fase final de validação e será liberado em breve." };
+  }
 
   const whereClause: any = {
     subjectId: input.subjectId,
@@ -105,6 +109,9 @@ export async function createCustomNotebook(
   input: CreateCustomNotebookInput
 ): Promise<{ error: string } | never> {
   const user = await requireUser();
+  if (!(await canUserAccessCoreFeatures(user.role))) {
+    return { error: "A montagem de cadernos está em fase final de validação e será liberada em breve." };
+  }
 
   if (!input.items || input.items.length === 0) {
     return { error: "Selecione ao menos uma disciplina para montar o caderno." };

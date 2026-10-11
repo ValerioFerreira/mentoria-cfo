@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
 import { requireUser } from "@/lib/auth/dal";
 import { sendPlanReadyEmail } from "@/lib/email";
+import { setPlatformReleased, isPlatformReleased } from "@/lib/system-settings";
 
 export interface ReleaseResult {
   success: boolean;
@@ -12,22 +13,32 @@ export interface ReleaseResult {
   totalUsers: number;
   emailsSent: number;
   errors: number;
+  isPlatformReleased: boolean;
 }
 
+/**
+ * Executa a Liberação Geral do Sistema:
+ * 1. Ativa a flag global PLATFORM_RELEASED = true.
+ * 2. Ativa todos os planos pendentes para o status ACTIVE.
+ * 3. Notifica todos os alunos cadastrados por e-mail.
+ */
 export async function releasePlansAndNotifyAll(): Promise<ReleaseResult> {
   const admin = await requireUser();
   if (admin.role !== "ADMIN") {
     throw new Error("Acesso não autorizado. Apenas administradores podem executar esta ação.");
   }
 
-  // 1. Atualiza todos os planos pendentes para ACTIVE
+  // 1. Ativa a liberação geral da plataforma no banco de dados
+  await setPlatformReleased(true);
+
+  // 2. Atualiza todos os planos pendentes para ACTIVE
   const updateResult = await db.plan.updateMany({
     where: { status: "PENDING_ANALYSIS" },
     data: { status: "ACTIVE" },
   });
   const plansActivated = updateResult.count;
 
-  // 2. Busca todos os usuários cadastrados na plataforma
+  // 3. Busca todos os usuários cadastrados na plataforma
   const users = await db.user.findMany({
     select: { id: true, name: true, email: true },
     orderBy: { createdAt: "asc" },
@@ -60,15 +71,18 @@ export async function releasePlansAndNotifyAll(): Promise<ReleaseResult> {
     }
   }
 
-  revalidatePath("/");
+  revalidatePath("/", "layout");
   revalidatePath("/plano");
   revalidatePath("/semana");
+  revalidatePath("/questoes");
+  revalidatePath("/simulados");
   revalidatePath("/admin/cadastros");
   revalidatePath("/admin/liberacao");
 
   const message =
-    `Operação concluída: ${plansActivated} planejamento(s) liberado(s) para o status ATIVO. ` +
-    `${emailsSent} e-mail(s) enviado(s) de um total de ${users.length} usuário(s) cadastrado(s).` +
+    `Liberação Geral Ativada com Sucesso! ${plansActivated} planejamento(s) ativado(s). ` +
+    `${emailsSent} e-mail(s) enviado(s) de um total de ${users.length} usuário(s) cadastrado(s). ` +
+    `Planejamento, Questões e Simulados agora estão 100% disponíveis para todos os alunos.` +
     (errors > 0 ? ` (${errors} aviso(s) de envio registrado(s) no log).` : "");
 
   return {
@@ -78,5 +92,41 @@ export async function releasePlansAndNotifyAll(): Promise<ReleaseResult> {
     totalUsers: users.length,
     emailsSent,
     errors,
+    isPlatformReleased: true,
+  };
+}
+
+/**
+ * Alterna a liberação geral da plataforma (liga/desliga o acesso geral dos alunos).
+ */
+export async function togglePlatformRelease(released: boolean): Promise<{ success: boolean; isReleased: boolean; message: string }> {
+  const admin = await requireUser();
+  if (admin.role !== "ADMIN") {
+    throw new Error("Acesso não autorizado. Apenas administradores podem executar esta ação.");
+  }
+
+  await setPlatformReleased(released);
+
+  if (released) {
+    // Ao ativar, ativa também quaisquer planos em análise
+    await db.plan.updateMany({
+      where: { status: "PENDING_ANALYSIS" },
+      data: { status: "ACTIVE" },
+    });
+  }
+
+  revalidatePath("/", "layout");
+  revalidatePath("/plano");
+  revalidatePath("/semana");
+  revalidatePath("/questoes");
+  revalidatePath("/simulados");
+  revalidatePath("/admin/liberacao");
+
+  return {
+    success: true,
+    isReleased: released,
+    message: released
+      ? "Plataforma liberada com sucesso para todos os usuários cadastrados!"
+      : "Plataforma bloqueada para alunos comuns (disponível apenas para administradores).",
   };
 }

@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { EXAM_CONFIGS, checkSimuladoReadiness } from "@/lib/data/simulados";
+import { canUserAccessCoreFeatures } from "@/lib/system-settings";
 
 function shuffle<T>(arr: T[]): T[] {
   const copy = [...arr];
@@ -25,6 +26,10 @@ export async function startSimuladoSession(input: {
   foreignLang?: "lingua-inglesa" | "lingua-espanhola";
 }): Promise<{ error: string } | never> {
   const user = await requireUser();
+  if (!(await canUserAccessCoreFeatures(user.role))) {
+    return { error: "A realização de simulados oficiais está em fase final de validação e será liberada em breve." };
+  }
+
   const foreignLang = input.foreignLang || "lingua-inglesa";
 
   // 1. Verificação prévia e rigorosa de suficiência do acervo

@@ -11,9 +11,17 @@ import {
   Loader2,
   Mail,
   ShieldCheck,
+  ShieldAlert,
+  Lock,
+  Unlock,
+  Power,
 } from "lucide-react";
 import { Badge, Button, Card, SectionTitle } from "@/components/ui";
-import { releasePlansAndNotifyAll, type ReleaseResult } from "@/lib/admin/liberacao-actions";
+import {
+  releasePlansAndNotifyAll,
+  togglePlatformRelease,
+  type ReleaseResult,
+} from "@/lib/admin/liberacao-actions";
 
 interface UserRow {
   id: string;
@@ -28,6 +36,7 @@ interface LiberacaoViewProps {
   totalUsers: number;
   pendingPlansCount: number;
   activePlansCount: number;
+  initialIsReleased: boolean;
   users: UserRow[];
 }
 
@@ -35,18 +44,24 @@ export function LiberacaoView({
   totalUsers,
   pendingPlansCount,
   activePlansCount,
+  initialIsReleased,
   users,
 }: LiberacaoViewProps) {
   const [isPending, startTransition] = useTransition();
+  const [isReleased, setIsReleased] = useState(initialIsReleased);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [showToggleModal, setShowToggleModal] = useState(false);
   const [result, setResult] = useState<ReleaseResult | null>(null);
+  const [statusMessage, setStatusMessage] = useState<string | null>(null);
 
+  // Executa liberação geral completa (ativa planos, libera plataforma e dispara e-mails)
   const handleExecuteRelease = () => {
     setShowConfirmModal(false);
     startTransition(async () => {
       try {
         const res = await releasePlansAndNotifyAll();
         setResult(res);
+        setIsReleased(true);
       } catch (err) {
         console.error("Erro ao liberar planos:", err);
         setResult({
@@ -56,13 +71,127 @@ export function LiberacaoView({
           totalUsers,
           emailsSent: 0,
           errors: 1,
+          isPlatformReleased: isReleased,
         });
+      }
+    });
+  };
+
+  // Alterna o status da liberação geral (com ou sem disparo de e-mails)
+  const handleToggleRelease = (targetStatus: boolean) => {
+    setShowToggleModal(false);
+    startTransition(async () => {
+      try {
+        const res = await togglePlatformRelease(targetStatus);
+        setIsReleased(res.isReleased);
+        setStatusMessage(res.message);
+      } catch (err) {
+        setStatusMessage(err instanceof Error ? err.message : "Erro ao alterar status da plataforma.");
       }
     });
   };
 
   return (
     <div className="space-y-8">
+      {/* Painel de Status Geral da Plataforma */}
+      <Card
+        className={`p-6 sm:p-8 space-y-6 border shadow-md transition ${
+          isReleased
+            ? "border-emerald-500/40 bg-gradient-to-r from-emerald-500/10 via-surface to-surface"
+            : "border-amber-500/40 bg-gradient-to-r from-amber-500/10 via-surface to-surface"
+        }`}
+      >
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div className="flex items-center gap-4">
+            <div
+              className={`grid h-14 w-14 place-items-center rounded-2xl shadow-sm ${
+                isReleased
+                  ? "bg-emerald-500 text-white"
+                  : "bg-amber-500/20 text-amber-500"
+              }`}
+            >
+              {isReleased ? <Unlock className="h-7 w-7" /> : <Lock className="h-7 w-7" />}
+            </div>
+
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-bold uppercase tracking-wider text-muted">
+                  Controle de Acesso da Plataforma
+                </span>
+                <Badge tone={isReleased ? "ok" : "warn"} className="text-xs font-bold py-0.5 px-2.5">
+                  {isReleased ? "SISTEMA LIBERADO" : "SISTEMA BLOQUEADO (MODO REVISÃO)"}
+                </Badge>
+              </div>
+              <h2 className="font-display text-2xl font-bold uppercase text-text">
+                {isReleased
+                  ? "Plataforma 100% Liberada para Todos os Alunos"
+                  : "Funcionalidades Restritas Apenas para Administrador"}
+              </h2>
+              <p className="text-xs text-muted max-w-xl leading-relaxed">
+                {isReleased
+                  ? "Planejamento, Banco de Questões e Simulados estão abertos e acessíveis para todos os usuários cadastrados."
+                  : "Usuários comuns visualizam o aviso de elaboração. Planejamento, Questões e Simulados estão disponíveis exclusivamente para usuários com papel ADMIN."}
+              </p>
+            </div>
+          </div>
+
+          {/* Botões de Ação de Liberação Geral */}
+          <div className="flex flex-wrap sm:flex-col gap-2.5 w-full sm:w-auto shrink-0">
+            {!isReleased ? (
+              <Button
+                size="lg"
+                variant="primary"
+                onClick={() => setShowConfirmModal(true)}
+                disabled={isPending}
+                className="w-full sm:w-auto bg-gold text-on-gold hover:opacity-95 shadow-md flex items-center justify-center gap-2 font-bold px-6"
+              >
+                {isPending ? (
+                  <Loader2 className="h-5 w-5 animate-spin" />
+                ) : (
+                  <Power className="h-5 w-5" />
+                )}
+                <span>{isPending ? "Processando..." : "Liberação Geral do Sistema"}</span>
+              </Button>
+            ) : (
+              <Button
+                size="sm"
+                variant="secondary"
+                onClick={() => setShowToggleModal(true)}
+                disabled={isPending}
+                className="w-full sm:w-auto text-amber-600 hover:text-amber-700 hover:bg-amber-500/10 border-amber-500/30 flex items-center justify-center gap-2"
+              >
+                <Lock className="h-4 w-4" />
+                <span>Bloquear Novamente (Modo Revisão)</span>
+              </Button>
+            )}
+
+            <Button
+              size="sm"
+              variant={isReleased ? "primary" : "secondary"}
+              onClick={() => setShowConfirmModal(true)}
+              disabled={isPending}
+              className="w-full sm:w-auto flex items-center justify-center gap-2"
+            >
+              <Mail className="h-4 w-4" />
+              <span>Notificar Todos por E-mail</span>
+            </Button>
+          </div>
+        </div>
+      </Card>
+
+      {/* Mensagem de Status Rápido */}
+      {statusMessage && (
+        <Card className="p-4 border border-border bg-surface-2/60 text-xs text-text font-medium flex items-center justify-between">
+          <span>{statusMessage}</span>
+          <button
+            onClick={() => setStatusMessage(null)}
+            className="text-muted hover:text-text cursor-pointer ml-2"
+          >
+            Fechar
+          </button>
+        </Card>
+      )}
+
       {/* Cards de Métricas */}
       <div className="grid gap-4 sm:grid-cols-3">
         <Card className="p-5 flex items-center gap-4">
@@ -110,65 +239,33 @@ export function LiberacaoView({
               <AlertTriangle className="h-5 w-5 text-danger" />
             )}
             <h3 className="font-display text-lg font-bold uppercase text-text">
-              {result.success ? "Disparo Concluído com Sucesso" : "Falha na Execução"}
+              {result.success ? "Operação Concluída com Sucesso" : "Falha na Execução"}
             </h3>
           </div>
           <p className="text-sm text-text leading-relaxed font-medium">{result.message}</p>
         </Card>
       )}
 
-      {/* Painel Principal de Ação */}
-      <Card className="p-6 sm:p-8 space-y-6 border border-gold/30 bg-surface">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div className="space-y-1.5 max-w-xl">
-            <div className="flex items-center gap-2">
-              <Sparkles className="h-5 w-5 text-gold" />
-              <h2 className="font-display text-xl font-bold uppercase text-text">
-                Disparo Oficial de Conclusão dos Planejamentos
-              </h2>
-            </div>
-            <p className="text-sm text-muted leading-relaxed">
-              Ao acionar este botão, todos os planejamentos atualmente em análise serão ativados no sistema e um e-mail de aviso será enviado a todos os cadastrados, informando que a plataforma e os cronogramas estão prontos.
-            </p>
-          </div>
-
-          <Button
-            size="lg"
-            variant="primary"
-            onClick={() => setShowConfirmModal(true)}
-            disabled={isPending}
-            className="w-full sm:w-auto bg-gold text-on-gold hover:opacity-95 shadow-md flex items-center gap-2.5 shrink-0"
-          >
-            {isPending ? (
-              <Loader2 className="h-5 w-5 animate-spin" />
-            ) : (
-              <Send className="h-5 w-5" />
-            )}
-            {isPending ? "Processando e Enviando..." : "Liberar Planos e Notificar Todos por E-mail"}
-          </Button>
-        </div>
-      </Card>
-
-      {/* Modal de Confirmação */}
+      {/* Modal de Confirmação de Liberação Geral + E-mail */}
       {showConfirmModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm animate-in fade-in">
           <Card className="w-full max-w-md p-6 space-y-5 shadow-2xl border-gold/40">
             <div className="flex items-center gap-3">
               <div className="grid h-10 w-10 place-items-center rounded-xl bg-gold/20 text-gold">
-                <AlertTriangle className="h-5 w-5" />
+                <Power className="h-5 w-5" />
               </div>
               <h3 className="font-display text-lg font-bold uppercase text-text">
-                Confirmar Disparo Geral
+                Confirmar Liberação Geral
               </h3>
             </div>
 
             <p className="text-sm text-muted leading-relaxed">
-              Você está prestes a liberar <strong>{pendingPlansCount} planejamento(s)</strong> pendente(s) e enviar e-mails de notificação para todos os <strong>{totalUsers} usuário(s)</strong> cadastrados na plataforma.
+              Esta ação irá ativar permanentemente o acesso a <strong>Planejamento, Banco de Questões e Simulados</strong> para todos os <strong>{totalUsers} usuário(s)</strong> cadastrados, ativando <strong>{pendingPlansCount} planejamento(s)</strong> e disparando a notificação por e-mail.
             </p>
 
             <div className="rounded-xl bg-surface-muted p-3 text-xs text-muted flex items-center gap-2">
               <Mail className="h-4 w-4 shrink-0 text-gold" />
-              <span>O e-mail contém o link de acesso direto ao planejamento do aluno.</span>
+              <span>O e-mail oficial contém o link de acesso direto à plataforma.</span>
             </div>
 
             <div className="flex justify-end gap-3 pt-2">
@@ -185,9 +282,49 @@ export function LiberacaoView({
                 size="sm"
                 onClick={handleExecuteRelease}
                 disabled={isPending}
-                className="bg-gold text-on-gold hover:opacity-95"
+                className="bg-gold text-on-gold hover:opacity-95 font-bold"
               >
-                Confirmar e Enviar
+                Confirmar Liberação Geral
+              </Button>
+            </div>
+          </Card>
+        </div>
+      )}
+
+      {/* Modal de Bloqueio (Modo Revisão) */}
+      {showToggleModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm animate-in fade-in">
+          <Card className="w-full max-w-md p-6 space-y-5 shadow-2xl border-amber-500/40">
+            <div className="flex items-center gap-3">
+              <div className="grid h-10 w-10 place-items-center rounded-xl bg-amber-500/20 text-amber-500">
+                <Lock className="h-5 w-5" />
+              </div>
+              <h3 className="font-display text-lg font-bold uppercase text-text">
+                Bloquear Acesso Geral
+              </h3>
+            </div>
+
+            <p className="text-sm text-muted leading-relaxed">
+              Você deseja retornar a plataforma ao <strong>Modo de Revisão</strong>? O acesso a Planejamento, Questões e Simulados ficará indisponível para alunos comuns, permanecendo liberado apenas para administradores.
+            </p>
+
+            <div className="flex justify-end gap-3 pt-2">
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => setShowToggleModal(false)}
+                disabled={isPending}
+              >
+                Cancelar
+              </Button>
+              <Button
+                variant="primary"
+                size="sm"
+                onClick={() => handleToggleRelease(false)}
+                disabled={isPending}
+                className="bg-amber-600 text-white hover:bg-amber-700"
+              >
+                Bloquear Plataforma
               </Button>
             </div>
           </Card>

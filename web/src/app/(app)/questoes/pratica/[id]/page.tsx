@@ -1,12 +1,13 @@
 import { ArrowLeft, CheckCircle2, CircleCheck, CircleHelp, CircleX, RefreshCw } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { QuizRunner } from "@/components/quiz-runner";
 import { Alert, Badge, Card, Count, LinkButton, PageHeader, Ring } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { score, type AnswerRow } from "@/lib/quiz/logic";
+import { canUserAccessCoreFeatures } from "@/lib/system-settings";
 import { fmtDuration, subjectName } from "@/lib/ui-format";
 
 export const metadata: Metadata = { title: "Prática de Questões — Missão CBMPE" };
@@ -15,6 +16,10 @@ const serverNow = () => Date.now();
 
 export default async function PracticeQuizPage({ params }: { params: Promise<{ id: string }> }) {
   const user = await requireUser();
+  if (!(await canUserAccessCoreFeatures(user.role))) {
+    redirect("/questoes");
+  }
+
   const { id } = await params;
 
   const session = await db.quizSession.findFirst({

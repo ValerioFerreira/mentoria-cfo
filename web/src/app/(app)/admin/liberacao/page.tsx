@@ -2,17 +2,19 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/ui";
 import { requireAdmin } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
+import { isPlatformReleased } from "@/lib/system-settings";
 import { LiberacaoView } from "./liberacao-view";
 
-export const metadata: Metadata = { title: "Liberação de Planejamentos e Notificação" };
+export const metadata: Metadata = { title: "Liberação Geral do Sistema e Notificação" };
 
 export default async function AdminLiberacaoPage() {
   await requireAdmin();
 
-  const [totalUsers, pendingPlansCount, activePlansCount, usersList] = await Promise.all([
+  const [totalUsers, pendingPlansCount, activePlansCount, platformReleased, usersList] = await Promise.all([
     db.user.count(),
     db.plan.count({ where: { status: "PENDING_ANALYSIS" } }),
     db.plan.count({ where: { status: "ACTIVE" } }),
+    isPlatformReleased(),
     db.user.findMany({
       select: {
         id: true,
@@ -50,6 +52,7 @@ export default async function AdminLiberacaoPage() {
         totalUsers={totalUsers}
         pendingPlansCount={pendingPlansCount}
         activePlansCount={activePlansCount}
+        initialIsReleased={platformReleased}
         users={formattedUsers}
       />
     </div>

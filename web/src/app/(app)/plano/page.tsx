@@ -13,6 +13,8 @@ import { LEVEL_LABEL } from "@/lib/diagnostic";
 import { DAY_WEIGHTS } from "@/lib/planner/constants";
 import { firstStudyISO, planPosition, todayISO } from "@/lib/plan-time";
 import { fmtDate, subjectShort, weekRange } from "@/lib/ui-format";
+import { canUserAccessCoreFeatures } from "@/lib/system-settings";
+import { FeatureLockedView } from "@/components/feature-locked-view";
 import type { Level, PlanResult } from "@/lib/planner/types";
 
 export const metadata: Metadata = { title: "Planejamento" };
@@ -26,6 +28,29 @@ const hm = (min: number) => {
 
 export default async function PlanPage() {
   const user = await requireUser();
+  const canAccess = await canUserAccessCoreFeatures(user.role);
+
+  if (!canAccess) {
+    const pending = (await getPendingPlan(user.id)) ?? (await getActivePlan(user.id));
+    const profile = await db.profile.findUnique({ where: { userId: user.id } });
+    if (pending) {
+      return (
+        <PendingPlanView
+          userName={user.name}
+          createdAt={pending.createdAt}
+          examDate={pending.examDate}
+          hoursPerWeek={profile?.hoursPerWeek}
+        />
+      );
+    }
+    return (
+      <FeatureLockedView
+        moduleName="Planejamento de Estudos"
+        description="Seu cronograma de estudos está sendo estruturado pela equipe pedagógica. Assim que for concluído e liberado, você receberá um e-mail oficial de aviso."
+      />
+    );
+  }
+
   const plan = await getActivePlan(user.id);
   if (!plan) {
     const pending = await getPendingPlan(user.id);

@@ -11,11 +11,29 @@ import { db } from "@/lib/db";
 import { getActivePlan, getPendingPlan } from "@/lib/data/study";
 import { dayOfWeekIndex, longDate, shortDate, weekdayName } from "@/lib/plan-time";
 import { PendingPlanView } from "@/components/pending-plan-view";
+import { canUserAccessCoreFeatures } from "@/lib/system-settings";
 
 export const metadata: Metadata = { title: "Missão de hoje" };
 
 export default async function MissionPage() {
   const user = await requireUser();
+  const canAccess = await canUserAccessCoreFeatures(user.role);
+
+  if (!canAccess) {
+    const pending = (await getPendingPlan(user.id)) ?? (await getActivePlan(user.id));
+    if (pending) {
+      const profile = await db.profile.findUnique({ where: { userId: user.id } });
+      return (
+        <PendingPlanView
+          userName={user.name}
+          createdAt={pending.createdAt}
+          examDate={pending.examDate}
+          hoursPerWeek={profile?.hoursPerWeek}
+        />
+      );
+    }
+  }
+
   const first = user.name?.split(" ")[0] ?? "aluno";
   const plan = await getActivePlan(user.id);
 

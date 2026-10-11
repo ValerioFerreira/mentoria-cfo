@@ -6,6 +6,7 @@ import { TimerWidget } from "@/components/timer-widget";
 import { requireUser } from "@/lib/auth/dal";
 import { getTheme } from "@/lib/theme";
 import { getUserContestSubtitle } from "@/lib/user-contest";
+import { canUserAccessCoreFeatures } from "@/lib/system-settings";
 import { logout } from "../(auth)/actions";
 
 const NAV: NavItem[] = [
@@ -22,6 +23,8 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
   const user = await requireUser();
   const theme = await getTheme();
   const contestSubtitle = await getUserContestSubtitle(user.email);
+  const canAccessCore = await canUserAccessCoreFeatures(user.role);
+
   const launchTime = new Date("2026-10-10T20:00:00-03:00").getTime();
   const isLaunched = Date.now() >= launchTime;
   if (user.role !== "ADMIN" && process.env.APP_ENABLED !== "true" && !isLaunched) {
@@ -40,6 +43,17 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
     );
   }
 
+  // Se o aluno comum ainda não tiver acesso liberado, remove Planejamento, Questões e Simulados do menu
+  const userNav = canAccessCore
+    ? NAV
+    : NAV.filter(
+        (item) =>
+          item.href !== "/plano" &&
+          item.href !== "/semana" &&
+          item.href !== "/questoes" &&
+          item.href !== "/simulados"
+      );
+
   const nav: NavItem[] =
     user.role === "ADMIN"
       ? [
@@ -48,7 +62,7 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
           { href: "/admin/liberacao", label: "Liberação", icon: "release" },
           { href: "/admin/revisao", label: "Revisão", icon: "admin" },
         ]
-      : NAV;
+      : userNav;
   const name = user.name ?? user.email;
 
   const who = (

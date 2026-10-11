@@ -3,6 +3,8 @@ import { CheckCircle2, Crosshair, HelpCircle, ListChecks, Sparkles, Target, Trop
 import { Badge, Card, Count, PageHeader, Ring, Stat } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
 import { getQuestoesOverview } from "@/lib/data/questoes";
+import { canUserAccessCoreFeatures } from "@/lib/system-settings";
+import { FeatureLockedView } from "@/components/feature-locked-view";
 import { QuestoesFilterList } from "@/components/questoes-filter-list";
 
 export const metadata: Metadata = {
@@ -12,6 +14,17 @@ export const metadata: Metadata = {
 
 export default async function QuestoesPage() {
   const user = await requireUser();
+  const canAccess = await canUserAccessCoreFeatures(user.role);
+
+  if (!canAccess) {
+    return (
+      <FeatureLockedView
+        moduleName="Banco de Questões"
+        description="O acervo de questões das bancas AOCP e Instituto AOCP selecionadas exclusivamente para o Edital Unificado do CBMPE 2026 está em fase final de validação pedagógica e será liberado automaticamente junto com a ativação geral da plataforma."
+      />
+    );
+  }
+
   const overview = await getQuestoesOverview(user.id);
   const { globalStats, subjects } = overview;
 
