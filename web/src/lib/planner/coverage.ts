@@ -1,6 +1,6 @@
 // Relatório de cobertura do plano (transparência: o que entra, o que fica de fora).
-import { tierMinutes } from "./blueprint";
-import { EXAM_TOTAL_QUESTIONS } from "./constants";
+import { allUnits, tierMinutes } from "./blueprint";
+import { EXAM_TOTAL_QUESTIONS, SUMMARY_COVERAGE_WEIGHT } from "./constants";
 import type { Selection, SelectedSubject } from "./select";
 import type { Catalog, Known, SubjectCoverage } from "./types";
 
@@ -36,8 +36,12 @@ export function computeCoverage(chosen: SelectedSubject[], sel: Selection, known
       if (!tier) continue;
       const bp = sel.blueprints.get(a.id)!;
       const m = tierMinutes(bp, tier);
-      seenInc += a.incidence;
-      const full = tierMinutes({ ...bp, turbo: false }, 3);
+      // unidades lidas por resumo contam menos que as lidas no material
+      const pagesNormal = bp.teoria.reduce((n, u) => n + u.pages, 0);
+      const pagesSummary = bp.summary.reduce((n, u) => n + u.pages, 0);
+      const unitsWeight = pagesNormal + pagesSummary > 0 ? (pagesNormal + pagesSummary * SUMMARY_COVERAGE_WEIGHT) / (pagesNormal + pagesSummary) : 1;
+      seenInc += a.incidence * unitsWeight;
+      const full = tierMinutes({ ...bp, teoria: allUnits(bp), summary: [] }, 3);
       const fullPractice = full.fixacao + full.questoes;
       depthInc += a.incidence * (fullPractice > 0 ? (m.fixacao + m.questoes) / fullPractice : 1);
       pages += a.theoryPages;
@@ -45,7 +49,7 @@ export function computeCoverage(chosen: SelectedSubject[], sel: Selection, known
       mins.revisao += m.revisao;
       mins.fixacao += m.fixacao;
       mins.questoes += m.questoes;
-      aulas.push({ aulaId: a.id, tier, hours: round1(m.total / 60), ...(bp.turbo ? { turbo: true } : {}) });
+      aulas.push({ aulaId: a.id, tier, hours: round1(m.total / 60), ...(bp.summary.length ? { turbo: true } : {}) });
     }
     const notCovered = selectable
       .filter((a) => sel.blueprints.has(a.id) && !sel.tierByAula.has(a.id) && !sel.mastered.has(a.id))
@@ -55,7 +59,7 @@ export function computeCoverage(chosen: SelectedSubject[], sel: Selection, known
     const total = mins.teoria + mins.revisao + mins.fixacao + mins.questoes;
     const full = selectable.reduce((n, a) => {
       const bp = sel.blueprints.get(a.id);
-      return bp ? n + tierMinutes({ ...bp, turbo: false }, 1).total : n;
+      return bp ? n + tierMinutes({ ...bp, teoria: allUnits(bp), summary: [] }, 1).total : n;
     }, 0);
     return {
       subjectId: subject.id,

@@ -6,6 +6,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "../src/generated/prisma/client";
+import type { SummaryStatus, Contest } from "../src/generated/prisma/enums";
 
 function findContentDir(): string {
   const candidates = [
@@ -262,31 +263,82 @@ export async function seedItemsBatch() {
 
 
 interface SummariesFile {
-  aula: string; status?: "DRAFT" | "APPROVED";
+  aula: string;
+  status?: SummaryStatus;
   segments: { id: string; fingerprint: unknown; analytic?: string }[];
+}
+
+interface ExistingSummaryRow {
+  segmentId: string;
+  markdown: string;
+  status: SummaryStatus;
+}
+
+interface ImportanceDoc {
+  segments: Record<
+    string,
+    {
+      contests: Record<
+        string,
+        {
+          appears: boolean;
+          expected: number;
+          score: number | null;
+        }
+      >;
+    }
+  >;
 }
 
 /** Resumos analíticos (content/summaries/<disc>/<aula>.json): upsert por trecho; só semeia trechos que existem no banco. */
 export async function seedSummaries() {
   const dir = path.join(CONTENT, "summaries");
   if (!fs.existsSync(dir)) return;
-  const segIds = new Set((await db.segment.findMany({ select: { id: true } })).map((x) => x.id));
-  const rows: { segmentId: string; markdown: string; words: number; readMinutes: number; status: "DRAFT" | "APPROVED"; fingerprint: object }[] = [];
+  const segmentsInDb = await db.segment.findMany({ select: { id: true } });
+  const segIds = new Set<string>(segmentsInDb.map((x: { id: string }) => x.id));
+  const rows: {
+    segmentId: string;
+    markdown: string;
+    words: number;
+    readMinutes: number;
+    status: SummaryStatus;
+    fingerprint: object;
+  }[] = [];
   for (const sub of fs.readdirSync(dir).filter((d) => fs.statSync(path.join(dir, d)).isDirectory())) {
     for (const f of fs.readdirSync(path.join(dir, sub)).filter((x) => x.endsWith(".json"))) {
       const doc: SummariesFile = JSON.parse(fs.readFileSync(path.join(dir, sub, f), "utf-8"));
       for (const s of doc.segments) {
         if (!s.analytic || !segIds.has(s.id)) continue;
         const words = (s.analytic.match(/\p{L}[\p{L}\p{N}'-]*/gu) ?? []).length;
-        rows.push({ segmentId: s.id, markdown: s.analytic, words, readMinutes: Math.max(1, Math.min(20, Math.round(words / 100))), status: doc.status ?? "DRAFT", fingerprint: (s.fingerprint ?? {}) as object });
+        rows.push({
+          segmentId: s.id,
+          markdown: s.analytic,
+          words,
+          readMinutes: Math.max(1, Math.min(20, Math.round(words / 100))),
+          status: doc.status ?? "DRAFT",
+          fingerprint: (s.fingerprint ?? {}) as object,
+        });
       }
     }
   }
-  const existing = new Map((await db.analyticSummary.findMany({ select: { segmentId: true, markdown: true, status: true } })).map((x) => [x.segmentId, x]));
+  const existingRows: ExistingSummaryRow[] = await db.analyticSummary.findMany({
+    select: { segmentId: true, markdown: true, status: true },
+  });
+  const existing = new Map<string, ExistingSummaryRow>(
+    existingRows.map((x: ExistingSummaryRow) => [x.segmentId, x])
+  );
   const fresh = rows.filter((r) => !existing.has(r.segmentId));
   for (const c of chunk(fresh, 100)) await db.analyticSummary.createMany({ data: c, skipDuplicates: true });
-  const changed = rows.filter((r) => existing.has(r.segmentId) && (existing.get(r.segmentId)!.markdown !== r.markdown || existing.get(r.segmentId)!.status !== r.status));
-  for (const r of changed) await db.analyticSummary.update({ where: { segmentId: r.segmentId }, data: { ...r, version: { increment: 1 } } });
+  const changed = rows.filter((r) => {
+    const prev = existing.get(r.segmentId);
+    return prev !== undefined && (prev.markdown !== r.markdown || prev.status !== r.status);
+  });
+  for (const r of changed) {
+    await db.analyticSummary.update({
+      where: { segmentId: r.segmentId },
+      data: { ...r, version: { increment: 1 } },
+    });
+  }
   console.log(`[Seed Summaries] ${rows.length} resumos analíticos (${fresh.length} novos, ${changed.length} atualizados).`);
 }
 
@@ -294,12 +346,25 @@ export async function seedSummaries() {
 export async function seedImportance() {
   const file = path.join(CONTENT, "importance", "segments.json");
   if (!fs.existsSync(file)) return;
-  const doc = JSON.parse(fs.readFileSync(file, "utf-8")) as { segments: Record<string, { contests: Record<string, { appears: boolean; expected: number; score: number | null }> }> };
-  const segIds = new Set((await db.segment.findMany({ select: { id: true } })).map((x) => x.id));
-  const rows = Object.entries(doc.segments).flatMap(([segmentId, rec]) =>
+  const doc = JSON.parse(fs.readFileSync(file, "utf-8")) as ImportanceDoc;
+  const segmentsInDb = await db.segment.findMany({ select: { id: true } });
+  const segIds = new Set<string>(segmentsInDb.map((x: { id: string }) => x.id));
+  const rows: {
+    segmentId: string;
+    contest: Contest;
+    appears: boolean;
+    expected: number;
+    score: number | null;
+  }[] = Object.entries(doc.segments).flatMap(([segmentId, rec]) =>
     segIds.has(segmentId)
-      ? Object.entries(rec.contests).map(([contest, c]) => ({ segmentId, contest: contest as "CBMPE_OFICIAL", appears: c.appears, expected: c.expected, score: c.score }))
-      : [],
+      ? Object.entries(rec.contests).map(([contest, c]) => ({
+          segmentId,
+          contest: contest as Contest,
+          appears: c.appears,
+          expected: c.expected,
+          score: c.score,
+        }))
+      : []
   );
   await db.segmentImportance.deleteMany({});
   for (const c of chunk(rows, 1000)) await db.segmentImportance.createMany({ data: c, skipDuplicates: true });

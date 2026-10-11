@@ -740,7 +740,7 @@ function PreviewBox({ preview, subjects, hours, detailed, onUseHours }: { previe
           <p className="eyebrow flex items-center gap-1.5 !text-on-ink-muted">
             Cobertura estimada do edital
             <InfoTip align="start">
-              Parte do edital das {subjects.length} disciplinas que o plano faz você estudar em {preview.totalWeeks} semanas (≈ {preview.capacityHours} h de conteúdo), levando em conta o que você já estudou. Ver o edital inteiro (só Teoria e Questões; revisões e fixação entram com o tempo que sobrar) exige ≈ {need} h por semana com o seu perfil.
+              Parte do edital das {subjects.length} disciplinas que o plano faz você estudar em {preview.totalWeeks} semanas (≈ {preview.capacityHours} h de conteúdo), levando em conta o que você já estudou. Ver o edital inteiro (cada aula com Teoria, Revisão curta, Fixação e Questões) exige ≈ {need} h por semana com o seu perfil.
             </InfoTip>
           </p>
           <p className="text-sm text-on-ink-muted">
@@ -779,9 +779,9 @@ function PreviewBox({ preview, subjects, hours, detailed, onUseHours }: { previe
   );
 }
 
-/** Aparece só quando o planejamento cobre menos de 80% do edital: oferece trocar as aulas de menor valor por resumos. */
+/** Aparece só quando o planejamento (sem Turbo) cobre menos de 80% do edital: oferece trocar as aulas de menor valor por uma versão enxuta (Teoria condensada + caderno curto). */
 function TurboOption({ preview, on, onChange }: { preview: Preview | null; on: boolean; onChange: (v: boolean) => void }) {
-  if (!preview || "error" in preview || preview.coverageSelected >= 0.8) return null;
+  if (!preview || "error" in preview || preview.coverageWithoutTurbo >= 0.8) return null;
   return (
     <Card tone={on ? "ink" : undefined} className="space-y-4">
       <label className="flex cursor-pointer items-start gap-3">

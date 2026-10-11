@@ -4,6 +4,8 @@ import { redirect } from "next/navigation";
 import * as z from "zod";
 import { requireUser } from "@/lib/auth/dal";
 import { loadPlannerData } from "@/lib/data/planner-data";
+import { loadContestPlanData } from "@/lib/data/contest-data";
+import { getUserContest } from "@/lib/user-contest";
 import { bandOf, dayIndexOf, generatePlan, mondayOf, PlanInputError } from "@/lib/planner";
 import { addDays } from "@/lib/planner/dates";
 import { todayISO } from "@/lib/plan-time";
@@ -28,7 +30,7 @@ const Selection = z.object({
   start: z.union([z.literal("now"), z.string().regex(/^\d{4}-\d{2}-\d{2}$/)]).default("now"),
   /** anamnese por aula: id da aula → 1 (já estudei) ou 2 (domino); ausente = nunca estudei */
   known: z.record(z.string(), z.union([z.literal(0), z.literal(1), z.literal(2)])).default({}),
-  /** Modo Turbo: se o tempo não fechar o edital, as aulas de menor valor viram resumos */
+  /** Modo Turbo: se o tempo não fechar o edital, as aulas de menor valor passam a Teoria enxuta + caderno curto */
   turbo: z.boolean().default(false),
   /** Assuntos do edital que o usuário desmarcou no passo Disciplinas */
   unselectedTopicIds: z.array(z.string()).default([]),
@@ -73,16 +75,22 @@ function resolveStart(start: string): { startDate: string; firstDay: number; fir
 
 /** Prévia leve (sem gravar) para mostrar a cobertura estimada enquanto o aluno ajusta as horas. */
 export async function previewPlan(input: SelectionInput) {
-  await requireUser();
+  const user = await requireUser();
   const parsed = Selection.safeParse(input);
   if (!parsed.success) return { error: parsed.error.issues[0]?.message ?? "Dados inválidos." } as const;
   const begin = resolveStart(parsed.data.start);
   if ("error" in begin) return { error: begin.error } as const;
   const data = await loadPlannerData();
+  const contest = await getUserContest(user.email);
+  const contestData = await loadContestPlanData(contest);
   const excludedAulas = await resolveExcludedAulas(parsed.data.subjects.map((s) => s.id), parsed.data.unselectedTopicIds);
   try {
-    const r = generatePlan({
+    const base = {
       ...data,
+      contest,
+      importance: contestData.importance,
+      summaries: contestData.summaries,
+      examQuestions: contestData.examQuestions,
       startDate: begin.startDate,
       firstDay: begin.firstDay,
       examDate: parsed.data.examDate,
@@ -90,10 +98,13 @@ export async function previewPlan(input: SelectionInput) {
       subjects: parsed.data.subjects as { id: string; level: Level }[],
       known: parsed.data.known as Record<string, Known>,
       excludedAulas,
-      turbo: parsed.data.turbo,
-    });
+    };
+    const r = generatePlan({ ...base, turbo: parsed.data.turbo });
+    // a oferta do Modo Turbo depende da cobertura SEM ele (com ele ligado a cobertura sobe e a opção sumiria)
+    const withoutTurbo = parsed.data.turbo ? generatePlan({ ...base, turbo: false }) : r;
     return {
       ok: true as const,
+      coverageWithoutTurbo: withoutTurbo.coverage.selected,
       coverageSelected: r.coverage.selected,
       coverageEdital: r.coverage.edital,
       depth: r.coverage.depth,
@@ -118,9 +129,15 @@ export async function createPlanAction(input: SelectionInput & { diagnostics: Re
   const begin = resolveStart(parsed.data.start);
   if ("error" in begin) return { error: begin.error };
   const data = await loadPlannerData();
+  const contest = await getUserContest(user.email);
+  const contestData = await loadContestPlanData(contest);
   const excludedAulas = await resolveExcludedAulas(parsed.data.subjects.map((s) => s.id), parsed.data.unselectedTopicIds);
   const planInput = {
     ...data,
+    contest,
+    importance: contestData.importance,
+    summaries: contestData.summaries,
+    examQuestions: contestData.examQuestions,
     startDate: begin.startDate,
     firstDay: begin.firstDay,
     examDate: parsed.data.examDate,

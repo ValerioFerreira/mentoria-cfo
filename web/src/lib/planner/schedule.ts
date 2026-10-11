@@ -1,38 +1,31 @@
 import {
-  fixacaoMinutes, pickFixChunks, questoesMinutes, QUIZ_DEFAULT, revisaoMinutes, splitEven, teoriaMinutes, tierShape,
-  type AulaBlueprint,
+  fixacaoMinutes, pickFixChunks, questoesMinutes, quizConfig, revisaoMinutes, splitEven, summaryMinutes, teoriaMinutes, tierShape,
+  type AulaBlueprint, type TeoriaUnit,
 } from "./blueprint";
-import { MAX_SAME_SUBJECT_MINUTES_PER_DAY } from "./constants";
-import { addDays } from "./dates";
-import { assignDays, weekFraction } from "./days";
-import type { PlannedActivity, PlannedWeek, Tier } from "./types";
+import { CYCLE_GAP_DAYS, SUMMARY } from "./constants";
+import type { PlannedActivity, Tier } from "./types";
 
-/** Ciclo de uma aula na camada escolhida: Essencial = T T T … Q; Completo/Aprofundamento = [T T T R] [T T T R] … F… Q… */
-export function buildAulaCycle(bp: AulaBlueprint, tier: Tier): PlannedActivity[] {
+/** Pré-requisito de uma atividade: `key` precisa estar concluída há pelo menos `gap` dias. */
+export interface Dep {
+  key: string;
+  gap: number;
+}
+/** Atividade do ciclo com seus pré-requisitos (uso interno do agendador; não vai para o plano final). */
+export type CycleActivity = PlannedActivity & { after: Dep[]; cycle: string };
+
+/**
+ * Ciclo de uma aula na camada escolhida, sempre na ordem Teoria → Revisão → Fixação → Questões:
+ * [T T T R] [T T T R] … F… Q… . Cada atividade carrega o que precisa estar feito antes (e a folga em dias):
+ * a Revisão vem ≥ 1 dia depois das Teorias que revê; a Fixação, depois de toda a Teoria/Revisão da aula;
+ * as Questões, ≥ 1 dia depois da Fixação (ou da última Revisão, quando a camada não tem Fixação).
+ */
+export function buildAulaCycle(bp: AulaBlueprint, tier: Tier): CycleActivity[] {
   const aulaId = bp.aula.id;
   const subjectId = aulaId.split("/")[0];
   const shape = tierShape(bp, tier);
-  const out: PlannedActivity[] = [];
+  const dep = (key: string, gap = CYCLE_GAP_DAYS): Dep => ({ key, gap });
 
-  // Modo Turbo: consolida teorias da aula em uma única atividade de resumo de 60 min cobrindo todos os trechos
-  if (bp.turbo) {
-    const allSegmentIds = bp.teoria.flatMap((u) => u.segmentIds);
-    return [
-      {
-        key: `${aulaId}#TURBO`,
-        type: "TEORIA",
-        subjectId,
-        aulaId,
-        minutes: 60,
-        segmentIds: allSegmentIds,
-        refKeys: [],
-        scope: "AULA",
-        turbo: true,
-      },
-    ];
-  }
-
-  const teorias: PlannedActivity[] = bp.teoria.map((u, i) => ({
+  const teorias: CycleActivity[] = bp.teoria.map((u, i) => ({
     key: `${aulaId}#T${i + 1}`,
     type: "TEORIA",
     subjectId,
@@ -41,14 +34,17 @@ export function buildAulaCycle(bp: AulaBlueprint, tier: Tier): PlannedActivity[]
     segmentIds: u.segmentIds,
     refKeys: [],
     scope: "AULA",
+    after: i > 0 ? [dep(`${aulaId}#T${i}`, 0)] : [],
+    cycle: aulaId,
   }));
 
-  // sem Revisão (camada Essencial): a teoria corre direto; o caderno vem ao final
+  const out: CycleActivity[] = [];
+  const reviews: CycleActivity[] = [];
+  // sem Revisão na camada: a teoria corre direto
   if (shape.reviews === 0) out.push(...teorias);
-  const reviewGroups = splitEven(teorias.length, shape.reviews);
-  reviewGroups.forEach((group, gi) => {
+  splitEven(teorias.length, shape.reviews).forEach((group, gi) => {
     for (const i of group) out.push(teorias[i]);
-    out.push({
+    const r: CycleActivity = {
       key: `${aulaId}#R${gi + 1}`,
       type: "REVISAO",
       subjectId,
@@ -57,23 +53,32 @@ export function buildAulaCycle(bp: AulaBlueprint, tier: Tier): PlannedActivity[]
       segmentIds: group.flatMap((i) => teorias[i].segmentIds),
       refKeys: group.map((i) => teorias[i].key),
       scope: "AULA",
-    });
+      after: group.map((i) => dep(teorias[i].key)),
+      cycle: aulaId,
+    };
+    reviews.push(r);
+    out.push(r);
   });
 
-  pickFixChunks(bp, shape.fixChunks).forEach((ranges, i) => {
-    out.push({
-      key: `${aulaId}#F${i + 1}`,
-      type: "FIXACAO",
-      subjectId,
-      aulaId,
-      minutes: fixacaoMinutes(bp),
-      segmentIds: [],
-      refKeys: [],
-      fixRanges: ranges,
-      scope: "AULA",
-    });
-  });
+  // a Fixação só começa depois de toda a Teoria/Revisão da aula
+  const closing = (reviews.length ? reviews : teorias).map((a) => dep(a.key));
+  const fixes: CycleActivity[] = pickFixChunks(bp, shape.fixChunks).map((ranges, i) => ({
+    key: `${aulaId}#F${i + 1}`,
+    type: "FIXACAO",
+    subjectId,
+    aulaId,
+    minutes: fixacaoMinutes(bp),
+    segmentIds: [],
+    refKeys: [],
+    fixRanges: ranges,
+    scope: "AULA",
+    after: [...closing, ...(i > 0 ? [dep(`${aulaId}#F${i}`, 0)] : [])],
+    cycle: aulaId,
+  }));
+  out.push(...fixes);
 
+  // os cadernos fecham o ciclo: depois da Fixação (ou da última Revisão/Teoria, quando não há)
+  const beforeQuiz = (fixes.length ? fixes : reviews.length ? reviews : teorias).map((a) => dep(a.key));
   splitEven(teorias.length, shape.quizzes).forEach((group, i) => {
     out.push({
       key: `${aulaId}#Q${i + 1}`,
@@ -83,18 +88,143 @@ export function buildAulaCycle(bp: AulaBlueprint, tier: Tier): PlannedActivity[]
       minutes: questoesMinutes(bp),
       segmentIds: group.flatMap((j) => teorias[j].segmentIds),
       refKeys: group.map((j) => teorias[j].key),
-      quiz: { ...QUIZ_DEFAULT },
+      quiz: quizConfig(),
       scope: "AULA",
+      after: [...beforeQuiz, ...(i > 0 ? [dep(`${aulaId}#Q${i}`, 0)] : [])],
+      cycle: aulaId,
     });
   });
   return out;
 }
 
-export interface StreamInfo {
-  subjectId: string;
-  examQuestions: number;
-  sortOrder: number;
-  queue: PlannedActivity[];
+/** Unidade em resumo que entra num bloco do Turbo (pode vir de aulas diferentes da mesma disciplina). */
+export interface BlockUnit {
+  aulaId: string;
+  unit: TeoriaUnit;
+  bp: AulaBlueprint;
+  tier: Tier;
+}
+
+/**
+ * Bloco do Modo Turbo: sequência contígua de unidades em resumo analítico da mesma disciplina (podendo cruzar aulas). Cada
+ * atividade de resumo junta até 3 unidades (~20 min cada, ≤ 1 h). O ciclo é flexibilizado: o bloco acumula assuntos e só então
+ * recebe a Revisão (metade do tempo, 1 por até 3 atividades de resumo), a Fixação reduzida (30 min, só na camada 3) e o caderno
+ * curto de Questões (15 questões, 1 por até 6 unidades), sempre nessa ordem e com um dia de folga entre as etapas.
+ */
+export function buildSummaryBlock(units: BlockUnit[]): CycleActivity[] {
+  if (units.length === 0) return [];
+  const subjectId = units[0].aulaId.split("/")[0];
+  const tier = Math.max(1, Math.min(...units.map((u) => u.tier))) as Tier;
+  const tag = units[0].unit.segmentIds[0];
+  const dep = (key: string, gap = CYCLE_GAP_DAYS): Dep => ({ key, gap });
+  const out: CycleActivity[] = [];
+
+  const summaries: CycleActivity[] = [];
+  for (let i = 0; i < units.length; i += SUMMARY.maxUnitsPerActivity) {
+    const group = units.slice(i, i + SUMMARY.maxUnitsPerActivity);
+    const k = summaries.length + 1;
+    const a: CycleActivity = {
+      key: `${group[0].unit.segmentIds[0]}#S`,
+      type: "TEORIA",
+      subjectId,
+      aulaId: group[0].aulaId,
+      minutes: group.reduce((n, u) => n + summaryMinutes(u.bp), 0),
+      segmentIds: group.flatMap((u) => u.unit.segmentIds),
+      refKeys: [],
+      scope: "AULA",
+      turbo: true,
+      after: k > 1 ? [dep(summaries[k - 2].key, 0)] : [],
+      cycle: tag,
+    };
+    summaries.push(a);
+    out.push(a);
+  }
+
+  const reviews: CycleActivity[] = [];
+  if (tier >= 2) {
+    for (let i = 0; i < summaries.length; i += SUMMARY.activitiesPerReview) {
+      const g = summaries.slice(i, i + SUMMARY.activitiesPerReview);
+      const r: CycleActivity = {
+        key: `${g[0].segmentIds[0]}#SR`,
+        type: "REVISAO",
+        subjectId,
+        aulaId: g[0].aulaId,
+        minutes: revisaoMinutes(g.length, units[0].bp, true),
+        segmentIds: g.flatMap((x) => x.segmentIds),
+        refKeys: g.map((x) => x.key),
+        scope: "AULA",
+        after: g.map((x) => dep(x.key)),
+        cycle: tag,
+      };
+      reviews.push(r);
+      out.push(r);
+    }
+  }
+
+  const fixes: CycleActivity[] = [];
+  const withFix = [...units].sort((a, b) => b.bp.fixChunksFull - a.bp.fixChunksFull)[0];
+  if (tier >= 3 && withFix.bp.fixChunksFull > 0) {
+    const ranges = pickFixChunks(withFix.bp, 1)[0];
+    if (ranges) {
+      const f: CycleActivity = {
+        key: `${tag}#SF`,
+        type: "FIXACAO",
+        subjectId,
+        aulaId: withFix.aulaId,
+        minutes: fixacaoMinutes(withFix.bp, true),
+        segmentIds: [],
+        refKeys: [],
+        fixRanges: ranges,
+        scope: "AULA",
+        after: (reviews.length ? reviews : summaries).map((x) => dep(x.key)),
+        cycle: tag,
+      };
+      fixes.push(f);
+      out.push(f);
+    }
+  }
+
+  const beforeQuiz = (fixes.length ? fixes : reviews.length ? reviews : summaries).map((x) => dep(x.key));
+  const nQuiz = Math.max(1, Math.ceil(units.length / SUMMARY.unitsPerQuiz));
+  splitEven(summaries.length, nQuiz).forEach((group, qi) => {
+    const mine = group.map((j) => summaries[j]);
+    out.push({
+      key: `${tag}#SQ${qi + 1}`,
+      type: "QUESTOES",
+      subjectId,
+      aulaId: mine[0].aulaId,
+      minutes: questoesMinutes(units[0].bp, true),
+      segmentIds: mine.flatMap((x) => x.segmentIds),
+      refKeys: mine.map((x) => x.key),
+      quiz: quizConfig(true),
+      scope: "AULA",
+      after: [...beforeQuiz, ...(qi > 0 ? [dep(`${tag}#SQ${qi}`, 0)] : [])],
+      cycle: tag,
+    });
+  });
+  return out;
+}
+
+/**
+ * Fila de uma disciplina, na ordem do curso: ciclo normal de cada aula (unidades lidas no material) e blocos de resumo (Turbo).
+ * As unidades em resumo de aulas seguidas formam um único bloco; uma aula com Teoria normal fecha o bloco anterior.
+ */
+export function buildSubjectQueue(items: { bp: AulaBlueprint; tier: Tier }[]): CycleActivity[] {
+  const out: CycleActivity[] = [];
+  let run: BlockUnit[] = [];
+  const flush = () => {
+    for (let i = 0; i < run.length; i += SUMMARY.maxUnitsPerBlock) out.push(...buildSummaryBlock(run.slice(i, i + SUMMARY.maxUnitsPerBlock)));
+    run = [];
+  };
+  for (const { bp, tier } of items) {
+    for (const unit of [...bp.summary].sort((a, b) => a.segmentIds[0].localeCompare(b.segmentIds[0]))) run.push({ aulaId: bp.aula.id, unit, bp, tier });
+    if (bp.teoria.length > 0 || bp.summary.length === 0) {
+      flush();
+      out.push(...buildAulaCycle(bp, tier));
+    }
+  }
+  flush();
+  return out;
 }
 
 /** Reparte `total` entre pesos (maiores restos), garantindo ao menos 1 a cada um quando total >= n. */
@@ -117,103 +247,4 @@ export function apportion(weights: number[], total: number): number[] {
     }
   }
   return out;
-}
-
-const sumMinutes = (xs: PlannedActivity[]) => xs.reduce((n, a) => n + a.minutes, 0);
-
-/**
- * Distribui as filas (uma por disciplina, ordem interna preservada) em semanas de `weeklyMinutes` minutos.
- * Cada semana tem um foco de poucas disciplinas (menos troca de contexto), com cota proporcional ao que falta;
- * as atividades são retiradas por "déficit": sempre da disciplina mais atrasada em relação à sua cota.
- */
-export function scheduleStreams(
-  streams: StreamInfo[],
-  weeklyMinutes: number,
-  maxWeeks: number,
-  startDate: string,
-  focusSubjects: number,
-  firstDay = 0,
-): PlannedWeek[] {
-  const total = new Map(streams.map((s) => [s.subjectId, sumMinutes(s.queue)]));
-  const pos = new Map(streams.map((s) => [s.subjectId, 0]));
-  const left = (s: StreamInfo) => sumMinutes(s.queue.slice(pos.get(s.subjectId) ?? 0));
-  const next = (s: StreamInfo) => s.queue[pos.get(s.subjectId) ?? 0] as PlannedActivity | undefined;
-  const weeks: PlannedWeek[] = [];
-
-  for (let w = 1; w <= maxWeeks; w++) {
-    const active = streams.filter((s) => next(s));
-    if (active.length === 0) break;
-    // na semana em que o aluno começa no meio, só entram os dias que restam
-    const weekMinutes = w === 1 ? Math.max(30, Math.round(weeklyMinutes * weekFraction(firstDay))) : weeklyMinutes;
-
-    // foco da semana: disciplinas com maior fração ainda por fazer
-    active.sort(
-      (a, b) =>
-        left(b) / total.get(b.subjectId)! - left(a) / total.get(a.subjectId)! ||
-        b.examQuestions - a.examQuestions ||
-        a.sortOrder - b.sortOrder,
-    );
-    const capacity = Math.min(weekMinutes, active.reduce((n, s) => n + left(s), 0));
-    const focus = active.slice(0, Math.max(1, Math.min(focusSubjects, active.length)));
-    const weights = focus.map((s) => total.get(s.subjectId)!);
-    const wsum = weights.reduce((a, b) => a + b, 0) || 1;
-    const quota = new Map(focus.map((s, i) => [s.subjectId, (capacity * weights[i]) / wsum]));
-    const taken = new Map<string, PlannedActivity[]>();
-    let used = 0;
-
-    const hardCap = weekMinutes * 1.05;
-    const maxDays = 7 - (w === 1 ? firstDay : 0);
-    const maxSubWeekMin = maxDays * MAX_SAME_SUBJECT_MINUTES_PER_DAY;
-    const maxSubWeekActs = maxDays * 2;
-    const takenMin = (id: string) => sumMinutes(taken.get(id) ?? []);
-    const takenCount = (id: string) => (taken.get(id) ?? []).length;
-    for (let guard = 0; guard < 500; guard++) {
-      let pool = focus.filter(
-        (s) =>
-          next(s) &&
-          used + next(s)!.minutes <= hardCap &&
-          takenMin(s.subjectId) + next(s)!.minutes <= maxSubWeekMin &&
-          takenCount(s.subjectId) < maxSubWeekActs,
-      );
-      if (pool.length === 0) {
-        // o foco acabou antes de fechar a semana: amplia com a próxima disciplina
-        const extra = active.find(
-          (s) =>
-            !focus.includes(s) &&
-            next(s) &&
-            used + next(s)!.minutes <= hardCap &&
-            takenMin(s.subjectId) + next(s)!.minutes <= maxSubWeekMin &&
-            takenCount(s.subjectId) < maxSubWeekActs,
-        );
-        if (!extra || used >= capacity * 0.9) break;
-        focus.push(extra);
-        quota.set(extra.subjectId, Math.max(0, capacity - used));
-        pool = [extra];
-      }
-      // quem tem maior déficit (cota − já retirado) escolhe a próxima atividade
-      pool.sort((a, b) => quota.get(b.subjectId)! - takenMin(b.subjectId) - (quota.get(a.subjectId)! - takenMin(a.subjectId)) || a.sortOrder - b.sortOrder);
-      const s = pool[0];
-      const act = next(s)!;
-      const deficit = quota.get(s.subjectId)! - takenMin(s.subjectId);
-      if (deficit < act.minutes / 2 && used >= capacity * 0.9) break;
-      taken.set(s.subjectId, [...(taken.get(s.subjectId) ?? []), act]);
-      pos.set(s.subjectId, pos.get(s.subjectId)! + 1);
-      used += act.minutes;
-    }
-
-    const byOrder = new Map(streams.map((s) => [s.subjectId, s]));
-    const days = assignDays(
-      [...taken].map(([subjectId, acts]) => ({ subjectId, activities: acts, sortOrder: byOrder.get(subjectId)!.sortOrder })),
-      weekMinutes,
-      w === 1 ? firstDay : 0,
-    );
-    weeks.push({
-      index: w,
-      startDate: addDays(startDate, (w - 1) * 7),
-      kind: "CONTENT",
-      targetMinutes: days.reduce((n, a) => n + a.minutes, 0),
-      activities: days,
-    });
-  }
-  return weeks;
 }

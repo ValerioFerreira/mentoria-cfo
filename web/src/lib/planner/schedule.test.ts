@@ -1,8 +1,9 @@
 import { describe, expect, it } from "vitest";
 import { buildBlueprint } from "./blueprint";
-import { apportion, buildAulaCycle, scheduleStreams, type StreamInfo } from "./schedule";
-import { mkAct, mkAula, mkSeg } from "./testkit";
-import type { Level, PlannedActivity } from "./types";
+import { withSummaryUnit } from "./blueprint";
+import { apportion, buildAulaCycle, buildSubjectQueue, buildSummaryBlock, type BlockUnit } from "./schedule";
+import { mkAula, mkSeg } from "./testkit";
+import type { Level } from "./types";
 
 const bp = (n: number, opts: { level?: Level; runs?: [number, number][]; pages?: number; load?: number } = {}) =>
   buildBlueprint(
@@ -43,14 +44,13 @@ describe("apportion (maiores restos)", () => {
 });
 
 describe("buildAulaCycle", () => {
-  it("Essencial: só Teorias na ordem e o caderno ao final (sem Revisão nem Fixação)", () => {
+  it("Mínimo: Teorias, Revisão curta (até 4 Teorias), Fixação e caderno, nessa ordem", () => {
     const cyc = buildAulaCycle(bp(6, { runs: [[1, 48]] }), 1);
-    expect(cyc.map((a) => a.type)).toEqual(["TEORIA", "TEORIA", "TEORIA", "TEORIA", "TEORIA", "TEORIA", "QUESTOES"]);
-    expect(cyc[0].key).toBe("d/a01#T1");
-    expect(cyc.at(-1)!.key).toBe("d/a01#Q1");
+    expect(cyc.map((a) => a.type)).toEqual(["TEORIA", "TEORIA", "TEORIA", "REVISAO", "TEORIA", "TEORIA", "TEORIA", "REVISAO", "FIXACAO", "QUESTOES", "QUESTOES"]);
   });
-  it("Essencial de aula curta (menos de 6 Teorias) não tem caderno", () => {
-    expect(buildAulaCycle(bp(3), 1).map((a) => a.type)).toEqual(["TEORIA", "TEORIA", "TEORIA"]);
+  it("toda aula com Teoria fecha o ciclo com Revisão e Questões, até no Mínimo", () => {
+    const cyc = buildAulaCycle(bp(3), 1);
+    expect(cyc.map((a) => a.type)).toEqual(["TEORIA", "TEORIA", "TEORIA", "REVISAO", "QUESTOES"]);
   });
   it("Completo: cada Revisão vem logo depois do grupo de Teorias que ela revê", () => {
     const cyc = buildAulaCycle(bp(4, { level: 0 }), 2); // grupos de 2
@@ -83,96 +83,90 @@ describe("buildAulaCycle", () => {
       for (const a of cyc) expect(a.subjectId).toBe("d");
     }
   });
-  it("toda referência (refKeys) aponta para uma atividade anterior do mesmo ciclo", () => {
-    const cyc = buildAulaCycle(bp(8, { runs: [[1, 60]] }), 3);
-    const seen = new Set<string>();
-    for (const a of cyc) {
-      for (const k of a.refKeys) expect(seen.has(k), `${a.key} -> ${k}`).toBe(true);
-      seen.add(a.key);
+  it("pré-requisitos: Revisão ≥ 1 dia depois das Teorias; Fixação depois das Revisões; Questões ≥ 1 dia depois da Fixação", () => {
+    const cyc = buildAulaCycle(bp(4, { runs: [[1, 24]] }), 2);
+    const by = new Map(cyc.map((a) => [a.key, a]));
+    for (const r of cyc.filter((a) => a.type === "REVISAO")) {
+      expect(r.after.map((d) => d.key).sort()).toEqual([...r.refKeys].sort());
+      for (const d of r.after) expect(d.gap).toBeGreaterThanOrEqual(1);
     }
+    const fix = cyc.find((a) => a.type === "FIXACAO")!;
+    expect(fix.after.map((d) => d.key).sort()).toEqual(cyc.filter((a) => a.type === "REVISAO").map((a) => a.key).sort());
+    for (const q of cyc.filter((a) => a.type === "QUESTOES")) {
+      expect(q.after.some((d) => d.key === fix.key && d.gap >= 1)).toBe(true);
+    }
+    // todo pré-requisito existe e aparece antes na fila
+    cyc.forEach((a, i) => {
+      for (const d of a.after) expect(cyc.findIndex((x) => x.key === d.key), `${a.key} ← ${d.key}`).toBeLessThan(i);
+      expect(by.has(a.key)).toBe(true);
+    });
   });
-  it("Modo Turbo: consolida as unidades em uma única atividade de resumo cobrindo todos os trechos", () => {
-    const cyc = buildAulaCycle({ ...bp(6, { runs: [[1, 48]] }), turbo: true }, 3);
-    expect(cyc.every((a) => a.type === "TEORIA" && a.turbo === true)).toBe(true);
-    expect(cyc).toHaveLength(1);
-    expect(cyc[0].segmentIds).toHaveLength(6);
-  });
-  it("cada Teoria cobre exatamente os trechos da sua unidade e os minutos seguem o blueprint", () => {
-    const b = bp(3, { load: 12 });
-    const cyc = buildAulaCycle(b, 1);
-    expect(cyc.flatMap((a) => a.segmentIds)).toEqual(["d/a01/s01", "d/a01/s02", "d/a01/s03"]);
-    expect(cyc.map((a) => a.minutes)).toEqual([60, 60, 60]);
+  it("sem Fixação, as Questões dependem da última Revisão (≥ 1 dia)", () => {
+    const cyc = buildAulaCycle(bp(4), 1);
+    const r = cyc.find((a) => a.type === "REVISAO")!;
+    const q = cyc.find((a) => a.type === "QUESTOES")!;
+    expect(q.after).toContainEqual({ key: r.key, gap: 1 });
   });
 });
 
-function stream(subjectId: string, mins: number[], examQuestions = 10, sortOrder = 1): StreamInfo {
-  return { subjectId, examQuestions, sortOrder, queue: mins.map((m, i) => mkAct(`${subjectId}#${i}`, "TEORIA", subjectId, m)) };
-}
-const all = (weeks: ReturnType<typeof scheduleStreams>) => weeks.flatMap((w) => w.activities);
+describe("Modo Turbo: blocos de resumo", () => {
+  /** `n` unidades em resumo de uma disciplina, em `aulas` aulas de `per` unidades cada. */
+  const units = (aulas: number, per: number, tier: 1 | 2 | 3 = 1): BlockUnit[] =>
+    Array.from({ length: aulas }, (_, ai) => {
+      const aulaId = `d/a${String(ai + 1).padStart(2, "0")}`;
+      let b = buildBlueprint(mkAula(aulaId, ai + 1, { commentedRuns: [[1, 24]] }), Array.from({ length: per }, (_, i) => mkSeg(aulaId, i + 1, 12, 12, 1 + i * 12)), 0);
+      for (const u of [...b.teoria]) b = withSummaryUnit(b, u);
+      return b.summary.map((unit) => ({ aulaId, unit, bp: b, tier }));
+    }).flat();
 
-describe("scheduleStreams", () => {
-  it("agenda todas as atividades quando há semanas suficientes, preservando a ordem dentro de cada disciplina", () => {
-    const streams = [stream("a", Array(20).fill(60), 10, 1), stream("b", Array(20).fill(60), 10, 2)];
-    const weeks = scheduleStreams(streams, 600, 10, "2026-10-12", 2);
-    expect(all(weeks)).toHaveLength(40);
-    for (const id of ["a", "b"]) {
-      const keys = all(weeks).filter((x) => x.subjectId === id).map((x) => x.key);
-      expect(keys).toEqual(Array.from({ length: 20 }, (_, i) => `${id}#${i}`));
+  it("até 3 unidades por atividade de resumo (~20 min cada), podendo cruzar aulas", () => {
+    const cyc = buildSummaryBlock(units(2, 3));
+    const s = cyc.filter((a) => a.type === "TEORIA");
+    expect(s).toHaveLength(2);
+    expect(s.every((a) => a.turbo && a.segmentIds.length <= 3 && a.minutes <= 60)).toBe(true);
+    expect(s[0].segmentIds).toEqual(["d/a01/s01", "d/a01/s02", "d/a01/s03"]);
+    expect(s[0].minutes).toBe(60);
+    const cross = buildSummaryBlock(units(3, 2)).filter((a) => a.type === "TEORIA"); // 6 unidades em aulas de 2
+    expect(cross.map((a) => a.segmentIds.length)).toEqual([3, 3]);
+    expect(new Set(cross[0].segmentIds.map((id) => id.split("/")[1])).size).toBe(2); // a atividade atravessa duas aulas
+  });
+  it("ciclo flexibilizado: mínimo = resumos + caderno curto de 15 questões (1 por 6 unidades); sem Revisão nem Fixação", () => {
+    const cyc = buildSummaryBlock(units(2, 6));
+    expect(cyc.map((a) => a.type)).toEqual(["TEORIA", "TEORIA", "TEORIA", "TEORIA", "QUESTOES", "QUESTOES"]);
+    for (const q of cyc.filter((a) => a.type === "QUESTOES")) {
+      expect(q.quiz).toEqual({ questions: 15, limitSeconds: 2400, mixed: false });
+      expect(q.minutes).toBe(40);
+      expect(q.after.some((d) => d.gap >= 1)).toBe(true);
     }
   });
-  it("cada semana respeita a meta com no máximo 5% de folga e traz índice e data corretos", () => {
-    const weeks = scheduleStreams([stream("a", Array(30).fill(45)), stream("b", Array(30).fill(75), 20, 2)], 600, 8, "2026-10-12", 2);
-    weeks.forEach((w, i) => {
-      expect(w.index).toBe(i + 1);
-      expect(w.kind).toBe("CONTENT");
-      expect(w.startDate).toBe(new Date(Date.UTC(2026, 9, 12) + i * 7 * 86_400_000).toISOString().slice(0, 10));
-      expect(w.targetMinutes).toBe(w.activities.reduce((n, a) => n + a.minutes, 0));
-      expect(w.targetMinutes).toBeLessThanOrEqual(600 * 1.05 + 1e-9);
+  it("camadas 2 e 3 acrescentam Revisão (metade do tempo) e Fixação reduzida (30 min), antes dos cadernos", () => {
+    const cyc = buildSummaryBlock(units(2, 6, 3));
+    const order = cyc.map((a) => a.type);
+    expect(order).toContain("REVISAO");
+    expect(order.indexOf("FIXACAO")).toBeGreaterThan(order.lastIndexOf("REVISAO"));
+    expect(order.indexOf("QUESTOES")).toBeGreaterThan(order.indexOf("FIXACAO"));
+    for (const r of cyc.filter((a) => a.type === "REVISAO")) expect(r.minutes).toBeLessThanOrEqual(35);
+    expect(cyc.find((a) => a.type === "FIXACAO")!.minutes).toBe(30);
+    const keys = new Set(cyc.map((a) => a.key));
+    expect(keys.size).toBe(cyc.length);
+    cyc.forEach((a, i) => {
+      for (const d of a.after) expect(cyc.findIndex((x) => x.key === d.key), `${a.key} ← ${d.key}`).toBeLessThan(i);
     });
   });
-  it("nunca passa de maxWeeks e o excedente simplesmente não é agendado", () => {
-    const weeks = scheduleStreams([stream("a", Array(100).fill(60))], 300, 3, "2026-10-12", 1);
-    expect(weeks).toHaveLength(3);
-    expect(all(weeks).length).toBeLessThan(100);
-  });
-  it("para quando as filas acabam (não gera semanas vazias)", () => {
-    const weeks = scheduleStreams([stream("a", [60, 60])], 600, 10, "2026-10-12", 1);
-    expect(weeks).toHaveLength(1);
-    expect(weeks[0].activities).toHaveLength(2);
-  });
-  it("sem filas não há semanas", () => {
-    expect(scheduleStreams([], 600, 10, "2026-10-12", 3)).toEqual([]);
-    expect(scheduleStreams([stream("a", [])], 600, 10, "2026-10-12", 3)).toEqual([]);
-  });
-  it("foco: com 3 disciplinas e foco 2, a primeira semana tem no máximo as 2 de maior fração pendente (ou amplia só se faltar conteúdo)", () => {
-    const streams = [stream("a", Array(30).fill(60), 30, 1), stream("b", Array(30).fill(60), 20, 2), stream("c", Array(30).fill(60), 10, 3)];
-    const [w1] = scheduleStreams(streams, 600, 10, "2026-10-12", 2);
-    expect(new Set(w1.activities.map((a) => a.subjectId)).size).toBeLessThanOrEqual(2);
-  });
-  it("todas as atividades da semana recebem dia 0–6", () => {
-    const weeks = scheduleStreams([stream("a", Array(20).fill(60)), stream("b", Array(20).fill(60), 10, 2)], 840, 6, "2026-10-12", 2);
-    for (const a of all(weeks)) {
-      expect(Number.isInteger(a.day)).toBe(true);
-      expect(a.day).toBeGreaterThanOrEqual(0);
-      expect(a.day).toBeLessThanOrEqual(6);
-    }
-  });
-  it("primeira semana parcial (começo na quinta): só dias 3–6 e meta proporcional", () => {
-    const full = scheduleStreams([stream("a", Array(40).fill(60)), stream("b", Array(40).fill(60), 10, 2)], 840, 4, "2026-10-12", 2, 0);
-    const part = scheduleStreams([stream("a", Array(40).fill(60)), stream("b", Array(40).fill(60), 10, 2)], 840, 4, "2026-10-12", 2, 3);
-    expect(Math.min(...part[0].activities.map((a) => a.day!))).toBeGreaterThanOrEqual(3);
-    expect(part[0].targetMinutes).toBeLessThan(full[0].targetMinutes);
-    // a segunda semana volta a ser cheia
-    expect(Math.min(...part[1].activities.map((a) => a.day!))).toBe(0);
-  });
-  it("é determinístico", () => {
-    const mk = () => [stream("a", Array(25).fill(50), 12, 1), stream("b", Array(25).fill(70), 18, 2), stream("c", Array(25).fill(35), 5, 3)];
-    expect(scheduleStreams(mk(), 700, 12, "2026-10-12", 2)).toEqual(scheduleStreams(mk(), 700, 12, "2026-10-12", 2));
-  });
-  it("não altera as atividades recebidas além de atribuir o dia (cópias)", () => {
-    const s = stream("a", [60, 60]);
-    const original = JSON.parse(JSON.stringify(s.queue)) as PlannedActivity[];
-    scheduleStreams([s], 600, 3, "2026-10-12", 1);
-    expect(s.queue).toEqual(original);
+  it("buildSubjectQueue: aulas só em resumo formam um bloco; uma aula normal no meio fecha o bloco anterior; blocos têm teto de 9 unidades", () => {
+    const mk = (aulaId: string, n: number, summary: boolean) => {
+      let b = buildBlueprint(mkAula(aulaId, Number(aulaId.slice(-2)), { commentedRuns: [[1, 12]] }), Array.from({ length: n }, (_, i) => mkSeg(aulaId, i + 1, 12, 12, 1 + i * 12)), 0);
+      if (summary) for (const u of [...b.teoria]) b = withSummaryUnit(b, u);
+      return { bp: b, tier: 1 as const };
+    };
+    const q = buildSubjectQueue([mk("d/a01", 4, true), mk("d/a02", 4, true), mk("d/a03", 2, false), mk("d/a04", 3, true)]);
+    const blockA = q.filter((a) => a.turbo);
+    expect(blockA.flatMap((a) => a.segmentIds).filter((id) => id.startsWith("d/a01") || id.startsWith("d/a02"))).toHaveLength(8);
+    const firstNormal = q.findIndex((a) => a.aulaId === "d/a03" && a.type === "TEORIA");
+    expect(q.slice(0, firstNormal).some((a) => a.type === "QUESTOES")).toBe(true); // o bloco a01+a02 fecha antes da aula normal
+    expect(q.filter((a) => a.type === "TEORIA" && !a.turbo)).toHaveLength(2);
+    const big = buildSubjectQueue([mk("d/a01", 11, true)]);
+    expect(big.filter((a) => a.type === "QUESTOES").length).toBeGreaterThanOrEqual(2);
+    expect(new Set(big.filter((a) => a.type === "TEORIA").map((a) => a.cycle)).size).toBe(2); // 9 + 2 unidades
   });
 });

@@ -1,5 +1,6 @@
 // Seleção de conteúdo: decide quais aulas entram no plano e em qual camada (tier), dado o tempo disponível (em minutos).
-import { buildBlueprint, tierMinutes, type AulaBlueprint } from "./blueprint";
+import { buildBlueprint, tierMinutes, withSummaryUnit, type AulaBlueprint } from "./blueprint";
+import type { TeoriaUnit } from "./blueprint";
 import type { CatalogSubject, Known, Level, SegmentsByAula, Tier } from "./types";
 
 /** Retornos decrescentes por disciplina: V(c) côncavo, com V(0)=0 e V(1)=1. */
@@ -26,9 +27,9 @@ export interface Selection {
   /** Aulas que o aluno disse dominar na anamnese: contam como cobertas e não geram atividades. */
   mastered: Set<string>;
   usedMinutes: number;
-  /** Minutos para cobrir todas as aulas no nível Essencial (tudo do edital), sem Modo Turbo. */
+  /** Minutos para cobrir todas as aulas no ciclo mínimo (Teoria + Revisão curta + Questões), sem Modo Turbo. */
   fullMinutes: number;
-  /** Aulas cuja Teoria virou resumo (Modo Turbo). */
+  /** Aulas em Modo Turbo (Teoria enxuta + caderno curto). */
   turboAulas: Set<string>;
   floorFraction: number;
   floorShortfall: boolean;
@@ -49,6 +50,15 @@ export function itemGain(examQuestions: number, share: number, tier: Tier, level
   return examQuestions * (valueCurve(covered + delta) - valueCurve(covered)) * LEVEL_MULT[level];
 }
 
+export interface SelectOptions {
+  /** Nota (1–100) de cada trecho no concurso; `null` = fora do edital do concurso. */
+  importance?: Record<string, number | null>;
+  /** Trechos com resumo analítico (elegíveis à troca no Turbo). */
+  summaries?: Set<string>;
+  /** Questões por disciplina na prova do concurso. */
+  examQuestions?: Record<string, number>;
+}
+
 export function selectContent(
   chosen: SelectedSubject[],
   segments: SegmentsByAula,
@@ -56,6 +66,7 @@ export function selectContent(
   known: Record<string, Known> = {},
   turbo = false,
   excludedAulas = new Set<string>(),
+  opts: SelectOptions = {},
 ): Selection {
   const blueprints = new Map<string, AulaBlueprint>();
   const items: Item[] = [];
@@ -66,7 +77,8 @@ export function selectContent(
   let fullMinutes = 0;
   for (const { subject, level } of chosen) {
     levelOf.set(subject.id, level);
-    examQ.set(subject.id, subject.examQuestions);
+    const subjectQ = opts.examQuestions?.[subject.id] ?? subject.examQuestions;
+    examQ.set(subject.id, subjectQ);
     covered.set(subject.id, 0);
     const totalInc = subject.aulas.filter((a) => a.selectable && !excludedAulas.has(a.id)).reduce((n, a) => n + a.incidence, 0) || 1;
     for (const aula of subject.aulas) {
@@ -78,32 +90,43 @@ export function selectContent(
         covered.set(subject.id, covered.get(subject.id)! + share * CUM_GAIN[1]);
         continue;
       }
-      const bp = buildBlueprint(aula, segments[aula.id] ?? [], level, k);
+      // trechos fora do edital do concurso não entram no plano
+      const segs = (segments[aula.id] ?? []).filter((sg) => opts.importance?.[sg.id] !== null);
+      const bp = buildBlueprint(aula, segs, level, k);
       if (bp.teoria.length === 0 && bp.fixChunksFull === 0) continue; // nada para fazer
       blueprints.set(aula.id, bp);
       fullMinutes += tierMinutes(bp, 1).total;
-      items.push({ aulaId: aula.id, subjectId: subject.id, examQuestions: subject.examQuestions, number: aula.number, share });
+      items.push({ aulaId: aula.id, subjectId: subject.id, examQuestions: subjectQ, number: aula.number, share });
     }
   }
 
-  // Modo Turbo: se o edital inteiro não cabe, as aulas de menor valor por minuto economizado viram resumos
-  // (valor = questões esperadas na prova: peso da disciplina × participação da aula), até caber.
+  // Modo Turbo: se o edital inteiro não cabe no ciclo mínimo, as UNIDADES de Teoria de menor importância no concurso (e que já têm
+  // resumo analítico) passam a ser lidas por resumo, da menos para a mais importante, até caber. Sem nota, vale a questão
+  // esperada da aula (peso da disciplina × participação da aula), normalizada em 1–100.
   const turboAulas = new Set<string>();
-  if (turbo && fullMinutes > capacityMinutes) {
-    const cands = items
-      .map((it) => {
-        const bp = blueprints.get(it.aulaId)!;
-        const saved = tierMinutes(bp, 1).total - tierMinutes({ ...bp, turbo: true }, 1).total;
-        return { it, bp, saved, value: it.examQuestions * it.share };
-      })
-      .filter((c) => c.saved > 0)
-      .sort((a, b) => a.value / a.saved - b.value / b.saved || a.it.number - b.it.number);
+  if (turbo && opts.summaries && fullMinutes > capacityMinutes) {
+    const maxValue = Math.max(1e-9, ...items.map((it) => it.examQuestions * it.share));
+    const cands: { it: Item; unit: TeoriaUnit; score: number }[] = [];
+    for (const it of items) {
+      const bp = blueprints.get(it.aulaId)!;
+      const fallback = (100 * it.examQuestions * it.share) / maxValue;
+      for (const unit of bp.teoria) {
+        if (!unit.segmentIds.every((id) => opts.summaries!.has(id))) continue;
+        const notes = unit.segmentIds.map((id) => opts.importance?.[id]).filter((n): n is number => typeof n === "number");
+        cands.push({ it, unit, score: notes.length ? notes.reduce((a, b) => a + b, 0) / notes.length : fallback });
+      }
+    }
+    cands.sort((a, b) => a.score - b.score || a.it.number - b.it.number || a.unit.segmentIds[0].localeCompare(b.unit.segmentIds[0]));
     let total = fullMinutes;
     for (const c of cands) {
       if (total <= capacityMinutes) break;
-      blueprints.set(c.it.aulaId, { ...c.bp, turbo: true });
+      const bp = blueprints.get(c.it.aulaId)!;
+      const next = withSummaryUnit(bp, c.unit);
+      const saved = tierMinutes(bp, 1).total - tierMinutes(next, 1).total;
+      if (saved <= 0) continue;
+      blueprints.set(c.it.aulaId, next);
       turboAulas.add(c.it.aulaId);
-      total -= c.saved;
+      total -= saved;
     }
   }
 
@@ -174,7 +197,7 @@ export function selectContent(
   }
   for (const it of picked) apply(it, 1);
 
-  // 2) Amplitude primeiro: enquanto houver aula do edital ainda não vista, ela entra (Essencial) antes de qualquer aprofundamento.
+  // 2) Amplitude primeiro: enquanto houver aula do edital ainda não vista, ela entra (ciclo mínimo) antes de qualquer aprofundamento.
   //    Depois, o que sobrar de tempo vira profundidade (Completo → Aprofundamento), sempre pelo maior ganho por minuto.
   for (const breadthOnly of [true, false]) {
     for (;;) {
@@ -192,5 +215,6 @@ export function selectContent(
     }
   }
 
+  for (const id of [...turboAulas]) if (!tierByAula.has(id)) turboAulas.delete(id); // só as que de fato entram no plano
   return { tierByAula, blueprints, mastered, usedMinutes: used, fullMinutes, turboAulas, floorFraction: f, floorShortfall };
 }

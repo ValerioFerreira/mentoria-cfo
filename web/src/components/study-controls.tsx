@@ -204,11 +204,30 @@ export function StatusToggle({ id, status, compact }: { id: string; status: stri
   );
 }
 
-export function ActivityActions({ id, status }: { id: string; status: string }) {
+/** Evento disparado pelo NotesEditor a cada digitação: o aviso de "sem resumo" acompanha o que o aluno acabou de escrever. */
+const NOTE_EVENT = "mentoria:note";
+
+export function ActivityActions({ id, status, summaryCheck }: { id: string; status: string; summaryCheck?: { segmentIds: string[]; filled: string[] } }) {
   const [pending, start] = useTransition();
   const router = useRouter();
   const done = status === "DONE";
   const [modalOpen, setModalOpen] = useState(false);
+  const [nudge, setNudge] = useState(false);
+  const [filled, setFilled] = useState(() => new Set(summaryCheck?.filled ?? []));
+  useEffect(() => {
+    const on = (e: Event) => {
+      const { segmentId, filled: ok } = (e as CustomEvent<{ segmentId: string; filled: boolean }>).detail;
+      setFilled((prev) => {
+        const next = new Set(prev);
+        if (ok) next.add(segmentId);
+        else next.delete(segmentId);
+        return next;
+      });
+    };
+    window.addEventListener(NOTE_EVENT, on);
+    return () => window.removeEventListener(NOTE_EVENT, on);
+  }, []);
+  const missingSummary = !!summaryCheck && summaryCheck.segmentIds.some((sid) => !filled.has(sid));
 
   return (
     <>
@@ -222,6 +241,8 @@ export function ActivityActions({ id, status }: { id: string; status: string }) 
                 await setActivityStatus(id, "PENDING");
                 router.refresh();
               });
+            } else if (missingSummary) {
+              setNudge(true);
             } else {
               setModalOpen(true);
             }
@@ -246,6 +267,33 @@ export function ActivityActions({ id, status }: { id: string; status: string }) 
           </Button>
         )}
       </div>
+      {nudge && missingSummary && (
+        <Alert>
+          <p className="font-semibold">Você ainda não escreveu o seu resumo.</p>
+          <p className="mt-1 text-sm">É ele que você vai ler na Revisão; sem ele, a Revisão fica sem material seu. Escreva com as suas palavras o que aprendeu (2 a 3 minutos bastam).</p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <Button
+              size="sm"
+              onClick={() => {
+                setNudge(false);
+                document.getElementById("resumo")?.scrollIntoView({ behavior: "smooth", block: "start" });
+              }}
+            >
+              Escrever agora
+            </Button>
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={() => {
+                setNudge(false);
+                setModalOpen(true);
+              }}
+            >
+              Concluir assim mesmo
+            </Button>
+          </div>
+        </Alert>
+      )}
       <CompleteModal id={id} open={modalOpen} onClose={() => setModalOpen(false)} />
     </>
   );
@@ -383,6 +431,9 @@ export function NotesEditor({ segmentId, label, initial }: { segmentId: string; 
   const [text, setText] = useState(initial);
   const [state, setState] = useState<"idle" | "saving" | "saved">("idle");
   const lastSaved = useRef(initial);
+  useEffect(() => {
+    window.dispatchEvent(new CustomEvent(NOTE_EVENT, { detail: { segmentId, filled: text.trim().length > 0 } }));
+  }, [text, segmentId]);
   useEffect(() => {
     if (text === lastSaved.current) return;
     setState("saving");

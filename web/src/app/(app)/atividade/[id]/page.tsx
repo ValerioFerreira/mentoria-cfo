@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { CSSProperties, ReactNode } from "react";
 import { BizuItems, BizuSummary } from "@/components/bizu";
+import { ReadingTabs } from "@/components/reading-tabs";
 import { ActivityActions, ManualTime, NotesEditor } from "@/components/study-controls";
 import { Alert, Badge, Card, InfoTip, LinkButton, TYPE_META, TypeIcon } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
@@ -60,11 +61,15 @@ export default async function ActivityPage({ params }: PageProps<"/atividade/[id
   // aulas envolvidas (atividades finais podem misturar várias aulas) e aulas de prática citadas na Fixação
   const fixRanges = (a.fixRanges as FixRange[] | null) ?? [];
   const aulaIds = [...new Set([a.aulaId, ...segs.map((s) => s.aulaId), ...fixRanges.map((r) => r.sourceAula).filter(Boolean) as string[]])];
-  const [aulas, notes, approvedQuestions] = await Promise.all([
+  const [aulas, notes, approvedQuestions, analytics] = await Promise.all([
     db.aula.findMany({ where: { id: { in: aulaIds } }, select: { id: true, number: true, shortTitle: true, printedOffset: true, source: true, materialPath: true, subject: { select: { name: true } } } }),
     db.note.findMany({ where: { userId: user.id, segmentId: { in: segIds } } }),
     a.type === "QUESTOES" ? db.question.count({ where: { segmentId: { in: segIds }, status: { in: servableStatuses() } } }) : Promise.resolve(0),
+    a.type === "TEORIA" || a.type === "REVISAO" ? db.analyticSummary.findMany({ where: { segmentId: { in: segIds } }, select: { segmentId: true, markdown: true, status: true, readMinutes: true } }) : Promise.resolve([]),
   ]);
+  const analyticBySeg = new Map(analytics.map((x) => [x.segmentId, x]));
+  const hasAnalytic = segs.length > 0 && segs.every((s) => analyticBySeg.has(s.id));
+  const readMinutes = analytics.reduce((n, x) => n + x.readMinutes, 0);
   const aulaById = new Map(aulas.map((x) => [x.id, x]));
   const toRef = (x: (typeof aulas)[number]): AulaRef => ({ id: x.id, number: x.number, shortTitle: x.shortTitle, subjectName: x.subject.name, printedOffset: x.printedOffset, authored: x.source === "AUTHORED", materialPath: x.materialPath });
   const mainAula = toRef(aulaById.get(a.aulaId)!);
@@ -78,6 +83,26 @@ export default async function ActivityPage({ params }: PageProps<"/atividade/[id
   // blocos de teoria agrupados por aula
   const byAula = new Map<string, (SegmentRef & { aulaId: string })[]>();
   for (const s of segRefs) byAula.set(s.aulaId, [...(byAula.get(s.aulaId) ?? []), s]);
+
+  /** Resumo analítico dos trechos da atividade, na ordem do curso (concatenados quando a atividade cobre mais de um). */
+  const analyticBlocks = (
+    <div className="space-y-5">
+      {segs.map((s) => {
+        const an = analyticBySeg.get(s.id);
+        if (!an) return null;
+        return (
+          <article key={s.id} className="space-y-2">
+            <div className="flex flex-wrap items-center gap-2">
+              {(segs.length > 1 || s.startTopic) && <p className="eyebrow">{s.startTopic ?? "Assunto"}</p>}
+              <span className="text-xs text-muted">≈ {an.readMinutes} min de leitura</span>
+              {an.status === "DRAFT" && <Badge tone="neutral">rascunho</Badge>}
+            </div>
+            <BizuSummary markdown={an.markdown} />
+          </article>
+        );
+      })}
+    </div>
+  );
 
   const bizus = segs.filter((s) => s.bizu).map((s) => s.bizu!);
   const bizuSet = a.type === "REVISAO" ? "REVISAO" : "TEORIA";
@@ -132,7 +157,7 @@ export default async function ActivityPage({ params }: PageProps<"/atividade/[id
               <span className="font-semibold text-text">Assunto do edital:</span> {a.editalTopic}
             </p>
           )}
-          <ActivityActions id={a.id} status={a.status} />
+          <ActivityActions id={a.id} status={a.status} summaryCheck={a.type === "TEORIA" && segs.length > 0 ? { segmentIds: segIds, filled: segs.filter((s) => (noteBySeg.get(s.id) ?? "").trim()).map((s) => s.id) } : undefined} />
         </div>
       </header>
 
@@ -154,17 +179,40 @@ export default async function ActivityPage({ params }: PageProps<"/atividade/[id
       <section aria-labelledby="dir" className="rise" style={{ "--i": 1 } as CSSProperties}>
         <Section id="dir" icon={<Lightbulb className="h-5 w-5 text-gold" aria-hidden />} title="Diretriz" />
         <Card className="space-y-5">
-          {a.type === "TEORIA" &&
-            [...byAula].map(([aulaId, list]) => {
-              const d = a.turbo ? turboDirective(toRef(aulaById.get(aulaId)!), list) : teoriaDirective(toRef(aulaById.get(aulaId)!), list);
-              return (
-                <div key={aulaId} className="space-y-3">
-                  <p className="eyebrow">{d.heading}{d.pages > 0 ? ` · ${d.pages} págs.` : ""}</p>
-                  {toRef(aulaById.get(aulaId)!).authored && <MaterialLink path={toRef(aulaById.get(aulaId)!).materialPath} page={list[0].startPage} />}
-                  <Steps items={d.steps} color={meta.color} />
-                </div>
-              );
-            })}
+          {a.type === "TEORIA" && (() => {
+            const pagesView = (
+              <div className="space-y-5">
+                {[...byAula].map(([aulaId, list]) => {
+                  const d = teoriaDirective(toRef(aulaById.get(aulaId)!), list);
+                  return (
+                    <div key={aulaId} className="space-y-3">
+                      <p className="eyebrow">{d.heading}{d.pages > 0 ? ` · ${d.pages} págs.` : ""}</p>
+                      {toRef(aulaById.get(aulaId)!).authored && <MaterialLink path={toRef(aulaById.get(aulaId)!).materialPath} page={list[0].startPage} />}
+                      <Steps items={d.steps} color={meta.color} />
+                    </div>
+                  );
+                })}
+              </div>
+            );
+            if (!hasAnalytic) return pagesView; // sem resumo analítico, só a diretriz (nunca no Turbo: ele só troca quem tem resumo)
+            const first = [...byAula].map(([aulaId, list]) => turboDirective(toRef(aulaById.get(aulaId)!), list, readMinutes))[0];
+            const summaryView = (
+              <div className="space-y-5">
+                {a.turbo && <Steps items={first.steps} color={meta.color} />}
+                {!a.turbo && <p className="text-sm text-muted">Prefere ler um resumo em vez do material? Leia o resumo analítico abaixo (≈ {readMinutes} min). O Bizu continua valendo, no fim da página.</p>}
+                {analyticBlocks}
+              </div>
+            );
+            return (
+              <ReadingTabs
+                initial={a.turbo ? "resumo" : "paginas"}
+                tabs={[
+                  { id: "paginas", label: a.turbo ? "Ver as páginas (opcional)" : "Seguir a diretriz (págs.)", content: pagesView },
+                  { id: "resumo", label: "Ler o resumo analítico", content: summaryView },
+                ]}
+              />
+            );
+          })()}
 
           {a.type === "REVISAO" && (
             <>
@@ -218,6 +266,7 @@ export default async function ActivityPage({ params }: PageProps<"/atividade/[id
         <section className="rise" style={{ "--i": 3 } as CSSProperties}>
           <Section id="resumo" icon={<NotebookPen className="h-5 w-5 text-muted" aria-hidden />} title="Meu resumo" info="Escreva com as suas palavras. Este texto aparece na Revisão e em Meus resumos." />
           <Card className="space-y-4">
+            <p className="text-sm text-muted">Escreva o seu resumo antes de concluir: é o que você vai reler na Revisão. Sem ele, a Revisão fica sem material seu.</p>
             {segs.map((s, i) => (
               <NotesEditor key={s.id} segmentId={s.id} label={segs.length > 1 ? `Parte ${i + 1}${s.startTopic ? ` · ${s.startTopic}` : ""}` : "Resumo do assunto"} initial={noteBySeg.get(s.id) ?? ""} />
             ))}
@@ -225,19 +274,31 @@ export default async function ActivityPage({ params }: PageProps<"/atividade/[id
         </section>
       )}
 
-      {a.type === "REVISAO" && !isFinal && (
-        <section className="rise" style={{ "--i": 3 } as CSSProperties}>
-          <Section icon={<NotebookPen className="h-5 w-5 text-muted" aria-hidden />} title="Seus resumos" />
-          <Card className="space-y-3">
+      {a.type === "REVISAO" && (() => {
+        const mine = (
+          <div className="space-y-3">
             {segs.map((s) => (
               <div key={s.id} className="rounded-xl bg-surface-2 p-4 text-sm">
                 {s.startTopic && <p className="eyebrow mb-1.5">{s.startTopic}</p>}
                 <p className="whitespace-pre-wrap leading-relaxed">{noteBySeg.get(s.id) || <span className="text-muted">Você ainda não escreveu um resumo para este assunto.</span>}</p>
               </div>
             ))}
-          </Card>
-        </section>
-      )}
+          </div>
+        );
+        const tabs = [
+          { id: "meus", label: segs.length > 1 ? "Meus resumos" : "Meu resumo", content: mine },
+          ...(analytics.length > 0 ? [{ id: "analitico", label: "Resumo analítico", content: analyticBlocks }] : []),
+        ];
+        const anyNote = segs.some((s) => (noteBySeg.get(s.id) ?? "").trim());
+        return (
+          <section className="rise" style={{ "--i": 3 } as CSSProperties} aria-labelledby="rev-resumos">
+            <Section id="rev-resumos" icon={<NotebookPen className="h-5 w-5 text-muted" aria-hidden />} title="Resumos para revisar" info="Releia o que você mesmo escreveu (os resumos de cada atividade de Teoria, em sequência) ou, se preferir, o resumo analítico do assunto." />
+            <Card className="space-y-3">
+              <ReadingTabs initial={anyNote || analytics.length === 0 ? "meus" : "analitico"} tabs={tabs} />
+            </Card>
+          </section>
+        );
+      })()}
 
       {!a.turbo && bizuSection}
 

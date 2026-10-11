@@ -89,14 +89,15 @@ export function teoriaDirective(aula: AulaRef, segs: SegmentRef[]): TeoriaDirect
   };
 }
 
-/** Modo Turbo: o resumo (Bizu) substitui a Teoria; a teoria completa fica indicada para consulta. */
-export function turboDirective(aula: AulaRef, segs: SegmentRef[]): TeoriaDirective {
+/** Modo Turbo: o resumo analítico substitui a leitura do material; as páginas ficam indicadas só para consulta. */
+export function turboDirective(aula: AulaRef, segs: SegmentRef[], minutes?: number): TeoriaDirective {
   const ordered = [...segs].sort((a, b) => a.startPage - b.startPage);
   const first = ordered[0];
   const last = ordered[ordered.length - 1];
   const steps = [
-    "Modo Turbo: o tempo disponível não permite estudar esta aula na íntegra, então esta atividade traz o resumo (Bizu) dos assuntos abaixo. Leia o resumo com atenção.",
-    "Responda aos itens de Certo/Errado do Bizu e confira o que errou. Depois, anote no campo “Meu resumo” o que você lembra.",
+    `Modo Turbo: o tempo disponível pede foco, então ${ordered.length > 1 ? "estes assuntos serão estudados" : "este assunto será estudado"} pelo resumo analítico${minutes ? ` (≈ ${minutes} min de leitura)` : ""}. Leia-o com atenção, sem pular partes.`,
+    "Depois, leia o Bizu logo abaixo (resumo sintético e itens de Certo/Errado) para fixar os pontos que mais caem.",
+    "Escreva no campo “Meu resumo” o que você lembra, com as suas palavras: é o que você vai reler na Revisão.",
   ];
   if (first && last && !aula.authored) {
     steps.push(`Se um ponto ficar confuso, a teoria completa está ${pageRangeLocation(first.startPage, first.startPrinted, last.endPage, last.endPrinted)} (${aulaLabel(aula)}).`);

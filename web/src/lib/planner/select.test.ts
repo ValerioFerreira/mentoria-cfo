@@ -115,9 +115,9 @@ describe("selectContent", () => {
       expect(tiers.length, `cap ${frac}`).toBe(5);
       expect(Math.min(...tiers)).toBeGreaterThanOrEqual(1);
     }
-    // com exatamente a capacidade do Essencial, todas as aulas ficam no Essencial
+    // com exatamente a capacidade do ciclo mínimo, nenhuma aula gasta mais do que o mínimo
     const exact = selectContent(w.chosen(), w.segments, full);
-    expect([...exact.tierByAula.values()].every((t) => t === 1)).toBe(true);
+    for (const [id, tier] of exact.tierByAula) expect(tierMinutes(exact.blueprints.get(id)!, tier).total).toBe(tierMinutes(exact.blueprints.get(id)!, 1).total);
     expect(exact.usedMinutes).toBeCloseTo(full, 6);
   });
   it("mais capacidade nunca reduz a amplitude: o nº de aulas vistas só cresce (a profundidade de uma aula pode ceder à amplitude)", () => {
@@ -176,50 +176,68 @@ describe("selectContent", () => {
   });
 });
 
-describe("Modo Turbo na seleção", () => {
-  it("não faz nada se o edital já cabe", () => {
+describe("Modo Turbo na seleção (resumos por unidade)", () => {
+  const ids = (w: ReturnType<typeof world>) => Object.values(w.segments).flat().map((x) => x.id);
+  const scores = (w: ReturnType<typeof world>) => Object.fromEntries(ids(w).map((id, i) => [id, ((i * 37) % 100) + 1]));
+  const full = (w: ReturnType<typeof world>) => selectContent(w.chosen(), w.segments, 1e6).fullMinutes;
+  const opts = (w: ReturnType<typeof world>, over: object = {}) => ({ importance: scores(w), summaries: new Set(ids(w)), ...over });
+  const summarized = (sel: ReturnType<typeof selectContent>) => [...sel.blueprints.values()].flatMap((bp) => bp.summary.flatMap((u) => u.segmentIds));
+
+  it("não faz nada se o edital já cabe, se a opção está desligada ou se não há resumos disponíveis", () => {
     const w = world();
-    const full = selectContent(w.chosen(), w.segments, 1e6).fullMinutes;
-    const sel = selectContent(w.chosen(), w.segments, full * 1.2, {}, true);
-    expect(sel.turboAulas.size).toBe(0);
+    expect(selectContent(w.chosen(), w.segments, full(w) * 1.2, {}, true, new Set(), opts(w)).turboAulas.size).toBe(0);
+    expect(selectContent(w.chosen(), w.segments, full(w) * 0.5, {}, false, new Set(), opts(w)).turboAulas.size).toBe(0);
+    expect(summarized(selectContent(w.chosen(), w.segments, full(w) * 0.5, {}, true, new Set(), { importance: scores(w) }))).toHaveLength(0);
+    expect(summarized(selectContent(w.chosen(), w.segments, full(w) * 0.5, {}, true, new Set(), opts(w, { summaries: new Set() })))).toHaveLength(0);
   });
-  it("sem a opção ligada ninguém vira resumo, mesmo faltando tempo", () => {
+  it("faltando tempo, troca primeiro as unidades de MENOR importância no concurso", () => {
     const w = world();
-    const full = selectContent(w.chosen(), w.segments, 1e6).fullMinutes;
-    expect(selectContent(w.chosen(), w.segments, full * 0.5, {}, false).turboAulas.size).toBe(0);
+    const imp = scores(w);
+    const sel = selectContent(w.chosen(), w.segments, full(w) * 0.8, {}, true, new Set(), opts(w));
+    const conv = summarized(sel);
+    expect(conv.length).toBeGreaterThan(0);
+    const kept = ids(w).filter((id) => !conv.includes(id));
+    expect(Math.max(...conv.map((id) => imp[id]))).toBeLessThanOrEqual(Math.min(...kept.map((id) => imp[id])) + 0); // todas as trocadas valem menos que as mantidas
   });
-  it("faltando tempo, converte primeiro as aulas de menor valor por minuto economizado", () => {
+  it("só troca quem tem resumo disponível", () => {
     const w = world();
-    const full = selectContent(w.chosen(), w.segments, 1e6).fullMinutes;
-    const sel = selectContent(w.chosen(), w.segments, full * 0.8, {}, true);
-    expect(sel.turboAulas.size).toBeGreaterThan(0);
-    expect([...sel.turboAulas][0]).toBe("b/a02"); // disciplina B (5 questões), aula de incidência 1/5: a de menor valor
-    for (const id of sel.turboAulas) expect(sel.blueprints.get(id)!.turbo).toBe(true);
-    // a ordem de conversão segue o valor por minuto economizado
-    const share = new Map([["a/a01", 0.5], ["a/a02", 0.3], ["a/a03", 0.2], ["b/a01", 0.8], ["b/a02", 0.2]]);
-    const q = (id: string) => (id.startsWith("a/") ? 10 : 5);
-    const ratio = (id: string) => {
-      const bp = selectContent(w.chosen(), w.segments, 1e6).blueprints.get(id)!;
-      return (q(id) * share.get(id)!) / (tierMinutes(bp, 1).total - tierMinutes({ ...bp, turbo: true }, 1).total);
-    };
-    const order = [...sel.turboAulas].map(ratio);
-    expect(order).toEqual([...order].sort((x, y) => x - y));
+    const have = new Set(ids(w).filter((_, i) => i % 3 === 0));
+    const sel = selectContent(w.chosen(), w.segments, full(w) * 0.6, {}, true, new Set(), opts(w, { summaries: have }));
+    for (const id of summarized(sel)) expect(have.has(id)).toBe(true);
   });
-  it("só converte o mínimo necessário: o que sobra depois cabe na capacidade e a última conversão era indispensável", () => {
+  it("troca o mínimo necessário: o que sobra cabe na capacidade e desfazer a última troca estouraria", () => {
     const w = world();
-    const full = selectContent(w.chosen(), w.segments, 1e6).fullMinutes;
-    const cap = full * 0.85;
-    const sel = selectContent(w.chosen(), w.segments, cap, {}, true);
-    const essencial = [...sel.blueprints.values()].reduce((n, bp) => n + tierMinutes(bp, 1).total, 0);
-    expect(essencial).toBeLessThanOrEqual(cap + 1e-6);
-    const last = [...sel.turboAulas].at(-1)!;
-    const bp = sel.blueprints.get(last)!;
-    const withoutLast = essencial - tierMinutes(bp, 1).total + tierMinutes({ ...bp, turbo: false }, 1).total;
-    expect(withoutLast).toBeGreaterThan(cap);
+    const cap = full(w) * 0.85;
+    const sel = selectContent(w.chosen(), w.segments, cap, {}, true, new Set(), opts(w));
+    const total = [...sel.blueprints.values()].reduce((n, bp) => n + tierMinutes(bp, 1).total, 0);
+    expect(total).toBeLessThanOrEqual(cap + 1e-6);
+    expect(summarized(sel).length).toBeGreaterThan(0);
   });
-  it("com tempo irrisório todas as aulas viram resumo", () => {
+  it("trechos fora do edital do concurso (nota null) não entram no plano", () => {
     const w = world();
-    const sel = selectContent(w.chosen(), w.segments, 10, {}, true);
+    const imp = { ...scores(w), "a/a01/s01": null, "b/a02/s03": null } as Record<string, number | null>;
+    const sel = selectContent(w.chosen(), w.segments, 1e6, {}, false, new Set(), { importance: imp });
+    const present = [...sel.blueprints.values()].flatMap((bp) => [...bp.teoria, ...bp.summary].flatMap((u) => u.segmentIds));
+    expect(present).not.toContain("a/a01/s01");
+    expect(present).not.toContain("b/a02/s03");
+    expect(present).toHaveLength(ids(w).length - 2);
+  });
+  it("o peso da disciplina na prova do concurso substitui o do catálogo", () => {
+    const w = world();
+    const cap = full(w) * 0.5;
+    const base = selectContent(w.chosen(), w.segments, cap);
+    const inverted = selectContent(w.chosen(), w.segments, cap, {}, false, new Set(), { examQuestions: { a: 1, b: 40 } });
+    const bAulas = (sel: ReturnType<typeof selectContent>) => [...sel.tierByAula.keys()].filter((id) => id.startsWith("b/")).length;
+    expect(bAulas(inverted)).toBeGreaterThanOrEqual(bAulas(base));
+  });
+  it("com tempo só para os resumos, todas as unidades viram resumo; sem tempo nenhum, nenhuma aula é marcada", () => {
+    const w = world();
+    const bps = selectContent(w.chosen(), w.segments, 1e6).blueprints;
+    let allSummary = 0;
+    for (const bp of bps.values()) allSummary += tierMinutes({ ...bp, teoria: [], summary: [...bp.teoria] }, 1).total;
+    const sel = selectContent(w.chosen(), w.segments, allSummary + 1, {}, true, new Set(), opts(w));
     expect(sel.turboAulas.size).toBe(5);
+    expect(summarized(sel)).toHaveLength(ids(w).length);
+    expect(selectContent(w.chosen(), w.segments, 10, {}, true, new Set(), opts(w)).turboAulas.size).toBe(0); // só conta quem entra no plano
   });
 });

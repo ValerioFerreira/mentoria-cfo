@@ -89,8 +89,15 @@ export interface PlanInput {
   known?: Record<string, Known>;
   /** Aulas excluídas porque o usuário desmarcou assuntos específicos do edital. */
   excludedAulas?: string[];
-  finalReviewWeeks?: number;
-  /** Modo Turbo: se o tempo não fechar o edital, as aulas de menor valor viram resumos. */
+  /** Concurso para o qual o plano é montado (informativo; as notas e os pesos chegam em `importance` e `examQuestions`). */
+  contest?: string;
+  /** Nota de importância (1–100) de cada trecho NO CONCURSO; `null` = o assunto não consta no edital dele (sai do plano). Ausente = sem filtro. */
+  importance?: Record<string, number | null>;
+  /** Trechos que já têm resumo analítico: só eles podem ser trocados no Modo Turbo. */
+  summaries?: string[];
+  /** Questões de cada disciplina na prova do concurso (substitui `examQuestions` do catálogo, que é o do CBMPE Oficial). */
+  examQuestions?: Record<string, number>;
+  /** Modo Turbo: se o tempo não fechar o edital, as unidades de menor importância viram resumos analíticos (até 3 por atividade). */
   turbo?: boolean;
   slack?: number;
 }
@@ -168,8 +175,10 @@ export interface PlanResult {
     fullEditalHoursPerWeek: number;
     /** O edital inteiro (Teoria + Questões) cabe no tempo disponível, sem Modo Turbo? */
     editalFits: boolean;
-    /** Nº de aulas trocadas por resumos (Modo Turbo). */
+    /** Nº de aulas com ao menos uma unidade trocada por resumo (Modo Turbo). */
     turboAulas: number;
+    /** Nº de unidades de Teoria trocadas por resumo analítico (Modo Turbo). */
+    summaryUnits: number;
     /** Segunda-feira da semana 1. */
     startDate: string;
     /** Dia em que o aluno começa a estudar (pode ser depois da segunda da semana 1). */

@@ -1,9 +1,8 @@
-// Semanas finais (e folgas de capacidade): revisão geral + cadernos mistos por disciplina.
-import { apportion } from "./schedule";
-import { addDays } from "./dates";
-import { assignDays, weekFraction } from "./days";
-import { QUIZ } from "./constants";
-import type { PlannedActivity, PlannedWeek } from "./types";
+// Revisões fora do ciclo das aulas: (1) revisão geral + cadernos mistos nos dias que sobram depois de todo o conteúdo e
+// (2) a revisão única da véspera da prova (D-1).
+import { QUIZ, EVE_REVIEW_MINUTES, MAX_SAME_SUBJECT_MINUTES_PER_DAY } from "./constants";
+import { dayTarget } from "./days";
+import type { PlannedActivity } from "./types";
 
 export interface ReviewSubject {
   subjectId: string;
@@ -15,23 +14,26 @@ export interface ReviewSubject {
 
 const REV_SEGMENTS = 4;
 const QUIZ_SEGMENTS = 8;
-const EXAM_WEEK_FACTOR = 0.6;
+/** Trechos da revisão da véspera: os mais relevantes da disciplina de maior peso. */
+const EVE_SEGMENTS = 8;
 const ACTIVITY_MINUTES = 60;
 
-export function buildReviewWeeks(args: {
-  firstIndex: number;
-  lastIndex: number;
-  startDate: string; // início do plano (segunda da semana 1)
+/**
+ * Preenche com revisão geral e cadernos mistos os dias `fromOrd`..`toOrd` (os que sobraram depois do conteúdo). As disciplinas
+ * se revezam pelo peso na prova; cada uma aparece no máximo uma vez por dia (duas só se houver mais vagas que disciplinas).
+ */
+export function buildSpareReview(args: {
+  fromOrd: number;
+  toOrd: number;
   weeklyMinutes: number;
   subjects: ReviewSubject[];
-  /** Dia da semana (0 = segunda) em que o aluno começa, se a semana 1 já for de revisão. */
-  firstDay?: number;
-}): PlannedWeek[] {
+}): Map<number, PlannedActivity[]> {
   const subjects = args.subjects.filter((s) => s.segments.length > 0);
-  const weeks: PlannedWeek[] = [];
+  const days = new Map<number, PlannedActivity[]>();
+  if (subjects.length === 0) return days;
   const ptr = new Map(subjects.map((s) => [s.subjectId, 0]));
   const counter = new Map(subjects.map((s) => [s.subjectId, 0]));
-  const slotsPerWeek = Math.max(1, Math.floor(args.weeklyMinutes / ACTIVITY_MINUTES));
+  const vt = new Map(subjects.map((s) => [s.subjectId, 0]));
 
   const take = (s: ReviewSubject, n: number) => {
     const start = ptr.get(s.subjectId)!;
@@ -40,50 +42,58 @@ export function buildReviewWeeks(args: {
     return picked;
   };
 
-  for (let w = args.firstIndex; w <= args.lastIndex; w++) {
-    const isExamWeek = w === args.lastIndex;
-    const firstDay = w === 1 ? args.firstDay ?? 0 : 0;
-    const weekMinutes = Math.round(args.weeklyMinutes * (firstDay ? weekFraction(firstDay) : 1));
-    const slots = Math.max(1, Math.ceil(slotsPerWeek * (isExamWeek ? EXAM_WEEK_FACTOR : 1) * (firstDay ? weekFraction(firstDay) : 1)));
-    const quotas = subjects.length ? apportion(subjects.map((s) => s.examQuestions), slots) : [];
-    const perSubject = new Map<string, PlannedActivity[]>();
-    const pending = subjects.map((s, i) => ({ s, left: quotas[i] }));
-    // intercala as disciplinas para não concentrar o mesmo assunto em sequência
-    while (pending.some((p) => p.left > 0)) {
-      for (const p of pending) {
-        if (p.left <= 0) continue;
-        p.left--;
-        const n = counter.get(p.s.subjectId)!;
-        counter.set(p.s.subjectId, n + 1);
-        const isRev = n % 2 === 0;
-        const segs = take(p.s, isRev ? REV_SEGMENTS : QUIZ_SEGMENTS);
-        const key = `FINAL#${p.s.subjectId}#${isRev ? "R" : "Q"}${w}-${n + 1}`;
-        const act: PlannedActivity = {
-          key,
-          type: isRev ? "REVISAO" : "QUESTOES",
-          subjectId: p.s.subjectId,
-          aulaId: segs[0].aulaId,
-          minutes: ACTIVITY_MINUTES,
-          segmentIds: segs.map((x) => x.id),
-          refKeys: [],
-          scope: "FINAL",
-          ...(isRev ? {} : { quiz: { questions: QUIZ.questions, limitSeconds: QUIZ.limitSeconds, mixed: true } }),
-        };
-        perSubject.set(p.s.subjectId, [...(perSubject.get(p.s.subjectId) ?? []), act]);
-      }
+  for (let ord = args.fromOrd; ord <= args.toOrd; ord++) {
+    const slots = Math.max(1, Math.round(dayTarget(args.weeklyMinutes, ord) / ACTIVITY_MINUTES));
+    const used = new Map<string, number>();
+    const acts: PlannedActivity[] = [];
+    for (let k = 0; k < slots; k++) {
+      const maxPer = k < subjects.length ? 1 : Math.floor(MAX_SAME_SUBJECT_MINUTES_PER_DAY / ACTIVITY_MINUTES);
+      const pool = subjects.filter((s) => (used.get(s.subjectId) ?? 0) < maxPer);
+      if (pool.length === 0) break;
+      pool.sort((a, b) => vt.get(a.subjectId)! - vt.get(b.subjectId)! || b.examQuestions - a.examQuestions || a.sortOrder - b.sortOrder);
+      const s = pool[0];
+      vt.set(s.subjectId, vt.get(s.subjectId)! + 1 / Math.max(1, s.examQuestions));
+      used.set(s.subjectId, (used.get(s.subjectId) ?? 0) + 1);
+      const n = counter.get(s.subjectId)!;
+      counter.set(s.subjectId, n + 1);
+      const isRev = n % 2 === 0;
+      const segs = take(s, isRev ? REV_SEGMENTS : QUIZ_SEGMENTS);
+      acts.push({
+        key: `FINAL#${s.subjectId}#${isRev ? "R" : "Q"}${Math.floor(ord / 7) + 1}-${n + 1}`,
+        type: isRev ? "REVISAO" : "QUESTOES",
+        subjectId: s.subjectId,
+        aulaId: segs[0].aulaId,
+        minutes: ACTIVITY_MINUTES,
+        segmentIds: segs.map((x) => x.id),
+        refKeys: [],
+        scope: "FINAL",
+        day: ord % 7,
+        ...(isRev ? {} : { quiz: { questions: QUIZ.questions, limitSeconds: QUIZ.limitSeconds, mixed: true } }),
+      });
     }
-    const acts = assignDays(
-      subjects.filter((s) => perSubject.has(s.subjectId)).map((s) => ({ subjectId: s.subjectId, sortOrder: s.sortOrder, activities: perSubject.get(s.subjectId)! })),
-      weekMinutes,
-      firstDay,
-    );
-    weeks.push({
-      index: w,
-      startDate: addDays(args.startDate, (w - 1) * 7),
-      kind: "FINAL_REVIEW",
-      targetMinutes: acts.reduce((n, a) => n + a.minutes, 0),
-      activities: acts,
-    });
+    // revisão aquece o dia; caderno fecha
+    acts.sort((a, b) => (a.type === b.type ? 0 : a.type === "REVISAO" ? -1 : 1));
+    days.set(ord, acts);
   }
-  return weeks;
+  return days;
+}
+
+/** D-1: uma única Revisão, nos trechos mais relevantes da disciplina de maior peso na prova. */
+export function buildEveReview(subjects: ReviewSubject[], ord: number): PlannedActivity | null {
+  const s = subjects
+    .filter((x) => x.segments.length > 0)
+    .sort((a, b) => b.examQuestions - a.examQuestions || a.sortOrder - b.sortOrder)[0];
+  if (!s) return null;
+  const segs = s.segments.slice(0, EVE_SEGMENTS);
+  return {
+    key: `FINAL#${s.subjectId}#VESPERA`,
+    type: "REVISAO",
+    subjectId: s.subjectId,
+    aulaId: segs[0].aulaId,
+    minutes: EVE_REVIEW_MINUTES,
+    segmentIds: segs.map((x) => x.id),
+    refKeys: [],
+    scope: "FINAL",
+    day: ord % 7,
+  };
 }

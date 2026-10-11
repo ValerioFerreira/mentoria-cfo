@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
-  bundleSegments, buildBlueprint, fixacaoMinutes, pickFixChunks, questoesMinutes, reviewGroupFor, revisaoMinutes, roundMinutes,
+  bundleSegments, buildBlueprint, clampMinutes, fixacaoMinutes, pickFixChunks, questoesMinutes, quizConfig, reviewGroupFor, revisaoMinutes, summaryMinutes, summaryShape, withSummaryUnit,
   splitEven, teoriaMinutes, tierMinutes, tierShape, type AulaBlueprint,
 } from "./blueprint";
 import { mkAula, mkSeg } from "./testkit";
@@ -15,22 +15,20 @@ const bp = (n: number, opts: { level?: Level; known?: 0 | 1 | 2; pages?: number;
     opts.known ?? 0,
   );
 
-describe("roundMinutes", () => {
-  it("arredonda para múltiplos de 5 com piso de 50 minutos e teto de 80 minutos", () => {
-    expect(roundMinutes(0)).toBe(50);
-    expect(roundMinutes(19)).toBe(50);
-    expect(roundMinutes(49)).toBe(50);
-    expect(roundMinutes(53)).toBe(55);
-    expect(roundMinutes(57.4)).toBe(55);
-    expect(roundMinutes(57.5)).toBe(60);
-    expect(roundMinutes(60)).toBe(60);
-    expect(roundMinutes(78)).toBe(80);
-    expect(roundMinutes(95)).toBe(80);
+describe("clampMinutes", () => {
+  it("arredonda para múltiplos de 5 e limita à faixa informada", () => {
+    expect(clampMinutes(0, 50, 80)).toBe(50);
+    expect(clampMinutes(49, 50, 80)).toBe(50);
+    expect(clampMinutes(53, 50, 80)).toBe(55);
+    expect(clampMinutes(57.4, 50, 80)).toBe(55);
+    expect(clampMinutes(57.5, 50, 80)).toBe(60);
+    expect(clampMinutes(95, 50, 80)).toBe(80);
+    expect(clampMinutes(10, 25, 35)).toBe(25);
   });
   it("é monotônico e sempre múltiplo de 5", () => {
-    let prev = 50;
+    let prev = 30;
     for (let m = 0; m <= 200; m += 0.5) {
-      const r = roundMinutes(m);
+      const r = clampMinutes(m, 30, 60);
       expect(r % 5).toBe(0);
       expect(r).toBeGreaterThanOrEqual(prev);
       prev = r;
@@ -98,7 +96,7 @@ describe("buildBlueprint", () => {
 });
 
 describe("minutos de cada atividade", () => {
-  const u = (load: number, ids = 1) => ({ segmentIds: Array.from({ length: ids }, (_, i) => `s${i}`), pages: 12, load });
+  const u = (load: number, ids = 1, pages = 12) => ({ segmentIds: Array.from({ length: ids }, (_, i) => `s${i}`), pages, load });
   it("Teoria: 60 min para carga 12, com piso de 50 e teto de 80 antes do ritmo", () => {
     const b = bp(1);
     expect(teoriaMinutes(u(12), b)).toBe(60);
@@ -107,54 +105,68 @@ describe("minutos de cada atividade", () => {
     expect(teoriaMinutes(u(15), b)).toBe(75);
     expect(teoriaMinutes(u(40), b)).toBe(80);
   });
+  it("Teoria curta (menos de 8 págs.) pode durar a partir de 35 min", () => {
+    expect(teoriaMinutes(u(3, 1, 5), bp(1))).toBe(35);
+    expect(teoriaMinutes(u(8, 1, 7), bp(1))).toBe(40);
+    expect(teoriaMinutes(u(3, 1, 8), bp(1))).toBe(50); // 8 págs. já não é curta
+  });
   it("Teoria: cada nível encurta o tempo com piso de 50 min e teto de 80 min", () => {
     expect(teoriaMinutes(u(12), bp(1, { level: 1 }))).toBe(55); // 54 → 55
     expect(teoriaMinutes(u(12), bp(1, { level: 2 }))).toBe(50); // piso 50
     expect(teoriaMinutes(u(12), bp(1, { level: 3 }))).toBe(50); // piso 50
     expect(teoriaMinutes(u(12), bp(1, { level: 0, known: 1 }))).toBe(50); // piso 50
   });
-  it("Teoria nunca fica abaixo de 50 min nem acima de 80 min nem sai da grade de 5 min, para qualquer carga e nível", () => {
+  it("Teoria nunca sai de 35–80 min nem da grade de 5 min, para qualquer carga, páginas e nível", () => {
     for (const level of [0, 1, 2, 3] as Level[])
       for (const known of [0, 1] as const)
-        for (let load = 0; load <= 40; load++) {
-          const m = teoriaMinutes(u(load), bp(1, { level, known }));
-          expect(m).toBeGreaterThanOrEqual(50);
-          expect(m).toBeLessThanOrEqual(80);
-          expect(m % 5).toBe(0);
-        }
+        for (let load = 0; load <= 40; load++)
+          for (const pages of [3, 7, 8, 17]) {
+            const m = teoriaMinutes(u(load, 1, pages), bp(1, { level, known }));
+            expect(m).toBeGreaterThanOrEqual(pages < 8 ? 35 : 50);
+            expect(m).toBeLessThanOrEqual(80);
+            expect(m % 5).toBe(0);
+          }
   });
-  it("Modo Turbo: dimensionado com piso de 50 e teto de 80 min", () => {
-    const t = { ...bp(2), turbo: true };
-    expect(teoriaMinutes(u(12, 1), t)).toBe(50);
-    expect(teoriaMinutes(u(12, 2), t)).toBe(50);
-    expect(teoriaMinutes(u(12, 4), t)).toBe(80);
-    expect(teoriaMinutes(u(12, 4), { ...t, readPace: 0.6 })).toBe(50);
+  it("Resumo analítico (Turbo): ~20 min por unidade, até 15 min para quem lê mais rápido", () => {
+    expect(summaryMinutes(bp(1))).toBe(20);
+    expect(summaryMinutes(bp(1, { level: 1 }))).toBe(20); // 18 → 20
+    expect(summaryMinutes({ readPace: 0.6 })).toBe(15); // piso
+    expect(summaryMinutes(bp(1, { level: 0, known: 1 }))).toBe(15);
   });
-  it("Revisão: entre 50 e 80 min", () => {
+  it("Revisão: 30 a 60 min", () => {
     const b = bp(1);
-    expect([1, 2, 3, 4, 5].map((n) => revisaoMinutes(n, b))).toEqual([50, 55, 65, 75, 80]);
+    expect([1, 2, 3, 4, 5].map((n) => revisaoMinutes(n, b))).toEqual([35, 45, 55, 60, 60]);
   });
-  it("Fixação: 60 min vezes o ritmo, clampado em [50, 80]", () => {
-    expect([0, 1, 2, 3].map((l) => fixacaoMinutes(bp(1, { level: l as Level })))).toEqual([60, 55, 50, 50]);
+  it("Revisão reduzida (Turbo): metade do tempo, entre 25 e 35 min", () => {
+    const b = bp(1);
+    expect([1, 2, 3, 4, 5].map((n) => revisaoMinutes(n, b, true))).toEqual([25, 25, 30, 30, 30]);
   });
-  it("Questões: 60 min com piso de 50 min", () => {
+  it("Fixação: 60 min vezes o ritmo, entre 40 e 60 min (reduzida: 30 min)", () => {
+    expect([0, 1, 2, 3].map((l) => fixacaoMinutes(bp(1, { level: l as Level })))).toEqual([60, 55, 50, 40]);
+    expect(fixacaoMinutes(bp(1), true)).toBe(30);
+  });
+  it("Questões: 60 min com piso de 50 min (reduzidas: caderno de 15 questões em 40 min)", () => {
     expect([0, 1, 2, 3].map((l) => questoesMinutes(bp(1, { level: l as Level })))).toEqual([60, 55, 50, 50]);
+    expect(questoesMinutes(bp(1), true)).toBe(40);
+    expect(quizConfig()).toEqual({ questions: 25, limitSeconds: 3600, mixed: false });
+    expect(quizConfig(true)).toEqual({ questions: 15, limitSeconds: 2400, mixed: false });
   });
 });
 
 describe("tierShape", () => {
-  it("Essencial: só Teoria e cadernos enxutos — nunca Revisão nem Fixação", () => {
-    for (const n of [0, 1, 3, 5, 6, 9, 16]) {
+  it("Mínimo: toda aula com Teoria tem Revisão curta, 1 h de Fixação (se há questões comentadas) e cadernos (1 por até 4 Teorias)", () => {
+    for (const n of [1, 3, 4, 5, 6, 9, 16]) {
       const s = tierShape(bp(n, { runs: [[1, 40]] }), 1);
-      expect(s.reviews).toBe(0);
-      expect(s.fixChunks).toBe(0);
-      expect(s.quizzes).toBe(n >= 6 ? Math.ceil(n / 8) : 0);
+      expect(s.reviews).toBe(Math.ceil(n / 4));
+      expect(s.fixChunks).toBe(1);
+      expect(s.quizzes).toBe(Math.ceil(n / 4));
     }
+    expect(tierShape(bp(3), 1).fixChunks).toBe(0); // sem questões comentadas não há Fixação
   });
-  it("Completo acrescenta Revisões (grupos de 2 a 4 Teorias), Fixação (1 a 4 h) e cadernos", () => {
+  it("Completo acrescenta Revisões no agrupamento do nível (2 a 4 Teorias), mais Fixação (1 a 4 h) e cadernos", () => {
     const b = bp(6, { level: 0, runs: [[1, 48]] }); // 48 págs. de questões = 4 h de Fixação
     expect(b.fixChunksFull).toBe(4);
-    expect(tierShape(b, 2)).toEqual({ reviews: 3, fixChunks: 1 + 0, quizzes: 2 }); // ceil(6/2); round(4*.35)=1; ceil(6/3)
+    expect(tierShape(b, 2)).toEqual({ reviews: 3, fixChunks: 1, quizzes: 2 }); // ceil(6/2); round(4*.35)=1; ceil(6/3)
     expect(tierShape(bp(6, { level: 3, runs: [[1, 48]] }), 2).reviews).toBe(2); // ceil(6/4)
   });
   it("Aprofundamento: Fixação até 10 h e dois terços das Teorias em cadernos", () => {
@@ -166,16 +178,45 @@ describe("tierShape", () => {
     const s = tierShape(bp(0, { runs: [[1, 24]] }), 3);
     expect(s).toEqual({ reviews: 0, fixChunks: 2, quizzes: 0 });
   });
-  it("Modo Turbo zera tudo", () => {
-    expect(tierShape({ ...bp(6, { runs: [[1, 48]] }), turbo: true }, 3)).toEqual({ reviews: 0, fixChunks: 0, quizzes: 0 });
+  it("unidades em resumo saem do ciclo da aula: o ciclo normal só vê as unidades lidas no material", () => {
+    const b = bp(6, { runs: [[1, 48]] });
+    const mixed = withSummaryUnit(withSummaryUnit(b, b.teoria[0]), b.teoria[1]); // 4 normais + 2 em resumo
+    expect(mixed.teoria).toHaveLength(4);
+    expect(mixed.summary).toHaveLength(2);
+    expect(tierShape(mixed, 1)).toEqual(tierShape(bp(4, { runs: [[1, 48]] }), 1));
+    // aula inteira em resumo: o ciclo (Revisão, Fixação, Questões) passa para o bloco do Turbo
+    let all = b;
+    for (const u of b.teoria) all = withSummaryUnit(all, u);
+    expect(all.teoria).toHaveLength(0);
+    expect(tierShape(all, 3)).toEqual({ reviews: 0, fixChunks: 0, quizzes: 0 });
   });
-  it("as camadas são cumulativas: Essencial ≤ Completo ≤ Aprofundamento em minutos", () => {
+  it("resumos: caderno curto já no mínimo (1 por 6 unidades); Revisão (metade do tempo) na camada 2; Fixação reduzida na 3", () => {
+    let b = bp(6, { runs: [[1, 48]] });
+    for (const u of [...b.teoria]) b = withSummaryUnit(b, u);
+    expect(summaryShape(b, 1)).toEqual({ reviews: 0, fixChunks: 0, quizzes: 1 });
+    expect(summaryShape(b, 2).reviews).toBeCloseTo(6 / 9);
+    expect(summaryShape(b, 2).fixChunks).toBe(0);
+    expect(summaryShape(b, 3).fixChunks).toBe(1);
+    expect(summaryShape(bp(3), 3)).toEqual({ reviews: 0, fixChunks: 0, quizzes: 0 }); // sem resumos
+  });
+  it("trocar unidades por resumo custa bem menos que o ciclo mínimo normal e mantém os cadernos", () => {
+    const normal = bp(6, { runs: [[1, 48]] });
+    let turbo = normal;
+    for (const u of [...normal.teoria]) turbo = withSummaryUnit(turbo, u);
+    expect(tierMinutes(turbo, 1).total).toBeLessThan(tierMinutes(normal, 1).total * 0.5);
+    expect(tierMinutes(turbo, 1).questoes).toBeGreaterThan(0);
+    expect(tierMinutes(turbo, 1).teoria).toBe(6 * 20);
+  });
+  it("as camadas são cumulativas: Mínimo ≤ Completo ≤ Aprofundamento em minutos (também com unidades em resumo)", () => {
     for (const n of [1, 2, 4, 7, 12]) {
       for (const level of [0, 1, 2, 3] as Level[]) {
-        const b = bp(n, { level, runs: [[1, 36]] });
-        const t = [1, 2, 3].map((tier) => tierMinutes(b, tier as 1 | 2 | 3).total);
-        expect(t[0]).toBeLessThanOrEqual(t[1]);
-        expect(t[1]).toBeLessThanOrEqual(t[2]);
+        for (const converted of [0, 1, 3]) {
+          let b = bp(n, { level, runs: [[1, 36]] });
+          for (const u of b.teoria.slice(0, converted)) b = withSummaryUnit(b, u);
+          const t = [1, 2, 3].map((tier) => tierMinutes(b, tier as 1 | 2 | 3).total);
+          expect(t[0]).toBeLessThanOrEqual(t[1]);
+          expect(t[1]).toBeLessThanOrEqual(t[2]);
+        }
       }
     }
   });

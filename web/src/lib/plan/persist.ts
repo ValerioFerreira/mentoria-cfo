@@ -1,6 +1,7 @@
 import "server-only";
 import { randomUUID } from "node:crypto";
 import { db } from "@/lib/db";
+import type { Contest } from "@/generated/prisma/client";
 import type { PlanInput, PlanResult } from "@/lib/planner/types";
 
 interface SaveArgs {
@@ -35,6 +36,7 @@ export async function savePlan({ userId, input, result, diagnostics, foreignLang
           version: (prev?.version ?? 0) + 1,
           startDate: new Date(input.startDate),
           examDate: new Date(input.examDate),
+          contest: (input.contest as Contest | undefined) ?? null,
           params: result.params as object,
           coverage: result.coverage as object,
           warnings: result.warnings,

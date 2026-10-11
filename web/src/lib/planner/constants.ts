@@ -1,11 +1,12 @@
 // Regras fixas do edital (2º Tenente CBMPE, código 401) e do planejamento.
 export const EXAM_DATE_DEFAULT = "2027-02-28";
-export const FINAL_REVIEW_WEEKS = 2;
-/** Se o tempo não bastar para ver o edital inteiro (só Teoria + Questões), a revisão final encolhe até este piso para virar conteúdo. */
-export const MIN_FINAL_REVIEW_WEEKS = 1;
+/** O conteúdo (Teoria, Revisão, Fixação, Questões) corre até D-2; a véspera (D-1) tem uma única Revisão dos assuntos de maior peso. */
+export const CONTENT_ENDS_DAYS_BEFORE_EXAM = 2;
 export const WEEKLY_SLACK = 0.9; // 10% de folga para atrasos
 /** O encaixe das atividades (blocos de 20–75 min) nas semanas nunca é perfeito: a seleção conta com 95% da capacidade. */
 export const PACKING_EFFICIENCY = 0.95;
+/** Teto da busca de encaixe: as semanas podem passar até 5% da meta, e a folga semanal de 10% já cobre atrasos. */
+export const MAX_SELECTION_EFFICIENCY = 1.04;
 
 export const HOURS_BANDS = {
   LEVE: { min: 14, max: 21 },
@@ -22,17 +23,40 @@ export const FIXACAO_PAGES_PER_HOUR = 12;
 export const EXAM_TOTAL_QUESTIONS = 70;
 
 // ───────────────────────── Tempo por atividade ─────────────────────────
-/** Teoria: 50 a 80 min (alvo preferencial de 60 min), ajustada pela carga de páginas e densidade. */
-export const TEORIA_MINUTES = { perLoadUnit: 60 / SEGMENT.targetLoad, min: 50, max: 80 } as const;
-/** Revisão: base 35 min + 10 min por teoria revista, com intervalo estrito de 50 a 80 min. */
-export const REVISAO_MINUTES = { base: 35, perTeoria: 10, min: 50, max: 80 } as const;
-export const FIXACAO_MINUTES = 60;
-/** Modo Turbo: leitura do resumo (Bizu) + Certo/Errado em bloco estruturado de ~60 min (50–80 min). */
-export const TURBO_MINUTES_PER_SEGMENT = 20;
-export const QUESTOES_MINUTES = 60;
-export const MIN_ACTIVITY_MINUTES = 50;
+/** Teoria: 50 a 80 min (alvo de 60 min). Unidade curta (< `shortPages` págs.) pode ir até `shortMin`. */
+export const TEORIA_MINUTES = { perLoadUnit: 60 / SEGMENT.targetLoad, min: 50, max: 80, shortMin: 35, shortPages: 8 } as const;
+/** Revisão: base 25 min + 10 min por teoria revista, entre 30 e 60 min. */
+export const REVISAO_MINUTES = { base: 25, perTeoria: 10, min: 30, max: 60 } as const;
+export const FIXACAO_MINUTES = { normal: 60, min: 40, max: 60 } as const;
+export const QUESTOES_MINUTES = { normal: 60, min: 50, max: 80 } as const;
+/**
+ * Modo Turbo: as unidades de Teoria de menor importância no concurso (e que já têm resumo analítico) são trocadas por esse
+ * resumo — ~20 min de leitura por unidade, até 3 unidades seguidas da mesma disciplina por atividade (≤ 1 h). O ciclo é
+ * flexibilizado: o bloco de resumos acumula assuntos antes de Revisão (metade do tempo) e Questões (caderno curto).
+ */
+export const SUMMARY = {
+  /** minutos de leitura de um resumo analítico (≤ 20) e piso após o ritmo do aluno */
+  minutesPerUnit: 20, minMinutes: 15,
+  /** unidades de resumo que formam uma atividade (3 × 20 min = 1 h) */
+  maxUnitsPerActivity: 3,
+  /** uma Revisão (metade do tempo) a cada tantas atividades de resumo; um caderno curto a cada tantas unidades */
+  activitiesPerReview: 3, unitsPerQuiz: 6,
+  /** um bloco acumula, no máximo, tantas unidades (≈ 3 h de leitura) antes de fechar o ciclo */
+  maxUnitsPerBlock: 9,
+} as const;
+export const TURBO = {
+  revisaoFactor: 0.5, revisaoMin: 25, revisaoMax: 35,
+  fixacao: 30,
+  questoes: 40, quizQuestions: 15, quizLimitSeconds: 2400,
+} as const;
+/** Peso de uma unidade lida por resumo na cobertura do edital (viu o assunto de forma sintética, não pelo material). */
+export const SUMMARY_COVERAGE_WEIGHT = 0.8;
+/** Faixa geral de qualquer atividade (menor piso: Revisão/Fixação do Turbo; maior teto: Teoria/Questões). */
+export const MIN_ACTIVITY_MINUTES = 15;
 export const MAX_ACTIVITY_MINUTES = 80;
 export const TARGET_ACTIVITY_MINUTES = 60;
+/** Revisão da véspera da prova (D-1). */
+export const EVE_REVIEW_MINUTES = 60;
 
 /**
  * Ritmo por nível do aluno na disciplina (multiplica o tempo das atividades): quem já domina o assunto lê,
@@ -48,6 +72,8 @@ export const DAY_WEIGHTS = [1, 1, 1, 1, 1, 1, 0.45] as const;
 export const DAY_NAMES = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"] as const;
 export const MAX_SUBJECTS_PER_DAY = 3;
 export const MAX_SAME_SUBJECT_MINUTES_PER_DAY = 120;
+/** Dias de intervalo mínimos entre etapas do ciclo: Teoria→Revisão, Revisão→Fixação, Fixação→Questões. */
+export const CYCLE_GAP_DAYS = 1;
 
 /** Famílias de assunto: matérias parecidas competem na memória, então não ficam coladas no mesmo dia. */
 export const FAMILY: Record<string, "JURIDICA" | "LINGUAGEM" | "EXATAS" | "NATUREZA" | "HUMANAS"> = {

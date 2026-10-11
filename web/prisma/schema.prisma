@@ -112,6 +112,11 @@ enum QuizKind {
   CADERNO_PERSONALIZADO // Caderno montado pelo aluno na página de questões
 }
 
+enum SummaryStatus {
+  DRAFT
+  APPROVED
+}
+
 enum Contest {
   CBMPE_SOLDADO // CBMPE · Soldado (Praça)
   CBMPE_OFICIAL // CBMPE · 2º Tenente (Oficial)
@@ -256,11 +261,45 @@ model Segment {
 
   aula       Aula              @relation(fields: [aulaId], references: [id])
   bizu       Bizu?
+  analytic   AnalyticSummary?
+  importance SegmentImportance[]
   questions  Question[]
   activities ActivitySegment[]
   notes      Note[]
 
   @@unique([aulaId, sortOrder])
+}
+
+// Resumo analítico do trecho (≤ 20 min de leitura): substitui a leitura do material no Modo Turbo ou a pedido do aluno,
+// e é uma das opções de leitura na Revisão. Texto próprio do sistema (nunca verbatim do material-base).
+model AnalyticSummary {
+  id          String        @id @default(cuid())
+  segmentId   String        @unique
+  markdown    String
+  words       Int
+  readMinutes Int
+  status      SummaryStatus @default(DRAFT)
+  // impressão digital do trecho quando o resumo foi escrito (id é posicional: se o trecho mudar, o resumo fica órfão)
+  fingerprint Json
+  version     Int           @default(1)
+  updatedAt   DateTime      @updatedAt
+
+  segment Segment @relation(fields: [segmentId], references: [id], onDelete: Cascade)
+}
+
+// Importância do trecho em cada concurso: `appears` = o assunto consta no edital do concurso; `score` 1–100 (percentil das
+// questões esperadas no concurso). Fonte: content/importance/segments.json (pipeline/importance.py).
+model SegmentImportance {
+  segmentId String
+  contest   Contest
+  appears   Boolean
+  expected  Float // questões esperadas na prova do concurso
+  score     Int? // null quando o assunto não aparece no concurso
+
+  segment Segment @relation(fields: [segmentId], references: [id], onDelete: Cascade)
+
+  @@id([segmentId, contest])
+  @@index([contest, score])
 }
 
 model Bizu {
@@ -399,6 +438,7 @@ model Plan {
   status    PlanStatus @default(ACTIVE)
   startDate DateTime   @db.Date
   examDate  DateTime   @db.Date
+  contest   Contest? // concurso para o qual o plano foi montado (planos antigos: null = CBMPE_OFICIAL)
   params    Json // H, banda, semanas, capacidade, seed do sorteio
   coverage  Json // cobertura por disciplina + lista "ficou de fora"
   warnings  Json // avisos do planejador (lacunas do material, tempo curto…)

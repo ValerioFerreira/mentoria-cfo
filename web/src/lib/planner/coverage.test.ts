@@ -103,18 +103,22 @@ describe("computeCoverage", () => {
     for (const s of cov.subjects) {
       expect(s.theoryPagesCovered).toBeLessThanOrEqual(s.theoryPagesEligible);
       const sum = s.minutes.teoria + s.minutes.revisao + s.minutes.fixacao + s.minutes.questoes;
-      expect(s.plannedHours).toBeCloseTo(sum / 60, 1);
+      expect(Math.abs(s.plannedHours - sum / 60)).toBeLessThanOrEqual(0.05 + 1e-9);
     }
     expect(cov.subjects.find((s) => s.subjectId === "a")!.theoryPagesEligible).toBe((6 + 4 + 3) * 12);
   });
-  it("Modo Turbo marca as aulas em resumo no relatório", () => {
+  it("Modo Turbo marca as aulas com unidades em resumo e elas contam menos que as lidas no material", () => {
     const w = world();
+    const ids = Object.values(w.segments).flat().map((x) => x.id);
     const full = selectContent(w.chosen(), w.segments, 1e6).fullMinutes;
-    const sel = selectContent(w.chosen(), w.segments, full * 0.7, {}, true);
+    const sel = selectContent(w.chosen(), w.segments, full * 0.7, {}, true, new Set(), { summaries: new Set(ids) });
     const cov = computeCoverage(w.chosen(), sel);
     const turbo = cov.subjects.flatMap((s) => s.aulas).filter((a) => a.turbo);
     expect(turbo.length).toBe(sel.turboAulas.size);
     expect(turbo.length).toBeGreaterThan(0);
+    const off = computeCoverage(w.chosen(), selectContent(w.chosen(), w.segments, full * 0.7));
+    expect(cov.selected).toBeGreaterThan(off.selected); // ver mais aulas, mesmo por resumo, cobre mais
+    expect(cov.selected).toBeLessThanOrEqual(1);
   });
   it("sem disciplinas escolhidas não há divisão por zero", () => {
     const sel = selectContent([], {}, 100);

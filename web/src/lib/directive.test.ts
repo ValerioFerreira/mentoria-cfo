@@ -55,7 +55,13 @@ describe("diretriz de Modo Turbo e localização de páginas", () => {
       seg({ startPage: 5, endPage: 20, startPrinted: null, endPrinted: null }),
       seg({ startPage: 21, endPage: 62, startPrinted: null, endPrinted: null }),
     ]);
-    expect(t.steps[2]).toContain("está da pág. 5 à pág. 62 (Aula 02 — Adjetivos e Advérbios)");
+    expect(t.steps[0]).toContain("Modo Turbo");
+    expect(t.steps[0]).toContain("resumo analítico");
+    expect(t.steps[1]).toContain("Bizu");
+    expect(t.steps[2]).toContain("Meu resumo");
+    expect(t.steps[3]).toContain("está da pág. 5 à pág. 62 (Aula 02 — Adjetivos e Advérbios)");
+    expect(t.pages).toBe(0);
+    expect(turboDirective(aula, [seg()], 20).steps[0]).toContain("≈ 20 min");
   });
 });
 

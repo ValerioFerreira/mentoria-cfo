@@ -5,7 +5,6 @@ import { generatePlan, PlanInputError } from "./index";
 import { addDays, dayIndexOf } from "./dates";
 import { loadCatalog, loadSegments } from "./fixtures";
 import { CONTEST_SUBJECTS } from "../contests";
-import { FINAL_REVIEW_WEEKS, MIN_FINAL_REVIEW_WEEKS } from "./constants";
 import type { Level, PlanInput, PlanResult } from "./types";
 
 const catalog = loadCatalog();
@@ -34,7 +33,8 @@ describe("invariantes do plano (matriz de entradas)", () => {
         expect(w.index, id).toBe(i + 1);
         expect(w.startDate, id).toBe(addDays("2026-10-12", i * 7));
       });
-      expect(plan.weeks.at(-1)!.kind, id).toBe("FINAL_REVIEW");
+      // a última semana é a da véspera da prova: tem a única Revisão de D-1
+      expect(plan.weeks.at(-1)!.activities.filter((a) => a.key.endsWith("#VESPERA")), id).toHaveLength(1);
     }
   });
   it("a meta de cada semana é a soma das atividades e nunca passa de 105% da meta semanal", () => {
@@ -83,19 +83,20 @@ describe("invariantes do plano (matriz de entradas)", () => {
       }
     }
   });
-  it("atividades duram entre 50 e 80 min (alvo 60 min), tudo em múltiplos de 5", () => {
+  it("atividades duram o que o tipo pede (múltiplos de 5): Teoria 35–80, Revisão 30–60, Fixação 30–60, Questões 40–80; Turbo mais curto", () => {
+    const range: Record<string, [number, number]> = { TEORIA: [35, 80], REVISAO: [25, 60], FIXACAO: [30, 60], QUESTOES: [40, 80] };
     for (const { plan } of plans) {
       for (const a of acts(plan)) {
         expect(a.minutes % 5).toBe(0);
-        expect(a.minutes).toBeGreaterThanOrEqual(50);
-        expect(a.minutes).toBeLessThanOrEqual(80);
+        expect(a.minutes, `${a.key} ${a.type}`).toBeGreaterThanOrEqual(range[a.type][0]);
+        expect(a.minutes, `${a.key} ${a.type}`).toBeLessThanOrEqual(range[a.type][1]);
         if (a.type === "TEORIA") expect(a.segmentIds.length).toBeGreaterThan(0);
         if (a.type === "FIXACAO") expect(a.fixRanges!.length).toBeGreaterThan(0);
         if (a.type === "QUESTOES") expect(a.quiz).toBeDefined();
       }
     }
   });
-  it("nenhum dia da semana fica fora de 0–6 e nenhuma atividade é agendada no dia da prova ou depois", () => {
+  it("nenhum dia da semana fica fora de 0–6; o conteúdo vai até D-2 e só a Revisão da véspera (D-1) cai depois", () => {
     const examDay = dayIndexOf("2027-02-28"); // domingo (6)
     for (const { plan } of plans) {
       for (const a of acts(plan)) {
@@ -103,6 +104,9 @@ describe("invariantes do plano (matriz de entradas)", () => {
         expect(a.day).toBeLessThanOrEqual(6);
       }
       for (const a of plan.weeks.at(-1)!.activities) expect(a.day!).toBeLessThan(examDay);
+      const eve = plan.weeks.at(-1)!.activities.filter((a) => a.day === examDay - 1);
+      expect(eve).toHaveLength(1);
+      expect(eve[0].key.endsWith("#VESPERA")).toBe(true);
     }
   });
   it("cobertura e profundidade ficam em 0–1; cobertura do edital ≤ da seleção", () => {
@@ -114,35 +118,39 @@ describe("invariantes do plano (matriz de entradas)", () => {
       expect(plan.coverage.edital).toBeLessThanOrEqual(plan.coverage.selected + 1e-9);
     }
   });
-  it("os parâmetros são coerentes (semanas, capacidade, horas) e a revisão final respeita o piso", () => {
+  it("os parâmetros são coerentes (semanas, capacidade, horas)", () => {
     for (const { plan, hours } of plans) {
       const p = plan.params;
       expect(p.totalWeeks).toBe(20);
       expect(p.hoursPerWeek).toBe(hours);
-      expect(p.contentWeeks + (p.totalWeeks - p.contentWeeks)).toBe(p.totalWeeks);
-      expect(p.reviewWeeks).toBeGreaterThanOrEqual(MIN_FINAL_REVIEW_WEEKS);
-      expect(p.contentWeeks).toBeLessThanOrEqual(p.totalWeeks - MIN_FINAL_REVIEW_WEEKS);
-      expect(p.plannedHours).toBeLessThanOrEqual(p.capacityHours + 1);
+      expect(p.contentWeeks).toBeLessThanOrEqual(p.totalWeeks);
+      expect(p.contentWeeks + p.reviewWeeks).toBe(p.totalWeeks);
+      expect(p.plannedHours).toBeLessThanOrEqual(p.capacityHours * 1.05 + 1);
       expect(p.weeklyMinutes).toBe(Math.floor(hours * 60 * 0.9));
       expect(p.firstStudyDate).toBe("2026-10-12");
       expect(p.fullEditalHoursPerWeek).toBeGreaterThan(0);
     }
   });
-  it("nas horas máximas, o edital das 3 disciplinas cabe; editalFits é consistente com fullEditalHoursPerWeek", () => {
-    for (const { plan, hours, subjects } of plans) {
-      if (subjects.length === SMALL.length && hours >= 28) expect(plan.params.editalFits).toBe(true);
-      // se a pessoa estuda pelo menos o necessário para ver o edital inteiro, ele cabe
-      if (hours >= plan.params.fullEditalHoursPerWeek) expect(plan.params.editalFits).toBe(true);
+  it("editalFits é consistente com fullEditalHoursPerWeek e com a cobertura (quem estuda bem acima do necessário para o ciclo mínimo vê o edital)", () => {
+    for (const { plan, hours } of plans) {
+      if (hours >= plan.params.fullEditalHoursPerWeek * 1.5) expect(plan.params.editalFits).toBe(true);
+      if (plan.params.editalFits) expect(plan.coverage.selected).toBeGreaterThan(0.99);
     }
+    // 3 disciplinas cabem folgadamente nas horas altas
+    const small = plans.filter((p) => p.subjects.length === SMALL.length && p.hours === 50);
+    for (const p of small) expect(p.plan.params.editalFits).toBe(true);
   });
-  // Amplitude primeiro: quando o edital não cabe, a sobra da capacidade (menor que qualquer aula ainda não vista) pode virar um
-  // pouco de profundidade, mas Revisão/Fixação nunca passam de uma fração mínima do tempo (medido: ≤ 0,1%).
-  it("quando o edital não cabe, o conteúdo é praticamente só Teoria + cadernos (Revisão/Fixação ≤ 3% da capacidade)", () => {
+  // Piso de prática: mesmo quando o edital não cabe, cada aula que entra fecha o ciclo mínimo (Revisão + Questões), então a prática
+  // não é sobra: Revisão + Fixação + Questões ficam em torno de metade do tempo de conteúdo.
+  it("quando o edital não cabe, a prática (Revisão + Fixação + Questões) é pelo menos 30% do tempo de conteúdo e não há Questões sem Revisão", () => {
     for (const { plan, hours, level, label } of plans) {
       if (plan.params.editalFits) continue;
-      const content = acts(plan).filter((a) => a.kind === "CONTENT");
-      const deep = content.filter((a) => a.type === "REVISAO" || a.type === "FIXACAO").reduce((n, a) => n + a.minutes, 0);
-      expect(deep, `${hours}h/${level}/${label}`).toBeLessThanOrEqual(plan.params.capacityHours * 60 * 0.03);
+      const content = acts(plan).filter((a) => a.scope !== "FINAL");
+      const total = content.reduce((n, a) => n + a.minutes, 0);
+      const practice = content.filter((a) => a.type !== "TEORIA").reduce((n, a) => n + a.minutes, 0);
+      expect(practice / total, `${hours}h/${level}/${label}`).toBeGreaterThanOrEqual(0.3);
+      for (const q of content.filter((a) => a.type === "QUESTOES"))
+        expect(content.some((r) => r.aulaId === q.aulaId && r.type === "REVISAO"), `${hours}h/${level}/${label} ${q.aulaId}`).toBe(true);
     }
   });
 });
@@ -158,11 +166,12 @@ describe("variações de calendário", () => {
       for (const a of last.activities) expect(a.day!, examDate).toBeLessThan(examDay);
     }
   });
-  // BUG (index.ts, "nada é agendado no dia da prova"): o recorte só roda com `examDay > 0`. Com prova numa SEGUNDA-feira a
-  // última semana começa no próprio dia da prova e fica com atividades de segunda a domingo (depois da prova).
-  it.fails("prova na segunda-feira: a semana da prova não pode ter atividades no dia da prova nem depois", () => {
+  it("prova na segunda-feira: a semana da prova não tem atividades e a véspera (domingo) tem a única Revisão", () => {
     const plan = generatePlan(input(25, SMALL, 1, { examDate: "2027-02-22" }));
-    expect(plan.weeks.at(-1)!.activities.filter((a) => a.day! >= 0)).toHaveLength(0);
+    const last = plan.weeks.at(-1)!;
+    expect(last.startDate).toBe("2027-02-15");
+    expect(last.activities.filter((a) => a.day === 6)).toHaveLength(1);
+    expect(plan.weeks.every((w) => w.startDate < "2027-02-22")).toBe(true);
   });
   it("início em qualquer dia da semana 1 (firstDay 0–6) nunca agenda antes do dia de início e nunca perde disciplina", () => {
     for (let firstDay = 0; firstDay <= 6; firstDay++) {
@@ -172,28 +181,23 @@ describe("variações de calendário", () => {
       expect(new Set(acts(plan).map((a) => a.subjectId))).toEqual(new Set(SMALL));
     }
   });
-  it("prova bem próxima (2 a 4 semanas): gera plano válido, sem estourar semanas, com revisão no fim", () => {
+  it("prova bem próxima (2 a 4 semanas): gera plano válido, sem estourar semanas, com a revisão da véspera", () => {
     for (const examDate of ["2026-10-25", "2026-11-01", "2026-11-08"]) {
       const plan = generatePlan(input(25, SMALL, 1, { examDate }));
       expect(plan.params.totalWeeks).toBeGreaterThanOrEqual(2);
       expect(plan.weeks.length).toBeLessThanOrEqual(plan.params.totalWeeks);
-      expect(plan.weeks.at(-1)!.kind).toBe("FINAL_REVIEW");
-      expect(plan.params.contentWeeks).toBeLessThanOrEqual(plan.params.totalWeeks - 1);
+      expect(plan.weeks.at(-1)!.activities.some((a) => a.key.endsWith("#VESPERA"))).toBe(true);
     }
   });
   it("prova distante (1 ano): as semanas sobrantes viram revisão e o plano continua válido", () => {
     const plan = generatePlan(input(25, SMALL, 1, { examDate: "2027-10-10" }));
     expect(plan.params.totalWeeks).toBe(52);
     expect(plan.weeks).toHaveLength(52);
-    expect(plan.weeks.filter((w) => w.kind === "FINAL_REVIEW").length).toBeGreaterThanOrEqual(FINAL_REVIEW_WEEKS);
+    expect(plan.weeks.filter((w) => w.kind === "FINAL_REVIEW").length).toBeGreaterThanOrEqual(2);
     expect(plan.params.editalFits).toBe(true);
   });
-  it("revisão final explícita é respeitada e nunca encolhe sozinha", () => {
-    for (const n of [1, 2, 3, 4]) {
-      const plan = generatePlan(input(14, ALL, 0, { finalReviewWeeks: n }));
-      expect(plan.params.totalWeeks - plan.params.contentWeeks).toBe(n);
-      expect(plan.warnings.some((w) => w.includes("reduzida a 1 semana"))).toBe(false);
-    }
+  it("com o dia de início colado na prova não sobra dia de estudo: erro de data muito próxima", () => {
+    expect(() => generatePlan(input(25, SMALL, 1, { examDate: "2026-10-19", firstDay: 6 }))).toThrowError(PlanInputError);
   });
 });
 

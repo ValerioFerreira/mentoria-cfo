@@ -7,6 +7,7 @@ import { getPendingPlan } from "@/lib/data/study";
 import { todayISO } from "@/lib/plan-time";
 import { getUserContest } from "@/lib/user-contest";
 import { CONTEST_SUBJECTS } from "@/lib/contests";
+import { contestExamQuestions } from "@/lib/data/contest-data";
 import { Wizard, type WizardSubject } from "./wizard";
 
 export const metadata: Metadata = { title: "Montar plano" };
@@ -25,6 +26,7 @@ export default async function OnboardingPage() {
     db.editalItem.findMany({ orderBy: [{ subjectId: "asc" }, { sortOrder: "asc" }], select: { id: true, subjectId: true, title: true, aulaIds: true } }),
   ]);
   const itemsBySubject = Map.groupBy(items, (i) => i.subjectId);
+  const weights = contestExamQuestions(contest);
   const subjects: WizardSubject[] = catalog.subjects
     .filter((s) => allowed.has(s.id))
     .map((s) => {
@@ -33,7 +35,7 @@ export default async function OnboardingPage() {
         id: s.id,
         name: s.name,
         block: s.block,
-        examQuestions: s.examQuestions,
+        examQuestions: weights[s.id] ?? s.examQuestions,
         languageGroup: s.languageGroup ?? null,
         items: (itemsBySubject.get(s.id) ?? []).map((i) => ({ id: i.id, title: i.title, aulaIds: i.aulaIds as string[] })),
         aulaIds: aulas.map((a) => a.id),
