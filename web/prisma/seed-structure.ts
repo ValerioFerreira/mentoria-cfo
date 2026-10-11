@@ -172,6 +172,8 @@ export async function seedStructure() {
   // 6. Bizus, C/E e Questões em lote
   console.log(`[Seed Structure] 6/6 Sincronizando Bizus e Questões em lote...`);
   await seedItemsBatch();
+  await seedSummaries();
+  await seedImportance();
 
   console.log(`[Seed Structure] Concluído com sucesso!`);
 }
@@ -236,10 +238,72 @@ export async function seedItemsBatch() {
   for (const c of chunk(bizuRows, 500)) {
     await db.bizu.createMany({ data: c, skipDuplicates: true });
   }
+  // createMany não atualiza: o resumo sintético reescrito (content/summaries → apply_synthetic.py) precisa chegar ao banco
+  const existing = new Map((await db.bizu.findMany({ select: { segmentId: true, summary: true } })).map((b) => [b.segmentId, b.summary]));
+  // só os trechos com resumo sintético novo (content/summaries): o resto do Bizu em produção não é sobrescrito
+  const rewritten = new Set<string>();
+  const sumDir = path.join(CONTENT, "summaries");
+  if (fs.existsSync(sumDir)) {
+    for (const sub of fs.readdirSync(sumDir).filter((d) => fs.statSync(path.join(sumDir, d)).isDirectory())) {
+      for (const f of fs.readdirSync(path.join(sumDir, sub)).filter((x) => x.endsWith(".json"))) {
+        const doc = JSON.parse(fs.readFileSync(path.join(sumDir, sub, f), "utf-8")) as { segments: { id: string; synthetic?: string[] }[] };
+        for (const sg of doc.segments) if (sg.synthetic?.length) rewritten.add(sg.id);
+      }
+    }
+  }
+  const changed = bizuRows.filter((b) => rewritten.has(b.segmentId) && existing.has(b.segmentId) && existing.get(b.segmentId) !== b.summary);
+  for (const b of changed) await db.bizu.update({ where: { segmentId: b.segmentId }, data: { summary: b.summary, version: { increment: 1 } } });
+  if (changed.length) console.log(`[Seed Items] ${changed.length} resumos sintéticos (Bizu) atualizados.`);
   for (const c of chunk(bizuItemRows, 1000)) {
     await db.bizuItem.createMany({ data: c, skipDuplicates: true });
   }
   console.log(`[Seed Items] Sincronizados: ${bizuRows.length} bizus, ${bizuItemRows.length} itens C/E, ${questionRows.length} questões, ${optionRows.length} alternativas.`);
+}
+
+
+interface SummariesFile {
+  aula: string; status?: "DRAFT" | "APPROVED";
+  segments: { id: string; fingerprint: unknown; analytic?: string }[];
+}
+
+/** Resumos analíticos (content/summaries/<disc>/<aula>.json): upsert por trecho; só semeia trechos que existem no banco. */
+export async function seedSummaries() {
+  const dir = path.join(CONTENT, "summaries");
+  if (!fs.existsSync(dir)) return;
+  const segIds = new Set((await db.segment.findMany({ select: { id: true } })).map((x) => x.id));
+  const rows: { segmentId: string; markdown: string; words: number; readMinutes: number; status: "DRAFT" | "APPROVED"; fingerprint: object }[] = [];
+  for (const sub of fs.readdirSync(dir).filter((d) => fs.statSync(path.join(dir, d)).isDirectory())) {
+    for (const f of fs.readdirSync(path.join(dir, sub)).filter((x) => x.endsWith(".json"))) {
+      const doc: SummariesFile = JSON.parse(fs.readFileSync(path.join(dir, sub, f), "utf-8"));
+      for (const s of doc.segments) {
+        if (!s.analytic || !segIds.has(s.id)) continue;
+        const words = (s.analytic.match(/\p{L}[\p{L}\p{N}'-]*/gu) ?? []).length;
+        rows.push({ segmentId: s.id, markdown: s.analytic, words, readMinutes: Math.max(1, Math.min(20, Math.round(words / 100))), status: doc.status ?? "DRAFT", fingerprint: (s.fingerprint ?? {}) as object });
+      }
+    }
+  }
+  const existing = new Map((await db.analyticSummary.findMany({ select: { segmentId: true, markdown: true, status: true } })).map((x) => [x.segmentId, x]));
+  const fresh = rows.filter((r) => !existing.has(r.segmentId));
+  for (const c of chunk(fresh, 100)) await db.analyticSummary.createMany({ data: c, skipDuplicates: true });
+  const changed = rows.filter((r) => existing.has(r.segmentId) && (existing.get(r.segmentId)!.markdown !== r.markdown || existing.get(r.segmentId)!.status !== r.status));
+  for (const r of changed) await db.analyticSummary.update({ where: { segmentId: r.segmentId }, data: { ...r, version: { increment: 1 } } });
+  console.log(`[Seed Summaries] ${rows.length} resumos analíticos (${fresh.length} novos, ${changed.length} atualizados).`);
+}
+
+/** Importância dos trechos por concurso (content/importance/segments.json): substitui a tabela inteira. */
+export async function seedImportance() {
+  const file = path.join(CONTENT, "importance", "segments.json");
+  if (!fs.existsSync(file)) return;
+  const doc = JSON.parse(fs.readFileSync(file, "utf-8")) as { segments: Record<string, { contests: Record<string, { appears: boolean; expected: number; score: number | null }> }> };
+  const segIds = new Set((await db.segment.findMany({ select: { id: true } })).map((x) => x.id));
+  const rows = Object.entries(doc.segments).flatMap(([segmentId, rec]) =>
+    segIds.has(segmentId)
+      ? Object.entries(rec.contests).map(([contest, c]) => ({ segmentId, contest: contest as "CBMPE_OFICIAL", appears: c.appears, expected: c.expected, score: c.score }))
+      : [],
+  );
+  await db.segmentImportance.deleteMany({});
+  for (const c of chunk(rows, 1000)) await db.segmentImportance.createMany({ data: c, skipDuplicates: true });
+  console.log(`[Seed Importance] ${rows.length} notas de importância (trecho × concurso).`);
 }
 
 export async function seedAdmin() {
@@ -352,8 +416,9 @@ export async function seedQuestions() {
       },
     });
 
-    if (currentEstCount !== estQuestions.length) {
-      console.log(`[Seed Questions] Atualizando acervo Estratégia (atual: ${currentEstCount}, novo auditado: ${estQuestions.length})...`);
+    const forceRefresh = process.argv.includes("--force-refresh") || process.env.FORCE_REFRESH === "1";
+    if (currentEstCount !== estQuestions.length || forceRefresh) {
+      console.log(`[Seed Questions] Atualizando acervo Estratégia (atual: ${currentEstCount}, novo auditado: ${estQuestions.length}, force: ${forceRefresh})...`);
       // Limpar antigas questões do Estratégia se houver contaminação prévia
       try {
         await db.$executeRawUnsafe(`

@@ -67,7 +67,9 @@ export function formatInlineRich(text: string): ReactNode {
       );
     }
 
-    return <React.Fragment key={idx}>{part}</React.Fragment>;
+    // Remove qualquer marcador ** residual solto para impedir exibição literal
+    const sanitizedText = part.replace(/\*\*/g, "");
+    return <React.Fragment key={idx}>{sanitizedText}</React.Fragment>;
   });
 }
 
