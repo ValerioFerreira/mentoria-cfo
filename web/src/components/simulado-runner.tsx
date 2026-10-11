@@ -18,6 +18,7 @@ import {
 import { Badge, Button, Card } from "@/components/ui";
 import { fmtClock } from "@/lib/ui-format";
 import { finishSimulado, saveSimuladoAnswer } from "@/lib/quiz/simulado-actions";
+import { RichContent, formatInlineRich } from "@/components/rich-content";
 
 export interface SimuladoQuestionItem {
   position: number;
@@ -250,18 +251,18 @@ export function SimuladoRunner({
 
             {/* Texto de Apoio (se houver) */}
             {currentQ.support && (
-              <div className="rounded-xl border border-border/70 bg-surface-2/40 p-4 text-xs text-text leading-relaxed whitespace-pre-wrap">
+              <div className="rounded-xl border border-border/70 bg-surface-2/40 p-4 text-xs text-text leading-relaxed">
                 <span className="font-bold text-muted uppercase tracking-wider text-[10px] block mb-1">
                   Texto de Referência
                 </span>
-                {currentQ.support}
+                <RichContent content={currentQ.support} />
               </div>
             )}
 
             {/* Enunciado */}
-            <p className="text-sm sm:text-base font-normal text-text leading-relaxed whitespace-pre-wrap">
-              {currentQ.statement}
-            </p>
+            <div className="text-sm sm:text-base font-normal text-text leading-relaxed">
+              <RichContent content={currentQ.statement} />
+            </div>
 
             {/* Alternativas de A a E */}
             <div className="space-y-2.5 pt-2">
@@ -288,7 +289,7 @@ export function SimuladoRunner({
                     >
                       {opt.label}
                     </span>
-                    <span className="flex-1 leading-snug pt-0.5">{opt.text}</span>
+                    <span className="flex-1 leading-snug pt-0.5">{formatInlineRich(opt.text)}</span>
                   </button>
                 );
               })}

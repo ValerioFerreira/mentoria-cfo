@@ -38,122 +38,7 @@ interface Props {
   questions: RunnerQuestion[];
 }
 
-function formatInlineMarkdown(text: string): ReactNode {
-  const parts = text.split(/(\*\*.*?\*\*|\*.*?\*|`.*?`)/g);
-  return parts.map((part, idx) => {
-    if (part.startsWith("**") && part.endsWith("**") && part.length > 4) {
-      return (
-        <strong key={idx} className="font-semibold text-text">
-          {part.slice(2, -2)}
-        </strong>
-      );
-    }
-    if (part.startsWith("*") && part.endsWith("*") && part.length > 2) {
-      return (
-        <em key={idx} className="italic text-text">
-          {part.slice(1, -1)}
-        </em>
-      );
-    }
-    if (part.startsWith("`") && part.endsWith("`") && part.length > 2) {
-      return (
-        <code key={idx} className="rounded bg-surface-3 px-1.5 py-0.5 font-mono text-xs font-semibold text-text">
-          {part.slice(1, -1)}
-        </code>
-      );
-    }
-    return <span key={idx}>{part}</span>;
-  });
-}
-
-function renderMarkdownExplanation(markdown: string): ReactNode {
-  if (!markdown) return null;
-  const blocks = markdown.split(/\n\s*\n/).map((b) => b.trim()).filter(Boolean);
-
-  return (
-    <div className="space-y-3 text-[14px] leading-relaxed text-text/90">
-      {blocks.map((block, bIdx) => {
-        // Tabela markdown
-        if (block.includes("|") && block.split("\n").length >= 2) {
-          const lines = block.split("\n").map((l) => l.trim()).filter(Boolean);
-          const header = lines[0];
-          const rows = lines.slice(1).filter((l) => !/^\|?[\s|:-]+\|?$/.test(l));
-          const parseRow = (r: string) =>
-            r.replace(/^\|/, "").replace(/\|$/, "").split("|").map((c) => c.trim());
-          const headers = parseRow(header);
-
-          return (
-            <div key={bIdx} className="my-2.5 overflow-x-auto rounded-xl border border-border/70 bg-surface shadow-xs">
-              <table className="w-full text-left text-xs">
-                <thead className="border-b border-border/70 bg-surface-2 text-muted font-bold uppercase tracking-wider">
-                  <tr>
-                    {headers.map((h, i) => (
-                      <th key={i} className="px-3 py-2">
-                        {formatInlineMarkdown(h)}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-border/40">
-                  {rows.map((row, rIdx) => (
-                    <tr key={rIdx} className="hover:bg-surface-2/40">
-                      {parseRow(row).map((cell, cIdx) => (
-                        <td key={cIdx} className="px-3 py-2 align-top">
-                          {formatInlineMarkdown(cell)}
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          );
-        }
-
-        // Listas não ordenadas
-        if (block.startsWith("- ") || block.startsWith("* ")) {
-          const items = block.split("\n").map((l) => l.replace(/^[-*]\s+/, "").trim()).filter(Boolean);
-          return (
-            <ul key={bIdx} className="space-y-1.5 pl-4 list-disc marker:text-primary">
-              {items.map((item, iIdx) => (
-                <li key={iIdx}>{formatInlineMarkdown(item)}</li>
-              ))}
-            </ul>
-          );
-        }
-
-        // Títulos
-        if (block.startsWith("### ")) {
-          return (
-            <h4 key={bIdx} className="font-display text-base font-bold text-text pt-1">
-              {formatInlineMarkdown(block.replace(/^###\s+/, ""))}
-            </h4>
-          );
-        }
-        if (block.startsWith("## ")) {
-          return (
-            <h3 key={bIdx} className="font-display text-lg font-bold text-text pt-2">
-              {formatInlineMarkdown(block.replace(/^##\s+/, ""))}
-            </h3>
-          );
-        }
-
-        // Parágrafo padrão com preservação de quebras simples
-        const lines = block.split("\n");
-        return (
-          <p key={bIdx}>
-            {lines.map((line, lIdx) => (
-              <span key={lIdx}>
-                {lIdx > 0 && <br />}
-                {formatInlineMarkdown(line)}
-              </span>
-            ))}
-          </p>
-        );
-      })}
-    </div>
-  );
-}
+import { RichContent, formatInlineRich } from "@/components/rich-content";
 
 export function QuizRunner({ sessionId, startedAtMs, limitSeconds, serverNowMs, questions }: Props) {
   const router = useRouter();
@@ -405,13 +290,13 @@ export function QuizRunner({ sessionId, startedAtMs, limitSeconds, serverNowMs, 
           </div>
 
           {q.support && (
-            <div className="whitespace-pre-line rounded-xl border-l-4 border-border-strong bg-surface-2 p-4 text-sm leading-relaxed text-text/90">
-              {q.support}
+            <div className="rounded-xl border-l-4 border-border-strong bg-surface-2 p-4 text-sm leading-relaxed text-text/90">
+              <RichContent content={q.support} />
             </div>
           )}
 
-          <div className="whitespace-pre-line text-[16px] leading-relaxed text-text font-normal">
-            {q.statement}
+          <div className="text-[16px] leading-relaxed text-text font-normal">
+            <RichContent content={q.statement} />
           </div>
 
           <div className="space-y-2.5" role="radiogroup" aria-label={`Alternativas da questão ${idx + 1}`}>
@@ -458,7 +343,7 @@ export function QuizRunner({ sessionId, startedAtMs, limitSeconds, serverNowMs, 
                   <span className={cx("mt-px flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border font-display text-lg font-bold transition", badgeStyle)}>
                     {o.label}
                   </span>
-                  <span className="pt-1 flex-1">{o.text}</span>
+                  <span className="pt-1 flex-1">{formatInlineRich(o.text)}</span>
                   {cur.confirmed && isCorrectOpt && (
                     <CircleCheck className="mt-1 h-5 w-5 shrink-0 text-ok" aria-label="Alternativa correta" />
                   )}
@@ -529,7 +414,7 @@ export function QuizRunner({ sessionId, startedAtMs, limitSeconds, serverNowMs, 
                     <span>Comentário do Professor</span>
                   </div>
                   <div className="pt-1 border-t border-border/60">
-                    {renderMarkdownExplanation(cur.explanation)}
+                    <RichContent content={cur.explanation} />
                   </div>
                 </div>
               )}

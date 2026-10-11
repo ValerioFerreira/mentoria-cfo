@@ -375,12 +375,13 @@ export async function seedQuestions() {
           aulaId,
           segmentId,
           topic: q.topic ?? null,
+          support: q.support ?? null,
           statement: q.statement,
           explanation: q.explanation,
           difficulty: q.difficulty || 2,
           pattern: q.pattern || q.banca || "AOCP",
           banca: q.banca || "AOCP",
-          status: q.status || "APPROVED",
+          status: q.status === "DRAFT" ? ("DRAFT" as const) : ("APPROVED" as const),
           batch: "estrategia-auditado-2026",
         };
       });
