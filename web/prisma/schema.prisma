@@ -193,6 +193,7 @@ model EditalItem {
   sortOrder Int
 
   subject Subject @relation(fields: [subjectId], references: [id])
+  activities Activity[]
 
   @@index([subjectId, sortOrder])
 }
@@ -440,6 +441,8 @@ model Activity {
   type           ActivityType
   subjectId      String
   aulaId         String
+  editalItemId   String?
+  editalTopic    String?
   plannedMinutes Int            @default(60)
   status         ActivityStatus @default(PENDING)
   completedAt    DateTime?
@@ -459,6 +462,7 @@ model Activity {
   week        Week              @relation(fields: [weekId], references: [id], onDelete: Cascade)
   subject     Subject           @relation(fields: [subjectId], references: [id])
   aula        Aula              @relation(fields: [aulaId], references: [id])
+  editalItem  EditalItem?       @relation(fields: [editalItemId], references: [id])
   segments    ActivitySegment[]
   refs        ActivityRef[]     @relation("ActivityRefFrom")
   refBy       ActivityRef[]     @relation("ActivityRefTo")
@@ -469,6 +473,7 @@ model Activity {
   @@unique([planId, key])
   @@index([weekId, sortOrder])
   @@index([planId, type, status])
+  @@index([editalItemId])
 }
 
 // Quais segmentos de teoria a atividade cobre (Teoria: 1; Revisão: até 3; Questões: 1+).

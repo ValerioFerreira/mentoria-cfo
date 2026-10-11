@@ -127,6 +127,11 @@ export default async function ActivityPage({ params }: PageProps<"/atividade/[id
             </span>
           </div>
           <h1 className="font-display text-4xl font-bold uppercase leading-[0.95] sm:text-5xl">{title}</h1>
+          {a.editalTopic && (
+            <p className="text-sm font-medium text-muted">
+              <span className="font-semibold text-text">Assunto do edital:</span> {a.editalTopic}
+            </p>
+          )}
           <ActivityActions id={a.id} status={a.status} />
         </div>
       </header>

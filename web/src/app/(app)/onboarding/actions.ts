@@ -30,8 +30,35 @@ const Selection = z.object({
   known: z.record(z.string(), z.union([z.literal(0), z.literal(1), z.literal(2)])).default({}),
   /** Modo Turbo: se o tempo não fechar o edital, as aulas de menor valor viram resumos */
   turbo: z.boolean().default(false),
+  /** Assuntos do edital que o usuário desmarcou no passo Disciplinas */
+  unselectedTopicIds: z.array(z.string()).default([]),
 });
 export type SelectionInput = z.input<typeof Selection>;
+
+/**
+ * Resolve as aulas que devem ser excluídas quando o usuário desmarca tópicos específicos do edital.
+ * Uma aula é excluída se todos os tópicos que a cobrem foram desmarcados pelo aluno.
+ */
+async function resolveExcludedAulas(subjectIds: string[], unselectedTopicIds: string[]): Promise<string[]> {
+  if (!unselectedTopicIds.length) return [];
+  const { db } = await import("@/lib/db");
+  const editalItems = await db.editalItem.findMany({
+    where: { subjectId: { in: subjectIds } },
+    select: { id: true, aulaIds: true },
+  });
+  const unselectedSet = new Set(unselectedTopicIds);
+  const selectedAulas = new Set<string>();
+  const unselectedAulas = new Set<string>();
+  for (const it of editalItems) {
+    const aulas = (it.aulaIds as string[]) || [];
+    if (unselectedSet.has(it.id)) {
+      for (const a of aulas) unselectedAulas.add(a);
+    } else {
+      for (const a of aulas) selectedAulas.add(a);
+    }
+  }
+  return [...unselectedAulas].filter((a) => !selectedAulas.has(a));
+}
 
 /**
  * Resolve a data de início. "Começar imediatamente" usa o dia civil de Recife no servidor (não o UTC, que vira o dia
@@ -52,6 +79,7 @@ export async function previewPlan(input: SelectionInput) {
   const begin = resolveStart(parsed.data.start);
   if ("error" in begin) return { error: begin.error } as const;
   const data = await loadPlannerData();
+  const excludedAulas = await resolveExcludedAulas(parsed.data.subjects.map((s) => s.id), parsed.data.unselectedTopicIds);
   try {
     const r = generatePlan({
       ...data,
@@ -61,6 +89,7 @@ export async function previewPlan(input: SelectionInput) {
       hoursPerWeek: parsed.data.hoursPerWeek,
       subjects: parsed.data.subjects as { id: string; level: Level }[],
       known: parsed.data.known as Record<string, Known>,
+      excludedAulas,
       turbo: parsed.data.turbo,
     });
     return {
@@ -89,6 +118,7 @@ export async function createPlanAction(input: SelectionInput & { diagnostics: Re
   const begin = resolveStart(parsed.data.start);
   if ("error" in begin) return { error: begin.error };
   const data = await loadPlannerData();
+  const excludedAulas = await resolveExcludedAulas(parsed.data.subjects.map((s) => s.id), parsed.data.unselectedTopicIds);
   const planInput = {
     ...data,
     startDate: begin.startDate,
@@ -97,6 +127,7 @@ export async function createPlanAction(input: SelectionInput & { diagnostics: Re
     hoursPerWeek: parsed.data.hoursPerWeek,
     subjects: parsed.data.subjects as { id: string; level: Level }[],
     known: parsed.data.known as Record<string, Known>,
+    excludedAulas,
     turbo: parsed.data.turbo,
   };
   let result;

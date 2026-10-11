@@ -39,6 +39,7 @@ export function generatePlan(input: PlanInput): PlanResult {
   const totalWeeks = weeksUntil(input.startDate, input.examDate);
   const firstDay = input.firstDay ?? 0;
   const known = input.known ?? {};
+  const excludedAulas = new Set(input.excludedAulas ?? []);
   const chosen: SelectedSubject[] = input.subjects.map((s) => ({
     subject: input.catalog.subjects.find((x) => x.id === s.id)!,
     level: s.level,
@@ -54,11 +55,11 @@ export function generatePlan(input: PlanInput): PlanResult {
   // (o encaixe nunca é perfeito); se mesmo assim sobrar atividade sem semana, repete com menos.
   const attempt = (fw: number, eff: number) => {
     const cap = capacityOf(fw);
-    const sel = selectContent(chosen, input.segments, Math.round(cap.capacityMinutes * eff), known, input.turbo === true);
+    const sel = selectContent(chosen, input.segments, Math.round(cap.capacityMinutes * eff), known, input.turbo === true, excludedAulas);
     // filas por disciplina: ciclos das aulas selecionadas na ordem do curso
     const streams: StreamInfo[] = chosen.map(({ subject }) => {
       const queue = subject.aulas
-        .filter((a) => sel.tierByAula.has(a.id))
+        .filter((a) => !excludedAulas.has(a.id) && sel.tierByAula.has(a.id))
         .sort((a, b) => a.number - b.number)
         .flatMap((a) => buildAulaCycle(sel.blueprints.get(a.id)!, sel.tierByAula.get(a.id)!));
       return { subjectId: subject.id, examQuestions: subject.examQuestions, sortOrder: subject.sortOrder, queue };
@@ -90,7 +91,7 @@ export function generatePlan(input: PlanInput): PlanResult {
   const studied = new Set(contentSchedule.flatMap((w) => w.activities.filter((a) => a.type === "TEORIA").flatMap((a) => a.segmentIds)));
   const reviewSubjects: ReviewSubject[] = chosen.map(({ subject }) => {
     const aulas = subject.aulas
-      .filter((a) => sel.tierByAula.has(a.id) || sel.mastered.has(a.id))
+      .filter((a) => !excludedAulas.has(a.id) && (sel.tierByAula.has(a.id) || sel.mastered.has(a.id)))
       .sort((a, b) => b.incidence - a.incidence);
     return {
       subjectId: subject.id,

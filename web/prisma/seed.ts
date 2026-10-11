@@ -174,37 +174,10 @@ async function seedItems() {
             bizuItems++;
           }
         }
-        const keep = new Set<string>();
-        for (const [n, q] of (seg.questions ?? []).entries()) {
-          const id = `${seg.id}/q${String(n + 1).padStart(3, "0")}`;
-          keep.add(id);
-          const data = {
-            subjectId, aulaId: doc.aula, segmentId: seg.id, topic: q.topic ?? null, support: q.support ?? null, statement: q.statement,
-            explanation: q.explanation, difficulty: q.difficulty, pattern: q.pattern, pageRef: q.pageRef ?? null, batch: doc.batch,
-          };
-          const existing = await db.question.findUnique({ where: { id }, select: { status: true } });
-          await db.question.upsert({
-            where: { id },
-            create: { id, ...data, status },
-            // não rebaixa uma questão já aprovada/sinalizada por revisão humana
-            update: { ...data, ...(existing && existing.status !== "DRAFT" ? {} : { status }) },
-          });
-          await db.questionOption.deleteMany({ where: { questionId: id } });
-          await db.questionOption.createMany({
-            data: q.options.map((text, i) => ({ questionId: id, label: "ABCDE"[i], text, isCorrect: "ABCDE"[i] === q.answer })),
-          });
-          questions++;
-        }
-        // questões que saíram do arquivo ficam RETIRED (não apagamos: podem ter respostas de usuários)
-        const gone = await db.question.updateMany({
-          where: { segmentId: seg.id, id: { notIn: [...keep] }, status: { not: "RETIRED" } },
-          data: { status: "RETIRED" },
-        });
-        retired += gone.count;
       }
     }
   }
-  console.log(`autoral: ${bizus} bizus, ${bizuItems} itens C/E, ${questions} questões (${retired} aposentadas)`);
+  console.log(`autoral: ${bizus} bizus, ${bizuItems} itens C/E`);
 }
 
 async function seedAdmin() {

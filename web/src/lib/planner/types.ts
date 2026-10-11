@@ -87,6 +87,8 @@ export interface PlanInput {
   subjects: { id: string; level: Level }[];
   /** Anamnese por aula (id da aula → conhecimento). Aulas ausentes valem 0. */
   known?: Record<string, Known>;
+  /** Aulas excluídas porque o usuário desmarcou assuntos específicos do edital. */
+  excludedAulas?: string[];
   finalReviewWeeks?: number;
   /** Modo Turbo: se o tempo não fechar o edital, as aulas de menor valor viram resumos. */
   turbo?: boolean;

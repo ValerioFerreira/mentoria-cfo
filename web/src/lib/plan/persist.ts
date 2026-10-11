@@ -53,13 +53,30 @@ export async function savePlan({ userId, input, result, diagnostics, foreignLang
       });
       await tx.week.createMany({ data: weekRows });
 
+      // Mapear assuntos do edital para as aulas correspondentes
+      const editalItems = await tx.editalItem.findMany({
+        where: { subjectId: { in: input.subjects.map((s) => s.id) } },
+        select: { id: true, subjectId: true, title: true, aulaIds: true },
+      });
+      const aulaToEdital = new Map<string, { id: string; title: string }>();
+      for (const item of editalItems) {
+        const aulas = (item.aulaIds as string[]) || [];
+        for (const aid of aulas) {
+          if (!aulaToEdital.has(aid)) {
+            aulaToEdital.set(aid, { id: item.id, title: item.title });
+          }
+        }
+      }
+
       const keyToId = new Map<string, string>();
       const activityRows = result.weeks.flatMap((w) =>
         w.activities.map((a, order) => {
           const id = randomUUID();
           keyToId.set(a.key, id);
+          const editalInfo = aulaToEdital.get(a.aulaId);
           return {
             id, planId: plan.id, weekId: weekIds.get(w.index)!, sortOrder: order, type: a.type, subjectId: a.subjectId, aulaId: a.aulaId,
+            editalItemId: editalInfo?.id ?? null, editalTopic: editalInfo?.title ?? null,
             plannedMinutes: a.minutes, key: a.key, scope: a.scope ?? ("AULA" as const),
             fixRanges: a.fixRanges ? (a.fixRanges as object[]) : undefined,
             dayIndex: a.day ?? null, turbo: a.turbo ?? false, quizQuestions: a.quiz?.questions ?? null, quizLimitSec: a.quiz?.limitSeconds ?? null, quizMixed: a.quiz?.mixed ?? false,

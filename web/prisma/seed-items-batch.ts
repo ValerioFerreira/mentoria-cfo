@@ -93,61 +93,21 @@ export async function seedItemsBatch() {
           }
         }
 
-        // Questões
-        for (const [n, q] of (seg.questions ?? []).entries()) {
-          const qId = `${seg.id}/q${String(n + 1).padStart(3, "0")}`;
-          questionRows.push({
-            id: qId,
-            subjectId,
-            aulaId: doc.aula,
-            segmentId: seg.id,
-            topic: q.topic ?? null,
-            support: q.support ?? null,
-            statement: q.statement,
-            explanation: q.explanation,
-            difficulty: q.difficulty,
-            pattern: q.pattern,
-            pageRef: q.pageRef ?? null,
-            status,
-            batch: doc.batch ?? null,
-          });
-
-          for (let optIdx = 0; optIdx < q.options.length; optIdx++) {
-            const label = "ABCDE"[optIdx];
-            optionRows.push({
-              id: `${qId}/${label}`,
-              questionId: qId,
-              label,
-              text: q.options[optIdx],
-              isCorrect: label === q.answer,
-            });
-          }
-        }
       }
     }
   }
 
-  console.log(`[Seed Items] 1/4 Inserindo ${bizuRows.length} Bizus em lote...`);
+  console.log(`[Seed Items] 1/2 Inserindo ${bizuRows.length} Bizus em lote...`);
   for (const c of chunk(bizuRows, 500)) {
     await db.bizu.createMany({ data: c, skipDuplicates: true });
   }
 
-  console.log(`[Seed Items] 2/4 Inserindo ${bizuItemRows.length} Itens C/E em lote...`);
+  console.log(`[Seed Items] 2/2 Inserindo ${bizuItemRows.length} Itens C/E em lote...`);
   for (const c of chunk(bizuItemRows, 1000)) {
     await db.bizuItem.createMany({ data: c, skipDuplicates: true });
   }
 
-  console.log(`[Seed Items] 3/4 Inserindo ${questionRows.length} Questões em lote...`);
-  for (const c of chunk(questionRows, 1000)) {
-    await db.question.createMany({ data: c, skipDuplicates: true });
-  }
-
-  console.log(`[Seed Items] 4/4 Inserindo ${optionRows.length} Alternativas em lote...`);
-  for (const c of chunk(optionRows, 2000)) {
-    await db.questionOption.createMany({ data: c, skipDuplicates: true });
-  }
-
-  console.log(`[Seed Items] Concluído com sucesso: ${bizuRows.length} bizus, ${bizuItemRows.length} itens C/E, ${questionRows.length} questões, ${optionRows.length} opções.`);
+  console.log(`[Seed Items] Concluído com sucesso: ${bizuRows.length} bizus, ${bizuItemRows.length} itens C/E.`);
 }
 
 if (require.main === module) {

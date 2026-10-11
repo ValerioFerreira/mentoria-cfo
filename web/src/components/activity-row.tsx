@@ -15,6 +15,7 @@ export interface ActivityRowData {
   /** Modo Turbo: a Teoria é um resumo (Bizu) */
   turbo?: boolean;
   aula: { number: number; shortTitle: string };
+  editalTopic?: string | null;
   /** o que fazer, em uma linha: páginas, questões comentadas, tamanho do caderno */
   detail?: string | null;
 }
@@ -57,6 +58,11 @@ export function ActivityRow({ a, spent = 0, order, index = 0, quickTime = true }
             {skipped && <Badge>pulada</Badge>}
           </span>
           <span className="mt-0.5 line-clamp-2 block text-sm text-muted sm:line-clamp-1">{activityTitle(a)}</span>
+          {a.editalTopic && (
+            <span className="mt-0.5 block truncate text-xs text-muted">
+              <span className="font-semibold text-text/80">Edital:</span> {a.editalTopic}
+            </span>
+          )}
         </Link>
       </div>
       <div className="relative z-10 flex shrink-0 flex-col items-end gap-1 text-xs text-muted tabular">
@@ -91,6 +97,11 @@ export function ActivityCard({ a, spent = 0, index = 0, late }: { a: ActivityRow
       <Link href={`/atividade/${a.id}`} className={cx("block after:absolute after:inset-0 after:content-['']", (done || skipped) && "opacity-65")}>
         <span className="mt-1 block text-[13px] font-bold leading-tight">{subjectShort(a.subjectId)}</span>
         <span className="mt-0.5 line-clamp-3 block text-xs leading-snug text-muted">{activityTitle(a)}</span>
+        {a.editalTopic && (
+          <span className="mt-0.5 block truncate text-[11px] text-muted">
+            <span className="font-semibold text-text/80">Edital:</span> {a.editalTopic}
+          </span>
+        )}
         {a.detail && <span className="mt-0.5 block text-[11px] font-semibold leading-snug text-text/80">{a.detail}</span>}
       </Link>
       <div className="mt-2 flex items-center justify-between text-[11px] text-muted tabular">

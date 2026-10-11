@@ -55,6 +55,7 @@ export function selectContent(
   capacityMinutes: number,
   known: Record<string, Known> = {},
   turbo = false,
+  excludedAulas = new Set<string>(),
 ): Selection {
   const blueprints = new Map<string, AulaBlueprint>();
   const items: Item[] = [];
@@ -67,9 +68,9 @@ export function selectContent(
     levelOf.set(subject.id, level);
     examQ.set(subject.id, subject.examQuestions);
     covered.set(subject.id, 0);
-    const totalInc = subject.aulas.filter((a) => a.selectable).reduce((n, a) => n + a.incidence, 0) || 1;
+    const totalInc = subject.aulas.filter((a) => a.selectable && !excludedAulas.has(a.id)).reduce((n, a) => n + a.incidence, 0) || 1;
     for (const aula of subject.aulas) {
-      if (!aula.selectable) continue;
+      if (!aula.selectable || excludedAulas.has(aula.id)) continue;
       const share = aula.incidence / totalInc;
       const k = known[aula.id] ?? 0;
       if (k === 2) {
