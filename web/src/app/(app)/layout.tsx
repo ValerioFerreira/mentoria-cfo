@@ -12,6 +12,7 @@ const NAV: NavItem[] = [
   { href: "/", label: "Missão de hoje", icon: "today" },
   { href: "/semana", label: "Meta semanal", icon: "week" },
   { href: "/plano", label: "Planejamento", icon: "plan" },
+  { href: "/questoes", label: "Questões", icon: "quiz" },
   { href: "/resumos", label: "Meus resumos", icon: "notes" },
   { href: "/desempenho", label: "Desempenho", icon: "perf" },
 ];
