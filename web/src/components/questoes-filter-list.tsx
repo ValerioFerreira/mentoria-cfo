@@ -22,9 +22,10 @@ import { MontarCadernoModal } from "@/components/montar-caderno-modal";
 interface Props {
   subjects: SubjectOverview[];
   availableBancas?: string[];
+  bancaCounts?: Record<string, number>;
 }
 
-export function QuestoesFilterList({ subjects, availableBancas = [] }: Props) {
+export function QuestoesFilterList({ subjects, availableBancas = [], bancaCounts = {} }: Props) {
   const [search, setSearch] = useState("");
   const [selectedBlock, setSelectedBlock] = useState<string>("ALL");
   const [selectedBanca, setSelectedBanca] = useState<string>("ALL");
@@ -153,7 +154,7 @@ export function QuestoesFilterList({ subjects, availableBancas = [] }: Props) {
         </div>
       </div>
 
-      {/* Filtro Dinâmico por Banca */}
+      {/* Filtro Dinâmico por Banca com Contagem de Questões */}
       {availableBancas.length > 0 && (
         <div className="flex items-center gap-2 overflow-x-auto pb-1">
           <span className="text-xs font-semibold uppercase tracking-wider text-muted shrink-0">
@@ -162,28 +163,41 @@ export function QuestoesFilterList({ subjects, availableBancas = [] }: Props) {
           <button
             type="button"
             onClick={() => setSelectedBanca("ALL")}
-            className={`rounded-lg px-2.5 py-1 text-xs font-semibold transition cursor-pointer shrink-0 ${
+            className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-semibold transition cursor-pointer shrink-0 ${
               selectedBanca === "ALL"
                 ? "bg-gold text-on-ink font-bold shadow-xs"
                 : "bg-surface-2 text-muted hover:bg-surface-3 hover:text-text border border-border/50"
             }`}
           >
-            Todas as Bancas
+            <span>Todas as Bancas</span>
+            <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${
+              selectedBanca === "ALL" ? "bg-black/20 text-on-ink" : "bg-surface-3 text-muted"
+            }`}>
+              {Object.values(bancaCounts).reduce((acc, c) => acc + c, 0)}
+            </span>
           </button>
-          {availableBancas.map((banca) => (
-            <button
-              key={banca}
-              type="button"
-              onClick={() => setSelectedBanca(banca)}
-              className={`rounded-lg px-2.5 py-1 text-xs font-semibold transition cursor-pointer shrink-0 ${
-                selectedBanca === banca
-                  ? "bg-gold text-on-ink font-bold shadow-xs"
-                  : "bg-surface-2 text-muted hover:bg-surface-3 hover:text-text border border-border/50"
-              }`}
-            >
-              {banca}
-            </button>
-          ))}
+          {availableBancas.map((banca) => {
+            const count = bancaCounts[banca] ?? 0;
+            return (
+              <button
+                key={banca}
+                type="button"
+                onClick={() => setSelectedBanca(banca)}
+                className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-semibold transition cursor-pointer shrink-0 ${
+                  selectedBanca === banca
+                    ? "bg-gold text-on-ink font-bold shadow-xs"
+                    : "bg-surface-2 text-muted hover:bg-surface-3 hover:text-text border border-border/50"
+                }`}
+              >
+                <span>{banca}</span>
+                <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${
+                  selectedBanca === banca ? "bg-black/20 text-on-ink" : "bg-surface-3 text-muted"
+                }`}>
+                  {count}
+                </span>
+              </button>
+            );
+          })}
         </div>
       )}
 

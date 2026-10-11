@@ -23,6 +23,11 @@ export interface SubjectOverview {
   topics: TopicOverview[];
 }
 
+export interface BancaCount {
+  name: string;
+  count: number;
+}
+
 export interface QuestoesOverview {
   globalStats: {
     totalQuestions: number;
@@ -33,6 +38,7 @@ export interface QuestoesOverview {
   };
   subjects: SubjectOverview[];
   availableBancas: string[];
+  bancaCounts: Record<string, number>;
 }
 
 export async function getQuestoesOverview(userId: string): Promise<QuestoesOverview> {
@@ -63,11 +69,17 @@ export async function getQuestoesOverview(userId: string): Promise<QuestoesOverv
     }),
   ]);
 
-  const bancaSet = new Set<string>();
+  const bancaCounts: Record<string, number> = {};
   for (const q of questions) {
-    if (q.banca) bancaSet.add(q.banca);
+    const b = q.banca || "AOCP";
+    bancaCounts[b] = (bancaCounts[b] || 0) + 1;
   }
-  const availableBancas = Array.from(bancaSet).sort();
+  // Ordenar bancas por volume de questões decrescente, mantendo AOCP no topo
+  const availableBancas = Object.keys(bancaCounts).sort((a, b) => {
+    if (a === "AOCP") return -1;
+    if (b === "AOCP") return 1;
+    return bancaCounts[b] - bancaCounts[a];
+  });
 
   // Mapa das respostas do usuário
   const answerMap = new Map<string, { answered: number; correct: number; lastCorrect: boolean | null }>();
@@ -177,5 +189,6 @@ export async function getQuestoesOverview(userId: string): Promise<QuestoesOverv
     },
     subjects: subjectsList,
     availableBancas: availableBancas.length > 0 ? availableBancas : ["AOCP"],
+    bancaCounts,
   };
 }

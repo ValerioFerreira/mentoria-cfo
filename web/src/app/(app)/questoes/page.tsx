@@ -26,7 +26,7 @@ export default async function QuestoesPage() {
   }
 
   const overview = await getQuestoesOverview(user.id);
-  const { globalStats, subjects, availableBancas } = overview;
+  const { globalStats, subjects, availableBancas, bancaCounts } = overview;
 
   return (
     <div className="space-y-8">
@@ -34,7 +34,7 @@ export default async function QuestoesPage() {
       <PageHeader
         eyebrow="Prática Livre e Treinamento"
         title="Banco de Questões"
-        description="Questões das bancas AOCP e Instituto AOCP selecionadas exclusivamente para o Edital Unificado do CBMPE 2026. Escolha a matéria e o assunto para praticar à vontade e registrar seu progresso."
+        description="Acervo de questões oficiais para os concursos de Bombeiro Militar (CBMPE) e Polícia Militar (PMPE). Escolha a banca, matéria e assunto para praticar à vontade e registrar seu progresso."
         info="Todas as questões resolvidas aqui têm seu desempenho gravado automaticamente em seu perfil e contabilizado em suas métricas gerais de evolução."
       />
 
@@ -46,7 +46,7 @@ export default async function QuestoesPage() {
             <p className="font-display text-3xl font-bold text-on-ink mt-1">
               <Count value={globalStats.totalQuestions} />
             </p>
-            <p className="text-xs text-on-ink-muted mt-0.5">Questões AOCP cadastradas</p>
+            <p className="text-xs text-on-ink-muted mt-0.5">Questões cadastradas no acervo</p>
           </div>
           <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/20 text-primary">
             <ListChecks className="h-6 w-6" />
@@ -102,7 +102,11 @@ export default async function QuestoesPage() {
       </div>
 
       {/* Navegador e Filtros de Questões por Matéria e Assunto */}
-      <QuestoesFilterList subjects={subjects} availableBancas={availableBancas} />
+      <QuestoesFilterList
+        subjects={subjects}
+        availableBancas={availableBancas}
+        bancaCounts={bancaCounts}
+      />
     </div>
   );
 }
