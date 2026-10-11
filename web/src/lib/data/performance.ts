@@ -41,7 +41,17 @@ export async function getPerformance(userId: string, planStart: Date | null, tot
       where: { userId, finishedAt: { not: null } },
       orderBy: { finishedAt: "desc" },
       take: 24,
-      select: { id: true, activityId: true, finishedAt: true, score: true, total: true, activity: { select: { subjectId: true, aula: { select: { number: true, shortTitle: true } } } } },
+      select: {
+        id: true,
+        activityId: true,
+        kind: true,
+        title: true,
+        contest: true,
+        finishedAt: true,
+        score: true,
+        total: true,
+        activity: { select: { subjectId: true, aula: { select: { number: true, shortTitle: true } } } },
+      },
     }),
     db.bizuAnswer.groupBy({ by: ["isCorrect"], where: { userId }, _count: true }),
     // Agregação anônima de respostas finalizadas de todos os usuários

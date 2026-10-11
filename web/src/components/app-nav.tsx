@@ -1,6 +1,6 @@
 "use client";
 
-import { CalendarDays, ChartNoAxesColumn, Crosshair, ListChecks, Map as MapIcon, NotebookPen, Send, ShieldCheck, Users, type LucideIcon } from "lucide-react";
+import { CalendarDays, ChartNoAxesColumn, Crosshair, ListChecks, Map as MapIcon, NotebookPen, Send, ShieldCheck, Trophy, Users, type LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
@@ -11,6 +11,7 @@ const ICONS: Record<string, LucideIcon> = {
   week: CalendarDays,
   plan: MapIcon,
   quiz: ListChecks,
+  simulado: Trophy,
   notes: NotebookPen,
   perf: ChartNoAxesColumn,
   admin: ShieldCheck,

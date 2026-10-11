@@ -11,11 +11,13 @@ import {
   Search,
   Sparkles,
   Trophy,
+  Sliders,
   XCircle,
 } from "lucide-react";
 import { BLOCK_COLOR, Badge, Button, Card, Progress } from "@/components/ui";
 import type { SubjectOverview } from "@/lib/data/questoes";
 import { startSubjectPracticeQuiz } from "@/lib/quiz/practice-actions";
+import { MontarCadernoModal } from "@/components/montar-caderno-modal";
 
 interface Props {
   subjects: SubjectOverview[];
@@ -27,6 +29,7 @@ export function QuestoesFilterList({ subjects }: Props) {
   const [expandedSubject, setExpandedSubject] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
   const [activeSessionTopic, setActiveSessionTopic] = useState<string | null>(null);
+  const [isCustomModalOpen, setIsCustomModalOpen] = useState(false);
 
   const toggleExpand = (id: string) => {
     setExpandedSubject((prev) => (prev === id ? null : id));
@@ -59,6 +62,37 @@ export function QuestoesFilterList({ subjects }: Props) {
 
   return (
     <div className="space-y-6">
+      {/* Banner / Ação Destacada: Montar Caderno */}
+      <Card className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 bg-gradient-to-r from-primary/10 via-surface-2/40 to-surface border-border shadow-xs">
+        <div className="flex items-center gap-3.5">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-primary text-on-primary shadow-sm">
+            <Sliders className="h-5 w-5" />
+          </div>
+          <div>
+            <h3 className="font-display text-base font-bold text-text uppercase tracking-wide">
+              Montar Caderno Personalizado
+            </h3>
+            <p className="text-xs text-muted mt-0.5">
+              Selecione múltiplas disciplinas, escolha assuntos específicos e defina o volume de questões desejado.
+            </p>
+          </div>
+        </div>
+        <Button
+          variant="primary"
+          onClick={() => setIsCustomModalOpen(true)}
+          className="shrink-0 gap-2 font-semibold shadow-xs"
+        >
+          <Sliders className="h-4 w-4" />
+          <span>Montar Caderno</span>
+        </Button>
+      </Card>
+
+      {/* Modal de Montagem de Caderno */}
+      <MontarCadernoModal
+        subjects={subjects}
+        isOpen={isCustomModalOpen}
+        onClose={() => setIsCustomModalOpen(false)}
+      />
       {/* Controles de Busca e Filtro */}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="relative flex-1">

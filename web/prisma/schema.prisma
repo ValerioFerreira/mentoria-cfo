@@ -108,6 +108,8 @@ enum TimeSource {
 enum QuizKind {
   CADERNO // 25 questões / 60 min, atrelado a atividade Questões
   SIMULADO_BLOCO // revisão final: bloco inteiro
+  SIMULADO // Simulado completo de prova oficial do edital
+  CADERNO_PERSONALIZADO // Caderno montado pelo aluno na página de questões
 }
 
 enum Contest {
@@ -527,6 +529,8 @@ model QuizSession {
   userId        String
   activityId    String?
   kind          QuizKind  @default(CADERNO)
+  title         String?
+  contest       Contest?
   limitSeconds  Int       @default(3600)
   startedAt     DateTime  @default(now())
   finishedAt    DateTime?
@@ -539,6 +543,7 @@ model QuizSession {
   answers  QuizAnswer[]
 
   @@index([userId, startedAt])
+  @@index([userId, kind])
 }
 
 model QuizAnswer {

@@ -3,7 +3,16 @@
 import { redirect } from "next/navigation";
 import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
-import { hashSeed } from "./logic";
+import { subjectName } from "@/lib/ui-format";
+
+function shuffle<T>(arr: T[]): T[] {
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
 
 export async function startSubjectPracticeQuiz(input: {
   subjectId: string;
@@ -46,16 +55,6 @@ export async function startSubjectPracticeQuiz(input: {
   const unseen = questions.filter((q) => !seenIds.has(q.id));
   const seen = questions.filter((q) => seenIds.has(q.id));
 
-  // Embaralhar com semente aleatória
-  const shuffle = <T>(arr: T[]): T[] => {
-    const copy = [...arr];
-    for (let i = copy.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [copy[i], copy[j]] = [copy[j], copy[i]];
-    }
-    return copy;
-  };
-
   const pool = [...shuffle(unseen), ...shuffle(seen)];
   const want = input.limit && input.limit > 0 ? Math.min(input.limit, pool.length) : pool.length;
   const selected = pool.slice(0, want);
@@ -68,11 +67,156 @@ export async function startSubjectPracticeQuiz(input: {
       userId: user.id,
       activityId: null, // Prática livre não atrelada a atividade de semana
       kind: "CADERNO",
-      limitSeconds: 7200, // 2 horas de tolerância para praticar sem pressa
+      limitSeconds: Math.max(3600, selected.length * 180),
       total: selected.length,
       answers: {
         create: selected.map((q, i) => ({
           questionId: q.id,
+          position: i + 1,
+        })),
+      },
+    },
+  });
+
+  redirect(`/questoes/pratica/${sessionId}`);
+}
+
+export interface CustomNotebookItemInput {
+  subjectId: string;
+  topics?: string[]; // se vazio, todos os tópicos da matéria
+  count?: number; // quantidade para esta seleção específica (no modo por matéria)
+}
+
+export interface CreateCustomNotebookInput {
+  title?: string;
+  mode: "TOTAL" | "PER_SUBJECT";
+  totalCount?: number; // usado quando mode === 'TOTAL'
+  items: CustomNotebookItemInput[];
+}
+
+/**
+ * Cria um caderno personalizado conforme especificações do aluno:
+ * - Múltiplas disciplinas
+ * - Todos os assuntos ou assuntos específicos
+ * - Quantidade total ou por disciplina
+ * - Validação estrita de suficiência (sem repetição de questões)
+ */
+export async function createCustomNotebook(
+  input: CreateCustomNotebookInput
+): Promise<{ error: string } | never> {
+  const user = await requireUser();
+
+  if (!input.items || input.items.length === 0) {
+    return { error: "Selecione ao menos uma disciplina para montar o caderno." };
+  }
+
+  const selectedQuestionIds = new Set<string>();
+
+  if (input.mode === "TOTAL") {
+    // Modo Quantidade Total: seleciona aleatoriamente entre o universo dos filtros escolhidos
+    const requestedTotal = input.totalCount && input.totalCount > 0 ? input.totalCount : 20;
+
+    // Montar filtros OR para as matérias e seus respectivos tópicos
+    const orConditions: any[] = [];
+    for (const item of input.items) {
+      if (item.topics && item.topics.length > 0) {
+        orConditions.push({
+          subjectId: item.subjectId,
+          topic: { in: item.topics },
+          status: "APPROVED",
+        });
+      } else {
+        orConditions.push({
+          subjectId: item.subjectId,
+          status: "APPROVED",
+        });
+      }
+    }
+
+    const availableQuestions = await db.question.findMany({
+      where: { OR: orConditions },
+      select: { id: true, subjectId: true },
+    });
+
+    if (availableQuestions.length === 0) {
+      return { error: "Não foram encontradas questões aprovadas para os filtros selecionados." };
+    }
+
+    if (requestedTotal > availableQuestions.length) {
+      return {
+        error: `A quantidade solicitada (${requestedTotal}) é maior do que o total disponível para essa seleção (${availableQuestions.length} questões disponíveis). Ajuste a quantidade ou amplie a seleção.`,
+      };
+    }
+
+    // Priorizar questões ainda não vistas pelo usuário
+    const history = await db.quizAnswer.findMany({
+      where: {
+        session: { userId: user.id },
+        questionId: { in: availableQuestions.map((q) => q.id) },
+        chosenLabel: { not: null },
+      },
+      select: { questionId: true },
+    });
+    const seenIds = new Set(history.map((h) => h.questionId));
+
+    const unseen = availableQuestions.filter((q) => !seenIds.has(q.id));
+    const seen = availableQuestions.filter((q) => seenIds.has(q.id));
+
+    const pool = [...shuffle(unseen), ...shuffle(seen)];
+    const picked = pool.slice(0, requestedTotal);
+    for (const q of picked) selectedQuestionIds.add(q.id);
+  } else {
+    // Modo Por Disciplina/Assunto: cada item define sua quantidade
+    for (const item of input.items) {
+      const want = item.count && item.count > 0 ? item.count : 5;
+
+      const whereClause: any = {
+        subjectId: item.subjectId,
+        status: "APPROVED",
+      };
+
+      if (item.topics && item.topics.length > 0) {
+        whereClause.topic = { in: item.topics };
+      }
+
+      const questions = await db.question.findMany({
+        where: whereClause,
+        select: { id: true },
+      });
+
+      if (questions.length < want) {
+        const sName = subjectName(item.subjectId);
+        return {
+          error: `Não há questões suficientes para ${sName}. Solicitadas: ${want}, disponíveis no acervo: ${questions.length}.`,
+        };
+      }
+
+      const shuffled = shuffle(questions);
+      const picked = shuffled.slice(0, want);
+      for (const q of picked) selectedQuestionIds.add(q.id);
+    }
+  }
+
+  const finalQuestions = Array.from(selectedQuestionIds);
+  if (finalQuestions.length === 0) {
+    return { error: "Nenhuma questão selecionada para este caderno." };
+  }
+
+  const sessionId = crypto.randomUUID();
+  const title = input.title?.trim() || `Caderno Personalizado (${finalQuestions.length} questões)`;
+
+  await db.quizSession.create({
+    data: {
+      id: sessionId,
+      userId: user.id,
+      activityId: null,
+      kind: "CADERNO_PERSONALIZADO",
+      title,
+      limitSeconds: Math.max(3600, finalQuestions.length * 180),
+      total: finalQuestions.length,
+      answers: {
+        create: finalQuestions.map((questionId, i) => ({
+          questionId,
           position: i + 1,
         })),
       },

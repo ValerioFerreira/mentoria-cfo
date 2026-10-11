@@ -13,6 +13,7 @@ const NAV: NavItem[] = [
   { href: "/semana", label: "Meta semanal", icon: "week" },
   { href: "/plano", label: "Planejamento", icon: "plan" },
   { href: "/questoes", label: "Questões", icon: "quiz" },
+  { href: "/simulados", label: "Simulados", icon: "simulado" },
   { href: "/resumos", label: "Meus resumos", icon: "notes" },
   { href: "/desempenho", label: "Desempenho", icon: "perf" },
 ];

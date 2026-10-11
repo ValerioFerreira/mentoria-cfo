@@ -515,14 +515,43 @@ export default async function PerformancePage() {
           ) : (
             <Card className="divide-y divide-border p-0">
               {perf.recentSessions.map((s) => {
-                const r = (s.score ?? 0) / s.total;
+                const r = s.total > 0 ? (s.score ?? 0) / s.total : 0;
+                const isSimulado = s.kind === "SIMULADO";
+                const isPersonalizado = s.kind === "CADERNO_PERSONALIZADO";
+                const isPlano = Boolean(s.activityId);
+
+                let href = `/caderno/${s.activityId}`;
+                let typeBadge = <Badge tone="neutral" className="text-[9px]">Plano</Badge>;
+                let sessionTitle = s.activity ? subjectShort(s.activity.subjectId) : "Caderno";
+
+                if (isSimulado) {
+                  href = `/simulados/resultado/${s.id}`;
+                  typeBadge = <Badge tone="primary" className="text-[9px]">Simulado Oficial</Badge>;
+                  sessionTitle = s.title ?? "Simulado Oficial CBMPE";
+                } else if (isPersonalizado) {
+                  href = `/questoes/pratica/${s.id}`;
+                  typeBadge = <Badge tone="ok" className="text-[9px]">Personalizado</Badge>;
+                  sessionTitle = s.title ?? "Caderno Personalizado";
+                } else if (!isPlano) {
+                  href = `/questoes/pratica/${s.id}`;
+                  typeBadge = <Badge tone="neutral" className="text-[9px]">Prática Livre</Badge>;
+                  sessionTitle = s.title ?? "Treino de Questões";
+                }
+
                 return (
-                  <Link key={s.id} href={`/caderno/${s.activityId}`} className="group flex items-center gap-4 px-5 py-3 text-sm transition first:rounded-t-2xl last:rounded-b-2xl hover:bg-surface-2">
+                  <Link
+                    key={s.id}
+                    href={href}
+                    className="group flex items-center gap-4 px-5 py-3 text-sm transition first:rounded-t-2xl last:rounded-b-2xl hover:bg-surface-2"
+                  >
                     <Ring value={r} size={42} stroke={5} color={accColor(r)} label={`${Math.round(r * 100)}% de acerto`}>
                       <span className="text-[10px] font-bold tabular">{Math.round(r * 100)}</span>
                     </Ring>
                     <div className="min-w-0 flex-1">
-                      <p className="truncate font-semibold">{s.activity ? subjectShort(s.activity.subjectId) : "Caderno"}{s.activity?.aula.shortTitle ? ` · ${s.activity.aula.shortTitle}` : ""}</p>
+                      <div className="flex items-center gap-2">
+                        <p className="truncate font-semibold">{sessionTitle}{s.activity?.aula.shortTitle ? ` · ${s.activity.aula.shortTitle}` : ""}</p>
+                        {typeBadge}
+                      </div>
                       <p className="text-xs text-muted">{s.finishedAt?.toLocaleDateString("pt-BR")}</p>
                     </div>
                     <span className="font-display text-xl font-bold tabular">{s.score ?? 0}<span className="text-muted">/{s.total}</span></span>
