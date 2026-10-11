@@ -451,17 +451,17 @@ export function Wizard({ subjects, todayIso }: { subjects: WizardSubject[]; toda
 function HeavyWorkloadDisclaimer({ hours, onGoToDisciplines }: { hours: number; onGoToDisciplines: () => void }) {
   if (hours / 7 <= 4.5) return null;
   return (
-    <div className="rounded-2xl border border-amber-500/40 bg-amber-500/10 p-4 text-sm text-amber-200">
-      <p className="flex items-center gap-2 font-display text-base font-bold uppercase text-amber-400">
-        <AlertTriangle className="h-4 w-4 shrink-0 text-amber-400" aria-hidden />
+    <div className="rounded-2xl border border-amber-500/40 bg-amber-50 p-4 text-sm text-amber-950 shadow-xs dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-100">
+      <p className="flex items-center gap-2 font-display text-base font-bold uppercase text-amber-800 dark:text-amber-400">
+        <AlertTriangle className="h-4 w-4 shrink-0 text-amber-700 dark:text-amber-400" aria-hidden />
         Atenção à carga horária
       </p>
-      <p className="mt-1 leading-relaxed">
+      <p className="mt-1 leading-relaxed text-amber-900 dark:text-amber-200/90">
         A sua carga diária de estudos está bem elevada, considere remover alguns assuntos que você já domina na{" "}
         <button
           type="button"
           onClick={onGoToDisciplines}
-          className="cursor-pointer font-bold text-amber-300 underline hover:text-amber-100"
+          className="cursor-pointer font-bold text-amber-950 underline hover:text-amber-800 dark:text-amber-300 dark:hover:text-amber-100"
         >
           seção &quot;Disciplinas&quot;
         </button>{" "}
