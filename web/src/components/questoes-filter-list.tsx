@@ -21,11 +21,13 @@ import { MontarCadernoModal } from "@/components/montar-caderno-modal";
 
 interface Props {
   subjects: SubjectOverview[];
+  availableBancas?: string[];
 }
 
-export function QuestoesFilterList({ subjects }: Props) {
+export function QuestoesFilterList({ subjects, availableBancas = [] }: Props) {
   const [search, setSearch] = useState("");
   const [selectedBlock, setSelectedBlock] = useState<string>("ALL");
+  const [selectedBanca, setSelectedBanca] = useState<string>("ALL");
   const [expandedSubject, setExpandedSubject] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
   const [activeSessionTopic, setActiveSessionTopic] = useState<string | null>(null);
@@ -43,22 +45,36 @@ export function QuestoesFilterList({ subjects }: Props) {
     });
   };
 
-  // Filtragem
-  const filteredSubjects = subjects.filter((s) => {
-    // Filtro por bloco
-    if (selectedBlock !== "ALL" && s.block !== selectedBlock) {
-      return false;
-    }
+  // Filtragem combinada por Bloco, Busca e Banca
+  const filteredSubjects = subjects
+    .map((s) => {
+      if (selectedBanca !== "ALL" && (!s.bancas || !s.bancas.includes(selectedBanca))) {
+        return null;
+      }
+      const visibleTopics = s.topics.filter((t) => {
+        if (selectedBanca !== "ALL" && t.bancas && !t.bancas.includes(selectedBanca)) {
+          return false;
+        }
+        return true;
+      });
+      return { ...s, topics: visibleTopics };
+    })
+    .filter((s): s is SubjectOverview => {
+      if (!s) return false;
+      // Filtro por bloco
+      if (selectedBlock !== "ALL" && s.block !== selectedBlock) {
+        return false;
+      }
 
-    // Filtro de busca
-    if (!search.trim()) return true;
+      // Filtro de busca
+      if (!search.trim()) return true;
 
-    const query = search.toLowerCase();
-    const matchSubject = s.name.toLowerCase().includes(query);
-    const matchTopic = s.topics.some((t) => t.name.toLowerCase().includes(query));
+      const query = search.toLowerCase();
+      const matchSubject = s.name.toLowerCase().includes(query);
+      const matchTopic = s.topics.some((t) => t.name.toLowerCase().includes(query));
 
-    return matchSubject || matchTopic;
-  });
+      return matchSubject || matchTopic;
+    });
 
   return (
     <div className="space-y-6">
@@ -137,6 +153,40 @@ export function QuestoesFilterList({ subjects }: Props) {
         </div>
       </div>
 
+      {/* Filtro Dinâmico por Banca */}
+      {availableBancas.length > 0 && (
+        <div className="flex items-center gap-2 overflow-x-auto pb-1">
+          <span className="text-xs font-semibold uppercase tracking-wider text-muted shrink-0">
+            Banca:
+          </span>
+          <button
+            type="button"
+            onClick={() => setSelectedBanca("ALL")}
+            className={`rounded-lg px-2.5 py-1 text-xs font-semibold transition cursor-pointer shrink-0 ${
+              selectedBanca === "ALL"
+                ? "bg-gold text-on-ink font-bold shadow-xs"
+                : "bg-surface-2 text-muted hover:bg-surface-3 hover:text-text border border-border/50"
+            }`}
+          >
+            Todas as Bancas
+          </button>
+          {availableBancas.map((banca) => (
+            <button
+              key={banca}
+              type="button"
+              onClick={() => setSelectedBanca(banca)}
+              className={`rounded-lg px-2.5 py-1 text-xs font-semibold transition cursor-pointer shrink-0 ${
+                selectedBanca === banca
+                  ? "bg-gold text-on-ink font-bold shadow-xs"
+                  : "bg-surface-2 text-muted hover:bg-surface-3 hover:text-text border border-border/50"
+              }`}
+            >
+              {banca}
+            </button>
+          ))}
+        </div>
+      )}
+
       {/* Lista de Disciplinas */}
       {filteredSubjects.length === 0 ? (
         <Card className="p-8 text-center text-muted">
@@ -180,6 +230,11 @@ export function QuestoesFilterList({ subjects }: Props) {
                         <Badge tone="neutral" className="text-[10px]">
                           Bloco {s.block}
                         </Badge>
+                        {s.bancas && s.bancas.map((b) => (
+                          <Badge key={b} tone="gold" className="text-[10px]">
+                            {b}
+                          </Badge>
+                        ))}
                       </div>
                       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted mt-0.5">
                         <span>

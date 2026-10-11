@@ -21,6 +21,8 @@ export interface UserProfileData {
 const CONTEST_OPTIONS = [
   { key: "CBMPE_OFICIAL", label: "OFICIAL - CBMPE" },
   { key: "CBMPE_SOLDADO", label: "PRAÇA - CBMPE" },
+  { key: "PMPE_OFICIAL", label: "OFICIAL - PMPE" },
+  { key: "PMPE_SOLDADO", label: "PRAÇA - PMPE" },
   { key: "PCPE_AGENTE", label: "AGENTE - PCPE" },
 ];
 

@@ -1,7 +1,7 @@
 import "server-only";
 import { Contest } from "@/generated/prisma/client";
 import { db } from "@/lib/db";
-import { EXAM_CONFIGS, type ContestExamConfig } from "@/lib/simulado-rules";
+import { EXAM_CONFIGS, type ContestExamConfig, type SupportedSimuladoContest } from "@/lib/simulado-rules";
 
 export * from "@/lib/simulado-rules";
 
@@ -15,7 +15,7 @@ export interface SubjectReadiness {
 }
 
 export interface SimuladoReadiness {
-  contest: "CBMPE_OFICIAL" | "CBMPE_SOLDADO";
+  contest: SupportedSimuladoContest;
   config: ContestExamConfig;
   isReady: boolean;
   totalRequired: number;
@@ -27,17 +27,21 @@ export interface SimuladoReadiness {
 
 /**
  * Diagnóstico de disponibilidade de acervo para montar o simulado completo conforme edital oficial.
+ * Exclusivamente com questões da banca AOCP / Instituto AOCP.
  */
 export async function checkSimuladoReadiness(
-  contest: "CBMPE_OFICIAL" | "CBMPE_SOLDADO",
+  contest: SupportedSimuladoContest,
   foreignLang: "lingua-inglesa" | "lingua-espanhola" = "lingua-inglesa"
 ): Promise<SimuladoReadiness> {
   const config = EXAM_CONFIGS[contest];
 
-  // Contar questões aprovadas por disciplina
+  // Contar questões aprovadas da banca AOCP por disciplina
   const counts = await db.question.groupBy({
     by: ["subjectId"],
-    where: { status: "APPROVED" },
+    where: {
+      status: "APPROVED",
+      banca: { in: ["AOCP", "Instituto AOCP", "INSTITUTO AOCP"] },
+    },
     _count: true,
   });
 
@@ -123,7 +127,7 @@ export async function getUserSimulados(userId: string) {
 
   return sessions.map((s) => {
     const isFinished = s.finishedAt !== null;
-    const contestKey = (s.contest as "CBMPE_OFICIAL" | "CBMPE_SOLDADO") || "CBMPE_OFICIAL";
+    const contestKey = (s.contest as SupportedSimuladoContest) || "CBMPE_OFICIAL";
     const config = EXAM_CONFIGS[contestKey] || EXAM_CONFIGS.CBMPE_OFICIAL;
 
     let score = s.score ?? 0;

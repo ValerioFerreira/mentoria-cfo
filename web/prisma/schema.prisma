@@ -116,6 +116,8 @@ enum Contest {
   CBMPE_SOLDADO // CBMPE · Soldado (Praça)
   CBMPE_OFICIAL // CBMPE · 2º Tenente (Oficial)
   PCPE_AGENTE // PCPE · Agente de Polícia
+  PMPE_SOLDADO // PMPE · Soldado (Praça)
+  PMPE_OFICIAL // PMPE · 2º Tenente (Oficial)
 }
 
 enum WaitlistPlan {
@@ -302,6 +304,7 @@ model Question {
   pageRef     Int? // página PDF de referência (para revisão)
   status      QuestionStatus @default(DRAFT)
   batch       String? // lote de geração (rastreabilidade)
+  banca       String         @default("AOCP")
 
   subject  Subject          @relation(fields: [subjectId], references: [id])
   aula     Aula             @relation(fields: [aulaId], references: [id])
@@ -313,6 +316,7 @@ model Question {
 
   @@index([segmentId, status])
   @@index([subjectId, status])
+  @@index([banca])
 }
 
 model QuestionOption {

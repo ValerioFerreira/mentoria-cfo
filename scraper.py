@@ -31,6 +31,7 @@ def parse_args():
     parser.add_argument("--delay", type=float, default=1.0, help="Pausa entre páginas/downloads, em segundos")
     parser.add_argument("--timeout", type=int, default=30_000, help="Timeout de navegação em milissegundos")
     parser.add_argument("--profile", default="browser-profile", help="Perfil persistente local do Chromium")
+    parser.add_argument("--start-index", type=int, default=1, help="Número inicial para a numeração das pastas (padrão: 1)")
     return parser.parse_args()
 
 
@@ -55,10 +56,18 @@ def main() -> int:
         page.goto(course_url, wait_until="domcontentloaded")
         subjects = discover_subjects(page, course_url)
         if not subjects:
-            print("A página do pacote ainda não mostra os cursos. Faça login na janela do Chromium.")
-            input("Depois de entrar e abrir novamente a página do pacote, pressione Enter aqui para continuar...")
-            page.goto(course_url, wait_until="domcontentloaded")
-            subjects = discover_subjects(page, course_url)
+            print("\n" + "=" * 60)
+            print(">>> NAVEGADOR ABERTO PARA AUTENTICAÇÃO NO ESTRATÉGIA <<<")
+            print("Por favor, faça seu login na janela do navegador que se abriu.")
+            print("O extrator detectará seu login automaticamente e iniciará os downloads.")
+            print("=" * 60 + "\n", flush=True)
+            for wait_step in range(300):
+                page.wait_for_timeout(2000)
+                if "login" not in page.url.lower():
+                    subjects = discover_subjects(page, course_url)
+                    if subjects:
+                        print(f"✓ Autenticação detectada com sucesso! {len(subjects)} curso(s) encontrado(s).", flush=True)
+                        break
         if not subjects:
             print("Nenhum curso foi detectado. Verifique a sessão e a URL.")
             return 1
@@ -66,7 +75,7 @@ def main() -> int:
         print(f"[CURSO] {page.title()}")
         print(f"Matérias encontradas: {len(subjects)}")
         totals = {"downloaded": 0, "exists": 0, "failed": 0, "lessons": 0}
-        for subject_index, subject in enumerate(subjects, 1):
+        for subject_index, subject in enumerate(subjects, args.start_index):
             lessons = discover_lessons(page, subject.url, args.delay)
             found_total += len(lessons)
             subject_key = subject.url

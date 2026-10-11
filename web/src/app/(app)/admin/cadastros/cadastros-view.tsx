@@ -54,6 +54,8 @@ export interface WaitlistRow {
 const CONTEST_LABELS: Record<string, string> = {
   CBMPE_SOLDADO: "CBMPE Soldado",
   CBMPE_OFICIAL: "CBMPE 2º Tenente",
+  PMPE_SOLDADO: "PMPE Soldado",
+  PMPE_OFICIAL: "PMPE 2º Tenente",
   PCPE_AGENTE: "PCPE Agente",
 };
 

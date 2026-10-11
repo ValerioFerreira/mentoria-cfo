@@ -26,7 +26,7 @@ export default async function QuestoesPage() {
   }
 
   const overview = await getQuestoesOverview(user.id);
-  const { globalStats, subjects } = overview;
+  const { globalStats, subjects, availableBancas } = overview;
 
   return (
     <div className="space-y-8">
@@ -102,7 +102,7 @@ export default async function QuestoesPage() {
       </div>
 
       {/* Navegador e Filtros de Questões por Matéria e Assunto */}
-      <QuestoesFilterList subjects={subjects} />
+      <QuestoesFilterList subjects={subjects} availableBancas={availableBancas} />
     </div>
   );
 }

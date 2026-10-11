@@ -69,7 +69,7 @@ export default async function SimuladoResultadoPage({
     redirect(`/simulados/${session.id}`);
   }
 
-  const contestKey = (session.contest as "CBMPE_OFICIAL" | "CBMPE_SOLDADO") || "CBMPE_OFICIAL";
+  const contestKey = (session.contest as import("@/lib/data/simulados").SupportedSimuladoContest) || "CBMPE_OFICIAL";
   const config = EXAM_CONFIGS[contestKey] || EXAM_CONFIGS.CBMPE_OFICIAL;
 
   const totalQuestions = session.total || session.answers.length;

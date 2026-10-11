@@ -8,6 +8,7 @@ export interface TopicOverview {
   userAnswered: number;
   userCorrect: number;
   userAccuracy: number | null;
+  bancas: string[];
 }
 
 export interface SubjectOverview {
@@ -18,6 +19,7 @@ export interface SubjectOverview {
   userAnswered: number;
   userCorrect: number;
   userAccuracy: number | null;
+  bancas: string[];
   topics: TopicOverview[];
 }
 
@@ -30,10 +32,11 @@ export interface QuestoesOverview {
     subjectsCount: number;
   };
   subjects: SubjectOverview[];
+  availableBancas: string[];
 }
 
 export async function getQuestoesOverview(userId: string): Promise<QuestoesOverview> {
-  // 1. Buscar todas as questões aprovadas com seu assunto e disciplina
+  // 1. Buscar todas as questões aprovadas com seu assunto, disciplina e banca
   const [questions, userAnswers, dbSubjects] = await Promise.all([
     db.question.findMany({
       where: { status: "APPROVED" },
@@ -41,6 +44,7 @@ export async function getQuestoesOverview(userId: string): Promise<QuestoesOverv
         id: true,
         subjectId: true,
         topic: true,
+        banca: true,
       },
     }),
     db.quizAnswer.findMany({
@@ -59,9 +63,13 @@ export async function getQuestoesOverview(userId: string): Promise<QuestoesOverv
     }),
   ]);
 
+  const bancaSet = new Set<string>();
+  for (const q of questions) {
+    if (q.banca) bancaSet.add(q.banca);
+  }
+  const availableBancas = Array.from(bancaSet).sort();
+
   // Mapa das respostas do usuário
-  // Como o usuário pode responder mais de uma vez ao longo do tempo,
-  // guardamos o total de respostas e se a última/predominante foi correta
   const answerMap = new Map<string, { answered: number; correct: number; lastCorrect: boolean | null }>();
   for (const a of userAnswers) {
     const cur = answerMap.get(a.questionId) ?? { answered: 0, correct: 0, lastCorrect: null };
@@ -74,7 +82,8 @@ export async function getQuestoesOverview(userId: string): Promise<QuestoesOverv
   // Agrupar questões por disciplina e por assunto
   const subjectMap = new Map<string, {
     total: number;
-    topics: Map<string, { total: number; answeredQ: Set<string>; correctQ: Set<string> }>;
+    bancas: Set<string>;
+    topics: Map<string, { total: number; bancas: Set<string>; answeredQ: Set<string>; correctQ: Set<string> }>;
     answeredQ: Set<string>;
     correctQ: Set<string>;
   }>();
@@ -82,20 +91,23 @@ export async function getQuestoesOverview(userId: string): Promise<QuestoesOverv
   for (const q of questions) {
     const sId = q.subjectId;
     const topicName = q.topic?.trim() || "Geral";
+    const qBanca = q.banca || "AOCP";
 
     let sData = subjectMap.get(sId);
     if (!sData) {
-      sData = { total: 0, topics: new Map(), answeredQ: new Set(), correctQ: new Set() };
+      sData = { total: 0, bancas: new Set(), topics: new Map(), answeredQ: new Set(), correctQ: new Set() };
       subjectMap.set(sId, sData);
     }
     sData.total++;
+    sData.bancas.add(qBanca);
 
     let tData = sData.topics.get(topicName);
     if (!tData) {
-      tData = { total: 0, answeredQ: new Set(), correctQ: new Set() };
+      tData = { total: 0, bancas: new Set(), answeredQ: new Set(), correctQ: new Set() };
       sData.topics.set(topicName, tData);
     }
     tData.total++;
+    tData.bancas.add(qBanca);
 
     const ans = answerMap.get(q.id);
     if (ans && ans.answered > 0) {
@@ -126,6 +138,7 @@ export async function getQuestoesOverview(userId: string): Promise<QuestoesOverv
         userAnswered: tAnswered,
         userCorrect: tCorrect,
         userAccuracy: tAnswered > 0 ? Math.round((tCorrect / tAnswered) * 100) : null,
+        bancas: Array.from(tData.bancas),
       });
     }
 
@@ -143,6 +156,7 @@ export async function getQuestoesOverview(userId: string): Promise<QuestoesOverv
       userAnswered: sAnswered,
       userCorrect: sCorrect,
       userAccuracy: sAnswered > 0 ? Math.round((sCorrect / sAnswered) * 100) : null,
+      bancas: Array.from(sData.bancas),
       topics,
     });
   }
@@ -162,5 +176,6 @@ export async function getQuestoesOverview(userId: string): Promise<QuestoesOverv
       subjectsCount: subjectsList.length,
     },
     subjects: subjectsList,
+    availableBancas: availableBancas.length > 0 ? availableBancas : ["AOCP"],
   };
 }

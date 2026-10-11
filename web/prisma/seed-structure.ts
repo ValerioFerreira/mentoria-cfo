@@ -272,15 +272,15 @@ export async function seedAdmin() {
 export async function seedQuestions() {
   console.log(`[Seed Questions] Sincronizando acervo exclusivo do TecConcursos...`);
 
-  // 1. Limpar do banco de dados qualquer questão antiga/sintética residual que não possua prefixo tec_
+  // 1. Limpar do banco de dados qualquer questão legada/sintética residual que não possua prefixo tec_ ou pmpe_
   try {
     await db.$executeRawUnsafe(`
-      DELETE FROM "QuizAnswer" WHERE "questionId" NOT LIKE 'tec_%';
-      DELETE FROM "QuestionReport" WHERE "questionId" NOT LIKE 'tec_%';
-      DELETE FROM "QuestionOption" WHERE "questionId" NOT LIKE 'tec_%';
-      DELETE FROM "Question" WHERE "id" NOT LIKE 'tec_%';
+      DELETE FROM "QuizAnswer" WHERE "questionId" NOT LIKE 'tec_%' AND "questionId" NOT LIKE 'pmpe_%';
+      DELETE FROM "QuestionReport" WHERE "questionId" NOT LIKE 'tec_%' AND "questionId" NOT LIKE 'pmpe_%';
+      DELETE FROM "QuestionOption" WHERE "questionId" NOT LIKE 'tec_%' AND "questionId" NOT LIKE 'pmpe_%';
+      DELETE FROM "Question" WHERE "id" NOT LIKE 'tec_%' AND "id" NOT LIKE 'pmpe_%';
     `);
-    console.log(`[Seed Questions] Limpeza de questões legadas não-oficiais concluída.`);
+    console.log(`[Seed Questions] Limpeza de questões legadas concluída.`);
   } catch (err: any) {
     console.warn(`[Seed Questions] Aviso na limpeza de questões legadas:`, err.message);
   }

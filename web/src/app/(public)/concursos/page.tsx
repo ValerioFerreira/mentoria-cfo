@@ -13,21 +13,23 @@ export const metadata: Metadata = { title: "Escolha seu concurso" };
 export default async function ContestsPage() {
   if (await getCurrentUser()) redirect("/");
   return (
-    <div className="space-y-8 pt-2 sm:pt-8">
+    <div className="mx-auto flex max-w-5xl flex-col items-center space-y-8 pt-2 sm:pt-8 text-center">
       <RouteNavigationTrap targetUrl="/" />
-      <Link href="/" className="inline-flex items-center gap-1.5 text-sm font-semibold text-muted transition hover:text-text">
-        <ArrowLeft className="h-4 w-4" aria-hidden />
-        Voltar para o início
-      </Link>
-      <div className="max-w-2xl space-y-4">
+      <div className="w-full text-left">
+        <Link href="/" className="inline-flex items-center gap-1.5 text-sm font-semibold text-muted transition hover:text-text">
+          <ArrowLeft className="h-4 w-4" aria-hidden />
+          Voltar para o início
+        </Link>
+      </div>
+      <div className="mx-auto max-w-2xl space-y-4">
         <p className="eyebrow">MentorIA · Plano de estudos</p>
         <h1 className="font-display text-5xl font-bold uppercase leading-[0.92] sm:text-7xl">
           Qual é a sua <span className="text-primary">missão?</span>
         </h1>
       </div>
-      <ul className="grid gap-5 md:grid-cols-3">
+      <ul className="grid w-full justify-center gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {CONTESTS.map((c, i) => (
-          <li key={c.slug} className="rise" style={{ ["--i" as string]: i * 0.6 }}>
+          <li key={c.slug} className="rise text-left" style={{ ["--i" as string]: i * 0.6 }}>
             <ContestCard c={c} />
           </li>
         ))}
@@ -58,14 +60,14 @@ function ContestCard({ c }: { c: ContestInfo }) {
         <div className="flex items-center gap-2">
           <Badge tone="gold">{c.org}</Badge>
           {c.category && <span className="text-xs font-semibold uppercase tracking-wider text-on-ink-muted">{c.category}</span>}
-          {!c.available && <span className="rounded-full bg-white/15 px-2.5 py-0.5 text-xs font-semibold leading-5 text-on-ink">Em desenvolvimento</span>}
+          {!c.available && <span className="rounded-full bg-white/15 px-2.5 py-0.5 text-xs font-semibold leading-5 text-on-ink">Em breve</span>}
         </div>
         <div>
           <p className="text-xs font-semibold uppercase tracking-wider text-on-ink-muted">Cargo</p>
           <h2 className="font-display text-4xl font-bold uppercase leading-none">{c.role}</h2>
         </div>
         <p className="flex items-center gap-2 text-sm font-semibold text-gold">
-          Entrar na lista de espera
+          {c.available ? "Iniciar preparação" : "Ver detalhes"}
           <ArrowRight className="h-4 w-4 transition duration-300 group-hover:translate-x-1.5" aria-hidden />
         </p>
       </div>

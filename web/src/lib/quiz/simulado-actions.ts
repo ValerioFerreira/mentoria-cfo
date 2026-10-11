@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
-import { EXAM_CONFIGS, checkSimuladoReadiness } from "@/lib/data/simulados";
+import { EXAM_CONFIGS, checkSimuladoReadiness, type SupportedSimuladoContest } from "@/lib/data/simulados";
 import { canUserAccessCoreFeatures } from "@/lib/system-settings";
 
 function shuffle<T>(arr: T[]): T[] {
@@ -22,7 +22,7 @@ function shuffle<T>(arr: T[]): T[] {
  * NÃO gera simulado incompleto se faltar qualquer disciplina.
  */
 export async function startSimuladoSession(input: {
-  contest: "CBMPE_OFICIAL" | "CBMPE_SOLDADO";
+  contest: SupportedSimuladoContest;
   foreignLang?: "lingua-inglesa" | "lingua-espanhola";
 }): Promise<{ error: string } | never> {
   const user = await requireUser();
@@ -46,13 +46,14 @@ export async function startSimuladoSession(input: {
   const config = EXAM_CONFIGS[input.contest];
   const selectedQuestionIds: string[] = [];
 
-  // 2. Seleção aleatória das questões dentro de cada disciplina sem repetição
+  // 2. Seleção aleatória das questões dentro de cada disciplina sem repetição (apenas banca AOCP)
   for (const s of config.subjects) {
     const actualSubId = s.subjectId === "FOREIGN_LANG" ? foreignLang : s.subjectId;
     const questions = await db.question.findMany({
       where: {
         subjectId: actualSubId,
         status: "APPROVED",
+        banca: { in: ["AOCP", "Instituto AOCP", "INSTITUTO AOCP"] },
       },
       select: { id: true },
     });

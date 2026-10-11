@@ -230,7 +230,7 @@ export default function ComoFuncionaPage() {
               Pronto para conquistar sua farda?
             </h3>
             <p className="text-sm leading-relaxed text-on-ink-muted">
-              Garanta sua vaga na lista de espera ou entre agora mesmo com seu acesso.
+              Garanta seu acesso agora mesmo e inicie seu cronograma individualizado rumo à aprovação.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">

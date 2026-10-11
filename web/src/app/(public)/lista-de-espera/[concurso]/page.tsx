@@ -10,7 +10,7 @@ import { WaitlistForm } from "./waitlist-form";
 
 export async function generateMetadata({ params }: PageProps<"/lista-de-espera/[concurso]">): Promise<Metadata> {
   const c = contestBySlug((await params).concurso);
-  return { title: c ? `Lista de espera · ${c.org} ${c.role}` : "Lista de espera" };
+  return { title: c ? `Plano de estudos · ${c.org} ${c.role}` : "Plano de estudos" };
 }
 
 export default async function WaitlistPage({ params }: PageProps<"/lista-de-espera/[concurso]">) {
@@ -27,13 +27,8 @@ export default async function WaitlistPage({ params }: PageProps<"/lista-de-espe
       </Link>
       <div>
         <p className="eyebrow">{contestTitle(c)}</p>
-        <h1 className="font-display text-5xl font-bold uppercase leading-none">Lista de espera</h1>
+        <h1 className="font-display text-5xl font-bold uppercase leading-none">Inscrição & Plano</h1>
       </div>
-      {!c.available && (
-        <Alert tone="info">
-          O plano de estudos do cargo de <strong>{c.role}</strong> ({c.org}) está <strong>em desenvolvimento</strong>. Você já pode entrar na lista de espera: basta efetuar o pagamento por Pix e avisaremos quando o acesso for liberado.
-        </Alert>
-      )}
       <WaitlistForm slug={c.slug} />
     </div>
   );

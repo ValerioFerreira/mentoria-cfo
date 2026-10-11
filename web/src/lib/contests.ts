@@ -4,7 +4,7 @@ export interface ContestInfo {
   /** parte da URL: /lista-de-espera/<slug> */
   slug: string;
   key: Contest;
-  org: "CBMPE" | "PCPE";
+  org: "CBMPE" | "PCPE" | "PMPE";
   /** nome do cargo, sem a corporação */
   role: string;
   /** "Praça", "Oficial"… */
@@ -20,12 +20,16 @@ export interface ContestInfo {
 export const CONTESTS: ContestInfo[] = [
   { slug: "cbmpe-soldado", key: "CBMPE_SOLDADO", org: "CBMPE", role: "Soldado", category: "Praça", image: "/images/CBMPE.webp", imagePosition: "center 30%", available: true },
   { slug: "cbmpe-oficial", key: "CBMPE_OFICIAL", org: "CBMPE", role: "2º Tenente", category: "Oficial", image: "/images/CBMPE.webp", imagePosition: "center 70%", available: true },
+  { slug: "pmpe-soldado", key: "PMPE_SOLDADO", org: "PMPE", role: "Soldado", category: "Praça", image: "/images/PMPE.webp", imagePosition: "center 30%", available: true },
+  { slug: "pmpe-oficial", key: "PMPE_OFICIAL", org: "PMPE", role: "2º Tenente", category: "Oficial", image: "/images/PMPE.webp", imagePosition: "center 70%", available: true },
   { slug: "pcpe-agente", key: "PCPE_AGENTE", org: "PCPE", role: "Agente de Polícia", category: "", image: "/images/PCPE.webp", imagePosition: "center", available: false },
 ];
 
 export const CONTEST_SUBTITLES: Record<Contest, string> = {
   CBMPE_OFICIAL: "OFICIAL - CBMPE",
   CBMPE_SOLDADO: "PRAÇA - CBMPE",
+  PMPE_OFICIAL: "OFICIAL - PMPE",
+  PMPE_SOLDADO: "PRAÇA - PMPE",
   PCPE_AGENTE: "AGENTE - PCPE",
 };
 
@@ -53,6 +57,26 @@ export const CONTEST_SUBJECTS: Record<Contest, string[]> = {
     "informatica",
     "biologia",
     "direito-constitucional",
+    "legislacoes-pe",
+  ],
+  PMPE_SOLDADO: [
+    "lingua-portuguesa",
+    "historia-pe",
+    "raciocinio-logico",
+    "informatica",
+    "direito-constitucional",
+    "legislacoes-pe",
+  ],
+  PMPE_OFICIAL: [
+    "lingua-portuguesa",
+    "lingua-inglesa",
+    "lingua-espanhola",
+    "raciocinio-logico",
+    "estatistica",
+    "informatica",
+    "direito-constitucional",
+    "direito-administrativo",
+    "direito-penal-militar",
     "legislacoes-pe",
   ],
   PCPE_AGENTE: [

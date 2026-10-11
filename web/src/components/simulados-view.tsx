@@ -22,14 +22,14 @@ import {
   XCircle,
 } from "lucide-react";
 import { Badge, Button, Card, Progress } from "@/components/ui";
-import type { SimuladoReadiness } from "@/lib/data/simulados";
+import type { SimuladoReadiness, SupportedSimuladoContest } from "@/lib/data/simulados";
 import { startSimuladoSession } from "@/lib/quiz/simulado-actions";
 import { fmtDuration } from "@/lib/ui-format";
 
 interface SimuladoHistoryItem {
   id: string;
   title: string;
-  contest: "CBMPE_OFICIAL" | "CBMPE_SOLDADO";
+  contest: SupportedSimuladoContest;
   roleName: string;
   startedAt: Date;
   finishedAt: Date | null;
@@ -41,15 +41,27 @@ interface SimuladoHistoryItem {
 }
 
 interface Props {
-  oficialReadiness: SimuladoReadiness;
-  soldadoReadiness: SimuladoReadiness;
+  readinessMap?: Record<SupportedSimuladoContest, SimuladoReadiness>;
+  oficialReadiness?: SimuladoReadiness;
+  soldadoReadiness?: SimuladoReadiness;
   history: SimuladoHistoryItem[];
 }
 
-export function SimuladosView({ oficialReadiness, soldadoReadiness, history }: Props) {
-  const [selectedContest, setSelectedContest] = useState<"CBMPE_OFICIAL" | "CBMPE_SOLDADO">(
-    "CBMPE_OFICIAL"
-  );
+const CONTEST_TABS: {
+  key: SupportedSimuladoContest;
+  badge: string;
+  role: string;
+  desc: string;
+  org: "CBMPE" | "PMPE";
+}[] = [
+  { key: "CBMPE_OFICIAL", badge: "CBMPE", role: "Oficial BM (2º Tenente)", desc: "4h30min · 70 questões · CFO", org: "CBMPE" },
+  { key: "CBMPE_SOLDADO", badge: "CBMPE", role: "Soldado BM (Praça)", desc: "4h00min · 60 questões · CFSd", org: "CBMPE" },
+  { key: "PMPE_OFICIAL", badge: "PMPE", role: "Oficial PM (2º Tenente)", desc: "4h30min · 70 questões · CFO", org: "PMPE" },
+  { key: "PMPE_SOLDADO", badge: "PMPE", role: "Soldado PM (Praça)", desc: "4h00min · 60 questões · CFSd", org: "PMPE" },
+];
+
+export function SimuladosView({ readinessMap, oficialReadiness, soldadoReadiness, history }: Props) {
+  const [selectedContest, setSelectedContest] = useState<SupportedSimuladoContest>("CBMPE_OFICIAL");
   const [foreignLang, setForeignLang] = useState<"lingua-inglesa" | "lingua-espanhola">(
     "lingua-inglesa"
   );
@@ -57,15 +69,17 @@ export function SimuladosView({ oficialReadiness, soldadoReadiness, history }: P
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const currentReadiness =
-    selectedContest === "CBMPE_OFICIAL" ? oficialReadiness : soldadoReadiness;
+    readinessMap?.[selectedContest] ||
+    (selectedContest === "CBMPE_SOLDADO" ? soldadoReadiness! : oficialReadiness!);
   const config = currentReadiness.config;
+  const hasForeignLang = config.subjects.some((s) => s.subjectId === "FOREIGN_LANG");
 
   const handleStartSimulado = () => {
     setErrorMessage(null);
     startTransition(async () => {
       const res = await startSimuladoSession({
         contest: selectedContest,
-        foreignLang: selectedContest === "CBMPE_OFICIAL" ? foreignLang : undefined,
+        foreignLang: hasForeignLang ? foreignLang : undefined,
       });
 
       if (res && "error" in res) {
@@ -77,72 +91,42 @@ export function SimuladosView({ oficialReadiness, soldadoReadiness, history }: P
   return (
     <div className="space-y-8">
       {/* Seletor de Concurso / Cargo */}
-      <div className="flex flex-col sm:flex-row gap-3">
-        <button
-          type="button"
-          onClick={() => setSelectedContest("CBMPE_OFICIAL")}
-          className={`flex-1 flex items-start gap-3.5 p-4 rounded-2xl border text-left transition cursor-pointer ${
-            selectedContest === "CBMPE_OFICIAL"
-              ? "border-primary bg-primary/10 shadow-sm"
-              : "border-border bg-surface hover:bg-surface-2/60 text-muted"
-          }`}
-        >
-          <div
-            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl font-bold text-sm ${
-              selectedContest === "CBMPE_OFICIAL"
-                ? "bg-primary text-on-primary"
-                : "bg-surface-3 text-muted"
-            }`}
-          >
-            CFO
-          </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <h3 className="font-display text-base font-bold text-text uppercase">
-                Oficial BM (2º Tenente)
-              </h3>
-              <Badge tone="neutral" className="text-[10px]">
-                70 questões
-              </Badge>
-            </div>
-            <p className="text-xs text-muted mt-0.5">
-              4h30min de prova · Bloco I, Bloco II e Bloco III · Edital AOCP
-            </p>
-          </div>
-        </button>
-
-        <button
-          type="button"
-          onClick={() => setSelectedContest("CBMPE_SOLDADO")}
-          className={`flex-1 flex items-start gap-3.5 p-4 rounded-2xl border text-left transition cursor-pointer ${
-            selectedContest === "CBMPE_SOLDADO"
-              ? "border-primary bg-primary/10 shadow-sm"
-              : "border-border bg-surface hover:bg-surface-2/60 text-muted"
-          }`}
-        >
-          <div
-            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl font-bold text-sm ${
-              selectedContest === "CBMPE_SOLDADO"
-                ? "bg-primary text-on-primary"
-                : "bg-surface-3 text-muted"
-            }`}
-          >
-            CFSd
-          </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <h3 className="font-display text-base font-bold text-text uppercase">
-                Soldado BM (Praça)
-              </h3>
-              <Badge tone="neutral" className="text-[10px]">
-                60 questões
-              </Badge>
-            </div>
-            <p className="text-xs text-muted mt-0.5">
-              4h00min de prova · Bloco I, Bloco II e Bloco III · Edital AOCP
-            </p>
-          </div>
-        </button>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        {CONTEST_TABS.map((tab) => {
+          const isSelected = selectedContest === tab.key;
+          return (
+            <button
+              key={tab.key}
+              type="button"
+              onClick={() => setSelectedContest(tab.key)}
+              className={`flex items-start gap-3 p-3.5 rounded-2xl border text-left transition cursor-pointer ${
+                isSelected
+                  ? "border-primary bg-primary/10 shadow-sm"
+                  : "border-border bg-surface hover:bg-surface-2/60 text-muted"
+              }`}
+            >
+              <div
+                className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl font-bold text-xs ${
+                  isSelected
+                    ? "bg-primary text-on-primary"
+                    : "bg-surface-3 text-muted"
+                }`}
+              >
+                {tab.badge}
+              </div>
+              <div className="min-w-0">
+                <div className="flex items-center gap-1.5">
+                  <h3 className="font-display text-sm font-bold text-text uppercase truncate">
+                    {tab.role}
+                  </h3>
+                </div>
+                <p className="text-[11px] text-muted mt-0.5 truncate">
+                  {tab.desc}
+                </p>
+              </div>
+            </button>
+          );
+        })}
       </div>
 
       {/* Cartão de Configuração e Diagnóstico da Prova */}
@@ -177,8 +161,8 @@ export function SimuladosView({ oficialReadiness, soldadoReadiness, history }: P
           </div>
         )}
 
-        {/* Escolha de Língua Estrangeira (quando Oficial) */}
-        {selectedContest === "CBMPE_OFICIAL" && (
+        {/* Escolha de Língua Estrangeira (quando exigida no edital) */}
+        {hasForeignLang && (
           <div className="rounded-xl border border-border/70 bg-surface-2/30 p-4 space-y-2">
             <label className="text-xs font-semibold uppercase tracking-wider text-muted block">
               Opção de Língua Estrangeira (Bloco I — 5 questões)
@@ -262,32 +246,34 @@ export function SimuladosView({ oficialReadiness, soldadoReadiness, history }: P
                 </Badge>
               ) : (
                 <Badge tone="primary" className="text-[10px] font-bold">
-                  Aguardando Questões
+                  Acervo Incompleto ({currentReadiness.totalAvailable}/{currentReadiness.totalRequired})
                 </Badge>
               )}
             </div>
+
             <span className="text-xs text-muted">
-              {currentReadiness.isReady
-                ? "Todas as disciplinas possuem questões suficientes para a prova completa."
-                : `${currentReadiness.insufficientSubjects.length} disciplina(s) aguardando carga de PDFs oficiais.`}
+              Exclusivamente questões da banca <strong>AOCP / Instituto AOCP</strong>
             </span>
           </div>
 
-          {/* Tabela de Matérias vs Disponibilidade */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 text-xs">
+          {/* Lista de Matérias e Status de Disponibilidade */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
             {currentReadiness.subjects.map((sub) => (
               <div
                 key={sub.subjectId}
-                className={`flex items-center justify-between p-2.5 rounded-xl border transition ${
+                className={`flex items-center justify-between p-2.5 rounded-xl border text-xs ${
                   sub.isSufficient
-                    ? "border-ok/30 bg-ok/5 text-text"
-                    : "border-primary/40 bg-primary/10 text-primary font-medium"
+                    ? "border-border/60 bg-surface/80"
+                    : "border-primary/40 bg-primary/5 text-primary"
                 }`}
               >
-                <div className="min-w-0 flex-1 pr-2">
-                  <span className="block truncate font-semibold text-text">{sub.name}</span>
-                  <span className="text-[10px] text-muted">Bloco {sub.block}</span>
+                <div className="min-w-0 pr-2">
+                  <p className="font-semibold text-text truncate">{sub.name}</p>
+                  <p className="text-[11px] text-muted">
+                    Bloco {sub.block} · Exige {sub.required}
+                  </p>
                 </div>
+
                 <div className="text-right shrink-0">
                   <span
                     className={`font-mono font-bold ${
@@ -296,7 +282,11 @@ export function SimuladosView({ oficialReadiness, soldadoReadiness, history }: P
                   >
                     {sub.available}/{sub.required}
                   </span>
-                  <span className="text-[10px] block text-muted">
+                  <span
+                    className={`block text-[10px] font-semibold uppercase ${
+                      sub.isSufficient ? "text-ok" : "text-primary"
+                    }`}
+                  >
                     {sub.isSufficient ? "Pronto" : "Falta"}
                   </span>
                 </div>
@@ -310,7 +300,7 @@ export function SimuladosView({ oficialReadiness, soldadoReadiness, history }: P
               <AlertCircle className="h-4 w-4 shrink-0 text-gold mt-0.5" />
               <div>
                 <p className="font-bold text-gold-text">
-                  Garantia de Fidelidade ao Edital Unificado CBMPE 2026
+                  Garantia de Fidelidade ao Edital {config.title}
                 </p>
                 <p className="mt-1 text-muted">
                   Para garantir a máxima precisão metodológica, a plataforma não gera simulados com distribuição adulterada ou disciplinas ausentes. A geração desta prova será liberada automaticamente assim que os cadernos completos das disciplinas marcadas acima forem integrados à pasta oficial de questões.

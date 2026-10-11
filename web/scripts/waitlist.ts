@@ -15,7 +15,13 @@ const flag = (n: string) => {
   return i >= 0 ? args[i + 1]?.toLowerCase() : undefined;
 };
 const db = new PrismaClient({ adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL }) });
-const LABEL = { CBMPE_SOLDADO: "CBMPE Soldado", CBMPE_OFICIAL: "CBMPE 2º Tenente", PCPE_AGENTE: "PCPE Agente" } as const;
+const LABEL: Record<string, string> = {
+  CBMPE_SOLDADO: "CBMPE Soldado",
+  CBMPE_OFICIAL: "CBMPE 2º Tenente",
+  PMPE_SOLDADO: "PMPE Soldado",
+  PMPE_OFICIAL: "PMPE 2º Tenente",
+  PCPE_AGENTE: "PCPE Agente",
+};
 const PLAN = { MONTHLY: "R$ 30/mês", UNTIL_EXAM: "R$ 50 até a prova (50% de lançamento)" } as const;
 
 async function main() {

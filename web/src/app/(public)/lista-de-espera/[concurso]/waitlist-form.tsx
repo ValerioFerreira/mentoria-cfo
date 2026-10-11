@@ -73,7 +73,7 @@ export function WaitlistForm({ slug }: { slug: string }) {
       </Field>
       <Button type="submit" size="lg" disabled={pending || checking || (check !== null && !check.available)} className="w-full">
         {pending ? <Loader2 className="h-5 w-5 animate-spin" aria-hidden /> : <Send className="h-5 w-5" aria-hidden />}
-        {pending ? "Enviando…" : "Entrar na lista de espera"}
+        {pending ? "Gerando Pix…" : "Gerar Pix para Pagamento"}
       </Button>
     </form>
   );
