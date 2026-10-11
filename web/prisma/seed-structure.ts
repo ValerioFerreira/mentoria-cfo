@@ -269,9 +269,118 @@ export async function seedAdmin() {
   console.log(`[Seed Admin] Administrador ${email} assegurado.`);
 }
 
+export async function seedQuestions() {
+  console.log(`[Seed Questions] Sincronizando acervo exclusivo do TecConcursos...`);
+
+  // 1. Limpar do banco de dados qualquer questão antiga/sintética residual que não possua prefixo tec_
+  try {
+    await db.$executeRawUnsafe(`
+      DELETE FROM "QuizAnswer" WHERE "questionId" NOT LIKE 'tec_%';
+      DELETE FROM "QuestionReport" WHERE "questionId" NOT LIKE 'tec_%';
+      DELETE FROM "QuestionOption" WHERE "questionId" NOT LIKE 'tec_%';
+      DELETE FROM "Question" WHERE "id" NOT LIKE 'tec_%';
+    `);
+    console.log(`[Seed Questions] Limpeza de questões legadas não-oficiais concluída.`);
+  } catch (err: any) {
+    console.warn(`[Seed Questions] Aviso na limpeza de questões legadas:`, err.message);
+  }
+
+  // 2. Localizar o arquivo de questões reais do TecConcursos
+  const candidates = [
+    path.resolve(process.cwd(), "content/questoes_tecconcursos.json"),
+    path.resolve(process.cwd(), "../content/questoes_tecconcursos.json"),
+    path.resolve(__dirname, "../../content/questoes_tecconcursos.json"),
+    path.resolve(__dirname, "../content/questoes_tecconcursos.json"),
+    path.resolve(__dirname, "content/questoes_tecconcursos.json"),
+  ];
+  let questionsFile = "";
+  for (const c of candidates) {
+    if (fs.existsSync(c)) {
+      questionsFile = c;
+      break;
+    }
+  }
+
+  if (!questionsFile) {
+    console.log(`[Seed Questions] Aviso: questoes_tecconcursos.json não encontrado.`);
+    return;
+  }
+
+  const questions: Array<{
+    id: string;
+    subjectId: string;
+    aulaId: string;
+    segmentId: string;
+    topicId?: string | null;
+    topic?: string | null;
+    support?: string | null;
+    statement: string;
+    explanation: string;
+    difficulty: number;
+    pattern: string;
+    pageRef?: number | null;
+    status: "DRAFT" | "APPROVED" | "RETIRED";
+    batch?: string | null;
+    options: Array<{
+      id: string;
+      label: string;
+      text: string;
+      isCorrect: boolean;
+    }>;
+  }> = JSON.parse(fs.readFileSync(questionsFile, "utf-8"));
+
+  console.log(`[Seed Questions] Total de questões oficiais no arquivo: ${questions.length}.`);
+
+  const currentCount = await db.question.count({
+    where: { id: { startsWith: "tec_" } },
+  });
+
+  if (currentCount >= questions.length) {
+    console.log(`[Seed Questions] Banco já possui ${currentCount} questões oficiais do TecConcursos.`);
+    return;
+  }
+
+  const questionRows = questions.map((q) => ({
+    id: q.id,
+    subjectId: q.subjectId,
+    aulaId: q.aulaId,
+    segmentId: q.segmentId,
+    topicId: q.topicId ?? null,
+    topic: q.topic ?? null,
+    support: q.support ?? null,
+    statement: q.statement,
+    explanation: q.explanation,
+    difficulty: q.difficulty,
+    pattern: q.pattern,
+    pageRef: q.pageRef ?? null,
+    status: q.status,
+    batch: q.batch ?? null,
+  }));
+
+  const optionRows = questions.flatMap((q) =>
+    (q.options || []).map((opt) => ({
+      id: opt.id,
+      questionId: q.id,
+      label: opt.label,
+      text: opt.text,
+      isCorrect: opt.isCorrect,
+    }))
+  );
+
+  console.log(`[Seed Questions] Sincronizando ${questionRows.length} questões e ${optionRows.length} alternativas...`);
+  for (const c of chunk(questionRows, 500)) {
+    await db.question.createMany({ data: c, skipDuplicates: true });
+  }
+  for (const c of chunk(optionRows, 1000)) {
+    await db.questionOption.createMany({ data: c, skipDuplicates: true });
+  }
+  console.log(`[Seed Questions] Sincronização finalizada com sucesso!`);
+}
+
 async function main() {
   try {
     await seedStructure();
+    await seedQuestions();
     await seedAdmin();
   } finally {
     await db.$disconnect();

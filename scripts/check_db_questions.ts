@@ -29,8 +29,8 @@ async function check() {
   const total = await db.question.count();
   const tecCount = await db.question.count({ where: { id: { startsWith: "tec_" } } });
   const nonTec = await db.question.count({ where: { NOT: { id: { startsWith: "tec_" } } } });
-  const batches = await db.question.groupBy({ by: ["batch"], _count: { id: true } });
-  console.log("Status do banco:", { total, tecCount, nonTec, batches });
+  const statuses = (await db.question.groupBy({ by: ["status"], _count: { id: true } })).map(s => ({ status: s.status, count: s._count.id }));
+  console.log("Status do banco:", { total, tecCount, nonTec, statuses });
   await db.$disconnect();
 }
 
