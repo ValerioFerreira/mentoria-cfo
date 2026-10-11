@@ -50,41 +50,49 @@ const LoginSchema = z.object({
 });
 
 export async function login(_: AuthState, formData: FormData): Promise<AuthState> {
-  const parsed = LoginSchema.safeParse(Object.fromEntries(formData));
-  if (!parsed.success) return { errors: z.flattenError(parsed.error).fieldErrors as Record<string, string[]> };
-  const { email, password } = parsed.data;
-  if (tooManyAttempts(email)) return { message: "Muitas tentativas. Aguarde alguns minutos e tente novamente." };
+  try {
+    const parsed = LoginSchema.safeParse(Object.fromEntries(formData));
+    if (!parsed.success) return { errors: z.flattenError(parsed.error).fieldErrors as Record<string, string[]> };
+    const { email, password } = parsed.data;
+    if (tooManyAttempts(email)) return { message: "Muitas tentativas. Aguarde alguns minutos e tente novamente." };
 
-  // Garante bootstrap automático caso o admin padrão esteja entrando pela primeira vez
-  if (email === DEFAULT_ADMIN_EMAIL.toLowerCase()) {
-    try {
-      await ensureDefaultAdmin();
-    } catch (e) {
-      console.error("Erro no bootstrap do admin durante login:", e);
+    // Garante bootstrap automático caso o admin padrão esteja entrando pela primeira vez
+    if (email === DEFAULT_ADMIN_EMAIL.toLowerCase()) {
+      try {
+        await ensureDefaultAdmin();
+      } catch (e) {
+        console.error("Erro no bootstrap do admin durante login:", e);
+      }
     }
+
+    const user = await db.user.findUnique({ where: { email } });
+    const ok = user ? await verifyPassword(password, user.passwordHash) : false;
+    if (!user || !ok) {
+      registerFailure(email);
+      return { message: "E-mail ou senha incorretos." };
+    }
+
+    // Verifica se o acesso do usuário expirou
+    if (user.accessExpiresAt && user.accessExpiresAt < new Date()) {
+      return { message: "Seu período de acesso ao MentorIA expirou. Entre em contato com a administração." };
+    }
+
+    clearFailures(email);
+    await createSession(user.id);
+
+    // Se o usuário precisa trocar a senha temporária, vai para /trocar-senha
+    if (user.mustChangePassword) {
+      redirect("/trocar-senha");
+    }
+
+    redirect("/");
+  } catch (err: any) {
+    if (err?.message === "NEXT_REDIRECT" || err?.digest?.startsWith?.("NEXT_REDIRECT")) {
+      throw err;
+    }
+    console.error("[Login Action Exception]:", err);
+    return { message: "Ocorreu uma instabilidade na conexão. Por favor, tente novamente." };
   }
-
-  const user = await db.user.findUnique({ where: { email } });
-  const ok = user ? await verifyPassword(password, user.passwordHash) : false;
-  if (!user || !ok) {
-    registerFailure(email);
-    return { message: "E-mail ou senha incorretos." };
-  }
-
-  // Verifica se o acesso do usuário expirou
-  if (user.accessExpiresAt && user.accessExpiresAt < new Date()) {
-    return { message: "Seu período de acesso ao MentorIA expirou. Entre em contato com a administração." };
-  }
-
-  clearFailures(email);
-  await createSession(user.id);
-
-  // Se o usuário precisa trocar a senha temporária, vai para /trocar-senha
-  if (user.mustChangePassword) {
-    redirect("/trocar-senha");
-  }
-
-  redirect("/");
 }
 
 export async function logout(): Promise<void> {
