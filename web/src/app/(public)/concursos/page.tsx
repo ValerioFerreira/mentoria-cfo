@@ -27,9 +27,13 @@ export default async function ContestsPage() {
           Qual é a sua <span className="text-primary">missão?</span>
         </h1>
       </div>
-      <ul className="grid w-full justify-center gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <ul className="flex flex-wrap justify-center gap-6 w-full max-w-5xl mx-auto">
         {CONTESTS.map((c, i) => (
-          <li key={c.slug} className="rise text-left" style={{ ["--i" as string]: i * 0.6 }}>
+          <li
+            key={c.slug}
+            className="rise text-left w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] max-w-sm shrink-0"
+            style={{ ["--i" as string]: i * 0.6 }}
+          >
             <ContestCard c={c} />
           </li>
         ))}

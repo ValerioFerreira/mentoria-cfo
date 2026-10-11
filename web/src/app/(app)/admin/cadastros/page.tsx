@@ -77,7 +77,7 @@ export default async function AdminCadastrosPage() {
       <PageHeader
         eyebrow="Administração"
         title="Gestão de Cadastros"
-        description="Aprove ou recuse os cadastros da lista de espera e libere os planejamentos personalizados solicitados pelos alunos."
+        description="Aprove ou recuse as solicitações de alunos e libere os planejamentos personalizados solicitados."
       />
 
       <CadastrosView entries={formatted} pendingPlans={formattedPlans} />

@@ -176,7 +176,7 @@ function Payment({ p }: { p: NonNullable<NonNullable<Awaited<ReturnType<typeof j
     <Card className="space-y-6">
       <RouteNavigationTrap targetUrl="/concursos" />
       <div className="space-y-2">
-        {p.alreadyJoined && <p className="eyebrow">Você já está na lista</p>}
+        {p.alreadyJoined && <p className="eyebrow">Inscrição já realizada</p>}
         <h2 className="font-display text-5xl font-bold uppercase leading-none">Falta pouco!</h2>
         <p className="text-sm leading-relaxed text-muted">
           Efetue o pagamento via PIX pelo QR Code ou pelo código copia e cola abaixo.

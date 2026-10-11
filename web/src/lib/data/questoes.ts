@@ -9,6 +9,7 @@ export interface TopicOverview {
   userCorrect: number;
   userAccuracy: number | null;
   bancas: string[];
+  bancaCounts: Record<string, number>;
 }
 
 export interface SubjectOverview {
@@ -20,6 +21,7 @@ export interface SubjectOverview {
   userCorrect: number;
   userAccuracy: number | null;
   bancas: string[];
+  bancaCounts: Record<string, number>;
   topics: TopicOverview[];
 }
 
@@ -95,7 +97,8 @@ export async function getQuestoesOverview(userId: string): Promise<QuestoesOverv
   const subjectMap = new Map<string, {
     total: number;
     bancas: Set<string>;
-    topics: Map<string, { total: number; bancas: Set<string>; answeredQ: Set<string>; correctQ: Set<string> }>;
+    bancaCounts: Record<string, number>;
+    topics: Map<string, { total: number; bancas: Set<string>; bancaCounts: Record<string, number>; answeredQ: Set<string>; correctQ: Set<string> }>;
     answeredQ: Set<string>;
     correctQ: Set<string>;
   }>();
@@ -107,19 +110,21 @@ export async function getQuestoesOverview(userId: string): Promise<QuestoesOverv
 
     let sData = subjectMap.get(sId);
     if (!sData) {
-      sData = { total: 0, bancas: new Set(), topics: new Map(), answeredQ: new Set(), correctQ: new Set() };
+      sData = { total: 0, bancas: new Set(), bancaCounts: {}, topics: new Map(), answeredQ: new Set(), correctQ: new Set() };
       subjectMap.set(sId, sData);
     }
     sData.total++;
     sData.bancas.add(qBanca);
+    sData.bancaCounts[qBanca] = (sData.bancaCounts[qBanca] || 0) + 1;
 
     let tData = sData.topics.get(topicName);
     if (!tData) {
-      tData = { total: 0, bancas: new Set(), answeredQ: new Set(), correctQ: new Set() };
+      tData = { total: 0, bancas: new Set(), bancaCounts: {}, answeredQ: new Set(), correctQ: new Set() };
       sData.topics.set(topicName, tData);
     }
     tData.total++;
     tData.bancas.add(qBanca);
+    tData.bancaCounts[qBanca] = (tData.bancaCounts[qBanca] || 0) + 1;
 
     const ans = answerMap.get(q.id);
     if (ans && ans.answered > 0) {
@@ -138,37 +143,38 @@ export async function getQuestoesOverview(userId: string): Promise<QuestoesOverv
 
   for (const s of dbSubjects) {
     const sData = subjectMap.get(s.id);
-    if (!sData || sData.total === 0) continue;
 
     const topics: TopicOverview[] = [];
-    for (const [tName, tData] of sData.topics.entries()) {
-      const tAnswered = tData.answeredQ.size;
-      const tCorrect = tData.correctQ.size;
-      topics.push({
-        name: tName,
-        totalQuestions: tData.total,
-        userAnswered: tAnswered,
-        userCorrect: tCorrect,
-        userAccuracy: tAnswered > 0 ? Math.round((tCorrect / tAnswered) * 100) : null,
-        bancas: Array.from(tData.bancas),
-      });
+    if (sData) {
+      for (const [tName, tData] of sData.topics.entries()) {
+        const tAnswered = tData.answeredQ.size;
+        const tCorrect = tData.correctQ.size;
+        topics.push({
+          name: tName,
+          totalQuestions: tData.total,
+          userAnswered: tAnswered,
+          userCorrect: tCorrect,
+          userAccuracy: tAnswered > 0 ? Math.round((tCorrect / tAnswered) * 100) : null,
+          bancas: Array.from(tData.bancas),
+          bancaCounts: tData.bancaCounts,
+        });
+      }
+      topics.sort((a, b) => b.totalQuestions - a.totalQuestions);
     }
 
-    // Ordenar tópicos por quantidade de questões decrescente
-    topics.sort((a, b) => b.totalQuestions - a.totalQuestions);
-
-    const sAnswered = sData.answeredQ.size;
-    const sCorrect = sData.correctQ.size;
+    const sAnswered = sData ? sData.answeredQ.size : 0;
+    const sCorrect = sData ? sData.correctQ.size : 0;
 
     subjectsList.push({
       id: s.id,
       name: subjectName(s.id),
       block: subjectBlockMap.get(s.id) ?? "I",
-      totalQuestions: sData.total,
+      totalQuestions: sData ? sData.total : 0,
       userAnswered: sAnswered,
       userCorrect: sCorrect,
       userAccuracy: sAnswered > 0 ? Math.round((sCorrect / sAnswered) * 100) : null,
-      bancas: Array.from(sData.bancas),
+      bancas: sData ? Array.from(sData.bancas) : [],
+      bancaCounts: sData ? sData.bancaCounts : {},
       topics,
     });
   }

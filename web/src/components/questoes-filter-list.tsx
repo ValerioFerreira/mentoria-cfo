@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useTransition, useMemo, useRef, useEffect } from "react";
 import {
   BookOpen,
   CheckCircle2,
@@ -13,6 +13,9 @@ import {
   Trophy,
   Sliders,
   XCircle,
+  Building2,
+  Check,
+  X,
 } from "lucide-react";
 import { BLOCK_COLOR, Badge, Button, Card, Progress } from "@/components/ui";
 import type { SubjectOverview } from "@/lib/data/questoes";
@@ -28,11 +31,30 @@ interface Props {
 export function QuestoesFilterList({ subjects, availableBancas = [], bancaCounts = {} }: Props) {
   const [search, setSearch] = useState("");
   const [selectedBlock, setSelectedBlock] = useState<string>("ALL");
-  const [selectedBanca, setSelectedBanca] = useState<string>("ALL");
+  const [selectedBancas, setSelectedBancas] = useState<string[]>([]);
+  const [isBancaOpen, setIsBancaOpen] = useState(false);
+  const [bancaSearch, setBancaSearch] = useState("");
   const [expandedSubject, setExpandedSubject] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
   const [activeSessionTopic, setActiveSessionTopic] = useState<string | null>(null);
   const [isCustomModalOpen, setIsCustomModalOpen] = useState(false);
+
+  const bancaDropdownRef = useRef<HTMLDivElement>(null);
+
+  // Fechar dropdown ao clicar fora
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (bancaDropdownRef.current && !bancaDropdownRef.current.contains(event.target as Node)) {
+        setIsBancaOpen(false);
+      }
+    }
+    if (isBancaOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isBancaOpen]);
 
   const toggleExpand = (id: string) => {
     setExpandedSubject((prev) => (prev === id ? null : id));
@@ -46,36 +68,102 @@ export function QuestoesFilterList({ subjects, availableBancas = [], bancaCounts
     });
   };
 
-  // Filtragem combinada por Bloco, Busca e Banca
-  const filteredSubjects = subjects
-    .map((s) => {
-      if (selectedBanca !== "ALL" && (!s.bancas || !s.bancas.includes(selectedBanca))) {
-        return null;
+  // Se nenhuma banca estiver selecionada ou se todas estiverem selecionadas, considera "Todas as bancas"
+  const isAllBancasSelected =
+    selectedBancas.length === 0 || selectedBancas.length === availableBancas.length;
+
+  const totalAcervo = useMemo(() => {
+    return Object.values(bancaCounts).reduce((acc, c) => acc + c, 0);
+  }, [bancaCounts]);
+
+  const totalSelectedQuestions = useMemo(() => {
+    if (isAllBancasSelected) return totalAcervo;
+    return selectedBancas.reduce((acc, b) => acc + (bancaCounts[b] || 0), 0);
+  }, [isAllBancasSelected, selectedBancas, bancaCounts, totalAcervo]);
+
+  const toggleBanca = (banca: string) => {
+    setSelectedBancas((prev) => {
+      if (isAllBancasSelected) {
+        // Se estava em "Todas", selecionar apenas essa banca
+        return [banca];
       }
-      const visibleTopics = s.topics.filter((t) => {
-        if (selectedBanca !== "ALL" && t.bancas && !t.bancas.includes(selectedBanca)) {
-          return false;
+      if (prev.includes(banca)) {
+        const next = prev.filter((b) => b !== banca);
+        return next;
+      } else {
+        return [...prev, banca];
+      }
+    });
+  };
+
+  const handleSelectAllBancas = () => {
+    setSelectedBancas([]);
+    setBancaSearch("");
+  };
+
+  const handleClearBancas = () => {
+    setSelectedBancas([]);
+    setBancaSearch("");
+  };
+
+  // Bancas filtradas pelo autocomplete da pesquisa
+  const filteredBancasForDropdown = useMemo(() => {
+    if (!bancaSearch.trim()) return availableBancas;
+    const q = bancaSearch.toLowerCase().trim();
+    return availableBancas.filter((b) => b.toLowerCase().includes(q));
+  }, [availableBancas, bancaSearch]);
+
+  // Filtragem e mapeamento das disciplinas respeitando as regras estritas:
+  // - Se uma disciplina tiver 0 questões da banca filtrada, ELA NÃO DEVE SUMIR DA TELA.
+  const processedSubjects = useMemo(() => {
+    return subjects.map((s) => {
+      // Cálculo das questões disponíveis para as bancas filtradas
+      let countInSubject = s.totalQuestions;
+      let relevantBancasForBadge: string[] = [];
+
+      if (!isAllBancasSelected) {
+        countInSubject = selectedBancas.reduce((acc, b) => acc + (s.bancaCounts?.[b] || 0), 0);
+        // Exibir apenas as bancas selecionadas que possuem questões nesta matéria
+        relevantBancasForBadge = selectedBancas.filter((b) => (s.bancaCounts?.[b] || 0) > 0);
+      }
+
+      // Processar tópicos
+      const processedTopics = s.topics.map((t) => {
+        let countInTopic = t.totalQuestions;
+        if (!isAllBancasSelected) {
+          countInTopic = selectedBancas.reduce((acc, b) => acc + (t.bancaCounts?.[b] || 0), 0);
         }
-        return true;
+        return {
+          ...t,
+          filteredQuestionsCount: countInTopic,
+        };
       });
-      return { ...s, topics: visibleTopics };
-    })
-    .filter((s): s is SubjectOverview => {
-      if (!s) return false;
+
+      return {
+        ...s,
+        filteredQuestionsCount: countInSubject,
+        relevantBancasForBadge,
+        topics: processedTopics,
+      };
+    });
+  }, [subjects, isAllBancasSelected, selectedBancas]);
+
+  // Aplicação dos filtros de Bloco e de Busca por texto
+  const filteredSubjects = useMemo(() => {
+    return processedSubjects.filter((s) => {
       // Filtro por bloco
       if (selectedBlock !== "ALL" && s.block !== selectedBlock) {
         return false;
       }
 
-      // Filtro de busca
+      // Filtro de busca textual
       if (!search.trim()) return true;
-
       const query = search.toLowerCase();
       const matchSubject = s.name.toLowerCase().includes(query);
       const matchTopic = s.topics.some((t) => t.name.toLowerCase().includes(query));
-
       return matchSubject || matchTopic;
     });
+  }, [processedSubjects, selectedBlock, search]);
 
   return (
     <div className="space-y-6">
@@ -110,8 +198,10 @@ export function QuestoesFilterList({ subjects, availableBancas = [], bancaCounts
         isOpen={isCustomModalOpen}
         onClose={() => setIsCustomModalOpen(false)}
       />
-      {/* Controles de Busca e Filtro */}
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+
+      {/* Barra de Controles: Busca, Blocos e Seletor de Bancas à Direita */}
+      <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+        {/* Campo de Busca */}
         <div className="relative flex-1">
           <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" aria-hidden />
           <input
@@ -131,75 +221,176 @@ export function QuestoesFilterList({ subjects, availableBancas = [], bancaCounts
           )}
         </div>
 
-        {/* Filtro por Bloco */}
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0">
-          {[
-            { id: "ALL", label: "Todos os Blocos" },
-            { id: "I", label: "Bloco I" },
-            { id: "II", label: "Bloco II" },
-            { id: "III", label: "Bloco III" },
-          ].map((b) => (
-            <button
-              key={b.id}
-              onClick={() => setSelectedBlock(b.id)}
-              className={`rounded-lg px-3 py-1.5 text-xs font-semibold transition cursor-pointer shrink-0 ${
-                selectedBlock === b.id
-                  ? "bg-primary text-on-primary shadow-xs"
-                  : "bg-surface-2 text-muted hover:bg-surface-3 hover:text-text"
-              }`}
-            >
-              {b.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Filtro Dinâmico por Banca com Contagem de Questões */}
-      {availableBancas.length > 0 && (
-        <div className="flex items-center gap-2 overflow-x-auto pb-1">
-          <span className="text-xs font-semibold uppercase tracking-wider text-muted shrink-0">
-            Banca:
-          </span>
-          <button
-            type="button"
-            onClick={() => setSelectedBanca("ALL")}
-            className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-semibold transition cursor-pointer shrink-0 ${
-              selectedBanca === "ALL"
-                ? "bg-gold text-on-ink font-bold shadow-xs"
-                : "bg-surface-2 text-muted hover:bg-surface-3 hover:text-text border border-border/50"
-            }`}
-          >
-            <span>Todas as Bancas</span>
-            <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${
-              selectedBanca === "ALL" ? "bg-black/20 text-on-ink" : "bg-surface-3 text-muted"
-            }`}>
-              {Object.values(bancaCounts).reduce((acc, c) => acc + c, 0)}
-            </span>
-          </button>
-          {availableBancas.map((banca) => {
-            const count = bancaCounts[banca] ?? 0;
-            return (
+        {/* Filtros da Direita: Blocos e Dropdown de Bancas */}
+        <div className="flex flex-wrap items-center justify-between sm:justify-end gap-2.5">
+          {/* Filtro por Bloco */}
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-0.5 sm:pb-0">
+            {[
+              { id: "ALL", label: "Todos os Blocos" },
+              { id: "I", label: "Bloco I" },
+              { id: "II", label: "Bloco II" },
+              { id: "III", label: "Bloco III" },
+            ].map((b) => (
               <button
-                key={banca}
-                type="button"
-                onClick={() => setSelectedBanca(banca)}
-                className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-semibold transition cursor-pointer shrink-0 ${
-                  selectedBanca === banca
-                    ? "bg-gold text-on-ink font-bold shadow-xs"
-                    : "bg-surface-2 text-muted hover:bg-surface-3 hover:text-text border border-border/50"
+                key={b.id}
+                onClick={() => setSelectedBlock(b.id)}
+                className={`rounded-lg px-3 py-1.5 text-xs font-semibold transition cursor-pointer shrink-0 ${
+                  selectedBlock === b.id
+                    ? "bg-primary text-on-primary shadow-xs"
+                    : "bg-surface-2 text-muted hover:bg-surface-3 hover:text-text"
                 }`}
               >
-                <span>{banca}</span>
-                <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${
-                  selectedBanca === banca ? "bg-black/20 text-on-ink" : "bg-surface-3 text-muted"
-                }`}>
-                  {count}
-                </span>
+                {b.label}
               </button>
-            );
-          })}
+            ))}
+          </div>
+
+          {/* Seletor Dropdown de Bancas Alinhado à Direita */}
+          <div className="relative" ref={bancaDropdownRef}>
+            <button
+              type="button"
+              onClick={() => setIsBancaOpen(!isBancaOpen)}
+              className={`flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-semibold border transition cursor-pointer shadow-xs ${
+                !isAllBancasSelected
+                  ? "bg-gold text-on-ink border-gold/80 font-bold"
+                  : "bg-surface border-border text-text hover:bg-surface-2"
+              }`}
+            >
+              <Building2 className="h-4 w-4" />
+              <span>
+                {isAllBancasSelected
+                  ? `Todas as Bancas (${totalAcervo.toLocaleString("pt-BR")})`
+                  : selectedBancas.length === 1
+                  ? `${selectedBancas[0]} (${(bancaCounts[selectedBancas[0]] ?? 0).toLocaleString("pt-BR")})`
+                  : `${selectedBancas.length} bancas selecionadas (${totalSelectedQuestions.toLocaleString("pt-BR")})`}
+              </span>
+              <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${isBancaOpen ? "rotate-180" : ""}`} />
+            </button>
+
+            {/* Menu Dropdown com Autocomplete e Multi-seleção */}
+            {isBancaOpen && (
+              <div className="absolute right-0 top-full mt-2 z-50 w-72 sm:w-80 rounded-2xl border border-border bg-surface p-3 shadow-lift backdrop-blur-md animate-in fade-in zoom-in-95 duration-150">
+                {/* Cabeçalho do Dropdown com Busca/Autocomplete */}
+                <div className="space-y-2 mb-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold uppercase tracking-wider text-muted">
+                      Filtrar por Banca
+                    </span>
+                    <button
+                      onClick={() => setIsBancaOpen(false)}
+                      className="text-muted hover:text-text p-1 rounded-md"
+                    >
+                      <X className="h-3.5 w-3.5" />
+                    </button>
+                  </div>
+
+                  <div className="relative">
+                    <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted" />
+                    <input
+                      type="text"
+                      value={bancaSearch}
+                      onChange={(e) => setBancaSearch(e.target.value)}
+                      placeholder="Pesquisar banca..."
+                      autoFocus
+                      className="w-full rounded-lg border border-border bg-surface-2 pl-8 pr-3 py-1.5 text-xs text-text placeholder:text-muted focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/20"
+                    />
+                    {bancaSearch && (
+                      <button
+                        onClick={() => setBancaSearch("")}
+                        className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] text-muted hover:text-text"
+                      >
+                        Limpar
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Botões Rápidos: Selecionar Todas / Limpar Filtros */}
+                  <div className="flex items-center justify-between pt-1 border-t border-border/50 text-[11px]">
+                    <button
+                      type="button"
+                      onClick={handleSelectAllBancas}
+                      className="font-semibold text-primary hover:underline cursor-pointer"
+                    >
+                      Selecionar todas (Padrão)
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleClearBancas}
+                      className="font-semibold text-muted hover:text-text cursor-pointer"
+                    >
+                      Limpar filtros
+                    </button>
+                  </div>
+                </div>
+
+                {/* Lista com Checkbox para Seleção Múltipla */}
+                <div className="max-h-64 overflow-y-auto space-y-1 pr-1 custom-scrollbar">
+                  {/* Opção Todas as Bancas */}
+                  <label
+                    onClick={handleSelectAllBancas}
+                    className={`flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-semibold cursor-pointer transition ${
+                      isAllBancasSelected
+                        ? "bg-gold/20 text-text font-bold"
+                        : "hover:bg-surface-2 text-muted"
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <div className={`h-4 w-4 rounded flex items-center justify-center border transition ${
+                        isAllBancasSelected
+                          ? "bg-gold border-gold text-on-ink"
+                          : "border-border bg-surface"
+                      }`}>
+                        {isAllBancasSelected && <Check className="h-3 w-3" />}
+                      </div>
+                      <span>Todas as Bancas</span>
+                    </div>
+                    <span className="text-[10px] font-normal px-1.5 py-0.5 rounded-full bg-surface-3 text-muted">
+                      {totalAcervo.toLocaleString("pt-BR")}
+                    </span>
+                  </label>
+
+                  {filteredBancasForDropdown.map((banca) => {
+                    const isChecked = !isAllBancasSelected && selectedBancas.includes(banca);
+                    const count = bancaCounts[banca] ?? 0;
+
+                    return (
+                      <label
+                        key={banca}
+                        onClick={() => toggleBanca(banca)}
+                        className={`flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-semibold cursor-pointer transition ${
+                          isChecked
+                            ? "bg-gold/15 text-text font-bold"
+                            : "hover:bg-surface-2 text-muted"
+                        }`}
+                      >
+                        <div className="flex items-center gap-2">
+                          <div className={`h-4 w-4 rounded flex items-center justify-center border transition ${
+                            isChecked
+                              ? "bg-gold border-gold text-on-ink"
+                              : "border-border bg-surface"
+                          }`}>
+                            {isChecked && <Check className="h-3 w-3" />}
+                          </div>
+                          <span>{banca}</span>
+                        </div>
+                        <span className="text-[10px] font-normal px-1.5 py-0.5 rounded-full bg-surface-3 text-muted">
+                          {count.toLocaleString("pt-BR")}
+                        </span>
+                      </label>
+                    );
+                  })}
+
+                  {filteredBancasForDropdown.length === 0 && (
+                    <p className="text-center py-4 text-xs text-muted">
+                      Nenhuma banca encontrada com &ldquo;{bancaSearch}&rdquo;
+                    </p>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
-      )}
+      </div>
 
       {/* Lista de Disciplinas */}
       {filteredSubjects.length === 0 ? (
@@ -211,9 +402,13 @@ export function QuestoesFilterList({ subjects, availableBancas = [], bancaCounts
       ) : (
         <div className="space-y-4">
           {filteredSubjects.map((s) => {
-            const isExpanded = expandedSubject === s.id || (Boolean(search.trim()) && s.topics.some((t) => t.name.toLowerCase().includes(search.toLowerCase())));
+            const isExpanded =
+              expandedSubject === s.id ||
+              (Boolean(search.trim()) &&
+                s.topics.some((t) => t.name.toLowerCase().includes(search.toLowerCase())));
             const blockColor = BLOCK_COLOR[s.block] || "var(--primary)";
             const hasActivity = s.userAnswered > 0;
+            const hasAvailableQuestions = s.filteredQuestionsCount > 0;
 
             // Filtrar tópicos se houver busca
             const visibleTopics = search.trim()
@@ -237,22 +432,28 @@ export function QuestoesFilterList({ subjects, availableBancas = [], bancaCounts
                       aria-hidden
                     />
                     <div className="min-w-0">
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2 flex-wrap">
                         <span className="font-display text-lg font-bold uppercase tracking-wide text-text truncate">
                           {s.name}
                         </span>
                         <Badge tone="neutral" className="text-[10px]">
                           Bloco {s.block}
                         </Badge>
-                        {s.bancas && s.bancas.map((b) => (
-                          <Badge key={b} tone="gold" className="text-[10px]">
-                            {b}
-                          </Badge>
-                        ))}
+                        {/* Regra de exibição dos badges de banca:
+                            - Em "Todas as bancas": NÃO APARECEM nomes das bancas
+                            - Se banca(s) selecionada(s): aparecem os badges amarelos das bancas selecionadas */}
+                        {!isAllBancasSelected &&
+                          s.relevantBancasForBadge.map((b) => (
+                            <Badge key={b} tone="gold" className="text-[10px]">
+                              {b}
+                            </Badge>
+                          ))}
                       </div>
                       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted mt-0.5">
-                        <span>
-                          {s.totalQuestions} {s.totalQuestions === 1 ? "questão" : "questões"} no acervo
+                        <span className={hasAvailableQuestions ? "font-semibold text-text" : "text-muted"}>
+                          {s.filteredQuestionsCount}{" "}
+                          {s.filteredQuestionsCount === 1 ? "questão" : "questões"} no acervo
+                          {!isAllBancasSelected && " (filtradas)"}
                         </span>
                         <span>•</span>
                         <span>
@@ -291,13 +492,21 @@ export function QuestoesFilterList({ subjects, availableBancas = [], bancaCounts
                       variant="primary"
                       onClick={(e) => {
                         e.stopPropagation();
-                        handleStartPractice(s.id, undefined, 20);
+                        if (hasAvailableQuestions) {
+                          handleStartPractice(s.id, undefined, 20);
+                        }
                       }}
-                      disabled={isPending}
+                      disabled={isPending || !hasAvailableQuestions}
                       className="shrink-0 gap-1.5"
                     >
                       <Play className="h-3.5 w-3.5" />
-                      <span>{isPending && activeSessionTopic === `${s.id}::all::20` ? "Iniciando..." : "Treinar Matéria"}</span>
+                      <span>
+                        {isPending && activeSessionTopic === `${s.id}::all::20`
+                          ? "Iniciando..."
+                          : !hasAvailableQuestions
+                          ? "0 questões"
+                          : "Treinar Matéria"}
+                      </span>
                     </Button>
 
                     <button
@@ -313,13 +522,14 @@ export function QuestoesFilterList({ subjects, availableBancas = [], bancaCounts
                 {isExpanded && (
                   <div className="border-t border-border/70 bg-surface-2/20 p-4 space-y-2.5">
                     <div className="flex items-center justify-between text-xs font-semibold text-muted uppercase tracking-wider px-1">
-                      <span>Assuntos do Edital Unificado</span>
+                      <span>Assuntos do Edital</span>
                       <span>{visibleTopics.length} disponíveis</span>
                     </div>
 
                     <div className="grid gap-2">
                       {visibleTopics.map((topic) => {
                         const hasTopicActivity = topic.userAnswered > 0;
+                        const hasTopicQuestions = topic.filteredQuestionsCount > 0;
                         const is5Pending = isPending && activeSessionTopic === `${s.id}::${topic.name}::5`;
                         const isAllPending = isPending && activeSessionTopic === `${s.id}::${topic.name}::all`;
 
@@ -328,64 +538,47 @@ export function QuestoesFilterList({ subjects, availableBancas = [], bancaCounts
                             key={topic.name}
                             className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 rounded-xl border border-border/60 bg-surface p-3 transition hover:border-border hover:shadow-xs"
                           >
-                            <div className="min-w-0 flex-1">
-                              <p className="text-sm font-semibold text-text leading-snug">
-                                {topic.name}
-                              </p>
-                              <div className="flex flex-wrap items-center gap-2 text-xs text-muted mt-1">
-                                <span className="rounded-md bg-surface-3 px-2 py-0.5 font-medium text-text/80">
-                                  {topic.totalQuestions} {topic.totalQuestions === 1 ? "questão" : "questões"}
+                            <div className="min-w-0">
+                              <div className="flex items-center gap-2">
+                                <span className="font-semibold text-sm text-text">
+                                  {topic.name}
+                                </span>
+                              </div>
+                              <div className="flex items-center gap-2 text-xs text-muted mt-0.5">
+                                <span className={hasTopicQuestions ? "font-medium text-text" : "text-muted"}>
+                                  {topic.filteredQuestionsCount}{" "}
+                                  {topic.filteredQuestionsCount === 1 ? "questão" : "questões"}
+                                  {!isAllBancasSelected && " filtradas"}
                                 </span>
                                 {hasTopicActivity && (
-                                  <span
-                                    className={`font-semibold ${
-                                      (topic.userAccuracy ?? 0) >= 70
-                                        ? "text-ok"
-                                        : (topic.userAccuracy ?? 0) >= 50
-                                        ? "text-gold"
-                                        : "text-primary"
-                                    }`}
-                                  >
-                                    {topic.userCorrect}/{topic.userAnswered} acertos ({topic.userAccuracy}%)
-                                  </span>
+                                  <>
+                                    <span>•</span>
+                                    <span className="text-ok font-medium">
+                                      {topic.userCorrect}/{topic.userAnswered} acertos ({topic.userAccuracy}%)
+                                    </span>
+                                  </>
                                 )}
                               </div>
                             </div>
 
-                            {/* Botões para praticar este assunto */}
-                            <div className="flex items-center gap-2 self-end sm:self-auto shrink-0">
+                            <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
                               <Button
                                 size="sm"
                                 variant="secondary"
                                 onClick={() => handleStartPractice(s.id, topic.name, 5)}
-                                disabled={isPending}
-                                className="text-xs px-2.5 py-1"
-                                title="Treino rápido com 5 questões deste assunto"
+                                disabled={isPending || !hasTopicQuestions}
+                                className="text-xs h-7 px-2.5"
                               >
-                                {is5Pending ? "Carregando..." : "5 questões"}
+                                {is5Pending ? "Iniciando..." : "Treinar 5"}
                               </Button>
-
-                              <Button
-                                size="sm"
-                                variant="secondary"
-                                onClick={() => handleStartPractice(s.id, topic.name, 10)}
-                                disabled={isPending}
-                                className="text-xs px-2.5 py-1"
-                                title="Treino com 10 questões deste assunto"
-                              >
-                                10 questões
-                              </Button>
-
                               <Button
                                 size="sm"
                                 variant="primary"
                                 onClick={() => handleStartPractice(s.id, topic.name)}
-                                disabled={isPending}
-                                className="text-xs px-3 py-1 gap-1"
-                                title="Resolver todas as questões disponíveis deste assunto"
+                                disabled={isPending || !hasTopicQuestions}
+                                className="text-xs h-7 px-2.5"
                               >
-                                <Play className="h-3 w-3" />
-                                {isAllPending ? "Iniciando..." : "Todas"}
+                                {isAllPending ? "Iniciando..." : "Treinar Todas"}
                               </Button>
                             </div>
                           </div>
