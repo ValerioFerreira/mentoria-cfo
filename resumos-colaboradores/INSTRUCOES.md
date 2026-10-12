@@ -31,9 +31,10 @@ Colunas do `INDICE-RESUMOS`:
 | **Arquivo PDF do material** | Qual PDF abrir. |
 | **Pág. inicial / Pág. final** | Leia **somente** esse intervalo (numeração do PDF, não a impressa). |
 | **Alvo máx. (palavras)** | Teto de tamanho do resumo analítico (≈ 20 min). |
+| **Lote / Sublote** | `Lote` (1 a 6, F2-A, F2-B) é a sua fatia do trabalho; `Sublote` (ex.: `L3-02`) é cada grupo de ~20 atividades, na ordem de prioridade. Vazio nas linhas já feitas. |
 | **Status** | "A fazer" ou "Feito (já entregue)". Pule os já feitos. |
 
-Você receberá uma instrução do tipo **"execute os resumos do ID Sxxxx ao Syyyy"**: faça todas as linhas desse intervalo com status "A fazer", **na ordem dos IDs**.
+Você receberá uma instrução do tipo **"execute o Sublote L3-02"** (filtre a coluna **Sublote** do índice: são ~20 atividades) ou **"execute o Lote 3"** (todas as linhas da coluna **Lote**, um sublote por vez, na ordem). Também vale **"do ID Sxxxx ao Syyyy"**. Em todos os casos: faça as linhas com status "A fazer", **na ordem dos IDs** (é a ordem de prioridade; não pule para as mais fáceis) e **entregue por sublote**, sem esperar o lote inteiro (seção 12).
 
 ## 4. Passo a passo de cada atividade
 1. **Localize** o PDF e o intervalo de páginas pela linha do índice.
@@ -41,8 +42,8 @@ Você receberá uma instrução do tipo **"execute os resumos do ID Sxxxx ao Syy
 3. **Liste mentalmente o que a banca cobra**: conceitos-chave, classificações, regras e exceções, prazos e números, fórmulas e condições de validade, literalidade de artigos curtos e essenciais, comparações, "pegadinhas", mnemônicos.
 4. **Escreva o resumo analítico** (seção 5), **depois o sintético** (seção 7), sem copiar frases do material (seção 8).
 5. **Releia como aluno** (entendi? dá para resolver uma questão com isto?) **e como banca** (algo cobrável ficou de fora? algum erro?). Corrija.
-6. **Salve** o arquivo no formato da seção 11, com o seu identificador (seção 10).
-7. Passe para a próxima. Ao fim do intervalo, monte a entrega (seção 12).
+6. **Salve o arquivo IMEDIATAMENTE**, no formato da seção 11, com o seu identificador (seção 10): um arquivo por atividade, gravado assim que ela estiver pronta e conferida. **Nunca acumule vários resumos para salvar no fim**; se a sessão cair, o que já foi salvo não se perde, e na retomada você pula os IDs que já têm arquivo.
+7. Passe para a próxima. Ao fim de cada sublote, monte a entrega daquele sublote (seção 12).
 
 ## 5. Como escrever o resumo analítico
 ### Estrutura (markdown)
@@ -148,12 +149,13 @@ Regras do formato:
 - Não use HTML, imagens, links, notas de rodapé nem blocos de código.
 
 ## 12. Como devolver o trabalho
-1. Crie uma pasta chamada **`resumos_AGENTE_IDinicial-IDfinal`** (ex.: `resumos_GPT-ANA-07_S0101-S0120`).
-2. Coloque nela **todos** os arquivos `ID__AGENTE.md` do seu intervalo (e **só** eles + o relatório).
-3. Inclua `RELATORIO_AGENTE.md` com: intervalo recebido; lista dos IDs entregues; IDs **não** feitos (e o motivo); problemas do material por ID (resumo do que está em NOTAS); contagem de palavras do analítico de cada ID (mín./média/máx.).
+A entrega é **por sublote** (a cada ~20 atividades), não só no fim do lote.
+1. Crie uma pasta chamada **`resumos_AGENTE_SUBLOTE`** (ex.: `resumos_GPT-ANA-07_L3-02`; se o intervalo veio por IDs, `resumos_GPT-ANA-07_S0101-S0120`).
+2. Coloque nela **todos** os arquivos `ID__AGENTE.md` daquele sublote (e **só** eles + o relatório).
+3. Inclua `RELATORIO_AGENTE.md` com: sublote/intervalo recebido; lista dos IDs entregues; IDs **não** feitos (e o motivo); problemas do material por ID (resumo do que está em NOTAS); contagem de palavras do analítico de cada ID (mín./média/máx.).
 4. Rode a autoverificação (seção 13) e corrija os erros.
-5. Compacte a pasta (`.zip`) e entregue.
-Não renomeie arquivos depois de entregues, não junte resumos e não altere o índice.
+5. Compacte a pasta (`.zip`) e entregue; siga para o próximo sublote.
+Não renomeie arquivos depois de entregues, não junte resumos e não altere o índice. Se o intervalo ficar incompleto (limite de sessão, material ilegível), entregue o que está pronto e liste o restante no relatório.
 
 ## 13. Autoverificação
 Checklist por arquivo — todos devem ser "sim":
