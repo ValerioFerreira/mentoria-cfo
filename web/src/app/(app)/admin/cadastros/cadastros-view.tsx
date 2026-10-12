@@ -3,20 +3,31 @@
 import {
   AlertCircle,
   Calendar,
+  Check,
   CheckCircle2,
   Clock,
-  Eye,
+  Copy,
+  KeyRound,
   Loader2,
   Mail,
-  ShieldCheck,
+  Sparkles,
   Trash2,
   UserCheck,
   UserX,
-  Sparkles,
+  X,
 } from "lucide-react";
 import { useState, useTransition } from "react";
 import { Alert, Badge, Button, Card, SectionTitle } from "@/components/ui";
-import { approveRegistration, rejectRegistration, deleteWaitlistEntry, approvePlan, type AdminActionResult } from "@/lib/admin/cadastros-actions";
+import {
+  approveRegistration,
+  rejectRegistration,
+  deleteWaitlistEntry,
+  approvePlan,
+  updateAccessValidity,
+  resendTemporaryPassword,
+  type AdminActionResult,
+  type ValidityOption,
+} from "@/lib/admin/cadastros-actions";
 
 export interface PendingPlanRow {
   id: string;
@@ -61,18 +72,39 @@ const CONTEST_LABELS: Record<string, string> = {
 
 const PLAN_LABELS: Record<string, string> = {
   MONTHLY: "R$ 30/mês",
-  UNTIL_EXAM: "R$ 50 até a prova (50% de lançamento)",
+  UNTIL_EXAM: "R$ 50 permanente (50% de lançamento)",
 };
 
-export function CadastrosView({ entries, pendingPlans = [] }: { entries: WaitlistRow[]; pendingPlans?: PendingPlanRow[] }) {
+export function CadastrosView({
+  entries,
+  pendingPlans = [],
+}: {
+  entries: WaitlistRow[];
+  pendingPlans?: PendingPlanRow[];
+}) {
   const [activeTab, setActiveTab] = useState<"PENDING" | "APPROVED" | "REJECTED" | "PLANS">(
     pendingPlans.length > 0 ? "PLANS" : "PENDING"
   );
+
+  // Modal de Aprovação (novos cadastros)
   const [selectedEntry, setSelectedEntry] = useState<WaitlistRow | null>(null);
   const [duration, setDuration] = useState<"30_DAYS" | "INDEFINITE">("30_DAYS");
+
+  // Modal de Rejeição
   const [rejectEntry, setRejectEntry] = useState<WaitlistRow | null>(null);
   const [rejectReason, setRejectReason] = useState("");
+
+  // Modal de Alteração de Validade / Renovação
+  const [validityEntry, setValidityEntry] = useState<WaitlistRow | null>(null);
+  const [validityOption, setValidityOption] = useState<ValidityOption>("EXTEND_30_DAYS");
+  const [customDate, setCustomDate] = useState("");
+
+  // Modal de Reenvio de E-mail com Nova Senha
+  const [resendEntry, setResendEntry] = useState<WaitlistRow | null>(null);
+
+  // Feedback geral e clipboard
   const [statusMessage, setStatusMessage] = useState<AdminActionResult | null>(null);
+  const [copied, setCopied] = useState(false);
   const [isPending, startTransition] = useTransition();
 
   const pendingList = entries.filter((e) => e.status === "PENDING");
@@ -82,7 +114,6 @@ export function CadastrosView({ entries, pendingPlans = [] }: { entries: Waitlis
   function handleApprove(e: WaitlistRow) {
     setStatusMessage(null);
     setSelectedEntry(e);
-    // Sugere plano baseado no selecionado pelo usuário
     if (e.plan === "UNTIL_EXAM") {
       setDuration("INDEFINITE");
     } else {
@@ -113,6 +144,43 @@ export function CadastrosView({ entries, pendingPlans = [] }: { entries: Waitlis
     });
   }
 
+  function handleOpenValidity(e: WaitlistRow) {
+    setStatusMessage(null);
+    setValidityEntry(e);
+    setValidityOption("EXTEND_30_DAYS");
+    const initialDate = e.user?.accessExpiresAt
+      ? new Date(e.user.accessExpiresAt).toISOString().slice(0, 10)
+      : new Date(Date.now() + 30 * 86400000).toISOString().slice(0, 10);
+    setCustomDate(initialDate);
+  }
+
+  function confirmValidityUpdate() {
+    if (!validityEntry) return;
+    startTransition(async () => {
+      const res = await updateAccessValidity(validityEntry.id, validityOption, customDate);
+      setStatusMessage(res);
+      if (res.success) {
+        setValidityEntry(null);
+      }
+    });
+  }
+
+  function handleOpenResend(e: WaitlistRow) {
+    setStatusMessage(null);
+    setResendEntry(e);
+  }
+
+  function confirmResendCredentials() {
+    if (!resendEntry) return;
+    startTransition(async () => {
+      const res = await resendTemporaryPassword(resendEntry.id);
+      setStatusMessage(res);
+      if (res.success) {
+        setResendEntry(null);
+      }
+    });
+  }
+
   function handleDelete(id: string) {
     if (!confirm("Tem certeza que deseja excluir este registro da lista?")) return;
     startTransition(async () => {
@@ -132,16 +200,27 @@ export function CadastrosView({ entries, pendingPlans = [] }: { entries: Waitlis
     <div className="space-y-6">
       {statusMessage && (
         <Alert tone={statusMessage.success ? "info" : "danger"}>
-          <div className="space-y-1">
+          <div className="space-y-2">
             <p className="font-semibold">{statusMessage.message}</p>
             {statusMessage.tempPassword && (
-              <p className="text-xs text-muted">
-                Senha temporária gerada:{" "}
-                <strong className="font-mono text-primary text-sm bg-surface-2 px-2 py-0.5 rounded">
+              <div className="flex flex-wrap items-center gap-2 pt-1 text-xs">
+                <span className="text-muted">Senha temporária:</span>
+                <code className="font-mono text-primary text-sm bg-surface-2 px-2.5 py-1 rounded-md border border-border font-bold">
                   {statusMessage.tempPassword}
-                </strong>{" "}
-                (copie caso deseje encaminhar via WhatsApp)
-              </p>
+                </code>
+                <button
+                  type="button"
+                  onClick={() => {
+                    navigator.clipboard.writeText(statusMessage.tempPassword!);
+                    setCopied(true);
+                    setTimeout(() => setCopied(false), 2000);
+                  }}
+                  className="rounded-md border border-border bg-surface px-2.5 py-1 text-xs font-semibold text-text hover:bg-surface-3 transition flex items-center gap-1 cursor-pointer"
+                >
+                  {copied ? <Check className="h-3 w-3 text-ok" /> : <Copy className="h-3 w-3" />}
+                  {copied ? "Copiado!" : "Copiar Senha"}
+                </button>
+              </div>
             )}
           </div>
         </Alert>
@@ -214,133 +293,352 @@ export function CadastrosView({ entries, pendingPlans = [] }: { entries: Waitlis
         </button>
       </nav>
 
-      {/* Modal de Aprovação */}
+      {/* Modal de Aprovação Inicial */}
       {selectedEntry && (
-        <Card className="border-2 border-primary/40 bg-surface-2 p-6 shadow-xl space-y-5">
-          <div className="flex items-start justify-between">
-            <div>
-              <p className="eyebrow text-primary">Aprovar Cadastro</p>
-              <h3 className="font-display text-2xl font-bold uppercase">{selectedEntry.name}</h3>
-              <p className="text-sm text-muted">
-                E-mail: <strong className="text-text">{selectedEntry.email}</strong> · Usuário: @{selectedEntry.username}
-              </p>
-            </div>
-            <button
-              onClick={() => setSelectedEntry(null)}
-              className="text-xs font-semibold text-muted hover:text-text cursor-pointer"
-            >
-              Cancelar
-            </button>
-          </div>
-
-          <div className="space-y-3">
-            <label className="block text-sm font-bold text-text">
-              Duração da Validade do Acesso:
-            </label>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <label
-                className={`flex items-center gap-3 rounded-xl border p-4 cursor-pointer transition ${
-                  duration === "30_DAYS"
-                    ? "border-primary bg-primary-soft text-text ring-1 ring-primary"
-                    : "border-border bg-surface text-muted hover:border-border-strong"
-                }`}
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/75 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="relative w-full max-w-lg rounded-2xl border border-primary/30 bg-surface text-text shadow-2xl overflow-hidden flex flex-col">
+            <div className="flex items-center justify-between border-b border-border/70 px-6 py-4 bg-surface-2/40">
+              <div>
+                <p className="eyebrow text-primary text-[11px] uppercase tracking-wider font-bold">
+                  Aprovar Cadastro
+                </p>
+                <h3 className="font-display text-lg font-bold uppercase text-text">
+                  {selectedEntry.name}
+                </h3>
+                <p className="text-xs text-muted">
+                  E-mail: <strong className="text-text">{selectedEntry.email}</strong> · Usuário: @{selectedEntry.username}
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setSelectedEntry(null)}
+                className="flex h-8 w-8 items-center justify-center rounded-lg text-muted hover:bg-surface-3 hover:text-text transition cursor-pointer"
               >
-                <input
-                  type="radio"
-                  name="duration"
-                  value="30_DAYS"
-                  checked={duration === "30_DAYS"}
-                  onChange={() => setDuration("30_DAYS")}
-                  className="accent-primary"
-                />
-                <div>
-                  <p className="font-bold text-sm text-text">30 Dias</p>
-                  <p className="text-xs text-muted">Acesso válido por 1 mês a partir de hoje.</p>
-                </div>
-              </label>
+                <X className="h-4 w-4" />
+              </button>
+            </div>
 
-              <label
-                className={`flex items-center gap-3 rounded-xl border p-4 cursor-pointer transition ${
-                  duration === "INDEFINITE"
-                    ? "border-primary bg-primary-soft text-text ring-1 ring-primary"
-                    : "border-border bg-surface text-muted hover:border-border-strong"
-                }`}
-              >
-                <input
-                  type="radio"
-                  name="duration"
-                  value="INDEFINITE"
-                  checked={duration === "INDEFINITE"}
-                  onChange={() => setDuration("INDEFINITE")}
-                  className="accent-primary"
-                />
-                <div>
-                  <p className="font-bold text-sm text-text">Indeterminado</p>
-                  <p className="text-xs text-muted">Válido até a homologação da prova do concurso.</p>
+            <div className="p-6 space-y-4">
+              <div className="space-y-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-muted">
+                  Duração Inicial do Acesso:
+                </label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <label
+                    className={`flex items-center gap-3 rounded-xl border p-3.5 cursor-pointer transition ${
+                      duration === "30_DAYS"
+                        ? "border-primary bg-primary/10 text-text ring-1 ring-primary"
+                        : "border-border bg-surface text-muted hover:border-border-strong"
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      name="duration"
+                      value="30_DAYS"
+                      checked={duration === "30_DAYS"}
+                      onChange={() => setDuration("30_DAYS")}
+                      className="accent-primary"
+                    />
+                    <div>
+                      <p className="font-bold text-xs text-text">30 Dias</p>
+                      <p className="text-[11px] text-muted">Válido por 1 mês a partir de hoje.</p>
+                    </div>
+                  </label>
+
+                  <label
+                    className={`flex items-center gap-3 rounded-xl border p-3.5 cursor-pointer transition ${
+                      duration === "INDEFINITE"
+                        ? "border-primary bg-primary/10 text-text ring-1 ring-primary"
+                        : "border-border bg-surface text-muted hover:border-border-strong"
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      name="duration"
+                      value="INDEFINITE"
+                      checked={duration === "INDEFINITE"}
+                      onChange={() => setDuration("INDEFINITE")}
+                      className="accent-primary"
+                    />
+                    <div>
+                      <p className="font-bold text-xs text-text">Indeterminado</p>
+                      <p className="text-[11px] text-muted">Até a homologação do concurso.</p>
+                    </div>
+                  </label>
                 </div>
-              </label>
+              </div>
+
+              <div className="rounded-xl bg-surface-2 p-3 text-xs text-muted space-y-1 border border-border">
+                <p>
+                  📧 Um e-mail com a <strong>senha temporária</strong> e link de acesso será enviado para <strong className="text-text">{selectedEntry.email}</strong>.
+                </p>
+                <p>
+                  🔒 No primeiro login, o aluno será solicitado a cadastrar sua senha pessoal definitiva.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-end gap-2 border-t border-border/70 px-6 py-4 bg-surface-2/40">
+              <Button variant="secondary" size="sm" onClick={() => setSelectedEntry(null)} disabled={isPending}>
+                Cancelar
+              </Button>
+              <Button variant="primary" size="sm" onClick={confirmApproval} disabled={isPending}>
+                {isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : <UserCheck className="h-4 w-4" />}
+                {isPending ? "Aprovando…" : "Aprovar e Enviar E-mail"}
+              </Button>
             </div>
           </div>
-
-          <div className="rounded-xl bg-surface p-3 text-xs text-muted space-y-1 border border-border">
-            <p>
-              📧 Ao confirmar, um e-mail com a <strong>senha temporária</strong> e as instruções de primeiro acesso será enviado imediatamente para <strong className="text-text">{selectedEntry.email}</strong>.
-            </p>
-            <p>
-              🔒 Ao efetuar o login, o aluno será orientado a escolher sua nova senha definitiva.
-            </p>
-          </div>
-
-          <div className="flex justify-end gap-3 pt-2">
-            <Button variant="secondary" onClick={() => setSelectedEntry(null)} disabled={isPending}>
-              Cancelar
-            </Button>
-            <Button variant="primary" onClick={confirmApproval} disabled={isPending}>
-              {isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : <UserCheck className="h-4 w-4" />}
-              {isPending ? "Aprovando e enviando e-mail…" : "Aprovar e Enviar E-mail"}
-            </Button>
-          </div>
-        </Card>
+        </div>
       )}
 
       {/* Modal de Rejeição */}
       {rejectEntry && (
-        <Card className="border-2 border-danger/40 bg-surface-2 p-6 shadow-xl space-y-4">
-          <div className="flex items-start justify-between">
-            <div>
-              <p className="eyebrow text-danger">Rejeitar Cadastro</p>
-              <h3 className="font-display text-xl font-bold uppercase">{rejectEntry.name}</h3>
-              <p className="text-xs text-muted">E-mail: {rejectEntry.email}</p>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/75 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="relative w-full max-w-lg rounded-2xl border border-danger/30 bg-surface text-text shadow-2xl overflow-hidden flex flex-col">
+            <div className="flex items-center justify-between border-b border-border/70 px-6 py-4 bg-surface-2/40">
+              <div>
+                <p className="eyebrow text-danger text-[11px] uppercase tracking-wider font-bold">
+                  Rejeitar Cadastro
+                </p>
+                <h3 className="font-display text-lg font-bold uppercase text-text">
+                  {rejectEntry.name}
+                </h3>
+                <p className="text-xs text-muted">E-mail: {rejectEntry.email}</p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setRejectEntry(null)}
+                className="flex h-8 w-8 items-center justify-center rounded-lg text-muted hover:bg-surface-3 hover:text-text transition cursor-pointer"
+              >
+                <X className="h-4 w-4" />
+              </button>
             </div>
-            <button
-              onClick={() => setRejectEntry(null)}
-              className="text-xs font-semibold text-muted hover:text-text cursor-pointer"
-            >
-              Cancelar
-            </button>
-          </div>
 
-          <div className="space-y-1.5">
-            <label className="block text-xs font-bold text-text">Motivo da Rejeição (opcional):</label>
-            <input
-              type="text"
-              value={rejectReason}
-              onChange={(e) => setRejectReason(e.target.value)}
-              placeholder="Ex.: Comprovante de Pix não localizado"
-              className="w-full rounded-xl border border-border bg-surface px-3 py-2 text-sm text-text outline-none focus:border-primary"
-            />
-          </div>
+            <div className="p-6 space-y-3">
+              <label className="block text-xs font-bold text-text">Motivo da Rejeição (opcional):</label>
+              <input
+                type="text"
+                value={rejectReason}
+                onChange={(e) => setRejectReason(e.target.value)}
+                placeholder="Ex.: Comprovante de Pix não identificado"
+                className="w-full rounded-xl border border-border bg-surface px-3.5 py-2 text-sm text-text outline-none focus:border-primary"
+              />
+            </div>
 
-          <div className="flex justify-end gap-3 pt-2">
-            <Button variant="secondary" onClick={() => setRejectEntry(null)} disabled={isPending}>
-              Voltar
-            </Button>
-            <Button variant="danger" onClick={confirmRejection} disabled={isPending}>
-              {isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : <UserX className="h-4 w-4" />}
-              Confirmar Rejeição
-            </Button>
+            <div className="flex items-center justify-end gap-2 border-t border-border/70 px-6 py-4 bg-surface-2/40">
+              <Button variant="secondary" size="sm" onClick={() => setRejectEntry(null)} disabled={isPending}>
+                Cancelar
+              </Button>
+              <Button variant="danger" size="sm" onClick={confirmRejection} disabled={isPending}>
+                {isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : <UserX className="h-4 w-4" />}
+                Confirmar Rejeição
+              </Button>
+            </div>
           </div>
-        </Card>
+        </div>
+      )}
+
+      {/* Modal de Renovar / Alterar Validade */}
+      {validityEntry && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/75 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="relative w-full max-w-lg rounded-2xl border border-border bg-surface text-text shadow-2xl overflow-hidden flex flex-col">
+            <div className="flex items-center justify-between border-b border-border/70 px-6 py-4 bg-surface-2/40">
+              <div className="flex items-center gap-2.5">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <Calendar className="h-5 w-5" />
+                </div>
+                <div>
+                  <h3 className="font-display text-lg font-bold uppercase tracking-wide text-text">
+                    Renovar / Alterar Validade
+                  </h3>
+                  <p className="text-xs text-muted">
+                    {validityEntry.name} · @{validityEntry.username}
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setValidityEntry(null)}
+                className="flex h-8 w-8 items-center justify-center rounded-lg text-muted hover:bg-surface-3 hover:text-text transition cursor-pointer"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-4">
+              {/* Situação Atual */}
+              <div className="rounded-xl border border-border bg-surface-2 p-3.5 text-xs space-y-1">
+                <p className="font-semibold text-text">Situação Atual do Acesso:</p>
+                <div className="text-muted flex flex-wrap gap-x-3 gap-y-1">
+                  <span>
+                    Tipo gravado:{" "}
+                    <strong className="text-text">
+                      {validityEntry.accessDuration === "INDEFINITE" ? "Indeterminado" : "30 dias"}
+                    </strong>
+                  </span>
+                  <span>·</span>
+                  <span>
+                    {validityEntry.user?.accessExpiresAt ? (
+                      <>
+                        Expira em:{" "}
+                        <strong className="text-text">
+                          {new Date(validityEntry.user.accessExpiresAt).toLocaleDateString("pt-BR")}
+                        </strong>
+                      </>
+                    ) : (
+                      <strong className="text-ok">Sem data limite (permanente até a prova)</strong>
+                    )}
+                  </span>
+                </div>
+              </div>
+
+              {/* Opções de Ajuste */}
+              <div className="space-y-2">
+                <label className="text-xs font-bold uppercase tracking-wider text-muted block">
+                  Escolha o Novo Período de Validade:
+                </label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  {[
+                    { val: "EXTEND_30_DAYS", label: "+30 Dias", desc: "Soma 30 dias ao vencimento" },
+                    { val: "EXTEND_60_DAYS", label: "+60 Dias", desc: "Soma 60 dias ao vencimento" },
+                    { val: "EXTEND_90_DAYS", label: "+90 Dias", desc: "Soma 90 dias ao vencimento" },
+                    { val: "INDEFINITE", label: "Indeterminado", desc: "Permanente até a homologação" },
+                  ].map((opt) => (
+                    <label
+                      key={opt.val}
+                      className={`flex items-start gap-3 rounded-xl border p-3 cursor-pointer transition ${
+                        validityOption === opt.val
+                          ? "border-primary bg-primary/10 text-text ring-1 ring-primary"
+                          : "border-border bg-surface hover:bg-surface-2 text-muted"
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name="validityOption"
+                        value={opt.val}
+                        checked={validityOption === opt.val}
+                        onChange={() => setValidityOption(opt.val as ValidityOption)}
+                        className="mt-0.5 accent-primary"
+                      />
+                      <div>
+                        <p className="font-bold text-xs text-text">{opt.label}</p>
+                        <p className="text-[11px] text-muted">{opt.desc}</p>
+                      </div>
+                    </label>
+                  ))}
+                </div>
+
+                {/* Opção de Data Personalizada */}
+                <label
+                  className={`flex items-start gap-3 rounded-xl border p-3 cursor-pointer transition mt-2 ${
+                    validityOption === "CUSTOM_DATE"
+                      ? "border-primary bg-primary/10 text-text ring-1 ring-primary"
+                      : "border-border bg-surface hover:bg-surface-2 text-muted"
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="validityOption"
+                    value="CUSTOM_DATE"
+                    checked={validityOption === "CUSTOM_DATE"}
+                    onChange={() => setValidityOption("CUSTOM_DATE")}
+                    className="mt-0.5 accent-primary"
+                  />
+                  <div className="flex-1 space-y-1.5">
+                    <p className="font-bold text-xs text-text">Data Específica de Expiração</p>
+                    {validityOption === "CUSTOM_DATE" && (
+                      <input
+                        type="date"
+                        value={customDate}
+                        onChange={(e) => setCustomDate(e.target.value)}
+                        className="w-full rounded-lg border border-border bg-surface px-3 py-1.5 text-xs text-text outline-none focus:border-primary"
+                      />
+                    )}
+                  </div>
+                </label>
+              </div>
+
+              <p className="text-[11px] text-muted">
+                💡 Esta ação atualiza a data de acesso do aluno sem resetar nem interferir na senha já cadastrada por ele.
+              </p>
+            </div>
+
+            <div className="flex items-center justify-end gap-2 border-t border-border/70 px-6 py-4 bg-surface-2/40">
+              <Button variant="secondary" size="sm" onClick={() => setValidityEntry(null)} disabled={isPending}>
+                Cancelar
+              </Button>
+              <Button
+                variant="primary"
+                size="sm"
+                onClick={confirmValidityUpdate}
+                disabled={isPending || (validityOption === "CUSTOM_DATE" && !customDate)}
+              >
+                {isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Calendar className="h-4 w-4" />}
+                {isPending ? "Atualizando…" : "Salvar Nova Validade"}
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Modal de Reenviar E-mail com Nova Senha */}
+      {resendEntry && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/75 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="relative w-full max-w-lg rounded-2xl border border-border bg-surface text-text shadow-2xl overflow-hidden flex flex-col">
+            <div className="flex items-center justify-between border-b border-border/70 px-6 py-4 bg-surface-2/40">
+              <div className="flex items-center gap-2.5">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <KeyRound className="h-5 w-5" />
+                </div>
+                <div>
+                  <h3 className="font-display text-lg font-bold uppercase tracking-wide text-text">
+                    Reenviar Acesso com Nova Senha
+                  </h3>
+                  <p className="text-xs text-muted">
+                    {resendEntry.name} · {resendEntry.email}
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setResendEntry(null)}
+                className="flex h-8 w-8 items-center justify-center rounded-lg text-muted hover:bg-surface-3 hover:text-text transition cursor-pointer"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-4">
+              <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-3.5 text-xs text-amber-200 space-y-1.5">
+                <p className="font-bold flex items-center gap-1.5">
+                  <AlertCircle className="h-4 w-4 shrink-0 text-amber-400" />
+                  Atenção ao Redefinir a Senha:
+                </p>
+                <p className="text-[12px] leading-relaxed">
+                  Uma <strong>nova senha temporária</strong> será gerada e a senha atual do aluno será invalidada. Um e-mail com a nova senha e instruções de acesso será enviado para <strong className="text-text">{resendEntry.email}</strong>.
+                </p>
+                <p className="text-[11px] text-muted">
+                  Ao realizar o login com esta credencial temporária, o aluno será orientado a escolher uma nova senha definitiva.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-end gap-2 border-t border-border/70 px-6 py-4 bg-surface-2/40">
+              <Button variant="secondary" size="sm" onClick={() => setResendEntry(null)} disabled={isPending}>
+                Cancelar
+              </Button>
+              <Button
+                variant="primary"
+                size="sm"
+                onClick={confirmResendCredentials}
+                disabled={isPending}
+              >
+                {isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Mail className="h-4 w-4" />}
+                {isPending ? "Gerando e Enviando…" : "Confirmar e Enviar E-mail"}
+              </Button>
+            </div>
+          </div>
+        </div>
       )}
 
       {/* Listagem */}
@@ -401,149 +699,161 @@ export function CadastrosView({ entries, pendingPlans = [] }: { entries: Waitlis
           )}
         </section>
       ) : (
-      <section className="space-y-3" aria-labelledby="sec-cadastros">
-        <SectionTitle id="sec-cadastros">
-          {activeTab === "PENDING"
-            ? `Cadastros Pendentes (${pendingList.length})`
-            : activeTab === "APPROVED"
-              ? `Cadastros Aprovados (${approvedList.length})`
-              : `Cadastros Rejeitados (${rejectedList.length})`}
-        </SectionTitle>
+        <section className="space-y-3" aria-labelledby="sec-cadastros">
+          <SectionTitle id="sec-cadastros">
+            {activeTab === "PENDING"
+              ? `Cadastros Pendentes (${pendingList.length})`
+              : activeTab === "APPROVED"
+                ? `Cadastros Aprovados (${approvedList.length})`
+                : `Cadastros Rejeitados (${rejectedList.length})`}
+          </SectionTitle>
 
-        {currentList.length === 0 ? (
-          <Card className="p-8 text-center text-sm text-muted">
-            Nenhum cadastro encontrado nesta seção.
-          </Card>
-        ) : (
-          <div className="space-y-3">
-            {currentList.map((e) => (
-              <Card key={e.id} className="p-5 space-y-4">
-                <div className="flex flex-wrap items-start justify-between gap-3">
-                  <div className="space-y-1">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <h4 className="font-display text-xl font-bold uppercase text-text">{e.name}</h4>
-                      <Badge tone={e.paidAt ? "ok" : "warn"}>
-                        {e.paidAt ? "PIX CONFERIDO" : "AGUARDA PIX"}
-                      </Badge>
-                      <Badge>{CONTEST_LABELS[e.contest] ?? e.contest}</Badge>
-                      {e.plan && <Badge tone="neutral">{PLAN_LABELS[e.plan] ?? e.plan}</Badge>}
+          {currentList.length === 0 ? (
+            <Card className="p-8 text-center text-sm text-muted">
+              Nenhum cadastro encontrado nesta seção.
+            </Card>
+          ) : (
+            <div className="space-y-3">
+              {currentList.map((e) => (
+                <Card key={e.id} className="p-5 space-y-4">
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div className="space-y-1">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h4 className="font-display text-xl font-bold uppercase text-text">{e.name}</h4>
+                        <Badge tone={e.paidAt ? "ok" : "warn"}>
+                          {e.paidAt ? "PIX CONFERIDO" : "AGUARDA PIX"}
+                        </Badge>
+                        <Badge>{CONTEST_LABELS[e.contest] ?? e.contest}</Badge>
+                        {e.plan && <Badge tone="neutral">{PLAN_LABELS[e.plan] ?? e.plan}</Badge>}
+                      </div>
+
+                      <p className="text-xs text-muted flex flex-wrap items-center gap-x-3 gap-y-1">
+                        <span>E-mail: <strong className="text-text">{e.email}</strong></span>
+                        <span>·</span>
+                        <span>Usuário: <strong className="text-text">@{e.username}</strong></span>
+                        <span>·</span>
+                        <span>Cadastrado em: {new Date(e.createdAt).toLocaleString("pt-BR")}</span>
+                      </p>
                     </div>
 
-                    <p className="text-xs text-muted flex flex-wrap items-center gap-x-3 gap-y-1">
-                      <span>E-mail: <strong className="text-text">{e.email}</strong></span>
-                      <span>·</span>
-                      <span>Usuário: <strong className="text-text">@{e.username}</strong></span>
-                      <span>·</span>
-                      <span>Cadastrado em: {new Date(e.createdAt).toLocaleString("pt-BR")}</span>
-                    </p>
-                  </div>
+                    {/* Ações */}
+                    <div className="flex flex-wrap items-center gap-2">
+                      {e.status === "PENDING" && (
+                        <>
+                          <Button
+                            size="sm"
+                            variant="primary"
+                            onClick={() => handleApprove(e)}
+                            disabled={isPending}
+                          >
+                            <UserCheck className="h-4 w-4" />
+                            Aprovar
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="secondary"
+                            onClick={() => {
+                              setRejectEntry(e);
+                              setRejectReason("");
+                            }}
+                            disabled={isPending}
+                          >
+                            <UserX className="h-4 w-4 text-danger" />
+                            Rejeitar
+                          </Button>
+                        </>
+                      )}
 
-                  {/* Ações */}
-                  <div className="flex flex-wrap items-center gap-2">
-                    {e.status === "PENDING" && (
-                      <>
-                        <Button
-                          size="sm"
-                          variant="primary"
-                          onClick={() => handleApprove(e)}
-                          disabled={isPending}
-                        >
-                          <UserCheck className="h-4 w-4" />
-                          Aprovar
-                        </Button>
+                      {e.status === "APPROVED" && (
+                        <div className="flex flex-wrap items-center gap-2">
+                          <Button
+                            size="sm"
+                            variant="secondary"
+                            onClick={() => handleOpenValidity(e)}
+                            disabled={isPending}
+                          >
+                            <Calendar className="h-3.5 w-3.5 text-primary" />
+                            Renovar / Alterar Validade
+                          </Button>
+
+                          <Button
+                            size="sm"
+                            variant="secondary"
+                            onClick={() => handleOpenResend(e)}
+                            disabled={isPending}
+                          >
+                            <Mail className="h-3.5 w-3.5 text-primary" />
+                            Reenviar E-mail / Nova Senha
+                          </Button>
+                        </div>
+                      )}
+
+                      {e.status === "REJECTED" && (
                         <Button
                           size="sm"
                           variant="secondary"
-                          onClick={() => {
-                            setRejectEntry(e);
-                            setRejectReason("");
-                          }}
-                          disabled={isPending}
-                        >
-                          <UserX className="h-4 w-4 text-danger" />
-                          Rejeitar
-                        </Button>
-                      </>
-                    )}
-
-                    {e.status === "APPROVED" && (
-                      <div className="flex flex-wrap items-center gap-2">
-                        <Button
-                          size="sm"
-                          variant="secondary"
                           onClick={() => handleApprove(e)}
                           disabled={isPending}
                         >
-                          <Calendar className="h-3.5 w-3.5" />
-                          Renovar / Alterar Validade
+                          <UserCheck className="h-3.5 w-3.5 text-ok" />
+                          Reavaliar e Aprovar
                         </Button>
-                      </div>
-                    )}
+                      )}
 
-                    {e.status === "REJECTED" && (
-                      <Button
-                        size="sm"
-                        variant="secondary"
-                        onClick={() => handleApprove(e)}
+                      <button
+                        type="button"
+                        onClick={() => handleDelete(e.id)}
                         disabled={isPending}
+                        aria-label="Excluir cadastro"
+                        className="p-2 text-muted hover:text-danger rounded-lg transition cursor-pointer"
                       >
-                        <UserCheck className="h-3.5 w-3.5 text-ok" />
-                        Reavaliar e Aprovar
-                      </Button>
-                    )}
-
-                    <button
-                      type="button"
-                      onClick={() => handleDelete(e.id)}
-                      disabled={isPending}
-                      aria-label="Excluir cadastro"
-                      className="p-2 text-muted hover:text-danger rounded-lg transition cursor-pointer"
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </button>
+                        <Trash2 className="h-4 w-4" />
+                      </button>
+                    </div>
                   </div>
-                </div>
 
-                {/* Detalhes para Aprovados */}
-                {e.status === "APPROVED" && (
-                  <div className="rounded-xl bg-surface-2 p-3 text-xs text-muted flex flex-wrap items-center justify-between gap-2 border border-border">
-                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-                      <span>
-                        Validade:{" "}
-                        <strong className="text-text">
-                          {e.accessDuration === "30_DAYS" ? "30 dias" : "Indeterminado"}
-                        </strong>
-                      </span>
-                      {e.user?.accessExpiresAt && (
+                  {/* Detalhes para Aprovados */}
+                  {e.status === "APPROVED" && (
+                    <div className="rounded-xl bg-surface-2 p-3 text-xs text-muted flex flex-wrap items-center justify-between gap-2 border border-border">
+                      <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
                         <span>
-                          Expira em:{" "}
+                          Validade:{" "}
                           <strong className="text-text">
-                            {new Date(e.user.accessExpiresAt).toLocaleDateString("pt-BR")}
+                            {e.accessDuration === "INDEFINITE" ? "Indeterminado" : "30 dias"}
                           </strong>
                         </span>
-                      )}
-                      <span>
-                        Status da Senha:{" "}
-                        <strong className={e.user?.mustChangePassword ? "text-warn" : "text-ok"}>
-                          {e.user?.mustChangePassword ? "Aguardando 1º login (troca obrigatória)" : "Ativo com senha pessoal"}
-                        </strong>
-                      </span>
+                        {e.user?.accessExpiresAt && (
+                          <span>
+                            Expira em:{" "}
+                            <strong className="text-text">
+                              {new Date(e.user.accessExpiresAt).toLocaleDateString("pt-BR")}
+                            </strong>
+                          </span>
+                        )}
+                        <span>
+                          Status da Senha:{" "}
+                          <strong className={e.user?.mustChangePassword ? "text-warn" : "text-ok"}>
+                            {e.user?.mustChangePassword
+                              ? "Aguardando 1º login (troca obrigatória)"
+                              : "Ativo com senha pessoal"}
+                          </strong>
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
 
-                {/* Detalhes para Rejeitados */}
-                {e.status === "REJECTED" && e.rejectionReason && (
-                  <div className="rounded-xl bg-danger-soft p-3 text-xs text-danger flex items-center gap-2">
-                    <AlertCircle className="h-4 w-4 shrink-0" />
-                    <span>Motivo da recusa: {e.rejectionReason}</span>
-                  </div>
-                )}
-              </Card>
-            ))}
-          </div>
-        )}
-      </section>
+                  {/* Detalhes para Rejeitados */}
+                  {e.status === "REJECTED" && e.rejectionReason && (
+                    <div className="rounded-xl bg-danger-soft p-3 text-xs text-danger flex items-center gap-2">
+                      <AlertCircle className="h-4 w-4 shrink-0" />
+                      <span>Motivo da recusa: {e.rejectionReason}</span>
+                    </div>
+                  )}
+                </Card>
+              ))}
+            </div>
+          )}
+        </section>
       )}
     </div>
   );

@@ -313,3 +313,91 @@ Equipe MentorIA CBMPE`;
 
   return sendEmail({ to: params.to, subject, html, text });
 }
+
+export async function sendResendCredentialsEmail(params: {
+  to: string;
+  name?: string | null;
+  tempPassword: string;
+  loginUrl: string;
+  accessDuration?: string | null;
+  accessExpiresAt?: Date | null;
+}) {
+  const greeting = params.name ? `Olá, ${params.name}!` : "Olá!";
+  const subject = "Nova Senha Temporária de Acesso — MentorIA CBMPE";
+
+  let validityText = "";
+  if (params.accessExpiresAt) {
+    validityText = `Acesso válido até: ${params.accessExpiresAt.toLocaleDateString("pt-BR")}`;
+  } else if (params.accessDuration === "INDEFINITE") {
+    validityText = "Acesso por prazo indeterminado (até a homologação do concurso)";
+  } else if (params.accessDuration === "30_DAYS") {
+    validityText = "Acesso válido por 30 dias";
+  }
+
+  const text = `${greeting}
+
+Uma nova senha temporária de acesso à plataforma MentorIA — Missão Oficial foi gerada pelo suporte.
+
+Login / E-mail: ${params.to}
+Nova Senha Temporária: ${params.tempPassword}
+${validityText ? `${validityText}\n` : ""}
+Acesse pelo link: ${params.loginUrl}
+
+Importante: Ao realizar o login com esta senha temporária, você será orientado a criar uma nova senha pessoal definitiva.
+
+Bons estudos e conte conosco rumo à aprovação!
+Equipe MentorIA CBMPE`;
+
+  const html = `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>${subject}</title>
+</head>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f7f7f8; margin: 0; padding: 32px 16px; color: #1c1c1e;">
+  <div style="max-width: 560px; margin: 0 auto; background: #ffffff; border-radius: 16px; border: 1px solid #e5e5ea; padding: 32px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+    <div style="text-align: center; margin-bottom: 24px;">
+      <h2 style="font-size: 22px; font-weight: 800; color: #c41c1c; text-transform: uppercase; margin: 0; letter-spacing: 0.5px;">MentorIA</h2>
+      <p style="font-size: 12px; font-weight: 600; color: #8e8e93; margin: 4px 0 0; text-transform: uppercase;">Missão Oficial · CBMPE</p>
+    </div>
+    
+    <h1 style="font-size: 20px; font-weight: 700; color: #111111; margin-bottom: 16px;">${greeting}</h1>
+    <p style="font-size: 15px; line-height: 1.6; color: #3a3a3c; margin-bottom: 20px;">
+      Uma nova credencial temporária de acesso à plataforma <strong>MentorIA</strong> foi emitida para a sua conta.
+    </p>
+
+    <div style="background-color: #f2f2f7; border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+      <p style="margin: 0 0 10px; font-size: 14px; color: #636366;">
+        <strong style="color: #1c1c1e;">Login / E-mail:</strong> ${params.to}
+      </p>
+      ${
+        validityText
+          ? `<p style="margin: 0 0 10px; font-size: 14px; color: #636366;">
+        <strong style="color: #1c1c1e;">Validade:</strong> ${validityText}
+      </p>`
+          : ""
+      }
+      <p style="margin: 0; font-size: 14px; color: #636366;">
+        <strong style="color: #1c1c1e;">Nova Senha Temporária:</strong>
+        <span style="display: inline-block; background: #ffffff; border: 1px solid #d1d1d6; border-radius: 6px; padding: 4px 10px; font-family: monospace; font-size: 16px; font-weight: bold; color: #c41c1c; margin-left: 6px;">
+          ${params.tempPassword}
+        </span>
+      </p>
+    </div>
+
+    <div style="text-align: center; margin-bottom: 24px;">
+      <a href="${params.loginUrl}" style="display: inline-block; background-color: #c41c1c; color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; padding: 14px 28px; border-radius: 10px; box-shadow: 0 2px 6px rgba(196, 28, 28, 0.3);">
+        Acessar e Redefinir Senha
+      </a>
+    </div>
+
+    <p style="font-size: 13px; color: #8e8e93; line-height: 1.5; margin: 0; border-top: 1px dashed #d1d1d6; padding-top: 16px;">
+      * Por segurança, ao efetuar o login com esta senha você será orientado a cadastrar uma nova senha pessoal definitiva.
+    </p>
+  </div>
+</body>
+</html>`;
+
+  return sendEmail({ to: params.to, subject, html, text });
+}
+

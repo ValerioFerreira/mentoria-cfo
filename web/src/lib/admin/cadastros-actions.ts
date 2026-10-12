@@ -4,10 +4,11 @@ import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
 import { requireAdmin } from "@/lib/auth/dal";
 import { hashPassword } from "@/lib/auth/password";
-import { generateTemporaryPassword, sendApprovalEmail } from "@/lib/email";
+import { generateTemporaryPassword, sendApprovalEmail, sendResendCredentialsEmail } from "@/lib/email";
 import { regeneratePlanForUser } from "@/lib/plan/regenerate";
 
 export type AdminActionResult = { success: boolean; message: string; tempPassword?: string };
+export type ValidityOption = "EXTEND_30_DAYS" | "EXTEND_60_DAYS" | "EXTEND_90_DAYS" | "INDEFINITE" | "CUSTOM_DATE";
 
 export async function approveRegistration(
   entryId: string,
@@ -160,3 +161,131 @@ export async function approvePlan(planId: string): Promise<AdminActionResult> {
     message: `Planejamento de ${plan.user.name ?? plan.user.email} montado com as regras novas e liberado com sucesso!`,
   };
 }
+
+export async function updateAccessValidity(
+  entryId: string,
+  option: ValidityOption,
+  customDate?: string,
+): Promise<AdminActionResult> {
+  await requireAdmin();
+
+  const entry = await db.waitlistEntry.findUnique({ where: { id: entryId } });
+  if (!entry) {
+    return { success: false, message: "Registro da lista de espera não encontrado." };
+  }
+
+  const user = await db.user.findUnique({ where: { email: entry.email } });
+  if (!user) {
+    return { success: false, message: `Usuário associado ao e-mail ${entry.email} não foi encontrado no sistema.` };
+  }
+
+  let newExpiresAt: Date | null = null;
+  let accessDuration = entry.accessDuration || "30_DAYS";
+  let label = "";
+
+  const now = Date.now();
+  // Se a validade atual ainda estiver no futuro, soma sobre ela. Caso contrário, soma sobre agora.
+  const currentExpMs = user.accessExpiresAt && user.accessExpiresAt.getTime() > now
+    ? user.accessExpiresAt.getTime()
+    : now;
+
+  if (option === "INDEFINITE") {
+    newExpiresAt = null;
+    accessDuration = "INDEFINITE";
+    label = "Indeterminado (até a homologação do concurso)";
+  } else if (option === "EXTEND_30_DAYS") {
+    newExpiresAt = new Date(currentExpMs + 30 * 24 * 60 * 60 * 1000);
+    accessDuration = "30_DAYS";
+    label = `30 dias adicionados (vence em ${newExpiresAt.toLocaleDateString("pt-BR")})`;
+  } else if (option === "EXTEND_60_DAYS") {
+    newExpiresAt = new Date(currentExpMs + 60 * 24 * 60 * 60 * 1000);
+    accessDuration = "60_DAYS";
+    label = `60 dias adicionados (vence em ${newExpiresAt.toLocaleDateString("pt-BR")})`;
+  } else if (option === "EXTEND_90_DAYS") {
+    newExpiresAt = new Date(currentExpMs + 90 * 24 * 60 * 60 * 1000);
+    accessDuration = "90_DAYS";
+    label = `90 dias adicionados (vence em ${newExpiresAt.toLocaleDateString("pt-BR")})`;
+  } else if (option === "CUSTOM_DATE") {
+    if (!customDate) {
+      return { success: false, message: "Informe uma data válida para a expiração." };
+    }
+    const [y, m, d] = customDate.split("-").map(Number);
+    if (!y || !m || !d) {
+      return { success: false, message: "Data em formato inválido." };
+    }
+    newExpiresAt = new Date(y, m - 1, d, 23, 59, 59, 999);
+    accessDuration = "CUSTOM";
+    label = `Definido até ${newExpiresAt.toLocaleDateString("pt-BR")}`;
+  }
+
+  await db.user.update({
+    where: { id: user.id },
+    data: { accessExpiresAt: newExpiresAt },
+  });
+
+  await db.waitlistEntry.update({
+    where: { id: entry.id },
+    data: {
+      accessDuration,
+      status: "APPROVED",
+    },
+  });
+
+  revalidatePath("/admin/cadastros");
+  return {
+    success: true,
+    message: `Validade de ${entry.name} atualizada com sucesso: ${label}.`,
+  };
+}
+
+export async function resendTemporaryPassword(entryId: string): Promise<AdminActionResult> {
+  await requireAdmin();
+
+  const entry = await db.waitlistEntry.findUnique({ where: { id: entryId } });
+  if (!entry) {
+    return { success: false, message: "Registro da lista de espera não encontrado." };
+  }
+
+  const user = await db.user.findUnique({ where: { email: entry.email } });
+  if (!user) {
+    return { success: false, message: `Usuário com e-mail ${entry.email} não localizado no sistema.` };
+  }
+
+  const tempPassword = generateTemporaryPassword("MTR");
+  const passwordHash = await hashPassword(tempPassword);
+
+  await db.user.update({
+    where: { id: user.id },
+    data: {
+      passwordHash,
+      mustChangePassword: true,
+    },
+  });
+
+  const loginUrl = `${(process.env.SITE_URL || "https://www.missaomentoria.com.br").replace(/\/$/, "")}/login`;
+
+  let emailSent = false;
+  try {
+    const emailRes = await sendResendCredentialsEmail({
+      to: entry.email,
+      name: entry.name,
+      tempPassword,
+      accessDuration: entry.accessDuration,
+      accessExpiresAt: user.accessExpiresAt,
+      loginUrl,
+    });
+    emailSent = emailRes?.success ?? false;
+  } catch (err) {
+    console.error("Erro ao reenviar e-mail com senha temporária:", err);
+  }
+
+  revalidatePath("/admin/cadastros");
+  return {
+    success: true,
+    message: emailSent
+      ? `E-mail com nova senha temporária enviado com sucesso para ${entry.email}!`
+      : `Nova senha gerada para ${entry.name}! Atenção: e-mail automático não configurado. Copie a senha temporária abaixo para enviar ao aluno.`,
+    tempPassword,
+  };
+}
+
