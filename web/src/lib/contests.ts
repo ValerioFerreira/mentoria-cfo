@@ -33,6 +33,31 @@ export const CONTEST_SUBTITLES: Record<Contest, string> = {
   PCPE_AGENTE: "AGENTE - PCPE",
 };
 
+export interface ContestPackage {
+  name: string;
+  url: string;
+}
+
+/** Pacote do Estratégia usado como referência para a divisão de páginas de cada concurso. */
+export const CONTEST_PACKAGES: Partial<Record<Contest, ContestPackage>> = {
+  CBMPE_SOLDADO: {
+    name: "CBM-PE (Soldado) Pacote",
+    url: "https://www.estrategiaconcursos.com.br/app/dashboard/pacote/384949",
+  },
+  CBMPE_OFICIAL: {
+    name: "CBM-PE (Oficial) Pacote",
+    url: "https://www.estrategiaconcursos.com.br/app/dashboard/pacote/384948",
+  },
+  PMPE_SOLDADO: {
+    name: "PM-PE (Soldado) Pacote Completo",
+    url: "https://www.estrategiaconcursos.com.br/app/dashboard/pacote/361832",
+  },
+  PMPE_OFICIAL: {
+    name: "PM-PE (Oficial) Pacote",
+    url: "https://www.estrategiaconcursos.com.br/app/dashboard/pacote/361831",
+  },
+};
+
 export const CONTEST_SUBJECTS: Record<Contest, string[]> = {
   CBMPE_OFICIAL: [
     "lingua-portuguesa",

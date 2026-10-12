@@ -74,7 +74,7 @@ export async function getActivity(userId: string, id: string) {
     include: {
       subject: { select: { id: true, name: true } },
       aula: { select: { id: true, number: true, shortTitle: true, printedOffset: true } },
-      week: { select: { id: true, index: true, planId: true } },
+      week: { select: { id: true, index: true, planId: true, plan: { select: { contest: true } } } },
       segments: {
         include: {
           segment: { include: { bizu: { include: { items: { orderBy: { sortOrder: "asc" } } } } } },

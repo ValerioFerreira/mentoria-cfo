@@ -17,6 +17,7 @@ import {
 import { servableStatuses } from "@/lib/quiz/servable";
 import { STATUS_LABEL, subjectShort } from "@/lib/ui-format";
 import { MaterialLink } from "@/components/material-link";
+import { CONTEST_PACKAGES } from "@/lib/contests";
 
 export const metadata: Metadata = { title: "Atividade" };
 
@@ -109,6 +110,7 @@ export default async function ActivityPage({ params }: PageProps<"/atividade/[id
   const bizuItems = bizus.flatMap((b) => b.items.filter((i) => i.set === bizuSet));
   const limitMin = Math.round((a.quizLimitSec ?? 3600) / 60);
   const meta = TYPE_META[a.type];
+  const materialPackage = CONTEST_PACKAGES[a.week.plan.contest ?? "CBMPE_OFICIAL"];
   // Revisão e Caderno de uma aula pressupõem a Teoria feita: avisa (sem bloquear) se alguma ainda está pendente
   const pendingTheory = !isFinal && (a.type === "REVISAO" || a.type === "QUESTOES") ? a.refs.filter((r) => r.refActivity.status !== "DONE") : [];
 
@@ -160,6 +162,18 @@ export default async function ActivityPage({ params }: PageProps<"/atividade/[id
           <ActivityActions id={a.id} status={a.status} summaryCheck={a.type === "TEORIA" && segs.length > 0 ? { segmentIds: segIds, filled: segs.filter((s) => (noteBySeg.get(s.id) ?? "").trim()).map((s) => s.id) } : undefined} />
         </div>
       </header>
+
+      {materialPackage && (
+        <Card className="space-y-2">
+          <h2 className="font-display text-xl font-bold uppercase tracking-wide">Material</h2>
+          <p className="text-sm leading-relaxed text-muted">
+            As aulas mencionadas na diretriz a seguir são baseadas no pacote{" "}
+            <a href={materialPackage.url} target="_blank" rel="noopener noreferrer" className="font-semibold text-primary underline decoration-primary/40 underline-offset-2 hover:decoration-primary">
+              {materialPackage.name}
+            </a>.
+          </p>
+        </Card>
+      )}
 
       {pendingTheory.length > 0 && (
         <Alert>
