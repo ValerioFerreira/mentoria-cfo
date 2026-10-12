@@ -37,6 +37,7 @@ COMO ORGANIZAR O TRABALHO — AGENTES EM PARALELO (obrigatório): crie 3 agentes
 - Agente EXT-L2-A: sublotes L2-01 e L2-02 (40 atividades; IDs S0087–S0127, S0132–S0185). Arquivos: Sxxxx__EXT-L2-A.md.
 - Agente EXT-L2-B: sublotes L2-03 e L2-04 (40 atividades; IDs S0186–S0216, S0217–S0240). Arquivos: Sxxxx__EXT-L2-B.md.
 - Agente EXT-L2-C: sublotes L2-05 e L2-06 (29 atividades; IDs S0241–S0290, S0291–S0357). Arquivos: Sxxxx__EXT-L2-C.md.
+ATENÇÃO: identifique as atividades de cada sublote pela coluna Sublote do índice, não pela faixa de IDs (a faixa tem buracos: os IDs intermediários pertencem a outros lotes e NÃO são seus).
 Nenhuma atividade pode ser feita por dois agentes. (Se preferir outro número de agentes, divida os sublotes de forma disjunta, com um identificador por agente, mantendo cada sublote inteiro com um único agente.)
 
 DIRETRIZES DE EXECUÇÃO:
@@ -66,6 +67,7 @@ COMO ORGANIZAR O TRABALHO — AGENTES EM PARALELO (obrigatório): crie 3 agentes
 - Agente EXT-L3-A: sublotes L3-01 e L3-02 (40 atividades; IDs S0028–S0062, S0063–S0249). Arquivos: Sxxxx__EXT-L3-A.md.
 - Agente EXT-L3-B: sublotes L3-03 e L3-04 (40 atividades; IDs S0253–S0420, S0428–S0510). Arquivos: Sxxxx__EXT-L3-B.md.
 - Agente EXT-L3-C: sublotes L3-05 e L3-06 (31 atividades; IDs S0512–S0546, S0547–S0563). Arquivos: Sxxxx__EXT-L3-C.md.
+ATENÇÃO: identifique as atividades de cada sublote pela coluna Sublote do índice, não pela faixa de IDs (a faixa tem buracos: os IDs intermediários pertencem a outros lotes e NÃO são seus).
 Nenhuma atividade pode ser feita por dois agentes. (Se preferir outro número de agentes, divida os sublotes de forma disjunta, com um identificador por agente, mantendo cada sublote inteiro com um único agente.)
 
 DIRETRIZES DE EXECUÇÃO:
@@ -95,6 +97,7 @@ COMO ORGANIZAR O TRABALHO — AGENTES EM PARALELO (obrigatório): crie 3 agentes
 - Agente EXT-L5-A: sublotes L5-01 e L5-02 (40 atividades; IDs S0566–S0591, S0592–S0619). Arquivos: Sxxxx__EXT-L5-A.md.
 - Agente EXT-L5-B: sublotes L5-03 e L5-04 (40 atividades; IDs S0620–S0656, S0658–S0687). Arquivos: Sxxxx__EXT-L5-B.md.
 - Agente EXT-L5-C: sublotes L5-05 e L5-06 (37 atividades; IDs S0689–S0717, S0718–S0758). Arquivos: Sxxxx__EXT-L5-C.md.
+ATENÇÃO: identifique as atividades de cada sublote pela coluna Sublote do índice, não pela faixa de IDs (a faixa tem buracos: os IDs intermediários pertencem a outros lotes e NÃO são seus).
 Nenhuma atividade pode ser feita por dois agentes. (Se preferir outro número de agentes, divida os sublotes de forma disjunta, com um identificador por agente, mantendo cada sublote inteiro com um único agente.)
 
 DIRETRIZES DE EXECUÇÃO:
@@ -124,6 +127,7 @@ COMO ORGANIZAR O TRABALHO — AGENTES EM PARALELO (obrigatório): crie 3 agentes
 - Agente EXT-L6-A: sublotes L6-01 e L6-02 (40 atividades; IDs S0255–S0337, S0338–S0581). Arquivos: Sxxxx__EXT-L6-A.md.
 - Agente EXT-L6-B: sublotes L6-03 e L6-04 (40 atividades; IDs S0587–S0636, S0640–S0688). Arquivos: Sxxxx__EXT-L6-B.md.
 - Agente EXT-L6-C: sublotes L6-05 e L6-06 (36 atividades; IDs S0690–S0734, S0737–S0761). Arquivos: Sxxxx__EXT-L6-C.md.
+ATENÇÃO: identifique as atividades de cada sublote pela coluna Sublote do índice, não pela faixa de IDs (a faixa tem buracos: os IDs intermediários pertencem a outros lotes e NÃO são seus).
 Nenhuma atividade pode ser feita por dois agentes. (Se preferir outro número de agentes, divida os sublotes de forma disjunta, com um identificador por agente, mantendo cada sublote inteiro com um único agente.)
 
 DIRETRIZES DE EXECUÇÃO:
