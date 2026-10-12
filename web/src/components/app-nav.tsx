@@ -1,6 +1,6 @@
 "use client";
 
-import { CalendarDays, ChartNoAxesColumn, CreditCard, Crosshair, ListChecks, Map as MapIcon, NotebookPen, Send, ShieldCheck, Trophy, Users, type LucideIcon } from "lucide-react";
+import { BadgePercent, CalendarDays, ChartNoAxesColumn, CreditCard, Crosshair, Handshake, ListChecks, Map as MapIcon, NotebookPen, Send, ShieldCheck, Trophy, Users, Wallet, type LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
@@ -18,6 +18,9 @@ const ICONS: Record<string, LucideIcon> = {
   admin: ShieldCheck,
   users: Users,
   release: Send,
+  finance: Wallet,
+  partners: Handshake,
+  partnership: BadgePercent,
 };
 
 export interface NavItem {

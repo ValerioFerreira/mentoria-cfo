@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import * as z from "zod";
 import { db } from "@/lib/db";
 import { hasBillingAccess } from "@/lib/billing/access";
+import { linkContractsToUser } from "@/lib/commerce/contracts";
 import { hashPassword, verifyPassword } from "@/lib/auth/password";
 import { clearFailures, registerFailure, tooManyAttempts } from "@/lib/auth/rate-limit";
 import { createSession, destroySession, getCurrentUser } from "@/lib/auth/session";
@@ -39,6 +40,8 @@ export async function signup(_: AuthState, formData: FormData): Promise<AuthStat
   const user = await db.$transaction(async (tx) => {
     const u = await tx.user.create({ data: { name, email, username, passwordHash, role: inv.makeAdmin ? "ADMIN" : "USER" } });
     await tx.invite.update({ where: { id: inv.id }, data: { usedAt: new Date(), usedByUserId: u.id } });
+    // contratações feitas pela lista de espera passam a pertencer à conta
+    await linkContractsToUser(tx, u.id, email);
     return u;
   });
   await createSession(user.id);
@@ -66,11 +69,14 @@ export async function login(_: AuthState, formData: FormData): Promise<AuthState
       }
     }
 
-    const user = await db.user.findUnique({ where: { email } });
+    const user = await db.user.findUnique({ where: { email }, include: { partner: { select: { active: true } } } });
     const ok = user ? await verifyPassword(password, user.passwordHash) : false;
     if (!user || !ok) {
       registerFailure(email);
       return { message: "E-mail ou senha incorretos." };
+    }
+    if (user.partner && !user.partner.active) {
+      return { message: "Este acesso de parceiro está desativado. Fale com a administração." };
     }
 
     clearFailures(email);
@@ -87,8 +93,9 @@ export async function login(_: AuthState, formData: FormData): Promise<AuthState
     }
 
     redirect("/");
-  } catch (err: any) {
-    if (err?.message === "NEXT_REDIRECT" || err?.digest?.startsWith?.("NEXT_REDIRECT")) {
+  } catch (err: unknown) {
+    const e = err as { message?: unknown; digest?: unknown } | null;
+    if (e?.message === "NEXT_REDIRECT" || (typeof e?.digest === "string" && e.digest.startsWith("NEXT_REDIRECT"))) {
       throw err;
     }
     console.error("[Login Action Exception]:", err);
@@ -114,6 +121,8 @@ const ChangePasswordSchema = z
 export async function changePassword(_: AuthState, formData: FormData): Promise<AuthState> {
   const user = await getCurrentUser();
   if (!user) redirect("/login");
+  // a senha do parceiro é definida só pela administração
+  if (user.isPartner) return { message: "A senha de parceiro é gerenciada pela administração." };
 
   const parsed = ChangePasswordSchema.safeParse(Object.fromEntries(formData));
   if (!parsed.success) return { errors: z.flattenError(parsed.error).fieldErrors as Record<string, string[]> };
@@ -146,8 +155,9 @@ export async function requestPasswordReset(_: AuthState, formData: FormData): Pr
   }
   registerFailure(`reset:${email}`);
 
-  const user = await db.user.findUnique({ where: { email } });
-  if (user) {
+  const user = await db.user.findUnique({ where: { email }, include: { partner: { select: { id: true } } } });
+  // parceiros não redefinem a senha por e-mail (mesma resposta genérica, sem revelar a conta)
+  if (user && !user.partner) {
     const tempPassword = generateTemporaryPassword("REC");
     const passwordHash = await hashPassword(tempPassword);
 

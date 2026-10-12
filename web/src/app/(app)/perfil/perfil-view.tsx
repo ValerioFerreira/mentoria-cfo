@@ -16,6 +16,8 @@ export interface UserProfileData {
   createdAt: string;
   accessExpiresAt: string | null;
   mustChangePassword: boolean;
+  /** parceiro: a senha é gerenciada pela administração */
+  isPartner: boolean;
 }
 
 const CONTEST_OPTIONS = [
@@ -75,7 +77,7 @@ export function PerfilView({ user }: { user: UserProfileData }) {
               <div className="flex items-center gap-2">
                 <h2 className="font-display text-2xl font-bold uppercase text-text">{user.name ?? "Aluno"}</h2>
                 <Badge tone={user.role === "ADMIN" ? "warn" : "ok"}>
-                  {user.role === "ADMIN" ? "ADMINISTRADOR" : "ALUNO"}
+                  {user.role === "ADMIN" ? "ADMINISTRADOR" : user.isPartner ? "PARCEIRO" : "ALUNO"}
                 </Badge>
               </div>
               <p className="text-xs text-muted">
@@ -139,7 +141,15 @@ export function PerfilView({ user }: { user: UserProfileData }) {
         </div>
       </Card>
 
-      {/* Módulo de Senha e Segurança */}
+      {/* Módulo de Senha e Segurança (parceiros não alteram a própria senha) */}
+      {user.isPartner ? (
+        <section className="space-y-4" aria-labelledby="sec-seguranca">
+          <SectionTitle id="sec-seguranca">Segurança e Senha</SectionTitle>
+          <Card className="p-6">
+            <p className="text-sm text-muted">A senha da conta de parceiro é definida pela administração. Para trocá-la, fale com a equipe.</p>
+          </Card>
+        </section>
+      ) : (
       <section className="space-y-4" aria-labelledby="sec-seguranca">
         <SectionTitle id="sec-seguranca">Segurança e Senha</SectionTitle>
 
@@ -273,6 +283,7 @@ export function PerfilView({ user }: { user: UserProfileData }) {
           </div>
         </Card>
       </section>
+      )}
     </div>
   );
 }

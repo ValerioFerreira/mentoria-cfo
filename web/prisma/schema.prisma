@@ -182,6 +182,41 @@ enum ReportStatus {
   DISMISSED
 }
 
+// ───────── Modelo comercial: acesso até a prova, controle financeiro manual e parceiros ─────────
+
+// Categoria de preço do concurso (persistida em ContestSetting; nunca deduzida do nome)
+enum ContestCategory {
+  OFICIAL
+  PCPE
+  PRACA
+}
+
+// Situação FINANCEIRA da contratação (o acesso acadêmico é controlado à parte)
+enum ContractStatus {
+  OPEN // nada recebido
+  PARTIAL // recebido < devido
+  PAID // recebido = devido
+  OVERPAID // recebido > devido: excedente para tratamento administrativo
+  CANCELLED // cancelada sem valores recebidos (histórico preservado)
+}
+
+enum PaymentMethod {
+  PIX
+  TRANSFERENCIA
+  DINHEIRO
+  OUTRO
+}
+
+enum ReversalKind {
+  ESTORNO // devolução ao cliente
+  CORRECAO // lançamento corrigido (valor ou registro indevido)
+}
+
+enum CommissionKind {
+  ACCRUAL // comissão gerada por valor recebido
+  REVERSAL // comissão revertida por estorno/correção
+}
+
 // ───────────────────── CONTEÚDO (semeado) ─────────────────────
 
 model Subject {
@@ -468,6 +503,235 @@ model User {
   reports          QuestionReport[]
   invite           Invite?
   billingPurchases BillingPurchase[]
+
+  partner           Partner?          @relation("PartnerUser")
+  contracts         Contract[]        @relation("ContractUser")
+  referralsReceived PartnerReferral[] @relation("ReferralUser")
+  paymentsLogged    ManualPayment[]   @relation("PaymentCreatedBy")
+  reversalsLogged   PaymentReversal[] @relation("ReversalCreatedBy")
+  payoutsLogged     PartnerPayout[]   @relation("PayoutCreatedBy")
+}
+
+// Categoria e data oficial da prova de cada concurso. Sem categoria: sem preço (revisão administrativa).
+// Sem data: a contratação é registrada, mas o acesso "até a prova" fica pendente.
+model ContestSetting {
+  contest     Contest          @id
+  category    ContestCategory?
+  examDate    DateTime?        @db.Date
+  updatedById String?
+  updatedAt   DateTime         @updatedAt
+}
+
+// Contratação de acesso ilimitado até a prova = obrigação financeira. Preço, descontos e regra ficam congelados:
+// mudanças futuras de preço não alteram contratações já registradas. `paidAmount` e `status` são materializados
+// e sempre recalculados a partir de ManualPayment − PaymentReversal (reconciliáveis com o histórico).
+model Contract {
+  id                    String          @id @default(cuid())
+  userId                String? // nulo enquanto a inscrição da lista de espera não vira conta
+  customerEmail         String // minúsculas
+  customerName          String?
+  waitlistEntryId       String?
+  contest               Contest
+  category              ContestCategory
+  examDateAtContract    DateTime?       @db.Date // data oficial conhecida no momento da contratação
+  pricingRule           String // identificador da regra comercial aplicada
+  originalAmount        Decimal         @db.Decimal(10, 2)
+  launchDiscountPoints  Int
+  partnerDiscountPoints Int             @default(0)
+  discountAmount        Decimal         @db.Decimal(10, 2)
+  finalAmount           Decimal         @db.Decimal(10, 2)
+  couponId              String?
+  couponCode            String? // código usado (cópia: trocar o cupom não altera o histórico)
+  partnerId             String?
+  status                ContractStatus  @default(OPEN)
+  paidAmount            Decimal         @default(0) @db.Decimal(10, 2)
+  createdAt             DateTime        @default(now())
+  updatedAt             DateTime        @updatedAt
+  cancelledAt           DateTime?
+  cancelReason          String?
+  cancelledById         String?
+  accessGrantedAt       DateTime?
+  accessUntil           DateTime?
+  accessGrantedById     String?
+
+  user          User?             @relation("ContractUser", fields: [userId], references: [id], onDelete: SetNull)
+  waitlistEntry WaitlistEntry?    @relation(fields: [waitlistEntryId], references: [id], onDelete: SetNull)
+  coupon        PartnerCoupon?    @relation(fields: [couponId], references: [id], onDelete: Restrict)
+  partner       Partner?          @relation(fields: [partnerId], references: [id], onDelete: Restrict)
+  payments      ManualPayment[]
+  reversals     PaymentReversal[]
+  commissions   CommissionEntry[]
+  referral      PartnerReferral?
+
+  @@index([userId])
+  @@index([waitlistEntryId])
+  @@index([customerEmail, contest])
+  @@index([partnerId, createdAt])
+  @@index([status, createdAt])
+  @@index([contest, createdAt])
+}
+
+// Pagamento recebido, lançado manualmente pelo administrador. Imutável: correções só por PaymentReversal.
+model ManualPayment {
+  id             String        @id @default(cuid())
+  contractId     String
+  amount         Decimal       @db.Decimal(10, 2)
+  paidAt         DateTime // data efetiva do pagamento
+  method         PaymentMethod
+  receiptRef     String? // identificador do comprovante (ex.: id da transação Pix)
+  note           String?
+  createdById    String
+  idempotencyKey String        @unique
+  createdAt      DateTime      @default(now())
+
+  contract    Contract          @relation(fields: [contractId], references: [id], onDelete: Restrict)
+  createdBy   User              @relation("PaymentCreatedBy", fields: [createdById], references: [id], onDelete: Restrict)
+  reversals   PaymentReversal[]
+  commissions CommissionEntry[]
+
+  @@index([contractId, paidAt])
+  @@index([paidAt])
+  @@index([method, paidAt])
+  @@index([receiptRef])
+}
+
+// Estorno ou correção auditável de um pagamento (parcial ou total), com justificativa.
+model PaymentReversal {
+  id             String       @id @default(cuid())
+  paymentId      String
+  contractId     String
+  amount         Decimal      @db.Decimal(10, 2)
+  kind           ReversalKind
+  reason         String
+  effectiveAt    DateTime
+  createdById    String
+  idempotencyKey String       @unique
+  createdAt      DateTime     @default(now())
+
+  payment     ManualPayment     @relation(fields: [paymentId], references: [id], onDelete: Restrict)
+  contract    Contract          @relation(fields: [contractId], references: [id], onDelete: Restrict)
+  createdBy   User              @relation("ReversalCreatedBy", fields: [createdById], references: [id], onDelete: Restrict)
+  commissions CommissionEntry[]
+
+  @@index([paymentId])
+  @@index([contractId])
+}
+
+// Parceiro divulgador: um usuário comum (role USER) com permissões de parceiro enquanto `active`.
+model Partner {
+  id            String    @id @default(cuid())
+  userId        String    @unique
+  active        Boolean   @default(true)
+  createdById   String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  deactivatedAt DateTime?
+
+  user        User              @relation("PartnerUser", fields: [userId], references: [id], onDelete: Restrict)
+  coupons     PartnerCoupon[]
+  referrals   PartnerReferral[]
+  contracts   Contract[]
+  commissions CommissionEntry[]
+  payouts     PartnerPayout[]
+
+  @@index([active])
+}
+
+// Cupom exclusivo do parceiro. Códigos nunca são reaproveitados (únicos mesmo depois de desativados).
+model PartnerCoupon {
+  id             String    @id @default(cuid())
+  partnerId      String
+  code           String    @unique // maiúsculas
+  discountPoints Int // pontos percentuais adicionais sobre o preço original
+  active         Boolean   @default(true)
+  createdAt      DateTime  @default(now())
+  deactivatedAt  DateTime?
+  replacedAt     DateTime?
+
+  partner   Partner           @relation(fields: [partnerId], references: [id], onDelete: Restrict)
+  contracts Contract[]
+  referrals PartnerReferral[]
+
+  @@index([partnerId, active])
+}
+
+// Indicação: primeiro vínculo válido de um cliente (por e-mail) com um parceiro, criado pela 1ª contratação com cupom.
+// Nunca é transferido: contratações posteriores com outro cupom geram comissão ao parceiro do cupom usado nelas.
+model PartnerReferral {
+  id              String   @id @default(cuid())
+  partnerId       String
+  customerEmail   String   @unique
+  userId          String?
+  couponId        String
+  couponCode      String
+  firstContractId String   @unique
+  createdAt       DateTime @default(now())
+
+  partner       Partner       @relation(fields: [partnerId], references: [id], onDelete: Restrict)
+  user          User?         @relation("ReferralUser", fields: [userId], references: [id], onDelete: SetNull)
+  coupon        PartnerCoupon @relation(fields: [couponId], references: [id], onDelete: Restrict)
+  firstContract Contract      @relation(fields: [firstContractId], references: [id], onDelete: Restrict)
+
+  @@index([partnerId, createdAt])
+}
+
+// Razão de comissões: cada lançamento nasce de um pagamento (ACCRUAL) ou de um estorno (REVERSAL) e guarda a origem.
+// A soma por contratação é sempre round(30% × min(recebido válido, devido)). `sourceKey` impede lançamento repetido.
+model CommissionEntry {
+  id          String         @id @default(cuid())
+  partnerId   String
+  contractId  String
+  paymentId   String // pagamento que originou (ou que foi estornado)
+  reversalId  String?
+  kind        CommissionKind
+  amount      Decimal        @db.Decimal(10, 2) // positivo (ACCRUAL) ou negativo (REVERSAL)
+  basisAmount Decimal        @db.Decimal(10, 2) // valor do pagamento/estorno que disparou o lançamento
+  rateBp      Int // taxa em pontos-base (3000 = 30%)
+  availableAt DateTime // a partir de quando conta no saldo disponível
+  sourceKey   String         @unique
+  createdAt   DateTime       @default(now())
+
+  partner  Partner          @relation(fields: [partnerId], references: [id], onDelete: Restrict)
+  contract Contract         @relation(fields: [contractId], references: [id], onDelete: Restrict)
+  payment  ManualPayment    @relation(fields: [paymentId], references: [id], onDelete: Restrict)
+  reversal PaymentReversal? @relation(fields: [reversalId], references: [id], onDelete: Restrict)
+
+  @@index([partnerId, createdAt])
+  @@index([contractId])
+}
+
+// Repasse de comissão já pago ao parceiro (informado manualmente pelo administrador).
+model PartnerPayout {
+  id             String   @id @default(cuid())
+  partnerId      String
+  amount         Decimal  @db.Decimal(10, 2)
+  paidAt         DateTime
+  method         String // forma de pagamento ou referência
+  receiptRef     String?
+  note           String?
+  createdById    String
+  idempotencyKey String   @unique
+  createdAt      DateTime @default(now())
+
+  partner   Partner @relation(fields: [partnerId], references: [id], onDelete: Restrict)
+  createdBy User    @relation("PayoutCreatedBy", fields: [createdById], references: [id], onDelete: Restrict)
+
+  @@index([partnerId, paidAt])
+}
+
+// Histórico de alterações administrativas e financeiras (sem senhas, tokens ou dados sensíveis desnecessários).
+model AuditLog {
+  id         String   @id @default(cuid())
+  actorId    String?
+  action     String
+  entityType String
+  entityId   String
+  data       Json?
+  createdAt  DateTime @default(now())
+
+  @@index([entityType, entityId, createdAt])
+  @@index([createdAt])
+  @@index([actorId, createdAt])
 }
 
 // Contratos criados pelo checkout. Cada compra permanece independente para que
@@ -820,6 +1084,8 @@ model WaitlistEntry {
   createdAt       DateTime      @default(now())
   paidAt          DateTime? // preenchido pelo administrador ao conferir o Pix
   note            String?
+
+  contracts Contract[]
 
   @@unique([contest, email])
   @@index([createdAt])

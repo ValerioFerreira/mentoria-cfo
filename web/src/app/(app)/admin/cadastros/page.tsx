@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/ui";
 import { requireAdmin } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
+import { CONTRACT_STATUS } from "@/lib/commerce/labels";
+import { toCents } from "@/lib/commerce/money";
 import { CadastrosView, type WaitlistRow } from "./cadastros-view";
 
 export const metadata: Metadata = { title: "Gestão de Cadastros" };
@@ -22,6 +24,18 @@ export default async function AdminCadastrosPage() {
 
   const userMap = new Map(users.map((u) => [u.email, u]));
 
+  // contratação (obrigação) mais recente e não cancelada de cada inscrição
+  const [contracts, settings] = await Promise.all([
+    db.contract.findMany({
+      where: { customerEmail: { in: emails }, status: { not: "CANCELLED" } },
+      orderBy: { createdAt: "asc" },
+      select: { id: true, customerEmail: true, contest: true, finalAmount: true, paidAmount: true, status: true, couponCode: true },
+    }),
+    db.contestSetting.findMany({ select: { contest: true, examDate: true } }),
+  ]);
+  const contractMap = new Map(contracts.map((c) => [`${c.customerEmail}|${c.contest}`, c]));
+  const examKnown = new Set(settings.filter((x) => x.examDate).map((x) => x.contest));
+
   const formatted: WaitlistRow[] = entries.map((e) => {
     const u = userMap.get(e.email);
     return {
@@ -38,6 +52,20 @@ export default async function AdminCadastrosPage() {
       rejectedAt: e.rejectedAt ? e.rejectedAt.toISOString() : null,
       accessDuration: e.accessDuration,
       rejectionReason: e.rejectionReason,
+      contract: (() => {
+        const c = contractMap.get(`${e.email}|${e.contest}`);
+        return c
+          ? {
+              id: c.id,
+              finalCents: toCents(c.finalAmount),
+              paidCents: toCents(c.paidAmount),
+              status: c.status,
+              statusLabel: CONTRACT_STATUS[c.status].label,
+              couponCode: c.couponCode,
+              examDateKnown: examKnown.has(c.contest),
+            }
+          : null;
+      })(),
       user: u
         ? {
             id: u.id,

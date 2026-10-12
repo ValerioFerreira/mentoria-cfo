@@ -1,8 +1,7 @@
 import { notFound, redirect } from "next/navigation";
-import { Badge, Button, Card, PageHeader } from "@/components/ui";
+import { Badge, Card, PageHeader } from "@/components/ui";
 import { getCurrentUser } from "@/lib/auth/session";
 import { db } from "@/lib/db";
-import { startPixCheckout } from "@/lib/billing/actions";
 import { PixPaymentDetails } from "./pix-payment-details";
 
 export default async function PixPaymentPage({ params }: { params: Promise<{ purchaseId: string }> }) {
@@ -27,7 +26,7 @@ export default async function PixPaymentPage({ params }: { params: Promise<{ pur
     return <div className="space-y-5">
       <PageHeader eyebrow="PIX" title="Pagamento confirmado" description="Seu acesso permanente está ativo." />
       <Badge tone="ok">Acesso permanente ativo</Badge>
-      <a href="/pagamentos" className="block font-semibold text-primary underline">Voltar a Planos e pagamentos</a>
+      <a href="/pagamentos" className="block font-semibold text-primary underline">Voltar a Contratações e pagamentos</a>
     </div>;
   }
   if (!purchase.pixQrCode || !purchase.pixQrCodeBase64) notFound();
@@ -39,8 +38,7 @@ export default async function PixPaymentPage({ params }: { params: Promise<{ pur
     <PageHeader eyebrow="PIX" title="Conclua seu pagamento" description="Pague pelo app do seu banco usando o QR Code ou o código copia e cola." />
     {pixExpired ? <Card className="mx-auto max-w-xl space-y-4 text-center">
       <Badge tone="warn" className="mx-auto">PIX expirado ou cancelado</Badge>
-      <p className="text-sm text-muted">Gere um novo código para continuar com a compra.</p>
-      <form action={startPixCheckout}><Button type="submit">Gerar novo PIX</Button></form>
+      <p className="text-sm text-muted">Este código não vale mais. Para contratar o acesso até a prova, volte a Contratações e pagamentos.</p>
     </Card> : <>
       <div className="text-center"><Badge tone="warn">Aguardando pagamento</Badge></div>
       <PixPaymentDetails
@@ -51,6 +49,6 @@ export default async function PixPaymentPage({ params }: { params: Promise<{ pur
         expiresAt={purchase.pixExpiresAt?.toISOString() ?? null}
       />
     </>}
-    <a href="/pagamentos" className="block text-center text-sm font-semibold text-primary underline">Voltar a Planos e pagamentos</a>
+    <a href="/pagamentos" className="block text-center text-sm font-semibold text-primary underline">Voltar a Contratações e pagamentos</a>
   </div>;
 }
