@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { PageHeader } from "@/components/ui";
+import { Badge, Card, PageHeader } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
-import { checkSimuladoReadiness, getUserSimulados, type SupportedSimuladoContest, type SimuladoReadiness } from "@/lib/data/simulados";
+import { SIMULADOS_ENABLED, checkSimuladoReadiness, getUserSimulados, type SupportedSimuladoContest, type SimuladoReadiness } from "@/lib/data/simulados";
 import { canUserAccessCoreFeatures } from "@/lib/system-settings";
 import { FeatureLockedView } from "@/components/feature-locked-view";
 import { SimuladosView } from "@/components/simulados-view";
@@ -14,6 +14,26 @@ export const metadata: Metadata = {
 
 export default async function SimuladosPage() {
   const user = await requireUser();
+
+  if (!SIMULADOS_ENABLED) {
+    return (
+      <div className="space-y-8">
+        <PageHeader
+          eyebrow="Em breve"
+          title="Simulados Oficiais"
+          description="Esta funcionalidade está temporariamente indisponível enquanto concluímos os ajustes finais."
+        />
+        <Card className="mx-auto max-w-2xl space-y-3 p-8 text-center sm:p-10">
+          <Badge tone="warn" className="mx-auto">Em breve</Badge>
+          <h2 className="font-display text-2xl font-bold uppercase">Estamos preparando os simulados</h2>
+          <p className="text-sm leading-relaxed text-muted">
+            Por enquanto, não é possível iniciar, continuar ou consultar resultados de simulados. As demais áreas da plataforma continuam disponíveis.
+          </p>
+        </Card>
+      </div>
+    );
+  }
+
   const canAccess = await canUserAccessCoreFeatures(user.role);
 
   if (!canAccess) {

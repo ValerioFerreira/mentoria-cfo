@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
+import { SIMULADOS_ENABLED } from "@/lib/data/simulados";
 import { canUserAccessCoreFeatures } from "@/lib/system-settings";
 import { SimuladoRunner, type SimuladoQuestionItem } from "@/components/simulado-runner";
 
@@ -15,6 +16,10 @@ export default async function SimuladoSessionPage({
   params: Promise<{ id: string }>;
 }) {
   const user = await requireUser();
+  if (!SIMULADOS_ENABLED) {
+    redirect("/simulados");
+  }
+
   if (!(await canUserAccessCoreFeatures(user.role))) {
     redirect("/simulados");
   }

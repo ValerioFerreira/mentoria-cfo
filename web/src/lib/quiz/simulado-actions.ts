@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
-import { EXAM_CONFIGS, checkSimuladoReadiness, type SupportedSimuladoContest } from "@/lib/data/simulados";
+import { EXAM_CONFIGS, SIMULADOS_ENABLED, checkSimuladoReadiness, type SupportedSimuladoContest } from "@/lib/data/simulados";
 import { canUserAccessCoreFeatures } from "@/lib/system-settings";
 
 function shuffle<T>(arr: T[]): T[] {
@@ -26,6 +26,10 @@ export async function startSimuladoSession(input: {
   foreignLang?: "lingua-inglesa" | "lingua-espanhola";
 }): Promise<{ error: string } | never> {
   const user = await requireUser();
+  if (!SIMULADOS_ENABLED) {
+    return { error: "Os simulados estão temporariamente indisponíveis. Em breve, você poderá acessá-los novamente." };
+  }
+
   if (!(await canUserAccessCoreFeatures(user.role))) {
     return { error: "A realização de simulados oficiais está em fase final de validação e será liberada em breve." };
   }
@@ -110,6 +114,9 @@ export async function saveSimuladoAnswer(input: {
   flagged?: boolean;
 }): Promise<{ ok: boolean; error?: string }> {
   const user = await requireUser();
+  if (!SIMULADOS_ENABLED) {
+    return { ok: false, error: "Os simulados estão temporariamente indisponíveis." };
+  }
 
   const session = await db.quizSession.findFirst({
     where: {
@@ -170,6 +177,9 @@ export async function saveSimuladoAnswer(input: {
  */
 export async function finishSimulado(sessionId: string): Promise<{ ok: boolean; error?: string }> {
   const user = await requireUser();
+  if (!SIMULADOS_ENABLED) {
+    return { ok: false, error: "Os simulados estão temporariamente indisponíveis." };
+  }
 
   const session = await db.quizSession.findFirst({
     where: {

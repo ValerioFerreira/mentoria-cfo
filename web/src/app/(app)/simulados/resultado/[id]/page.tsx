@@ -21,7 +21,7 @@ import {
 import { Badge, Card, Count, LinkButton, PageHeader, Progress, Ring } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
-import { EXAM_CONFIGS } from "@/lib/data/simulados";
+import { EXAM_CONFIGS, SIMULADOS_ENABLED } from "@/lib/data/simulados";
 import { canUserAccessCoreFeatures } from "@/lib/system-settings";
 import { fmtDuration } from "@/lib/ui-format";
 
@@ -35,6 +35,10 @@ export default async function SimuladoResultadoPage({
   params: Promise<{ id: string }>;
 }) {
   const user = await requireUser();
+  if (!SIMULADOS_ENABLED) {
+    redirect("/simulados");
+  }
+
   if (!(await canUserAccessCoreFeatures(user.role))) {
     redirect("/simulados");
   }

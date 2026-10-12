@@ -5,6 +5,9 @@ import { EXAM_CONFIGS, type ContestExamConfig, type SupportedSimuladoContest } f
 
 export * from "@/lib/simulado-rules";
 
+/** Temporarily disables the official simulados module for all users. */
+export const SIMULADOS_ENABLED = false;
+
 export interface SubjectReadiness {
   subjectId: string;
   name: string;
