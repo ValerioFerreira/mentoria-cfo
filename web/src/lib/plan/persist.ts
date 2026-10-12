@@ -11,11 +11,14 @@ interface SaveArgs {
   diagnostics: Record<string, unknown>;
   foreignLanguage: "EN" | "ES" | null;
   hoursBand: "LEVE" | "MODERADO" | "AVANCADO";
+  status?: "ACTIVE" | "PENDING_ANALYSIS";
+  dbClient?: typeof db;
 }
 
 /** Persiste o plano gerado e arquiva o anterior (o histórico de tempo e cadernos é preservado). */
-export async function savePlan({ userId, input, result, diagnostics, foreignLanguage, hoursBand }: SaveArgs): Promise<string> {
-  return db.$transaction(
+export async function savePlan({ userId, input, result, diagnostics, foreignLanguage, hoursBand, status, dbClient }: SaveArgs): Promise<string> {
+  const client = dbClient ?? db;
+  return client.$transaction(
     async (tx) => {
       const prev = await tx.plan.findFirst({ where: { userId, status: { in: ["ACTIVE", "PENDING_ANALYSIS"] } }, orderBy: { version: "desc" } });
       if (prev) await tx.plan.update({ where: { id: prev.id }, data: { status: "ARCHIVED" } });
@@ -27,7 +30,7 @@ export async function savePlan({ userId, input, result, diagnostics, foreignLang
       });
 
       const user = await tx.user.findUnique({ where: { id: userId }, select: { role: true } });
-      const initialStatus = user?.role === "ADMIN" ? "ACTIVE" : "PENDING_ANALYSIS";
+      const initialStatus = status ?? (user?.role === "ADMIN" ? "ACTIVE" : "PENDING_ANALYSIS");
 
       const plan = await tx.plan.create({
         data: {

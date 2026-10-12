@@ -100,6 +100,18 @@ enum QuestionStatus {
   RETIRED
 }
 
+// Formato da questão objetiva (cadernos do TecConcursos trazem os dois)
+enum QuestionKind {
+  MULTIPLA_ESCOLHA // 4 ou 5 alternativas (A–E)
+  CERTO_ERRADO // item para julgar: opções "C" (Certo) e "E" (Errado)
+}
+
+// Quem decidiu o trecho/assunto da questão: o importador ou uma pessoa em /admin/revisao
+enum ClassifiedBy {
+  AUTO
+  MANUAL
+}
+
 enum TimeSource {
   TIMER
   MANUAL
@@ -201,6 +213,7 @@ model EditalItem {
 
   subject Subject @relation(fields: [subjectId], references: [id])
   activities Activity[]
+  questions  Question[]
 
   @@index([subjectId, sortOrder])
 }
@@ -344,18 +357,46 @@ model Question {
   status      QuestionStatus @default(DRAFT)
   batch       String? // lote de geração (rastreabilidade)
   banca       String         @default("AOCP")
+  kind        QuestionKind   @default(MULTIPLA_ESCOLHA)
 
-  subject  Subject          @relation(fields: [subjectId], references: [id])
-  aula     Aula             @relation(fields: [aulaId], references: [id])
-  segment  Segment          @relation(fields: [segmentId], references: [id])
-  topicRef Topic?           @relation(fields: [topicId], references: [id])
-  options  QuestionOption[]
-  answers  QuizAnswer[]
-  reports  QuestionReport[]
+  // Importação dos cadernos (pipeline/questoes; ver EXTRACAO.md)
+  externalId    String?      @unique // id da questão na origem (número do TecConcursos)
+  editalItemId  String? // assunto do edital ("informatica/e1.2"), derivado do trecho
+  tecMateria    String? // "Informática"
+  tecAssunto    String? // "Windows 10"
+  orgao         String?
+  cargo         String?
+  ano           Int?
+  sourceFile    String? // caderno de onde veio a versão atual
+  contentHash   String? // sha256 do texto + gabarito (detecta mudança ao reimportar)
+  classifyScore Float? // similaridade do trecho escolhido
+  classifyNote  String? // motivo/sugestão da classificação (mostrado na revisão)
+  classifiedBy  ClassifiedBy @default(AUTO)
+  importedAt    DateTime?
+
+  subject    Subject          @relation(fields: [subjectId], references: [id])
+  aula       Aula             @relation(fields: [aulaId], references: [id])
+  segment    Segment          @relation(fields: [segmentId], references: [id])
+  topicRef   Topic?           @relation(fields: [topicId], references: [id])
+  editalItem EditalItem?      @relation(fields: [editalItemId], references: [id])
+  options    QuestionOption[]
+  answers    QuizAnswer[]
+  reports    QuestionReport[]
 
   @@index([segmentId, status])
   @@index([subjectId, status])
+  @@index([editalItemId, status])
   @@index([banca])
+}
+
+// Figuras e recortes (fórmulas, tabelas) das questões, servidos por /q-img/<id>. id = sha256 do PNG.
+model QuestionImage {
+  id        String   @id
+  mime      String   @default("image/png")
+  data      Bytes
+  width     Int
+  height    Int
+  createdAt DateTime @default(now())
 }
 
 model QuestionOption {

@@ -536,11 +536,45 @@ export async function seedQuestions() {
   }
 }
 
+/**
+ * Migra/re-elabora planejamentos que estejam pendentes de análise (ex: almeida.guilherme098@gmail.com),
+ * garantindo que sejam recalculados nas regras e diretrizes novas com as respostas originais do aluno.
+ */
+export async function seedPendingPlans() {
+  const pending = await db.plan.findMany({
+    where: { status: "PENDING_ANALYSIS" },
+    include: {
+      user: { select: { id: true, email: true, name: true } },
+      subjects: true,
+    },
+  });
+
+  if (pending.length === 0) return;
+
+  console.log(`[Seed Plans] Encontrados ${pending.length} planejamentos em análise para atualização nas regras novas...`);
+
+  try {
+    try {
+      require.cache[require.resolve("server-only")] = { exports: {} } as any;
+    } catch {}
+    const { regeneratePlanForUser } = await import("../src/lib/plan/regenerate");
+
+    for (const p of pending) {
+      console.log(`[Seed Plans] Re-elaborando planejamento do usuário ${p.user.email} (plano id: ${p.id})...`);
+      const res = await regeneratePlanForUser(p.id, { activate: false });
+      console.log(`[Seed Plans] -> ${res.message}`);
+    }
+  } catch (err: any) {
+    console.warn(`[Seed Plans] Aviso ao processar planos pendentes:`, err?.message || err);
+  }
+}
+
 async function main() {
   try {
     await seedStructure();
     await seedQuestions();
     await seedAdmin();
+    await seedPendingPlans();
   } finally {
     await db.$disconnect();
   }

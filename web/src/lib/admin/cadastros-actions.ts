@@ -5,6 +5,7 @@ import { db } from "@/lib/db";
 import { requireAdmin } from "@/lib/auth/dal";
 import { hashPassword } from "@/lib/auth/password";
 import { generateTemporaryPassword, sendApprovalEmail } from "@/lib/email";
+import { regeneratePlanForUser } from "@/lib/plan/regenerate";
 
 export type AdminActionResult = { success: boolean; message: string; tempPassword?: string };
 
@@ -138,15 +139,24 @@ export async function approvePlan(planId: string): Promise<AdminActionResult> {
     return { success: false, message: "Planejamento não encontrado." };
   }
 
-  await db.plan.update({
-    where: { id: planId },
-    data: { status: "ACTIVE" },
-  });
+  // Re-elabora o planejamento nos moldes e regras atuais do sistema
+  // aproveitando integralmente as respostas de anamnese e parâmetros do aluno
+  const regen = await regeneratePlanForUser(planId, { activate: true });
+  if (!regen.success) {
+    console.warn(`[approvePlan] Falha ao regenerar plano ${planId}: ${regen.message}. Ativando versão existente.`);
+    await db.plan.update({
+      where: { id: planId },
+      data: { status: "ACTIVE" },
+    });
+  }
 
   revalidatePath("/admin/cadastros");
+  revalidatePath("/admin/liberacao");
   revalidatePath("/", "layout");
+  revalidatePath("/plano");
+  revalidatePath("/semana");
   return {
     success: true,
-    message: `Planejamento de ${plan.user.name ?? plan.user.email} liberado com sucesso!`,
+    message: `Planejamento de ${plan.user.name ?? plan.user.email} montado com as regras novas e liberado com sucesso!`,
   };
 }
