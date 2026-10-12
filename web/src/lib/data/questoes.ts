@@ -47,11 +47,12 @@ export interface QuestoesOverview {
   bancaCounts: Record<string, number>;
 }
 
-export async function getQuestoesOverview(userId: string): Promise<QuestoesOverview> {
-  // 1. Buscar todas as questões aprovadas com seu assunto, disciplina e banca
+/** `subjectIds`: disciplinas do edital do aluno; as demais não aparecem nem entram nas contagens. */
+export async function getQuestoesOverview(userId: string, subjectIds: string[]): Promise<QuestoesOverview> {
+  // 1. Buscar as questões aprovadas do edital com seu assunto, disciplina e banca
   const [questions, userAnswers, dbSubjects] = await Promise.all([
     db.question.findMany({
-      where: { status: "APPROVED" },
+      where: { status: "APPROVED", subjectId: { in: subjectIds } },
       select: {
         id: true,
         subjectId: true,
@@ -63,6 +64,7 @@ export async function getQuestoesOverview(userId: string): Promise<QuestoesOverv
       where: {
         session: { userId },
         chosenLabel: { not: null },
+        question: { subjectId: { in: subjectIds } },
       },
       select: {
         questionId: true,
@@ -70,6 +72,7 @@ export async function getQuestoesOverview(userId: string): Promise<QuestoesOverv
       },
     }),
     db.subject.findMany({
+      where: { id: { in: subjectIds } },
       orderBy: { sortOrder: "asc" },
       select: { id: true, name: true, block: true },
     }),
@@ -201,7 +204,7 @@ export async function getQuestoesOverview(userId: string): Promise<QuestoesOverv
       userAnswered: uniqueAnswered,
       userCorrect: uniqueCorrect,
       userAccuracy: globalAccuracy,
-      subjectsCount: subjectsList.length,
+      subjectsCount: subjectsList.filter((s) => s.totalQuestions > 0).length,
     },
     subjects: subjectsList,
     availableBancas: availableBancas.length > 0 ? availableBancas : ["AOCP"],

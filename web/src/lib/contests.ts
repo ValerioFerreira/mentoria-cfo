@@ -89,6 +89,11 @@ export const CONTEST_SUBJECTS: Record<Contest, string[]> = {
   ],
 };
 
+/** Disciplinas do edital do concurso (as duas línguas estrangeiras quando o edital dá a opção). */
+export function contestSubjectIds(contest: Contest): string[] {
+  return CONTEST_SUBJECTS[contest] ?? CONTEST_SUBJECTS.CBMPE_OFICIAL;
+}
+
 export function contestBySlug(slug: string): ContestInfo | undefined {
   return CONTESTS.find((c) => c.slug === slug);
 }

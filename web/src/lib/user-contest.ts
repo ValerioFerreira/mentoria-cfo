@@ -2,7 +2,7 @@ import "server-only";
 import { cookies } from "next/headers";
 import { db } from "@/lib/db";
 import type { Contest } from "@/generated/prisma/client";
-import { CONTEST_SUBTITLES } from "./contests";
+import { CONTEST_SUBTITLES, contestSubjectIds } from "./contests";
 
 export const CONTEST_COOKIE = "mentoria_contest";
 
@@ -36,6 +36,11 @@ export async function getUserContest(userEmail?: string): Promise<Contest> {
 
   // 3. Padrão
   return "CBMPE_OFICIAL";
+}
+
+/** Disciplinas do edital do concurso do aluno: limitam o Banco de Questões e os cadernos personalizados. */
+export async function getUserEditalSubjects(userEmail?: string): Promise<string[]> {
+  return contestSubjectIds(await getUserContest(userEmail));
 }
 
 export async function getUserContestSubtitle(userEmail?: string): Promise<string> {

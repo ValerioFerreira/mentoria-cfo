@@ -6,6 +6,8 @@ import { getQuestoesOverview } from "@/lib/data/questoes";
 import { canUserAccessCoreFeatures } from "@/lib/system-settings";
 import { FeatureLockedView } from "@/components/feature-locked-view";
 import { QuestoesFilterList } from "@/components/questoes-filter-list";
+import { getUserContest } from "@/lib/user-contest";
+import { CONTEST_SUBTITLES, contestSubjectIds } from "@/lib/contests";
 
 export const metadata: Metadata = {
   title: "Banco de Questões — Missão CBMPE 2026",
@@ -25,7 +27,8 @@ export default async function QuestoesPage() {
     );
   }
 
-  const overview = await getQuestoesOverview(user.id);
+  const contest = await getUserContest(user.email);
+  const overview = await getQuestoesOverview(user.id, contestSubjectIds(contest));
   const { globalStats, subjects, availableBancas, bancaCounts } = overview;
 
   return (
@@ -34,8 +37,8 @@ export default async function QuestoesPage() {
       <PageHeader
         eyebrow="Prática Livre e Treinamento"
         title="Banco de Questões"
-        description="Acervo de questões oficiais para os concursos de Bombeiro Militar (CBMPE) e Polícia Militar (PMPE). Escolha a banca, matéria e assunto para praticar à vontade e registrar seu progresso."
-        info="Todas as questões resolvidas aqui têm seu desempenho gravado automaticamente em seu perfil e contabilizado em suas métricas gerais de evolução."
+        description={`Questões das disciplinas do edital ${CONTEST_SUBTITLES[contest]}. Escolha a banca, matéria e assunto para praticar à vontade e registrar seu progresso.`}
+        info="Só aparecem as disciplinas do edital do seu concurso. Todas as questões resolvidas aqui têm seu desempenho gravado automaticamente em seu perfil e contabilizado em suas métricas gerais de evolução."
       />
 
       {/* Painel de Métricas do Aluno */}
