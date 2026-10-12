@@ -11,7 +11,9 @@ export class MercadoPagoError extends Error {
 }
 
 export function mercadoPagoToken(): string {
-  const token = process.env.MERCADOPAGO_ACCESS_TOKEN;
+  // Accept the key currently configured in Vercel as well as the canonical
+  // name used by .env.example, so production settings need not be renamed.
+  const token = process.env.MERCADOPAGO_ACCESS_TOKEN || process.env.MERCADO_PAGO_ACCESS_TOKEN;
   if (!token) throw new Error("MERCADOPAGO_ACCESS_TOKEN is not configured");
   return token;
 }

@@ -16,7 +16,7 @@ const serverNow = () => Date.now();
 
 export default async function PracticeQuizPage({ params }: { params: Promise<{ id: string }> }) {
   const user = await requireUser();
-  if (!(await canUserAccessCoreFeatures(user.role))) {
+  if (!(await canUserAccessCoreFeatures(user.role, user.id))) {
     redirect("/questoes");
   }
 

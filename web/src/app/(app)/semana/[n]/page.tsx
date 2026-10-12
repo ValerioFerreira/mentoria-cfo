@@ -14,7 +14,7 @@ export const metadata: Metadata = { title: "Meta semanal" };
 
 export default async function WeekPage({ params }: PageProps<"/semana/[n]">) {
   const user = await requireUser();
-  const canAccess = await canUserAccessCoreFeatures(user.role);
+  const canAccess = await canUserAccessCoreFeatures(user.role, user.id);
   if (!canAccess) redirect("/plano");
 
   const { n } = await params;

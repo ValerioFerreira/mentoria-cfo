@@ -3,14 +3,20 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 
 vi.mock("server-only", () => ({}));
 
-import { verifyMercadoPagoSignature } from "./mercado-pago";
+import { mercadoPagoToken, verifyMercadoPagoSignature } from "./mercado-pago";
 
 describe("Mercado Pago webhook signature", () => {
   const previous = process.env.MERCADOPAGO_WEBHOOK_SECRET;
+  const previousToken = process.env.MERCADOPAGO_ACCESS_TOKEN;
+  const previousLegacyToken = process.env.MERCADO_PAGO_ACCESS_TOKEN;
 
   afterEach(() => {
     if (previous === undefined) delete process.env.MERCADOPAGO_WEBHOOK_SECRET;
     else process.env.MERCADOPAGO_WEBHOOK_SECRET = previous;
+    if (previousToken === undefined) delete process.env.MERCADOPAGO_ACCESS_TOKEN;
+    else process.env.MERCADOPAGO_ACCESS_TOKEN = previousToken;
+    if (previousLegacyToken === undefined) delete process.env.MERCADO_PAGO_ACCESS_TOKEN;
+    else process.env.MERCADO_PAGO_ACCESS_TOKEN = previousLegacyToken;
   });
 
   it("accepts a valid HMAC manifest", () => {
@@ -33,5 +39,11 @@ describe("Mercado Pago webhook signature", () => {
     expect(verifyMercadoPagoSignature({ signature: `ts=1,v1=${signature}`, requestId: "r", dataId: "2" })).toBe(false);
     delete process.env.MERCADOPAGO_WEBHOOK_SECRET;
     expect(verifyMercadoPagoSignature({ signature: `ts=1,v1=${signature}`, requestId: "r", dataId: "1" })).toBe(false);
+  });
+
+  it("accepts the Mercado Pago token variable already configured in Vercel", () => {
+    delete process.env.MERCADOPAGO_ACCESS_TOKEN;
+    process.env.MERCADO_PAGO_ACCESS_TOKEN = "test-token";
+    expect(mercadoPagoToken()).toBe("test-token");
   });
 });

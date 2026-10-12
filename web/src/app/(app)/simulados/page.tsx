@@ -34,7 +34,7 @@ export default async function SimuladosPage() {
     );
   }
 
-  const canAccess = await canUserAccessCoreFeatures(user.role);
+  const canAccess = await canUserAccessCoreFeatures(user.role, user.id);
 
   if (!canAccess) {
     return (

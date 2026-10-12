@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default async function QuestoesPage() {
   const user = await requireUser();
-  const canAccess = await canUserAccessCoreFeatures(user.role);
+  const canAccess = await canUserAccessCoreFeatures(user.role, user.id);
 
   if (!canAccess) {
     return (

@@ -38,7 +38,7 @@ export async function startSubjectPracticeQuiz(input: {
   bancas?: string[];
 }): Promise<{ error: string } | never> {
   const user = await requireUser();
-  if (!(await canUserAccessCoreFeatures(user.role))) {
+  if (!(await canUserAccessCoreFeatures(user.role, user.id))) {
     return { error: "O Banco de Questões está em fase final de validação e será liberado em breve." };
   }
   if (!(await getUserEditalSubjects(user.email)).includes(input.subjectId)) {
@@ -132,7 +132,7 @@ export async function createCustomNotebook(
   input: CreateCustomNotebookInput
 ): Promise<{ error: string } | never> {
   const user = await requireUser();
-  if (!(await canUserAccessCoreFeatures(user.role))) {
+  if (!(await canUserAccessCoreFeatures(user.role, user.id))) {
     return { error: "A montagem de cadernos está em fase final de validação e será liberada em breve." };
   }
 

@@ -30,7 +30,7 @@ export async function startSimuladoSession(input: {
     return { error: "Os simulados estão temporariamente indisponíveis. Em breve, você poderá acessá-los novamente." };
   }
 
-  if (!(await canUserAccessCoreFeatures(user.role))) {
+  if (!(await canUserAccessCoreFeatures(user.role, user.id))) {
     return { error: "A realização de simulados oficiais está em fase final de validação e será liberada em breve." };
   }
 

@@ -17,7 +17,7 @@ export const metadata: Metadata = { title: "Missão de hoje" };
 
 export default async function MissionPage() {
   const user = await requireUser();
-  const canAccess = await canUserAccessCoreFeatures(user.role);
+  const canAccess = await canUserAccessCoreFeatures(user.role, user.id);
 
   if (!canAccess) {
     const pending = (await getPendingPlan(user.id)) ?? (await getActivePlan(user.id));

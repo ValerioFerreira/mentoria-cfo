@@ -162,8 +162,18 @@ enum BillingPaymentStatus {
   APPROVED
   REJECTED
   CANCELLED
+  CHARGEBACK // Legacy value; migrated payment rows are normalized by the access-policy migration.
+  PARTIALLY_REFUNDED
   REFUNDED
-  CHARGEBACK
+  DISPUTED
+  CHARGEBACK_LOST
+  CHARGEBACK_WON
+}
+
+enum BillingDisputeStatus {
+  IN_PROGRESS
+  LOST
+  WON
 }
 
 enum ReportStatus {
@@ -187,9 +197,9 @@ model Subject {
   aulas       Aula[]
   editalItems EditalItem[]
   gaps        Gap[]
-  planLinks  PlanSubject[]
-  activities Activity[]
-  questions  Question[]
+  planLinks   PlanSubject[]
+  activities  Activity[]
+  questions   Question[]
 }
 
 model Aula {
@@ -235,7 +245,7 @@ model EditalItem {
   aulaIds   Json // aulas da própria disciplina (planejáveis) que tratam do assunto
   sortOrder Int
 
-  subject Subject @relation(fields: [subjectId], references: [id])
+  subject    Subject    @relation(fields: [subjectId], references: [id])
   activities Activity[]
   questions  Question[]
 
@@ -243,14 +253,14 @@ model EditalItem {
 }
 
 model Gap {
-  id        String      @id
-  subjectId String
-  item      String
-  evidence  String
-  severity  GapSeverity
-  remedy    String
+  id         String      @id
+  subjectId  String
+  item       String
+  evidence   String
+  severity   GapSeverity
+  remedy     String
   // true quando um material complementar do MentorIA já preenche a lacuna (resolution explica qual)
-  resolved   Boolean @default(false)
+  resolved   Boolean     @default(false)
   resolution String?
 
   subject Subject @relation(fields: [subjectId], references: [id])
@@ -296,7 +306,7 @@ model Segment {
   topicsCovered   Json // títulos de tópicos que começam no trecho
   estMinutes      Int     @default(60)
 
-  aula       Aula              @relation(fields: [aulaId], references: [id])
+  aula       Aula                @relation(fields: [aulaId], references: [id])
   bizu       Bizu?
   analytic   AnalyticSummary?
   importance SegmentImportance[]
@@ -438,45 +448,45 @@ model QuestionOption {
 // ───────────────────── USUÁRIO ─────────────────────
 
 model User {
-  id           String   @id @default(cuid())
-  email        String   @unique
-  name         String?
-  username     String?  @unique // minúsculas; vem da lista de espera (contas antigas não têm)
-  passwordHash String
+  id                 String    @id @default(cuid())
+  email              String    @unique
+  name               String?
+  username           String?   @unique // minúsculas; vem da lista de espera (contas antigas não têm)
+  passwordHash       String
   role               Role      @default(USER)
   mustChangePassword Boolean   @default(false)
   accessExpiresAt    DateTime?
   createdAt          DateTime  @default(now())
 
-  sessions     Session[]
-  profile      Profile?
-  plans        Plan[]
-  timeLogs     TimeLog[]
-  notes        Note[]
-  quizSessions QuizSession[]
-  bizuAnswers  BizuAnswer[]
-  reports      QuestionReport[]
-  invite       Invite?
+  sessions         Session[]
+  profile          Profile?
+  plans            Plan[]
+  timeLogs         TimeLog[]
+  notes            Note[]
+  quizSessions     QuizSession[]
+  bizuAnswers      BizuAnswer[]
+  reports          QuestionReport[]
+  invite           Invite?
   billingPurchases BillingPurchase[]
 }
 
 // Contratos criados pelo checkout. Cada compra permanece independente para que
 // o cancelamento da recorrência não remova um acesso permanente já adquirido.
 model BillingPurchase {
-  id                    String        @id @default(cuid())
-  userId                String
-  product               BillingProduct
-  status                BillingStatus @default(PENDING)
-  amount                Decimal       @db.Decimal(10, 2)
-  currency              String        @default("BRL")
-  externalReference     String        @unique @default(cuid())
-  mpPreferenceId        String?       @unique
-  mpPreapprovalId       String?       @unique
-  checkoutUrl           String?
-  currentPeriodEnd      DateTime?
-  cancelledAt           DateTime?
-  createdAt             DateTime      @default(now())
-  updatedAt             DateTime      @updatedAt
+  id                String         @id @default(cuid())
+  userId            String
+  product           BillingProduct
+  status            BillingStatus  @default(PENDING)
+  amount            Decimal        @db.Decimal(10, 2)
+  currency          String         @default("BRL")
+  externalReference String         @unique @default(cuid())
+  mpPreferenceId    String?        @unique
+  mpPreapprovalId   String?        @unique
+  checkoutUrl       String?
+  currentPeriodEnd  DateTime?
+  cancelledAt       DateTime?
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
 
   user     User             @relation(fields: [userId], references: [id], onDelete: Cascade)
   payments BillingPayment[]
@@ -487,31 +497,54 @@ model BillingPurchase {
 
 // Um registro por pagamento consultado diretamente na API do Mercado Pago.
 model BillingPayment {
-  id                String              @id @default(cuid())
+  id                String               @id @default(cuid())
   purchaseId        String
-  providerPaymentId String              @unique
+  providerPaymentId String               @unique
   status            BillingPaymentStatus
-  amount            Decimal             @db.Decimal(10, 2)
-  currency          String              @default("BRL")
+  amount            Decimal              @db.Decimal(10, 2)
+  currency          String               @default("BRL")
   statusDetail      String?
   paidAt            DateTime?
-  updatedAt         DateTime            @updatedAt
-  createdAt         DateTime            @default(now())
+  accessUntil       DateTime?
+  updatedAt         DateTime             @updatedAt
+  createdAt         DateTime             @default(now())
 
-  purchase BillingPurchase @relation(fields: [purchaseId], references: [id], onDelete: Cascade)
+  purchase BillingPurchase  @relation(fields: [purchaseId], references: [id], onDelete: Cascade)
+  disputes BillingDispute[]
 
   @@index([purchaseId, status])
+  @@index([status, accessUntil])
+}
+
+// Um registro por caso de contestação; os webhooks repetidos atualizam o mesmo caso.
+model BillingDispute {
+  id                   String               @id @default(cuid())
+  billingPaymentId     String
+  providerChargebackId String               @unique
+  status               BillingDisputeStatus
+  statusDetail         String?
+  amount               Decimal              @db.Decimal(10, 2)
+  currency             String               @default("BRL")
+  lastEventAt          DateTime             @default(now())
+  createdAt            DateTime             @default(now())
+  updatedAt            DateTime             @updatedAt
+
+  payment BillingPayment @relation(fields: [billingPaymentId], references: [id], onDelete: Cascade)
+
+  @@index([billingPaymentId, status])
 }
 
 // Idempotência dos webhooks; não armazenamos corpo bruto nem dados de cartão.
 model BillingWebhookEvent {
-  id          String    @id @default(cuid())
-  eventKey    String    @unique
-  resourceId  String
-  topic       String
-  action      String?
-  processedAt DateTime?
-  createdAt   DateTime  @default(now())
+  id           String    @id @default(cuid())
+  eventKey     String    @unique
+  resourceId   String
+  topic        String
+  action       String?
+  resultStatus String?
+  resultDetail String?
+  processedAt  DateTime?
+  createdAt    DateTime  @default(now())
 
   @@index([resourceId, topic])
 }
@@ -768,16 +801,16 @@ model QuestionReport {
 // Lista de espera: o interessado informa nome, e-mail e usuário e paga por Pix (a mensagem do Pix leva o e-mail).
 // O administrador confere o pagamento e libera o acesso com um convite.
 model WaitlistEntry {
-  id        String   @id @default(cuid())
-  contest   Contest
-  name      String
-  email     String // minúsculas
-  username  String   @unique // minúsculas
+  id              String        @id @default(cuid())
+  contest         Contest
+  name            String
+  email           String // minúsculas
+  username        String        @unique // minúsculas
   plan            WaitlistPlan? // plano escolhido (define o valor do Pix); nulo nos cadastros anteriores aos planos
   status          String        @default("PENDING") // PENDING, APPROVED, REJECTED
   approvedAt      DateTime?
   rejectedAt      DateTime?
-  accessDuration  String?       // "30_DAYS" ou "INDEFINITE"
+  accessDuration  String? // "30_DAYS" ou "INDEFINITE"
   rejectionReason String?
   createdAt       DateTime      @default(now())
   paidAt          DateTime? // preenchido pelo administrador ao conferir o Pix

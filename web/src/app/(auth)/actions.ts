@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation";
 import * as z from "zod";
 import { db } from "@/lib/db";
+import { hasBillingAccess } from "@/lib/billing/access";
 import { hashPassword, verifyPassword } from "@/lib/auth/password";
 import { clearFailures, registerFailure, tooManyAttempts } from "@/lib/auth/rate-limit";
 import { createSession, destroySession, getCurrentUser } from "@/lib/auth/session";
@@ -72,13 +73,13 @@ export async function login(_: AuthState, formData: FormData): Promise<AuthState
       return { message: "E-mail ou senha incorretos." };
     }
 
-    // Verifica se o acesso do usuário expirou
-    if (user.accessExpiresAt && user.accessExpiresAt < new Date()) {
-      return { message: "Seu período de acesso ao MentorIA expirou. Entre em contato com a administração." };
-    }
-
     clearFailures(email);
     await createSession(user.id);
+
+    // Permite ao usuário autenticado renovar o acesso sem liberar as áreas protegidas.
+    if (user.accessExpiresAt && user.accessExpiresAt < new Date() && !(await hasBillingAccess(user.id))) {
+      redirect("/pagamentos?status=acesso-expirado");
+    }
 
     // Se o usuário precisa trocar a senha temporária, vai para /trocar-senha
     if (user.mustChangePassword) {

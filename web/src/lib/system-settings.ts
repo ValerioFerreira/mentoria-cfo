@@ -1,5 +1,6 @@
 import "server-only";
 import { db } from "@/lib/db";
+import { hasBillingAccess } from "@/lib/billing/access";
 
 const PLATFORM_RELEASED_KEY = "PLATFORM_RELEASED";
 
@@ -40,11 +41,12 @@ export async function setPlatformReleased(released: boolean): Promise<void> {
  * Determina se o usuário atual tem acesso às funcionalidades essenciais
  * (Planejamento, Questões e Simulados).
  * - Usuários ADMIN têm acesso SEMPRE (mesmo durante o período de revisão).
- * - Usuários comuns só têm acesso se a plataforma estiver com liberação geral ativa.
+ * - Usuários comuns têm acesso se a plataforma estiver liberada ou se houver direito de pagamento válido.
  */
-export async function canUserAccessCoreFeatures(userRole: string): Promise<boolean> {
+export async function canUserAccessCoreFeatures(userRole: string, userId?: string): Promise<boolean> {
   if (userRole === "ADMIN") {
     return true;
   }
-  return await isPlatformReleased();
+  if (await isPlatformReleased()) return true;
+  return userId ? hasBillingAccess(userId) : false;
 }

@@ -20,7 +20,7 @@ export default async function SimuladoSessionPage({
     redirect("/simulados");
   }
 
-  if (!(await canUserAccessCoreFeatures(user.role))) {
+  if (!(await canUserAccessCoreFeatures(user.role, user.id))) {
     redirect("/simulados");
   }
 

@@ -28,7 +28,7 @@ const hm = (min: number) => {
 
 export default async function PlanPage() {
   const user = await requireUser();
-  const canAccess = await canUserAccessCoreFeatures(user.role);
+  const canAccess = await canUserAccessCoreFeatures(user.role, user.id);
 
   if (!canAccess) {
     const pending = (await getPendingPlan(user.id)) ?? (await getActivePlan(user.id));
