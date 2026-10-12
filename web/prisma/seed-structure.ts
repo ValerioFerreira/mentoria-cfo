@@ -398,143 +398,8 @@ export async function seedAdmin() {
   console.log(`[Seed Admin] Administrador ${email} assegurado.`);
 }
 
-export async function seedQuestions() {
-  console.log(`[Seed Questions] Sincronizando acervo completo (TecConcursos e Estratégia CBMPE/PMPE)...`);
-
-  // 1. Limpar do banco de dados qualquer questão legada/sintética residual que não possua prefixo tec_, cbmpe_ ou pmpe_
-  try {
-    await db.$executeRawUnsafe(`
-      DELETE FROM "QuizAnswer" WHERE "questionId" NOT LIKE 'tec_%' AND "questionId" NOT LIKE 'cbmpe_%' AND "questionId" NOT LIKE 'pmpe_%';
-      DELETE FROM "QuestionReport" WHERE "questionId" NOT LIKE 'tec_%' AND "questionId" NOT LIKE 'cbmpe_%' AND "questionId" NOT LIKE 'pmpe_%';
-      DELETE FROM "QuestionOption" WHERE "questionId" NOT LIKE 'tec_%' AND "questionId" NOT LIKE 'cbmpe_%' AND "questionId" NOT LIKE 'pmpe_%';
-      DELETE FROM "Question" WHERE "id" NOT LIKE 'tec_%' AND "id" NOT LIKE 'cbmpe_%' AND "id" NOT LIKE 'pmpe_%';
-    `);
-    console.log(`[Seed Questions] Limpeza de questões legadas concluída.`);
-  } catch (err: any) {
-    console.warn(`[Seed Questions] Aviso na limpeza de questões legadas:`, err.message);
-  }
-
-  // 2. Localizar arquivos de questões
-  function findFile(relName: string): string {
-    const candidates = [
-      path.resolve(process.cwd(), relName),
-      path.resolve(process.cwd(), `../${relName}`),
-      path.resolve(__dirname, `../../${relName}`),
-      path.resolve(__dirname, `../${relName}`),
-      path.resolve(__dirname, relName),
-      path.resolve(CONTENT, path.basename(relName)),
-    ];
-    for (const c of candidates) {
-      if (fs.existsSync(c)) return c;
-    }
-    return "";
-  }
-
-  // Sincronizar TecConcursos
-  const tecFile = findFile("content/questoes_tecconcursos.json");
-  if (tecFile) {
-    const tecQuestions: any[] = JSON.parse(fs.readFileSync(tecFile, "utf-8"));
-    const currentTecCount = await db.question.count({ where: { id: { startsWith: "tec_" } } });
-    if (currentTecCount < tecQuestions.length) {
-      console.log(`[Seed Questions] Inserindo ${tecQuestions.length} questões oficiais do TecConcursos...`);
-      const qRows = tecQuestions.map((q) => ({
-        id: q.id,
-        subjectId: q.subjectId,
-        aulaId: q.aulaId,
-        segmentId: q.segmentId,
-        topicId: q.topicId ?? null,
-        topic: q.topic ?? null,
-        support: q.support ?? null,
-        statement: q.statement,
-        explanation: q.explanation,
-        difficulty: q.difficulty,
-        pattern: q.pattern,
-        pageRef: q.pageRef ?? null,
-        status: q.status,
-        batch: q.batch ?? null,
-        banca: q.banca || "AOCP",
-      }));
-      const optRows = tecQuestions.flatMap((q) =>
-        (q.options || []).map((opt: any) => ({
-          id: opt.id,
-          questionId: q.id,
-          label: opt.label,
-          text: opt.text,
-          isCorrect: opt.isCorrect,
-        }))
-      );
-      for (const c of chunk(qRows, 500)) await db.question.createMany({ data: c, skipDuplicates: true });
-      for (const c of chunk(optRows, 1000)) await db.questionOption.createMany({ data: c, skipDuplicates: true });
-      console.log(`[Seed Questions] TecConcursos sincronizado com sucesso.`);
-    } else {
-      console.log(`[Seed Questions] TecConcursos já sincronizado (${currentTecCount} questões).`);
-    }
-  }
-
-  // Sincronizar Estratégia CBMPE e PMPE
-  const estrategiaFile = findFile("content/questoes_estrategia_cbmpe_pmpe.json");
-  if (estrategiaFile) {
-    const estQuestions: any[] = JSON.parse(fs.readFileSync(estrategiaFile, "utf-8"));
-    const currentEstCount = await db.question.count({
-      where: {
-        OR: [{ id: { startsWith: "cbmpe_" } }, { id: { startsWith: "pmpe_" } }],
-      },
-    });
-
-    const forceRefresh = process.argv.includes("--force-refresh") || process.env.FORCE_REFRESH === "1";
-    if (currentEstCount !== estQuestions.length || forceRefresh) {
-      console.log(`[Seed Questions] Atualizando acervo Estratégia (atual: ${currentEstCount}, novo auditado: ${estQuestions.length}, force: ${forceRefresh})...`);
-      // Limpar antigas questões do Estratégia se houver contaminação prévia
-      try {
-        await db.$executeRawUnsafe(`
-          DELETE FROM "QuizAnswer" WHERE "questionId" LIKE 'cbmpe_%' OR "questionId" LIKE 'pmpe_%';
-          DELETE FROM "QuestionReport" WHERE "questionId" LIKE 'cbmpe_%' OR "questionId" LIKE 'pmpe_%';
-          DELETE FROM "QuestionOption" WHERE "questionId" LIKE 'cbmpe_%' OR "questionId" LIKE 'pmpe_%';
-          DELETE FROM "Question" WHERE "id" LIKE 'cbmpe_%' OR "id" LIKE 'pmpe_%';
-        `);
-      } catch (e: any) {
-        console.warn(`[Seed Questions] Aviso ao limpar questões antigas:`, e.message);
-      }
-
-      const qRows = estQuestions.map((q) => {
-        const aulaId = q.subjectId === "legislacoes-pe" ? "legislacoes-pe/a01" : `${q.subjectId}/a00`;
-        const segmentId = `${aulaId}/s01`;
-        return {
-          id: q.id,
-          subjectId: q.subjectId,
-          aulaId,
-          segmentId,
-          topic: q.topic ?? null,
-          support: q.support ?? null,
-          statement: q.statement,
-          explanation: q.explanation,
-          difficulty: q.difficulty || 2,
-          pattern: q.pattern || q.banca || "AOCP",
-          banca: q.banca || "AOCP",
-          status: q.status === "DRAFT" ? ("DRAFT" as const) : ("APPROVED" as const),
-          batch: "estrategia-auditado-2026",
-        };
-      });
-
-      const optRows = estQuestions.flatMap((q) =>
-        (q.options || []).map((opt: any, idx: number) => ({
-          id: `${q.id}_opt_${idx}`,
-          questionId: q.id,
-          label: opt.label,
-          text: opt.text,
-          isCorrect: Boolean(opt.isCorrect),
-        }))
-      );
-
-      console.log(`[Seed Questions] Inserindo ${qRows.length} questões auditadas e ${optRows.length} opções...`);
-      for (const c of chunk(qRows, 500)) await db.question.createMany({ data: c, skipDuplicates: true });
-      for (const c of chunk(optRows, 1000)) await db.questionOption.createMany({ data: c, skipDuplicates: true });
-      console.log(`[Seed Questions] Acervo Estratégia sincronizado com sucesso!`);
-    } else {
-      console.log(`[Seed Questions] Acervo Estratégia já atualizado (${currentEstCount} questões).`);
-    }
-  }
-}
+// Questões não são semeadas aqui: vêm só dos cadernos de docs/questoes, gravados direto no banco por
+// pipeline/questoes/importar.py (local e, com --remoto, produção). Ver pipeline/questoes/EXTRACAO.md.
 
 /**
  * Migra/re-elabora planejamentos que estejam pendentes de análise (ex: almeida.guilherme098@gmail.com),
@@ -572,7 +437,6 @@ export async function seedPendingPlans() {
 async function main() {
   try {
     await seedStructure();
-    await seedQuestions();
     await seedAdmin();
     await seedPendingPlans();
   } finally {

@@ -175,11 +175,9 @@ def validate_file(path: Path, subject_seen: list | None = None) -> tuple[list[st
                         errors.append(f"{sid}: bizu.pointers[{pi}].pageRef {pr_!r} fora do trecho {lo}–{hi}")
 
         qs = seg.get("questions", [])
-        if seg_bizu_only:
-            if qs:
-                errors.append(f"{sid}: arquivo em etapa bizu não deve ter questões (remova \"stage\" ao acrescentá-las)")
-        elif len(qs) < min_questions(segs[sid]["pages"]):
-            errors.append(f"{sid}: só {len(qs)} questões (mínimo {min_questions(segs[sid]['pages'])} para {segs[sid]['pages']} págs.)")
+        if qs:
+            # questões objetivas vêm só dos cadernos de docs/questoes (pipeline/questoes/EXTRACAO.md)
+            errors.append(f"{sid}: questões autorais não são mais usadas; a fonte única são os cadernos de docs/questoes")
         for qi, q in enumerate(qs):
             n_q += 1
             stats["questions"] += 1

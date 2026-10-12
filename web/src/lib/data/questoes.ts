@@ -2,7 +2,11 @@ import "server-only";
 import { db } from "@/lib/db";
 import { subjectName } from "@/lib/ui-format";
 
+// "Assunto" = item do edital (Question.editalItemId). Questões sem item ficam em OTHER_TOPIC_ID.
+export const OTHER_TOPIC_ID = "outros";
+
 export interface TopicOverview {
+  id: string; // editalItemId ou OTHER_TOPIC_ID (é o que vai para os filtros do treino/caderno)
   name: string;
   totalQuestions: number;
   userAnswered: number;
@@ -51,7 +55,7 @@ export async function getQuestoesOverview(userId: string): Promise<QuestoesOverv
       select: {
         id: true,
         subjectId: true,
-        topic: true,
+        editalItemId: true,
         banca: true,
       },
     }),
@@ -70,6 +74,8 @@ export async function getQuestoesOverview(userId: string): Promise<QuestoesOverv
       select: { id: true, name: true, block: true },
     }),
   ]);
+  const editalItems = await db.editalItem.findMany({ select: { id: true, code: true, title: true, sortOrder: true } });
+  const itemInfo = new Map(editalItems.map((e) => [e.id, e]));
 
   const bancaCounts: Record<string, number> = {};
   for (const q of questions) {
@@ -105,7 +111,7 @@ export async function getQuestoesOverview(userId: string): Promise<QuestoesOverv
 
   for (const q of questions) {
     const sId = q.subjectId;
-    const topicName = q.topic?.trim() || "Geral";
+    const topicName = q.editalItemId && itemInfo.has(q.editalItemId) ? q.editalItemId : OTHER_TOPIC_ID;
     const qBanca = q.banca || "AOCP";
 
     let sData = subjectMap.get(sId);
@@ -146,11 +152,13 @@ export async function getQuestoesOverview(userId: string): Promise<QuestoesOverv
 
     const topics: TopicOverview[] = [];
     if (sData) {
-      for (const [tName, tData] of sData.topics.entries()) {
+      for (const [tId, tData] of sData.topics.entries()) {
         const tAnswered = tData.answeredQ.size;
         const tCorrect = tData.correctQ.size;
+        const info = itemInfo.get(tId);
         topics.push({
-          name: tName,
+          id: tId,
+          name: info ? `${info.code}. ${info.title}` : "Outros assuntos",
           totalQuestions: tData.total,
           userAnswered: tAnswered,
           userCorrect: tCorrect,
@@ -159,7 +167,9 @@ export async function getQuestoesOverview(userId: string): Promise<QuestoesOverv
           bancaCounts: tData.bancaCounts,
         });
       }
-      topics.sort((a, b) => b.totalQuestions - a.totalQuestions);
+      // ordem do edital; "Outros assuntos" por último
+      const order = (t: TopicOverview) => itemInfo.get(t.id)?.sortOrder ?? Number.MAX_SAFE_INTEGER;
+      topics.sort((a, b) => order(a) - order(b));
     }
 
     const sAnswered = sData ? sData.answeredQ.size : 0;

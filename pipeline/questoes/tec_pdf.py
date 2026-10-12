@@ -16,7 +16,7 @@ from pathlib import Path
 import pymupdf
 
 # Muda quando a lógica de extração muda: o importador reextrai os cadernos de versão anterior.
-EXTRACTOR_VERSION = "2026.10.12-2"
+EXTRACTOR_VERSION = "2026.10.12-3"
 
 URL_RE = re.compile(r"^www\.tecconcursos\.com\.br/questoes/(\d+)\s*$")
 LABEL_RE = re.compile(r"^(\d+)\)\s*$")
@@ -552,7 +552,7 @@ def _escape(t: str) -> str:
 
 # linha que começa item de lista dentro do enunciado: sempre em linha nova
 ITEM_START_RE = re.compile(
-    r"^(?:\*\*)?(?:[•▪◦·\-–]\s|\(\s*\)|\(\s*[VF]\s*\)|(?:I|II|III|IV|V|VI|VII|VIII|IX|X)\s*[.\-–)]\s|\d{1,2}[.)]\s|[a-e]\)\s)"
+    r"^(?:\*\*)?(?:[•▪◦·\-–]|\(\s*[VF]?\s*\)|(?:I|II|III|IV|V|VI|VII|VIII|IX|X)\s*[.\-–)]|\d{1,2}[.)]|[a-e]\))(?:\*\*)?\s"
 )
 URL_TEXT_RE = re.compile(r"(https?://|www\.|<http)")
 

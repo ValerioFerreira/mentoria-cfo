@@ -41,6 +41,7 @@ export async function checkSimuladoReadiness(
     where: {
       status: "APPROVED",
       banca: { in: ["AOCP", "Instituto AOCP", "INSTITUTO AOCP"] },
+      kind: "MULTIPLA_ESCOLHA", // a prova é de múltipla escolha; itens Certo/Errado ficam fora do simulado
     },
     _count: true,
   });

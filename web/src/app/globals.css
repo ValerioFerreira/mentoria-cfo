@@ -601,3 +601,19 @@ body::before {
   }
 }
 
+
+/* Recortes de fórmulas e tabelas das questões (PNG preto sobre branco, ver pipeline/questoes/EXTRACAO.md):
+   no claro/sépia o branco some no fundo; no escuro a imagem é invertida. Figuras (fotos, gráficos) ficam como estão. */
+.q-crop {
+  mix-blend-mode: multiply;
+}
+:root[data-theme="dark"] .q-crop {
+  mix-blend-mode: normal;
+  filter: invert(0.9) hue-rotate(180deg);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not([data-theme="sepia"]) .q-crop {
+    mix-blend-mode: normal;
+    filter: invert(0.9) hue-rotate(180deg);
+  }
+}

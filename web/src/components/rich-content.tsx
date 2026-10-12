@@ -9,22 +9,80 @@ interface RichContentProps {
   allowImages?: boolean;
 }
 
+// Fórmula recortada do caderno, embutida no meio da frase: ![fórmula:1.8](/q-img/<sha>), onde 1.8 é a
+// altura em "em" (proporcional ao corpo do texto). Ver pipeline/questoes/EXTRACAO.md.
+const INLINE_FORMULA = /^!\[fórmula:([\d.]+)\]\(([^)]+)\)$/;
+const ANY_IMAGE = /^!\[([^\]]*)\]\(([^)]+)\)$/;
+
+/** Recorte de fórmula/tabela (preto sobre branco): adapta-se ao tema. Figuras não. */
+function isCrop(alt: string): boolean {
+  return /^f[óo]rmula/i.test(alt);
+}
+
+/** Desfaz os escapes \* \` \\ do importador (texto literal, não marcação). */
+function unescapeText(t: string): string {
+  return t.replace(/\\([*`\\])/g, "$1");
+}
+
 /**
  * Renderiza formatação inline rica:
- * - Sublinhado com tag <u>...</u>
- * - Negrito com **...**
- * - Itálico com *...*
- * - Código inline com `...`
+ * - Sublinhado com tag <u>...</u>; destaque (texto colorido no original) com <mark>...</mark>
+ * - Sobrescrito/subscrito com <sup>...</sup> / <sub>...</sub>
+ * - Negrito com **...**, itálico com *...*, código inline com `...` (\* e \` são literais)
+ * - Fórmula embutida ![fórmula:EM](src) e figura ![alt](src) (nas alternativas)
  */
 export function formatInlineRich(text: string): ReactNode {
   if (!text) return null;
 
-  // Regex para capturar <u>...</u>, **...**, *...*, `...`
-  const regex = /(<u>[\s\S]*?<\/u>|\*\*[\s\S]*?\*\*|\*[\s\S]*?\*|`[\s\S]*?`)/g;
+  const regex =
+    /(<u>[\s\S]*?<\/u>|<mark>[\s\S]*?<\/mark>|<sup>[\s\S]*?<\/sup>|<sub>[\s\S]*?<\/sub>|!\[[^\]]*\]\([^)]+\)|(?<!\\)\*\*[\s\S]*?(?<!\\)\*\*|(?<!\\)\*[^*\s][\s\S]*?(?<!\\)\*|(?<!\\)`[\s\S]*?(?<!\\)`)/g;
   const parts = text.split(regex);
 
   return parts.map((part, idx) => {
     if (!part) return null;
+
+    const formula = part.match(INLINE_FORMULA);
+    if (formula) {
+      return (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          key={idx}
+          src={formula[2]}
+          alt="fórmula"
+          className="q-crop inline-block align-middle"
+          style={{ height: `${Math.min(Number(formula[1]) || 1.2, 12)}em` }}
+          loading="lazy"
+        />
+      );
+    }
+    const image = part.match(ANY_IMAGE);
+    if (image) {
+      return (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          key={idx}
+          src={image[2]}
+          alt={image[1] || "Figura"}
+          className={`${isCrop(image[1]) ? "q-crop " : ""}inline-block max-h-60 max-w-full align-middle`}
+          loading="lazy"
+        />
+      );
+    }
+
+    for (const tag of ["sup", "sub"] as const) {
+      if (part.startsWith(`<${tag}>`) && part.endsWith(`</${tag}>`)) {
+        const Tag = tag;
+        return <Tag key={idx}>{formatInlineRich(part.slice(5, -6))}</Tag>;
+      }
+    }
+
+    if (part.startsWith("<mark>") && part.endsWith("</mark>")) {
+      return (
+        <mark key={idx} className="rounded-sm bg-transparent font-semibold text-primary">
+          {formatInlineRich(part.slice(6, -7))}
+        </mark>
+      );
+    }
 
     if (part.startsWith("<u>") && part.endsWith("</u>")) {
       const inner = part.slice(3, -4);
@@ -62,13 +120,13 @@ export function formatInlineRich(text: string): ReactNode {
           key={idx}
           className="rounded bg-surface-3 px-1.5 py-0.5 font-mono text-xs font-semibold text-text"
         >
-          {part.slice(1, -1)}
+          {unescapeText(part.slice(1, -1))}
         </code>
       );
     }
 
     // Remove qualquer marcador ** residual solto para impedir exibição literal
-    const sanitizedText = part.replace(/\*\*/g, "");
+    const sanitizedText = unescapeText(part.replace(/(?<!\\)\*\*/g, ""));
     return <React.Fragment key={idx}>{sanitizedText}</React.Fragment>;
   });
 }
@@ -137,7 +195,7 @@ export function RichContent({ content, className = "", allowImages = true }: Ric
       {blocks.map((block, bIdx) => {
         // Bloco de Imagem Markdown pura: ![alt](url)
         const imgMatch = block.match(/^!\[(.*?)\]\((.*?)\)$/);
-        if (allowImages && imgMatch) {
+        if (allowImages && imgMatch && !imgMatch[1].startsWith("fórmula:")) {
           const alt = imgMatch[1] || "Figura da questão";
           const src = imgMatch[2];
           return (
@@ -151,14 +209,14 @@ export function RichContent({ content, className = "", allowImages = true }: Ric
                 <img
                   src={src}
                   alt={alt}
-                  className="max-h-80 max-w-full object-contain p-2"
+                  className={`${isCrop(alt) ? "q-crop " : ""}max-h-80 max-w-full object-contain p-2`}
                   loading="lazy"
                 />
                 <div className="absolute bottom-2 right-2 rounded-lg bg-surface/90 p-1 text-muted shadow-xs opacity-0 transition group-hover:opacity-100">
                   <Maximize2 className="h-4 w-4" />
                 </div>
               </div>
-              {alt && alt !== "Figura da questão" && (
+              {alt && !["Figura da questão", "Figura", "Fórmula"].includes(alt) && (
                 <span className="mt-1 text-center text-xs text-muted italic">
                   {alt}
                 </span>
@@ -254,7 +312,8 @@ export function RichContent({ content, className = "", allowImages = true }: Ric
         // Bloco de texto com parágrafo e imagens misturadas
         if (allowImages && block.includes("![") && block.includes("](")) {
           // Se tiver imagem dentro de um parágrafo maior, quebra em subpartes
-          const subparts = block.split(/(!\[.*?\]\(.*?\))/g);
+          // fórmulas embutidas (![fórmula:EM](...)) ficam no texto; só figuras e recortes em bloco quebram o parágrafo
+          const subparts = block.split(/(!\[(?!fórmula:)[^\]]*\]\([^)]*\))/g);
           return (
             <div key={bIdx} className="space-y-2">
               {subparts.map((sp, spIdx) => {
@@ -273,7 +332,7 @@ export function RichContent({ content, className = "", allowImages = true }: Ric
                         <img
                           src={src}
                           alt={alt}
-                          className="max-h-80 max-w-full object-contain p-2"
+                          className={`${isCrop(alt) ? "q-crop " : ""}max-h-80 max-w-full object-contain p-2`}
                           loading="lazy"
                         />
                         <div className="absolute bottom-2 right-2 rounded-lg bg-surface/90 p-1 text-muted shadow-xs opacity-0 transition group-hover:opacity-100">

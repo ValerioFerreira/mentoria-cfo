@@ -15,10 +15,24 @@ function shuffle<T>(arr: T[]): T[] {
   return copy;
 }
 
+// "topic" é o id do item do edital (ou "outros" para as questões sem item); "bancas" vazio = todas.
+function topicWhere(topic: string): Record<string, unknown> {
+  return topic === "outros" ? { editalItemId: null } : { editalItemId: topic };
+}
+
+function topicsWhere(topics: string[]): Record<string, unknown>[] {
+  const ids = topics.filter((t) => t !== "outros");
+  const out: Record<string, unknown>[] = [];
+  if (ids.length) out.push({ editalItemId: { in: ids } });
+  if (topics.includes("outros")) out.push({ editalItemId: null });
+  return out;
+}
+
 export async function startSubjectPracticeQuiz(input: {
   subjectId: string;
   topic?: string;
   limit?: number;
+  bancas?: string[];
 }): Promise<{ error: string } | never> {
   const user = await requireUser();
   if (!(await canUserAccessCoreFeatures(user.role))) {
@@ -31,7 +45,10 @@ export async function startSubjectPracticeQuiz(input: {
   };
 
   if (input.topic && input.topic.trim()) {
-    whereClause.topic = input.topic.trim();
+    Object.assign(whereClause, topicWhere(input.topic.trim()));
+  }
+  if (input.bancas && input.bancas.length > 0) {
+    whereClause.banca = { in: input.bancas };
   }
 
   const questions = await db.question.findMany({
@@ -87,7 +104,7 @@ export async function startSubjectPracticeQuiz(input: {
 
 export interface CustomNotebookItemInput {
   subjectId: string;
-  topics?: string[]; // se vazio, todos os tópicos da matéria
+  topics?: string[]; // ids dos itens do edital ("outros" = sem item); se vazio, todos os assuntos da matéria
   count?: number; // quantidade para esta seleção específica (no modo por matéria)
 }
 
@@ -129,7 +146,7 @@ export async function createCustomNotebook(
       if (item.topics && item.topics.length > 0) {
         orConditions.push({
           subjectId: item.subjectId,
-          topic: { in: item.topics },
+          OR: topicsWhere(item.topics),
           status: "APPROVED",
         });
       } else {
@@ -183,7 +200,7 @@ export async function createCustomNotebook(
       };
 
       if (item.topics && item.topics.length > 0) {
-        whereClause.topic = { in: item.topics };
+        whereClause.OR = topicsWhere(item.topics);
       }
 
       const questions = await db.question.findMany({

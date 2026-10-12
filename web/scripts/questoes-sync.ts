@@ -72,6 +72,17 @@ const url = cleanUrl(remote ? remoteUrl() : process.env.DATABASE_URL || "");
 if (!url) throw new Error("DATABASE_URL vazio");
 const db = new PrismaClient({ adapter: new PrismaPg({ connectionString: url }) });
 
+async function runPool(tasks: (() => Promise<unknown>)[], size: number): Promise<void> {
+  let next = 0;
+  const worker = async () => {
+    while (next < tasks.length) {
+      const i = next++;
+      await tasks[i]();
+    }
+  };
+  await Promise.all(Array.from({ length: Math.min(size, tasks.length) }, worker));
+}
+
 function chunk<T>(xs: T[], n: number): T[][] {
   const out: T[][] = [];
   for (let i = 0; i < xs.length; i += n) out.push(xs.slice(i, i + n));
@@ -154,6 +165,7 @@ async function main() {
 
   const now = new Date();
   const toCreate: QuestionRow[] = [];
+  const updates: (() => Promise<unknown>)[] = [];
   for (const q of questions) {
     if (!segIds.has(q.segmentId)) {
       summary.skippedMissingSegment.push(q.id);
@@ -177,7 +189,7 @@ async function main() {
       continue;
     }
     if (manual) summary.keptManual++;
-    await db.$transaction(async (tx) => {
+    updates.push(() => db.$transaction(async (tx) => {
       await tx.question.update({
         where: { id: q.id },
         data: {
@@ -215,9 +227,12 @@ async function main() {
         await tx.questionOption.deleteMany({ where: { questionId: q.id } });
         await tx.questionOption.createMany({ data: q.options.map((o) => ({ ...o, questionId: q.id })) });
       }
-    });
+    }));
     summary.updated++;
   }
+  // atualizações, cada uma na sua transação: no Neon, 6 em paralelo (a latência domina); o Postgres
+  // embutido do `prisma dev` aceita uma conexão por vez
+  await runPool(updates, remote ? 6 : 1);
 
   for (const c of chunk(toCreate, 300)) {
     await db.$transaction([

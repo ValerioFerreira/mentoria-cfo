@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, ArrowRight, CheckCircle2, CircleCheck, CircleX, Flag, HelpCircle, Loader2, Sparkles, Timer, XCircle } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, CheckCircle2, CircleCheck, CircleX, Flag, HelpCircle, Loader2, Sparkles, Timer, X, XCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState, useTransition, type ReactNode } from "react";
 import { Alert, Badge, Button, Card, Kbd, cx } from "@/components/ui";
@@ -301,6 +301,8 @@ export function QuizRunner({ sessionId, startedAtMs, limitSeconds, serverNowMs, 
 
           <div className="space-y-2.5" role="radiogroup" aria-label={`Alternativas da questão ${idx + 1}`}>
             {q.options.map((o) => {
+              // item Certo/Errado: opções "C" e "E" mostradas como ✓ / ✗ (não confundir com a alternativa E)
+              const ce = q.options.length === 2 && q.options.every((x) => x.label === "C" || x.label === "E");
               const isStaged = cur.staged === o.label;
               const isChosen = cur.chosen === o.label;
               const isCorrectOpt = cur.correctLabel === o.label;
@@ -341,7 +343,7 @@ export function QuizRunner({ sessionId, startedAtMs, limitSeconds, serverNowMs, 
                   )}
                 >
                   <span className={cx("mt-px flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border font-display text-lg font-bold transition", badgeStyle)}>
-                    {o.label}
+                    {ce ? (o.label === "C" ? <Check className="h-5 w-5" aria-label="Certo" /> : <X className="h-5 w-5" aria-label="Errado" />) : o.label}
                   </span>
                   <span className="pt-1 flex-1">{formatInlineRich(o.text)}</span>
                   {cur.confirmed && isCorrectOpt && (

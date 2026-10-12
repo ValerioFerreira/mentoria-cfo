@@ -54,6 +54,7 @@ export async function startSimuladoSession(input: {
         subjectId: actualSubId,
         status: "APPROVED",
         banca: { in: ["AOCP", "Instituto AOCP", "INSTITUTO AOCP"] },
+        kind: "MULTIPLA_ESCOLHA", // a prova é de múltipla escolha; itens Certo/Errado ficam fora do simulado
       },
       select: { id: true },
     });

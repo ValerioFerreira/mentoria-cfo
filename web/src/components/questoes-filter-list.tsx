@@ -64,7 +64,7 @@ export function QuestoesFilterList({ subjects, availableBancas = [], bancaCounts
     const key = `${subjectId}::${topic || "all"}::${limit || "all"}`;
     setActiveSessionTopic(key);
     startTransition(async () => {
-      await startSubjectPracticeQuiz({ subjectId, topic, limit });
+      await startSubjectPracticeQuiz({ subjectId, topic, limit, bancas: isAllBancasSelected ? undefined : selectedBancas });
     });
   };
 
@@ -530,12 +530,12 @@ export function QuestoesFilterList({ subjects, availableBancas = [], bancaCounts
                       {visibleTopics.map((topic) => {
                         const hasTopicActivity = topic.userAnswered > 0;
                         const hasTopicQuestions = topic.filteredQuestionsCount > 0;
-                        const is5Pending = isPending && activeSessionTopic === `${s.id}::${topic.name}::5`;
-                        const isAllPending = isPending && activeSessionTopic === `${s.id}::${topic.name}::all`;
+                        const is5Pending = isPending && activeSessionTopic === `${s.id}::${topic.id}::5`;
+                        const isAllPending = isPending && activeSessionTopic === `${s.id}::${topic.id}::all`;
 
                         return (
                           <div
-                            key={topic.name}
+                            key={topic.id}
                             className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 rounded-xl border border-border/60 bg-surface p-3 transition hover:border-border hover:shadow-xs"
                           >
                             <div className="min-w-0">
@@ -565,7 +565,7 @@ export function QuestoesFilterList({ subjects, availableBancas = [], bancaCounts
                               <Button
                                 size="sm"
                                 variant="secondary"
-                                onClick={() => handleStartPractice(s.id, topic.name, 5)}
+                                onClick={() => handleStartPractice(s.id, topic.id, 5)}
                                 disabled={isPending || !hasTopicQuestions}
                                 className="text-xs h-7 px-2.5"
                               >
@@ -574,7 +574,7 @@ export function QuestoesFilterList({ subjects, availableBancas = [], bancaCounts
                               <Button
                                 size="sm"
                                 variant="primary"
-                                onClick={() => handleStartPractice(s.id, topic.name)}
+                                onClick={() => handleStartPractice(s.id, topic.id)}
                                 disabled={isPending || !hasTopicQuestions}
                                 className="text-xs h-7 px-2.5"
                               >

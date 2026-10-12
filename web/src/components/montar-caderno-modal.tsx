@@ -81,7 +81,7 @@ export function MontarCadernoModal({ subjects, isOpen, onClose }: Props) {
   };
 
   // Alternar seleção de tópico específico dentro de uma disciplina
-  const toggleTopic = (subjectId: string, topicName: string) => {
+  const toggleTopic = (subjectId: string, topicId: string) => {
     const s = subjects.find((x) => x.id === subjectId);
     if (!s) return;
 
@@ -91,14 +91,14 @@ export function MontarCadernoModal({ subjects, isOpen, onClose }: Props) {
 
       // Se ainda não existia set específico, cria com todos os tópicos exceto o clicado
       if (!currentSet) {
-        currentSet = new Set(s.topics.map((t) => t.name));
-        currentSet.delete(topicName);
+        currentSet = new Set(s.topics.map((t) => t.id));
+        currentSet.delete(topicId);
       } else {
         currentSet = new Set(currentSet);
-        if (currentSet.has(topicName)) {
-          currentSet.delete(topicName);
+        if (currentSet.has(topicId)) {
+          currentSet.delete(topicId);
         } else {
-          currentSet.add(topicName);
+          currentSet.add(topicId);
         }
       }
 
@@ -130,7 +130,7 @@ export function MontarCadernoModal({ subjects, isOpen, onClose }: Props) {
       } else {
         // Tópicos específicos selecionados
         for (const t of s.topics) {
-          if (topicsSet.has(t.name)) {
+          if (topicsSet.has(t.id)) {
             count += t.totalQuestions;
           }
         }
@@ -469,13 +469,13 @@ export function MontarCadernoModal({ subjects, isOpen, onClose }: Props) {
                         <div className="grid gap-1.5 max-h-48 overflow-y-auto">
                           {s.topics.map((t) => {
                             const isTopicChecked =
-                              !topicsMap || topicsMap.has(t.name);
+                              !topicsMap || topicsMap.has(t.id);
 
                             return (
                               <button
-                                key={t.name}
+                                key={t.id}
                                 type="button"
-                                onClick={() => toggleTopic(s.id, t.name)}
+                                onClick={() => toggleTopic(s.id, t.id)}
                                 className={`flex items-center justify-between p-2 rounded-lg text-left text-xs transition cursor-pointer ${
                                   isTopicChecked
                                     ? "bg-surface border border-border/80 text-text"

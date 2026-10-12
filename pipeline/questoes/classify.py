@@ -52,7 +52,7 @@ def fold(t: str) -> str:
 
 def stem(w: str) -> str:
     for suf, rep in (("coes", "cao"), ("soes", "sao"), ("aes", "ao"), ("ais", "al"), ("eis", "el"), ("ois", "ol"), ("is", "il")):
-        if w.endswith(suf) and len(w) > len(suf) + 2:
+        if w.endswith(suf) and len(w) > len(suf):
             return w[: -len(suf)] + rep
     if w.endswith("es") and len(w) > 5 and w[-3] in "rzl":
         return w[:-2]
@@ -172,6 +172,7 @@ def _catalog_fingerprint() -> str:
         (CONTENT / "summaries", "*/*.json"),
         (CONTENT / "complements", "*.md"),
         (ROOT / "pipeline" / ".cache" / "pages", "*.json"),
+        (Path(__file__).resolve().parent, "classify.py"),  # mudança no tokenizador refaz o índice
     ]
     for base, pat in globs:
         for f in sorted(base.glob(pat)):

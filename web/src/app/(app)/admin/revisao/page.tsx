@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { RichContent } from "@/components/rich-content";
 import { Alert, Badge, Card, PageHeader, SectionTitle } from "@/components/ui";
 import { requireAdmin } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { subjectShort } from "@/lib/ui-format";
-import { ReviewActions } from "./review-actions";
+import { ReviewActions, type SegmentChoice } from "./review-actions";
 
 export const metadata: Metadata = { title: "Revisão de questões" };
 
@@ -32,6 +33,29 @@ export default async function ReviewPage({ searchParams }: PageProps<"/admin/rev
     db.question.count({ where: { status, ...(subject ? { subjectId: subject } : {}) } }),
     db.question.groupBy({ by: ["batch"], where: { status: "DRAFT" }, _count: true }),
   ]);
+  // rascunhos do importador agrupados pelo assunto de origem (aprovação em bloco)
+  const draftAssuntos =
+    status === "DRAFT"
+      ? await db.question.groupBy({
+          by: ["tecMateria", "tecAssunto"],
+          where: { status: "DRAFT", tecMateria: { not: null }, ...(subject ? { subjectId: subject } : {}) },
+          _count: true,
+        })
+      : [];
+  // trechos das disciplinas da página, para mover questões de atividade
+  const subjectIds = [...new Set(items.map((q) => q.subjectId))];
+  const segs = await db.segment.findMany({
+    where: { aula: { subjectId: { in: subjectIds } } },
+    orderBy: [{ aulaId: "asc" }, { sortOrder: "asc" }],
+    select: { id: true, aulaId: true, startTopic: true, aula: { select: { subjectId: true, shortTitle: true, title: true } } },
+  });
+  const segChoices = new Map<string, SegmentChoice[]>();
+  for (const sg of segs) {
+    const list = segChoices.get(sg.aula.subjectId) ?? [];
+    const aula = sg.aula.shortTitle || sg.aula.title;
+    list.push({ id: sg.id, group: `${sg.aulaId.split("/")[1]} · ${aula}`, label: `${sg.id.split("/").slice(1).join("/")} · ${sg.startTopic ?? aula}` });
+    segChoices.set(sg.aula.subjectId, list);
+  }
   const byStatus = new Map(counts.map((c) => [c.status, c._count]));
   const qs = (p: Record<string, string | number | undefined>) => {
     const u = new URLSearchParams();
@@ -66,6 +90,22 @@ export default async function ReviewPage({ searchParams }: PageProps<"/admin/rev
         </Card>
       )}
 
+      {draftAssuntos.length > 0 && (
+        <Card className="space-y-2">
+          <p className="font-display text-xl font-bold uppercase tracking-wide">Rascunhos por assunto de origem</p>
+          <ul className="space-y-2">
+            {draftAssuntos.map((a) => (
+              <li key={`${a.tecMateria}|${a.tecAssunto}`} className="flex flex-wrap items-center justify-between gap-2 text-sm">
+                <span>
+                  {a.tecMateria} · <strong>{a.tecAssunto || "(sem assunto)"}</strong> · {a._count}
+                </span>
+                {a.tecMateria && <ReviewActions kind="assunto" materia={a.tecMateria} assunto={a.tecAssunto ?? ""} count={a._count} />}
+              </li>
+            ))}
+          </ul>
+        </Card>
+      )}
+
       {reports.length > 0 && (
         <section className="space-y-2" aria-labelledby="rep">
           <SectionTitle id="rep">Denúncias de alunos ({reports.length})</SectionTitle>
@@ -86,17 +126,45 @@ export default async function ReviewPage({ searchParams }: PageProps<"/admin/rev
           <Card key={q.id} className="space-y-3">
             <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-muted">
               <span>{subjectShort(q.subjectId)} · {q.id}</span>
-              <span className="flex gap-1.5"><Badge>{q.pattern}</Badge><Badge>dific. {q.difficulty}</Badge>{q.pageRef && <Badge>pág. {q.pageRef}</Badge>}</span>
+              <span className="flex gap-1.5">
+                <Badge>{q.banca}</Badge>
+                {q.ano && <Badge>{q.ano}</Badge>}
+                {q.kind === "CERTO_ERRADO" && <Badge>C/E</Badge>}
+                {q.classifiedBy === "MANUAL" && <Badge>revisada</Badge>}
+              </span>
             </div>
-            {q.support && <div className="whitespace-pre-line rounded-lg bg-surface-2 p-3 text-sm">{q.support}</div>}
-            <p className="whitespace-pre-line text-sm leading-relaxed">{q.statement}</p>
+            {q.tecMateria && (
+              <p className="text-xs text-muted">
+                Origem: {q.tecMateria} · <strong className="text-text">{q.tecAssunto || "(sem assunto)"}</strong>
+                {q.orgao && ` · ${q.orgao}`} · trecho atual <strong className="text-text">{q.segmentId}</strong>
+                {q.classifyNote && <span className="block">Importador: {q.classifyNote}</span>}
+              </p>
+            )}
+            {q.support && (
+              <div className="rounded-lg bg-surface-2 p-3 text-sm">
+                <RichContent content={q.support} />
+              </div>
+            )}
+            <div className="text-sm leading-relaxed">
+              <RichContent content={q.statement} />
+            </div>
             <ul className="space-y-1 text-sm">
               {q.options.map((o) => (
-                <li key={o.label} className={`flex gap-2.5 rounded-lg px-3 py-1.5 ${o.isCorrect ? "bg-ok/12 text-ok" : "text-muted"}`}><strong className="font-display text-base">{o.label}</strong><span>{o.text}</span></li>
+                <li key={o.label} className={`flex gap-2.5 rounded-lg px-3 py-1.5 ${o.isCorrect ? "bg-ok/12 text-ok" : "text-muted"}`}>
+                  <strong className="font-display text-base">{o.label}</strong>
+                  <div className="flex-1">
+                    <RichContent content={o.text} />
+                  </div>
+                </li>
               ))}
             </ul>
-            <p className="text-sm text-muted"><strong className="text-text">Comentário: </strong>{q.explanation}</p>
-            <ReviewActions kind="question" id={q.id} status={q.status} />
+            {q.explanation && (
+              <div className="text-sm text-muted">
+                <strong className="text-text">Comentário: </strong>
+                <RichContent content={q.explanation} />
+              </div>
+            )}
+            <ReviewActions kind="question" id={q.id} status={q.status} segmentId={q.segmentId} segments={segChoices.get(q.subjectId)} />
           </Card>
         ))}
         {pages > 1 && (
