@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { Badge, Button, Card, PageHeader } from "@/components/ui";
 import { getCurrentUser } from "@/lib/auth/session";
 import { db } from "@/lib/db";
-import { cancelMonthlySubscription, startBillingCheckout } from "@/lib/billing/actions";
+import { cancelMonthlySubscription, startBillingCheckout, startPixCheckout } from "@/lib/billing/actions";
 
 export const metadata: Metadata = { title: "Planos e pagamentos" };
 
@@ -17,7 +17,8 @@ const STATUS: Record<string, { label: string; tone: "ok" | "warn" | "neutral" }>
   CHARGEBACK: { label: "Em contestação", tone: "warn" },
 };
 
-export default async function BillingPage() {
+export default async function BillingPage({ searchParams }: { searchParams: Promise<{ erro?: string; status?: string }> }) {
+  const query = await searchParams;
   const user = await getCurrentUser();
   if (!user) redirect("/login");
   const purchases = await db.billingPurchase.findMany({
@@ -48,7 +49,10 @@ export default async function BillingPage() {
         <Card className="space-y-4">
           <div className="flex items-center justify-between gap-3"><h2 className="font-display text-xl font-bold">Acesso permanente</h2><Badge>R$ 50, pagamento único</Badge></div>
           <p className="text-sm leading-relaxed text-muted">Uma única cobrança. O acesso permanente é independente da assinatura mensal.</p>
-          {hasPermanent ? <Badge tone="ok">Acesso permanente ativo</Badge> : <form action={startBillingCheckout}><input type="hidden" name="product" value="PERMANENT" /><Button type="submit">Adquirir acesso permanente</Button></form>}
+          {hasPermanent ? <Badge tone="ok">Acesso permanente ativo</Badge> : <div className="flex flex-wrap gap-2">
+            <form action={startBillingCheckout}><input type="hidden" name="product" value="PERMANENT" /><Button type="submit">Pagar com outras opções</Button></form>
+            <form action={startPixCheckout}><Button type="submit" variant="secondary">Pagar com PIX · R$ 50</Button></form>
+          </div>}
         </Card>
       </div>
       {purchases.length > 0 && <section className="space-y-3">
@@ -59,6 +63,8 @@ export default async function BillingPage() {
           <Badge tone={STATUS[purchase.status]?.tone ?? "neutral"}>{STATUS[purchase.status]?.label ?? purchase.status}</Badge>
         </Card>)}</div>
       </section>}
+      {query.erro === "pix" && <Card tone="soft"><p className="text-sm text-danger">Não foi possível gerar o PIX. Tente novamente mais tarde ou escolha outra forma de pagamento.</p></Card>}
+      {query.erro === "checkout" && <Card tone="soft"><p className="text-sm text-danger">Não foi possível iniciar o checkout. Confira as credenciais do Mercado Pago.</p></Card>}
       <p className="text-xs leading-relaxed text-muted">A confirmação pode levar alguns instantes e é recebida diretamente do Mercado Pago. O retorno do checkout, por si só, não libera o acesso.</p>
     </div>
   );
