@@ -113,7 +113,7 @@ function PlanChoice({ error }: { error?: string[] }) {
             </span>
           </span>
           <span className="space-y-1 text-sm text-on-ink-muted">
-            <span className="block">Acesso liberado até o dia da prova, sem nenhuma mensalidade.</span>
+            <span className="block">Acesso permanente, com pagamento único e sem mensalidade.</span>
             <span className="block font-semibold text-gold">Mais econômico a partir do 2º mês.</span>
           </span>
         </label>

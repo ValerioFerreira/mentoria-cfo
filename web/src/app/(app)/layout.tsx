@@ -17,6 +17,7 @@ const NAV: NavItem[] = [
   { href: "/simulados", label: "Simulados", icon: "simulado" },
   { href: "/resumos", label: "Meus resumos", icon: "notes" },
   { href: "/desempenho", label: "Desempenho", icon: "perf" },
+  { href: "/pagamentos", label: "Pagamentos", icon: "billing" },
 ];
 
 export default async function AppLayout({ children }: LayoutProps<"/">) {

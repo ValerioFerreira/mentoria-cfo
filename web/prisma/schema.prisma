@@ -139,7 +139,31 @@ enum Contest {
 
 enum WaitlistPlan {
   MONTHLY // mensalidade
-  UNTIL_EXAM // pagamento único: acesso até o dia da prova
+  UNTIL_EXAM // chave histórica; novas ofertas deste preço são acesso permanente
+}
+
+enum BillingProduct {
+  MONTHLY
+  PERMANENT
+}
+
+enum BillingStatus {
+  PENDING
+  ACTIVE
+  PAST_DUE
+  CANCELLED
+  EXPIRED
+  REFUNDED
+  CHARGEBACK
+}
+
+enum BillingPaymentStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  CANCELLED
+  REFUNDED
+  CHARGEBACK
 }
 
 enum ReportStatus {
@@ -433,6 +457,63 @@ model User {
   bizuAnswers  BizuAnswer[]
   reports      QuestionReport[]
   invite       Invite?
+  billingPurchases BillingPurchase[]
+}
+
+// Contratos criados pelo checkout. Cada compra permanece independente para que
+// o cancelamento da recorrência não remova um acesso permanente já adquirido.
+model BillingPurchase {
+  id                    String        @id @default(cuid())
+  userId                String
+  product               BillingProduct
+  status                BillingStatus @default(PENDING)
+  amount                Decimal       @db.Decimal(10, 2)
+  currency              String        @default("BRL")
+  externalReference     String        @unique @default(cuid())
+  mpPreferenceId        String?       @unique
+  mpPreapprovalId       String?       @unique
+  checkoutUrl           String?
+  currentPeriodEnd      DateTime?
+  cancelledAt           DateTime?
+  createdAt             DateTime      @default(now())
+  updatedAt             DateTime      @updatedAt
+
+  user     User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  payments BillingPayment[]
+
+  @@index([userId, product, status])
+  @@index([status, currentPeriodEnd])
+}
+
+// Um registro por pagamento consultado diretamente na API do Mercado Pago.
+model BillingPayment {
+  id                String              @id @default(cuid())
+  purchaseId        String
+  providerPaymentId String              @unique
+  status            BillingPaymentStatus
+  amount            Decimal             @db.Decimal(10, 2)
+  currency          String              @default("BRL")
+  statusDetail      String?
+  paidAt            DateTime?
+  updatedAt         DateTime            @updatedAt
+  createdAt         DateTime            @default(now())
+
+  purchase BillingPurchase @relation(fields: [purchaseId], references: [id], onDelete: Cascade)
+
+  @@index([purchaseId, status])
+}
+
+// Idempotência dos webhooks; não armazenamos corpo bruto nem dados de cartão.
+model BillingWebhookEvent {
+  id          String    @id @default(cuid())
+  eventKey    String    @unique
+  resourceId  String
+  topic       String
+  action      String?
+  processedAt DateTime?
+  createdAt   DateTime  @default(now())
+
+  @@index([resourceId, topic])
 }
 
 // Sessão opaca: o cookie guarda um token aleatório; aqui fica apenas o hash SHA-256 dele.

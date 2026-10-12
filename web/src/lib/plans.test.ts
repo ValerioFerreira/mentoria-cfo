@@ -2,10 +2,11 @@ import { describe, expect, it } from "vitest";
 import { isPlan, PLAN_KEYS, WAITLIST_PLANS } from "./plans";
 
 describe("planos da lista de espera", () => {
-  it("define Mensalidade (R$ 30) e Acesso até a prova (R$ 50) com valor no formato do Pix", () => {
+  it("define Mensalidade (R$ 30) e Acesso permanente (R$ 50) com valor no formato do Pix", () => {
     expect([...PLAN_KEYS].sort()).toEqual(["MONTHLY", "UNTIL_EXAM"]);
     expect(WAITLIST_PLANS.MONTHLY.amount).toBe("30.00");
     expect(WAITLIST_PLANS.UNTIL_EXAM.amount).toBe("50.00");
+    expect(WAITLIST_PLANS.UNTIL_EXAM.name).toBe("Acesso permanente");
   });
   it("o valor do Pix (ponto) e o de exibição (vírgula) descrevem o mesmo número", () => {
     for (const p of Object.values(WAITLIST_PLANS)) {
