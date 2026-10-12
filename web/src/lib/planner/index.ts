@@ -6,7 +6,7 @@ import { calendarCapacity, scheduleCalendar } from "./days";
 import { buildEveReview, buildSpareReview, type ReviewSubject } from "./review";
 import { buildSubjectQueue } from "./schedule";
 import { selectContent, type SelectedSubject } from "./select";
-import type { PlanInput, PlanResult, PlannedActivity, PlannedWeek } from "./types";
+import type { Known, PlanInput, PlanResult, PlannedActivity, PlannedWeek } from "./types";
 
 export * from "./types";
 export { nextMonday, mondayOf, dayIndexOf } from "./dates";
@@ -33,7 +33,19 @@ function validate(input: PlanInput): void {
   }
 }
 
+/**
+ * Gera o plano. No Modo Turbo o objetivo é completar o edital: se, por qualquer razão (poucos resumos, encaixe), o plano com Turbo
+ * cobrir MENOS do que o plano normal, vale o normal, e o aviso diz que o Turbo não trouxe ganho.
+ */
 export function generatePlan(input: PlanInput): PlanResult {
+  const plan = generatePlanOnce(input);
+  if (!input.turbo || plan.params.summaryUnits === 0) return plan;
+  const normal = generatePlanOnce({ ...input, turbo: false });
+  if (plan.coverage.selected + 1e-9 >= normal.coverage.selected) return plan;
+  return { ...normal, warnings: ["Modo Turbo: com os resumos disponíveis hoje ele não aumentaria a cobertura do edital, então o plano foi montado no modo normal.", ...normal.warnings] };
+}
+
+function generatePlanOnce(input: PlanInput): PlanResult {
   validate(input);
   const slack = input.slack ?? WEEKLY_SLACK;
   const weeklyMinutes = Math.max(60, Math.floor(input.hoursPerWeek * 60 * slack));
@@ -143,6 +155,16 @@ export function generatePlan(input: PlanInput): PlanResult {
   const fullEditalHoursPerWeek = Math.ceil(sel.fullMinutes / 60 / (capacityMinutes / weeklyMinutes) / slack / Math.min(eff, PACKING_EFFICIENCY));
   return {
     params: {
+      request: {
+        hoursPerWeek: input.hoursPerWeek,
+        turbo: input.turbo === true,
+        firstDay: firstOrd,
+        ...(input.contest ? { contest: input.contest } : {}),
+        subjects: input.subjects.map((s) => ({ id: s.id, level: s.level })),
+        known: Object.fromEntries(Object.entries(known).filter(([, v]) => v > 0)) as Record<string, Known>,
+        excludedAulas: [...excludedAulas],
+      },
+      turbo: input.turbo === true,
       hoursPerWeek: input.hoursPerWeek,
       slotsPerWeek: Math.round((weeklyMinutes / 60) * 10) / 10,
       weeklyMinutes,

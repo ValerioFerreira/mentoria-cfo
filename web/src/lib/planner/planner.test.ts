@@ -127,6 +127,25 @@ describe("Modo Turbo (resumos analíticos)", () => {
     expect(on.warnings.some((w) => w.startsWith("Modo Turbo"))).toBe(true);
   });
 
+  it("o Turbo prioriza a completude do edital: nunca cobre menos que o plano normal, nem com poucos resumos", () => {
+    const few = allSummaries.filter((_, i) => i % 19 === 0);
+    for (const hours of [14, 21, 28, 40]) {
+      for (const summaries of [few, allSummaries]) {
+        const off = generatePlan(turboInput(hours, ALL_PT, 1, { summaries }));
+        const on = generatePlan(turboInput(hours, ALL_PT, 1, { turbo: true, summaries }));
+        expect(on.coverage.selected, `${hours} h / ${summaries.length} resumos`).toBeGreaterThanOrEqual(off.coverage.selected - 1e-9);
+      }
+    }
+  }, 60_000);
+
+  it("com todos os resumos o Turbo fecha o edital a partir de 21 h e informa a parte lida por resumo", () => {
+    const on = generatePlan(turboInput(21, ALL_PT, 1, { turbo: true }));
+    expect(on.coverage.selected).toBeGreaterThan(0.99);
+    expect(on.coverage.summaryShare).toBeGreaterThan(0.3);
+    expect(on.coverage.summaryShare).toBeLessThanOrEqual(1);
+    expect(generatePlan(turboInput(21)).coverage.summaryShare).toBe(0);
+  });
+
   it("só vira resumo o trecho que TEM resumo: sem resumos disponíveis o Turbo não muda o plano", () => {
     const a = generatePlan(input(21, ALL_PT, 1, { importance, examQuestions }));
     const b = generatePlan(input(21, ALL_PT, 1, { importance, examQuestions, turbo: true, summaries: [] }));

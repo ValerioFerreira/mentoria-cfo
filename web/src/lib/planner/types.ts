@@ -151,6 +151,8 @@ export interface SubjectCoverage {
   fullMinutes: number;
   aulas: { aulaId: string; tier: Tier; hours: number; turbo?: boolean }[];
   theoryPagesCovered: number;
+  /** Páginas de teoria cobertas só por resumo analítico (Modo Turbo). */
+  summaryPages: number;
   theoryPagesEligible: number;
   /** 0–1: fatia do edital da disciplina que o plano cobre (aulas estudadas ou já dominadas × completude do material). */
   coverage: number;
@@ -160,8 +162,25 @@ export interface SubjectCoverage {
   notCovered: { aulaId: string; shortTitle: string; incidence: number }[];
 }
 
+/** O que o aluno pediu ao montar o plano (guardado em `params.request` para auditoria e re-elaboração). */
+export interface PlanRequest {
+  hoursPerWeek: number;
+  turbo: boolean;
+  firstDay: number;
+  contest?: string;
+  subjects: { id: string; level: Level }[];
+  /** anamnese por aula: 1 já estudei · 2 domino */
+  known: Record<string, Known>;
+  /** aulas fora do plano porque o aluno desmarcou todos os assuntos delas */
+  excludedAulas: string[];
+}
+
 export interface PlanResult {
   params: {
+    /** Solicitação original do aluno. */
+    request: PlanRequest;
+    /** Modo Turbo pedido (cópia de `request.turbo`, lida pela re-elaboração de planos). */
+    turbo: boolean;
     hoursPerWeek: number;
     /** Horas efetivas por semana (já com a folga). */
     slotsPerWeek: number;
@@ -193,6 +212,8 @@ export interface PlanResult {
     edital: number;
     /** Profundidade média da prática, ponderada pelos pontos da prova. */
     depth: number;
+    /** 0–1: fração do que o plano cobre que é lida por resumo analítico (Modo Turbo), ponderada pelos pontos da prova. */
+    summaryShare: number;
     subjects: SubjectCoverage[];
   };
   warnings: string[];

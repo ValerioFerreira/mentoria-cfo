@@ -110,7 +110,8 @@ export async function regeneratePlanForUser(
   const firstDay = dayIndexOf(effectiveStart);
 
   // 6. Modo Turbo e Língua Estrangeira
-  const turbo = Boolean(params.turbo ?? false);
+  const savedRequest = (params.request as { turbo?: boolean; excludedAulas?: string[] } | undefined) ?? undefined;
+  const turbo = Boolean(savedRequest?.turbo ?? params.turbo ?? false);
   const foreignLanguage =
     user.profile?.foreignLanguage ??
     (subjects.some((s) => s.id === "lingua-inglesa")
@@ -136,6 +137,7 @@ export async function regeneratePlanForUser(
     hoursPerWeek,
     subjects,
     known,
+    excludedAulas: savedRequest?.excludedAulas ?? [],
     turbo,
   };
 

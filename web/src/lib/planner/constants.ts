@@ -49,8 +49,11 @@ export const TURBO = {
   fixacao: 30,
   questoes: 40, quizQuestions: 15, quizLimitSeconds: 2400,
 } as const;
-/** Peso de uma unidade lida por resumo na cobertura do edital (viu o assunto de forma sintética, não pelo material). */
-export const SUMMARY_COVERAGE_WEIGHT = 0.8;
+/**
+ * Peso de uma unidade lida por resumo na COBERTURA do edital. O Modo Turbo existe para completar o edital: o assunto lido pelo
+ * resumo analítico conta como abordado (peso 1). A parte do edital vista só por resumo aparece à parte (`coverage.summaryShare`).
+ */
+export const SUMMARY_COVERAGE_WEIGHT = 1;
 /** Faixa geral de qualquer atividade (menor piso: Revisão/Fixação do Turbo; maior teto: Teoria/Questões). */
 export const MIN_ACTIVITY_MINUTES = 15;
 export const MAX_ACTIVITY_MINUTES = 80;

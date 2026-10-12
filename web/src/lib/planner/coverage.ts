@@ -20,6 +20,7 @@ export function computeCoverage(chosen: SelectedSubject[], sel: Selection, known
     let seenInc = 0;
     let depthInc = 0;
     let pages = 0;
+    let summaryPages = 0;
     const mins = { teoria: 0, revisao: 0, fixacao: 0, questoes: 0 };
     const aulas: SubjectCoverage["aulas"] = [];
     for (const a of selectable) {
@@ -45,6 +46,7 @@ export function computeCoverage(chosen: SelectedSubject[], sel: Selection, known
       const fullPractice = full.fixacao + full.questoes;
       depthInc += a.incidence * (fullPractice > 0 ? (m.fixacao + m.questoes) / fullPractice : 1);
       pages += a.theoryPages;
+      summaryPages += a.theoryPages * (pagesNormal + pagesSummary > 0 ? pagesSummary / (pagesNormal + pagesSummary) : 0);
       mins.teoria += m.teoria;
       mins.revisao += m.revisao;
       mins.fixacao += m.fixacao;
@@ -70,6 +72,7 @@ export function computeCoverage(chosen: SelectedSubject[], sel: Selection, known
       fullMinutes: full,
       aulas,
       theoryPagesCovered: pages,
+      summaryPages: Math.round(summaryPages),
       theoryPagesEligible: selectable.reduce((n, a) => n + a.theoryPages, 0),
       coverage: Math.min(1, seenInc / totalInc) * (subject.materialCompleteness ?? 1),
       depth: Math.min(1, depthInc / totalInc),
@@ -80,7 +83,8 @@ export function computeCoverage(chosen: SelectedSubject[], sel: Selection, known
   const pts = chosen.reduce((n, c) => n + c.subject.examQuestions, 0) || 1;
   const covPts = subjects.reduce((n, s) => n + s.examQuestions * s.coverage, 0);
   const depthPts = subjects.reduce((n, s) => n + s.examQuestions * s.depth, 0);
-  return { selected: covPts / pts, edital: covPts / EXAM_TOTAL_QUESTIONS, depth: depthPts / pts, subjects };
+  const summaryPts = subjects.reduce((n, s) => n + s.examQuestions * (s.theoryPagesCovered > 0 ? s.coverage * (s.summaryPages / s.theoryPagesCovered) : 0), 0);
+  return { selected: covPts / pts, edital: covPts / EXAM_TOTAL_QUESTIONS, depth: depthPts / pts, summaryShare: covPts > 0 ? summaryPts / covPts : 0, subjects };
 }
 
 export function gapWarnings(catalog: Catalog, subjectIds: string[]): string[] {
