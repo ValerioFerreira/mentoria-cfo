@@ -30,6 +30,8 @@ export const AUDIT_LABEL: Record<string, string> = {
   PAYMENT_REGISTERED: "Pagamento registrado",
   PAYMENT_REVERSED: "Estorno/correção",
   PAYMENT_ON_CANCELLED_CONTRACT: "Pagamento online em contratação cancelada (devolver)",
+  AUTO_APPROVED: "Pago online: conta criada e acesso liberado automaticamente",
+  AUTO_APPROVAL_EMAIL_FAILED: "Acesso liberado, mas o e-mail com a senha não saiu (reenvie em Cadastros)",
   ACCESS_GRANT_PENDING: "Pago online; acesso aguardando liberação",
   ACCESS_REVOKED: "Acesso encerrado por estorno total",
   ACCESS_REVIEW_NEEDED: "Estorno total: revisar acesso",

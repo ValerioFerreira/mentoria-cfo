@@ -4,9 +4,10 @@ import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
 import { requireAdmin } from "@/lib/auth/dal";
 import { hashPassword } from "@/lib/auth/password";
-import { generateTemporaryPassword, sendApprovalEmail, sendResendCredentialsEmail } from "@/lib/email";
+import { approveWaitlistEntry } from "./approve-core";
+import { generateTemporaryPassword, sendResendCredentialsEmail } from "@/lib/email";
 import { regeneratePlanForUser } from "@/lib/plan/regenerate";
-import { cancelContract, grantAccessUntilExam, linkContractsToUser } from "@/lib/commerce/contracts";
+import { cancelContract } from "@/lib/commerce/contracts";
 import { CommerceError } from "@/lib/commerce/errors";
 
 export type AdminActionResult = { success: boolean; message: string; tempPassword?: string };
@@ -18,99 +19,9 @@ export async function approveRegistration(
   opts: { override?: boolean; justification?: string } = {},
 ): Promise<AdminActionResult> {
   const admin = await requireAdmin();
-  if (duration !== "UNTIL_EXAM" && duration !== "30_DAYS" && duration !== "INDEFINITE") {
-    return { success: false, message: "Validade inválida." };
-  }
-
-  const entry = await db.waitlistEntry.findUnique({ where: { id: entryId } });
-  if (!entry) {
-    return { success: false, message: "Registro da lista de espera não encontrado." };
-  }
-
-  // acesso até a prova: precisa da contratação (obrigação financeira) desta inscrição
-  const contract = await db.contract.findFirst({
-    where: { customerEmail: entry.email, contest: entry.contest, status: { not: "CANCELLED" } },
-    orderBy: { createdAt: "desc" },
-    select: { id: true },
-  });
-  if (duration === "UNTIL_EXAM" && !contract) {
-    return { success: false, message: "Esta inscrição não tem contratação registrada. Registre-a em Financeiro ou escolha outra validade." };
-  }
-
-  const tempPassword = generateTemporaryPassword("MTR");
-  const passwordHash = await hashPassword(tempPassword);
-
-  const accessExpiresAt =
-    duration === "30_DAYS"
-      ? new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)
-      : null;
-
-  let accessUntil: Date | null = null;
-  try {
-    await db.$transaction(async (tx) => {
-      // Cria ou atualiza o usuário no banco
-      const existingUser = await tx.user.findUnique({ where: { email: entry.email }, include: { partner: { select: { id: true } } } });
-      let userId: string;
-      if (!existingUser) {
-        // Garante que o username não conflita
-        let username = entry.username;
-        const userWithUsername = await tx.user.findUnique({ where: { username } });
-        if (userWithUsername) {
-          username = `${username}_${Math.floor(100 + Math.random() * 900)}`;
-        }
-        userId = (
-          await tx.user.create({
-            data: { name: entry.name, email: entry.email, username, passwordHash, mustChangePassword: true, accessExpiresAt, role: "USER" },
-          })
-        ).id;
-      } else {
-        if (existingUser.role !== "USER") throw new CommerceError("Este e-mail pertence a um administrador.");
-        if (existingUser.partner) throw new CommerceError("Este e-mail é de um parceiro: libere o acesso pela contratação, em Financeiro (a senha do parceiro não é trocada).");
-        userId = existingUser.id;
-        await tx.user.update({ where: { id: userId }, data: { passwordHash, mustChangePassword: true, accessExpiresAt } });
-      }
-      await linkContractsToUser(tx, userId, entry.email);
-      if (duration === "UNTIL_EXAM" && contract) {
-        // mesma regra do Financeiro: exige data da prova e quitação (ou liberação justificada)
-        const g = await grantAccessUntilExam(contract.id, admin.id, { ...opts, newAccount: true }, tx);
-        accessUntil = g.until;
-      }
-      await tx.waitlistEntry.update({
-        where: { id: entry.id },
-        data: { status: "APPROVED", paidAt: entry.paidAt ?? new Date(), approvedAt: new Date(), accessDuration: duration },
-      });
-    });
-  } catch (err) {
-    if (err instanceof CommerceError) return { success: false, message: err.message };
-    throw err;
-  }
-
-  // Envia e-mail de aprovação
-  const loginUrl = `${(process.env.SITE_URL || "https://www.missaomentoria.com.br").replace(/\/$/, "")}/login`;
-
-  let emailSent = false;
-  try {
-    const emailRes = await sendApprovalEmail({
-      to: entry.email,
-      name: entry.name,
-      tempPassword,
-      accessDuration: duration,
-      accessUntil,
-      loginUrl,
-    });
-    emailSent = emailRes?.success ?? false;
-  } catch (err) {
-    console.error("Erro ao enviar e-mail de aprovação:", err);
-  }
-
-  revalidatePath("/admin/cadastros");
-  return {
-    success: true,
-    message: emailSent
-      ? `Cadastro de ${entry.name} aprovado com sucesso! E-mail com senha temporária enviado.`
-      : `Cadastro de ${entry.name} aprovado! Atenção: configure RESEND_API_KEY ou SMTP na Vercel para envio automático. Copie a senha temporária abaixo para enviar ao aluno.`,
-    tempPassword,
-  };
+  const r = await approveWaitlistEntry({ entryId, duration, actorId: admin.id, override: opts.override, justification: opts.justification });
+  if (r.success) revalidatePath("/admin/cadastros");
+  return { success: r.success, message: r.message, tempPassword: r.tempPassword };
 }
 
 export async function rejectRegistration(entryId: string, reason?: string): Promise<AdminActionResult> {
