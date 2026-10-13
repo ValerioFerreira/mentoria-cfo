@@ -1,5 +1,6 @@
 import "server-only";
-import type { OnlineCharge, OnlineChargeStatus, PaymentMethod } from "@/generated/prisma/client";
+import type { Contest, OnlineCharge, OnlineChargeStatus, PaymentMethod } from "@/generated/prisma/client";
+import { approveWaitlistEntry } from "@/lib/admin/approve-core";
 import { mercadoPagoConfigured, mercadoPagoToken, mpRequest, MercadoPagoError, notificationUrl, siteUrl } from "@/lib/billing/mercado-pago";
 import { db } from "@/lib/db";
 import { audit } from "./audit";
@@ -380,8 +381,24 @@ export async function syncContractPayment(p: MpPayment): Promise<SyncResult | nu
       if (!(err instanceof CommerceError)) throw err;
       await logOnce(fresh.id, "ACCESS_GRANT_PENDING", providerId, { code: err.code });
     }
+  } else if ((fresh.status === "PAID" || fresh.status === "OVERPAID") && !fresh.userId) {
+    await approveWaitlistAfterPayment(fresh, providerId);
   }
   return { contractId: contract.id, status, detail, outcome };
+}
+
+/**
+ * Inscrição da lista de espera quitada: cria a conta e libera o acesso até a prova sem esperar o administrador
+ * (mesmo caminho da aprovação manual). Se algo impede (data da prova pendente, e-mail de administrador/parceiro),
+ * o pagamento fica registrado e o motivo vai para os pontos de atenção; o administrador aprova depois em Cadastros.
+ */
+async function approveWaitlistAfterPayment(c: { id: string; customerEmail: string; contest: Contest; waitlistEntryId: string | null }, providerId: string) {
+  const entry = c.waitlistEntryId
+    ? await db.waitlistEntry.findUnique({ where: { id: c.waitlistEntryId }, select: { id: true, status: true } })
+    : await db.waitlistEntry.findFirst({ where: { email: c.customerEmail, contest: c.contest }, select: { id: true, status: true } });
+  if (!entry || entry.status !== "PENDING") return;
+  const r = await approveWaitlistEntry({ entryId: entry.id, duration: "UNTIL_EXAM", actorId: null, onlyIfPending: true });
+  if (!r.success && r.code !== "ALREADY_HANDLED") await logOnce(c.id, "ACCESS_GRANT_PENDING", providerId, { code: r.code ?? "UNKNOWN" });
 }
 
 /** Consulta o pagamento na API autenticada e concilia. */
@@ -428,6 +445,8 @@ export interface AccountStatus {
   webhookSecretSet: boolean;
   sellerIdSet: boolean;
   appUrl: string | null;
+  /** resposta do próprio endereço do webhook a um aviso SEM assinatura: 401 = no ar e protegido; 3xx = o endereço redireciona (o Mercado Pago não segue redirecionamento) */
+  webhook: { status: number | null; redirectTo: string | null };
   mode: "producao" | "teste" | null;
   account: null | { id: string; nickname: string | null; documentType: string | null; matchesSellerId: boolean | null };
   error: string | null;
@@ -440,6 +459,7 @@ export async function mercadoPagoAccountStatus(): Promise<AccountStatus> {
     webhookSecretSet: Boolean(process.env.MERCADOPAGO_WEBHOOK_SECRET),
     sellerIdSet: Boolean(process.env.MERCADOPAGO_SELLER_ID),
     appUrl: null,
+    webhook: { status: null, redirectTo: null },
     mode: null,
     account: null,
     error: null,
@@ -448,6 +468,15 @@ export async function mercadoPagoAccountStatus(): Promise<AccountStatus> {
     status.appUrl = siteUrl().origin;
   } catch {
     status.error = "APP_URL não configurada.";
+  }
+  if (status.appUrl) {
+    try {
+      const r = await fetch(notificationUrl(), { method: "POST", redirect: "manual", headers: { "content-type": "application/json" }, body: "{}", signal: AbortSignal.timeout(8000), cache: "no-store" });
+      status.webhook.status = r.status;
+      status.webhook.redirectTo = r.status >= 300 && r.status < 400 ? r.headers.get("location") : null;
+    } catch {
+      /* sem resposta: aparece como "não verificado" */
+    }
   }
   let token: string;
   try {
@@ -479,7 +508,7 @@ export async function onlineOverview() {
   const [pending, alerts] = await Promise.all([
     db.onlineCharge.count({ where: { status: "PENDING", providerPaymentId: { not: null }, expiresAt: { gt: new Date(now) } } }),
     db.auditLog.findMany({
-      where: { action: { in: ["PAYMENT_ON_CANCELLED_CONTRACT", "ACCESS_GRANT_PENDING", "ACCESS_REVIEW_NEEDED"] }, createdAt: { gt: new Date(now - 60 * DAY_MS) } },
+      where: { action: { in: ["PAYMENT_ON_CANCELLED_CONTRACT", "ACCESS_GRANT_PENDING", "ACCESS_REVIEW_NEEDED", "AUTO_APPROVAL_EMAIL_FAILED"] }, createdAt: { gt: new Date(now - 60 * DAY_MS) } },
       orderBy: { createdAt: "desc" },
       take: 20,
     }),

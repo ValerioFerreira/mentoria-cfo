@@ -18,6 +18,14 @@ const fake = vi.hoisted(() => ({
   wrongAmount: false,
 }));
 
+const mail = vi.hoisted(() => ({ sent: [] as Record<string, unknown>[], ok: true }));
+vi.mock("@/lib/email", () => ({
+  generateTemporaryPassword: (p: string) => `${p}-TESTE1`,
+  sendApprovalEmail: vi.fn(async (args: Record<string, unknown>) => {
+    mail.sent.push(args);
+    return { success: mail.ok };
+  }),
+}));
 vi.mock("server-only", () => ({}));
 vi.mock("@/lib/db", async () => {
   const { hasTestDb: ok, makeTestClient: make } = await import("./test-support");
@@ -119,6 +127,8 @@ describe.skipIf(!hasTestDb)("pagamento online (Mercado Pago da empresa)", { time
     fake.calls.length = 0;
     fake.failNext = false;
     fake.wrongAmount = false;
+    mail.sent.length = 0;
+    mail.ok = true;
     fake.me = { id: 987654, nickname: "MISSAO.MENTORIA", identification: { type: "CNPJ" } };
     delete process.env.MERCADOPAGO_SELLER_ID;
     svc.online.resetAccountCheck();
@@ -346,6 +356,75 @@ describe.skipIf(!hasTestDb)("pagamento online (Mercado Pago da empresa)", { time
     });
   });
 
+  describe("liberação automática do acesso ao confirmar o pagamento", () => {
+    /** inscrição da lista de espera (sem conta) com a contratação ligada a ela */
+    async function waitlisted(contest: "CBMPE_OFICIAL" | "CBMPE_SOLDADO" = "CBMPE_OFICIAL", email = "lista@teste.local") {
+      const entry = await db.waitlistEntry.create({ data: { contest, name: "Cliente da Lista", email, username: "lista1", plan: "UNTIL_EXAM" } });
+      const r = await svc.contracts.createContract({ contest, customerEmail: email, customerName: entry.name, waitlistEntryId: entry.id }, null);
+      return { entry, contractId: r.contractId };
+    }
+
+    it("inscrição quitada: cria a conta, libera até a prova e envia a senha por e-mail, uma única vez", async () => {
+      const { entry, contractId } = await waitlisted();
+      const paymentId = await pixPaid(contractId);
+      expect((await POST(signed(paymentId))).status).toBe(200);
+      await POST(signed(paymentId));
+      await Promise.all([POST(signed(paymentId)), POST(signed(paymentId))]);
+
+      const user = await db.user.findUniqueOrThrow({ where: { email: "lista@teste.local" } });
+      expect(user).toMatchObject({ role: "USER", mustChangePassword: true, name: "Cliente da Lista" });
+      expect(user.accessExpiresAt?.toISOString()).toBe("2027-03-01T02:59:59.999Z");
+      expect(user.passwordHash).not.toContain("TESTE1"); // a senha temporária só existe no e-mail, nunca em texto puro
+      expect(await db.user.count({ where: { email: "lista@teste.local" } })).toBe(1);
+      expect((await reload(contractId)).userId).toBe(user.id);
+      expect(await db.waitlistEntry.findUniqueOrThrow({ where: { id: entry.id } })).toMatchObject({ status: "APPROVED", accessDuration: "UNTIL_EXAM" });
+      expect(mail.sent).toHaveLength(1);
+      expect(mail.sent[0]).toMatchObject({ to: "lista@teste.local", accessDuration: "UNTIL_EXAM", tempPassword: "MTR-TESTE1" });
+      expect(await db.auditLog.count({ where: { action: "AUTO_APPROVED", entityId: contractId } })).toBe(1);
+    });
+
+    it("prova sem data cadastrada: nada é criado e a inscrição segue pendente para o administrador", async () => {
+      const { entry, contractId } = await waitlisted("CBMPE_SOLDADO");
+      const paymentId = await pixPaid(contractId);
+      expect((await POST(signed(paymentId))).status).toBe(200);
+      expect((await reload(contractId)).status).toBe("PAID");
+      expect(await db.user.count({ where: { email: "lista@teste.local" } })).toBe(0);
+      expect((await db.waitlistEntry.findUniqueOrThrow({ where: { id: entry.id } })).status).toBe("PENDING");
+      expect(await db.auditLog.count({ where: { action: "ACCESS_GRANT_PENDING", entityId: contractId } })).toBe(1);
+      expect(mail.sent).toHaveLength(0);
+    });
+
+    it("e-mail de parceiro não é tocado (a senha dele é da administração): fica para decisão manual", async () => {
+      await partner();
+      const { entry, contractId } = await waitlisted("CBMPE_OFICIAL", "parceira@teste.local");
+      const before = (await db.user.findUniqueOrThrow({ where: { email: "parceira@teste.local" } })).passwordHash;
+      const paymentId = await pixPaid(contractId);
+      expect((await POST(signed(paymentId))).status).toBe(200);
+      expect((await db.user.findUniqueOrThrow({ where: { email: "parceira@teste.local" } })).passwordHash).toBe(before);
+      expect((await db.waitlistEntry.findUniqueOrThrow({ where: { id: entry.id } })).status).toBe("PENDING");
+      expect(await db.auditLog.count({ where: { action: "ACCESS_GRANT_PENDING", entityId: contractId } })).toBe(1);
+      expect(mail.sent).toHaveLength(0);
+    });
+
+    it("se o e-mail não sair, o acesso é liberado mesmo assim e o administrador é avisado para reenviar a senha", async () => {
+      mail.ok = false;
+      const { contractId } = await waitlisted();
+      const paymentId = await pixPaid(contractId);
+      expect((await POST(signed(paymentId))).status).toBe(200);
+      expect(await db.user.count({ where: { email: "lista@teste.local" } })).toBe(1);
+      expect(await db.auditLog.count({ where: { action: "AUTO_APPROVAL_EMAIL_FAILED", entityId: contractId } })).toBe(1);
+    });
+
+    it("inscrição já aprovada ou rejeitada pelo administrador não é refeita pelo pagamento", async () => {
+      const { entry, contractId } = await waitlisted();
+      await db.waitlistEntry.update({ where: { id: entry.id }, data: { status: "REJECTED" } });
+      const paymentId = await pixPaid(contractId);
+      await POST(signed(paymentId));
+      expect(await db.user.count({ where: { email: "lista@teste.local" } })).toBe(0);
+      expect(mail.sent).toHaveLength(0);
+    });
+  });
+
   describe("estornos e contestações", () => {
     it("reembolso parcial reverte a comissão proporcionalmente e mantém o acesso; o total encerra o acesso", async () => {
       const p = await partner();
@@ -418,6 +497,20 @@ describe.skipIf(!hasTestDb)("pagamento online (Mercado Pago da empresa)", { time
       const paymentId = (await db.onlineCharge.findUniqueOrThrow({ where: { id: charge.id } })).providerPaymentId!;
       expect(fake.payments.get(paymentId)!.status).toBe("cancelled");
       expect((await db.onlineCharge.findUniqueOrThrow({ where: { id: charge.id } })).status).toBe("CANCELLED");
+    });
+
+    it("o diagnóstico detecta endereço de webhook que redireciona (o Mercado Pago não segue redirecionamento)", async () => {
+      const spy = vi.spyOn(globalThis, "fetch");
+      try {
+        spy.mockResolvedValueOnce(new Response(null, { status: 308, headers: { location: "https://www.teste.local/api/webhooks/mercadopago" } }));
+        const redirected = await svc.online.mercadoPagoAccountStatus();
+        expect(redirected.webhook).toEqual({ status: 308, redirectTo: "https://www.teste.local/api/webhooks/mercadopago" });
+        expect(spy.mock.calls[0][1]).toMatchObject({ method: "POST", redirect: "manual" });
+        spy.mockResolvedValueOnce(new Response("{}", { status: 401 }));
+        expect((await svc.online.mercadoPagoAccountStatus()).webhook).toEqual({ status: 401, redirectTo: null });
+      } finally {
+        spy.mockRestore();
+      }
     });
 
     it("o diagnóstico distingue conta de empresa (CNPJ) de pessoa física (CPF) e confere o ID do vendedor, sem expor segredos", async () => {
