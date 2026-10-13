@@ -7,22 +7,13 @@
       "id": "estatistica/a09/s01",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- Função densidade de probabilidade (f.d.p.) f(x): descreve a distribuição da variável contínua.",
-          "- **Condições: f(x) ≥ 0 e área total sob a curva:** 1** (probabilidade do espaço amostral).",
-          "- **Probabilidade de um intervalo:** área sob f(x) entre a e b: P(a < X < b) = ∫ f(x) dx de a até b.",
-          "- **Integral definida:** ache a primitiva F(x), calcule F(b) − F(a) e não F(b − a).",
-          "Regras: ∫xⁿ dx = xⁿ⁺¹/(n + 1) (n ≠ −1). ∫a dx = a·x. ∫eˣ dx = eˣ.",
-          "### 2. Métodos de Resolução e Classificações",
-          "- a **contínua** assume qualquer valor de um intervalo (tempo, peso, temperatura), em quantidade não enumerável.",
-          "- constantes multiplicativas saem da integral.",
-          "- Logo, **tanto faz usar < ou ≤** nos extremos do intervalo.",
-          "- integre cada pedaço separadamente e some.",
-          "- Uma f.d.p. linear pode ser tratada como reta (triângulo ou trapézio) para calcular áreas sem integrar.",
-          "#### Quadro Comparativo:",
-          "| Instituto / Conceito | Regra / Distinção | Confronto / Exceção |\n| :--- | :--- | :--- |\n| **Aspecto 1** | Variável discreta | contínua: a discreta assume valores enumeráveis (nº de caras, face do dado) |\n| **Quando o gráfico é figura simples, use geometria (retângulo** | base | altura |\n| **triângulo** | base | altura / 2 |\n| **trapézio** | (B + b) | altura / 2) |",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+          "**Contínua × discreta**: a contínua é medida, não contada, e assume infinitos valores num intervalo; a discreta tem resultados enumeráveis.",
+          "**Ponto isolado**: P(X = x) = 0 para variável contínua, então se calculam probabilidades de intervalos e tanto faz usar < ou ≤.",
+          "**F.d.p.**: f(x) ≥ 0 e área total sob a curva igual a 1; f(x) é densidade, não probabilidade, e pode passar de 1.",
+          "**Probabilidade**: é a área sob a f.d.p. no intervalo; use geometria (retângulo, triângulo, trapézio) quando o gráfico for simples.",
+          "**Integral**: ∫xⁿ dx = x^(n+1)/(n+1) para n ≠ −1; ∫a dx = a·x; ∫eˣ dx = eˣ; e a integral de uma soma é a soma das integrais.",
+          "**Intervalo**: P(a < X < b) = F(b) − F(a); o erro clássico é calcular F(b − a).",
+          "**Constante e partes**: ache a constante impondo área total 1; se a f.d.p. tem expressões diferentes por faixa, separe a integral e some."
         ],
         "teoria": [
           {
@@ -95,20 +86,13 @@
       "id": "estatistica/a09/s02",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- **Função de distribuição acumulada (f.d.a.): F(x):** P(X ≤ x).",
-          "- **Na variável contínua:** é a **integral da f.d.p.** desde o extremo inferior até x.",
-          "- **Propriedades da f.d.a.:** não decrescente.",
-          "- **Cálculo: F(x):** G(x) − G(x_I), em que G é a primitiva da f.d.p. e x_I, o extremo inferior.",
-          "Em f.d.p. por partes, **acumule**: a parcela de cada intervalo soma-se ao valor de F no fim do intervalo anterior. Derivada: a f.d.p. é a derivada da f.d.a. (f(x) = F′(x)).",
-          "### 2. Métodos de Resolução e Classificações",
-          "- 0 ≤ F(x) ≤ 1.",
-          "- se decrescente, o menor.",
-          "- Em parábola com concavidade para cima, teste os extremos (pode haver duas modas).",
-          "#### Quadro Comparativo:",
-          "| Instituto / Conceito | Regra / Distinção | Confronto / Exceção |\n| :--- | :--- | :--- |\n| **Aspecto 1** | vale 0 para | menor ou igual ao extremo inferior e **1 para x maior ou igual ao extremo superior** |\n| **Para f(x)** | 12x²(1 − x), f′ = 24x − 36x² = 0 → | = 2/3 |",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+          "**F.d.a.**: FA(x) = P(X ≤ x) = F(x) − F(xI), em que F é a primitiva da f.d.p.; é não decrescente, vale 0 até o mínimo e 1 a partir do máximo.",
+          "**Extremo superior**: quando não é dado, resolve-se FA(xS) = 1.",
+          "**F.d.p. por partes**: a f.d.a. é calculada faixa a faixa, somando o acumulado atingido no fim da faixa anterior.",
+          "**Mediana**: é o x que resolve FA(x) = 0,5; Md(X ± a) = Md(X) ± a, e o mesmo vale para multiplicar ou dividir.",
+          "**Moda**: é o x de maior densidade f(x), lido no gráfico da f.d.p., não da f.d.a.",
+          "**Atalhos geométricos para a moda**: crescente, extremo superior; decrescente, extremo inferior; parábola para baixo, média das raízes; parábola para cima, teste os extremos.",
+          "**Caso geral**: f'(x) = 0, confirmando que o ponto é máximo; d(xᵃ)/dx = a·xᵃ⁻¹ e a derivada da constante é zero."
         ],
         "teoria": [
           {
@@ -186,23 +170,16 @@
       "id": "estatistica/a09/s03",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- **Esperança contínua: E(X):** ∫ x·f(x) dx, no intervalo da variável.",
-          "- **Propriedades da esperança (valem como no caso discreto): E(X ± Y):** E(X) ± E(Y).",
-          "- **E(k·X):** k·E(X).",
-          "- **E(k):** k.",
-          "se X e Y são independentes, E(X·Y) = E(X)·E(Y). Simetria: em distribuição simétrica e unimodal, média = mediana = moda. Propriedades da variância: V(X + k) = V(X).",
-          "### 2. Métodos de Resolução e Classificações",
-          "#### Sequência e Funcionamento:",
-          "1. Variância: V(X) = E(X²) − [E(X)]², em que E(X²) = ∫ x²·f(x) dx (segundo momento).",
-          "- Em f.d.p. por partes, calcule uma integral para cada trecho e some.",
-          "- **Verifique que o intervalo:** é simétrico em torno do ponto, não só a fórmula.",
-          "- linear na soma.",
-          "### 3. Exemplos de Aplicação e Procedimentos",
-          "> 💡 **Exemplo Prático:** Ex.: V(3X) = 9·V(X).",
-          "> 💡 **Exemplo Prático:** Ex.: variâncias 8 e 2, covariância 3 → ρ = 3/(√8·√2) = 3/4.",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+          "**Esperança contínua**: E(X) = ∫ x · f(x) dx; a integral substitui o somatório do caso discreto, e densidades por partes exigem uma integral por trecho, depois somadas.",
+          "**Constante da f.d.p.**: a integral de f em todo o domínio deve valer 1; com reta formando triângulo, área = 1 resolve sem integral.",
+          "**Propriedades da esperança**: soma e diferença sempre se separam; E(XY) = E(X)E(Y) só com independência; E(kX) = kE(X); E(k) = k.",
+          "**Simetria**: densidade simétrica e unimodal tem média = mediana = moda; numa parábola é o ponto médio das raízes, desde que o intervalo seja simétrico em torno dele.",
+          "**Variância**: V(X) = E(X²) − [E(X)]², com E(X²) = ∫ x² · f(x) dx; desvio padrão é a raiz da variância.",
+          "**Transformações**: V(X + k) = V(X) e V(kX) = k² · V(X); somar constante não muda a dispersão, multiplicar eleva a constante ao quadrado.",
+          "**Soma de variâncias**: V(X + Y) = V(X) + V(Y) apenas se independentes; no caso geral soma-se 2 · Cov(X, Y) (e subtrai-se em X − Y).",
+          "**Covariância**: Cov(X, Y) = E(XY) − E(X)E(Y); no contínuo, E(XY) vem de integral dupla da densidade conjunta; Cov(X, X) = V(X) e Cov(k, X) = 0.",
+          "**Correlação**: ρ = Cov(X, Y) / (σX · σY); o denominador usa desvios padrão (ex.: 3 / raiz de 16 = 0,75).",
+          "**Cálculo de apoio**: a derivada de e^(tx) é t · e^(tx) (regra da cadeia); L'Hôpital resolve 0/0 e ∞/∞ derivando numerador e denominador."
         ],
         "teoria": [
           {
@@ -280,19 +257,15 @@
       "id": "estatistica/a09/s04",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- **Chebyshev:** P(|X − μ| ≥ δ) ≤ σ²/δ², para qualquer δ > 0.",
-          "- **Em desvios padrão (δ:** k·σ): **P(|X − μ| ≥ k·σ) ≤ 1/k²**.",
-          "- **Complementar:** P(|X − μ| < δ) ≥ 1 − σ²/δ².",
-          "- **P(X < 900 ou X > 1100) ≤ 200/100²:** 0,02, e a chance de ficar entre 900 e 1100 é de pelo menos 0,98.",
-          "Uso para achar variância: com P(|X − 20| ≥ 5) ≤ 0,0625, tem-se σ²/25 = 0,0625, então σ² = 1,5625 e σ = 1,25. Chebyshev é um limite superior: não dá a probabilidade exata, só garante que ela não excede o valor. Desigualdade unilateral (Cantelli): P(X − μ ≥ δ) ≤ σ²/(σ² + δ²).",
-          "### 2. Métodos de Resolução e Classificações",
-          "- Aplica-se a um só lado da média.",
-          "### 3. Exemplos de Aplicação e Procedimentos",
-          "> 💡 **Exemplo Prático:** Ex.: fábrica com μ = 1000 e σ² = 200.",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> ⚠️ **Atenção de Prova:** Desigualdades de probabilidade estimam um limite para a probabilidade conhecendo apenas a média e a variância da variável (qualquer distribuição).",
-          "> 📌 **Bizu Estratégico:** Dica de prova: determine primeiro μ, σ² e δ (a distância ao centro, em módulo) e depois substitua na fórmula."
+          "**Chebyshev**: para qualquer variável com média μ e variância σ², P(|X − μ| ≥ δ) ≤ σ² / δ², valendo para qualquer distribuição.",
+          "**Natureza do resultado**: é um limite máximo para a probabilidade fora do intervalo e, pelo complemento, um limite mínimo para a probabilidade dentro.",
+          "**Forma com z desvios padrão**: P(|X − μ| < zσ) ≥ 1 − 1/z²; para z = 2 dá pelo menos 75%, para z = 4 dá 93,75%.",
+          "**Cuidado com z ≤ 1**: o limite 1/z² chega a 1 ou mais e não informa nada.",
+          "**Cotas, não valores**: o teorema não fixa o coeficiente de variação nem o valor exato da probabilidade; não troque \"pelo menos\" por \"no máximo\".",
+          "**Problemas inversos**: iguale σ² / δ² ao limite dado e isole σ² (média 60, fora de 54 a 66 em no máximo 4% leva a σ² = 1,44).",
+          "**Conversão dentro × fora**: \"entre os limites com probabilidade mínima p\" equivale a \"fora com probabilidade máxima 1 − p\".",
+          "**Cantelli (unilateral)**: P(X − μ ≥ δ) ≤ σ² / (σ² + δ²), útil quando só um lado interessa.",
+          "**Variância via E(X²)**: se o enunciado fornece E(X) e E(X²), use σ² = E(X²) − [E(X)]² antes de aplicar as fórmulas; em variável contínua > e ≥ coincidem."
         ],
         "teoria": [
           {

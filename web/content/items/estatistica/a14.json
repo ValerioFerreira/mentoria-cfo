@@ -7,21 +7,16 @@
       "id": "estatistica/a14/s01",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- **H₁**: pelo menos uma média é diferente.",
-          "- **Ideia:** separa a variação entre os grupos (atribuída ao tratamento/fator) da variação dentro dos grupos (atribuída ao erro, resíduo ou componente aleatória).",
-          "- **Modelo: x_ij:** μ + α_i + ε_ij, em que μ é a média geral, α_i o efeito do tratamento i e ε_ij o erro aleatório.",
-          "- **Pressupostos:** erros normais, com média zero e variância constante (homocedasticidade) e independentes (sem autocorrelação, que pode ser investigada por gráfico dos erros ou testes específicos).",
-          "Decomposição: x_ij − x̿ = (x̄_i − x̿) + (x_ij − x̄_i), ou seja, desvio total = desvio do tratamento + desvio do erro. Somas de quadrados: SQTrat = Σ n·(x̄_i − x̿)². **SQErro = ΣΣ(x_ij − x̄_i)²**.",
-          "### 2. Métodos de Resolução e Classificações",
-          "- Foi desenvolvida por R.",
-          "- Fisher.",
-          "### 3. Exemplos de Aplicação e Procedimentos",
-          "> 💡 **Exemplo Prático:** ANOVA de um fator (one-way): teste de hipóteses que compara as médias de três ou mais grupos. H₀: todas as médias são iguais.",
-          "> 💡 **Exemplo Prático:** Ex.: (40² + 35² + 30²)/5 − 105²/15 = 745 − 735 = 10.",
-          "> 💡 **Exemplo Prático:** Exemplo da aula: 3 professores com 5 alunos cada.",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+          "**Objetivo**: a ANOVA de um fator testa se três ou mais médias são iguais; para dois grupos, vale o teste t.",
+          "**Hipóteses**: H0 afirma médias todas iguais; H1, que pelo menos uma difere (sem indicar qual).",
+          "**Conceitos**: fator é a característica estudada, tratamento é cada nível dele e o erro é a variação dentro dos grupos.",
+          "**Pressupostos**: erros independentes, normais com média zero e de variância igual (homoscedasticidade); por isso o teste é paramétrico.",
+          "**Não são pressupostos**: amostra mínima de 30, autocorrelação ou tendenciosidade; a autocorrelação, aliás, viola a independência.",
+          "**Kruskal-Wallis**: alternativa não paramétrica para 3 ou mais grupos, com dados em postos; estatística H comparada ao qui-quadrado com g − 1 graus.",
+          "**Mann-Whitney**: versão não paramétrica do teste t, só para dois grupos.",
+          "**Decomposição**: SQTotal = SQTrat + SQErro, separando variação entre grupos (tratamento) e dentro dos grupos (erro).",
+          "**Fórmulas**: SQTrat = n·Σ(x̄i − x̿)², SQErro = ΣΣ(xij − x̄i)² e SQTotal = ΣΣ(xij − x̿)².",
+          "**Atalhos**: SQTotal = Σx² − (Σx)²/N e SQTrat = Σ(total do grupo)²/n − (Σx)²/N, com SQErro = SQTotal − SQTrat."
         ],
         "teoria": [
           {
@@ -94,19 +89,16 @@
       "id": "estatistica/a14/s02",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- **Graus de liberdade (k tratamentos, n repetições cada, N total): GL_Total:** N − 1.",
-          "- **GL_Trat = k − 1**.",
-          "- **GL_Erro = N − k = k(n − 1)**.",
-          "- **Eles se somam: GL_Total:** GL_Trat + GL_Erro.",
-          "Quadrados médios: QM_Trat = SQ_Trat/GL_Trat e QM_Erro = SQ_Erro/GL_Erro. O QM_Erro é a estimativa da **variância dos erros** σ². Estatística F: F = QM_Trat/QM_Erro, que sob H₀ segue F de Snedecor com (k − 1.",
-          "### 2. Métodos de Resolução e Classificações",
-          "- N − k) g.l. Valores grandes de F indicam que a variação entre grupos supera o esperado pelo acaso.",
-          "### 3. Exemplos de Aplicação e Procedimentos",
-          "> 💡 **Exemplo Prático:** Exemplo: SQ_Trat = 10 (GL 2), SQ_Erro = 30 (GL 12) → QM_Trat = 5, QM_Erro = 2,5 e F = 2.",
-          "> 💡 **Exemplo Prático:** Ex.: (360 − 60)/4 = 75.",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> ⚠️ **Atenção de Prova:** Atenção: rejeitar H₀ mostra que há ao menos uma média diferente, mas não diz quais são diferentes (exige comparações múltiplas)."
+          "**Graus de liberdade**: total = N − 1, tratamento = k − 1, erro = N − k (ou k·(n − 1)); total = tratamento + erro.",
+          "**Quadrado médio**: soma de quadrados dividida pelos respectivos graus de liberdade; o QM do erro estima a variância dos erros.",
+          "**Estatística F**: F = QM trat ÷ QM erro; F pequeno indica variação entre grupos semelhante à interna, F grande indica diferença real entre médias.",
+          "**Tabela da ANOVA**: a linha Total soma GL e SQ das outras duas; os QM são SQ ÷ GL e F é a razão dos QM (só na linha do tratamento).",
+          "**Componente de variância**: estimativa = (QM trat − QM erro) ÷ n, em que n é o número de repetições; por exemplo, (360 − 60) ÷ 4 = 75.",
+          "**Decisão pelo valor tabelado**: usa-se a distribuição F de Fisher-Snedecor com GL trat no numerador e GL erro no denominador; rejeita H0 se F observado > F tabelado.",
+          "**Decisão pelo p-valor**: p-valor é a probabilidade de resultado tão ou mais extremo supondo H0 verdadeira; rejeita H0 se p-valor < α.",
+          "**Blocos**: SQ total = trat + bloco + erro, com dois F (trat e bloco) e decisão baseada em F trat; o equivalente não paramétrico é o de Friedman.",
+          "**Repetições desiguais**: SQ trat = Σ ni·(média i − média geral)²; GL erro continua N − k e SQ total = SQ trat + SQ erro.",
+          "**Comparações múltiplas**: a ANOVA não diz quais médias diferem; para isso usam-se teste t, Tukey ou Dunnett, comparando cada par à DMS."
         ],
         "teoria": [
           {
@@ -184,24 +176,16 @@
       "id": "estatistica/a14/s03",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- **Na regressão múltipla, H₀:** todos os coeficientes são nulos.",
-          "- **Fontes de variação:** Modelo (variação explicada), Erro/resíduo (não explicada) e Total.",
-          "- **Vale SQ_Total:** SQ_Modelo + SQ_Erro**.",
-          "- **Graus de liberdade:** o do modelo é igual ao número de variáveis explicativas (1 na simples).",
-          "Quadrados médios: QM_Modelo = SQ_Modelo/GL_Modelo e QM_Erro = SQ_Erro/(n − 2) (erro quadrático médio). F = QM_Modelo/QM_Erro, com (1. 1 e 3, 5%): não se rejeita H₀. Coeficiente de determinação: R² = SQ_Modelo/SQ_Total, entre 0 e 1.",
-          "### 2. Métodos de Resolução e Classificações",
-          "- os valores calculados com arredondamentos podem divergir ligeiramente.",
-          "- o do **erro** é **n − 2** na simples (n − p na múltipla).",
-          "- o **total** é **n − 1**.",
-          "- n − 2) g.l. na regressão simples.",
-          "- fração da variância total explicada pelo modelo.",
-          "- **Distinção:** H₁: ao menos um é diferente de zero.",
-          "### 3. Exemplos de Aplicação e Procedimentos",
-          "> 💡 **Exemplo Prático:** Exemplo: SQ_Modelo = 1,79, SQ_Erro = 8,39 e n = 5 → QM_Erro = 8,39/3 ≈ 2,80 e F ≈ 0,64, muito abaixo do crítico (g.l.",
-          "> 💡 **Exemplo Prático:** R² ajustado: R²_aj = 1 − (1 − R²)(n − 1)/(n − p). É sempre menor que R² e pode ser negativo (ex.: −0,12).",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> ⚠️ **Atenção de Prova:** ANOVA da regressão: avalia se vale usar o modelo de regressão, comparando-o ao modelo apenas com a média. H₀: β = 0 (X não explica Y) contra H₁: β ≠ 0."
+          "**Hipóteses da ANOVA da regressão**: H0 diz que β = 0 (não há relação linear, modelo inadequado); H1, β ≠ 0. Na regressão múltipla, H0 exige todos os coeficientes nulos e H1 pelo menos um diferente de zero. Rejeitar H0 valida o modelo.",
+          "**Decomposição**: SQ total = SQ modelo + SQ erro; a parte explicada é Σ(Ŷ − Ȳ)² e a não explicada é Σ(Y − Ŷ)².",
+          "**Atalhos**: SQ total = s²Y · (n − 1); SQ modelo = b² · s²X · (n − 1).",
+          "**Graus de liberdade**: modelo = número de variáveis explicativas k; erro = n − k − 1 (n − 2 na regressão simples); total = n − 1.",
+          "**Estatística F**: QM modelo ÷ QM erro, com GL do modelo no numerador e do erro no denominador; rejeita-se H0 se F supera o valor tabelado ou se p-valor < α.",
+          "**QM total**: SQ total ÷ (n − 1) é a variância amostral de Y e não entra no cálculo de F.",
+          "**Exemplo de prova**: n = 40, 2 regressoras, SQ erro 555 e SQ total 755 dão SQ modelo 200, GL 2 e 37, QM 100 e 15, e F = 20/3.",
+          "**Coeficiente de determinação**: R² = SQ modelo ÷ SQ total, entre 0 e 1, é a fração da variância explicada; |R| = √R² e o sinal de R é o de b.",
+          "**R² ajustado**: 1 − (n − 1)/(n − k − 1) · (1 − R²); corrige o fato de R² crescer sempre que se inclui variável, é menor que R² e pode ser negativo.",
+          "**Cp de Mallows**: Cp = SQ erro ÷ QM erro − n + 2p; bons modelos têm Cp próximo de p (número de parâmetros)."
         ],
         "teoria": [
           {
@@ -278,23 +262,16 @@
       "id": "estatistica/a14/s04",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- Intervalo de confiança do coeficiente angular: β̂ ± t_GLE·s_β, em que t_GLE vem da t de Student com os graus de liberdade do erro (n − 2 na simples) e s_β é o erro padrão de β̂.",
-          "- **Erro padrão do coeficiente angular: s²_β:** QM_Erro / Σ(Xᵢ − X̄)².",
-          "- **Intervalo do intercepto: α̂ ± t·s_α, com s_α:** √(QM_Erro·[1/n + X̄²/Σ(Xᵢ − X̄)²]).",
-          "- Intervalo da previsão individual para X₀: Ŷ₀ ± t·s_Y, em que a variância da predição inclui o termo 1 (variância do próprio erro) além de 1/n e (X₀ − X̄)²/Σ(Xᵢ − X̄)², sendo maior que a variância do valor médio estimado.",
-          "Amostras grandes: a t de Student pode ser aproximada pela normal padrão. Teste de significância individual: H₀: β = 0 (ou outro valor dado). t = β̂/s_β, com GL_Erro graus de liberdade. Na regressão **simples**, **F = t²** (sob H₀: β = 0).",
-          "### 2. Métodos de Resolução e Classificações",
-          "- Quanto maior a variação das estimativas entre amostras, menos precisas elas são.",
-          "- Na regressão múltipla, os erros padrão vêm da diagonal de σ²·(XᵀX)⁻¹.",
-          "- Rejeita-se H₀ se o p-valor < α.",
-          "- o t, a significância **individual** de cada coeficiente.",
-          "#### Quadro Comparativo:",
-          "| Instituto / Conceito | Regra / Distinção | Confronto / Exceção |\n| :--- | :--- | :--- |\n| **Aspecto 1** | Teste t | teste F: o F testa a significância global da regressão |",
-          "### 3. Exemplos de Aplicação e Procedimentos",
-          "> 💡 **Exemplo Prático:** Ex.: QME = 2,8, n = 5, X̄ = 7, Σ(X − X̄)² = 14 → s_α ≈ 3,22.",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+          "**Intervalo de confiança**: estimativa ± t(GLE) × erro padrão; usa-se t de Student porque a variância dos erros é estimada.",
+          "**Graus de liberdade**: GLE = n − k − 1; na regressão simples, n − 2.",
+          "**Erro do coeficiente angular**: sβ² = QME / Σ(Xi − X̄)²; mais dispersão em X dá estimativa mais precisa.",
+          "**Erro do intercepto**: sα² = QME × [1/n + X̄² / Σ(Xi − X̄)²]; cresce quando a média de X é grande em módulo.",
+          "**Predição individual**: sY² = QME × [1 + 1/n + (X0 − X̄)² / Σ(Xi − X̄)²]; o \"1 +\" a deixa mais larga e ela piora longe de X̄.",
+          "**Intervalo com zero**: se o IC do coeficiente inclui o zero, não há evidência de efeito linear.",
+          "**Teste t**: H0: β = 0, t = β̂ / sβ, com o mesmo sinal da estimativa; rejeita-se H0 se p < α.",
+          "**Unilateral × bilateral**: o p-valor unilateral é a metade do bilateral; o bilateral é o padrão.",
+          "**Relação com F**: na regressão simples, F = t²; o teste F é global e o teste t é individual por coeficiente.",
+          "**Amostra grande**: a t de Student se aproxima da normal, e vale a tabela normal padrão."
         ],
         "teoria": [
           {

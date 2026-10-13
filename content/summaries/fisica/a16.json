@@ -1,0 +1,51 @@
+{
+  "aula": "fisica/a16",
+  "batch": "externo-EXT-L5",
+  "status": "DRAFT",
+  "segments": [
+    {
+      "id": "fisica/a16/s01",
+      "fingerprint": {
+        "startPage": 4,
+        "endPage": 17,
+        "startTopic": "Circuitos elétricos"
+      },
+      "analytic": "Em circuitos, a corrente depende das fontes e resistências, enquanto a diferença de potencial pode ser calculada acompanhando as variações ao longo de um percurso. Geradores fornecem energia elétrica; receptores convertem parte dela em outras formas e dissipam outra parte por aquecimento interno.\n\n### Correntes e diferenças de potencial\n\nEm resistores em paralelo, a corrente total se divide entre ramos. A tensão é a mesma em cada ramo e, pela lei de Ohm, I=U/R; portanto, as correntes são inversamente proporcionais às resistências. Exemplo: em dois ramos de 2 Ω e 4 Ω alimentados por 12 A, as correntes ficam na razão 2:1; resultam 8 A e 4 A. Em associações maiores, trate sucessivamente os ramos equivalentes e confira que a soma das correntes de saída iguala a corrente de entrada.\n\nUma bateria especifica a diferença de potencial entre terminais, não o potencial absoluto de cada polo. Ao percorrer a fonte do terminal negativo ao positivo, o potencial aumenta em ε; no sentido inverso, diminui ε. Em resistor atravessado no sentido da corrente, o potencial cai Ri; percorrendo-o contra a corrente, aumenta Ri. Isso permite calcular ddp entre pontos pela soma algébrica das variações ao longo do caminho.\n\n### Geradores e balanço energético\n\nGerador converte energia de outra forma em energia elétrica e mantém a corrente ao estabelecer força eletromotriz ε. Um gerador real possui resistência interna r, onde há perda Joule; a tensão útil nos terminais é U=ε−ri. A potência gerada divide-se em parcela útil e dissipada: Ptotal=εi, Pu=Ui e Pd=ri². O rendimento é η=Pu/Ptotal=U/ε.\n\nEm circuito aberto, i=0, logo U=ε. Em curto-circuito, a resistência externa é desprezível e U=0; assim, icc=ε/r. A curva U×i é reta decrescente, com intercepto ε e inclinação −r. Para uma carga resistiva externa R, a potência útil é P=Ui=(ε−ri)i; é uma parábola com máximo quando R=r, resultando em potência máxima ε²/(4r) e rendimento de 50% nesse ponto.\n\n### Receptores e circuitos em série\n\nReceptor transforma energia elétrica em outra forma útil, como energia mecânica num motor, além de dissipar calor. A corrente entra pelo terminal de maior potencial; sua força contraeletromotriz ε′ representa a parcela destinada à conversão. Com resistência interna r′, a tensão exigida é U=ε′+r′i. A potência absorvida Ui reparte-se em potência útil ε′i e perda r′i².\n\nNum circuito em série com geradores e receptores, a corrente pode ser obtida pela lei de Ohm-Pouillet: i=(Σε−Σε′)/ΣR, considerando resistências externas e internas no total. A relação requer elementos percorridos pela mesma corrente, isto é, em série. Fontes que se opõem entram com sinal contrário no balanço das forças eletromotrizes.\n\n### Para fixar\n- Em paralelo, tensão é comum e corrente maior passa pelo ramo de menor resistência.\n- Fonte do polo − para +: aumento ε; resistor no sentido da corrente: queda Ri.\n- Gerador real: U=ε−ri; perdas internas crescem com i².\n- Circuito aberto: U=ε; curto: U=0 e icc=ε/r.\n- Rendimento do gerador: η=U/ε.\n- Potência útil máxima para carga R=r; eficiência nessa condição é 50%.\n- Receptor: U=ε′+r′i e potência absorvida se divide em útil e dissipada.\n- Lei de Ohm-Pouillet soma fems, contra-fems e resistências em série.",
+      "synthetic": [
+        "**Divisão de corrente**: em paralelo, U é igual nos ramos e I=U/R; ramo de menor resistência conduz corrente maior.",
+        "**Variação de potencial**: bateria de − para + soma ε; resistor no sentido da corrente reduz Ri. Percorrer no sentido contrário troca o sinal.",
+        "**Gerador real**: U=ε−ri; energia produzida divide-se em potência útil Ui e perda ri².",
+        "**Circuito aberto**: i=0 e tensão terminal igual à fem ε.",
+        "**Curto-circuito**: tensão terminal nula e corrente icc=ε/r.",
+        "**Rendimento**: η=U/ε; a curva U×i tem intercepto ε e inclinação −r.",
+        "**Potência máxima**: carga igual à resistência interna maximiza potência útil; rendimento é 50% nesse ponto.",
+        "**Receptor**: U=ε′+r′i; energia elétrica vira potência útil ε′i e perda térmica r′i².",
+        "**Circuito em série**: i=(Σ ε−Σ ε′)/ΣR; fontes opostas têm sinais contrários."
+      ],
+      "agent": "EXT-L5",
+      "sourceFile": "S0576__EXT-L5.md"
+    },
+    {
+      "id": "fisica/a16/s02",
+      "fingerprint": {
+        "startPage": 18,
+        "endPage": 30,
+        "startTopic": "Associações de Geradores"
+      },
+      "analytic": "Geradores podem ser associados para ajustar força eletromotriz e resistência interna. Capacitores armazenam carga e energia elétrica; sua associação equivalente depende de quais grandezas são comuns em série e em paralelo.\n\n### Associação de geradores\n\nEm série, liga-se o polo positivo de um gerador ao negativo do seguinte; todos são percorridos pela mesma corrente. As forças eletromotrizes e resistências internas somam-se: εeq=Σε e req=Σr. A tensão disponível pode aumentar, mas também cresce a dissipação interna.\n\nEm paralelo, unem-se terminais positivos entre si e negativos entre si. Para geradores idênticos, εeq=ε e req=r/n, onde n é o número de unidades. A tensão nominal permanece e a resistência interna equivalente cai, permitindo fornecer corrente maior. Fontes em paralelo devem ter fem compatível para evitar correntes de circulação.\n\n### Capacitores: carga, energia e associação\n\nCapacitor armazena carga e energia potencial elétrica; flashes fotográficos são exemplo de descarga rápida. Capacitância C depende da geometria e do dielétrico. A carga final obedece Q=CU. Durante carga por fonte contínua através de resistor, a corrente começa máxima e decai até zero, enquanto tensão e carga crescem até valores finais. O regime transitório tem constante de tempo τ=RC; as expressões são Uc=U₀(1−e^(−t/RC)), i=(U₀/R)e^(−t/RC) e q=CU₀(1−e^(−t/RC)).\n\nA energia armazenada pode ser expressa por E=QU/2=C·U²/2=Q²/(2C), equivalente à área sob o gráfico carga-tensão. Em série, capacitores têm mesma carga e as tensões se repartem; 1/Ceq=Σ(1/Ci). Para dois, Ceq=C₁C₂/(C₁+C₂); para n iguais, Ceq=C/n. A capacitância equivalente é menor que qualquer capacitância individual. Em paralelo, todos recebem a mesma ddp e as cargas se somam, de modo que Ceq=ΣCi; para n iguais, Ceq=nC, maior que cada unidade. Circuitos mistos podem ser reduzidos etapa por etapa.\n\n### Capacitor plano\n\nDuas placas paralelas de área A separadas por distância d e preenchidas por dielétrico de permissividade ε formam capacitor plano: C=εA/d. Portanto, aumentar área ou permissividade aumenta a capacitância; aumentar a separação a reduz. A permissividade relativa (constante dielétrica) é κ=ε/ε₀. Não confunda κ, adimensional, com a constante eletrostática do meio, K=1/(4πε).\n\n### Para fixar\n- Geradores em série: fem e resistências internas somam-se.\n- n geradores idênticos em paralelo mantêm ε e reduzem r equivalente para r/n.\n- Capacitor: Q=CU e energia E=QU/2=CU²/2=Q²/(2C).\n- Na carga RC, corrente decai e tensão/carga crescem com constante τ=RC.\n- Em série, capacitores têm mesma carga e capacitâncias recíprocas somam-se.\n- Em paralelo, a tensão é comum e as capacitâncias somam-se.\n- Capacitor plano: C=εA/d.\n- κ=ε/ε₀; K=1/(4πε), conceitos diferentes.",
+      "synthetic": [
+        "**Geradores em série**: mesma corrente, εeq=Σε e req=Σr; aumenta tensão, mas também perdas internas.",
+        "**Geradores em paralelo**: terminais de mesmo sinal unidos; para n unidades idênticas, εeq=ε e req=r/n.",
+        "**Capacitância**: Q=CU; depende do formato das placas e do material dielétrico.",
+        "**Carga RC**: Uc e q crescem até o valor final, enquanto i decai a zero; a escala temporal é RC.",
+        "**Energia**: E=QU/2=CU²/2=Q²/(2C).",
+        "**Capacitores em série**: mesma carga; 1/Ceq=Σ1/Ci. Dois: Ceq=C₁C₂/(C₁+C₂).",
+        "**Capacitores em paralelo**: mesma ddp; Ceq=ΣCi. Para unidades iguais, série dá C/n e paralelo nC.",
+        "**Capacitor plano**: C=εA/d; área e permissividade elevam C, separação maior reduz.",
+        "**Permissividade**: κ=ε/ε₀ é constante dielétrica relativa; K=1/(4πε) é a constante eletrostática do meio."
+      ],
+      "agent": "EXT-L5",
+      "sourceFile": "S0578__EXT-L5.md"
+    }
+  ]
+}

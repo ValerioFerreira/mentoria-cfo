@@ -5,7 +5,8 @@ grava em content/summaries/<disciplina>/<aula>.json, guardando o AGENTE em cada 
 isoladamente com validate_summaries.py: o que falhar vai para resumos-colaboradores/rejeitados/ (com os motivos) e NÃO é importado.
 Depois sorteia N resumos por agente (padrão 5) para a análise amostral e gera resumos-colaboradores/amostras/<AGENTE>.md.
 
-Uso:  python pipeline/import_agent_summaries.py <pasta> [--dry-run] [--sample 5] [--overwrite]
+Uso:  python pipeline/import_agent_summaries.py <pasta> [--dry-run] [--sample 5] [--overwrite] [--relatorio arquivo.md]
+  (--relatorio lista todos os rejeitados com os motivos e os válidos com cobertura baixa; combine com --dry-run para ver antes de gravar)
   <pasta>: uma pasta de agente ou a pasta-mãe com várias (busca recursiva). Depois: python pipeline/apply_synthetic.py e o seed.
 """
 from __future__ import annotations
@@ -43,14 +44,14 @@ def parse(text: str) -> tuple[dict, dict]:
     return head, {parts[i]: parts[i + 1].strip() for i in range(1, len(parts) - 1, 2)}
 
 
-def validate_segment(aula: str, seg: dict) -> list[str]:
+def validate_segment(aula: str, seg: dict) -> tuple[list[str], list[str]]:
     """Valida UM trecho isoladamente (monta um arquivo temporário só com ele)."""
     doc = {"aula": aula, "batch": "importacao", "status": "DRAFT", "segments": [seg]}
     with tempfile.TemporaryDirectory() as td:
         f = Path(td) / "t.json"
         f.write_text(json.dumps(doc, ensure_ascii=False), encoding="utf-8")
-        errors, _warns, _stats = validate_file(f)
-    return errors
+        errors, warns, _stats = validate_file(f)
+    return errors, warns
 
 
 def main() -> int:
@@ -59,6 +60,7 @@ def main() -> int:
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--sample", type=int, default=5)
     ap.add_argument("--overwrite", action="store_true")
+    ap.add_argument("--relatorio", help="grava em markdown TODOS os rejeitados (com os motivos) e os válidos com cobertura baixa")
     args = ap.parse_args()
 
     index = {r["id"]: r for r in json.loads((COLAB / "indice.json").read_text(encoding="utf-8"))["rows"]}
@@ -70,6 +72,7 @@ def main() -> int:
     files = sorted(p for p in Path(args.folder).rglob("*.md") if NAME.match(p.name))
     ok_by_agent: dict[str, list[dict]] = {}
     rejected: list[tuple[str, str, list[str]]] = []
+    to_review: list[tuple[str, str, str]] = []  # válidos, mas com cobertura baixa: ler antes de aprovar (summary_coverage.py)
     skipped = 0
     by_file: dict[Path, dict] = {}
     touched: set[Path] = set()
@@ -106,10 +109,13 @@ def main() -> int:
             "sourceFile": p.name,
             **({} if sec["NOTAS"].strip().lower() in ("nenhuma", "nenhum", "-") else {"notes": sec["NOTAS"]}),
         }
-        errs = validate_segment(row["aula"], seg)
+        errs, warns = validate_segment(row["aula"], seg)
         if errs:
             rejected.append((p.name, agent, errs))
             continue
+        flagged = [w for w in warns if "cobertura REFAÇÃO" in w or "cobertura REVISAR" in w]
+        if flagged:
+            to_review.append((sid, agent, flagged[0].split(": ", 1)[1]))
         ok_by_agent.setdefault(agent, []).append({**seg, "_aula": row["aula"], "_row": row})
 
     # grava
@@ -177,12 +183,23 @@ def main() -> int:
                 ]
             (COLAB / "amostras" / f"{agent}.md").write_text("\n".join(lines), encoding="utf-8")
 
+    if args.relatorio:
+        out = ["# Relatório da importação", "", f"## Rejeitados ({len(rejected)})", ""]
+        out += [f"- {n} ({a}): " + " | ".join(errs) for n, a, errs in rejected]
+        out += ["", f"## Válidos com cobertura baixa ({len(to_review)})", ""]
+        out += [f"- {sid} ({a}): {why}" for sid, a, why in to_review]
+        Path(args.relatorio).write_text("\n".join(out) + "\n", encoding="utf-8")
+
     tot_ok = sum(len(v) for v in ok_by_agent.values())
     print(f"{len(files)} arquivos lidos: {tot_ok} válidos ({written} gravados, {skipped} já existiam), {len(rejected)} rejeitados" + (" [dry-run]" if args.dry_run else ""))
     for agent, segs in sorted(ok_by_agent.items()):
         print(f"  {agent}: {len(segs)} resumos válidos")
     for n, a, errs in rejected[:20]:
         print(f"  ✗ {n} ({a}): {errs[0]}")
+    if to_review:
+        print(f"  ! {len(to_review)} válidos com cobertura baixa (REVISAR/REFAÇÃO), ler contra a fonte antes de aprovar:")
+        for sid, a, why in to_review[:20]:
+            print(f"    {sid} ({a}): {why[:140]}")
     return 0
 
 

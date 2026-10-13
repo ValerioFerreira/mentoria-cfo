@@ -9,7 +9,7 @@ Para cada **atividade de Teoria** indicada no seu intervalo do índice (ex.: "do
 
 | Texto | O que é | Tamanho |
 | --- | --- | --- |
-| **Resumo analítico** | Substitui a leitura do material quando o aluno estiver sem tempo (ou preferir ler um resumo). Deve ser **suficiente por si só** para o aluno responder questões de prova sobre o assunto. | ≈ 20 min de leitura no máximo (≈ 100 palavras/min de estudo). **O tamanho é o que o conteúdo pedir**: o limite superior está na coluna "Alvo máx. (palavras)" do índice; o piso é ≈ 250 palavras. Nunca encha para chegar ao alvo. |
+| **Resumo analítico** | Substitui a leitura do material quando o aluno estiver sem tempo (ou preferir ler um resumo). Deve ser **suficiente por si só** para o aluno responder questões de prova sobre o assunto. | ≈ 20 min de leitura no máximo (≈ 100 palavras/min de estudo). **O tamanho é o que o conteúdo pedir**: o limite superior está na coluna "Alvo máx. (palavras)" do índice; o piso é o maior entre 250 palavras e 20% do alvo do índice. Nunca encha para chegar ao alvo. |
 | **Resumo sintético** | Fica na seção "Bizu", que acompanha toda atividade de Teoria: os pontos-chave **com uma explicação breve e com conteúdo** (regra, exceção, número, fórmula). | 6 a 12 pontos; 110 a 320 palavras no total. |
 
 Cada atividade = **um arquivo** de saída. Não junte atividades num mesmo arquivo.
@@ -160,7 +160,7 @@ Não renomeie arquivos depois de entregues, não junte resumos e não altere o �
 ## 13. Autoverificação
 Checklist por arquivo — todos devem ser "sim":
 - [ ] Nome `ID__AGENTE.md`, cabeçalho com as 6 chaves, seções `# ANALÍTICO`, `# SINTÉTICO`, `# NOTAS`.
-- [ ] Analítico: ≥ 250 palavras e ≤ o alvo máx. do índice; ≥ 3 seções `###` (trechos de 5+ págs.); termina em `### Para fixar`.
+- [ ] Analítico: ≥ o piso (o maior entre 250 palavras e 20% do alvo) e ≤ o alvo máx. do índice; ≥ 3 seções `###` (trechos de 5+ págs.); termina em `### Para fixar`.
 - [ ] Todos os assuntos da coluna "Atividade" do índice aparecem.
 - [ ] Sintético: 6–12 pontos, 110–320 palavras, cada ponto com explicação.
 - [ ] Nenhuma frase copiada do material (nenhuma sequência de 10 palavras iguais); sem expressões proibidas; sem `�`; negritos e tabelas íntegros.
@@ -174,7 +174,7 @@ python verificar_resumos.py resumos_AGENTE_S0101-S0120 --indice INDICE-RESUMOS.c
 Ele **não** compara com o PDF (não consegue verificar originalidade nem exatidão): isso continua sendo responsabilidade sua.
 
 ## 14. Casos especiais
-- **Trecho curto** (poucas páginas): o resumo é proporcionalmente curto (mínimo ≈ 250 palavras); não encha.
+- **Trecho curto** (poucas páginas): o resumo é proporcionalmente curto (piso: o maior entre 250 palavras e 20% do alvo); não encha.
 - **Trecho com muitas questões comentadas**: resuma a **teoria** que sustenta as questões; não resuma as questões nem copie enunciados.
 - **Trecho que começa ou termina no meio de um tópico**: resuma só o que está no intervalo de páginas.
 - **Conteúdo repetido entre trechos vizinhos**: resuma como se o aluno fosse ler um trecho de cada vez, sem remeter aos outros ("como visto antes" é proibido).

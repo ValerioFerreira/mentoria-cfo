@@ -40,8 +40,9 @@ def available_keys() -> list[str]:
     return sorted(p.stem for p in Path(PAGES_DIR).glob("*.json"))
 
 
+@lru_cache(maxsize=None)
 def aula_key_map() -> dict[str, str]:
-    """aula_id -> chave do cache (lê só os cabeçalhos dos JSON)."""
+    """aula_id -> chave do cache (lê os cabeçalhos dos JSON; resultado guardado no processo: relê-los a cada chamada levava minutos)."""
     out = {}
     for k in available_keys():
         d = load_pages(k)
