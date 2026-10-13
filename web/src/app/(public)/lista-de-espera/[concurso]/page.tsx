@@ -5,6 +5,8 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { Alert } from "@/components/ui";
 import { getCurrentUser } from "@/lib/auth/session";
+import { contestOffer } from "@/lib/commerce/contracts";
+import { priceCardText } from "@/lib/commerce/pricing";
 import { contestBySlug, contestTitle } from "@/lib/contests";
 import { WaitlistForm } from "./waitlist-form";
 
@@ -18,6 +20,9 @@ export default async function WaitlistPage({ params }: PageProps<"/lista-de-espe
   const { concurso } = await params;
   const c = contestBySlug(concurso);
   if (!c) notFound();
+  // preço calculado no servidor a partir da categoria persistida do concurso
+  const offer = await contestOffer(c.key);
+  const card = offer.available ? { badge: priceCardText(offer.quote).badge, originalCents: offer.quote.originalCents, finalCents: offer.quote.finalCents } : null;
   return (
     <div className="mx-auto max-w-2xl space-y-6 pt-2 sm:pt-8">
       <RouteNavigationTrap targetUrl="/concursos" />
@@ -29,7 +34,11 @@ export default async function WaitlistPage({ params }: PageProps<"/lista-de-espe
         <p className="eyebrow">{contestTitle(c)}</p>
         <h1 className="font-display text-5xl font-bold uppercase leading-none">Inscrição & Plano</h1>
       </div>
-      <WaitlistForm slug={c.slug} />
+      {card ? (
+        <WaitlistForm slug={c.slug} card={card} examDateKnown={Boolean(offer.examDate)} />
+      ) : (
+        <Alert tone="info">As inscrições para este concurso abrem em breve: os valores ainda estão em revisão pela administração.</Alert>
+      )}
     </div>
   );
 }

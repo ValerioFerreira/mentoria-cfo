@@ -9,6 +9,12 @@ import { getUserContestSubtitle } from "@/lib/user-contest";
 import { canUserAccessCoreFeatures } from "@/lib/system-settings";
 import { logout } from "../(auth)/actions";
 
+const LAUNCH_TIME = new Date("2026-10-10T20:00:00-03:00").getTime();
+/** fora do componente: Date.now() direto no render viola a regra de pureza */
+function hasLaunched() {
+  return Date.now() >= LAUNCH_TIME;
+}
+
 const NAV: NavItem[] = [
   { href: "/", label: "Missão de hoje", icon: "today" },
   { href: "/semana", label: "Meta semanal", icon: "week" },
@@ -26,8 +32,7 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
   const contestSubtitle = await getUserContestSubtitle(user.email);
   const canAccessCore = await canUserAccessCoreFeatures(user.role, user.id);
 
-  const launchTime = new Date("2026-10-10T20:00:00-03:00").getTime();
-  const isLaunched = Date.now() >= launchTime;
+  const isLaunched = hasLaunched();
   if (user.role !== "ADMIN" && process.env.APP_ENABLED !== "true" && !isLaunched && !canAccessCore) {
     return (
       <main className="mx-auto flex min-h-screen max-w-xl flex-1 flex-col items-center justify-center gap-4 px-6 text-center">
@@ -60,10 +65,14 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
       ? [
           ...NAV,
           { href: "/admin/cadastros", label: "Cadastros", icon: "users" },
+          { href: "/admin/financeiro", label: "Financeiro", icon: "finance" },
+          { href: "/admin/parceiros", label: "Parceiros", icon: "partners" },
           { href: "/admin/liberacao", label: "Liberação", icon: "release" },
           { href: "/admin/revisao", label: "Revisão", icon: "admin" },
         ]
-      : userNav;
+      : user.isPartner
+        ? [...userNav, { href: "/parceria", label: "Minha parceria", icon: "partnership" }]
+        : userNav;
   const name = user.name ?? user.email;
 
   const who = (

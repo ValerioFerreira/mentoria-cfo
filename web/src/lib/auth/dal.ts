@@ -18,3 +18,10 @@ export async function requireAdmin() {
   if (user.role !== "ADMIN") redirect("/");
   return user;
 }
+
+/** Parceiro ativo da sessão. O id do parceiro sai sempre do servidor, nunca do navegador. */
+export async function requirePartner() {
+  const user = await requireUser();
+  if (!user.isPartner) redirect("/");
+  return user;
+}

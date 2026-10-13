@@ -109,12 +109,16 @@ export async function sendApprovalEmail(params: {
   name?: string;
   tempPassword: string;
   accessDuration: string;
+  /** fim do acesso "até a prova" (dia da prova, Recife) */
+  accessUntil?: Date | null;
   loginUrl: string;
 }) {
   const durationText =
-    params.accessDuration === "30_DAYS"
-      ? "30 dias de acesso"
-      : "Acesso por prazo indeterminado (até a homologação do concurso)";
+    params.accessDuration === "UNTIL_EXAM" && params.accessUntil
+      ? `Acesso ilimitado até a data da prova (${params.accessUntil.toLocaleDateString("pt-BR", { timeZone: "America/Recife" })})`
+      : params.accessDuration === "30_DAYS"
+        ? "30 dias de acesso"
+        : "Acesso por prazo indeterminado (até a homologação do concurso)";
 
   const greeting = params.name ? `Olá, ${params.name}!` : "Olá!";
 

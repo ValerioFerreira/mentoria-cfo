@@ -33,6 +33,7 @@ export default async function PerfilPage() {
 
   const profileData: UserProfileData = {
     ...user,
+    isPartner: sessionUser.isPartner,
     contest,
     createdAt: user.createdAt.toISOString(),
     accessExpiresAt: user.accessExpiresAt ? user.accessExpiresAt.toISOString() : null,

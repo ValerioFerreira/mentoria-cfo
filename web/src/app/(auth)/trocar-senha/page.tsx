@@ -8,6 +8,7 @@ export const metadata: Metadata = { title: "Trocar Senha" };
 export default async function ChangePasswordPage() {
   const user = await getCurrentUser();
   if (!user) redirect("/login");
+  if (user.isPartner) redirect("/");
 
   return <ChangePasswordForm />;
 }

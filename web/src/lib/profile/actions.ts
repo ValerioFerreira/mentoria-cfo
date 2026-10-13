@@ -26,6 +26,7 @@ const UpdatePasswordSchema = z
 
 export async function updateUserPassword(_: ProfilePasswordState, formData: FormData): Promise<ProfilePasswordState> {
   const sessionUser = await requireUser();
+  if (sessionUser.isPartner) return { message: "A senha de parceiro é gerenciada pela administração." };
   const user = await db.user.findUnique({ where: { id: sessionUser.id } });
   if (!user) return { message: "Usuário não encontrado." };
 
@@ -55,6 +56,7 @@ export async function updateUserPassword(_: ProfilePasswordState, formData: Form
 
 export async function sendSelfPasswordReset(): Promise<{ success: boolean; message: string }> {
   const sessionUser = await requireUser();
+  if (sessionUser.isPartner) return { success: false, message: "A senha de parceiro é gerenciada pela administração." };
   const user = await db.user.findUnique({ where: { id: sessionUser.id } });
   if (!user) return { success: false, message: "Usuário não encontrado." };
 

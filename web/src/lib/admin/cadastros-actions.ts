@@ -6,19 +6,35 @@ import { requireAdmin } from "@/lib/auth/dal";
 import { hashPassword } from "@/lib/auth/password";
 import { generateTemporaryPassword, sendApprovalEmail, sendResendCredentialsEmail } from "@/lib/email";
 import { regeneratePlanForUser } from "@/lib/plan/regenerate";
+import { cancelContract, grantAccessUntilExam, linkContractsToUser } from "@/lib/commerce/contracts";
+import { CommerceError } from "@/lib/commerce/errors";
 
 export type AdminActionResult = { success: boolean; message: string; tempPassword?: string };
 export type ValidityOption = "EXTEND_30_DAYS" | "EXTEND_60_DAYS" | "EXTEND_90_DAYS" | "INDEFINITE" | "CUSTOM_DATE";
 
 export async function approveRegistration(
   entryId: string,
-  duration: "30_DAYS" | "INDEFINITE",
+  duration: "UNTIL_EXAM" | "30_DAYS" | "INDEFINITE",
+  opts: { override?: boolean; justification?: string } = {},
 ): Promise<AdminActionResult> {
-  await requireAdmin();
+  const admin = await requireAdmin();
+  if (duration !== "UNTIL_EXAM" && duration !== "30_DAYS" && duration !== "INDEFINITE") {
+    return { success: false, message: "Validade inválida." };
+  }
 
   const entry = await db.waitlistEntry.findUnique({ where: { id: entryId } });
   if (!entry) {
     return { success: false, message: "Registro da lista de espera não encontrado." };
+  }
+
+  // acesso até a prova: precisa da contratação (obrigação financeira) desta inscrição
+  const contract = await db.contract.findFirst({
+    where: { customerEmail: entry.email, contest: entry.contest, status: { not: "CANCELLED" } },
+    orderBy: { createdAt: "desc" },
+    select: { id: true },
+  });
+  if (duration === "UNTIL_EXAM" && !contract) {
+    return { success: false, message: "Esta inscrição não tem contratação registrada. Registre-a em Financeiro ou escolha outra validade." };
   }
 
   const tempPassword = generateTemporaryPassword("MTR");
@@ -29,49 +45,45 @@ export async function approveRegistration(
       ? new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)
       : null;
 
-  // Cria ou atualiza o usuário no banco
-  const existingUser = await db.user.findUnique({ where: { email: entry.email } });
-
-  if (!existingUser) {
-    // Garante que o username não conflita
-    let username = entry.username;
-    const userWithUsername = await db.user.findUnique({ where: { username } });
-    if (userWithUsername) {
-      username = `${username}_${Math.floor(100 + Math.random() * 900)}`;
-    }
-
-    await db.user.create({
-      data: {
-        name: entry.name,
-        email: entry.email,
-        username,
-        passwordHash,
-        mustChangePassword: true,
-        accessExpiresAt,
-        role: "USER",
-      },
+  let accessUntil: Date | null = null;
+  try {
+    await db.$transaction(async (tx) => {
+      // Cria ou atualiza o usuário no banco
+      const existingUser = await tx.user.findUnique({ where: { email: entry.email }, include: { partner: { select: { id: true } } } });
+      let userId: string;
+      if (!existingUser) {
+        // Garante que o username não conflita
+        let username = entry.username;
+        const userWithUsername = await tx.user.findUnique({ where: { username } });
+        if (userWithUsername) {
+          username = `${username}_${Math.floor(100 + Math.random() * 900)}`;
+        }
+        userId = (
+          await tx.user.create({
+            data: { name: entry.name, email: entry.email, username, passwordHash, mustChangePassword: true, accessExpiresAt, role: "USER" },
+          })
+        ).id;
+      } else {
+        if (existingUser.role !== "USER") throw new CommerceError("Este e-mail pertence a um administrador.");
+        if (existingUser.partner) throw new CommerceError("Este e-mail é de um parceiro: libere o acesso pela contratação, em Financeiro (a senha do parceiro não é trocada).");
+        userId = existingUser.id;
+        await tx.user.update({ where: { id: userId }, data: { passwordHash, mustChangePassword: true, accessExpiresAt } });
+      }
+      await linkContractsToUser(tx, userId, entry.email);
+      if (duration === "UNTIL_EXAM" && contract) {
+        // mesma regra do Financeiro: exige data da prova e quitação (ou liberação justificada)
+        const g = await grantAccessUntilExam(contract.id, admin.id, { ...opts, newAccount: true }, tx);
+        accessUntil = g.until;
+      }
+      await tx.waitlistEntry.update({
+        where: { id: entry.id },
+        data: { status: "APPROVED", paidAt: entry.paidAt ?? new Date(), approvedAt: new Date(), accessDuration: duration },
+      });
     });
-  } else {
-    await db.user.update({
-      where: { id: existingUser.id },
-      data: {
-        passwordHash,
-        mustChangePassword: true,
-        accessExpiresAt,
-      },
-    });
+  } catch (err) {
+    if (err instanceof CommerceError) return { success: false, message: err.message };
+    throw err;
   }
-
-  // Atualiza status da lista de espera
-  await db.waitlistEntry.update({
-    where: { id: entry.id },
-    data: {
-      status: "APPROVED",
-      paidAt: entry.paidAt ?? new Date(),
-      approvedAt: new Date(),
-      accessDuration: duration,
-    },
-  });
 
   // Envia e-mail de aprovação
   const loginUrl = `${(process.env.SITE_URL || "https://www.missaomentoria.com.br").replace(/\/$/, "")}/login`;
@@ -83,6 +95,7 @@ export async function approveRegistration(
       name: entry.name,
       tempPassword,
       accessDuration: duration,
+      accessUntil,
       loginUrl,
     });
     emailSent = emailRes?.success ?? false;
@@ -101,7 +114,7 @@ export async function approveRegistration(
 }
 
 export async function rejectRegistration(entryId: string, reason?: string): Promise<AdminActionResult> {
-  await requireAdmin();
+  const admin = await requireAdmin();
 
   const entry = await db.waitlistEntry.findUnique({ where: { id: entryId } });
   if (!entry) {
@@ -116,6 +129,16 @@ export async function rejectRegistration(entryId: string, reason?: string): Prom
       rejectionReason: reason?.trim() || "Comprovante não identificado ou pagamento recusado.",
     },
   });
+
+  // obrigação sem nada recebido é cancelada (fica no histórico); com valores recebidos, o estorno é feito no Financeiro
+  const open = await db.contract.findMany({ where: { customerEmail: entry.email, contest: entry.contest, status: "OPEN" }, select: { id: true } });
+  for (const c of open) {
+    try {
+      await cancelContract(c.id, `Inscrição rejeitada: ${reason?.trim() || "pagamento não identificado"}`, admin.id);
+    } catch (err) {
+      if (!(err instanceof CommerceError)) throw err;
+    }
+  }
 
   revalidatePath("/admin/cadastros");
   return { success: true, message: `Cadastro de ${entry.name} foi rejeitado.` };

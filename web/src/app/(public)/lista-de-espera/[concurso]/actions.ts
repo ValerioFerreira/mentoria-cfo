@@ -2,12 +2,13 @@
 
 import { headers } from "next/headers";
 import * as z from "zod";
-import type { WaitlistPlan } from "@/generated/prisma/client";
 import { registerFailure, tooManyAttempts } from "@/lib/auth/rate-limit";
 import { contestBySlug } from "@/lib/contests";
 import { db } from "@/lib/db";
-import { buildPixPayload, pixConfig, pixQrDataUri, type PixConfig } from "@/lib/pix";
-import { PLAN_KEYS, WAITLIST_PLANS } from "@/lib/plans";
+import { createContract, previewContract } from "@/lib/commerce/contracts";
+import { CommerceError } from "@/lib/commerce/errors";
+import { formatBRL, fromCents, toCents } from "@/lib/commerce/money";
+import { buildPixPayload, pixConfig, pixQrDataUri } from "@/lib/pix";
 
 /** Nome de usuário: 3 a 20 caracteres, minúsculas, números, ponto, hífen e sublinhado. */
 const USERNAME = /^[a-z0-9][a-z0-9._-]{2,19}$/;
@@ -25,29 +26,56 @@ export async function checkUsername(raw: string): Promise<UsernameCheck> {
   return { available: true, message: "Nome de usuário disponível." };
 }
 
+export interface PaymentInfo {
+  payload: string;
+  qr: string;
+  email: string;
+  plan: string;
+  /** valor a pagar agora (saldo da contratação), ex.: "42,00" */
+  amount: string;
+  original: string;
+  discounts: string;
+  couponCode: string | null;
+  alreadyJoined: boolean;
+  txId: string;
+}
+
 export type JoinState =
   | undefined
   | {
       errors?: Record<string, string[]>;
       message?: string;
       /** pagamento a exibir depois do cadastro */
-      payment?: { payload: string; qr: string; email: string; plan: string; amount: string; alreadyJoined: boolean; txId: string };
+      payment?: PaymentInfo;
     };
 
 const JoinSchema = z.object({
   name: z.string().trim().min(5, "Informe o nome completo.").max(120, "Nome muito longo."),
   email: z.email("E-mail inválido.").trim().toLowerCase().max(60, "Use um e-mail com até 60 caracteres."),
   username: z.string().trim().toLowerCase(),
-  plan: z.enum(PLAN_KEYS, { error: "Escolha um plano." }),
+  coupon: z.string().trim().max(20, "Cupom inválido.").optional(),
 });
 
-/** Código Pix e QR Code do plano escolhido (a mensagem do Pix é o e-mail). */
-async function paymentFor(cfg: PixConfig, planKey: WaitlistPlan, email: string, alreadyJoined: boolean, username?: string) {
-  const plan = WAITLIST_PLANS[planKey];
-  // Identificador do Pix (txId): alfanumérico com o e-mail do aluno (sem CFO)
-  const cleanId = email.replace(/[^a-zA-Z0-9]/g, "").slice(0, 25) || "ALUNO";
-  const payload = buildPixPayload({ ...cfg, amount: plan.amount }, email, cleanId);
-  return { payload, qr: await pixQrDataUri(payload), email, plan: plan.name, amount: plan.price, alreadyJoined, txId: cleanId };
+/** Pix com o valor da contratação calculado no servidor (a mensagem do Pix é o e-mail). */
+async function paymentFor(contractId: string, alreadyJoined: boolean): Promise<PaymentInfo | null> {
+  const cfg = pixConfig();
+  const c = await db.contract.findUniqueOrThrow({ where: { id: contractId } });
+  const due = toCents(c.finalAmount) - toCents(c.paidAmount);
+  if (!cfg || due <= 0) return null;
+  const cleanId = c.customerEmail.replace(/[^a-zA-Z0-9]/g, "").slice(0, 25) || "ALUNO";
+  const payload = buildPixPayload({ ...cfg, amount: fromCents(due) }, c.customerEmail, cleanId);
+  return {
+    payload,
+    qr: await pixQrDataUri(payload),
+    email: c.customerEmail,
+    plan: "Acesso ilimitado até a prova",
+    amount: formatBRL(due).replace("R$ ", ""),
+    original: formatBRL(toCents(c.originalAmount)),
+    discounts: `${c.launchDiscountPoints}% de lançamento${c.partnerDiscountPoints ? ` + ${c.partnerDiscountPoints}% do cupom ${c.couponCode}` : ""}`,
+    couponCode: c.couponCode,
+    alreadyJoined,
+    txId: cleanId,
+  };
 }
 
 async function clientKey(): Promise<string> {
@@ -56,27 +84,39 @@ async function clientKey(): Promise<string> {
   return `waitlist:${ip}`;
 }
 
+function contractError(err: unknown): JoinState {
+  if (err instanceof CommerceError) {
+    if (err.code === "COUPON_INVALID" || err.code === "SELF_REFERRAL" || err.code === "CONTRACT_LOCKED") return { errors: { coupon: [err.message] } };
+    return { message: err.message };
+  }
+  console.error("[waitlist] contratação falhou", err instanceof Error ? err.message : "erro desconhecido");
+  return { message: "Não foi possível registrar a contratação agora. Tente novamente em instantes." };
+}
+
 export async function joinWaitlist(slug: string, _: JoinState, formData: FormData): Promise<JoinState> {
   const contest = contestBySlug(slug);
   if (!contest) return { message: "Concurso não encontrado." };
-  const cfg = pixConfig();
-  if (!cfg) return { message: "O pagamento por Pix ainda não está configurado. Tente novamente em breve." };
+  if (!pixConfig()) return { message: "O pagamento por Pix ainda não está configurado. Tente novamente em breve." };
 
   const key = await clientKey();
   if (tooManyAttempts(key)) return { message: "Muitas tentativas. Aguarde alguns minutos e tente novamente." };
-  registerFailure(key); // conta toda tentativa: o limite é por envio, não por erro
+  registerFailure(key); // conta toda tentativa: o limite é por envio, não por erro (também freia tentativas de cupom)
 
   const parsed = JoinSchema.safeParse(Object.fromEntries(formData));
   if (!parsed.success) return { errors: z.flattenError(parsed.error).fieldErrors as Record<string, string[]> };
-  const { name, email, username, plan } = parsed.data;
+  const { name, email, username, coupon } = parsed.data;
 
-  // quem já está na lista para este concurso só revê o pagamento (sem criar duplicata); se ainda não pagou, vale o plano escolhido agora
+  // quem já está na lista para este concurso revê o pagamento (sem duplicar a obrigação)
   const existing = await db.waitlistEntry.findUnique({ where: { contest_email: { contest: contest.key, email } } });
   if (existing) {
-    // com o Pix já conferido, o plano que vale é o que foi pago
-    const effective = existing.paidAt && existing.plan ? existing.plan : plan;
-    if (!existing.paidAt && existing.plan !== plan) await db.waitlistEntry.update({ where: { id: existing.id }, data: { plan } });
-    return { payment: await paymentFor(cfg, effective, email, true, existing.username) };
+    try {
+      const r = await createContract({ contest: contest.key, customerEmail: email, customerName: existing.name, waitlistEntryId: existing.id, couponCode: coupon }, null);
+      const payment = await paymentFor(r.contractId, true);
+      if (!payment) return { message: "O pagamento desta inscrição já foi registrado. Aguarde o e-mail com o seu acesso." };
+      return { payment };
+    } catch (err) {
+      return contractError(err);
+    }
   }
 
   if (await db.user.findUnique({ where: { email }, select: { id: true } })) {
@@ -85,11 +125,25 @@ export async function joinWaitlist(slug: string, _: JoinState, formData: FormDat
   const check = await checkUsername(username);
   if (!check.available) return { errors: { username: [check.message] } };
 
+  // categoria e cupom conferidos antes de gravar a inscrição
   try {
-    await db.waitlistEntry.create({ data: { contest: contest.key, name, email, username, plan } });
+    await previewContract(contest.key, email, coupon);
+  } catch (err) {
+    return contractError(err);
+  }
+
+  let entryId: string;
+  try {
+    entryId = (await db.waitlistEntry.create({ data: { contest: contest.key, name, email, username, plan: "UNTIL_EXAM" } })).id;
   } catch {
     // corrida entre duas pessoas escolhendo o mesmo usuário
     return { errors: { username: ["Este nome de usuário já está em uso."] } };
   }
-  return { payment: await paymentFor(cfg, plan, email, false, username) };
+  try {
+    const r = await createContract({ contest: contest.key, customerEmail: email, customerName: name, waitlistEntryId: entryId, couponCode: coupon }, null);
+    const payment = await paymentFor(r.contractId, false);
+    return payment ? { payment } : { message: "Inscrição registrada." };
+  } catch (err) {
+    return contractError(err);
+  }
 }

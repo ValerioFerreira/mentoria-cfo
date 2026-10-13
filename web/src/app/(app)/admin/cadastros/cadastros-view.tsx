@@ -16,6 +16,7 @@ import {
   UserX,
   X,
 } from "lucide-react";
+import Link from "next/link";
 import { useState, useTransition } from "react";
 import { Alert, Badge, Button, Card, SectionTitle } from "@/components/ui";
 import {
@@ -55,6 +56,16 @@ export interface WaitlistRow {
   rejectedAt: string | null;
   accessDuration: string | null;
   rejectionReason: string | null;
+  /** contratação (obrigação financeira) ligada à inscrição */
+  contract: {
+    id: string;
+    finalCents: number;
+    paidCents: number;
+    status: string;
+    statusLabel: string;
+    couponCode: string | null;
+    examDateKnown: boolean;
+  } | null;
   user?: {
     id: string;
     mustChangePassword: boolean;
@@ -70,10 +81,14 @@ const CONTEST_LABELS: Record<string, string> = {
   PCPE_AGENTE: "PCPE Agente",
 };
 
+// planos das inscrições anteriores ao acesso até a prova (histórico)
 const PLAN_LABELS: Record<string, string> = {
-  MONTHLY: "R$ 30/mês",
-  UNTIL_EXAM: "R$ 50 permanente (50% de lançamento)",
+  MONTHLY: "R$ 30/mês (plano antigo)",
+  UNTIL_EXAM: "R$ 50 permanente (plano antigo)",
 };
+
+const brl = (cents: number) => `R$ ${(cents / 100).toFixed(2).replace(".", ",")}`;
+type Duration = "UNTIL_EXAM" | "30_DAYS" | "INDEFINITE";
 
 export function CadastrosView({
   entries,
@@ -88,7 +103,9 @@ export function CadastrosView({
 
   // Modal de Aprovação (novos cadastros)
   const [selectedEntry, setSelectedEntry] = useState<WaitlistRow | null>(null);
-  const [duration, setDuration] = useState<"30_DAYS" | "INDEFINITE">("30_DAYS");
+  const [duration, setDuration] = useState<Duration>("UNTIL_EXAM");
+  const [override, setOverride] = useState(false);
+  const [justification, setJustification] = useState("");
 
   // Modal de Rejeição
   const [rejectEntry, setRejectEntry] = useState<WaitlistRow | null>(null);
@@ -114,17 +131,21 @@ export function CadastrosView({
   function handleApprove(e: WaitlistRow) {
     setStatusMessage(null);
     setSelectedEntry(e);
-    if (e.plan === "UNTIL_EXAM") {
-      setDuration("INDEFINITE");
-    } else {
+    setOverride(false);
+    setJustification("");
+    if (e.contract) {
+      setDuration("UNTIL_EXAM");
+    } else if (e.plan === "MONTHLY") {
       setDuration("30_DAYS");
+    } else {
+      setDuration("INDEFINITE");
     }
   }
 
   function confirmApproval() {
     if (!selectedEntry) return;
     startTransition(async () => {
-      const res = await approveRegistration(selectedEntry.id, duration);
+      const res = await approveRegistration(selectedEntry.id, duration, { override, justification });
       setStatusMessage(res);
       if (res.success) {
         setSelectedEntry(null);
@@ -324,49 +345,72 @@ export function CadastrosView({
                   Duração Inicial do Acesso:
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  <label
-                    className={`flex items-center gap-3 rounded-xl border p-3.5 cursor-pointer transition ${
-                      duration === "30_DAYS"
-                        ? "border-primary bg-primary/10 text-text ring-1 ring-primary"
-                        : "border-border bg-surface text-muted hover:border-border-strong"
-                    }`}
-                  >
-                    <input
-                      type="radio"
-                      name="duration"
-                      value="30_DAYS"
-                      checked={duration === "30_DAYS"}
-                      onChange={() => setDuration("30_DAYS")}
-                      className="accent-primary"
-                    />
-                    <div>
-                      <p className="font-bold text-xs text-text">30 Dias</p>
-                      <p className="text-[11px] text-muted">Válido por 1 mês a partir de hoje.</p>
-                    </div>
-                  </label>
-
-                  <label
-                    className={`flex items-center gap-3 rounded-xl border p-3.5 cursor-pointer transition ${
-                      duration === "INDEFINITE"
-                        ? "border-primary bg-primary/10 text-text ring-1 ring-primary"
-                        : "border-border bg-surface text-muted hover:border-border-strong"
-                    }`}
-                  >
-                    <input
-                      type="radio"
-                      name="duration"
-                      value="INDEFINITE"
-                      checked={duration === "INDEFINITE"}
-                      onChange={() => setDuration("INDEFINITE")}
-                      className="accent-primary"
-                    />
-                    <div>
-                      <p className="font-bold text-xs text-text">Indeterminado</p>
-                      <p className="text-[11px] text-muted">Até a homologação do concurso.</p>
-                    </div>
-                  </label>
+                  {(
+                    [
+                      selectedEntry.contract && {
+                        key: "UNTIL_EXAM" as const,
+                        title: "Até a data da prova",
+                        desc: selectedEntry.contract.examDateKnown ? "Acesso ilimitado até a prova do concurso." : "Data da prova pendente: cadastre-a em Financeiro.",
+                        disabled: !selectedEntry.contract.examDateKnown,
+                      },
+                      selectedEntry.plan === "MONTHLY" && { key: "30_DAYS" as const, title: "30 Dias", desc: "Plano mensal antigo.", disabled: false },
+                      { key: "INDEFINITE" as const, title: "Indeterminado", desc: "Sem prazo (cadastros antigos).", disabled: false },
+                    ].filter(Boolean) as { key: Duration; title: string; desc: string; disabled: boolean }[]
+                  ).map((o) => (
+                    <label
+                      key={o.key}
+                      className={`flex items-center gap-3 rounded-xl border p-3.5 transition ${o.disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer"} ${
+                        duration === o.key
+                          ? "border-primary bg-primary/10 text-text ring-1 ring-primary"
+                          : "border-border bg-surface text-muted hover:border-border-strong"
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name="duration"
+                        value={o.key}
+                        checked={duration === o.key}
+                        disabled={o.disabled}
+                        onChange={() => setDuration(o.key)}
+                        className="accent-primary"
+                      />
+                      <div>
+                        <p className="font-bold text-xs text-text">{o.title}</p>
+                        <p className="text-[11px] text-muted">{o.desc}</p>
+                      </div>
+                    </label>
+                  ))}
                 </div>
               </div>
+
+              {selectedEntry.contract ? (
+                <div className="rounded-xl border border-border p-3 text-xs space-y-2">
+                  <p className="text-muted">
+                    Contratação: <strong className="text-text">{brl(selectedEntry.contract.finalCents)}</strong> · recebido{" "}
+                    <strong className="text-text">{brl(selectedEntry.contract.paidCents)}</strong> · {selectedEntry.contract.statusLabel}
+                    {selectedEntry.contract.couponCode ? ` · cupom ${selectedEntry.contract.couponCode}` : ""}{" "}
+                    <Link href={`/admin/financeiro/${selectedEntry.contract.id}`} className="font-semibold text-primary underline">registrar pagamento</Link>
+                  </p>
+                  {duration === "UNTIL_EXAM" && selectedEntry.contract.paidCents < selectedEntry.contract.finalCents && (
+                    <div className="space-y-2 rounded-lg bg-warn-soft p-2.5 text-warn">
+                      <label className="flex items-center gap-2 font-semibold">
+                        <input type="checkbox" checked={override} onChange={(ev) => setOverride(ev.target.checked)} />
+                        Liberar mesmo com saldo pendente
+                      </label>
+                      {override && (
+                        <input
+                          value={justification}
+                          onChange={(ev) => setJustification(ev.target.value)}
+                          placeholder="Justificativa (mínimo de 10 caracteres)"
+                          className="w-full rounded-lg border border-border bg-surface px-2.5 py-1.5 text-text"
+                        />
+                      )}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <p className="text-xs text-muted">Inscrição anterior ao acesso até a prova (sem contratação registrada).</p>
+              )}
 
               <div className="rounded-xl bg-surface-2 p-3 text-xs text-muted space-y-1 border border-border">
                 <p>
@@ -473,7 +517,7 @@ export function CadastrosView({
                   <span>
                     Tipo gravado:{" "}
                     <strong className="text-text">
-                      {validityEntry.accessDuration === "INDEFINITE" ? "Indeterminado" : "30 dias"}
+                      {validityEntry.accessDuration === "INDEFINITE" ? "Indeterminado" : validityEntry.accessDuration === "UNTIL_EXAM" ? "Até a prova" : "30 dias"}
                     </strong>
                   </span>
                   <span>·</span>
@@ -724,7 +768,16 @@ export function CadastrosView({
                           {e.paidAt ? "PIX CONFERIDO" : "AGUARDA PIX"}
                         </Badge>
                         <Badge>{CONTEST_LABELS[e.contest] ?? e.contest}</Badge>
-                        {e.plan && <Badge tone="neutral">{PLAN_LABELS[e.plan] ?? e.plan}</Badge>}
+                        {e.contract ? (
+                          <Link href={`/admin/financeiro/${e.contract.id}`} title="Abrir no Financeiro">
+                            <Badge tone={e.contract.paidCents >= e.contract.finalCents ? "ok" : "warn"}>
+                              {brl(e.contract.finalCents)} · {e.contract.statusLabel}
+                              {e.contract.couponCode ? ` · ${e.contract.couponCode}` : ""}
+                            </Badge>
+                          </Link>
+                        ) : (
+                          e.plan && <Badge tone="neutral">{PLAN_LABELS[e.plan] ?? e.plan}</Badge>
+                        )}
                       </div>
 
                       <p className="text-xs text-muted flex flex-wrap items-center gap-x-3 gap-y-1">
@@ -819,7 +872,7 @@ export function CadastrosView({
                         <span>
                           Validade:{" "}
                           <strong className="text-text">
-                            {e.accessDuration === "INDEFINITE" ? "Indeterminado" : "30 dias"}
+                            {e.accessDuration === "INDEFINITE" ? "Indeterminado" : e.accessDuration === "UNTIL_EXAM" ? "Até a prova" : "30 dias"}
                           </strong>
                         </span>
                         {e.user?.accessExpiresAt && (

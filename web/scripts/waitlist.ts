@@ -22,7 +22,8 @@ const LABEL: Record<string, string> = {
   PMPE_OFICIAL: "PMPE 2º Tenente",
   PCPE_AGENTE: "PCPE Agente",
 };
-const PLAN = { MONTHLY: "R$ 30/mês", UNTIL_EXAM: "R$ 50 até a prova (50% de lançamento)" } as const;
+// planos gravados na inscrição; os valores atuais ficam na contratação (Contract), vista em /admin/financeiro
+const PLAN = { MONTHLY: "R$ 30/mês (antigo)", UNTIL_EXAM: "acesso até a prova" } as const;
 
 async function main() {
   const paid = flag("--pago");
