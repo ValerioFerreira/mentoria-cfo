@@ -29,6 +29,8 @@ export default async function BillingPage({ searchParams }: { searchParams: Prom
   const query = await searchParams;
   const user = await getCurrentUser();
   if (!user) redirect("/login");
+  // a página é de quem contrata acesso; parceiro não contrata nem paga
+  if (user.isPartner) redirect("/parceria");
   const [contracts, legacy, settings] = await Promise.all([
     db.contract.findMany({
       where: { OR: [{ userId: user.id }, { customerEmail: user.email.toLowerCase() }], status: { not: "CANCELLED" } },

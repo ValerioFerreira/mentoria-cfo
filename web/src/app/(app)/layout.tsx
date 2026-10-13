@@ -71,7 +71,8 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
           { href: "/admin/revisao", label: "Revisão", icon: "admin" },
         ]
       : user.isPartner
-        ? [...userNav, { href: "/parceria", label: "Minha parceria", icon: "partnership" }]
+        // parceiro não contrata nem paga: sem "Pagamentos" no menu
+        ? [...userNav.filter((item) => item.href !== "/pagamentos"), { href: "/parceria", label: "Minha parceria", icon: "partnership" }]
         : userNav;
   const name = user.name ?? user.email;
 
