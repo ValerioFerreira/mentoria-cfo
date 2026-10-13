@@ -5,6 +5,7 @@ import * as z from "zod";
 import { getCurrentUser } from "@/lib/auth/session";
 import { CONTESTS } from "@/lib/contests";
 import { createContract } from "./contracts";
+import { cancelPendingCharges } from "./online";
 import { type ActionResult, toActionError } from "./errors";
 
 const Schema = z.object({
@@ -28,6 +29,7 @@ export async function startContract(_: ActionResult | null, fd: FormData): Promi
       user.id,
     );
     contractId = r.contractId;
+    if (r.replacedId) await cancelPendingCharges(r.replacedId);
   } catch (err) {
     return toActionError(err, "contratação do cliente");
   }

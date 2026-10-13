@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ActionForm } from "@/components/action-form";
-import { Badge, Card, Field, PageHeader, Stat, inputCls } from "@/components/ui";
+import { Alert, Badge, Card, Field, PageHeader, Stat, inputCls } from "@/components/ui";
 import { requireAdmin } from "@/lib/auth/dal";
-import { adminCreateContract, adminUpdateContestSetting } from "@/lib/commerce/admin-actions";
-import { AUDIT_LABEL, CONTRACT_STATUS, PAYMENT_METHOD_LABEL, REVERSAL_KIND_LABEL, contestName, dateBR, dayBR } from "@/lib/commerce/labels";
+import { adminCreateContract, adminReconcileOnline, adminUpdateContestSetting } from "@/lib/commerce/admin-actions";
+import { AUDIT_LABEL, CONTRACT_STATUS, PAYMENT_METHOD_LABEL, REVERSAL_KIND_LABEL, actorLabel, contestName, dateBR, dayBR } from "@/lib/commerce/labels";
 import { formatBRL, toCents } from "@/lib/commerce/money";
 import { CATEGORY_LABEL, CATEGORY_PRICE_CENTS, LAUNCH_DISCOUNT_POINTS, PARTNER_COUPON_DISCOUNT_POINTS, quote } from "@/lib/commerce/pricing";
+import { mercadoPagoAccountStatus, onlineOverview } from "@/lib/commerce/online";
 import { auditHistory, listContracts, listCustomers, listPayments } from "@/lib/commerce/queries";
 import { db } from "@/lib/db";
 import { FilterBar } from "./filter-bar";
@@ -19,6 +20,7 @@ const TABS = [
   { key: "pagamentos", label: "Pagamentos" },
   { key: "clientes", label: "Clientes e saldos" },
   { key: "concursos", label: "Concursos e preços" },
+  { key: "mercadopago", label: "Mercado Pago" },
   { key: "historico", label: "Histórico" },
 ] as const;
 type Tab = (typeof TABS)[number]["key"];
@@ -55,6 +57,7 @@ export default async function FinanceiroPage({ searchParams }: { searchParams: P
       {tab === "pagamentos" && <Payments f={f} />}
       {tab === "clientes" && <Customers f={f} />}
       {tab === "concursos" && <ContestsTab />}
+      {tab === "mercadopago" && <MercadoPagoTab />}
       {tab === "historico" && <History f={f} />}
     </div>
   );
@@ -145,7 +148,7 @@ async function Payments({ f }: { f: ReturnType<typeof parseFilters> }) {
                 <td className={`${td} tabular whitespace-nowrap`}>{formatBRL(toCents(p.amount))}</td>
                 <td className={td}>{PAYMENT_METHOD_LABEL[p.method]}</td>
                 <td className={`${td} text-xs`}>{p.receiptRef ?? "—"}{p.note && <span className="block text-muted">{p.note}</span>}</td>
-                <td className={`${td} text-xs`}>{p.createdBy.name ?? p.createdBy.email}</td>
+                <td className={`${td} text-xs`}>{actorLabel(p.createdBy)}</td>
                 <td className={`${td} text-xs`}>
                   {p.reversals.length === 0 ? "—" : p.reversals.map((r) => (
                     <span key={r.id} className="block">{REVERSAL_KIND_LABEL[r.kind]} {formatBRL(toCents(r.amount))} em {dateBR(r.effectiveAt)}: {r.reason}</span>
@@ -265,6 +268,53 @@ async function History({ f }: { f: ReturnType<typeof parseFilters> }) {
             ))}
           </tbody>
         </table>
+      </Card>
+    </div>
+  );
+}
+
+/** Conferência da conta conectada: mostra se o recebimento vai para a empresa (CNPJ) sem expor nenhum segredo. */
+async function MercadoPagoTab() {
+  const st = await mercadoPagoAccountStatus();
+  const { pending, alerts } = await onlineOverview();
+  const company = st.account?.documentType === "CNPJ";
+  const ok = (v: boolean) => <Badge tone={v ? "ok" : "warn"}>{v ? "Configurado" : "Ausente"}</Badge>;
+  const origin = st.appUrl ?? "https://SEU-DOMINIO";
+  return (
+    <div className="space-y-4">
+      {st.error && <Alert tone="warn">{st.error}</Alert>}
+      {st.account && !company && (
+        <Alert tone="warn">
+          O titular desta conta Mercado Pago consta como {st.account.documentType ?? "documento não informado"}, não CNPJ. Para receber na empresa,
+          troque o token e o segredo do webhook (Vercel) pelos da aplicação criada na conta da empresa.
+        </Alert>
+      )}
+      <Card className="space-y-3">
+        <h2 className="font-display text-lg font-bold uppercase">Conta conectada</h2>
+        <dl className="grid gap-x-6 gap-y-2 text-sm sm:grid-cols-2">
+          <div><dt className="text-xs uppercase tracking-wider text-muted">Token de acesso</dt><dd>{ok(st.mode !== null)}{st.mode && <span className="ml-2 text-xs text-muted">{st.mode === "producao" ? "credencial de produção" : "credencial de TESTE"}</span>}</dd></div>
+          <div><dt className="text-xs uppercase tracking-wider text-muted">Segredo do webhook</dt><dd>{ok(st.webhookSecretSet)}</dd></div>
+          <div><dt className="text-xs uppercase tracking-wider text-muted">ID do vendedor (contestações)</dt><dd>{ok(st.sellerIdSet)}{st.account?.matchesSellerId === false && <span className="ml-2 text-xs text-primary">não confere com a conta do token</span>}</dd></div>
+          <div><dt className="text-xs uppercase tracking-wider text-muted">URL pública (APP_URL)</dt><dd className="break-all">{st.appUrl ?? "—"}</dd></div>
+          <div><dt className="text-xs uppercase tracking-wider text-muted">Conta (ID · apelido)</dt><dd>{st.account ? `${st.account.id} · ${st.account.nickname ?? "sem apelido"}` : "—"}</dd></div>
+          <div><dt className="text-xs uppercase tracking-wider text-muted">Documento do titular</dt><dd>{st.account?.documentType ? <Badge tone={company ? "ok" : "warn"}>{st.account.documentType}{company ? " (empresa)" : ""}</Badge> : "—"}</dd></div>
+        </dl>
+        <p className="text-xs text-muted">Endereço do webhook a cadastrar no painel do Mercado Pago (tópicos: Pagamentos e Alertas de fraude/contestações): <code className="break-all">{origin}/api/webhooks/mercadopago</code></p>
+      </Card>
+      <Card className="space-y-3">
+        <h2 className="font-display text-lg font-bold uppercase">Pagamentos online</h2>
+        <p className="text-sm text-muted">{pending} Pix aguardando pagamento. A confirmação chega pelo webhook; se um aviso se perder, confira aqui.</p>
+        <ActionForm action={adminReconcileOnline} submitLabel="Conferir Pix pendentes" pendingLabel="Conferindo…" submitVariant="secondary" />
+      </Card>
+      <Card className="space-y-2">
+        <h2 className="font-display text-lg font-bold uppercase">Pontos de atenção (60 dias)</h2>
+        {alerts.length === 0 && <p className="text-sm text-muted">Nada pendente.</p>}
+        {alerts.map((a) => (
+          <p key={a.id} className="text-sm">
+            <Link href={`/admin/financeiro/${a.entityId}`} className="font-semibold text-primary underline">{AUDIT_LABEL[a.action] ?? a.action}</Link>
+            <span className="text-xs text-muted"> · {dateBR(a.createdAt)}</span>
+          </p>
+        ))}
       </Card>
     </div>
   );

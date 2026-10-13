@@ -13,6 +13,7 @@ type Tx = Prisma.TransactionClient;
 const DAY_MS = 86_400_000;
 /** teto de sanidade por lançamento (R$ 100.000,00) */
 const MAX_CENTS = 10_000_000;
+/** Formas que o administrador lança à mão (CARTAO só chega pela conciliação com o Mercado Pago). */
 export const PAYMENT_METHODS: PaymentMethod[] = ["PIX", "TRANSFERENCIA", "DINHEIRO", "OUTRO"];
 
 function assertAmount(cents: number) {
@@ -23,7 +24,8 @@ function assertAmount(cents: number) {
 /** A data efetiva não pode estar no futuro (dia civil de Recife). */
 export function assertEffectiveDate(d: Date, now = new Date()) {
   if (Number.isNaN(d.getTime())) throw new CommerceError("Data inválida.");
-  if (d.toISOString().slice(0, 10) > todayISO(now)) throw new CommerceError("A data efetiva não pode estar no futuro.");
+  // compara dias civis de Recife (em UTC, depois das 21h o "hoje" já seria o dia seguinte)
+  if (todayISO(d) > todayISO(now)) throw new CommerceError("A data efetiva não pode estar no futuro.");
   if (d.getUTCFullYear() < 2025) throw new CommerceError("Data efetiva fora do período aceito.");
 }
 
@@ -98,6 +100,11 @@ export interface RegisterPaymentInput {
   idempotencyKey: string;
 }
 
+/** Origem automática (conciliação com o Mercado Pago): sem autor humano e com o id do pagamento no provedor. */
+export interface ProviderOrigin {
+  providerPaymentId: string;
+}
+
 export interface PaymentResult {
   paymentId: string;
   duplicate: boolean;
@@ -106,9 +113,22 @@ export interface PaymentResult {
 
 /** Registra um pagamento recebido. Repetir o mesmo envio (mesma chave) não duplica o lançamento. */
 export async function registerPayment(input: RegisterPaymentInput, actorId: string): Promise<PaymentResult> {
-  assertAmount(input.amountCents);
   assertEffectiveDate(input.paidAt);
   if (!PAYMENT_METHODS.includes(input.method)) throw new CommerceError("Forma de pagamento inválida.");
+  return registerPaymentCore(input, actorId, null);
+}
+
+/**
+ * Recebimento confirmado pelo Mercado Pago (consulta autenticada à API). O instante vem do provedor, então não
+ * passa pela regra de "data no futuro" do lançamento manual. Idempotente por id de pagamento do provedor.
+ */
+export async function registerProviderPayment(input: RegisterPaymentInput, origin: ProviderOrigin): Promise<PaymentResult> {
+  if (Number.isNaN(input.paidAt.getTime()) || input.paidAt.getUTCFullYear() < 2025) throw new CommerceError("Data de aprovação inválida.");
+  return registerPaymentCore(input, null, origin);
+}
+
+async function registerPaymentCore(input: RegisterPaymentInput, actorId: string | null, origin: ProviderOrigin | null): Promise<PaymentResult> {
+  assertAmount(input.amountCents);
   const key = input.idempotencyKey.trim();
   if (key.length < 8) throw new CommerceError("Envio inválido: recarregue a página e tente novamente.");
   const receiptRef = input.receiptRef?.trim() || null;
@@ -120,8 +140,8 @@ export async function registerPayment(input: RegisterPaymentInput, actorId: stri
       await lockContract(tx, input.contractId);
       const c = await tx.contract.findUnique({ where: { id: input.contractId }, select: { id: true, status: true, userId: true } });
       if (!c) throw new CommerceError("Contratação não encontrada.");
-      if (c.status === "CANCELLED") throw new CommerceError("Contratação cancelada não recebe pagamentos.");
-      if (receiptRef) {
+      if (c.status === "CANCELLED") throw new CommerceError("Contratação cancelada não recebe pagamentos.", "CONTRACT_CANCELLED");
+      if (receiptRef && !origin) {
         const same = await tx.manualPayment.findMany({ where: { receiptRef: { equals: receiptRef, mode: "insensitive" } }, include: { reversals: { select: { amount: true } } } });
         const live = same.find((p) => toCents(p.amount) - p.reversals.reduce((s, r) => s + toCents(r.amount), 0) > 0);
         if (live) throw new CommerceError("Este comprovante já foi lançado em outro pagamento. Confira o histórico antes de registrar de novo.", "DUPLICATE_RECEIPT");
@@ -135,6 +155,8 @@ export async function registerPayment(input: RegisterPaymentInput, actorId: stri
           receiptRef,
           note: input.note?.trim() || null,
           createdById: actorId,
+          source: origin ? "MERCADO_PAGO" : "MANUAL",
+          providerPaymentId: origin?.providerPaymentId ?? null,
           idempotencyKey: key,
         },
       });
@@ -144,7 +166,7 @@ export async function registerPayment(input: RegisterPaymentInput, actorId: stri
         action: "PAYMENT_REGISTERED",
         entityType: "Contract",
         entityId: c.id,
-        data: { paymentId: payment.id, amount: fromCents(input.amountCents), method: input.method, paidAt: input.paidAt.toISOString(), status: totals.status },
+        data: { paymentId: payment.id, amount: fromCents(input.amountCents), method: input.method, paidAt: input.paidAt.toISOString(), status: totals.status, source: origin ? "MERCADO_PAGO" : "MANUAL" },
       });
       if (totals.status === "OVERPAID") {
         await audit(tx, { actorId, action: "OVERPAYMENT_DETECTED", entityType: "Contract", entityId: c.id, data: { excess: fromCents(-totals.balanceCents), paymentId: payment.id } });
@@ -171,8 +193,18 @@ export interface ReversePaymentInput {
 
 /** Estorno/correção (total ou parcial) de um pagamento. O lançamento original permanece intacto. */
 export async function reversePayment(input: ReversePaymentInput, actorId: string): Promise<{ reversalId: string; duplicate: boolean; totals?: ContractTotals }> {
-  assertAmount(input.amountCents);
   assertEffectiveDate(input.effectiveAt);
+  return reversePaymentCore(input, actorId);
+}
+
+/** Estorno ou contestação perdida confirmados pelo Mercado Pago (sem autor humano). */
+export async function reverseProviderPayment(input: ReversePaymentInput) {
+  if (Number.isNaN(input.effectiveAt.getTime()) || input.effectiveAt.getUTCFullYear() < 2025) throw new CommerceError("Data do estorno inválida.");
+  return reversePaymentCore(input, null);
+}
+
+async function reversePaymentCore(input: ReversePaymentInput, actorId: string | null): Promise<{ reversalId: string; duplicate: boolean; totals?: ContractTotals }> {
+  assertAmount(input.amountCents);
   if (input.kind !== "ESTORNO" && input.kind !== "CORRECAO") throw new CommerceError("Tipo de ajuste inválido.");
   const reason = input.reason.trim();
   if (reason.length < 5) throw new CommerceError("Informe a justificativa (mínimo de 5 caracteres).");
@@ -198,6 +230,7 @@ export async function reversePayment(input: ReversePaymentInput, actorId: string
           reason,
           effectiveAt: input.effectiveAt,
           createdById: actorId,
+          source: actorId ? "MANUAL" : "MERCADO_PAGO",
           idempotencyKey: key,
         },
       });
@@ -213,7 +246,7 @@ export async function reversePayment(input: ReversePaymentInput, actorId: string
         action: "PAYMENT_REVERSED",
         entityType: "Contract",
         entityId: payment.contractId,
-        data: { paymentId: payment.id, reversalId: reversal.id, amount: fromCents(input.amountCents), kind: input.kind, reason, status: totals.status },
+        data: { paymentId: payment.id, reversalId: reversal.id, amount: fromCents(input.amountCents), kind: input.kind, reason, status: totals.status, source: actorId ? "MANUAL" : "MERCADO_PAGO" },
       });
       return { reversalId: reversal.id, duplicate: false, totals };
     });

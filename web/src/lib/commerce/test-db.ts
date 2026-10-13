@@ -4,7 +4,7 @@ import "dotenv/config";
 import { execSync } from "node:child_process";
 
 export const TEST_SCHEMA = "vitest_finance";
-export const TEST_SCHEMAS = ["vitest_finance", "vitest_actions"] as const;
+export const TEST_SCHEMAS = ["vitest_finance", "vitest_actions", "vitest_online"] as const;
 export const SAFE_SCHEMA = /^vitest_[a-z_]+$/;
 
 function localUrl(): URL | null {

@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { PixStatic } from "@/components/pix-static";
+import { mercadoPagoConfigured } from "@/lib/billing/mercado-pago";
 import { Alert, Badge, Card, PageHeader } from "@/components/ui";
 import { getCurrentUser } from "@/lib/auth/session";
-import { CONTRACT_STATUS, contestName } from "@/lib/commerce/labels";
+import { CONTRACT_STATUS, contestName, dateBR } from "@/lib/commerce/labels";
 import { formatBRL, fromCents, toCents } from "@/lib/commerce/money";
 import { db } from "@/lib/db";
+import { OnlinePay } from "./online-pay";
 import { buildPixPayload, pixConfig, pixQrDataUri } from "@/lib/pix";
 
 export const metadata: Metadata = { title: "Pagamento da contratação" };
@@ -19,10 +21,12 @@ export default async function ContractPixPage({ params }: { params: Promise<{ id
   const c = await db.contract.findFirst({ where: { id, OR: [{ userId: user.id }, { customerEmail: user.email.toLowerCase() }] } });
   if (!c) notFound();
   const due = toCents(c.finalAmount) - toCents(c.paidAmount);
+  const online = mercadoPagoConfigured();
   const cfg = pixConfig();
   const st = CONTRACT_STATUS[c.status];
   let pix: { payload: string; qr: string } | null = null;
-  if (cfg && due > 0 && c.status !== "CANCELLED") {
+  // sem Mercado Pago configurado, vale o Pix estático (a administração confere e lança)
+  if (!online && cfg && due > 0 && c.status !== "CANCELLED") {
     const txId = c.customerEmail.replace(/[^a-zA-Z0-9]/g, "").slice(0, 25) || "ALUNO";
     const payload = buildPixPayload({ ...cfg, amount: fromCents(due) }, c.customerEmail, txId);
     pix = { payload, qr: await pixQrDataUri(payload) };
@@ -43,16 +47,28 @@ export default async function ContractPixPage({ params }: { params: Promise<{ id
         </div>
         <Badge tone={st.tone}>{st.label}</Badge>
       </Card>
-      {pix ? (
+      {due <= 0 ? (
+        <Alert tone="info">
+          {c.accessGrantedAt && c.accessUntil
+            ? `Pagamento confirmado. Seu acesso está liberado até ${dateBR(c.accessUntil)}.`
+            : "Pagamento confirmado. O acesso até a data da prova é liberado pela administração."}
+        </Alert>
+      ) : c.status === "CANCELLED" ? (
+        <Alert tone="warn">Esta contratação foi cancelada. Faça uma nova contratação em Contratações e pagamentos.</Alert>
+      ) : online ? (
+        <OnlinePay contractId={c.id} dueCents={due} />
+      ) : pix ? (
         <PixStatic amount={formatBRL(due)} payload={pix.payload} qr={pix.qr} />
-      ) : due <= 0 ? (
-        <Alert tone="info">Pagamento registrado. A administração libera o acesso até a data da prova.</Alert>
       ) : (
-        <Alert tone="warn">O Pix ainda não está configurado. Tente novamente em breve.</Alert>
+        <Alert tone="warn">O pagamento ainda não está configurado. Tente novamente em breve.</Alert>
       )}
-      <p className="text-center text-xs leading-relaxed text-muted">
-        A administração confere o pagamento e libera o acesso. A mensagem do Pix leva o seu e-mail para identificarmos o pagamento.
-      </p>
+      {due > 0 && (
+        <p className="text-center text-xs leading-relaxed text-muted">
+          {online
+            ? "O pagamento é confirmado automaticamente pelo Mercado Pago e, em seguida, o acesso até a data da prova é liberado."
+            : "A administração confere o pagamento e libera o acesso. A mensagem do Pix leva o seu e-mail para identificarmos o pagamento."}
+        </p>
+      )}
       <Link href="/pagamentos" className="block text-center text-sm font-semibold text-primary underline">Voltar a Contratações e pagamentos</Link>
     </div>
   );

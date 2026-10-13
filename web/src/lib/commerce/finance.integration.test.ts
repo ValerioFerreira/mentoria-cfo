@@ -152,7 +152,7 @@ describe.skipIf(!hasTestDb)("financeiro com persistência real", { timeout: 60_0
       const r = await svc.contracts.createContract({ contest: "CBMPE_OFICIAL", customerEmail: "conc@x.com" }, null);
       const k = key();
       const results = await Promise.allSettled([1, 2, 3].map(() => svc.payments.registerPayment({ contractId: r.contractId, amountCents: 1000, paidAt: daysAgo(0), method: "PIX", idempotencyKey: k }, adminId)));
-      expect(results.every((x) => x.status === "fulfilled")).toBe(true);
+      expect(results.map((x) => (x.status === "fulfilled" ? "ok" : String(x.reason).slice(0, 160)))).toEqual(["ok", "ok", "ok"]);
       expect(await db.manualPayment.count()).toBe(1);
       expect(money((await contract(r.contractId)).paidAmount)).toBe("10");
     });

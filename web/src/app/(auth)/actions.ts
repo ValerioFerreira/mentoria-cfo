@@ -83,7 +83,7 @@ export async function login(_: AuthState, formData: FormData): Promise<AuthState
     await createSession(user.id);
 
     // Permite ao usuário autenticado renovar o acesso sem liberar as áreas protegidas.
-    if (user.accessExpiresAt && user.accessExpiresAt < new Date() && !(await hasBillingAccess(user.id))) {
+    if (!user.partner && user.accessExpiresAt && user.accessExpiresAt < new Date() && !(await hasBillingAccess(user.id))) {
       redirect("/pagamentos?status=acesso-expirado");
     }
 

@@ -29,8 +29,9 @@ export async function savePlan({ userId, input, result, diagnostics, foreignLang
         update: { examDate: new Date(input.examDate), hoursBand, hoursPerWeek: input.hoursPerWeek, foreignLanguage },
       });
 
-      const user = await tx.user.findUnique({ where: { id: userId }, select: { role: true } });
-      const initialStatus = status ?? (user?.role === "ADMIN" ? "ACTIVE" : "PENDING_ANALYSIS");
+      const user = await tx.user.findUnique({ where: { id: userId }, select: { role: true, partner: { select: { active: true } } } });
+      // administrador e parceiro ativo não passam pela análise: o plano já nasce liberado
+      const initialStatus = status ?? (user?.role === "ADMIN" || user?.partner?.active ? "ACTIVE" : "PENDING_ANALYSIS");
 
       const plan = await tx.plan.create({
         data: {

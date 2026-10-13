@@ -7,7 +7,8 @@ import { hasBillingAccess } from "@/lib/billing/access";
 export async function requireUser() {
   const user = await getCurrentUser();
   if (!user) redirect("/login");
-  if (user.accessExpiresAt && user.accessExpiresAt < new Date() && !(await hasBillingAccess(user.id))) {
+  // o acesso do parceiro não vence: ele é gerido (e desativado) pela administração
+  if (!user.isPartner && user.accessExpiresAt && user.accessExpiresAt < new Date() && !(await hasBillingAccess(user.id))) {
     redirect("/pagamentos?status=acesso-expirado");
   }
   return user;

@@ -5,7 +5,9 @@ import * as z from "zod";
 import { registerFailure, tooManyAttempts } from "@/lib/auth/rate-limit";
 import { contestBySlug } from "@/lib/contests";
 import { db } from "@/lib/db";
+import { mercadoPagoConfigured } from "@/lib/billing/mercado-pago";
 import { createContract, previewContract } from "@/lib/commerce/contracts";
+import { cancelPendingCharges, startPixCharge } from "@/lib/commerce/online";
 import { CommerceError } from "@/lib/commerce/errors";
 import { formatBRL, fromCents, toCents } from "@/lib/commerce/money";
 import { buildPixPayload, pixConfig, pixQrDataUri } from "@/lib/pix";
@@ -56,17 +58,38 @@ const JoinSchema = z.object({
   coupon: z.string().trim().max(20, "Cupom inválido.").optional(),
 });
 
-/** Pix com o valor da contratação calculado no servidor (a mensagem do Pix é o e-mail). */
+/**
+ * Pix com o saldo da contratação, calculado no servidor. Com o Mercado Pago configurado (conta da empresa) o Pix é
+ * dinâmico e a confirmação é automática; sem ele, vale o Pix estático (PIX_KEY) conferido pela administração.
+ */
 async function paymentFor(contractId: string, alreadyJoined: boolean): Promise<PaymentInfo | null> {
-  const cfg = pixConfig();
   const c = await db.contract.findUniqueOrThrow({ where: { id: contractId } });
   const due = toCents(c.finalAmount) - toCents(c.paidAmount);
-  if (!cfg || due <= 0) return null;
-  const cleanId = c.customerEmail.replace(/[^a-zA-Z0-9]/g, "").slice(0, 25) || "ALUNO";
-  const payload = buildPixPayload({ ...cfg, amount: fromCents(due) }, c.customerEmail, cleanId);
+  if (due <= 0) return null;
+  let payload: string | null = null;
+  let qr: string | null = null;
+  let txId = c.customerEmail.replace(/[^a-zA-Z0-9]/g, "").slice(0, 25) || "ALUNO";
+  if (mercadoPagoConfigured()) {
+    try {
+      const charge = await startPixCharge(contractId);
+      if (charge.qrCode && charge.qrCodeBase64) {
+        payload = charge.qrCode;
+        qr = charge.qrCodeBase64.startsWith("data:") ? charge.qrCodeBase64 : `data:image/png;base64,${charge.qrCodeBase64}`;
+        txId = charge.id;
+      }
+    } catch (err) {
+      if (!(err instanceof CommerceError) && !pixConfig()) throw err;
+    }
+  }
+  if (!payload || !qr) {
+    const cfg = pixConfig();
+    if (!cfg) return null;
+    payload = buildPixPayload({ ...cfg, amount: fromCents(due) }, c.customerEmail, txId);
+    qr = await pixQrDataUri(payload);
+  }
   return {
     payload,
-    qr: await pixQrDataUri(payload),
+    qr,
     email: c.customerEmail,
     plan: "Acesso ilimitado até a prova",
     amount: formatBRL(due).replace("R$ ", ""),
@@ -74,7 +97,7 @@ async function paymentFor(contractId: string, alreadyJoined: boolean): Promise<P
     discounts: `${c.launchDiscountPoints}% de lançamento${c.partnerDiscountPoints ? ` + ${c.partnerDiscountPoints}% do cupom ${c.couponCode}` : ""}`,
     couponCode: c.couponCode,
     alreadyJoined,
-    txId: cleanId,
+    txId,
   };
 }
 
@@ -96,7 +119,7 @@ function contractError(err: unknown): JoinState {
 export async function joinWaitlist(slug: string, _: JoinState, formData: FormData): Promise<JoinState> {
   const contest = contestBySlug(slug);
   if (!contest) return { message: "Concurso não encontrado." };
-  if (!pixConfig()) return { message: "O pagamento por Pix ainda não está configurado. Tente novamente em breve." };
+  if (!pixConfig() && !mercadoPagoConfigured()) return { message: "O pagamento por Pix ainda não está configurado. Tente novamente em breve." };
 
   const key = await clientKey();
   if (tooManyAttempts(key)) return { message: "Muitas tentativas. Aguarde alguns minutos e tente novamente." };
@@ -111,6 +134,7 @@ export async function joinWaitlist(slug: string, _: JoinState, formData: FormDat
   if (existing) {
     try {
       const r = await createContract({ contest: contest.key, customerEmail: email, customerName: existing.name, waitlistEntryId: existing.id, couponCode: coupon }, null);
+      if (r.replacedId) await cancelPendingCharges(r.replacedId);
       const payment = await paymentFor(r.contractId, true);
       if (!payment) return { message: "O pagamento desta inscrição já foi registrado. Aguarde o e-mail com o seu acesso." };
       return { payment };
@@ -141,6 +165,7 @@ export async function joinWaitlist(slug: string, _: JoinState, formData: FormDat
   }
   try {
     const r = await createContract({ contest: contest.key, customerEmail: email, customerName: name, waitlistEntryId: entryId, couponCode: coupon }, null);
+    if (r.replacedId) await cancelPendingCharges(r.replacedId);
     const payment = await paymentFor(r.contractId, false);
     return payment ? { payment } : { message: "Inscrição registrada." };
   } catch (err) {

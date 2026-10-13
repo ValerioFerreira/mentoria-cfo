@@ -12,6 +12,7 @@ import { audit } from "./audit";
 import { cancelContract, createContract, grantAccessUntilExam } from "./contracts";
 import { type ActionResult, toActionError } from "./errors";
 import { formatBRL, parseMoneyInput } from "./money";
+import { cancelPendingCharges, reconcilePendingCharges } from "./online";
 import { registerPayment, reversePayment } from "./payments";
 import {
   createPartner,
@@ -112,10 +113,23 @@ export async function adminCancelContract(_: ActionResult | null, fd: FormData):
   if (!parsed.success) return firstIssue(parsed.error);
   try {
     await cancelContract(parsed.data.contractId, parsed.data.reason, admin.id);
+    await cancelPendingCharges(parsed.data.contractId); // o Pix aberto deixa de valer
     refreshFinance(parsed.data.contractId);
     return { ok: true, message: "Contratação cancelada (mantida no histórico)." };
   } catch (err) {
     return toActionError(err, "cancelar contratação");
+  }
+}
+
+/** Reconsulta no Mercado Pago os Pix pendentes (recupera avisos de webhook perdidos). */
+export async function adminReconcileOnline(): Promise<ActionResult> {
+  await requireAdmin();
+  try {
+    const r = await reconcilePendingCharges({ limit: 50 });
+    refreshFinance();
+    return { ok: true, message: r.checked === 0 ? "Nenhum Pix pendente para conferir." : `${r.checked} Pix conferido(s); ${r.received} com movimento novo${r.errors ? `; ${r.errors} falharam` : ""}.` };
+  } catch (err) {
+    return toActionError(err, "conferir pagamentos online");
   }
 }
 

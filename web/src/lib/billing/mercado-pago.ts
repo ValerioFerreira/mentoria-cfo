@@ -29,6 +29,24 @@ export function siteUrl(): URL {
   return url;
 }
 
+/** Pagamentos online só são oferecidos com token, segredo do webhook e URL pública configurados. */
+export function mercadoPagoConfigured(): boolean {
+  try {
+    mercadoPagoToken();
+    siteUrl();
+  } catch {
+    return false;
+  }
+  return Boolean(process.env.MERCADOPAGO_WEBHOOK_SECRET);
+}
+
+export function notificationUrl(): string {
+  return new URL("/api/webhooks/mercadopago", siteUrl()).toString();
+}
+
+/** Limite de espera por chamada: a função do webhook/ação não pode ficar presa na API do provedor. */
+const REQUEST_TIMEOUT_MS = 15_000;
+
 export async function mpRequest<T>(path: string, init: RequestInit = {}): Promise<T> {
   const response = await fetch(`${API}${path}`, {
     ...init,
@@ -38,6 +56,7 @@ export async function mpRequest<T>(path: string, init: RequestInit = {}): Promis
       ...(init.headers || {}),
     },
     cache: "no-store",
+    signal: init.signal ?? AbortSignal.timeout(REQUEST_TIMEOUT_MS),
   });
   if (!response.ok) {
     // Não incluir corpo da resposta: pode conter dados pessoais ou informações operacionais.

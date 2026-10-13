@@ -5,7 +5,7 @@ export type SearchParams = Record<string, string | string[] | undefined>;
 
 const CONTESTS: Contest[] = ["CBMPE_OFICIAL", "CBMPE_SOLDADO", "PMPE_OFICIAL", "PMPE_SOLDADO", "PCPE_AGENTE"];
 const STATUSES: ContractStatus[] = ["OPEN", "PARTIAL", "PAID", "OVERPAID", "CANCELLED"];
-const METHODS: PaymentMethod[] = ["PIX", "TRANSFERENCIA", "DINHEIRO", "OUTRO"];
+const METHODS: PaymentMethod[] = ["PIX", "CARTAO", "TRANSFERENCIA", "DINHEIRO", "OUTRO"];
 const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v)?.trim() || undefined;
 const day = (v: string | undefined, end: boolean) =>
   v && /^\d{4}-\d{2}-\d{2}$/.test(v) ? new Date(`${v}T${end ? "23:59:59.999" : "00:00:00.000"}-03:00`) : undefined;

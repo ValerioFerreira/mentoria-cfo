@@ -192,7 +192,7 @@ export interface GrantOptions {
  * Concede (ou estende) o acesso acadêmico até o fim do dia da prova oficial do concurso contratado.
  * Separado do financeiro: exige quitação, salvo liberação explícita do administrador com justificativa.
  */
-export async function grantAccessUntilExam(contractId: string, actorId: string, opts: GrantOptions = {}, client?: Tx) {
+export async function grantAccessUntilExam(contractId: string, actorId: string | null, opts: GrantOptions = {}, client?: Tx) {
   const run = async (tx: Tx) => {
     await lockContract(tx, contractId);
     const c = await tx.contract.findUnique({ where: { id: contractId }, include: { user: { select: { id: true, accessExpiresAt: true } } } });
@@ -226,4 +226,29 @@ export async function grantAccessUntilExam(contractId: string, actorId: string, 
     return { until: end, keptIndefinite: keepIndefinite };
   };
   return client ? run(client) : db.$transaction(run);
+}
+
+/**
+ * Estorno total (ou contestação perdida) de uma contratação cujo acesso já foi liberado: encerra o acesso que
+ * ESTA contratação concedeu. Só mexe na conta quando o prazo dela veio desta contratação; se a conta tem prazo
+ * maior por outro motivo, apenas registra a necessidade de revisão. Nunca altera acessos sem prazo.
+ */
+export async function revokeAccessAfterFullReversal(contractId: string, reason: string) {
+  return db.$transaction(async (tx) => {
+    await lockContract(tx, contractId);
+    const c = await tx.contract.findUnique({ where: { id: contractId }, include: { user: { select: { id: true, accessExpiresAt: true } } } });
+    if (!c || !c.accessGrantedAt || !c.accessUntil) return { revoked: false as const, reviewNeeded: false };
+    if (toCents(c.paidAmount) > 0) return { revoked: false as const, reviewNeeded: false };
+    const ownsDeadline = Boolean(c.user?.accessExpiresAt && c.user.accessExpiresAt.getTime() === c.accessUntil.getTime());
+    if (c.user && ownsDeadline) await tx.user.update({ where: { id: c.user.id }, data: { accessExpiresAt: new Date() } });
+    await tx.contract.update({ where: { id: c.id }, data: { accessGrantedAt: null, accessUntil: null, accessGrantedById: null } });
+    await audit(tx, {
+      actorId: null,
+      action: ownsDeadline ? "ACCESS_REVOKED" : "ACCESS_REVIEW_NEEDED",
+      entityType: "Contract",
+      entityId: c.id,
+      data: { reason, userId: c.userId, previousUntil: c.accessUntil.toISOString() },
+    });
+    return { revoked: ownsDeadline as boolean, reviewNeeded: !ownsDeadline } as { revoked: boolean; reviewNeeded: boolean };
+  });
 }
