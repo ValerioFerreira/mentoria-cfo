@@ -1,0 +1,32 @@
+# Relatório da revisão aprofundada — Lote A, revisor A-5
+
+Arquivos revisados (somente os trechos listados no LOTE-A): estatistica/a01, estatistica/a07, fisica/a01, informatica/a14, lingua-espanhola/a02, lingua-espanhola/a06, quimica/a00, quimica/a02, quimica/a13. Todos validam sem erro (`validate_summaries.py`); a nota de cobertura não caiu em nenhum trecho.
+
+| ID | trecho | resultado | o que foi alterado ou duvidado |
+| --- | --- | --- | --- |
+| S0421 | estatistica/a01/s03 | sem alteração | Conferidos todos os exemplos próprios (6,1; R$ 34; 21 anos; 42,9%; 1,8) e as propriedades; correto e completo. Registrado em `notes` que o material tem incoerências nos dados (já anotadas pelo autor). |
+| S0450 | estatistica/a01/s04 | corrigido | Acrescentada pegadinha sobre o exemplo do material de "aumento médio de 3%, 8% e 9%" que extrai a raiz do produto das taxas (6%), enquanto o rigoroso, com fatores, dá cerca de 6,7%. Dúvida humana registrada em `notes`: na questão IFPI das chamadas telefônicas o cálculo dá 7 min 14 s (alternativa B), mas o gabarito indicado é D (7 min 32 s). |
+| S0523 | estatistica/a07/s02 | corrigido | Removida frase de metatexto ("acréscimo fora do trecho"); resto conferido (esperança, propriedades, exemplos). |
+| S0524 | estatistica/a07/s03 | corrigido | Pegadinha sobre variância esclarecida (constante somada é ignorada, multiplicativa entra ao quadrado). Moda, mediana e assimetria conferidas. |
+| S0411 | estatistica/a07/s05 | corrigido | Quebra de frase e fórmulas de V(X+Y)/V(X−Y) reescritas; item da síntese partido em dois reunido (a síntese tinha um item truncado); acrescentado exemplo de prova de correlação (variâncias 8 e 2, covariância 3, ρ = 0,75). Cálculos de covariância e correlação refeitos e corretos. |
+| S0575 | fisica/a01/s01 | corrigido | Erro na questão dos relógios: o texto dizia que o relógio de B estava adiantado; no enunciado o adiantado é o de A (3 min 10 s). Corrigida a redação e acrescentada a regra (subtrair o adiantamento). |
+| S0220 | informatica/a14/s01 | corrigido | Acrescentadas as incidências em prova, a contagem hardware × software da questão FCC (4 e 4) e o "intruso" clássico (sistema operacional entre exemplos de hardware). Bases numéricas conferidas. |
+| S0221 | informatica/a14/s08 | corrigido | Resumo reescrito (versão anterior com jargão excessivo, tamanho da cache L1 incorreto e descrições sem base no material, como EEPROM "pino a pino"). Incluídos: cache (busca antecipada, ordem de consulta, latência), L1–L4, DRAM × SRAM, SIMM/DIMM, SDR/DDR, ROM e firmware (BIOS, POST, SETUP), PROM, EPROM, EEPROM, Flash, NVMe, pegadinhas e síntese refeita. Dúvida humana: questão Quadrix CRF-SE trata EPROM como "Electrically-Erasable" e dá certo o apagamento por ultravioleta; item Cebraspe chama a cache de "composta por registradores"; faixas de tamanho de cache do material são aproximações. |
+| S0236 | informatica/a14/s09 | corrigido | Resumo reescrito (a versão anterior citava 15.000 RPM e setor de 512 bytes sem base e omitia classificação, fita DAT, disquete, HD e pegadinhas). Dúvida humana: questão Quadrix/CFB do arquivo de 5 GB (comentário marca disquete como "Errado", gabarito C = DVD, ambígua por existir DVD de camada dupla). Cilindro incluído como conhecimento geral. |
+| S0222 | informatica/a14/s10 | corrigido | Resumo reescrito (comprimentos de onda e sufixo -RE sem base no material; faltavam CD-R/CD-RW, comparação HD × SSD, SSHD, pendrive, tabelas da hierarquia e questões-tipo). Dúvida humana: ordens de grandeza dos tempos de acesso e o trecho sobre CD-ROM do material são simplificações. |
+| S0319 | lingua-espanhola/a02/s01 | corrigido | Acrescentados exemplos de locuções prepositivas do português e a comparação com as preposições essenciais (sem copiar lista inteira, para não ferir a originalidade). Inventário (19 → 23), valores de cada preposição e pegadinhas conferidos. |
+| S0309 | lingua-espanhola/a02/s02 | corrigido | Acrescentado: uso restrito de *so* (capa, color, pena), *según* como modo/conformidade, e as locuções prepositivas por categoria (lugar, distância, tempo). Textos de revisão ajustados. |
+| S0332 | lingua-espanhola/a06/s01 | corrigido | Ajustada a afirmação sobre numerais/interjeições (o material diz "geralmente não") e acrescentada a dica do artigo como indicador de substantivo, com exemplos do texto. Padrões de gênero conferidos. |
+| S0709 | quimica/a00/s01 | corrigido | Acrescentados os pontos cobráveis de química no cotidiano (pilhas e energia química/elétrica, combustão, revoluções industriais, biodiesel, metalurgia, substâncias do dia a dia) e corrigida a definição de mistura homogênea ("uma única fase"). |
+| S0710 | quimica/a00/s02 | corrigido | Acrescentadas as evidências de fenômenos físicos e químicos, a questão-tipo (naftalina é sublimação, portanto física), reação AB + CD e combustão do etanol (combustível e comburente), energia (interna, química, conversões), questão-tipo de mudanças que absorvem calor e tabela das 4 curvas de aquecimento (com exemplos de azeotrópica). |
+| S0626 | quimica/a02/s02 | corrigido | Acrescentados: 118 elementos, pegadinha Mendeleyev × Moseley (inversões Ar/K e Te/I; mendelévio), numeração A/B × IUPAC, tabela de famílias, comprimento dos períodos, tendência de raio, regras lantanídeo × actinídeo (Z < 80), exemplos de posição, nova classificação IUPAC (Ge, Sb, Po metais; B, Si, As, Te ametais), bromo e mercúrio líquidos, Bartlett 1962 e questão-tipo. Dúvida humana: afirmação do material de que o berílio "não forma facilmente Be²⁺" não foi incluída por não ter sido confirmada. |
+| S0589 | quimica/a13/s01 | corrigido | Acrescentados: exemplo AB₂ → A + 2B e questão 2A → B (0,035 mol), equilíbrio dinâmico e mecanismo, ordem negativa, gráficos de 1ª/2ª/0 ordem, questão-tipo de tabela (R1², ordem zero) e forma logarítmica da meia-vida. Conferidos octano, bromato (k = 12) e carbono-14. |
+
+## Dúvidas para revisão humana
+- estatistica/a01/s04 (IFPI): cálculo (7 min 14 s) incompatível com o gabarito do material (D).
+- informatica/a14/s08: item Quadrix CRF-SE (EPROM x EEPROM) e item Cebraspe que fala em "registradores".
+- informatica/a14/s09: questão do arquivo de 5 GB (gabarito C = DVD, ambígua).
+- quimica/a02/s02: afirmação sobre Be²⁺ não confirmada (omitida).
+
+## Observação operacional
+Durante a validação, `content/summaries/estatistica/a05.json` (arquivo de outro revisor) esteve com JSON inválido por alguns minutos, o que quebrava `validate_summaries.py` de toda a disciplina; depois voltou a validar.
