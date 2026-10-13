@@ -49,14 +49,14 @@ describe.skipIf(!hasTestDb)("financeiro com persistência real", { timeout: 60_0
   const money = (d: { toString(): string }) => d.toString();
 
   describe("preços e contratação", () => {
-    it("Oficial R$ 60, PCPE R$ 60 e Praça R$ 40 no lançamento, com regra e preço original gravados", async () => {
+    it("Oficial R$ 90, PCPE R$ 90 e Praça R$ 60 no lançamento, com regra e preço original gravados", async () => {
       const a = await svc.contracts.createContract({ contest: "CBMPE_OFICIAL", customerEmail: "a@x.com" }, null);
       const b = await svc.contracts.createContract({ contest: "PCPE_AGENTE", customerEmail: "b@x.com" }, null);
       const c = await svc.contracts.createContract({ contest: "CBMPE_SOLDADO", customerEmail: "c@x.com" }, null);
       const [ca, cb, cc] = await Promise.all([contract(a.contractId), contract(b.contractId), contract(c.contractId)]);
-      expect([money(ca.finalAmount), money(cb.finalAmount), money(cc.finalAmount)]).toEqual(["60", "60", "40"]);
+      expect([money(ca.finalAmount), money(cb.finalAmount), money(cc.finalAmount)]).toEqual(["90", "90", "60"]);
       expect([money(ca.originalAmount), money(cc.originalAmount)]).toEqual(["120", "80"]);
-      expect(ca).toMatchObject({ category: "OFICIAL", launchDiscountPoints: 50, partnerDiscountPoints: 0, status: "OPEN", pricingRule: expect.stringContaining("LANCAMENTO") });
+      expect(ca).toMatchObject({ category: "OFICIAL", launchDiscountPoints: 25, partnerDiscountPoints: 0, status: "OPEN", pricingRule: expect.stringContaining("LANCAMENTO") });
       expect(cc.category).toBe("PRACA");
     });
 
@@ -79,7 +79,7 @@ describe.skipIf(!hasTestDb)("financeiro com persistência real", { timeout: 60_0
       const user = await db.user.create({ data: { email: "praca@x.com", passwordHash: "x", accessExpiresAt: null } });
       const r = await svc.contracts.createContract({ contest: "CBMPE_SOLDADO", customerEmail: user.email, userId: user.id }, null);
       expect((await contract(r.contractId)).examDateAtContract).toBeNull();
-      await svc.payments.registerPayment({ contractId: r.contractId, amountCents: 4000, paidAt: daysAgo(1), method: "PIX", idempotencyKey: key() }, adminId);
+      await svc.payments.registerPayment({ contractId: r.contractId, amountCents: 6000, paidAt: daysAgo(1), method: "PIX", idempotencyKey: key() }, adminId);
       await expect(svc.contracts.grantAccessUntilExam(r.contractId, adminId)).rejects.toThrow(/Data da prova/);
       expect((await contract(r.contractId)).accessGrantedAt).toBeNull();
     });
@@ -98,8 +98,8 @@ describe.skipIf(!hasTestDb)("financeiro com persistência real", { timeout: 60_0
       pricing.CATEGORY_PRICE_CENTS.OFICIAL = 20_000;
       try {
         const b = await svc.contracts.createContract({ contest: "CBMPE_OFICIAL", customerEmail: "novo@x.com" }, null);
-        expect(money((await contract(b.contractId)).finalAmount)).toBe("100");
-        expect(money((await contract(a.contractId)).finalAmount)).toBe("60");
+        expect(money((await contract(b.contractId)).finalAmount)).toBe("150");
+        expect(money((await contract(a.contractId)).finalAmount)).toBe("90");
       } finally {
         pricing.CATEGORY_PRICE_CENTS.OFICIAL = original;
       }
@@ -109,18 +109,18 @@ describe.skipIf(!hasTestDb)("financeiro com persistência real", { timeout: 60_0
   describe("pagamentos manuais e saldo", () => {
     it("pagamento integral quita a obrigação", async () => {
       const r = await svc.contracts.createContract({ contest: "CBMPE_OFICIAL", customerEmail: "int@x.com" }, null);
-      const p = await svc.payments.registerPayment({ contractId: r.contractId, amountCents: 6000, paidAt: daysAgo(0), method: "PIX", receiptRef: "E2E-1", idempotencyKey: key() }, adminId);
-      expect(p.totals).toMatchObject({ validReceivedCents: 6000, balanceCents: 0, status: "PAID" });
+      const p = await svc.payments.registerPayment({ contractId: r.contractId, amountCents: 9000, paidAt: daysAgo(0), method: "PIX", receiptRef: "E2E-1", idempotencyKey: key() }, adminId);
+      expect(p.totals).toMatchObject({ validReceivedCents: 9000, balanceCents: 0, status: "PAID" });
       const c = await contract(r.contractId);
-      expect([money(c.paidAmount), c.status]).toEqual(["60", "PAID"]);
+      expect([money(c.paidAmount), c.status]).toEqual(["90", "PAID"]);
     });
 
     it("três parcelas em datas diferentes: três registros, saldo recalculado a cada uma", async () => {
       const r = await svc.contracts.createContract({ contest: "CBMPE_OFICIAL", customerEmail: "parc@x.com" }, null);
       const steps = [
-        { cents: 2000, ago: 20, status: "PARTIAL", balance: 4000 },
-        { cents: 1500, ago: 10, status: "PARTIAL", balance: 2500 },
-        { cents: 2500, ago: 1, status: "PAID", balance: 0 },
+        { cents: 3000, ago: 20, status: "PARTIAL", balance: 6000 },
+        { cents: 1500, ago: 10, status: "PARTIAL", balance: 3500 },
+        { cents: 3500, ago: 1, status: "PAID", balance: 0 },
       ];
       for (const s of steps) {
         const res = await svc.payments.registerPayment({ contractId: r.contractId, amountCents: s.cents, paidAt: daysAgo(s.ago), method: "TRANSFERENCIA", idempotencyKey: key() }, adminId);
@@ -132,8 +132,8 @@ describe.skipIf(!hasTestDb)("financeiro com persistência real", { timeout: 60_0
 
     it("pagamento excedente é preservado, sinalizado e não deixa saldo negativo silencioso", async () => {
       const r = await svc.contracts.createContract({ contest: "CBMPE_SOLDADO", customerEmail: "exc@x.com" }, null);
-      const res = await svc.payments.registerPayment({ contractId: r.contractId, amountCents: 5000, paidAt: daysAgo(0), method: "PIX", idempotencyKey: key() }, adminId);
-      expect(res.totals).toMatchObject({ status: "OVERPAID", balanceCents: -1000, validReceivedCents: 5000 });
+      const res = await svc.payments.registerPayment({ contractId: r.contractId, amountCents: 7000, paidAt: daysAgo(0), method: "PIX", idempotencyKey: key() }, adminId);
+      expect(res.totals).toMatchObject({ status: "OVERPAID", balanceCents: -1000, validReceivedCents: 7000 });
       expect(await db.auditLog.count({ where: { action: "OVERPAYMENT_DETECTED" } })).toBe(1);
     });
 
@@ -170,14 +170,14 @@ describe.skipIf(!hasTestDb)("financeiro com persistência real", { timeout: 60_0
 
     it("estorno auditável: lançamento original preservado, saldo recalculado, limite do estorno respeitado", async () => {
       const r = await svc.contracts.createContract({ contest: "CBMPE_OFICIAL", customerEmail: "est@x.com" }, null);
-      const p = await svc.payments.registerPayment({ contractId: r.contractId, amountCents: 6000, paidAt: daysAgo(2), method: "PIX", idempotencyKey: key() }, adminId);
+      const p = await svc.payments.registerPayment({ contractId: r.contractId, amountCents: 9000, paidAt: daysAgo(2), method: "PIX", idempotencyKey: key() }, adminId);
       const k = key();
       const rev = await svc.payments.reversePayment({ paymentId: p.paymentId, amountCents: 2000, kind: "CORRECAO", reason: "Valor lançado a maior", effectiveAt: daysAgo(0), idempotencyKey: k }, adminId);
-      expect(rev.totals).toMatchObject({ validReceivedCents: 4000, balanceCents: 2000, status: "PARTIAL" });
+      expect(rev.totals).toMatchObject({ validReceivedCents: 7000, balanceCents: 2000, status: "PARTIAL" });
       expect((await svc.payments.reversePayment({ paymentId: p.paymentId, amountCents: 2000, kind: "CORRECAO", reason: "Valor lançado a maior", effectiveAt: daysAgo(0), idempotencyKey: k }, adminId)).duplicate).toBe(true);
-      await expect(svc.payments.reversePayment({ paymentId: p.paymentId, amountCents: 4001, kind: "ESTORNO", reason: "Devolução", effectiveAt: daysAgo(0), idempotencyKey: key() }, adminId)).rejects.toThrow(/excede/);
+      await expect(svc.payments.reversePayment({ paymentId: p.paymentId, amountCents: 7001, kind: "ESTORNO", reason: "Devolução", effectiveAt: daysAgo(0), idempotencyKey: key() }, adminId)).rejects.toThrow(/excede/);
       await expect(svc.payments.reversePayment({ paymentId: p.paymentId, amountCents: 100, kind: "ESTORNO", reason: "x", effectiveAt: daysAgo(0), idempotencyKey: key() }, adminId)).rejects.toThrow(/justificativa/);
-      expect(money((await db.manualPayment.findUniqueOrThrow({ where: { id: p.paymentId } })).amount)).toBe("60");
+      expect(money((await db.manualPayment.findUniqueOrThrow({ where: { id: p.paymentId } })).amount)).toBe("90");
       expect(await db.auditLog.count({ where: { action: "PAYMENT_REVERSED" } })).toBe(1);
       expect(await svc.payments.reconcileContract(r.contractId)).toMatchObject({ paidAmountOk: true, statusOk: true, commissionOk: true });
     });
@@ -212,10 +212,10 @@ describe.skipIf(!hasTestDb)("financeiro com persistência real", { timeout: 60_0
     it("saldo consolidado do usuário com mais de um concurso mantém obrigações separadas", async () => {
       const a = await svc.contracts.createContract({ contest: "CBMPE_OFICIAL", customerEmail: "multi@x.com" }, null);
       const b = await svc.contracts.createContract({ contest: "CBMPE_SOLDADO", customerEmail: "multi@x.com" }, null);
-      await svc.payments.registerPayment({ contractId: a.contractId, amountCents: 6000, paidAt: daysAgo(0), method: "PIX", idempotencyKey: key() }, adminId);
+      await svc.payments.registerPayment({ contractId: a.contractId, amountCents: 9000, paidAt: daysAgo(0), method: "PIX", idempotencyKey: key() }, adminId);
       await svc.payments.registerPayment({ contractId: b.contractId, amountCents: 1000, paidAt: daysAgo(0), method: "PIX", idempotencyKey: key() }, adminId);
       const { customerBalance } = await import("./queries");
-      expect(await customerBalance("multi@x.com")).toMatchObject({ dueCents: 10_000, receivedCents: 7000, balanceCents: 3000, contracts: 2 });
+      expect(await customerBalance("multi@x.com")).toMatchObject({ dueCents: 15_000, receivedCents: 10_000, balanceCents: 5000, contracts: 2 });
     });
   });
 
@@ -257,7 +257,7 @@ describe.skipIf(!hasTestDb)("financeiro com persistência real", { timeout: 60_0
     it("compra sem cupom não gera atribuição nem comissão", async () => {
       await newPartner();
       const r = await svc.contracts.createContract({ contest: "CBMPE_OFICIAL", customerEmail: "semcupom@x.com" }, null);
-      await svc.payments.registerPayment({ contractId: r.contractId, amountCents: 6000, paidAt: daysAgo(0), method: "PIX", idempotencyKey: key() }, adminId);
+      await svc.payments.registerPayment({ contractId: r.contractId, amountCents: 9000, paidAt: daysAgo(0), method: "PIX", idempotencyKey: key() }, adminId);
       expect(await db.partnerReferral.count()).toBe(0);
       expect(await db.commissionEntry.count()).toBe(0);
     });
@@ -280,22 +280,22 @@ describe.skipIf(!hasTestDb)("financeiro com persistência real", { timeout: 60_0
       const p = await newPartner();
       const o = await svc.contracts.createContract({ contest: "CBMPE_OFICIAL", customerEmail: "o@x.com", couponCode: p.couponCode }, null);
       const s = await svc.contracts.createContract({ contest: "CBMPE_SOLDADO", customerEmail: "s@x.com", couponCode: p.couponCode }, null);
-      const po = await svc.payments.registerPayment({ contractId: o.contractId, amountCents: 4200, paidAt: daysAgo(0), method: "PIX", idempotencyKey: key() }, adminId);
-      await svc.payments.registerPayment({ contractId: s.contractId, amountCents: 2800, paidAt: daysAgo(0), method: "PIX", idempotencyKey: key() }, adminId);
+      const po = await svc.payments.registerPayment({ contractId: o.contractId, amountCents: 7200, paidAt: daysAgo(0), method: "PIX", idempotencyKey: key() }, adminId);
+      await svc.payments.registerPayment({ contractId: s.contractId, amountCents: 4800, paidAt: daysAgo(0), method: "PIX", idempotencyKey: key() }, adminId);
       const entries = await db.commissionEntry.findMany({ orderBy: { createdAt: "asc" } });
-      expect(entries.map((e) => money(e.amount))).toEqual(["12.6", "8.4"]);
+      expect(entries.map((e) => money(e.amount))).toEqual(["21.6", "14.4"]);
       expect(entries[0]).toMatchObject({ kind: "ACCRUAL", paymentId: po.paymentId, contractId: o.contractId, partnerId: p.partnerId, rateBp: 3000 });
     });
 
     it("comissão proporcional em parcelas: a soma das parcelas é exatamente 30% do recebido", async () => {
       const p = await newPartner();
       const r = await svc.contracts.createContract({ contest: "CBMPE_OFICIAL", customerEmail: "p3@x.com", couponCode: p.couponCode }, null);
-      const parts = [1001, 1001, 2198];
+      const parts = [1001, 1001, 5198];
       for (const cents of parts) await svc.payments.registerPayment({ contractId: r.contractId, amountCents: cents, paidAt: daysAgo(0), method: "PIX", idempotencyKey: key() }, adminId);
       const entries = await db.commissionEntry.findMany({ where: { contractId: r.contractId }, orderBy: { createdAt: "asc" } });
       expect(entries).toHaveLength(3);
-      expect(entries.map((e) => money(e.amount))).toEqual(["3", "3.01", "6.59"]);
-      expect(entries.reduce((s, e) => s + Math.round(Number(e.amount) * 100), 0)).toBe(1260);
+      expect(entries.map((e) => money(e.amount))).toEqual(["3", "3.01", "15.59"]);
+      expect(entries.reduce((s, e) => s + Math.round(Number(e.amount) * 100), 0)).toBe(2160);
       // só o que foi recebido gera comissão: com 1 parcela paga, nada além de 30% dela
       const r2 = await svc.contracts.createContract({ contest: "CBMPE_SOLDADO", customerEmail: "p4@x.com", couponCode: p.couponCode }, null);
       await svc.payments.registerPayment({ contractId: r2.contractId, amountCents: 1000, paidAt: daysAgo(0), method: "PIX", idempotencyKey: key() }, adminId);
@@ -305,53 +305,53 @@ describe.skipIf(!hasTestDb)("financeiro com persistência real", { timeout: 60_0
     it("excedente pago a mais não gera comissão extra", async () => {
       const p = await newPartner();
       const r = await svc.contracts.createContract({ contest: "CBMPE_OFICIAL", customerEmail: "ex@x.com", couponCode: p.couponCode }, null);
-      await svc.payments.registerPayment({ contractId: r.contractId, amountCents: 5000, paidAt: daysAgo(0), method: "PIX", idempotencyKey: key() }, adminId);
-      expect(money((await db.commissionEntry.aggregate({ where: { contractId: r.contractId }, _sum: { amount: true } }))._sum.amount!)).toBe("12.6");
+      await svc.payments.registerPayment({ contractId: r.contractId, amountCents: 9500, paidAt: daysAgo(0), method: "PIX", idempotencyKey: key() }, adminId);
+      expect(money((await db.commissionEntry.aggregate({ where: { contractId: r.contractId }, _sum: { amount: true } }))._sum.amount!)).toBe("21.6");
     });
 
     it("estorno reverte a comissão proporcionalmente, sem reversão duplicada", async () => {
       const p = await newPartner();
       const r = await svc.contracts.createContract({ contest: "CBMPE_OFICIAL", customerEmail: "rev@x.com", couponCode: p.couponCode }, null);
-      const pay = await svc.payments.registerPayment({ contractId: r.contractId, amountCents: 4200, paidAt: daysAgo(30), method: "PIX", idempotencyKey: key() }, adminId);
+      const pay = await svc.payments.registerPayment({ contractId: r.contractId, amountCents: 7200, paidAt: daysAgo(30), method: "PIX", idempotencyKey: key() }, adminId);
       const k = key();
-      const input = { paymentId: pay.paymentId, amountCents: 2100, kind: "ESTORNO" as const, reason: "Devolução parcial ao cliente", effectiveAt: daysAgo(0), idempotencyKey: k };
+      const input = { paymentId: pay.paymentId, amountCents: 3600, kind: "ESTORNO" as const, reason: "Devolução parcial ao cliente", effectiveAt: daysAgo(0), idempotencyKey: k };
       const first = await svc.payments.reversePayment(input, adminId);
       await svc.payments.reversePayment(input, adminId);
       const rev = await db.commissionEntry.findMany({ where: { kind: "REVERSAL" } });
       expect(rev).toHaveLength(1);
       expect(rev[0]).toMatchObject({ reversalId: first.reversalId, paymentId: pay.paymentId });
-      expect(money(rev[0].amount)).toBe("-6.3");
+      expect(money(rev[0].amount)).toBe("-10.8");
       const bal = await svc.partners.partnerBalance(p.partnerId);
-      expect(bal).toMatchObject({ generatedCents: 1260, reversedCents: 630, availableCents: 630, negativeCents: 0 });
+      expect(bal).toMatchObject({ generatedCents: 2160, reversedCents: 1080, availableCents: 1080, negativeCents: 0 });
     });
 
     it("comissão fica pendente durante a garantia e depois disponível", async () => {
       const p = await newPartner();
       const r = await svc.contracts.createContract({ contest: "CBMPE_OFICIAL", customerEmail: "pend@x.com", couponCode: p.couponCode }, null);
-      await svc.payments.registerPayment({ contractId: r.contractId, amountCents: 4200, paidAt: daysAgo(2), method: "PIX", idempotencyKey: key() }, adminId);
-      expect(await svc.partners.partnerBalance(p.partnerId)).toMatchObject({ pendingCents: 1260, availableCents: 0 });
-      expect(await svc.partners.partnerBalance(p.partnerId, new Date(Date.now() + 6 * DAY))).toMatchObject({ pendingCents: 0, availableCents: 1260 });
+      await svc.payments.registerPayment({ contractId: r.contractId, amountCents: 7200, paidAt: daysAgo(2), method: "PIX", idempotencyKey: key() }, adminId);
+      expect(await svc.partners.partnerBalance(p.partnerId)).toMatchObject({ pendingCents: 2160, availableCents: 0 });
+      expect(await svc.partners.partnerBalance(p.partnerId, new Date(Date.now() + 6 * DAY))).toMatchObject({ pendingCents: 0, availableCents: 2160 });
     });
 
     it("repasse válido, repasse acima do saldo recusado e compensação de saldo negativo", async () => {
       const p = await newPartner();
       const r = await svc.contracts.createContract({ contest: "CBMPE_OFICIAL", customerEmail: "rep@x.com", couponCode: p.couponCode }, null);
-      const pay = await svc.payments.registerPayment({ contractId: r.contractId, amountCents: 4200, paidAt: daysAgo(30), method: "PIX", idempotencyKey: key() }, adminId);
-      await expect(svc.partners.registerPayout({ partnerId: p.partnerId, amountCents: 1261, paidAt: daysAgo(0), method: "Pix", idempotencyKey: key() }, adminId)).rejects.toThrow(/acima do saldo/);
+      const pay = await svc.payments.registerPayment({ contractId: r.contractId, amountCents: 7200, paidAt: daysAgo(30), method: "PIX", idempotencyKey: key() }, adminId);
+      await expect(svc.partners.registerPayout({ partnerId: p.partnerId, amountCents: 2161, paidAt: daysAgo(0), method: "Pix", idempotencyKey: key() }, adminId)).rejects.toThrow(/acima do saldo/);
       const k = key();
-      await svc.partners.registerPayout({ partnerId: p.partnerId, amountCents: 1260, paidAt: daysAgo(0), method: "Pix", receiptRef: "REP-1", idempotencyKey: k }, adminId);
-      expect((await svc.partners.registerPayout({ partnerId: p.partnerId, amountCents: 1260, paidAt: daysAgo(0), method: "Pix", idempotencyKey: k }, adminId)).duplicate).toBe(true);
+      await svc.partners.registerPayout({ partnerId: p.partnerId, amountCents: 2160, paidAt: daysAgo(0), method: "Pix", receiptRef: "REP-1", idempotencyKey: k }, adminId);
+      expect((await svc.partners.registerPayout({ partnerId: p.partnerId, amountCents: 2160, paidAt: daysAgo(0), method: "Pix", idempotencyKey: k }, adminId)).duplicate).toBe(true);
       expect(await db.partnerPayout.count()).toBe(1);
       // estorno total depois do repasse: saldo negativo a compensar
-      await svc.payments.reversePayment({ paymentId: pay.paymentId, amountCents: 4200, kind: "ESTORNO", reason: "Cliente usou a garantia", effectiveAt: daysAgo(0), idempotencyKey: key() }, adminId);
-      expect(await svc.partners.partnerBalance(p.partnerId)).toMatchObject({ availableCents: 0, negativeCents: 1260, paidOutCents: 1260 });
+      await svc.payments.reversePayment({ paymentId: pay.paymentId, amountCents: 7200, kind: "ESTORNO", reason: "Cliente usou a garantia", effectiveAt: daysAgo(0), idempotencyKey: key() }, adminId);
+      expect(await svc.partners.partnerBalance(p.partnerId)).toMatchObject({ availableCents: 0, negativeCents: 2160, paidOutCents: 2160 });
       await expect(svc.partners.registerPayout({ partnerId: p.partnerId, amountCents: 1, paidAt: daysAgo(0), method: "Pix", idempotencyKey: key() }, adminId)).rejects.toThrow(/acima do saldo/);
       // novas comissões compensam primeiro o negativo
       const r2 = await svc.contracts.createContract({ contest: "CBMPE_OFICIAL", customerEmail: "rep2@x.com", couponCode: p.couponCode }, null);
-      await svc.payments.registerPayment({ contractId: r2.contractId, amountCents: 4200, paidAt: daysAgo(30), method: "PIX", idempotencyKey: key() }, adminId);
+      await svc.payments.registerPayment({ contractId: r2.contractId, amountCents: 7200, paidAt: daysAgo(30), method: "PIX", idempotencyKey: key() }, adminId);
       const r3 = await svc.contracts.createContract({ contest: "CBMPE_SOLDADO", customerEmail: "rep3@x.com", couponCode: p.couponCode }, null);
-      await svc.payments.registerPayment({ contractId: r3.contractId, amountCents: 2800, paidAt: daysAgo(30), method: "PIX", idempotencyKey: key() }, adminId);
-      expect(await svc.partners.partnerBalance(p.partnerId)).toMatchObject({ negativeCents: 0, availableCents: 840 });
+      await svc.payments.registerPayment({ contractId: r3.contractId, amountCents: 4800, paidAt: daysAgo(30), method: "PIX", idempotencyKey: key() }, adminId);
+      expect(await svc.partners.partnerBalance(p.partnerId)).toMatchObject({ negativeCents: 0, availableCents: 1440 });
     });
 
     it("desativação bloqueia sessões; o histórico (cupons, indicações, comissões) permanece", async () => {
@@ -359,7 +359,7 @@ describe.skipIf(!hasTestDb)("financeiro com persistência real", { timeout: 60_0
       const partner = await db.partner.findUniqueOrThrow({ where: { id: p.partnerId } });
       await db.session.create({ data: { userId: partner.userId, tokenHash: "hash-sessao", expiresAt: new Date(Date.now() + DAY) } });
       const r = await svc.contracts.createContract({ contest: "CBMPE_OFICIAL", customerEmail: "hist2@x.com", couponCode: p.couponCode }, null);
-      await svc.payments.registerPayment({ contractId: r.contractId, amountCents: 4200, paidAt: daysAgo(0), method: "PIX", idempotencyKey: key() }, adminId);
+      await svc.payments.registerPayment({ contractId: r.contractId, amountCents: 7200, paidAt: daysAgo(0), method: "PIX", idempotencyKey: key() }, adminId);
       await svc.partners.setPartnerActive(p.partnerId, false, adminId);
       expect(await db.session.count({ where: { userId: partner.userId } })).toBe(0);
       expect(await db.partnerCoupon.count({ where: { partnerId: p.partnerId } })).toBe(1);
@@ -386,11 +386,11 @@ describe.skipIf(!hasTestDb)("financeiro com persistência real", { timeout: 60_0
       const ra = await svc.contracts.createContract({ contest: "CBMPE_OFICIAL", customerEmail: "cliente.a@x.com", couponCode: a.couponCode }, null);
       await svc.contracts.createContract({ contest: "CBMPE_OFICIAL", customerEmail: "cliente.b@x.com", couponCode: b.couponCode }, null);
       await svc.contracts.createContract({ contest: "CBMPE_SOLDADO", customerEmail: "cliente.b2@x.com", couponCode: b.couponCode }, null);
-      await svc.payments.registerPayment({ contractId: ra.contractId, amountCents: 4200, paidAt: daysAgo(0), method: "PIX", idempotencyKey: key() }, adminId);
+      await svc.payments.registerPayment({ contractId: ra.contractId, amountCents: 7200, paidAt: daysAgo(0), method: "PIX", idempotencyKey: key() }, adminId);
       const { partnerDashboard } = await import("./queries");
       const userA = (await db.partner.findUniqueOrThrow({ where: { id: a.partnerId } })).userId;
       const dash = await partnerDashboard(userA);
-      expect(dash).toMatchObject({ referredUsers: 1, payingUsers: 1, contracts: 1, receivedCents: 4200, balance: { generatedCents: 1260 } });
+      expect(dash).toMatchObject({ referredUsers: 1, payingUsers: 1, contracts: 1, receivedCents: 7200, balance: { generatedCents: 2160 } });
       expect(JSON.stringify(dash)).not.toContain("cliente.");
       expect(JSON.stringify(dash)).not.toContain("@");
       const userB = (await db.partner.findUniqueOrThrow({ where: { id: b.partnerId } })).userId;

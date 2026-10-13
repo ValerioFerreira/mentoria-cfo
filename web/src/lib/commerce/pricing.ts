@@ -20,7 +20,7 @@ export const CATEGORY_LABEL: Record<ContestCategory, string> = {
 };
 
 /** Desconto de lançamento, em pontos percentuais sobre o preço original. */
-export const LAUNCH_DISCOUNT_POINTS = 50;
+export const LAUNCH_DISCOUNT_POINTS = 25;
 /** Desconto adicional do cupom de parceiro (p.p. sobre o preço original, somados ao de lançamento). */
 export const PARTNER_COUPON_DISCOUNT_POINTS = 15;
 export const MAX_DISCOUNT_POINTS = 100;

@@ -94,7 +94,7 @@ describe.skipIf(!hasTestDb)("server actions: autorização e preço do servidor"
     const r = await actions.adminRegisterPayment(null, fd({ contractId: c.contractId, amount: "30,00", paidAt: today(), method: "PIX", idempotencyKey: "chave-abcdef", status: "PAID", paidAmount: "60", finalAmount: "1" }));
     expect(r.ok).toBe(true);
     const row = await db.contract.findUniqueOrThrow({ where: { id: c.contractId } });
-    expect([row.status, row.paidAmount.toString(), row.finalAmount.toString()]).toEqual(["PARTIAL", "30", "60"]);
+    expect([row.status, row.paidAmount.toString(), row.finalAmount.toString()]).toEqual(["PARTIAL", "30", "90"]);
     const neg = await actions.adminRegisterPayment(null, fd({ contractId: c.contractId, amount: "-10", paidAt: today(), method: "PIX", idempotencyKey: "chave-negativa" }));
     expect(neg.ok).toBe(false);
   });
@@ -104,7 +104,7 @@ describe.skipIf(!hasTestDb)("server actions: autorização e preço do servidor"
     asUser(student);
     await expect(startContract(null, fd({ contest: "CBMPE_OFICIAL", finalAmount: "1.00", partnerDiscountPoints: "100", price: "0" }))).rejects.toThrow(/REDIRECT:\/pagamentos\/contratacao\//);
     const c = await db.contract.findFirstOrThrow({ where: { userId: student.id } });
-    expect([c.finalAmount.toString(), c.partnerDiscountPoints, c.customerEmail]).toEqual(["60", 0, "aluno@x.com"]);
+    expect([c.finalAmount.toString(), c.partnerDiscountPoints, c.customerEmail]).toEqual(["90", 0, "aluno@x.com"]);
   });
 
   it("parceiro: login bloqueado ao desativar; não troca a própria senha", async () => {
@@ -136,7 +136,7 @@ describe.skipIf(!hasTestDb)("server actions: autorização e preço do servidor"
     const p = await createPartner({ email: "div@x.com", username: "divulga", password: "senha-forte-1" }, admin.id);
     const r = await joinWaitlist("cbmpe-oficial", undefined, fd({ name: "Cliente Indicado", email: "novo@x.com", username: "novo1", coupon: p.couponCode.toLowerCase(), amount: "1" }));
     expect(r?.payment).toMatchObject({ amount: "42,00", couponCode: p.couponCode });
-    expect(r?.payment?.payload).toContain("540542.00");
+    expect(r?.payment?.payload).toContain("540572.00");
     expect(await db.partnerReferral.count({ where: { partnerId: p.partnerId, customerEmail: "novo@x.com" } })).toBe(1);
     const self = await joinWaitlist("cbmpe-oficial", undefined, fd({ name: "O Próprio Parceiro", email: "div@x.com", username: "divulga2", coupon: p.couponCode }));
     expect(self).toMatchObject({ errors: { email: [expect.any(String)] } }); // já tem conta

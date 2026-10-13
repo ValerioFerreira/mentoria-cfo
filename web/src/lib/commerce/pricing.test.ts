@@ -4,15 +4,15 @@ import { formatBRL, fromCents, parseMoneyInput, toCents } from "./money";
 import { accessEndForExamDate, commissionOn, commissionTarget, financialStatus, priceCardText, quote } from "./pricing";
 
 describe("preços por categoria", () => {
-  it("lançamento: Oficial e PCPE R$ 60,00; Praça R$ 40,00", () => {
-    expect(quote("OFICIAL")).toMatchObject({ originalCents: 12_000, launchDiscountPoints: 50, partnerDiscountPoints: 0, finalCents: 6_000, discountCents: 6_000 });
-    expect(quote("PCPE").finalCents).toBe(6_000);
-    expect(quote("PRACA")).toMatchObject({ originalCents: 8_000, finalCents: 4_000 });
+  it("lançamento: Oficial e PCPE R$ 90,00; Praça R$ 60,00", () => {
+    expect(quote("OFICIAL")).toMatchObject({ originalCents: 12_000, launchDiscountPoints: 25, partnerDiscountPoints: 0, finalCents: 9_000, discountCents: 3_000 });
+    expect(quote("PCPE").finalCents).toBe(9_000);
+    expect(quote("PRACA")).toMatchObject({ originalCents: 8_000, finalCents: 6_000 });
   });
-  it("cupom de parceiro soma 15 p.p.: R$ 42,00 e R$ 28,00", () => {
-    expect(quote("OFICIAL", 15)).toMatchObject({ partnerDiscountPoints: 15, finalCents: 4_200, discountCents: 7_800 });
-    expect(quote("PCPE", 15).finalCents).toBe(4_200);
-    expect(quote("PRACA", 15).finalCents).toBe(2_800);
+  it("cupom de parceiro soma 15 p.p.: R$ 72,00 e R$ 48,00", () => {
+    expect(quote("OFICIAL", 15)).toMatchObject({ partnerDiscountPoints: 15, finalCents: 7_200, discountCents: 4_800 });
+    expect(quote("PCPE", 15).finalCents).toBe(7_200);
+    expect(quote("PRACA", 15).finalCents).toBe(4_800);
   });
   it("categoria ausente ou inválida não tem preço", () => {
     expect(() => quote(null)).toThrow(/revisão administrativa/);
@@ -23,11 +23,11 @@ describe("preços por categoria", () => {
     expect(() => quote("OFICIAL", -10)).toThrow(/inválido/);
     expect(() => quote("OFICIAL", 101)).toThrow(/inválido/);
     expect(() => quote("OFICIAL", 7.5)).toThrow(/inválido/);
-    expect(quote("OFICIAL", 80)).toMatchObject({ partnerDiscountPoints: 50, finalCents: 0 });
+    expect(quote("OFICIAL", 80)).toMatchObject({ partnerDiscountPoints: 75, finalCents: 0 });
   });
   it("textos do card vêm do cálculo do servidor", () => {
-    expect(priceCardText(quote("OFICIAL"))).toEqual({ badge: "50% OFF · lançamento", original: "De R$ 120,00", final: "R$ 60,00" });
-    expect(priceCardText(quote("PRACA"))).toEqual({ badge: "50% OFF · lançamento", original: "De R$ 80,00", final: "R$ 40,00" });
+    expect(priceCardText(quote("OFICIAL"))).toEqual({ badge: "25% OFF · lançamento", original: "De R$ 120,00", final: "R$ 90,00" });
+    expect(priceCardText(quote("PRACA"))).toEqual({ badge: "25% OFF · lançamento", original: "De R$ 80,00", final: "R$ 60,00" });
   });
 });
 

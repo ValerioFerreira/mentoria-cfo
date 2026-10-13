@@ -90,11 +90,11 @@ describe.skipIf(!hasTestDb)("lista de espera com Pix dinâmico do Mercado Pago",
   it("o QR e o copia e cola são os do Mercado Pago, com o valor calculado no servidor", async () => {
     const { joinWaitlist } = await import("@/app/(public)/lista-de-espera/[concurso]/actions");
     const r = await joinWaitlist("cbmpe-oficial", undefined, fd({ name: "Cliente Online", email: "online@x.com", username: "online1", amount: "1", price: "0.01" }));
-    expect(r?.payment).toMatchObject({ amount: "60,00", plan: "Acesso ilimitado até a prova" });
+    expect(r?.payment).toMatchObject({ amount: "90,00", plan: "Acesso ilimitado até a prova" });
     expect(r?.payment?.payload).toMatch(/^PIX-MP-/);
     expect(r?.payment?.qr).toBe("data:image/png;base64,iVBORw0KGgo=");
     expect(fake.posts).toHaveLength(1);
-    expect(fake.posts[0]).toMatchObject({ transaction_amount: 60, payment_method_id: "pix" });
+    expect(fake.posts[0]).toMatchObject({ transaction_amount: 90, payment_method_id: "pix" });
     expect(await db.manualPayment.count()).toBe(0); // gerar o Pix não é receber
   });
 
@@ -113,11 +113,11 @@ describe.skipIf(!hasTestDb)("lista de espera com Pix dinâmico do Mercado Pago",
     const p = await createPartner({ email: "par@x.com", username: "parceiro1", password: "senha-inicial-1" }, admin.id);
     const { joinWaitlist } = await import("@/app/(public)/lista-de-espera/[concurso]/actions");
     const first = await joinWaitlist("cbmpe-oficial", undefined, fd({ name: "Cliente Troca", email: "troca@x.com", username: "troca1" }));
-    expect(first?.payment?.amount).toBe("60,00");
+    expect(first?.payment?.amount).toBe("90,00");
     const second = await joinWaitlist("cbmpe-oficial", undefined, fd({ name: "Cliente Troca", email: "troca@x.com", username: "troca1", coupon: p.couponCode }));
-    expect(second?.payment?.amount).toBe("42,00");
+    expect(second?.payment?.amount).toBe("72,00");
     expect(second?.payment?.payload).not.toBe(first?.payment?.payload);
-    const old = [...fake.payments.values()].find((x) => x.transaction_amount === 60)!;
+    const old = [...fake.payments.values()].find((x) => x.transaction_amount === 90)!;
     expect(old.status).toBe("cancelled");
     expect(await db.onlineCharge.count({ where: { status: "CANCELLED" } })).toBe(1);
   });

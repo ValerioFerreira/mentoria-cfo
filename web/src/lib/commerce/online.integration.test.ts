@@ -172,11 +172,11 @@ describe.skipIf(!hasTestDb)("pagamento online (Mercado Pago da empresa)", { time
       const a = await svc.online.startPixCharge(id);
       const b = await svc.online.startPixCharge(id);
       expect(b.id).toBe(a.id);
-      expect(a).toMatchObject({ kind: "PIX", status: "PENDING", amountCents: 4200 });
+      expect(a).toMatchObject({ kind: "PIX", status: "PENDING", amountCents: 7200 });
       expect(a.qrCode).toContain("00020126-pix");
       const posts = fake.calls.filter((c) => c.method === "POST" && c.path === "/v1/payments");
       expect(posts).toHaveLength(1);
-      expect(posts[0].body).toMatchObject({ transaction_amount: 42, payment_method_id: "pix", external_reference: id, notification_url: "https://teste.local/api/webhooks/mercadopago", payer: { email: "aluno@teste.local" } });
+      expect(posts[0].body).toMatchObject({ transaction_amount: 72, payment_method_id: "pix", external_reference: id, notification_url: "https://teste.local/api/webhooks/mercadopago", payer: { email: "aluno@teste.local" } });
       expect(posts[0].key).toBe(a.id); // chave de idempotência = id local da cobrança
       expect(await db.manualPayment.count()).toBe(0); // criar a cobrança não é receber dinheiro
     });
@@ -196,7 +196,7 @@ describe.skipIf(!hasTestDb)("pagamento online (Mercado Pago da empresa)", { time
       const { id } = await contractFor();
       await svc.payments.registerPayment({ contractId: id, amountCents: 2000, paidAt: new Date(Date.now() - DAY), method: "PIX", idempotencyKey: key() }, adminId);
       const c = await svc.online.startPixCharge(id);
-      expect(c.amountCents).toBe(4000);
+      expect(c.amountCents).toBe(7000);
     });
 
     it("contratação cancelada ou quitada não gera cobrança", async () => {
@@ -204,7 +204,7 @@ describe.skipIf(!hasTestDb)("pagamento online (Mercado Pago da empresa)", { time
       await svc.contracts.cancelContract(id, "cancelada no teste", adminId);
       await expect(svc.online.startPixCharge(id)).rejects.toThrow(/cancelada/);
       const other = await contractFor({ contest: "CBMPE_SOLDADO", withUser: false });
-      await svc.payments.registerPayment({ contractId: other.id, amountCents: 4000, paidAt: new Date(Date.now() - DAY), method: "PIX", idempotencyKey: key() }, adminId);
+      await svc.payments.registerPayment({ contractId: other.id, amountCents: 6000, paidAt: new Date(Date.now() - DAY), method: "PIX", idempotencyKey: key() }, adminId);
       await expect(svc.online.startPixCharge(other.id)).rejects.toThrow(/quitada/);
     });
 
@@ -250,12 +250,12 @@ describe.skipIf(!hasTestDb)("pagamento online (Mercado Pago da empresa)", { time
       const payments = await db.manualPayment.findMany({ where: { contractId: id } });
       expect(payments).toHaveLength(1);
       expect(payments[0]).toMatchObject({ source: "MERCADO_PAGO", method: "PIX", createdById: null, providerPaymentId: paymentId, receiptRef: `MP-${paymentId}` });
-      expect(money(payments[0].amount)).toBe("42");
+      expect(money(payments[0].amount)).toBe("72");
       const c = await reload(id);
       expect(c).toMatchObject({ status: "PAID" });
-      expect(money(c.paidAmount)).toBe("42");
+      expect(money(c.paidAmount)).toBe("72");
       const commission = await db.commissionEntry.findMany({ where: { contractId: id } });
-      expect(commission.map((x) => money(x.amount))).toEqual(["12.6"]);
+      expect(commission.map((x) => money(x.amount))).toEqual(["21.6"]);
       // acesso até o fim do dia da prova (Recife)
       expect((await db.user.findUniqueOrThrow({ where: { id: user!.id } })).accessExpiresAt?.toISOString()).toBe("2027-03-01T02:59:59.999Z");
       expect(await db.onlineCharge.count({ where: { status: "APPROVED" } })).toBe(1);
@@ -302,10 +302,10 @@ describe.skipIf(!hasTestDb)("pagamento online (Mercado Pago da empresa)", { time
       const { id } = await contractFor({ contest: "CBMPE_SOLDADO" });
       const checkout = await svc.online.startCardCheckout(id);
       const meta = { contract_id: id, charge_id: checkout.id };
-      fake.payments.set("2001", { id: "2001", status: "rejected", status_detail: "cc_rejected_other_reason", transaction_amount: 40, currency_id: "BRL", external_reference: id, metadata: meta, payment_method_id: "visa" });
+      fake.payments.set("2001", { id: "2001", status: "rejected", status_detail: "cc_rejected_other_reason", transaction_amount: 60, currency_id: "BRL", external_reference: id, metadata: meta, payment_method_id: "visa" });
       expect((await POST(signed("2001"))).status).toBe(200);
       expect((await db.onlineCharge.findUniqueOrThrow({ where: { id: checkout.id } })).status).toBe("PENDING");
-      fake.payments.set("2002", { id: "2002", status: "approved", status_detail: "accredited", transaction_amount: 40, currency_id: "BRL", external_reference: id, metadata: meta, payment_method_id: "master", date_approved: new Date().toISOString() });
+      fake.payments.set("2002", { id: "2002", status: "approved", status_detail: "accredited", transaction_amount: 60, currency_id: "BRL", external_reference: id, metadata: meta, payment_method_id: "master", date_approved: new Date().toISOString() });
       expect((await POST(signed("2002"))).status).toBe(200);
       const [pay] = await db.manualPayment.findMany({ where: { contractId: id } });
       expect(pay).toMatchObject({ method: "CARTAO", source: "MERCADO_PAGO" });
@@ -432,13 +432,13 @@ describe.skipIf(!hasTestDb)("pagamento online (Mercado Pago da empresa)", { time
       const paymentId = await pixPaid(id);
       await POST(signed(paymentId));
 
-      Object.assign(fake.payments.get(paymentId)!, { transaction_amount_refunded: 14, date_last_updated: new Date().toISOString() });
+      Object.assign(fake.payments.get(paymentId)!, { transaction_amount_refunded: 24, date_last_updated: new Date().toISOString() });
       await POST(signed(paymentId));
       let c = await reload(id);
-      expect(money(c.paidAmount)).toBe("28");
+      expect(money(c.paidAmount)).toBe("48");
       expect(c.status).toBe("PARTIAL");
       const sum = async () => (await db.commissionEntry.findMany({ where: { contractId: id } })).reduce((s, x) => s + Number(x.amount), 0);
-      expect((await sum()).toFixed(2)).toBe("8.40");
+      expect((await sum()).toFixed(2)).toBe("14.40");
       expect(c.accessGrantedAt).not.toBeNull(); // parcial mantém o acesso
       const reversal = await db.paymentReversal.findFirstOrThrow({ where: { contractId: id } });
       expect(reversal).toMatchObject({ source: "MERCADO_PAGO", createdById: null, kind: "ESTORNO" });
@@ -447,7 +447,7 @@ describe.skipIf(!hasTestDb)("pagamento online (Mercado Pago da empresa)", { time
       await POST(signed(paymentId));
       expect(await db.paymentReversal.count({ where: { contractId: id } })).toBe(1);
 
-      Object.assign(fake.payments.get(paymentId)!, { status: "refunded", status_detail: "refunded", transaction_amount_refunded: 42 });
+      Object.assign(fake.payments.get(paymentId)!, { status: "refunded", status_detail: "refunded", transaction_amount_refunded: 72 });
       await POST(signed(paymentId));
       c = await reload(id);
       expect(money(c.paidAmount)).toBe("0");
@@ -465,10 +465,10 @@ describe.skipIf(!hasTestDb)("pagamento online (Mercado Pago da empresa)", { time
       await POST(signed(paymentId));
       Object.assign(fake.payments.get(paymentId)!, { status: "in_mediation", status_detail: "in_process" });
       await POST(signed(paymentId));
-      expect(money((await reload(id)).paidAmount)).toBe("60");
+      expect(money((await reload(id)).paidAmount)).toBe("90");
       Object.assign(fake.payments.get(paymentId)!, { status: "charged_back", status_detail: "settled" });
       await POST(signed(paymentId));
-      expect(money((await reload(id)).paidAmount)).toBe("60");
+      expect(money((await reload(id)).paidAmount)).toBe("90");
       Object.assign(fake.payments.get(paymentId)!, { status: "charged_back", status_detail: "reimbursed" });
       await POST(signed(paymentId));
       expect(money((await reload(id)).paidAmount)).toBe("0");
