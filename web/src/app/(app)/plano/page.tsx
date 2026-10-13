@@ -31,9 +31,9 @@ export default async function PlanPage() {
   const canAccess = await canUserAccessCoreFeatures(user.role, user.id);
 
   if (!canAccess) {
-    const pending = (await getPendingPlan(user.id)) ?? (await getActivePlan(user.id));
-    const profile = await db.profile.findUnique({ where: { userId: user.id } });
+    const pending = await getPendingPlan(user.id);
     if (pending) {
+      const profile = await db.profile.findUnique({ where: { userId: user.id } });
       return (
         <PendingPlanView
           userName={user.name}

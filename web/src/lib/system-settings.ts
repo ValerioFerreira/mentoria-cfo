@@ -40,13 +40,30 @@ export async function setPlatformReleased(released: boolean): Promise<void> {
 /**
  * Determina se o usuário atual tem acesso às funcionalidades essenciais
  * (Planejamento, Questões e Simulados).
- * - Usuários ADMIN têm acesso SEMPRE (mesmo durante o período de revisão).
- * - Usuários comuns têm acesso se a plataforma estiver liberada ou se houver direito de pagamento válido.
+ * - ADMIN: sempre
+ * - Parceiro ativo: sempre (acesso acadêmico completo + painel de parceria)
+ * - Liberação geral da plataforma: todos os alunos
+ * - Plano ACTIVE (liberação individual pelo admin): esse aluno
+ * - Direito de pagamento válido (billing legado): esse aluno
  */
 export async function canUserAccessCoreFeatures(userRole: string, userId?: string): Promise<boolean> {
   if (userRole === "ADMIN") {
     return true;
   }
   if (await isPlatformReleased()) return true;
-  return userId ? hasBillingAccess(userId) : false;
+  if (!userId) return false;
+
+  const partner = await db.partner.findUnique({
+    where: { userId },
+    select: { active: true },
+  });
+  if (partner?.active) return true;
+
+  const activePlan = await db.plan.findFirst({
+    where: { userId, status: "ACTIVE" },
+    select: { id: true },
+  });
+  if (activePlan) return true;
+
+  return hasBillingAccess(userId);
 }
