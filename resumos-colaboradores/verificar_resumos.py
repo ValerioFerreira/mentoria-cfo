@@ -91,8 +91,9 @@ def check(path: Path, index: dict[str, dict]) -> tuple[list[str], list[str], int
     n = words(sec.get("ANALÍTICO", ""))
     if sec.get("ANALÍTICO"):
         ceiling = int(float(row["Alvo máx. (palavras)"]) * 1.25) if row else 2500
-        if n < 250:
-            errs.append(f"analítico com {n} palavras (mínimo 250)")
+        floor = max(250, int(float(row["Alvo máx. (palavras)"]) * 0.2)) if row else 250
+        if n < floor:
+            errs.append(f"analítico com {n} palavras (mínimo {floor}: o maior entre 250 e 20% do alvo)")
         if n > ceiling:
             errs.append(f"analítico com {n} palavras, acima do teto ({ceiling})")
         pages = int(row["Págs."]) if row else 5

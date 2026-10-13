@@ -1,0 +1,72 @@
+{
+  "aula": "matematica/a14",
+  "batch": "externo-EXT-L5",
+  "status": "DRAFT",
+  "segments": [
+    {
+      "id": "matematica/a14/s01",
+      "fingerprint": {
+        "startPage": 3,
+        "endPage": 9,
+        "startTopic": "Sequências numéricas"
+      },
+      "analytic": "Uma sequência é uma lista ordenada de números definida por uma regra. Ela pode ser apresentada termo a termo, por fórmula explícita ou por uma regra de recorrência que usa termos anteriores. Fibonacci é um exemplo recorrente conhecido.\n\n### Termo e lei de formação\n\nUse a_n para indicar o termo na posição n: a_1 é o primeiro, a_2 o segundo etc. Uma lei explícita permite calcular diretamente qualquer termo a partir da posição. Por exemplo, a_n=3n produz 3, 6, 9, 12,...; para n=5, a_5=15. A ordem faz parte do significado do termo, portanto não altere a indexação ao interpretar o enunciado.\n\nQuando houver alternância, substitua n na expressão completa. Na sequência a_n=2n+5(−1)^(n−1), os primeiros termos são 7, −1, 11, 3,... (pois 2·3+5=11 e 2·4−5=3). O termo 2n é par e o componente ±5 é ímpar, logo todos os valores são ímpares. Calcule alguns termos para perceber o padrão, mas use a paridade ou a estrutura da fórmula para justificar afirmações sobre todos os n.\n\n### Fibonacci\n\nNa convenção que começa em F_1=1 e F_2=1, cada termo seguinte soma os dois anteriores: F_n=F_(n−1)+F_(n−2), para n≥3. Assim, 1,1,2,3,5,8,13,21,34,55,144,...; a sequência cresce por soma recursiva. Algumas apresentações iniciam em F_0=0 e F_1=1; isso desloca a numeração, mas preserva os valores a partir do zero.\n\nUma expressão explícita também permite obter F_n sem calcular os termos anteriores: F_n=[((1+√5)/2)^n−((1−√5)/2)^n]/√5 na convenção correspondente. Na prática, a recorrência é mais simples para gerar os termos. Uma propriedade imediata é F_(n+1)−F_n=F_(n−1), pois F_(n+1)=F_n+F_(n−1). Por exemplo, 55−34=21.\n\n### Recorrências gerais\n\nSequência recorrente é definida por um termo inicial e uma regra que determina termos seguintes a partir de termos anteriores. Para a_1=7 e a_n=2a_(n−1), obtêm-se 7,14,28,56,...; cada novo elemento é o dobro do anterior. Para a_1=5 e a_(n+1)−2a_n=3, reorganize como a_(n+1)=2a_n+3: a_2=13, a_3=29, a_4=61 e a_8=1021.\n\nUma mesma sequência pode ter forma recorrente e explícita. A recorrência requer conhecer os termos prévios; a fórmula explícita usa diretamente o índice. Para termo distante, procure fórmula direta quando disponível; caso contrário, aplique a recorrência em sequência, sem pular uma etapa.\n\n### Para fixar\n- Sequência é ordenada; a_n marca o termo da posição n.\n- Fórmula explícita usa n diretamente, como a_n=3n.\n- Faça substituições cuidadosas quando houver (−1)^n ou alternância de sinais.\n- Fibonacci começa, na convenção comum, com 1,1; cada termo posterior soma os dois anteriores.\n- Algumas fontes começam Fibonacci em 0; confira como o índice foi definido.\n- Recorrência exige termo inicial e regra para gerar o próximo.\n- Reorganize equações de recorrência para isolar a_(n+1), depois calcule em ordem.\n- Recorrência e expressão explícita podem descrever a mesma sequência.",
+      "synthetic": [
+        "**Posição**: a_n representa o termo n; uma lei como a_n=3n fornece diretamente o valor de cada posição.",
+        "**Substituição**: em fórmulas com (−1)^n, calcule o expoente e o sinal com cuidado antes de achar o termo.",
+        "**Fibonacci**: F_1=F_2=1 e F_n=F_(n−1)+F_(n−2); gera 1,1,2,3,5,8,13,...",
+        "**Indexação**: também se pode iniciar a sequência em F_0=0; identifique a convenção para não deslocar os termos.",
+        "**Recorrência**: a_1=7 e a_n=2a_(n−1) produzem 7,14,28,56; cada passo depende do anterior.",
+        "**Exemplo**: a_1=5 e a_(n+1)=2a_n+3 levam a 13,29,61,... e a_8=1021.",
+        "**Propriedade**: F_(n+1)−F_n=F_(n−1), pois o próximo termo soma os dois anteriores.",
+        "**Estratégia**: calcule sequencialmente se não houver fórmula explícita e verifique a ordem de cada termo."
+      ],
+      "agent": "EXT-L5",
+      "sourceFile": "S0740__EXT-L5.md",
+      "notes": "- O texto usa a sequência de Fibonacci iniciada em 1,1, mas uma questão apresenta a convenção 0,1,1,...; a mudança afeta o índice, não a recorrência.\n- A extração da fórmula explícita aparece com expoentes e denominador quebrados; foi reescrita na forma equivalente de Binet."
+    },
+    {
+      "id": "matematica/a14/s02",
+      "fingerprint": {
+        "startPage": 10,
+        "endPage": 20,
+        "startTopic": "Progressão Aritmética"
+      },
+      "analytic": "### Conceito e termo geral\nProgressão aritmética (PA) é sequência em que a diferença entre termos consecutivos é constante. Essa diferença r é a razão. Se r>0, a sequência cresce; se r<0, decresce; se r=0, é constante. Exemplos: 1,2,3,... tem r=1; 21,14,7,0,... tem r=−7. O termo n é a1+(n−1)r. Assim, para 2,4,6,..., a50=2+49·2=100. Para 21,14,7,..., a75=21+74(−7)=−497. Ao usar a fórmula, não confunda n com o número de intervalos desde o primeiro termo, que é n−1.\n\nSe são dados termos distantes, monte equações para a1 e r. Em uma sequência com primeiro termo 23 e razão 24, a100=23+99·24=2.399. A representação das sequências pode usar outras letras sem alterar a estrutura.\n\n### Três termos e interpolação\nEm três termos consecutivos de PA, o termo central é a média dos extremos: a2=(a1+a3)/2. Isso decorre de a1=a2−r e a3=a2+r. Em problema com termos algébricos, combine essa igualdade com outras condições, como perímetro. Exemplo do trecho: lados x−1, x+y e 2x+1 com perímetro 45 dão 4x+y=45; a propriedade da PA produz x=2y. Daí y=5, x=10 e os lados 9,15,21; o menor mede 9.\n\nInterpolar significa determinar termos faltantes entre dois valores conhecidos. Se uma PA começa em 8 e termina em 29, com seis termos entre eles, há oito termos no total; a8=29=a1+7r, logo r=3. O sexto termo é a6=8+5·3=23. Conte os termos intermediários com atenção: “seis entre” resulta em oito posições incluindo extremos.\n\n### Soma dos termos\nA soma dos n primeiros termos é Sn=n(a1+an)/2. Emparelhe primeiro com último, segundo com penúltimo: cada par tem a mesma soma. Para número ímpar de termos, a fórmula continua válida, com termo central incluído. Exemplo de 1 a 100: S100=100(1+100)/2=5.050.\n\nSe forem dados termos internos e pedida soma, primeiro obtenha razão e a1 pelo termo geral. Com a13=−9 e a63=25, subtraia equações: 34=50r, então r=0,68; substitua em a13=a1+12r para obter a1. Depois calcule a75=a1+74r e aplique S75=75(a1+a75)/2. A estrutura evita somar termo a termo. Use a fórmula da soma somente após determinar os extremos relevantes.\n\n### Para fixar\n- PA: a diferença constante r=a(n+1)−an.\n- Termo geral: an=a1+(n−1)r.\n- Três termos consecutivos: termo médio é média dos extremos.\n- Se há k termos entre extremos, o último está na posição k+2.\n- Soma: Sn=n(a1+an)/2.\n- r positivo cresce, negativo decresce, zero mantém todos os termos iguais.",
+      "synthetic": [
+        "Se precisar descobrir n, isole-o em an=a1+(n−1)r; em problemas de soma, calcule antes o último termo para não errar o número de parcelas.",
+        "PA tem diferença constante r entre termos consecutivos. O sinal de r indica crescimento, decrescimento ou constância.",
+        "Termo geral: an=a1+(n−1)r. Ex.: 2,4,6,... tem a50=100.",
+        "Em três termos consecutivos, o central é a média dos extremos; use isso junto com dados do problema.",
+        "Interpolação determina termos ausentes. Se há seis termos entre os dois extremos, há oito posições ao todo.",
+        "Soma dos n primeiros termos: Sn=n(a1+an)/2, por emparelhamento de extremos.",
+        "Para somar, determine a razão e os termos inicial/final antes de aplicar a fórmula."
+      ],
+      "agent": "EXT-L5",
+      "sourceFile": "S0689__EXT-L5.md",
+      "notes": "- A fonte prossegue parcialmente além da região fornecida; usei apenas a seção de PA indicada neste trecho.\n- Em exercício de soma com termos internos, a extração corta parte da resolução final; fórmulas e dados suficientes foram preservados."
+    },
+    {
+      "id": "matematica/a14/s03",
+      "fingerprint": {
+        "startPage": 21,
+        "endPage": 36,
+        "startTopic": "Progressão Geométrica"
+      },
+      "analytic": "Uma progressão geométrica (PG) é uma sequência em que cada termo, a partir do segundo, resulta da multiplicação do anterior por uma constante q, chamada razão. Assim, q=a_n/a_(n−1) quando o denominador não é zero, e a_n=q·a_(n−1). Em (2,4,8,16,...), q=2; em (5,25,125,...), q=5. Diferentemente da progressão aritmética, não se soma uma diferença fixa.\n\n### Classificação\n\nPara q>0, a sequência mantém o sinal e seu crescimento depende de q e do sinal do primeiro termo. Se q>1 e a1>0, os termos crescem; se q>1 e a1<0, ficam mais negativos, logo decrescem. Se 0<q<1, termos positivos diminuem, enquanto termos negativos aproximam-se de zero e crescem. Se q=1, a PG é constante. Se q<0, os sinais alternam; a sequência é alternada e não é monótona em geral. Para q=0, após o primeiro termo todos são zero.\n\n### Termo geral, três termos e interpolação\n\nO termo de ordem n é a_n=a1·q^(n−1). O expoente é n−1 porque a1 ainda não recebeu multiplicações pela razão. Exemplo: a1=3, q=2; a10=3·2^9=1.536.\n\nEm três termos consecutivos de uma PG, a1, a2, a3, o termo central satisfaz a2²=a1a3. Isso decorre de a1=a2/q e a3=a2q. Essa relação permite montar uma equação quando há variável desconhecida. Na sequência x, x+1, 2x, a condição é (x+1)²=2x², resultando x=1±√2; se o problema pede valor positivo, escolha 1+√2.\n\nPara interpolar termos entre dois extremos conhecidos, use a fórmula geral para obter a razão e depois encontre os termos internos. Se são conhecidos a1 e a_n, então q^(n−1)=a_n/a1. Na PG decrescente de cinco termos que começa em 1.000 e termina em 8/5, q^4=(8/5)/1.000=1/625, logo q=1/5 na condição positiva e decrescente. Os termos são 1.000, 200, 40, 8, 1,6; a soma dos três termos intermediários é 248. Em equações de potência par, confira raízes admissíveis diante da classificação e dos sinais da sequência.\n\n### Soma e produto\n\nPara q≠1, a soma dos n primeiros termos é S_n=a1(q^n−1)/(q−1), equivalente a a1(1−q^n)/(1−q). Para q=1, S_n=n·a1. Exemplo: em (2,4,8,...), S11=2(2^11−1)/(2−1)=4.094.\n\nUma PG infinita converge para soma finita apenas se |q|<1; nesse caso S∞=a1/(1−q). Exemplo: 2+1+1/2+... tem a1=2 e q=1/2, então soma 4. Somatórios também podem representar termos de uma PG; identifique o termo inicial e a razão, inclusive quando o índice começa em zero. Por exemplo, Σ(4/5^i), para i=0 em diante, começa em 4 e tem razão 1/5, soma 5.\n\nO produto dos n primeiros termos pode ser escrito P_n=a1^n·q^[n(n−1)/2], pois os expoentes de q somam 0+1+...+(n−1). Outra forma é P_n=(a1·a_n)^(n/2), quando a expressão está definida nos reais. Para termos negativos ou expoentes fracionários, prefira a fórmula com potências inteiras e confira o domínio.\n\n### Para fixar\n- PG multiplica cada termo anterior por q; razão é o quociente entre termos consecutivos.\n- q>1 e a1 positivo: crescente; q>1 e a1 negativo: decrescente.\n- 0<q<1: positivos decrescem e negativos crescem; q=1 constante; q<0 alterna sinais.\n- Termo geral: a_n=a1·q^(n−1); exemplo, a1=3, q=2 dá a10=1.536.\n- Em três termos consecutivos, a2²=a1a3; use a condição para determinar incógnitas.\n- Interpolação: descubra q de a_n=a1·q^(n−1), depois calcule os termos faltantes.\n- Soma finita: S_n=a1(q^n−1)/(q−1), q≠1; para q=1, S_n=na1.\n- Soma infinita só converge se |q|<1: S∞=a1/(1−q); produto: P_n=a1^nq^[n(n−1)/2].",
+      "synthetic": [
+        "PG é sequência de razão multiplicativa q: a_n=q·a_(n−1). Para achar q, divida termos consecutivos.",
+        "Se q>1, termos positivos crescem e negativos decrescem; se 0<q<1, positivos decrescem e negativos crescem. q=1 gera sequência constante; q<0 alterna sinais.",
+        "Termo geral: a_n=a1·q^(n−1). Exemplo, a1=3 e q=2: a10=3·2^9=1.536.",
+        "Em três termos consecutivos, a2²=a1a3. Para x, x+1, 2x, resulta (x+1)²=2x²; a raiz positiva é 1+√2.",
+        "Para interpolar termos, calcule q por a_n=a1q^(n−1) e então obtenha cada termo. Se houver raízes múltiplas, use a classificação indicada para selecionar a razão válida.",
+        "Soma de n termos: S_n=a1(q^n−1)/(q−1), para q≠1; se q=1, S_n=na1.",
+        "PG infinita tem soma finita apenas quando |q|<1: S∞=a1/(1−q). Exemplo: 2+1+1/2+...=4.",
+        "Produto dos n primeiros: P_n=a1^nq^[n(n−1)/2]. Somatórios geométricos devem ser reescritos para reconhecer a1 e q."
+      ],
+      "agent": "EXT-L5",
+      "sourceFile": "S0622__EXT-L5.md",
+      "notes": "- O trecho usa expressões em somatório e alguns exemplos que podem sofrer com a posição inicial do índice; ao identificar a PG, o primeiro termo foi definido pelo valor correspondente ao menor índice."
+    }
+  ]
+}

@@ -27,7 +27,8 @@ from pathlib import Path
 sys.path.insert(0, os.path.dirname(__file__))
 from config import CONTENT_DIR  # noqa: E402
 from summary_queue import target_words  # noqa: E402
-from validate_content import is_authored, load_segments, load_source_shingles, shingles, words  # noqa: E402
+from summary_coverage import rate as coverage_rate  # noqa: E402
+from validate_content import SHINGLE_N, is_authored, load_segments, load_source_shingles, words  # noqa: E402
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
@@ -39,10 +40,57 @@ FORBIDDEN = [
     "nesta aula", "nessa aula", "nesta página", "visto na aula",
 ]
 HEADING = re.compile(r"^#{2,4}\s+\S", re.M)
+FIXAR = re.compile(r"^#{2,4}\s*Para fixar\s*$", re.M | re.I)
+ITEM = re.compile(r"^\s*(?:[-*]|\d+[.)])\s+\S", re.M)
+FIXAR_MIN, FIXAR_MAX = 5, 8
+# Originalidade: uma coincidência de 10 palavras pode ser definição consagrada ou texto de lei (ninguém reescreve o art. 14 da CF);
+# cópia de verdade vem em trechos longos. Trechos copiados de 10 a COPY_RUN_ERROR-1 palavras viram AVISO (conferir se é citação de
+# norma/definição); a partir de COPY_RUN_ERROR palavras seguidas, ou COPY_TOTAL_ERROR palavras copiadas no total, é ERRO.
+# Sequências quase só de números/siglas (progressões, tabelas, fórmulas) não contam: não há outro jeito de escrevê-las.
+COPY_RUN_ERROR = 16
+COPY_TOTAL_ERROR = 40
 
 
 def word_count(text: str) -> int:
     return len(re.findall(r"\w+", re.sub(r"[|*#>`_-]+", " ", text)))
+
+
+def copied_runs(text: str, source: set) -> list[list[str]]:
+    """Trechos de `text` copiados do material: sequências contínuas de palavras cobertas por alguma janela de SHINGLE_N igual à fonte."""
+    w = words(text)
+    covered = [False] * len(w)
+    for i in range(len(w) - SHINGLE_N + 1):
+        if tuple(w[i : i + SHINGLE_N]) in source:
+            for j in range(i, i + SHINGLE_N):
+                covered[j] = True
+    runs: list[list[str]] = []
+    cur: list[str] = []
+    for word, c in zip(w, covered):
+        if c:
+            cur.append(word)
+        elif cur:
+            runs.append(cur)
+            cur = []
+    if cur:
+        runs.append(cur)
+    return runs
+
+
+def is_trivial_run(run: list[str]) -> bool:
+    """Sequência de números/símbolos curtos (progressão, tabela, fórmula) ou de palavras que quase só se repetem."""
+    short = sum(1 for x in run if x.isdigit() or len(x) <= 2)
+    return short / len(run) >= 0.5 or len(set(run)) / len(run) < 0.5
+
+
+def check_fixar(sid: str, analytic: str, errors: list[str]) -> None:
+    """`### Para fixar` fecha o analítico com 5 a 8 pontos em lista (parágrafo corrido não serve para revisão rápida)."""
+    m = FIXAR.search(analytic)
+    if not m:
+        errors.append(f"{sid}: falta a seção final “### Para fixar”")
+        return
+    n = len(ITEM.findall(analytic[m.end():]))
+    if not FIXAR_MIN <= n <= FIXAR_MAX:
+        errors.append(f"{sid}: “Para fixar” com {n} itens em lista (use {FIXAR_MIN} a {FIXAR_MAX}, um por linha com “- ”)")
 
 
 def check_markdown(where: str, text: str, errors: list[str]) -> None:
@@ -132,6 +180,7 @@ def validate_file(path: Path) -> tuple[list[str], list[str], dict]:
                 warns.append(f"{sid}: analítico com {n} palavras (alvo {tgt}): confira se não faltou conteúdo")
             if len(HEADING.findall(analytic)) < 3 and pages >= 5:
                 errors.append(f"{sid}: use ao menos 3 seções (### Título) no analítico")
+            check_fixar(sid, analytic, errors)
         # sintético
         if synthetic:
             sn = sum(word_count(x) for x in synthetic)
@@ -156,9 +205,25 @@ def validate_file(path: Path) -> tuple[list[str], list[str], dict]:
         check_markdown(f"{sid} sintético", "\n".join(synthetic), errors)
         # originalidade
         if source is not None:
-            copied = shingles(blob) & source
-            if copied:
-                errors.append(f"{sid}: trecho copiado do material ({len(copied)} sequências de 10 palavras; ex.: “{' '.join(next(iter(copied)))}…”)")
+            runs = [r for r in copied_runs(blob, source) if not is_trivial_run(r)]
+            total = sum(len(r) for r in runs)
+            for r in runs:
+                where = f"“{' '.join(r[:14])}{'…' if len(r) > 14 else ''}” ({len(r)} palavras)"
+                if len(r) >= COPY_RUN_ERROR:
+                    errors.append(f"{sid}: trecho copiado do material: {where}")
+                elif total < COPY_TOTAL_ERROR:
+                    warns.append(f"{sid}: coincidência com o material, confira se é citação de norma/definição: {where}")
+            if runs and total >= COPY_TOTAL_ERROR and all(len(r) < COPY_RUN_ERROR for r in runs):
+                errors.append(f"{sid}: {len(runs)} trechos curtos copiados do material somam {total} palavras (limite {COPY_TOTAL_ERROR})")
+        # cobertura: triagem (só aviso; nota e veredito em summary_coverage.py)
+        if analytic and synthetic:
+            cov = coverage_rate({"analytic": analytic, "synthetic": synthetic}, ref, n / tgt if tgt else None)
+            if cov:
+                stats["coverage"] = cov["score"]
+                if cov["verdict"] != "OK":
+                    warns.append(
+                        f"{sid}: cobertura {cov['verdict']} (nota {cov['score']:.2f}; mais pesados que faltam: {', '.join(cov['missing'][:8])})"
+                    )
     return errors, warns, stats
 
 
