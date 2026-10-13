@@ -428,6 +428,8 @@ export interface AccountStatus {
   webhookSecretSet: boolean;
   sellerIdSet: boolean;
   appUrl: string | null;
+  /** resposta do próprio endereço do webhook a um aviso SEM assinatura: 401 = no ar e protegido; 3xx = o endereço redireciona (o Mercado Pago não segue redirecionamento) */
+  webhook: { status: number | null; redirectTo: string | null };
   mode: "producao" | "teste" | null;
   account: null | { id: string; nickname: string | null; documentType: string | null; matchesSellerId: boolean | null };
   error: string | null;
@@ -440,6 +442,7 @@ export async function mercadoPagoAccountStatus(): Promise<AccountStatus> {
     webhookSecretSet: Boolean(process.env.MERCADOPAGO_WEBHOOK_SECRET),
     sellerIdSet: Boolean(process.env.MERCADOPAGO_SELLER_ID),
     appUrl: null,
+    webhook: { status: null, redirectTo: null },
     mode: null,
     account: null,
     error: null,
@@ -448,6 +451,15 @@ export async function mercadoPagoAccountStatus(): Promise<AccountStatus> {
     status.appUrl = siteUrl().origin;
   } catch {
     status.error = "APP_URL não configurada.";
+  }
+  if (status.appUrl) {
+    try {
+      const r = await fetch(notificationUrl(), { method: "POST", redirect: "manual", headers: { "content-type": "application/json" }, body: "{}", signal: AbortSignal.timeout(8000), cache: "no-store" });
+      status.webhook.status = r.status;
+      status.webhook.redirectTo = r.status >= 300 && r.status < 400 ? r.headers.get("location") : null;
+    } catch {
+      /* sem resposta: aparece como "não verificado" */
+    }
   }
   let token: string;
   try {

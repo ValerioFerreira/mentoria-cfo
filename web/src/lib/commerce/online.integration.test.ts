@@ -420,6 +420,20 @@ describe.skipIf(!hasTestDb)("pagamento online (Mercado Pago da empresa)", { time
       expect((await db.onlineCharge.findUniqueOrThrow({ where: { id: charge.id } })).status).toBe("CANCELLED");
     });
 
+    it("o diagnóstico detecta endereço de webhook que redireciona (o Mercado Pago não segue redirecionamento)", async () => {
+      const spy = vi.spyOn(globalThis, "fetch");
+      try {
+        spy.mockResolvedValueOnce(new Response(null, { status: 308, headers: { location: "https://www.teste.local/api/webhooks/mercadopago" } }));
+        const redirected = await svc.online.mercadoPagoAccountStatus();
+        expect(redirected.webhook).toEqual({ status: 308, redirectTo: "https://www.teste.local/api/webhooks/mercadopago" });
+        expect(spy.mock.calls[0][1]).toMatchObject({ method: "POST", redirect: "manual" });
+        spy.mockResolvedValueOnce(new Response("{}", { status: 401 }));
+        expect((await svc.online.mercadoPagoAccountStatus()).webhook).toEqual({ status: 401, redirectTo: null });
+      } finally {
+        spy.mockRestore();
+      }
+    });
+
     it("o diagnóstico distingue conta de empresa (CNPJ) de pessoa física (CPF) e confere o ID do vendedor, sem expor segredos", async () => {
       process.env.MERCADOPAGO_SELLER_ID = "987654";
       const company = await svc.online.mercadoPagoAccountStatus();

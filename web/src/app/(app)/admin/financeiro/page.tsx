@@ -283,6 +283,12 @@ async function MercadoPagoTab() {
   return (
     <div className="space-y-4">
       {st.error && <Alert tone="warn">{st.error}</Alert>}
+      {st.webhook.redirectTo && (
+        <Alert tone="warn">
+          O endereço do webhook redireciona para <code className="break-all">{st.webhook.redirectTo}</code> (HTTP {st.webhook.status}) e o Mercado Pago NÃO segue redirecionamentos:
+          os avisos de pagamento não chegam. Defina APP_URL na Vercel com o endereço final (o do redirecionamento, ex.: com ou sem &quot;www&quot;), faça um novo deploy e cadastre esse mesmo endereço no painel do Mercado Pago.
+        </Alert>
+      )}
       {st.account && !company && (
         <Alert tone="warn">
           O titular desta conta Mercado Pago consta como {st.account.documentType ?? "documento não informado"}, não CNPJ. Para receber na empresa,
@@ -296,6 +302,7 @@ async function MercadoPagoTab() {
           <div><dt className="text-xs uppercase tracking-wider text-muted">Segredo do webhook</dt><dd>{ok(st.webhookSecretSet)}</dd></div>
           <div><dt className="text-xs uppercase tracking-wider text-muted">ID do vendedor (contestações)</dt><dd>{ok(st.sellerIdSet)}{st.account?.matchesSellerId === false && <span className="ml-2 text-xs text-primary">não confere com a conta do token</span>}</dd></div>
           <div><dt className="text-xs uppercase tracking-wider text-muted">URL pública (APP_URL)</dt><dd className="break-all">{st.appUrl ?? "—"}</dd></div>
+          <div><dt className="text-xs uppercase tracking-wider text-muted">Endereço do webhook responde</dt><dd>{st.webhook.status === null ? <Badge tone="neutral">não verificado</Badge> : st.webhook.status === 401 ? <Badge tone="ok">no ar (401 sem assinatura)</Badge> : <Badge tone="warn">HTTP {st.webhook.status}{st.webhook.redirectTo ? " · redireciona" : ""}</Badge>}</dd></div>
           <div><dt className="text-xs uppercase tracking-wider text-muted">Conta (ID · apelido)</dt><dd>{st.account ? `${st.account.id} · ${st.account.nickname ?? "sem apelido"}` : "—"}</dd></div>
           <div><dt className="text-xs uppercase tracking-wider text-muted">Documento do titular</dt><dd>{st.account?.documentType ? <Badge tone={company ? "ok" : "warn"}>{st.account.documentType}{company ? " (empresa)" : ""}</Badge> : "—"}</dd></div>
         </dl>
