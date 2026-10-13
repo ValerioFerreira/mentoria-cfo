@@ -7,24 +7,14 @@
       "id": "estatistica/a02/s01",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- Separatrizes dividem uma série ordenada em partes com o mesmo número de elementos: mediana (2 partes de 50%), quartis (4 partes de 25%), quintis (5 partes de 20%), decis (10 partes de 10%) e percentis (100 partes de 1%).",
-          "- Com **n ímpar**, a mediana é o termo central, de posição **(n + 1) / 2**.",
-          "- Por **convenção**, a mediana é a **média aritmética** deles.",
-          "- A mediana depende da **posição** e não dos valores de todos os elementos: é pouco sensível a valores extremos (discrepantes).",
-          "Dados agrupados por valor (sem classes): monte a coluna de frequência acumulada. Se n é ímpar, a mediana é o valor da primeira acumulada **igual ou superior** a (n + 1)/2. Com **frequências relativas**, a mediana é o valor em que a **relativa acumulada** ultrapassa (ou alcança) **50%**.",
-          "### 2. Métodos de Resolução e Classificações",
-          "#### Sequência e Funcionamento:",
-          "1. Dados não agrupados: primeiro ordene os valores (rol).",
-          "- A aula não aprofunda os quintis.",
-          "- Mediana (Md) é, ao mesmo tempo, medida de posição, de tendência central e separatriz.",
-          "- Com **n par** há dois termos centrais, nas posições **n/2** e **n/2 + 1**.",
-          "- na verdade, qualquer valor entre os dois centrais divide a série em duas metades iguais.",
-          "- A mediana só coincide com um elemento do conjunto quando **n é ímpar**.",
-          "#### Quadro Comparativo:",
-          "| Instituto / Conceito | Regra / Distinção | Confronto / Exceção |\n| :--- | :--- | :--- |\n| **Aspecto 1** | Também aparece representada por | com til |",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+          "**Separatrizes**: dividem a série ordenada em partes iguais: mediana (2 partes de 50%), quartis (4 de 25%), decis (10 de 10%) e percentis (100 de 1%).",
+          "**Mediana**: é medida de posição, de tendência central e separatriz; só se obtém após ordenar os dados.",
+          "**Cálculo bruto**: n ímpar, termo de ordem (n + 1)/2; n par, média dos termos de ordem n/2 e n/2 + 1 (por convenção).",
+          "**Valor da mediana**: com n ímpar é um elemento da série; com n par pode não ser.",
+          "**Robustez**: depende da posição central, não dos extremos; mudar o maior valor altera a média, mas não a mediana.",
+          "**Dados por valor**: acha-se a posição, monta-se a frequência acumulada e usa-se o valor da primeira fac maior ou igual à posição.",
+          "**n par em tabela**: calcular os dois termos centrais separadamente; se a fac for exatamente n/2, o segundo termo está na linha seguinte.",
+          "**Frequência relativa**: a mediana é o valor em que a acumulada chega a 50%; se atinge exatamente 50%, média com o valor seguinte."
         ],
         "teoria": [
           {
@@ -110,23 +100,13 @@
       "id": "estatistica/a02/s02",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- **Mediana em classes:** não importa se n é par ou ímpar.",
-          "- **Ela também vale com frequências em porcentagem (Σf:** 100%, metade = 50%).",
-          "- **Interpretação:** metade dos valores está abaixo de Md e metade acima.",
-          "- **A fórmula da mediana:** é a base de quartis, decis e percentis: muda-se só o termo Σf/2.",
-          "Propriedade 1: somando (ou subtraindo) uma constante c de todos os valores, a mediana também é somada (ou subtraída) de c. Propriedade 2: multiplicando (ou dividindo) todos os valores por uma constante c, a mediana também fica multiplicada (ou dividida) por c. Propriedade 3: a soma dos desvios absolutos (em módulo) em relação a um número a é mínima quando a é a mediana.",
-          "### 2. Métodos de Resolução e Classificações",
-          "#### Sequência e Funcionamento:",
-          "1. usa-se um único procedimento.",
-          "2. Primeiro monte a coluna de frequência acumulada e ache a **classe mediana**: a primeira em que a acumulada é **igual ou superior a Σf/2**.",
-          "- A fórmula nasce da **interpolação linear** (semelhança de triângulos entre os pontos da reta de frequência acumulada).",
-          "- Os valores mínimo e máximo da distribuição **não bastam** para determinar a mediana.",
-          "- com n par, vale para qualquer valor entre os dois termos centrais.",
-          "#### Quadro Comparativo:",
-          "| Instituto / Conceito | Regra / Distinção | Confronto / Exceção |\n| :--- | :--- | :--- |\n| **Fórmula: Md** | l_inf + [ (Σf/2 − fac_ant) / f_i ] | h, em que l_inf é o limite inferior da classe mediana, fac_ant a frequência acumulada da classe ANTERIOR, f_i a frequência simples da classe mediana e h a amplitude dessa classe |",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+          "**Classe mediana**: é a primeira classe cuja frequência acumulada é maior ou igual a Σfi/2; o critério vale tanto para n par quanto para ímpar.",
+          "**Fórmula**: Md = linf + [(Σfi/2 − facant) / fi] × h, com facant da classe anterior, fi da classe mediana e h a sua amplitude.",
+          "**Origem**: interpolação linear dentro da classe (semelhança de triângulos); a mesma estrutura serve a quartis, decis e percentis.",
+          "**Frequências relativas**: usa-se 50% como posição e 100% como total; a conta é idêntica.",
+          "**Soma ou subtração de constante**: a mediana é deslocada da mesma constante.",
+          "**Multiplicação ou divisão por constante**: a mediana é multiplicada ou dividida pela mesma constante.",
+          "**Desvios absolutos**: Σ|xi − a| é mínima quando a é a mediana; com n par, é mínima em todo o intervalo entre os dois termos centrais."
         ],
         "teoria": [
           {
@@ -217,24 +197,15 @@
       "id": "estatistica/a02/s03",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- **Q2 = mediana** (50%).",
-          "- **A fórmula dos quartis é a da mediana com o termo Σf/2 trocado por k · Σf / 4 (k:** 1, 2, 3).",
-          "- **Dados não agrupados: ordene, calcule a posição P(Qk):** k · n / 4, tome a posição mais próxima no rol e leia o valor.",
-          "- **Dados agrupados sem classes: posição:** k · Σf / 4.",
-          "o valor da variável nessa linha é o quartil.",
-          "### 2. Métodos de Resolução e Classificações",
-          "#### Sequência e Funcionamento:",
-          "1. Para Q2, use o procedimento da mediana ((n+1)/2 se ímpar.",
-          "- **Quartis:** são três valores (Q1, Q2, Q3) que dividem a série em quatro partes de 25%.",
-          "- Q1 deixa 25% abaixo.",
-          "- Q3 deixa 75% abaixo e 25% acima.",
-          "- Quintis (5 partes), decis (10) e percentis (100) seguem a mesma lógica.",
-          "- média das posições n/2 e n/2+1 se par).",
-          "#### Quadro Comparativo:",
-          "| Instituto / Conceito | Regra / Distinção | Confronto / Exceção |\n| :--- | :--- | :--- |\n| **Dados agrupados em classes: posição k · Σf / 4, identificar a classe correspondente e aplicar Qk** | l_inf + [ (k·Σf/4 − fac_ant) / f_Qk ] | h, com os elementos tomados da classe do quartil |",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+          "**Separatrizes**: dividem o conjunto ordenado em partes iguais; quartil (4 partes, Q1 a Q3), quintil (5), decil (10, D1 a D9) e percentil (100, P1 a P99).",
+          "**Equivalências**: Q2 = D5 = P50 = mediana; Q1 = P25 e Q3 = P75.",
+          "**Posição**: k × n / 4 para quartis (k de 1 a 3); trocar o 4 por 10 (decil) ou 100 (percentil).",
+          "**Rol**: ordene os dados; se a posição não for inteira, use a mais próxima; Q2 sempre pelo procedimento da mediana (n ímpar: (n+1)/2; n par: média de n/2 e n/2 + 1).",
+          "**Dados sem classes**: monte a frequência acumulada e escolha o valor da primeira linha cuja fac é maior ou igual à posição.",
+          "**Dados em classes**: ache a classe pela fac e interpole: Qk = linf + [(k·Σfi/4 − fac_ant) / f] × h.",
+          "**Fórmula = mediana adaptada**: só a posição muda; a estrutura (linf, fac_ant, f, h) é a mesma.",
+          "**Pegadinhas**: não ordenar o rol, confundir f com fac, usar fac da própria classe como fac_ant, errar a amplitude.",
+          "**Conferência**: o quartil calculado deve estar dentro dos limites da classe encontrada; se a posição for igual a uma fac, o resultado cai no limite superior da classe."
         ],
         "teoria": [
           {
@@ -321,23 +292,14 @@
       "id": "estatistica/a02/s04",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- **A fórmula:** é a da mediana com Σf/2 trocado por **k · Σf / 10**, com k de 1 a 9.",
-          "- **Dados não agrupados:** ordene, calcule a posição k · n / 10, tome a posição mais próxima do rol e leia o valor.",
-          "- **Dados agrupados sem classes:** posição k · Σf / 10.",
-          "- **Se a posição cai logo na primeira classe, fac_ant:** 0 (não há classe anterior).",
-          "### 2. Métodos de Resolução e Classificações",
-          "#### Sequência e Funcionamento:",
-          "1. D1 separa os primeiros 10% e D9 os primeiros 90% (ou os últimos 10%).",
-          "- **Decis:** são nove valores (D1 a D9) que dividem a série em dez partes de 10%. D5 coincide com a mediana.",
-          "- escolha a primeira frequência acumulada **igual ou superior** à posição e leia o valor da variável.",
-          "- O resultado do decil em classes sempre fica dentro dos limites da classe em que ele foi localizado.",
-          "#### Quadro Comparativo:",
-          "| Instituto / Conceito | Regra / Distinção | Confronto / Exceção |\n| :--- | :--- | :--- |\n| **Dados agrupados em classes: Dk** | l_inf + [ (k·Σf/10 − fac_ant) / f_Dk ] | h, com os dados da classe do decil (limite inferior, frequência simples, amplitude) e a acumulada da classe anterior |",
-          "### 3. Exemplos de Aplicação e Procedimentos",
-          "> 💡 **Exemplo Prático:** Ex.: com n = 10, D8 ocupa a 8ª posição.",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+          "**Decis**: nove valores (D1 a D9) que dividem a série ordenada em dez partes de 10% cada; D5 coincide com a mediana.",
+          "**Posição**: P(Dk) = k · n / 10 (ou k · Σfi / 10 em tabelas de frequências), com k de 1 a 9.",
+          "**Dados não agrupados**: ordene em rol, calcule a posição, use a posição inteira mais próxima e leia o valor ali.",
+          "**Valores isolados com frequência**: monte a coluna de frequências acumuladas e escolha a primeira acumulada igual ou superior à posição; o decil é o valor da variável nessa linha.",
+          "**Dados em classes**: ache a classe do decil pela fac e interpole: Dk = linf + [(k · Σfi / 10 − fac ant) / fDk] · h.",
+          "**Elementos da fórmula**: linf é o limite inferior da classe, fac ant a acumulada da classe anterior, fDk a frequência simples da classe e h a amplitude.",
+          "**Interpolação**: supõe distribuição uniforme dentro da classe; a fração do colchete mostra quanto da classe é percorrido.",
+          "**Erro comum**: não ordenar o rol, usar a fac em vez da frequência simples no denominador ou esquecer a fac da classe anterior."
         ],
         "teoria": [
           {
@@ -415,26 +377,14 @@
       "id": "estatistica/a02/s05",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- **Percentis são 99 valores (P1 a P99) que dividem a série em cem partes de 1%. P50:** mediana.",
-          "- **A fórmula:** é a da mediana com Σf/2 trocado por **k · Σf / 100**, com k de 1 a 99.",
-          "- **Dados não agrupados:** ordene.",
-          "- **Dados agrupados sem classes:** posição k · Σf / 100.",
-          "Interpretação: o valor de Pk deixa k% das observações abaixo dele.",
-          "### 2. Métodos de Resolução e Classificações",
-          "#### Sequência e Funcionamento:",
-          "1. P1 separa o primeiro 1% e P99 os primeiros 99% (ou o último 1%).",
-          "- posição **k · n / 100**.",
-          "- aproxime para a posição mais próxima e leia o valor.",
-          "- escolha o valor associado à primeira frequência acumulada igual ou superior à posição.",
-          "#### Quadro Comparativo:",
-          "| Instituto / Conceito | Regra / Distinção | Confronto / Exceção |\n| :--- | :--- | :--- |\n| **Dados agrupados em classes: Pk** | l_inf + [ (k·Σf/100 − fac_ant) / f_Pk ] | h, usando limite inferior, frequência simples e amplitude da classe do percentil e a acumulada da classe anterior |",
-          "### 3. Exemplos de Aplicação e Procedimentos",
-          "> 💡 **Exemplo Prático:** Ex.: com n = 11, P27 tem posição 2,97, que se aproxima da 3ª.",
-          "> 💡 **Exemplo Prático:** Ex.: P45 deixa 45% abaixo.",
-          "> 💡 **Exemplo Prático:** Com frequências em porcentagem, trabalha-se com Σf = 100% e a posição passa a ser o próprio percentual k (ex.: P75 = onde a acumulada atinge 75%).",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+          "**Percentis**: 99 valores que dividem a série ordenada em 100 partes de 1%; Pk deixa k% abaixo; P50 coincide com a mediana.",
+          "**Ideia do cálculo**: reaproveita o da mediana, trocando Σfi/2 por k × Σfi / 100.",
+          "**Dados não agrupados**: ordenar, achar a posição k × n / 100, aproximar para a mais próxima e ler o valor; por exemplo, 3,8 vira 4ª posição.",
+          "**Dados por valor**: posição = k × Σfi / 100; o percentil é o valor da primeira linha cuja fac é igual ou superior à posição.",
+          "**Dados em classes**: identifica-se a classe pela fac e interpola-se com Pk = l_inf + [(k × Σfi/100 − fac_ant)/f] × h.",
+          "**Símbolos da fórmula**: fac_ant é a acumulada anterior à classe, f é a frequência simples da classe e h é a amplitude; supõe-se uniformidade dentro da classe.",
+          "**Frequência relativa**: usar a posição k% e as acumuladas em porcentagem; o resultado coincide com o das frequências absolutas.",
+          "**Erros comuns**: não ordenar os dados, usar a fac da própria classe como fac_ant e confundir f com a acumulada."
         ],
         "teoria": [
           {
@@ -520,21 +470,15 @@
       "id": "estatistica/a02/s06",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- **Resume cinco medidas:** mínimo, Q1, mediana (Q2), Q3 e máximo.",
-          "- **Estrutura:** uma **caixa** retangular que vai de Q1 a Q3, com uma linha interna na **mediana**, e duas hastes (**whiskers**, ou bigodes) ligando a caixa ao mínimo e ao máximo.",
-          "- **Distância (amplitude) interquartílica: DIQ:** Q3 − Q1.",
-          "- **Outliers:** valores abaixo de Q1 − 1,5·DIQ ou acima de Q3 + 1,5·DIQ, marcados por pontos ou asteriscos.",
-          "Quando há outliers, os bigodes não chegam ao mínimo e ao máximo reais: terminam no **menor valor ≥ limite inferior** e no **maior valor ≤ limite superior**. Desvio quartílico (amplitude semi-interquartílica): Dq = (Q3 − Q1) / 2. Não confundir com a DIQ: aparece na aula de dispersão.",
-          "### 2. Métodos de Resolução e Classificações",
-          "- Box plot (diagrama de caixa) é um gráfico da análise exploratória que mostra a distribuição, a dispersão e os valores discrepantes (outliers).",
-          "- Cada bigode reúne cerca de **25%** dos dados e a caixa cerca de **50%**.",
-          "- O box plot **não informa a quantidade de elementos** de cada grupo nem a média.",
-          "- permite **comparar distribuições** colocando vários diagramas no mesmo gráfico.",
-          "### 3. Exemplos de Aplicação e Procedimentos",
-          "> 💡 **Exemplo Prático:** Se valores coincidem (ex.: mediana = Q3), as linhas se sobrepõem e a caixa ou o bigode some visualmente.",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+          "**Cinco números**: o box plot resume mínimo, Q1, mediana, Q3 e máximo; não informa média nem a quantidade de elementos.",
+          "**Caixa e bigodes**: a caixa vai de Q1 a Q3 (cerca de 50% dos dados) com a mediana marcada dentro; cada bigode abriga cerca de 25% dos dados.",
+          "**DIQ**: distância interquartílica = Q3 − Q1, o comprimento da caixa; não confundir com o desvio quartílico, que vale (Q3 − Q1)/2.",
+          "**Limites dos outliers**: inferior = Q1 − 1,5 × DIQ e superior = Q3 + 1,5 × DIQ; valores fora desses limites são discrepantes (pontos ou asteriscos).",
+          "**Pontas dos bigodes**: com outliers, vão até o menor valor não menor que o limite inferior e o maior valor não maior que o limite superior; valor igual ao limite não é outlier.",
+          "**Quartis na prática**: posição n/4 para Q1 e 3n/4 para Q3 (valor da posição mais próxima se a conta não for inteira); mediana pelo termo central ou média dos dois centrais.",
+          "**Coincidências**: se Q1 = mínimo some o bigode esquerdo; se Q3 = máximo some o direito; se a mediana coincide com um quartil, as linhas se sobrepõem.",
+          "**Questões de leitura**: o gráfico mostra proporções, então não se pode comparar o número de elementos de dois grupos; as duas pontas somam 50%, não mais.",
+          "**Comparação**: várias caixas no mesmo eixo permitem comparar medianas, DIQ e outliers."
         ],
         "teoria": [
           {

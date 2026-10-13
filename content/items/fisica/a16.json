@@ -7,25 +7,15 @@
       "id": "fisica/a16/s01",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- Divisão de corrente em paralelo (método do \"cruzar os resistores\"): a corrente em cada ramo é inversamente proporcional à sua resistência, ou seja, a maior corrente passa pelo menor resistor.",
-          "- **Bateria:** sistema cujos polos têm uma diferença de potencial.",
-          "- **Resistor:** ao percorrê-lo no sentido da corrente, o potencial diminui R·i.",
-          "- **Gerador:** dispositivo que mantém a ddp necessária ao movimento das cargas.",
-          "Com **resistência interna r**, parte da energia é dissipada por efeito Joule. **Equação do gerador: U = ε − r·i** (ddp lançada = ddp produzida − ddp dissipada), com ε a força eletromotriz (fem). Balanço de potências: P_total produzida = P_útil (lançada) + P_dissipada. Um gerador real tem **rendimento menor que 100%**: η = P_útil/P_total = U/ε.",
-          "### 2. Métodos de Resolução e Classificações",
-          "- O polo **positivo** está a um potencial **maior** que o negativo, na quantidade da ddp da bateria.",
-          "- os potenciais absolutos dos polos não são conhecidos (o positivo não é necessariamente \"positivo\").",
-          "- Percorrendo-a do polo **negativo para o positivo**, o potencial **sobe** o valor da ddp.",
-          "- do positivo para o negativo, **desce**.",
-          "- O sentido da corrente não importa para essa ddp.",
-          "#### Quadro Comparativo:",
-          "| Instituto / Conceito | Regra / Distinção | Confronto / Exceção |\n| :--- | :--- | :--- |\n| **Aspecto 1** | Gráfico U | i do gerador: reta decrescente (y = b − a·x) |\n| **Aspecto 2** | Gráfico U' | i: reta **crescente** |",
-          "### 3. Exemplos de Aplicação e Procedimentos",
-          "> 💡 **Exemplo Prático:** Ex.: 12 A que se divide entre 2 Ω e 4 Ω: 8 A no de 2 Ω e 4 A no de 4 Ω.",
-          "> 💡 **Exemplo Prático:** Receptor: transforma energia elétrica em outra forma que não exclusivamente a térmica (ex.: motor elétrico → energia mecânica).",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+          "**Divisão de corrente**: em paralelo, U é igual nos ramos e I=U/R; ramo de menor resistência conduz corrente maior.",
+          "**Variação de potencial**: bateria de − para + soma ε; resistor no sentido da corrente reduz Ri. Percorrer no sentido contrário troca o sinal.",
+          "**Gerador real**: U=ε−ri; energia produzida divide-se em potência útil Ui e perda ri².",
+          "**Circuito aberto**: i=0 e tensão terminal igual à fem ε.",
+          "**Curto-circuito**: tensão terminal nula e corrente icc=ε/r.",
+          "**Rendimento**: η=U/ε; a curva U×i tem intercepto ε e inclinação −r.",
+          "**Potência máxima**: carga igual à resistência interna maximiza potência útil; rendimento é 50% nesse ponto.",
+          "**Receptor**: U=ε′+r′i; energia elétrica vira potência útil ε′i e perda térmica r′i².",
+          "**Circuito em série**: i=(Σ ε−Σ ε′)/ΣR; fontes opostas têm sinais contrários."
         ],
         "teoria": [
           {
@@ -124,21 +114,15 @@
       "id": "fisica/a16/s02",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- **Geradores em série:** o polo positivo de um se liga ao negativo do seguinte.",
-          "- **O gerador equivalente tem ε_eq:** ε1 + ε2 + ...** e **r_eq = r1 + r2 + ...** (aumenta a fem, mas também a dissipação interna).",
-          "- **em geral iguais): ε_eq:** ε** (a mesma de cada gerador) e **r_eq = r/n**, com n o número de geradores iguais.",
-          "- **Capacitor:** dispositivo que acumula energia potencial elétrica (flash de câmera: carrega e descarrega rapidamente).",
-          "O mais cobrado é o **capacitor plano**. Carregamento (chave fechada): a corrente começa no valor máximo e tende a zero. a **carga** cresce até **Q = C·U**.",
-          "### 2. Métodos de Resolução e Classificações",
-          "- **todos:** são percorridos pela **mesma corrente**.",
-          "- Geradores em paralelo (positivos ligados entre si e negativos entre si.",
-          "- Pode ser plano, esférico, cilíndrico etc.",
-          "- A **capacitância** depende da geometria e do material (dielétrico).",
-          "- a **ddp** parte de zero e cresce até um valor praticamente constante, igual à ddp da bateria.",
-          "- **Distinção:** Energia armazenada: E = Q·U/2 = C·U²/2 = Q²/(2C) (área sob o gráfico Q × U).",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+          "**Geradores em série**: mesma corrente, εeq=Σε e req=Σr; aumenta tensão, mas também perdas internas.",
+          "**Geradores em paralelo**: terminais de mesmo sinal unidos; para n unidades idênticas, εeq=ε e req=r/n.",
+          "**Capacitância**: Q=CU; depende do formato das placas e do material dielétrico.",
+          "**Carga RC**: Uc e q crescem até o valor final, enquanto i decai a zero; a escala temporal é RC.",
+          "**Energia**: E=QU/2=CU²/2=Q²/(2C).",
+          "**Capacitores em série**: mesma carga; 1/Ceq=Σ1/Ci. Dois: Ceq=C₁C₂/(C₁+C₂).",
+          "**Capacitores em paralelo**: mesma ddp; Ceq=ΣCi. Para unidades iguais, série dá C/n e paralelo nC.",
+          "**Capacitor plano**: C=εA/d; área e permissividade elevam C, separação maior reduz.",
+          "**Permissividade**: κ=ε/ε₀ é constante dielétrica relativa; K=1/(4πε) é a constante eletrostática do meio."
         ],
         "teoria": [
           {

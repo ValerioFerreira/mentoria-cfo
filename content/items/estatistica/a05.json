@@ -7,26 +7,15 @@
       "id": "estatistica/a05/s01",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- **Princípio aditivo:** para eventos mutuamente exclusivos (se um ocorre, o outro não), o número de maneiras de ocorrer um deles (A OU B) é m + n.",
-          "- **Resumo:** **E multiplica, OU soma**.",
-          "- **Contagem de divisores:** fatore o número em primos.",
-          "- **se N:** a^e1 · b^e2 · c^e3 ..., o número de divisores positivos é **(e1 + 1)(e2 + 1)(e3 + 1)...**.",
-          "Princípio da casa dos pombos: se n pombos devem ocupar m casas e n > m, pelo menos uma casa terá mais de um pombo. para garantir pelo menos k em alguma casa, no pior cenário há k − 1 em cada uma das m casas, e o próximo elemento garante: **m · (k − 1) + 1**. Contagem de jogos em torneio eliminatório: cada jogo elimina exatamente um participante.",
-          "### 2. Métodos de Resolução e Classificações",
-          "- Análise combinatória estuda técnicas de contagem em conjuntos finitos, sem precisar listar todos os casos.",
-          "- A garantia exige raciocinar no **pior cenário** (distribuição mais espalhada possível).",
-          "- Para garantir pelo menos 2 em uma casa, são necessários m + 1 elementos.",
-          "- 4 cargos e 4 do mesmo cargo → 13 funcionários.",
-          "- Pergunta sempre pelo **menor** número que garante o resultado (qualquer número maior também garante).",
-          "#### Quadro Comparativo:",
-          "| Instituto / Conceito | Regra / Distinção | Confronto / Exceção |\n| :--- | :--- | :--- |\n| **Princípio multiplicativo** | se um evento ocorre de m maneiras e, para cada uma, outro ocorre de n maneiras, ambos juntos (A E B) ocorrem de m | n maneiras |\n| **Vale para qualquer número de etapas** | **p1 | p2 × ... × pn** |",
-          "### 3. Exemplos de Aplicação e Procedimentos",
-          "> 💡 **Exemplo Prático:** Questões mistas combinam os dois (ex.: vestido OU saia E blusa, E sapato).",
-          "> 💡 **Exemplo Prático:** Exemplo: 60 = 2² · 3 · 5 tem 3·2·2 = 12 divisores.",
-          "> 💡 **Exemplo Prático:** Ex.: 12 meses → 13 pessoas para 2 aniversários no mesmo mês.",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+          "**Objetivo da combinatória**: contar possibilidades em conjuntos finitos sem listá-las, inclusive subconjuntos com certa característica (pares, primos).",
+          "**Princípio multiplicativo**: etapas sucessivas com m, n, p opções dão m × n × p maneiras; a palavra-chave é \"e\".",
+          "**Restrições**: conte em cada etapa só as opções permitidas; por exemplo, em faixas vizinhas de cores diferentes, 4 cores dão 4 × 3 × 3.",
+          "**Divisores**: fatore em primos e multiplique os expoentes mais 1; 360 = 2³ · 3² · 5 tem 4 × 3 × 2 = 24 divisores.",
+          "**Princípio aditivo**: eventos mutuamente excludentes somam suas opções; a palavra-chave é \"ou\".",
+          "**Misturando**: monte etapas, multiplique as concomitantes e some as alternativas, resolvendo de dentro para fora.",
+          "**Casa dos pombos**: com n > m, algum compartimento recebe mais de um objeto; dá a garantia sobre repetição.",
+          "**Pior cenário**: para garantir k no mesmo compartimento, m × (k − 1) + 1 elementos; é a conta do \"menor número que garante\".",
+          "**Torneio de eliminação**: com N jogadores há N − 1 jogos, porque cada jogo elimina um e só o campeão fica."
         ],
         "teoria": [
           {
@@ -112,22 +101,16 @@
       "id": "estatistica/a05/s02",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- **Fatorial: n!:** n · (n − 1) · (n − 2) · ... · 2 · 1.",
-          "- **Pode-se parar em qualquer fator: n!:** n · (n − 1)! = n · (n − 1) · (n − 2)!, o que simplifica divisões (10!/7! = 10 · 9 · 8).",
-          "- **Casos especiais: 1!:** 1** e **0! = 1** (convenção coerente com n! = (n + 1)!/(n + 1)).",
-          "- **2 · 4!:** 48, mas (2 · 4)! = 8! = 40.320.",
-          "2 + 4! = 26, mas (2 + 4)! = 720. Permutação simples: ordenar n elementos distintos: P_n = n!. Restrição por posição fixa: se p dos n elementos ficam em posições determinadas, permutam-se os demais: (n − p)!.",
-          "### 2. Métodos de Resolução e Classificações",
-          "#### Sequência e Funcionamento:",
-          "1. Elementos juntos: tratando os j elementos como um único bloco, em ordem determinada, o total é (n − j + 1)!",
-          "2. **(ii) elementos que ficam juntos** → bloco único + permutação interna, se a ordem interna for livre.",
-          "- Serve para filas, anagramas de palavras sem letras repetidas, números com algarismos distintos.",
-          "- **Distinção:** (calcula os fatoriais antes) é diferente de (6/3)! = 2!",
-          "### 3. Exemplos de Aplicação e Procedimentos",
-          "> 💡 **Exemplo Prático:** Exemplo de fila alternada: com 5 meninas e 4 meninos, a fila só alterna começando e terminando por menina, e resulta 5! · 4! = 2.880.",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> ⚠️ **Atenção de Prova:** Cuidado com parênteses: 6!/3!"
+          "**Fatorial**: n! = n × (n − 1) × ... × 1, com 0! = 1 e 1! = 1; decorar 5! = 120, 6! = 720, 7! = 5.040.",
+          "**Simplificação**: abra o fatorial maior até o menor e cancele; 10!/7! = 10 × 9 × 8 = 720.",
+          "**Parênteses importam**: (2 + 4)! = 720, porém 2 + 4! = 26; (6/3)! = 2, mas 6!/3! = 120.",
+          "**Permutação simples**: elementos distintos, Pn = n!; vale para filas, rankings, anagramas e números sem algarismo repetido.",
+          "**Elementos fixos**: p elementos com posição determinada saem do cálculo, restando (n − p)!.",
+          "**Grupo reservado a posições**: se os p elementos trocam entre si dentro das posições reservadas, (n − p)! × p!; exemplo: pontas com 1 e 8 em 8 algarismos, 6! × 2! = 1.440.",
+          "**Alternância**: 5 meninas e 4 meninos alternados exigem começar por menina, 5! × 4! = 2.880.",
+          "**Juntos em ordem fixa**: o bloco vira 1 elemento, (n − j + 1)!; três animais seguidos numa ordem, em fila de 10, dá 8!.",
+          "**Juntos em qualquer ordem**: (n − j + 1)! × j!; três algarismos colados entre 8 dá 6! × 3! = 4.320.",
+          "**Erro típico**: esquecer a permutação interna do bloco ou o fator p! do grupo reservado, e trocar 3! × 7! por 3 × 7!."
         ],
         "teoria": [
           {
@@ -213,26 +196,14 @@
       "id": "estatistica/a05/s03",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- **Permutação com repetição:** com n elementos totais, dos quais m1, m2, ..., mk são iguais entre si, divide-se a permutação simples pelas permutações dos repetidos: n! / (m1! · m2! · ... · mk!).",
-          "- **Permutação circular: sem posição de início, fixa-se um elemento e permutam-se os demais: PC_n:** (n − 1)!.",
-          "- **Permutação caótica (desarranjo): nenhum elemento volta à posição original. D_n:** n! · [1/2! − 1/3! + 1/4! − ... + (−1)^n / n!].",
-          "- **Valores úteis: D_2:** 1, D_3 = 2, D_4 = 9**.",
-          "Arranjo simples (sem reposição): A(n,k) = n! / (n − k)! (n possibilidades para o 1º, n − 1 para o 2º, etc.). Arranjo com reposição: n^k, pois cada escolha tem sempre n opções. Questões mistas (letras distintas + dígitos repetidos) multiplicam arranjos sem e com reposição: 26 · 25 · 10⁴ = 6.500.000.",
-          "### 2. Métodos de Resolução e Classificações",
-          "#### Sequência e Funcionamento:",
-          "1. Permutação com elementos ordenados: se k dos n elementos precisam seguir uma ordem definida (não necessariamente consecutivos), o total é n! / k!.",
-          "2. Com dois grupos de ordem: **n! / (k1! · k2!)**.",
-          "3. Se a ordem também for consecutiva, trata-se como bloco.",
-          "4. Arranjo e combinação selecionam k dentre n elementos: no arranjo a ordem importa.",
-          "- Rotações do círculo contam como a mesma disposição.",
-          "- na **combinação não**.",
-          "### 3. Exemplos de Aplicação e Procedimentos",
-          "> 💡 **Exemplo Prático:** Ex.: CASA (2 A) → 4!/2! = 12 anagramas.",
-          "> 💡 **Exemplo Prático:** Circular com restrições (ex.: meninos e meninas alternados): resolve-se em etapas — primeiro um grupo em círculo ((n−1)!), depois o outro grupo nas posições entre eles (permutação simples).",
-          "> 💡 **Exemplo Prático:** Ex.: 4 meninos e 4 meninas → 3! · 4! = 144.",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+          "**Permutação com repetição**: Pn = n! / (m1! · m2! · ...); divide-se pelo fatorial de cada grupo de elementos iguais; BANANA tem 6!/(3!·2!) = 60 anagramas.",
+          "**Permutação circular**: PCn = (n − 1)!, pois se fixa um elemento e se permutam os outros; girar a mesa não gera disposição nova.",
+          "**Circular com restrições**: divide-se em etapas (por exemplo, alternar homens e mulheres) e multiplica-se: PC dos primeiros vezes P dos demais.",
+          "**Elementos em ordem**: n!/k! quando k elementos seguem uma ordem fixa, não necessariamente juntos; para dois grupos, n!/(k1!·k2!).",
+          "**Desarranjo**: Dn = n! · [1/2! − 1/3! + ... + (−1)^n/n!]; valores D2 = 1, D3 = 2, D4 = 9, D5 = 44.",
+          "**Arranjo simples**: A(n,k) = n!/(n−k)!, escolha sem reposição em que a ordem importa (por exemplo, prêmios distintos).",
+          "**Arranjo com reposição**: n^k, porque em cada etapa há sempre n opções.",
+          "**Arranjo × combinação**: no arranjo a ordem diferencia os casos; na combinação, C(n,k) = A(n,k)/k!, a ordem é irrelevante."
         ],
         "teoria": [
           {
@@ -323,24 +294,16 @@
       "id": "estatistica/a05/s04",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- **Notações:** C(n,k), C_n^k ou o binomial n sobre k.",
-          "- **Casos particulares: C(n,n):** 1.",
-          "- **C(n,0):** 1.",
-          "- **C(n,1):** n.",
-          "C(n,n−1) = n. **C(n,k) = C(n,n−k)** (escolher k é o mesmo que escolher quem fica de fora). Teorema das linhas: C(n,0) + C(n,1) + ... + C(n,n) = 2^n. Útil em questões como \"cada caixa recebe pelo menos uma pasta\" (2^10 − 2 = 1022).",
-          "### 2. Métodos de Resolução e Classificações",
-          "#### Sequência e Funcionamento:",
-          "1. Combinação simples: escolhe-se k dentre n elementos sem importar a ordem. C(n,k) = n! / [(n − k)! · k!] = A(n,k) / P_k.",
-          "- Use combinação para comissões, grupos, times, duplas.",
-          "- use arranjo quando as posições/cargos são distintos.",
-          "- Se as incógnitas devem ser positivas, distribui-se 1 unidade a cada uma antes (sobram p − n) e aplica-se CR(n, p − n).",
-          "#### Quadro Comparativo:",
-          "| Instituto / Conceito | Regra / Distinção | Confronto / Exceção |\n| :--- | :--- | :--- |\n| **Aspecto 1** | Combinação | arranjo: cada combinação corresponde a k! arranjos (mudanças de ordem) |",
-          "### 3. Exemplos de Aplicação e Procedimentos",
-          "> 💡 **Exemplo Prático:** \"Pelo menos um\": calcule o total sem restrição e subtraia os casos que não atendem (ex.: grupos de 3 entre 5 mulheres e 4 homens com pelo menos 1 mulher = C(9,3) − C(4,3) = 80).",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+          "**Combinação simples**: seleção em que a ordem não importa; C(n, k) = n! ÷ [(n − k)! · k!], ou arranjo dividido por k!; por exemplo, C(6, 2) = 15.",
+          "**Arranjo × combinação**: grupos, comissões e duplas usam combinação; filas, pódios e cargos diferentes usam arranjo, que conta a ordem e é maior.",
+          "**\"Pelo menos um\"**: calcule o total sem restrição e subtraia o caso proibido; C(9, 3) − C(5, 3) = 84 − 10 = 74 trios com pelo menos um menino entre 4 meninos e 5 meninas.",
+          "**Casos particulares**: C(n, n) = C(n, 0) = 1; C(n, 1) = C(n, n − 1) = n; C(n, k) = C(n, n − k).",
+          "**Soma das combinações**: C(n, 0) + ... + C(n, n) = 2ⁿ, útil para somas de várias combinações (por exemplo, 2¹⁰ − 2 = 1022 divisões de 10 pastas em 2 caixas, ambas ocupadas).",
+          "**Triângulo de Pascal**: Stifel (C(n, k) + C(n, k+1) = C(n+1, k+1)), teorema das linhas (soma = 2ⁿ) e teorema das colunas (soma de uma coluna dá o elemento seguinte na linha e coluna seguintes).",
+          "**Combinação completa**: n tipos, p unidades que podem repetir tipos; CR(n, p) = (n − 1 + p)! ÷ [(n − 1)! · p!] = C(n − 1 + p, p); com 5 marcas e 3 potes, CR = 35.",
+          "**Distribuição de itens idênticos**: n pessoas e p itens são n tipos com p unidades; havendo mínimo por pessoa, entrega-se o mínimo primeiro e distribui-se o resto.",
+          "**Soluções inteiras de equações**: x1 + ... + xn = p tem CR(n, p) soluções inteiras não negativas; se exigir positivas, reserva-se 1 por variável e a soma passa a p − n.",
+          "**Por que não negativas**: com valores negativos ou decimais haveria infinitas soluções."
         ],
         "teoria": [
           {
@@ -431,24 +394,16 @@
       "id": "estatistica/a05/s05",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- **Partição:** divisão de um conjunto em subconjuntos cuja soma de elementos dá o total do conjunto (como fatias de uma pizza).",
-          "- **Resolve-se também por combinações sucessivas (C(10,1) · C(9,2) · C(7,7):** 360).",
-          "- Partição não ordenada (grupos equivalentes, mesma tarefa): divide-se o resultado ordenado pelo número de maneiras de permutar os grupos.",
-          "- **Para m grupos de p elementos:** **(m·p)! / [m! · (p!)^m]**.",
-          "1º lema (fila: os extremos NíO são vizinhos): f(n,p) = C(n − p + 1, p). Raciocínio: n − p elementos não escolhidos criam n − p + 1 espaços onde colocar os p escolhidos. 2º lema (círculo: os extremos SíO vizinhos, como meses do ano ou fatias de pizza): g(n,p) = [n / (n − p)] · C(n − p, p).",
-          "### 2. Métodos de Resolução e Classificações",
-          "#### Sequência e Funcionamento:",
-          "1. Nos grupos, a ordem dos elementos **dentro** do subconjunto não importa.",
-          "2. Lemas de Kaplansky: contam subconjuntos de p elementos, escolhidos dentre n dispostos em ordem, sem elementos vizinhos.",
-          "- 10 pessoas em 2 grupos de 5 → 126.",
-          "- para combinações com várias quantidades, use o princípio aditivo sobre cada p.",
-          "### 3. Exemplos de Aplicação e Procedimentos",
-          "> 💡 **Exemplo Prático:** Partição ordenada (grupos distintos, ex.: gerente, coordenadores, trabalhadores): n! / (p1! · p2! · ... · pm!).",
-          "> 💡 **Exemplo Prático:** Ex.: 6 pessoas em 3 duplas → 90/6 = 15.",
-          "> 💡 **Exemplo Prático:** Ex.: 3 dias não consecutivos de segunda a sábado → C(4,3) = 4.",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+          "**Partição**: divide todos os elementos do conjunto em grupos; a soma dos tamanhos é o total, o que a diferencia de uma combinação comum.",
+          "**Ordenada**: grupos distintos (funções, destinos); número de modos = n!/(p1! × p2! × ... × pm!), equivalente a multiplicar combinações sucessivas.",
+          "**Exemplo ordenado**: 7 projetos em departamentos que recebem 3, 2 e 2 dão 7!/(3! × 2! × 2!) = 210.",
+          "**Não-ordenada**: grupos equivalentes e de mesmo tamanho p; divide-se a ordenada por m!: (m × p)!/(m! × (p!)^m). Dez pessoas em dois grupos de 5: 126.",
+          "**Ordem dentro do grupo**: nunca conta; só a ordem entre os grupos muda de um tipo para o outro.",
+          "**1º lema de Kaplansky**: fila, sem vizinhos selecionados e com extremos não vizinhos; f(n,p) = C(n − p + 1, p); 3 dias de 6 sem seguidos dá 4.",
+          "**Raciocínio dos espaços**: os n − p não escolhidos geram n − p + 1 lugares, e escolhem-se p deles para os escolhidos.",
+          "**2º lema**: círculo, com extremos vizinhos; g(n,p) = n/(n − p) × C(n − p, p); 3 fatias de 8 sem vizinhas dão 16.",
+          "**Decomposição do círculo**: elemento 1 escolhido, f(n − 3, p − 1); não escolhido, f(n − 1, p); soma = g(n,p).",
+          "**Várias quantidades**: quando se aceitam seleções de 0, 1, 2... elementos, soma-se cada caso (5 lâmpadas sem adjacentes acesas: 1 + 5 + 6 + 1 = 13)."
         ],
         "teoria": [
           {

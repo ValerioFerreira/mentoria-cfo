@@ -7,21 +7,16 @@
       "id": "estatistica/a10/s01",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- **Distribuição uniforme contínua em [a, b]: a f.d.p. é constante em todo o intervalo, f(x):** 1/(b − a), e zero fora dele.",
-          "- **Probabilidade de um intervalo: P(m < X < n):** (n − m)/(b − a), a razão entre o comprimento do trecho e o comprimento total (área de retângulo).",
-          "- **Esperança: E(X):** (a + b)/2, o ponto médio do intervalo.",
-          "- **Variância: V(X):** (b − a)²/12.",
-          "Determinar a e b a partir de média e variância: com média 4 e variância 12, a + b = 8 e (b − a)² = 144, logo b − a = 12, a = −2 e b = 10. P(X < 7) = 9/12 = 0,75. Reconhecimento: expressões como \"escolhido ao acaso em um intervalo\", \"qualquer valor entre … é igualmente provável\" indicam uniforme contínua.",
-          "### 2. Métodos de Resolução e Classificações",
-          "- Todos os subintervalos de mesmo tamanho têm a mesma probabilidade.",
-          "- vale 0 antes de a e 1 depois de b.",
-          "- a média coincide com a mediana.",
-          "- **Distinção:** F.d.a.: F(x) = (x − a)/(b − a) para a < x < b.",
-          "### 3. Exemplos de Aplicação e Procedimentos",
-          "> 💡 **Exemplo Prático:** Ex.: uniforme em [8, 14], P(X > 12) = 2/6 = 1/3.",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> ⚠️ **Atenção de Prova:** Atenção ao 12 no denominador, que é o diferencial desta distribuição."
+          "**Forma da f.d.p.**: constante, igual a k = 1/(b − a), dentro de (a, b) e zero fora; a e b são os únicos parâmetros.",
+          "**Por que k = 1/(b − a)**: a área do retângulo (b − a) · k tem de ser 1 (100% da probabilidade).",
+          "**Probabilidade de intervalo**: P(m < X < n) = (n − m)/(b − a), a razão entre o comprimento do trecho e o intervalo total.",
+          "**Variável contínua**: probabilidade de um ponto é zero, então < e ≤ dão o mesmo resultado.",
+          "**Acumulada**: F(x) = P(X ≤ x) = (x − a)/(b − a) entre a e b (0 antes de a, 1 depois de b).",
+          "**Esperança**: E(X) = (a + b)/2, o ponto médio do intervalo.",
+          "**Variância**: Var(X) = (b − a)²/12, com divisor 12 e diferença elevada ao quadrado.",
+          "**Achar a e b**: a + b = 2μ e b − a = raiz de 12·Var; resolve-se o sistema somando e subtraindo (os extremos podem ser negativos).",
+          "**Truncar o intervalo**: ao calcular \"maior que x\" ou \"menor que x\", use apenas a parte que está dentro de (a, b).",
+          "**Família exponencial**: binomial, Poisson, exponencial, normal, beta e Weibull pertencem; a uniforme não pertence."
         ],
         "teoria": [
           {
@@ -90,19 +85,16 @@
       "id": "estatistica/a10/s02",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- **Distribuição exponencial:** modela o tempo até um evento com taxa de ocorrência (ou de falha) constante λ, como vida útil de lâmpada.",
-          "- **Probabilidades: P(X > a):** e^(−λa).",
-          "- **P(a < X < b) = e^(−λa) − e^(−λb)**.",
-          "- **F(x) = P(X < x) = 1 − e^(−λx)**.",
-          "Confiabilidade: a função de sobrevivência (probabilidade de o sistema durar mais que x) é o complemento da f.d.a.: e^(−λx). Esperança e variância: E(X) = 1/λ e V(X) = 1/λ². Se λ é por dia e a pergunta é em horas, converta (6 h = 1/4 de dia).",
-          "### 2. Métodos de Resolução e Classificações",
-          "- **O desvio padrão:** é igual à média, então o **coeficiente de variação é 1**.",
-          "- O tempo já decorrido sem o evento não altera a probabilidade do tempo restante.",
-          "#### Quadro Comparativo:",
-          "| Instituto / Conceito | Regra / Distinção | Confronto / Exceção |\n| :--- | :--- | :--- |\n| **F.d.p.: f(x)** | λ·e^(−λx)** para | ≥ 0, e zero para x < 0 |\n| **Unidades** |  | e λ devem estar na mesma unidade de tempo |",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+          "**Modelo**: a exponencial descreve o tempo até um evento com taxa constante λ > 0; f(x) = λ·e^(−λx) para x ≥ 0, decrescente.",
+          "**Probabilidades**: P(X > x) = e^(−λx); P(X < x) = 1 − e^(−λx), que é a função acumulada; P(a < X < b) = e^(−λa) − e^(−λb).",
+          "**Unidades**: x e λ devem estar na mesma unidade de tempo; converta antes de aplicar as fórmulas.",
+          "**Média e variância**: E(X) = 1/λ e Var(X) = 1/λ², então desvio padrão igual à média e coeficiente de variação sempre 1.",
+          "**Parametrização por escala**: com β = 1/λ, a densidade é (1/β)·e^(−x/β), E(X) = β e Var(X) = β².",
+          "**Poisson**: se as ocorrências são Poisson com taxa λ, o tempo entre elas é exponencial com o mesmo λ.",
+          "**Confiabilidade e redundância**: R(x) = 1 − F(x) = e^(−λx); em sistema redundante, a probabilidade de falha é o produto das acumuladas das unidades.",
+          "**Escala**: Y = k·X (k > 0) é exponencial com parâmetro λ/k.",
+          "**Mínimo**: o mínimo de exponenciais independentes é exponencial com parâmetro igual à soma dos parâmetros.",
+          "**Sem memória**: P(X > t+s | X > s) = P(X > t); o passado não altera a espera futura, só o tempo adicional importa."
         ],
         "teoria": [
           {
@@ -171,19 +163,15 @@
       "id": "estatistica/a10/s03",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- Mínimo de exponenciais independentes: segue exponencial com parâmetro igual à soma dos parâmetros.",
-          "- **Se Var(V):** Var(W) = 1, então λ = 1 para cada, e o mínimo tem λ = 2 e média 1/2.",
-          "- **Mistura de populações (Teorema da Probabilidade Total): quando objetos de tipos A e B, com exponenciais distintas, são sorteados, P(C):** P(C|A)·P(A) + P(C|B)·P(B), com P(A) e P(B) as proporções de cada tipo.",
-          "- **Distribuição gama:** tem parâmetros α e β.",
-          "Com **α = 1 e β = λ**, a gama **reduz-se à exponencial**. Soma de n exponenciais independentes e idênticas segue gama com α = n e β = λ. Diferença de duas exponenciais iid: não é exponencial.",
-          "### 2. Métodos de Resolução e Classificações",
-          "- média α/β e variância α/β².",
-          "- **a variância da soma:** é n/λ².",
-          "- resulta na distribuição de **Laplace**, simétrica em torno de zero, com pico agudo e caudas mais pesadas que a normal.",
-          "- sua f.d.a. é 1 − e^(−(z/λ)^k), e a exponencial aparece como transformação de uma Weibull.",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> ⚠️ **Atenção de Prova:** Cuidado: multiplicar por constante ou somar exponenciais não mantém uma exponencial (2V + 2W tem variância 8, mas não é exponencial)."
+          "**Mistura de exponenciais**: P(A) = P(A|X)·P(X) + P(A|Y)·P(Y), com P(T > t) = e^(−λt) em cada condicional e λ = 1/média.",
+          "**Gama**: parâmetros α (forma) e β (taxa); E = α/β e Var = α/β²; a exponencial é o caso α = 1, β = λ.",
+          "**Soma de n exponenciais iguais**: dá Erlang (gama com α = n e β = λ), de média n/λ e variância n/λ²; α inteiro.",
+          "**Hipo × hiperexponencial**: a hipoexponencial tem coeficiente de variação menor que 1; a hiperexponencial (mistura ponderada de densidades) tem CV maior que 1; a exponencial tem CV = 1.",
+          "**Laplace**: é a distribuição de X1 − X2 (exponenciais independentes); simétrica, de pico agudo e caudas pesadas, quando os λ são iguais, e assimétrica quando diferem.",
+          "**Média e variância da diferença**: E(Y) = 1/λ1 − 1/λ2, mas Var(Y) = 1/λ1² + 1/λ2² (as variâncias se somam).",
+          "**Weibull**: F(z) = 1 − e^(−(z/λ)^k); X = (Z/λ)^k é exponencial com λ = 1.",
+          "**Beta**: definida em [0, 1], com E = α/(α + β); a função beta normaliza a área para 1.",
+          "**Pegadinha**: multiplicar exponencial por constante mantém exponencial; somar ou subtrair duas independentes não."
         ],
         "teoria": [
           {
@@ -247,18 +235,17 @@
       "id": "estatistica/a10/s04",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- Distribuição normal (gaussiana) N(μ, σ²): f.d.p. em forma de sino, definida em toda a reta real.",
-          "- **Simetria:** em torno de μ.",
-          "- **média = mediana = moda = μ**.",
-          "- **Logo, P(X > μ + k):** P(X < μ − k) e P(μ < X < μ + k) = P(μ − k < X < μ).",
-          "Efeito da variância: quanto maior σ², mais achatada a curva (pico baixo, caudas largas). Pontos de inflexão: ocorrem exatamente em μ − σ e μ + σ. Normal padrão Z ~ N(0, 1): média 0 e variância 1.",
-          "### 2. Métodos de Resolução e Classificações",
-          "- Os **parâmetros μ (média) e σ² (variância) são independentes**.",
-          "- quanto **menor σ²**, mais alta e concentrada.",
-          "- Suas probabilidades vêm de tabelas.",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+          "**Forma da normal**: curva em sino, simétrica em torno de μ, definida de −∞ a +∞, com duas assíntotas no eixo horizontal; média = mediana = moda.",
+          "**Parâmetros**: μ desloca a curva; σ² controla a abertura (variância maior = curva mais achatada e caudas pesadas; menor = pico alto e concentrado).",
+          "**Pontos de inflexão**: ficam em μ − σ e μ + σ, onde a concavidade da curva muda.",
+          "**Área e probabilidade**: a área total é 100% e a probabilidade de um intervalo é a área sob a curva nele; P(X > μ) = P(X < μ) = 50%.",
+          "**Simetria em torno de μ**: P(X > μ + k) = P(X < μ − k) e P(μ < X < μ + k) = P(μ − k < X < μ).",
+          "**Normal padrão**: Z ~ N(0, 1); padroniza-se com Z = (X − μ)/σ e a tabela dá P(0 < Z < z) (linha = inteiro e décimo; coluna = centésimo).",
+          "**Leitura inversa**: busca-se a área nos campos da tabela e toma-se o z do valor mais próximo (0,40 leva a z ≈ 1,28).",
+          "**Caudas**: P(Z > z) = 0,5 − P(0 < Z < z) = P(Z < −z).",
+          "**Módulo**: P(|Z| < z) = 2 × P(0 < Z < z) e P(|Z| > z) = 1 − 2 × P(0 < Z < z) = 2 × P(Z > z).",
+          "**Referência**: com z = 1,96, P(0 < Z < z) = 0,475, então P(|Z| < 1,96) = 0,95 e P(|Z| > 1,96) = 0,05.",
+          "**Tabela acumulada**: dá P(Z ≤ z); para z > 0, P(0 < Z < z) = P(Z ≤ z) − 0,5."
         ],
         "teoria": [
           {
@@ -331,22 +318,15 @@
       "id": "estatistica/a10/s05",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- **Padronização: para uma normal qualquer N(μ, σ²), calcule z:** (x − μ)/σ.",
-          "- **Probabilidades de X viram probabilidades de Z (normal padrão): P(X < 7) com μ:** 1 e σ = 3 é P(Z < 2) = 0,9772.",
-          "- **Intervalos com dois limites:** padronize cada extremo.",
-          "- **Assim, P(4 < X < 7) com μ:** 1 e σ = 3 vira o trecho de Z entre 1 e 2, calculado como a diferença entre as áreas de 0 a 2 e de 0 a 1 da tabela.",
-          "Regra empírica 68–95–99,7: P(μ ± σ) ≈ 68%, P(μ ± 2σ) ≈ 95% e P(μ ± 3σ) ≈ 99,7%. Extremos: valores como P(Z < −0,42) = 0,338 vêm da tabela acumulada. P(3475 < X < 3600) = 0,5 − 0,338 = 0,162.",
-          "### 2. Métodos de Resolução e Classificações",
-          "- **Os valores tabelados:** são 0,6826, 0,9544 e 0,9973.",
-          "- P(X > 110) corresponde a P(Z > 1), cerca de 16% (a metade de 32%).",
-          "#### Quadro Comparativo:",
-          "| Instituto / Conceito | Regra / Distinção | Confronto / Exceção |\n| :--- | :--- | :--- |\n| **Aspecto 1** | Valor de | a partir da probabilidade: ache z na tabela e use x = μ + z·σ |",
-          "### 3. Exemplos de Aplicação e Procedimentos",
-          "> 💡 **Exemplo Prático:** Ex.: P(X < x) = 0,8 → P(0 < Z < z) = 0,3 → z ≈ 0,84.",
-          "> 💡 **Exemplo Prático:** Exemplo: média 100 e desvio 10.",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> ⚠️ **Atenção de Prova:** Intervalos simétricos em torno da média, P(μ − k < X < μ + k), exigem apenas um z (o outro é o seu oposto)."
+          "**Padronização**: z = (x − μ)/σ transforma qualquer normal em N(0,1); z é o número de desvios padrão entre x e a média.",
+          "**Equivalência de probabilidades**: P(a < X < b) = P(za < Z < zb), com a fórmula aplicada em cada extremo.",
+          "**Tabela de 0 a z**: cada metade da curva vale 0,5; P(Z > z) = 0,5 − P(0 < Z < z) para z positivo, e P(−z < Z < 0) = P(0 < Z < z) pela simetria.",
+          "**Lados opostos × mesmo lado**: extremos em lados opostos da média somam as áreas; do mesmo lado, subtraem.",
+          "**Caminho inverso**: ache o z da probabilidade desejada e use x = μ + z · σ; se o enunciado dá o z, aplique direto.",
+          "**Regra Empírica**: μ ± σ ≈ 68%; μ ± 2σ ≈ 95%; μ ± 3σ ≈ 99,7% (valem para qualquer normal, em intervalos simétricos).",
+          "**Intervalo simétrico**: padronize só um extremo, o outro tem o mesmo z com sinal trocado.",
+          "**Caudas**: o complemento do intervalo simétrico divide-se igualmente (68% centrais deixam ≈ 16% em cada cauda).",
+          "**Tabela acumulada**: se dá P(Z < z), a probabilidade entre dois pontos é a diferença F(b) − F(a), com F(0) = 0,5."
         ],
         "teoria": [
           {
@@ -410,19 +390,16 @@
       "id": "estatistica/a10/s06",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- **Soma de normais independentes é normal, com média:** soma das médias e variância = soma das variâncias.",
-          "- **Somar, subtrair, multiplicar ou dividir uma normal por constante também resulta em normal: se X ~ N(3, 4), Y:** 2X − 6 tem E(Y) = 0 e Var(Y) = 16.",
-          "- **Teorema Central do Limite (TCL): para variáveis independentes e identicamente distribuídas (de qualquer distribuição), a soma tende a uma normal quando n cresce, com E(Y):** n·μ e V(Y) = n·σ².",
-          "- **TCL sem distribuição idêntica:** mesmo com distribuições diferentes a soma é aproximadamente normal, sob condições razoáveis.",
-          "Binomial → normal: X ~ B(n, p) pode ser aproximada por normal com μ = n·p e σ² = n·p·q, quando n é grande. Correção de continuidade: como a binomial é discreta, estenda o intervalo em 0,5 de cada lado: P(20 ≤ X ≤ 30) ≈ P(19,5 < Y < 30,5). Para n = 50 e p = 0,5 dá 0,8812, contra 0,8811 exato.",
-          "### 2. Métodos de Resolução e Classificações",
-          "- depois padronize os limites já corrigidos.",
-          "### 3. Exemplos de Aplicação e Procedimentos",
-          "> 💡 **Exemplo Prático:** Exemplo: 100 variáveis com média 3 e variância 4 → soma com média 300 e variância 400.",
-          "> 💡 **Exemplo Prático:** Exemplo de uso: 144 pessoas e p = 0,1 → μ = 14,4 e σ² = 12,96 (σ = 3,6).",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> 📌 **Bizu Estratégico:** Regra prática: n·mín(p, q) > 5 (melhor > 15)."
+          "**Soma de normais independentes**: continua normal; a média é a soma das médias e a variância é a soma das variâncias (não some desvios padrão).",
+          "**Diferença de normais**: a média subtrai, mas a variância soma; por exemplo, N(10; 9) − N(4; 16) = N(6; 25).",
+          "**Transformação linear**: Y = aX + b tem média a·E(X) + b e variância a²·Var(X); a constante b não altera a variância.",
+          "**Teorema Central do Limite**: soma de n variáveis i.i.d., de qualquer distribuição, tende à normal com média n·E(X) e variância n·Var(X).",
+          "**Tipo de convergência**: o TLC é convergência em distribuição, das acumuladas, não ponto a ponto das densidades.",
+          "**Variáveis não idênticas**: a soma também fica aproximadamente normal se forem independentes e com variâncias parecidas.",
+          "**Binomial pela normal**: usa média n·p e variância n·p·q; melhora com n grande e p perto de 0,5 (regra empírica n·min(p, q) > 5).",
+          "**Correção de continuidade**: P(a ≤ X ≤ b) ≅ P(a − 0,5 < Y < b + 0,5); tira 0,5 do limite inferior e soma 0,5 ao superior.",
+          "**Desigualdade estrita**: converta antes para extremos incluídos; P(3 < X < 8) = P(4 ≤ X ≤ 7) vira P(3,5 < Y < 7,5).",
+          "**Roteiro**: calcular média e variância, aplicar a correção, padronizar com z = (y − média)/desvio e consultar a tabela."
         ],
         "teoria": [
           {
@@ -491,24 +468,16 @@
       "id": "estatistica/a10/s07",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- Qui-quadrado (χ²) com k graus de liberdade: soma dos quadrados de k variáveis normais padrão independentes. É sempre positivo (x ≥ 0) e assimétrico à direita.",
-          "- **Momentos do χ²: E:** k e Var = 2k. É caso particular da gama (α = k/2, β = 1/2).",
-          "- **com k:** 2, resulta numa exponencial.",
-          "- **t de Student: T:** Z/√(χ²ₖ/k), com Z normal padrão e χ² independentes. Único parâmetro: k graus de liberdade.",
-          "Variância da t: k/(k − 2) (para k > 2), sempre maior que 1. Tabela t: linhas = graus de liberdade. colunas = probabilidades acumuladas.",
-          "### 2. Métodos de Resolução e Classificações",
-          "- quanto maior k, mais simétrico, tendendo à normal.",
-          "- Curva em sino, simétrica, média, mediana e moda iguais a 0.",
-          "- A t tem **caudas mais pesadas** que a normal e **se aproxima da normal** quando k (ou o tamanho da amostra) cresce.",
-          "- Sempre positiva e assimétrica.",
-          "- o quociente (Σ Xᵢ²/k)/(Σ Yᵢ²/m) é F(k, m).",
-          "### 3. Exemplos de Aplicação e Procedimentos",
-          "> 💡 **Exemplo Prático:** Ex.: 5 g.l. e P(T < t) = 0,9 → t = 1,48.",
-          "> 💡 **Exemplo Prático:** As tabelas de F são separadas por probabilidade (ex.: P(F > f) = 0,05, com f = 3,33 para 5 e 10 g.l.).",
-          "> 💡 **Exemplo Prático:** Exemplo de reconhecimento: soma de n quadrados de normais padrão é χ² com n g.l.",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+          "**Qui-quadrado**: soma de k normais padrão independentes elevadas ao quadrado; o único parâmetro é k (graus de liberdade); só valores não negativos, assimétrica à direita; média k e variância 2k.",
+          "**Padronização**: normais com média e desvio quaisquer devem ser transformadas em Z = (X − média)/desvio antes de formar a qui-quadrado.",
+          "**Aditividade e exponencial**: qui-quadrados independentes somam os graus de liberdade; exponencial de média 2 é qui-quadrado com 2 graus, e a soma de n delas tem 2n graus.",
+          "**t de Student**: Z dividido pela raiz de (qui-quadrado/k), com independência entre Z e a qui-quadrado; é simétrica com média 0, mais baixa no centro e de caudas mais pesadas que a normal.",
+          "**Variância da t**: k/(k − 2) para k > 2, sempre maior que 1 e tendendo a 1 quando k cresce, de modo que a t se aproxima da normal.",
+          "**Cauchy**: t com 1 grau de liberdade é a razão de duas normais padrão independentes e não tem média nem variância definidas.",
+          "**F de Snedecor**: razão de duas qui-quadrado independentes, cada uma dividida por seus graus (k1 no numerador, k2 no denominador); valores positivos e assimetria à direita.",
+          "**Média da F**: k2/(k2 − 2) para k2 > 2; depende só do denominador e é maior que 1. Dizer que depende dos dois graus é erro clássico.",
+          "**Relação t e F**: T² tem distribuição F com 1 e k graus de liberdade.",
+          "**Tabelas**: qui-quadrado e t dão P(menor que) por grau de liberdade (a t só acima de 0,5 por simetria); a F exige uma tabela por probabilidade de cauda direita."
         ],
         "teoria": [
           {

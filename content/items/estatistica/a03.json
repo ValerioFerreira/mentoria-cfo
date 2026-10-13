@@ -7,22 +7,14 @@
       "id": "estatistica/a03/s01",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- **Moda (Mo):** valor mais frequente do conjunto.",
-          "- **A moda:** é útil quando o valor mais frequente é o mais relevante e é a medida de posição aplicável a **variáveis qualitativas nominais** (não numéricas e não ordenáveis).",
-          "- **Dados não agrupados:** basta identificar o(s) elemento(s) de maior frequência.",
-          "- Dados agrupados por valor (sem classes): a moda é o valor da variável que tem a maior frequência absoluta — e não o número da frequência.",
-          "No gráfico de hastes/colunas, é a barra mais alta. Dados agrupados em classes de mesma amplitude: a classe modal é a de maior frequência. Moda bruta = ponto médio da classe modal: Mo = (l_inf + l_sup) / 2. É o método mais simples e raramente cobrado em provas.",
-          "### 2. Métodos de Resolução e Classificações",
-          "- é medida de posição e de tendência central.",
-          "- O termo foi introduzido na estatística por **Karl Pearson (1895)**.",
-          "- Pode haver **uma moda (unimodal)**, **duas (bimodal)**, **três ou mais (multimodal/plurimodal)** ou **nenhuma (amodal)**.",
-          "- Diferente da média e da mediana, a moda **nem sempre existe** e nem sempre é única.",
-          "- a moda está contida nela.",
-          "### 3. Exemplos de Aplicação e Procedimentos",
-          "> 💡 **Exemplo Prático:** Amodal: todos os valores aparecem o mesmo número de vezes (ex.: nenhum se destaca). Bimodal: dois valores empatam na maior frequência.",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+          "**Moda**: é o valor de maior frequência do conjunto; medida de posição e de tendência central, usada quando o valor mais comum é o que importa.",
+          "**Classificação**: amodal (todos com a mesma frequência, sem moda), unimodal (uma moda), bimodal (duas) e plurimodal (três ou mais); o empate vale só se for na frequência máxima.",
+          "**Variável qualitativa nominal**: a moda é a única medida de posição que se aplica, pois só exige contar ocorrências.",
+          "**Dados não agrupados**: conte as repetições e aponte o valor mais frequente; sem repetição, não há moda.",
+          "**Dados por valores**: a moda é o Xi da maior frequência absoluta (ou relativa), e não a frequência; no gráfico, é a barra mais alta; empates dão mais de uma moda.",
+          "**Classe modal**: com classes de mesma amplitude, é a de maior frequência.",
+          "**Moda bruta**: ponto médio da classe modal, Mo = (l_inf + l_sup) / 2; por exemplo, classe 30 ⊢ 40 resulta em 35.",
+          "**Outros métodos**: Pearson, Czuber e King também estimam a moda em classes; a moda bruta é a forma mais simples."
         ],
         "teoria": [
           {
@@ -105,24 +97,14 @@
       "id": "estatistica/a03/s02",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- **Moda de Pearson: relação empírica para distribuições moderadamente assimétricas, que liga moda, mediana e média: Mo:** 3 · Md − 2 · x̄.",
-          "- **Roteiro de Pearson em classes:** (1) média ponderada pelos pontos médios.",
-          "- **(3) aplicar Mo:** 3Md − 2x̄.",
-          "- **Moda de Czuber:** método (gráfico, depois algébrico) que usa a classe modal e as duas vizinhas (anterior e posterior).",
-          "Se a classe modal for a **primeira**, use f_ant = 0. se for a **última**, use f_post = 0. Se **f_ant = f_post**, então Δ1 = Δ2 e a moda de Czuber coincide com o **ponto médio** da classe modal.",
-          "### 2. Métodos de Resolução e Classificações",
-          "- Pouco cobrada, mas aparece em questões de FCC com média por pontos médios e mediana por interpolação.",
-          "- (2) mediana por interpolação linear.",
-          "- exige classes de **mesma amplitude h**.",
-          "- Na fórmula de Czuber entram a frequência da **própria classe modal** e as das classes adjacentes.",
-          "- O resultado de Czuber fica sempre dentro da classe modal (entre l_inf e l_sup).",
-          "- **Distinção:** Com Δ1 = f_Mo − f_ant e Δ2 = f_Mo − f_post: **Mo = l_inf + [ Δ1 / (Δ1 + Δ2) ] × h**.",
-          "- **Distinção:** Forma equivalente: Mo = l_inf + [ (f_Mo − f_ant) / (2·f_Mo − (f_ant + f_post)) ] × h.",
-          "### 3. Exemplos de Aplicação e Procedimentos",
-          "> 💡 **Exemplo Prático:** A hipótese é que a moda reparte a largura da classe modal em pedaços proporcionais às diferenças Δ1 e Δ2.",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> 📌 **Bizu Estratégico:** Priorize a fixação dos conceitos fundamentais de **Conteúdo Teórico** e revise as questões comentadas deste tópico para consolidar o padrão de cobrança da banca."
+          "**Pearson**: Mo = 3 · Md − 2 · x̄; relação empírica para distribuições moderadamente assimétricas, que exige calcular antes a média e a mediana.",
+          "**Média agrupada**: x̄ = Σ(PM · f) / Σf, com PM o ponto médio de cada classe.",
+          "**Mediana agrupada**: Md = linf + [(Σf / 2 − fac anterior) / f da classe] · h, aplicada à primeira classe cuja acumulada alcança Σf / 2.",
+          "**Czuber**: Mo = linf + [Δ1 / (Δ1 + Δ2)] · h, em que Δ1 e Δ2 são as diferenças entre a frequência da classe modal e as das classes anterior e posterior.",
+          "**Formas equivalentes de Czuber**: Mo = li + h · (fMo − fant) / [2 · fMo − (fant + fpost)]; é a mesma conta, só reescrita.",
+          "**Classe modal**: a de maior frequência simples; nas extremidades, a vizinha ausente conta como frequência zero.",
+          "**Vizinhas iguais**: se fant = fpost, a moda cai no ponto médio da classe modal.",
+          "**Estratégia na prova**: com frequências relativas acumuladas e incógnita k, obtenha as frequências simples por diferença, use a média dada para achar k e só então calcule mediana e moda."
         ],
         "teoria": [
           {
@@ -208,22 +190,14 @@
       "id": "estatistica/a03/s03",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- **Amplitudes de classe diferentes:** Czuber e King exigem classes de mesma largura.",
-          "- **Quando as amplitudes variam, a classe modal deve ser identificada pela maior densidade de frequência d:** f / h** (e não pela maior frequência).",
-          "- Nesse caso, substitui-se f por d em todas as fórmulas (Czuber: usa d_Mo, d_ant, d_post.",
-          "- **King:** usa d_ant e d_post), mantendo o h da classe modal.",
-          "Propriedade 1: somando (ou subtraindo) uma constante c a todos os valores, a moda é somada (ou subtraída) de c. Propriedade 2: multiplicando (ou dividindo) todos os valores por uma constante c, a moda também é multiplicada (ou dividida) por c.",
-          "### 2. Métodos de Resolução e Classificações",
-          "- Quanto maior a frequência posterior, mais a moda sobe na classe.",
-          "- King usa só f_ant e f_post.",
-          "- No histograma com classes de larguras desiguais, a **altura** deve ser a densidade, para que a **área** de cada retângulo seja proporcional à frequência.",
-          "#### Quadro Comparativo:",
-          "| Instituto / Conceito | Regra / Distinção | Confronto / Exceção |\n| :--- | :--- | :--- |\n| **Aspecto 1** | Diferença Czuber | King: Czuber usa também a frequência da classe modal |",
-          "### 3. Exemplos de Aplicação e Procedimentos",
-          "> 💡 **Exemplo Prático:** Hipótese de King: os pedaços em que a moda reparte a classe modal são **inversamente proporcionais** às frequências das vizinhas.",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> ⚠️ **Atenção de Prova:** Moda de King: método parecido com o de Czuber, mas baseado apenas nas frequências das classes adjacentes (anterior e posterior)."
+          "**Moda de King**: Mo = l_inf + [ f_post / (f_ant + f_post) ] · h; usa apenas as frequências das classes vizinhas à modal e posiciona a moda em direção à vizinha mais frequente.",
+          "**Passo a passo**: achar a classe de maior frequência, anotar l_inf, h, f_ant e f_post e substituir; o resultado fica sempre dentro da classe modal (ex.: classe modal 20⊢30 com vizinhas 14 e 18 e h = 10 dá 25,625).",
+          "**King × Czuber**: Czuber considera também a frequência da própria classe modal, com Δ1 = f_mo − f_ant e Δ2 = f_mo − f_post; as respostas costumam diferir.",
+          "**Larguras desiguais**: a classe modal é identificada pela densidade d = f / h, não pela maior frequência absoluta; um retângulo largo pode ter muitos casos e pouca concentração.",
+          "**Cálculo com densidades**: substituir as frequências pelas densidades dos três retângulos nas fórmulas de Czuber e King, mantendo l_inf e h da classe modal.",
+          "**Vizinhas iguais**: se as densidades anterior e posterior são iguais, a moda é o ponto médio da classe modal.",
+          "**Propriedade da soma**: somar ou subtrair c de todos os valores soma ou subtrai c da moda.",
+          "**Propriedade do produto**: multiplicar ou dividir todos os valores por c multiplica ou divide a moda por c."
         ],
         "teoria": [
           {
