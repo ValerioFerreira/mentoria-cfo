@@ -60,7 +60,7 @@ const JoinSchema = z.object({
 
 /**
  * Pix com o saldo da contratação, calculado no servidor. Com o Mercado Pago configurado (conta da empresa) o Pix é
- * dinâmico e a confirmação é automática; sem ele, vale o Pix estático (PIX_KEY) conferido pela administração.
+ * dinâmico e a confirmação é automática; só SEM o Mercado Pago vale o Pix estático (PIX_KEY) conferido pela administração.
  */
 async function paymentFor(contractId: string, alreadyJoined: boolean): Promise<PaymentInfo | null> {
   const c = await db.contract.findUniqueOrThrow({ where: { id: contractId } });
@@ -69,24 +69,23 @@ async function paymentFor(contractId: string, alreadyJoined: boolean): Promise<P
   let payload: string | null = null;
   let qr: string | null = null;
   let txId = c.customerEmail.replace(/[^a-zA-Z0-9]/g, "").slice(0, 25) || "ALUNO";
-  if (mercadoPagoConfigured()) {
-    try {
-      const charge = await startPixCharge(contractId);
-      if (charge.qrCode && charge.qrCodeBase64) {
-        payload = charge.qrCode;
-        qr = charge.qrCodeBase64.startsWith("data:") ? charge.qrCodeBase64 : `data:image/png;base64,${charge.qrCodeBase64}`;
-        txId = charge.id;
-      }
-    } catch (err) {
-      if (!(err instanceof CommerceError) && !pixConfig()) throw err;
-    }
+  const online = mercadoPagoConfigured();
+  if (online) {
+    // com o Mercado Pago da empresa configurado NUNCA se usa a chave Pix estática (PIX_KEY): se falhar, o erro
+    // aparece e a pessoa tenta de novo, em vez de pagar para uma conta antiga
+    const charge = await startPixCharge(contractId);
+    if (!charge.qrCode || !charge.qrCodeBase64) throw new CommerceError("Não foi possível gerar o Pix agora. Tente novamente em instantes.");
+    payload = charge.qrCode;
+    qr = charge.qrCodeBase64.startsWith("data:") ? charge.qrCodeBase64 : `data:image/png;base64,${charge.qrCodeBase64}`;
+    txId = charge.id;
   }
-  if (!payload || !qr) {
+  if (!online) {
     const cfg = pixConfig();
     if (!cfg) return null;
     payload = buildPixPayload({ ...cfg, amount: fromCents(due) }, c.customerEmail, txId);
     qr = await pixQrDataUri(payload);
   }
+  if (!payload || !qr) return null;
   return {
     payload,
     qr,

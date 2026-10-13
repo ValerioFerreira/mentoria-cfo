@@ -120,6 +120,8 @@ describe.skipIf(!hasTestDb)("pagamento online (Mercado Pago da empresa)", { time
     fake.failNext = false;
     fake.wrongAmount = false;
     fake.me = { id: 987654, nickname: "MISSAO.MENTORIA", identification: { type: "CNPJ" } };
+    delete process.env.MERCADOPAGO_SELLER_ID;
+    svc.online.resetAccountCheck();
     await resetTestData(db, SCHEMA);
     await db.contestSetting.upsert({ where: { contest: "CBMPE_OFICIAL" }, create: { contest: "CBMPE_OFICIAL", category: "OFICIAL", examDate: new Date("2027-02-28") }, update: { category: "OFICIAL", examDate: new Date("2027-02-28") } });
     await db.contestSetting.upsert({ where: { contest: "CBMPE_SOLDADO" }, create: { contest: "CBMPE_SOLDADO", category: "PRACA", examDate: null }, update: { category: "PRACA", examDate: null } });
@@ -197,13 +199,32 @@ describe.skipIf(!hasTestDb)("pagamento online (Mercado Pago da empresa)", { time
     });
 
     it("falha do provedor ou valor divergente: cobrança cancelada e erro seguro (sem vazar detalhes)", async () => {
+      const warm = await contractFor({ contest: "CBMPE_SOLDADO", withUser: false });
+      await svc.online.startPixCharge(warm.id); // conferência da conta já feita
       const { id } = await contractFor();
       fake.failNext = true;
       await expect(svc.online.startPixCharge(id)).rejects.toThrow(/Não foi possível gerar o pagamento/);
       fake.wrongAmount = true;
       await expect(svc.online.startPixCharge(id)).rejects.toThrow(/Não foi possível gerar o pagamento/);
-      expect(await db.onlineCharge.count({ where: { status: "PENDING" } })).toBe(0);
+      expect(await db.onlineCharge.count({ where: { status: "PENDING" } })).toBe(1); // só a do contrato aquecido
       expect(await db.onlineCharge.count({ where: { status: "CANCELLED" } })).toBe(2);
+    });
+
+    it("trava de conta: token de outra conta (ID do vendedor) ou de pessoa física (CPF) não abre cobrança", async () => {
+      const { id } = await contractFor();
+      process.env.MERCADOPAGO_SELLER_ID = "555"; // o token é da conta 987654
+      await expect(svc.online.startPixCharge(id)).rejects.toThrow(/indisponível/);
+      await expect(svc.online.startCardCheckout(id)).rejects.toThrow(/indisponível/);
+      process.env.MERCADOPAGO_SELLER_ID = "987654";
+      fake.me = { id: 987654, nickname: "JOAO", identification: { type: "CPF" } };
+      svc.online.resetAccountCheck();
+      await expect(svc.online.startPixCharge(id)).rejects.toThrow(/indisponível/);
+      expect(fake.calls.filter((c) => c.method === "POST")).toHaveLength(0); // nada foi criado no provedor
+      expect(await db.onlineCharge.count()).toBe(0);
+      // conta da empresa e ID conferindo: libera
+      fake.me = { id: 987654, nickname: "MISSAO.MENTORIA", identification: { type: "CNPJ" } };
+      svc.online.resetAccountCheck();
+      await expect(svc.online.startPixCharge(id)).resolves.toMatchObject({ status: "PENDING" });
     });
   });
 

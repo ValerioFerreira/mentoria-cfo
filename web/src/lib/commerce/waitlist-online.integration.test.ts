@@ -8,6 +8,7 @@ const fake = vi.hoisted(() => ({
   payments: new Map<string, Record<string, unknown>>(),
   posts: [] as Record<string, unknown>[],
   failNext: false,
+  me: { id: 987654, identification: { type: "CNPJ" } } as Record<string, unknown>,
 }));
 
 vi.mock("server-only", () => ({}));
@@ -21,6 +22,7 @@ vi.mock("@/lib/billing/mercado-pago", async (importActual) => {
   return {
     ...actual,
     mercadoPagoConfigured: () => true,
+    mercadoPagoToken: () => "APP_USR-token-de-teste",
     notificationUrl: () => "https://teste.local/api/webhooks/mercadopago",
     siteUrl: () => new URL("https://teste.local"),
     mpRequest: async (path: string, init: RequestInit = {}) => {
@@ -45,6 +47,7 @@ vi.mock("@/lib/billing/mercado-pago", async (importActual) => {
         fake.payments.set(id, p);
         return p;
       }
+      if (path === "/users/me") return fake.me;
       const one = path.match(/^\/v1\/payments\/(\d+)$/);
       if (one && method === "PUT") {
         Object.assign(fake.payments.get(one[1])!, { status: String(body!.status) });
@@ -73,6 +76,9 @@ describe.skipIf(!hasTestDb)("lista de espera com Pix dinâmico do Mercado Pago",
     fake.payments.clear();
     fake.posts.length = 0;
     fake.failNext = false;
+    fake.me = { id: 987654, identification: { type: "CNPJ" } };
+    delete process.env.MERCADOPAGO_SELLER_ID;
+    (await import("./online")).resetAccountCheck();
     await resetTestData(db, "vitest_online");
     await db.contestSetting.upsert({ where: { contest: "CBMPE_OFICIAL" }, create: { contest: "CBMPE_OFICIAL", category: "OFICIAL", examDate: new Date("2027-02-28") }, update: { category: "OFICIAL", examDate: new Date("2027-02-28") } });
   });
@@ -116,11 +122,26 @@ describe.skipIf(!hasTestDb)("lista de espera com Pix dinâmico do Mercado Pago",
     expect(await db.onlineCharge.count({ where: { status: "CANCELLED" } })).toBe(1);
   });
 
-  it("se o Mercado Pago falhar, mostra o Pix estático (a administração confere)", async () => {
+  it("se o Mercado Pago falhar, NÃO cai no Pix estático (chave antiga): mostra o erro e tenta de novo depois", async () => {
     const { joinWaitlist } = await import("@/app/(public)/lista-de-espera/[concurso]/actions");
+    const warm = await joinWaitlist("cbmpe-oficial", undefined, fd({ name: "Cliente Quente", email: "quente@x.com", username: "quente1" }));
+    expect(warm?.payment?.payload).toMatch(/^PIX-MP-/); // conferência da conta feita
     fake.failNext = true;
     const r = await joinWaitlist("cbmpe-oficial", undefined, fd({ name: "Cliente Falha", email: "falha@x.com", username: "falha1" }));
-    expect(r?.payment?.payload).toContain("br.gov.bcb.pix");
-    expect(r?.payment?.amount).toBe("60,00");
+    expect(r?.payment).toBeUndefined();
+    expect(r?.message).toMatch(/Não foi possível gerar o pagamento/);
+    expect(JSON.stringify(r)).not.toContain("br.gov.bcb.pix");
+    // a pessoa tenta de novo e recebe o Pix dinâmico
+    const again = await joinWaitlist("cbmpe-oficial", undefined, fd({ name: "Cliente Falha", email: "falha@x.com", username: "falha1" }));
+    expect(again?.payment?.payload).toMatch(/^PIX-MP-/);
+  });
+
+  it("conta do token diferente do ID do vendedor: nenhuma cobrança e nenhum Pix estático", async () => {
+    process.env.MERCADOPAGO_SELLER_ID = "111";
+    const { joinWaitlist } = await import("@/app/(public)/lista-de-espera/[concurso]/actions");
+    const r = await joinWaitlist("cbmpe-oficial", undefined, fd({ name: "Cliente Conta", email: "conta@x.com", username: "conta1" }));
+    expect(r?.payment).toBeUndefined();
+    expect(JSON.stringify(r)).not.toContain("br.gov.bcb.pix");
+    expect(fake.posts).toHaveLength(0);
   });
 });

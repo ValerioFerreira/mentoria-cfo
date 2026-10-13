@@ -70,6 +70,34 @@ function assertOnline() {
   if (!mercadoPagoConfigured()) throw new CommerceError("O pagamento online ainda não está disponível. Tente novamente em breve.", "MP_NOT_CONFIGURED");
 }
 
+let accountOkUntil = 0;
+/** Só para testes: esquece a conferência da conta. */
+export function resetAccountCheck() {
+  accountOkUntil = 0;
+}
+
+/**
+ * Trava de segurança antes de abrir QUALQUER cobrança: o token precisa ser da conta do MERCADOPAGO_SELLER_ID e, com
+ * credencial de produção, o titular não pode ser pessoa física (CPF). Assim um token antigo ou trocado nunca recebe
+ * dinheiro por engano. Só o resultado positivo é guardado (10 min); qualquer dúvida recusa a cobrança.
+ */
+async function assertCompanyAccount() {
+  if (Date.now() < accountOkUntil) return;
+  let me: { id: number | string; identification?: { type?: string } };
+  try {
+    me = await mpRequest("/users/me");
+  } catch (err) {
+    return failure(err, "conferência da conta");
+  }
+  const seller = process.env.MERCADOPAGO_SELLER_ID?.trim();
+  const live = !mercadoPagoToken().startsWith("TEST-");
+  if ((seller && seller !== String(me.id)) || (live && me.identification?.type?.toUpperCase() === "CPF")) {
+    console.error("[online-payment] conta do token não confere com a configuração (vendedor/CNPJ): cobrança recusada");
+    throw new CommerceError("O pagamento online está indisponível no momento. Fale com a administração.", "MP_ACCOUNT_MISMATCH");
+  }
+  accountOkUntil = Date.now() + 10 * 60_000;
+}
+
 async function payableContract(contractId: string) {
   const c = await db.contract.findUnique({ where: { id: contractId } });
   if (!c) throw new CommerceError("Contratação não encontrada.");
@@ -103,6 +131,7 @@ function failure(err: unknown, what: string): never {
 /** Pix dinâmico (QR Code e copia e cola) com o saldo da contratação. Reaproveita o Pix pendente do mesmo valor. */
 export async function startPixCharge(contractId: string): Promise<ChargeView> {
   assertOnline();
+  await assertCompanyAccount();
   const { contract, dueCents } = await payableContract(contractId);
   await dropStaleCharges(contractId, "PIX");
   const reusable = await db.onlineCharge.findFirst({
@@ -152,6 +181,7 @@ export async function startPixCharge(contractId: string): Promise<ChargeView> {
 /** Checkout Pro: página do Mercado Pago para cartão (à vista). O cartão nunca passa por este sistema. */
 export async function startCardCheckout(contractId: string): Promise<ChargeView> {
   assertOnline();
+  await assertCompanyAccount();
   const { contract, dueCents } = await payableContract(contractId);
   await dropStaleCharges(contractId, "CHECKOUT");
   const reusable = await db.onlineCharge.findFirst({
