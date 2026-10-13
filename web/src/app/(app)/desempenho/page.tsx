@@ -2,6 +2,7 @@ import { CheckCircle2, ChevronRight, CircleAlert, CircleHelp, ClipboardList, Clo
 import type { Metadata } from "next";
 import Link from "next/link";
 import type { CSSProperties } from "react";
+import { ApprovalComparison } from "@/components/approval-comparison";
 import { Heatmap } from "@/components/heatmap";
 import { Alert, BLOCK_COLOR, Badge, Card, Count, EmptyState, LinkButton, PageHeader, Progress, Ring, SectionTitle, Stat } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
@@ -120,7 +121,7 @@ export default async function PerformancePage() {
       <section aria-labelledby="edital" className="space-y-3">
         <SectionTitle
           id="edital"
-          info="O edital elimina quem ficar abaixo de 30% dos pontos em qualquer bloco, quem zerar alguma disciplina ou quem ficar abaixo de 30% do total. Aqui estimamos seus acertos se você fizesse a prova hoje: seu percentual de acerto em cada disciplina (mínimo de 10 questões) vezes as questões que ela tem na prova. A linha marca o mínimo exigido (30%); quanto mais cadernos você fizer, mais precisa fica a estimativa."
+          info="O edital elimina quem ficar abaixo de 30% dos pontos em qualquer bloco, quem zerar alguma disciplina ou quem ficar abaixo de 30% do total. Aqui estimamos seus acertos se você fizesse a prova hoje: seu percentual de acerto em cada disciplina (mínimo de 10 questões) vezes as questões que ela tem na prova. A linha marca o mínimo exigido (30%); quanto mais cadernos você fizer, mais precisa fica a estimativa. Passar o mínimo só evita a eliminação: a comparação “Você × aprovados” mostra onde você está frente a quem foi aprovado nos últimos concursos."
         >
           Você passaria hoje? Critérios do edital
         </SectionTitle>
@@ -172,6 +173,7 @@ export default async function PerformancePage() {
             {zeroed.length ? `Disciplina zerada: ${zeroed.map((s) => subjectShort(s.id)).join(", ")}` : "Nenhuma disciplina zerada"}
           </span>
         </Card>
+        <ApprovalComparison subjects={perf.projection.flatMap((b) => b.subjects)} />
       </section>
 
       <section aria-labelledby="sub">
