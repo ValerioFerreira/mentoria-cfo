@@ -97,14 +97,15 @@
       "id": "informatica/a02/s02",
       "bizu": {
         "summary": [
-          "**Tríade CID**: alicerce clássico constituído pelos postulados de confidencialidade, integridade e disponibilidade contínua.",
-          "**Confidencialidade**: salvaguarda do sigilo informativo restringindo o tráfego estritamente a receptores autorizados.",
-          "**Integridade**: preservação da exatidão estrutural do arquivo impedindo deformações acidentais ou criminosas.",
-          "**Disponibilidade**: prontidão de acesso ao sistema pelos usuários legítimos sempre que o serviço for solicitado.",
-          "**Autenticidade**: comprovação irrefutável da real identidade e procedência da entidade que assina a mensagem.",
-          "**Não Repúdio**: impedimento técnico e normativo de o remetente negar a feitura de um ato formalmente assinado.",
-          "**Rastreabilidade**: retenção metódica de relatórios de registro (logs) viabilizando a auditoria retrospectiva de comandos.",
-          "**Mapeamento de Ameaças**: interrupção quebra disponibilidade, interceptação quebra sigilo e modificação rompe integridade."
+          "**Confidencialidade**: impede o acesso de quem não está autorizado, em toda a vida da informação (criação, transmissão, armazenamento e descarte seguro); a criptografia é o mecanismo típico. Não se confunde com confiabilidade, que é resistência a falhas.",
+          "**Integridade**: garante que a informação não foi alterada sem autorização, da origem ao destino, e permanece exata e completa. É independente da confidencialidade: espiar a carta sem alterá-la quebra só a confidencialidade.",
+          "**Disponibilidade**: informação acessível aos autorizados sempre que necessário; negação de serviço (DoS) a viola, e backups, redundância, nobreak e firewalls a protegem.",
+          "**Pegadinha C x D**: confidencialidade limita o acesso apenas aos autorizados; disponibilidade assegura acesso aos autorizados a qualquer momento em que precisarem.",
+          "**Autenticidade**: garante que o emissor é quem diz ser; pode ser autenticação de origem dos dados (sem conexão) ou de entidade par (com conexão).",
+          "**Irretratabilidade**: o autor não pode negar a autoria (não repúdio); é conceito jurídico apoiado em tecnologia, e vale a equação autenticidade + integridade = irretratabilidade.",
+          "**Hexagrama Parkeriano**: Donn Parker soma aos quatro princípios a posse ou controle (quem detém a informação) e a utilidade (formato utilizável).",
+          "**Rastreabilidade**: logs de auditoria dizem quem fez o quê, quando e onde; devem ser imutáveis (append-only), com horário sincronizado, guardados em local separado e retidos com segurança.",
+          "**Ataques e princípios**: interrupção fere a disponibilidade, interceptação a confidencialidade, modificação a integridade e fabricação a autenticidade."
         ],
         "teoria": [
           {
@@ -417,14 +418,14 @@
       "id": "informatica/a02/s05",
       "bizu": {
         "summary": [
-          "**Mecânica da Assinatura Digital**: cifragem do resumo hash do documento através da chave privada exclusiva do signatário.",
-          "**Princípios Assegurados**: afiança autenticidade autoral, integridade do arquivo e não-repúdio, sem ofertar confidencialidade.",
-          "**Conceito de Hash**: função matemática unidirecional de saída de tamanho fixo com resistência a colisões e efeito avalanche.",
-          "**Evolução dos Algoritmos**: obsolescência comprovada de MD5 e SHA-1 em contraste com a robustez atual de SHA-256 e SHA-512.",
-          "**Identificação e Autenticação**: declaração de identidade seguida de validação por senhas, cartões ou biometria.",
-          "**Autorização e Auditoria**: concessão granular de privilégios de acesso e registro contínuo em trilhas de auditoria (logs).",
-          "**Classificação da Informação**: escala hierárquica de sensibilidade categorizada em níveis pública, interna, confidencial e restrita.",
-          "**Cadeia de Custódia Forense**: emprego de hashes SHA-256 para atestar a imutabilidade temporal de evidências periciais."
+          "**Assinatura digital**: o remetente gera o hash da mensagem e o cifra com a sua chave privada; o destinatário recalcula o hash e o compara com o decifrado pela chave pública. Garante autenticidade, integridade e irretratabilidade, mas não sigilo.",
+          "**Algoritmo de hash**: transforma entrada de qualquer tamanho em saída de tamanho fixo, é unidirecional (one-way) e determinístico, e qualquer alteração mínima muda todo o resultado.",
+          "**Colisão**: duas entradas diferentes com o mesmo hash. Reduz-se aumentando os bits da saída; os algoritmos modernos usam pelo menos 128 bits.",
+          "**MD5 e SHA-1**: MD5 gera 128 bits e SHA-1 gera 160 bits; ambos tiveram colisões comprovadas (o Google quebrou o SHA-1 em 2017) e são obsoletos para segurança.",
+          "**SHA-256**: da família SHA-2, gera 256 bits e não tem colisão prática conhecida; é usado em blockchain, certificados, TLS e senhas (com salting e stretching).",
+          "**Senhas e perícia**: sistemas guardam o hash da senha, não a senha; na perícia, hash do original igual ao hash da imagem forense prova que a evidência não foi alterada (cadeia de custódia).",
+          "**Identificação, autenticação, autorização**: identificação declara quem é, autenticação comprova (senha, biometria, token; MFA combina fatores) e autorização define o que o usuário pode fazer.",
+          "**Classificação de dados**: rotula a informação por sensibilidade em público, interno, confidencial e restrito, com controles cada vez mais rígidos conforme o nível."
         ],
         "teoria": [
           {

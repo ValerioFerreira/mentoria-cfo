@@ -9,12 +9,12 @@
         "summary": [
           "**Separatrizes**: dividem a série ordenada em partes iguais: mediana (2 partes de 50%), quartis (4 de 25%), decis (10 de 10%) e percentis (100 de 1%).",
           "**Mediana**: é medida de posição, de tendência central e separatriz; só se obtém após ordenar os dados.",
-          "**Cálculo bruto**: n ímpar, termo de ordem (n + 1)/2; n par, média dos termos de ordem n/2 e n/2 + 1 (por convenção).",
-          "**Valor da mediana**: com n ímpar é um elemento da série; com n par pode não ser.",
-          "**Robustez**: depende da posição central, não dos extremos; mudar o maior valor altera a média, mas não a mediana.",
-          "**Dados por valor**: acha-se a posição, monta-se a frequência acumulada e usa-se o valor da primeira fac maior ou igual à posição.",
-          "**n par em tabela**: calcular os dois termos centrais separadamente; se a fac for exatamente n/2, o segundo termo está na linha seguinte.",
-          "**Frequência relativa**: a mediana é o valor em que a acumulada chega a 50%; se atinge exatamente 50%, média com o valor seguinte."
+          "**Cálculo bruto**: n ímpar, termo de ordem (n + 1)/2; n par, média dos termos de ordem n/2 e n/2 + 1 (por convenção). Seis valores 50, 150, 200, 250, 250, 300 dão Md = 225.",
+          "**Valor da mediana**: com n ímpar é um elemento da série; com n par pode não ser (qualquer valor entre os centrais separaria igualmente).",
+          "**Robustez**: depende da posição central, não dos extremos; trocar o maior valor por 130.000 altera a média, mas não a mediana. Partes \"assimétricas desiguais\" é item falso.",
+          "**Dados por valor**: acha-se a posição, monta-se a frequência acumulada e usa-se o valor da primeira fac maior ou igual à posição (n = 49: posição 25, fac 26 na nota 3).",
+          "**n par em tabela**: calcular os dois termos centrais separadamente; se a fac for exatamente n/2, o segundo termo está na linha seguinte (n = 40: 7 e 8, Md = 7,5).",
+          "**Frequência relativa**: a mediana é o valor em que a acumulada passa de 50%; se atinge exatamente 50%, média com o valor seguinte."
         ],
         "teoria": [
           {
@@ -377,14 +377,14 @@
       "id": "estatistica/a02/s05",
       "bizu": {
         "summary": [
-          "**Percentis**: 99 valores que dividem a série ordenada em 100 partes de 1%; Pk deixa k% abaixo; P50 coincide com a mediana.",
-          "**Ideia do cálculo**: reaproveita o da mediana, trocando Σfi/2 por k × Σfi / 100.",
-          "**Dados não agrupados**: ordenar, achar a posição k × n / 100, aproximar para a mais próxima e ler o valor; por exemplo, 3,8 vira 4ª posição.",
-          "**Dados por valor**: posição = k × Σfi / 100; o percentil é o valor da primeira linha cuja fac é igual ou superior à posição.",
-          "**Dados em classes**: identifica-se a classe pela fac e interpola-se com Pk = l_inf + [(k × Σfi/100 − fac_ant)/f] × h.",
+          "**Percentis**: 99 valores que dividem a série ordenada em 100 partes de 1%; Pk deixa k% abaixo; P50 coincide com a mediana (P25 = Q1, P75 = Q3).",
+          "**Ideia do cálculo**: reaproveita o da mediana, trocando Σfi/2 por k × Σfi / 100; vale para quartis e decis mudando só a posição.",
+          "**Dados não agrupados**: ordenar, achar a posição k × n / 100, aproximar para a mais próxima e ler o valor; por exemplo, 2,97 vira 3ª posição e 9,13 vira 9ª.",
+          "**Dados por valor**: posição = k × Σfi / 100; o percentil é o valor da primeira linha cuja fac é igual ou superior à posição (95 professores, P45: posição 42,75, fac 45, 2 filhos).",
+          "**Dados em classes**: identifica-se a classe pela fac e interpola-se com Pk = l_inf + [(k × Σfi/100 − fac_ant)/f] × h (estaturas de 54 alunos: P45 = 139,15 cm).",
           "**Símbolos da fórmula**: fac_ant é a acumulada anterior à classe, f é a frequência simples da classe e h é a amplitude; supõe-se uniformidade dentro da classe.",
-          "**Frequência relativa**: usar a posição k% e as acumuladas em porcentagem; o resultado coincide com o das frequências absolutas.",
-          "**Erros comuns**: não ordenar os dados, usar a fac da própria classe como fac_ant e confundir f com a acumulada."
+          "**Frequência relativa**: usar a posição k% e as acumuladas em porcentagem; o resultado coincide com o das absolutas (mediana 15 km, P75 = 22,5 km, D9 = 30 km).",
+          "**Erros comuns**: não ordenar os dados, usar a fac da própria classe como fac_ant, confundir f com a acumulada e esquecer que média e mediana diferem (média 16 km contra mediana 15 km)."
         ],
         "teoria": [
           {

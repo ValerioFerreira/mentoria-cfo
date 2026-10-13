@@ -181,14 +181,16 @@
       "id": "matematica/a14/s03",
       "bizu": {
         "summary": [
-          "- PG é sequência de razão multiplicativa q: a_n=q·a_(n−1). Para achar q, divida termos consecutivos.",
-          "- Se q>1, termos positivos crescem e negativos decrescem; se 0<q<1, positivos decrescem e negativos crescem. q=1 gera sequência constante; q<0 alterna sinais.",
-          "- Termo geral: a_n=a1·q^(n−1). Exemplo, a1=3 e q=2: a10=3·2^9=1.536.",
-          "- Em três termos consecutivos, a2²=a1a3. Para x, x+1, 2x, resulta (x+1)²=2x²; a raiz positiva é 1+√2.",
-          "- Para interpolar termos, calcule q por a_n=a1q^(n−1) e então obtenha cada termo. Se houver raízes múltiplas, use a classificação indicada para selecionar a razão válida.",
-          "- Soma de n termos: S_n=a1(q^n−1)/(q−1), para q≠1; se q=1, S_n=na1.",
-          "- PG infinita tem soma finita apenas quando |q|<1: S∞=a1/(1−q). Exemplo: 2+1+1/2+...=4.",
-          "- Produto dos n primeiros: P_n=a1^nq^[n(n−1)/2]. Somatórios geométricos devem ser reescritos para reconhecer a1 e q."
+          "**Razão**: PG multiplica cada termo por q fixo; q = a_n / a_(n−1) (a PA soma, a PG multiplica; trocar os conceitos é pegadinha).",
+          "**Classificação**: depende de a1 e q; crescente com a1 > 0 e q > 1 ou a1 < 0 e 0 < q < 1; decrescente nos casos opostos; q = 1 constante; q < 0 alternada.",
+          "**Termo geral**: a_n = a1 · q^(n−1), expoente n − 1; com a1 = 5 e q = 3, a6 = 5 · 243 = 1.215.",
+          "**Três termos**: a2² = a1 · a3; em (2, x, 18), x² = 36 e x = ±6; o enunciado indica qual raiz serve.",
+          "**Interpolação**: k termos inseridos dão n = k + 2; ache q em a_n = a1 · q^(n−1) (entre 3 e 768 com três termos, q = 4 se crescente).",
+          "**Soma finita**: S_n = a1 (q^n − 1) / (q − 1) para q ≠ 1 (3, 9, 27, ... até o 6º termo: 1.092); se q = 1, S_n = n · a1.",
+          "**Soma infinita**: S∞ = a1 / (1 − q) só quando |q| < 1; 6 + 2 + 2/3 + ... = 9; |q| ≥ 1 não converge.",
+          "**Dízimas e partes soltas**: em expressões mistas, separe o termo fora da PG (1/2 + 3/10 + 3/100 + ... = 1/2 + 1/3 = 5/6).",
+          "**Somatório**: escreva os primeiros termos, descubra se é PA ou PG, extraia a1, q e o número de termos (final − inicial + 1); índice zero começa pelo expoente 0.",
+          "**Produto**: P_n = a1^n · q^(n(n−1)/2) = (a1 · a_n)^(n/2); (2, 4, 8, 16) dá 1.024."
         ],
         "teoria": [
           {
