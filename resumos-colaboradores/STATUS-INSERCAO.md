@@ -7,16 +7,16 @@ Posição em **13/10/2026** (branch `resumos-agentes`, a partir de `mercadopago`
 | Item | Valor |
 | --- | --- |
 | Trechos no índice (`indice.json`) | **897** (Fase 1 = edital do CFO CBMPE: 761 · Fase 2 = fora do edital do CFO: 136) |
-| Trechos com resumo gravado em `content/summaries` | **734 (82%)** — 205 arquivos, ~675 mil palavras de resumo analítico |
-| Resumos analíticos **e** sintéticos (Bizu) | 734 de 734 (todos trazem os dois) |
-| Fase 1 concluída | **734 de 761 (96%)** — faltam 27 trechos, **todos já entregues** em `entregas/` e válidos no teste (ver 4.1) |
+| Trechos com resumo gravado em `content/summaries` | **761 (85%)** — 210 arquivos, ~703 mil palavras de resumo analítico |
+| Resumos analíticos **e** sintéticos (Bizu) | 761 de 761 (todos trazem os dois) |
+| Fase 1 concluída | **761 de 761 (100%)** — os 27 últimos foram importados em 13/10/2026 (ver 4.1) |
 | Fase 2 concluída | **0 de 136** (Atualidades 0/63, Raciocínio Lógico 0/70, História de PE 0/3) |
 | Status de todos os arquivos | `DRAFT` (nenhum aprovado) |
-| `apply_synthetic.py --dry-run` | 734 trechos aplicáveis, 0 sem arquivo de itens |
+| `apply_synthetic.py --dry-run` | 734 trechos (rodar de novo: agora são 761) aplicáveis, 0 sem arquivo de itens |
 | Testes (`pytest pipeline/tests/test_summaries.py`) | 7 passam |
 | Validador (`validate_summaries.py`) | 205 arquivos, **0 com erro** |
 
-Atenção: o item "27 trechos da Fase 1" aparece como pendente porque o `.md` entregue ainda **não foi importado** para `content/summaries`; não é falta de produção.
+Os 27 trechos que estavam pendentes foram importados (14 Biologia, 5 Direito Administrativo EXT-L2, 2 Direito Administrativo CODEX-L1, 1 Biologia CODEX-L3D, 4 Espanhol, 1 Física).
 
 ## 2. Situação por disciplina (Fase 1)
 
@@ -52,7 +52,7 @@ Lotes do `PLANO-DE-EXECUCAO.md`: 1 (Constitucional + Administrativo) 157/164, 2 
 
 ## 4. O que falta para concluir a inserção no sistema
 
-### 4.1 Importar os 27 trechos já entregues (Fase 1) — rápido, mas só na máquina local
+### 4.1 Importação dos 27 trechos da Fase 1 — CONCLUÍDA em 13/10/2026 (o texto abaixo fica como registro)
 
 Teste a seco (`--dry-run`) feito hoje: todos os 27 são válidos.
 

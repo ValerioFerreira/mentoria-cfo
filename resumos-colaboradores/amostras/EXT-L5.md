@@ -1,146 +1,160 @@
 # Amostra de qualidade — EXT-L5
-92 resumos importados; 5 sorteados. Conferir cada um contra o PDF indicado.
+9 resumos importados; 5 sorteados. Conferir cada um contra o PDF indicado.
 
-## S0610 · Física · Aula 03 — Cinemática vetorial - movimento de queda livre, lançamento de projéteis
-Trecho `fisica/a03/s01` · PDF: 004 - Aula 03 Cinemática vetorial - movimento de queda livre, lançamento de projéteis.pdf · págs. 3–13 · analítico: 649 palavras (teto 1650) · sintético: 8 pontos
+## S0570 · Matemática · Complemento 02 — Complementos de Matemática do edital
+Trecho `matematica/c02/s01` · PDF: mat-complementos-edital.pdf · págs. 1–13 · analítico: 938 palavras (teto 1950) · sintético: 8 pontos
 
 **Analítico (início):**
-No vácuo, despreza-se a resistência do ar; perto da superfície terrestre, todos os corpos ficam sujeitos à mesma aceleração gravitacional g, independentemente da massa. O movimento vertical é retilíneo e uniformemente variado, portanto seguem-se as equações do MRUV. Adote um eixo vertical e mantenha uma convenção consistente: por exemplo, positivo para cima, de modo que a aceleração seja −g. As fórmulas de módulo usam g positivo e devem ser aplicadas às situações adequadas.
+Os temas a seguir complementam ferramentas de geometria, aritmética e funções. Em cada caso, vale reconhecer a estrutura do problema antes de calcular: tipo de simetria, posição espacial, fatores primos, proporção, raízes ou domínio.
 
-### Queda livre
+### Simetrias e posições no espaço
 
-Queda livre é o movimento de um corpo abandonado do repouso a certa altura: v₀=0 e h₀>0. Sem resistência do ar, a massa não altera o tempo nem a velocidade final para uma mesma altura. Para uma queda de altura H a partir do repouso, a posição fornece H=(1/2)gt²; assim, t=√(2H/g). Pela equação de Torricelli, v²=2gH, logo o módulo da velocidade de chegada é v=√(2gH). A velocidade aponta para baixo. Exemplo, com H=20 m e g=10 m/s²: t=√4=2 s e v=√400=20 m/s.
+Simetria é uma transformação que faz a figura coincidir consigo mesma. Na axial, há reflexão em torno de uma reta; na central, cada ponto e seu correspondente ficam em lados opostos de um centro, que é o ponto médio do segmento entre ambos; na rotacional, uma rotação menor que 360° reproduz a figura; na translação, a figura se desloca sem girar. Polígono regular de n lados possui n eixos e rotação mínima de 360°/n; centro de simetria só ocorre para n par. Dois eixos perpendiculares implicam centro, mas centro não implica eixo: paralelogramo genérico tem centro, sem eixo.
 
-### Lançamento vertical para cima
+Em funções, f(−x) reflete o gráfico no eixo y; −f(x), no eixo x. Funções pares são simétricas ao eixo y e ímpares à origem. A inversa reflete o gráfico na reta y=x. Parábola ax²+bx+c tem eixo x=−b/(2a). No espaço, sólidos podem ter plano, eixo ou centro de simetria; um cubo tem 9 planos e 13 eixos, e uma esfera possui infinitos planos e eixos que passam pelo centro.
 
-Nesse lançamento, v₀ é diferente de zero e o corpo pode partir do solo ou de outra altura. Durante a subida, velocidade e aceleração gravitacional têm sentidos opostos, então o módulo da velocidade diminui; no ponto mais alto, a velocidade instantânea é zero. Depois, na descida, o módulo aumenta.
-
-Com eixo positivo para cima, v=v₀−gt. No topo, v=0, resultando em tempo de subida tsub=v₀/g. Para retorno ao mesmo nível e sem resistência do ar, a simetria da trajetória dá tempo de descida igual ao de subida…
+No plano, duas retas são coincidentes, paralelas distintas ou concorrentes; concorrentes podem ser perpendiculares. No espaço, acrescentam-se as reversas: retas sem ponto comum que não pertencem ao mesmo plano. Não encontrar-se, portanto, não basta para concluir que são paralelas…
 
 **Sintético:**
-- No vácuo, todos os corpos sofrem aceleração g sem depender da massa; os movimentos verticais são casos de MRUV.
-- Queda livre é abandono do repouso de uma altura H. Resultam t=√(2H/g) e módulo da velocidade de chegada v=√(2gH). Para 20 m e g=10 m/s²: 2 s e 20 m/s.
-- No lançamento para cima, v₀≠0. A gravidade reduz a velocidade até zero no topo, depois aumenta o módulo durante a descida.
-- Tempo até o topo: tsub=v₀/g. Altura máxima acima do ponto de partida: Hmax=v₀²/(2g). Exemplo: alcançar 2,45 m com g=10 exige pelo menos 7 m/s.
-- Em retorno ao mesmo nível, sem arrasto, subida e descida são simétricas: tempos iguais, total 2v₀/g.
-- Lançamento para baixo começa acima do solo, com velocidade inicial descendente não nula; a gravidade aumenta o módulo da velocidade.
-- Para lançamento para baixo, use as equações gerais do MRUV com sinais coerentes: v=v₀+at, Δs=v₀t+(1/2)at² e v²=v₀²+2aΔs.
-- Defina eixo e confira se as alturas inicial e final são iguais antes de usar simetria; a resistência do ar invalida os resultados ideais.
+- **Simetrias**: reflexão axial, simetria central (giro de 180°), rotação e translação. Polígono regular de n lados tem n eixos e período angular 360°/n.
+- **Gráficos**: f(−x) espelha no eixo y; −f(x), no eixo x; função par é simétrica ao eixo y e ímpar à origem.
+- **Retas no espaço**: concorrentes se cruzam, paralelas são coplanares sem encontro e reversas não são coplanares. Ortogonal pode incluir retas reversas.
+- **Divisibilidade**: fatores primos organizam MDC (menores expoentes) e MMC (maiores); para N=∏pᵢ^aᵢ, divisores positivos são ∏(aᵢ+1).
+- **Divisão proporcional**: direta usa os próprios pesos; inversa usa recíprocos. Distribua a quantia por unidade de peso e multiplique cada parcela.
+- **Polinômios**: grau n limita raízes reais a n; em grau 3, soma=−b/a, soma dos produtos=c/a, produto=−d/a.
+- **Racionais**: zeros do denominador saem do domínio; fatores cancelados deixam furo. Assíntotas horizontais dependem da comparação dos graus.
+- **Exponenciais**: reescreva com mesma base e iguale expoentes; em inequações, base entre 0 e 1 inverte o sentido.
 
 **Notas do agente:** nenhuma
 
 Critérios: [ ] cobertura  [ ] correção  [ ] originalidade  [ ] clareza  [ ] tamanho/formato
 
-## S0616 · Física · Aula 13 — 6. Oscilações, ondas, óptica e radiação – Feixes e frentes de ondas. Reflexão e
-Trecho `fisica/a13/s01` · PDF: 014 - Aula 13 6. Oscilações, ondas, óptica e radiação – Feixes e frentes de ondas. Reflexão e .pdf · págs. 4–17 · analítico: 678 palavras (teto 2000) · sintético: 8 pontos
+## S0573 · Física · Aula 01 — 2. O movimento, o equilíbrio e a descoberta de leis físicas – Grandezas fundamen
+Trecho `fisica/a01/s02` · PDF: 002 - Aula 01 2. O movimento, o equilíbrio e a descoberta de leis físicas – Grandezas fundamen.pdf · págs. 19–35 · analítico: 438 palavras (teto 2000) · sintético: 8 pontos
 
 **Analítico (início):**
-Onda é uma perturbação que se propaga transportando energia, sem levar consigo o meio de forma líquida. Ondas mecânicas exigem meio material, como som, água e corda. Ondas eletromagnéticas decorrem da oscilação de campos elétrico e magnético perpendiculares entre si e podem propagar-se no vácuo. Para descrever uma onda usam-se amplitude, período, frequência, comprimento de onda e velocidade.
+No movimento retilíneo uniforme (MRU), o móvel percorre uma trajetória reta com velocidade vetorial constante. A posição varia igualmente em intervalos de tempo iguais, e os gráficos traduzem essa constância em retas e áreas simples.
 
-Amplitude A é o maior afastamento de um ponto vibrante em relação ao equilíbrio, medida em metros no SI. Em cordas, os pontos oscilam transversalmente, enquanto o perfil ondulatório avança ao longo do fio. Período T é o tempo para um ciclo; frequência f é o número de ciclos por tempo. Se n oscilações ocorrem em Δt, T=Δt/n e f=n/Δt, portanto f=1/T. A unidade de frequência é hertz (Hz). Comprimento de onda λ é a distância entre cristas sucessivas, vales sucessivos ou pontos consecutivos que vibram em fase.
+### Conceito e classificação
 
-### Velocidade e relação de Taylor
+Como a trajetória é retilínea, não há aceleração centrípeta; como o módulo da velocidade não muda, não há aceleração tangencial. Portanto, a aceleração é nula e a velocidade mantém módulo, direção e sentido. Nesse caso, velocidade média e instantânea coincidem. Em tempos iguais, o deslocamento também é igual; no movimento retilíneo sem inversão, deslocamento e espaço percorrido têm mesmo módulo.
 
-A velocidade de propagação depende do meio. Num meio inalterado, permanece constante; ao mudar as características do meio, pode mudar. Como em um período a onda percorre um comprimento de onda, v=λ/T=fλ. Essa relação fundamental vale para todos os tipos de onda. Exemplo: uma onda de 2 Hz e comprimento de 1,5 m propaga-se a 3 m/s.
+O movimento é progressivo quando ocorre no sentido positivo da trajetória: as posições aumentam com o tempo e v>0. É retrógrado quando avança no sentido negativo: as posições diminuem e v<0. Esses nomes indicam direção relativa ao eixo escolhido, não dizem se o móvel está acelerando ou desacelerando; no MRU, a velocidade sequer varia.
 
-Para uma corda tensa, a relação de Taylor dá v=√(F/μ), em que F é a força de tração e μ=m/L é a densidade linear, em kg/m. Mais tração aumenta a velocidade; maior massa por comprimento a reduz. Essa expressão é específica pa…
+### Equação horária
 
-**Sintético:**
-- Ondas propagam perturbações e energia, sem transportar o meio como um todo. Ondas mecânicas precisam de meio material; eletromagnéticas podem viajar no vácuo.
-- Amplitude é o afastamento máximo; período T é o tempo de um ciclo; frequência f é ciclos por segundo. Valem f=1/T e unidade Hz.
-- Comprimento de onda λ é a distância entre cristas, vales ou pontos em fase. Velocidade: v=λf; por exemplo, 1,5 m e 2 Hz resultam em 3 m/s.
-- A velocidade muda conforme o meio. Em corda esticada, v=√(F/μ), com tração F e densidade linear μ=m/L.
-- Ondas em cordas são mecânicas, transversais e unidimensionais. Som no ar é longitudinal. As partículas do meio vibram, enquanto energia se propaga.
-- Energia de onda em corda é proporcional a A² e f²; aumentar amplitude eleva fortemente a energia transmitida.
-- Ondas estacionárias surgem da superposição em sentidos opostos. Nós ficam imóveis e ventres têm oscilação máxima.
-- Para corda fixa nas extremidades, λn=2L/n e fn=nv/(2L), com n inteiro positivo; a frequência fundamental corresponde a n=1.
+A posição inicial S₀ é o valor da coordenada no instante escolhido como t=0; não precisa ser zero. Com velocidade constante v, a posição no instante t é S=S₀+vt. O sinal de v indica o sentido. Exemplo: se S₀=6 m e v=−3 m/s, então S=6−3t; após 2 s, S=0 m. Para encontro de dois móveis, escreva uma equação horária para cada um e iguale as posições; o instante resultante identifica o encontro.
 
-**Notas do agente:** - A seção de ondas estacionárias chama “amplitude da onda resultante” à amplitude de cada onda interferente; na onda estacionária, a amplitude efetiva depende da posição, sendo nula nos nós e máxima nos ventres.
+### Gráficos do MRU
 
-Critérios: [ ] cobertura  [ ] correção  [ ] originalidade  [ ] clareza  [ ] tamanho/formato
-
-## S0638 · Matemática · Aula 10 — Função Afim (1o Grau)
-Trecho `matematica/a10/s01` · PDF: 011 - Aula 10 Função Afim (1o Grau).pdf · págs. 3–14 · analítico: 578 palavras (teto 1800) · sintético: 8 pontos
-
-**Analítico (início):**
-Função do primeiro grau, ou função afim, é representada por f(x)=ax+b, também escrita y=ax+b, com a,b reais e a≠0. A variável tem expoente máximo 1. Para cada x do domínio, a lei associa um valor y, chamado imagem. O coeficiente a é o número que multiplica a variável; b é o termo constante. A ordem dos termos pode mudar: em 4+11x, a=11 e b=4. Se a expressão estiver na forma geral da reta, isole y para identificar a e b; 4x+2y+8=0 implica y=−2x−4.
-
-### Avaliar a função e determinar coeficientes
-
-Para calcular f(k), substitua x por k e aplique a ordem das operações. Exemplo: f(x)=2x+8 dá f(6)=20. Se for dada uma imagem e pedido o elemento do domínio, iguale a expressão ao valor de y e resolva para x. Para f(x)=7x+10, quando f(x)=24: 24=7x+10, então x=2. Se a e b forem desconhecidos, dois pares (x,y) fornecem duas equações. Por exemplo, f(1)=4 e f(2)=7 levam a+b=4 e 2a+b=7; subtraindo, a=3 e b=1.
-
-Expressões compostas devem ser calculadas separadamente. Se o problema pede f(6)/g(2), encontre primeiro cada imagem e depois divida. Ao isolar incógnitas, preserve parênteses e sinais, especialmente quando a expressão inclui frações ou coeficientes negativos.
-
-### Domínio e imagem
-
-Domínio é o conjunto dos valores permitidos para x; imagem reúne os resultados obtidos para esses valores. No modelo f:R→R com a≠0, não há denominador variável, raiz ou outra restrição; portanto o domínio é R. Além disso, como a reta não é horizontal, qualquer valor real de y pode ser alcançado, então a ima…
+No gráfico posição-tempo (S×t), a equação é uma função afim. …
 
 **Sintético:**
-- Função afim é f(x)=ax+b=y, com a≠0. O coeficiente que multiplica x é a; a constante é b. A ordem escrita pode variar.
-- Em equação geral, isole y: 4x+2y+8=0 resulta y=−2x−4.
-- Para achar f(k), substitua x por k. Para descobrir o x que produz y dado, resolva ax+b=y; por exemplo, 7x+10=24 dá x=2.
-- Se dois valores da função forem conhecidos, escreva duas equações para a e b; f(1)=4 e f(2)=7 levam a=3 e b=1.
-- Domínio reúne entradas x; imagem reúne saídas y. Sob f:R→R e a≠0, ambos são o conjunto dos reais.
-- A imagem é R porque qualquer y real permite resolver x=(y−b)/a quando a não é zero.
-- Se o enunciado restringe domínio ou pede imagem em outro conjunto, aplique essa condição. Exemplo: (3x+6)/4 em x=−2 resulta 0, natural.
-- Diferencie entrada de imagem: para 3x+18 gerar 63, resolva 3x+18=63 e obtenha x=15.
+- **MRU**: movimento em linha reta com velocidade vetorial constante; acelerações centrípeta e tangencial são nulas.
+- **Progressivo/retrógrado**: no progressivo, coordenada cresce e v>0; no retrógrado, coordenada cai e v<0, conforme o eixo escolhido.
+- **Posição inicial**: S₀ é a posição em t=0 e pode não ser zero.
+- **Equação horária**: S=S₀+vt permite calcular posição em qualquer instante conhecido.
+- **Encontro**: escreva as posições dos móveis como funções do tempo e iguale-as.
+- **Gráfico S×t**: reta; intercepto é S₀ e inclinação ΔS/Δt corresponde a v.
+- **Gráfico v×t**: linha horizontal; acima do eixo significa v positivo, abaixo, negativo.
+- **Área v×t**: área algébrica entre tempos fornece deslocamento, com sinal.
 
 **Notas do agente:** nenhuma
 
 Critérios: [ ] cobertura  [ ] correção  [ ] originalidade  [ ] clareza  [ ] tamanho/formato
 
-## S0670 · Física · Aula 03 — Cinemática vetorial - movimento de queda livre, lançamento de projéteis
-Trecho `fisica/a03/s02` · PDF: 004 - Aula 03 Cinemática vetorial - movimento de queda livre, lançamento de projéteis.pdf · págs. 14–20 · analítico: 484 palavras (teto 1050) · sintético: 6 pontos
+## S0575 · Física · Aula 01 — 2. O movimento, o equilíbrio e a descoberta de leis físicas – Grandezas fundamen
+Trecho `fisica/a01/s01` · PDF: 002 - Aula 01 2. O movimento, o equilíbrio e a descoberta de leis físicas – Grandezas fundamen.pdf · págs. 3–18 · analítico: 1049 palavras (teto 2000) · sintético: 9 pontos
 
 **Analítico (início):**
-### Independência dos movimentos
-No lançamento horizontal no vácuo, o corpo parte de uma altura com velocidade inicial exclusivamente horizontal. Desprezando resistência do ar, a única aceleração é a gravidade, vertical para baixo. O movimento deve ser separado em componentes: no eixo horizontal é uniforme, com velocidade constante Vx=V0; no vertical é uniformemente variado, como uma queda livre, com velocidade inicial vertical igual a zero. A trajetória resultante é parabólica.
+A cinemática descreve o movimento sem investigar suas causas. Posição, trajetória, deslocamento e velocidade só fazem sentido depois de definido o referencial; por isso, antes de calcular, identifique em relação a quem o movimento está sendo analisado.
 
-Escolhendo a origem no ponto de lançamento, eixo vertical positivo para baixo e g positivo, as relações são x=V0·t e y=(g·t²)/2. Eliminando o tempo, t=x/V0, obtém-se y=gx²/(2V0²), uma parábola que começa na origem. Se a altura inicial em relação ao solo é H, a coordenada vertical de queda cumpre H=(g·tq²)/2, logo tq=√(2H/g). Esse tempo independe da velocidade horizontal: um objeto lançado horizontalmente e outro simplesmente solto da mesma altura chegam simultaneamente, se iniciam juntos e o ar for desprezado.
+### Referencial, tempo e móvel
 
-### Alcance e cálculo
-O alcance horizontal é a distância horizontal até o impacto. Como a velocidade horizontal não muda, A=V0·tq. Substituindo o tempo de queda, A=V0·√(2H/g). Essa expressão depende da velocidade inicial, da altura e da gravidade. Para encontrar uma incógnita, isole-a e confira unidades: metros, segundos e m/s no SI. Não use a equação vertical para calcular diretamente o alcance sem antes determinar o tempo.
+**Referencial** é um corpo (ou conjunto de corpos) em relação ao qual se definem posições e se estudam movimentos. A resposta de muitas perguntas "depende do referencial". Exemplo: uma viatura a 100 km/h persegue um suspeito a 90 km/h na mesma estrada e no mesmo sentido. Para um observador fixo na Terra, a viatura tem 100 km/h; para o suspeito, ela se aproxima a apenas 100 − 90 = 10 km/h. Posição, velocidade, movimento, repouso e trajetória são, todos, grandezas ou conceitos relativos ao referencial.
 
-Exemplo do material: um veículo parte horizontalmente de uma altura …
+**Instante** é o momento em que um evento ocorre (o carro passou pelo marco do km 310 às 10h50min10s). **Intervalo de tempo** é a diferença entre dois instantes: Δt = t_final − t_inicial. Todo intervalo de uma grandeza (Δ) é final menos inicial.
+
+> ⚠️ Pegadinha: quando dois relógios estão dessincronizados, corrija primeiro a leitura de um deles e só depois subtraia. Exemplo clássico de prova de trânsito: um carro passa pelo posto A (km 223) às 9h30min20s pelo relógio de A e pelo posto B (km 379) às 10h20min40s pelo relógio de B, que está 3min10s adiantado em relação ao de A. Como B é a referência, a leitura de A vira 9h30min20s − 3min10s = 9h27min10s e Δt = 10h20min40s − 9h27min10s = 53min30s. Como…
 
 **Sintético:**
-- Separe o lançamento horizontal em dois movimentos independentes: MRU no eixo x, com Vx=V0, e queda livre no eixo vertical, com velocidade inicial vertical nula.
-- A combinação produz uma trajetória parabólica. O tempo de queda é tq=√(2H/g), igual ao de um objeto simplesmente solto da mesma altura.
-- O alcance é A=V0·tq. Exemplo: H=5 m e g=10 m/s² dão tq=1 s; para A=25 m, V0=25 m/s ou 90 km/h.
-- A posição vertical pode ser escrita y=(g·t²)/2 se o sentido positivo escolhido for para baixo. Com eixo para cima, use aceleração −g.
-- Despreza-se o ar; use unidades compatíveis e mantenha sinais coerentes.
-- Para outro lançamento, determine o tempo pela queda vertical antes de avaliar a posição horizontal no mesmo instante.
+- **Referencial**: é o corpo em relação ao qual se mede o movimento; velocidade, repouso e trajetória dependem dele (viatura a 100 km/h aproxima-se do suspeito a 90 km/h a só 10 km/h).
+- **Tempo**: instante é um momento; intervalo é Δt = t_final − t_inicial, e relógios dessincronizados devem ser acertados antes (um adiantado em 3min10s exige subtrair esse valor).
+- **Móvel**: ponto material quando as dimensões não importam (formiga no campo); corpo extenso quando importam (caminhões em ultrapassagem).
+- **Posição e deslocamento**: S depende da origem; ΔS = S_final − S_inicial tem sinal e é zero se o corpo volta ao ponto de partida.
+- **Distância percorrida**: soma dos trechos efetivos em módulo, sempre positiva; ida e volta de 4 m dá ΔS = 0 e 8 m percorridos.
+- **Movimento/repouso**: posição variável indica movimento, constante indica repouso, sempre perante um referencial.
+- **Trajetória**: linha descrita pelo corpo; a bomba solta de avião é parábola para o solo e reta vertical para o piloto.
+- **Velocidade média**: V_m = ΔS_total/Δt_total (160 km em 2 h dão 80 km/h); a instantânea é a do velocímetro e pode diferir muito da média.
+- **Conversão**: km/h ÷ 3,6 = m/s; 72 km/h equivale a 20 m/s; converta o resultado final.
 
-**Notas do agente:** - A conversão final do exemplo não aparece nas páginas fornecidas; calculei 25 m/s×3,6=90 km/h para responder à comparação com o limite indicado.
-- As equações foram recuperadas de OCR fragmentado conforme as fórmulas de MRUV explicitamente citadas.
+**Notas do agente:** O trecho vem de uma aula introdutória cuja parte conceitual é curta; o resumo cobre todos os tópicos. A resolução numérica da questão sobre o posto policial (Δt = 53min30s, distância de 156 km) foi completada pelo agente com a conta direta, pois o texto-fonte traz só o início da resolução. Figuras de ilustração (velocímetro, ônibus, avião) foram descartadas por serem apenas ilustrativas.
 
 Critérios: [ ] cobertura  [ ] correção  [ ] originalidade  [ ] clareza  [ ] tamanho/formato
 
-## S0685 · Matemática · Aula 13 — Função Logarítimica
-Trecho `matematica/a13/s04` · PDF: 014 - Aula 13 Função Logarítimica.pdf · págs. 34–45 · analítico: 535 palavras (teto 1800) · sintético: 6 pontos
+## S0583 · Física · Aula 06 — 3. Energia, trabalho e potência – Conceituação de trabalho, energia e potência
+Trecho `fisica/a06/s01` · PDF: 007 - Aula 06 3. Energia, trabalho e potência – Conceituação de trabalho, energia e potência. .pdf · págs. 4–19 · analítico: 461 palavras (teto 2000) · sintético: 9 pontos
 
 **Analítico (início):**
-### Comportamento e domínio
-Para f(x)=log_a(x), a base deve cumprir a>0 e a≠1, e o argumento exige x>0. Portanto o domínio é (0,+∞). Se a>1, a função é crescente: x2>x1 implica log_a(x2)>log_a(x1). Se 0<a<1, ela é decrescente e a desigualdade entre imagens se inverte. A curva cruza o eixo x em x=1 porque log_a(1)=0; não cruza o eixo y, pois x=0 não pertence ao domínio. A reta x=0 é assíntota vertical. A imagem é R para ambas as condições de base.
+Trabalho mecânico é uma grandeza escalar que mede a transferência de energia por uma força durante um deslocamento. Seu sinal indica se a força favorece ou se opõe à variação da energia cinética.
 
-### Construção e identificação de gráficos
-Para desenhar, selecione argumentos positivos convenientes e calcule seus logaritmos. Em base 2, valores como x=1,2,4,8 correspondem a y=0,1,2,3; em base 1/2, x=1,1/2,1/4 correspondem a y=0,1,2. A curva cresce para base maior que 1 e decresce para base entre zero e um. Questões podem fornecer a lei e pedir gráfico ou fornecer pontos/gráfico e pedir a expressão.
+### Trabalho de força constante ou variável
 
-Para identificar a função pelo gráfico, use pontos e assíntota. Uma lei genérica log_a(x+b) desloca horizontalmente o gráfico: seu domínio começa onde x+b>0, e o zero ocorre quando x+b=1. Se o gráfico contém (1,0), então 1+b=1 e b=0. Um segundo ponto determina a base; se (2,1) pertence, log_a(2)=1 implica a=2. Assim, f(x)=log2x. Para uma expressão mais elaborada, como 3−log3(3−x), o domínio requer 3−x>0, então x<3. Em x=0, f(0)=2; o zero ocorre quando log3(3−x)=3, resultando x=−24. Esses pontos e o comportamento decrescente ajudam a selecionar o esboço correto.
+Para força constante em módulo e direção, τ=F·d·cosθ, onde θ é o ângulo entre força e deslocamento. Se θ é agudo, trabalho positivo (motor); se obtuso, negativo (resistente); a 90°, trabalho nulo. Também é nulo se não há força ou deslocamento. Peso normal à superfície e força centrípeta ideal são perpendiculares ao deslocamento e não realizam trabalho.
 
-### Relação com exponenciais
-As funções exponencial g(x)=a^x e logarítm…
+O trabalho mede-se em joules (J). Para força variável, o trabalho é a área algébrica sob o gráfico F×d: áreas acima do eixo contam positivamente e abaixo, negativamente. Se o gráfico atravessa o eixo, some algebricamente as áreas, considerando apenas o intervalo de deslocamento solicitado.
+
+### Forças especiais
+
+O trabalho do peso depende apenas da diferença vertical entre posições, não do caminho. Se o corpo desce altura H, τpeso=+mgH; ao subir, τpeso=−mgH. Isso caracteriza o peso como força conservativa.
+
+A força elástica varia com a deformação; para mola ideal, F=kx em módulo. O trabalho corresponde à área triangular no gráfico força-deformação: τel=±kx²/2, conforme a força elástica favoreça o movimento ou se oponha a ele. Mais geralmente, entre deformações inicial xi e final xf, τel=(k/2)(xi²−xf²); a energia elástica armazenada cresce como kx²/2.
+
+Atrito cinético, em superfície horizon…
 
 **Sintético:**
-- Log_a(x) requer a>0, a≠1 e x>0. Seu domínio é positivo, imagem R e assíntota vertical x=0.
-- Base acima de 1 produz gráfico crescente; base entre 0 e 1, decrescente. O gráfico passa por (1,0).
-- Construa com pontos convenientes: log2(2)=1 e log2(4)=2; para base 1/2, o sentido de crescimento se inverte.
-- Para log_a(x+b), imponha x+b>0; o zero satisfaz x+b=1. Use outros pontos para achar a base.
-- Log_a(x) é inversa de a^x: gráficos refletem-se na reta y=x; domínio e imagem se trocam.
-- Em funções transformadas, determine domínio, interceptos, assíntota e monotonicidade para reconhecer o esboço.
+- **Definição**: trabalho é escalar e transfere energia; unidade SI é joule.
+- **Força constante**: τ=F·d·cosθ. Ângulo agudo dá trabalho positivo, obtuso negativo e 90° trabalho nulo.
+- **Trabalho zero**: sem força, sem deslocamento ou com força perpendicular ao deslocamento; normal e centrípeta ideal são exemplos.
+- **Força variável**: calcule a área algébrica sob F×d; abaixo do eixo, contribuição negativa.
+- **Peso**: τpeso=mgH na descida e −mgH na subida; depende apenas da diferença de altura.
+- **Mola**: força elástica varia com deformação; entre xi e xf, τel=k(xi²−xf²)/2.
+- **Atrito**: em deslizamento horizontal, τat=−μkmgd; transforma energia mecânica em calor e som.
+- **Atrito estático**: sem deslizamento no contato, não realiza trabalho no modelo considerado.
+- **Energia cinética**: Ec=mv²/2; trabalho resultante é ΔEc.
 
-**Notas do agente:** - Gráficos e tabelas de valores são imagens; pontos usados na explicação textual foram mantidos.
-- A fonte na página 44 registra a reta de simetria como “reta xy”; interpretei como y=x, a bissetriz usual associada a funções inversas.
-- O domínio da função 3−log3(3−x) foi inferido diretamente da condição do argumento positivo, pois o material não a destaca em um quadro próprio.
+**Notas do agente:** nenhuma
+
+Critérios: [ ] cobertura  [ ] correção  [ ] originalidade  [ ] clareza  [ ] tamanho/formato
+
+## S0590 · Matemática · Aula 04 — Regra de Três Simples e Compostas
+Trecho `matematica/a04/s01` · PDF: 005 - Aula 04 Regra de Três Simples e Compostas.pdf · págs. 3–9 · analítico: 390 palavras (teto 1050) · sintético: 8 pontos
+
+**Analítico (início):**
+Regra de três organiza problemas de proporcionalidade para encontrar um valor desconhecido. Antes de montar a conta, identifique as grandezas e determine se variam no mesmo sentido ou em sentidos opostos.
+
+### Regra de três simples
+
+Quando há duas grandezas, a relação é simples. Se forem diretamente proporcionais, ambas aumentam ou diminuem juntas; a razão entre valores correspondentes permanece constante e pode-se multiplicar cruzado. Exemplo: 4 médicos atendem 54 pacientes por dia; com a mesma produtividade, 6 atendem x. Então 4/6=54/x, logo x=81 pacientes.
+
+Grandezas inversamente proporcionais variam em sentidos contrários, mantendo constante o produto. Exemplo: estoque suficiente para 200 pessoas por 30 dias contém 6.000 pessoa-dias. Para 250 pessoas, o tempo é 6.000/250=24 dias. Em regra de três inversa, multiplicam-se diretamente os pares correspondentes; não use a proporção direta sem inverter a relação.
+
+### Regra de três composta
+
+Quando há três ou mais grandezas, organize os dados em tabela, deixando a incógnita como referência. Compare cada grandeza com a incógnita, mantendo as demais constantes. Relação direta conserva a orientação dos valores; inversa exige inverter o par correspondente. Só então monte a proporção e resolva.
+
+Exemplo: 6 servidores atendem 28 pessoas em 8 horas. Para atender 42 pessoas em 6 horas, seja x o número de servidores. Mais pessoas exigem mais servidores (direta); menos horas exigem mais servidores (inversa). Assim x/6=(42/28)·(8/6), port…
+
+**Sintético:**
+- **Simples direta**: duas grandezas crescem ou caem juntas; monte proporção e multiplique cruzado.
+- **Exemplo direto**: 4 médicos atendem 54 pessoas; 6, com mesma capacidade, atendem 81.
+- **Simples inversa**: uma grandeza cresce quando a outra diminui; o produto correspondente fica constante.
+- **Exemplo inverso**: estoque para 200 pessoas por 30 dias dura 24 dias para 250 pessoas.
+- **Composta**: organize três ou mais grandezas numa tabela e deixe a incógnita como referência.
+- **Comparação**: classifique cada grandeza como direta ou inversa em relação à incógnita, mantendo as outras constantes.
+- **Inversão**: relação inversa exige inverter os valores correspondentes antes de compor a conta.
+- **Conferência**: use o sentido esperado das grandezas para detectar resultados incompatíveis e revisar a proporção antes de finalizar.
+
+**Notas do agente:** nenhuma
 
 Critérios: [ ] cobertura  [ ] correção  [ ] originalidade  [ ] clareza  [ ] tamanho/formato

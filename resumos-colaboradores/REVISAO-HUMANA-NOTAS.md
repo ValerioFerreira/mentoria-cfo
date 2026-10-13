@@ -1,6 +1,6 @@
 # Pontos que pedem revisão humana (NOTAS dos agentes)
 
-431 de 687 resumos importados trazem notas. Gerado por `pipeline/collect_review_notes.py`; ordem: agente, depois ID.
+453 de 714 resumos importados trazem notas. Gerado por `pipeline/collect_review_notes.py`; ordem: agente, depois ID.
 
 ## CLAUDE-L1 — 102 resumos com notas
 
@@ -1510,7 +1510,7 @@ O trecho afirma que actina e miosina correspondem a percentuais específicos das
 
 - O trecho afirma que, em ecossistemas estáveis, produtividade e consumo se igualam; a formulação é ampla e depende da definição de estabilidade e escala temporal. Interpretar como equilíbrio ecológico simplificado, sujeito a revisão.
 
-## CODEX-L1 — 9 resumos com notas
+## CODEX-L1 — 11 resumos com notas
 
 ### S0425 · Direito Administrativo · Aula 05 — Ato administrativo: conceito; requisitos, perfeição, validade, eficácia, atribut · `direito-administrativo/a05/s08`
 
@@ -1528,6 +1528,10 @@ O recorte também contém classificações adicionais e aprofundamento doutriná
 
 O trecho introdutório descreve a evolução das teorias; a análise completa das excludentes e de omissões é aprofundada em segmentos posteriores da mesma aula.
 
+### S0473 · Direito Administrativo · Aula 09 — Agentes públicos: espécies e classificação, poderes, deveres e prerrogativa, car · `direito-administrativo/a09/s11`
+
+Pontos para revisão humana: (1) a redação atual do art. 37, XVI, b, após a EC 138/2025 (o material afirma que o outro cargo do professor passou a ser "de qualquer natureza"; conferir o texto vigente da Constituição); (2) o texto cita decisões do STF por tema (1.081 e 484); conferir numeração. A versão anterior deste resumo exigia cargo técnico ou científico e foi substituída conforme o material.
+
 ### S0475 · Direito Administrativo · Aula 09 — Agentes públicos: espécies e classificação, poderes, deveres e prerrogativa, car · `direito-administrativo/a09/s14`
 
 O trecho também aborda alterações constitucionais e previdenciárias específicas. O resumo registra as distinções centrais sem reproduzir tabelas completas de regras de aposentadoria, que dependem do ente e da legislação vigente.
@@ -1535,6 +1539,10 @@ O trecho também aborda alterações constitucionais e previdenciárias específ
 ### S0488 · Direito Administrativo · Aula 09 — Agentes públicos: espécies e classificação, poderes, deveres e prerrogativa, car · `direito-administrativo/a09/s01`
 
 A classificação de agentes políticos varia entre autores para algumas carreiras; o resumo registra a divergência sem apresentar uma lista fechada como consenso.
+
+### S0491 · Direito Administrativo · Aula 09 — Agentes públicos: espécies e classificação, poderes, deveres e prerrogativa, car · `direito-administrativo/a09/s15`
+
+Pontos para revisão humana: o material trata a idade de 75 anos como regra da aposentadoria compulsória pela LC 152/2015; confirmar. A situação dos conselheiros e ministros substitutos de tribunais de contas varia por tribunal, conforme o próprio material, sem decisão do STF.
 
 ### S0492 · Direito Administrativo · Aula 09 — Agentes públicos: espécies e classificação, poderes, deveres e prerrogativa, car · `direito-administrativo/a09/s16`
 
@@ -1574,7 +1582,7 @@ O trecho inclui exemplos de doenças e transmissão viral; o resumo manteve as i
 
 Sem problemas de leitura identificados no texto extraído pelo pipeline.
 
-## CODEX-L3D — 23 resumos com notas
+## CODEX-L3D — 24 resumos com notas
 
 ### S0519 · Biologia · Aula 13 — Ecologia geral · `biologia/a13/s07`
 
@@ -1624,6 +1632,10 @@ O recorte do índice cita ancilostomíase e complexo teníase/cisticercose; o te
 
 Percentuais específicos das reservas variam por localização e regra legal aplicável. A síntese preserva a distinção entre institutos sem tentar reproduzir todos os percentuais.
 
+### S0543 · Biologia · Aula 14 — Ecologia da conservação · `biologia/a14/s04`
+
+O texto-fonte contém os casos do mico-leão-preto e da onça-parda; a versão anterior desta entrega os omitiu. O material termina a seção de estatística na página limite do trecho. Figuras (pirâmides e curvas de sobrevivência) foram descartadas.
+
 ### S0545 · Biologia · Aula 04 — Evolução · `biologia/a04/s01`
 
 Parte do trecho não ficou visível no limite de extração consultado, especialmente exemplos de anatomia comparada. Foram omitidos exemplos específicos não reconfirmados.
@@ -1668,7 +1680,7 @@ Sem problemas de extração identificados no excerto. Algumas técnicas são des
 
 O assunto abrange alternativas energéticas; foram evitadas comparações numéricas de fontes porque o excerto consultado estava parcial. Conferir detalhes e exemplos específicos do trecho integral na revisão humana.
 
-## EXT-L2 — 2 resumos com notas
+## EXT-L2 — 3 resumos com notas
 
 ### S0117 · Informática · Aula 11 — Utilização de ferramentas de apresentação do pacote LibreOffice (Impress) · `informatica/a11/s02`
 
@@ -1678,7 +1690,69 @@ As páginas 19 a 23 do PDF apresentam os títulos dos menus da Barra de Menus (A
 
 No material original (páginas 15 a 19), os menus Arquivo, Editar, Exibir, Inserir, Formatar, Estilos, Planilha, Dados, Ferramentas, Janela e Ajuda são ilustrados predominantemente por capturas visuais da interface, servindo as páginas 11 a 14 como base textual das descrições operacionais consolidadas.
 
-## EXT-L5 — 83 resumos com notas
+### S0388 · Direito Administrativo · Aula 08 — Responsabilidade civil do Estado · `direito-administrativo/a08/s04`
+
+Conferir a numeração dos temas de repercussão geral citados (365, 362, 366, 512, 777, 940, 1.055). Sobre o art. 143 do CPC: o texto legal diz que o juiz responde regressivamente; o material entende que o Estado responde de forma objetiva, com regresso contra o magistrado.
+
+## EXT-L3 — 14 resumos com notas
+
+### S0253 · Biologia · Complemento 01 — Qualidade de vida das populações humanas — pobreza, IDH, doenças, Saúde Única, drogas, obesidade e saúde mental · `biologia/c01/s01`
+
+Material complementar autoral do MentorIA. Números com ano (Brasil IDH 0,786 em 2025; linhas do Banco Mundial; Vigitel) são ilustração e mudam; conferir se a banca citar dados atuais. Vacinas de dengue e chikungunya estão em incorporação gradual ao SUS e o esquema muda com frequência.
+
+### S0257 · Biologia · Complemento 02 — Biotecnologia, bioética e ciências ambientais — clonagem, células-tronco, serviços ecossistêmicos, saneamento, águas, florestas e unidades de conservação · `biologia/c02/s01`
+
+Material complementar autoral do MentorIA, condensado: conteúdos jurídicos (arts., faixas, metas) seguem a redação conferida no texto fonte em 08/10/2026 e podem ter sido alterados por lei posterior; conferir em caso de dúvida. Omiti Lei 9.434 (comercialização de órgãos) e detalhes de multas por pouca incidência.
+
+### S0300 · Biologia · Aula 16 — - Prof. Jonathan Ariel Primeiros Socorros - PARTE 1 · `biologia/a16/s01`
+
+Figuras (esquemas do HIT, das fases e das causas de lesão) foram descartadas por repetirem o texto. Trechos de avaliação física são adaptados de material de atletas e valem para qualquer vítima.
+
+### S0318 · Biologia · Aula 16 — - Prof. Jonathan Ariel Primeiros Socorros - PARTE 1 · `biologia/a16/s02`
+
+Os esquemas e as questões foram descartados. Texto original traz trechos adaptados de material de esporte (atletas); condutas resumidas valem para qualquer vítima. Divisão em graus I a III e regra dos 20 minutos seguem o material.
+
+### S0329 · Biologia · Complemento 02 — Biotecnologia, bioética e ciências ambientais — clonagem, células-tronco, serviços ecossistêmicos, saneamento, águas, florestas e unidades de conservação · `biologia/c02/s02`
+
+Material complementar autoral do MentorIA, condensado. O quadro de tecidos foi reconstruído em tabela.
+
+### S0333 · Biologia · Aula 17 — - Prof. Jonathan Ariel Primeiros Socorros - PARTE 2 · `biologia/a17/s01`
+
+Questões e esquemas foram descartados. O material não informa a relação compressão/ventilação (30:2), que costuma ser cobrada; vale conferir. O número de compressões da manobra de Heimlich (cinco) segue o material e varia conforme o protocolo.
+
+### S0340 · Biologia · Aula 02 — Genética · `biologia/a02/s01`
+
+Esquemas e figuras foram descartados; as proporções 1:2:1 e 3:1 foram reconstruídas em texto. O material não traz a proporção 9:3:3:1 da 2ª lei, que costuma ser cobrada.
+
+### S0355 · Biologia · Aula 02 — Genética · `biologia/a02/s02`
+
+A descrição da prevenção da eritroblastose segue o material (anti-Rh à mãe sensibilizada); na prática clínica a imunoglobulina anti-D é dada à mãe Rh negativa ainda não sensibilizada, para evitar a sensibilização. Esquemas e heredogramas foram descartados. A parte final sobre alelos letais está cortada na página limite do trecho.
+
+### S0356 · Biologia · Aula 02 — Genética · `biologia/a02/s03`
+
+Material grafa "VNTP" (digitação) para VNTR; foi usada a sigla correta. Figuras e quadros foram descartados.
+
+### S0359 · Biologia · Aula 10 — Anatomia e fisiologia humana: sistema nervoso · `biologia/a10/s03`
+
+O material descreve o retorno do potencial a "-90 mV" na quarta fase, valor abaixo do repouso (-70 mV, hiperpolarização), o que é ambíguo: foi mantido apenas -70 mV como repouso. Os dados de bomba de sódio e potássio (3 e 2) foram acrescentados por consenso técnico. Figuras foram descartadas.
+
+### S0362 · Biologia · Aula 17 — - Prof. Jonathan Ariel Primeiros Socorros - PARTE 2 · `biologia/a17/s02`
+
+O material, no trecho sobre 1º grau, traz a frase "usualmente há bolhas", que parece erro de digitação (o correto é não haver bolhas); o resumo segue o consenso técnico. O quadro comparativo e as questões foram descartados.
+
+### S0369 · Biologia · Aula 05 — Anatomia e fisiologia humana: sistema tegumentar · `biologia/a05/s01`
+
+Figuras (cortes histológicos e esquemas) foram descartadas. O material mistura "pele" e "tecido epitelial" no mesmo texto; a classificação da epiderme em cinco estratos foi mantida.
+
+### S0380 · Biologia · Aula 01 — Histologia · `biologia/a01/s01`
+
+A tabela de localização dos epitélios veio embaralhada no texto extraído e foi reconstruída pela ordem das colunas; o material lista o ânus em duas colunas (pavimentoso estratificado e colunar estratificado), e foi mantido apenas no pavimentoso estratificado. Figuras foram descartadas.
+
+### S0381 · Biologia · Aula 01 — Histologia · `biologia/a01/s02`
+
+Figuras e corte histológicos foram descartados. O texto afirma que o osso adulto é lamelar e que o do feto é "primário"; o resumo segue essa nomenclatura.
+
+## EXT-L5 — 84 resumos com notas
 
 ### S0571 · Física · Aula 09 — 4. A mecânica e o funcionamento do universo – Força peso. Aceleração gravitacion · `fisica/a09/s01`
 
@@ -1687,6 +1761,10 @@ No material original (páginas 15 a 19), os menus Arquivo, Editar, Exibir, Inser
 ### S0574 · Física · Aula 17 — Campo magnético. Imãs permanentes. Linhas de campo magnético. Campo magnético te · `fisica/a17/s01`
 
 - A lista de exemplos de substâncias na fonte inclui “plástico, madeira” como paramagnéticos; essa classificação não é tecnicamente adequada em geral. O resumo omite esses exemplos e usa o alumínio como exemplo paramagnético usual.
+
+### S0575 · Física · Aula 01 — 2. O movimento, o equilíbrio e a descoberta de leis físicas – Grandezas fundamen · `fisica/a01/s01`
+
+O trecho vem de uma aula introdutória cuja parte conceitual é curta; o resumo cobre todos os tópicos. A resolução numérica da questão sobre o posto policial (Δt = 53min30s, distância de 156 km) foi completada pelo agente com a conta direta, pois o texto-fonte traz só o início da resolução. Figuras de ilustração (velocímetro, ônibus, avião) foram descartadas por serem apenas ilustrativas.
 
 ### S0579 · Física · Aula 02 — 2. O movimento, o equilíbrio e a descoberta de leis físicas – Grandezas fundamen · `fisica/a02/s02`
 
@@ -2077,11 +2155,19 @@ No material original (páginas 15 a 19), os menus Arquivo, Editar, Exibir, Inser
 - páginas_lidas: 75–81 (7 páginas).
 - Os ciclos ilustrativos não foram extraídos como imagens textuais; a regra de congruência/suplementaridade e os exemplos algébricos permitem reconstituir as soluções.
 
-## EXT-L6 — 77 resumos com notas
+## EXT-L6 — 80 resumos com notas
 
 ### S0297 · Língua Espanhola · Aula 09 — Verbos · `lingua-espanhola/a09/s05`
 
 Há formas aparentemente inconsistentes nas tabelas extraídas, como “hubrán” no futuro composto e acentuação irregular em formas de *hubiera/hubiese*. Para evitar perpetuar possíveis erros tipográficos, o resumo apresenta os padrões sem reproduzir essas formas duvidosas.
+
+### S0319 · Língua Espanhola · Aula 02 — Preposições · `lingua-espanhola/a02/s01`
+
+Nenhum problema no material. Exemplos reescritos para evitar cópia; a lista das 23 preposições é reorganizada e explicada em prosa.
+
+### S0351 · Língua Espanhola · Aula 13 — “Silabeo”; “Sinonimia” e “antonimia”; “heterosemánticos”, “hete · `lingua-espanhola/a13/s03`
+
+O material extraído está correto; o cabeçalho truncado foi substituído por título curto. Observação: na lista do material, *oficina* aparece como "escritório" em espanhol e "lugar de consertos" em português (confere com o uso corrente).
 
 ### S0383 · Língua Espanhola · Aula 06 — Substantivos · `lingua-espanhola/a06/s04`
 
@@ -2102,6 +2188,10 @@ O trecho é um glossário com cerca de 270 entradas. Selecionei exemplos represe
 ### S0431 · Língua Espanhola · Aula 13 — “Silabeo”; “Sinonimia” e “antonimia”; “heterosemánticos”, “hete · `lingua-espanhola/a13/s05`
 
 A fonte contém exemplos/traduções com erros tipográficos e uma frase temporal pouco natural; as regras foram sintetizadas conforme as explicações explícitas do trecho. O quadro de marcadores apresenta itens que podem acompanhar mais de um tempo, portanto as associações são pistas contextuais, não regras absolutas.
+
+### S0443 · Língua Espanhola · Aula 10 — Números · `lingua-espanhola/a10/s03`
+
+O quadro de ordinais do material traz, no 12º feminino, a forma *decimosegundo* (masculina) onde se esperaria *decimosegunda*: possível erro de digitação. A tabela de escalas do material repete 10^15 para *trillón*; o valor correto é 10^18 (um trillón = milhão de billones). Não atribuí correção normativa além do necessário; consulte gramática de referência para dúvida ortográfica específica. A escala de *billón* foi explicitada conforme a tabela do material.
 
 ### S0456 · Língua Espanhola · Aula 06 — Substantivos · `lingua-espanhola/a06/s02`
 

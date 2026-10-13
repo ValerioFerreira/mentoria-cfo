@@ -2,7 +2,7 @@
 
 Gerado por `pipeline/summary_coverage.py`. Mede omissão de termos específicos do texto-fonte; **não** detecta conceito errado. O veredito compara cada resumo com os da mesma disciplina. REFAÇÃO/REVISAR vão para leitura por agente ou pessoa, com a lista de termos que faltam como ponto de partida.
 
-## REFAÇÃO (10)
+## REFAÇÃO (11)
 
 | ID | Trecho | Agente | Cobertura | % do alvo | Termos que faltam (mais pesados) |
 | --- | --- | --- | --- | --- | --- |
@@ -11,6 +11,7 @@ Gerado por `pipeline/summary_coverage.py`. Mede omissão de termos específicos 
 | S0554 | biologia/a13/s01 | CODEX-L3D | 0.44 | 25% | louva deus terciarios predados lago morta insetos formigas girinos formigueiro americas passaros |
 | S0519 | biologia/a13/s07 | CODEX-L3D | 0.44 | 27% | caesalpinia aspidosperma 150 pilosocereus ceara bahia paraiba tuco arenosos mista pernambuco 200 |
 | S0512 | biologia/a14/s01 | CODEX-BIO-3 | 0.47 | 27% | ilhas biogeografia ilha bioticos relevantes pragas morro diabo reducao teoria pasto nota |
+| S0527 | biologia/a14/s02 | CODEX-L3D | 0.47 | 24% | invasao adotadas novo convencao soltura publicacoes jacaranda fileiras agave citar tropicais migracao |
 | S0583 | fisica/a06/s01 | EXT-L5 | 0.46 | 23% | 180 houver cos180 06 diminua aparecer desnivel freada situacoes anteriormente podendo resumindo |
 | S0275 | lingua-inglesa/a05/s02 | EXT-L2 | 0.31 | 28% | encontrou hadnt progressivo mion encontrei terminado marcos colocando tinha aconteceu verbal japones |
 | S0708 | matematica/a15/s02 | EXT-L5 | 0.42 | 29% | pizza acoroa asetor praca pedacos aexternoainterno imagine voltaremos utilize segmento chamamos destacada |

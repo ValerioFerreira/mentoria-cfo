@@ -1,5 +1,5 @@
 # Amostra de qualidade — CODEX-L3D
-23 resumos importados; 5 sorteados. Conferir cada um contra o PDF indicado.
+24 resumos importados; 5 sorteados. Conferir cada um contra o PDF indicado.
 
 ## S0522 · Biologia · Aula 11 — Anatomia e fisiologia humana: sistema endócrino e imunitário
 Trecho `biologia/a11/s02` · PDF: 012 - Aula 11 Anatomia e fisiologia humana_ sistema endócrino e imunitário.pdf · págs. 13–19 · analítico: 408 palavras (teto 1050) · sintético: 8 pontos
@@ -119,31 +119,32 @@ Ancilostomíase, ou amarelão, é cau…
 
 Critérios: [ ] cobertura  [ ] correção  [ ] originalidade  [ ] clareza  [ ] tamanho/formato
 
-## S0558 · Biologia · Aula 03 — Biologia molecular
-Trecho `biologia/a03/s04` · PDF: 004 - Aula 03 Biologia molecular.pdf · págs. 42–53 · analítico: 418 palavras (teto 1800) · sintético: 9 pontos
+## S0557 · Biologia · Aula 03 — Biologia molecular
+Trecho `biologia/a03/s01` · PDF: 004 - Aula 03 Biologia molecular.pdf · págs. 4–15 · analítico: 388 palavras (teto 1800) · sintético: 8 pontos
 
 **Analítico (início):**
-### Quantificar ácidos nucleicos
+### Nucleotídeos e ácidos nucleicos
 
-Depois de extrair DNA ou RNA, é necessário avaliar quantidade e qualidade. Eletroforese em gel permite visualizar material; DNA, carregado negativamente pelos fosfatos, migra em campo elétrico por uma matriz porosa. Fragmentos menores atravessam o gel com maior facilidade e, em condições comparáveis, percorrem distância maior. Corantes fluorescentes permitem detectar bandas sob iluminação apropriada, mas a estimativa visual é menos precisa que métodos instrumentais.
+Biologia molecular analisa o material genético e as técnicas usadas para estudá-lo. DNA e RNA são ácidos nucleicos formados por nucleotídeos. Cada nucleotídeo contém uma pentose, fosfato e base nitrogenada; sem fosfato, a unidade é um nucleosídeo. Adenina e guanina são purinas, com dois anéis; citosina, timina e uracila são pirimidinas, com um anel.
 
-Espectrofotometria estima concentração pela absorção de radiação em comprimentos de onda específicos. A relação entre absorbância e concentração segue a lei de Beer-Lambert, considerando também o caminho óptico e o coeficiente de absorção. Pureza pode ser avaliada por razões entre absorbâncias, mas contaminantes podem distorcer a medição. PCR quantitativa (qPCR) acompanha fluorescência ao longo dos ciclos; comparação com padrões permite estimar a quantidade inicial. A curva passa por fase exponencial, depois desacelera e atinge platô, por limitações de reagentes e eficiência.
+DNA contém desoxirribose e usa A, T, C e G; RNA contém ribose e usa A, U, C e G. No DNA, duas fitas antiparalelas se associam por pareamento complementar: A–T e C–G. As ligações de hidrogênio unem as bases entre as fitas, enquanto ligações fosfodiéster formam cada cadeia. A sequência de bases guarda informação genética. Extremidades 5’ e 3’ referem-se aos carbonos da pentose, e a orientação importa para síntese e leitura.
 
-### PCR e enzimas de restrição
+### Tipos de RNA e fluxo de informação
 
-PCR amplifica uma região-alvo de DNA em ciclos. A mistura contém molde, nucleotídeos, íons magnésio, primers que delimitam a região e DNA polimerase termoestável. Cada ciclo inclui desnaturação das fitas, anelamento dos primers e extensão. Em condições ideais, a amplificação é exponencial; reações reais perdem eficiência e chegam a platô. Multiplex usa mais de um par de prime…
+O RNA pode ser fita simples e assumir estruturas dobradas. RNA mensageiro (RNAm) leva informação transcrita do DNA para tradução; RNA transportador (RNAt) carrega aminoácidos e reconhece códons; RNA ribossômico (RNAr) compõe o ribossomo e participa da síntese proteica. Outros RNAs regulam expressão e processamento. DNA funciona como material hereditário na maioria dos organismos, enquanto alguns vírus usam RNA como genoma.
+
+Na transcrição, RNA polimerase utiliza uma fita de DNA como molde e sintetiza RNA complementar no sentido 5’→3’. O RNA resultante é complementar à fita molde e semelhante à fita codificadora, com U no lugar de T. Em…
 
 **Sintético:**
-- **Eletroforese**: DNA negativo migra em gel; fragmentos menores tendem a avançar mais que os maiores.
-- **Espectrofotometria**: estima concentração pela absorção, relacionada à lei de Beer-Lambert.
-- **qPCR**: acompanha fluorescência na amplificação e estima quantidade inicial por padrões.
-- **PCR**: ciclos de desnaturação, anelamento e extensão amplificam a região entre primers.
-- **Restrição**: enzimas reconhecem sítios específicos e clivam DNA, gerando extremidades úteis para análise/clonagem.
-- **Sequenciamento**: determina a ordem das bases; confiabilidade depende de amostra e leitura adequadas.
-- **Southern blot**: separa DNA, transfere-o à membrana e usa sonda complementar para localizar alvo.
-- **Clonagem/OGM**: vetor leva DNA à célula; avaliação de organismo modificado deve considerar característica e biossegurança.
-- **Curva**: fase exponencial da PCR cede à linear e ao platô quando a eficiência diminui.
+- **Nucleotídeo**: pentose + fosfato + base; nucleosídeo é a unidade sem o fosfato.
+- **Bases**: purinas A e G; pirimidinas C, T e U.
+- **DNA e RNA**: DNA usa desoxirribose e T; RNA usa ribose e U.
+- **Pareamento**: no DNA, A associa-se a T e C a G; as fitas são antiparalelas.
+- **RNA**: mensageiro leva informação, transportador entrega aminoácidos e ribossômico integra ribossomos.
+- **Transcrição**: RNA polimerase usa DNA molde e forma RNA complementar no sentido 5’→3’.
+- **Expressão**: DNA é transcrito em RNA; RNAm pode ser traduzido em proteína, com processamento em eucariontes.
+- **Complementaridade**: RNA formado a partir da fita molde pareia suas bases e leva uracila nos locais correspondentes à timina.
 
-**Notas do agente:** Sem problemas de extração identificados no excerto. Algumas técnicas são descritas em nível conceitual, sem especificar protocolos laboratoriais.
+**Notas do agente:** O trecho cobre estrutura e transcrição; detalhes extensos sobre tipos adicionais de RNA não foram ampliados além dos fundamentos necessários.
 
 Critérios: [ ] cobertura  [ ] correção  [ ] originalidade  [ ] clareza  [ ] tamanho/formato

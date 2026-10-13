@@ -1,166 +1,194 @@
 # Amostra de qualidade — EXT-L3
-15 resumos importados; 5 sorteados. Conferir cada um contra o PDF indicado.
+14 resumos importados; 5 sorteados. Conferir cada um contra o PDF indicado.
 
-## S0035 · Língua Portuguesa · Aula 10 — Significação das palavras
-Trecho `lingua-portuguesa/a10/s01` · PDF: 011 - Aula 10 Significação das palavras.pdf · págs. 3–15 · analítico: 685 palavras (teto 1950) · sintético: 10 pontos
+## S0318 · Biologia · Aula 16 — - Prof. Jonathan Ariel Primeiros Socorros - PARTE 1
+Trecho `biologia/a16/s02` · PDF: 017 - Aula 16 - Prof. Jonathan Ariel Primeiros Socorros - PARTE 1.pdf · págs. 19–31 · analítico: 1253 palavras (teto 1950) · sintético: 11 pontos
 
 **Analítico (início):**
-A semântica ocupa-se do estudo do significado, analisando as relações conceituais que os vocábulos estabelecem entre si e os efeitos de sentido gerados nos textos. O trecho aborda os conceitos fundamentais de campo semântico, a polaridade entre denotação e conotação, as relações de sinonímia e antonímia contextual, bem como os vínculos taxonômicos de hiperonímia e hiponímia.
+Este trecho trata de lesões musculoesqueléticas (luxação, entorse, fratura, estiramento), da imobilização com talas, do traumatismo cranioencefálico (TCE) e do traumatismo torácico. Em prova, o aluno precisa distinguir cada lesão e saber a conduta básica que o socorrista leigo pode adotar.
 
-### Noções Iniciais de Semântica e Campo Semântico
+### Tipos de ferimento
 
-A semântica investiga como os signos linguísticos constroem significação nos diferentes atos de fala e escrita. Longe de ser um inventário estático de definições, o significado é moldado pela intenção comunicativa e pela interação entre os elementos frasais.
+- **Abrasão**: lesão superficial, como arranhão ou esfolado.
+- **Avulsão**: ruptura violenta de uma estrutura (pele ou osso), como arrancar a ponta da orelha ou o dedo preso por um anel puxado à força.
+- **Laceração**: corte no tecido mole produzido por golpe de objeto rombudo (sem corte limpo).
+- **Perfuração**: ferimento profundo e estreito causado por penetração de objeto fino.
+- **Contusão**: resulta de golpe direto; capilares se rompem e extravasam sangue e líquido, com dor, inchaço e cor roxa. A superficial é menor; a profunda, que alcança músculo ou osso, pode causar perda de função.
+- Lesão **crônica** surge ao longo de semanas, em geral por repetição.
 
-Um conceito basilar é o de **campo semântico**, caracterizado pelo agrupamento de vocábulos que compartilham uma mesma esfera conceitual ou área de experiência humana. Quando um falante evoca uma palavra central, termos correlatos são prontamente ativados em sua memória discursiva por afinidade temática.
-- No universo do socorro público e emergências, termos como *ambulância, sirene, maca, triagem, resgate* e *socorrista* integram um campo semântico unificado.
-- Em informática, termos como *hardware, sistema, processador, teclado* e *arquivo* conectam-se pelo mesmo domínio cognitivo.
+### Luxação, entorse, fratura e estiramento
 
-> 💡 **Exemplo:** A coesão lexical de um artigo científico ou editorial baseia-se fortemente na seleção de palavras pertencentes ao mesmo campo semântico, assegurando organicidade e unidade ao tema abordado.
-
-### Senti…
+| Lesão | O que é | Conduta |
+| --- | --- | --- |
+| Luxação | Ossos saem da posição e ficam fora do lugar (perda da congruência articular) | Imobilizar e repousar; recolocação é feita por profissional |
+| Subluxação | Perda parcial da posição, ou o osso sai e volta sozinho na hora | Mesma lógica |
+| Entorse | Lesão de **ligamento** (estiramento ou ruptura), por compressão ou torção; os ossos permanecem no lugar | Gelo e imobilização |
+| Fratura | Quebra do osso | E…
 
 **Sintético:**
-- **Objeto da Semântica**: Analisa os sentidos das formas linguísticas, priorizando a adequação discursiva ao contexto fático.
-- **Campo Semântico**: Conjunto orgânico de palavras que orbitam uma mesma área de interesse ou referente cultural.
-- **Sentido Denotativo**: Expressão direta, literal e objetiva, indispensável em textos técnicos e científicos.
-- **Sentido Conotativo**: Emprego simbólico e figurado que expande a expressividade do vocábulo por meio de metáforas.
-- **Sinonímia**: Proximidade de significação entre termos, sempre condicionada aos limites impostos pela frase.
-- **Antonímia**: Polaridade e oposição entre significados, estabelecendo contraste direto entre ideias ou estados.
-- **Antonímia contextual**: Casos em que termos ganham valor oposto exclusivamente pela montagem retórica da sentença.
-- **Hiperônimo**: Palavra de sentido genérico que abrange diversas categorias particulares (gênero).
-- **Hipônimo**: Palavra de significação restrita e individualizada, subordinada a um conceito maior (espécie).
-- **Função coesiva**: O emprego alternado de hipônimos e hiperônimos impede redundâncias lexicais em textos formais.
+- **Luxação × entorse**: luxação tira o osso do lugar (subluxação é parcial ou retorna sozinha) e pede imobilização e repouso; entorse é lesão de ligamento sem deslocar o osso, com gelo e imobilização.
+- **Graus da entorse**: grau I, fibras estiradas, dor leve; grau II, rupturas parciais, com inchaço e perda de função; grau III, ruptura total, dor aguda e instabilidade articular.
+- **Estiramento**: lesão de músculo ou tendão; repouso, gelo no início (calor só sem inflamação) e elevação do membro.
+- **Fratura**: fechada (pele íntegra; dor, deformidade, crepitação, edema) ou exposta (osso rompe a pele; risco de osteomielite). Na exposta, controle da hemorragia vem primeiro.
+- **Proibido**: realinhar osso, empurrar osso exposto e aplicar calor. Na dúvida entre fratura, luxação e entorse, imobiliza-se.
+- **Tala**: material rígido e acolchoado (serve improviso); imobiliza articulação e osso acima e abaixo; laços fora da lesão; checar cor, temperatura e sensibilidade da extremidade.
+- **Regra dos 20 minutos**: equipe chega em até 20 min, estabiliza-se com as mãos; mais de 20 min, imobiliza-se na posição encontrada; na coluna, só a cabeça.
+- **TCE**: causa cerca de 50% das mortes por trauma; sinais: anisocoria, líquor ou sangue por nariz ou ouvidos, rebaixamento da consciência, vômitos, posturas de decorticação ou descerebração.
+- **Concussão × contusão cerebral**: concussão é choque do encéfalo, com perda de consciência e amnésia; contusão é sangramento, com paralisia de um lado e pupila dilatada.
+- **Conduta no TCE**: vias aéreas, respiração e circulação, suspeitar de coluna cervical, repouso; não remover objeto cravado, não oferecer líquidos, não conter líquor.
+- **Trauma torácico**: sempre grave. Se aberto, curativo limpo que veda por completo, preso com faixa sem apertar, vítima deitada sobre o lado ferido, encaminhamento urgente.
 
-**Notas do agente:** nenhuma
+**Notas do agente:** Os esquemas e as questões foram descartados. Texto original traz trechos adaptados de material de esporte (atletas); condutas resumidas valem para qualquer vítima. Divisão em graus I a III e regra dos 20 minutos seguem o material.
 
 Critérios: [ ] cobertura  [ ] correção  [ ] originalidade  [ ] clareza  [ ] tamanho/formato
 
-## S0039 · Língua Portuguesa · Aula 01 — Ortografia oficial. Acentuação gráfica
-Trecho `lingua-portuguesa/a01/s01` · PDF: 002 - Aula 01 Ortografia oficial. Acentuação gráfica.pdf · págs. 3–18 · analítico: 825 palavras (teto 2000) · sintético: 10 pontos
+## S0333 · Biologia · Aula 17 — - Prof. Jonathan Ariel Primeiros Socorros - PARTE 2
+Trecho `biologia/a17/s01` · PDF: 018 - Aula 17 - Prof. Jonathan Ariel Primeiros Socorros - PARTE 2.pdf · págs. 4–12 · analítico: 903 palavras (teto 1350) · sintético: 11 pontos
 
 **Analítico (início):**
-A ortografia e a acentuação gráfica fundamentam-se na correlação entre fonemas e letras, na identificação da sílaba tônica e na aplicação das convenções fixadas pelo sistema ortográfico. O trecho examina as noções de fonologia básica, encontros vocálicos e consonantais, a oposição entre dígrafo nasal e ditongo nasal, bem como as regras gerais e específicas de acentuação gráfica.
+Este trecho cobre o atendimento a sangramentos e hemorragias (tipos, classes e formas de controle), a desobstrução das vias aéreas pela manobra de Heimlich e a parada cardiorrespiratória, com ressuscitação cardiopulmonar (RCP) e suporte básico de vida.
 
-### Sons, Letras, Fonemas e Encontros Vocálicos
+### Sangramentos comuns: cortes e abrasões
 
-A língua falada estrutura-se em unidades acústicas distintivas chamadas **fonemas**, enquanto a escrita utiliza **letras** como símbolos gráficos convencionais. Nem sempre há equivalência de um para um entre letras e sons:
-- **Dígrafo**: Reunião de duas letras representando uma única emissão fonética. Divide-se em *consonantais* (*ch, lh, nh, rr, ss, sc, sç, xc, xs*, além de *gu* e *qu* quando o *u* não é articulado) e *vocálicos/nasais* (*am, an, em, en, im, in, om, on, um, un* precedendo consoantes, funcionando como sinalizador de nasalidade da vogal antecedente).
-- **Encontro consonantal**: Agrupamento contíguo de dois ou mais fonemas consonantais autônomos, na mesma sílaba (*prato, bloco*) ou em sílabas distintas (*advento, pacto*).
+A conduta-padrão é **lavar bem o local**, **pressionar o corte com gaze ou pano limpo** para estancar e **encaminhar a vítima ao médico** (ou dentista, se for na boca) para avaliar a necessidade de sutura. Fora de emergência, o socorrista mantém as mãos limpas e pode usar luvas. A vítima não deve pôr a própria mão suja no ferimento, e o socorrista não delega o atendimento a outra pessoa.
 
-Os agrupamentos de sons vocálicos classificam-se conforme sua distribuição silábica:
-- **Ditongo**: Junção inseparável de uma vogal (núcleo mais intenso) e uma semivogal (som mais brando) na mesma sílaba. Classifica-se em *crescente* (semivogal + vogal: *série, glória*) ou *decrescente* (vogal + semivogal: *ouro, noite…
+- É aceitável usar água oxigenada na limpeza e retirar pequenos corpos estranhos (como cacos de vidro) com pinça, se houver condição; sem habilidade, deixa-se para o médico.
+- **Abrasão** (ralado, esfolado): lava-se e cobre-se com gaze.
+- **Enquanto houver sangramento, mantém-se pressão.** Se a gaze encharcar, **acrescenta-se** outra por cima, sem retirar a primeira.
+
+### Tipos de hemorragia externa (PHTLS)
+
+| Tipo | Origem e característica |
+| --- | --- |
+| Capilar | Abrasões que lesam pequenos capilares sob a pele; costuma diminuir ou parar sozinha |
+| Venosa | Camadas mais profundas; em geral controlada com pressão direta moderada; só ameaça a vida se a lesão for grave ou o sangramento não for contido |
+| Arterial | Laceração de artéria; a mais importante e mais difícil de controlar; sangue verme…
 
 **Sintético:**
-- **Fonemas e letras**: Fonemas representam a realidade acústica da fala; letras consubstanciam os símbolos do registro ortográfico.
-- **Dígrafos**: União de dois grafemas para materializar um som fonético singular, dividindo-se em consonantais e vocálicos.
-- **Encontros vocálicos**: Ditongos unem vogal e semivogal; tritongos congregam três sons vocálicos articulados; hiatos separam vogais em sílabas distintas.
-- **Dígrafo nasal versus ditongo nasal**: Dígrafos nasais (*en, im*) ocorrem antes de consoantes; terminações finais (*am, em*) funcionam foneticamente como ditongos nasais.
-- **Acentuação de oxítonas**: Incide sobre formas oxítonas terminadas em *a, e, o* (seguidas ou não de *s*), no conjunto *em/ens* e ditongos abertos (*herói, troféu*).
-- **Acentuação de paroxítonas**: Abrange terminações divergentes das oxítonas tônicas (*l, r, n, x, ps, i, us, ã, ão, um*) e ditongos orais.
-- **Hífen e hifens**: *Hífen* recebe acento por terminar em *n*; o plural *hifens* não se acentua por enquadrar-se no padrão átono das paroxítonas em *ens*.
-- **Ditongos abertos paroxítonos**: Palavras como *ideia* e *jiboia* perderam o acento gráfico por determinação do Acordo Ortográfico.
-- **Proparoxítonas absolutas**: Todas as palavras proparoxítonas são compulsoriamente acentuadas no português padrão.
-- **Proparoxítonas eventuais**: Paroxítonas finalizadas em ditongo crescente (*glória, série*) que admitem secundariamente cisão em hiato.
+- **Corte e abrasão**: lavar, pressionar com gaze ou pano limpo e encaminhar ao médico (ou dentista, se na boca); mãos limpas ou luvas; água oxigenada e retirada de pequenos fragmentos com pinça são aceitáveis.
+- **Pressão contínua**: enquanto sangra, mantém-se a pressão; gaze encharcada ganha outra por cima, sem retirar a primeira.
+- **Tipos de hemorragia**: capilar (abrasão, para sozinha), venosa (profunda, pressão moderada) e arterial (jorra, vermelho vivo, a mais perigosa).
+- **Prioridade**: a avaliação primária não avança sem hemorragia controlada, e o controle segue durante o transporte.
+- **Meios de controle**: pressão direta ou curativo compressivo; torniquete em extremidade se isso falhar; elevação do membro e pontos de pressão deixaram de ser recomendados.
+- **Hemorragia interna**: tórax, abdome, retroperitônio e ossos longos (fêmur); controle só em hospital, por isso transporte rápido.
+- **Classes de hemorragia**: I abaixo de 750 mL (menos de 15%); II 750 a 1.500 (15 a 30%); III 1.500 a 2.000 (30 a 40%); IV acima de 2.000 mL (mais de 40%).
+- **Heimlich**: obstrução parcial, estimular a tosse; total, compressões rápidas para dentro e para cima, acima do umbigo, até expulsar o objeto ou a vítima desmaiar, quando se inicia a RCP.
+- **PCR**: inconsciência sem pulso nem respiração; primeiro chamar a emergência e usar o DEA na hora, se houver.
+- **RCP**: 100 a 120 compressões por minuto e 5 a 6 cm de profundidade, com ventilação boca a boca, até chegar a equipe ou a vítima se recuperar.
+- **Suporte básico de vida**: compressões, abertura das vias aéreas (cabeça para trás, queixo elevado), ventilação e desfibrilação.
 
-**Notas do agente:** nenhuma
+**Notas do agente:** Questões e esquemas foram descartados. O material não informa a relação compressão/ventilação (30:2), que costuma ser cobrada; vale conferir. O número de compressões da manobra de Heimlich (cinco) segue o material e varia conforme o protocolo.
 
 Critérios: [ ] cobertura  [ ] correção  [ ] originalidade  [ ] clareza  [ ] tamanho/formato
 
-## S0044 · Língua Portuguesa · Aula 02 — Classes de palavras: substantivo, adjetivo, advérbios, pronomes, artigo, numeral
-Trecho `lingua-portuguesa/a02/s06` · PDF: 003 - Aula 02 Classes de palavras_ substantivo, adjetivo, advérbios, pronomes, artigo, numeral.pdf · págs. 71–83 · analítico: 995 palavras (teto 1950) · sintético: 10 pontos
+## S0356 · Biologia · Aula 02 — Genética
+Trecho `biologia/a02/s03` · PDF: 003 - Aula 02 Genética.pdf · págs. 52–64 · analítico: 958 palavras (teto 1950) · sintético: 11 pontos
 
 **Analítico (início):**
-Os pronomes desempenham papel central na arquitetura frasal ao substituir ou acompanhar nomes, garantindo coesão anafórica e regulando as relações de interlocução. O trecho aborda o emprego dos pronomes relativos, as particularidades dos pronomes de tratamento na redação formal, a divisão entre pronomes pessoais retos e oblíquos e as regras morfofonéticas para anexação e fusão de pronomes oblíquos.
+Este trecho trata dos alelos letais, da probabilidade aplicada à genética (regras do E e do OU) e da identificação humana pelo DNA: variabilidade do genoma (SNP, minissatélites e microssatélites), técnica RFLP, perfil genético por STR e PCR, e interpretação estatística.
 
-### Pronomes Relativos: Funções Coesivas e Regras de Uso
+### Alelos letais
 
-Os pronomes relativos resgatam um antecedente substantivo ou pronominal, introduzindo orações subordinadas adjetivas. Dividem-se em duas categorias morfológicas:
-- **Variáveis**: *o qual / os quais, a qual / as quais, cujo / cujos, cuja / cujas, quanto / quantos, quanta / quantas*.
-- **Invariáveis**: *que, quem, onde*.
+Causam morte prematura do portador. Exemplos com dominante letal em homozigose: **acondroplasia** (nanismo por alelo dominante; o homozigoto dominante morre no embrião, então todo acondroplásico é **heterozigoto**) e **camundongo de pelo amarelo** (alelo dominante; o homozigoto dominante morre, e todos os amarelos são heterozigotos). Por isso, cruzando dois heterozigotos, a proporção de nascidos vivos passa a ser **2 : 1** em vez de 3 : 1.
 
-As normas clássicas de aplicação em provas exigem atenção rigorosa aos seguintes aspectos:
-1. **QUE versus O QUAL**: O relativo invariável *que* retoma pessoas ou coisas. O emprego das formas compostas (*o qual, a qual*) é recomendado quando se busca eliminar ambiguidades sintáticas perante dois antecedentes potenciais ou quando a preposição regente possuir duas ou mais sílabas (*perante a qual, sobre o qual*).
-2. **QUEM**: Aplica-se exclusivamente a pessoas ou seres personificados, vindo sempre antecedido de preposição (*O comandante a quem recorremos*).
-3. **CUJO**: Estabelece relação de posse entre dois substantivos (possuidor antecedente e coisa possuída subsequente). Concorda em gênero e número com o el…
+### Probabilidade na genética
+
+**Probabilidade** é a chance de um evento dentro do **espaço amostral** (conjunto de eventos possíveis). A formação dos gametas é **aleatória**, e os eventos são **independentes**: ter um menino não altera a chance de o próximo ser menina (50%).
+
+- **Regra do E**: a probabilidade de eventos independentes ocorrerem juntos é o **produto** das probabilidades. Ex.: zigoto aa de dois heterozigotos = 1/2 x 1/2 = **1/4 (25%)**.
+- **Regra do OU**: para eventos **mutuamente exclusivos**, **somam-se** as probabilidades. Ex.: fenótipo dominante de Aa x Aa = AA (1/4) + Aa (1/4) + Aa (1/4) = **3/4 (75%)**.
+- Combinação: casal com dois filhos, um menino e uma menina = (menino E menina, 1/4) OU (menina E menino, 1/4) = 1/2.
+
+### Identific…
 
 **Sintético:**
-- **Pronomes relativos**: Elementos de remissão textual que substituem antecedentes e fundam orações subordinadas adjetivas.
-- **Relativo CUJO**: Estabelece liame de posse entre substantivos, flexionando-se com o termo possuído sem admitir artigo posterior.
-- **Relativo ONDE**: Vocábulo reservado exclusivamente à indicação de espaço geográfico ou físico palpável.
-- **Pronomes de tratamento**: Formas cerimoniais que demandam concordância verbal e pronominal na 3ª pessoa do singular ou plural.
-- **Flexão de adjetivos de tratamento**: Adjetivos e particípios concordam com o gênero biológico do indivíduo a quem se reportam.
-- **Retos versus oblíquos**: Pronomes retos desempenham a função de sujeito; formas oblíquas cumprem a destinação de complementos.
-- **Objeto direto e indireto**: Os pronomes *o, a* funcionam como objetos diretos; as formas *lhe, lhes* operam como objetos indiretos.
-- **Regência com infinitivo**: Emprega-se a forma reta antes de verbo no infinitivo quando o termo exercer a função de agente (*para eu cumprir*).
-- **Associação com terminações em r, s, z**: Provoca a elisão da consoante final e a mutação pronominal para *lo, la, los, las*.
-- **Associação com fonemas nasais**: Induz a evolução das partículas pronominais átonas diretas para *no, na, nos, nas*.
+- **Alelos letais**: acondroplasia e pelagem amarela do camundongo têm dominante letal em homozigose; os vivos são sempre heterozigotos.
+- **Regras de probabilidade**: regra do E multiplica (aa de Aa x Aa = 1/2 x 1/2 = 25%); regra do OU soma eventos exclusivos (dominante = 3/4, 75%).
+- **Critérios de identificação**: a característica deve ser perene e variável no indivíduo e na população; impressão digital é o método mais usado, barato e simples; Bertillon fez a antropometria.
+- **SNP**: troca de um nucleotídeo a cada 300 a 1.000 pb; não sinônima, sinônima ou sem sentido; poucos alelos (2 a 4).
+- **Satélites**: minissatélite (VNTR) com repetição de 10 a 100 nucleotídeos; microssatélite (STR) de 2 a 6; STR e VNTR dão mais alelos e mais variabilidade que SNP.
+- **Cálculo de genótipos**: n alelos geram n homozigotos e n(n-1)/2 heterozigotos (20 alelos, 210 genótipos).
+- **RFLP**: corte por enzimas de restrição e eletroforese; usado em Narborough (1983); substituído por PCR por exigir muito DNA.
+- **STR bom**: baixa mutação, repetição de 4 ou mais bases, amplicon pequeno, multiplex e cromossomos distintos; nome como D21S11.
+- **Perfil genético**: extração, PCR dos STR, análise e confronto; cerca de 27 marcadores; haplótipo é o conjunto de alelos.
+- **Estatística forense**: frequência do perfil é o produto das frequências alélicas (2pq e p²); LR é o inverso dela.
+- **Banco de perfis**: rede nacional com mais de 110 mil perfis (2021); DNA mitocondrial serve à linhagem materna.
 
-**Notas do agente:** nenhuma
+**Notas do agente:** Material grafa "VNTP" (digitação) para VNTR; foi usada a sigla correta. Figuras e quadros foram descartados.
 
 Critérios: [ ] cobertura  [ ] correção  [ ] originalidade  [ ] clareza  [ ] tamanho/formato
 
-## S0047 · Língua Portuguesa · Aula 07 — Concordância nominal e verbal
-Trecho `lingua-portuguesa/a07/s01` · PDF: 008 - Aula 07 Concordância nominal e verbal.pdf · págs. 3–16 · analítico: 896 palavras (teto 2000) · sintético: 10 pontos
+## S0359 · Biologia · Aula 10 — Anatomia e fisiologia humana: sistema nervoso
+Trecho `biologia/a10/s03` · PDF: 011 - Aula 10 Anatomia e fisiologia humana_ sistema nervoso.pdf · págs. 22–34 · analítico: 996 palavras (teto 1950) · sintético: 11 pontos
 
 **Analítico (início):**
-A concordância verbal estabelece a harmonia gramatical de número e pessoa entre o verbo e o sujeito da oração. O trecho aborda a regra geral com sujeito simples, as particularidades de concordância com coletivos e expressões partitivas especificadas, numerais determinados (porcentagens, decimais e frações), termos de grande magnitude (*milhão, bilhão*), a flexão de verbos com acento diferencial (*ter, vir* e derivados) e a oposição entre os verbos *haver* e *existir*.
+Este trecho trata do sistema nervoso periférico (divisões aferente e eferente, autônomo simpático e parassimpático) e da base celular da comunicação nervosa: potencial de ação, sinapses e neurotransmissores. A prova costuma perguntar qual função pertence a qual divisão do sistema autônomo.
 
-### Fundamentos da Concordância Verbal e Sujeito Simples
+### Divisão aferente (sensorial)
 
-O princípio basilar determina que o verbo flexione em número (singular/plural) e pessoa (1ª, 2ª ou 3ª) para harmonizar-se com o núcleo do sujeito. Quando o sujeito é simples (possui apenas um núcleo substantivo ou pronominal), o verbo obedece estritamente a esse núcleo:
-- *A equipe de resgatistas chegou ao local.* (O núcleo é *equipe*, no singular; os adjuntos preposicionados no plural não atraem o verbo).
-- *As ordens do comando foram acatadas.* (O núcleo plural *ordens* exige flexão plural).
+Leva estímulos de receptores ao sistema nervoso central (SNC). Receptores sensoriais:
 
-Em provas de concurso, a principal armadilha consiste em intercalar orações adjetivas extensas ou adjuntos adnominais plurais entre o núcleo do sujeito singular e o verbo, forçando um erro por atração sonora indevida.
+- **Nociceptores**: dor; terminações nervosas livres em órgãos, vasos, pele e ossos.
+- **Termorreceptores**: variação de temperatura (o corpo mantém cerca de 36,5 °C); pele, músculos, fígado e hipotálamo.
+- **Mecanorreceptores**: tato, pressão e posição; pele, vasos, vísceras, articulações e músculos.
+- **Quimiorreceptores**: nas carótidas e na aorta, monitoram o pH e substâncias do sangue e ativam respostas autônomas.
 
-> ⚠️ **Pegadinha:** Expressões resumitivas ou pronomes indefinidos neutros (*tudo, nada, isso*) que encerram uma enumeração impõem ao verbo a concordância no singular: *Equipamentos, viaturas, rádios, tudo foi inspecionado*.
+Os estímulos passam pelo **tálamo** e **cruzam para o lado oposto** do córtex: o lado direito do corpo é processado no hemisfério esquerdo, e vice-versa. A convergência dos nervos explica as **dores referidas** (infarto dói no braço esquerdo; problema no fígado, no ombro e trapézio direitos). Os **proprioceptores** (mecanorreceptores de músculos e articulações) vão pela medula direto ao **cerebelo**, sem passar pelo tálamo; o cerebelo cuida do equilíbrio e da localização espacial.
 
-### Concordância com Co…
+### Divisão eferente
+
+Leva comandos do SNC a músculos, glândulas e adipócitos.
+
+- **Somático**: axônios vão direto do SNC aos **músculos esqueléticos** (movimentos e reflexos);…
 
 **Sintético:**
-- **Regra geral verbal**: O verbo ajusta-se rigorosamente em número e pessoa ao núcleo do sujeito oracional.
-- **Armadilhas de sujeito simples**: Termos intercalados no plural não alteram a exigência de verbo no singular alinhado ao núcleo.
-- **Expressões partitivas**: Estruturas como *a maioria de* seguidas de plural aceitam concordância gramatical ou atrativa.
-- **Percentuais com especificador**: Verbo pode concordar com a cifra percentual ou com o termo delimitador posposto.
-- **Percentuais determinados**: A presença de artigo antecedente trava a concordância no gênero e número desse modificador.
-- **Grandes magnitudes numéricas**: *Milhão* e *bilhão* são substantivos masculinos que admitem dupla concordância quando especificados.
-- **Acento diferencial de número**: Formas *têm* e *vêm* assinalam a 3ª pessoa do plural do presente do indicativo.
-- **Derivados de ter e vir**: Assumem acento agudo na 3ª pessoa singular (*mantém*) e acento circunflexo na 3ª plural (*mantêm*).
-- **Haver impessoal**: Inflexível no singular ao indicar tempo transcorrido, existência ou evento verificado.
-- **Existir e equivalentes**: Apresentam sujeito gramatical plenamente identificado, flexionando-se normalmente no plural.
+- **Aferente × eferente**: aferente leva sensações ao SNC (nociceptor, termo, mecano e quimiorreceptor); eferente leva comandos a músculos, glândulas e adipócitos.
+- **Vias sensoriais**: passam pelo tálamo e cruzam para o hemisfério oposto; proprioceptores vão direto ao cerebelo; dor referida vem da convergência dos nervos.
+- **Somático × autônomo**: somático liga direto o SNC ao músculo esquelético; autônomo tem dois neurônios com gânglio e controla a homeostase, sob comando do hipotálamo.
+- **Simpático**: origem toracolombar (T1 a L2), pré-ganglionar curto, noradrenalina; luta ou fuga (aumenta coração, pressão e respiração; reduz digestão).
+- **Parassimpático**: craniossacral, pré-ganglionar longo, acetilcolina em tudo; repouso e digestão (miose, peristaltismo, menor frequência cardíaca); nervo vago.
+- **Receptores colinérgicos**: nicotínicos nos gânglios e muscarínicos nos órgãos-alvo.
+- **Potencial de repouso**: cerca de -70 mV, mantido pela bomba de sódio e potássio, com mais sódio fora e mais potássio dentro.
+- **Potencial de ação**: tudo ou nada; entra sódio (despolariza até +30 mV) e sai potássio (repolariza).
+- **Condução**: contínua (cerca de 1 m/s) ou saltatória nos nódulos de Ranvier, mais rápida e econômica; anestésico local bloqueia canais de sódio.
+- **Sinapses**: elétrica por junções gap (rápida e rara); química por neurotransmissor e canais de cálcio, com excitação ou inibição.
+- **Neurotransmissores**: acetilcolina (encerrada pela acetilcolinesterase), noradrenalina, dopamina, serotonina (depressão), GABA (ansiolítico), óxido nítrico; opioides são neuromoduladores da dor.
 
-**Notas do agente:** nenhuma
+**Notas do agente:** O material descreve o retorno do potencial a "-90 mV" na quarta fase, valor abaixo do repouso (-70 mV, hiperpolarização), o que é ambíguo: foi mantido apenas -70 mV como repouso. Os dados de bomba de sódio e potássio (3 e 2) foram acrescentados por consenso técnico. Figuras foram descartadas.
 
 Critérios: [ ] cobertura  [ ] correção  [ ] originalidade  [ ] clareza  [ ] tamanho/formato
 
-## S0054 · Língua Portuguesa · Aula 06 — Pontuação
-Trecho `lingua-portuguesa/a06/s01` · PDF: 007 - Aula 06 Pontuação.pdf · págs. 3–15 · analítico: 768 palavras (teto 1950) · sintético: 10 pontos
+## S0381 · Biologia · Aula 01 — Histologia
+Trecho `biologia/a01/s02` · PDF: 002 - Aula 01 Histologia.pdf · págs. 19–34 · analítico: 856 palavras (teto 2000) · sintético: 11 pontos
 
 **Analítico (início):**
-A pontuação constitui um sistema de marcas gráficas orientado pela organização sintática da oração e pelas intenções semânticas do enunciador. O trecho aborda os fundamentos da ordem direta e a proibição de cisão entre termos essenciais, desconstrói o mito da correspondência entre vírgula e respiração, examina as regras de isolamento de adjuntos adverbiais deslocados (curtos e longos) e detalha o emprego da vírgula na enumeração de termos de mesma função sintática.
+Este trecho trata do tecido conjuntivo: características gerais, tecido conjuntivo propriamente dito (frouxo e denso), tecidos especiais (areolar, adiposo, reticular), tecido fluido (sangue e linfa) e tecidos de sustentação (cartilagem e osso).
 
-### Fundamentos da Pontuação e a Ordem Direta
+### Características gerais
 
-A estrutura canônica da sentença em língua portuguesa organiza-se pelo alinhamento SuVeCA (Sujeito + Verbo + Complementos + Adjuntos). Nesse arranjo natural e contínuo, **é proibido o emprego de vírgula simples separando termos sintaticamente imediatos**:
-- Não se separa o sujeito de seu respectivo predicador verbal (*O comandante determinou a prontidão*, e jamais com vírgula intermediária).
-- Não se separa o verbo de seus complementos verbais diretos ou indiretos (*O perito analisou as evidências*).
-- Não se separa o verbo de seu predicativo (*O cenário continuava crítico*).
-- Não se separa o nome de seu complemento nominal ou adjunto adnominal restritivo (*A aprovação do projeto trouxe alívio*).
+O tecido conjuntivo conecta o epitélio ao resto do corpo. Origina-se do **mesoderma**, passando pelo **mesênquima**, tecido primitivo cujas **células mesenquimais** persistem como células-tronco. Tem **três componentes**: células especializadas, **substância fundamental** (glicosaminoglicanas e proteoglicanas, sem fibras) e **fibras proteicas extracelulares** (colágeno, elastina, fibras reticulares). Substância fundamental e fibras formam a **matriz extracelular**. Ao contrário do epitélio, é **bastante vascularizado**.
 
-Quando um termo acessório ou explicativo é introduzido no meio dessa cadeia direta, ele deve ser compulsoriamente **isolado por dupla pontuação** (par de vírgulas, travessões ou parênteses), resguardando a integridade do fluxo sintático principal: *O comandante, sem hesitar…
+Funções: sustentar e estruturar, transportar fluidos, proteger órgãos, envolver e conectar tecidos, armazenar energia como triglicérides e defender o corpo. As células são **residentes** (fibroblastos, macrófagos, mastócitos, células mesenquimais, osteócitos, condrócitos, adipócitos) ou **transitórias**, vindas do sangue (neutrófilos, linfócitos). Apresenta-se como **propriamente dito**, **fluido (sangue)** e **de sustentação**; alguns autores citam os especiais (mucoso, elástico, adiposo, reticular).
+
+### Conjuntivo propriamente dito
+
+É o mais comum (pele, ao redor e dentro dos órgãos, paredes de vasos). A matriz é como um gel. Células:
+
+- **Fibroblastos**: sempre presentes; produzem compon…
 
 **Sintético:**
-- **Ordem canônica SuVeCA**: Alinhamento direto que interdita o uso de vírgula isolada entre núcleos funcionais contíguos.
-- **Vedação sujeito e predicado**: Proibição categórica de cisão pontual entre o sujeito e sua respectiva locução verbal regente.
-- **Isolamento de intercalações**: Segmentos explicativos que rompem o fluxo direto exigem demarcação por vírgulas emparelhadas.
-- **Marcador sintático objetivo**: A pontuação demarca funções gramaticais precisas, rechaçando noções subjetivas de respiração pulmonar.
-- **Efeitos semânticos da vírgula**: A modulação das vírgulas distingue vocativos de apostos e restrições de comentários gerais.
-- **Adjuntos adverbiais longos deslocados**: Estruturas de três ou mais palavras ou orações adverbiais antepostas exigem vírgula imperativa.
-- **Adjuntos adverbiais curtos**: Advérbios breves antepostos tornam o emprego do sinal de pontuação meramente facultativo.
-- **Série enumerativa**: Emprego da vírgula para separar termos simétricos investidos da mesmíssima destinação gramatical.
-- **Fechamento de enumerações**: A introdução da conjunção *e* antes do último membro sela a conclusão exaustiva da relação.
-- **Polissíndeto coordenativo**: A reiteração sucessiva de conectivos aditivos legitima o uso sistemático da vírgula intercalar.
+- **Conjuntivo**: origem no mesoderma e no mesênquima; células, substância fundamental e fibras; vascularizado; funções de sustentação, transporte, proteção, reserva e defesa.
+- **Células**: fibroblasto produz colágeno; macrófago destrói invasores; mastócito tem histamina (inflamação) e heparina (anticoagulante); plasmócito produz anticorpos; adipócito guarda triglicérides.
+- **Fibras**: colágeno (resistência), reticulares (rede em fígado e baço) e elásticas (elastina, em pulmões).
+- **Frouxo × denso**: frouxo tem muitas células e poucas fibras (preenchimento); denso modelado forma tendões, ligamentos e cápsulas; não modelado resiste a forças em várias direções.
+- **Adiposo**: branco do adulto armazena energia e isola; marrom, com muitas mitocôndrias, gera calor e predomina em bebês.
+- **Areolar e reticular**: areolar é frouxo sob a pele, com elastina; reticular preenche baço, fígado, linfonodos e medula óssea.
+- **Sangue**: plasma e elementos figurados; hemácia anucleada com hemoglobina; leucócitos granulócitos (neutrófilo, eosinófilo, basófilo) e agranulócitos (linfócito, monócito); plaquetas vêm do megacariócito.
+- **Cartilagem**: condrócitos em lacunas, avascular, nutrida pelo pericôndrio; hialina (a mais comum, colágeno II), elástica (orelha, epiglote) e fibrosa (colágeno I, discos); basófila.
+- **Crescimento da cartilagem**: intersticial no início e aposicional depois; grupos isógenos indicam divisão interna.
+- **Osso**: hidroxiapatita mais colágeno; osteoblasto secreta, osteoclasto reabsorve, osteócito mantém; remodela-se e regenera; acidófilo.
+- **Estrutura óssea**: compacto na cortical, esponjoso nas epífises, medula na diáfise; ósteon com canais de Havers e Volkmann; disco epifisário alonga o osso.
 
-**Notas do agente:** nenhuma
+**Notas do agente:** Figuras e corte histológicos foram descartados. O texto afirma que o osso adulto é lamelar e que o do feto é "primário"; o resumo segue essa nomenclatura.
 
 Critérios: [ ] cobertura  [ ] correção  [ ] originalidade  [ ] clareza  [ ] tamanho/formato

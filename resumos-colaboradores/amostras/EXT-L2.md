@@ -1,177 +1,157 @@
 # Amostra de qualidade — EXT-L2
-19 resumos importados; 5 sorteados. Conferir cada um contra o PDF indicado.
+5 resumos importados; 5 sorteados. Conferir cada um contra o PDF indicado.
 
-## S0098 · Informática · Aula 08 — Utilização de ferramentas de texto do pacote Microsoft Office (Word)
-Trecho `informatica/a08/s06` · PDF: 009 - Aula 08 Utilização de ferramentas de texto do pacote Microsoft Office (Word).pdf · págs. 68–81 · analítico: 880 palavras (teto 2000) · sintético: 10 pontos
+## S0372 · Direito Administrativo · Aula 06 — Serviços públicos, conceito, classificação, regulamentação e controle, forma, me
+Trecho `direito-administrativo/a06/s01` · PDF: 007 - Aula 06 Serviços públicos, conceito, classificação, regulamentação e controle, forma, me.pdf · págs. 3–12 · analítico: 1056 palavras (teto 1500) · sintético: 11 pontos
 
 **Analítico (início):**
-A editoração documental avançada no Microsoft Word baseia-se na calibração dimensional das páginas, na geração automatizada de referências acadêmicas e na produção massificada de comunicações personalizadas. O trecho aborda de maneira sistemática os recursos das guias Layout, Referências e Correspondências, abrangendo margens, quebras de seção, sumários automáticos, notas de rodapé, índices remissivos e o fluxo técnico da Mala Direta.
-
-### Guia Layout: Dimensionamento de Página e Estruturação de Parágrafos
-
-A **Guia Layout** (denominada Layout da Página em versões legadas) estabelece a geometria espacial do documento:
-
-- **Grupo Configurar Página**:
-  - *Margens*: calibra as distâncias periféricas em opções predefinidas (Normal, Estreita, Moderada, Larga, Espelhada) ou personalizadas, permitindo definir a medianiz (espaço adicional reservado para encadernação).
-  - *Orientação*: define a rotação da folha entre **Retrato** (vertical) e **Paisagem** (horizontal).
-  - *Tamanho*: estipula as dimensões do papel (A4, Carta, Ofício, A5).
-  - *Colunas*: divide o texto contínuo em duas, três ou mais colunas verticais, com ajuste de largura e linhas divisórias.
-  - *Quebras*: engloba dois grupos fundamentais:
-    1. *Quebras de Página*: Quebra de Página comum, Quebra de Coluna e Quebra de Ajuste de Texto.
-    2. *Quebras de Seção*: fundamentais para permitir cabeçalhos independentes, numerações diferenciadas ou alternância entre Retrato e Paisagem no mesmo arquivo. Apresenta as modalid…
+### Conceituação Dogmática e Escolas Teóricas dos Serviços Públicos
+O regime jurídico dos serviços públicos no direito brasileiro assenta-se no art. 175 da Constituição Federal de 1988, que atribui originariamente ao Poder Público a incumbência de sua prestação, seja de forma direta, seja sob os regimes descentralizados de concessão ou permissão, mediante procedimento licitatório prévio. Historicamente, a delimitação conceitual do serviço público foi debatida por três vertentes doutrinárias:
+- Escola subjetivista: sustentava que o serviço público definia-se exclusivamente pela pessoa jurídica prestadora, considerando pública qualquer atividade desempenhada pelo Estado ou suas entidades. Essa tese restou superada porque o Estado também atua na exploração direta de atividade econômica em sentido estrito (art. 173 da CF), regida predominantemente pelo direito privado, ao mesmo tempo em que delega serviços públicos a particulares (concessionárias e permissionárias);
+- Escola material: buscava caracterizar o serviço público pelo conteúdo intrínseco da utilidade prestada, reputando essenciais certas atividades independentemente da previsão normativa. A teoria fracassou por sua fluidez conceitual e pela constatação de que atividades cruciais (como panificação ou produção farmacêutica privada) não se submetem ao regime de serviço público;
+- Escola formalista (legalista): corrente amplamente consagrada no ordenamento pátrio. Segundo essa matriz, é serviço público toda atividade materi…
 
 **Sintético:**
-- **Configuração da Página**: a guia Layout define Margens personalizadas, Orientação Retrato/Paisagem e formatos de folha como A4.
-- **Tipos de Quebras de Seção**: modalidades Próxima Página, Contínuo, Página Par e Ímpar viabilizam configurações estruturais distintas no documento.
-- **Recuo e Espaçamento de Parágrafo**: controla milimetricamente os recuos laterais e os espaçamentos verticais Antes e Depois do texto.
-- **Sumário Automático**: a guia Referências sintetiza a estrutura do arquivo a partir da hierarquia de estilos de Título.
-- **Notas de Rodapé e de Fim**: `Alt + Ctrl + F` ancora a nota no rodapé da página corrente, enquanto `Alt + Ctrl + D` posiciona no encerramento da obra.
-- **Índice Remissivo**: cataloga termos-chave marcados por `Alt + Shift + X` em uma lista alfabética ao final da publicação.
-- **Conceito de Mala Direta**: ferramenta da guia Correspondências que gera correspondências massificadas personalizando campos de variáveis.
-- **Estrutura da Mala Direta**: articula o Documento Principal com uma Fonte de Dados estruturada para gerar o Documento Mesclado final.
-- **Campos de Mesclagem**: são inseridos entre delimitadores `<<` e `>>`, sendo preenchidos pelos dados cadastrais da planilha ou banco.
-- **Finalização e Impressão**: o comando Concluir e Mesclar possibilita imprimir em lote, gerar novos arquivos ou enviar e-mails diretos.
+- A Constituição atribui ao Poder Público a titularidade originária dos serviços públicos essenciais.
+- O ordenamento jurídico pátrio adota a escola formalista para definir a atividade qualificada como serviço público.
+- A definição compõe substrato material de utilidade pública subordinado ao regime derrogatório de direito público.
+- A continuidade impede paralisações desmotivadas, autorizando suspensão temporária por inadimplemento após aviso prévio formal.
+- O postulado da modicidade tarifária assegura amplo acesso social aos serviços compatibilizando custos operacionais.
+- Serviços gerais indivisíveis atendem à coletividade indeterminada, sendo integralmente financiados pela arrecadação de impostos.
+- Serviços singulares fracionáveis facultam mensuração de consumo individualizado, admitindo remuneração por taxa ou tarifa.
+- A proibição de instituir taxas sobre serviços indivisíveis protege o regime tributário de custeio geral.
+- Atividades indelegáveis vinculam-se ao núcleo estatal de soberania e exercício de poder de polícia.
+- A execução direta compreende a atuação da administração direta e entidades integrantes da administração indireta.
+- A concessão e a permissão transferem a execução do serviço, mantendo a titularidade no ente concedente.
 
 **Notas do agente:** nenhuma
 
 Critérios: [ ] cobertura  [ ] correção  [ ] originalidade  [ ] clareza  [ ] tamanho/formato
 
-## S0102 · Informática · Aula 10 — Utilização de ferramentas de apresentação do pacote Microsoft Office (PowerPoint
-Trecho `informatica/a10/s05` · PDF: 011 - Aula 10 Utilização de ferramentas de apresentação do pacote Microsoft Office (PowerPoint.pdf · págs. 55–66 · analítico: 881 palavras (teto 1800) · sintético: 10 pontos
+## S0373 · Direito Administrativo · Aula 06 — Serviços públicos, conceito, classificação, regulamentação e controle, forma, me
+Trecho `direito-administrativo/a06/s02` · PDF: 007 - Aula 06 Serviços públicos, conceito, classificação, regulamentação e controle, forma, me.pdf · págs. 13–22 · analítico: 995 palavras (teto 1500) · sintético: 11 pontos
 
 **Analítico (início):**
-A condução, revisão e padronização estrutural de apresentações visuais no Microsoft PowerPoint fundamentam-se nas guias Apresentação de Slides, Revisão e Exibir, além de comandos avançados de teclado. O trecho aborda os modos de execução de slides, o Modo de Exibição do Apresentador, a auditoria ortográfica e colaborativa, a hierarquia do Slide Mestre, a organização de janelas e os principais atalhos operacionais da ferramenta.
+### Marco Regulatório e Espécies de Concessão de Serviços Públicos
+O arcabouço normativo das concessões e permissões no Brasil deriva da competência legislativa privativa da União para editar normas gerais de licitação e contratação (art. 22, XXVII, da CF) e do comando específico do art. 175 da Carta Política de 1988, regulamentado prioritariamente pela Lei 8.987/1995 (Lei Geral de Concessões). Posteriormente, o ordenamento jurídico foi enriquecido pela Lei 11.079/2004, que estruturou as Parcerias Público-Privadas (PPPs).
 
-### Guia Apresentação de Slides: Execução e Controle do Orador
-
-A **Guia Apresentação de Slides** gerencia o comportamento da exibição diante do público ou em ambientes virtuais:
-
-- **Grupo Iniciar Apresentação de Slides**:
-  - *Do Começo (`F5`)*: dispara a execução em tela inteira a partir do primeiro slide do arquivo.
-  - *Do Slide Atual (`Shift + F5`)*: inicia a exibição imediatamente a partir da tela em que o usuário está posicionado no modo de edição.
-  - *Apresentar Online (`Ctrl + F5`)*: transmite a sessão para espectadores remotos via navegador web.
-  - *Apresentação de Slides Personalizada*: agrupa uma seleção específica de slides para apresentar somente o subconjunto desejado sem alterar o arquivo original.
-- **Grupo Configurar**:
-  - *Configurar Apresentação de Slides*: define modos de reprodução, como apresentação por um orador (tela inteira), individual em janela ou modo quiosque automático interativo.
-  - *Ocultar Slide*: suprime slides específicos da reprodução formal sem apagá-los da estrutura.
-  - *Testar Intervalos*: grava o tempo de…
+Nesse cenário, a doutrina administrativista divide os contratos concessórios em três modalidades essenciais:
+- Concessão comum (ordinária ou tradicional): disciplinada pela Lei 8.987/1995, na qual o concessionário é remunerado substancialmente pelas tarifas pagas pelos usuários do serviço público, complementadas eventualmente por receitas acessórias ou alternativas previamente estipuladas no edital;
+- Concessão patrocinada: espécie de PPP prevista na Lei 11.079/2004, envolvendo a prestação de serviços públicos ou obras em que a tarifa cobrada dos usuários mostra-se insuficiente para amortizar os vultosos investimentos privados, ensejando contraprestação pecuniária adicional repassada pelo parceiro público (poder concedente) ao concessionário;
+- Concessão administrativa: outra espécie de PPP na qual a Administração Pública figura como usuária direta ou indireta dos serviços, assumindo a remuneração integral mediante contraprestação pecuniária estatal exclusi…
 
 **Sintético:**
-- **Disparo de Apresentações**: `F5` inicia a exibição do primeiro slide e `Shift + F5` parte do slide em edição corrente.
-- **Modo do Apresentador**: projeta apenas o slide limpo para a plateia e reserva anotações, cronômetro e prévias para o orador (`Alt + F5`).
-- **Configurações e Ocultação**: permite ocultar telas específicas da apresentação e calibrar tempos automatizados com Testar Intervalos.
-- **Auditoria de Texto**: a guia Revisão oferece Verificação Ortográfica (`F7`) e busca de termos equivalentes no Dicionário de Sinônimos (`Shift + F7`).
-- **Modos de Apresentação**: reúne o modo Normal para edição direta, Estrutura de Tópicos e a Classificação de Slides para ordenação panorâmica.
-- **Slide Mestre**: armazena o modelo padrão de temas, fontes, logotipos e planos de fundo que se repetem automaticamente na apresentação.
-- **Folheto Mestre e Anotações**: definem a padronização visual da impressão física de resumos e notas para oradores e participantes.
-- **Guias e Alinhamento**: controla a exibição de Réguas (`Shift + Alt + F9`), Linhas de Grade (`Shift + F9`) e modos monocromáticos de visualização.
-- **Criação de Slides**: `Ctrl + M` insere um novo slide na apresentação ativa, distinguindo-se de `Ctrl + O` de novo arquivo.
-- **Navegação em Tela Cheia**: teclas `Enter` e barra de espaço avançam slides, `Backspace` recua e `Esc` encerra a reprodução.
+- As normas gerais de concessão e permissão de serviços decorrem de competência privativa legislativa federal.
+- A concessão ordinária tradicional viabiliza a amortização dos investimentos por tarifas arrecadadas dos usuários.
+- Concessões patrocinadas integram cobrança tarifária com contraprestação pecuniária do parceiro público concedente.
+- A concessão administrativa consiste na prestação de utilidades contratada integralmente pelo erário governamental.
+- O contrato de concessão exige licitação prévia obrigatória nas modalidades concorrência ou diálogo competitivo.
+- A concessão admite exclusivamente como delegatários pessoas jurídicas formalizadas ou consórcios de empresas.
+- A permissão constitui contrato administrativo de adesão, celebrado a título precário com pessoa física ou jurídica.
+- A autorização de serviço configura ato administrativo unilateral discricionário, direcionado a utilidades excepcionais ou transitórias.
+- O concessionário executa as atividades delegadas por sua conta e risco mediante fiscalização permanente do concedente.
+- O ordenamento assegura a preservação do equilíbrio econômico-financeiro diante de variações extraordinárias supervenientes.
+- A titularidade originária dos serviços remanesce inalienável no Poder Público durante toda a vigência contratual.
 
 **Notas do agente:** nenhuma
 
 Critérios: [ ] cobertura  [ ] correção  [ ] originalidade  [ ] clareza  [ ] tamanho/formato
 
-## S0110 · Informática · Aula 07 — Utilização de ferramentas de planilha do pacote LibreOffice (Calc)
-Trecho `informatica/a07/s05` · PDF: 008 - Aula 07 Utilização de ferramentas de planilha do pacote LibreOffice (Calc).pdf · págs. 50–64 · analítico: 874 palavras (teto 2000) · sintético: 10 pontos
+## S0374 · Direito Administrativo · Aula 06 — Serviços públicos, conceito, classificação, regulamentação e controle, forma, me
+Trecho `direito-administrativo/a06/s03` · PDF: 007 - Aula 06 Serviços públicos, conceito, classificação, regulamentação e controle, forma, me.pdf · págs. 23–32 · analítico: 911 palavras (teto 1500) · sintético: 11 pontos
 
 **Analítico (início):**
-O cálculo condicional, a formatação textual e a manipulação temporal no LibreOffice Calc constituem um dos tópicos mais frequentes em provas de concursos públicos. O trecho aborda as funções lógicas fundamentais, o processamento de sequências alfanuméricas, as funções de data e hora cronológicas, a auditoria de fórmulas por meio da Ferramenta Detetive e os atalhos de navegação e formatação rápida do aplicativo de planilhas de código aberto.
+### O Procedimento Licitatório Prévio e os Critérios de Julgamento
+A celebração de contratos de concessão de serviços públicos, com ou sem prévia execução de obra, subordina-se à realização compulsória de procedimento licitatório prévio (art. 175 da CF e art. 14 da Lei 8.987/1995). Diferentemente do regime geral de contratos administrativos ordinários, na disciplina das concessões e permissões não se admitem hipóteses de dispensa ou inexigibilidade de licitação, vigendo regra imperativa e irrestrita de competição pública.
 
-### Funções Lógicas: Avaliação Proposicional e Condicionais
+A escolha da proposta mais vantajosa orienta-se por critérios de julgamento objetivos estipulados no art. 15 da Lei Geral de Concessões:
+- Menor valor da tarifa do serviço público a ser prestado;
+- Maior oferta pecuniária pela outorga, quando o poder concedente cobra pelo direito de explorar o serviço;
+- Combinação, dois a dois, dos critérios anteriores com a melhor oferta pela outorga após qualificação técnica; só vale se prevista no edital, com regras e fórmulas precisas de avaliação econômico-financeira;
+- Melhor proposta técnica, com preço fixado no edital;
+- Melhor técnica combinada com a menor tarifa ou com a maior oferta pela outorga;
+- Melhor oferta de pagamento pela outorga depois da qualificação das propostas técnicas.
 
-O Calc oferece operadores lógicos que testam declarações e ramificam o fluxo de cálculo:
-
-- **Função `E(prop1; prop2; ...)`**: opera a conjunção lógica estrita. Devolve `VERDADEIRO` apenas se **todas** as proposições forem verdadeiras; se uma única condição for falsa, o retorno é `FALSO`.
-- **Função `OU(prop1; prop2; ...)`**: opera a disjunção lógica. Retorna `VERDADEIRO` se pelo menos uma condição for verdadeira; apenas se todas as variáveis resultarem em falsidade o resultado final será `FALSO`.
-- **Função `NÃO(proposição)`**: efetua a inversão booleana, transformando `VERDADEIRO` em `FALSO` e vice-versa.
-- **Função `SE(teste_lógico; valor_se_verdadeiro; [valor_se_falso])`**: ramifica o resultado da célula com base em um critério condicional.
-  - Sintaxe tripartite: primeiro termo avalia o teste relacional (`>`, `<`, `=`, `<>`, `>=`, `<=`); segundo termo é retornado caso o teste seja satisfeito; terceiro termo é exibido se o teste falhar.
-  - Aninhamento de funções: quando há …
+Em igualdade de condições, prefere-se a empresa brasileira (art. 15, § 4º), e o poder concedente recusa propostas manifestamente inexequíveis ou financeiramente incompatíveis com os objetivos da licitação (art. 15, § 3º). A outorga…
 
 **Sintético:**
-- **Operadores Lógicos E e OU**: a função `E` requer veracidade unânime e `OU` satisfaz-se com ao menos uma condição afirmativa.
-- **Estrutura Condicional SE**: avalia a premissa relacional devolvendo o segundo elemento em caso positivo ou o terceiro em caso negativo.
-- **Junção de Textos**: a função `CONCATENAR` e o caractere comercial `&` fundem termos distribuídos em células diferentes.
-- **Extração de Segmentos**: `ESQUERDA` e `DIREITA` recolhem um número pré-determinado de caracteres das bordas das palavras.
-- **Conversão de Caixa Tipográfica**: `MAIÚSCULA` e `MINÚSCULA` nivelam os caracteres; `PRI.MAIÚSCULA` capitaliza apenas as iniciais.
-- **Datas do Sistema**: a função `HOJE()` fornece a data e `AGORA()` fornece a data acompanhada da hora exata da máquina.
-- **Componentes de Calendário**: `DIA`, `MÊS` e `ANO` isolam elementos cronológicos específicos, enquanto `DIA.DA.SEMANA` numera de 1 a 7.
-- **Ferramenta Detetive**: exibe graficamente precedentes e dependentes de fórmulas, não tendo relação com proteção ou senhas.
-- **Atalhos de Movimentação**: `Ctrl + Home` retorna à célula `A1`, `F2` edita a célula e `Ctrl + F2` aciona o assistente de fórmulas.
-- **Formatos Numéricos Rápidos**: `Ctrl + 1` formata células; `Ctrl + Shift + 4` define moeda e `Ctrl + Shift + 5` aplica porcentagem.
+- A concessão e a permissão de serviços públicos demandam licitação prévia e formal sem hipóteses de dispensa.
+- Critérios objetivos de julgamento avaliam menor tarifa, maior oferta de outorga ou propostas técnicas articuladas.
+- O edital pode admitir inversão procedimental das fases examinando unicamente a habilitação do vencedor da proposta.
+- Cláusulas essenciais obrigatórias estipulam prazo determinado, bens reversíveis e diretrizes de revisão tarifária.
+- A legislação autoriza cláusula de arbitragem em língua portuguesa para dirimir divergências contratuais no território nacional.
+- O serviço adequado exige simultaneamente regularidade, continuidade, eficiência, segurança, atualidade, generalidade, cortesia e modicidade.
+- A concessionária tem o encargo primordial de manter inventariados e protegidos os bens vinculados à concessão.
+- Agentes de fiscalização gozam de livre acesso permanente às instalações, dados contábeis e obras da concessionária.
+- A execução material de desapropriações e ônus indenizatórios cabem à concessionária quando previstos expressamente.
+- A concessionária responde objetivamente pelos danos provocados a usuários e terceiros decorrentes da operação do serviço.
+- As contratações de mão de obra e insumos da concessionária não vinculam solidariamente o poder público concedente.
 
 **Notas do agente:** nenhuma
 
 Critérios: [ ] cobertura  [ ] correção  [ ] originalidade  [ ] clareza  [ ] tamanho/formato
 
-## S0117 · Informática · Aula 11 — Utilização de ferramentas de apresentação do pacote LibreOffice (Impress)
-Trecho `informatica/a11/s02` · PDF: 012 - Aula 11 Utilização de ferramentas de apresentação do pacote LibreOffice (Impress).pdf · págs. 14–26 · analítico: 906 palavras (teto 1950) · sintético: 10 pontos
+## S0375 · Direito Administrativo · Aula 06 — Serviços públicos, conceito, classificação, regulamentação e controle, forma, me
+Trecho `direito-administrativo/a06/s04` · PDF: 007 - Aula 06 Serviços públicos, conceito, classificação, regulamentação e controle, forma, me.pdf · págs. 33–42 · analítico: 879 palavras (teto 1500) · sintético: 11 pontos
 
 **Analítico (início):**
-O LibreOffice Impress opera como a ferramenta de autoria e exibição de apresentações multimídia da suíte de escritório livre. O trecho aborda os componentes estruturais da interface, detalhando as seções da Barra Lateral, os indicadores da Barra de Status, a manipulação de miniaturas no Painel de Slides, os menus funcionais clássicos, a hierarquia do Slide Mestre e o conjunto de atalhos operacionais de controle e projeção.
+### Prerrogativas Fiscalizatórias e o Instituto da Intervenção na Concessão
+O poder concedente (União, Estados, Distrito Federal ou Municípios, diretamente ou mediante agências reguladoras autárquicas) titulariza a prerrogativa indelegável de regulamentar, normatizar e fiscalizar a prestação dos serviços públicos concedidos. No exercício desse controle, goza de amplo acesso aos livros contábeis, aos recursos operacionais e às instalações da concessionária, promovendo fiscalizações periódicas auxiliadas por comissões mistas com participação de representantes dos usuários.
 
-### Estrutura da Interface: Barra Lateral e Painel de Slides
-
-A área de trabalho do Impress é flanqueada por dois painéis dinâmicos essenciais para o fluxo de produção:
-
-#### Barra Lateral (Exibir > Barra Lateral)
-Localizada à direita da área central de edição, reúne controles rápidos organizados em sete seções temáticas verticais (sendo apenas uma expandida por vez):
-1. **Propriedades**: calibra formato do papel, orientação (retrato/paisagem), plano de fundo e distribuição dos leiautes de caixas de texto.
-2. **Transição de Slides**: define efeitos visuais entre a troca de telas, velocidade (lenta, média, rápida), avanço manual ou temporizado. O padrão de fábrica é *Sem Transição*.
-3. **Animação**: aplica efeitos de entrada, ênfase e saída a objetos isolados dentro do slide.
-4. **Slides Mestres**: aplica modelos predefinidos de páginas mestras à apresentação.
-5. **Estilos**: gerencia estilos de apresentação e estilos gráficos de formatação.
-6. **Galerias**: banco de ilustrações e símbolos visuais, inseridos como cópia estática ou vínculo dinâmico.
-7. **Nav…
+Entre as medidas mais drásticas postas à disposição da Administração Pública figura a intervenção (arts. 32 a 34 da Lei 8.987/1995):
+- Finalidade: medida assecuratória excepcional decretada para restabelecer a regularidade e adequação na prestação do serviço ou coibir infrações contratuais graves e reiteradas;
+- Formalização: veiculada imperativamente por decreto do Chefe do Poder Executivo, o qual deve discriminar expressamente o interventor nomeado, o prazo certo de duração da medida e os limites e objetivos específicos da atuação interventiva;
+- Processo de justificação e contraditório: instaurada a intervenção, o poder concedente dispõe do prazo preclusivo de trinta dias para instaurar processo administrativo visando comprovar as irregularidades causadoras da medida, assegurada a ampla defesa. Esse procedimento deve ser concluído em até cento e oitenta dias, sob pena de nulidade absoluta da intervenção e…
 
 **Sintético:**
-- **Barra Lateral do Impress**: reúne sete seções verticais à direita (Propriedades, Transições, Animações, Mestres, Estilos, Galerias e Navegador).
-- **Painel de Slides**: exibe miniaturas sequenciais à esquerda, permitindo duplicar, reordenar ou ocultar slides.
-- **Slides Ocultos**: permanecem no arquivo com miniatura hachurada, sendo suprimidos da exibição perante a plateia.
-- **Barra de Status**: informa o slide corrente e total (`Slide 1/3`), coordenadas cartesianas, alterações pendentes e escala de zoom.
-- **Slide Mestre no Menu Exibir**: padroniza o modelo gráfico de planos de fundo, fontes e logomarcas para todos os slides derivados.
-- **Disparo de Projeção**: `F5` roda a exibição a partir do primeiro slide e `Shift + F5` inicia do slide ativo.
-- **Interrupção de Tela**: as teclas `B` ou ponto ativam tela preta; as teclas `W` ou vírgula acionam tela branca na projeção.
-- **Salto Numérico**: digitar o número do slide seguido de `Enter` desloca a apresentação imediatamente para a tela desejada.
-- **Atalhos de Edição**: `F2` edita textos, `Shift + F3` duplica elementos selecionados e `F7` aciona a verificação ortográfica.
-- **Gestão de Arquivos**: o Impress utiliza a Barra de Menus clássica, salvando o documento pelo comando `Ctrl + S`.
+- A intervenção administrativa assegura a continuidade temporária do serviço perante falhas operacionais da concessionária.
+- O decreto interventivo especifica compulsoriamente os limites materiais, a pessoa do interventor e a duração temporal da medida.
+- O procedimento apuratório da intervenção submete-se a prazos peremptórios legais para validação de seus efeitos jurídicos.
+- O advento do termo final extingue regularmente o vínculo contratual devolvendo a exploração ao Estado.
+- A encampação retoma antecipadamente a atividade por conveniência pública mediante autorização em lei e indenização prévia.
+- A decretação de caducidade sanciona o descumprimento culposo ou a insolvência operacional da concessionária privada.
+- A rescisão contratual fundamentada na mora estatal demanda ajuizamento de ação judicial transitada em julgado.
+- Bens reversíveis vinculados à concessão integram-se ao patrimônio público ao término da avença para garantir a continuidade.
+- O reajuste tarifário recompõe periodicamente a corrosão inflacionária ordinária através de índices contratuais pactuados.
+- A revisão tarifária restabelece o equilíbrio econômico-financeiro atingido por fatos imprevisíveis ou modificações estatais unilaterais.
+- Riscos mercadológicos habituais e ineficiências de gestão integram a álea ordinária atribuída privativamente à concessionária.
 
-**Notas do agente:** As páginas 19 a 23 do PDF apresentam os títulos dos menus da Barra de Menus (Arquivo, Editar, Exibir, Inserir, Formatar, Apresentação de Slides, Ferramentas, Janela, Ajuda) ilustrados exclusivamente por capturas de tela dos submenus sem texto corrido. O resumo estruturou as funções essenciais desses menus com base na interface padrão do Impress e na literatura técnica da suíte.
+**Notas do agente:** nenhuma
 
 Critérios: [ ] cobertura  [ ] correção  [ ] originalidade  [ ] clareza  [ ] tamanho/formato
 
-## S0125 · Informática · Aula 06 — Utilização de ferramentas de planilha do pacote Microsoft Office (Excel)
-Trecho `informatica/a06/s10` · PDF: 007 - Aula 06 Utilização de ferramentas de planilha do pacote Microsoft Office (Excel).pdf · págs. 137–151 · analítico: 753 palavras (teto 2000) · sintético: 10 pontos
+## S0388 · Direito Administrativo · Aula 08 — Responsabilidade civil do Estado
+Trecho `direito-administrativo/a08/s04` · PDF: 009 - Aula 08 Responsabilidade civil do Estado.pdf · págs. 32–41 · analítico: 1183 palavras (teto 1500) · sintético: 10 pontos
 
 **Analítico (início):**
-A interpretação visual, o realce condicional e a manipulação dinâmica de grandes matrizes de dados no Microsoft Excel formam as competências analíticas mais valorizadas em relatórios gerenciais e bancas de concurso. O trecho aborda a taxonomia completa dos tipos de gráficos, os mecanismos de formatação condicional baseados em regras, escalas e fórmulas, as ferramentas de classificação e filtros de tabela, bem como a estruturação avançada de tabelas dinâmicas.
+Este trecho trata da responsabilidade civil do Estado quando a lesão vem da função legislativa ou jurisdicional, do regime de notários e registradores e de uma série de teses firmadas pelos tribunais superiores sobre omissão, presos, fortuito e prescrição.
 
-### Representação Gráfica: Tipologias e Aplicações
+### Atos legislativos: regra e exceções
 
-Os gráficos transformam sequências numéricas tabulares em representações geométricas intuitivas:
+Como a edição de leis é expressão do poder de império, a **regra é a irresponsabilidade**: lei regular, ainda que restrinja direitos ou imponha obrigações, não gera indenização. A doutrina admite três exceções:
 
-- **Gráficos Comparativos e de Tendência**:
-  - *Colunas e Barras*: confrontam valores discretos entre categorias distintas (colunas dispõem-se verticalmente; barras, horizontalmente).
-  - *Linhas e Áreas*: ilustram a evolução e o comportamento contínuo de grandezas ao longo do tempo (áreas preenchem a região abaixo da linha com cor).
-  - *Pizza e Rosca*: retratam a participação percentual de partes componentes em relação a um total fechado (100%). O formato rosca permite exibir mais de uma série concêntrica.
-- **Gráficos Estatísticos e Analíticos**:
-  - *Dispersão (X, Y) e Bolhas*: correlacionam duas variáveis numéricas contínuas (e uma terceira dimensão de volume no gráfico de bolhas).
-  - *Histograma e Gráfico de Caixa (Boxplot)*: exibem distribuições de frequência estatística; o boxplot evidencia medianas, quartis e valores atípicos (*outliers*).
-  - *Cascata (Waterfal…
+- **Lei inconstitucional**: só há dever de indenizar se a lei for declarada inconstitucional pelo órgão competente, em **controle concentrado**, e se o dano decorrer efetivamente do vício.
+- **Lei de efeitos concretos**: é lei só no sentido formal (segue o processo legislativo), mas sem generalidade e abstração, pois atinge destinatários certos, como um ato administrativo. Causando dano, aplica-se a responsabilidade extracontratual comum.
+- **Omissão legislativa**: hipótese estrita. Para Carvalho Filho, exige que a Constituição tenha fixado **prazo** para editar a norma; o Judiciário reconhece a mora e, se a lei não vier em prazo razoável, o Estado pode ser responsabilizado. Se houve medida provisória ou ao menos projeto de lei apresentado, não há responsabilidade, ainda que a lei final saia fora do prazo.
+
+### Atos jurisdicionais
+
+Também aqui a **regra é a ausência de responsabilidade objetiva** pelos atos judiciais regulares. As exceções são:
+
+- **Erro judiciário** e **pri…
 
 **Sintético:**
-- **Tipologias de Gráficos**: colunas e barras comparam categorias, pizza/rosca expressam partes de um todo, e cascata ilustra adições e subtrações cumulativas.
-- **Gráficos Estatísticos**: histograma reflete distribuições de frequência e boxplot mapeia medianas, quartis e valores atípicos.
-- **Recursos de Formatação Condicional**: realça células por parâmetros de valor, preenche barras de dados proporcionais e aplica escalas térmicas de cor.
-- **Conjuntos de Ícones**: distribui indicadores gráficos, semáforos ou setas direcionais com base em faixas percentuais da amostra.
-- **Regras com Fórmulas Personalizadas**: utiliza equações com funções e referências para formatar células dependentes de outras coordenadas.
-- **Gestão de Regras de Formatação**: organiza a hierarquia de precedência de estilos e remove regras sobrepostas na planilha.
-- **Ordenação Multinível**: classifica tabelas por ordem alfabética, cronológica, numérica, cores de célula ou listas customizadas.
-- **Mecanismo de Filtros**: oculta temporariamente da visualização as linhas que não cumprem o critério, sem deletar registros do arquivo.
-- **Estrutura de Tabelas Dinâmicas**: divide campos analíticos nos quadrantes de Filtros, Linhas, Colunas e Valores para cruzamento rápido.
-- **Funções de Resumo em Dinâmicas**: agrega variáveis quantitativas com a função Soma por padrão, permitindo alternar para Média ou Contagem.
+- **Atos legislativos**: regra de irresponsabilidade; o Estado indeniza por lei declarada inconstitucional em controle concentrado, por lei de efeitos concretos e por omissão em mora reconhecida pelo Judiciário quando a Constituição fixou prazo.
+- **Atos jurisdicionais**: responsabilidade objetiva só para erro judiciário e prisão além do tempo da sentença, ambos na esfera penal, e para dolo ou fraude do juiz (art. 143 do CPC, com regresso contra ele).
+- **Prisão cautelar**: absolvição posterior não gera indenização se a prisão foi regular; gera se foi ilegal ou recaiu sobre pessoa sem envolvimento.
+- **Notários e registradores (Tema 777)**: o Estado responde de forma primária e objetiva; o regresso contra o titular, por dolo ou culpa, é um dever e a responsabilidade dele é subjetiva.
+- **Dupla garantia (Tema 940)**: a vítima aciona o Estado ou a prestadora de serviço público, e não o agente, que só responde em regresso.
+- **Foragido (Tema 362)**: sem nexo causal direto entre a fuga e o crime, não há responsabilidade objetiva do Estado.
+- **Presos**: o Estado responde pela morte de detento quando viola o dever específico de proteção e indeniza condições degradantes do presídio, sem invocar reserva do possível.
+- **Fogos de artifício (Tema 366)**: exige violação de dever específico de agir, como licença sem cautelas ou ciência da irregularidade.
+- **Fortuito**: o interno (risco da atividade) mantém o dever de indenizar; o externo (assalto em coletivo, mal súbito) rompe o nexo.
+- **Prescrição**: 5 anos contra a Fazenda (Decreto 20.910/1932); tortura na ditadura e dano ambiental são imprescritíveis.
 
-**Notas do agente:** nenhuma
+**Notas do agente:** Conferir a numeração dos temas de repercussão geral citados (365, 362, 366, 512, 777, 940, 1.055). Sobre o art. 143 do CPC: o texto legal diz que o juiz responde regressivamente; o material entende que o Estado responde de forma objetiva, com regresso contra o magistrado.
 
 Critérios: [ ] cobertura  [ ] correção  [ ] originalidade  [ ] clareza  [ ] tamanho/formato

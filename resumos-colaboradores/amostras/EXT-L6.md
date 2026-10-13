@@ -1,149 +1,133 @@
 # Amostra de qualidade — EXT-L6
-112 resumos importados; 5 sorteados. Conferir cada um contra o PDF indicado.
+20 resumos importados; 5 sorteados. Conferir cada um contra o PDF indicado.
 
-## S0533 · Língua Espanhola · Aula 00 — Sinais de Pontuação. Alfabeto. Leitura e tradução de textos
-Trecho `lingua-espanhola/a00/s01` · PDF: 001 - Aula 00 Sinais de Pontuação. Alfabeto. Leitura e tradução de textos.pdf · págs. 3–17 · analítico: 723 palavras (teto 2000) · sintético: 6 pontos
+## S0361 · Língua Espanhola · Aula 07 — Adjetivos
+Trecho `lingua-espanhola/a07/s02` · PDF: 008 - Aula 07 Adjetivos.pdf · págs. 19–30 · analítico: 445 palavras (teto 1800) · sintético: 7 pontos
 
 **Analítico (início):**
-O curso de espanhol para concursos prioriza leitura e compreensão de textos, pois muitas questões dependem da interpretação. A gramática é estudada como instrumento para resolver essas tarefas, junto a exercícios comentados e treino de vocabulário. O edital citado abrange determinantes, substantivos, adjetivos, pronomes, verbos, advérbios, preposições, conjunções, acentuação, relações lexicais e divergências entre português e espanhol. O método inicial explora semelhanças entre as línguas, sem assumir que toda palavra parecida tenha o mesmo sentido.
+Adjetivos concordam com o substantivo e podem mudar de posição, forma e intensidade. A posição anteposta pode alterar o sentido, enquanto apócopes e comparativos seguem padrões próprios.
 
-### Primeiros passos de leitura
+### Concordância e posição
 
-O material exemplifica o método com um texto sobre as Ilhas Malvinas. Em vez de traduzir palavra por palavra, marque primeiro nomes próprios e números, que em geral dispensam tradução, depois palavras iguais ao português e, em seguida, formas semelhantes. Esse reconhecimento oferece uma ideia geral do tema antes de decifrar os elementos desconhecidos. Palavras como *son/nuestras/afirmación* lembram “são/nossas/afirmação”. A semelhança facilita, mas falsos cognatos exigem atenção; o contexto e o estudo gramatical completam a compreensão. A tradução usada durante o curso é livre e funcional, não uma tradução juramentada ou técnica.
+O adjetivo concorda em gênero e número com o substantivo: *coche bonito; silla bonita; hijos pequeños*. Quando se refere a vários substantivos de gêneros diferentes, o masculino plural é normalmente usado (*casas y coches nuevos*). Em geral, o adjetivo vem depois do nome ou após *ser/estar*: *un libro interesante; el libro es interesante*. Anteposto, pode ganhar ênfase e, em alguns casos, mudar de significado: *mujer pobre* significa sem recursos; *pobre mujer*, infeliz. *Amigo viejo* pode ser pessoa idosa; *viejo amigo*, amizade antiga. Gentílicos, formas e cores normalmente vêm após o substantivo (*queso francés, mesa cuadrada, gato negro*).
 
-### Alfabeto espanhol
+### Apócope
 
-O alfabeto gráfico é familiar ao falante de português, mas os nomes das letras devem ser reconhecidos em espanhol. Vogais: *a, e, i, o, u*. Entre os nomes consonantais listados: B = *be* (também *be alta/be larga*); C = *ce*; D = *de*; F = *efe*; G…
+Apócope é a redução da forma final de uma palavra, muitas vezes quando o adjetivo antecede o substantivo. Possessivos *mío, tuyo, suyo* podem reduzir-se a *mi, tu, su* antes do nome (*mi libro, tus casas, sus coches*). Indefinidos *alguno, ninguno, cualquiera* tornam-se *algún, ningún, cualquier* diante do substantivo (*algún niño, ningún forastero, cualquier hombre*). Numerais aparecem como *primer* e *tercer* diante de nome masculino singular; *ciento* reduz-se a *cien* em usos como *cien días*. *Santo* vira *san* antes de muitos nomes próprios masculinos (*San José*); *grande* reduz-se a *gran* antes de subs…
 
 **Sintético:**
-- O curso prepara para leitura e compreensão de textos em concursos, apoiada pela gramática e pelo vocabulário. Comece pelo tema: identifique nomes próprios/números, palavras iguais e depois palavras semelhantes; use o contexto para evitar falsos cognatos.
-- Alfabeto espanhol: nomes como B *be*, H *hache*, J *jota*, Ñ *eñe*, V *uve*, W *uve doble*, X *equis*, Y *i griega/ye* e Z *zeta*.
-- *Punto* encerra frase/parágrafo/texto e aparece em abreviaturas; *coma* separa enumeração, vocativo, conectores e lugar/data.
-- *Punto y coma* divide orações relacionadas ou itens complexos; *dos puntos* anuncia listas, explicações, citações e saudações formais. Reticências sugerem pausa, hesitação ou omissão.
-- *Comillas* marcam citação/título/fala; *guion* é hífen e *raya* é travessão para inciso ou diálogo.
-- Espanhol abre e fecha pergunta/exclamação: **¿...?**, **¡...!**. Parênteses inserem explicação; colchetes podem indicar esclarecimento ou omissão ([...]).
+- **Concordância**: adjetivo acompanha gênero e número do substantivo; em grupo misto, normalmente usa masculino plural (*casas y coches nuevos*).
+- **Posição**: geralmente depois do nome. Anteposição pode enfatizar ou mudar sentido: *mujer pobre* (sem dinheiro) / *pobre mujer* (infeliz).
+- **Apócope**: *mío → mi; alguno → algún; ninguno → ningún; cualquiera → cualquier; primero → primer; grande → gran; bueno → buen; malo → mal* em contextos apropriados.
+- **Comparativos**: igualdade *tan...como*; superioridade *más...que*; inferioridade *menos...que*.
+- **Superlativo**: intensificador (*muy, sumamente*) ou sufixo *-ísimo/-érrimo* (*bellísima*).
+- Formas orgânicas: *bueno/mejor/óptimo; malo/peor/pésimo; pequeño/menor/mínimo; bajo/inferior/ínfimo; grande/mayor/máximo*. Memorize-as como séries próprias.
+- Gentílicos, cores e formas normalmente aparecem depois do nome (*queso francés, gato negro*).
 
-**Notas do agente:** O segmento inclui um texto de prova sobre Malvinas e tabelas ilustradas de alfabeto/pontuação; sintetizei o método de leitura e os usos descritos. A descrição de alguns usos pontuacionais é geral, conforme a introdução da aula, e não substitui gramática normativa completa.
+**Notas do agente:** nenhuma
 
 Critérios: [ ] cobertura  [ ] correção  [ ] originalidade  [ ] clareza  [ ] tamanho/formato
 
-## S0615 · Química · Aula 02 — 1.3 Classificação Periódica dos Elementos:- Propriedade dos elementos: gases nob
-Trecho `quimica/a02/s03` · PDF: 003 - Aula 02 1.3 Classificação Periódica dos Elementos_- Propriedade dos elementos_ gases nob.pdf · págs. 55–70 · analítico: 635 palavras (teto 2000) · sintético: 8 pontos
+## S0402 · Língua Espanhola · Aula 03 — Contrações
+Trecho `lingua-espanhola/a03/s01` · PDF: 004 - Aula 03 Contrações.pdf · págs. 4–11 · analítico: 640 palavras (teto 1200) · sintético: 7 pontos
 
 **Analítico (início):**
-As propriedades periódicas variam com a posição do elemento na tabela; tendências resultam principalmente da carga nuclear efetiva e do número de camadas eletrônicas.
+O espanhol tem apenas duas contrações obrigatórias entre preposição e artigo: **a + el = al** e **de + el = del**. Em português há mais combinações, como “do”, “na” e “pela”; por isso, quem lê em português pode esperar que preposição e artigo se fundam também em espanhol. O trecho alerta que, salvo *al* e *del*, as palavras aparecem separadas. Essa diferença é central para segmentar e traduzir frases.
 
-### Tamanho e energia de ionização
+### Formação e emprego
 
-Raio atômico estima o tamanho do átomo. Em uma família, cresce de cima para baixo porque são acrescentadas camadas. Em um período, tende a diminuir da esquerda para a direita: o número de prótons aumenta, enquanto os elétrons adicionados permanecem na mesma camada principal, elevando a atração efetiva pelo núcleo. Portanto, o maior raio tende a estar no canto inferior esquerdo.
+Use *al* quando a preposição *a* vem imediatamente antes do artigo masculino singular *el*: *Viajo al norte* (“Viajo ao norte”); *Escribimos una carta al director* (“Escrevemos uma carta ao diretor”). A forma *del* reúne *de* e *el*: *Vuelvo del mercado* (“Volto do mercado”); *una ciudad del sur* (“uma cidade do sul”). Em exemplos com plural ou artigo feminino, não se cria nova contração: *a las víctimas*, *de la ciudad*, *de los libros*. A proximidade das palavras não basta para fundi-las; é preciso reconhecer exatamente a sequência preposição + *el*.
 
-Íons não têm necessariamente o mesmo raio de seus átomos. Cátions costumam ser menores que o átomo neutro correspondente; perder elétrons reduz repulsão eletrônica e pode eliminar uma camada. Ânions costumam ser maiores, pois elétrons adicionados aumentam repulsão. Em uma série isoeletrônica, todos têm igual número de elétrons: quanto maior a carga nuclear (mais prótons), menor o raio. Entre F−, Na+ e Mg2+, por exemplo, Mg2+ é o menor.
+Há uma exceção importante: quando *El* integra um nome próprio, a contração é desfeita. Escreve-se *Aeropuerto de El Cairo* e *irán a El Escorial*, preservando o artigo que pertence ao topônimo. O mesmo princípio aparece em títulos de obras, como *El Alcalde de Zalamea*: o artigo inicial do título não se incorpora à preposição antecedente. Assim, examine se *El* é apenas o artigo comum que acompanha um substantivo ou parte inseparável da denominação própria.
 
-Energia de ionização é a energia necessária para retirar um elétron de um átomo isolado no estado gasoso. Em geral cresce para cima e para a direita, acompanhando menor raio e maior atração nuclear efetiva. Retiradas sucessivas exigem mais energia; um salto grande sinaliza que, após remover elétrons de valência, começa-se a retirar elétron de uma camada interna.
+### Ler os encontros sem contrair
 
-### Afinidade e eletronegatividade
-
-Afinidade eletrônica descreve a variação de energia quando um átomo gas…
+Ao interpre…
 
 **Sintético:**
-- **Raio**: cresce ao descer grupos e ao caminhar para a esquerda no período; mais camadas e menor atração efetiva explicam a tendência.
-- **Íons**: cátion perde tamanho e ânion tende a aumentar. Em isoeletrônicos, a espécie com maior número de prótons é menor.
-- **Ionização**: energia para retirar elétron de átomo gasoso; geralmente aumenta para cima e à direita. Um salto grande após remoções sucessivas aponta elétron de camada interna.
-- **Afinidade eletrônica**: acompanha a tendência de atrair elétron, mas possui exceções; identifique a convenção de sinal usada.
-- **Eletronegatividade**: atração pelos elétrons compartilhados cresce para cima e à direita; eletropositividade/característica metálica aumenta no sentido oposto.
-- **Fusão e ebulição**: padrões dependem da estrutura; em geral há máximos perto do centro do período e valores altos nos metais de transição.
-- **Estados a temperatura ambiente**: Br2 e Hg são líquidos; H2, N2, O2, F2, Cl2 e gases nobres são gasosos.
-- **Densidade/volume**: densidade tende a crescer para baixo e rumo ao centro; volume molar sólido tende a crescer para baixo e para as extremidades, com exceções.
+- Existem duas contrações espanholas: **a + el = al** (“ao”) e **de + el = del** (“do”).
+- Use *al* em *Viajo al norte* e *del* em *Vuelvo del mercado*; reconheça primeiro preposição e artigo.
+- As combinações com *la, los, las* e *lo* ficam separadas: *a la, de los, en el, por las*.
+- Ao traduzir, pode surgir uma contração em português mesmo que no texto espanhol as palavras estejam separadas.
+- Preserve o artigo quando *El* integra nome próprio: *de El Cairo* e *a El Escorial*.
+- *Al* contém o artigo masculino singular; não deve preceder nome feminino. Escreva *a la veterinaria*, mas *al veterinario*.
+- Para evitar erros, confira a preposição, o artigo, o gênero/número e se há nome próprio antes de fundir palavras.
 
-**Notas do agente:** Afinidade eletrônica aparece com convenções de sinal diferentes entre fontes; o resumo preserva a tendência qualitativa e alerta para a convenção, sem fixar uma lista numérica universal.
+**Notas do agente:** nenhuma
 
 Critérios: [ ] cobertura  [ ] correção  [ ] originalidade  [ ] clareza  [ ] tamanho/formato
 
-## S0636 · Química · Aula 06 — 1.5 Nomenclatura das substâncias. N.o de oxidação de um elemento, conhecida sua
-Trecho `quimica/a06/s03` · PDF: 007 - Aula 06 1.5 Nomenclatura das substâncias. N.o de oxidação de um elemento, conhecida sua .pdf · págs. 53–65 · analítico: 578 palavras (teto 1950) · sintético: 8 pontos
+## S0430 · Língua Espanhola · Aula 13 — “Silabeo”; “Sinonimia” e “antonimia”; “heterosemánticos”, “hete
+Trecho `lingua-espanhola/a13/s04` · PDF: 014 - Aula 13 (Somente em PDF) “Silabeo”_ “Sinonimia” e “antonimia”_ “heterosemánticos”, “hete.pdf · págs. 44–55 · analítico: 748 palavras (teto 1800) · sintético: 7 pontos
 
 **Analítico (início):**
-Ácidos e bases inorgânicos são abordados pela definição de Arrhenius, classificados por composição e comportamento e nomeados conforme suas fórmulas. Indicadores revelam o caráter ácido ou básico por mudança de cor.
+Falsos cognatos são palavras que se parecem com formas portuguesas, mas têm significado diferente; essa semelhança pode induzir uma tradução errada. Cognatos verdadeiros compartilham origem ou raiz e sentidos relacionados, mas a aparência, sozinha, não prova equivalência. O trecho apresenta um repertório extenso de vocábulos espanhóis e seus sentidos em português. O principal método é identificar o contexto e consultar o significado adequado, em vez de traduzir automaticamente pela forma parecida.
 
-### Ácidos: propriedades e classificação
+### Grupos de confusão frequente
 
-Ácido de Arrhenius libera H+ em solução aquosa. Soluções ácidas conduzem corrente por conter íons e apresentam pH abaixo de 7; pH = −log[H+] indica, em escala logarítmica, a concentração de H+. Em geral, ácidos reagem com alguns metais, podendo liberar H2. Exemplos industriais incluem H2SO4, importante em processos industriais e baterias; HCl, presente no suco gástrico e vendido como muriático; HNO3, usado na indústria; H3PO4, empregado em fertilizantes e bebidas; e HF, capaz de atacar vidro e que deve ser armazenado em recipientes plásticos apropriados. HCN é extremamente tóxico.
+Alguns itens são particularmente perigosos porque lembram palavras portuguesas de uso comum. *Año* significa ano, enquanto *ano* em espanhol remete a parte do corpo; *apellido* é sobrenome. *Embarazada* quer dizer grávida, não embaraçada. *Exquisito* pode significar refinado ou delicioso; *experto* é perito, e *espantoso* tem sentido de horrível/assustador. *Largo* significa comprido, e *ancho* significa largo na dimensão da largura. *Rato* é um momento, enquanto *ratón* é o animal. *Oficina* corresponde a escritório e *escritorio* a escrivaninha. *Carpeta* é pasta para papéis; *cartera* pode ser pasta ou bolsa, ao passo que *billetera* é carteira de dinheiro.
 
-Hidrácidos não contêm oxigênio; oxiácidos contêm. Classifique também pelo número de hidrogênios ionizáveis, não pelo total de H da fórmula. Em hidrácidos, todos os H podem ionizar; em oxiácidos, contam-se os H ligados a O. Por isso H3PO2 é monoprotônico e H3PO3 diprótico, embora as fórmulas apresentem mais H. Força depende do grau de ionização α: forte acima de 50%, moderado entre 5% e 50%, fraco abaixo de 5%, segundo a convenção do trecho. Para estimar força de oxiácidos, use O−H: resultado 3 sugere muito forte, 2 forte, 1 moderado e 0 fraco; é uma regra aproximada.
-
-Na nomenclatura, hidrácidos seguem “ácido + radical + ídrico” (HCl, ácido clo…
+Em alimentação e objetos, *aceite* significa azeite/óleo; *batata* é batata-doce e *patata* é batata; *pasta* pode ser macarrão e *pastel* é bolo. *Polvo* significa poeira, enquanto *pulpo* é polvo (animal). *Vaso* é copo e *taza* é xícara; *garrafa* é jarro, e *florero* é vaso para flores. …
 
 **Sintético:**
-- **Arrhenius**: ácido libera H+ em solução aquosa; base dissocia liberando OH− como ânion. Ácidos reduzem pH e bases o elevam.
-- **Classificação ácida**: hidrácido não tem O; oxiácido tem. Prótons ionizáveis são os H ligados a O nos oxiácidos, não todos os H da fórmula.
-- **Força**: relaciona-se ao grau de ionização α; no critério apresentado, forte >50%, moderado 5–50% e fraco <5%.
-- **Nomes de ácidos**: hidrácidos terminam em ídrico; oxiácidos usuais em ico/oso. Ânions correspondentes mudam ídrico→eto, ico→ato e oso→ito.
-- **Bases**: hidróxido de cátion; neutralização com ácido forma sal e água. Para metais de NOX variável, especifique a carga, como ferro(II) ou ferro(III).
-- **Classificação básica**: conte OH para mono-, di-, tri- ou tetrabase; avalie também dissociação e solubilidade.
-- **Indicadores**: alteram cor conforme o pH, cada um em faixa própria. Tornassol fica vermelho em ácido e azul em base; fenolftaleína fica rosa em meio básico.
-- **Aplicações**: H2SO4 é industrial e usado em baterias; HCl integra o suco gástrico; Mg(OH)2 é antiácido; NaOH/KOH são corrosivos.
+- **Falso cognato** se parece com palavra portuguesa, mas não tem o mesmo sentido; traduza pela frase, não pela aparência.
+- Exemplos: *embarazada* = grávida; *apellido* = sobrenome; *año* = ano; *largo* = comprido; *rato* = momento e *ratón* = rato.
+- Objetos/alimentos: *oficina* = escritório, *escritorio* = escrivaninha; *aceite* = azeite/óleo; *polvo* = poeira e *pulpo* = polvo; *vaso* = copo e *taza* = xícara.
+- Verbos: *asistir* = frequentar, *cancelar* = pagar, *contestar* = responder, *prender* = acender, *pegar* = colar/grudar.
+- Conectores e tempo: *sin embargo* = contudo, *todavía* = ainda, *en cuanto* = assim que, *mañana* = amanhã.
+- Outros contrastes: *billón* = trilhão, *propina* = gorjeta, *presunto* = suposto, *saco* = paletó.
+- Contextualize a palavra, considere sua função na frase e agrupe os pares difíceis para revisão; algumas formas têm mais de uma acepção.
 
-**Notas do agente:** Há inconsistências tipográficas em nomes e fórmulas nas tabelas (incluindo linha de hidróxido de cálcio indevidamente rotulada como magnésio). A fórmula Ca(OH)2 foi mantida conforme o contexto e a reação de formação descrita. A nomenclatura do ácido nítrico apareceu com sinal de carga indevido na extração; a fórmula usual HNO3 foi adotada.
+**Notas do agente:** O trecho é um glossário com cerca de 270 entradas. Selecionei exemplos representativos e de maior risco de interferência português-espanhol, mantendo os sentidos indicados no próprio material. A fonte contém entradas aparentemente inconsistentes ou traduções que dependem de contexto; não extrapolei para corrigir o inventário completo.
 
 Critérios: [ ] cobertura  [ ] correção  [ ] originalidade  [ ] clareza  [ ] tamanho/formato
 
-## S0643 · Química · Aula 20 — 3.4. Acidez e Basicidade em Compostos Orgânicos: - Ordem crescente e decrescente
-Trecho `quimica/a20/s01` · PDF: 021 - Aula 20 3.4. Acidez e Basicidade em Compostos Orgânicos_ - Ordem crescente e decrescente.pdf · págs. 12–24 · analítico: 548 palavras (teto 1950) · sintético: 8 pontos
+## S0443 · Língua Espanhola · Aula 10 — Números
+Trecho `lingua-espanhola/a10/s03` · PDF: 011 - Aula 10 Números.pdf · págs. 31–39 · analítico: 682 palavras (teto 1350) · sintético: 7 pontos
 
 **Analítico (início):**
-As teorias ácido-base descrevem transferência de próton ou de par eletrônico; a força de ácidos orgânicos depende da estabilidade de sua base conjugada e de fatores estruturais.
+Os numerais ordinais indicam posição numa sequência; os fracionários nomeiam partes de um todo; os multiplicativos expressam repetição de uma quantidade; e os coletivos designam um conjunto de número determinado. O trecho reúne formas espanholas e explica a leitura de números grandes, sobretudo a organização dos grupos de três algarismos. A distinção entre essas categorias permite escolher a palavra apropriada ao contexto, seja uma classificação, uma fração, uma proporção ou um agrupamento.
 
-### Três teorias ácido-base
+### Ordinais
 
-Arrhenius limita-se a solução aquosa: ácido aumenta H3O+ (frequentemente representado como H+) e base libera OH−. Ácidos moleculares ionizam na água; bases iônicas dissociam seus íons. Brønsted–Lowry amplia a definição: ácido doa próton e base o recebe. Após a transferência, o ácido forma sua base conjugada e a base forma seu ácido conjugado. Em AH+B⇌A−+BH+, AH/A− e B/BH+ são pares conjugados. Lewis amplia ainda mais: ácido recebe um par de elétrons e base doa um par; assim, bases com pares livres podem atacar espécies deficientes em elétrons mesmo sem transferência de H+.
-
-### Caráter ácido e básico em substratos
-
-Em compostos orgânicos, centros ricos em elétrons podem atuar como bases de Lewis. Ligações π de alcenos e alcinos doam densidade a eletrófilos; oxigênio de cetonas, éteres e álcoois também pode doar par livre. Centros que recebem par eletrônico são ácidos de Lewis; haloalcanos podem ter carbono eletrofílico, pois a ligação C–halogênio é polar e o haleto é grupo de saída.
-
-### Força ácida e fatores estruturais
-
-Ka mede a tendência de ionização; pKa=−log Ka, portanto menor pKa corresponde a ácido mais forte. A comparação mais segura pergunta qual estrutura deixa a base conjugada mais estável após perder H+. Entre HX do mesmo grupo, a ligação H–X fica mais fraca …
+Os ordinais concordam em gênero com o substantivo. Formas básicas: *primero/primera, segundo/segunda, tercero/tercera, cuarto/cuarta, quinto/quinta, sexto/sexta, séptimo/séptima, octavo/octava, noveno/novena* e *décimo/décima*. Para o primeiro e o terceiro, existem formas reduzidas diante de substantivo masculino, como *primer* e *tercer* (abreviadas 1.er e 3.er). Os compostos seguem o padrão *vigesimoprimero* (21º) e *trigésimo primero* (31º). A partir do 11º, aparecem variantes juntas ou separadas: *undécimo/decimoprimero/décimo primero*, *duodécimo/decimosegundo/décimo segundo*, seguindo combinações como *decimotercero* ou *décimo tercero*. Para o 20º, usa-se *vigésimo/vigésima*; dezenas seguintes incluem *trigésimo, cuadragésimo, quincuagésimo, sexagésimo, septuagésimo, octogésimo* e *nonagésimo*. Centenas incluem *centésimo, ducentésimo, tricentésimo, cuadringentésimo, quingentésimo, sexcentésimo, septingentésimo, octingentésimo* e *noningentésimo*; 1000º é *milésimo*. …
 
 **Sintético:**
-- **Arrhenius**: ácido aumenta H3O+ em água; base libera OH−. O conceito é restrito a meio aquoso.
-- **Brønsted–Lowry**: ácido doa próton e base aceita; após a reação surgem as bases e os ácidos conjugados correspondentes.
-- **Lewis**: ácido aceita par eletrônico e base o fornece. Alcenos/alcinos e oxigênios com pares livres podem atuar como bases; carbono de haloalcano pode ser eletrofílico.
-- **pKa**: pKa=−log Ka; quanto menor o pKa, maior a força ácida.
-- **Ligação e periodicidade**: H–X mais fraca facilita perda de H; para HX, acidez aumenta HF→HI. No mesmo período, maior eletronegatividade tende a estabilizar carga.
-- **Indução**: substituintes eletronegativos retiram elétrons e elevam acidez; efeito decai α>β>γ. Mais halogênios intensificam o efeito; alquilas doam e reduzem acidez.
-- **Ressonância**: dispersar carga negativa estabiliza a base conjugada e favorece acidez, desde que a carga fique em átomos capazes de acomodá-la.
-- **Anfoterismo**: espécie pode doar ou receber H+ conforme o reagente; água exemplifica os dois papéis.
+- **Ordinal** indica posição e concorda com o nome: *primero/primera, segundo/segunda, tercero/tercera, cuarto/cuarta*; há formas reduzidas *primer/tercer* e variantes para 11º e seguintes.
+- **Fracionário** representa partes: 1/2 *medio/la mitad*, 1/3 *tercio*, 1/4 *cuarto*, 1/100 *centésimo*; 3/4 pode ser *tres cuartos*.
+- **Multiplicativo** indica repetição: x2 *doble*, x3 *triple*, x4 *cuádruple*, x10 *décuplo*.
+- **Coletivos:** *dúo/par*, *trío*, *cuarteto*, *docena* (12), *decena* (10), *centena* (100), *milenio* (1000).
+- Para números grandes, separe em blocos de três dígitos da direita para a esquerda (645.302.078.540 = 645 | 302 | 078 | 540) e leia cada bloco conforme sua classe: 645 mil, 302 millones, 78 mil, 540.
+- *Mil millones* corresponde a bilhão; *billón* equivale a milhão de milhões. Não confunda escalas.
+- A conjunção *y* liga dezenas e unidades, não milhares e milhões.
 
-**Notas do agente:** O trecho cita HNO3 como espécie anfótera em exemplos de nível superior; essa afirmação depende das condições e do parceiro ácido-base, não devendo ser generalizada a toda reação. A tendência de força dos hidrácidos foi descrita qualitativamente, sem extrapolar valores tabelados.
+**Notas do agente:** O quadro de ordinais do material traz, no 12º feminino, a forma *decimosegundo* (masculina) onde se esperaria *decimosegunda*: possível erro de digitação. A tabela de escalas do material repete 10^15 para *trillón*; o valor correto é 10^18 (um trillón = milhão de billones). Não atribuí correção normativa além do necessário; consulte gramática de referência para dúvida ortográfica específica. A escala de *billón* foi explicitada conforme a tabela do material.
 
 Critérios: [ ] cobertura  [ ] correção  [ ] originalidade  [ ] clareza  [ ] tamanho/formato
 
-## S0760 · Química · Aula 19 — Isomeria plana; - Isomeria espacial;
-Trecho `quimica/a19/s01` · PDF: 020 - Aula 19 Isomeria plana_ - Isomeria espacial_.pdf · págs. 3–6 · analítico: 491 palavras (teto 600) · sintético: 9 pontos
+## S0456 · Língua Espanhola · Aula 06 — Substantivos
+Trecho `lingua-espanhola/a06/s02` · PDF: 007 - Aula 06 Substantivos.pdf · págs. 21–29 · analítico: 694 palavras (teto 1350) · sintético: 7 pontos
 
 **Analítico (início):**
-Isômeros têm a mesma fórmula molecular, mas diferem em como os átomos estão ligados ou organizados. Essa diferença pode alterar propriedades físicas, químicas e biológicas. Etanol e éter dimetílico, por exemplo, compartilham fórmula C2H6O, mas pertencem a funções diferentes e apresentam propriedades distintas. Isomeria plana (constitucional) identifica diferenças na estrutura representada em duas dimensões; isomeria espacial mantém a conectividade e compara arranjos no espaço, estudados em estereoquímica.
+O trecho aborda diferenças de gênero e número dos substantivos espanhóis e apresenta classificações semânticas e estruturais. Em leitura, o artigo que acompanha o nome é decisivo: a terminação nem sempre revela o gênero, e palavras parecidas podem mudar de gênero ao passar ao português. Para interpretar corretamente, observe artigo, contexto e eventual mudança de significado, em vez de confiar apenas na última letra.
 
-### Cinco tipos de isomeria plana
+### Gênero: invariáveis, epicenos e bigêneros
 
-Isomeria de cadeia ocorre quando os compostos mantêm a função, mas mudam o esqueleto carbônico: cadeia normal/ramificada, aberta/fechada ou homogênea/heterogênea. Exemplo: dois compostos C5H12, um linear e outro ramificado. A alteração da posição de heteroátomo entre carbonos também pode ser descrita como cadeia diferente quando a comparação altera homogeneidade.
+Substantivos **invariáveis** mantêm a mesma forma para homens e mulheres; o artigo identifica o gênero da pessoa: *el artista/la artista, el cónyuge/la cónyuge, el socialista/la socialista, el dentista/la dentista, el estudiante/la estudiante*. A palavra não muda, mas *el* e *la* indicam a referência masculina ou feminina.
 
-Isomeria de posição mantém função e tipo de cadeia, mas desloca insaturação, grupo funcional ou ramificação. Exemplos: propan-1-ol e propan-2-ol; pentenos com dupla em posições diferentes; ou cadeias com metila em posições diversas. Antes de classificar, confira se os nomes não descrevem a mesma molécula girada no papel: rotação não cria isômero.
+Nos **epicenos**, alguns nomes de animais conservam um gênero gramatical fixo para macho e fêmea. Para especificar sexo, acrescentam-se *macho* ou *hembra*: *el cocodrilo macho/hembra*, *el mosquito macho/hembra*, *la ballena macho/hembra*, *la tortuga macho/hembra* e *la perdiz macho/hembra*. Note que o artigo do substantivo permanece igual mesmo quando o animal referido é fêmea.
 
-Isomeria de função ocorre quando a mesma fórmula molecular corresponde a funções orgânicas diferentes. Casos recorrentes: álcool/éter, aldeído/cetona e ácido carboxílico/éster; compostos aromáticos podem apresentar álcool aromático/feno…
+Substantivos **bigêneros** mudam de significado quando se troca o artigo. Exemplos: *el capital* é dinheiro e *la capital* é cidade; *el cometa* é corpo celeste e *la cometa*, brinquedo que voa; *el cura* é sacerdote e *la cura*, ação de sarar; *el orden* indica disposição/sequência e *la orden*, uma ordem/mandato ou c…
 
 **Sintético:**
-- **Isômeros** têm fórmula molecular igual e estruturas/conectividades diferentes; propriedades podem divergir. Etanol e éter dimetílico são C2H6O, mas funções distintas.
-- **Cadeia**: muda esqueleto (linear/ramificado, aberto/cíclico ou homogêneo/heterogêneo).
-- **Posição**: mesma função/cadeia, mas desloca insaturação, grupo funcional ou ramificação. Rotacionar desenho não cria isômero.
-- **Função**: funções diferentes, p.ex. álcool/éter, aldeído/cetona e ácido/éster.
-- **Metameria**: redistribui carbonos em torno de heteroátomo intercalado em cadeia heterogênea, mantendo função.
-- **Tautomeria**: equilíbrio dinâmico aldeído-enol ou cetona-enol, por deslocamento de H e ligação pi.
-- Classifique conferindo primeiro fórmula e função, depois cadeia e posição.
-- Faça uma verificação final de conectividade: mesma fórmula, mas não o mesmo desenho rotacionado.
-- Tautômeros interconvertem em equilíbrio, diferentemente de isômeros constitucionais isolados sem esse equilíbrio descrito.
+- **Invariáveis:** uma forma para os dois gêneros; artigo diferencia (*el artista/la artista*).
+- **Epicenos:** gênero gramatical fixo; *macho/hembra* distingue sexo (*la tortuga macho/hembra*).
+- **Bigêneros:** artigo diferente muda o sentido (*el capital* = dinheiro; *la capital* = cidade; *el cura* = sacerdote; *la cura* = sarar).
+- Alguns nomes em -a são masculinos: *el drama, el planeta, el programa, el clima, el mapa*.
+- **Heterogenéricos:** gênero muda entre idiomas (*el puente/a ponte*, *la leche/o leite*, *la sangre/o sangue*).
+- Plural geralmente recebe -s após vogal e -es após consoante ou í/ú tônicos; nomes em -s invariáveis distinguem número pelo artigo (*el martes/los martes*).
+- Classificações: próprio/comum, concreto/abstrato, simples/composto, primitivo/derivado e coletivo.
 
-**Notas do agente:** Alguns esquemas de estruturas foram extraídos sem desenho; usei os exemplos legíveis da fonte e as definições textuais, sem reconstruir estruturas ambíguas.
+**Notas do agente:** O material contém lapsos em alguns exemplos classificatórios; a síntese preserva as categorias e os pares legíveis.
 
 Critérios: [ ] cobertura  [ ] correção  [ ] originalidade  [ ] clareza  [ ] tamanho/formato

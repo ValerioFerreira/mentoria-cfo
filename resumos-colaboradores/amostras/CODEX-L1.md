@@ -1,5 +1,5 @@
 # Amostra de qualidade — CODEX-L1
-34 resumos importados; 5 sorteados. Conferir cada um contra o PDF indicado.
+36 resumos importados; 5 sorteados. Conferir cada um contra o PDF indicado.
 
 ## S0407 · Direito Administrativo · Aula 02 — Organização administrativa: centralização, descentralização, concentração e desc
 Trecho `direito-administrativo/a02/s03` · PDF: 003 - Aula 02 Organização administrativa_ centralização, descentralização, concentração e desc.pdf · págs. 25–33 · analítico: 419 palavras (teto 1350) · sintético: 8 pontos
@@ -31,61 +31,92 @@ A **Administração Indireta** é formada por entidades administrativas dotadas 
 
 Critérios: [ ] cobertura  [ ] correção  [ ] originalidade  [ ] clareza  [ ] tamanho/formato
 
-## S0488 · Direito Administrativo · Aula 09 — Agentes públicos: espécies e classificação, poderes, deveres e prerrogativa, car
-Trecho `direito-administrativo/a09/s01` · PDF: 010 - Aula 09 Agentes públicos_ espécies e classificação, poderes, deveres e prerrogativa, car.pdf · págs. 3–13 · analítico: 366 palavras (teto 1650) · sintético: 8 pontos
+## S0485 · Direito Administrativo · Aula 01 — Estado, governo e administração pública: conceitos, elementos, natureza, fins e
+Trecho `direito-administrativo/a01/s02` · PDF: 002 - Aula 01 Estado, governo e administração pública_ conceitos, elementos, natureza, fins e .pdf · págs. 14–25 · analítico: 374 palavras (teto 1800) · sintético: 8 pontos
 
 **Analítico (início):**
-Agente público é toda pessoa física que exerce função estatal, de modo permanente ou temporário, com ou sem remuneração. A classificação doutrinária permite distinguir autoridades políticas, servidores e particulares que colaboram com o Poder Público.
+A doutrina formulou diferentes critérios para delimitar o Direito Administrativo. Cada escola destaca uma dimensão da atuação estatal, mas nenhuma explica isoladamente toda a matéria, que abrange organização, atividade e relações jurídicas da Administração.
 
-### Categorias de agentes
+### Critérios doutrinários
 
-**Agentes políticos** ocupam posições estruturais de direção do Estado e exercem atribuições constitucionais. Incluem chefes do Executivo, ministros e secretários, parlamentares e magistrados; a inclusão de membros do Ministério Público e de tribunais de contas varia conforme o critério doutrinário. O traço central é a função política ou institucional, e não a existência de vínculo empregatício comum.
+A **escola legalista ou exegética** identifica o Direito Administrativo com a interpretação das leis administrativas. É insuficiente porque o ramo também depende de princípios, jurisprudência e construção doutrinária, e não se reduz à leitura literal de normas.
 
-**Agentes administrativos** mantêm vínculo profissional com a Administração e executam tarefas ordinárias. A categoria abrange servidores estatutários, empregados públicos celetistas e temporários contratados para necessidade excepcional. O regime e a forma de ingresso variam conforme o vínculo, sem afastar os princípios constitucionais aplicáveis.
+A **escola do serviço público**, desenvolvida na França, toma a prestação de serviços públicos como centro do ramo. Em sentido amplo, serviço público poderia incluir toda atividade estatal; em sentido estrito, abrange atividades materiais destinadas a necessidades coletivas sob regime público. A dificuldade está em que o Estado exerce também funções legislativas, jurisdicionais e econômicas, e nem todo serviço prestado por particular corresponde a serviço público.
 
-**Agentes honoríficos** são convocados ou designados para colaborar transitoriamente, em regra sem vínculo profissional e sem remuneração ordinária, como jurados e mesários eleitorais. **Agentes delegados** recebem do Estado a execução de serviço ou atividade por sua conta e risco, como concessionários, permissionários e notários, sujeitos à fiscalização pública. **Agentes credenciados** representam o Estado em tarefa específica, mediante credenciamento.
+A **escola das prerrogativas públicas** concentra-se nos poderes especiais do Estado, como impor obrigações unilateralmente. Sua limitação é excluir atividades administrativas regidas pelo direito público que não envolvem autoridade, como atos negociais de licença e autorização.
 
-##…
+O **critério do Poder Executivo** define a matéria como atuação desse Poder. Falha porque Legislativo e Judiciário também exercem função administrativa ao gerir pessoal, licitações e patrimônio. O **…
 
 **Sintético:**
-- **Conceito**: agente público é pessoa física que exerce função estatal; vínculo, duração e remuneração podem variar.
-- **Político**: atua em posição constitucional de direção ou função institucional relevante.
-- **Administrativo**: servidor estatutário, empregado público ou contratado temporário executa tarefas profissionais.
-- **Honorífico**: colaboração transitória, como jurado ou mesário, normalmente sem vínculo permanente.
-- **Delegado**: particular presta atividade estatal por delegação, por sua conta e risco e sob fiscalização.
-- **Credenciado**: pessoa recebe incumbência específica para representar ou agir em nome do Estado.
-- **Agente de fato**: investidura irregular com aparência de vínculo; atos podem ser preservados para proteger terceiro de boa-fé.
-- **Usurpador**: atua sem qualquer vínculo estatal; diferencia-se do agente de fato e não representa validamente a Administração.
+- **Legalista**: reduz o ramo à interpretação da legislação administrativa; deixa de fora princípios e demais fontes.
+- **Serviço público**: enfatiza a prestação de atividades coletivas, mas não explica funções estatais que não são serviço público.
+- **Prerrogativas**: destaca poderes de autoridade, porém ignora relações administrativas regidas pelo direito público sem poder unilateral.
+- **Executivo**: limita indevidamente o ramo, pois todos os Poderes exercem função administrativa em alguma medida.
+- **Teleológico**: olha para os fins públicos; precisa de critérios jurídicos para evitar amplitude excessiva.
+- **Residual**: define a matéria pelo que não é legislar nem julgar; depende de delimitação precisa da função administrativa.
+- **Síntese contemporânea**: disciplina órgãos, agentes, entidades, atividade administrativa e relações jurídicas voltadas à realização concreta dos fins públicos.
+- **Natureza pública**: prerrogativas convivem com sujeições legais e controle, não constituindo poder livre do Estado.
 
-**Notas do agente:** A classificação de agentes políticos varia entre autores para algumas carreiras; o resumo registra a divergência sem apresentar uma lista fechada como consenso.
+**Notas do agente:** nenhuma
 
 Critérios: [ ] cobertura  [ ] correção  [ ] originalidade  [ ] clareza  [ ] tamanho/formato
 
-## S0490 · Direito Administrativo · Aula 09 — Agentes públicos: espécies e classificação, poderes, deveres e prerrogativa, car
-Trecho `direito-administrativo/a09/s13` · PDF: 010 - Aula 09 Agentes públicos_ espécies e classificação, poderes, deveres e prerrogativa, car.pdf · págs. 130–140 · analítico: 339 palavras (teto 1650) · sintético: 8 pontos
+## S0489 · Direito Administrativo · Aula 09 — Agentes públicos: espécies e classificação, poderes, deveres e prerrogativa, car
+Trecho `direito-administrativo/a09/s07` · PDF: 010 - Aula 09 Agentes públicos_ espécies e classificação, poderes, deveres e prerrogativa, car.pdf · págs. 70–80 · analítico: 347 palavras (teto 1650) · sintético: 8 pontos
 
 **Analítico (início):**
-A Constituição limita como a Administração fixa e compara remunerações. O trecho aborda vedação a aumentos automáticos entre carreiras, proteção nominal de vencimentos, direitos sociais de servidores e regras especiais para remuneração de agentes públicos.
+O controle judicial de concursos e de provimento de cargos protege a legalidade e a ordem classificatória, sem substituir a Administração na avaliação técnica legítima. O trecho também diferencia cargo em comissão de função de confiança.
 
-### Isonomia e vinculação remuneratória
+### Controle de concursos e posse
 
-O art. 37, XII, estabelece que vencimentos de cargos do Legislativo e do Judiciário não podem superar os pagos pelo Executivo. Essa regra não autoriza o Judiciário a igualar remunerações de carreiras diferentes: a Súmula Vinculante 37 veda aumento judicial por isonomia. O art. 37, XIII, proíbe vincular ou equiparar espécies remuneratórias para produzir reajustes automáticos entre carreiras. **Vinculação** cria escalonamento vertical; **equiparação** associa horizontalmente remunerações de carreiras distintas.
+O Judiciário pode examinar se o concurso respeitou lei, edital, isonomia e critérios objetivos. Em regra, não reavalia respostas de prova nem substitui banca examinadora, salvo ilegalidade ou erro material verificável. A intervenção judicial deve corrigir violação jurídica demonstrada, e não refazer juízo técnico de mérito.
 
-Cada reajuste depende de previsão legal específica. A Constituição pode estabelecer comparações próprias, mas um limite percentual não significa indexação automática. A SV 42 também invalida vincular reajuste de servidor estadual ou municipal a índice federal de correção monetária, preservando autonomia federativa.
+Decisão judicial que reconhece ilegalidade na exclusão de candidato pode assegurar sua participação ou posse conforme o caso, mas não gera automaticamente indenização por todo o período em que não trabalhou. A nomeação tardia por decisão judicial não costuma produzir efeitos funcionais retroativos; indenização depende de circunstância excepcional, como arbitrariedade flagrante da Administração reconhecida judicialmente. O candidato deve distinguir direito à nomeação, posse e efeitos financeiros pretéritos.
 
-### Efeito cascata, irredutibilidade e direitos
+### Cargo em comissão e função de confiança
 
-O art. 37, XIV, impede que acréscimos pecuniários sejam computados ou acumulados para gerar novos acréscimos, evitando o chamado efeito cascata. A irredutibilidade protege o valor nominal da remuneração, mas não impede alterações na composição de parcelas, incidência tributária ou aplicação do teto constitucional qua…
+Funções de confiança são exercidas exclusivamente por servidores ocupantes de cargo efetivo e destinam-se a direção, chefia e assessoramento (CF, art. 37, V). Cargos em comissão podem ser ocupados por pessoas sem vínculo efetivo, mas a lei deve reservar percentual mínimo a servidores de carreira e limitar atribuições a direção, chefia e as…
 
 **Sintético:**
-- **Isonomia**: não permite aumento judicial entre carreiras distintas; SV 37 impede Judiciário de atuar como legislador remuneratório.
-- **Vinculação**: associação vertical de salários gera reajuste reflexo e é proibida pelo art. 37, XIII.
-- **Equiparação**: igualdade horizontal entre carreiras também não pode criar aumento automático, salvo previsão constitucional.
-- **Índices**: SV 42 invalida atrelar reajuste estadual ou municipal a índice federal de correção.
-- **Efeito cascata**: acréscimo não serve de base para calcular outro acréscimo (art. 37, XIV).
-- **Irredutibilidade**: preserva valor nominal, sem impedir teto, tributos ou mudança legítima da estrutura das parcelas.
-- **Direitos sociais**: art. 39, § 3º, alcança servidores, incluindo férias com adicional, décimo terceiro e licenças, nos limites legais.
-- **Autonomia**: cada carreira precisa de fundamento próprio para reajuste; percentuais máximos não criam indexação.
+- **Concurso**: juiz pode corrigir ilegalidade e erro material; não refaz avaliação técnica legítima da banca.
+- **Posse**: reconhecer exclusão ilegal pode viabilizar ingresso, conforme a situação do candidato e o resultado do processo.
+- **Indenização**: nomeação tardia não gera por si só remuneração retroativa; exige circunstância excepcional de arbitrariedade.
+- **Função de confiança**: exclusiva de servidor efetivo e restrita a direção, chefia e assessoramento (CF, art. 37, V).
+- **Cargo em comissão**: livre nomeação, admite pessoa sem vínculo, mas a lei reserva percentual a servidores de carreira.
+- **Atribuições**: cargos comissionados não podem encobrir atividades técnicas, burocráticas ou operacionais permanentes.
+- **Criação**: depende de lei e descrição compatível com direção, chefia ou assessoramento.
+- **Distinção**: função de confiança é encargo para servidor efetivo; cargo em comissão é posição autônoma de livre nomeação.
+
+**Notas do agente:** nenhuma
+
+Critérios: [ ] cobertura  [ ] correção  [ ] originalidade  [ ] clareza  [ ] tamanho/formato
+
+## S0520 · Direito Administrativo · Aula 01 — Estado, governo e administração pública: conceitos, elementos, natureza, fins e
+Trecho `direito-administrativo/a01/s07` · PDF: 002 - Aula 01 Estado, governo e administração pública_ conceitos, elementos, natureza, fins e .pdf · págs. 58–67 · analítico: 332 palavras (teto 1500) · sintético: 9 pontos
+
+**Analítico (início):**
+Administração Pública pode designar tanto as estruturas que exercem a atividade administrativa quanto a própria atividade. As classificações subjetiva e objetiva cruzam-se com os sentidos amplo e estrito para resolver diferentes usos do termo.
+
+### Sentidos subjetivo e objetivo
+
+No sentido **subjetivo, orgânico ou formal**, Administração Pública corresponde a quem exerce função administrativa: órgãos, agentes e entidades da Administração direta e indireta. A pergunta é “quem administra?”. Integram esse conjunto pessoas e estruturas que executam atividade administrativa, ainda que ligadas ao Legislativo ou Judiciário.
+
+No sentido **objetivo, material ou funcional**, Administração Pública é a atividade administrativa em si: serviço público, polícia administrativa, fomento e intervenção estatal na atividade privada, conforme a classificação adotada. A pergunta é “o que é feito?”. Não importa qual Poder pratica o ato; importa a natureza administrativa da função. A atividade pode ser desempenhada também por particular delegado, embora ele não integre a Administração em sentido subjetivo.
+
+### Sentidos amplo e estrito
+
+Em sentido **amplo**, Administração Pública pode incluir órgãos governamentais que definem diretrizes políticas e os órgãos administrativos que as executam; no plano objetivo, abrange função política e atividade administrativa. Em sentido **estrito**, limita-se aos órgãos e entidades que executam atividade administrativa e à própria função executiva administrativa, e…
+
+**Sintético:**
+- **Subjetivo**: conjunto de órgãos, agentes e entidades que exercem função administrativa; pergunta “quem?”.
+- **Objetivo**: atividade administrativa de serviço público, polícia, fomento e intervenção; pergunta “o quê?”.
+- **Sinônimos**: subjetivo também é orgânico ou formal; objetivo também é material ou funcional.
+- **Amplo**: inclui direção política governamental e execução administrativa.
+- **Estrito**: concentra-se em órgãos executores e atividade administrativa, sem direção política.
+- **Combinação**: amplo/estrito altera a extensão; subjetivo/objetivo distingue estrutura de atividade.
+- **Atuação dos Poderes**: Legislativo e Judiciário também exercem Administração em gestão de servidores, contratos e bens.
+- **Delegação**: particular pode prestar serviço público sem se tornar órgão ou entidade da Administração em sentido subjetivo.
+- **Cuidado**: não confunda governo, que dirige politicamente, com Administração em sentido estrito, que executa.
 
 **Notas do agente:** nenhuma
 
@@ -118,37 +149,6 @@ Como regra, os dias parados devem ser descontados porque a greve suspende o vín
 - **Exceção**: desconto não cabe quando a greve resulta de conduta ilícita do Poder Público (Tema 531/STF).
 - **Estágio probatório**: adesão a greve não é, isoladamente, falta que autorize demissão; sanções exigem fato funcional próprio e processo adequado.
 - **Mediação**: poder público deve participar para negociar reivindicações da segurança pública.
-
-**Notas do agente:** nenhuma
-
-Critérios: [ ] cobertura  [ ] correção  [ ] originalidade  [ ] clareza  [ ] tamanho/formato
-
-## S0541 · Direito Administrativo · Aula 01 — Estado, governo e administração pública: conceitos, elementos, natureza, fins e
-Trecho `direito-administrativo/a01/s05` · PDF: 002 - Aula 01 Estado, governo e administração pública_ conceitos, elementos, natureza, fins e .pdf · págs. 41–49 · analítico: 325 palavras (teto 1350) · sintético: 9 pontos
-
-**Analítico (início):**
-O Estado exerce funções por órgãos e entidades, enquanto a Administração executa tarefas públicas sob direção governamental. O trecho relaciona esses conceitos às funções estatais e à forma federativa brasileira.
-
-### Administração e funções
-
-Administração Pública designa os sujeitos que exercem função administrativa e a atividade de concretizar a lei e atender necessidades coletivas. A função administrativa não se limita ao Executivo: Legislativo e Judiciário também administram ao organizar pessoal, compras, serviços e patrimônio. Isso não altera a independência dos Poderes; cada um exerce suas atribuições administrativas no âmbito próprio.
-
-O Estado desempenha funções legislativa, jurisdicional e administrativa. A primeira produz normas gerais; a segunda resolve conflitos com definitividade; a terceira executa a lei e presta serviços. A separação de funções não é absoluta: pode haver atuação atípica, desde que autorizada pela Constituição. Governo dirige politicamente; Administração realiza atos concretos e gestão cotidiana.
-
-### Forma federativa
-
-O Brasil é uma **federação**, forma de Estado em que o poder político é distribuído entre entes autônomos. União, estados, Distrito Federal e municípios têm competências próprias previstas constitucionalmente. A soberania pertence à República Federativa do Brasil; os entes federados são autônomos, mas não soberanos. Não existe direito de secessão, e a Constituição estabelece hipóteses excepcionais de intervenção para preservar a u…
-
-**Sintético:**
-- **Administração**: executa atividades concretas e gere serviços, pessoal e patrimônio para realizar fins legais.
-- **Governo**: dirige politicamente o Estado e escolhe prioridades públicas.
-- **Funções**: legislação cria normas gerais; jurisdição soluciona conflitos; administração executa e presta serviços.
-- **Atípicas**: Legislativo e Judiciário administram suas estruturas sem deixar de ser Poderes independentes.
-- **Federação**: forma de Estado com repartição constitucional de poder entre entes autônomos.
-- **Entes**: União, estados, DF e municípios são autônomos; soberania é da República Federativa do Brasil.
-- **Autonomia**: inclui auto-organização, autogoverno, autolegislação e autoadministração dentro da Constituição.
-- **Distinção**: descentralização política distribui competências federativas; administrativa transfere execução de tarefas.
-- **Competências**: cada ente só exerce poderes que a Constituição lhe atribui ou reserva.
 
 **Notas do agente:** nenhuma
 
