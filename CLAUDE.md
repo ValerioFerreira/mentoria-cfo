@@ -32,7 +32,7 @@ pipeline/.venv/Scripts/python -m pytest pipeline/tests -q
 # Web (em web/)
 npx prisma dev -n cfo-bm -d        # sobe o Postgres de DESENVOLVIMENTO embutido (porta no web/.env)
 npx prisma migrate deploy          # aplica migrações (usar `migrate diff` + deploy; o shadow DB do prisma dev falha)
-npx prisma db seed                 # estrutura + bizus (idempotente, upsert); questões NÃO: só pelo importador
+npx tsx prisma/seed-structure.ts   # SEED REAL (idempotente, upsert): estrutura, bizus, resumos analíticos, importância; é o que `npm run build` roda em produção (Vercel). `prisma db seed` roda o seed.ts antigo, sem resumos. Questões NÃO: só pelo importador
 npx tsx scripts/questoes-contagem.ts [--remoto]  # contagem de questões/figuras no banco (só leitura)
 npx tsx scripts/invite.ts [--admin] [email]   # cria convite de cadastro
 npx tsx scripts/verify-plans.ts [--remoto] [--status PENDING_ANALYSIS|ACTIVE|ALL] [--plan id] [--apply]  # VERIFICA os planos pedidos (relatório LIBERAR/BLOQUEAR em web/reports; --apply ativa só os aprovados e grava params.check)
