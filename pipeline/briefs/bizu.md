@@ -2,7 +2,7 @@
 
 A produção do banco é feita em DUAS etapas. **Esta é a etapa 1 (só bizu).** As questões AOCP (etapa 2, `pipeline/briefs/content.md`) vêm depois, nos mesmos arquivos, quando todos os bizus estiverem prontos.
 
-Leia antes: `CLAUDE.md`, `INSTRUCOES-COLABORADOR.md` (divisão de disciplinas e fluxo de trabalho) e o exemplo aprovado `content/items/direito-administrativo/a00.json` (trechos s01–s02; já tem as questões da etapa 2).
+Leia antes: `CLAUDE.md`, `COLABORADORES.md` (regras e fluxo de trabalho) e o exemplo aprovado `content/items/direito-administrativo/a00.json` (trechos s01–s02; já tem as questões da etapa 2).
 
 ## O que é um trecho e onde ele aparece
 Trecho = unidade de ~1 h de teoria (6–17 págs. do PDF), id `<disciplina>/aNN/sNN`, definido em `content/segments/<disciplina>.json` (`startPage`–`endPage`, `topicsCovered`). No site, a atividade de **Teoria** mostra o Bizu (resumo + itens C/E "da Teoria") logo após o estudo; a **Revisão** espaçada mostra os itens C/E "da Revisão" (conjunto diferente) e o mesmo resumo. É conteúdo de FIXAÇÃO RÁPIDA: precisa ser correto, enxuto e cobrir o trecho inteiro.
@@ -43,4 +43,4 @@ Corrija todos os erros (JSON válido, UTF-8, 6–14 tópicos, 3–5 C/E por conj
 Releia cada C/E como o aluno e como a banca recorrendo: ambíguo? duas leituras possíveis? gabarito certo? depende de matéria que o trecho não ensina? erro conceitual, jurídico, de fórmula? afirmação "absoluta" (sempre/nunca/somente) injusta? Reescreva e revalide.
 
 ## Entrega
-Por aula: trechos, itens C/E, problemas encontrados no material, dúvidas para revisão humana. Commit pequeno e frequente (ver `INSTRUCOES-COLABORADOR.md`). Não cole o conteúdo produzido na resposta.
+Por aula: trechos, itens C/E, problemas encontrados no material, dúvidas para revisão humana. Commit pequeno e frequente (ver `COLABORADORES.md`). Não cole o conteúdo produzido na resposta.
