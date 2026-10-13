@@ -129,7 +129,7 @@ function Payment({ p }: { p: PaymentInfo }) {
           <AlertTriangle className="h-4 w-4" /> Atenção!
         </p>
         <p>
-          A plataforma baseia o planejamento de estudos no material do <strong>Estratégia Concursos</strong>. Recomendamos que só conclua seu cadastro se você tiver acesso ao material.
+          A plataforma possui conteúdo próprio, mas baseia o planejamento de estudos no material do <strong>Estratégia Concursos</strong>. Para extrair o máximo da nossa plataforma, recomendamos que você faça seu cadastro assim que tiver acesso ao material.
         </p>
       </div>
 
