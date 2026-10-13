@@ -1,50 +1,112 @@
+import Link from "next/link";
 import { AppearanceMenu } from "@/components/appearance-menu";
-import { Brand, Star } from "@/components/brand";
+import { Brand } from "@/components/brand";
 import { getTheme } from "@/lib/theme";
 
-const WEEKS = 20;
+const WEEK_DAYS = [
+  { label: "D", title: "Domingo" },
+  { label: "S", title: "Segunda-feira" },
+  { label: "T", title: "Terça-feira" },
+  { label: "Q", title: "Quarta-feira" },
+  { label: "Q", title: "Quinta-feira" },
+  { label: "S", title: "Sexta-feira" },
+  { label: "S", title: "Sábado" },
+];
+
+/** Retorna o índice do dia de hoje no fuso de Recife (0 = Domingo ... 6 = Sábado). */
+function getTodayDayOfWeek(): number {
+  const short = new Intl.DateTimeFormat("en-US", { timeZone: "America/Recife", weekday: "short" }).format(new Date());
+  const idx = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(short);
+  return idx >= 0 ? idx : new Date().getDay();
+}
+
+/** Fileira dos dias da semana (D S T Q Q S S): o marcador percorre do Domingo até o dia atual e nele fica piscando. */
+function WeekdayBubbles() {
+  const currentDayIndex = getTodayDayOfWeek();
+
+  return (
+    <div className="flex items-center gap-2 sm:gap-3" aria-label="Dias da semana">
+      {WEEK_DAYS.map((day, i) => {
+        const isPastOrToday = i <= currentDayIndex;
+        const isToday = i === currentDayIndex;
+        // Intervalo de 220ms entre cada dia percorrido; o dia atual para e entra em pulso contínuo
+        const sweepDelay = `${i * 220 + 200}ms`;
+
+        return (
+          <span
+            key={`${day.label}-${i}`}
+            title={day.title}
+            className={`relative grid h-10 w-10 place-items-center rounded-full border-2 font-display text-xl font-bold transition-colors sm:h-12 sm:w-12 sm:text-2xl ${
+              isPastOrToday ? "border-gold/60 text-on-ink" : "border-on-ink-muted/30 text-on-ink-muted/60"
+            }`}
+          >
+            {/* Letra do dia da semana (fica na frente da bolinha) */}
+            <span className="relative z-10">{day.label}</span>
+
+            {/* Bolinha dourada preenchida: dias anteriores animam e ficam fixos */}
+            {isPastOrToday && !isToday && (
+              <span
+                className="absolute inset-0 rounded-full bg-gold/30 shadow-[0_0_10px_-2px_var(--gold)]"
+                style={{
+                  animation: `day-fill-sweep 0.4s var(--ease-spring) both`,
+                  animationDelay: sweepDelay,
+                }}
+              />
+            )}
+
+            {/* Bolinha dourada do dia atual: percorre, preenche e fica pulsando/piscando sem parar */}
+            {isToday && (
+              <span
+                className="absolute -inset-0.5 rounded-full bg-gold"
+                style={{
+                  animation: `day-fill-sweep 0.4s var(--ease-spring) both, day-pulse-active 1.4s ease-in-out infinite ${
+                    i * 220 + 600
+                  }ms`,
+                  animationDelay: `${sweepDelay}, ${i * 220 + 600}ms`,
+                }}
+              />
+            )}
+          </span>
+        );
+      })}
+    </div>
+  );
+}
 
 export default async function AuthLayout({ children }: LayoutProps<"/">) {
   const theme = await getTheme();
   return (
-    <div className="grid min-h-screen lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
-      {/* painel de marca */}
-      <aside className="relative hidden overflow-hidden bg-ink p-12 text-on-ink lg:flex lg:flex-col lg:justify-between" aria-hidden>
-        <div className="pointer-events-none absolute -left-24 -top-24 h-96 w-96 rounded-full bg-primary/30 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-32 right-0 h-96 w-96 rounded-full bg-teoria/20 blur-3xl" />
-        <div className="tape tape-rule absolute inset-x-0 top-0 !rounded-none" />
-        <Brand inverse size="lg" />
-        <div className="relative space-y-6">
-          <p className="eyebrow !text-on-ink-muted">Missão Oficial · CBMPE · AOCP</p>
-          <h2 className="font-display text-[5.5rem] font-bold uppercase leading-[0.88]">
-            Cada dia<br />
-            <span className="text-primary">conta.</span>
-          </h2>
-          <p className="max-w-md text-on-ink-muted">Plano de estudos montado de trás para frente a partir da data da prova, com a missão de cada dia, a aula e a página exatas, bizus e cadernos de questões.</p>
-          <div>
-            <div className="flex items-end gap-1">
-              {Array.from({ length: WEEKS }, (_, i) => (
-                <span key={i} className="relative flex-1">
-                  {i === WEEKS - 1 && <Star className="absolute -top-6 left-1/2 h-4 w-4 -translate-x-1/2 text-gold" />}
-                  <span className="rise flex h-14 items-end rounded-md bg-white/10" style={{ ["--i" as string]: i * 0.4 }}>
-                    <span className={`block w-full rounded-md ${i === WEEKS - 1 ? "bg-gold" : "bg-primary"}`} style={{ height: `${20 + (i / (WEEKS - 1)) * 80}%` }} />
-                  </span>
-                </span>
-              ))}
-            </div>
-            <p className="mt-2 flex justify-between text-[11px] font-semibold text-on-ink-muted"><span>{WEEKS} semanas</span><span>Prova · 28/02/2027</span></p>
-          </div>
+    <div className="grid min-h-screen lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
+      {/* coluna de marca */}
+      <aside className="relative flex flex-col overflow-hidden bg-ink px-6 pb-11 pt-6 text-on-ink sm:px-12 sm:pb-16 sm:pt-8 lg:justify-between lg:p-14 lg:pb-20">
+        <div className="pointer-events-none absolute -left-24 -top-24 h-96 w-96 rounded-full bg-primary/25 blur-3xl" aria-hidden />
+        <div className="pointer-events-none absolute -bottom-40 right-0 h-96 w-96 rounded-full bg-teoria/15 blur-3xl" aria-hidden />
+        <div className="relative">
+          <Link href="/" aria-label="MentorIA — início" className="inline-block">
+            <Brand inverse size="lg" />
+          </Link>
         </div>
-        <p className="relative text-xs text-on-ink-muted">Acesso por convite.</p>
+
+        <div className="relative my-auto space-y-5 sm:space-y-7 lg:space-y-9">
+          <h2 className="font-display text-[clamp(3.75rem,11vw,9rem)] font-bold uppercase leading-[0.84]">
+            Cada dia
+            <br />
+            conta.
+          </h2>
+          <WeekdayBubbles />
+          <p className="max-w-md text-sm leading-relaxed text-on-ink-muted sm:text-base lg:text-lg">
+            Tenha um plano de estudos exclusivo, individualizado, com direcionamento detalhado, resumos, e questões com a pegada da banca. Você só precisa sentar e estudar, o resto deixa com a gente!
+          </p>
+        </div>
+        <div className="tape tape-rule absolute inset-x-0 bottom-0 !rounded-none" aria-hidden />
       </aside>
 
-      {/* formulário */}
-      <main className="relative flex flex-col justify-center px-5 py-10 sm:px-10">
-        <div className="absolute right-4 top-4"><AppearanceMenu initial={theme} /></div>
-        <div className="mx-auto w-full max-w-md space-y-8">
-          <div className="lg:hidden">
-            <Brand size="lg" />
-          </div>
+      {/* folha do formulário (borda com as marcas do cartão-resposta) */}
+      <main className="omr-edge relative flex flex-col justify-center bg-surface py-8 pl-12 pr-6 shadow-[-28px_0_48px_-24px_rgb(0_0_0/0.55)] sm:py-12 sm:pl-16 sm:pr-14 lg:py-10">
+        <div className="absolute right-4 top-4">
+          <AppearanceMenu initial={theme} />
+        </div>
+        <div className="mx-auto w-full max-w-sm">
           <div className="page-in">{children}</div>
         </div>
       </main>

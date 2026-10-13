@@ -1,12 +1,27 @@
 "use client";
 
-import { CalendarDays, ChartNoAxesColumn, Crosshair, Map as MapIcon, ShieldCheck, type LucideIcon } from "lucide-react";
+import { BadgePercent, CalendarDays, ChartNoAxesColumn, CreditCard, Crosshair, Handshake, ListChecks, Map as MapIcon, NotebookPen, Send, ShieldCheck, Trophy, Users, Wallet, type LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { Brand } from "@/components/brand";
 
-const ICONS: Record<string, LucideIcon> = { today: Crosshair, week: CalendarDays, plan: MapIcon, perf: ChartNoAxesColumn, admin: ShieldCheck };
+const ICONS: Record<string, LucideIcon> = {
+  today: Crosshair,
+  week: CalendarDays,
+  plan: MapIcon,
+  quiz: ListChecks,
+  simulado: Trophy,
+  notes: NotebookPen,
+  perf: ChartNoAxesColumn,
+  billing: CreditCard,
+  admin: ShieldCheck,
+  users: Users,
+  release: Send,
+  finance: Wallet,
+  partners: Handshake,
+  partnership: BadgePercent,
+};
 
 export interface NavItem {
   href: string;
@@ -23,7 +38,17 @@ function isActive(path: string, href: string) {
  * Casca de navegação: trilho lateral (desktop) e barra inferior (celular).
  * `user` e `appearance` chegam prontos do servidor.
  */
-export function AppNav({ items, user, appearance }: { items: NavItem[]; user: ReactNode; appearance: ReactNode }) {
+export function AppNav({
+  items,
+  user,
+  appearance,
+  subtitle = "OFICIAL - CBMPE",
+}: {
+  items: NavItem[];
+  user: ReactNode;
+  appearance: ReactNode;
+  subtitle?: string;
+}) {
   const path = usePathname();
   return (
     <>
@@ -35,7 +60,7 @@ export function AppNav({ items, user, appearance }: { items: NavItem[]; user: Re
         </div>
         <div className="px-6 pb-5 pt-7">
           <Link href="/" aria-label="MentorIA — início">
-            <Brand inverse />
+            <Brand inverse subtitle={subtitle} />
           </Link>
         </div>
         <div className="tape tape-rule mx-6 mb-5" aria-hidden />
@@ -59,13 +84,19 @@ export function AppNav({ items, user, appearance }: { items: NavItem[]; user: Re
         </nav>
         <div className="p-4">
           <div className="rounded-xl bg-white/5 p-2.5">{user}</div>
+          <p className="mt-2.5 text-center text-[11px] leading-snug text-on-ink-muted">
+            Desenvolvido por{" "}
+            <a href="https://safercode.com.br" target="_blank" rel="noopener noreferrer" className="font-semibold text-on-ink underline-offset-2 transition hover:text-gold hover:underline">
+              SaferCode Softwares
+            </a>
+          </p>
         </div>
       </aside>
 
       {/* celular: barra superior + abas */}
       <header className="sticky top-0 z-30 flex items-center justify-between border-b border-white/10 bg-ink/95 px-4 py-2.5 text-on-ink backdrop-blur lg:hidden">
         <Link href="/" aria-label="MentorIA — início">
-          <Brand inverse />
+          <Brand inverse subtitle={subtitle} />
         </Link>
         {appearance}
       </header>

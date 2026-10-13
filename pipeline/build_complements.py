@@ -204,6 +204,10 @@ def segments_for(doc: Doc) -> list[dict]:
     return out
 
 
+# fatia máxima da incidência da disciplina que os complementos podem tomar das aulas-base
+MAX_COMPLEMENT_SHARE = 0.85
+
+
 def merge(docs: list[Doc]) -> None:
     catalog_path = CONTENT_DIR / "catalog.json"
     catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
@@ -216,7 +220,14 @@ def merge(docs: list[Doc]) -> None:
     for subj in catalog["subjects"]:
         mine = sorted(by_subject.get(subj["id"], []), key=lambda d: d.order)
         subj["aulas"] = [a for a in subj["aulas"] if a.get("source") != "authored"]  # idempotente
+        raw_total = sum(d.weight for d in mine)
+        # as aulas do Estratégia nunca cedem mais do que (1 − MAX_COMPLEMENT_SHARE): se os pesos dos complementos somarem
+        # mais que isso, são reduzidos na mesma proporção (antes, soma > 1 deixava a incidência das aulas-base NEGATIVA)
+        wscale = min(1.0, MAX_COMPLEMENT_SHARE / raw_total) if raw_total else 1.0
+        for d in mine:
+            d.weight = d.weight * wscale
         w_total = sum(d.weight for d in mine)
+        assert w_total < 1, f"{subj['id']}: pesos dos complementos somam {w_total}"
         # a soma de incidências da disciplina é preservada: as aulas do Estratégia cedem a fatia dos complementos.
         # `incidenceBase` guarda o valor original para a mescla ser idempotente.
         for a in subj["aulas"]:

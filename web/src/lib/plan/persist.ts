@@ -1,6 +1,7 @@
 import "server-only";
 import { randomUUID } from "node:crypto";
 import { db } from "@/lib/db";
+import type { Contest } from "@/generated/prisma/client";
 import type { PlanInput, PlanResult } from "@/lib/planner/types";
 
 interface SaveArgs {
@@ -10,13 +11,16 @@ interface SaveArgs {
   diagnostics: Record<string, unknown>;
   foreignLanguage: "EN" | "ES" | null;
   hoursBand: "LEVE" | "MODERADO" | "AVANCADO";
+  status?: "ACTIVE" | "PENDING_ANALYSIS";
+  dbClient?: typeof db;
 }
 
 /** Persiste o plano gerado e arquiva o anterior (o histórico de tempo e cadernos é preservado). */
-export async function savePlan({ userId, input, result, diagnostics, foreignLanguage, hoursBand }: SaveArgs): Promise<string> {
-  return db.$transaction(
+export async function savePlan({ userId, input, result, diagnostics, foreignLanguage, hoursBand, status, dbClient }: SaveArgs): Promise<string> {
+  const client = dbClient ?? db;
+  return client.$transaction(
     async (tx) => {
-      const prev = await tx.plan.findFirst({ where: { userId, status: "ACTIVE" }, orderBy: { version: "desc" } });
+      const prev = await tx.plan.findFirst({ where: { userId, status: { in: ["ACTIVE", "PENDING_ANALYSIS"] } }, orderBy: { version: "desc" } });
       if (prev) await tx.plan.update({ where: { id: prev.id }, data: { status: "ARCHIVED" } });
 
       await tx.profile.upsert({
@@ -25,12 +29,18 @@ export async function savePlan({ userId, input, result, diagnostics, foreignLang
         update: { examDate: new Date(input.examDate), hoursBand, hoursPerWeek: input.hoursPerWeek, foreignLanguage },
       });
 
+      const user = await tx.user.findUnique({ where: { id: userId }, select: { role: true, partner: { select: { active: true } } } });
+      // administrador e parceiro ativo não passam pela análise: o plano já nasce liberado
+      const initialStatus = status ?? (user?.role === "ADMIN" || user?.partner?.active ? "ACTIVE" : "PENDING_ANALYSIS");
+
       const plan = await tx.plan.create({
         data: {
           userId,
+          status: initialStatus,
           version: (prev?.version ?? 0) + 1,
           startDate: new Date(input.startDate),
           examDate: new Date(input.examDate),
+          contest: (input.contest as Contest | undefined) ?? null,
           params: result.params as object,
           coverage: result.coverage as object,
           warnings: result.warnings,
@@ -49,16 +59,33 @@ export async function savePlan({ userId, input, result, diagnostics, foreignLang
       });
       await tx.week.createMany({ data: weekRows });
 
+      // Mapear assuntos do edital para as aulas correspondentes
+      const editalItems = await tx.editalItem.findMany({
+        where: { subjectId: { in: input.subjects.map((s) => s.id) } },
+        select: { id: true, subjectId: true, title: true, aulaIds: true },
+      });
+      const aulaToEdital = new Map<string, { id: string; title: string }>();
+      for (const item of editalItems) {
+        const aulas = (item.aulaIds as string[]) || [];
+        for (const aid of aulas) {
+          if (!aulaToEdital.has(aid)) {
+            aulaToEdital.set(aid, { id: item.id, title: item.title });
+          }
+        }
+      }
+
       const keyToId = new Map<string, string>();
       const activityRows = result.weeks.flatMap((w) =>
         w.activities.map((a, order) => {
           const id = randomUUID();
           keyToId.set(a.key, id);
+          const editalInfo = aulaToEdital.get(a.aulaId);
           return {
             id, planId: plan.id, weekId: weekIds.get(w.index)!, sortOrder: order, type: a.type, subjectId: a.subjectId, aulaId: a.aulaId,
+            editalItemId: editalInfo?.id ?? null, editalTopic: editalInfo?.title ?? null,
             plannedMinutes: a.minutes, key: a.key, scope: a.scope ?? ("AULA" as const),
             fixRanges: a.fixRanges ? (a.fixRanges as object[]) : undefined,
-            dayIndex: a.day ?? null, quizQuestions: a.quiz?.questions ?? null, quizLimitSec: a.quiz?.limitSeconds ?? null, quizMixed: a.quiz?.mixed ?? false,
+            dayIndex: a.day ?? null, turbo: a.turbo ?? false, quizQuestions: a.quiz?.questions ?? null, quizLimitSec: a.quiz?.limitSeconds ?? null, quizMixed: a.quiz?.mixed ?? false,
           };
         }),
       );

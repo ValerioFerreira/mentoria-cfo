@@ -381,7 +381,7 @@ O texto consolidado da Câmara mantém a remissão ao **art. 233**, que foi **re
 ## Pendências (itens que não consegui verificar em fonte oficial)
 
 1. **Planalto fora do ar.** O texto do CPM foi lido no **texto atualizado da Câmara dos Deputados** (Legislação Informatizada). O portal do Planalto não respondeu (falha de conexão em todas as tentativas). Recomenda-se conferir os artigos citados no Planalto assim que possível.
-2. **Súmula 6 do STJ** (acidente de trânsito com viatura de polícia militar) e **Súmulas 241 e 269 do STJ** (já citadas pelo Estratégia): **não verifiquei** o enunciado em fonte oficial e, por isso, **não incluí**.
+2. **Súmula 6 do STJ** (acidente de trânsito com viatura de polícia militar) e **Súmulas 241 e 269 do STJ** (já citadas pelo curso base): **não verifiquei** o enunciado em fonte oficial e, por isso, **não incluí**.
 3. **Vigência atual das súmulas do STJ** (47, 53, 75, 78, 90, 172 e 192): o texto vem do arquivo histórico do próprio STJ; o buscador oficial de súmulas bloqueou o acesso automatizado e não pude confirmar eventual cancelamento ou superação, **exceto a Súmula 47**, cuja base legal (art. 9º, II, "f") consta como revogada no CPM. A **Súmula 172** pede cautela especial (Lei 13.491/2017 e Lei 13.869/2019).
 4. **Súmulas do STF 297 e 298**: texto conferido na compilação oficial (atualizada até 1/12/2017); **não verifiquei** se há decisões posteriores que as tornem inaplicáveis em parte.
 5. **Súmulas do STM**: o texto vem do Regimento Interno do STM atualizado com a Emenda Regimental nº 1/2023; **pode haver súmula posterior ou alteração** (a página do STM aponta emendas regimentais mais recentes).

@@ -4,21 +4,63 @@ import { redirect } from "next/navigation";
 import * as z from "zod";
 import { requireUser } from "@/lib/auth/dal";
 import { loadPlannerData } from "@/lib/data/planner-data";
+import { loadContestPlanData } from "@/lib/data/contest-data";
+import { getUserContest } from "@/lib/user-contest";
 import { bandOf, dayIndexOf, generatePlan, mondayOf, PlanInputError } from "@/lib/planner";
+import { addDays } from "@/lib/planner/dates";
 import { todayISO } from "@/lib/plan-time";
 import { savePlan } from "@/lib/plan/persist";
 import type { Known, Level } from "@/lib/planner/types";
 
+/** Data real no formato AAAA-MM-DD (rejeita 2027-02-30) e no máximo ~2 anos à frente (evita planos com milhares de semanas). */
+const examDateOk = (v: string) => {
+  const d = new Date(`${v}T00:00:00Z`);
+  if (Number.isNaN(d.getTime()) || d.toISOString().slice(0, 10) !== v) return false;
+  return v <= addDays(todayISO(), 730);
+};
+
 const Selection = z.object({
-  subjects: z.array(z.object({ id: z.string(), level: z.union([z.literal(0), z.literal(1), z.literal(2), z.literal(3)]) })).min(1, "Escolha ao menos uma disciplina."),
+  subjects: z
+    .array(z.object({ id: z.string(), level: z.union([z.literal(0), z.literal(1), z.literal(2), z.literal(3)]) }))
+    .min(1, "Escolha ao menos uma disciplina.")
+    .refine((l) => new Set(l.map((s) => s.id)).size === l.length, "Há disciplinas repetidas."),
   hoursPerWeek: z.number().int().min(14).max(50),
-  examDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  examDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).refine(examDateOk, "Data da prova inválida ou distante demais (máximo de 2 anos)."),
   /** "now" = começar hoje (dia civil de Recife); ou uma data AAAA-MM-DD escolhida na agenda */
   start: z.union([z.literal("now"), z.string().regex(/^\d{4}-\d{2}-\d{2}$/)]).default("now"),
   /** anamnese por aula: id da aula → 1 (já estudei) ou 2 (domino); ausente = nunca estudei */
   known: z.record(z.string(), z.union([z.literal(0), z.literal(1), z.literal(2)])).default({}),
+  /** Modo Turbo: se o tempo não fechar o edital, as aulas de menor valor passam a Teoria enxuta + caderno curto */
+  turbo: z.boolean().default(false),
+  /** Assuntos do edital que o usuário desmarcou no passo Disciplinas */
+  unselectedTopicIds: z.array(z.string()).default([]),
 });
 export type SelectionInput = z.input<typeof Selection>;
+
+/**
+ * Resolve as aulas que devem ser excluídas quando o usuário desmarca tópicos específicos do edital.
+ * Uma aula é excluída se todos os tópicos que a cobrem foram desmarcados pelo aluno.
+ */
+async function resolveExcludedAulas(subjectIds: string[], unselectedTopicIds: string[]): Promise<string[]> {
+  if (!unselectedTopicIds.length) return [];
+  const { db } = await import("@/lib/db");
+  const editalItems = await db.editalItem.findMany({
+    where: { subjectId: { in: subjectIds } },
+    select: { id: true, aulaIds: true },
+  });
+  const unselectedSet = new Set(unselectedTopicIds);
+  const selectedAulas = new Set<string>();
+  const unselectedAulas = new Set<string>();
+  for (const it of editalItems) {
+    const aulas = (it.aulaIds as string[]) || [];
+    if (unselectedSet.has(it.id)) {
+      for (const a of aulas) unselectedAulas.add(a);
+    } else {
+      for (const a of aulas) selectedAulas.add(a);
+    }
+  }
+  return [...unselectedAulas].filter((a) => !selectedAulas.has(a));
+}
 
 /**
  * Resolve a data de início. "Começar imediatamente" usa o dia civil de Recife no servidor (não o UTC, que vira o dia
@@ -33,24 +75,36 @@ function resolveStart(start: string): { startDate: string; firstDay: number; fir
 
 /** Prévia leve (sem gravar) para mostrar a cobertura estimada enquanto o aluno ajusta as horas. */
 export async function previewPlan(input: SelectionInput) {
-  await requireUser();
+  const user = await requireUser();
   const parsed = Selection.safeParse(input);
   if (!parsed.success) return { error: parsed.error.issues[0]?.message ?? "Dados inválidos." } as const;
   const begin = resolveStart(parsed.data.start);
   if ("error" in begin) return { error: begin.error } as const;
   const data = await loadPlannerData();
+  const contest = await getUserContest(user.email);
+  const contestData = await loadContestPlanData(contest);
+  const excludedAulas = await resolveExcludedAulas(parsed.data.subjects.map((s) => s.id), parsed.data.unselectedTopicIds);
   try {
-    const r = generatePlan({
+    const base = {
       ...data,
+      contest,
+      importance: contestData.importance,
+      summaries: contestData.summaries,
+      examQuestions: contestData.examQuestions,
       startDate: begin.startDate,
       firstDay: begin.firstDay,
       examDate: parsed.data.examDate,
       hoursPerWeek: parsed.data.hoursPerWeek,
       subjects: parsed.data.subjects as { id: string; level: Level }[],
       known: parsed.data.known as Record<string, Known>,
-    });
+      excludedAulas,
+    };
+    const r = generatePlan({ ...base, turbo: parsed.data.turbo });
+    // a oferta do Modo Turbo depende da cobertura SEM ele (com ele ligado a cobertura sobe e a opção sumiria)
+    const withoutTurbo = parsed.data.turbo ? generatePlan({ ...base, turbo: false }) : r;
     return {
       ok: true as const,
+      coverageWithoutTurbo: withoutTurbo.coverage.selected,
       coverageSelected: r.coverage.selected,
       coverageEdital: r.coverage.edital,
       depth: r.coverage.depth,
@@ -58,6 +112,8 @@ export async function previewPlan(input: SelectionInput) {
       capacityHours: r.params.capacityHours,
       plannedHours: r.params.plannedHours,
       fullEditalHoursPerWeek: r.params.fullEditalHoursPerWeek,
+      editalFits: r.params.editalFits,
+      turboAulas: r.params.turboAulas,
       subjects: r.coverage.subjects.map((s) => ({ id: s.subjectId, hours: s.plannedHours, coverage: s.coverage, depth: s.depth })),
     };
   } catch (e) {
@@ -73,14 +129,23 @@ export async function createPlanAction(input: SelectionInput & { diagnostics: Re
   const begin = resolveStart(parsed.data.start);
   if ("error" in begin) return { error: begin.error };
   const data = await loadPlannerData();
+  const contest = await getUserContest(user.email);
+  const contestData = await loadContestPlanData(contest);
+  const excludedAulas = await resolveExcludedAulas(parsed.data.subjects.map((s) => s.id), parsed.data.unselectedTopicIds);
   const planInput = {
     ...data,
+    contest,
+    importance: contestData.importance,
+    summaries: contestData.summaries,
+    examQuestions: contestData.examQuestions,
     startDate: begin.startDate,
     firstDay: begin.firstDay,
     examDate: parsed.data.examDate,
     hoursPerWeek: parsed.data.hoursPerWeek,
     subjects: parsed.data.subjects as { id: string; level: Level }[],
     known: parsed.data.known as Record<string, Known>,
+    excludedAulas,
+    turbo: parsed.data.turbo,
   };
   let result;
   try {

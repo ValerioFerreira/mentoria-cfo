@@ -20,7 +20,7 @@ export interface AulaRef {
   shortTitle: string;
   subjectName: string;
   printedOffset: number;
-  /** material complementar do MentorIA (PDF próprio) em vez de aula do Estratégia */
+  /** material complementar do MentorIA (PDF próprio) em vez de aula do material-base */
   authored?: boolean;
   materialPath?: string | null;
 }
@@ -41,6 +41,19 @@ export function pageLabel(pdf: number, printed: number | null | undefined): stri
   return printed != null && printed !== pdf ? `pág. ${pdf} (impressa ${printed})` : `pág. ${pdf}`;
 }
 
+/** Formata a localização de página ou intervalo: "na pág. 5" ou "da pág. 5 à pág. 62" */
+export function pageRangeLocation(
+  firstPdf: number,
+  firstPrinted: number | null | undefined,
+  lastPdf: number,
+  lastPrinted: number | null | undefined,
+): string {
+  if (firstPdf === lastPdf) {
+    return `na ${pageLabel(firstPdf, firstPrinted)}`;
+  }
+  return `da ${pageLabel(firstPdf, firstPrinted)} à ${pageLabel(lastPdf, lastPrinted)}`;
+}
+
 export function aulaLabel(a: Pick<AulaRef, "number" | "shortTitle">): string {
   if (a.number > COMPLEMENT_BASE) return `Complemento ${String(a.number - COMPLEMENT_BASE).padStart(2, "0")} — ${a.shortTitle}`;
   return `Aula ${String(a.number).padStart(2, "0")} — ${a.shortTitle}`;
@@ -52,7 +65,8 @@ export function teoriaStep(seg: SegmentRef, authored = false): string {
     ? `Continue na ${pageLabel(seg.startPage, seg.startPrinted)}${seg.startTopic ? `, dentro do tópico ${q(seg.startTopic)}` : ""}`
     : `Comece na ${pageLabel(seg.startPage, seg.startPrinted)}${seg.startTopic ? `, no tópico ${q(seg.startTopic)}` : ""}`;
   let end: string;
-  if (seg.stopBeforeTopic) end = `estude até a ${pageLabel(seg.endPage, seg.endPrinted)}, parando antes do tópico ${q(seg.stopBeforeTopic)}`;
+  // o título seguinte costuma abrir no meio da página: o que vem antes dele na pág. seguinte ainda é deste assunto
+  if (seg.stopBeforeTopic) end = `estude até a ${pageLabel(seg.endPage, seg.endPrinted)}, parando antes do tópico ${q(seg.stopBeforeTopic)} (se ele começar no meio da pág. ${seg.endPage + 1}, leia também a parte da pág. ${seg.endPage + 1} que vem antes do título)`;
   else if (seg.endsTheory && authored) end = `estude até a ${pageLabel(seg.endPage, seg.endPrinted)}, a última do material`;
   else if (seg.endsTheory) end = `estude até a ${pageLabel(seg.endPage, seg.endPrinted)}, que encerra a teoria desta aula (o que vem depois são resumos e questões)`;
   else if (seg.endsMidTopic) end = `estude até o fim da ${pageLabel(seg.endPage, seg.endPrinted)}${seg.endTopic ? ` (você ainda estará dentro de ${q(seg.endTopic)}; a próxima atividade continua dali)` : ""}`;
@@ -73,6 +87,22 @@ export function teoriaDirective(aula: AulaRef, segs: SegmentRef[]): TeoriaDirect
     steps: ordered.map((seg) => teoriaStep(seg, aula.authored)),
     pages: ordered.reduce((n, s) => n + (s.endPage - s.startPage + 1), 0),
   };
+}
+
+/** Modo Turbo: o resumo analítico substitui a leitura do material; as páginas ficam indicadas só para consulta. */
+export function turboDirective(aula: AulaRef, segs: SegmentRef[], minutes?: number): TeoriaDirective {
+  const ordered = [...segs].sort((a, b) => a.startPage - b.startPage);
+  const first = ordered[0];
+  const last = ordered[ordered.length - 1];
+  const steps = [
+    `Modo Turbo: o tempo disponível pede foco, então ${ordered.length > 1 ? "estes assuntos serão estudados" : "este assunto será estudado"} pelo resumo analítico${minutes ? ` (≈ ${minutes} min de leitura)` : ""}. Leia-o com atenção, sem pular partes.`,
+    "Depois, leia o Bizu logo abaixo (resumo sintético e itens de Certo/Errado) para fixar os pontos que mais caem.",
+    "Escreva no campo “Meu resumo” o que você lembra, com as suas palavras: é o que você vai reler na Revisão.",
+  ];
+  if (first && last && !aula.authored) {
+    steps.push(`Se um ponto ficar confuso, a teoria completa está ${pageRangeLocation(first.startPage, first.startPrinted, last.endPage, last.endPrinted)} (${aulaLabel(aula)}).`);
+  }
+  return { heading: `${aula.subjectName} · ${aulaLabel(aula)}`, steps, pages: 0 };
 }
 
 export function revisaoSteps(): string[] {

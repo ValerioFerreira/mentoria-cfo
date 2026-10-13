@@ -1,0 +1,70 @@
+{
+  "aula": "informatica/c01",
+  "batch": "w1-informatica",
+  "status": "DRAFT",
+  "segments": [
+    {
+      "id": "informatica/c01/s01",
+      "bizu": {
+        "summary": [
+          "**Favoritos x Marcadores**: o Edge (padrão no Windows 11) usa Favoritos; Chrome e Firefox, Marcadores.",
+          "**Cookie, cache e histórico**: cookie é arquivo de dados (não é vírus) que guarda login e rastreia hábitos; cache é cópia local que acelera páginas; histórico lista as visitas.",
+          "**Navegação privativa**: InPrivate e Anônima usam Ctrl + Shift + N; Firefox, Ctrl + Shift + P. Ao fechar, apaga histórico, cookies e formulários, mas não downloads nem favoritos, e não esconde o acesso do provedor, da rede ou dos sites.",
+          "**HTTPS e cadeado**: indicam conexão criptografada, não a honestidade do site.",
+          "**Atalhos mais cobrados**: Ctrl + Shift + T reabre guia; Ctrl + H histórico; Ctrl + J downloads; Ctrl + D favorito; Ctrl + Shift + Delete limpa dados; Ctrl + F5 ignora o cache.",
+          "**Operadores do Google**: aspas para frase exata, sinal de menos para excluir, OR para alternativa, site: e filetype: para restringir domínio e tipo.",
+          "**Comandos de arquivos no CMD**: dir lista, cd /d troca de unidade, md cria, rd /s apaga pasta com conteúdo, del apaga só arquivos, sem Lixeira. DELTREE não existe no Windows 11.",
+          "**Redirecionamento e curingas**: `>` sobrescreve, `>>` acrescenta, `|` encadeia a saída, `&&` executa o segundo só se o primeiro der certo; asterisco vale por vários caracteres, interrogação por um.",
+          "**Rede e reparo**: ipconfig /flushdns limpa o cache DNS; ping testa conectividade, tracert mostra a rota, nslookup consulta o DNS; chkdsk verifica o disco e sfc /scannow repara o sistema.",
+          "**Periféricos e USB**: armazenamento externo e multifuncional são mistos; USB 2.0 = 480 Mbps, 3.x = 5/10/20 Gbps, USB4 = 40 Gbps; Type-C é só o formato do conector.",
+          "**Driver, PnP e Gerenciador de Dispositivos**: driver é o software que permite ao sistema usar o hardware; Plug and Play detecta e instala sozinho; \"!\" indica problema e \"reverter driver\" volta à versão anterior.",
+          "**Impressoras e vídeo**: fila travada pede reinício do Spooler; HDMI e DisplayPort levam vídeo e áudio, VGA é analógico sem áudio."
+        ],
+        "teoria": [
+          {
+            "statement": "A navegação privativa não oculta a atividade do usuário do provedor de internet nem dos sites visitados.",
+            "isTrue": true,
+            "explanation": "O modo privativo só evita que histórico, cookies e dados de formulário fiquem no computador. O provedor, a rede da instituição e os sites continuam podendo ver o acesso."
+          },
+          {
+            "statement": "O cache do navegador é o local em que ficam armazenadas as senhas do usuário.",
+            "isTrue": false,
+            "explanation": "O cache guarda cópias locais de partes das páginas (imagens, scripts, estilos) para acelerar o carregamento. As senhas ficam no gerenciador de senhas do navegador."
+          },
+          {
+            "statement": "O comando DELTREE, do MS-DOS, não existe no Windows 11; para apagar uma pasta com todo o seu conteúdo usa-se o comando rd com a opção /s.",
+            "isTrue": true,
+            "explanation": "O DELTREE existiu no MS-DOS e no Windows 9x e não faz parte do Windows NT e posteriores. O comando rd /s remove a pasta com todos os arquivos e subpastas."
+          },
+          {
+            "statement": "No Prompt de Comando, o símbolo >> sobrescreve o conteúdo do arquivo de destino.",
+            "isTrue": false,
+            "explanation": "O símbolo > é que sobrescreve. O >> acrescenta a saída ao final do arquivo, preservando o conteúdo que já estava nele."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "O recurso Plug and Play detecta automaticamente o dispositivo conectado e instala ou configura o driver adequado.",
+            "isTrue": true,
+            "explanation": "O driver é o software que permite ao sistema operacional se comunicar com o hardware, e o Plug and Play é o recurso que automatiza a sua detecção e instalação."
+          },
+          {
+            "statement": "O USB Type-C é um padrão de velocidade que substitui o USB 3.0.",
+            "isTrue": false,
+            "explanation": "Type-C é o formato do conector (reversível). A velocidade depende do padrão USB suportado pela porta, pelo cabo e pelo dispositivo."
+          },
+          {
+            "statement": "O atalho Win + P abre as opções de projeção: somente a tela do PC, duplicar, estender e somente a segunda tela.",
+            "isTrue": true,
+            "explanation": "No modo estender, a área de trabalho ocupa as duas telas; no modo duplicar, ambas mostram a mesma imagem."
+          },
+          {
+            "statement": "O comando ipconfig /flushdns libera o endereço IP atribuído ao computador pelo servidor DHCP.",
+            "isTrue": false,
+            "explanation": "O /flushdns limpa o cache de DNS. Quem libera o endereço IP é o ipconfig /release (e o /renew solicita um novo)."
+          }
+        ]
+      }
+    }
+  ]
+}

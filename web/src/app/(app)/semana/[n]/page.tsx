@@ -7,17 +7,21 @@ import { activityDetail } from "@/lib/activity-detail";
 import { requireUser } from "@/lib/auth/dal";
 import { getActivePlan, getWeek } from "@/lib/data/study";
 import { dateOfPlanDay, firstStudyISO, effectiveDays, planPosition, shortDate, todayISO, weekdayName } from "@/lib/plan-time";
+import { canUserAccessCoreFeatures } from "@/lib/system-settings";
 import { fmtDuration, weekRange } from "@/lib/ui-format";
 
 export const metadata: Metadata = { title: "Meta semanal" };
 
 export default async function WeekPage({ params }: PageProps<"/semana/[n]">) {
   const user = await requireUser();
+  const canAccess = await canUserAccessCoreFeatures(user.role, user.id);
+  if (!canAccess) redirect("/plano");
+
   const { n } = await params;
   const index = Number(n);
   if (!Number.isInteger(index) || index < 1) notFound();
   const plan = await getActivePlan(user.id);
-  if (!plan) redirect("/onboarding");
+  if (!plan) redirect("/plano");
   const data = await getWeek(user.id, plan.id, index);
   if (!data) notFound();
   const { week, seconds } = data;

@@ -1,6 +1,6 @@
 // Relatório de cobertura do plano (transparência: o que entra, o que fica de fora).
-import { tierMinutes } from "./blueprint";
-import { EXAM_TOTAL_QUESTIONS } from "./constants";
+import { allUnits, tierMinutes } from "./blueprint";
+import { EXAM_TOTAL_QUESTIONS, SUMMARY_COVERAGE_WEIGHT } from "./constants";
 import type { Selection, SelectedSubject } from "./select";
 import type { Catalog, Known, SubjectCoverage } from "./types";
 
@@ -20,6 +20,7 @@ export function computeCoverage(chosen: SelectedSubject[], sel: Selection, known
     let seenInc = 0;
     let depthInc = 0;
     let pages = 0;
+    let summaryPages = 0;
     const mins = { teoria: 0, revisao: 0, fixacao: 0, questoes: 0 };
     const aulas: SubjectCoverage["aulas"] = [];
     for (const a of selectable) {
@@ -36,16 +37,21 @@ export function computeCoverage(chosen: SelectedSubject[], sel: Selection, known
       if (!tier) continue;
       const bp = sel.blueprints.get(a.id)!;
       const m = tierMinutes(bp, tier);
-      seenInc += a.incidence;
-      const full = tierMinutes(bp, 3);
+      // unidades lidas por resumo contam menos que as lidas no material
+      const pagesNormal = bp.teoria.reduce((n, u) => n + u.pages, 0);
+      const pagesSummary = bp.summary.reduce((n, u) => n + u.pages, 0);
+      const unitsWeight = pagesNormal + pagesSummary > 0 ? (pagesNormal + pagesSummary * SUMMARY_COVERAGE_WEIGHT) / (pagesNormal + pagesSummary) : 1;
+      seenInc += a.incidence * unitsWeight;
+      const full = tierMinutes({ ...bp, teoria: allUnits(bp), summary: [] }, 3);
       const fullPractice = full.fixacao + full.questoes;
       depthInc += a.incidence * (fullPractice > 0 ? (m.fixacao + m.questoes) / fullPractice : 1);
       pages += a.theoryPages;
+      summaryPages += a.theoryPages * (pagesNormal + pagesSummary > 0 ? pagesSummary / (pagesNormal + pagesSummary) : 0);
       mins.teoria += m.teoria;
       mins.revisao += m.revisao;
       mins.fixacao += m.fixacao;
       mins.questoes += m.questoes;
-      aulas.push({ aulaId: a.id, tier, hours: round1(m.total / 60) });
+      aulas.push({ aulaId: a.id, tier, hours: round1(m.total / 60), ...(bp.summary.length ? { turbo: true } : {}) });
     }
     const notCovered = selectable
       .filter((a) => sel.blueprints.has(a.id) && !sel.tierByAula.has(a.id) && !sel.mastered.has(a.id))
@@ -55,7 +61,7 @@ export function computeCoverage(chosen: SelectedSubject[], sel: Selection, known
     const total = mins.teoria + mins.revisao + mins.fixacao + mins.questoes;
     const full = selectable.reduce((n, a) => {
       const bp = sel.blueprints.get(a.id);
-      return bp ? n + tierMinutes(bp, 1).total : n;
+      return bp ? n + tierMinutes({ ...bp, teoria: allUnits(bp), summary: [] }, 1).total : n;
     }, 0);
     return {
       subjectId: subject.id,
@@ -66,6 +72,7 @@ export function computeCoverage(chosen: SelectedSubject[], sel: Selection, known
       fullMinutes: full,
       aulas,
       theoryPagesCovered: pages,
+      summaryPages: Math.round(summaryPages),
       theoryPagesEligible: selectable.reduce((n, a) => n + a.theoryPages, 0),
       coverage: Math.min(1, seenInc / totalInc) * (subject.materialCompleteness ?? 1),
       depth: Math.min(1, depthInc / totalInc),
@@ -76,7 +83,8 @@ export function computeCoverage(chosen: SelectedSubject[], sel: Selection, known
   const pts = chosen.reduce((n, c) => n + c.subject.examQuestions, 0) || 1;
   const covPts = subjects.reduce((n, s) => n + s.examQuestions * s.coverage, 0);
   const depthPts = subjects.reduce((n, s) => n + s.examQuestions * s.depth, 0);
-  return { selected: covPts / pts, edital: covPts / EXAM_TOTAL_QUESTIONS, depth: depthPts / pts, subjects };
+  const summaryPts = subjects.reduce((n, s) => n + s.examQuestions * (s.theoryPagesCovered > 0 ? s.coverage * (s.summaryPages / s.theoryPagesCovered) : 0), 0);
+  return { selected: covPts / pts, edital: covPts / EXAM_TOTAL_QUESTIONS, depth: depthPts / pts, summaryShare: covPts > 0 ? summaryPts / covPts : 0, subjects };
 }
 
 export function gapWarnings(catalog: Catalog, subjectIds: string[]): string[] {

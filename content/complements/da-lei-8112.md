@@ -12,7 +12,7 @@ resolves: da-lei-8112
 
 ## Como encaixar a Lei 8.112/1990 no edital
 
-Pessoal, o item 4 do edital de Direito Administrativo manda estudar o **"regime jurídico único: provimento, vacância, remoção, redistribuição e substituição, direitos e vantagens, regime disciplinar"**. A aula do Estratégia trata dos agentes públicos pela **Constituição** (arts. 37 a 41, concurso, estabilidade, acumulação, remuneração). Quem trata **de fato** dessas figuras é o **estatuto**: a **Lei nº 8.112, de 11 de dezembro de 1990**. É dela que a banca tira os prazos, as hipóteses e as listas.
+Pessoal, o item 4 do edital de Direito Administrativo manda estudar o **"regime jurídico único: provimento, vacância, remoção, redistribuição e substituição, direitos e vantagens, regime disciplinar"**. A aula-base trata dos agentes públicos pela **Constituição** (arts. 37 a 41, concurso, estabilidade, acumulação, remuneração). Quem trata **de fato** dessas figuras é o **estatuto**: a **Lei nº 8.112, de 11 de dezembro de 1990**. É dela que a banca tira os prazos, as hipóteses e as listas.
 
 > **Atenção ao âmbito.** A Lei 8.112/1990 é lei **federal**: vale para os servidores **civis** da **União, das autarquias (inclusive as em regime especial) e das fundações públicas federais** (art. 1º). Ela **não** é o estatuto do oficial do CBMPE (esse é militar e tem lei estadual própria, tratada em Legislações de PE). Mesmo assim, o edital pede "regime jurídico único" em Direito Administrativo e a AOCP costuma cobrar a 8.112 como **modelo** do regime estatutário. Estude como texto de lei: o que vale é o que está escrito.
 

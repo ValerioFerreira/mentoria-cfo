@@ -7,11 +7,14 @@ import { fmtMinutes } from "@/components/activity-row";
 import { Alert, BLOCK_COLOR, Badge, Card, Count, InfoTip, LinkButton, PageHeader, Progress, Ring, SectionTitle, TYPE_META, type ActivityType } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
-import { getActivePlan } from "@/lib/data/study";
+import { getActivePlan, getPendingPlan } from "@/lib/data/study";
+import { PendingPlanView } from "@/components/pending-plan-view";
 import { LEVEL_LABEL } from "@/lib/diagnostic";
 import { DAY_WEIGHTS } from "@/lib/planner/constants";
 import { firstStudyISO, planPosition, todayISO } from "@/lib/plan-time";
 import { fmtDate, subjectShort, weekRange } from "@/lib/ui-format";
+import { canUserAccessCoreFeatures } from "@/lib/system-settings";
+import { FeatureLockedView } from "@/components/feature-locked-view";
 import type { Level, PlanResult } from "@/lib/planner/types";
 
 export const metadata: Metadata = { title: "Planejamento" };
@@ -25,8 +28,45 @@ const hm = (min: number) => {
 
 export default async function PlanPage() {
   const user = await requireUser();
+  const canAccess = await canUserAccessCoreFeatures(user.role, user.id);
+
+  if (!canAccess) {
+    const pending = await getPendingPlan(user.id);
+    if (pending) {
+      const profile = await db.profile.findUnique({ where: { userId: user.id } });
+      return (
+        <PendingPlanView
+          userName={user.name}
+          createdAt={pending.createdAt}
+          examDate={pending.examDate}
+          hoursPerWeek={profile?.hoursPerWeek}
+        />
+      );
+    }
+    return (
+      <FeatureLockedView
+        moduleName="Planejamento de Estudos"
+        description="Seu cronograma de estudos está sendo estruturado pela equipe pedagógica. Assim que for concluído e liberado, você receberá um e-mail oficial de aviso."
+      />
+    );
+  }
+
   const plan = await getActivePlan(user.id);
-  if (!plan) redirect("/onboarding");
+  if (!plan) {
+    const pending = await getPendingPlan(user.id);
+    if (pending) {
+      const profile = await db.profile.findUnique({ where: { userId: user.id } });
+      return (
+        <PendingPlanView
+          userName={user.name}
+          createdAt={pending.createdAt}
+          examDate={pending.examDate}
+          hoursPerWeek={profile?.hoursPerWeek}
+        />
+      );
+    }
+    redirect("/onboarding");
+  }
 
   const params = plan.params as unknown as PlanResult["params"];
   const coverage = plan.coverage as unknown as PlanResult["coverage"];
@@ -77,7 +117,7 @@ export default async function PlanPage() {
           <p className="eyebrow flex items-center gap-1.5 !text-on-ink-muted">
             Cobertura estimada do edital
             <InfoTip align="center">
-              Parte do edital das suas disciplinas que o plano faz você estudar até a prova, ponderada pelo número de questões de cada uma. Aulas que você marcou como dominadas já contam como cobertas.
+              Parte do edital das suas disciplinas que o plano faz você estudar até a prova, ponderada pelo número de questões de cada uma. Assuntos que você marcou como dominados já contam como cobertos.
             </InfoTip>
           </p>
         </Card>
@@ -194,7 +234,7 @@ export default async function PlanPage() {
                         <span className="h-3 w-3 shrink-0 rounded-[4px]" style={{ background: color }} aria-hidden />
                         {subjectShort(s.subjectId)}
                       </p>
-                      <p className="mt-1.5 text-xs text-muted">{s.examQuestions} {s.examQuestions === 1 ? "questão" : "questões"} na prova · {s.aulas.length} aulas · {Math.round(s.plannedHours)} h planejadas</p>
+                      <p className="mt-1.5 text-xs text-muted">{s.examQuestions} {s.examQuestions === 1 ? "questão" : "questões"} na prova · {Math.round(s.plannedHours)} h planejadas</p>
                     </div>
                     <div className="text-right">
                       <p className="font-display text-3xl font-bold leading-none tabular">{Math.round(s.coverage * 100)}%</p>
@@ -211,7 +251,7 @@ export default async function PlanPage() {
                     {hasAuthored && (
                       <Badge tone="gold">
                         <Sparkles className="h-3 w-3" aria-hidden />
-                        material complementar MentorIA
+                        conteúdo exclusivo MentorIA
                       </Badge>
                     )}
                   </div>

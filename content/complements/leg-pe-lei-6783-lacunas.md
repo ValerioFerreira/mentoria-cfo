@@ -3,7 +3,7 @@ id: leg-pe-lei-6783-lacunas
 subject: legislacoes-pe
 title: Lei Estadual nº 6.783/1974 — deveres, violação das obrigações, remuneração, promoção e Sistema de Proteção Social
 short: Estatuto (complementos)
-subtitle: O que a Aula 02 do Estratégia não ensina: arts. 30 a 48, 52 a 63 e 74-A em diante (LC 460/2021)
+subtitle: O que a Aula 02 do curso base não ensina: arts. 30 a 48, 52 a 63 e 74-A em diante (LC 460/2021)
 weight: 0.25
 order: 5
 resolves: leg-lei-6783-lacunas

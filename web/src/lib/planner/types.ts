@@ -31,7 +31,7 @@ export interface CatalogAula {
   incidence: number;
   printedOffset: number;
   /** "authored": material complementar do MentorIA (preenche lacuna do edital) com PDF próprio. */
-  source?: "estrategia" | "authored";
+  source?: "base" | "authored";
 }
 
 export interface CatalogSubject {
@@ -87,7 +87,18 @@ export interface PlanInput {
   subjects: { id: string; level: Level }[];
   /** Anamnese por aula (id da aula → conhecimento). Aulas ausentes valem 0. */
   known?: Record<string, Known>;
-  finalReviewWeeks?: number;
+  /** Aulas excluídas porque o usuário desmarcou assuntos específicos do edital. */
+  excludedAulas?: string[];
+  /** Concurso para o qual o plano é montado (informativo; as notas e os pesos chegam em `importance` e `examQuestions`). */
+  contest?: string;
+  /** Nota de importância (1–100) de cada trecho NO CONCURSO; `null` = o assunto não consta no edital dele (sai do plano). Ausente = sem filtro. */
+  importance?: Record<string, number | null>;
+  /** Trechos que já têm resumo analítico: só eles podem ser trocados no Modo Turbo. */
+  summaries?: string[];
+  /** Questões de cada disciplina na prova do concurso (substitui `examQuestions` do catálogo, que é o do CBMPE Oficial). */
+  examQuestions?: Record<string, number>;
+  /** Modo Turbo: se o tempo não fechar o edital, as unidades de menor importância viram resumos analíticos (até 3 por atividade). */
+  turbo?: boolean;
   slack?: number;
 }
 
@@ -116,6 +127,8 @@ export interface PlannedActivity {
   quiz?: { questions: number; limitSeconds: number; mixed: boolean };
   /** Dia planejado dentro da semana (0 = segunda … 6 = domingo). */
   day?: number;
+  /** Modo Turbo: Teoria substituída pelo resumo (Bizu) do trecho. */
+  turbo?: boolean;
 }
 
 export interface PlannedWeek {
@@ -134,10 +147,12 @@ export interface SubjectCoverage {
   plannedHours: number;
   /** Minutos planejados por tipo de atividade. */
   minutes: { teoria: number; revisao: number; fixacao: number; questoes: number };
-  /** Minutos para fechar TODAS as aulas da disciplina no nível Essencial. */
+  /** Minutos para ver TODAS as aulas da disciplina no nível Essencial (Teoria + Questões). */
   fullMinutes: number;
-  aulas: { aulaId: string; tier: Tier; hours: number }[];
+  aulas: { aulaId: string; tier: Tier; hours: number; turbo?: boolean }[];
   theoryPagesCovered: number;
+  /** Páginas de teoria cobertas só por resumo analítico (Modo Turbo). */
+  summaryPages: number;
   theoryPagesEligible: number;
   /** 0–1: fatia do edital da disciplina que o plano cobre (aulas estudadas ou já dominadas × completude do material). */
   coverage: number;
@@ -147,8 +162,25 @@ export interface SubjectCoverage {
   notCovered: { aulaId: string; shortTitle: string; incidence: number }[];
 }
 
+/** O que o aluno pediu ao montar o plano (guardado em `params.request` para auditoria e re-elaboração). */
+export interface PlanRequest {
+  hoursPerWeek: number;
+  turbo: boolean;
+  firstDay: number;
+  contest?: string;
+  subjects: { id: string; level: Level }[];
+  /** anamnese por aula: 1 já estudei · 2 domino */
+  known: Record<string, Known>;
+  /** aulas fora do plano porque o aluno desmarcou todos os assuntos delas */
+  excludedAulas: string[];
+}
+
 export interface PlanResult {
   params: {
+    /** Solicitação original do aluno. */
+    request: PlanRequest;
+    /** Modo Turbo pedido (cópia de `request.turbo`, lida pela re-elaboração de planos). */
+    turbo: boolean;
     hoursPerWeek: number;
     /** Horas efetivas por semana (já com a folga). */
     slotsPerWeek: number;
@@ -158,8 +190,14 @@ export interface PlanResult {
     reviewWeeks: number;
     capacityHours: number;
     plannedHours: number;
-    /** Horas por semana (nominais) necessárias para fechar o edital inteiro no nível Essencial. */
+    /** Horas por semana (nominais) necessárias para ver o edital inteiro (só Teoria + Questões, com a revisão final no piso). */
     fullEditalHoursPerWeek: number;
+    /** O edital inteiro (Teoria + Questões) cabe no tempo disponível, sem Modo Turbo? */
+    editalFits: boolean;
+    /** Nº de aulas com ao menos uma unidade trocada por resumo (Modo Turbo). */
+    turboAulas: number;
+    /** Nº de unidades de Teoria trocadas por resumo analítico (Modo Turbo). */
+    summaryUnits: number;
     /** Segunda-feira da semana 1. */
     startDate: string;
     /** Dia em que o aluno começa a estudar (pode ser depois da segunda da semana 1). */
@@ -174,6 +212,8 @@ export interface PlanResult {
     edital: number;
     /** Profundidade média da prática, ponderada pelos pontos da prova. */
     depth: number;
+    /** 0–1: fração do que o plano cobre que é lida por resumo analítico (Modo Turbo), ponderada pelos pontos da prova. */
+    summaryShare: number;
     subjects: SubjectCoverage[];
   };
   warnings: string[];

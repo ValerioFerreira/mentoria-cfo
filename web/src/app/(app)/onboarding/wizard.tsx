@@ -1,8 +1,9 @@
 "use client";
 
-import { ArrowLeft, ArrowRight, CalendarDays, Check, ChevronDown, Flame, Gauge, Loader2, Rocket, Sparkles, Zap } from "lucide-react";
+import { AlertTriangle, ArrowLeft, ArrowRight, CalendarDays, Check, ChevronDown, Flame, Gauge, Loader2, Rocket, Sparkles, Zap } from "lucide-react";
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { Alert, BLOCK_COLOR, Badge, Button, Card, Count, InfoTip, Progress, Ring, cx } from "@/components/ui";
+import { knownFromMarks, type Mark } from "@/lib/anamnesis";
 import {
   DEFAULT_ANSWER, EXPERIENCE_OPTIONS, HIT_OPTIONS, LEVEL_LABEL, SELF_OPTIONS, levelFromAnswer,
   type DiagnosticAnswer,
@@ -10,12 +11,11 @@ import {
 import { longDate } from "@/lib/plan-time";
 import { createPlanAction, previewPlan } from "./actions";
 
-export interface WizardAula {
+export interface WizardItem {
   id: string;
-  number: number;
   title: string;
-  pages: number;
-  authored: boolean;
+  /** aulas da disciplina que tratam do assunto (o planejador trabalha por aula) */
+  aulaIds: string[];
 }
 
 export interface WizardSubject {
@@ -24,9 +24,10 @@ export interface WizardSubject {
   block: "I" | "II" | "III";
   examQuestions: number;
   languageGroup: string | null;
-  aulas: WizardAula[];
-  theoryPages: number;
-  /** a disciplina inclui material complementar autoral do MentorIA (preenche lacunas do edital) */
+  /** assuntos do edital, na ordem do edital */
+  items: WizardItem[];
+  aulaIds: string[];
+  /** a disciplina inclui conteúdo exclusivo do MentorIA sobre pontos do edital */
   hasComplement: boolean;
 }
 
@@ -53,11 +54,12 @@ function perDay(h: number) {
 }
 
 type Preview = Awaited<ReturnType<typeof previewPlan>>;
-type Known = Record<string, 1 | 2>;
+type Marks = Record<string, 1 | 2>;
 
 export function Wizard({ subjects, todayIso }: { subjects: WizardSubject[]; todayIso: string }) {
   const [step, setStep] = useState(0);
   const [selected, setSelected] = useState<Set<string>>(() => new Set(subjects.filter((s) => s.id !== "lingua-inglesa").map((s) => s.id)));
+  const [unselectedTopics, setUnselectedTopics] = useState<Set<string>>(() => new Set());
   const [hours, setHours] = useState(38);
   const [examDate, setExamDate] = useState(EXAM_DEFAULT);
   // início dos estudos: "now" = hoje (calculado no servidor, fuso de Recife) ou uma data da agenda
@@ -66,7 +68,8 @@ export function Wizard({ subjects, todayIso }: { subjects: WizardSubject[]; toda
   const start = startMode === "now" ? "now" : startPick;
   const startValid = startMode === "now" || (startPick >= todayIso && startPick < examDate);
   const [answers, setAnswers] = useState<Record<string, DiagnosticAnswer>>({});
-  const [known, setKnown] = useState<Known>({});
+  const [marks, setMarks] = useState<Marks>({});
+  const [turbo, setTurbo] = useState(false);
   const [preview, setPreview] = useState<Preview | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [pending, startTransition] = useTransition();
@@ -78,47 +81,90 @@ export function Wizard({ subjects, todayIso }: { subjects: WizardSubject[]; toda
     () => chosen.map((s) => ({ id: s.id, level: levelFromAnswer(answers[s.id] ?? DEFAULT_ANSWER) })),
     [chosen, answers],
   );
-  // só as aulas das disciplinas escolhidas entram no cálculo
-  const knownChosen = useMemo(() => Object.fromEntries(Object.entries(known).filter(([id]) => selected.has(id.split("/")[0]))), [known, selected]);
+  // marcas por assunto viram marcas por aula (o que o planejador entende); só as disciplinas escolhidas entram no cálculo
+  const knownChosen = useMemo(() => Object.assign({}, ...chosen.map((s) => knownFromMarks(s, marks))) as Record<string, 1 | 2>, [chosen, marks]);
+  const unselectedTopicList = useMemo(() => Array.from(unselectedTopics), [unselectedTopics]);
   const points = chosen.reduce((n, s) => n + s.examQuestions, 0);
 
-  // prévia de cobertura (debounce) sempre que a seleção, as horas, a data, os níveis ou a anamnese mudam
+  // prévia de cobertura (debounce) sempre que a seleção, as horas, a data, os níveis, a anamnese ou os assuntos desmarcados mudam
   useEffect(() => {
     if (chosen.length === 0 || step < 2) return;
     const id = ++seq.current;
     const t = setTimeout(async () => {
-      const r = await previewPlan({ subjects: levels, hoursPerWeek: hours, examDate, start, known: knownChosen });
+      const r = await previewPlan({
+        subjects: levels,
+        hoursPerWeek: hours,
+        examDate,
+        start,
+        known: knownChosen,
+        turbo,
+        unselectedTopicIds: unselectedTopicList,
+      });
       if (id === seq.current) setPreview(r);
     }, 350);
     return () => clearTimeout(t);
-  }, [chosen.length, levels, hours, examDate, start, knownChosen, step]);
+  }, [chosen.length, levels, hours, examDate, start, knownChosen, step, turbo, unselectedTopicList]);
 
   function toggle(s: WizardSubject) {
     setSelected((prev) => {
       const next = new Set(prev);
-      if (next.has(s.id)) next.delete(s.id);
-      else {
+      if (next.has(s.id)) {
+        next.delete(s.id);
+      } else {
         next.add(s.id);
-        if (s.languageGroup) for (const o of subjects) if (o.languageGroup === s.languageGroup && o.id !== s.id) next.delete(o.id);
+        // Ao selecionar uma disciplina, todos os seus assuntos vêm pré-selecionados por default
+        setUnselectedTopics((uPrev) => {
+          const uNext = new Set(uPrev);
+          for (const it of s.items) uNext.delete(it.id);
+          return uNext;
+        });
+        if (s.languageGroup) {
+          for (const o of subjects) {
+            if (o.languageGroup === s.languageGroup && o.id !== s.id) {
+              next.delete(o.id);
+            }
+          }
+        }
       }
       return next;
     });
   }
-  const setAnswer = (id: string, patch: Partial<DiagnosticAnswer>) =>
-    setAnswers((a) => ({ ...a, [id]: { ...(a[id] ?? DEFAULT_ANSWER), ...patch } }));
-  const setKnownAula = (aulaId: string, v: 0 | 1 | 2) =>
-    setKnown((k) => {
-      const next = { ...k };
-      if (v === 0) delete next[aulaId];
-      else next[aulaId] = v;
+
+  function toggleTopic(topicId: string) {
+    setUnselectedTopics((prev) => {
+      const next = new Set(prev);
+      if (next.has(topicId)) next.delete(topicId);
+      else next.add(topicId);
       return next;
     });
-  const setKnownAll = (s: WizardSubject, v: 0 | 1 | 2) =>
-    setKnown((k) => {
-      const next = { ...k };
-      for (const a of s.aulas) {
-        if (v === 0) delete next[a.id];
-        else next[a.id] = v;
+  }
+
+  function setAllTopics(s: WizardSubject, selectAll: boolean) {
+    setUnselectedTopics((prev) => {
+      const next = new Set(prev);
+      for (const it of s.items) {
+        if (selectAll) next.delete(it.id);
+        else next.add(it.id);
+      }
+      return next;
+    });
+  }
+
+  const setAnswer = (id: string, patch: Partial<DiagnosticAnswer>) =>
+    setAnswers((a) => ({ ...a, [id]: { ...(a[id] ?? DEFAULT_ANSWER), ...patch } }));
+  const setMark = (itemId: string, v: Mark) =>
+    setMarks((m) => {
+      const next = { ...m };
+      if (v === 0) delete next[itemId];
+      else next[itemId] = v;
+      return next;
+    });
+  const setMarkAll = (s: WizardSubject, v: Mark) =>
+    setMarks((m) => {
+      const next = { ...m };
+      for (const i of s.items) {
+        if (v === 0) delete next[i.id];
+        else next[i.id] = v;
       }
       return next;
     });
@@ -126,7 +172,16 @@ export function Wizard({ subjects, todayIso }: { subjects: WizardSubject[]; toda
   function submit() {
     setError(null);
     startTransition(async () => {
-      const res = await createPlanAction({ subjects: levels, hoursPerWeek: hours, examDate, start, known: knownChosen, diagnostics: answers });
+      const res = await createPlanAction({
+        subjects: levels,
+        hoursPerWeek: hours,
+        examDate,
+        start,
+        known: knownChosen,
+        turbo,
+        unselectedTopicIds: unselectedTopicList,
+        diagnostics: answers,
+      });
       if (res?.error) setError(res.error);
     });
   }
@@ -195,10 +250,18 @@ export function Wizard({ subjects, todayIso }: { subjects: WizardSubject[]; toda
                 </legend>
                 <div className="grid gap-2.5 sm:grid-cols-2">
                   {others.filter((s) => s.block === b).map((s) => (
-                    <SubjectCard key={s.id} s={s} on={selected.has(s.id)} onToggle={() => toggle(s)} />
+                    <SubjectCard
+                      key={s.id}
+                      s={s}
+                      on={selected.has(s.id)}
+                      onToggle={() => toggle(s)}
+                      unselectedTopics={unselectedTopics}
+                      onToggleTopic={toggleTopic}
+                      onSetAllTopics={(selectAll) => setAllTopics(s, selectAll)}
+                    />
                   ))}
                   {b === "I" && (
-                    <Card className={cx("p-4 transition sm:col-span-2", langs.some((l) => selected.has(l.id)) && "border-primary")}>
+                    <Card className={cx("p-4 transition sm:col-span-2 space-y-3", langs.some((l) => selected.has(l.id)) && "border-primary")}>
                       <div className="flex flex-wrap items-center justify-between gap-3">
                         <div>
                           <p className="font-semibold">Língua Estrangeira</p>
@@ -214,11 +277,20 @@ export function Wizard({ subjects, todayIso }: { subjects: WizardSubject[]; toda
                               className={cx("cursor-pointer rounded-lg px-4 py-2 text-sm font-semibold transition", selected.has(l.id) ? "bg-surface text-primary shadow-card" : "text-muted hover:text-text")}
                             >
                               {l.id === "lingua-inglesa" ? "Inglês" : "Espanhol"}
-                              <span className="ml-2 text-xs font-normal text-muted">{l.aulas.length} aulas</span>
+                              <span className="ml-2 text-xs font-normal text-muted">{l.items.length} assuntos</span>
                             </button>
                           ))}
                         </div>
                       </div>
+                      {langs.filter((l) => selected.has(l.id)).map((activeLang) => (
+                        <LanguageTopicsExpansion
+                          key={activeLang.id}
+                          s={activeLang}
+                          unselectedTopics={unselectedTopics}
+                          onToggleTopic={toggleTopic}
+                          onSetAllTopics={(selectAll) => setAllTopics(activeLang, selectAll)}
+                        />
+                      ))}
                     </Card>
                   )}
                 </div>
@@ -232,15 +304,16 @@ export function Wizard({ subjects, todayIso }: { subjects: WizardSubject[]; toda
             <h1 id="t1" className="flex items-center gap-3 font-display text-4xl font-bold uppercase leading-none sm:text-5xl">
               O que você já estudou?
               <InfoTip align="start">
-                A anamnese vem antes do tempo porque define quanto do edital já está encaminhado. Quem estuda uma disciplina com mais bagagem lê e revisa mais rápido, e aulas marcadas como dominadas saem do plano (voltam só nas revisões finais). Se preferir, pule: assumimos que tudo é novo.
+                A anamnese vem antes do tempo porque define quanto do edital já está encaminhado. Quem estuda uma disciplina com mais bagagem lê e revisa mais rápido, e assuntos marcados como dominados saem do plano (voltam só nas revisões finais). Se preferir, pule: assumimos que tudo é novo.
               </InfoTip>
             </h1>
             <div className="space-y-3">
               {chosen.map((s) => {
                 const a = answers[s.id] ?? DEFAULT_ANSWER;
                 const lvl = levelFromAnswer(a);
-                const studied = s.aulas.filter((x) => known[x.id] === 1).length;
-                const mastered = s.aulas.filter((x) => known[x.id] === 2).length;
+                const activeItems = s.items.filter((x) => !unselectedTopics.has(x.id));
+                const studied = activeItems.filter((x) => marks[x.id] === 1).length;
+                const mastered = activeItems.filter((x) => marks[x.id] === 2).length;
                 return (
                   <Card key={s.id} className="relative space-y-3.5 overflow-hidden p-4 pl-6">
                     <span className="absolute inset-y-0 left-0 w-1.5" style={{ background: BLOCK_COLOR[s.block] }} aria-hidden />
@@ -251,7 +324,9 @@ export function Wizard({ subjects, todayIso }: { subjects: WizardSubject[]; toda
                     <ChipRow label="Experiência" value={a.experience} options={EXPERIENCE_OPTIONS.map((o) => ({ value: o.value, label: o.label }))} onChange={(v) => setAnswer(s.id, { experience: v })} />
                     <ChipRow label="Como você se avalia?" value={a.self} options={SELF_OPTIONS} onChange={(v) => setAnswer(s.id, { self: v })} />
                     <ChipRow label="Acerto recente em questões" value={a.hitRate} options={HIT_OPTIONS} onChange={(v) => setAnswer(s.id, { hitRate: v })} />
-                    <AulaChecklist s={s} known={known} onSet={setKnownAula} onAll={(v) => setKnownAll(s, v)} summary={studied + mastered > 0 ? `${studied} já estudei · ${mastered} domino` : `${s.aulas.length} aulas`} />
+                    {activeItems.length > 0 && (
+                      <AssuntoChecklist items={activeItems} marks={marks} onSet={setMark} onAll={(v) => setMarkAll(s, v)} summary={studied + mastered > 0 ? `${studied} já estudei · ${mastered} domino` : `${activeItems.length} assuntos`} />
+                    )}
                   </Card>
                 );
               })}
@@ -292,7 +367,9 @@ export function Wizard({ subjects, todayIso }: { subjects: WizardSubject[]; toda
               <input id="hours" type="range" min={band.min} max={band.max} value={hours} onChange={(e) => setHours(Number(e.target.value))} className="h-2 w-full cursor-pointer accent-[var(--primary)]" />
               <div className="flex justify-between text-xs font-semibold text-muted tabular"><span>{band.min} h</span><span>{band.max} h</span></div>
             </Card>
+            <HeavyWorkloadDisclaimer hours={hours} onGoToDisciplines={() => goStep(0)} />
             <PreviewBox preview={preview} subjects={chosen} hours={hours} onUseHours={setHours} />
+            <TurboOption preview={preview} on={turbo} onChange={setTurbo} />
           </section>
         )}
 
@@ -342,7 +419,9 @@ export function Wizard({ subjects, todayIso }: { subjects: WizardSubject[]; toda
                 </label>
               )}
             </Card>
+            <HeavyWorkloadDisclaimer hours={hours} onGoToDisciplines={() => goStep(0)} />
             <PreviewBox preview={preview} subjects={chosen} hours={hours} detailed />
+            <TurboOption preview={preview} on={turbo} onChange={setTurbo} />
             {error && <Alert tone="danger">{error}</Alert>}
           </section>
         )}
@@ -369,33 +448,212 @@ export function Wizard({ subjects, todayIso }: { subjects: WizardSubject[]; toda
   );
 }
 
-function SubjectCard({ s, on, onToggle }: { s: WizardSubject; on: boolean; onToggle: () => void }) {
+function HeavyWorkloadDisclaimer({ hours, onGoToDisciplines }: { hours: number; onGoToDisciplines: () => void }) {
+  if (hours / 7 <= 4.5) return null;
   return (
-    <button
-      type="button"
-      role="checkbox"
-      aria-checked={on}
-      onClick={onToggle}
+    <div className="rounded-2xl border border-amber-500/40 bg-amber-50 p-4 text-sm text-amber-950 shadow-xs dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-100">
+      <p className="flex items-center gap-2 font-display text-base font-bold uppercase text-amber-800 dark:text-amber-400">
+        <AlertTriangle className="h-4 w-4 shrink-0 text-amber-700 dark:text-amber-400" aria-hidden />
+        Atenção à carga horária
+      </p>
+      <p className="mt-1 leading-relaxed text-amber-900 dark:text-amber-200/90">
+        A sua carga diária de estudos está bem elevada, considere remover alguns assuntos que você já domina na{" "}
+        <button
+          type="button"
+          onClick={onGoToDisciplines}
+          className="cursor-pointer font-bold text-amber-950 underline hover:text-amber-800 dark:text-amber-300 dark:hover:text-amber-100"
+        >
+          seção &quot;Disciplinas&quot;
+        </button>{" "}
+        para que seu planejamento foque no que você precisa mais.
+      </p>
+    </div>
+  );
+}
+
+function SubjectCard({
+  s,
+  on,
+  onToggle,
+  unselectedTopics,
+  onToggleTopic,
+  onSetAllTopics,
+}: {
+  s: WizardSubject;
+  on: boolean;
+  onToggle: () => void;
+  unselectedTopics: Set<string>;
+  onToggleTopic: (id: string) => void;
+  onSetAllTopics: (selectAll: boolean) => void;
+}) {
+  const [expanded, setExpanded] = useState(false);
+  const selectedCount = s.items.filter((it) => !unselectedTopics.has(it.id)).length;
+
+  return (
+    <div
       className={cx(
-        "relative cursor-pointer overflow-hidden rounded-2xl border-2 p-4 pl-5 text-left transition duration-200 hover:-translate-y-0.5",
-        on ? "border-primary bg-primary-soft shadow-lift" : "border-border bg-surface shadow-card hover:border-border-strong",
+        "relative overflow-hidden rounded-2xl border-2 transition duration-200",
+        on ? "border-primary bg-primary-soft/50 shadow-lift" : "border-border bg-surface shadow-card hover:border-border-strong",
       )}
     >
       <span className="absolute inset-y-0 left-0 w-1.5" style={{ background: BLOCK_COLOR[s.block] }} aria-hidden />
-      <div className="flex items-start justify-between gap-2">
-        <p className="font-semibold leading-snug">{s.name}</p>
-        <span className={cx("mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border-2 transition", on ? "border-primary bg-primary text-on-primary" : "border-border-strong")}>
-          {on && <Check className="pop h-3 w-3" strokeWidth={4} aria-hidden />}
-        </span>
+      <div className="p-4 pl-5">
+        <div className="flex items-start justify-between gap-2">
+          <button
+            type="button"
+            role="checkbox"
+            aria-checked={on}
+            onClick={onToggle}
+            className="flex-1 cursor-pointer text-left"
+          >
+            <p className="font-semibold leading-snug">{s.name}</p>
+            <p className="mt-1 text-xs text-muted tabular">
+              {s.examQuestions} {s.examQuestions === 1 ? "questão" : "questões"} na prova · {selectedCount} de {s.items.length} assuntos
+            </p>
+            {s.hasComplement && (
+              <p className="mt-1 flex items-center gap-1 text-xs font-medium text-gold-text">
+                <Sparkles className="h-3 w-3" aria-hidden />
+                Inclui conteúdo exclusivo do MentorIA
+              </p>
+            )}
+          </button>
+          <div className="flex items-center gap-1.5">
+            {on && s.items.length > 0 && (
+              <button
+                type="button"
+                onClick={() => setExpanded((v) => !v)}
+                className="cursor-pointer rounded-lg p-1.5 text-muted hover:bg-surface-3 hover:text-text transition"
+                title={expanded ? "Recolher assuntos" : "Expandir assuntos do edital"}
+                aria-label={expanded ? "Recolher assuntos" : "Expandir assuntos do edital"}
+              >
+                <ChevronDown className={cx("h-4 w-4 transition-transform", expanded && "rotate-180")} aria-hidden />
+              </button>
+            )}
+            <button
+              type="button"
+              role="checkbox"
+              aria-checked={on}
+              onClick={onToggle}
+              className={cx(
+                "flex h-5 w-5 shrink-0 cursor-pointer items-center justify-center rounded-md border-2 transition",
+                on ? "border-primary bg-primary text-on-primary" : "border-border-strong",
+              )}
+            >
+              {on && <Check className="pop h-3 w-3" strokeWidth={4} aria-hidden />}
+            </button>
+          </div>
+        </div>
+
+        {on && s.items.length > 0 && (
+          <div className="mt-2.5 flex items-center justify-between border-t border-border/60 pt-2 text-xs">
+            <button
+              type="button"
+              onClick={() => setExpanded((v) => !v)}
+              className="flex items-center gap-1 font-semibold text-primary hover:underline cursor-pointer"
+            >
+              {expanded ? "Ocultar assuntos do edital" : "Personalizar assuntos do edital"}
+              <ChevronDown className={cx("h-3.5 w-3.5 transition-transform", expanded && "rotate-180")} aria-hidden />
+            </button>
+            <span className="text-muted tabular">{selectedCount}/{s.items.length} ativos</span>
+          </div>
+        )}
       </div>
-      <p className="mt-1 text-xs text-muted tabular">{s.examQuestions} {s.examQuestions === 1 ? "questão" : "questões"} na prova · {s.aulas.length} aulas · ~{s.theoryPages} páginas</p>
-      {s.hasComplement && (
-        <p className="mt-1 flex items-center gap-1 text-xs font-medium text-gold-text">
-          <Sparkles className="h-3 w-3" aria-hidden />
-          Inclui material complementar do MentorIA
-        </p>
+
+      {on && expanded && s.items.length > 0 && (
+        <div className="space-y-2 border-t border-border bg-surface/90 p-4 pl-5">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <span className="text-xs font-semibold text-muted">Assuntos previstos no edital:</span>
+            <div className="flex gap-1.5">
+              <Button variant="ghost" size="sm" onClick={() => onSetAllTopics(true)} className="!h-6 !text-[11px] !px-2">Marcar todos</Button>
+              <Button variant="ghost" size="sm" onClick={() => onSetAllTopics(false)} className="!h-6 !text-[11px] !px-2 text-danger hover:text-danger">Desmarcar todos</Button>
+            </div>
+          </div>
+          <ul className="max-h-60 divide-y divide-border/60 overflow-y-auto pr-1 text-xs">
+            {s.items.map((it) => {
+              const isSelected = !unselectedTopics.has(it.id);
+              return (
+                <li key={it.id} className="flex items-center justify-between gap-2 py-1.5">
+                  <label className="flex flex-1 cursor-pointer items-center gap-2">
+                    <input
+                      type="checkbox"
+                      checked={isSelected}
+                      onChange={() => onToggleTopic(it.id)}
+                      className="h-3.5 w-3.5 shrink-0 rounded accent-[var(--primary)] cursor-pointer"
+                    />
+                    <span className={cx("leading-snug", isSelected ? "text-text font-medium" : "text-muted line-through")}>
+                      {it.title}
+                    </span>
+                  </label>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       )}
-    </button>
+    </div>
+  );
+}
+
+function LanguageTopicsExpansion({
+  s,
+  unselectedTopics,
+  onToggleTopic,
+  onSetAllTopics,
+}: {
+  s: WizardSubject;
+  unselectedTopics: Set<string>;
+  onToggleTopic: (id: string) => void;
+  onSetAllTopics: (selectAll: boolean) => void;
+}) {
+  const [expanded, setExpanded] = useState(false);
+  const selectedCount = s.items.filter((it) => !unselectedTopics.has(it.id)).length;
+  if (s.items.length === 0) return null;
+
+  return (
+    <div className="rounded-xl border border-border/80 bg-surface/60 overflow-hidden text-xs">
+      <div className="flex items-center justify-between px-3.5 py-2">
+        <button
+          type="button"
+          onClick={() => setExpanded((v) => !v)}
+          className="flex items-center gap-1.5 font-semibold text-primary hover:underline cursor-pointer"
+        >
+          {expanded ? "Ocultar assuntos do edital de Língua Estrangeira" : "Personalizar assuntos do edital de Língua Estrangeira"}
+          <ChevronDown className={cx("h-3.5 w-3.5 transition-transform", expanded && "rotate-180")} aria-hidden />
+        </button>
+        <span className="text-muted tabular">{selectedCount}/{s.items.length} ativos</span>
+      </div>
+      {expanded && (
+        <div className="space-y-2 border-t border-border/60 bg-surface/90 p-3.5">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <span className="text-xs font-semibold text-muted">Assuntos previstos no edital:</span>
+            <div className="flex gap-1.5">
+              <Button variant="ghost" size="sm" onClick={() => onSetAllTopics(true)} className="!h-6 !text-[11px] !px-2">Marcar todos</Button>
+              <Button variant="ghost" size="sm" onClick={() => onSetAllTopics(false)} className="!h-6 !text-[11px] !px-2 text-danger hover:text-danger">Desmarcar todos</Button>
+            </div>
+          </div>
+          <ul className="max-h-52 divide-y divide-border/60 overflow-y-auto pr-1 text-xs">
+            {s.items.map((it) => {
+              const isSelected = !unselectedTopics.has(it.id);
+              return (
+                <li key={it.id} className="flex items-center justify-between gap-2 py-1.5">
+                  <label className="flex flex-1 cursor-pointer items-center gap-2">
+                    <input
+                      type="checkbox"
+                      checked={isSelected}
+                      onChange={() => onToggleTopic(it.id)}
+                      className="h-3.5 w-3.5 shrink-0 rounded accent-[var(--primary)] cursor-pointer"
+                    />
+                    <span className={cx("leading-snug", isSelected ? "text-text font-medium" : "text-muted line-through")}>
+                      {it.title}
+                    </span>
+                  </label>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -420,9 +678,10 @@ function ChipRow<T extends string | number>({ label, value, options, onChange }:
   );
 }
 
-/** Lista de aulas da disciplina: o aluno marca o que nunca viu, já estudou ou domina. */
-function AulaChecklist({ s, known, onSet, onAll, summary }: { s: WizardSubject; known: Known; onSet: (id: string, v: 0 | 1 | 2) => void; onAll: (v: 0 | 1 | 2) => void; summary: string }) {
+/** Assuntos do edital da disciplina: o aluno marca o que nunca viu, já estudou ou domina. */
+function AssuntoChecklist({ items, marks, onSet, onAll, summary }: { items: WizardItem[]; marks: Marks; onSet: (id: string, v: Mark) => void; onAll: (v: Mark) => void; summary: string }) {
   const [open, setOpen] = useState(false);
+  if (items.length === 0) return null;
   return (
     <div className="rounded-xl border border-border bg-surface-2/60">
       <button type="button" onClick={() => setOpen((v) => !v)} aria-expanded={open} className="flex w-full cursor-pointer items-center justify-between gap-3 px-3.5 py-2.5 text-left text-sm font-semibold">
@@ -432,26 +691,23 @@ function AulaChecklist({ s, known, onSet, onAll, summary }: { s: WizardSubject; 
       {open && (
         <div className="swap-in space-y-2 border-t border-border px-3.5 py-3">
           <div className="flex flex-wrap gap-1.5">
-            <Button variant="secondary" size="sm" onClick={() => onAll(1)}>Todas: já estudei</Button>
-            <Button variant="secondary" size="sm" onClick={() => onAll(2)}>Todas: domino</Button>
+            <Button variant="secondary" size="sm" onClick={() => onAll(1)}>Todos: já estudei</Button>
+            <Button variant="secondary" size="sm" onClick={() => onAll(2)}>Todos: domino</Button>
             <Button variant="ghost" size="sm" onClick={() => onAll(0)}>Limpar</Button>
           </div>
-          <ul className="divide-y divide-border">
-            {s.aulas.map((a) => {
-              const v = (known[a.id] ?? 0) as 0 | 1 | 2;
+          <ul className="max-h-[28rem] divide-y divide-border overflow-y-auto pr-1">
+            {items.map((it) => {
+              const v = (marks[it.id] ?? 0) as Mark;
               return (
-                <li key={a.id} className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1.5 py-2">
-                  <span className="min-w-0 flex-1 text-sm">
-                    <span className="font-semibold tabular">Aula {String(a.number).padStart(2, "0")}</span> <span className="text-muted">{a.title}</span>
-                    {a.authored && <Badge tone="gold" className="ml-1.5">MentorIA</Badge>}
-                  </span>
-                  <span className="flex shrink-0 gap-0.5 rounded-lg bg-surface-3 p-0.5" role="group" aria-label={`Aula ${a.number}`}>
+                <li key={it.id} className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1.5 py-2">
+                  <span className="min-w-0 flex-1 text-sm">{it.title}</span>
+                  <span className="flex shrink-0 gap-0.5 rounded-lg bg-surface-3 p-0.5" role="group" aria-label={it.title}>
                     {KNOWN_OPTIONS.map((o) => (
                       <button
                         key={o.value}
                         type="button"
                         aria-pressed={v === o.value}
-                        onClick={() => onSet(a.id, o.value)}
+                        onClick={() => onSet(it.id, o.value)}
                         className={cx("cursor-pointer rounded-md px-2.5 py-1 text-xs font-semibold transition", v === o.value ? (o.value === 2 ? "bg-ok text-white shadow-card" : o.value === 1 ? "bg-surface text-primary shadow-card" : "bg-surface text-text shadow-card") : "text-muted hover:text-text")}
                       >
                         {o.label}
@@ -484,7 +740,7 @@ function PreviewBox({ preview, subjects, hours, detailed, onUseHours }: { previe
           <p className="eyebrow flex items-center gap-1.5 !text-on-ink-muted">
             Cobertura estimada do edital
             <InfoTip align="start">
-              Parte do edital das {subjects.length} disciplinas que o plano faz você estudar em {preview.totalWeeks} semanas (≈ {preview.capacityHours} h de conteúdo), levando em conta o que você já estudou. Fechar o edital inteiro no nível Essencial exige ≈ {need} h por semana com o seu perfil.
+              Parte do edital das {subjects.length} disciplinas que o plano faz você estudar em {preview.totalWeeks} semanas (≈ {preview.capacityHours} h de conteúdo), levando em conta o que você já estudou. Ver o edital inteiro (cada aula com Teoria, Revisão curta, Fixação e Questões) exige ≈ {need} h por semana com o seu perfil.
             </InfoTip>
           </p>
           <p className="text-sm text-on-ink-muted">
@@ -499,6 +755,13 @@ function PreviewBox({ preview, subjects, hours, detailed, onUseHours }: { previe
           )}
         </div>
       </div>
+
+      {pct < 100 && (
+        <div className="rounded-xl border border-white/15 bg-white/5 p-3.5 text-xs leading-relaxed text-on-ink-muted">
+          <strong className="text-on-ink">Não se preocupe se você não fechar todo o edital!</strong> O sistema recalcula seu planejamento para que as disciplinas mais importantes sejam priorizadas, garantindo o máximo de aproveitamento do seu estudo!
+        </div>
+      )}
+
       {detailed && (
         <ul className="grid gap-x-8 gap-y-2.5 text-sm sm:grid-cols-2">
           {preview.subjects.map((p) => (
@@ -511,6 +774,46 @@ function PreviewBox({ preview, subjects, hours, detailed, onUseHours }: { previe
             </li>
           ))}
         </ul>
+      )}
+    </Card>
+  );
+}
+
+/** Aparece só quando o planejamento (sem Turbo) cobre menos de 80% do edital: oferece trocar as aulas de menor valor por uma versão enxuta (Teoria condensada + caderno curto). */
+function TurboOption({ preview, on, onChange }: { preview: Preview | null; on: boolean; onChange: (v: boolean) => void }) {
+  if (!preview || "error" in preview || preview.coverageWithoutTurbo >= 0.8) return null;
+  return (
+    <Card tone={on ? "ink" : undefined} className="space-y-4">
+      <label className="flex cursor-pointer items-start gap-3">
+        <input type="checkbox" checked={on} onChange={(e) => onChange(e.target.checked)} className="mt-1 h-5 w-5 shrink-0 cursor-pointer accent-[var(--primary)]" />
+        <span className="min-w-0 space-y-1.5">
+          <span className="flex items-center gap-2 font-display text-2xl font-bold uppercase leading-none">
+            <Zap className="h-5 w-5 text-gold" aria-hidden />
+            Permitir Modo Turbo
+          </span>
+          <span className={cx("block text-sm leading-relaxed", on ? "text-on-ink-muted" : "text-muted")}>
+            E agora? Já que o tempo disponível e o resultado da anamnese não permitiriam a você fechar o edital, o MentorIA irá substituir os assuntos com menor incidência na prova e menor probabilidade de aparecerem pelos resumos, garantindo que você veja todo o edital, do seu jeito.
+          </span>
+          {on && preview.turboAulas > 0 && (
+            <span className="block text-sm font-semibold text-gold">{preview.turboAulas} {preview.turboAulas === 1 ? "aula será estudada" : "aulas serão estudadas"} por resumo.</span>
+          )}
+        </span>
+      </label>
+
+      {on && (
+        <div
+          role="region"
+          aria-label="Aviso sobre o Modo Turbo"
+          className="rounded-2xl border border-amber-500/40 bg-amber-500/10 p-4 sm:p-5 text-sm space-y-2.5 transition-all animate-in fade-in slide-in-from-top-2"
+        >
+          <div className="flex items-center gap-2 font-display text-base font-bold uppercase text-amber-400">
+            <AlertTriangle className="h-4 w-4 shrink-0 text-amber-400" aria-hidden />
+            Atenção ao Modo Turbo
+          </div>
+          <p className={cx("text-sm leading-relaxed", on ? "text-on-ink" : "text-text")}>
+            <strong>Atenção ao Modo Turbo:</strong> este modo prioriza a cobertura teórica de todo o edital, reduzindo o tempo disponível para revisões e resolução de questões. Se o sistema calculou que seu planejamento já cobre boa parte do conteúdo — mais de 80% —, o planejamento normal tende a ser mais adequado. Ele permite priorizar os assuntos de maior peso e incidência, reduzindo proporcionalmente o esforço dedicado às disciplinas e aos temas menos importantes, sem comprometer desnecessariamente a revisão e a prática por questões.
+          </p>
+        </div>
       )}
     </Card>
   );

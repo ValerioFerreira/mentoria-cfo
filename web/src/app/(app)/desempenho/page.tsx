@@ -1,14 +1,16 @@
-import { CheckCircle2, ChevronRight, CircleAlert, CircleHelp, ClipboardList, Clock3, Flame, ListChecks, Target } from "lucide-react";
+import { CheckCircle2, ChevronRight, CircleAlert, CircleHelp, ClipboardList, Clock3, Flame, ListChecks, Target, Trophy, Users } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { ApprovalComparison } from "@/components/approval-comparison";
 import { Heatmap } from "@/components/heatmap";
-import { Alert, BLOCK_COLOR, Badge, Card, Count, EmptyState, LinkButton, PageHeader, Progress, Ring, SectionTitle, Stat } from "@/components/ui";
+import { Alert, BLOCK_COLOR, Badge, Card, ChartEmpty, Count, EmptyState, LinkButton, PageHeader, Progress, Ring, SectionTitle, Stat } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
 import { getPerformance } from "@/lib/data/performance";
-import { getActivePlan } from "@/lib/data/study";
-import { MIN_QUESTIONS_FOR_PROJECTION } from "@/lib/metrics";
+import { getActivePlan, getPendingPlan } from "@/lib/data/study";
+import { PendingPlanView } from "@/components/pending-plan-view";
+import { db } from "@/lib/db";
+import { MIN_HEAT_DAYS, MIN_QUESTIONS_FOR_PROJECTION, MIN_TREND_CADERNOS, MIN_WEEKS_WITH_STUDY, chartReadiness, weeksWithStudy } from "@/lib/metrics";
 import { dateOfPlanDay, firstStudyISO, effectiveDays, planPosition, todayISO } from "@/lib/plan-time";
 import { fmtDuration, subjectName, subjectShort } from "@/lib/ui-format";
 
@@ -16,6 +18,7 @@ export const metadata: Metadata = { title: "Desempenho" };
 
 const pct = (v: number | null) => (v === null ? "—" : `${Math.round(v * 100)}%`);
 const num = (v: number) => (Number.isInteger(v) ? String(v) : v.toFixed(1).replace(".", ","));
+const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
 const BLOCK = { I: "Bloco I", II: "Bloco II", III: "Bloco III" } as const;
 const accColor = (v: number | null) => (v === null ? "var(--surface-3)" : v >= 0.7 ? "var(--ok)" : v >= 0.5 ? "var(--gold)" : "var(--primary)");
 
@@ -31,6 +34,20 @@ function mastery(acc: number | null, total: number): { label: string; tone: "ok"
 export default async function PerformancePage() {
   const user = await requireUser();
   const plan = await getActivePlan(user.id);
+  if (!plan) {
+    const pending = await getPendingPlan(user.id);
+    if (pending) {
+      const profile = await db.profile.findUnique({ where: { userId: user.id } });
+      return (
+        <PendingPlanView
+          userName={user.name}
+          createdAt={pending.createdAt}
+          examDate={pending.examDate}
+          hoursPerWeek={profile?.hoursPerWeek}
+        />
+      );
+    }
+  }
   const planSubjects = plan?.subjects.map((s) => s.subjectId) ?? [];
   const totalWeeks = plan?.weeks.length ?? 0;
   const perf = await getPerformance(user.id, plan?.startDate ?? null, totalWeeks, planSubjects);
@@ -40,7 +57,7 @@ export default async function PerformancePage() {
   const nowWeek = pos?.week ?? 0;
   const weekTarget = (i: number) => (plan?.weeks[i]?.targetMinutes ?? 0) * 60;
   const maxBar = Math.max(1, ...perf.byWeekSeconds, ...(plan?.weeks.map((w) => w.targetMinutes * 60) ?? [0]));
-  const thisWeekSec = perf.byWeekSeconds[nowWeek - 1] ?? 0;
+  const thisWeekSec = perf.thisWeekSeconds;
 
   // aderência: das atividades que já deveriam ter sido feitas (até hoje), quantas foram concluídas
   const due = plan ? plan.weeks.flatMap((w) => effectiveDays(w.activities).map((a) => ({ ...a, date: dateOfPlanDay(startIso, w.index, a.day) }))).filter((a) => a.date <= today) : [];
@@ -59,6 +76,10 @@ export default async function PerformancePage() {
     .map((s) => ({ ...s, seconds: perf.bySubjectSeconds.get(s.id) ?? 0, q: perf.quizStats.get(s.id), act: doneBySubject.get(s.id) }));
   const unattached = perf.bySubjectSeconds.get("_none") ?? 0;
   const activeDays = perf.daily.filter((d) => d.seconds > 0).length;
+  const trendReady = chartReadiness(perf.trend.length, MIN_TREND_CADERNOS);
+  const heatReady = chartReadiness(activeDays, MIN_HEAT_DAYS);
+  const weeksStudied = weeksWithStudy(perf.byWeekSeconds);
+  const weeklyReady = chartReadiness(weeksStudied, MIN_WEEKS_WITH_STUDY);
 
   const totalPoints = perf.projection.reduce((n, b) => n + b.points, 0);
   const projectedTotal = perf.projection.every((b) => b.projected !== null) ? perf.projection.reduce((n, b) => n + b.projected!, 0) : null;
@@ -77,7 +98,7 @@ export default async function PerformancePage() {
         <Stat
           label="Tempo estudado"
           value={fmtDuration(perf.totalSeconds)}
-          hint={plan ? `${fmtDuration(thisWeekSec)} esta semana · meta ${fmtDuration(weekTarget(nowWeek - 1))}` : unattached ? `${fmtDuration(unattached)} sem atividade` : "no total"}
+          hint={pos?.state === "during" ? `${fmtDuration(thisWeekSec)} esta semana · meta ${fmtDuration(weekTarget(nowWeek - 1))}` : `${fmtDuration(thisWeekSec)} esta semana${unattached ? ` · ${fmtDuration(unattached)} sem atividade` : ""}`}
           info="Soma dos tempos que você lançou nas atividades. O cronômetro flutuante não entra: ele é só um apoio."
           icon={<Clock3 className="h-4 w-4" aria-hidden />}
           delay={0}
@@ -123,7 +144,7 @@ export default async function PerformancePage() {
           id="edital"
           info="O edital elimina quem ficar abaixo de 30% dos pontos em qualquer bloco, quem zerar alguma disciplina ou quem ficar abaixo de 30% do total. Aqui estimamos seus acertos se você fizesse a prova hoje: seu percentual de acerto em cada disciplina (mínimo de 10 questões) vezes as questões que ela tem na prova. A linha marca o mínimo exigido (30%); quanto mais cadernos você fizer, mais precisa fica a estimativa. Passar o mínimo só evita a eliminação: a comparação “Você × aprovados” mostra onde você está frente a quem foi aprovado nos últimos concursos."
         >
-          Você passaria hoje? Critérios do edital
+          E se a prova fosse hoje?
         </SectionTitle>
         <div className="grid gap-3 md:grid-cols-3">
           {perf.projection.map((b, i) => {
@@ -144,11 +165,15 @@ export default async function PerformancePage() {
                   {b.projected === null ? "—" : num(b.projected)}
                   <span className="text-base font-medium text-muted"> de {b.points} questões</span>
                 </p>
-                <div className="relative pb-5 pt-1">
-                  <Progress value={ratio} color={b.status === "risco" ? "var(--primary)" : "var(--ok)"} size="lg" label={`Acertos estimados no ${BLOCK[b.block]}`} />
-                  <span className="absolute top-0 h-5 w-px bg-text/70" style={{ left: "30%" }} aria-hidden />
-                  <span className="absolute bottom-0 -translate-x-1/2 whitespace-nowrap text-[11px] font-semibold text-muted" style={{ left: "30%" }}>mínimo: {num(floor)} questões</span>
-                </div>
+                {b.projected === null ? (
+                  <ChartEmpty className="h-16 !px-3">Faça mais cadernos de questões deste bloco para gerar dados suficientes para a estimativa.</ChartEmpty>
+                ) : (
+                  <div className="relative pb-5 pt-1">
+                    <Progress value={ratio} color={b.status === "risco" ? "var(--primary)" : "var(--ok)"} size="lg" label={`Acertos estimados no ${BLOCK[b.block]}`} />
+                    <span className="absolute top-0 h-5 w-px bg-text/70" style={{ left: "30%" }} aria-hidden />
+                    <span className="absolute bottom-0 -translate-x-1/2 whitespace-nowrap text-[11px] font-semibold text-muted" style={{ left: "30%" }}>mínimo: {num(floor)} questões</span>
+                  </div>
+                )}
                 <ul className="divide-y divide-border text-sm">
                   {b.subjects.map((s) => (
                     <li key={s.id} className="flex items-center justify-between gap-3 py-1.5">
@@ -201,8 +226,10 @@ export default async function PerformancePage() {
               </thead>
               <tbody className="divide-y divide-border">
                 {rows.map((r, i) => {
-                  const acc = r.q?.accuracy ?? null;
-                  const mst = mastery(acc, r.q?.total ?? 0);
+                  const answered = r.q?.total ?? 0;
+                  const acc = answered >= MIN_QUESTIONS_FOR_PROJECTION ? (r.q?.accuracy ?? null) : null;
+                  const mst = mastery(acc, answered);
+                  const missingQ = Math.max(0, MIN_QUESTIONS_FOR_PROJECTION - answered);
                   return (
                     <tr key={r.id} className="transition hover:bg-surface-2/60">
                       <td className="px-5 py-3.5 font-semibold">
@@ -216,12 +243,181 @@ export default async function PerformancePage() {
                       <td className="px-3 py-3.5 text-right tabular text-muted">{r.q?.total ?? 0}</td>
                       <td className="px-3 py-3.5 text-right tabular text-muted">{r.q?.correct ?? 0}</td>
                       <td className="px-3 py-3.5">
-                        <div className="flex items-center gap-3">
-                          <Progress value={acc ?? 0} color={accColor(acc)} delay={i * 30} label={`Taxa de acerto em ${r.name}`} className="flex-1" />
-                          <span className="w-11 text-right font-display text-xl font-bold tabular">{pct(acc)}</span>
-                        </div>
+                        {acc === null ? (
+                          <p className="text-xs text-muted">Faça mais {plural(missingQ, "questão", "questões")} para gerar dados suficientes</p>
+                        ) : (
+                          <div className="flex items-center gap-3">
+                            <Progress value={acc} color={accColor(acc)} delay={i * 30} label={`Taxa de acerto em ${r.name}`} className="flex-1" />
+                            <span className="w-11 text-right font-display text-xl font-bold tabular">{pct(acc)}</span>
+                          </div>
+                        )}
                       </td>
                       <td className="px-5 py-3.5"><Badge tone={mst.tone}>{mst.label}</Badge></td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </Card>
+        )}
+      </section>
+
+      {/* ───────── COMPARATIVO COM A COMUNIDADE ───────── */}
+      <section aria-labelledby="community">
+        <SectionTitle
+          id="community"
+          info="Comparações anônimas entre o seu desempenho e o dos concurseiros ativos na plataforma. Inclui apenas alunos com volume mínimo de dados (no mínimo 15 questões e 2h de estudo)."
+          aside={`Amostra ativa: ${perf.community.qualifiedUsersCount} ${perf.community.qualifiedUsersCount === 1 ? "aluno qualificado" : "alunos qualificados"}`}
+        >
+          Você vs. Comunidade
+        </SectionTitle>
+
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {/* Card 1: Taxa de Acerto Geral */}
+          <Card className="space-y-4">
+            <div className="flex items-center justify-between">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <Target className="h-5 w-5" />
+              </span>
+              {perf.community.userPercentile !== null ? (
+                <Badge tone="ok">Top {Math.max(1, 100 - perf.community.userPercentile)}%</Badge>
+              ) : (
+                <Badge tone="neutral">Poucos dados</Badge>
+              )}
+            </div>
+
+            <div>
+              <p className="eyebrow">Taxa Geral de Acerto</p>
+              <div className="mt-1 flex items-baseline gap-2">
+                <span className="font-display text-4xl font-bold">{pct(perf.accuracy)}</span>
+                <span className="text-xs font-semibold text-muted">seu acerto</span>
+              </div>
+            </div>
+
+            <div className="space-y-2 border-t border-border pt-3 text-xs">
+              <div className="flex items-center justify-between">
+                <span className="text-muted">Média dos alunos ativos:</span>
+                <strong className="font-semibold text-text">{pct(perf.community.communityAvgAccuracy)}</strong>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-muted">Top 10% mais preparados:</span>
+                <strong className="font-semibold text-ok">{pct(perf.community.top10Accuracy)}</strong>
+              </div>
+            </div>
+
+            {perf.community.userPercentile !== null ? (
+              <p className="rounded-lg bg-surface-2 p-2 text-center text-xs font-semibold text-text">
+                Você está à frente de <span className="text-ok font-bold">{perf.community.userPercentile}%</span> dos candidatos ativos!
+              </p>
+            ) : (
+              <p className="text-[11px] text-muted">
+                Resolva pelo menos {perf.community.minQuestions} questões para desbloquear seu percentil exato.
+              </p>
+            )}
+          </Card>
+
+          {/* Card 2: Horas de Estudo */}
+          <Card className="space-y-4">
+            <div className="flex items-center justify-between">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gold/15 text-gold-text">
+                <Trophy className="h-5 w-5" />
+              </span>
+              <Badge tone="gold">Dedicação</Badge>
+            </div>
+
+            <div>
+              <p className="eyebrow">Horas de Estudo</p>
+              <div className="mt-1 flex items-baseline gap-2">
+                <span className="font-display text-4xl font-bold">{num(perf.community.userStudyHours ?? 0)}h</span>
+                <span className="text-xs font-semibold text-muted">acumuladas</span>
+              </div>
+            </div>
+
+            <div className="space-y-2 border-t border-border pt-3 text-xs">
+              <div className="flex items-center justify-between">
+                <span className="text-muted">Média da comunidade ativa:</span>
+                <strong className="font-semibold text-text">{perf.community.communityAvgHours !== null ? `${num(perf.community.communityAvgHours)}h` : "—"}</strong>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-muted">Critério de qualificação:</span>
+                <span className="text-muted">mínimo {perf.community.minStudyHours}h registradas</span>
+              </div>
+            </div>
+
+            <p className="rounded-lg bg-surface-2 p-2 text-center text-xs font-semibold text-text">
+              {perf.community.userStudyHours && perf.community.communityAvgHours && perf.community.userStudyHours >= perf.community.communityAvgHours
+                ? "Seu volume de dedicação está acima da média!"
+                : "Mantenha a regularidade diária para avançar."}
+            </p>
+          </Card>
+
+          {/* Card 3: Ranking e Amostragem */}
+          <Card className="space-y-4 sm:col-span-2 lg:col-span-1">
+            <div className="flex items-center justify-between">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-ok/15 text-ok">
+                <Users className="h-5 w-5" />
+              </span>
+              <Badge tone="primary">Filtro Antidistorsão</Badge>
+            </div>
+
+            <div>
+              <p className="eyebrow">Amostragem Qualificada</p>
+              <p className="mt-1 font-display text-xl font-bold uppercase leading-snug">
+                Concorrentes Reais
+              </p>
+            </div>
+
+            <p className="text-xs leading-relaxed text-muted">
+              Contas sem atividade ou com menos de {perf.community.minQuestions} questões são <strong>desconsideradas</strong> para manter as comparações estatisticamente válidas.
+            </p>
+
+            <div className="rounded-xl border border-border bg-surface-2 p-3 text-xs space-y-1">
+              <p className="font-semibold text-text">Amostra qualificada atual:</p>
+              <p className="text-muted">
+                {perf.community.qualifiedUsersCount} alunos em questões · {perf.community.qualifiedStudyUsersCount} em tempo de estudo.
+              </p>
+            </div>
+          </Card>
+        </div>
+
+        {/* Tabela de Comparação por Matéria */}
+        {perf.community.subjectStats.length > 0 && (
+          <Card className="mt-4 overflow-x-auto p-0">
+            <table className="w-full text-left text-sm">
+              <thead className="border-b border-border bg-surface-2 text-xs font-semibold uppercase tracking-wider text-muted">
+                <tr>
+                  <th className="px-5 py-3">Disciplina</th>
+                  <th className="px-4 py-3 text-right">Seu Acerto</th>
+                  <th className="px-4 py-3 text-right">Média dos Concorrentes</th>
+                  <th className="px-4 py-3 text-right">Comparativo</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border">
+                {perf.community.subjectStats.map((st) => {
+                  const diff = st.userAccuracy !== null && st.communityAccuracy !== null ? st.userAccuracy - st.communityAccuracy : null;
+                  return (
+                    <tr key={st.subjectId} className="transition hover:bg-surface-2/60">
+                      <td className="px-5 py-3">
+                        <p className="font-semibold">{st.subjectName}</p>
+                        <p className="text-xs text-muted">{st.userTotal} questões feitas por você · {st.qualifiedCount} concorrentes na amostra</p>
+                      </td>
+                      <td className="px-4 py-3 text-right font-display text-lg font-bold tabular">
+                        <span style={{ color: accColor(st.userAccuracy) }}>{pct(st.userAccuracy)}</span>
+                      </td>
+                      <td className="px-4 py-3 text-right font-display text-lg font-bold tabular text-muted">
+                        {pct(st.communityAccuracy)}
+                      </td>
+                      <td className="px-4 py-3 text-right">
+                        {diff === null ? (
+                          <Badge tone="neutral">Sem base</Badge>
+                        ) : diff >= 0.05 ? (
+                          <Badge tone="ok" className="tabular">+{Math.round(diff * 100)}% acima</Badge>
+                        ) : diff <= -0.05 ? (
+                          <Badge tone="primary" className="tabular">{Math.round(diff * 100)}% abaixo</Badge>
+                        ) : (
+                          <Badge tone="gold" className="tabular">Na média</Badge>
+                        )}
+                      </td>
                     </tr>
                   );
                 })}
@@ -237,8 +433,8 @@ export default async function PerformancePage() {
             Evolução do acerto
           </SectionTitle>
           <Card className="rise" style={{ "--i": 2 } as CSSProperties}>
-            {perf.trend.length === 0 ? (
-              <p className="py-10 text-center text-sm text-muted">Finalize um caderno de questões para começar a ver sua evolução.</p>
+            {!trendReady.ready ? (
+              <ChartEmpty>Faça mais cadernos de questões para gerar dados suficientes: a evolução aparece a partir de {MIN_TREND_CADERNOS} cadernos finalizados (faltam {trendReady.missing}).</ChartEmpty>
             ) : (
               <>
                 <div className="relative flex h-40 items-end gap-1.5" role="img" aria-label="Taxa de acerto por caderno finalizado">
@@ -262,7 +458,11 @@ export default async function PerformancePage() {
         <section aria-labelledby="heat">
           <SectionTitle id="heat" info="Cada quadrado é um dia; quanto mais escuro, mais tempo lançado. Constância vale mais do que maratonas isoladas." aside={`${activeDays} ${activeDays === 1 ? "dia" : "dias"} com estudo`}>Constância</SectionTitle>
           <Card className="rise" style={{ "--i": 3 } as CSSProperties}>
-            <Heatmap days={perf.daily} />
+            {heatReady.ready ? (
+              <Heatmap days={perf.daily} />
+            ) : (
+              <ChartEmpty>Lance o tempo de estudo em mais dias para gerar dados suficientes: o mapa aparece a partir de {MIN_HEAT_DAYS} dias com estudo (faltam {heatReady.missing}).</ChartEmpty>
+            )}
           </Card>
         </section>
       </div>
@@ -271,6 +471,10 @@ export default async function PerformancePage() {
         <section aria-labelledby="wk">
           <SectionTitle id="wk" info="Horas lançadas em cada semana do plano. A linha tracejada é a meta daquela semana." aside="tracejado = meta">Horas por semana</SectionTitle>
           <Card className="rise" style={{ "--i": 3 } as CSSProperties}>
+            {!weeklyReady.ready ? (
+              <ChartEmpty>Lance o tempo de estudo em mais semanas do plano para gerar dados suficientes: o gráfico aparece a partir de {MIN_WEEKS_WITH_STUDY} semanas com estudo (faltam {weeklyReady.missing}).</ChartEmpty>
+            ) : (
+              <>
             <div className="flex h-40 items-end gap-[3px]" role="img" aria-label="Horas estudadas por semana em relação à meta">
               {perf.byWeekSeconds.map((sec, i) => (
                 <div key={i} className="group relative flex h-full flex-1 flex-col justify-end" title={`Semana ${i + 1}: ${fmtDuration(sec)} (meta ${fmtDuration(weekTarget(i))})`}>
@@ -283,6 +487,8 @@ export default async function PerformancePage() {
               ))}
             </div>
             <div className="mt-2 flex justify-between text-xs font-semibold text-muted tabular"><span>Semana 1</span><span className="text-gold-text">● semana atual</span><span>Semana {totalWeeks}</span></div>
+              </>
+            )}
           </Card>
         </section>
       )}
@@ -311,14 +517,43 @@ export default async function PerformancePage() {
           ) : (
             <Card className="divide-y divide-border p-0">
               {perf.recentSessions.map((s) => {
-                const r = (s.score ?? 0) / s.total;
+                const r = s.total > 0 ? (s.score ?? 0) / s.total : 0;
+                const isSimulado = s.kind === "SIMULADO";
+                const isPersonalizado = s.kind === "CADERNO_PERSONALIZADO";
+                const isPlano = Boolean(s.activityId);
+
+                let href = `/caderno/${s.activityId}`;
+                let typeBadge = <Badge tone="neutral" className="text-[9px]">Plano</Badge>;
+                let sessionTitle = s.activity ? subjectShort(s.activity.subjectId) : "Caderno";
+
+                if (isSimulado) {
+                  href = `/simulados/resultado/${s.id}`;
+                  typeBadge = <Badge tone="primary" className="text-[9px]">Simulado Oficial</Badge>;
+                  sessionTitle = s.title ?? "Simulado Oficial CBMPE";
+                } else if (isPersonalizado) {
+                  href = `/questoes/pratica/${s.id}`;
+                  typeBadge = <Badge tone="ok" className="text-[9px]">Personalizado</Badge>;
+                  sessionTitle = s.title ?? "Caderno Personalizado";
+                } else if (!isPlano) {
+                  href = `/questoes/pratica/${s.id}`;
+                  typeBadge = <Badge tone="neutral" className="text-[9px]">Prática Livre</Badge>;
+                  sessionTitle = s.title ?? "Treino de Questões";
+                }
+
                 return (
-                  <Link key={s.id} href={`/caderno/${s.activityId}`} className="group flex items-center gap-4 px-5 py-3 text-sm transition first:rounded-t-2xl last:rounded-b-2xl hover:bg-surface-2">
+                  <Link
+                    key={s.id}
+                    href={href}
+                    className="group flex items-center gap-4 px-5 py-3 text-sm transition first:rounded-t-2xl last:rounded-b-2xl hover:bg-surface-2"
+                  >
                     <Ring value={r} size={42} stroke={5} color={accColor(r)} label={`${Math.round(r * 100)}% de acerto`}>
                       <span className="text-[10px] font-bold tabular">{Math.round(r * 100)}</span>
                     </Ring>
                     <div className="min-w-0 flex-1">
-                      <p className="truncate font-semibold">{s.activity ? subjectShort(s.activity.subjectId) : "Caderno"}{s.activity ? ` · Aula ${String(s.activity.aula.number).padStart(2, "0")}` : ""}</p>
+                      <div className="flex items-center gap-2">
+                        <p className="truncate font-semibold">{sessionTitle}{s.activity?.aula.shortTitle ? ` · ${s.activity.aula.shortTitle}` : ""}</p>
+                        {typeBadge}
+                      </div>
                       <p className="text-xs text-muted">{s.finishedAt?.toLocaleDateString("pt-BR")}</p>
                     </div>
                     <span className="font-display text-xl font-bold tabular">{s.score ?? 0}<span className="text-muted">/{s.total}</span></span>

@@ -13,6 +13,6 @@ async function main() {
   const code = randomBytes(6).toString("base64url");
   await db.invite.create({ data: { code, email: email?.toLowerCase(), makeAdmin } });
   console.log(`Convite criado: ${code}${makeAdmin ? " (administrador)" : ""}${email ? ` · restrito a ${email}` : ""}`);
-  console.log(`Link: http://localhost:3000/cadastro?convite=${code}`);
+  console.log(`Link: ${(process.env.SITE_URL ?? "http://localhost:3000").replace(/\/$/, "")}/cadastro?convite=${code}`);
 }
 main().finally(() => db.$disconnect());

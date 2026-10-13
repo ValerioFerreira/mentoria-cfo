@@ -3,7 +3,6 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import { QuickTime, StatusToggle } from "@/components/study-controls";
 import { Badge, TYPE_META, TypeIcon, cx, type ActivityType } from "@/components/ui";
-import { aulaLabel } from "@/lib/directive";
 import { fmtDuration, subjectShort } from "@/lib/ui-format";
 
 export interface ActivityRowData {
@@ -13,14 +12,17 @@ export interface ActivityRowData {
   subjectId: string;
   scope: string;
   plannedMinutes: number;
+  /** Modo Turbo: a Teoria é um resumo (Bizu) */
+  turbo?: boolean;
   aula: { number: number; shortTitle: string };
+  editalTopic?: string | null;
   /** o que fazer, em uma linha: páginas, questões comentadas, tamanho do caderno */
   detail?: string | null;
 }
 
 export function activityTitle(a: Pick<ActivityRowData, "scope" | "type" | "aula">) {
   if (a.scope === "FINAL") return a.type === "QUESTOES" ? "Caderno misto da disciplina" : "Revisão geral dos trechos mais importantes";
-  return aulaLabel(a.aula);
+  return a.aula.shortTitle;
 }
 
 /** "1h05" / "45 min" para minutos planejados. */
@@ -52,9 +54,15 @@ export function ActivityRow({ a, spent = 0, order, index = 0, quickTime = true }
             <span className="text-xs font-semibold" style={{ color: m.color }}>{m.label}</span>
             {a.detail && <span className="text-xs font-semibold text-text/70">· {a.detail}</span>}
             {a.scope === "FINAL" && <Badge tone="gold">geral</Badge>}
+            {a.turbo && <Badge tone="gold">turbo</Badge>}
             {skipped && <Badge>pulada</Badge>}
           </span>
           <span className="mt-0.5 line-clamp-2 block text-sm text-muted sm:line-clamp-1">{activityTitle(a)}</span>
+          {a.editalTopic && (
+            <span className="mt-0.5 block truncate text-xs text-muted">
+              <span className="font-semibold text-text/80">Edital:</span> {a.editalTopic}
+            </span>
+          )}
         </Link>
       </div>
       <div className="relative z-10 flex shrink-0 flex-col items-end gap-1 text-xs text-muted tabular">
@@ -89,11 +97,17 @@ export function ActivityCard({ a, spent = 0, index = 0, late }: { a: ActivityRow
       <Link href={`/atividade/${a.id}`} className={cx("block after:absolute after:inset-0 after:content-['']", (done || skipped) && "opacity-65")}>
         <span className="mt-1 block text-[13px] font-bold leading-tight">{subjectShort(a.subjectId)}</span>
         <span className="mt-0.5 line-clamp-3 block text-xs leading-snug text-muted">{activityTitle(a)}</span>
+        {a.editalTopic && (
+          <span className="mt-0.5 block truncate text-[11px] text-muted">
+            <span className="font-semibold text-text/80">Edital:</span> {a.editalTopic}
+          </span>
+        )}
         {a.detail && <span className="mt-0.5 block text-[11px] font-semibold leading-snug text-text/80">{a.detail}</span>}
       </Link>
       <div className="mt-2 flex items-center justify-between text-[11px] text-muted tabular">
         <span className="flex items-center gap-1"><Clock3 className="h-3 w-3" aria-hidden />{fmtMinutes(a.plannedMinutes)}</span>
         {spent > 0 && <span className="font-semibold text-ok">{fmtDuration(spent)} estudados</span>}
+        {a.turbo ? <Badge tone="gold">turbo</Badge> : null}
         {skipped && <Badge>pulada</Badge>}
       </div>
     </div>

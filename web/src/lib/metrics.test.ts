@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { projectExam, quizBySubject, secondsByDay, secondsByWeek, secondsBySubject, streakDays, totalSeconds, weakTopics, weekIndexOf, type QuizRow, type SubjectMeta, type TimeRow } from "./metrics";
+import { chartReadiness, projectExam, weeksWithStudy, quizBySubject, secondsByDay, secondsThisWeek, secondsByWeek, secondsBySubject, streakDays, totalSeconds, weakTopics, weekIndexOf, type QuizRow, type SubjectMeta, type TimeRow } from "./metrics";
 
 const d = (s: string) => new Date(s + "T12:00:00Z");
 const t = (iso: string, seconds: number, subjectId: string | null = "x"): TimeRow => ({ seconds, startedAt: d(iso), subjectId });
@@ -19,6 +19,15 @@ describe("tempo estudado", () => {
     expect(weekIndexOf(d("2026-10-11"), start, 20)).toBeNull();
     const rows = [t("2026-10-13", 100), t("2026-10-20", 200), t("2026-10-21", 300)];
     expect(secondsByWeek(rows, start, 3)).toEqual([100, 500, 0]);
+  });
+  it("semana civil (segunda a domingo, Recife): estudo às 22h de domingo ainda é da semana que termina", () => {
+    // domingo 11/10 22h em Recife = segunda 12/10 01h UTC; hoje: quarta 14/10
+    const sundayNight = { seconds: 3600, startedAt: new Date("2026-10-12T01:00:00Z"), subjectId: "x" };
+    const mondayNoon = t("2026-10-12", 600);
+    expect(secondsThisWeek([sundayNight, mondayNoon], d("2026-10-14"))).toBe(600);
+    expect(secondsThisWeek([sundayNight], d("2026-10-11"))).toBe(3600);
+    // lançamento sem plano e antes do início do plano também conta na semana corrente
+    expect(secondsThisWeek([t("2026-10-13", 120)], d("2026-10-14"))).toBe(120);
   });
   it("sequência de dias consecutivos, tolerando que hoje ainda esteja em aberto", () => {
     const rows = [t("2026-10-10", 60), t("2026-10-11", 60), t("2026-10-12", 60)];
@@ -69,5 +78,18 @@ describe("projeção por bloco", () => {
     expect(risk[0].status).toBe("risco"); // Informática zerada, mesmo com o bloco acima de 30%
     const low = projectExam(subs, new Map([stat("p", 20, 4), stat("i", 20, 4), stat("m", 20, 4)]));
     expect(low[1].status).toBe("risco"); // 20% < 30%
+  });
+});
+
+describe("prontidão dos gráficos", () => {
+  it("só libera o gráfico com o mínimo de dados e informa quanto falta", () => {
+    expect(chartReadiness(0, 3)).toEqual({ ready: false, missing: 3 });
+    expect(chartReadiness(2, 3)).toEqual({ ready: false, missing: 1 });
+    expect(chartReadiness(3, 3)).toEqual({ ready: true, missing: 0 });
+    expect(chartReadiness(9, 3)).toEqual({ ready: true, missing: 0 });
+  });
+  it("conta só as semanas do plano com tempo lançado", () => {
+    expect(weeksWithStudy([0, 0, 0])).toBe(0);
+    expect(weeksWithStudy([0, 3600, 0, 60])).toBe(2);
   });
 });

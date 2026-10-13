@@ -6,6 +6,7 @@ import type { CSSProperties } from "react";
 import { QuizRunner } from "@/components/quiz-runner";
 import { QuizStart } from "@/components/quiz-start";
 import { ReportButton } from "@/components/report-button";
+import { RichContent } from "@/components/rich-content";
 import { Alert, Badge, Card, Count, InfoTip, Kbd, LinkButton, PageHeader, Ring, SectionTitle } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
@@ -30,7 +31,7 @@ export default async function QuizPage({ params }: PageProps<"/caderno/[id]">) {
   const user = await requireUser();
   const { id } = await params; // id da atividade
   const activity = await db.activity.findFirst({
-    where: { id, type: "QUESTOES", week: { plan: { userId: user.id } } },
+    where: { id, type: "QUESTOES", week: { plan: { userId: user.id, status: "ACTIVE" } } },
     include: { aula: { select: { number: true, shortTitle: true } }, segments: { select: { segmentId: true } }, week: { select: { index: true } } },
   });
   if (!activity) notFound();
@@ -53,15 +54,22 @@ export default async function QuizPage({ params }: PageProps<"/caderno/[id]">) {
           startedAtMs={session.startedAt.getTime()}
           limitSeconds={session.limitSeconds}
           serverNowMs={serverNow()}
-          questions={session.answers.map((a) => ({
-            position: a.position,
-            topic: a.question.topic,
-            support: a.question.support,
-            statement: a.question.statement,
-            options: a.question.options.map((o) => ({ label: o.label, text: o.text })), // sem isCorrect
-            chosen: a.chosenLabel,
-            flagged: a.flagged,
-          }))}
+          questions={session.answers.map((a) => {
+            const isAnswered = a.chosenLabel !== null;
+            const correctOpt = a.question.options.find((o) => o.isCorrect);
+            return {
+              position: a.position,
+              topic: a.question.topic,
+              support: a.question.support,
+              statement: a.question.statement,
+              options: a.question.options.map((o) => ({ label: o.label, text: o.text })),
+              chosen: a.chosenLabel,
+              flagged: a.flagged,
+              correctLabel: isAnswered ? (correctOpt?.label ?? null) : null,
+              explanation: isAnswered ? a.question.explanation : null,
+              isCorrect: isAnswered ? a.isCorrect : null,
+            };
+          })}
         />
       </div>
     );
@@ -124,7 +132,7 @@ export default async function QuizPage({ params }: PageProps<"/caderno/[id]">) {
                     <div>
                       <p className="font-semibold">{p.topic}</p>
                       <p className="text-xs text-muted">
-                        {aula ? `Aula ${String(aula.number).padStart(2, "0")} — ${aula.shortTitle}` : ""}{p.pageRef ? ` · reveja a pág. ${p.pageRef}` : ""}
+                        {aula ? aula.shortTitle : ""}
                       </p>
                     </div>
                     <div className="flex items-center gap-2 text-sm">
@@ -152,17 +160,29 @@ export default async function QuizPage({ params }: PageProps<"/caderno/[id]">) {
                   <span className="font-display text-xl font-bold uppercase tracking-wide">Questão {a.position}</span>
                   <Badge tone={blank ? "neutral" : ok ? "ok" : "warn"}>{blank ? "Em branco" : ok ? "Acertou" : "Errou"}</Badge>
                 </div>
-                {a.question.support && <div className="whitespace-pre-line rounded-xl border-l-4 border-border-strong bg-surface-2 p-3.5 text-sm leading-relaxed">{a.question.support}</div>}
-                <p className="whitespace-pre-line text-[15px] leading-relaxed">{a.question.statement}</p>
+                {a.question.support && (
+                  <div className="rounded-xl border-l-4 border-border-strong bg-surface-2 p-3.5 text-sm leading-relaxed">
+                    <RichContent content={a.question.support} />
+                  </div>
+                )}
+                <div className="text-[15px] leading-relaxed">
+                  <RichContent content={a.question.statement} />
+                </div>
                 <ul className="space-y-1.5 text-sm">
                   {a.question.options.map((o) => (
                     <li key={o.label} className={`flex gap-2.5 rounded-lg px-3 py-2 ${o.isCorrect ? "bg-ok/12 text-ok" : o.label === a.chosenLabel ? "bg-danger-soft text-primary" : "text-muted"}`}>
-                      <strong className="font-display text-base">{o.label}</strong><span>{o.text}</span>
+                      <strong className="font-display text-base">{o.label}</strong>
+                      <div className="flex-1"><RichContent content={o.text} /></div>
                       {o.isCorrect && <CircleCheck className="ml-auto h-4 w-4 shrink-0" aria-label="alternativa correta" />}
                     </li>
                   ))}
                 </ul>
-                <p className="rounded-xl bg-surface-2 p-3.5 text-sm leading-relaxed text-muted"><strong className="text-text">Comentário: </strong>{a.question.explanation}</p>
+                {a.question.explanation && (
+                  <div className="rounded-xl bg-surface-2 p-3.5 text-sm leading-relaxed text-muted">
+                    <strong className="text-text">Comentário: </strong>
+                    <RichContent content={a.question.explanation} />
+                  </div>
+                )}
                 <ReportButton questionId={a.questionId} />
               </Card>
             );
@@ -190,7 +210,7 @@ export default async function QuizPage({ params }: PageProps<"/caderno/[id]">) {
           {[
             ["Questões", String(n)],
             ["Tempo limite", ],
-            ["Alternativas", "5"],
+            ["Alternativas", "A–E"],
           ].map(([label, value]) => (
             <div key={label} className="px-2">
               <dt className="eyebrow">{label}</dt>
@@ -201,7 +221,7 @@ export default async function QuizPage({ params }: PageProps<"/caderno/[id]">) {
         <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-xs text-muted">
           <span className="inline-flex items-center gap-1.5">
             Regras do caderno
-            <InfoTip align="center">Padrão da banca AOCP: uma alternativa correta entre cinco. Ao zerar o tempo, o caderno é encerrado e corrigido automaticamente. Questão em branco conta como erro e não há desconto por erro, como na prova. O resultado fica salvo e aponta os assuntos em que você mais precisa melhorar.</InfoTip>
+            <InfoTip align="center">Padrão da banca AOCP: uma alternativa correta entre cinco (algumas questões mais antigas têm quatro, e há itens de Certo ou Errado). Ao zerar o tempo, o caderno é encerrado e corrigido automaticamente. Questão em branco conta como erro e não há desconto por erro, como na prova. O resultado fica salvo e aponta os assuntos em que você mais precisa melhorar.</InfoTip>
           </span>
           <span className="inline-flex items-center gap-1.5"><Kbd>A</Kbd>–<Kbd>E</Kbd> responder <Kbd>←</Kbd><Kbd>→</Kbd> navegar</span>
         </p>

@@ -30,7 +30,7 @@ export async function loadPlannerData(): Promise<PlannerData> {
       commentedRuns: a.commentedRuns as unknown as [number, number][],
       practiceLinks: a.practiceLinks as unknown as CatalogAula["practiceLinks"],
       incidence: a.incidence, printedOffset: a.printedOffset,
-      source: a.source === "AUTHORED" ? "authored" : "estrategia",
+      source: a.source === "AUTHORED" ? "authored" : "base",
     };
     aulasBySubject.set(a.subjectId, [...(aulasBySubject.get(a.subjectId) ?? []), item]);
   }

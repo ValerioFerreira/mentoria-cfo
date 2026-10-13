@@ -1,4 +1,6 @@
 // Agregações de desempenho (funções puras): tempo estudado, questões, acerto e projeção em relação ao edital.
+// Todo agrupamento por dia/semana usa o dia civil de Recife (não o UTC, que vira o dia às 21h).
+import { addDaysISO, dayOfWeekIndex, diffDaysISO, todayISO } from "./plan-time";
 
 export interface TimeRow {
   seconds: number;
@@ -32,9 +34,9 @@ export function secondsBySubject(rows: TimeRow[]): Map<string, number> {
   return m;
 }
 
-/** Índice (1-based) da semana do plano em que cai `date`, ou null se fora do intervalo. */
+/** Índice (1-based) da semana do plano em que cai `date` (dia civil de Recife), ou null se fora do intervalo. */
 export function weekIndexOf(date: Date, planStart: Date, totalWeeks: number): number | null {
-  const days = Math.floor((date.getTime() - planStart.getTime()) / 86_400_000);
+  const days = diffDaysISO(planStart.toISOString().slice(0, 10), todayISO(date));
   if (days < 0) return null;
   const w = Math.floor(days / 7) + 1;
   return w <= totalWeeks ? w : null;
@@ -49,34 +51,45 @@ export function secondsByWeek(rows: TimeRow[], planStart: Date, totalWeeks: numb
   return out;
 }
 
-/** Dias consecutivos (até hoje ou ontem) com algum estudo registrado. Datas em UTC. */
+/** Segundos estudados na semana civil (segunda a domingo, Recife) que contém `now`, haja ou não plano. */
+export function secondsThisWeek(rows: TimeRow[], now: Date): number {
+  const today = todayISO(now);
+  const monday = addDaysISO(today, -dayOfWeekIndex(today));
+  const sunday = addDaysISO(monday, 6);
+  return rows.reduce((n, r) => {
+    const day = todayISO(r.startedAt);
+    return day >= monday && day <= sunday ? n + r.seconds : n;
+  }, 0);
+}
+
+/** Dias consecutivos (até hoje ou ontem) com algum estudo registrado. Dias civis de Recife. */
 export function streakDays(rows: TimeRow[], now: Date): number {
-  const days = new Set(rows.map((r) => r.startedAt.toISOString().slice(0, 10)));
-  let d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
-  if (!days.has(d.toISOString().slice(0, 10))) d = new Date(d.getTime() - 86_400_000); // hoje ainda pode estar em aberto
+  const days = new Set(rows.map((r) => todayISO(r.startedAt)));
+  let d = todayISO(now);
+  if (!days.has(d)) d = addDaysISO(d, -1); // hoje ainda pode estar em aberto
   let n = 0;
-  while (days.has(d.toISOString().slice(0, 10))) {
+  while (days.has(d)) {
     n++;
-    d = new Date(d.getTime() - 86_400_000);
+    d = addDaysISO(d, -1);
   }
   return n;
 }
 
 export interface DayTotal {
-  date: string; // AAAA-MM-DD (UTC)
+  date: string; // AAAA-MM-DD (dia civil de Recife)
   seconds: number;
 }
 
-/** Segundos estudados por dia nos últimos `days` dias (inclui hoje, do mais antigo ao mais recente). Datas em UTC. */
+/** Segundos estudados por dia nos últimos `days` dias (inclui hoje, do mais antigo ao mais recente). Dias civis de Recife. */
 export function secondsByDay(rows: TimeRow[], now: Date, days: number): DayTotal[] {
   const by = new Map<string, number>();
   for (const r of rows) {
-    const k = r.startedAt.toISOString().slice(0, 10);
+    const k = todayISO(r.startedAt);
     by.set(k, (by.get(k) ?? 0) + r.seconds);
   }
-  const today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+  const today = todayISO(now);
   return Array.from({ length: days }, (_, i) => {
-    const date = new Date(today - (days - 1 - i) * 86_400_000).toISOString().slice(0, 10);
+    const date = addDaysISO(today, -(days - 1 - i));
     return { date, seconds: by.get(date) ?? 0 };
   });
 }
@@ -128,6 +141,26 @@ export function weakTopics(rows: QuizRow[], minAttempts = 3, limit = 8): WeakTop
 }
 
 export const MIN_QUESTIONS_FOR_PROJECTION = 10;
+
+/** Dados mínimos para desenhar cada gráfico do Desempenho; abaixo disso o gráfico fica em branco e a tela diz o que falta. */
+export const MIN_TREND_CADERNOS = 3;
+export const MIN_HEAT_DAYS = 3;
+export const MIN_WEEKS_WITH_STUDY = 2;
+
+export interface ChartReadiness {
+  ready: boolean;
+  /** quanto falta para atingir o mínimo (0 quando pronto) */
+  missing: number;
+}
+
+export function chartReadiness(have: number, min: number): ChartReadiness {
+  return { ready: have >= min, missing: Math.max(0, min - have) };
+}
+
+/** Semanas do plano com algum tempo lançado. */
+export function weeksWithStudy(byWeekSeconds: number[]): number {
+  return byWeekSeconds.filter((s) => s > 0).length;
+}
 
 export interface BlockProjection {
   block: "I" | "II" | "III";

@@ -58,15 +58,18 @@ export function Wordmark({ className }: { className?: string }) {
   );
 }
 
-export function Brand({ size = "md", inverse }: { size?: "md" | "lg"; inverse?: boolean }) {
+/** Marca. Sem `subtitle` mostra só o nome; dentro do app o menu passa o subtítulo da missão. */
+export function Brand({ size = "md", inverse, subtitle }: { size?: "md" | "lg"; inverse?: boolean; subtitle?: string }) {
   return (
     <span className={`inline-flex items-center gap-2.5 ${inverse ? "text-on-ink" : "text-text"}`}>
       <BrandMark className={size === "lg" ? "h-11 w-11" : "h-9 w-9"} />
       <span className={`font-display font-bold leading-none tracking-wide ${size === "lg" ? "text-4xl" : "text-[1.65rem]"}`}>
         <Wordmark />
-        <span className="block font-semibold uppercase text-muted" style={{ letterSpacing: "0.16em", fontSize: "0.4em", marginTop: "0.3em", color: inverse ? "var(--on-ink-muted)" : undefined }}>
-          Missão Oficial · CBMPE
-        </span>
+        {subtitle && (
+          <span className="block font-semibold uppercase text-muted" style={{ letterSpacing: "0.16em", fontSize: "0.4em", marginTop: "0.3em", color: inverse ? "var(--on-ink-muted)" : undefined }}>
+            {subtitle}
+          </span>
+        )}
       </span>
     </span>
   );

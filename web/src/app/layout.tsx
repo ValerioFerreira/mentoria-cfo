@@ -8,8 +8,8 @@ const display = Barlow_Condensed({ subsets: ["latin"], weight: ["500", "600", "7
 const sans = Public_Sans({ subsets: ["latin"], variable: "--font-public", display: "swap" });
 
 export const metadata: Metadata = {
-  title: { default: "MentorIA · Missão Oficial CBMPE", template: "%s · MentorIA" },
-  description: "Plano de estudos diário, bizus e questões no padrão AOCP para a missão de 2º Tenente do CBMPE.",
+  title: { default: "MentorIA", template: "%s · MentorIA" },
+  description: "Plano de estudos exclusivo e individualizado para concursos: direcionamento detalhado, resumos e questões com a pegada da banca.",
 };
 
 export const viewport: Viewport = {
@@ -27,6 +27,10 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   const theme = saved === "light" || saved === "sepia" || saved === "dark" ? saved : undefined;
   return (
     <html lang="pt-BR" data-theme={theme} className={`${display.variable} ${sans.variable} h-full`} suppressHydrationWarning>
+      <head>
+        <link rel="prefetch" href="/images/CBMPE.webp" as="image" type="image/webp" />
+        <link rel="prefetch" href="/images/PCPE.webp" as="image" type="image/webp" />
+      </head>
       <body className="min-h-full flex flex-col">
         <FaviconFlame />
         {children}
