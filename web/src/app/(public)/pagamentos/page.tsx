@@ -81,7 +81,7 @@ export default async function BillingPage({ searchParams }: { searchParams: Prom
                   </p>
                   {due - paid > 0 && (
                     <Link href={`/pagamentos/contratacao/${c.id}`} className="inline-block text-sm font-semibold text-primary underline">
-                      Ver Pix para pagamento
+                      Pagar
                     </Link>
                   )}
                 </Card>
@@ -94,7 +94,7 @@ export default async function BillingPage({ searchParams }: { searchParams: Prom
       {offers.length > 0 && sample && (
         <section className="space-y-3" aria-labelledby="contratar">
           <h2 id="contratar" className="font-display text-lg font-bold uppercase">Contratar acesso a outro concurso</h2>
-          <ActionForm action={startContract} submitLabel="Gerar Pix" pendingLabel="Registrando…" resetOnSuccess={false} className="space-y-4">
+          <ActionForm action={startContract} submitLabel="Contratar e pagar" pendingLabel="Registrando…" resetOnSuccess={false} className="space-y-4">
             <fieldset className="grid gap-3 sm:grid-cols-2">
               <legend className="mb-2 text-sm font-semibold">Concurso</legend>
               {offers.map(({ c, category }, i) => {
@@ -114,7 +114,7 @@ export default async function BillingPage({ searchParams }: { searchParams: Prom
                 );
               })}
             </fieldset>
-            <Field label="Cupom de parceiro (opcional)" hint="O desconto é calculado no servidor e aparece no valor do Pix.">
+            <Field label="Cupom de parceiro (opcional)" hint="O desconto é calculado no servidor e aparece no valor a pagar.">
               <input name="coupon" type="text" autoComplete="off" maxLength={20} className={`${inputCls} max-w-xs uppercase`} />
             </Field>
           </ActionForm>

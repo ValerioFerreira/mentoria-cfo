@@ -6,7 +6,7 @@ import { Alert, Badge, Card, Field, PageHeader, Stat, inputCls } from "@/compone
 import { requireAdmin } from "@/lib/auth/dal";
 import { adminCancelContract, adminGrantAccess, adminRegisterPayment, adminReversePayment } from "@/lib/commerce/admin-actions";
 import { newIdempotencyKey } from "@/lib/commerce/keys";
-import { AUDIT_LABEL, CONTRACT_STATUS, PAYMENT_METHOD_LABEL, REVERSAL_KIND_LABEL, contestName, dateBR, dayBR } from "@/lib/commerce/labels";
+import { AUDIT_LABEL, CONTRACT_STATUS, PAYMENT_METHOD_LABEL, REVERSAL_KIND_LABEL, actorLabel, contestName, dateBR, dayBR } from "@/lib/commerce/labels";
 import { formatBRL, toCents } from "@/lib/commerce/money";
 import { CATEGORY_LABEL } from "@/lib/commerce/pricing";
 import { contractDetail } from "@/lib/commerce/queries";
@@ -63,7 +63,7 @@ export default async function ContractPage({ params }: { params: Promise<{ id: s
               <Field label="Data efetiva"><input name="paidAt" type="date" required max={today} defaultValue={today} className={inputCls} /></Field>
               <Field label="Forma de pagamento">
                 <select name="method" defaultValue="PIX" className={inputCls}>
-                  {Object.entries(PAYMENT_METHOD_LABEL).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
+                  {Object.entries(PAYMENT_METHOD_LABEL).filter(([k]) => k !== "CARTAO").map(([k, v]) => <option key={k} value={k}>{v}</option>)}
                 </select>
               </Field>
               <Field label="Comprovante (identificador)"><input name="receiptRef" maxLength={120} className={inputCls} /></Field>
@@ -110,11 +110,11 @@ export default async function ContractPage({ params }: { params: Promise<{ id: s
                     <td className={`${td} tabular whitespace-nowrap`}>{formatBRL(toCents(p.amount))}</td>
                     <td className={td}>{PAYMENT_METHOD_LABEL[p.method]}</td>
                     <td className={`${td} text-xs`}>{p.receiptRef ?? "—"}{p.note && <span className="block text-muted">{p.note}</span>}</td>
-                    <td className={`${td} text-xs`}>{p.createdBy.name ?? p.createdBy.email}</td>
+                    <td className={`${td} text-xs`}>{actorLabel(p.createdBy)}</td>
                     <td className={`${td} text-xs`}>
                       {p.reversals.map((r) => (
                         <span key={r.id} className="block">
-                          {REVERSAL_KIND_LABEL[r.kind]} de {formatBRL(toCents(r.amount))} em {dateBR(r.effectiveAt)} — {r.reason} ({r.createdBy.name ?? r.createdBy.email})
+                          {REVERSAL_KIND_LABEL[r.kind]} de {formatBRL(toCents(r.amount))} em {dateBR(r.effectiveAt)} — {r.reason} ({actorLabel(r.createdBy)})
                         </span>
                       ))}
                       {left > 0 && (

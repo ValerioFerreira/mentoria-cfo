@@ -7,7 +7,12 @@ export function contestName(key: Contest): string {
   return c ? `${c.org} · ${c.role}` : key;
 }
 
-export const PAYMENT_METHOD_LABEL: Record<PaymentMethod, string> = { PIX: "Pix", TRANSFERENCIA: "Transferência", DINHEIRO: "Dinheiro", OUTRO: "Outra" };
+export const PAYMENT_METHOD_LABEL: Record<PaymentMethod, string> = { PIX: "Pix", TRANSFERENCIA: "Transferência", DINHEIRO: "Dinheiro", OUTRO: "Outra", CARTAO: "Cartão (online)" };
+
+/** Quem lançou: o administrador ou a conciliação automática do Mercado Pago. */
+export function actorLabel(by: { name: string | null; email: string } | null | undefined): string {
+  return by ? (by.name ?? by.email) : "Mercado Pago (automático)";
+}
 export const REVERSAL_KIND_LABEL: Record<ReversalKind, string> = { ESTORNO: "Estorno", CORRECAO: "Correção" };
 
 export const CONTRACT_STATUS: Record<ContractStatus, { label: string; tone: "ok" | "warn" | "neutral" | "primary" | "gold" }> = {
@@ -24,6 +29,10 @@ export const AUDIT_LABEL: Record<string, string> = {
   CONTRACT_CANCELLED: "Contratação cancelada",
   PAYMENT_REGISTERED: "Pagamento registrado",
   PAYMENT_REVERSED: "Estorno/correção",
+  PAYMENT_ON_CANCELLED_CONTRACT: "Pagamento online em contratação cancelada (devolver)",
+  ACCESS_GRANT_PENDING: "Pago online; acesso aguardando liberação",
+  ACCESS_REVOKED: "Acesso encerrado por estorno total",
+  ACCESS_REVIEW_NEEDED: "Estorno total: revisar acesso",
   OVERPAYMENT_DETECTED: "Pagamento excedente sinalizado",
   ACCESS_GRANTED: "Acesso liberado até a prova",
   CONTEST_SETTING_UPDATED: "Concurso (categoria/data) alterado",

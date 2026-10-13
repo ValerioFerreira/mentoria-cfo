@@ -1,6 +1,7 @@
 import { db } from "@/lib/db";
 import { mpRequest, verifyMercadoPagoSignature } from "@/lib/billing/mercado-pago";
 import { mapMercadoPagoDisputeStatus, mapMercadoPagoPaymentStatus } from "@/lib/billing/status";
+import { syncContractPayment } from "@/lib/commerce/online";
 
 type Notification = {
   id?: string | number;
@@ -17,8 +18,13 @@ type MpPayment = {
   currency_id: string;
   external_reference?: string;
   preapproval_id?: string;
-  metadata?: { purchase_id?: string };
+  metadata?: { purchase_id?: string; contract_id?: string; charge_id?: string };
   date_approved?: string | null;
+  // usados só na conciliação das contratações (lib/commerce/online.ts)
+  transaction_amount_refunded?: number | string | null;
+  date_last_updated?: string | null;
+  payment_method_id?: string | null;
+  payment_type_id?: string | null;
 };
 type MpSubscription = {
   id: string;
@@ -65,6 +71,9 @@ async function findPurchase(payment: MpPayment, preapprovalId?: string) {
 
 async function syncPayment(paymentId: string, preapprovalId?: string): Promise<SyncedPayment> {
   const payment = await mpRequest<MpPayment>(`/v1/payments/${encodeURIComponent(paymentId)}`);
+  // modelo atual: pagamento de uma contratação (acesso até a prova) vai para o livro-caixa; o restante é o fluxo antigo
+  const contract = await syncContractPayment(payment);
+  if (contract) return { providerPaymentId: String(payment.id), status: contract.status, statusDetail: contract.detail };
   const purchase = await findPurchase(payment, preapprovalId);
   if (!purchase) throw new Error("Payment does not match a local purchase");
   const expectedAmount = purchase.product === "MONTHLY" ? 30 : 50;
@@ -171,6 +180,9 @@ async function syncChargeback(caseId: string, payloadPaymentId?: string) {
     throw new Error("Chargeback does not match the signed notification");
   }
   const synced = await syncPayment(providerPaymentId);
+  // pagamento de uma contratação: a contestação perdida já virou estorno em syncContractPayment
+  const ledger = await db.manualPayment.findUnique({ where: { providerPaymentId }, select: { id: true } });
+  if (ledger) return { status: synced.status, statusDetail: synced.statusDetail, providerPaymentId };
   const payment = await db.billingPayment.findUnique({ where: { providerPaymentId }, include: { purchase: true } });
   if (!payment) throw new Error("Chargeback payment is not linked to a local purchase");
 

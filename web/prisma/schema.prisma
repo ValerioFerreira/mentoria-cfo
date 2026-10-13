@@ -205,6 +205,28 @@ enum PaymentMethod {
   TRANSFERENCIA
   DINHEIRO
   OUTRO
+  CARTAO // pagamentos online pelo Checkout Pro do Mercado Pago (cartão e demais meios)
+}
+
+// Quem lançou o recebimento: o administrador (manual) ou a conciliação automática do Mercado Pago.
+enum PaymentSource {
+  MANUAL
+  MERCADO_PAGO
+}
+
+enum OnlineChargeKind {
+  PIX // pagamento Pix dinâmico (QR Code e copia e cola)
+  CHECKOUT // Checkout Pro: página do Mercado Pago (cartão e outros meios)
+}
+
+enum OnlineChargeStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  CANCELLED
+  EXPIRED
+  REFUNDED
+  CHARGED_BACK
 }
 
 enum ReversalKind {
@@ -562,6 +584,7 @@ model Contract {
   reversals     PaymentReversal[]
   commissions   CommissionEntry[]
   referral      PartnerReferral?
+  charges       OnlineCharge[]
 
   @@index([userId])
   @@index([waitlistEntryId])
@@ -573,19 +596,21 @@ model Contract {
 
 // Pagamento recebido, lançado manualmente pelo administrador. Imutável: correções só por PaymentReversal.
 model ManualPayment {
-  id             String        @id @default(cuid())
-  contractId     String
-  amount         Decimal       @db.Decimal(10, 2)
-  paidAt         DateTime // data efetiva do pagamento
-  method         PaymentMethod
-  receiptRef     String? // identificador do comprovante (ex.: id da transação Pix)
-  note           String?
-  createdById    String
-  idempotencyKey String        @unique
-  createdAt      DateTime      @default(now())
+  id                String        @id @default(cuid())
+  contractId        String
+  amount            Decimal       @db.Decimal(10, 2)
+  paidAt            DateTime // data efetiva do pagamento
+  method            PaymentMethod
+  receiptRef        String? // identificador do comprovante (ex.: id da transação Pix)
+  note              String?
+  createdById       String? // nulo nos recebimentos conciliados automaticamente (source MERCADO_PAGO)
+  source            PaymentSource @default(MANUAL)
+  providerPaymentId String?       @unique // id do pagamento no Mercado Pago (um recebimento por pagamento aprovado)
+  idempotencyKey    String        @unique
+  createdAt         DateTime      @default(now())
 
   contract    Contract          @relation(fields: [contractId], references: [id], onDelete: Restrict)
-  createdBy   User              @relation("PaymentCreatedBy", fields: [createdById], references: [id], onDelete: Restrict)
+  createdBy   User?             @relation("PaymentCreatedBy", fields: [createdById], references: [id], onDelete: Restrict)
   reversals   PaymentReversal[]
   commissions CommissionEntry[]
 
@@ -595,22 +620,48 @@ model ManualPayment {
   @@index([receiptRef])
 }
 
+// Tentativa de cobrança online de uma contratação pelo Mercado Pago (conta da empresa). Não é dinheiro recebido:
+// o recebimento só existe como ManualPayment (source MERCADO_PAGO) depois que a consulta autenticada à API do
+// Mercado Pago confirma a aprovação. O valor sai sempre do saldo da contratação, calculado no servidor.
+model OnlineCharge {
+  id                String             @id @default(cuid())
+  contractId        String
+  kind              OnlineChargeKind
+  amount            Decimal            @db.Decimal(10, 2)
+  status            OnlineChargeStatus @default(PENDING)
+  providerPaymentId String?            @unique // Pix: id do pagamento
+  preferenceId      String?            @unique // Checkout Pro: id da preferência
+  checkoutUrl       String?
+  qrCode            String?            @db.Text
+  qrCodeBase64      String?            @db.Text
+  ticketUrl         String?
+  expiresAt         DateTime?
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+
+  contract Contract @relation(fields: [contractId], references: [id], onDelete: Restrict)
+
+  @@index([contractId, status])
+  @@index([status, expiresAt])
+}
+
 // Estorno ou correção auditável de um pagamento (parcial ou total), com justificativa.
 model PaymentReversal {
-  id             String       @id @default(cuid())
+  id             String        @id @default(cuid())
   paymentId      String
   contractId     String
-  amount         Decimal      @db.Decimal(10, 2)
+  amount         Decimal       @db.Decimal(10, 2)
   kind           ReversalKind
   reason         String
   effectiveAt    DateTime
-  createdById    String
-  idempotencyKey String       @unique
-  createdAt      DateTime     @default(now())
+  createdById    String? // nulo nos estornos vindos do Mercado Pago (source MERCADO_PAGO)
+  source         PaymentSource @default(MANUAL)
+  idempotencyKey String        @unique
+  createdAt      DateTime      @default(now())
 
   payment     ManualPayment     @relation(fields: [paymentId], references: [id], onDelete: Restrict)
   contract    Contract          @relation(fields: [contractId], references: [id], onDelete: Restrict)
-  createdBy   User              @relation("ReversalCreatedBy", fields: [createdById], references: [id], onDelete: Restrict)
+  createdBy   User?             @relation("ReversalCreatedBy", fields: [createdById], references: [id], onDelete: Restrict)
   commissions CommissionEntry[]
 
   @@index([paymentId])
