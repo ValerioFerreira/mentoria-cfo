@@ -109,7 +109,7 @@ export default async function PlanPage() {
         }
       />
 
-      <div className="grid gap-4 lg:grid-cols-[minmax(0,19rem)_1fr]">
+      <div className="grid grid-cols-1 gap-4 xl:grid-cols-[minmax(0,19rem)_minmax(0,1fr)]">
         <Card tone="ink" className="rise flex flex-col items-center gap-3 text-center">
           <Ring value={coverage.selected} size={150} stroke={14} color="var(--gold)" track="rgb(255 255 255 / 0.12)" label={`Cobertura estimada do edital: ${Math.round(coverage.selected * 100)}%`}>
             <span className="font-display text-6xl font-bold leading-none"><Count value={Math.round(coverage.selected * 100)} suffix="%" /></span>
@@ -122,7 +122,7 @@ export default async function PlanPage() {
           </p>
         </Card>
 
-        <div className="grid gap-3 sm:grid-cols-3">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
           {/* meta semanal */}
           <Card className="rise flex flex-col justify-between gap-4 p-5" style={{ "--i": 1 } as CSSProperties}>
             <div className="flex items-start justify-between">
@@ -167,7 +167,7 @@ export default async function PlanPage() {
                   <span key={t} className="h-full" style={{ width: `${plannedMin ? (min / plannedMin) * 100 : 0}%`, background: TYPE_META[t].color }} />
                 ))}
               </div>
-              <ul className="grid grid-cols-2 gap-x-3 gap-y-0.5 text-[11px] text-muted">
+              <ul className="grid grid-cols-[repeat(auto-fit,minmax(7.5rem,1fr))] gap-x-3 gap-y-0.5 text-[11px] text-muted">
                 {byType.map(({ t, min }) => (
                   <li key={t} className="flex items-center gap-1.5">
                     <span className="h-2 w-2 rounded-full" style={{ background: TYPE_META[t].color }} aria-hidden />

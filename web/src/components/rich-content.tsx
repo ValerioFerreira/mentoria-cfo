@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, type ReactNode } from "react";
+import React, { useEffect, useState, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 import { Maximize2, X } from "lucide-react";
 
 interface RichContentProps {
@@ -49,7 +50,7 @@ export function formatInlineRich(text: string): ReactNode {
           key={idx}
           src={formula[2]}
           alt="fórmula"
-          className="q-crop inline-block align-middle"
+          className="q-crop inline-block max-w-full object-contain object-left align-middle"
           style={{ height: `${Math.min(Number(formula[1]) || 1.2, 12)}em` }}
           loading="lazy"
         />
@@ -135,22 +136,29 @@ export function formatInlineRich(text: string): ReactNode {
  * Componente modal para visualização ampliada de figuras
  */
 function ImageModal({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
-  return (
+  useEffect(() => {
+    const esc = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    document.addEventListener("keydown", esc);
+    return () => document.removeEventListener("keydown", esc);
+  }, [onClose]);
+  // portal: a questão está dentro de cartões com transformação/animação, que prenderiam o `fixed` ao cartão
+  return createPortal(
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-xs animate-in fade-in duration-200"
+      aria-label={alt}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-3 backdrop-blur-xs animate-in fade-in duration-200 sm:p-4"
       onClick={onClose}
     >
       <div
-        className="relative max-h-[92vh] max-w-[92vw] overflow-auto rounded-2xl bg-surface p-2 shadow-2xl border border-border"
+        className="relative max-h-[calc(100dvh-1.5rem)] max-w-[calc(100vw-1.5rem)] overflow-auto rounded-2xl border border-border bg-surface p-2 shadow-2xl sm:max-h-[92dvh] sm:max-w-[92vw]"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           type="button"
           onClick={onClose}
           aria-label="Fechar visualização"
-          className="absolute top-3 right-3 z-10 rounded-full bg-surface-3/80 p-1.5 text-text transition hover:bg-surface-3 hover:scale-105"
+          className="sticky top-1 float-right z-10 -mb-8 flex h-11 w-11 items-center justify-center rounded-full bg-surface-3/80 text-text transition hover:scale-105 hover:bg-surface-3 sm:h-9 sm:w-9"
         >
           <X className="h-5 w-5" />
         </button>
@@ -158,11 +166,12 @@ function ImageModal({ src, alt, onClose }: { src: string; alt: string; onClose: 
         <img
           src={src}
           alt={alt}
-          className="max-h-[85vh] max-w-full rounded-xl object-contain"
+          className="max-h-[80dvh] max-w-full rounded-xl object-contain"
         />
         <p className="mt-2 text-center text-xs text-muted font-medium">{alt}</p>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
 
@@ -183,7 +192,7 @@ export function RichContent({ content, className = "", allowImages = true }: Ric
   const blocks = content.split(/\n\s*\n/).map((b) => b.trim()).filter(Boolean);
 
   return (
-    <div className={`space-y-3 leading-relaxed ${className}`}>
+    <div className={`min-w-0 space-y-3 break-words leading-relaxed ${className}`}>
       {modalImg && (
         <ImageModal
           src={modalImg.src}
@@ -201,9 +210,12 @@ export function RichContent({ content, className = "", allowImages = true }: Ric
           return (
             <div key={bIdx} className="my-3 flex flex-col items-center group">
               <div
-                className="relative cursor-pointer overflow-hidden rounded-xl border border-border/80 bg-surface-2/40 shadow-xs transition hover:border-primary/50 hover:shadow-md"
+                role="button"
+                tabIndex={0}
+                className="relative max-w-full cursor-pointer overflow-hidden rounded-xl border border-border/80 bg-surface-2/40 shadow-xs transition hover:border-primary/50 hover:shadow-md"
                 onClick={() => setModalImg({ src, alt })}
-                title="Clique para ampliar a imagem"
+                onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), setModalImg({ src, alt }))}
+                title="Toque para ampliar a imagem"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -212,7 +224,7 @@ export function RichContent({ content, className = "", allowImages = true }: Ric
                   className={`${isCrop(alt) ? "q-crop " : ""}max-h-80 max-w-full object-contain p-2`}
                   loading="lazy"
                 />
-                <div className="absolute bottom-2 right-2 rounded-lg bg-surface/90 p-1 text-muted shadow-xs opacity-0 transition group-hover:opacity-100">
+                <div className="absolute bottom-2 right-2 rounded-lg bg-surface/90 p-1 text-muted opacity-0 shadow-xs transition group-hover:opacity-100 pointer-coarse:opacity-100">
                   <Maximize2 className="h-4 w-4" />
                 </div>
               </div>
@@ -324,9 +336,12 @@ export function RichContent({ content, className = "", allowImages = true }: Ric
                   return (
                     <div key={spIdx} className="my-3 flex flex-col items-center group">
                       <div
-                        className="relative cursor-pointer overflow-hidden rounded-xl border border-border/80 bg-surface-2/40 shadow-xs transition hover:border-primary/50 hover:shadow-md"
+                        role="button"
+                        tabIndex={0}
+                        className="relative max-w-full cursor-pointer overflow-hidden rounded-xl border border-border/80 bg-surface-2/40 shadow-xs transition hover:border-primary/50 hover:shadow-md"
                         onClick={() => setModalImg({ src, alt })}
-                        title="Clique para ampliar a imagem"
+                        onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), setModalImg({ src, alt }))}
+                        title="Toque para ampliar a imagem"
                       >
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
@@ -335,7 +350,7 @@ export function RichContent({ content, className = "", allowImages = true }: Ric
                           className={`${isCrop(alt) ? "q-crop " : ""}max-h-80 max-w-full object-contain p-2`}
                           loading="lazy"
                         />
-                        <div className="absolute bottom-2 right-2 rounded-lg bg-surface/90 p-1 text-muted shadow-xs opacity-0 transition group-hover:opacity-100">
+                        <div className="absolute bottom-2 right-2 rounded-lg bg-surface/90 p-1 text-muted opacity-0 shadow-xs transition group-hover:opacity-100 pointer-coarse:opacity-100">
                           <Maximize2 className="h-4 w-4" />
                         </div>
                       </div>

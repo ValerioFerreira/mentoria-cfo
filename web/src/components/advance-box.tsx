@@ -66,7 +66,7 @@ export function AdvanceBox({ items, label }: { items: AdvanceItem[]; label: stri
       )}
 
       {target && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 px-4 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="adiantar-titulo">
+        <div className="modal-scroll fixed inset-0 z-[60] flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="adiantar-titulo">
           <div className="pop w-full max-w-md space-y-4 rounded-2xl border border-border bg-surface p-6 text-text shadow-lift">
             <h2 id="adiantar-titulo" className="font-display text-2xl font-bold uppercase tracking-wide">Adiantar esta atividade?</h2>
             <p className="text-sm text-muted">

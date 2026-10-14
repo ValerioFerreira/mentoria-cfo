@@ -34,12 +34,13 @@ export function BizuItems({ activityId, items }: { activityId: string; items: Bi
   const hits = items.filter((i) => answers[i.id] === i.isTrue).length;
   return (
     <div className="space-y-3 pt-2">
-      <div className="flex items-center justify-between gap-3">
+      <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
         <p className="eyebrow">Certo ou Errado · Fixação Imediata</p>
-        <div className="flex items-center gap-1.5" aria-label={`${answered} de ${items.length} respondidos`}>
+        {/* uma marca por item: encolhem para caber (a lista pode ter 20 itens) */}
+        <div className="flex min-w-0 flex-1 basis-40 items-center justify-end gap-1" role="img" aria-label={`${answered} de ${items.length} respondidos`}>
           {items.map((it) => {
             const g = answers[it.id];
-            return <span key={it.id} className={cx("h-2 w-6 rounded-full transition-colors duration-300", g === undefined ? "bg-surface-3" : g === it.isTrue ? "bg-ok" : "bg-primary")} />;
+            return <span key={it.id} className={cx("h-2 min-w-1 max-w-6 flex-1 rounded-full transition-colors duration-300", g === undefined ? "bg-surface-3" : g === it.isTrue ? "bg-ok" : "bg-primary")} />;
           })}
         </div>
       </div>

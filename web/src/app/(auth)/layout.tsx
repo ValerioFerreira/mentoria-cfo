@@ -25,7 +25,7 @@ function WeekdayBubbles() {
   const currentDayIndex = getTodayDayOfWeek();
 
   return (
-    <div className="flex items-center gap-2 sm:gap-3" aria-label="Dias da semana">
+    <div className="grid grid-cols-7 gap-1.5 sm:flex sm:items-center sm:gap-3" aria-label="Dias da semana">
       {WEEK_DAYS.map((day, i) => {
         const isPastOrToday = i <= currentDayIndex;
         const isToday = i === currentDayIndex;
@@ -36,7 +36,7 @@ function WeekdayBubbles() {
           <span
             key={`${day.label}-${i}`}
             title={day.title}
-            className={`relative grid h-10 w-10 place-items-center rounded-full border-2 font-display text-xl font-bold transition-colors sm:h-12 sm:w-12 sm:text-2xl ${
+            className={`relative grid aspect-square w-full max-w-10 place-items-center rounded-full border-2 font-display text-xl font-bold transition-colors sm:h-12 sm:w-12 sm:max-w-none sm:text-2xl ${
               isPastOrToday ? "border-gold/60 text-on-ink" : "border-on-ink-muted/30 text-on-ink-muted/60"
             }`}
           >
@@ -76,7 +76,7 @@ function WeekdayBubbles() {
 export default async function AuthLayout({ children }: LayoutProps<"/">) {
   const theme = await getTheme();
   return (
-    <div className="grid min-h-screen lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
+    <div className="grid min-h-screen grid-cols-1 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
       {/* coluna de marca */}
       <aside className="relative flex flex-col overflow-hidden bg-ink px-6 pb-11 pt-6 text-on-ink sm:px-12 sm:pb-16 sm:pt-8 lg:justify-between lg:p-14 lg:pb-20">
         <div className="pointer-events-none absolute -left-24 -top-24 h-96 w-96 rounded-full bg-primary/25 blur-3xl" aria-hidden />

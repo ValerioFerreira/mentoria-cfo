@@ -316,7 +316,7 @@ export function CadastrosView({
 
       {/* Modal de Aprovação Inicial */}
       {selectedEntry && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/75 backdrop-blur-sm animate-in fade-in duration-200">
+        <div className="modal-scroll fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/75 backdrop-blur-sm animate-in fade-in duration-200">
           <div className="relative w-full max-w-lg rounded-2xl border border-primary/30 bg-surface text-text shadow-2xl overflow-hidden flex flex-col">
             <div className="flex items-center justify-between border-b border-border/70 px-6 py-4 bg-surface-2/40">
               <div>
@@ -437,7 +437,7 @@ export function CadastrosView({
 
       {/* Modal de Rejeição */}
       {rejectEntry && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/75 backdrop-blur-sm animate-in fade-in duration-200">
+        <div className="modal-scroll fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/75 backdrop-blur-sm animate-in fade-in duration-200">
           <div className="relative w-full max-w-lg rounded-2xl border border-danger/30 bg-surface text-text shadow-2xl overflow-hidden flex flex-col">
             <div className="flex items-center justify-between border-b border-border/70 px-6 py-4 bg-surface-2/40">
               <div>
@@ -484,7 +484,7 @@ export function CadastrosView({
 
       {/* Modal de Renovar / Alterar Validade */}
       {validityEntry && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/75 backdrop-blur-sm animate-in fade-in duration-200">
+        <div className="modal-scroll fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/75 backdrop-blur-sm animate-in fade-in duration-200">
           <div className="relative w-full max-w-lg rounded-2xl border border-border bg-surface text-text shadow-2xl overflow-hidden flex flex-col">
             <div className="flex items-center justify-between border-b border-border/70 px-6 py-4 bg-surface-2/40">
               <div className="flex items-center gap-2.5">
@@ -627,7 +627,7 @@ export function CadastrosView({
 
       {/* Modal de Reenviar E-mail com Nova Senha */}
       {resendEntry && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/75 backdrop-blur-sm animate-in fade-in duration-200">
+        <div className="modal-scroll fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/75 backdrop-blur-sm animate-in fade-in duration-200">
           <div className="relative w-full max-w-lg rounded-2xl border border-border bg-surface text-text shadow-2xl overflow-hidden flex flex-col">
             <div className="flex items-center justify-between border-b border-border/70 px-6 py-4 bg-surface-2/40">
               <div className="flex items-center gap-2.5">

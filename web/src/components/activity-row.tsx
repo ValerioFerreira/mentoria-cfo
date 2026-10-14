@@ -95,7 +95,7 @@ export function ActivityCard({ a, spent = 0, index = 0, late }: { a: ActivityRow
         </span>
       </div>
       <Link href={`/atividade/${a.id}`} className={cx("block after:absolute after:inset-0 after:content-['']", (done || skipped) && "opacity-65")}>
-        <span className="mt-1 block text-[13px] font-bold leading-tight">{subjectShort(a.subjectId)}</span>
+        <span className="mt-1 block break-words text-[13px] font-bold leading-tight">{subjectShort(a.subjectId)}</span>
         <span className="mt-0.5 line-clamp-3 block text-xs leading-snug text-muted">{activityTitle(a)}</span>
         {a.editalTopic && (
           <span className="mt-0.5 block truncate text-[11px] text-muted">

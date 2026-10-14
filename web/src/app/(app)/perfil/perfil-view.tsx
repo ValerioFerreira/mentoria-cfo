@@ -69,13 +69,13 @@ export function PerfilView({ user }: { user: UserProfileData }) {
       {/* Dados do Perfil */}
       <Card className="p-6 space-y-6">
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border pb-5">
-          <div className="flex items-center gap-4">
+          <div className="flex min-w-0 max-w-full items-center gap-4">
             <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-gold font-display text-2xl font-bold uppercase text-on-primary">
               {(user.name ?? user.email).charAt(0)}
             </span>
-            <div>
-              <div className="flex items-center gap-2">
-                <h2 className="font-display text-2xl font-bold uppercase text-text">{user.name ?? "Aluno"}</h2>
+            <div className="min-w-0">
+              <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                <h2 className="min-w-0 break-words font-display text-2xl font-bold uppercase text-text">{user.name ?? "Aluno"}</h2>
                 <Badge tone={user.role === "ADMIN" ? "warn" : "ok"}>
                   {user.role === "ADMIN" ? "ADMINISTRADOR" : user.isPartner ? "PARCEIRO" : "ALUNO"}
                 </Badge>
@@ -90,7 +90,7 @@ export function PerfilView({ user }: { user: UserProfileData }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
           <div className="rounded-xl bg-surface-2 p-3.5 border border-border">
             <p className="text-xs text-muted uppercase font-semibold">E-mail Cadastrado</p>
-            <p className="font-medium text-text mt-0.5">{user.email}</p>
+            <p className="font-medium text-text mt-0.5 break-all">{user.email}</p>
           </div>
 
           <div className="rounded-xl bg-surface-2 p-3.5 border border-border">
@@ -276,6 +276,7 @@ export function PerfilView({ user }: { user: UserProfileData }) {
               size="sm"
               onClick={handleSendReset}
               disabled={isResetPending}
+              className="max-w-full max-sm:whitespace-normal max-sm:text-center"
             >
               {isResetPending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Mail className="h-4 w-4" />}
               {isResetPending ? "Enviando e-mail…" : "Enviar Senha Temporária por E-mail"}

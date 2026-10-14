@@ -100,7 +100,7 @@ export default async function QuizPage({ params }: PageProps<"/caderno/[id]">) {
             <span className="font-display text-6xl font-bold leading-none"><Count value={sc.percent} suffix="%" /></span>
             <span className="mt-1 text-[11px] font-semibold uppercase tracking-widest text-on-ink-muted">de acerto</span>
           </Ring>
-          <div className="grid flex-1 grid-cols-3 gap-4 min-w-[16rem]">
+          <div className="grid flex-1 grid-cols-3 gap-4 min-w-[min(16rem,100%)]">
             {[
               [CircleCheck, "Acertos", sc.correct, "text-ok"],
               [CircleX, "Erros", sc.wrong, "text-primary"],

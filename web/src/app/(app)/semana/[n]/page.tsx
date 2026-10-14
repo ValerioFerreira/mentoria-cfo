@@ -76,7 +76,7 @@ export default async function WeekPage({ params }: PageProps<"/semana/[n]">) {
         <Ring value={ratio} size={92} stroke={10} color={ratio >= 1 ? "var(--ok)" : "var(--primary)"} label={`${done} de ${acts.length} atividades concluídas`}>
           <span className="font-display text-3xl font-bold leading-none tabular">{Math.round(ratio * 100)}<span className="text-base text-muted">%</span></span>
         </Ring>
-        <div className="min-w-[14rem] flex-1 space-y-2.5">
+        <div className="min-w-[min(14rem,100%)] flex-1 space-y-2.5">
           <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 text-sm">
             <span><strong className="font-display text-2xl tabular">{done}</strong> <span className="text-muted">de {acts.length} atividades concluídas</span></span>
             <span className="inline-flex items-center gap-1.5 text-muted tabular">
@@ -102,8 +102,8 @@ export default async function WeekPage({ params }: PageProps<"/semana/[n]">) {
         </EmptyState>
       ) : (
         <>
-          {/* telas largas: cronologia da semana em 7 colunas */}
-          <ol className="hidden grid-cols-7 gap-2.5 lg:grid" aria-label="Dias da semana">
+          {/* telas largas (xl): cronologia da semana em 7 colunas; abaixo disso, 7 colunas ficam estreitas demais */}
+          <ol className="hidden grid-cols-7 gap-2.5 xl:grid" aria-label="Dias da semana">
             {days.map((day) => (
               <li key={day.d} className={cx("flex min-w-0 flex-col gap-2 rounded-2xl border p-2 pt-0", day.isToday ? "border-gold bg-gold-soft/40" : "border-border bg-surface-2/60")}>
                 <div className="px-1.5 pt-2.5">
@@ -129,8 +129,8 @@ export default async function WeekPage({ params }: PageProps<"/semana/[n]">) {
             ))}
           </ol>
 
-          {/* celular e tablet: agenda dia a dia */}
-          <ol className="space-y-6 lg:hidden" aria-label="Dias da semana">
+          {/* celular, tablet e notebook compacto: agenda dia a dia */}
+          <ol className="space-y-6 xl:hidden" aria-label="Dias da semana">
             {days.filter((day) => day.list.length > 0).map((day) => (
               <li key={day.d} className="space-y-2.5">
                 <div className="flex items-center justify-between gap-3">

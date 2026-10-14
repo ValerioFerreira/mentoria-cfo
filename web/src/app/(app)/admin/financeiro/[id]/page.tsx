@@ -183,7 +183,7 @@ export default async function ContractPage({ params }: { params: Promise<{ id: s
           <h2 className="font-display text-lg font-bold uppercase">Cancelar contratação</h2>
           <ActionForm action={adminCancelContract} submitLabel="Cancelar contratação" submitVariant="danger" confirmText="Cancelar esta contratação? Ela fica no histórico." className="flex flex-wrap items-end gap-3">
             <input type="hidden" name="contractId" value={c.id} />
-            <div className="min-w-64 flex-1"><Field label="Motivo"><input name="reason" required minLength={5} maxLength={500} className={inputCls} /></Field></div>
+            <div className="min-w-[min(16rem,100%)] flex-1"><Field label="Motivo"><input name="reason" required minLength={5} maxLength={500} className={inputCls} /></Field></div>
           </ActionForm>
         </Card>
       )}
