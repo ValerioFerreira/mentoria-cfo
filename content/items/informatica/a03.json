@@ -97,14 +97,15 @@
       "id": "informatica/a03/s02",
       "bizu": {
         "summary": [
-          "**Dependência de Hospedeiro**: praga digital que demanda acoplamento a arquivos legítimos para perpetrar a infecção.",
-          "**Ação Humana Obrigatória**: dispersão dependente do disparo ou execução prévia do item contaminado pelo operador.",
-          "**Vírus de Macro**: códigos que contaminam modelos e documentos de escritório apoiados em rotinas VBA interpretadas.",
-          "**Vírus de Boot**: invasão do registro mestre de inicialização (MBR) garantindo execução prematura na partida da máquina.",
-          "**Vírus Multipartite**: método de contaminação simultânea atingindo conjuntamente arquivos de programas e a trilha de boot.",
-          "**Polimorfismo**: técnica que altera a sequência de bytes externa de cada cópia preservando a função maliciosa de fundo.",
-          "**Metamorfismo**: reestruturação profunda do fluxo algorítmico do código-fonte a cada novo ciclo de reprodução.",
-          "**Tecnologia Stealth**: mascaramento em tempo real interceptando rotinas de sistema para ocultar variações no tamanho do arquivo."
+          "**Natureza do vírus**: precisa de um arquivo hospedeiro e de execução pelo usuário; o worm, ao contrário, se replica sozinho pela rede.",
+          "**Script e macro**: vírus de script usa JavaScript/VBScript (páginas, e-mail HTML) e pode rodar sem clique; o de macro é um script nos arquivos do Office, infecta documentos, age ao abrir o arquivo e é barrado desativando macros.",
+          "**Boot**: instala-se no setor de inicialização (MBR) e carrega antes do sistema operacional; pode estar em pendrives, e a formatação rápida pode não removê-lo.",
+          "**Arquivo e substituição**: o vírus de arquivo infecta executáveis (.exe) e sobrescreve o código, e o de substituição apaga todo o conteúdo original, só recuperável por backup.",
+          "**Multipartite**: ataca boot e arquivos ao mesmo tempo, o que dificulta a limpeza; todo multipartite inclui parte de boot, mas o vírus de boot comum não é multipartite.",
+          "**Polimórfico x metamórfico**: o polimórfico muda a assinatura (criptografia diferente em cada cópia) e mantém a função; o metamórfico se reescreve por inteiro, mudando também o comportamento.",
+          "**Stealth**: esconde-se do antivírus, inclusive saindo temporariamente da memória e interceptando chamadas do sistema; não é específico de Word ou Excel.",
+          "**Time bomb**: fica latente e dispara a carga útil em data ou momento definido pelo criador (Sexta-feira 13, I Love You, Chernobyl).",
+          "**Vírus de e-mail**: vem em anexo, infecta o computador e se envia aos contatos; a defesa é desligar a execução automática de anexos e verificá-los antes de abrir."
         ],
         "teoria": [
           {
@@ -317,14 +318,15 @@
       "id": "informatica/a03/s04",
       "bizu": {
         "summary": [
-          "**Ransomware**: malware que bloqueia ou encripta arquivos corporativos e exige resgate financeiro sem assegurar a restauração.",
-          "**Defesa contra Ransomware**: manutenção de rotinas rigorosas de backup desconectado da rede como mitigação definitiva.",
-          "**Keyloggers**: módulos focados em capturar e registrar teclas alfanuméricas acionadas no teclado físico da estação.",
-          "**Screenloggers**: captura fotográfica da área ao redor do cursor do mouse projetada para vencer teclados virtuais na tela.",
-          "**Adwares**: exibição intrusiva de propagandas e anúncios pop-up, variando entre patrocínio comercial e atuação invasiva.",
-          "**Sniffer de Rede**: analisador que intercepta e audita tráfego de dados trafegando em conexões locais em modo promíscuo.",
-          "**Bombas Lógicas**: comandos embutidos adormecidos ativados unicamente pela ocorrência de eventos ou datas pré-fixadas.",
-          "**Exploits e Hijackers**: scripts para aproveitamento de falhas de segurança e ferramentas de sequestro de páginas de navegadores."
+          "**Quem se propaga**: só o vírus insere cópia em arquivos; worm e bot se copiam pela rede (o bot manda spam e phishing); trojan, spyware, backdoor e rootkit não se propagam.",
+          "**Ransomware**: bloqueia o equipamento (locker) ou cifra os dados (crypto) e exige resgate, em geral em moeda digital; pagar não garante a volta, e a defesa é manter backups atualizados, além de patches e cuidado com anexos e links.",
+          "**Keylogger**: spyware que grava teclas para roubar senhas, muitas vezes ativado ao acessar um site de banco; o teclado virtual é a defesa clássica.",
+          "**Screenlogger**: spyware que registra a tela e a região ao redor do clique do mouse, criado para driblar o teclado virtual.",
+          "**Adware**: spyware que exibe propagandas (pop-ups), legítimo como patrocínio de programa gratuito e malicioso quando segue a navegação sem aviso.",
+          "**Sniffer**: farejador de pacotes que monitora o tráfego da rede; em regra é ferramenta legítima de administradores, vira ameaça quando captura dados sem criptografia (modo promíscuo), e pode ficar em qualquer máquina da rede.",
+          "**Bomba lógica**: código dormente, em geral posto por quem tem acesso, que causa dano quando um evento ocorre (ou deixa de ocorrer); diferente do time bomb, serve a vários malwares.",
+          "**Exploit**: programa que explora vulnerabilidade conhecida; zero-day é falha ainda desconhecida do administrador.",
+          "**Hijacker**: altera página inicial, busca e registro do navegador e abre páginas sozinho; ganha por cliques em páginas patrocinadas."
         ],
         "teoria": [
           {

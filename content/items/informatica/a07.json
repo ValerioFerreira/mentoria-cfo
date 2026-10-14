@@ -247,14 +247,16 @@
       "id": "informatica/a07/s04",
       "bizu": {
         "summary": [
-          "**Funções de Contagem**: `CONT.NÚM` restringe-se a valores numéricos, enquanto `CONT.VALORES` contabiliza qualquer dado preenchido.",
-          "**Critérios Múltiplos**: `CONT.SES` aplica pares ordenados de faixas e critérios condicionais de forma acumulada.",
-          "**Médias e Medianas**: `MÉDIA` processa a soma dividida pela quantidade e `MED` extrai a posição mediana balanceada da amostra.",
-          "**Extremos Globais**: `MÁXIMO` e `MÍNIMO` isolam os tetos e pisos numéricos de conjuntos sem demandar parâmetros ordinais.",
-          "**Extremos Hierárquicos**: `MAIOR` e `MENOR` empregam o índice k para isolar grandezas relativas intermediárias.",
-          "**Busca Vertical (PROCV)**: pesquisa registros exclusivamente na primeira coluna de referência da tabela designada.",
-          "**Parâmetro de Precisão**: o argumento lógico `FALSO` impõe correspondência exata, ao passo que `VERDADEIRO` admite aproximações.",
-          "**Busca Horizontal (PROCH)**: opera mecanismo equivalente orientando a leitura inicial pela primeira linha da base tabular."
+          "**CONT.NÚM x CONT.VALORES**: CONT.NÚM conta só números (datas valem como número; lógicos, texto e vazios não); CONT.VALORES conta qualquer célula que não esteja vazia.",
+          "**CONT.SE x CONT.SES**: CONT.SE conta as células que atendem a um critério e ignora as em branco; CONT.SES exige vários pares intervalo/critério atendidos ao mesmo tempo. SOMA.SE soma, não conta.",
+          "**MÉDIA**: soma dividida pela quantidade de valores; é a função de incidência altíssima. Para 7, 9 e 5, o resultado é 7.",
+          "**MED (mediana)**: ordena os valores e pega o central; se a quantidade for par, é a média dos dois centrais (para 6, 2, 1 e 9 dá 4).",
+          "**MODO**: valor mais frequente do conjunto; não confundir com MOD, que devolve o resto da divisão.",
+          "**MÁXIMO e MÍNIMO**: aceitam intervalos e números avulsos juntos; MÁXIMO(A1:D3; 30) pode devolver 30 mesmo que a tabela não chegue a isso.",
+          "**MAIOR e MENOR**: devolvem o k-ésimo maior ou menor; o k é obrigatório e, com k igual a 1, a função equivale a MÁXIMO ou MÍNIMO.",
+          "**PROCV, estrutura**: procura o valor na primeira coluna do intervalo e devolve o dado da mesma linha, na coluna indicada pelo índice contado dentro do intervalo (ex.: PROCV(\"Teclado\"; B5:D10; 3; FALSO)).",
+          "**PROCV, exatidão**: FALSO exige valor exato e dispensa ordenação; VERDADEIRO ou omitido aceita aproximação e exige a primeira coluna em ordem crescente; sem achar, o erro é #N/D.",
+          "**PROCH**: mesma lógica na horizontal: procura na primeira linha e devolve o valor da linha escolhida na mesma coluna."
         ],
         "teoria": [
           {

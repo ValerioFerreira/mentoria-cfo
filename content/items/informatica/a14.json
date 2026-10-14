@@ -694,14 +694,16 @@
       "id": "informatica/a14/s08",
       "bizu": {
         "summary": [
-          "**Memória Cache**: tecnologia SRAM de acesso aleatório estático sem necessidade de recarga elétrica contínua.",
-          "**Propósito da Cache**: minimizar o tempo de espera do processador mantendo dados recorrentes próximos da CPU.",
-          "**Princípio da Localidade**: exploração analítica da proximidade temporal e espacial das instruções requisitadas pelo sistema.",
-          "**Estrutura Hierárquica**: níveis progressivos L1, L2 e L3 que equilibram latência mínima e capacidade de armazenamento.",
-          "**Memória ROM**: circuito integrado de leitura não volátil encarregado de preservar firmwares básicos de inicialização.",
-          "**Evolução Histórica**: transição de chips MROM inalteráveis e PROM de queima única para módulos regraváveis EPROM por ultravioleta.",
-          "**Padrão EEPROM**: possibilidade de reprogramação elétrica de registros sem demandar incidência de radiação luminosa externa.",
-          "**Memória Flash**: modalidade de EEPROM com exclusão e escrita em blocos unificados empregada na manufatura de SSDs e pendrives."
+          "**Cache**: é SRAM (estática), volátil, muito rápida, cara e pequena; fica entre a CPU e a RAM e é a primeira memória consultada, reduzindo a ociosidade do processador.",
+          "**Busca antecipada**: a cache recebe da RAM blocos de instruções, e não só a próxima; a taxa de acerto é alta, mas a previsão pode falhar.",
+          "**Níveis**: quanto menor o nível, mais rápida e menor a cache; ordem de consulta L1, L2, L3, L4 e só então a RAM; a latência cresce de L1 para L4 (a L2 é mais lenta que a L1).",
+          "**Localização**: L1 é primária, interna ao núcleo e dividida em instruções e dados; L2 e L3 ficam em geral fora do núcleo; a cache não é externa nem é a memória flash.",
+          "**DRAM x SRAM**: DRAM é mais lenta, barata, de maior capacidade e exige refresh; SRAM é mais rápida, cara, menor e dispensa refresh.",
+          "**ROM**: não volátil, gravada de fábrica no chip da placa-mãe, não expansível e de acesso aleatório; guarda firmware (BIOS, POST e SETUP).",
+          "**PROM e EPROM**: a PROM vem vazia e é gravada uma única vez; a EPROM é apagada por luz ultravioleta (tudo de uma vez, cerca de mil regravações) e serve para guardar a BIOS.",
+          "**EEPROM**: apagada eletricamente, sem sair do circuito e até parcialmente (cerca de um milhão de escritas); é bem mais lenta e cara que a RAM, usada só onde a não volatilidade importa.",
+          "**Flash**: é um tipo de EEPROM que apaga por blocos e sempre antes de reescrever; permite escrita, tem vida útil limitada e está em pendrives, cartões e SSDs.",
+          "**NVMe**: protocolo de SSD flash sobre PCIe, com mais velocidade e menos latência que SATA e SAS."
         ],
         "teoria": [
           {
@@ -783,14 +785,15 @@
       "id": "informatica/a14/s09",
       "bizu": {
         "summary": [
-          "**Memória de Massa**: subsistema permanente não volátil projetado para armazenamento volumoso de dados operacionais.",
-          "**Fitas Magnéticas**: mídias de leitura sequencial voltadas ao arquivamento institucional seguro de cópias de segurança.",
-          "**Discos Rígidos (HD)**: dispositivos mecânicos de acesso aleatório baseados em pratos giratórios herméticos e braços atuadores.",
-          "**Velocidade Angular**: operação contínua em rotações padronizadas entre 5.400 RPM e 7.200 RPM nos ecossistemas de microcomputadores.",
-          "**Cabeçotes Flutuantes**: transdutores magnéticos que pairam sobre o ar sem atrito físico direto com as superfícies graváveis.",
-          "**Geometria dos Pratos**: divisão dimensional articulando trilhas circulares concêntricas e subdivisões em setores numéricos.",
-          "**Conceito de Cilindro**: alinhamento das trilhas homólogas posicionadas no mesmo raio através das múltiplas faces dos discos.",
-          "**Memória Virtual**: emulação de memória RAM alocada em disco para sustentar o processamento contínuo sob esgotamento físico."
+          "**Memória secundária**: também chamada de auxiliar ou de massa; é não volátil, mais lenta e mais barata por byte que a RAM, removível ou não (fita, disquete, HD, CD, DVD, SSD, pendrive).",
+          "**Uso**: guarda arquivos e programas de forma permanente, não apenas quando a RAM enche; os programas em execução ficam na RAM, que é volátil.",
+          "**Fita magnética**: acesso sequencial (dados em série), baixo custo e grande capacidade; usada em backup; mais lenta no acesso que os discos; tipos DAT, DDS, DLT, QIC e LTO.",
+          "**Disquete**: 3,5 polegadas e 1,44 MB, com capacidade muito inferior à do CD (cerca de 700 MB) e à do DVD (4,7 GB na camada simples).",
+          "**HD**: disco magnético não volátil, com baixo custo por gigabyte, capacidade em terabytes e par de cabeçotes por disco movidos por um braço.",
+          "**Desempenho do HD**: por ser mecânico, depende dos cabeçotes e da rotação (5.400, 7.200 ou 10.800 RPM); o HD externo liga-se por USB.",
+          "**Organização do HD**: trilhas, setores e clusters; trilhas de mesma posição nos pratos formam o cilindro.",
+          "**Magnético x não magnético**: HD, fita e disquete usam magnetismo; RAM, flash, CD e DVD não.",
+          "**Memória virtual**: parte do disco simula RAM para o processador não parar quando a memória enche; mantém a execução, mas mais lenta; não amplia a ROM."
         ],
         "teoria": [
           {
@@ -868,14 +871,16 @@
       "id": "informatica/a14/s10",
       "bizu": {
         "summary": [
-          "**Leitura a Laser**: gravação em mídias ópticas amparada em feixes de luz que decodificam depressões na malha de policarbonato.",
-          "**Padrões CD, DVD e Blu-ray**: diferenciação progressiva de densidade viabilizada pelo encurtamento do comprimento de onda do laser.",
-          "**Tipologia de Discos**: distinção entre suportes exclusivamente de leitura (ROM), gravação individual (R) e regravação contínua (RW).",
-          "**Memória de Estado Sólido**: eliminação completa de atuadores móveis e motores pela integração de chips Flash NAND.",
-          "**Vantagens do SSD**: velocidade de resposta imediata, resistência mecânica superior, silêncio operacional e baixo consumo.",
-          "**Dispositivos SSHD**: acoplamento híbrido combinando a volumetria acessível do disco magnético com aceleradores em estado sólido.",
-          "**Hierarquia de Memórias**: escala decrescente de velocidade e custo do topo (Registradores e Caches) até a base (Secundária).",
-          "**Relação de Capacidade**: o volume de dados expande-se conforme se desce em direção aos discos de custódia secundária permanente."
+          "**Mídias ópticas**: usam laser; CD tem 650 a 700 MB, DVD 4,7 GB (8,5 GB em dupla camada) e Blu-ray 25 GB (50 GB em dupla camada).",
+          "**Sufixos**: ROM vem gravada e só lê; R grava uma única vez (o CD-R admite várias sessões, sem apagar); RW apaga e regrava, inclusive na mesma área. DVD+RW dispensa limpar tudo para regravar.",
+          "**CD-ROM não é memória ROM**: só herdou o nome; é meio óptico não volátil, e CD-R e CD-RW lembram PROM e EEPROM apenas na ideia.",
+          "**Backup de 600 MB com regravação**: a resposta é o CD-RW; BD-R, DVD-R e CD-R gravam uma vez e o disquete (1,44 MB) não comporta.",
+          "**SSD**: flash sem partes móveis; mais rápido, leve, silencioso, econômico e resistente a quedas e campos magnéticos; seu defeito é custo maior por GB, menor capacidade e vida útil menor (gravações limitadas).",
+          "**SSD x HD**: HD é magnético, mecânico, mais barato por GB, mais barulhento e de maior expectativa de vida; ambos podem usar interface SATA.",
+          "**SSHD**: híbrido de flash e discos magnéticos, com capacidade de HD e acesso mais rápido na parte flash; é não volátil e nunca se popularizou.",
+          "**Pendrive**: memória flash não volátil, portátil, ligada por USB e reconhecida automaticamente.",
+          "**Hierarquia**: do topo à base, registradores, cache, RAM e secundária; subindo, aumentam velocidade e custo e diminuem tempo de acesso e capacidade.",
+          "**Ordem de acesso**: registrador, cache, RAM, memória flash e disco rígido, do menor para o maior tempo; fitas e discos ópticos têm acesso na casa dos segundos e custo mais baixo."
         ],
         "teoria": [
           {
