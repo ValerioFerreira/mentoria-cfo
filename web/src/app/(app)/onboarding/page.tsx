@@ -6,6 +6,7 @@ import { db } from "@/lib/db";
 import { getPendingPlan } from "@/lib/data/study";
 import { todayISO } from "@/lib/plan-time";
 import { getUserContest } from "@/lib/user-contest";
+import { wizardDefaultsFromPlan } from "@/lib/plan/wizard-defaults";
 import { CONTEST_SUBJECTS } from "@/lib/contests";
 import { contestExamQuestions } from "@/lib/data/contest-data";
 import { Wizard, type WizardSubject } from "./wizard";
@@ -42,5 +43,22 @@ export default async function OnboardingPage() {
         hasComplement: aulas.some((a) => a.source === "authored"),
       };
     });
-  return <Wizard subjects={subjects} todayIso={todayISO()} />;
+  // refazer o plano: o assistente já abre com as escolhas do plano vigente (o aluno só altera o que quiser mudar)
+  const current = await db.plan.findFirst({
+    where: { userId: user.id, status: { in: ["ACTIVE", "ARCHIVED"] } },
+    orderBy: { version: "desc" },
+    select: { startDate: true, examDate: true, params: true, subjects: { select: { subjectId: true, diagnostic: true } } },
+  });
+  const today = todayISO();
+  const initial = wizardDefaultsFromPlan(
+    current && {
+      startDate: current.startDate.toISOString().slice(0, 10),
+      examDate: current.examDate.toISOString().slice(0, 10),
+      params: current.params,
+      subjects: current.subjects,
+    },
+    subjects.map((s) => ({ id: s.id, languageGroup: s.languageGroup, items: s.items })),
+    today,
+  );
+  return <Wizard subjects={subjects} todayIso={today} initial={initial} />;
 }

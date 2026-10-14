@@ -9,6 +9,7 @@ import {
   type DiagnosticAnswer,
 } from "@/lib/diagnostic";
 import { longDate } from "@/lib/plan-time";
+import type { WizardInitial } from "@/lib/plan/wizard-defaults";
 import { createPlanAction, previewPlan } from "./actions";
 
 export interface WizardItem {
@@ -56,20 +57,21 @@ function perDay(h: number) {
 type Preview = Awaited<ReturnType<typeof previewPlan>>;
 type Marks = Record<string, 1 | 2>;
 
-export function Wizard({ subjects, todayIso }: { subjects: WizardSubject[]; todayIso: string }) {
+export function Wizard({ subjects, todayIso, initial }: { subjects: WizardSubject[]; todayIso: string; initial?: WizardInitial | null }) {
   const [step, setStep] = useState(0);
-  const [selected, setSelected] = useState<Set<string>>(() => new Set(subjects.filter((s) => s.id !== "lingua-inglesa").map((s) => s.id)));
-  const [unselectedTopics, setUnselectedTopics] = useState<Set<string>>(() => new Set());
-  const [hours, setHours] = useState(38);
-  const [examDate, setExamDate] = useState(EXAM_DEFAULT);
+  // ao refazer o plano, tudo já vem com as escolhas do plano vigente; sem plano anterior valem os padrões
+  const [selected, setSelected] = useState<Set<string>>(() => new Set(initial?.selected ?? subjects.filter((s) => s.id !== "lingua-inglesa").map((s) => s.id)));
+  const [unselectedTopics, setUnselectedTopics] = useState<Set<string>>(() => new Set(initial?.unselectedTopics));
+  const [hours, setHours] = useState(initial?.hours ?? 38);
+  const [examDate, setExamDate] = useState(initial?.examDate ?? EXAM_DEFAULT);
   // início dos estudos: "now" = hoje (calculado no servidor, fuso de Recife) ou uma data da agenda
-  const [startMode, setStartMode] = useState<"now" | "date">("now");
-  const [startPick, setStartPick] = useState(todayIso);
+  const [startMode, setStartMode] = useState<"now" | "date">(initial?.startMode ?? "now");
+  const [startPick, setStartPick] = useState(initial?.startPick ?? todayIso);
   const start = startMode === "now" ? "now" : startPick;
   const startValid = startMode === "now" || (startPick >= todayIso && startPick < examDate);
-  const [answers, setAnswers] = useState<Record<string, DiagnosticAnswer>>({});
-  const [marks, setMarks] = useState<Marks>({});
-  const [turbo, setTurbo] = useState(false);
+  const [answers, setAnswers] = useState<Record<string, DiagnosticAnswer>>(() => initial?.answers ?? {});
+  const [marks, setMarks] = useState<Marks>(() => initial?.marks ?? {});
+  const [turbo, setTurbo] = useState(initial?.turbo ?? false);
   const [preview, setPreview] = useState<Preview | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [pending, startTransition] = useTransition();
@@ -180,6 +182,7 @@ export function Wizard({ subjects, todayIso }: { subjects: WizardSubject[]; toda
         known: knownChosen,
         turbo,
         unselectedTopicIds: unselectedTopicList,
+        marks,
         diagnostics: answers,
       });
       if (res?.error) setError(res.error);

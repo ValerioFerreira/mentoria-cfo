@@ -34,6 +34,8 @@ const Selection = z.object({
   turbo: z.boolean().default(false),
   /** Assuntos do edital que o usuário desmarcou no passo Disciplinas */
   unselectedTopicIds: z.array(z.string()).default([]),
+  /** Marcas da anamnese por assunto (id do assunto → 1 ou 2); só guardadas para pré-selecionar o assistente ao refazer o plano */
+  marks: z.record(z.string(), z.union([z.literal(1), z.literal(2)])).default({}),
 });
 export type SelectionInput = z.input<typeof Selection>;
 
@@ -155,10 +157,21 @@ export async function createPlanAction(input: SelectionInput & { diagnostics: Re
     throw e;
   }
   // a anamnese de cada disciplina guarda as 3 respostas + as aulas marcadas
+  // e, por disciplina, os assuntos desmarcados e as marcas por assunto: é o que pré-seleciona o assistente ao refazer o plano
+  const { db } = await import("@/lib/db");
+  const editalItems = await db.editalItem.findMany({ where: { subjectId: { in: parsed.data.subjects.map((s) => s.id) } }, select: { id: true, subjectId: true } });
+  const unselected = new Set(parsed.data.unselectedTopicIds);
   const diagnostics: Record<string, unknown> = {};
   for (const s of parsed.data.subjects) {
     const aulas = Object.fromEntries(Object.entries(parsed.data.known).filter(([id, v]) => id.startsWith(`${s.id}/`) && v > 0));
-    diagnostics[s.id] = { ...((input.diagnostics?.[s.id] as object | undefined) ?? {}), aulas };
+    const ids = editalItems.filter((i) => i.subjectId === s.id).map((i) => i.id);
+    const marks = Object.fromEntries(ids.filter((id) => parsed.data.marks[id]).map((id) => [id, parsed.data.marks[id]]));
+    diagnostics[s.id] = {
+      ...((input.diagnostics?.[s.id] as object | undefined) ?? {}),
+      aulas,
+      marks,
+      unselectedTopics: ids.filter((id) => unselected.has(id)),
+    };
   }
   const lang = parsed.data.subjects.find((s) => s.id === "lingua-inglesa") ? "EN" : parsed.data.subjects.find((s) => s.id === "lingua-espanhola") ? "ES" : null;
   await savePlan({
