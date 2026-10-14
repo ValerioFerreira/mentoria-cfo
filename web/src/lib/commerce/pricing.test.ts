@@ -14,6 +14,15 @@ describe("preços por categoria", () => {
     expect(quote("PCPE", 15).finalCents).toBe(7_200);
     expect(quote("PRACA", 15).finalCents).toBe(4_800);
   });
+  it("preço e desconto do site definidos no concurso substituem o padrão", () => {
+    expect(quote("OFICIAL", 0, { priceCents: 15_000, siteDiscountPoints: 20 })).toMatchObject({ originalCents: 15_000, launchDiscountPoints: 20, finalCents: 12_000 });
+    expect(quote("OFICIAL", 15, { priceCents: 15_000, siteDiscountPoints: 20 })).toMatchObject({ partnerDiscountPoints: 15, finalCents: 9_750 });
+    expect(quote("PRACA", 0, { siteDiscountPoints: 0 }).finalCents).toBe(8_000);
+    expect(quote("PRACA", 0, { priceCents: null, siteDiscountPoints: null }).finalCents).toBe(6_000);
+    expect(quote("OFICIAL", 0, { priceCents: 9_000 }).pricingRule).toMatch(/CONFIG-CONCURSO/);
+    expect(() => quote("OFICIAL", 0, { siteDiscountPoints: 101 })).toThrow();
+    expect(() => quote("OFICIAL", 0, { priceCents: 0 })).toThrow();
+  });
   it("categoria ausente ou inválida não tem preço", () => {
     expect(() => quote(null)).toThrow(/revisão administrativa/);
     expect(() => quote(undefined)).toThrow(/revisão administrativa/);

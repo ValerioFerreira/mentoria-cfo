@@ -17,7 +17,7 @@ export function normalizeCouponCode(raw: unknown): string | null {
 }
 
 /** Trava por cliente dentro da transação: impede duas contratações simultâneas do mesmo e-mail. */
-async function lockCustomer(tx: Tx, email: string) {
+export async function lockCustomer(tx: Tx, email: string) {
   await tx.$queryRaw`SELECT pg_advisory_xact_lock(hashtext(${`contract:${email}`}))::text`;
 }
 
@@ -46,7 +46,7 @@ export async function resolveCoupon(tx: Tx, code: string, customer: { email: str
 export async function contestOffer(contest: Contest) {
   const setting = await db.contestSetting.findUnique({ where: { contest } });
   if (!setting?.category) return { available: false as const, examDate: setting?.examDate ?? null };
-  return { available: true as const, category: setting.category, examDate: setting.examDate, quote: quote(setting.category) };
+  return { available: true as const, category: setting.category, examDate: setting.examDate, quote: quote(setting.category, 0, setting) };
 }
 
 /** Confere categoria e cupom sem gravar nada (usado antes de criar a inscrição da lista de espera). */
@@ -57,7 +57,7 @@ export async function previewContract(contest: Contest, customerEmail: string, c
     const setting = await tx.contestSetting.findUnique({ where: { contest } });
     if (!setting?.category) throw new CommerceError("Este concurso está em revisão administrativa e ainda não pode ser contratado.", "CATEGORY_MISSING");
     const coupon = code ? await resolveCoupon(tx, code, { email }) : null;
-    return quote(setting.category, coupon?.discountPoints ?? 0);
+    return quote(setting.category, coupon?.discountPoints ?? 0, setting);
   });
 }
 
@@ -116,7 +116,7 @@ export async function createContract(input: CreateContractInput, actorId: string
       replacedId = existing.id;
     }
 
-    const q = quote(setting.category, coupon?.discountPoints ?? 0);
+    const q = quote(setting.category, coupon?.discountPoints ?? 0, setting);
     const contract = await tx.contract.create({
       data: {
         userId: input.userId ?? null,

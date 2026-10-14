@@ -25,6 +25,7 @@ export const CONTRACT_STATUS: Record<ContractStatus, { label: string; tone: "ok"
 
 export const AUDIT_LABEL: Record<string, string> = {
   CONTRACT_CREATED: "Contratação registrada",
+  CONTRACT_IMPORTED: "Pagante anterior incluído no financeiro",
   CONTRACT_REPLACED: "Contratação substituída (cupom alterado)",
   CONTRACT_CANCELLED: "Contratação cancelada",
   PAYMENT_REGISTERED: "Pagamento registrado",
@@ -42,6 +43,7 @@ export const AUDIT_LABEL: Record<string, string> = {
   PARTNER_UPDATED: "Dados do parceiro alterados",
   PARTNER_ACTIVATED: "Parceiro reativado",
   PARTNER_DEACTIVATED: "Parceiro desativado",
+  PARTNER_DELETED: "Cadastro de parceiro excluído",
   PARTNER_PASSWORD_RESET: "Senha do parceiro redefinida",
   COUPON_REPLACED: "Cupom substituído",
   COUPON_ACTIVATED: "Cupom ativado",

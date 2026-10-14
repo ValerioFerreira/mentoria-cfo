@@ -37,6 +37,12 @@ export function isContestCategory(v: unknown): v is ContestCategory {
   return v === "OFICIAL" || v === "PCPE" || v === "PRACA";
 }
 
+/** Preço e desconto do site definidos no concurso (Financeiro › Concursos). Campos nulos usam o padrão da categoria. */
+export interface PriceOverride {
+  priceCents?: number | null;
+  siteDiscountPoints?: number | null;
+}
+
 export interface Quote {
   category: ContestCategory;
   pricingRule: string;
@@ -51,20 +57,25 @@ export interface Quote {
  * Preço da contratação. Descontos somam pontos percentuais sobre o preço original (limitados a 100%);
  * o valor final é arredondado ao centavo (meio para cima).
  */
-export function quote(category: ContestCategory | null | undefined, partnerDiscountPoints = 0): Quote {
+export function quote(category: ContestCategory | null | undefined, partnerDiscountPoints = 0, override?: PriceOverride | null): Quote {
   if (!isContestCategory(category)) throw new PricingError("Concurso sem categoria comercial definida: encaminhado para revisão administrativa.");
   if (!Number.isInteger(partnerDiscountPoints) || partnerDiscountPoints < 0 || partnerDiscountPoints > MAX_DISCOUNT_POINTS) {
     throw new PricingError("Desconto de cupom inválido.");
   }
-  const originalCents = CATEGORY_PRICE_CENTS[category];
-  const points = Math.min(MAX_DISCOUNT_POINTS, LAUNCH_DISCOUNT_POINTS + partnerDiscountPoints);
-  const partner = points - LAUNCH_DISCOUNT_POINTS;
+  const customPrice = override?.priceCents ?? null;
+  const customSite = override?.siteDiscountPoints ?? null;
+  if (customPrice !== null && (!Number.isSafeInteger(customPrice) || customPrice <= 0 || customPrice > 10_000_000)) throw new PricingError("Preço do concurso inválido.");
+  if (customSite !== null && (!Number.isInteger(customSite) || customSite < 0 || customSite > MAX_DISCOUNT_POINTS)) throw new PricingError("Desconto do site inválido.");
+  const originalCents = customPrice ?? CATEGORY_PRICE_CENTS[category];
+  const siteDiscount = customSite ?? LAUNCH_DISCOUNT_POINTS;
+  const points = Math.min(MAX_DISCOUNT_POINTS, siteDiscount + partnerDiscountPoints);
+  const partner = points - siteDiscount;
   const finalCents = Math.round((originalCents * (MAX_DISCOUNT_POINTS - points)) / MAX_DISCOUNT_POINTS);
   return {
     category,
-    pricingRule: PRICING_RULE,
+    pricingRule: customPrice !== null || customSite !== null ? `${PRICING_RULE}+CONFIG-CONCURSO` : PRICING_RULE,
     originalCents,
-    launchDiscountPoints: LAUNCH_DISCOUNT_POINTS,
+    launchDiscountPoints: siteDiscount,
     partnerDiscountPoints: partner,
     discountCents: originalCents - finalCents,
     finalCents,

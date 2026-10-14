@@ -10,12 +10,15 @@ import { getPerformance } from "@/lib/data/performance";
 import { getActivePlan, getPendingPlan } from "@/lib/data/study";
 import { PendingPlanView } from "@/components/pending-plan-view";
 import { db } from "@/lib/db";
+import { CONTESTS } from "@/lib/contests";
+import { getUserContest } from "@/lib/user-contest";
 import { MIN_HEAT_DAYS, MIN_QUESTIONS_FOR_PROJECTION, MIN_TREND_CADERNOS, MIN_WEEKS_WITH_STUDY, chartReadiness, weeksWithStudy } from "@/lib/metrics";
 import { dateOfPlanDay, firstStudyISO, effectiveDays, planPosition, todayISO } from "@/lib/plan-time";
 import { fmtDuration, subjectName, subjectShort } from "@/lib/ui-format";
 
 export const metadata: Metadata = { title: "Desempenho" };
 
+const contestLabel = (key: string) => { const c = CONTESTS.find((x) => x.key === key); return c ? `${c.role} ${c.org}` : key; };
 const pct = (v: number | null) => (v === null ? "—" : `${Math.round(v * 100)}%`);
 const num = (v: number) => (Number.isInteger(v) ? String(v) : v.toFixed(1).replace(".", ","));
 const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
@@ -48,6 +51,7 @@ export default async function PerformancePage() {
       );
     }
   }
+  const contest = await getUserContest(user.email);
   const planSubjects = plan?.subjects.map((s) => s.subjectId) ?? [];
   const totalWeeks = plan?.weeks.length ?? 0;
   const perf = await getPerformance(user.id, plan?.startDate ?? null, totalWeeks, planSubjects);
@@ -198,7 +202,7 @@ export default async function PerformancePage() {
             {zeroed.length ? `Disciplina zerada: ${zeroed.map((s) => subjectShort(s.id)).join(", ")}` : "Nenhuma disciplina zerada"}
           </span>
         </Card>
-        <ApprovalComparison subjects={perf.projection.flatMap((b) => b.subjects)} />
+        <ApprovalComparison subjects={perf.projection.flatMap((b) => b.subjects)} contest={contest} contestLabel={contestLabel(contest)} />
       </section>
 
       <section aria-labelledby="sub">

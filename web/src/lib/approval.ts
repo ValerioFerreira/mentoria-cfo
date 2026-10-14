@@ -1,4 +1,5 @@
 import raw from "./approval/profiles.json";
+import type { Contest } from "@/generated/prisma/client";
 import type { BlockProjection } from "./metrics";
 import { EXAM_TOTAL_QUESTIONS } from "./planner/constants";
 
@@ -40,6 +41,21 @@ export interface ApprovalProfile {
 
 export const PROFILES = raw.profiles as ApprovalProfile[];
 export const PROFILES_GENERATED_AT = raw.generatedAt;
+
+/** Corporação e cargo de cada concurso do sistema; os perfis de referência são os concursos anteriores da mesma corporação e do mesmo cargo. */
+const CONTEST_PROFILE_KEY: Partial<Record<Contest, { corp: ApprovalProfile["corp"]; cargo: ApprovalProfile["cargo"] }>> = {
+  CBMPE_OFICIAL: { corp: "CBMPE", cargo: "oficial" },
+  CBMPE_SOLDADO: { corp: "CBMPE", cargo: "praca" },
+  PMPE_OFICIAL: { corp: "PMPE", cargo: "oficial" },
+  PMPE_SOLDADO: { corp: "PMPE", cargo: "praca" },
+};
+
+/** Concursos anteriores do concurso do aluno (do mais recente ao mais antigo). Vazio se não há lista oficial para ele. */
+export function profilesForContest(contest: Contest): ApprovalProfile[] {
+  const key = CONTEST_PROFILE_KEY[contest];
+  if (!key) return [];
+  return PROFILES.filter((p) => p.corp === key.corp && p.cargo === key.cargo).sort((a, b) => b.year - a.year);
+}
 
 /** Peso do perfil: recência (meia-vida de 4 anos contada de 2026) × semelhança com o cargo. 2024 ≈ 0,71 · 2018 ≈ 0,25 · 2016 ≈ 0,18. */
 export const WEIGHT_REF_YEAR = 2026;

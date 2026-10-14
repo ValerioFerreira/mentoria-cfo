@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { RichContent } from "@/components/rich-content";
-import { Alert, Badge, Card, PageHeader, SectionTitle } from "@/components/ui";
+import { Alert, Badge, Card, PageHeader, SectionTitle, inputCls } from "@/components/ui";
 import { requireAdmin } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
-import { subjectShort } from "@/lib/ui-format";
+import { subjectName, subjectShort } from "@/lib/ui-format";
+import { AutoSelect } from "./auto-select";
 import { ReviewActions, type SegmentChoice } from "./review-actions";
 
 export const metadata: Metadata = { title: "Revisão de questões" };
@@ -18,21 +19,32 @@ export default async function ReviewPage({ searchParams }: PageProps<"/admin/rev
   const sp = await searchParams;
   const status = (STATUSES as readonly string[]).includes(String(sp.status)) ? (sp.status as (typeof STATUSES)[number]) : "DRAFT";
   const subject = typeof sp.disciplina === "string" ? sp.disciplina : undefined;
+  const aula = subject && typeof sp.assunto === "string" && sp.assunto.startsWith(`${subject}/`) ? sp.assunto : undefined;
+  const banca = typeof sp.banca === "string" && sp.banca ? sp.banca : undefined;
   const page = Math.max(1, Number(sp.pagina) || 1);
+  const where = { status, ...(subject ? { subjectId: subject } : {}), ...(aula ? { aulaId: aula } : {}), ...(banca ? { banca } : {}) };
 
   const [counts, reports, items, total, batches] = await Promise.all([
     db.question.groupBy({ by: ["status"], _count: true }),
     db.questionReport.findMany({ where: { status: "OPEN" }, orderBy: { createdAt: "asc" }, take: 20, include: { question: { select: { id: true, statement: true, aulaId: true } }, user: { select: { name: true, email: true } } } }),
     db.question.findMany({
-      where: { status, ...(subject ? { subjectId: subject } : {}) },
-      orderBy: [{ aulaId: "asc" }, { segmentId: "asc" }, { id: "asc" }],
+      where,
+      orderBy: [{ subjectId: "asc" }, { aulaId: "asc" }, { banca: "asc" }, { segmentId: "asc" }, { id: "asc" }],
       skip: (page - 1) * PAGE,
       take: PAGE,
       include: { options: { orderBy: { label: "asc" } } },
     }),
-    db.question.count({ where: { status, ...(subject ? { subjectId: subject } : {}) } }),
+    db.question.count({ where }),
     db.question.groupBy({ by: ["batch"], where: { status: "DRAFT" }, _count: true }),
   ]);
+  // opções dos filtros (contagens no status atual): matérias; assuntos (aulas) da matéria; bancas dentro do que já foi filtrado
+  const [subjectOpts, aulaOpts, bancaOpts] = await Promise.all([
+    db.question.groupBy({ by: ["subjectId"], where: { status }, _count: true, orderBy: { subjectId: "asc" } }),
+    subject ? db.question.groupBy({ by: ["aulaId"], where: { status, subjectId: subject }, _count: true, orderBy: { aulaId: "asc" } }) : Promise.resolve([]),
+    db.question.groupBy({ by: ["banca"], where: { status, ...(subject ? { subjectId: subject } : {}), ...(aula ? { aulaId: aula } : {}) }, _count: true, orderBy: { banca: "asc" } }),
+  ]);
+  const aulaRows = await db.aula.findMany({ where: { id: { in: [...new Set([...aulaOpts.map((a) => a.aulaId), ...items.map((q) => q.aulaId)])] } }, select: { id: true, title: true, shortTitle: true } });
+  const aulaLabel = new Map(aulaRows.map((a) => [a.id, a.shortTitle || a.title]));
   // rascunhos do importador agrupados pelo assunto de origem (aprovação em bloco)
   const draftAssuntos =
     status === "DRAFT"
@@ -59,13 +71,14 @@ export default async function ReviewPage({ searchParams }: PageProps<"/admin/rev
   const byStatus = new Map(counts.map((c) => [c.status, c._count]));
   const qs = (p: Record<string, string | number | undefined>) => {
     const u = new URLSearchParams();
-    for (const [k, v] of Object.entries({ status, disciplina: subject, ...p })) if (v !== undefined && v !== "") u.set(k, String(v));
+    for (const [k, v] of Object.entries({ status, disciplina: subject, assunto: aula, banca, ...p })) if (v !== undefined && v !== "") u.set(k, String(v));
     return `/admin/revisao?${u.toString()}`;
   };
   const pages = Math.max(1, Math.ceil(total / PAGE));
 
   return (
     <div className="space-y-6">
+      <Link href="/admin" className="text-sm font-semibold text-muted underline">← Administração</Link>
       <PageHeader eyebrow="Administração" title="Revisão de questões" description="Somente questões aprovadas chegam aos alunos (em produção). Confira o gabarito e a redação antes de aprovar." />
 
       <nav className="flex flex-wrap gap-2" aria-label="Filtrar por status">
@@ -75,6 +88,37 @@ export default async function ReviewPage({ searchParams }: PageProps<"/admin/rev
           </Link>
         ))}
       </nav>
+
+      <Card className="p-4">
+        <form method="get" action="/admin/revisao" className="grid gap-3 sm:grid-cols-2 lg:grid-cols-[1fr_1.4fr_1fr_auto] lg:items-end">
+          <input type="hidden" name="status" value={status} />
+          <label className="space-y-1 text-xs font-semibold uppercase tracking-wider text-muted">
+            Matéria
+            <AutoSelect name="disciplina" defaultValue={subject ?? ""} className={inputCls} resetOnChange={["assunto", "banca"]}>
+              <option value="">Todas</option>
+              {subjectOpts.map((s) => <option key={s.subjectId} value={s.subjectId}>{subjectName(s.subjectId)} ({s._count})</option>)}
+            </AutoSelect>
+          </label>
+          <label className="space-y-1 text-xs font-semibold uppercase tracking-wider text-muted">
+            Assunto
+            <AutoSelect name="assunto" defaultValue={aula ?? ""} disabled={!subject} className={inputCls} resetOnChange={["banca"]}>
+              <option value="">{subject ? "Todos" : "Escolha a matéria"}</option>
+              {aulaOpts.map((a) => <option key={a.aulaId} value={a.aulaId}>{aulaLabel.get(a.aulaId) ?? a.aulaId} ({a._count})</option>)}
+            </AutoSelect>
+          </label>
+          <label className="space-y-1 text-xs font-semibold uppercase tracking-wider text-muted">
+            Banca
+            <AutoSelect name="banca" defaultValue={banca ?? ""} className={inputCls}>
+              <option value="">Todas</option>
+              {bancaOpts.map((b) => <option key={b.banca} value={b.banca}>{b.banca} ({b._count})</option>)}
+            </AutoSelect>
+          </label>
+          <div className="flex gap-2">
+            {(subject || aula || banca) && <Link href={`/admin/revisao?status=${status}`} className="rounded-lg border border-border px-4 py-2 text-sm font-semibold text-muted hover:text-text">Limpar</Link>}
+          </div>
+        </form>
+        <p className="mt-2 text-xs text-muted">Os filtros se aplicam ao mudar. O assunto aparece depois de escolher a matéria.</p>
+      </Card>
 
       {batches.length > 0 && status === "DRAFT" && (
         <Card className="space-y-2">
@@ -122,8 +166,14 @@ export default async function ReviewPage({ searchParams }: PageProps<"/admin/rev
 
       <section className="space-y-3" aria-labelledby="lst">
         <SectionTitle id="lst">{LABEL[status]} ({total})</SectionTitle>
-        {items.length === 0 ? <Alert tone="info">Nada aqui.</Alert> : items.map((q) => (
-          <Card key={q.id} className="space-y-3">
+        {items.length === 0 ? <Alert tone="info">Nada aqui.</Alert> : items.map((q, i) => (
+          <div key={q.id} className="space-y-3">
+          {(i === 0 || items[i - 1].subjectId !== q.subjectId || items[i - 1].aulaId !== q.aulaId) && (
+            <h3 className="border-b border-border pb-1 pt-2 font-display text-lg font-bold uppercase tracking-wide">
+              {subjectName(q.subjectId)} <span className="text-muted">› {aulaLabel.get(q.aulaId) ?? q.aulaId}</span>
+            </h3>
+          )}
+          <Card className="space-y-3">
             <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-muted">
               <span>{subjectShort(q.subjectId)} · {q.id}</span>
               <span className="flex gap-1.5">
@@ -166,6 +216,7 @@ export default async function ReviewPage({ searchParams }: PageProps<"/admin/rev
             )}
             <ReviewActions kind="question" id={q.id} status={q.status} segmentId={q.segmentId} segments={segChoices.get(q.subjectId)} />
           </Card>
+          </div>
         ))}
         {pages > 1 && (
           <div className="flex items-center justify-between text-sm">

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageHeader } from "@/components/ui";
 import { requireAdmin } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
@@ -102,6 +103,7 @@ export default async function AdminCadastrosPage() {
 
   return (
     <div className="space-y-6">
+      <Link href="/admin" className="text-sm font-semibold text-muted underline">← Administração</Link>
       <PageHeader
         eyebrow="Administração"
         title="Gestão de Cadastros"

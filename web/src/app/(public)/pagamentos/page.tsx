@@ -46,7 +46,7 @@ export default async function BillingPage({ searchParams }: { searchParams: Prom
     .filter((o): o is { c: (typeof CONTESTS)[number]; category: NonNullable<typeof o.category> } => o.category !== null);
   // assinatura mensal antiga ainda ativa: só o cancelamento continua disponível (não há novas adesões mensais)
   const monthly = legacy.find((p) => p.product === "MONTHLY" && p.mpPreapprovalId && ["ACTIVE", "PENDING", "PAST_DUE"].includes(p.status));
-  const sample = offers[0] ? quote(offers[0].category) : null;
+  const sample = offers[0] ? quote(offers[0].category, 0, settingOf.get(offers[0].c.key)) : null;
 
   return (
     <div className="space-y-7">
@@ -100,7 +100,7 @@ export default async function BillingPage({ searchParams }: { searchParams: Prom
             <fieldset className="grid gap-3 sm:grid-cols-2">
               <legend className="mb-2 text-sm font-semibold">Concurso</legend>
               {offers.map(({ c, category }, i) => {
-                const q = quote(category);
+                const q = quote(category, 0, settingOf.get(c.key));
                 return (
                   <PriceCard
                     key={c.key}

@@ -86,7 +86,6 @@ export async function approvePlan(planId: string): Promise<AdminActionResult> {
   }
 
   revalidatePath("/admin/cadastros");
-  revalidatePath("/admin/liberacao");
   revalidatePath("/", "layout");
   revalidatePath("/plano");
   revalidatePath("/semana");

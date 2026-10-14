@@ -540,6 +540,10 @@ model ContestSetting {
   contest     Contest          @id
   category    ContestCategory?
   examDate    DateTime?        @db.Date
+  /// Preço original definido para este concurso (centavos); nulo = preço padrão da categoria
+  priceCents         Int?
+  /// Desconto do site em pontos percentuais (0–100); nulo = desconto padrão de lançamento
+  siteDiscountPoints Int?
   updatedById String?
   updatedAt   DateTime         @updatedAt
 }

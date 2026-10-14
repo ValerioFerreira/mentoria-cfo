@@ -5,6 +5,7 @@ import { ActionForm } from "@/components/action-form";
 import { Badge, Card, Field, PageHeader, Stat, inputCls } from "@/components/ui";
 import { requireAdmin } from "@/lib/auth/dal";
 import {
+  adminDeletePartner,
   adminRegisterPayout,
   adminReplaceCoupon,
   adminResetPartnerPassword,
@@ -82,6 +83,7 @@ export default async function PartnerAdminPage({ params, searchParams }: { param
             <input type="hidden" name="partnerId" value={p.id} />
             <Field label="Nome"><input name="name" defaultValue={p.user.name ?? ""} maxLength={120} className={inputCls} /></Field>
             <Field label="Nome de usuário"><input name="username" defaultValue={p.user.username ?? ""} maxLength={20} className={inputCls} /></Field>
+            <div className="sm:col-span-2"><Field label="E-mail"><input name="email" type="email" defaultValue={p.user.email} maxLength={120} className={inputCls} /></Field></div>
           </ActionForm>
           <div className="space-y-2 border-t border-border pt-3">
             <p className="text-sm font-semibold">Cupons</p>
@@ -118,6 +120,17 @@ export default async function PartnerAdminPage({ params, searchParams }: { param
               <input type="hidden" name="partnerId" value={p.id} />
               <input type="hidden" name="active" value={p.active ? "false" : "true"} />
             </ActionForm>
+            <ActionForm
+              action={adminDeletePartner}
+              submitLabel="Excluir cadastro de parceiro"
+              submitSize="sm"
+              submitVariant="danger"
+              confirmText="Excluir o cadastro de parceiro e os cupons? A conta de usuário continua como conta comum. Só é possível sem indicações, contratações, comissões ou repasses."
+              resetOnSuccess={false}
+            >
+              <input type="hidden" name="partnerId" value={p.id} />
+            </ActionForm>
+            <p className="text-xs text-muted">Excluir só é possível se o parceiro nunca teve indicação, contratação, comissão ou repasse. Com histórico, use Desativar.</p>
           </div>
         </Card>
       </div>

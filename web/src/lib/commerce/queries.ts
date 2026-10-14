@@ -117,7 +117,7 @@ export async function listContracts(f: FinanceFilters, take = 200) {
       select: {
         id: true, customerEmail: true, customerName: true, contest: true, category: true, originalAmount: true, discountAmount: true,
         finalAmount: true, paidAmount: true, status: true, createdAt: true, couponCode: true, accessGrantedAt: true, accessUntil: true,
-        userId: true, examDateAtContract: true, partner: { select: { user: { select: { username: true } } } },
+        userId: true, examDateAtContract: true, pricingRule: true, cancelReason: true, partner: { select: { user: { select: { username: true } } } },
         _count: { select: { payments: true, reversals: true } },
       },
     }),
@@ -268,5 +268,105 @@ export async function partnerAdminDetail(partnerId: string, f: FinanceFilters, n
     payouts,
     history,
     balance: summarizeLedger(allEntries.map((e) => ({ amountCents: toCents(e.amount), availableAt: e.availableAt })), allPayouts.map((x) => toCents(x.amount)), now),
+  };
+}
+
+export interface PartnersDashboard {
+  partners: { total: number; active: number; inactive: number };
+  referrals: number;
+  contracts: number;
+  payingContracts: number;
+  /** pagantes ÷ indicados (indicado que pagou algo) */
+  conversion: number | null;
+  receivedCents: number;
+  dueCents: number;
+  commissionGeneratedCents: number;
+  paidOutCents: number;
+  availableCents: number;
+  pendingCents: number;
+  ticketCents: number | null;
+  /** parceiros com mais receita (recebido nas contratações com o cupom) */
+  ranking: { id: string; name: string; active: boolean; coupon: string | null; referrals: number; contracts: number; paying: number; receivedCents: number; commissionCents: number }[];
+  /** últimos 6 meses (Recife): contratações com cupom e valor recebido nelas */
+  months: { label: string; contracts: number; receivedCents: number }[];
+  withoutActivity: number;
+}
+
+/** Indicadores da parceria para o painel de administração. Contratações canceladas não entram. */
+export async function partnersDashboard(now = new Date()): Promise<PartnersDashboard> {
+  const partners = await listPartners(now);
+  const contracts = await db.contract.findMany({
+    where: { partnerId: { not: null }, status: { not: "CANCELLED" } },
+    select: { partnerId: true, customerEmail: true, finalAmount: true, paidAmount: true, createdAt: true },
+  });
+  const byPartner = new Map<string, { contracts: number; paying: number; received: number; emails: Set<string> }>();
+  for (const c of contracts) {
+    const e = byPartner.get(c.partnerId!) ?? { contracts: 0, paying: 0, received: 0, emails: new Set<string>() };
+    e.contracts += 1;
+    const paid = toCents(c.paidAmount);
+    if (paid > 0) {
+      e.paying += 1;
+      e.received += paid;
+    }
+    e.emails.add(c.customerEmail);
+    byPartner.set(c.partnerId!, e);
+  }
+  const sum = (f: (p: (typeof partners)[number]) => number) => partners.reduce((a, p) => a + f(p), 0);
+  const referrals = sum((p) => p.referrals);
+  const payingContracts = contracts.filter((c) => toCents(c.paidAmount) > 0).length;
+  const receivedCents = contracts.reduce((a, c) => a + toCents(c.paidAmount), 0);
+  const dueCents = contracts.reduce((a, c) => a + toCents(c.finalAmount), 0);
+
+  const ranking = partners
+    .map((p) => {
+      const e = byPartner.get(p.id);
+      return {
+        id: p.id,
+        name: p.name ?? p.username ?? p.email,
+        active: p.active,
+        coupon: p.coupon,
+        referrals: p.referrals,
+        contracts: e?.contracts ?? 0,
+        paying: e?.paying ?? 0,
+        receivedCents: e?.received ?? 0,
+        commissionCents: p.balance.generatedCents - p.balance.reversedCents,
+      };
+    })
+    .sort((a, b) => b.receivedCents - a.receivedCents || b.referrals - a.referrals);
+
+  // meses civis de Recife (UTC−3, sem horário de verão)
+  const shift = (d: Date) => new Date(d.getTime() - 3 * 3600 * 1000);
+  const nowR = shift(now);
+  const keys: { key: string; label: string }[] = [];
+  for (let i = 5; i >= 0; i--) {
+    const d = new Date(Date.UTC(nowR.getUTCFullYear(), nowR.getUTCMonth() - i, 1));
+    keys.push({ key: `${d.getUTCFullYear()}-${d.getUTCMonth()}`, label: d.toLocaleDateString("pt-BR", { month: "short", year: "2-digit", timeZone: "UTC" }).replace(".", "") });
+  }
+  const months = keys.map((k) => ({ label: k.label, contracts: 0, receivedCents: 0 }));
+  for (const c of contracts) {
+    const r = shift(c.createdAt);
+    const i = keys.findIndex((k) => k.key === `${r.getUTCFullYear()}-${r.getUTCMonth()}`);
+    if (i >= 0) {
+      months[i].contracts += 1;
+      months[i].receivedCents += toCents(c.paidAmount);
+    }
+  }
+
+  return {
+    partners: { total: partners.length, active: partners.filter((p) => p.active).length, inactive: partners.filter((p) => !p.active).length },
+    referrals,
+    contracts: contracts.length,
+    payingContracts,
+    conversion: referrals > 0 ? payingContracts / referrals : null,
+    receivedCents,
+    dueCents,
+    commissionGeneratedCents: sum((p) => p.balance.generatedCents - p.balance.reversedCents),
+    paidOutCents: sum((p) => p.balance.paidOutCents),
+    availableCents: sum((p) => p.balance.availableCents),
+    pendingCents: sum((p) => p.balance.pendingCents),
+    ticketCents: payingContracts > 0 ? Math.round(receivedCents / payingContracts) : null,
+    ranking,
+    months,
+    withoutActivity: partners.filter((p) => p.referrals === 0).length,
   };
 }

@@ -1,14 +1,16 @@
 "use client";
 
-import { useMemo, useState, type CSSProperties } from "react";
-import { Badge, Card, InfoTip, cx } from "@/components/ui";
+import { useMemo, type CSSProperties } from "react";
+import { Badge, Card, InfoTip } from "@/components/ui";
+import type { Contest } from "@/generated/prisma/client";
 import {
-  PROFILES,
   PROFILES_GENERATED_AT,
   blendProfiles,
   compareSubjects,
   compareTotal,
+  profilesForContest,
   viewOf,
+  type ApprovalProfile,
   type GapStatus,
   type ProfileView,
 } from "@/lib/approval";
@@ -28,17 +30,23 @@ const STATUS: Record<GapStatus, { label: string; tone: "ok" | "gold" | "primary"
   "sem-dados": { label: "sem dados", tone: "neutral", color: "var(--surface-3)" },
 };
 
-// ordem do seletor: cargo mais parecido primeiro, depois o mais recente
-const ORDER = [...PROFILES].sort((a, b) => b.relevance - a.relevance || b.year - a.year);
+export function ApprovalComparison({ subjects, contest, contestLabel }: { subjects: BlockProjection["subjects"]; contest: Contest; contestLabel: string }) {
+  const profiles = useMemo(() => profilesForContest(contest), [contest]);
+  if (profiles.length === 0) {
+    return (
+      <div className="space-y-4">
+        <h3 className="font-display text-xl font-bold uppercase tracking-wide">Você × aprovados</h3>
+        <Card tone="soft" className="py-3.5 text-sm text-muted">Ainda não há listas oficiais de concursos anteriores para {contestLabel}.</Card>
+      </div>
+    );
+  }
+  return <Comparison subjects={subjects} profiles={profiles} contestLabel={contestLabel} />;
+}
 
-export function ApprovalComparison({ subjects }: { subjects: BlockProjection["subjects"] }) {
-  const [selected, setSelected] = useState("ponderado");
-  const blended = useMemo(() => blendProfiles(PROFILES), []);
-  const view: ProfileView = useMemo(() => {
-    const p = PROFILES.find((x) => x.id === selected);
-    return p ? viewOf(p) : blended;
-  }, [selected, blended]);
-  const profile = PROFILES.find((x) => x.id === selected);
+function Comparison({ subjects, profiles, contestLabel }: { subjects: BlockProjection["subjects"]; profiles: ApprovalProfile[]; contestLabel: string }) {
+  // um único concurso anterior: usa-o direto; vários: média ponderada (recentes pesam mais)
+  const view: ProfileView = useMemo(() => (profiles.length === 1 ? viewOf(profiles[0]) : blendProfiles(profiles)), [profiles]);
+  const profile = profiles.length === 1 ? profiles[0] : undefined;
 
   const rows = useMemo(() => compareSubjects(subjects, view), [subjects, view]);
   const total = useMemo(() => compareTotal(rows, view), [rows, view]);
@@ -61,39 +69,18 @@ export function ApprovalComparison({ subjects }: { subjects: BlockProjection["su
     <div className="space-y-4">
       <div className="flex flex-wrap items-center gap-x-2 gap-y-2">
         <h3 className="flex items-center gap-2 font-display text-xl font-bold uppercase tracking-wide">
-          Você × aprovados
+          Você × aprovados · {contestLabel}
           <InfoTip align="start">
             <strong>Aprovado</strong> = classificado dentro das vagas do edital (listas oficiais de classificação). A média e o mínimo são em acertos, trazidos para a prova de {max} questões.
-            O <strong>perfil ponderado</strong> é a média dos concursos com peso maior para os mais recentes (cai pela metade a cada 4 anos) e para cargos parecidos com o de 2º Tenente do CBMPE
-            {view.id === "ponderado" ? (
-              <>. Pesos: {view.sources.map((s) => `${s.label} ${pct(s.weight)}`).join(" · ")}.</>
+            Os números são dos concursos anteriores de {contestLabel}
+            {view.sources.length > 1 ? (
+              <>, em média ponderada com peso maior para os mais recentes (cai pela metade a cada 4 anos). Pesos: {view.sources.map((s) => `${s.label} ${pct(s.weight)}`).join(" · ")}.</>
             ) : (
-              <>.</>
+              <>: {view.sources[0].label}.</>
             )}{" "}
             Só os concursos de 2024 (Instituto AOCP) trazem a nota por disciplina; os de 2016 a 2018 mostram só o total. Seu acerto por disciplina só entra com 10 questões ou mais. Dados oficiais atualizados em {PROFILES_GENERATED_AT.split("-").reverse().join("/")}.
           </InfoTip>
         </h3>
-      </div>
-
-      <div role="radiogroup" aria-label="Concurso de referência" className="flex flex-wrap gap-2">
-        {[{ id: "ponderado", label: "Ponderado (recentes pesam mais)" }, ...ORDER].map((p) => {
-          const on = p.id === selected;
-          return (
-            <button
-              key={p.id}
-              type="button"
-              role="radio"
-              aria-checked={on}
-              onClick={() => setSelected(p.id)}
-              className={cx(
-                "rounded-full border px-3 py-1 text-xs font-semibold transition",
-                on ? "border-transparent bg-ink text-on-ink" : "border-border bg-surface text-muted hover:border-border-strong hover:text-text",
-              )}
-            >
-              {p.label}
-            </button>
-          );
-        })}
       </div>
 
       <div className="grid gap-3 md:grid-cols-3">
@@ -112,7 +99,7 @@ export function ApprovalComparison({ subjects }: { subjects: BlockProjection["su
             <span className="text-base font-medium text-muted"> de {max} · {pct(view.totalPct)}</span>
           </p>
           <p className="text-xs text-muted">
-            {profile ? `${profile.approved.n} aprovados (${profile.vagas} vagas) · ${profile.banca}` : `${view.sources.length} concursos, de ${Math.min(...PROFILES.map((p) => p.year))} a ${Math.max(...PROFILES.map((p) => p.year))}`}
+            {profile ? `${profile.approved.n} aprovados (${profile.vagas} vagas) · ${profile.banca}` : `${view.sources.length} concursos anteriores (${profiles.map((p) => p.year).join(", ")})`}
           </p>
         </Card>
         <Card tone="soft" className="space-y-1 p-4">
@@ -160,7 +147,7 @@ export function ApprovalComparison({ subjects }: { subjects: BlockProjection["su
 
       {comparable.length === 0 ? (
         <Card tone="soft" className="py-3.5 text-sm text-muted">
-          {profile ? "Este concurso só divulgou a nota total, sem a nota por disciplina. Escolha o perfil ponderado ou um concurso de 2024 para comparar disciplina a disciplina." : "Sem dados por disciplina."}
+          {profile ? "Os concursos anteriores só divulgaram a nota total, sem a nota por disciplina." : "Sem dados por disciplina."}
         </Card>
       ) : (
         <Card className="space-y-3 p-4">

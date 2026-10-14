@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { PROFILES, blendProfiles, compareSubjects, compareTotal, gapStatus, profileSlug, profileWeight, viewOf, type ApprovalProfile } from "./approval";
+import { PROFILES, blendProfiles, compareSubjects, compareTotal, gapStatus, profileSlug, profileWeight, profilesForContest, viewOf, type ApprovalProfile } from "./approval";
 
 const base = { corp: "CBMPE", cargo: "oficial", banca: "x", vagas: 10, firstCallVagas: 5, classified: 20, minClassified: 30, totalQuestions: 70 } as const;
 const stats = (meanPct: number, minPct: number) => ({ n: 10, mean: meanPct * 70, min: minPct * 70, max: 70, meanPct, minPct });
@@ -95,5 +95,13 @@ describe("perfil de aprovação", () => {
       expect(JSON.stringify(p)).not.toMatch(/\d{6,}/);
     }
     expect(blendProfiles(PROFILES).totalPct).toBeGreaterThan(0.6);
+  });
+
+  it("os perfis de referência são os concursos anteriores do mesmo órgão e cargo do aluno", () => {
+    expect(profilesForContest("CBMPE_OFICIAL").map((p) => p.id)).toEqual(["cbmpe-oficial-2024", "cfo-cbmpe-2018"]);
+    expect(profilesForContest("CBMPE_SOLDADO").every((p) => p.corp === "CBMPE" && p.cargo === "praca")).toBe(true);
+    expect(profilesForContest("PMPE_OFICIAL").every((p) => p.corp === "PMPE" && p.cargo === "oficial")).toBe(true);
+    expect(profilesForContest("PMPE_SOLDADO").every((p) => p.corp === "PMPE" && p.cargo === "praca")).toBe(true);
+    expect(profilesForContest("PCPE_AGENTE")).toEqual([]);
   });
 });

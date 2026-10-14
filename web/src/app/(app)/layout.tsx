@@ -62,14 +62,7 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
 
   const nav: NavItem[] =
     user.role === "ADMIN"
-      ? [
-          ...NAV,
-          { href: "/admin/cadastros", label: "Cadastros", icon: "users" },
-          { href: "/admin/financeiro", label: "Financeiro", icon: "finance" },
-          { href: "/admin/parceiros", label: "Parceiros", icon: "partners" },
-          { href: "/admin/liberacao", label: "Liberação", icon: "release" },
-          { href: "/admin/revisao", label: "Revisão", icon: "admin" },
-        ]
+      ? [...NAV.filter((item) => item.href !== "/pagamentos"), { href: "/admin", label: "Administração", icon: "admin" }]
       : user.isPartner
         // parceiro não contrata nem paga: sem "Pagamentos" no menu
         ? [...userNav.filter((item) => item.href !== "/pagamentos"), { href: "/parceria", label: "Minha parceria", icon: "partnership" }]

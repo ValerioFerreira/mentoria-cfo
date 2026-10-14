@@ -10,12 +10,14 @@ import { requireAdmin } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { audit } from "./audit";
 import { cancelContract, createContract, grantAccessUntilExam } from "./contracts";
+import { importLegacyPayer } from "./legacy";
 import { type ActionResult, toActionError } from "./errors";
 import { formatBRL, parseMoneyInput } from "./money";
 import { cancelPendingCharges, reconcilePendingCharges } from "./online";
 import { registerPayment, reversePayment } from "./payments";
 import {
   createPartner,
+  deletePartner,
   registerPayout,
   replacePartnerCoupon,
   resetPartnerPassword,
@@ -121,6 +123,23 @@ export async function adminCancelContract(_: ActionResult | null, fd: FormData):
   }
 }
 
+/** Inclui no financeiro quem pagou antes do valor atual (inscrição da lista de espera com pagamento conferido). */
+export async function adminImportLegacyPayer(_: ActionResult | null, fd: FormData): Promise<ActionResult> {
+  const admin = await requireAdmin();
+  const parsed = z
+    .object({ entryId: Id, amount: Money, paidAt: IsoDate, method: z.enum(["PIX", "TRANSFERENCIA", "DINHEIRO", "OUTRO"], { error: "Escolha a forma de pagamento." }) })
+    .safeParse(form(fd));
+  if (!parsed.success) return firstIssue(parsed.error);
+  const d = parsed.data;
+  try {
+    const r = await importLegacyPayer({ waitlistEntryId: d.entryId, amountCents: d.amount, paidAt: dayAt(d.paidAt), method: d.method }, admin.id);
+    refreshFinance(r.contractId);
+    return { ok: true, message: `Incluído com ${formatBRL(d.amount)} pagos.` };
+  } catch (err) {
+    return toActionError(err, "incluir pagante anterior");
+  }
+}
+
 /** Reconsulta no Mercado Pago os Pix pendentes (recupera avisos de webhook perdidos). */
 export async function adminReconcileOnline(): Promise<ActionResult> {
   await requireAdmin();
@@ -173,14 +192,27 @@ export async function adminUpdateContestSetting(_: ActionResult | null, fd: Form
       contest: z.enum(CONTESTS),
       category: z.enum(["", "OFICIAL", "PCPE", "PRACA"]),
       examDate: z.union([z.literal(""), IsoDate]),
+      price: z.string().trim().max(20).default(""),
+      siteDiscount: z.string().trim().max(5).default(""),
     })
     .safeParse(form(fd));
   if (!parsed.success) return firstIssue(parsed.error);
   const { contest, category, examDate } = parsed.data;
+  // preço do concurso (vazio = padrão da categoria) e desconto do site em % (vazio = desconto padrão de lançamento)
+  let priceCents: number | null = null;
+  if (parsed.data.price) {
+    priceCents = parseMoneyInput(parsed.data.price);
+    if (priceCents === null || priceCents <= 0) return { ok: false, message: "Preço inválido: use números positivos com até 2 casas (ex.: 120,00)." };
+  }
+  let siteDiscountPoints: number | null = null;
+  if (parsed.data.siteDiscount) {
+    siteDiscountPoints = Number(parsed.data.siteDiscount.replace(",", "."));
+    if (!Number.isInteger(siteDiscountPoints) || siteDiscountPoints < 0 || siteDiscountPoints > 100) return { ok: false, message: "Desconto do site: número inteiro de 0 a 100 (%)." };
+  }
   try {
     await db.$transaction(async (tx) => {
       const before = await tx.contestSetting.findUnique({ where: { contest: contest as Contest } });
-      const data = { category: category || null, examDate: examDate ? new Date(`${examDate}T00:00:00Z`) : null, updatedById: admin.id };
+      const data = { category: category || null, examDate: examDate ? new Date(`${examDate}T00:00:00Z`) : null, priceCents, siteDiscountPoints, updatedById: admin.id };
       await tx.contestSetting.upsert({ where: { contest: contest as Contest }, create: { contest: contest as Contest, ...data }, update: data });
       await audit(tx, {
         actorId: admin.id,
@@ -188,8 +220,8 @@ export async function adminUpdateContestSetting(_: ActionResult | null, fd: Form
         entityType: "ContestSetting",
         entityId: contest,
         data: {
-          before: { category: before?.category ?? null, examDate: before?.examDate?.toISOString().slice(0, 10) ?? null },
-          after: { category: data.category, examDate: examDate || null },
+          before: { category: before?.category ?? null, examDate: before?.examDate?.toISOString().slice(0, 10) ?? null, priceCents: before?.priceCents ?? null, siteDiscountPoints: before?.siteDiscountPoints ?? null },
+          after: { category: data.category, examDate: examDate || null, priceCents, siteDiscountPoints },
         },
       });
     });
@@ -229,7 +261,7 @@ export async function adminCreatePartner(_: ActionResult | null, fd: FormData): 
 
 export async function adminUpdatePartner(_: ActionResult | null, fd: FormData): Promise<ActionResult> {
   const admin = await requireAdmin();
-  const parsed = z.object({ partnerId: Id, name: Optional, username: Optional }).safeParse(form(fd));
+  const parsed = z.object({ partnerId: Id, name: Optional, username: Optional, email: Optional }).safeParse(form(fd));
   if (!parsed.success) return firstIssue(parsed.error);
   try {
     await updatePartnerProfile(parsed.data.partnerId, parsed.data, admin.id);
@@ -237,6 +269,19 @@ export async function adminUpdatePartner(_: ActionResult | null, fd: FormData): 
     return { ok: true, message: "Dados do parceiro atualizados." };
   } catch (err) {
     return toActionError(err, "editar parceiro");
+  }
+}
+
+export async function adminDeletePartner(_: ActionResult | null, fd: FormData): Promise<ActionResult> {
+  const admin = await requireAdmin();
+  const parsed = z.object({ partnerId: Id }).safeParse(form(fd));
+  if (!parsed.success) return firstIssue(parsed.error);
+  try {
+    await deletePartner(parsed.data.partnerId, admin.id);
+    revalidatePath("/admin/parceiros", "layout");
+    return { ok: true, message: "Cadastro de parceiro excluído. A conta de usuário continua como conta comum." };
+  } catch (err) {
+    return toActionError(err, "excluir parceiro");
   }
 }
 

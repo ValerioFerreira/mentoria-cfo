@@ -3,13 +3,15 @@ import Link from "next/link";
 import { ActionForm } from "@/components/action-form";
 import { Alert, Badge, Card, Field, PageHeader, Stat, inputCls } from "@/components/ui";
 import { requireAdmin } from "@/lib/auth/dal";
-import { adminCreateContract, adminReconcileOnline, adminUpdateContestSetting } from "@/lib/commerce/admin-actions";
+import { adminCancelContract, adminCreateContract, adminImportLegacyPayer, adminReconcileOnline, adminUpdateContestSetting } from "@/lib/commerce/admin-actions";
 import { AUDIT_LABEL, CONTRACT_STATUS, PAYMENT_METHOD_LABEL, REVERSAL_KIND_LABEL, actorLabel, contestName, dateBR, dayBR } from "@/lib/commerce/labels";
 import { formatBRL, toCents } from "@/lib/commerce/money";
 import { CATEGORY_LABEL, CATEGORY_PRICE_CENTS, LAUNCH_DISCOUNT_POINTS, PARTNER_COUPON_DISCOUNT_POINTS, quote } from "@/lib/commerce/pricing";
 import { mercadoPagoAccountStatus, onlineOverview } from "@/lib/commerce/online";
 import { auditHistory, listContracts, listCustomers, listPayments } from "@/lib/commerce/queries";
+import { listLegacyPayers, LEGACY_PRICING_RULE } from "@/lib/commerce/legacy";
 import { db } from "@/lib/db";
+import { todayISO } from "@/lib/plan-time";
 import { FilterBar } from "./filter-bar";
 import { FILTER_CONTESTS, parseFilters, type SearchParams } from "./filters";
 
@@ -36,10 +38,11 @@ export default async function FinanceiroPage({ searchParams }: { searchParams: P
 
   return (
     <div className="space-y-6">
+      <Link href="/admin" className="text-sm font-semibold text-muted underline">← Administração</Link>
       <PageHeader
         eyebrow="Administração"
         title="Financeiro"
-        description="Obrigações, pagamentos recebidos, saldos e histórico. O acesso acadêmico é liberado à parte, na contratação."
+        description="Contratações, pagamentos recebidos, saldos, preços e datas das provas, Mercado Pago e histórico. O acesso acadêmico é liberado à parte, na contratação."
       />
       <nav className="flex flex-wrap gap-2" aria-label="Seções do financeiro">
         {TABS.map((t) => (
@@ -74,12 +77,12 @@ async function Contracts({ f }: { f: ReturnType<typeof parseFilters> }) {
         <Stat label="Recebido" value={formatBRL(totals.receivedCents)} hint={`Saldo: ${formatBRL(totals.dueCents - totals.receivedCents)}`} />
       </div>
       <Card className="overflow-x-auto p-0">
-        <table className="w-full min-w-[860px] text-sm">
+        <table className="w-full min-w-[1000px] text-sm">
           <thead className="border-b border-border">
-            <tr><th className={th}>Cliente</th><th className={th}>Concurso</th><th className={th}>Original</th><th className={th}>Devido</th><th className={th}>Recebido</th><th className={th}>Saldo</th><th className={th}>Situação</th><th className={th}>Acesso</th></tr>
+            <tr><th className={th}>Cliente</th><th className={th}>Concurso</th><th className={th}>Original</th><th className={th}>Devido</th><th className={th}>Recebido</th><th className={th}>Saldo</th><th className={th}>Situação</th><th className={th}>Acesso</th><th className={th}>Solicitação</th></tr>
           </thead>
           <tbody>
-            {rows.length === 0 && <tr><td className={td} colSpan={8}><span className="text-muted">Nenhuma contratação encontrada.</span></td></tr>}
+            {rows.length === 0 && <tr><td className={td} colSpan={9}><span className="text-muted">Nenhuma contratação encontrada.</span></td></tr>}
             {rows.map((c) => {
               const due = toCents(c.finalAmount);
               const paid = toCents(c.paidAmount);
@@ -97,7 +100,19 @@ async function Contracts({ f }: { f: ReturnType<typeof parseFilters> }) {
                   <td className={`${td} tabular whitespace-nowrap`}>{due - paid < 0 ? <span className="text-primary">excedente {formatBRL(paid - due)}</span> : formatBRL(due - paid)}</td>
                   <td className={td}><Badge tone={CONTRACT_STATUS[c.status].tone}>{CONTRACT_STATUS[c.status].label}</Badge></td>
                   <td className={`${td} text-xs`}>
-                    {c.accessGrantedAt ? `Liberado até ${dateBR(c.accessUntil)}` : c.examDateAtContract ? "Não liberado" : <span className="text-warn">Data da prova pendente</span>}
+                    {c.pricingRule === LEGACY_PRICING_RULE ? <Badge tone="gold">Pagante anterior</Badge> : c.accessGrantedAt ? `Liberado até ${dateBR(c.accessUntil)}` : c.examDateAtContract ? "Não liberado" : <span className="text-warn">Data da prova pendente</span>}
+                  </td>
+                  <td className={td}>
+                    {c.status === "CANCELLED" ? (
+                      <span className="text-xs text-muted">{c.cancelReason ?? "Cancelada"}</span>
+                    ) : paid > 0 ? (
+                      <Link href={`/admin/financeiro/${c.id}`} className="text-xs text-muted underline" title="Há valores recebidos: estorne antes de cancelar">Estornar para cancelar</Link>
+                    ) : (
+                      <ActionForm action={adminCancelContract} submitLabel="Cancelar" submitSize="sm" submitVariant="danger" resetOnSuccess={false} confirmText="Cancelar esta solicitação? Ela fica no histórico e o Pix em aberto deixa de valer." className="flex items-center gap-1.5">
+                        <input type="hidden" name="contractId" value={c.id} />
+                        <input name="reason" required minLength={5} maxLength={200} placeholder="Motivo" aria-label="Motivo do cancelamento" className={`${inputCls} w-32`} />
+                      </ActionForm>
+                    )}
                   </td>
                 </tr>
               );
@@ -105,6 +120,7 @@ async function Contracts({ f }: { f: ReturnType<typeof parseFilters> }) {
           </tbody>
         </table>
       </Card>
+      <LegacyPayers />
       <Card className="space-y-3">
         <h2 className="font-display text-lg font-bold uppercase">Nova contratação manual</h2>
         <p className="text-sm text-muted">Para cliente que contratou fora do site. O preço segue a categoria do concurso e o cupom (se houver), sempre calculado pelo sistema.</p>
@@ -118,6 +134,43 @@ async function Contracts({ f }: { f: ReturnType<typeof parseFilters> }) {
         </ActionForm>
       </Card>
     </div>
+  );
+}
+
+async function LegacyPayers() {
+  const rows = await listLegacyPayers();
+  if (rows.length === 0) return null;
+  const today = todayISO();
+  return (
+    <Card className="space-y-3">
+      <h2 className="font-display text-lg font-bold uppercase">Pagantes anteriores fora da tabela ({rows.length})</h2>
+      <p className="text-sm text-muted">
+        Pessoas que já pagaram antes do valor atual e por isso não têm contratação. Confira o valor e a data do pagamento e inclua: a contratação nasce quitada com o valor pago (sem desconto e sem parceiro) e o acesso que a pessoa já tem não é alterado.
+      </p>
+      <div className="divide-y divide-border">
+        {rows.map((e) => (
+          <div key={e.id} className="grid gap-3 py-3 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+            <div className="min-w-0">
+              <p className="font-semibold">{e.name}</p>
+              <p className="text-xs text-muted">{e.email} · {contestName(e.contest)} · pagamento conferido em {dateBR(e.paidAt)}</p>
+            </div>
+            <ActionForm action={adminImportLegacyPayer} submitLabel="Incluir" submitSize="sm" pendingLabel="Incluindo…" confirmText="Incluir esta pessoa no financeiro com o valor informado?" resetOnSuccess={false} className="grid gap-2 sm:grid-cols-[7rem_9rem_9rem_auto] sm:items-end">
+              <input type="hidden" name="entryId" value={e.id} />
+              <Field label="Valor pago (R$)"><input name="amount" inputMode="decimal" required defaultValue="50,00" className={inputCls} /></Field>
+              <Field label="Data do pagamento"><input name="paidAt" type="date" required max={today} defaultValue={(e.paidAt ?? new Date()).toISOString().slice(0, 10)} className={inputCls} /></Field>
+              <Field label="Forma">
+                <select name="method" defaultValue="PIX" className={inputCls}>
+                  <option value="PIX">Pix</option>
+                  <option value="TRANSFERENCIA">Transferência</option>
+                  <option value="DINHEIRO">Dinheiro</option>
+                  <option value="OUTRO">Outro</option>
+                </select>
+              </Field>
+            </ActionForm>
+          </div>
+        ))}
+      </div>
+    </Card>
   );
 }
 
@@ -203,7 +256,8 @@ async function ContestsTab() {
   return (
     <div className="space-y-4">
       <Card tone="soft" className="space-y-1 text-sm">
-        <p className="font-semibold">Regras comerciais vigentes</p>
+        <p className="font-semibold">Regras comerciais padrão</p>
+        <p className="text-muted">Valem quando o concurso não tem preço ou desconto próprio, definidos nos cartões abaixo. </p>
         <p className="text-muted">
           Preço original: Oficial e PCPE {formatBRL(CATEGORY_PRICE_CENTS.OFICIAL)}; Praça {formatBRL(CATEGORY_PRICE_CENTS.PRACA)}. Lançamento: {LAUNCH_DISCOUNT_POINTS}% ({formatBRL(quote("OFICIAL").finalCents)} e {formatBRL(quote("PRACA").finalCents)}).
           Cupom de parceiro: +{PARTNER_COUPON_DISCOUNT_POINTS} p.p. ({formatBRL(quote("OFICIAL", PARTNER_COUPON_DISCOUNT_POINTS).finalCents)} e {formatBRL(quote("PRACA", PARTNER_COUPON_DISCOUNT_POINTS).finalCents)}).
@@ -232,7 +286,24 @@ async function ContestsTab() {
                 <Field label="Data oficial da prova">
                   <input type="date" name="examDate" defaultValue={s?.examDate?.toISOString().slice(0, 10) ?? ""} className={inputCls} />
                 </Field>
+                <Field label="Preço do concurso (R$)" hint={`Vazio: padrão da categoria${s?.category ? ` (${formatBRL(CATEGORY_PRICE_CENTS[s.category])})` : ""}.`}>
+                  <input name="price" inputMode="decimal" defaultValue={s?.priceCents ? (s.priceCents / 100).toFixed(2).replace(".", ",") : ""} placeholder={s?.category ? (CATEGORY_PRICE_CENTS[s.category] / 100).toFixed(2).replace(".", ",") : ""} className={inputCls} />
+                </Field>
+                <Field label="Desconto do site (%)" hint={`Vazio: desconto de lançamento padrão (${LAUNCH_DISCOUNT_POINTS}%). Use 0 para não dar desconto.`}>
+                  <input name="siteDiscount" inputMode="numeric" defaultValue={s?.siteDiscountPoints ?? ""} placeholder={String(LAUNCH_DISCOUNT_POINTS)} className={inputCls} />
+                </Field>
               </ActionForm>
+              {s?.category && (() => {
+                const q = quote(s.category, 0, s);
+                const qc = quote(s.category, PARTNER_COUPON_DISCOUNT_POINTS, s);
+                return (
+                  <p className="rounded-lg bg-surface-2 px-3 py-2 text-xs text-muted">
+                    Valor ao aluno: <strong className="text-text">{formatBRL(q.finalCents)}</strong>
+                    {q.discountCents > 0 && <> (de {formatBRL(q.originalCents)}, {q.launchDiscountPoints}% de desconto)</>}
+                    {" · "}com cupom de parceiro: <strong className="text-text">{formatBRL(qc.finalCents)}</strong>. Contratações já registradas não mudam de preço.
+                  </p>
+                );
+              })()}
               {s?.examDate && <p className="text-xs text-muted">Acesso das contratações vale até 23:59 de {dayBR(s.examDate)} (Recife).</p>}
             </Card>
           );

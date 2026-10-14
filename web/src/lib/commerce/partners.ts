@@ -101,7 +101,7 @@ export async function createPartner(input: CreatePartnerInput, actorId: string):
   });
 }
 
-export async function updatePartnerProfile(partnerId: string, input: { name?: string | null; username?: string | null }, actorId: string) {
+export async function updatePartnerProfile(partnerId: string, input: { name?: string | null; username?: string | null; email?: string | null }, actorId: string) {
   return db.$transaction(async (tx) => {
     const p = await tx.partner.findUnique({ where: { id: partnerId }, include: { user: true } });
     if (!p) throw new CommerceError("Parceiro não encontrado.");
@@ -114,8 +114,38 @@ export async function updatePartnerProfile(partnerId: string, input: { name?: st
       if (await tx.user.findUnique({ where: { username }, select: { id: true } })) throw new CommerceError("Este nome de usuário já está em uso.");
       data.username = username;
     }
+    const email = input.email?.trim().toLowerCase();
+    if (email && email !== p.user.email) {
+      if (!EMAIL.test(email) || email.length > 120) throw new CommerceError("E-mail inválido.");
+      if (await tx.user.findUnique({ where: { email }, select: { id: true } })) throw new CommerceError("Este e-mail já pertence a outro usuário.");
+      data.email = email;
+    }
     await tx.user.update({ where: { id: p.userId }, data });
-    await audit(tx, { actorId, action: "PARTNER_UPDATED", entityType: "Partner", entityId: partnerId, data: { name: data.name ?? null, username: data.username ?? null } });
+    await audit(tx, { actorId, action: "PARTNER_UPDATED", entityType: "Partner", entityId: partnerId, data: { name: data.name ?? null, username: data.username ?? null, email: data.email ?? null } });
+  });
+}
+
+/**
+ * Exclui o cadastro de parceiro (e os cupons dele). Só é permitido sem histórico financeiro (contratações, comissões ou repasses):
+ * com histórico, o caminho é desativar, para preservar a contabilidade. A conta de usuário continua como conta comum.
+ */
+export async function deletePartner(partnerId: string, actorId: string) {
+  return db.$transaction(async (tx) => {
+    await lockPartner(tx, partnerId);
+    const p = await tx.partner.findUnique({ where: { id: partnerId }, include: { user: { select: { email: true, username: true } }, coupons: { select: { code: true } } } });
+    if (!p) throw new CommerceError("Parceiro não encontrado.");
+    const [contracts, commissions, payouts, referrals] = await Promise.all([
+      tx.contract.count({ where: { partnerId } }),
+      tx.commissionEntry.count({ where: { partnerId } }),
+      tx.partnerPayout.count({ where: { partnerId } }),
+      tx.partnerReferral.count({ where: { partnerId } }),
+    ]);
+    if (contracts + commissions + payouts + referrals > 0) {
+      throw new CommerceError("Este parceiro tem indicações, contratações, comissões ou repasses. Para preservar o histórico financeiro, desative-o em vez de excluir.", "PARTNER_HAS_HISTORY");
+    }
+    await tx.partnerCoupon.deleteMany({ where: { partnerId } });
+    await tx.partner.delete({ where: { id: partnerId } });
+    await audit(tx, { actorId, action: "PARTNER_DELETED", entityType: "Partner", entityId: partnerId, data: { email: p.user.email, username: p.user.username, coupons: p.coupons.map((c) => c.code) } });
   });
 }
 
