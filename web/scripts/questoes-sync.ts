@@ -14,6 +14,7 @@ import { readFileSync, existsSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient, type QuestionStatus, type QuestionKind } from "../src/generated/prisma/client";
+import { nextQuestionStatus } from "../src/lib/quiz/sync-rules";
 
 type OptionRow = { label: string; text: string; isCorrect: boolean };
 type QuestionRow = {
@@ -178,9 +179,7 @@ async function main() {
       continue;
     }
     const manual = ex.classifiedBy === "MANUAL";
-    const lockedStatus = ex.status === "FLAGGED" || ex.status === "RETIRED";
-    let status: QuestionStatus = q.status;
-    if (q.status !== "RETIRED" && (manual || lockedStatus)) status = ex.status;
+    const status: QuestionStatus = nextQuestionStatus({ status: ex.status, classifiedBy: manual ? "MANUAL" : "AUTO" }, q.status);
     if (q.status === "RETIRED" && ex.status !== "RETIRED") summary.retired++;
     const sameContent = ex.contentHash === q.contentHash;
     const sameClass = manual || (ex.segmentId === q.segmentId && ex.editalItemId === editalItemId);

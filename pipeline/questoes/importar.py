@@ -12,6 +12,9 @@ Opções:
     --so-extrair         extrai e classifica, gera o relatório, mas não grava em banco nenhum
     --limpar-estrategia  apaga do(s) banco(s) toda questão que não veio dos cadernos (id fora de tec_*)
     --pasta DIR          pasta dos cadernos (padrão: docs/questoes)
+    --confirmo-producao  autoriza gravação em massa no remoto (> 300 questões, --reclassificar, --forcar ou
+                         reextração por versão nova do extrator); exige backup íntegro de menos de 24 h
+                         (web: npx tsx scripts/questoes-backup.ts --remoto)
 
 Especificação completa: pipeline/questoes/EXTRACAO.md (copiada para docs/questoes/COMO-EXTRAIR-QUESTOES.md).
 """
@@ -194,6 +197,36 @@ def run_sync(lote: Path | None, remote: bool, purge: bool) -> dict:
     return json.loads(last[-1]) if last else {}
 
 
+LOTE_GRANDE = 300  # questões; acima disso a gravação na produção é "em massa"
+BACKUP_VALIDADE_H = 24
+
+
+def exigir_backup_e_confirmacao(args: argparse.Namespace, n: int) -> None:
+    """Gravação em massa na produção só com backup recente e íntegro e confirmação explícita
+    (auditoria de 14/10/2026: toda atualização em massa exige backup verificável e aprovação)."""
+    backups = sorted((ROOT / "backups").glob("questoes-remoto-*"))
+    ok_backup = False
+    if backups:
+        man = backups[-1] / "manifest.json"
+        if man.exists():
+            idade_h = (time.time() - man.stat().st_mtime) / 3600
+            proc = subprocess.run(
+                ["npx", "tsx", "scripts/questoes-backup.ts", "--verificar", str(backups[-1])],
+                cwd=WEB, capture_output=True, text=True, encoding="utf-8", shell=sys.platform == "win32",
+            )
+            ok_backup = idade_h <= BACKUP_VALIDADE_H and proc.returncode == 0
+    if not ok_backup:
+        raise SystemExit(
+            f"gravação em massa na produção ({n} questões): falta backup íntegro com menos de {BACKUP_VALIDADE_H} h.\n"
+            "Rode antes, em web/: npx tsx scripts/questoes-backup.ts --remoto"
+        )
+    if not args.confirmo_producao:
+        raise SystemExit(
+            f"gravação em massa na produção ({n} questões): confira o relatório e rode de novo com --confirmo-producao.\n"
+            f"Reversão: npx tsx scripts/questoes-restore.ts {backups[-1]} --remoto --aplicar --confirmo-producao"
+        )
+
+
 def report(path: Path, ctx: dict) -> None:
     L = []
     L.append(f"# Importação de questões — {ctx['quando']}\n")
@@ -255,6 +288,7 @@ def main() -> None:
     ap.add_argument("--so-extrair", action="store_true")
     ap.add_argument("--limpar-estrategia", action="store_true")
     ap.add_argument("--pasta", default=str(ROOT / "docs" / "questoes"))
+    ap.add_argument("--confirmo-producao", action="store_true", help="autoriza gravação em massa no banco remoto (exige backup recente)")
     args = ap.parse_args()
 
     folder = Path(args.pasta)
@@ -359,6 +393,8 @@ def main() -> None:
         if not sub and not args.limpar_estrategia:
             print(f"{target}: nada a gravar", flush=True)
             continue
+        if target == "remoto" and (len(sub) > LOTE_GRANDE or args.reclassificar or args.forcar or args.limpar_estrategia):
+            exigir_backup_e_confirmacao(args, len(sub))
         rows, imgs = build_rows(sub, cls, batch)
         lote = write_lote(store, rows, imgs, imgs_dims, target) if rows else None
         print(f"{target}: gravando {sum(r['type'] == 'question' for r in rows)} questões e {len(imgs)} figuras …", flush=True)

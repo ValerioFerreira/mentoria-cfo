@@ -4,6 +4,7 @@ Os testes de integração leem os PDFs de docs/questoes (fora do git) e são pul
 existe. QUESTOES_TODOS=1 roda todos os cadernos (≈ 40 s); por padrão, só os dois menores.
 """
 import json
+import re
 import os
 import sys
 from pathlib import Path
@@ -118,7 +119,83 @@ def test_classificador_respeita_skip_e_mapa():
     assert assunto_key("A", "B") == "A|B"
 
 
+def test_fundo_branco_invisivel_nao_e_desenho():
+    # retângulo branco sem contorno atrás do texto (fundo da página web) não pode virar figura
+    assert T.is_invisible_fill({"fill": (1.0, 1.0, 1.0), "color": None})
+    assert not T.is_invisible_fill({"fill": (1.0, 1.0, 1.0), "color": (0, 0, 0)})  # caixa com borda
+    assert not T.is_invisible_fill({"fill": (0.0, 0.0, 0.0), "color": None})  # traço preto (tabela, sublinhado)
+    assert not T.is_invisible_fill({"fill": None, "color": (0, 0, 0)})
+
+
+def test_lacuna_de_espacos_sublinhados():
+    s = span("acesso    e", 28)
+    s.ul = {6, 7, 8, 9}  # 4 espaços sublinhados = lacuna
+    assert T.row_markup(row(s)) == "acesso ______ e"
+    one = span("palavra destacada", 28)
+    one.ul = set(range(len("palavra destacada")))  # espaço isolado entre palavras sublinhadas não é lacuna
+    assert "_" not in T.row_markup(row(one))
+    assert T._join_lines(["garantido o acesso ______", "______ às ações"]) == "garantido o acesso ______ às ações"
+
+
+def test_assertiva_em_negrito_abre_paragrafo():
+    for t in ["**IV**. O pulmão esquerdo", "**III.** Os pulmões", "**2**. Segundo item"]:
+        assert T.ITEM_START_RE.match(t), t
+
+
+def test_item_do_edital_e_da_propria_disciplina():
+    from questoes.classify import Catalog, SegInfo
+
+    seg = SegInfo(id="estatistica/a06/s01", aula="estatistica/a06", subject="estatistica", order=1)
+    seg.edital = [("matematica/e3.4", "probabilidade"), ("estatistica/e2.1", "probabilidade definicao classica")]
+    cat = Catalog({seg.id: seg}, {}, {}, {"estatistica": {}}, {}, {})
+    c = Classifier(cat, {"materias": {}, "assuntos": {}})
+    assert c.edital_item(seg.id, {}) == "estatistica/e2.1"
+    seg.edital = [("matematica/e3.4", "probabilidade")]
+    cat.edital_items = {"estatistica/e2.3": {"subject": "estatistica", "aulas": ["estatistica/a06"], "text": "axiomatica"}}
+    assert c.edital_item(seg.id, {}) == "estatistica/e2.3"
+
+
 # ───────────────────────── integração (cadernos reais) ─────────────────────────
+
+REF = DOCS / "Caderno Direito Administrativo Atualidades Espanhol Direito Penal Militar Inglês Física 1 .pdf"
+FONETICA = DOCS / "Caderno Matemática e Português 5.pdf"
+
+
+@pytest.mark.skipif(not REF.exists(), reason="caderno de referência ausente")
+def test_caderno_de_referencia_regressoes_da_auditoria():
+    """Casos da auditoria de 14/10/2026 (docs/questoes/auditoria/2026-10-14)."""
+    c = T.read_caderno(REF)
+    q = {x.tecId: x for x in c.questions}
+    assert len(c.questions) == 200 and not c.anomalies
+    assert q["1445847"].statement.count("______") == 3  # lacunas do ECA
+    assert "______" in q["2906715"].statement
+    assert "\n\n**IV**. O pulmão" in q["1444254"].statement  # assertivas em parágrafos próprios
+    assert "a seguir.\n\nO monômero" in q["736572"].statement  # item de C/E depois da virada de página
+
+
+@pytest.mark.skipif(not FONETICA.exists(), reason="caderno ausente")
+def test_letra_destacada_com_sublinhado_curto_nao_vira_marcador():
+    c = T.read_caderno(FONETICA)
+    q = {x.tecId: x for x in c.questions}
+    d = [o["text"] for o in q["863979"].options if o["label"] == "D"][0]
+    assert "•" not in d and "<u>" in d
+    for x in c.questions:
+        txt = " ".join([x.support, x.statement] + [o["text"] for o in x.options])
+        assert not re.search(r"[\wÀ-ÿ*]•[\wÀ-ÿ]", txt), x.tecId
+
+
+@pytest.mark.skipif(not DOCS.joinpath("Caderno Matemática e Português 1.pdf").exists(), reason="caderno ausente")
+def test_paragrafo_com_fundo_branco_continua_texto():
+    c = T.read_caderno(DOCS / "Caderno Matemática e Português 1.pdf")
+    q = {x.tecId: x for x in c.questions}
+    assert "460 terawatt-hora" in q["3449630"].support  # antes virava imagem por causa do fundo branco
+
+
+# Defeitos do próprio PDF (conferidos visualmente na auditoria de 14/10/2026): ficam em quarentena.
+DEFEITOS_DA_FONTE = {
+    "1437736",  # uma alternativa impressa sem letra (a, b, [sem letra], c, d) e gabarito E
+    "2627578",  # o caderno traz só as alternativas, sem o comando da questão
+}
 
 
 def _cadernos():
@@ -136,6 +213,9 @@ def test_invariantes_do_caderno(pdf):
     assert c.questions, "caderno sem questões"
     assert len(c.gabarito) == len(c.questions)
     for q in c.questions:
+        if q.tecId in DEFEITOS_DA_FONTE:
+            assert q.problems, f"{q.tecId} deveria continuar em quarentena"
+            continue
         assert not q.problems, (q.tecId, q.problems)
         assert q.tecId.isdigit() and q.numero is not None
         assert q.banca and q.ano and q.materia

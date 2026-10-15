@@ -6,6 +6,7 @@ import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { hashSeed, pickQuestions, score, type AnswerRow } from "./logic";
 import { servableStatuses } from "./servable";
+import { activityQuizWhere } from "./banca";
 
 const MIN_QUESTIONS = 5;
 
@@ -28,7 +29,7 @@ export async function startQuiz(activityId: string): Promise<{ error: string } |
 
   const segmentIds = a.segments.map((s) => s.segmentId);
   const questions = await db.question.findMany({
-    where: { segmentId: { in: segmentIds }, status: { in: servableStatuses() } },
+    where: activityQuizWhere(segmentIds, servableStatuses()),
     select: { id: true, segmentId: true },
   });
   const want = a.quizQuestions ?? 25;
