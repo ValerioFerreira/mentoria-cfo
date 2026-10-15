@@ -28,6 +28,10 @@ MAP_PATH = CONTENT / "questoes" / "mapa-assuntos.json"
 # limiares da classificação automática (assunto sem curadoria), calibrados em EXTRACAO.md
 AUTO_MIN_SCORE = 0.12  # similaridade mínima da melhor aula
 AUTO_MIN_RATIO = 1.35  # melhor aula / segunda melhor aula
+# trecho: similaridade mínima da questão com o trecho escolhido. Calibrado na amostra validada de 14/10/2026:
+# abaixo de 0,05 só 19% das questões eram ensinadas pelo trecho; vão para rascunho (revisão), não para o aluno.
+SEGMENT_MIN_SCORE = 0.05
+OVERRIDES_PATH = CONTENT / "questoes" / "overrides-questoes.json"
 
 STOP = set(
     """a o as os um uma uns umas de do da dos das em no na nos nas por pelo pela pelos pelas para pra
@@ -300,6 +304,12 @@ def load_map() -> dict:
     return {"materias": {}, "assuntos": {}}
 
 
+def load_overrides() -> dict:
+    if OVERRIDES_PATH.exists():
+        return _jload(OVERRIDES_PATH).get("questoes", {})
+    return {}
+
+
 def assunto_key(materia: str, assunto: str) -> str:
     return f"{materia}|{assunto}"
 
@@ -330,6 +340,7 @@ class Classifier:
         self.cat = catalog or load_catalog()
         self.map = mapa or load_map()
         self._assunto_votes: dict[str, list[tuple[str, float]]] = {}
+        self.overrides = load_overrides()
 
     def subject_for(self, materia: str, assunto: str) -> tuple[str | None, dict]:
         entry = self.map.get("assuntos", {}).get(assunto_key(materia, assunto), {})
@@ -375,6 +386,15 @@ class Classifier:
 
     def classify(self, q: dict) -> Result:
         materia, assunto = q.get("materia", ""), q.get("assunto", "")
+        ov = self.overrides.get(str(q.get("tecId", "")))
+        if ov:
+            if ov.get("skip"):
+                return Result(None, None, None, None, 0.0, "manual", "SKIP", str(ov["skip"]))
+            sid = ov.get("segment")
+            if sid in self.cat.segments:
+                seg = self.cat.segments[sid]
+                subj = seg.subject
+                return Result(subj, seg.aula, sid, self.edital_item(sid, self.qvec(q, subj)), 1.0, "manual", "APPROVED", "decisão da auditoria (14/10/2026)")
         subject, entry = self.subject_for(materia, assunto)
         if entry.get("skip"):
             return Result(subject, None, None, None, 0.0, "manual", "SKIP", str(entry["skip"]))
@@ -412,6 +432,11 @@ class Classifier:
             conf = "alta" if ok else "baixa"
             status = "APPROVED" if ok else "DRAFT"
             reason = f"automático (aula {s1:.2f} vs {s2:.2f})"
+        if score < SEGMENT_MIN_SCORE and status == "APPROVED":
+            status, conf = "DRAFT", "baixa"
+            reason = f"{reason} · trecho de baixa similaridade ({score:.2f} < {SEGMENT_MIN_SCORE})"
+        if ov and ov.get("draft"):
+            status, conf, reason = "DRAFT", "baixa", str(ov["draft"])
         return Result(
             subjectId=subject,
             aulaId=seg.aula,
@@ -426,12 +451,16 @@ class Classifier:
 
     def edital_item(self, seg_id: str, v: dict[str, float]) -> str | None:
         seg = self.cat.segments[seg_id]
-        items = list(seg.edital)
+        # só itens da própria disciplina: um item de Matemática pode apontar (relação cruzada) para um
+        # trecho de Estatística, mas a questão continua sendo de Estatística (e o item, de outra disciplina,
+        # nem existe para ela na página de questões)
+        own = lambda eid: eid.split("/", 1)[0] == seg.subject  # noqa: E731
+        items = [it for it in seg.edital if own(it[0])]
         if not items:
             items = [
                 (eid, it["text"])
                 for eid, it in self.cat.edital_items.items()
-                if seg.aula in it["aulas"]
+                if seg.aula in it["aulas"] and own(eid)
             ]
         if not items:
             return None

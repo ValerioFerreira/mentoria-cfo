@@ -22,6 +22,7 @@ pipeline/.venv/Scripts/python pipeline/questoes/importar.py --remoto   # idem + 
 | `--reclassificar` | reenvia todo o acervo já extraído, sem reler os PDFs. Use depois de mudar `content/questoes/mapa-assuntos.json`, o catálogo ou a segmentação. |
 | `--forcar` | reextrai todos os PDFs. |
 | `--so-extrair` | extrai, classifica e gera o relatório, sem gravar em banco nenhum. |
+| `--confirmo-producao` | autoriza gravação **em massa** no remoto (mais de 300 questões, `--reclassificar`, `--forcar` ou reextração por versão nova do extrator). Sem ela, ou sem backup íntegro de menos de 24 h (`npx tsx scripts/questoes-backup.ts --remoto`, em `web/`), o importador para antes de gravar. |
 | `--limpar-estrategia` | apaga do(s) banco(s) toda questão cujo id não começa com `tec_` (com respostas e denúncias) e os cadernos que ficarem vazios. Foi usado uma vez, na migração; é idempotente. |
 
 **O que a rotina faz:**
@@ -60,13 +61,15 @@ com posição, fonte, tamanho, cor e flags. A tabela vale para todos os cadernos
 | **Início de questão** | linha `www.tecconcursos.com.br/questoes/<número>` em **Tahoma-Bold 6,6**, x ≈ 28 | abre a questão; `<número>` é o id TEC (`tec_<número>` no banco) |
 | Linha(s) de banca | **Tahoma 8,8**: `Banca - Cargo (Órgão)/Órgão[/Área/...]/AAAA`. Pode quebrar em duas linhas e até mudar de página; termina sempre em `/AAAA` | `banca` = antes do 1º " - " ("Instituto AOCP" e "AOCP" → `AOCP`); depois, separado por "/": cargo, órgão, área..., ano |
 | Linha(s) de matéria | Tahoma 8,8 logo após a banca: `Matéria - Assunto` (quebra em ≈ 3% dos casos; o assunto pode vir vazio) | separar no **primeiro** " - " (o assunto pode conter " - ") |
-| **Número no caderno** | `NNNN)` em **Tahoma-Bold 7,2**, x ≈ 28, na altura da 1ª linha do corpo (o texto começa em x 48–52) | chave do gabarito; não entra no texto |
+| **Número no caderno** | `NNNN)` em **Tahoma-Bold 7,2**, x ≈ 28, na altura da 1ª linha do corpo (o texto começa em x 48–52); no topo de página pode vir no mesmo bloco que o enunciado | chave do gabarito; não entra no texto (o span é separado do resto da linha) |
 | Corpo (enunciado) | Tahoma 7,2, x ≈ 28 | texto (seção 3) |
 | Texto-base | trechos longos antes do comando, terminando numa linha de **fonte** (Tahoma ≤ 6,7, em geral alinhada à direita: "Disponível em...", "Adaptado de...") | tudo até a última linha de fonte que ainda tem enunciado depois vai para `support` |
 | Alternativas | x ≈ 46: `a)`…`e)` em sequência (4 ou 5); a continuação fica no mesmo recuo | `options` A–E. Vale a **última** sequência `a), b), c), d)[, e)]` (o enunciado pode ter listas "a) ..." próprias) |
 | Certo/Errado | duas últimas linhas exatamente "Certo" e "Errado", em x ≈ 46 | `kind = CERTO_ERRADO`; opções `C` ("Certo") e `E` ("Errado") |
 | Separador | pontilhado de quadradinhos 1×1 pt (≈ 490 desenhos por questão) | ignorar |
-| Marcador de lista desenhado | bolinha preenchida ≤ 4,5 pt | vira "•" |
+| Marcador de lista desenhado | forma preenchida ≤ 4,5 pt e com altura ≥ 1,5 pt | vira "•" (traço curto mais fino é sublinhado de letra destacada, não marcador) |
+| Fundo branco invisível | retângulo preenchido de branco, sem contorno, atrás do texto | ignorado (antes transformava parágrafos comuns em imagem) |
+| Lacuna de preencher | sequência de ≥ 3 espaços sublinhados | `______` (lacunas vizinhas ou partidas entre linhas viram uma só) |
 | Sublinhado | traço horizontal ≤ 1,3 pt logo abaixo da baseline do texto | `<u>` só nos caracteres cobertos |
 | Texto colorido | cor ≠ preto (vermelho e similares: "palavras destacadas") | `<mark>` (URLs coloridas ficam sem marca) |
 | Negrito | Tahoma-Bold (flag 16) | `**...**` |
@@ -104,7 +107,9 @@ até o título "Gabarito".
 4. **Parágrafos.**
    - Linhas da mesma página separadas por > 3 pt de espaço vertical iniciam parágrafo.
    - Também inicia parágrafo a linha que começa item de lista: "•", "-", "( )", "(V)", "(F)",
-     "I." a "X.", "1.", "a)".
+     "I." a "X.", "1.", "a)" — inclusive com o numeral em negrito e a pontuação fora dele ("**IV**.").
+   - Na virada de página não há espaço vertical a medir: se a linha anterior termina frase (. : ? !) e a
+     nova começa com maiúscula, abre parágrafo.
    - Linhas do mesmo parágrafo são unidas com espaço. Se a anterior termina em letra + "-" e a
      seguinte começa minúscula, são unidas sem espaço ("tornou-" + "se").
    - Figura ou recorte é sempre um parágrafo próprio.
@@ -195,8 +200,9 @@ Arquivo de curadoria: `content/questoes/mapa-assuntos.json` (versionado).
   similaridade do nome do assunto).
   - Se a melhor aula tem score ≥ 0,12 e é ≥ 1,35 × a segunda → **APPROVED**;
   - senão → **DRAFT** com os candidatos em `classifyNote`, para revisão em `/admin/revisao`.
-- **Assunto do edital (`editalItemId`):** entre os itens do edital que listam o trecho escolhido, o
-  de maior similaridade. Sem item do trecho, um item que lista a aula. Sem nenhum, fica nulo.
+- **Assunto do edital (`editalItemId`):** entre os itens do edital **da própria disciplina** que listam o
+  trecho escolhido, o de maior similaridade (item de outra disciplina que aponta para o trecho por relação
+  cruzada não vale: deixava 130 questões de Estatística sem assunto). Sem item do trecho, um item que lista a aula. Sem nenhum, fica nulo.
 
 **Como corrigir a classificação:**
 
@@ -245,3 +251,25 @@ Se a segmentação de uma disciplina mudar, os ids de trecho mudam (são posicio
 | Assunto novo em "Assuntos sem curadoria" | Inclua-o no mapa e rode `--reclassificar`. |
 | Muitas questões "fora do edital" | Licitações (Lei 14.133), improbidade (Lei 8.429), processo administrativo (Lei 9.784), lei anticorrupção, realidade de outros estados e técnicas de laboratório **não têm aula no curso**. Para aproveitá-las, crie um complemento (aula `AUTHORED`) e mapeie os assuntos para ele. |
 | Banco remoto não grava | Confira `web/.env.remote`. Confira também se as migrações da produção estão aplicadas (o deploy da Vercel roda `prisma migrate deploy`). |
+
+## 10. Auditoria, backup e reversão
+
+- Auditoria somente leitura: `pipeline/.venv/Scripts/python pipeline/questoes/auditoria.py [--backup DIR] [--extraidas DIR]`.
+  Relê cada PDF por um caminho independente do extrator (spans, não caracteres), compara palavra a palavra
+  e figura a figura com o texto extraído, confere número e gabarito, reclassifica o acervo e compara com o
+  banco (a partir do backup). Saída em `docs/questoes/auditoria/<data>/` (fora do git: contém texto de questões).
+- Backup verificável (só leitura), em `web/`: `npx tsx scripts/questoes-backup.ts --remoto` grava
+  `backups/questoes-remoto-<data>/` com `Question`, `QuestionOption`, `QuestionImage`, `QuizSession`,
+  `QuizAnswer`, `QuestionReport`, ids de estrutura e `manifest.json` (sha256 e integridade referencial).
+  `--verificar <pasta>` confere um backup.
+- Reversão, em `web/`: `npx tsx scripts/questoes-restore.ts <pasta>` (simulação; mostra a diferença) e
+  `--aplicar` (local) ou `--remoto --aplicar --confirmo-producao`. Devolve questões, alternativas e figuras ao
+  estado do backup; questão criada depois do backup vira `RETIRED` (nunca é apagada); não toca em sessões,
+  respostas, denúncias, planos nem usuários e confere, ao fim, que as contagens deles não mudaram. Testado em
+  14/10/2026 no banco local: produção → local → original, sem diferenças e sem perda de respostas.
+- Status ao regravar (`web/src/lib/quiz/sync-rules.ts`): anulada/fora do edital → `RETIRED`; denunciada
+  continua `FLAGGED`; decisão do administrador (`MANUAL`) prevalece; questão retirada **automaticamente**
+  volta quando a curadoria passa a aceitá-la (antes, `RETIRED` era definitivo).
+- O caderno das atividades do plano usa só questões da banca AOCP (`activityQuizWhere` em
+  `web/src/lib/quiz/banca.ts`), como os simulados; o treino livre continua aceitando as demais bancas.
+

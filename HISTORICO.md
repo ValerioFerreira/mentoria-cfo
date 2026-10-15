@@ -12,6 +12,7 @@ Registro único do que foi feito na construção do conteúdo (auditoria estrutu
 | 2026-10-10 | **Auditoria de qualidade** por amostragem (bizus/diretrizes e questões) e ampliação dos testes: interrompida pelo limite de uso da API. |
 | 2026-10-11 | **Decisão:** a fonte única de questões passa a ser os cadernos do TecConcursos (`pipeline/questoes/`); as questões autorais e as do Estratégia saíram do banco e do repositório. Os bizus (resumo + C/E) continuam em `content/items/`. |
 | 2026-10-12/13 | Resumos analíticos por colaboradores externos (`resumos-colaboradores/`), modelo comercial, Mercado Pago e parceiros (ver `CLAUDE.md`). |
+| 2026-10-14 | **Auditoria do acervo de questões** (extração, imagens, classificação, correlação com os editais CBMPE/PMPE, banco). Produção só lida e copiada; nada aplicado. Relatório completo em `docs/questoes/auditoria/2026-10-14/RELATORIO.md` (fora do git). Resumo na seção 5. |
 
 ## 2. Auditoria estrutural (concluída)
 
@@ -52,6 +53,65 @@ Amostragem com semente fixa, usando só o PDF como verdade (agentes S1–S3 para
 # Apêndice A — Pendências para decisão ou validação humana
 
 Todo conteúdo entra como `DRAFT`; a aprovação (`APPROVED`) é humana, em `/admin/revisao`. Antes de aprovar, conferir:
+
+## 5. Auditoria do acervo de questões (2026-10-14)
+
+Ferramentas novas:
+- `pipeline/questoes/auditoria.py`: validador independente PDF × extração × classificação × banco.
+- `web/scripts/questoes-backup.ts`: backup verificável.
+- `web/scripts/questoes-restore.ts`: reversão, testada em ida e volta no banco local.
+- 12 agentes independentes:
+  - 2 de validação visual do caderno de referência;
+  - 4 de validação da classificação (amostra estratificada de 356 questões servidas);
+  - 4 de correlação TEC → edital (601 categorias);
+  - 2 de revisão de Atualidades (492 questões).
+
+**Extração:**
+- 38 cadernos, 1.830 páginas, 6.999 blocos e 5.883 questões únicas (100% AOCP): nenhuma perdida.
+- Gabarito e número conferidos de forma independente.
+- Corrigidos no extrator (versão `2026.10.14-1`):
+  - fundo branco invisível transformava parágrafos em imagem (151 ocorrências);
+  - sublinhado curto de letra destacada virava "•" no meio da palavra (19);
+  - lacunas de preencher eram apagadas;
+  - assertivas e itens ficavam colados (numeral em negrito, virada de página);
+  - número no topo de página: 1 questão recuperada da quarentena.
+- 2 questões continuam em quarentena por defeito do próprio PDF.
+
+**Classificação:**
+- Disciplina certa em ≈ 98,5%, mas trecho certo em ≈ 67%.
+- O trecho ensina tudo o que a questão cobra em ≈ 56%; não ensina em ≈ 24% (≈ 800 questões, fora
+  Atualidades).
+- Atualidades: 311 de 492 em aula que não ensina o conteúdo (retrospectivas de 2026 recebendo fatos
+  de 2006–2024).
+- As 293 decisões `MANUAL` de aprovação/retirada em lote de rascunhos ficam travadas pelo
+  importador e estão quase todas erradas na amostra.
+- Corrigido: item do edital de outra disciplina (130 questões de Estatística sem assunto).
+- Corrigido: questão retirada automaticamente nunca voltava.
+- Corrigido: caderno do plano sem filtro AOCP.
+
+**Editais:**
+- "Fora do edital" estava valendo como "sem aula no catálogo CBMPE". ≈ 1.175 questões de Direito
+  Administrativo do edital PMPE Oficial são descartadas: licitações, improbidade, LAI/LGPD,
+  intervenção na propriedade, Lei 6.123/1968.
+- A prova do Soldado CBMPE no sistema diverge da Tabela 10.1 do edital: falta Matemática (10) e
+  Física (5); Legislações PE não consta.
+- Os simulados PMPE mapeiam DGF/DH para `legislacoes-pe`.
+
+**Trava nova:** gravação em massa na produção exige backup íntegro de menos de 24 h e
+`--confirmo-producao`.
+
+**Pendências** (decisão do dono; lista completa no § 10 do relatório):
+1. prova do Soldado CBMPE;
+2. taxonomia PMPE;
+3. reabrir as 293 decisões `MANUAL`;
+4. regras de Atualidades;
+5. fonética (231 questões fora de qualquer edital);
+6. genética clássica e fisiologia vegetal;
+7. complementos ou `skip` para conjuntos/Venn, princípios fundamentais, zoologia/botânica e
+   compactadores;
+8. software antigo;
+9. questões compartilhadas entre disciplinas;
+10. casos pontuais de gabarito e figura ausente na fonte.
 
 ## A.1 Decisões e conferências pendentes (auditoria estrutural)
 

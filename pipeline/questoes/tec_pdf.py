@@ -16,7 +16,7 @@ from pathlib import Path
 import pymupdf
 
 # Muda quando a lógica de extração muda: o importador reextrai os cadernos de versão anterior.
-EXTRACTOR_VERSION = "2026.10.12-3"
+EXTRACTOR_VERSION = "2026.10.14-1"
 
 URL_RE = re.compile(r"^www\.tecconcursos\.com\.br/questoes/(\d+)\s*$")
 LABEL_RE = re.compile(r"^(\d+)\)\s*$")
@@ -30,6 +30,7 @@ X_LABEL_MAX = 40  # número "NNNN)" fica em x≈28
 X_OPT = (40.0, 50.0)  # alternativas "a)" e "Certo"/"Errado" em x≈46
 BODY_SIZE = 7.2
 OPT_LABEL_W = 7.0  # largura de "a)" em Tahoma 7,2
+BULLET_MIN_H = 1.5  # marcador de lista tem altura; traço curto mais fino que isso é sublinhado de letra
 PARA_GAP = 3.0  # espaço vertical (pt) entre linhas que indica novo parágrafo
 CROP_DPI = 200
 CROP_PAD = 2.0
@@ -206,13 +207,22 @@ def page_frags(page: pymupdf.Page, pno: int) -> list[Frag]:
         r = dr["rect"]
         if r.width <= 1.6 and r.height <= 1.6:
             continue  # pontilhado separador de questões (quadradinhos 1×1)
-        if r.width <= 4.5 and r.height <= 4.5 and dr.get("fill") is not None:
+        if is_invisible_fill(dr):
+            continue  # fundo branco sem contorno atrás do texto: invisível, não é tabela nem figura
+        if r.width <= 4.5 and BULLET_MIN_H <= r.height <= 4.5 and dr.get("fill") is not None:
             # marcador de lista desenhado (bolinha/quadradinho): vira "•"
             sp = Span("•", "Tahoma", BODY_SIZE, 0, (r.x0, r.y0, r.x1, r.y1), r.y1 + 1.5, chars=[("•", r.x0, r.x1)])
             out.append(Frag("text", pno, (r.x0, r.y0 - 2.5, r.x1, r.y1 + 2.5), [sp]))
             continue
         out.append(Frag("draw", pno, (r.x0, r.y0, r.x1, r.y1)))
     return out
+
+
+def is_invisible_fill(dr: dict) -> bool:
+    """Retângulo preenchido de branco e sem traço: fundo de texto copiado da página web. Tratá-lo como
+    desenho transformava parágrafos comuns em imagem."""
+    fill = dr.get("fill")
+    return dr.get("color") is None and fill is not None and min(fill) >= 0.98
 
 
 def _is_url(f: Frag) -> re.Match | None:
@@ -237,6 +247,20 @@ def _is_label(f: Frag) -> re.Match | None:
     if not s.is_bold:
         return None
     return LABEL_RE.match(f.text.strip())
+
+
+def _split_label(f: Frag) -> tuple[int, Frag | None] | None:
+    """"NNNN)" em negrito como primeiro span de uma linha de texto: (número, resto da linha)."""
+    if f.kind != "text" or f.x0 > X_LABEL_MAX or not f.spans or not f.spans[0].is_bold:
+        return None
+    m = LABEL_RE.match(f.spans[0].text.strip())
+    if not m:
+        return None
+    rest = [s for s in f.spans[1:] if s.text.strip()]
+    if not rest:
+        return int(m.group(1)), None
+    bbox = (min(s.bbox[0] for s in rest), min(s.bbox[1] for s in rest), max(s.bbox[2] for s in rest), max(s.bbox[3] for s in rest))
+    return int(m.group(1)), Frag("text", f.page, bbox, rest)
 
 
 def _is_gab_title(f: Frag) -> bool:
@@ -303,6 +327,13 @@ def split_questions(doc: pymupdf.Document) -> tuple[list[RawQuestion], dict[int,
             lab = _is_label(f)
             if lab and cur.numero is None:
                 cur.numero = int(lab.group(1))
+                continue
+            if cur.numero is None and not cur.frags:
+                # número colado ao enunciado na mesma linha (acontece no topo de página): separa o span
+                split = _split_label(f)
+                if split:
+                    cur.numero, f = split
+            if f is None:
                 continue
             cur.frags.append(f)
     for t in gab_text:
@@ -552,7 +583,7 @@ def _escape(t: str) -> str:
 
 # linha que começa item de lista dentro do enunciado: sempre em linha nova
 ITEM_START_RE = re.compile(
-    r"^(?:\*\*)?(?:[•▪◦·\-–]|\(\s*[VF]?\s*\)|(?:I|II|III|IV|V|VI|VII|VIII|IX|X)\s*[.\-–)]|\d{1,2}[.)]|[a-e]\))(?:\*\*)?\s"
+    r"^(?:\*\*)?(?:[•▪◦·\-–]|\(\s*[VF]?\s*\)|(?:I|II|III|IV|V|VI|VII|VIII|IX|X)(?:\*\*)?\s*[.\-–)]|\d{1,2}(?:\*\*)?[.)]|[a-e]\))(?:\*\*)?\s"
 )
 URL_TEXT_RE = re.compile(r"(https?://|www\.|<http)")
 
@@ -639,10 +670,13 @@ def row_markup(row: Row, inline_cb=None) -> str:
             prev_x1 = s.bbox[2]
             continue
         chars = s.chars or [(s.text, s.bbox[0], s.bbox[2])]
+        blanks = _blank_chars(s, chars)
         for k, (ch, cx0, cx1) in enumerate(chars):
             if s.is_math:
                 ch = ch.replace("\xa0", " ")
-            st = _char_style(s, k, big, base)
+            if k in blanks:
+                ch = "_"  # lacuna "______" (espaços sublinhados) das questões de preencher
+            st = _char_style(s, k, big, base) if k not in blanks else ()
             if k == 0 and prev_x1 is not None and cx0 - prev_x1 > 1.2 and "sup" not in st and "sub" not in st:
                 last = runs[-1][1] if runs else ""
                 if not last.endswith((" ", "\xa0")) and not ch.startswith((" ", "\xa0")):
@@ -683,7 +717,24 @@ def row_markup(row: Row, inline_cb=None) -> str:
         text = text.replace(f"</{tag}> <{tag}>", " ").replace(f"</{tag}><{tag}>", "")
     text = text.replace("** **", " ").replace("****", "")
     text = re.sub(r"(!\[[^\]]*\]\([^)]*\)) ([.,;:!?)])", r"\1\2", text)
+    # lacunas vizinhas (sublinhado partido) viram uma só, sempre separada das palavras
+    text = re.sub(r" ?_{3,}(?: ?_{3,})* ?", " ______ ", text).replace("  ", " ")
     return text.strip()
+
+
+def _blank_chars(s: Span, chars: list) -> set[int]:
+    """Índices de espaços sublinhados em sequência (≥ 3): no PDF, a lacuna de preencher é uma série de
+    espaços com sublinhado. Um espaço sublinhado isolado (entre palavras destacadas) não é lacuna."""
+    out: set[int] = set()
+    run: list[int] = []
+    for k, (ch, _, _) in enumerate(chars + [("x", 0, 0)]):
+        if k < len(chars) and k in s.ul and not ch.strip():
+            run.append(k)
+            continue
+        if len(run) >= 3:
+            out.update(run)
+        run = []
+    return out
 
 
 def _join_lines(lines: list[str]) -> str:
@@ -695,7 +746,8 @@ def _join_lines(lines: list[str]) -> str:
             out += ln  # "tornou-" + "se" e quebras silábicas
         else:
             out += " " + ln
-    return out
+    # lacuna que continua na linha seguinte é uma só
+    return re.sub(r"______(?: ______)+", "______", out)
 
 
 # ───────────────────────── figuras ─────────────────────────
@@ -927,6 +979,8 @@ def assemble(doc: pymupdf.Document, raw: RawQuestion, gabarito: dict[int, str], 
             r = rs[i]
             x0, y0, x1, y1 = r.bbox
             gap_break = prev_y1 is not None and prev_page == r.page and (y0 - prev_y1) > PARA_GAP
+            # na virada de página não há espaço a medir: frase encerrada + maiúscula abre parágrafo
+            page_break = prev_page is not None and prev_page != r.page and bool(out) and out[-1][0].rstrip().endswith((".", ":", "?", "!"))
             imgs = [f for f in r.frags if f.kind == "image"]
             if r.crop or imgs:
                 if imgs and not r.crop:
@@ -984,7 +1038,8 @@ def assemble(doc: pymupdf.Document, raw: RawQuestion, gabarito: dict[int, str], 
 
             t = row_markup(r, inline_cb)
             if t:
-                out.append((t, gap_break or bool(ITEM_START_RE.match(t))))
+                starts_upper = bool(re.match(r"^(?:\*\*|<u>|<mark>|[“\"(])*[A-ZÀ-Ý]", t))
+                out.append((t, gap_break or (page_break and starts_upper) or bool(ITEM_START_RE.match(t))))
             prev_y1, prev_page = y1, r.page
             i += 1
         return out
