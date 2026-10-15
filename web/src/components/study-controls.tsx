@@ -10,15 +10,24 @@ import { completeActivityWithTime, deleteTimeLog, logManualTime, saveNote, setAc
 
 export { TypeBadge } from "@/components/ui";
 
+/** Identificação da atividade mostrada no modal de tempo (disciplina, tipo e assunto). */
+export interface ActivityLabel {
+  subject: string;
+  type: string;
+  title: string;
+}
+
 /** Modal obrigatório de tempo ao concluir a atividade */
 export function CompleteModal({
   id,
   open,
   onClose,
+  activity,
 }: {
   id: string;
   open: boolean;
   onClose: () => void;
+  activity?: ActivityLabel;
 }) {
   const [hours, setHours] = useState("");
   const [minutes, setMinutes] = useState("");
@@ -84,6 +93,16 @@ export function CompleteModal({
             Quanto tempo você dedicou a esta atividade? Informe o tempo real de estudo para confirmar a conclusão.
           </p>
         </div>
+
+        {activity && (
+          <div className="rounded-xl border border-border bg-surface-2 px-3.5 py-2.5">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted">Atividade</p>
+            <p className="mt-0.5 text-sm font-bold leading-snug">
+              {activity.subject} <span className="font-semibold text-muted">· {activity.type}</span>
+            </p>
+            <p className="mt-0.5 text-sm leading-snug text-muted">{activity.title}</p>
+          </div>
+        )}
 
         {/* Atalhos rápidos */}
         <div className="space-y-1.5">
@@ -173,7 +192,7 @@ export function CompleteModal({
 }
 
 /** Marcador redondo de conclusão. Atualiza na hora (otimista) ou abre modal de tempo se for para concluir. */
-export function StatusToggle({ id, status, compact }: { id: string; status: string; compact?: boolean }) {
+export function StatusToggle({ id, status, compact, activity }: { id: string; status: string; compact?: boolean; activity?: ActivityLabel }) {
   const [, start] = useTransition();
   const router = useRouter();
   const done = status === "DONE";
@@ -209,7 +228,7 @@ export function StatusToggle({ id, status, compact }: { id: string; status: stri
       >
         {shownDone ? <Check key="on" className="pop h-4 w-4" strokeWidth={3} aria-hidden /> : <Check className="h-4 w-4 text-ok opacity-0 transition group-hover/check:opacity-60" strokeWidth={3} aria-hidden />}
       </button>
-      <CompleteModal id={id} open={modalOpen} onClose={() => setModalOpen(false)} />
+      <CompleteModal id={id} open={modalOpen} onClose={() => setModalOpen(false)} activity={activity} />
     </>
   );
 }
@@ -217,7 +236,7 @@ export function StatusToggle({ id, status, compact }: { id: string; status: stri
 /** Evento disparado pelo NotesEditor a cada digitação: o aviso de "sem resumo" acompanha o que o aluno acabou de escrever. */
 const NOTE_EVENT = "mentoria:note";
 
-export function ActivityActions({ id, status, summaryCheck }: { id: string; status: string; summaryCheck?: { segmentIds: string[]; filled: string[] } }) {
+export function ActivityActions({ id, status, summaryCheck, activity }: { id: string; status: string; summaryCheck?: { segmentIds: string[]; filled: string[] }; activity?: ActivityLabel }) {
   const [pending, start] = useTransition();
   const router = useRouter();
   const done = status === "DONE";
@@ -304,7 +323,7 @@ export function ActivityActions({ id, status, summaryCheck }: { id: string; stat
           </div>
         </Alert>
       )}
-      <CompleteModal id={id} open={modalOpen} onClose={() => setModalOpen(false)} />
+      <CompleteModal id={id} open={modalOpen} onClose={() => setModalOpen(false)} activity={activity} />
     </>
   );
 }

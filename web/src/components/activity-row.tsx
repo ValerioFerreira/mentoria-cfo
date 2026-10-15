@@ -1,7 +1,7 @@
 import { ChevronRight, Clock3 } from "lucide-react";
 import Link from "next/link";
 import type { CSSProperties } from "react";
-import { QuickTime, StatusToggle } from "@/components/study-controls";
+import { QuickTime, StatusToggle, type ActivityLabel } from "@/components/study-controls";
 import { Badge, TYPE_META, TypeIcon, cx, type ActivityType } from "@/components/ui";
 import { fmtDuration, subjectShort } from "@/lib/ui-format";
 
@@ -25,6 +25,16 @@ export function activityTitle(a: Pick<ActivityRowData, "scope" | "type" | "aula"
   return a.aula.shortTitle;
 }
 
+/** Disciplina, tipo e assunto da atividade, para o modal de tempo. */
+function activityLabel(a: Pick<ActivityRowData, "scope" | "type" | "aula" | "subjectId" | "editalTopic">): ActivityLabel {
+  const title = activityTitle(a);
+  return {
+    subject: subjectShort(a.subjectId),
+    type: TYPE_META[a.type].label,
+    title: a.editalTopic && a.editalTopic !== title ? `${title} · ${a.editalTopic}` : title,
+  };
+}
+
 /** "1h05" / "45 min" para minutos planejados. */
 export const fmtMinutes = (m: number) => fmtDuration(m * 60);
 
@@ -36,6 +46,7 @@ export function ActivityRow({ a, spent = 0, order, index = 0, quickTime = true }
   const m = TYPE_META[a.type];
   const done = a.status === "DONE";
   const skipped = a.status === "SKIPPED";
+  const label = activityLabel(a);
   return (
     <div
       className={cx("card-hover rise group relative flex items-center gap-3.5 overflow-hidden rounded-2xl border border-border bg-surface p-3.5 pl-5 shadow-card sm:gap-4", (done || skipped) && "bg-surface/70")}
@@ -43,7 +54,7 @@ export function ActivityRow({ a, spent = 0, order, index = 0, quickTime = true }
     >
       <span className="absolute inset-y-0 left-0 w-1.5" style={{ background: m.color, opacity: done || skipped ? 0.35 : 1 }} aria-hidden />
       <span className="relative z-10">
-        <StatusToggle id={a.id} status={a.status} compact />
+        <StatusToggle id={a.id} status={a.status} compact activity={label} />
       </span>
       <span className="hidden sm:block"><TypeIcon type={a.type} box /></span>
       <div className={cx("min-w-0 flex-1", (done || skipped) && "opacity-65")}>
@@ -79,6 +90,7 @@ export function ActivityCard({ a, spent = 0, index = 0, late }: { a: ActivityRow
   const m = TYPE_META[a.type];
   const done = a.status === "DONE";
   const skipped = a.status === "SKIPPED";
+  const label = activityLabel(a);
   return (
     <div
       className={cx("card-hover rise group relative overflow-hidden rounded-xl border bg-surface p-2.5 pl-3.5 shadow-card", late ? "border-warn/60" : "border-border", (done || skipped) && "bg-surface/60")}
@@ -91,7 +103,7 @@ export function ActivityCard({ a, spent = 0, index = 0, late }: { a: ActivityRow
           {m.label}
         </span>
         <span className="relative z-10 -mr-0.5 -mt-0.5">
-          <StatusToggle id={a.id} status={a.status} compact />
+          <StatusToggle id={a.id} status={a.status} compact activity={label} />
         </span>
       </div>
       <Link href={`/atividade/${a.id}`} className={cx("block after:absolute after:inset-0 after:content-['']", (done || skipped) && "opacity-65")}>
