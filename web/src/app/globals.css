@@ -562,6 +562,17 @@ body::before {
   animation-delay: calc(var(--i, 0) * 6ms);
 }
 
+/* ───────── diálogos: rolam em vez de cortar ─────────
+   Fundo (fixed, flex) de um diálogo mais alto que a tela (celular deitado, teclado aberto): a margem automática
+   centra o conteúdo quando cabe e, quando não cabe, vira zero e deixa o fundo rolar até o fim. */
+.modal-scroll {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.modal-scroll > * {
+  margin-block: auto;
+}
+
 /* ───────── troca de tema ───────── */
 @media (prefers-reduced-motion: reduce) {
   *,

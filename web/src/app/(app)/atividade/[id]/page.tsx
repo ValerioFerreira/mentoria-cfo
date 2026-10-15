@@ -159,7 +159,7 @@ export default async function ActivityPage({ params }: PageProps<"/atividade/[id
               <span className="font-semibold text-text">Assunto do edital:</span> {a.editalTopic}
             </p>
           )}
-          <ActivityActions id={a.id} status={a.status} summaryCheck={a.type === "TEORIA" && segs.length > 0 ? { segmentIds: segIds, filled: segs.filter((s) => (noteBySeg.get(s.id) ?? "").trim()).map((s) => s.id) } : undefined} />
+          <ActivityActions id={a.id} status={a.status} activity={{ subject: subjectShort(a.subjectId), type: meta.label, title }} summaryCheck={a.type === "TEORIA" && segs.length > 0 ? { segmentIds: segIds, filled: segs.filter((s) => (noteBySeg.get(s.id) ?? "").trim()).map((s) => s.id) } : undefined} />
         </div>
       </header>
 

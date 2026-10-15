@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { QuizRunner } from "@/components/quiz-runner";
+import { RichContent } from "@/components/rich-content";
 import { Alert, Badge, Card, Count, LinkButton, PageHeader, Ring } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
@@ -140,7 +141,7 @@ export default async function PracticeQuizPage({ params }: { params: Promise<{ i
           </span>
         </Ring>
 
-        <div className="flex-1 space-y-3 min-w-[200px]">
+        <div className="flex-1 space-y-3 min-w-[min(200px,100%)]">
           <div className="flex items-center gap-2">
             <span className="font-display text-2xl font-bold text-on-ink">
               {sc.correct} de {sc.total} questões corretas
@@ -178,8 +179,8 @@ export default async function PracticeQuizPage({ params }: { params: Promise<{ i
 
             return (
               <Card key={a.id} className="p-5 space-y-3 border border-border bg-surface">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div className="flex min-w-0 flex-wrap items-center gap-2">
                     <span className="font-mono text-xs font-bold text-muted">
                       Questão {i + 1}
                     </span>
@@ -194,9 +195,9 @@ export default async function PracticeQuizPage({ params }: { params: Promise<{ i
                   </Badge>
                 </div>
 
-                <p className="text-sm text-text whitespace-pre-wrap leading-relaxed font-normal">
-                  {a.question.statement}
-                </p>
+                <div className="min-w-0 text-sm leading-relaxed text-text">
+                  <RichContent content={a.question.statement} />
+                </div>
 
                 {/* Alternativas */}
                 <div className="space-y-1.5 pt-1">
@@ -217,7 +218,7 @@ export default async function PracticeQuizPage({ params }: { params: Promise<{ i
                         className={`flex items-start gap-2.5 rounded-lg border p-2 text-xs transition ${bgClass}`}
                       >
                         <span className="font-bold shrink-0">{opt.label})</span>
-                        <span className="flex-1">{opt.text}</span>
+                        <div className="min-w-0 flex-1 break-words"><RichContent content={opt.text} /></div>
                         {isRight && <CircleCheck className="h-4 w-4 shrink-0 text-ok" />}
                         {isChosen && !isRight && <CircleX className="h-4 w-4 shrink-0 text-primary" />}
                       </div>
@@ -231,7 +232,7 @@ export default async function PracticeQuizPage({ params }: { params: Promise<{ i
                     <span className="font-bold text-muted block uppercase tracking-wider text-[10px]">
                       Justificativa Oficial
                     </span>
-                    <p className="leading-relaxed">{a.question.explanation}</p>
+                    <div className="min-w-0 leading-relaxed"><RichContent content={a.question.explanation} /></div>
                   </div>
                 )}
               </Card>

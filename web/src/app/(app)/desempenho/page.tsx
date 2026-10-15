@@ -98,7 +98,7 @@ export default async function PerformancePage() {
         actions={!plan ? <LinkButton href="/onboarding">Montar meu plano</LinkButton> : undefined}
       />
 
-      <div className="grid grid-cols-2 gap-3 lg:grid-cols-5">
+      <div className="grid grid-cols-2 gap-3 xl:grid-cols-5">
         <Stat
           label="Tempo estudado"
           value={fmtDuration(perf.totalSeconds)}
@@ -106,7 +106,7 @@ export default async function PerformancePage() {
           info="Soma dos tempos que você lançou nas atividades. O cronômetro flutuante não entra: ele é só um apoio."
           icon={<Clock3 className="h-4 w-4" aria-hidden />}
           delay={0}
-          className="col-span-2 lg:col-span-1"
+          className="col-span-2 xl:col-span-1"
         />
         <Stat
           label="Aderência ao plano"
@@ -139,7 +139,7 @@ export default async function PerformancePage() {
           info="Dias consecutivos com tempo lançado em alguma atividade."
           icon={<Flame className={`h-4 w-4 ${perf.streak ? "flame text-primary" : ""}`} aria-hidden />}
           delay={4}
-          className="col-span-2 lg:col-span-1"
+          className="col-span-2 xl:col-span-1"
         />
       </div>
 
@@ -150,7 +150,7 @@ export default async function PerformancePage() {
         >
           E se a prova fosse hoje?
         </SectionTitle>
-        <div className="grid gap-3 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-3 xl:grid-cols-3">
           {perf.projection.map((b, i) => {
             const floor = b.points * 0.3;
             const ratio = b.projected === null || !b.points ? 0 : b.projected / b.points;
@@ -276,7 +276,7 @@ export default async function PerformancePage() {
           Você vs. Comunidade
         </SectionTitle>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {/* Card 1: Taxa de Acerto Geral */}
           <Card className="space-y-4">
             <div className="flex items-center justify-between">
@@ -431,8 +431,8 @@ export default async function PerformancePage() {
         )}
       </section>
 
-      <div className="grid gap-6 lg:grid-cols-2">
-        <section aria-labelledby="trend">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <section aria-labelledby="trend" className="min-w-0">
           <SectionTitle id="trend" info="Acerto de cada caderno finalizado, do mais antigo ao mais recente. A linha tracejada marca 70%, a meta para ficar tranquilo na prova." aside={`${perf.trend.length} ${perf.trend.length === 1 ? "caderno" : "cadernos"}`}>
             Evolução do acerto
           </SectionTitle>
@@ -459,7 +459,7 @@ export default async function PerformancePage() {
           </Card>
         </section>
 
-        <section aria-labelledby="heat">
+        <section aria-labelledby="heat" className="min-w-0">
           <SectionTitle id="heat" info="Cada quadrado é um dia; quanto mais escuro, mais tempo lançado. Constância vale mais do que maratonas isoladas." aside={`${activeDays} ${activeDays === 1 ? "dia" : "dias"} com estudo`}>Constância</SectionTitle>
           <Card className="rise" style={{ "--i": 3 } as CSSProperties}>
             {heatReady.ready ? (
@@ -497,8 +497,8 @@ export default async function PerformancePage() {
         </section>
       )}
 
-      <div className="grid gap-6 lg:grid-cols-2">
-        <section aria-labelledby="weak">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <section aria-labelledby="weak" className="min-w-0">
           <SectionTitle id="weak" info="Assuntos com menos de 70% de acerto em pelo menos 3 questões respondidas. São os melhores candidatos a revisão extra.">Assuntos para reforçar</SectionTitle>
           {perf.weak.length === 0 ? (
             <Alert tone="info">Ainda não há dados suficientes. Faça alguns cadernos de questões para identificar seus pontos fracos.</Alert>
@@ -514,7 +514,7 @@ export default async function PerformancePage() {
           )}
         </section>
 
-        <section aria-labelledby="rec">
+        <section aria-labelledby="rec" className="min-w-0">
           <SectionTitle id="rec">Últimos cadernos</SectionTitle>
           {perf.recentSessions.length === 0 ? (
             <Alert tone="info">Nenhum caderno finalizado ainda.</Alert>

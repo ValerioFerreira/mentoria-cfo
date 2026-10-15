@@ -164,7 +164,7 @@ export function SimuladoRunner({
   return (
     <div className="space-y-6">
       {/* Barra Superior Fixa do Simulado */}
-      <div className="sticky top-0 z-20 flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-2xl border border-border bg-ink p-4 text-on-ink shadow-lg">
+      <div className="sticky top-[3.6rem] z-20 flex flex-col lg:top-0 sm:flex-row sm:items-center justify-between gap-3 rounded-2xl border border-border bg-ink p-4 text-on-ink shadow-lg">
         <div className="flex items-center gap-3 min-w-0">
           <div className="h-3 w-3 rounded-full bg-primary animate-pulse shrink-0" />
           <div className="min-w-0">
@@ -399,7 +399,7 @@ export function SimuladoRunner({
 
       {/* Modal de Confirmação de Entrega */}
       {showConfirmModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-xs">
+        <div className="modal-scroll fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-xs">
           <div className="relative w-full max-w-md rounded-2xl border border-border bg-surface p-6 text-text shadow-2xl space-y-4">
             <div className="flex items-center gap-3 text-primary">
               <ShieldAlert className="h-6 w-6 shrink-0" />

@@ -2,28 +2,45 @@
 
 import { Check, CircleCheck, Clock3, Loader2, SkipForward, Trash2, Undo2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useEffect, useOptimistic, useRef, useState, useTransition } from "react";
+import { useEffect, useOptimistic, useRef, useState, useTransition, type CSSProperties } from "react";
+import { createPortal } from "react-dom";
 import { Alert, Button, Card, InfoTip, cx, inputCls } from "@/components/ui";
 import { fmtDuration } from "@/lib/ui-format";
 import { completeActivityWithTime, deleteTimeLog, logManualTime, saveNote, setActivityStatus } from "@/lib/study/actions";
 
 export { TypeBadge } from "@/components/ui";
 
+/** Identificação da atividade mostrada no modal de tempo (disciplina, tipo e assunto). */
+export interface ActivityLabel {
+  subject: string;
+  type: string;
+  title: string;
+}
+
 /** Modal obrigatório de tempo ao concluir a atividade */
 export function CompleteModal({
   id,
   open,
   onClose,
+  activity,
 }: {
   id: string;
   open: boolean;
   onClose: () => void;
+  activity?: ActivityLabel;
 }) {
   const [hours, setHours] = useState("");
   const [minutes, setMinutes] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [pending, start] = useTransition();
   const router = useRouter();
+
+  useEffect(() => {
+    if (!open) return;
+    const esc = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    document.addEventListener("keydown", esc);
+    return () => document.removeEventListener("keydown", esc);
+  }, [open, onClose]);
 
   if (!open) return null;
 
@@ -55,9 +72,10 @@ export function CompleteModal({
     });
   };
 
-  return (
+  // portal: os cartões de atividade têm `overflow-hidden` e transformações (hover/entrada), que prenderiam e cortariam o diálogo
+  return createPortal(
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-xs animate-in fade-in"
+      className="modal-scroll fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-xs animate-in fade-in"
       onClick={onClose}
     >
       <div
@@ -75,6 +93,16 @@ export function CompleteModal({
             Quanto tempo você dedicou a esta atividade? Informe o tempo real de estudo para confirmar a conclusão.
           </p>
         </div>
+
+        {activity && (
+          <div className="rounded-xl border border-border bg-surface-2 px-3.5 py-2.5">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted">Atividade</p>
+            <p className="mt-0.5 text-sm font-bold leading-snug">
+              {activity.subject} <span className="font-semibold text-muted">· {activity.type}</span>
+            </p>
+            <p className="mt-0.5 text-sm leading-snug text-muted">{activity.title}</p>
+          </div>
+        )}
 
         {/* Atalhos rápidos */}
         <div className="space-y-1.5">
@@ -138,7 +166,7 @@ export function CompleteModal({
 
           {error && <Alert tone="danger">{error}</Alert>}
 
-          <div className="flex items-center justify-end gap-2.5 pt-2">
+          <div className="flex flex-wrap items-center justify-end gap-2.5 pt-2">
             <Button type="button" variant="secondary" onClick={onClose} disabled={pending}>
               Cancelar
             </Button>
@@ -158,12 +186,13 @@ export function CompleteModal({
           </div>
         </form>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
 
 /** Marcador redondo de conclusão. Atualiza na hora (otimista) ou abre modal de tempo se for para concluir. */
-export function StatusToggle({ id, status, compact }: { id: string; status: string; compact?: boolean }) {
+export function StatusToggle({ id, status, compact, activity }: { id: string; status: string; compact?: boolean; activity?: ActivityLabel }) {
   const [, start] = useTransition();
   const router = useRouter();
   const done = status === "DONE";
@@ -199,7 +228,7 @@ export function StatusToggle({ id, status, compact }: { id: string; status: stri
       >
         {shownDone ? <Check key="on" className="pop h-4 w-4" strokeWidth={3} aria-hidden /> : <Check className="h-4 w-4 text-ok opacity-0 transition group-hover/check:opacity-60" strokeWidth={3} aria-hidden />}
       </button>
-      <CompleteModal id={id} open={modalOpen} onClose={() => setModalOpen(false)} />
+      <CompleteModal id={id} open={modalOpen} onClose={() => setModalOpen(false)} activity={activity} />
     </>
   );
 }
@@ -207,7 +236,7 @@ export function StatusToggle({ id, status, compact }: { id: string; status: stri
 /** Evento disparado pelo NotesEditor a cada digitação: o aviso de "sem resumo" acompanha o que o aluno acabou de escrever. */
 const NOTE_EVENT = "mentoria:note";
 
-export function ActivityActions({ id, status, summaryCheck }: { id: string; status: string; summaryCheck?: { segmentIds: string[]; filled: string[] } }) {
+export function ActivityActions({ id, status, summaryCheck, activity }: { id: string; status: string; summaryCheck?: { segmentIds: string[]; filled: string[] }; activity?: ActivityLabel }) {
   const [pending, start] = useTransition();
   const router = useRouter();
   const done = status === "DONE";
@@ -294,7 +323,7 @@ export function ActivityActions({ id, status, summaryCheck }: { id: string; stat
           </div>
         </Alert>
       )}
-      <CompleteModal id={id} open={modalOpen} onClose={() => setModalOpen(false)} />
+      <CompleteModal id={id} open={modalOpen} onClose={() => setModalOpen(false)} activity={activity} />
     </>
   );
 }
@@ -347,23 +376,59 @@ function TimeFields({ id, onDone, compact }: { id: string; onDone?: () => void; 
 }
 
 /** Botão compacto "Tempo" para lançar o estudo direto de um cartão (Missão de hoje, Meta semanal). */
+const QUICK_WIDTH = 288;
+const QUICK_MARGIN = 8;
+
 export function QuickTime({ id, seconds }: { id: string; seconds: number }) {
   const [open, setOpen] = useState(false);
-  const box = useRef<HTMLDivElement>(null);
+  const [style, setStyle] = useState<CSSProperties | null>(null);
+  const btn = useRef<HTMLButtonElement>(null);
+  const pop = useRef<HTMLDivElement>(null);
+
+  // o balão é desenhado num portal, com posição fixa: o cartão da atividade tem `overflow-hidden` e o cortaria
+  // (e os cartões seguintes ficariam por cima). A posição acompanha o botão quando a página rola.
   useEffect(() => {
     if (!open) return;
-    const away = (e: MouseEvent) => !box.current?.contains(e.target as Node) && setOpen(false);
-    const esc = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
-    document.addEventListener("mousedown", away);
+    const place = () => {
+      const el = btn.current;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      const vw = document.documentElement.clientWidth;
+      const vh = window.innerHeight;
+      const width = Math.min(QUICK_WIDTH, vw - QUICK_MARGIN * 2);
+      const left = Math.max(QUICK_MARGIN, Math.min(r.right - width, vw - width - QUICK_MARGIN));
+      const below = vh - r.bottom;
+      const above = r.top;
+      // abre para o lado com mais espaço; o conteúdo rola se mesmo assim não couber
+      if (below >= 250 || below >= above) setStyle({ left, width, top: r.bottom + 8, maxHeight: Math.max(160, below - 16) });
+      else setStyle({ left, width, bottom: vh - r.top + 8, maxHeight: Math.max(160, above - 16) });
+    };
+    place();
+    const away = (e: Event) => {
+      const t = e.target as Node;
+      if (!pop.current?.contains(t) && !btn.current?.contains(t)) setOpen(false);
+    };
+    const esc = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setOpen(false);
+      btn.current?.focus();
+    };
+    document.addEventListener("pointerdown", away);
     document.addEventListener("keydown", esc);
+    window.addEventListener("scroll", place, true);
+    window.addEventListener("resize", place);
     return () => {
-      document.removeEventListener("mousedown", away);
+      document.removeEventListener("pointerdown", away);
       document.removeEventListener("keydown", esc);
+      window.removeEventListener("scroll", place, true);
+      window.removeEventListener("resize", place);
     };
   }, [open]);
+
   return (
-    <div ref={box} className="relative">
+    <>
       <button
+        ref={btn}
         type="button"
         onClick={(e) => {
           e.preventDefault();
@@ -371,19 +436,22 @@ export function QuickTime({ id, seconds }: { id: string; seconds: number }) {
           setOpen((v) => !v);
         }}
         aria-expanded={open}
+        aria-haspopup="dialog"
         aria-label="Lançar tempo estudado"
-        className={cx("inline-flex cursor-pointer items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs font-semibold transition active:scale-95", seconds > 0 ? "border-ok/40 bg-ok/10 text-ok" : "border-border text-muted hover:border-border-strong hover:text-text")}
+        className={cx("inline-flex min-h-9 cursor-pointer items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs font-semibold transition active:scale-95", seconds > 0 ? "border-ok/40 bg-ok/10 text-ok" : "border-border text-muted hover:border-border-strong hover:text-text")}
       >
         <Clock3 className="h-3.5 w-3.5" aria-hidden />
         {seconds > 0 ? fmtDuration(seconds) : "Tempo"}
       </button>
-      {open && (
-        <div className="pop absolute right-0 top-full z-40 mt-2 w-72 origin-top-right rounded-2xl border border-border bg-surface p-4 text-text shadow-lift" onClick={(e) => e.stopPropagation()}>
-          <p className="mb-2 font-display text-lg font-bold uppercase tracking-wide">Tempo gasto</p>
-          <TimeFields id={id} onDone={() => setOpen(false)} compact />
-        </div>
-      )}
-    </div>
+      {open && style &&
+        createPortal(
+          <div ref={pop} role="dialog" aria-label="Lançar tempo gasto" style={style} className="pop fixed z-50 overflow-y-auto overscroll-contain rounded-2xl border border-border bg-surface p-4 text-text shadow-lift" onClick={(e) => e.stopPropagation()}>
+            <p className="mb-2 font-display text-lg font-bold uppercase tracking-wide">Tempo gasto</p>
+            <TimeFields id={id} onDone={() => setOpen(false)} compact />
+          </div>,
+          document.body,
+        )}
+    </>
   );
 }
 

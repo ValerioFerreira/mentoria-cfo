@@ -739,7 +739,7 @@ function PreviewBox({ preview, subjects, hours, detailed, onUseHours }: { previe
         <Ring value={preview.coverageSelected} size={112} stroke={12} color="var(--gold)" track="rgb(255 255 255 / 0.12)" label={`Cobertura estimada do edital: ${pct}%`}>
           <span className="font-display text-4xl font-bold leading-none"><Count value={pct} suffix="%" /></span>
         </Ring>
-        <div className="min-w-[14rem] flex-1 space-y-1.5">
+        <div className="min-w-[min(14rem,100%)] flex-1 space-y-1.5">
           <p className="eyebrow flex items-center gap-1.5 !text-on-ink-muted">
             Cobertura estimada do edital
             <InfoTip align="start">

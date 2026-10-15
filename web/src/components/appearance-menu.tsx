@@ -61,7 +61,7 @@ export function AppearanceMenu({ initial, inverse }: { initial?: Theme | null; i
         aria-expanded={open}
         aria-label="Aparência"
         className={cx(
-          "inline-flex cursor-pointer items-center gap-2 rounded-xl border px-3 py-2 text-[13px] font-semibold transition active:scale-95",
+          "inline-flex min-h-11 min-w-11 cursor-pointer items-center justify-center gap-2 rounded-xl border px-3 py-2 text-[13px] font-semibold transition active:scale-95 lg:min-h-0 lg:min-w-0",
           inverse ? "border-white/15 bg-white/10 text-on-ink hover:bg-white/20" : "border-border bg-surface text-text shadow-card hover:border-border-strong",
         )}
       >

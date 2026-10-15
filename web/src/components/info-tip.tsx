@@ -47,7 +47,7 @@ export function InfoTip({ children, label = "Mais informações", align = "cente
         onFocus={open}
         onBlur={close}
         onClick={() => (style ? close() : open())}
-        className="flex h-[18px] w-[18px] cursor-help items-center justify-center rounded-full border border-border-strong bg-surface-2 font-sans text-[11px] font-bold leading-none text-muted transition hover:border-primary hover:bg-primary hover:text-on-primary focus-visible:border-primary focus-visible:bg-primary focus-visible:text-on-primary"
+        className="relative flex h-[18px] w-[18px] cursor-help items-center justify-center pointer-coarse:before:absolute pointer-coarse:before:-inset-3 pointer-coarse:before:content-[''] rounded-full border border-border-strong bg-surface-2 font-sans text-[11px] font-bold leading-none text-muted transition hover:border-primary hover:bg-primary hover:text-on-primary focus-visible:border-primary focus-visible:bg-primary focus-visible:text-on-primary"
       >
         ?
       </button>

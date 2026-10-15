@@ -18,6 +18,7 @@ import {
   Trophy,
   XCircle,
 } from "lucide-react";
+import { RichContent } from "@/components/rich-content";
 import { Badge, Card, Count, LinkButton, PageHeader, Progress, Ring } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
@@ -470,7 +471,7 @@ export default async function SimuladoResultadoPage({
               <Card key={a.id} className="p-5 space-y-3.5 border border-border bg-surface">
                 {/* Cabeçalho da Questão */}
                 <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/60 pb-2">
-                  <div className="flex items-center gap-2">
+                  <div className="flex min-w-0 flex-wrap items-center gap-2">
                     <span className="font-mono text-xs font-bold text-muted">
                       Questão {i + 1}
                     </span>
@@ -505,18 +506,18 @@ export default async function SimuladoResultadoPage({
 
                 {/* Texto de Apoio (se houver) */}
                 {a.question.support && (
-                  <div className="rounded-xl border border-border/60 bg-surface-2/40 p-3.5 text-xs text-text leading-relaxed whitespace-pre-wrap">
+                  <div className="min-w-0 rounded-xl border border-border/60 bg-surface-2/40 p-3.5 text-xs text-text leading-relaxed">
                     <span className="font-bold text-muted uppercase tracking-wider text-[10px] block mb-1">
                       Texto de Apoio
                     </span>
-                    {a.question.support}
+                    <RichContent content={a.question.support} />
                   </div>
                 )}
 
                 {/* Enunciado */}
-                <p className="text-sm text-text whitespace-pre-wrap leading-relaxed font-normal">
-                  {a.question.statement}
-                </p>
+                <div className="min-w-0 text-sm leading-relaxed text-text">
+                  <RichContent content={a.question.statement} />
+                </div>
 
                 {/* Alternativas */}
                 <div className="space-y-1.5 pt-1">
@@ -537,7 +538,7 @@ export default async function SimuladoResultadoPage({
                         className={`flex items-start gap-2.5 rounded-lg border p-2.5 text-xs transition ${bgClass}`}
                       >
                         <span className="font-bold shrink-0">{opt.label})</span>
-                        <span className="flex-1 leading-snug">{opt.text}</span>
+                        <div className="min-w-0 flex-1 break-words leading-snug"><RichContent content={opt.text} /></div>
                         {isRight && (
                           <CircleCheck className="h-4 w-4 shrink-0 text-ok" aria-hidden />
                         )}
@@ -555,7 +556,7 @@ export default async function SimuladoResultadoPage({
                     <span className="font-bold text-muted block uppercase tracking-wider text-[10px]">
                       Justificativa Oficial do Gabarito
                     </span>
-                    <p className="leading-relaxed whitespace-pre-wrap">{a.question.explanation}</p>
+                    <div className="min-w-0 leading-relaxed"><RichContent content={a.question.explanation} /></div>
                   </div>
                 )}
               </Card>

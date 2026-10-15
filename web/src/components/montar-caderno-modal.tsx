@@ -1,6 +1,7 @@
 "use client";
 
-import { useId, useState, useTransition } from "react";
+import { useEffect, useId, useState, useTransition } from "react";
+import { createPortal } from "react-dom";
 import {
   AlertCircle,
   BookOpen,
@@ -54,6 +55,13 @@ export function MontarCadernoModal({ subjects, isOpen, onClose }: Props) {
 
   // Qual disciplina está expandida para visualização de tópicos
   const [expandedSubjectId, setExpandedSubjectId] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const esc = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    document.addEventListener("keydown", esc);
+    return () => document.removeEventListener("keydown", esc);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -195,9 +203,10 @@ export function MontarCadernoModal({ subjects, isOpen, onClose }: Props) {
     });
   };
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-xs overflow-y-auto">
-      <div className="relative w-full max-w-3xl rounded-2xl border border-border bg-surface text-text shadow-2xl my-8 overflow-hidden flex flex-col max-h-[90vh]">
+  // portal: o botão que abre este diálogo fica dentro de um cartão animado (transform), que prenderia o `fixed` ao cartão
+  return createPortal(
+    <div className="modal-scroll fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-3 backdrop-blur-xs sm:p-4">
+      <div role="dialog" aria-modal="true" aria-label="Montar caderno personalizado" className="relative flex max-h-[calc(100dvh-1.5rem)] w-full max-w-3xl flex-col overflow-hidden rounded-2xl border border-border bg-surface text-text shadow-2xl sm:max-h-[90dvh]">
         {/* Cabeçalho */}
         <div className="flex items-center justify-between border-b border-border/70 px-6 py-4 bg-surface-2/40">
           <div className="flex items-center gap-2.5">
@@ -214,8 +223,10 @@ export function MontarCadernoModal({ subjects, isOpen, onClose }: Props) {
             </div>
           </div>
           <button
+            type="button"
             onClick={onClose}
-            className="flex h-8 w-8 items-center justify-center rounded-lg text-muted hover:bg-surface-3 hover:text-text transition cursor-pointer"
+            aria-label="Fechar"
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted hover:bg-surface-3 hover:text-text transition cursor-pointer sm:h-8 sm:w-8"
           >
             <X className="h-4 w-4" />
           </button>
@@ -310,7 +321,7 @@ export function MontarCadernoModal({ subjects, isOpen, onClose }: Props) {
                     {totalCount} questões
                   </span>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
                   <input
                     type="range"
                     min={5}
@@ -318,7 +329,7 @@ export function MontarCadernoModal({ subjects, isOpen, onClose }: Props) {
                     step={5}
                     value={totalCount}
                     onChange={(e) => setTotalCount(Number(e.target.value))}
-                    className="flex-1 accent-primary"
+                    className="min-w-32 flex-1 accent-primary"
                   />
                   <div className="flex gap-1">
                     {[10, 20, 30, 50].map((preset) => (
@@ -549,6 +560,7 @@ export function MontarCadernoModal({ subjects, isOpen, onClose }: Props) {
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

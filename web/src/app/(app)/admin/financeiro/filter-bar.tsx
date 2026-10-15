@@ -11,12 +11,12 @@ export function FilterBar({ action, raw, hidden, show = ["q", "concurso", "situa
   show?: ("q" | "concurso" | "situacao" | "forma" | "periodo")[];
 }) {
   const sel = `${inputCls} py-2`;
-  const box = "min-w-[11rem] flex-1";
+  const box = "min-w-[min(11rem,100%)] flex-1";
   return (
     <form method="get" action={action} className="flex flex-wrap items-end gap-2 rounded-2xl border border-border bg-surface-2 p-3">
       {hidden && Object.entries(hidden).map(([k, v]) => <input key={k} type="hidden" name={k} value={v} />)}
       {show.includes("q") && (
-        <input name="q" defaultValue={raw.q} placeholder="E-mail ou nome do cliente" aria-label="Cliente" className={`${sel} min-w-[14rem] flex-[2]`} />
+        <input name="q" defaultValue={raw.q} placeholder="E-mail ou nome do cliente" aria-label="Cliente" className={`${sel} min-w-[min(14rem,100%)] flex-[2]`} />
       )}
       {show.includes("concurso") && (
         <select name="concurso" defaultValue={raw.concurso ?? ""} aria-label="Concurso" className={`${sel} ${box} w-auto`}>
@@ -37,7 +37,7 @@ export function FilterBar({ action, raw, hidden, show = ["q", "concurso", "situa
         </select>
       )}
       {show.includes("periodo") && (
-        <div className="flex min-w-[18rem] flex-[2] items-center gap-2">
+        <div className="flex min-w-[min(18rem,100%)] flex-[2] items-center gap-2">
           <input type="date" name="de" defaultValue={raw.de} aria-label="De" className={`${sel} min-w-0`} />
           <span className="text-xs text-muted">até</span>
           <input type="date" name="ate" defaultValue={raw.ate} aria-label="Até" className={`${sel} min-w-0`} />

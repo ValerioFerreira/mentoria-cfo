@@ -194,7 +194,7 @@ export function TimerWidget() {
       </div>
 
       {confirming && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 px-4 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="zerar-titulo">
+        <div className="modal-scroll fixed inset-0 z-[60] flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="zerar-titulo">
           <div className="pop w-full max-w-sm space-y-4 rounded-2xl border border-border bg-surface p-6 text-text shadow-lift">
             <h2 id="zerar-titulo" className="font-display text-2xl font-bold uppercase tracking-wide">Zerar o cronômetro?</h2>
             <p className="text-sm text-muted">Todo o tempo será reiniciado e o cronômetro irá zerar. Essa ação não pode ser desfeita.</p>

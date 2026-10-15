@@ -222,8 +222,8 @@ export default function ComoFuncionaPage() {
       </section>
 
       {/* CTA Final */}
-      <section className="rounded-2xl border border-primary/30 bg-ink p-8 text-on-ink shadow-lift space-y-6 text-center sm:text-left">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+      <section className="space-y-6 rounded-2xl border border-primary/30 bg-ink p-6 text-center text-on-ink shadow-lift sm:p-8 sm:text-left">
+        <div className="flex flex-col items-center justify-between gap-6 lg:flex-row">
           <div className="space-y-2 max-w-xl">
             <Badge tone="gold">Inicie sua preparação</Badge>
             <h3 className="font-display text-3xl font-bold uppercase leading-tight sm:text-4xl text-on-ink">
@@ -234,7 +234,7 @@ export default function ComoFuncionaPage() {
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-            <LinkButton href="/concursos" variant="primary" size="lg" className="w-full sm:w-auto">
+            <LinkButton href="/concursos" variant="primary" size="lg" className="w-full max-sm:whitespace-normal max-sm:text-center sm:w-auto">
               Criar conta / Escolher concurso
               <ArrowRight className="h-4 w-4" />
             </LinkButton>
