@@ -34,4 +34,9 @@ describe("activityQuizWhere", () => {
   it("aceita as grafias da banca", () => {
     expect(AOCP_BANCAS).toEqual(expect.arrayContaining(["AOCP", "Instituto AOCP"]));
   });
+
+  it("filtra por CEBRASPE quando o concurso é PCPE", () => {
+    const w = activityQuizWhere(["direito-administrativo/a04/s01"], ["APPROVED"], "PCPE_AGENTE");
+    expect(acervo.filter((q) => matches(q, w)).map((q) => q.id)).toEqual(["b"]);
+  });
 });

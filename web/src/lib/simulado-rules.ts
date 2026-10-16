@@ -29,7 +29,8 @@ export type SupportedSimuladoContest =
   | "CBMPE_OFICIAL"
   | "CBMPE_SOLDADO"
   | "PMPE_OFICIAL"
-  | "PMPE_SOLDADO";
+  | "PMPE_SOLDADO"
+  | "PCPE_AGENTE";
 
 export const EXAM_CONFIGS: Record<SupportedSimuladoContest, ContestExamConfig> = {
   CBMPE_OFICIAL: {
@@ -152,6 +153,38 @@ export const EXAM_CONFIGS: Record<SupportedSimuladoContest, ContestExamConfig> =
       { subjectId: "legislacoes-pe", name: "Direitos e Garantias Fundamentais", block: "III", count: 10 },
       { subjectId: "direito-penal-militar", name: "Direito Penal Militar", block: "III", count: 5 },
       { subjectId: "direito-processual-penal-militar", name: "Direito Processual Penal Militar", block: "III", count: 5 },
+    ],
+  },
+  PCPE_AGENTE: {
+    contest: "PCPE_AGENTE",
+    title: "PCPE — Agente de Polícia",
+    role: "Agente de Polícia",
+    durationMinutes: 240, // 4h00min
+    durationSeconds: 240 * 60,
+    totalQuestions: 60,
+    minPercentPerBlock: 0,
+    minPercentTotal: 50, // mínimo de 30 pontos no total (50%)
+    noZeroInAnyArea: false,
+    blocks: {
+      I: { name: "Bloco I (Noções de Direito)", totalQuestions: 20, minQuestions: 0 },
+      II: { name: "Bloco II (Língua Portuguesa e Informática)", totalQuestions: 20, minQuestions: 0 },
+      III: { name: "Bloco III (RL, Estatística e Contabilidade)", totalQuestions: 20, minQuestions: 0 },
+    },
+    subjects: [
+      // Bloco I - Noções de Direito (20 questões)
+      { subjectId: "legislacao-pcpe", name: "Legislação Estadual da PCPE", block: "I", count: 4 },
+      { subjectId: "direito-constitucional", name: "Direito Constitucional", block: "I", count: 4 },
+      { subjectId: "direito-administrativo", name: "Direito Administrativo", block: "I", count: 4 },
+      { subjectId: "direito-penal", name: "Direito Penal", block: "I", count: 3 },
+      { subjectId: "legislacao-penal-especial", name: "Legislação Penal Extravagante", block: "I", count: 2 },
+      { subjectId: "direito-processual-penal", name: "Direito Processual Penal", block: "I", count: 3 },
+      // Bloco II - Conhecimentos Gerais (20 questões)
+      { subjectId: "lingua-portuguesa", name: "Língua Portuguesa", block: "II", count: 10 },
+      { subjectId: "informatica", name: "Noções de Informática", block: "II", count: 10 },
+      // Bloco III - Conhecimentos Específicos Agente (20 questões)
+      { subjectId: "raciocinio-logico", name: "Raciocínio Lógico", block: "III", count: 5 },
+      { subjectId: "estatistica", name: "Noções de Estatística", block: "III", count: 5 },
+      { subjectId: "contabilidade-geral", name: "Contabilidade Geral", block: "III", count: 10 },
     ],
   },
 };

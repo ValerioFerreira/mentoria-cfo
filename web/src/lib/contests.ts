@@ -56,6 +56,10 @@ export const CONTEST_PACKAGES: Partial<Record<Contest, ContestPackage>> = {
     name: "PM-PE (Oficial) Pacote",
     url: "https://www.estrategiaconcursos.com.br/app/dashboard/pacote/361831",
   },
+  PCPE_AGENTE: {
+    name: "PC-PE (Agente de Polícia) Pacote",
+    url: "https://www.estrategiaconcursos.com.br/app/dashboard/pacote/361849",
+  },
 };
 
 export const CONTEST_SUBJECTS: Record<Contest, string[]> = {
@@ -107,10 +111,15 @@ export const CONTEST_SUBJECTS: Record<Contest, string[]> = {
   PCPE_AGENTE: [
     "lingua-portuguesa",
     "informatica",
+    "raciocinio-logico",
+    "estatistica",
+    "contabilidade-geral",
+    "legislacao-pcpe",
     "direito-constitucional",
     "direito-administrativo",
-    "direito-penal-militar",
-    "legislacoes-pe",
+    "direito-penal",
+    "legislacao-penal-especial",
+    "direito-processual-penal",
   ],
 };
 

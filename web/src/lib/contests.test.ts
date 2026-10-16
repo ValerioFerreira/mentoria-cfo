@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { CONTEST_SUBTITLES, CONTESTS, contestBySlug, contestTitle } from "./contests";
 
 describe("concursos", () => {
-  it("CBMPE e PMPE estão disponíveis (Agente PCPE em desenvolvimento)", () => {
+  it("concursos disponíveis no lançamento", () => {
     expect(CONTESTS.filter((c) => c.available).map((c) => c.key)).toEqual([
       "CBMPE_SOLDADO",
       "CBMPE_OFICIAL",

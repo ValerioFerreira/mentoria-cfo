@@ -323,54 +323,64 @@ PARA REVISÃO HUMANA
 
 # Inclusão do PCPE (Outubro/2026)
 
+## 0. Decisão do Dono do Produto (Out/2026)
+**O único concurso da PCPE que será oferecido na plataforma é o de AGENTE DE POLÍCIA (`PCPE_AGENTE`).**
+O cargo de Escrivão de Polícia (`PCPE_ESCRIVAO`) e a disciplina de Noções de Arquivologia estão **definitivamente fora do escopo**. Não haverá "Fase B" nem disciplina de Arquivologia. Todo o código, catálogo, enum, simulados e testes foram consolidados estritamente para `PCPE_AGENTE`.
+
 ## 1. Análise do Edital Oficial (`docs/edital-pcpe.pdf`)
 - **Norma**: Portaria Conjunta SAD/SDS nº 306, de 02/10/2026 (Polícia Civil de Pernambuco — PCPE).
 - **Banca**: **Cebraspe** (Centro Brasileiro de Pesquisa em Avaliação e Seleção e de Promoção de Eventos).
-- **Cargos incluídos**:
-  - **Fase A**: **Agente de Polícia** (`PCPE_AGENTE`) — 1.200 vagas (780 AC, 60 PCD, 300 PPP, 36 PI, 24 PQ). Remuneração inicial: R$ 5.667,92.
-  - **Fase B**: **Escrivão de Polícia** (`PCPE_ESCRIVAO`) — 70 vagas (45 AC, 4 PCD, 18 PPP, 2 PI, 1 PQ). Remuneração inicial: R$ 5.667,92.
-  - **Fora do escopo**: Delegado de Polícia (`PCPE_DELEGADO`).
-- **Data da Prova Objetiva e Discursiva (Anexo I)**: **07/03/2027** (`2027-03-07`; Escrivão no turno da manhã, Agente no turno da tarde; duração de 4 horas).
+- **Cargo incluído**: **Agente de Polícia** (`PCPE_AGENTE`) — 1.200 vagas (780 AC, 60 PCD, 300 PPP, 36 PI, 24 PQ). Remuneração inicial: R$ 5.667,92.
+- **Fora do escopo**: Escrivão de Polícia (`PCPE_ESCRIVAO`) e Delegado de Polícia (`PCPE_DELEGADO`).
+- **Data da Prova Objetiva e Discursiva (Anexo I)**: **07/03/2027** (`2027-03-07`, turno da tarde; duração de 4 horas).
 - **Estrutura da Prova Objetiva (Itens 7.1 e 8)**:
   - **Formato (Item 8.2)**: **Múltipla escolha com 5 opções (`A` a `E`)**, uma única resposta correta por questão.
   - **Pontuação (Itens 8.11.1 e 8.11.2)**: **60 questões = 60,00 pontos** (`+1,00` ponto por questão certa; `0,00` por questão errada, em branco ou com marcação dupla — **sem penalidade negativa**).
-  - **Critério de aprovação / corte (Item 8.11.4)**: Eliminado quem obtiver **menos de 30,00 pontos** no conjunto das provas objetivas (`P1 + P2`, 50% do total), sem nota mínima separada por bloco ou disciplina. Classificados para correção da Discursiva (Item 8.11.7): até 7.200 candidatos para Agente (4.680 AC) e 420 para Escrivão (270 AC).
-  - **Distribuição dos blocos**:
+  - **Critério de aprovação / corte (Item 8.11.4)**: Eliminado quem obtiver **menos de 30,00 pontos** no conjunto das provas objetivas (`P1 + P2`, 50% do total), sem nota mínima separada por bloco ou disciplina. Classificados para correção da Discursiva (Item 8.11.7): até 7.200 candidatos para Agente (4.680 AC).
+  - **Distribuição dos blocos e disciplinas (`PCPE_AGENTE`)**:
     - **Bloco I — Noções de Direito (`P1`, 20 questões)**:
-      1. *Legislação Estadual* (`legislacao-pcpe`): estimativa de 4 questões.
-      2. *Noções de Direito Constitucional* (`direito-constitucional`): estimativa de 4 questões.
-      3. *Noções de Direito Administrativo* (`direito-administrativo`): estimativa de 4 questões.
-      4. *Noções de Direito Penal* (`direito-penal`, Parte Geral e Especial): estimativa de 3 questões.
-      5. *Legislação Penal Extravagante* (`legislacao-penal-especial`, item VI de Noções de Direito Penal no edital): estimativa de 2 questões.
-      6. *Noções de Direito Processual Penal* (`direito-processual-penal`): estimativa de 3 questões.
+      1. *Legislação Estadual* (`legislacao-pcpe`): 4 questões.
+      2. *Noções de Direito Constitucional* (`direito-constitucional`): 4 questões.
+      3. *Noções de Direito Administrativo* (`direito-administrativo`): 4 questões.
+      4. *Noções de Direito Penal* (`direito-penal`, Parte Geral e Especial): 3 questões.
+      5. *Legislação Penal Extravagante* (`legislacao-penal-especial`): 2 questões.
+      6. *Noções de Direito Processual Penal* (`direito-processual-penal`): 3 questões.
     - **Bloco II — Conhecimentos Específicos (`P2`, 40 questões)**:
-      - **Agente (`PCPE_AGENTE`)**: *Língua Portuguesa* (10), *Informática* (10), *Contabilidade Geral* (10), *Raciocínio Lógico* (5), *Estatística* (5).
-      - **Escrivão (`PCPE_ESCRIVAO`)**: *Língua Portuguesa* (10), *Informática* (10), *Noções de Arquivologia* (10), *Raciocínio Lógico* (5), *Estatística* (5).
-- **Prova Discursiva (`P3`, Item 9)**: Redação dissertativa de até 30 linhas (30,00 pontos, mínimo de 15,00 pontos) sobre tema de Segurança Pública / Atualidades. Como o planejador atual não possui tipo de atividade de redação/discursiva, `docs/45` não entra no catálogo objetivo e fica registrado como pendência de produto (ver subseção 4).
+      1. *Língua Portuguesa* (`lingua-portuguesa`): 10 questões.
+      2. *Informática* (`informatica`): 10 questões.
+      3. *Contabilidade Geral* (`contabilidade-geral`): 10 questões.
+      4. *Raciocínio Lógico* (`raciocinio-logico`): 5 questões.
+      5. *Estatística* (`estatistica`): 5 questões.
+- **Prova Discursiva (`P3`, Item 9)**: Redação dissertativa de até 30 linhas (30,00 pontos, mínimo de 15,00 pontos) sobre tema de Segurança Pública / Atualidades. Registrada como pendência evolutiva de produto (ver subseção 4).
 
 ## 2. Decisões de Arquitetura e Preservação de IDs
 1. **Preservação absoluta de IDs existentes (`<disc>/aNN/sNN`)**:
-   - Nenhuma disciplina, aula ou trecho existente teve seu ID ou intervalo de páginas alterado (baseline salvo em `pipeline/.cache/pcpe-baseline/`).
-   - Em `direito-administrativo` (disciplina compartilhada com CBMPE/PMPE), as 5 aulas novas baixadas em `docs/42` entram com numeração **`a20` a `a24`** (Licitações pt. 1, Licitações pt. 2, Contratos Administrativos, Processo Administrativo Estadual — Lei PE 11.781/2000 e Improbidade Administrativa — Lei 8.429/1992) e o complemento da Lei Federal nº 9.784/1999 entra como **`c02`**, todas marcadas com `onlyContests: ["PCPE_AGENTE", "PCPE_ESCRIVAO"]` para que os planos de `CBMPE_OFICIAL`, `CBMPE_SOLDADO`, `PMPE_OFICIAL` e `PMPE_SOLDADO` permaneçam 100% idênticos ao baseline.
+   - Nenhuma disciplina, aula ou trecho existente teve seu ID ou intervalo de páginas alterado (verificado contra baseline em `pipeline/.cache/pcpe-baseline/`).
+   - Em `direito-administrativo`, as aulas novas entram como **`a20` a `a24`** e o complemento autoral da Lei Federal nº 9.784/1999 entra como **`c02`**, todas marcadas com `onlyContests: ["PCPE_AGENTE"]`. Os planos de `CBMPE_OFICIAL`, `CBMPE_SOLDADO`, `PMPE_OFICIAL` e `PMPE_SOLDADO` permanecem **100% idênticos** ao baseline de produção.
 2. **Separação entre `direito-penal` e `legislacao-penal-especial`**:
-   - Separar *Noções de Direito Penal* (`direito-penal`, `a00`–`a10` de `docs/46`: Parte Geral, Parte Especial e LCP) de *Legislação Penal Extravagante* (`legislacao-penal-especial`, `a11`–`a22` combinando `docs/30`, `docs/46` e `docs/39` + `c01` ECA) evita estrangular o limite diário por disciplina (`MAX_DAILY_SUBJECT_MIN = 120`) e permite anamnese, pesos e diagnóstico de desempenho independentes, além de já deixar a disciplina pronta para `PMPE_OFICIAL`.
-   - Para manter correspondência direta com a numeração do curso do aluno no Estratégia (`PC-PE Noções de Direito Penal`, em que as leis penais especiais são as Aulas 11 a 21), `legislacao-penal-especial` preserva os números **`a11` a `a21`** (e `a22` para Crimes do ECA de `docs/39` Aula 02), de modo que a Diretriz (`lib/directive.ts`) indique exatamente o número da aula correspondente no pacote.
-3. **Inspeção das aulas especiais (`docs/42` Aula 13 e `docs/44` Aula 16)**:
-   - `docs/42` Aula 13 (`014 - Aula 13 Processo administrativo. Não há.pdf`) possui 60 páginas de conteúdo real sobre a **Lei Estadual de PE nº 11.781/2000** (Processo Administrativo Estadual de PE), sem cobrir a Lei Federal nº 9.784/1999. Assim, `a23` utiliza o PDF de `docs/42` Aula 13 e o complemento autoral `direito-administrativo/c02` cobre a **Lei Federal nº 9.784/1999**.
-   - `docs/44` Aula 16 (`Constituição do Estado de Pernambuco - Segurança Pública`, 41 págs., Prof. Rodrigo Bet) é idêntica em texto e paginação a `direito-constitucional/a18` (`docs/04` Aula 18). Não foi criada aula duplicada; `direito-constitucional/a18` (cujo `startTopic` é `"DOS MILITARES DO ESTADO"`, art. 100 da CE-PE) recebe `appears=False` no PCPE, enquanto `legislacao-pcpe/c01` cobre de forma autoral e atualizada os **arts. 101 a 105-B da CE-PE** (Sistema de Segurança Pública e Polícia Civil, incluindo ECs estaduais 70 e 71).
-4. **Deduplicação interna em `direito-processual-penal` (`docs/47`)**:
-   - As aulas `a00` a `a06` (Prof. Renan Araujo) já cobrem integralmente o Inquérito Policial e a **Lei 12.830/2013** (`a01`), Provas (`a02`–`a03`), Prisões, Medidas Cautelares e **Lei 7.960/1989** (`a04`–`a05`) e **Lei 9.099/1995 — JECRIM** (`a06`). As aulas `a07`, `a08` e `a09` (Equipe Legislação Específica) são apostilas de reforço sobre essas mesmas três leis; seus trechos recebem `edital: "no"` (`EXTRA`) nos overrides para que o aluno não estude a mesma lei duas vezes no plano.
+   - *Noções de Direito Penal* (`direito-penal`, `a00`–`a10`: Parte Geral, Parte Especial e LCP) e *Legislação Penal Extravagante* (`legislacao-penal-especial`, `a11`–`a22` + `c01` ECA) estruturadas separadamente para evitar estrangular o limite diário por disciplina (`MAX_DAILY_SUBJECT_MIN = 120`).
+3. **Complementos autorais para lacunas do edital**:
+   - `legislacao-pcpe/c01` (`content/complements/leg-pcpe-ce-pe.md`): arts. 101 a 105-B da Constituição Estadual de PE (Polícia Civil e Segurança Pública), 100% neutro e autoral.
+   - `direito-administrativo/c02` (`content/complements/da-lei-9784.md`): Lei Federal nº 9.784/1999 (Processo Administrativo Federal).
+   - `legislacao-penal-especial/c01` (`content/complements/leg-penal-eca.md`): aspectos penais e procedimentais policiais do ECA (arts. 103–109, 171–178, 228–244-B e Súmula 500 do STJ).
+4. **Cálculo de Importância e Exclusões Versionadas**:
+   - Algoritmo de `pipeline/importance.py` recalculado de forma puramente funcional sobre `content/contests.json` e `catalog.json`.
+   - Exclusões versionadas em `content/overrides/`:
+     - `informatica`: `a07`, `a09`, `a11` (LibreOffice Writer, Calc, Impress excluídos para `PCPE_AGENTE` por exigir estritamente Microsoft 365).
+     - `estatistica`: `a11`..`a14` (inferência estatística, testes de hipóteses, ANOVA e regressão múltipla excluídos para `PCPE_AGENTE` por exigir apenas descritiva, probabilidade e amostragem).
+     - `direito-constitucional`: `a18` (art. 100 dos Militares de PE excluído para `PCPE_AGENTE`, que utiliza os arts. 101–105-B da Polícia Civil em `legislacao-pcpe/c01`).
+   - Comprovada divergência zero (0 discrepâncias) nos 897 trechos de CBMPE e PMPE contra `main`.
 
-## 3. Plano de Execução (Fases A e B)
-- **Etapa 1**: Estruturar o edital PCPE (`content/edital/`) item a item para Agente (22.2.3) e Escrivão (22.2.5).
-- **Etapa 2**: Configurar disciplinas (`pipeline/config.py`, `pipeline/extract.py`, `content/subjects.json`) e extrair os PDFs (`docs/42..48`, `docs/30`, `docs/39`).
-- **Etapa 3**: Rodar pipeline de estrutura/segmentação e fazer auditoria pedagógica completa (`inspect_aula.py`, `content/overrides/<disc>.json`, `content/audit/<disc>.md`), preservando 100% dos IDs existentes.
-- **Etapa 4**: Redigir complementos autorais (`content/complements/*.md`) para lacunas do Agente e, na Fase B, para toda a disciplina de `arquivologia` (`c01`–`c04`).
-- **Etapa 5**: Configurar `EXAM_CONFIGS`, `CONTESTS`, `CONTEST_SUBJECTS`, `edital_map.py`, `importance.py`, `summary_queue.py`, `select.ts`/`coverage.ts` e migração Prisma local.
-- **Etapa 6**: Reclassificar questões existentes para as novas disciplinas, adaptar textos de banca (Cebraspe vs. AOCP) e gerar `docs/questoes/PCPE-CADERNOS-NECESSARIOS.md`.
-- **Etapa 7**: Gerar bizus (`content/items/`) e resumos analíticos/sintéticos (`content/summaries/`) 100% validados por `validate_content.py` e `validate_summaries.py`.
-- **Etapas 8 a 11**: Integrar frontend/rotas/testes, concluir Fase B (`PCPE_ESCRIVAO`), rodar bateria completa de verificação e documentar `docs/pacote-361849/LANCAMENTO.md`.
+## 3. Estado Atual dos Componentes
+- **Banco de Dados Local**: Migração `20261016140000_pcpe_agente_settings` aplicada localmente (`category = 'PCPE'`, `examDate = '2027-03-07'`). `seedContestSettings` removido do seed de estrutura para respeitar as configurações manuais do administrador.
+- **Next.js & Tipagem**: `typecheck` e `npm run build` aprovados com zero erros.
+- **Motor de Planejamento**: 330 testes de planejador aprovados com 100% de sucesso.
+- **Disponibilidade Comercial**: `available: false` mantido para `PCPE_AGENTE` até que as pendências de conteúdo autoral e questões sejam atendidas.
 
-## 4. Pendências de Produto Identificadas
-- **Prova Discursiva / Redação (`docs/45 - PC-PE (Agente e Escrivao) Discursiva`)**: O edital PCPE prevê Prova Discursiva (`P3`, 30 pontos, redação dissertativa de até 30 linhas sobre Segurança Pública / Atualidades). O material foi baixado em `docs/45`, mas o motor de planejamento atual só agenda estudo teórico (`s`/`c`), questões de múltipla escolha (`q`), revisão espaçada (`r`), simulados objetivos e reforço. A criação de um tipo de atividade de treino de redação/discursiva fica registrada como evolução futura de produto.
+## 4. Pendências Identificadas para o Dono do Produto
+1. **Cadernos de Questões Cebraspe (TecConcursos)**: Não existem cadernos baixados em `docs/questoes/` para as novas disciplinas da PCPE (Contabilidade Geral, Direito Penal, Processo Penal, Legislação PCPE e Leis Penais Especiais Cebraspe). Pendência de download externo antes do lançamento comercial.
+2. **Bizus autorais (`content/items/`)**: Faltam 239 trechos nas disciplinas novas e em `direito-administrativo` `a20`..`a24`.
+3. **Resumos analíticos (`content/summaries/`)**: Faltam 309 trechos (239 das matérias novas + 70 de raciocínio lógico em produção).
+4. **Discursiva / Redação**: `docs/45` contém material de discursiva, dependente de implementação futura de módulo de redação na plataforma.
+
 
