@@ -31,6 +31,8 @@ AUTO_MIN_RATIO = 1.35  # melhor aula / segunda melhor aula
 # trecho: similaridade mínima da questão com o trecho escolhido. Calibrado na amostra validada de 14/10/2026:
 # abaixo de 0,05 só 19% das questões eram ensinadas pelo trecho; vão para rascunho (revisão), não para o aluno.
 SEGMENT_MIN_SCORE = 0.05
+# Português: interpretação de texto casa pouco com os tópicos do trecho; abaixo de 0,05 o acerto é o mesmo (≈50%)
+SEGMENT_MIN_BY_SUBJECT = {"lingua-portuguesa": 0.03}
 OVERRIDES_PATH = CONTENT / "questoes" / "overrides-questoes.json"
 
 STOP = set(
@@ -432,9 +434,9 @@ class Classifier:
             conf = "alta" if ok else "baixa"
             status = "APPROVED" if ok else "DRAFT"
             reason = f"automático (aula {s1:.2f} vs {s2:.2f})"
-        if score < SEGMENT_MIN_SCORE and status == "APPROVED":
+        if score < SEGMENT_MIN_BY_SUBJECT.get(subject, SEGMENT_MIN_SCORE) and status == "APPROVED":
             status, conf = "DRAFT", "baixa"
-            reason = f"{reason} · trecho de baixa similaridade ({score:.2f} < {SEGMENT_MIN_SCORE})"
+            reason = f"{reason} · trecho de baixa similaridade ({score:.2f})"
         if ov and ov.get("draft"):
             status, conf, reason = "DRAFT", "baixa", str(ov["draft"])
         return Result(

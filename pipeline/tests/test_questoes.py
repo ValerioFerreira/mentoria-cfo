@@ -229,3 +229,12 @@ def test_invariantes_do_caderno(pdf):
             assert q.answer in {o["label"] for o in q.options}, q.tecId
         for sha in q.assets:
             assert sha in c.assets
+
+
+@pytest.mark.skipif(not (DOCS / "Caderno Física, Química, Estat e Info 3.pdf").exists(), reason="caderno ausente")
+def test_caderno_impresso_em_outra_escala_e_normalizado():
+    """Caderno com fontes ≈ 0,9× e margem maior (16/10/2026): sem normalização, as 200 questões iam à quarentena."""
+    c = T.read_caderno(DOCS / "Caderno Física, Química, Estat e Info 3.pdf")
+    assert len(c.questions) == 200 and not c.anomalies
+    assert all(not q.problems for q in c.questions)
+    assert c.questions[0].assets, "a figura do osciloscópio deve ser recortada"

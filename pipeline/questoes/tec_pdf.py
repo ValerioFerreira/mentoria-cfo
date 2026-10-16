@@ -16,7 +16,7 @@ from pathlib import Path
 import pymupdf
 
 # Muda quando a lógica de extração muda: o importador reextrai os cadernos de versão anterior.
-EXTRACTOR_VERSION = "2026.10.14-1"
+EXTRACTOR_VERSION = "2026.10.16-1"
 
 URL_RE = re.compile(r"^www\.tecconcursos\.com\.br/questoes/(\d+)\s*$")
 LABEL_RE = re.compile(r"^(\d+)\)\s*$")
@@ -1163,9 +1163,35 @@ def assemble(doc: pymupdf.Document, raw: RawQuestion, gabarito: dict[int, str], 
     )
 
 
+URL_SIZE = 6.6  # Tahoma-Bold do link da questão na impressão padrão
+URL_X = 28.0
+
+
+def normalize_scale(doc: pymupdf.Document) -> pymupdf.Document:
+    """Alguns cadernos saem impressos em outra escala (fontes ≈ 0,9× e margem esquerda maior). Detecta pelo
+    tamanho da fonte do link da questão e devolve uma cópia na escala padrão (as constantes do extrator
+    valem para ela). Cadernos já na escala padrão voltam inalterados."""
+    for page in doc:
+        for b in page.get_text("dict")["blocks"]:
+            for ln in b.get("lines", []):
+                sp = ln["spans"][0]
+                if sp["font"].startswith("Tahoma-Bold") and URL_RE.match("".join(x["text"] for x in ln["spans"]).strip()):
+                    r = URL_SIZE / sp["size"]
+                    if abs(r - 1) < 0.03:
+                        return doc
+                    dx = ln["bbox"][0] * r - URL_X
+                    out = pymupdf.open()
+                    for pg in doc:
+                        w, h = pg.rect.width * r, pg.rect.height * r
+                        np_ = out.new_page(width=w, height=h)
+                        np_.show_pdf_page(pymupdf.Rect(-dx, 0, w - dx, h), doc, pg.number)
+                    return out
+    return doc
+
+
 def read_caderno(path: str | Path) -> Caderno:
     path = Path(path)
-    doc = pymupdf.open(path)
+    doc = normalize_scale(pymupdf.open(path))
     raws, gabarito, anomalies, title = split_questions(doc)
     assets: dict[str, Asset] = {}
     qs = [assemble(doc, r, gabarito, assets) for r in raws]
