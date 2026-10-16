@@ -92,6 +92,7 @@ export function selectContent(
       }
       // trechos fora do edital do concurso não entram no plano
       const segs = (segments[aula.id] ?? []).filter((sg) => opts.importance?.[sg.id] !== null);
+      if (aula.kind === "theory" && segs.length === 0) continue; // aula de teoria cujos trechos estão todos fora do edital
       const bp = buildBlueprint(aula, segs, level, k);
       if (bp.teoria.length === 0 && bp.fixChunksFull === 0) continue; // nada para fazer
       blueprints.set(aula.id, bp);

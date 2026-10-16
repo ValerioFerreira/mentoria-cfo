@@ -240,4 +240,12 @@ describe("Modo Turbo na seleção (resumos por unidade)", () => {
     expect(summarized(sel)).toHaveLength(ids(w).length);
     expect(selectContent(w.chosen(), w.segments, 10, {}, true, new Set(), opts(w)).turboAulas.size).toBe(0); // só conta quem entra no plano
   });
+  it("aula de teoria com todos os trechos fora do edital (nota null) é completamente ignorada", () => {
+    const w = world();
+    const imp = { ...scores(w) } as Record<string, number | null>;
+    for (const s of w.segments["a/a01"] ?? []) imp[s.id] = null;
+    const sel = selectContent(w.chosen(), w.segments, 1e6, {}, false, new Set(), { importance: imp });
+    expect(sel.blueprints.has("a/a01")).toBe(false);
+    expect(sel.tierByAula.has("a/a01")).toBe(false);
+  });
 });
