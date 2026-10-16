@@ -19,7 +19,7 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 import pymupdf
 
 sys.path.insert(0, os.path.dirname(__file__))
-from config import CACHE_DIR, DOCS_DIR, parse_pdf_name, pdf_key, subject_by_prefix  # noqa: E402
+from config import CACHE_DIR, DOCS_DIR, pdf_key, resolve_pdf_target, subject_by_prefix  # noqa: E402
 
 HEADINGS_DIR = CACHE_DIR / "headings"
 STOP = re.compile(
@@ -89,10 +89,10 @@ def main() -> int:
     subjects = subject_by_prefix()
     jobs = []
     for folder in sorted(p for p in DOCS_DIR.iterdir() if p.is_dir()):
-        if folder.name[:2] not in subjects or (args.only and folder.name[:2] != args.only):
+        if args.only and folder.name[:2] != args.only:
             continue
         for pdf in sorted(folder.glob("*.pdf")):
-            if parse_pdf_name(pdf.name) is None:
+            if resolve_pdf_target(folder.name, pdf.name, subjects) is None:
                 continue
             out = HEADINGS_DIR / f"{pdf_key(folder.name, pdf.name)}.json"
             if out.exists() and not args.force and out.stat().st_mtime > pdf.stat().st_mtime:
