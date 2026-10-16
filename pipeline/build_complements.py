@@ -220,21 +220,22 @@ def merge(docs: list[Doc]) -> None:
     for subj in catalog["subjects"]:
         mine = sorted(by_subject.get(subj["id"], []), key=lambda d: d.order)
         subj["aulas"] = [a for a in subj["aulas"] if a.get("source") != "authored"]  # idempotente
-        raw_total = sum(d.weight for d in mine)
+        base_mine = [d for d in mine if not d_meta(d).get("onlyContests")]
+        raw_total = sum(d.weight for d in base_mine)
         # as aulas do Estratégia nunca cedem mais do que (1 − MAX_COMPLEMENT_SHARE): se os pesos dos complementos somarem
         # mais que isso, são reduzidos na mesma proporção (antes, soma > 1 deixava a incidência das aulas-base NEGATIVA)
         wscale = min(1.0, MAX_COMPLEMENT_SHARE / raw_total) if raw_total else 1.0
-        for d in mine:
+        for d in base_mine:
             d.weight = d.weight * wscale
-        w_total = sum(d.weight for d in mine)
+        w_total = sum(d.weight for d in base_mine)
         assert w_total < 1, f"{subj['id']}: pesos dos complementos somam {w_total}"
         # a soma de incidências da disciplina é preservada: as aulas do Estratégia cedem a fatia dos complementos.
         # `incidenceBase` guarda o valor original para a mescla ser idempotente.
         for a in subj["aulas"]:
-            if a.get("selectable"):
+            if a.get("selectable") and not a.get("onlyContests"):
                 a["incidenceBase"] = a.get("incidenceBase", a["incidence"])
                 a["incidence"] = round(a["incidenceBase"] * (1 - w_total), 5)
-        base_inc = sum(a["incidenceBase"] for a in subj["aulas"] if a.get("selectable"))
+        base_inc = sum(a["incidenceBase"] for a in subj["aulas"] if a.get("selectable") and not a.get("onlyContests"))
         # estrutura e segmentos do Estratégia, sem os complementos anteriores
         struct_path = CONTENT_DIR / "structure" / f"{subj['id']}.json"
         seg_path = CONTENT_DIR / "segments" / f"{subj['id']}.json"
@@ -245,14 +246,19 @@ def merge(docs: list[Doc]) -> None:
         for d in mine:
             seg_list = segments_for(d)
             aula_id = f"{d.subject}/c{d.order:02d}"
-            incidence = round(base_inc * d.weight, 5) if base_inc else round(d.weight, 5)
-            subj["aulas"].append({
+            is_exclusive = bool(d_meta(d).get("onlyContests"))
+            incidence = round(d.weight, 5) if is_exclusive or not base_inc else round(base_inc * d.weight, 5)
+            aula_entry = {
                 "id": aula_id, "number": COMPLEMENT_BASE + d.order, "title": d.title, "shortTitle": d.short,
                 "kind": "theory", "edital": "yes", "selectable": True, "note": f"Material complementar MentorIA: {d.subtitle}",
                 "totalPages": d.pages, "theoryPages": d.pages, "segmentCount": len(seg_list), "commentedPages": 0, "listPages": 0,
                 "commentedRuns": [], "practiceLinks": [], "printedOffset": 0, "incidence": incidence,
                 "source": "authored", "materialPath": f"complementos/{d.id}.pdf",
-            })
+            }
+            if is_exclusive:
+                oc = d_meta(d)["onlyContests"]
+                aula_entry["onlyContests"] = [x.strip() for x in oc.split(",")] if "," in oc else [oc.strip()]
+            subj["aulas"].append(aula_entry)
             struct["aulas"].append({
                 "id": aula_id, "number": COMPLEMENT_BASE + d.order, "file": f"{d.id}.pdf", "totalPages": d.pages, "printedOffset": 0,
                 "theoryRuns": [[1, d.pages]], "theoryPages": d.pages, "commentedRuns": [], "commentedPages": 0, "listPages": 0,

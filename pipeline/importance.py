@@ -8,8 +8,7 @@ Método (v1, determinístico, sem a frequência das questões — ver `importanc
   participação do trecho na disciplina = incidência normalizada da aula × (págs. do trecho / págs. de teoria da aula)
   questões esperadas no concurso     = nº de questões da disciplina na prova do concurso × participação do trecho
   nota (1–100)                        = percentil das questões esperadas entre os trechos que aparecem naquele concurso
-  `appears` = a disciplina está no concurso (v1). Quando existir o mapa edital→trecho do concurso (content/edital/<concurso>/…),
-  o campo vem do edital (ver `basis`).
+  `appears` = a disciplina e aula estão no edital do concurso (via onlyContests e excludeContests versionados).
 
 Uso: python pipeline/importance.py          (gera/atualiza o arquivo)
 Pré-requisito: content/contests.json  (npx tsx web/scripts/export-contests.ts, em web/)
@@ -33,7 +32,7 @@ EDITAL_DIR = CONTENT_DIR / "edital"
 
 def load_contests() -> dict[str, dict]:
     raw = json.loads((CONTENT_DIR / "contests.json").read_text(encoding="utf-8"))
-    return {k: v for k, v in raw.items() if v.get("available")}
+    return raw
 
 
 def percentile_scores(values: dict[str, float]) -> dict[str, int]:
@@ -53,38 +52,61 @@ def percentile_scores(values: dict[str, float]) -> dict[str, int]:
     return out
 
 
+def is_aula_in_contest(a: dict, contest_key: str) -> bool:
+    """Verifica elegibilidade da aula para o concurso via dados versionados no catálogo."""
+    if not a.get("selectable"):
+        return False
+    if a.get("onlyContests") and contest_key not in a["onlyContests"]:
+        return False
+    if a.get("excludeContests") and contest_key in a["excludeContests"]:
+        return False
+    return True
+
+
 def build() -> dict:
     contests = load_contests()
     catalog = json.loads((CONTENT_DIR / "catalog.json").read_text(encoding="utf-8"))
-    segments: dict[str, dict] = {}
-    shares: dict[str, float] = {}
+
+    all_segments: dict[str, dict] = {}
+    segs_by_aula: dict[str, list[dict]] = {}
     subject_of: dict[str, str] = {}
+
     for subj in catalog["subjects"]:
-        aulas = [a for a in subj["aulas"] if a.get("selectable")]
-        total_inc = sum(a["incidence"] for a in aulas) or 1.0
         seg_file = CONTENT_DIR / "segments" / f"{subj['id']}.json"
         if not seg_file.exists():
             continue
-        by_aula: dict[str, list[dict]] = {}
         for s in json.loads(seg_file.read_text(encoding="utf-8"))["segments"]:
-            by_aula.setdefault(s["aula"], []).append(s)
-        for a in aulas:
-            segs = by_aula.get(a["id"], [])
-            pages = sum(s["pages"] for s in segs) or 1
-            for s in segs:
-                shares[s["id"]] = (a["incidence"] / total_inc) * (s["pages"] / pages)
-                subject_of[s["id"]] = subj["id"]
+            all_segments[s["id"]] = s
+            segs_by_aula.setdefault(s["aula"], []).append(s)
+            subject_of[s["id"]] = subj["id"]
 
     expected: dict[str, dict[str, float]] = {c: {} for c in contests}
-    for sid, share in shares.items():
-        subj = subject_of[sid]
-        for c, info in contests.items():
-            if subj in info["subjects"] and info["exam"].get(subj):
-                expected[c][sid] = info["exam"][subj] * share
+
+    for c, info in contests.items():
+        exam_subjects = set(info.get("subjects", []))
+        exam_weights = info.get("exam", {})
+
+        for subj in catalog["subjects"]:
+            sid = subj["id"]
+            if sid not in exam_subjects or not exam_weights.get(sid):
+                continue
+
+            eligible_aulas = [a for a in subj["aulas"] if is_aula_in_contest(a, c)]
+            total_inc = sum(a["incidence"] for a in eligible_aulas) or 1.0
+
+            for a in eligible_aulas:
+                segs = segs_by_aula.get(a["id"], [])
+                pages = sum(s["pages"] for s in segs) or 1
+                for s in segs:
+                    share = (a["incidence"] / total_inc) * (s["pages"] / pages)
+                    expected[c][s["id"]] = exam_weights[sid] * share
+
     scores = {c: percentile_scores(v) for c, v in expected.items()}
 
     basis = {c: "disciplina" for c in contests}
-    for sid in shares:
+    segments: dict[str, dict] = {}
+
+    for sid in all_segments:
         rec = {"shared": 0, "sharedShare": 0.0, "contests": {}}
         for c, info in contests.items():
             appears = sid in expected[c]
@@ -98,6 +120,7 @@ def build() -> dict:
                 rec["sharedShare"] += expected[c][sid] / (info["totalQuestions"] or 1)
         rec["sharedShare"] = round(rec["sharedShare"], 6)
         segments[sid] = rec
+
     return {"version": 1, "basis": basis, "contests": sorted(contests), "segments": segments}
 
 

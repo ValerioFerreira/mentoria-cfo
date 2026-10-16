@@ -100,6 +100,10 @@ def main() -> int:
                 "flags": a["flags"],
             }
             entry["selectable"] = ov.get("edital", "yes") != "no"
+            if "onlyContests" in ov:
+                entry["onlyContests"] = ov["onlyContests"]
+            if "excludeContests" in ov:
+                entry["excludeContests"] = ov["excludeContests"]
             if "practiceFor" in ov:
                 secs = practice_sections(a, ov["practiceFor"])
                 entry["practiceSections"] = secs
@@ -128,14 +132,23 @@ def main() -> int:
 
     # Incidência (proxy v1): metade pela fatia de páginas de teoria, metade pela fatia de questões comentadas
     for s in subjects_out:
-        eligible = [a for a in s["aulas"] if a["selectable"]]
-        th = sum(a["theoryPages"] for a in eligible) or 1
-        cm = sum((a["commentedPages"] or a["listPages"]) + sum(l["endPage"] - l["startPage"] + 1 for l in a["practiceLinks"])
-                 for a in eligible) or 1
+        base_eligible = [a for a in s["aulas"] if a["selectable"] and not a.get("onlyContests")]
+        th_base = sum(a["theoryPages"] for a in base_eligible) or 1
+        cm_base = sum((a["commentedPages"] or a["listPages"]) + sum(l["endPage"] - l["startPage"] + 1 for l in a["practiceLinks"])
+                      for a in base_eligible) or 1
+
+        pcpe_eligible = [a for a in s["aulas"] if a["selectable"] and a.get("onlyContests")]
+        th_pcpe = sum(a["theoryPages"] for a in pcpe_eligible) or 1
+        cm_pcpe = sum((a["commentedPages"] or a["listPages"]) + sum(l["endPage"] - l["startPage"] + 1 for l in a["practiceLinks"])
+                      for a in pcpe_eligible) or 1
+
         for a in s["aulas"]:
             if not a["selectable"]:
                 a["incidence"] = 0.0
                 continue
+            is_pcpe_only = bool(a.get("onlyContests"))
+            th = th_pcpe if is_pcpe_only else th_base
+            cm = cm_pcpe if is_pcpe_only else cm_base
             comm = (a["commentedPages"] or a["listPages"]) + sum(l["endPage"] - l["startPage"] + 1 for l in a["practiceLinks"])
             weight = 0.5 if a["edital"] == "partial" else 1.0
             a["incidence"] = round(weight * (0.5 * a["theoryPages"] / th + 0.5 * comm / cm), 5)
