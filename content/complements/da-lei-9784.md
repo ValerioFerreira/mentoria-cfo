@@ -7,6 +7,8 @@ subtitle: Princípios, competência, delegação, impedimentos, motivação, anu
 weight: 0.08
 order: 2
 resolves: da-processo-adm
+norma: "true"
+onlyContests: "PCPE_AGENTE"
 ---
 
 ## Como estudar a Lei nº 9.784/1999 para a Prova Cebraspe
@@ -47,7 +49,7 @@ O art. 2º estabelece que a Administração obedecerá aos princípios da **lega
 > **A regra é a irrenunciabilidade (art. 11):** a competência é irrenunciável e se exerce pelos órgãos administrativos a que foi atribuída como própria, salvo os casos de delegação e avocação legalmente admitidos.
 
 ### Delegação (art. 12)
-- Um órgão administrativo e seu titular poderão, se não houver impedimento legal, delegar parte da sua competência a outros órgãos ou titulares, **ainda que estes não lhe sejam hierarquicamente subordinados**, quando for conveniente por motivos técnicos, sociais, econômicos, jurídicos ou territoriais.
+- A autoridade administrativa tem a faculdade de transferir parcela de suas atribuições para outro órgão ou agente (**mesmo inexistindo subordinação hierárquica** entre eles), desde que inexista proibição em lei e conveniências técnicas, econômicas, sociais ou jurídicas justifiquem a medida.
 - O ato de delegação é **revogável a qualquer tempo** pela autoridade delegante (art. 14, § 2º).
 - As decisões adotadas por delegação consideram-se praticadas pelo **órgão delegado** (art. 14, § 3º e Súmula 510 do STF).
 
@@ -68,19 +70,19 @@ Não podem ser objeto de delegação:
 | Instituto | Hipóteses Caracterizadoras | Consequência da Omissão |
 |---|---|---|
 | **Impedimento** (art. 18)<br>*Critério objetivo* | • Ter interesse direto ou indireto na matéria;<br>• Ter atuado como perito, testemunha ou representante (ou cônjuge/companheiro/parente até 3º grau);<br>• Estar litigando judicial ou administrativamente com o interessado ou respectivo cônjuge/companheiro. | O dever de comunicar o impedimento é **obrigatório**. A omissão constitui **falta disciplinar grave** (art. 19). |
-| **Suspeição** (art. 20)<br>*Critério subjetivo* | • Amizade íntima ou inimizade notória com algum dos interessados ou com os respectivos cônjuges, companheiros, parentes e afins até o terceiro grau. | O indeferimento de alegação de suspeição poderá ser objeto de recurso, sem efeito suspensivo. |
+| **Suspeição** (art. 20)<br>*Critério subjetivo* | • Relação de amizade estreita ou inimizade manifesta envolvendo o postulante, cônjuge, companheiro ou parentela (consanguínea/afim até 3º grau). | O indeferimento de alegação de suspeição poderá ser objeto de recurso, sem efeito suspensivo. |
 
 ---
 
 ## 5. Motivação Obrigatória dos Atos Administrativos (art. 50)
 
-Os atos administrativos deverão ser motivados, com indicação dos fatos e dos fundamentos jurídicos, quando:
-1. Noguem, limitem ou afetem direitos ou interesses;
-2. Imponham ou agravem deveres, encargos ou sanções;
-3. Decidam recursos administrativos;
-4. Decorram de reexame de ofício;
-5. Deixem de aplicar jurisprudência firmada ou discrepem de pareceres/laudos oficiais;
-6. Veiculem revogação, anulação, suspensão ou convalidação de ato administrativo.
+A explicitação prévia dos fatos e das razões jurídicas determinantes é impositiva nas hipóteses em que o ato:
+1. Negue, limite ou afete direitos ou interesses;
+2. Imponha ou agrave deveres, encargos ou sanções;
+3. Decida recursos administrativos;
+4. Decorra de reexame de ofício;
+5. Deixe de aplicar jurisprudência firmada ou disserte em desacordo com laudos/pareceres oficiais;
+6. Veicule revogação, anulação, suspensão ou convalidação de ato administrativo.
 
 > **Motivação aliunde ou por referência (art. 50, § 1º):** a motivação pode consistir em declaração de concordância com fundamentos de pareceres, informações ou decisões anteriores, que farão parte integrante do novo ato.
 
@@ -88,10 +90,10 @@ Os atos administrativos deverão ser motivados, com indicação dos fatos e dos 
 
 ## 6. Anulação, Revogação e Convalidação (arts. 53 a 55)
 
-- **Anulação (art. 53):** a Administração **deve** anular seus próprios atos, quando eivados de vício de legalidade (Princípio da Autotutela e Súmula 473/STF). Efeitos *ex tunc*.
-- **Revogação (art. 53):** a Administração **pode** revogar seus atos por motivo de conveniência e oportunidade, respeitados os direitos adquiridos. Efeitos *ex nunc*.
-- **Decadência do direito de anular (art. 54):** o direito da Administração de anular os atos administrativos de que decorram efeitos favoráveis para os destinatários **decai em 5 anos**, contados da data em que foram praticados, **salvo comprovada má-fé**.
-- **Convalidação (art. 55):** em decisão na qual se evidencie não acarretarem lesão ao interesse público nem prejuízo a terceiros, os atos que apresentarem **defeitos sanáveis** (vícios de competência não exclusiva e vícios de forma não essencial) **poderão ser convalidados** pela própria Administração.
+- **Anulação (art. 53):** incide sobre atos ilegais (*ex tunc*). Trata-se de poder-dever da Administração (Súmula 473/STF).
+- **Revogação (art. 53):** incide sobre atos válidos por conveniência e oportunidade (*ex nunc*), respeitado o direito adquirido.
+- **Decadência (art. 54):** o poder da Administração de anular atos que produziram efeitos favoráveis aos destinatários extingue-se em **5 anos** (salvo comprovada má-fé).
+- **Convalidação (art. 55):** havendo vícios sanáveis (de competência delegável ou de aspecto formal não essencial), o ato pode ser convalidado pela autoridade se inexistir afronta ao interesse coletivo ou lesão a terceiros.
 
 ---
 

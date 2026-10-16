@@ -7,6 +7,7 @@ subtitle: Prática de ato infracional, garantias, procedimentos policiais, crime
 weight: 0.10
 order: 1
 resolves: leg-penal-eca
+onlyContests: "PCPE_AGENTE"
 ---
 
 ## Como estudar os Aspectos Penais do ECA para a Polícia Civil

@@ -8,6 +8,7 @@ weight: 0.15
 order: 1
 norma: true
 resolves: leg-pcpe-ce-pe
+onlyContests: "PCPE_AGENTE"
 ---
 
 ## Sistema de Segurança Pública na Constituição de Pernambuco
