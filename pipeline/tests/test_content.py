@@ -148,3 +148,28 @@ def test_bizu_stage_needs_pointers_and_no_questions(tmp_path):
     out = _bizu_doc([{"topic": f"Ponto {i}", "pageRef": 99} for i in range(4)])
     f.write_text(json.dumps(out), encoding="utf-8")
     assert any("fora do trecho" in e for e in validate_file(f)[0])
+
+
+def test_all_exam_subjects_have_appearing_segments():
+    """Garante que toda disciplina com peso > 0 no edital de qualquer concurso tem trechos com appears: true."""
+    contests = json.loads((CONTENT / "contests.json").read_text(encoding="utf-8"))
+    importance = json.loads((CONTENT / "importance" / "segments.json").read_text(encoding="utf-8"))
+    segments = importance["segments"]
+
+    for contest_id, contest_info in contests.items():
+        exam = contest_info.get("exam", {})
+        subjects = set(contest_info.get("subjects", []))
+        for subject_id in subjects:
+            weight = exam.get(subject_id, 0)
+            if weight > 0:
+                has_appearing = any(
+                    seg_id.startswith(f"{subject_id}/") and
+                    data.get("contests", {}).get(contest_id, {}).get("appears") is True
+                    for seg_id, data in segments.items()
+                )
+                assert has_appearing, (
+                    f"Disciplina '{subject_id}' tem peso {weight} no concurso '{contest_id}', "
+                    f"mas nenhum trecho possui appears: true na importância!"
+                )
+
+
