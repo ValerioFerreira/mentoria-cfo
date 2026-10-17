@@ -1,5 +1,4 @@
 import "server-only";
-import { Contest } from "@/generated/prisma/client";
 import { db } from "@/lib/db";
 import { contestBancas } from "@/lib/quiz/banca";
 import { EXAM_CONFIGS, type ContestExamConfig, type SupportedSimuladoContest } from "@/lib/simulado-rules";
@@ -135,12 +134,12 @@ export async function getUserSimulados(userId: string) {
     const contestKey = (s.contest as SupportedSimuladoContest) || "CBMPE_OFICIAL";
     const config = EXAM_CONFIGS[contestKey] || EXAM_CONFIGS.CBMPE_OFICIAL;
 
-    let score = s.score ?? 0;
-    let total = s.total ?? config.totalQuestions;
+    const score = s.score ?? 0;
+    const total = s.total ?? config.totalQuestions;
 
     // Calcular veredito de corte se finalizado
     let passedCutoff = false;
-    let cutoffDetails = {
+    const cutoffDetails = {
       blockI: { correct: 0, total: config.blocks.I.totalQuestions, passed: false },
       blockII: { correct: 0, total: config.blocks.II.totalQuestions, passed: false },
       blockIII: { correct: 0, total: config.blocks.III?.totalQuestions ?? 0, passed: !config.blocks.III },
