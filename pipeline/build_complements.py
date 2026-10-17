@@ -306,6 +306,9 @@ def merge(docs: list[Doc]) -> None:
             if is_exclusive:
                 oc = d_meta(d)["onlyContests"]
                 aula_entry["onlyContests"] = [x.strip() for x in oc.split(",")] if "," in oc else [oc.strip()]
+            ec = d_meta(d).get("excludeContests")
+            if ec:
+                aula_entry["excludeContests"] = [x.strip() for x in ec.split(",")] if "," in ec else [ec.strip()]
             subj["aulas"].append(aula_entry)
             struct["aulas"].append({
                 "id": aula_id, "number": COMPLEMENT_BASE + d.order, "file": f"{d.id}.pdf", "totalPages": d.pages, "printedOffset": 0,

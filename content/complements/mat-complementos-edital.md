@@ -7,6 +7,7 @@ subtitle: Simetrias de figuras, retas no espaço, divisibilidade, fatoração, M
 weight: 0.08
 order: 2
 resolves: mat-simetrias-polinomios-divisibilidade
+excludeContests: PCPE_AGENTE
 ---
 
 ## O que este material cobre e como estudar
