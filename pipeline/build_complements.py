@@ -220,22 +220,66 @@ def merge(docs: list[Doc]) -> None:
     for subj in catalog["subjects"]:
         mine = sorted(by_subject.get(subj["id"], []), key=lambda d: d.order)
         subj["aulas"] = [a for a in subj["aulas"] if a.get("source") != "authored"]  # idempotente
-        base_mine = [d for d in mine if not d_meta(d).get("onlyContests")]
-        raw_total = sum(d.weight for d in base_mine)
-        # as aulas do Estratégia nunca cedem mais do que (1 − MAX_COMPLEMENT_SHARE): se os pesos dos complementos somarem
-        # mais que isso, são reduzidos na mesma proporção (antes, soma > 1 deixava a incidência das aulas-base NEGATIVA)
-        wscale = min(1.0, MAX_COMPLEMENT_SHARE / raw_total) if raw_total else 1.0
-        for d in base_mine:
-            d.weight = d.weight * wscale
-        w_total = sum(d.weight for d in base_mine)
-        assert w_total < 1, f"{subj['id']}: pesos dos complementos somam {w_total}"
-        # a soma de incidências da disciplina é preservada: as aulas do Estratégia cedem a fatia dos complementos.
-        # `incidenceBase` guarda o valor original para a mescla ser idempotente.
-        for a in subj["aulas"]:
-            if a.get("selectable") and not a.get("onlyContests"):
-                a["incidenceBase"] = a.get("incidenceBase", a["incidence"])
-                a["incidence"] = round(a["incidenceBase"] * (1 - w_total), 5)
-        base_inc = sum(a["incidenceBase"] for a in subj["aulas"] if a.get("selectable") and not a.get("onlyContests"))
+        # Verifica se a disciplina possui divisão explícita entre aulas comuns e aulas exclusivas (ex: direito-administrativo)
+        has_split = any(a.get("onlyContests") for a in subj["aulas"] if a.get("selectable"))
+
+        if has_split:
+            base_mine = [d for d in mine if not d_meta(d).get("onlyContests")]
+            exc_mine = [d for d in mine if d_meta(d).get("onlyContests")]
+
+            raw_base = sum(d.weight for d in base_mine)
+            wscale_base = min(1.0, MAX_COMPLEMENT_SHARE / raw_base) if raw_base else 1.0
+            for d in base_mine:
+                d.weight = d.weight * wscale_base
+            w_base_total = sum(d.weight for d in base_mine)
+
+            raw_exc = sum(d.weight for d in exc_mine)
+            wscale_exc = min(1.0, MAX_COMPLEMENT_SHARE / raw_exc) if raw_exc else 1.0
+            for d in exc_mine:
+                d.weight = d.weight * wscale_exc
+            w_exc_total = sum(d.weight for d in exc_mine)
+
+            th_base = sum(a["theoryPages"] for a in subj["aulas"] if a.get("selectable") and not a.get("onlyContests")) or 1
+            cm_base = sum((a.get("commentedPages", 0) or a.get("listPages", 0)) + sum(l["endPage"] - l["startPage"] + 1 for l in a.get("practiceLinks", []))
+                          for a in subj["aulas"] if a.get("selectable") and not a.get("onlyContests")) or 1
+            th_exc = sum(a["theoryPages"] for a in subj["aulas"] if a.get("selectable") and a.get("onlyContests")) or 1
+            cm_exc = sum((a.get("commentedPages", 0) or a.get("listPages", 0)) + sum(l["endPage"] - l["startPage"] + 1 for l in a.get("practiceLinks", []))
+                         for a in subj["aulas"] if a.get("selectable") and a.get("onlyContests")) or 1
+            th_tot = th_base + th_exc
+            cm_tot = cm_base + cm_exc
+            w_base = 0.5 * (th_base / th_tot) + 0.5 * (cm_base / cm_tot)
+            w_exc = 1.0 - w_base
+
+            for a in subj["aulas"]:
+                if a.get("selectable") and not a.get("onlyContests"):
+                    raw = a.get("rawIncidence", a["incidence"])
+                    a["incidenceBase"] = a.get("incidenceBase", round(raw * w_base, 7))
+                    main_val = round(raw * (1 - w_base_total), 5)
+                    a["incidence"] = round(main_val * w_base, 7)
+                elif a.get("selectable") and a.get("onlyContests"):
+                    raw = a.get("rawIncidence", a["incidence"])
+                    a["incidenceBase"] = a.get("incidenceBase", round(raw * w_exc, 7))
+                    exc_val = round(raw * (1 - w_exc_total), 5)
+                    a["incidence"] = round(exc_val * w_exc, 7)
+
+            base_inc = sum(a["incidenceBase"] for a in subj["aulas"] if a.get("selectable") and not a.get("onlyContests"))
+            exc_inc = sum(a["incidenceBase"] for a in subj["aulas"] if a.get("selectable") and a.get("onlyContests"))
+        else:
+            raw_total = sum(d.weight for d in mine)
+            wscale = min(1.0, MAX_COMPLEMENT_SHARE / raw_total) if raw_total else 1.0
+            for d in mine:
+                d.weight = d.weight * wscale
+            w_total = sum(d.weight for d in mine)
+            assert w_total < 1, f"{subj['id']}: pesos dos complementos somam {w_total}"
+
+            for a in subj["aulas"]:
+                if a.get("selectable"):
+                    a["incidenceBase"] = a.get("incidenceBase", a["incidence"])
+                    a["incidence"] = round(a["incidenceBase"] * (1 - w_total), 5)
+
+            base_inc = sum(a["incidenceBase"] for a in subj["aulas"] if a.get("selectable"))
+            exc_inc = base_inc
+
         # estrutura e segmentos do Estratégia, sem os complementos anteriores
         struct_path = CONTENT_DIR / "structure" / f"{subj['id']}.json"
         seg_path = CONTENT_DIR / "segments" / f"{subj['id']}.json"
@@ -247,7 +291,11 @@ def merge(docs: list[Doc]) -> None:
             seg_list = segments_for(d)
             aula_id = f"{d.subject}/c{d.order:02d}"
             is_exclusive = bool(d_meta(d).get("onlyContests"))
-            incidence = round(d.weight, 5) if is_exclusive or not base_inc else round(base_inc * d.weight, 5)
+            if has_split:
+                block_weight = w_exc if is_exclusive else w_base
+                incidence = round(block_weight * d.weight, 7)
+            else:
+                incidence = round(base_inc * d.weight, 5)
             aula_entry = {
                 "id": aula_id, "number": COMPLEMENT_BASE + d.order, "title": d.title, "shortTitle": d.short,
                 "kind": "theory", "edital": "yes", "selectable": True, "note": f"Material complementar MentorIA: {d.subtitle}",
