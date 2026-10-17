@@ -70,6 +70,7 @@ function generatePlanOnce(input: PlanInput): PlanResult {
       importance: input.importance,
       summaries: input.summaries ? new Set(input.summaries) : undefined,
       examQuestions: input.examQuestions,
+      contest: input.contest,
     });
     // filas por disciplina: ciclos das aulas selecionadas na ordem do curso (e blocos de resumo, no Turbo)
     const streams = chosen.map(({ subject }) => {
