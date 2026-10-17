@@ -351,7 +351,7 @@ O cargo de Escrivão de Polícia (`PCPE_ESCRIVAO`) e a disciplina de Noções de
       3. *Contabilidade Geral* (`contabilidade-geral`): 10 questões.
       4. *Raciocínio Lógico* (`raciocinio-logico`): 5 questões.
       5. *Estatística* (`estatistica`): 5 questões.
-- **Prova Discursiva (`P3`, Item 9)**: Redação dissertativa de até 30 linhas (30,00 pontos, mínimo de 15,00 pontos) sobre tema de Segurança Pública / Atualidades. Registrada como pendência evolutiva de produto (ver subseção 4).
+- **Prova Discursiva (`P3`)**: Decisão estratégica do Dono do Produto: A prova discursiva NÃO entra no sistema MentorIA. Nada será criado nem mantido para redação/discursiva. O escopo do sistema é 100% voltado para a prova objetiva (questões, simulados, bizus, resumos e teoria).
 
 ## 2. Decisões de Arquitetura e Preservação de IDs
 1. **Preservação absoluta de IDs existentes (`<disc>/aNN/sNN`)**:
@@ -378,9 +378,8 @@ O cargo de Escrivão de Polícia (`PCPE_ESCRIVAO`) e a disciplina de Noções de
 - **Disponibilidade Comercial**: `available: false` mantido para `PCPE_AGENTE` até que as pendências de conteúdo autoral e questões sejam atendidas.
 
 ## 4. Pendências Identificadas para o Dono do Produto
-1. **Cadernos de Questões Cebraspe (TecConcursos)**: Não existem cadernos baixados em `docs/questoes/` para as novas disciplinas da PCPE (Contabilidade Geral, Direito Penal, Processo Penal, Legislação PCPE e Leis Penais Especiais Cebraspe). Pendência de download externo antes do lançamento comercial.
+1. **Cadernos de Questões Cebraspe (TecConcursos)**: Não existem cadernos baixados em `docs/questoes/` para as novas disciplinas da PCPE (Contabilidade Geral, Direito Penal, Processo Penal, Legislação PCPE e Leis Penais Especiais Cebraspe). O download deve ser realizado pelo Dono do Produto com sua conta e importado via `python pipeline/questoes/importar.py --remoto`.
 2. **Bizus autorais (`content/items/`)**: Faltam 239 trechos nas disciplinas novas e em `direito-administrativo` `a20`..`a24`.
 3. **Resumos analíticos (`content/summaries/`)**: Faltam 309 trechos (239 das matérias novas + 70 de raciocínio lógico em produção).
-4. **Discursiva / Redação**: `docs/45` contém material de discursiva, dependente de implementação futura de módulo de redação na plataforma.
 
 
