@@ -6,7 +6,7 @@ import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { EXAM_CONFIGS, SIMULADOS_ENABLED, checkSimuladoReadiness, type SupportedSimuladoContest } from "@/lib/data/simulados";
 import { canUserAccessCoreFeatures } from "@/lib/system-settings";
-import { AOCP_BANCAS } from "./banca";
+import { contestBancas } from "./banca";
 
 function shuffle<T>(arr: T[]): T[] {
   const copy = [...arr];
@@ -58,7 +58,7 @@ export async function startSimuladoSession(input: {
       where: {
         subjectId: actualSubId,
         status: "APPROVED",
-        banca: { in: AOCP_BANCAS },
+        banca: { in: contestBancas(input.contest) },
         kind: "MULTIPLA_ESCOLHA", // a prova é de múltipla escolha; itens Certo/Errado ficam fora do simulado
       },
       select: { id: true },

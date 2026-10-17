@@ -1,7 +1,7 @@
 import "server-only";
 import { Contest } from "@/generated/prisma/client";
 import { db } from "@/lib/db";
-import { AOCP_BANCAS } from "@/lib/quiz/banca";
+import { contestBancas } from "@/lib/quiz/banca";
 import { EXAM_CONFIGS, type ContestExamConfig, type SupportedSimuladoContest } from "@/lib/simulado-rules";
 
 export * from "@/lib/simulado-rules";
@@ -44,7 +44,7 @@ export async function checkSimuladoReadiness(
     by: ["subjectId"],
     where: {
       status: "APPROVED",
-      banca: { in: AOCP_BANCAS },
+      banca: { in: contestBancas(contest) },
       kind: "MULTIPLA_ESCOLHA", // a prova é de múltipla escolha; itens Certo/Errado ficam fora do simulado
     },
     _count: true,

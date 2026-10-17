@@ -13,7 +13,10 @@ const MIN_QUESTIONS = 5;
 async function ownedQuizActivity(userId: string, activityId: string) {
   const a = await db.activity.findFirst({
     where: { id: activityId, type: "QUESTOES", week: { plan: { userId, status: "ACTIVE" } } },
-    include: { segments: { select: { segmentId: true } } },
+    include: {
+      segments: { select: { segmentId: true } },
+      week: { select: { plan: { select: { contest: true } } } },
+    },
   });
   if (!a) throw new Error("Atividade de questões não encontrada ou plano não liberado.");
   return a;
@@ -29,7 +32,7 @@ export async function startQuiz(activityId: string): Promise<{ error: string } |
 
   const segmentIds = a.segments.map((s) => s.segmentId);
   const questions = await db.question.findMany({
-    where: activityQuizWhere(segmentIds, servableStatuses()),
+    where: activityQuizWhere(segmentIds, servableStatuses(), a.week.plan.contest),
     select: { id: true, segmentId: true },
   });
   const want = a.quizQuestions ?? 25;
