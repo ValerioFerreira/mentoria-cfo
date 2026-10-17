@@ -7,6 +7,7 @@ subtitle: Estrutura da palavra, derivação, composição e outros processos (it
 weight: 0.03
 order: 2
 resolves: port-figuras-formacao
+excludeContests: PCPE_AGENTE
 ---
 
 ## O que a banca quer saber

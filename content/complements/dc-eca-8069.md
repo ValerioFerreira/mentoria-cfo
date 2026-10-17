@@ -7,6 +7,7 @@ subtitle: Proteção integral, direitos fundamentais, medidas de proteção, ato
 weight: 0.07
 order: 1
 resolves: dc-eca
+excludeContests: PCPE_AGENTE
 ---
 
 ## Como estudar o ECA para a prova

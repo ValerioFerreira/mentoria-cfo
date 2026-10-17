@@ -7,6 +7,7 @@ subtitle: Itens 2, 5 e 6 do edital de Informática: uso prático de navegadores,
 weight: 0.08
 order: 1
 resolves: inf-navegadores-cmd
+excludeContests: PCPE_AGENTE
 ---
 
 ## O que este material cobre (e por quê)

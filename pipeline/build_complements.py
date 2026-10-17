@@ -262,6 +262,8 @@ def merge(docs: list[Doc]) -> None:
                     exc_val = round(raw * (1 - w_exc_total), 5)
                     a["incidence"] = round(exc_val * w_exc, 7)
 
+            raw_base_sum = sum(a.get("rawIncidence", a["incidence"]) for a in subj["aulas"] if a.get("selectable") and not a.get("onlyContests")) or 1.0
+            raw_exc_sum = sum(a.get("rawIncidence", a["incidence"]) for a in subj["aulas"] if a.get("selectable") and a.get("onlyContests")) or 1.0
             base_inc = sum(a["incidenceBase"] for a in subj["aulas"] if a.get("selectable") and not a.get("onlyContests"))
             exc_inc = sum(a["incidenceBase"] for a in subj["aulas"] if a.get("selectable") and a.get("onlyContests"))
         else:
@@ -293,9 +295,11 @@ def merge(docs: list[Doc]) -> None:
             is_exclusive = bool(d_meta(d).get("onlyContests"))
             if has_split:
                 block_weight = w_exc if is_exclusive else w_base
-                incidence = round(block_weight * d.weight, 7)
+                base_scale = raw_exc_sum if is_exclusive else raw_base_sum
+                incidence = round(round(base_scale * d.weight, 5) * block_weight, 7)
             else:
                 incidence = round(base_inc * d.weight, 5)
+
             aula_entry = {
                 "id": aula_id, "number": COMPLEMENT_BASE + d.order, "title": d.title, "shortTitle": d.short,
                 "kind": "theory", "edital": "yes", "selectable": True, "note": f"Material complementar MentorIA: {d.subtitle}",
