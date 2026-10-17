@@ -382,4 +382,47 @@ O cargo de Escrivão de Polícia (`PCPE_ESCRIVAO`) e a disciplina de Noções de
 2. **Bizus autorais (`content/items/`)**: Faltam 239 trechos nas disciplinas novas e em `direito-administrativo` `a20`..`a24`.
 3. **Resumos analíticos (`content/summaries/`)**: Faltam 309 trechos (239 das matérias novas + 70 de raciocínio lógico em produção).
 
+## 5. Rodada 3 de Correções (Outubro/2026) — Homologação Completa
+
+Após a terceira rodada de revisão técnica e auditoria dos planos, foram implementadas e homologadas as seguintes correções:
+
+### 5.1 Bloqueante 1: Prevenção de Diluição no Planejador (Isolamento por Concurso)
+- **Problema:** O planejador calculava `totalInc` e `share` somando a incidência de todas as aulas selecionáveis do catálogo da disciplina, sem filtrar se pertenciam ao edital do concurso selecionado. Com isso, as aulas exclusivas de Direito Administrativo da PCPE (`a20` a `a24` + `c02`) diluíam o peso das aulas comuns no CBMPE e PMPE em cerca de 37%.
+- **Solução:** 
+  - Adicionado suporte aos campos `onlyContests` e `excludeContests` no tipo `CatalogAula` (`web/src/lib/planner/types.ts`).
+  - Implementada a função pura `isAulaInEdital` em `web/src/lib/planner/select.ts`, garantindo que apenas aulas elegíveis para o concurso ativo entrem no somatório de incidência, ganho e share.
+  - Exportado `inEditalAulas` em `Selection` e ajustado `web/src/lib/planner/coverage.ts` para que `totalInc`, `seenInc` e `notCovered` considerem estritamente as aulas do concurso.
+- **Validação:** O script `web/scripts/compare-plans-main.ts` executou uma matriz de 48 cenários legados (CBMPE_OFICIAL, CBMPE_SOLDADO, PMPE_OFICIAL, PMPE_SOLDADO com 15h, 25h, 40h, níveis 0 e 2, com e sem Turbo) contra a branch `main`: **exatamente 0 divergências** de minutos, atividades ou cobertura.
+
+### 5.2 Bloqueante 2: Escopo de Contabilidade Geral, Matemática em RL e Lacunas
+- **Contabilidade Geral:** Auditoria detalhada dos itens 1 a 10 do edital. Aulas cobrindo normas societárias avançadas (`a09` CPC 01, `a10` CPC 04, `a12` CPC 25, `a14` Reservas de Capital, `a15` Reservas de Lucros, `a18` CPC 00 R2, `a19` CPC 26) marcadas com `edital: "partial"` e notas pedagógicas justificando o escopo.
+- **Raciocínio Lógico & Matemática:** O edital Cebraspe (subitem 22.2.3.2) cobra 15 itens combinando matemática elementar e lógica sentencial. `matematica` foi adicionada a `CONTEST_SUBJECTS.PCPE_AGENTE`, com as aulas não pertinentes (`a06`, `a07`, `a12`, `a13`, `a16`, `a17` e complementos `c01`/`c02`) excluídas via `excludeContests: ["PCPE_AGENTE"]`.
+- **Lacunas (`content/gaps.json`):**
+  - `da-processo-adm`: mapeado explicitamente ao Item 10 do edital (Processo Administrativo Estadual Lei 11.781/2000 e Federal Lei 9.784/1999).
+  - `leg-penal-eca`: detalhado como aspectos penais e procedimentais policiais (diferenciando de `dc-eca` do CBMPE).
+  - `rl-matrizes-sistemas-lineares`: registrada lacuna média não resolvida para itens 5 e 15 do edital.
+  - `est-tamanho-amostral`: registrada lacuna média não resolvida para o item 3.2 do edital.
+  - `inf-deep-dark-web-discussao`: registrada como resolvida via resumo analítico de `informatica/a00`.
+
+### 5.3 Bloqueante 3: Neutralidade Pedagógica Total
+- Removidas menções a professores e equipes nos títulos das aulas através de higienização automatizada em `pipeline/build_catalog.py` (`clean_title`).
+- Removidas menções a professores dos comentários e notas em `content/overrides/`.
+- Adicionado teste automatizado de neutralidade em `pipeline/tests/test_content.py` (`test_titles_and_notes_are_neutral`), aprovado com sucesso.
+
+### 5.4 Reestruturação da Prova Objetiva e Simulados (Cebraspe)
+- Atualizado `EXAM_CONFIGS.PCPE_AGENTE` em `web/src/lib/simulado-rules.ts`:
+  - **Bloco I (P1 — Noções de Direito, 20 questões):** Legislação PCPE (4), Direito Constitucional (4), Direito Administrativo (4), Direito Penal (3), Legislação Penal Especial (2), Direito Processual Penal (3).
+  - **Bloco II (P2 — Conhecimentos Específicos, 40 questões):** Língua Portuguesa (10), Informática (10), Contabilidade Geral (10), Raciocínio Lógico (3), Matemática (3), Estatística (4).
+  - **Critérios de Corte:** 60 questões no total, corte de 30 pontos (50%), `minPercentPerBlock: 0`, `noZeroInAnyArea: false`.
+- Tornou-se opcional o campo `blocks.III` na interface `ContestExamConfig`, adaptando `simulados-view.tsx` e `resultado/[id]/page.tsx` para suporte dinâmico a 2 ou 3 blocos.
+
+### 5.5 Resultados da Bateria de Verificação
+- `npm run typecheck`: 0 erros.
+- `npm test -- --project unit`: 462 testes unitários aprovados em 43 arquivos.
+- `pipeline/test_plan_pcpe.ts`: 18 de 18 cenários aprovados com veredicto `LIBERAR` e 0 erros de integridade.
+- `compare_importance_main.py`: 0 discrepâncias em 897 trechos legados.
+- `compare-plans-main.ts`: 0 divergências em 48 cenários.
+- `npm run build`: Build Next.js Turbopack com sucesso (código 0).
+
+
 
