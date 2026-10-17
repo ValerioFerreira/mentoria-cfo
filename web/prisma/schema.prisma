@@ -281,6 +281,8 @@ model Aula {
   note           String?
   // material autoral (source = AUTHORED): caminho do PDF servido pelo app, ex.: "complementos/leg-pe-decreto-50014.pdf"
   materialPath   String?
+  onlyContests   String[]      @default([])
+  excludeContests String[]     @default([])
 
   subject    Subject    @relation(fields: [subjectId], references: [id])
   topics     Topic[]

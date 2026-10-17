@@ -31,6 +31,8 @@ export async function loadPlannerData(): Promise<PlannerData> {
       practiceLinks: a.practiceLinks as unknown as CatalogAula["practiceLinks"],
       incidence: a.incidence, printedOffset: a.printedOffset,
       source: a.source === "AUTHORED" ? "authored" : "base",
+      ...(a.onlyContests?.length ? { onlyContests: a.onlyContests } : {}),
+      ...(a.excludeContests?.length ? { excludeContests: a.excludeContests } : {}),
     };
     aulasBySubject.set(a.subjectId, [...(aulasBySubject.get(a.subjectId) ?? []), item]);
   }

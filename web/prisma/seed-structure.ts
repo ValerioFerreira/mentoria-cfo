@@ -35,6 +35,7 @@ interface CatalogAula {
   totalPages: number; theoryPages: number; segmentCount: number; commentedPages: number; listPages: number;
   commentedRuns: number[][]; practiceLinks: unknown[]; printedOffset: number; incidence: number;
   source?: "base" | "authored"; materialPath?: string;
+  onlyContests?: string[]; excludeContests?: string[];
 }
 interface Catalog {
   subjects: { id: string; name: string; block: "I" | "II" | "III"; examQuestions: number; sortOrder: number;
@@ -88,6 +89,8 @@ export async function seedStructure() {
       commentedPages: a.commentedPages, listPages: a.listPages, commentedRuns: a.commentedRuns,
       practiceLinks: a.practiceLinks as object[], printedOffset: a.printedOffset, incidence: a.incidence, note: a.note ?? null,
       source: a.source === "authored" ? ("AUTHORED" as const) : ("BASE" as const), materialPath: a.materialPath ?? null,
+      onlyContests: a.onlyContests ?? [],
+      excludeContests: a.excludeContests ?? [],
     };
     await db.aula.upsert({ where: { id: a.id }, create: { id: a.id, ...data }, update: data });
   }
