@@ -26,6 +26,11 @@ for (const c of CONTESTS) {
     subjects: CONTEST_SUBJECTS[c.key],
     /** nº de questões por disciplina na prova */
     exam,
+    ...(c.key === "PCPE_AGENTE"
+      ? {
+          note: "ESTIMATIVA: o edital item 7.1.1 fixa apenas P1 = 20 e P2 = 40. A distribuição por matéria é estimativa de projeto do MentorIA (RLM desmembrado em RL 3 + MAT 3 e Estatística com 4 questões).",
+        }
+      : {}),
   };
 }
 const file = path.resolve(__dirname, "../../content/contests.json");
