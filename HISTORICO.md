@@ -424,5 +424,51 @@ Após a terceira rodada de revisão técnica e auditoria dos planos, foram imple
 - `compare-plans-main.ts`: 0 divergências em 48 cenários.
 - `npm run build`: Build Next.js Turbopack com sucesso (código 0).
 
+## 6. Rodada 4 de Correções (Outubro/2026) — Robustez e Consolidação Final
+
+### 6.1 Robustez do Filtro por Concurso no Banco de Produção (Solução A)
+- **Decisão:** Implementação da Solução (a), persistindo `onlyContests` e `excludeContests` no banco relacional.
+- **Implementação:**
+  - Adicionadas colunas `onlyContests TEXT[] @default([])` e `excludeContests TEXT[] @default([])` no modelo `Aula` de `web/prisma/schema.prisma`.
+  - Criada e aplicada a migração `20261017130000_aula_contest_filters`.
+  - Atualizados `web/prisma/seed-structure.ts` e `web/prisma/seed.ts` para persistirem os filtros durante o processo de seed idempotente.
+  - Atualizado `web/src/lib/data/planner-data.ts` para carregar `onlyContests` e `excludeContests` em `CatalogAula` no runtime de produção.
+- **Benefício:** Elimina a fragilidade da dependência do fallback exclusivo de importância (evita que eventuais aulas práticas sem trechos ou segmentos pontuais vazem para outros concursos).
+
+### 6.2 Modo Dual no Comparador de Planos (`compare-plans-main.ts`)
+- Implementado comparador com modo dual:
+  1. `FIXTURES`: testa os planos com os campos nativos do catálogo.
+  2. `COMO NO BANCO`: purga programaticamente `onlyContests` e `excludeContests` de `branchCat` antes de invocar o planejador para validar a robustez do fallback por importância.
+- Tolerância de cobertura ajustada para `1e-6` (isolando resíduos de arredondamento de float de ~1.6e-8 sem mascarar regressões de planejamento).
+- **Resultado:** 96 cenários executados (48 em fixtures + 48 como no banco) com **exatamente 0 divergências** em relação à `main`.
+
+### 6.3 Generalização da Limpeza de Títulos (`clean_title`)
+- Higienização de títulos em `pipeline/build_catalog.py` generalizada com expressões regulares para eliminar menções a professores (`- Prof./Professor(a) <Nome>`), equipes (`- Equipe <Nome>`) e mídias (`- Somente (em) PDF`, `(Somente em PDF)`).
+- Preservadas intencionalmente as 3 exceções legadas herdadas da `main` (`biologia/a16`, `biologia/a17` e `direito-constitucional/a18`) para submissão à decisão do Dono do Produto.
+
+### 6.4 Auditoria e Correção de Lacunas (`content/gaps.json`)
+- `inf-deep-dark-web-discussao`: auditado e confirmado como **Falso Alarme**. O material-base `informatica/a00` já cobre integralmente os temas nas páginas 8 (grupos de discussão), 18–20 (teoria Deep/Dark Web/Tor), 60 (resumo) e 97, 103 (questões comentadas). Resumo analítico elaborado por Claude Sonnet 5.5 no commit `b40cb70`.
+- `da-processo-adm`: ajustada a descrição da evidência para esclarecer que o item 10 do edital da PCPE traz a rubrica genérica "Processo administrativo" (sem números de leis). O curso-base supriu a Lei Estadual nº 11.781/2000 (`a23`) e o MentorIA complementou com a Lei Federal nº 9.784/1999 (`c02`), muito cobrada pelo Cebraspe.
+
+### 6.5 Pesos de Disciplina Documentados como Estimativa de Projeto
+- Documentado em `content/contests.json`, `web/content/contests.json` e `web/scripts/export-contests.ts` que o subitem 7.1.1 do edital PCPE fixa apenas `P1 = 20` (Noções de Direito) e `P2 = 40` (Conhecimentos Específicos).
+- As quantidades individuais por matéria são estimativas técnicas de projeto do MentorIA:
+  - Raciocínio Lógico (3) + Matemática (3) desmembrando o bloco RLM de 6 questões.
+  - Estatística fixada em 4 questões (baseada em provas anteriores Cebraspe para carreiras policiais).
+
+### 6.6 Rótulos de Perfis e Coluna Fixação no `pipeline/test_plan_pcpe.ts`
+- Perfis atualizados para a nomenclatura oficial: `0: Iniciante`, `1: Básico`, `2: Intermediário`, `3: Domina`.
+- Adicionada a coluna `Fixacao` na tabela de resultados da verificação.
+- Execução de 24 cenários (4 perfis × 3 cargas × 2 turbos) aprovada com 100% de veredito `LIBERAR` e 0 erros de verificação independente.
+
+### 6.7 Homologação e Verificação da Rodada 4
+- `npm run typecheck`: 0 erros.
+- `npm test -- --project unit`: 462 testes unitários aprovados (43 arquivos).
+- `npm run lint`: 9 erros exatamente iguais à baseline da `main`.
+- `pipeline/compare_importance_main.py`: 0 discrepâncias em 897 trechos legados.
+- `web/scripts/compare-plans-main.ts`: 0 divergências em 96 cenários (modos fixtures e como no banco).
+- `pipeline/test_plan_pcpe.ts`: 24 de 24 cenários aprovados com LIBERAR.
+- `npm run build`: Build de produção Next.js Turbopack finalizado com sucesso (código 0).
+
 
 
