@@ -20,7 +20,7 @@ export interface ContestExamConfig {
   blocks: {
     I: { name: string; totalQuestions: number; minQuestions: number };
     II: { name: string; totalQuestions: number; minQuestions: number };
-    III: { name: string; totalQuestions: number; minQuestions: number };
+    III?: { name: string; totalQuestions: number; minQuestions: number };
   };
   subjects: ExamSubjectRule[];
 }
@@ -166,9 +166,8 @@ export const EXAM_CONFIGS: Record<SupportedSimuladoContest, ContestExamConfig> =
     minPercentTotal: 50, // mínimo de 30 pontos no total (50%)
     noZeroInAnyArea: false,
     blocks: {
-      I: { name: "Bloco I (Noções de Direito)", totalQuestions: 20, minQuestions: 0 },
-      II: { name: "Bloco II (Língua Portuguesa e Informática)", totalQuestions: 20, minQuestions: 0 },
-      III: { name: "Bloco III (RL, Estatística e Contabilidade)", totalQuestions: 20, minQuestions: 0 },
+      I: { name: "Prova Objetiva P1 (Noções de Direito)", totalQuestions: 20, minQuestions: 0 },
+      II: { name: "Prova Objetiva P2 (Conhecimentos Específicos)", totalQuestions: 40, minQuestions: 0 },
     },
     subjects: [
       // Bloco I - Noções de Direito (20 questões)
@@ -176,15 +175,15 @@ export const EXAM_CONFIGS: Record<SupportedSimuladoContest, ContestExamConfig> =
       { subjectId: "direito-constitucional", name: "Direito Constitucional", block: "I", count: 4 },
       { subjectId: "direito-administrativo", name: "Direito Administrativo", block: "I", count: 4 },
       { subjectId: "direito-penal", name: "Direito Penal", block: "I", count: 3 },
-      { subjectId: "legislacao-penal-especial", name: "Legislação Penal Extravagante", block: "I", count: 2 },
+      { subjectId: "legislacao-penal-especial", name: "Legislação Penal Especial (Direito Penal)", block: "I", count: 2 },
       { subjectId: "direito-processual-penal", name: "Direito Processual Penal", block: "I", count: 3 },
-      // Bloco II - Conhecimentos Gerais (20 questões)
+      // Bloco II - Conhecimentos Específicos (40 questões)
       { subjectId: "lingua-portuguesa", name: "Língua Portuguesa", block: "II", count: 10 },
       { subjectId: "informatica", name: "Noções de Informática", block: "II", count: 10 },
-      // Bloco III - Conhecimentos Específicos Agente (20 questões)
-      { subjectId: "raciocinio-logico", name: "Raciocínio Lógico", block: "III", count: 5 },
-      { subjectId: "estatistica", name: "Noções de Estatística", block: "III", count: 5 },
-      { subjectId: "contabilidade-geral", name: "Contabilidade Geral", block: "III", count: 10 },
+      { subjectId: "contabilidade-geral", name: "Contabilidade Geral", block: "II", count: 10 },
+      { subjectId: "raciocinio-logico", name: "Raciocínio Lógico", block: "II", count: 3 },
+      { subjectId: "matematica", name: "Matemática", block: "II", count: 3 },
+      { subjectId: "estatistica", name: "Noções de Estatística", block: "II", count: 4 },
     ],
   },
 };

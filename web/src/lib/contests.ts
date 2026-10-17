@@ -112,6 +112,7 @@ export const CONTEST_SUBJECTS: Record<Contest, string[]> = {
     "lingua-portuguesa",
     "informatica",
     "raciocinio-logico",
+    "matematica",
     "estatistica",
     "contabilidade-geral",
     "legislacao-pcpe",
