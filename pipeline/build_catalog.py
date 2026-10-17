@@ -19,8 +19,16 @@ from textutil import FRONTMATTER, norm  # noqa: E402
 PAGES_PER_FIXACAO_HOUR = 12
 
 
-def clean_title(raw: str) -> str:
+def clean_title(raw: str, subject_id: str = "") -> str:
     t = re.sub(r"^\s*\(Somente em PDF\)\s*", "", raw, flags=re.I)
+    if subject_id in {"direito-penal", "direito-processual-penal", "legislacao-penal-especial", "legislacao-pcpe"}:
+        t = re.sub(
+            r"^\s*-\s*(?:Prof(?:essor|\.)?\s+(?:Renan Araujo|Felipe Leal|Giulian Salvador)|Equipe Legislação)(?:\s*-\s*Somente PDF)?\s*",
+            "",
+            t,
+            flags=re.I,
+        )
+        t = re.sub(r"^\s*nvestigação\b", "Investigação", t, flags=re.I)
     t = re.sub(r"\s+", " ", t.replace("_ ", ": ").replace("_", ":")).strip().rstrip(".")
     return t
 
@@ -81,7 +89,7 @@ def main() -> int:
             if a.get("source") == "authored":  # complementos: build_complements.py mescla depois (idempotente)
                 continue
             ov = overrides.get(a["id"], {})
-            title = clean_title(a["title"])
+            title = clean_title(a["title"], subj.id)
             kind = ov.get("kind") or ("practice" if a["theoryPages"] == 0 else "theory")
             entry = {
                 "id": a["id"],

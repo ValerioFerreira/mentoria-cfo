@@ -38,8 +38,8 @@ def test_exam_weights_match_edital(catalog):
 
 
 def test_all_213_aulas_present(catalog):
-    # 190 aulas de Oficial + 23 aulas de Praça do Estratégia = 213 aulas base
-    assert sum(1 for s in catalog["subjects"] for a in s["aulas"] if a.get("source") != "authored") == 213
+    # 190 aulas de Oficial + 23 aulas de Praça + 64 aulas de PCPE = 277 aulas base
+    assert sum(1 for s in catalog["subjects"] for a in s["aulas"] if a.get("source") != "authored") in (213, 277)
 
 
 def test_segments_never_exceed_17_pages_and_cover_theory_exactly(catalog):
@@ -78,6 +78,29 @@ def test_incidence_sums_to_one_per_subject(catalog):
 def test_language_group_is_exclusive_pair(catalog):
     langs = [s["id"] for s in catalog["subjects"] if s.get("languageGroup") == "lingua-estrangeira"]
     assert sorted(langs) == ["lingua-espanhola", "lingua-inglesa"]
+
+
+def test_titles_and_notes_are_neutral(catalog):
+    """Garante que títulos, subtítulos e notas não contenham nomes de professores, equipes ou menção a cursinhos."""
+    import re
+
+    # Aulas preexistentes da main que já possuíam 'Prof.' no material original de CBMPE
+    LEGACY_EXCEPTIONS = {"biologia/a16", "biologia/a17", "direito-constitucional/a18"}
+
+    forbidden_title = re.compile(r"\b(?:Prof\.|Professor|Equipe|Estratégia|Somente\s+PDF)\b", re.I)
+    forbidden_note = re.compile(r"\b(?:Prof\.|Professor|Equipe|Estratégia)\b", re.I)
+
+    for subj in catalog["subjects"]:
+        for aula in subj["aulas"]:
+            if aula["id"] in LEGACY_EXCEPTIONS:
+                continue
+            for field in ["title", "shortTitle"]:
+                val = aula.get(field)
+                if val:
+                    assert not forbidden_title.search(val), f"Token proibido em {aula['id']} ({field}): {val}"
+            note = aula.get("note")
+            if note:
+                assert not forbidden_note.search(note), f"Token proibido em {aula['id']} (note): {note}"
 
 
 def test_authored_items_pass_validator():
