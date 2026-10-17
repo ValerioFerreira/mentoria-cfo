@@ -30,8 +30,9 @@ console.log(`Disciplinas (${subs.length}):`, subs.join(", "));
 const hoursList = [15, 25, 40];
 const profiles: { name: string; level: Level }[] = [
   { name: "Iniciante (nível 0)", level: 0 },
-  { name: "Intermediário (nível 1)", level: 1 },
-  { name: "Avançado (nível 2)", level: 2 },
+  { name: "Básico (nível 1)", level: 1 },
+  { name: "Intermediário (nível 2)", level: 2 },
+  { name: "Domina (nível 3)", level: 3 },
 ];
 const turboOptions = [false, true];
 
@@ -41,6 +42,7 @@ interface ResultRow {
   Carga: string;
   Semanas: number;
   Teoria: number;
+  Fixacao: number;
   Revisao: number;
   Questoes: number;
   Simulado: number;
@@ -91,6 +93,7 @@ for (const prof of profiles) {
         Carga: `${h}h/sem`,
         Semanas: plan.weeks.length,
         Teoria: byType["TEORIA"] || 0,
+        Fixacao: byType["FIXACAO"] || 0,
         Revisao: byType["REVISAO"] || 0,
         Questoes: byType["QUESTOES"] || 0,
         Simulado: byType["SIMULADO"] || 0,
