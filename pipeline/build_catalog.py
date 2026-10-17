@@ -19,15 +19,23 @@ from textutil import FRONTMATTER, norm  # noqa: E402
 PAGES_PER_FIXACAO_HOUR = 12
 
 
-def clean_title(raw: str, subject_id: str = "") -> str:
-    t = re.sub(r"^\s*\(Somente em PDF\)\s*", "", raw, flags=re.I)
-    if subject_id in {"direito-penal", "direito-processual-penal", "legislacao-penal-especial", "legislacao-pcpe"}:
+LEGACY_TITLE_EXCEPTIONS = {
+    "biologia/a16",
+    "biologia/a17",
+    "direito-constitucional/a18",
+}
+
+
+def clean_title(raw: str, aula_id: str = "") -> str:
+    t = re.sub(r"^\s*\(Somente\s+(?:em\s+)?PDF\)\s*", "", raw, flags=re.I)
+    if aula_id not in LEGACY_TITLE_EXCEPTIONS:
         t = re.sub(
-            r"^\s*-\s*(?:Prof(?:essor|\.)?\s+(?:Renan Araujo|Felipe Leal|Giulian Salvador)|Equipe Legislação)(?:\s*-\s*Somente PDF)?\s*",
+            r"^\s*-\s*(?:Prof(?:essor(?:a)?|\.)?\s+(?:[A-ZÀ-ÿ][a-zà-ÿ]+\s+){1,2}|Equipe\s+[A-ZÀ-ÿ][a-zà-ÿ]+)(?:\s*-\s*Somente\s+(?:em\s+)?PDF)?\s*",
             "",
             t,
             flags=re.I,
         )
+        t = re.sub(r"\s*-\s*Somente\s+(?:em\s+)?PDF\b", "", t, flags=re.I)
         t = re.sub(r"^\s*nvestigação\b", "Investigação", t, flags=re.I)
     t = re.sub(r"\s+", " ", t.replace("_ ", ": ").replace("_", ":")).strip().rstrip(".")
     return t
@@ -89,7 +97,7 @@ def main() -> int:
             if a.get("source") == "authored":  # complementos: build_complements.py mescla depois (idempotente)
                 continue
             ov = overrides.get(a["id"], {})
-            title = clean_title(a["title"], subj.id)
+            title = clean_title(a["title"], a["id"])
             kind = ov.get("kind") or ("practice" if a["theoryPages"] == 0 else "theory")
             entry = {
                 "id": a["id"],
