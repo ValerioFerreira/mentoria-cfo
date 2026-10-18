@@ -8,79 +8,107 @@
       "id": "contabilidade-geral/a09/s01",
       "bizu": {
         "summary": [
-          "**Objetivo do CPC 01 (Impairment)**: assegurar que os ativos nao estejam registrados por valor superior ao montante passivel de recuperacao.",
-          "**Valor Recuperavel**: definido formalmente como o MAIOR valor apurado entre o Valor Justo Liquido de Venda e o Valor em Uso.",
-          "**Valor Justo Liquido de Venda**: preco obtido em transacao entre partes conhecedoras independentes, deduzidas as despesas diretas de alienacao.",
-          "**Valor em Uso**: valor presente dos fluxos de caixa futuros estimados que a entidade espera auferir com o uso continuado do ativo e descarte final.",
-          "**Regra do Impairment**: se o Valor Contabil Liquido for superior ao Valor Recuperavel, reconhece-se compulsoriamente uma perda por desvalorizacao.",
-          "**Lancamento contabil da perda**: debita-se Perda por Desvalorizacao de Ativos no resultado e credita-se conta retificadora no ativo correspondente.",
-          "**Periodicidade por indicios**: para a maioria dos ativos, realiza-se o teste apenas se houver indicios externos ou internos de desvalorizacao.",
-          "**Teste anual compulsorio**: obrigatorio anualmente para intangiveis com vida util indefinida, intangiveis em desenvolvimento e goodwill.",
-          "**Goodwill (agio por rentabilidade futura)**: excesso pago na aquisicao societaria sujeito ao teste anual de recuperabilidade compulsorio.",
-          "**Reversao de perdas**: admitida para ativos ordinarios caso ocorra recuperacao fatico-economica, limitada ao teto historico sem impairment.",
-          "**Vedacao absoluta de reversao no goodwill**: e expressamente proibido reverter qualquer perda por desvalorizacao reconhecida para o agio por goodwill.",
-          "**Unidade Geradora de Caixa (UGC)**: menor grupo identificavel de ativos que gera entradas de caixa em grande parte independentes de outros ativos."
+          "**Objetivo do teste**: garantir que nenhum ativo fique por valor superior ao que se espera recuperar pela venda ou pelo uso, método do CPC 01.",
+          "**Valor recuperável**: é o maior entre o valor justo líquido de despesas de venda e o valor em uso; a perda é o excesso do valor contábil sobre ele.",
+          "**Quando há perda**: só se o valor contábil superar o recuperável; caso contrário nada se faz, e basta que um dos dois valores supere o contábil para dispensar o outro.",
+          "**Valor em uso**: valor presente dos fluxos de caixa esperados, até cinco anos, sem reestruturações futuras; o valor de venda final já está embutido quando se fornece o valor em uso.",
+          "**Lançamento da perda**: debita despesa com perda por desvalorização e credita ajuste ao valor recuperável, retificadora do ativo.",
+          "**Teste obrigatório**: goodwill, intangível de vida indefinida e intangível ainda não em uso devem ser testados todo ano, mesmo sem indícios.",
+          "**Unidade geradora de caixa**: menor grupo de ativos com entradas de caixa em grande parte independentes, usada quando o ativo isolado não gera caixa próprio.",
+          "**Reversão**: credita-se receita, só se as estimativas mudaram, sem ultrapassar o valor que o ativo teria sem a perda, e nunca para goodwill."
         ],
         "teoria": [
           {
-            "statement": "O valor recuperavel de um ativo imobilizado corresponde ao menor valor entre o valor justo liquido de despesas de venda e o valor em uso.",
+            "statement": "Para avaliar o valor recuperável de um ativo, é sempre necessário calcular tanto o valor justo líquido de despesas de venda quanto o valor em uso.",
             "isTrue": false,
-            "explanation": "O CPC 01 define que o valor recuperavel e expressamente o MAIOR valor entre o valor justo liquido de venda e o valor em uso."
+            "explanation": "Se qualquer um dos dois valores exceder o valor contábil, não há desvalorização e o outro não precisa ser estimado."
           },
           {
-            "statement": "A reversao de perda por desvalorizacao anteriormente reconhecida sobre o agio por expectativa de rentabilidade futura (goodwill) e permitida.",
+            "statement": "O valor recuperável de um ativo corresponde ao maior valor entre o seu valor justo líquido de despesas de venda e o seu valor em uso.",
+            "isTrue": true,
+            "explanation": "Essa é a definição do CPC 01."
+          },
+          {
+            "statement": "A perda por desvalorização reconhecida para o goodwill pode ser revertida quando as causas deixarem de existir.",
             "isTrue": false,
-            "explanation": "O CPC 01 veda taxativamente a reversao de perdas por desvalorizacao reconhecidas sobre o goodwill societario."
+            "explanation": "A reversão é vedada para o ágio por expectativa de rentabilidade futura."
           },
           {
-            "statement": "O teste de reducao ao valor recuperavel e compulsorio em periodicidade anual para ativos intangiveis dotados de vida util indefinida.",
+            "statement": "O intangível de vida útil indefinida deve ser submetido anualmente ao teste de recuperabilidade, ainda que não haja indícios de desvalorização.",
             "isTrue": true,
-            "explanation": "Intangiveis com vida util indefinida, intangiveis ainda nao disponiveis para uso e goodwill exigem teste anual independente de indicios."
-          },
-          {
-            "statement": "Quando o valor contabil liquido de um equipamento fabril supera seu valor recuperavel, a diferenca deve ser reconhecida como despesa na DRE.",
-            "isTrue": true,
-            "explanation": "A perda apurada deve ser levada a debito no resultado do exercicio em contrapartida a conta retificadora do imobilizado."
+            "explanation": "Como não é amortizado, o teste anual é a única forma de evitar registro acima do valor recuperável."
           }
         ],
         "revisao": [
           {
-            "statement": "O valor em uso e mensurado somando-se os fluxos nominais futuros esperados da operacao do bem sem qualquer desconto a valor presente.",
-            "isTrue": false,
-            "explanation": "O valor em uso exige a projecao dos fluxos futuros descontados a valor presente mediante aplicacao de taxa de desconto adequada."
-          },
-          {
-            "statement": "Indicios externos de desvalorizacao abrangem aumentos substantivos nas taxas de juros de mercado que reduzam o valor em uso dos ativos.",
+            "statement": "Se o valor em uso de um ativo é R$ 100.000 e se informa também seu valor de venda no fim da vida útil de R$ 20.000, o valor em uso a considerar é R$ 100.000.",
             "isTrue": true,
-            "explanation": "Elevacoes nas taxas de desconto reduzem o valor presente dos fluxos projetados, configurando tipico indicio externo de desvalorizacao."
+            "explanation": "O valor de venda ao final já está incluído no valor em uso informado."
           },
           {
-            "statement": "Caso o valor justo liquido de despesas de alienacao de um ativo ja supere seu valor contabil, a entidade esta dispensada de calcular o valor em uso.",
-            "isTrue": true,
-            "explanation": "Se uma das bases ja supera o valor contábil, o ativo nao apresenta desvalorizacao, tornando desnecessario mensurar a outra grandeza."
-          },
-          {
-            "statement": "A conta que acolhe a perda estimada por desvalorizacao do imobilizado figura no passivo nao circulante como provisao contabil exigivel.",
+            "statement": "A reversão da perda por desvalorização pode elevar o valor contábil do ativo acima do seu valor original líquido de depreciação.",
             "isTrue": false,
-            "explanation": "A perda estimada figura no ativo como conta retificadora da rubrica do ativo objeto de teste, com saldo credor."
+            "explanation": "O limite é o valor que o ativo teria, líquido de depreciação, se a perda nunca tivesse sido reconhecida."
+          },
+          {
+            "statement": "Quando o ativo isolado não gera caixa próprio, o teste é feito sobre o conjunto mínimo de ativos cujas entradas de caixa são, em boa parte, autônomas em relação às dos demais.",
+            "isTrue": true,
+            "explanation": "Esse conjunto é a unidade geradora de caixa, usada se o valor recuperável do ativo individual não puder ser determinado."
+          },
+          {
+            "statement": "Em um ativo não reavaliado, a perda por desvalorização reconhecida é lançada como despesa no resultado do exercício.",
+            "isTrue": true,
+            "explanation": "Em ativos reavaliados, a perda é lançada contra a reserva de reavaliação."
           }
         ],
         "pointers": [
           {
-            "topic": "Objetivo do CPC 01 e conceito de valor recuperavel",
+            "topic": "Objetivo do teste e Lei 6.404/76",
+            "pageRef": 3
+          },
+          {
+            "topic": "Valor recuperável e ativos fora do CPC 01",
             "pageRef": 4
           },
           {
-            "topic": "Valor justo liquido de venda versus valor em uso",
+            "topic": "Valor em uso e valor justo líquido",
+            "pageRef": 5
+          },
+          {
+            "topic": "Perda por desvalorização",
+            "pageRef": 6
+          },
+          {
+            "topic": "Passos do cálculo",
             "pageRef": 7
           },
           {
-            "topic": "Criterios de realizacao do teste e periodicidade compulsoria",
+            "topic": "Periodicidade e ativos de teste obrigatório",
+            "pageRef": 9
+          },
+          {
+            "topic": "Reversão da perda",
+            "pageRef": 10
+          },
+          {
+            "topic": "Indicadores de desvalorização",
             "pageRef": 11
           },
           {
-            "topic": "Contabilizacao da perda, reversao e vedacao no goodwill",
-            "pageRef": 15
+            "topic": "Valor em uso e estimativas de fluxos",
+            "pageRef": 12
+          },
+          {
+            "topic": "Unidade geradora de caixa",
+            "pageRef": 13
+          },
+          {
+            "topic": "Indicadores de reversão",
+            "pageRef": 14
+          },
+          {
+            "topic": "Lançamentos da perda e da reversão",
+            "pageRef": 16
           }
         ]
       }
