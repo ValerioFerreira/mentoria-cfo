@@ -8,79 +8,107 @@
       "id": "contabilidade-geral/a13/s01",
       "bizu": {
         "summary": [
-          "**Operacao de desconto de duplicatas**: antecipacao financeira de recebiveis junto ao banco com retencao de juros e encargos bancarios.",
-          "**Classificacao contemporanea**: a conta Duplicatas Descontadas figura compulsoriamente no Passivo Circulante como obrigacao financeira.",
-          "**Manutencao do direito no ativo**: a conta Duplicatas a Receber no Ativo NAO e baixada no ato do desconto, permanecendo aberta.",
-          "**Lancamento contabil do desconto**: debita-se Bancos (liquido) e Encargos a Transcorrer (retificadora do passivo), creditando-se Duplicatas Descontadas.",
-          "**Encargos financeiros a transcorrer**: conta redutora do passivo exigivel que abriga os juros do desconto a serem apropriados por competencia.",
-          "**Liquidacao pelo cliente no banco**: baixa-se a obrigacao no passivo contra a extincao do direito crediticio no ativo (D: Descontadas / C: Receber).",
-          "**Inadimplencia do cliente**: o banco debita o saldo na conta da empresa, baixando o passivo de Duplicatas Descontadas contra Bancos.",
-          "**Emprestimos com custos de transacao (CPC 08)**: taxas de abertura de credito e comissoes sao deduzidas do passivo inicial e amortizadas.",
-          "**Metodo do custo amortizado**: os custos de captacao e encargos sao apropriados ao resultado pela taxa interna de retorno da operacao.",
-          "**Apropriacao pro rata temporis**: as despesas financeiras de juros sao reconhecidas mensalmente pelo decurso temporal de dias decorridos.",
-          "**Risco sacado (forfaiting)**: operacao estruturada onde fornecedores antecipam recebiveis junto a instituicoes financeiras com aval da compradora.",
-          "**Impacto no capital de giro**: o desconto amplia disponibilidades imediatas no ativo elevando simultaneamente as obrigacoes no passivo circulante."
+          "**Duplicatas descontadas**: conta do passivo exigível, com encargos a transcorrer como retificadora; no desconto não há despesa, que vem depois por competência.",
+          "**Retorno da duplicata**: se o cliente paga, baixam-se duplicatas descontadas contra duplicatas a receber; se não paga, a empresa devolve o dinheiro ao banco.",
+          "**Risco sacado**: o comprador faz o banco antecipar o pagamento ao fornecedor, trocando dívida operacional por empréstimo bancário e gerando despesa financeira.",
+          "**Cheques**: o recebimento passa pelo caixa e o pagamento credita bancos conta movimento.",
+          "**Empréstimo e encargos a transcorrer**: contabiliza-se no recebimento, e a diferença entre o valor a pagar e o recebido é apropriada ao resultado por competência.",
+          "**Custos de transação**: gastos incrementais ligados à captação (honorários, comissões, registros) que compõem os encargos e reduzem a captação líquida.",
+          "**Ativo qualificável**: os encargos financeiros do financiamento de ativos de longa construção vão ao custo do ativo, e não ao resultado.",
+          "**Variação cambial**: passivo em moeda estrangeira é convertido pela taxa do balanço, com alta do câmbio gerando despesa e queda gerando receita; antes de o ativo chegar, a variação integra o custo."
         ],
         "teoria": [
           {
-            "statement": "No ato da realizacao do desconto de duplicatas junto a instituicao bancaria, a conta Duplicatas a Receber no Ativo deve ser imediatamente baixada.",
+            "statement": "O desconto de duplicata em banco gera débito em despesa financeira no momento da liberação do crédito, relativo aos juros pagos.",
             "isTrue": false,
-            "explanation": "A conta de clientes no ativo permanece intacta; o desconto e registrado como passivo exigivel em Duplicatas Descontadas."
+            "explanation": "Os encargos ficam em conta retificadora do passivo e são apropriados à despesa por competência."
           },
           {
-            "statement": "A conta Duplicatas Descontadas e classificada no Passivo Circulante por traduzir obrigacao de emprestimo garantido por recebiveis.",
+            "statement": "No risco sacado, a empresa compradora deixa de ser devedora do fornecedor e passa a ser devedora da instituição financeira.",
             "isTrue": true,
-            "explanation": "Sob as normas vigentes (CPC 38/48 e Resolucao CFC 1.159/2009), a operacao constitui passivo financeiro de financiamento."
+            "explanation": "A dívida operacional vira passivo oneroso, que gera despesas financeiras."
           },
           {
-            "statement": "Os custos de transacao incorridos na obtencao de emprestimos bancarios devem ser lancados integralmente como despesa imediata na DRE.",
+            "statement": "O recebimento de cheque é lançado na conta bancos conta movimento, e o pagamento em cheque, na conta caixa.",
             "isTrue": false,
-            "explanation": "Conforme o CPC 08, custos de transacao reduzem o montante inicial do passivo e sao apropriados pela taxa efetiva de juros."
+            "explanation": "O recebimento passa pelo caixa, e o pagamento sai da conta bancos conta movimento."
           },
           {
-            "statement": "A conta Encargos Financeiros a Transcorrer opera como conta retificadora do passivo com saldo devedor a ser amortizado por competencia.",
+            "statement": "Os encargos financeiros de um financiamento para construção de ativo qualificável devem compor o custo do ativo.",
             "isTrue": true,
-            "explanation": "A rubrica abriga os juros a incorrer e deduz a divida nominal no balanco, sendo amortizada mensalmente para o resultado."
+            "explanation": "Para ativos que demandam tempo substancial para ficar prontos, os encargos são capitalizados."
           }
         ],
         "revisao": [
           {
-            "statement": "Caso o cliente nao pague a duplicata no banco, a empresa sacadora deve reembolsar a instituicao financeira pelo valor do titulo.",
+            "statement": "Os custos de transação do CPC 08 são gastos incrementais diretamente atribuíveis à operação e reduzem o valor líquido captado.",
             "isTrue": true,
-            "explanation": "A empresa responde com coobrigacao fiduciaria de regresso, ensejando debito bancario da obrigacao nao adimplida pelo sacado."
+            "explanation": "Em captação de R$ 1.000.000 com R$ 30.000 de custos, o efeito no passivo é de R$ 970.000."
           },
           {
-            "statement": "A apropriacao dos juros embutidos na operacao de desconto gera lancamento a credito na conta de despesa financeira na DRE.",
+            "statement": "A variação monetária de um empréstimo é considerada encargo financeiro e deve ser segregada em conta de encargos a transcorrer.",
             "isTrue": false,
-            "explanation": "Despesas possuem natureza devedora; a apropriacao debita Despesa Financeira de Juros e credita Encargos a Transcorrer."
+            "explanation": "A variação monetária é atualização da dívida e é registrada diretamente na conta do empréstimo, como variação monetária passiva."
           },
           {
-            "statement": "Quando o devedor quita pontualmente a duplicata descontada no banco, a empresa debita Duplicatas Descontadas e credita Duplicatas a Receber.",
+            "statement": "Uma dívida em dólar, ao ser convertida na data do balanço, gera variação cambial negativa quando o dólar sobe.",
             "isTrue": true,
-            "explanation": "Com o adimplemento pelo cliente, extingue-se simultaneamente a obrigacao no passivo e o direito a receber do ativo."
+            "explanation": "A dívida em reais aumenta, e a variação é despesa financeira."
           },
           {
-            "statement": "A conta Duplicatas Descontadas pode transitar no Ativo Circulante como conta redutora de clientes segundo as regras do CPC 48.",
+            "statement": "A variação cambial ocorrida entre a saída de uma mercadoria do exterior e o seu recebimento pela empresa vai diretamente ao resultado.",
             "isTrue": false,
-            "explanation": "A classificacao no ativo foi superada; Duplicatas Descontadas situa-se estritamente no Passivo Circulante da sociedade."
+            "explanation": "Nesse intervalo, integra o custo de aquisição do ativo."
           }
         ],
         "pointers": [
           {
-            "topic": "Desconto de duplicatas: tratamento societario como passivo",
+            "topic": "Duplicatas descontadas",
+            "pageRef": 3
+          },
+          {
+            "topic": "Lançamentos do desconto",
             "pageRef": 4
           },
           {
-            "topic": "Lancamentos de contratacao, liquidacao e inadimplencia",
+            "topic": "Risco sacado",
+            "pageRef": 6
+          },
+          {
+            "topic": "Cheques",
             "pageRef": 8
           },
           {
-            "topic": "Encargos financeiros a transcorrer e apropriacao de juros",
+            "topic": "Custos de transação e encargos financeiros",
+            "pageRef": 9
+          },
+          {
+            "topic": "Contabilização de empréstimos",
+            "pageRef": 10
+          },
+          {
+            "topic": "Ativos qualificáveis",
+            "pageRef": 11
+          },
+          {
+            "topic": "Cálculo com custos de transação",
             "pageRef": 12
           },
           {
-            "topic": "Custos de transacao na captacao de emprestimos (CPC 08)",
+            "topic": "Variação monetária",
+            "pageRef": 15
+          },
+          {
+            "topic": "Variação cambial em disponibilidades",
             "pageRef": 16
+          },
+          {
+            "topic": "Passivos em moeda estrangeira",
+            "pageRef": 17
+          },
+          {
+            "topic": "Ativos adquiridos do exterior",
+            "pageRef": 18
           }
         ]
       }
@@ -89,78 +117,106 @@
       "id": "contabilidade-geral/a13/s02",
       "bizu": {
         "summary": [
-          "**Variacao cambial**: atualizacao monetaria de ativos e passivos referenciados em moeda estrangeira pelas taxas cambiais na data do balanco.",
-          "**Variacao cambial ativa**: valorizacao de direitos ou desvalorizacao de dividas em moeda estrangeira gerando receita financeira na DRE.",
-          "**Variacao cambial passiva**: valorizacao de passivos ou desvalorizacao de creditos em moeda estrangeira gerando despesa financeira na DRE.",
-          "**Debentures**: titulos de divida de medio e longo prazo emitidos por sociedades anonimas para financiamento de capital de giro ou investimentos.",
-          "**Emissao ao par**: debentures colocadas pelo exato valor nominal estipulado na escritura de emissao societaria.",
-          "**Emissao com agio ou desagio**: desagio e retificador do passivo de debentures; agio compoe receita a apropriar ou reserva de capital.",
-          "**Custos de colocacao de debentures**: reduzem o valor contábil inicial do passivo sendo amortizados pela taxa efetiva nos termos do CPC 08.",
-          "**Juros sobre o Capital Proprio (JSCP)**: remuneracao calculada sobre contas do Patrimonio Liquido com base na TJLP, dedutivel no IRPJ.",
-          "**Retencao tributaria no JSCP**: sujeita-se compulsoriamente a retencao de 15% de imposto de renda retido na fonte por ocasiao do credito.",
-          "**Depositos judiciais**: valores monetarios depositados em juizo para garantia de demandas judiciais, alocados no Realizavel a Longo Prazo.",
-          "**Conciliacao bancaria**: confronto metódico entre o extrato bancario externo e o saldo da conta Bancos Conta Movimento do Livro Razao.",
-          "**Ajustes na conciliacao**: regularizacao de cheques emitidos nao compensados, depositos nao creditados, tarifas e debitos desconhecidos."
+          "**Debêntures × ações**: debêntures são títulos de dívida remunerados por juros, participações e prêmios; ações são títulos de participação, remunerados por dividendos e JSCP.",
+          "**Gastos de emissão**: custos de transação que não são despesa inicial e são apropriados por competência durante a vigência dos títulos.",
+          "**Prêmio na emissão**: fica no passivo como receita diferida e sua apropriação reduz a despesa financeira, sem ser receita; pode ir para reserva específica de lucros.",
+          "**Deságio**: emissão abaixo do par gera retificadora do passivo, apropriada como despesa financeira ao longo do prazo.",
+          "**JSCP**: tratamento contábil igual ao do dividendo, saindo de lucros acumulados, com dedutibilidade fiscal como principal vantagem.",
+          "**Base e limites dos JSCP**: base em contas do PL e taxa limitada à TJLP, com dedução máxima do maior valor entre 50% do lucro líquido e 50% dos lucros acumulados mais reservas de lucros.",
+          "**Depósitos judiciais**: ativo com vencimento ligado a causa em curso; se a decisão favorece a empresa, o depósito volta ao caixa, e se desfavorece, quita a obrigação.",
+          "**Conciliação bancária**: procedimento obrigatório entre razão e extrato, com diferenças como tarifas não registradas, cheques devolvidos, cheques emitidos não compensados e depósitos não creditados."
         ],
         "teoria": [
           {
-            "statement": "A desvalorizacao cambial do real frente ao dolar incidente sobre divida em moeda estrangeira gera receita de variacao cambial ativa.",
+            "statement": "O prêmio recebido na emissão de debêntures é contabilizado, na data da emissão, como reserva de capital.",
             "isTrue": false,
-            "explanation": "A alta da moeda estrangeira eleva a expressao monetaria da divida, ensejando despesa de variacao cambial passiva na DRE."
+            "explanation": "É contabilizado no passivo, como receita diferida ou prêmio a apropriar, e vai ao resultado por competência."
           },
           {
-            "statement": "Os Juros sobre o Capital Proprio (JSCP) constituem modalidade de remuneracao aos acionistas que assegura dedutibilidade fiscal no IRPJ.",
+            "statement": "A apropriação do prêmio de debêntures é apresentada na DRE como redução da despesa financeira, e não como receita financeira.",
             "isTrue": true,
-            "explanation": "O art. 9º da Lei nº 9.249/1995 autoriza a deducao do JSCP da base de calculo do IRPJ e da CSLL apurados pelo Lucro Real."
+            "explanation": "O prêmio representa redução do custo efetivo da captação."
           },
           {
-            "statement": "Depositos judiciais vinculados a discussoes tributarias em andamento devem ser classificados compulsoriamente no Ativo Imobilizado.",
+            "statement": "Os juros sobre o capital próprio, para efeito contábil, são tratados como despesa financeira, como os demais juros.",
             "isTrue": false,
-            "explanation": "Depositos judiciais constituem direitos realizaveis alocados no Ativo Nao Circulante (Realizavel a Longo Prazo)."
+            "explanation": "Contabilmente seguem o tratamento do dividendo, saindo de lucros acumulados; a dedutibilidade é um ajuste fiscal."
           },
           {
-            "statement": "O confronto periodico entre o extrato bancario da conta corrente e a conta contábil Bancos denomina-se conciliacao bancaria.",
+            "statement": "A conciliação bancária é um procedimento obrigatório, que pode ser efetuado a qualquer tempo e partir do razão ou do extrato.",
             "isTrue": true,
-            "explanation": "A conciliacao bancaria identifica pendencias de compensacao de cheques, avisos de lancamento e tarifas cobradas pelo banco."
+            "explanation": "O objetivo é verificar se o saldo contábil está correto e conciliado com o extrato."
           }
         ],
         "revisao": [
           {
-            "statement": "Debentures consubstanciam titulos de participacao societaria que concedem direito a voto ordinario na assembleia geral de fundadores.",
-            "isTrue": false,
-            "explanation": "Debentures sao titulos de emprestimo e divida de longo prazo; titulos que concedem participacao no capital sao acoes."
-          },
-          {
-            "statement": "Na emissao de debentures com desagio, a diferenca negativa e registrada em conta retificadora do passivo a ser amortizada por juros.",
+            "statement": "A principal vantagem do pagamento de JSCP em relação aos dividendos é a dedutibilidade para apuração do lucro real.",
             "isTrue": true,
-            "explanation": "O desagio figura em conta redutora do passivo exigivel, sendo amortizado ao longo do prazo de vencimento do titulo."
+            "explanation": "O benefício é tributário."
           },
           {
-            "statement": "A liquidacao de cheques ja registrados na contabilidade que ainda nao foram compensados no extrato exige estorno do lancamento contabil.",
+            "statement": "Um cheque emitido pela empresa e ainda não compensado deve ser estornado na contabilidade até que o banco o desconte.",
             "isTrue": false,
-            "explanation": "Cheques em transito apenas representam pendencia de conciliacao; o lancamento contabil primitivo permanece regular."
+            "explanation": "Não se estorna, pois pode ser apresentado a qualquer momento; a diferença aparece só na conciliação."
           },
           {
-            "statement": "Variacoes cambiais ativas decorrentes da valorizacao de aplicacoes no exterior devem ser reconhecidas compulsoriamente na DRE.",
+            "statement": "A conta de depósitos judiciais é registrada no ativo da entidade.",
             "isTrue": true,
-            "explanation": "A variacao cambial de ativos monetarios integra as receitas financeiras apuradas no resultado operacional do exercicio."
+            "explanation": "Pode ser circulante ou realizável a longo prazo, conforme o prazo esperado."
+          },
+          {
+            "statement": "O deságio na emissão de debêntures é conta retificadora do passivo, apropriada ao resultado como despesa financeira ao longo do prazo.",
+            "isTrue": true,
+            "explanation": "O deságio equivale a custo adicional da captação."
           }
         ],
         "pointers": [
           {
-            "topic": "Variacao cambial ativa e passiva em transacoes internacionais",
+            "topic": "Debêntures e comparação com ações",
+            "pageRef": 19
+          },
+          {
+            "topic": "Gastos de colocação",
             "pageRef": 20
           },
           {
-            "topic": "Debentures: emissao, desagio e amortizacao de encargos",
+            "topic": "Juros e participações",
+            "pageRef": 21
+          },
+          {
+            "topic": "Prêmio na emissão",
+            "pageRef": 22
+          },
+          {
+            "topic": "Deságio",
             "pageRef": 24
           },
           {
-            "topic": "Juros sobre o Capital Proprio (JSCP) e retencao de IRRF",
+            "topic": "Juros sobre o capital próprio",
+            "pageRef": 25
+          },
+          {
+            "topic": "Base de cálculo dos JSCP",
+            "pageRef": 26
+          },
+          {
+            "topic": "Limites dos JSCP",
+            "pageRef": 27
+          },
+          {
+            "topic": "Depósitos judiciais",
             "pageRef": 28
           },
           {
-            "topic": "Depositos judiciais e rotina tecnica da conciliacao bancaria",
+            "topic": "Conciliação contábil",
+            "pageRef": 30
+          },
+          {
+            "topic": "Conciliação bancária",
+            "pageRef": 31
+          },
+          {
+            "topic": "Exemplos de conciliação",
             "pageRef": 33
           }
         ]
