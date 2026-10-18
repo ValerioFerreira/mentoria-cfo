@@ -470,5 +470,39 @@ Após a terceira rodada de revisão técnica e auditoria dos planos, foram imple
 - `pipeline/test_plan_pcpe.ts`: 24 de 24 cenários aprovados com LIBERAR.
 - `npm run build`: Build de produção Next.js Turbopack finalizado com sucesso (código 0).
 
+## 7. Rodada 5 de Correções (Outubro/2026) — Alinhamento Fino do Edital e Priorização de Conteúdo
+
+### 7.1 Importância Corrigida com Matemática no PCPE Agente
+- **Problema:** `content/importance/segments.json` não havia sido recalculado após a ativação de `matematica` no PCPE Agente, mantendo os 76 trechos de Matemática com `appears: false` para o concurso.
+- **Solução:**
+  - Regenerada a importância via `pipeline/importance.py`, ativando 44 trechos de Matemática com `appears: true` no `PCPE_AGENTE`.
+  - Criado teste invariante no pytest (`test_all_exam_subjects_have_appearing_segments` em `pipeline/tests/test_content.py`), garantindo que nenhuma disciplina com peso na prova fique sem trechos ativos no respectivo concurso.
+  - Arquivo espelhado em `web/content/importance/segments.json`.
+
+### 7.2 Alinhamento Cirúrgico das Disciplinas Comuns ao Edital do Agente
+- **Mapeamento Próprio:** Criados 7 arquivos em `content/edital/pcpe/` (espelhados em `web/content/edital/pcpe/`), cobrindo item a item o subitem 22.2.3 do edital da PCPE sem alterar os mapas do CBMPE/PMPE:
+  - `lingua-portuguesa.json`, `informatica.json`, `raciocinio-logico.json`, `matematica.json`, `estatistica.json`, `direito-constitucional.json`, `direito-administrativo.json`.
+- **Inclusão da Aula 13 de Língua Portuguesa:** Incluída a aula `lingua-portuguesa/a13` (Manual de Redação da Presidência da República / Redação Oficial) com `onlyContests: ["PCPE_AGENTE"]`, dividida estritamente em 6 trechos de 14 a 17 páginas.
+- **Exclusões de Conteúdos Fora do Edital:**
+  - **Língua Portuguesa:** `a12` (variação linguística), `c01` (figuras de linguagem), `c02` (formação de palavras).
+  - **Direito Constitucional:** `a16` (ordem social), `a17` (controle de constitucionalidade) e complementos autorais `c01` a `c05`.
+  - **Informática:** `a14` (hardware e arquitetura), `c01` (prompt e periféricos).
+  - **Estatística:** `a07` a `a10` (distribuições de probabilidade contínuas/discretas fora do escopo do Agente).
+  - **Direito Administrativo:** `c01` (Lei 8.112/1990 pura), visto que o regime dos policiais civis de PE é regido pelo Estatuto Estadual (Lei 6.123/1968).
+- **Ajustes de Lacunas (`content/gaps.json`):**
+  - Adicionada lacuna `rl-operacoes-conjuntos` (subitem 1 do edital de RLM / Aula 08 não baixada do pacote 361849).
+  - Refinada `rl-matrizes-sistemas-lineares` para `rl-matrizes-determinantes` (sistemas lineares já contemplados em `matematica/a08`).
+- **Proporcionalidade dos Complementos:** Ajustado `pipeline/build_complements.py` para preservar a proporção exata `raw_base_sum * d.weight * block_weight`, eliminando qualquer distorção na base comum.
+
+### 7.3 Arquitetura de Classificação Multiconcurso
+- Desenvolvido e validado teste de arquitetura `pipeline/tests/test_multicontest_classifier.py` com 3 cenários de roteamento:
+  1. Questão Cebraspe de Licitações (Lei 14.133/2021) classifica para `direito-administrativo/a20` ou `a21` na PCPE.
+  2. Questão AOCP de Licitações no CBMPE nunca vaza para as aulas exclusivas da PCPE.
+  3. Questão do ECA classifica em Direito Constitucional no CBMPE e em Legislação Penal Especial na PCPE.
+
+### 7.4 Diretriz do Dono do Produto: Foco Exclusivo em Atividades, Bizus e Resumos
+- O download de cadernos de questões Cebraspe do TecConcursos foi postergado pelo Dono do Produto.
+- O foco integral do projeto passa a ser a homologação das atividades do planejador e a produção/cobertura completa dos Bizus (`content/items/`) e Resumos Analíticos (`content/summaries/`) dos 657 trechos da PCPE.
+
 
 
