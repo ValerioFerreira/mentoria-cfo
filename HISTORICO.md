@@ -501,8 +501,32 @@ Após a terceira rodada de revisão técnica e auditoria dos planos, foram imple
   3. Questão do ECA classifica em Direito Constitucional no CBMPE e em Legislação Penal Especial na PCPE.
 
 ### 7.4 Diretriz do Dono do Produto: Foco Exclusivo em Atividades, Bizus e Resumos
-- O download de cadernos de questões Cebraspe do TecConcursos foi postergado pelo Dono do Produto.
-- O foco integral do projeto passa a ser a homologação das atividades do planejador e a produção/cobertura completa dos Bizus (`content/items/`) e Resumos Analíticos (`content/summaries/`) dos 657 trechos da PCPE.
+- O download de cadernos de questões Cebraspe do TecConcursos foi postergado pelo Dono do Produto para execução posterior.
+- O foco integral do projeto passa a ser a catalogação de todas as atividades do edital, a garantia de que os planejamentos possam ser montados e a produção massiva dos Bizus (`content/items/`) e Resumos Analíticos (`content/summaries/`) dos 657 trechos ativos da PCPE.
+
+### 7.5 Conclusão da Produção Massiva: 100% dos 657 Trechos com Bizus e Resumos Analíticos
+- **Mobilização de Agentes Especialistas em Paralelo:** 7 subagentes executaram a geração e validação rigorosa de conteúdo pedagógico a partir dos PDFs do material-base:
+  1. `legislacao-pcpe`: 12 trechos (96 itens C/E, 9.121 palavras).
+  2. `legislacao-penal-especial`: 29 trechos (232 itens C/E, 26.525 palavras).
+  3. `direito-processual-penal`: 38 trechos (304 itens C/E, 29.806 palavras).
+  4. `contabilidade-geral`: 44 trechos (352 itens C/E, 24.944 palavras).
+  5. `direito-administrativo` (aulas exclusivas `a20`..`a24`, `c02`): 47 trechos (376 itens C/E, 39.357 palavras).
+  6. `raciocinio-logico` (`a00`..`a07`) + `lingua-portuguesa` (`a13`): 76 trechos (40.461 palavras).
+  7. `direito-penal`: 69 trechos (552 itens C/E, 44.791 palavras).
+- **Inventário 100% Concluído (`docs/inventario_pcpe.json`):**
+  - Total de trechos ativos no `PCPE_AGENTE`: **657 trechos**.
+  - Bizus (`content/items/`): **657 / 657 (100.0%)** — 0 pendências.
+  - Resumos Analíticos (`content/summaries/`): **657 / 657 (100.0%)** — 0 pendências.
+  - Todas as 12 disciplinas com 100% de cobertura.
+- **Validação Estrita:** 100% dos arquivos validados via `pipeline/validate_content.py` e `pipeline/validate_summaries.py` com zero erros de esquema, integridade de fingerprints e conformidade de originalidade.
+- **Banco de Dados Local Sincronizado (`prisma/seed-structure.ts`):** 1.142 bizus, 9.913 itens C/E e 1.076 resumos analíticos carregados com sucesso no banco de dados relacional local (`npx prisma dev`).
+- **Homologação Completa:**
+  - `npx tsc --noEmit`: 0 erros.
+  - `npx vitest run --project unit`: 462 de 462 testes aprovados.
+  - `npx tsx pipeline/test_plan_pcpe.ts`: 24 de 24 cenários com 100% `LIBERAR` e 0 erros.
+  - `npx tsx web/scripts/compare-plans-main.ts`: 96 de 96 cenários com 0 divergências em relação à `main`.
+  - `npm run build`: Build de produção Turbopack do Next.js finalizado com código 0.
+
 
 
 
