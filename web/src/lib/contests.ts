@@ -136,3 +136,16 @@ export function contestBySlug(slug: string): ContestInfo | undefined {
 export function contestTitle(c: ContestInfo): string {
   return `${c.org} · Cargo: ${c.role}${c.category ? ` (${c.category})` : ""}`;
 }
+
+/**
+ * Um assunto do edital (EditalItem) vale para o concurso quando não é restrito a outros (`onlyContests`) nem o exclui
+ * (`excludeContests`). Sem concurso informado, só valem os assuntos não restritos.
+ */
+export function editalItemApplies(
+  item: { onlyContests?: readonly string[] | null; excludeContests?: readonly string[] | null },
+  contest: string | null | undefined,
+): boolean {
+  const only = item.onlyContests ?? [];
+  if (only.length) return !!contest && only.includes(contest);
+  return !contest || !(item.excludeContests ?? []).includes(contest);
+}

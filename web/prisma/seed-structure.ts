@@ -134,27 +134,38 @@ export async function seedStructure() {
   // 4. Edital
   console.log(`[Seed Structure] 4/6 Sincronizando itens do edital...`);
   const planavel = new Set(aulas.filter(({ a }) => a.selectable).map(({ a }) => a.id));
-  const allEditalRows: { id: string; subjectId: string; code: string; title: string; aulaIds: string[]; sortOrder: number }[] = [];
+  const allEditalRows: { id: string; subjectId: string; code: string; title: string; aulaIds: string[]; sortOrder: number; onlyContests: string[]; excludeContests: string[] }[] = [];
 
-  for (const s of catalog.subjects) {
-    const doc = read<EditalFile>("edital", `${s.id}.json`);
+  // Disciplinas compartilhadas com um concurso de edital próprio (content/edital/<concurso>/<disciplina>.json): os
+  // assuntos padrão deixam de valer para ele e os do edital próprio (`<disciplina>/p<código>`) valem só para ele.
+  const OWN_EDITAL_DIRS: { dir: string; contest: string }[] = [{ dir: "pcpe", contest: "PCPE_AGENTE" }];
+  const ownEditalPath = (dir: string, subjectId: string) => path.join(CONTENT, "edital", dir, `${subjectId}.json`);
+  const pushItems = (s: { id: string }, doc: EditalFile, idPrefix: string, onlyContests: string[], excludeContests: string[]) => {
     for (const [i, it] of doc.items.entries()) {
       const aulaIds = [...new Set((it.where ?? []).map((w) => w.aula).filter((id) => id.startsWith(`${s.id}/`) && planavel.has(id)))];
       if (aulaIds.length) {
-        allEditalRows.push({
-          id: `${s.id}/e${it.id}`,
-          subjectId: s.id,
-          code: it.id,
-          title: it.item,
-          aulaIds,
-          sortOrder: i,
-        });
+        allEditalRows.push({ id: `${s.id}/${idPrefix}${it.id}`, subjectId: s.id, code: it.id, title: it.item, aulaIds, sortOrder: i, onlyContests, excludeContests });
       }
     }
+  };
+
+  for (const s of catalog.subjects) {
+    const own = OWN_EDITAL_DIRS.filter((o) => fs.existsSync(ownEditalPath(o.dir, s.id)));
+    pushItems(s, read<EditalFile>("edital", `${s.id}.json`), "e", [], own.map((o) => o.contest));
+    for (const o of own) pushItems(s, read<EditalFile>("edital", o.dir, `${s.id}.json`), "p", [o.contest], []);
   }
 
   for (const c of chunk(allEditalRows, 500)) {
     await db.editalItem.createMany({ data: c, skipDuplicates: true });
+  }
+  // createMany não atualiza linhas que já existem: sincroniza só o filtro por concurso dos assuntos já semeados
+  const withFilters = (pick: (r: (typeof allEditalRows)[number]) => string[]) =>
+    Map.groupBy(allEditalRows.filter((r) => pick(r).length), (r) => pick(r).join(","));
+  for (const [key, rows] of withFilters((r) => r.excludeContests)) {
+    await db.editalItem.updateMany({ where: { id: { in: rows.map((r) => r.id) } }, data: { excludeContests: key.split(",") } });
+  }
+  for (const [key, rows] of withFilters((r) => r.onlyContests)) {
+    await db.editalItem.updateMany({ where: { id: { in: rows.map((r) => r.id) } }, data: { onlyContests: key.split(",") } });
   }
 
   // 5. Lacunas

@@ -17,14 +17,16 @@ Contexto: o concurso é **PCPE Agente de Polícia (Cebraspe, prova 07/03/2027, i
 - Textos definidos pelo dono (opção Turbo, cartão de pagamento) **não** se reescrevem. `.env*` nunca se imprime nem se sobrescreve. `docs/` é protegido: nunca copiar texto verbatim para `content/`.
 
 ## 3. Lista de tarefas (status em 2026-10-18)
-1. **Refazer resumos e bizus fracos — EM ANDAMENTO** (seção 5).
-2. Espelhar conteúdo em `web/content/` (items, summaries, overrides, complements com `onlyContests`, structure, segments) sem tocar nos arquivos de outras frentes; rodar `apply_synthetic.py`; conferir que os 657 trechos do PCPE têm bizu + resumo em `web/content`.
-3. Edital PCPE por concurso: coluna/filtro por concurso em `EditalItem` (migração), semear `content/edital/pcpe/*.json`, ajustar onboarding/páginas de questões/persistência.
-4. Limpezas e lacunas: títulos com "Prof." (biologia a16/a17, direito-constitucional a18), `category:""` do cartão PCPE, lacunas (conjuntos, matrizes, tamanho amostral), `docs/inventario_pcpe.json`, `HISTORICO.md`.
-5. Rodar testes, build e seed: `pipeline/test_plan_pcpe.ts` (24 cenários), `compare-plans-main.ts` (zero regressão), vitest, pytest, tsc, `npm run build`, seed local (prisma dev).
-6. Lista de cadernos do TEC a montar (planilha/relatório; ver seção 6).
-7. Commit de liberação (`available: true` + `export-contests.ts`), local.
+1. **Refazer resumos e bizus fracos — EM ANDAMENTO** (seção 5). Decisão: infraestrutura primeiro (tarefas 2–7), depois continuar a reescrita por severidade.
+2. **Espelhar conteúdo em `web/content` — FEITO** com `pipeline/pcpe_tools/mirror_web.py` (copia só arquivo ausente/diferente das 12 disciplinas do PCPE; idempotente). **Repetir no fim** (e rodar `python pipeline/apply_synthetic.py` antes: grava o sintético no `bizu.summary` e espelha summaries/importance/contests) e conferir com `python pipeline/pcpe_tools/audit_pcpe.py .` (os 657 trechos precisam ter bizu e resumo em `web/content`).
+3. **Edital PCPE por concurso — FEITO**: `EditalItem.onlyContests/excludeContests` (migração `20261018120000_edital_item_contests`, aplicada no dev local), seed (`prisma/seed-structure.ts`: `content/edital/pcpe/<disc>.json` → itens `<disc>/p<código>` só do PCPE; os `<disc>/e<código>` padrão ganham `excludeContests PCPE_AGENTE` nas 7 disciplinas compartilhadas), helper `editalItemApplies` (`src/lib/contests.ts`, com teste), filtros em `onboarding/page.tsx` e `plan/persist.ts`. Seed rodado no dev local sem erro.
+4. **Limpezas — PARCIAL**: títulos com "Prof." corrigidos (`title` em `content/overrides.json`, `build_catalog.py`, patch em `catalog.json` e espelho). `category:""` do cartão PCPE **não é defeito** (o card só mostra a categoria se houver; a categoria comercial `PCPE` vem de `ContestSetting`). **Lacunas ainda abertas** (3, severidade média): `rl-operacoes-conjuntos`, `rl-matrizes-determinantes` (raciocínio lógico) e `est-tamanho-amostral` (estatística): precisam de complementos autorais (`content/complements/*.md` com `onlyContests: "PCPE_AGENTE"`, `resolves: <id da lacuna>`, depois `build_complements.py`, bizu/resumo/importância do novo trecho e atualização do edital PCPE). `docs/inventario_pcpe.json` está em `docs/` (protegido, fora do git): ignorar. Falta registrar em `HISTORICO.md`.
+5. **Testes/build/seed — PARCIAL**: `pipeline/test_plan_pcpe.ts` (24 cenários, todos LIBERAR, 0 erros), vitest (533 ok; 6 falhas de integração de preço em `commerce/*` **já existiam sem as minhas mudanças**), tsc ok, seed local ok. Pendentes: `compare-plans-main.ts`, lint, `next build`. Falhas conhecidas fora do meu escopo: `pytest::test_authored_items_pass_validator` (atualidades, de outra frente).
+6. **Lista de cadernos do TEC — PENDENTE** (seção 6).
+7. **Commit de liberação — PENDENTE**: `available: true` no PCPE em `web/src/lib/contests.ts`, atualizar `contests.test.ts` (lista de disponíveis passa a incluir `PCPE_AGENTE`), rodar `web/scripts/export-contests.ts`, commit local separado.
 - Ao final: informar ao dono que o importador de questões por concurso (task_62791f17) segue pendente; chamar `mcp__ccd_turn__wrap_up` antes da mensagem final.
+
+**Pendências de validação nos bizus (`validate_content.py`, só nas disciplinas do PCPE):** lingua-portuguesa a01 (1), a13 (`bizu.summary` com 21/28/24 tópicos; precisa de 6–14), raciocinio-logico (94: C/E repetidos e trechos copiados), matematica (1), estatistica (1), direito-constitucional (3), direito-administrativo (9). Rodar `python pipeline/pcpe_tools/val_pcpe.py`.
 
 ## 4. Como funciona o fluxo de reescrita (método validado)
 Ferramentas (todas em `pipeline/pcpe_tools/`, rodar da raiz com `pipeline/.venv/Scripts/python`; defina `PYTHONIOENCODING=utf-8`):

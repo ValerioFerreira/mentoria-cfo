@@ -7,7 +7,7 @@ import { getPendingPlan } from "@/lib/data/study";
 import { todayISO } from "@/lib/plan-time";
 import { getUserContest } from "@/lib/user-contest";
 import { wizardDefaultsFromPlan } from "@/lib/plan/wizard-defaults";
-import { CONTEST_SUBJECTS } from "@/lib/contests";
+import { CONTEST_SUBJECTS, editalItemApplies } from "@/lib/contests";
 import { contestExamQuestions } from "@/lib/data/contest-data";
 import { Wizard, type WizardSubject } from "./wizard";
 
@@ -24,7 +24,7 @@ export default async function OnboardingPage() {
 
   const [{ catalog }, items] = await Promise.all([
     loadPlannerData(),
-    db.editalItem.findMany({ orderBy: [{ subjectId: "asc" }, { sortOrder: "asc" }], select: { id: true, subjectId: true, title: true, aulaIds: true } }),
+    db.editalItem.findMany({ orderBy: [{ subjectId: "asc" }, { sortOrder: "asc" }], select: { id: true, subjectId: true, title: true, aulaIds: true, onlyContests: true, excludeContests: true } }),
   ]);
   const itemsBySubject = Map.groupBy(items, (i) => i.subjectId);
   const weights = contestExamQuestions(contest);
@@ -38,7 +38,7 @@ export default async function OnboardingPage() {
         block: s.block,
         examQuestions: weights[s.id] ?? s.examQuestions,
         languageGroup: s.languageGroup ?? null,
-        items: (itemsBySubject.get(s.id) ?? []).map((i) => ({ id: i.id, title: i.title, aulaIds: i.aulaIds as string[] })),
+        items: (itemsBySubject.get(s.id) ?? []).filter((i) => editalItemApplies(i, contest)).map((i) => ({ id: i.id, title: i.title, aulaIds: i.aulaIds as string[] })),
         aulaIds: aulas.map((a) => a.id),
         hasComplement: aulas.some((a) => a.source === "authored"),
       };

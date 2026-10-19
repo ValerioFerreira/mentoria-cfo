@@ -303,6 +303,10 @@ model EditalItem {
   title     String
   aulaIds   Json // aulas da própria disciplina (planejáveis) que tratam do assunto
   sortOrder Int
+  // Concursos a que o assunto se aplica. Vazio em `onlyContests` = todos; `excludeContests` tira concursos que têm o
+  // próprio edital da disciplina (ex.: PCPE_AGENTE usa `<disciplina>/p<código>` no lugar dos assuntos padrão).
+  onlyContests    String[] @default([])
+  excludeContests String[] @default([])
 
   subject    Subject    @relation(fields: [subjectId], references: [id])
   activities Activity[]

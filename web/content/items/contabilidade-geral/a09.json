@@ -1,0 +1,117 @@
+{
+  "aula": "contabilidade-geral/a09",
+  "batch": "pcpe-bizu-contabilidade-geral",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "contabilidade-geral/a09/s01",
+      "bizu": {
+        "summary": [
+          "**Objetivo do teste**: garantir que nenhum ativo fique por valor superior ao que se espera recuperar pela venda ou pelo uso, método do CPC 01.",
+          "**Valor recuperável**: é o maior entre o valor justo líquido de despesas de venda e o valor em uso; a perda é o excesso do valor contábil sobre ele.",
+          "**Quando há perda**: só se o valor contábil superar o recuperável; caso contrário nada se faz, e basta que um dos dois valores supere o contábil para dispensar o outro.",
+          "**Valor em uso**: valor presente dos fluxos de caixa esperados, até cinco anos, sem reestruturações futuras; o valor de venda final já está embutido quando se fornece o valor em uso.",
+          "**Lançamento da perda**: debita despesa com perda por desvalorização e credita ajuste ao valor recuperável, retificadora do ativo.",
+          "**Teste obrigatório**: goodwill, intangível de vida indefinida e intangível ainda não em uso devem ser testados todo ano, mesmo sem indícios.",
+          "**Unidade geradora de caixa**: menor grupo de ativos com entradas de caixa em grande parte independentes, usada quando o ativo isolado não gera caixa próprio.",
+          "**Reversão**: credita-se receita, só se as estimativas mudaram, sem ultrapassar o valor que o ativo teria sem a perda, e nunca para goodwill."
+        ],
+        "teoria": [
+          {
+            "statement": "Para avaliar o valor recuperável de um ativo, é sempre necessário calcular tanto o valor justo líquido de despesas de venda quanto o valor em uso.",
+            "isTrue": false,
+            "explanation": "Se qualquer um dos dois valores exceder o valor contábil, não há desvalorização e o outro não precisa ser estimado."
+          },
+          {
+            "statement": "O valor recuperável de um ativo corresponde ao maior valor entre o seu valor justo líquido de despesas de venda e o seu valor em uso.",
+            "isTrue": true,
+            "explanation": "Essa é a definição do CPC 01."
+          },
+          {
+            "statement": "A perda por desvalorização reconhecida para o goodwill pode ser revertida quando as causas deixarem de existir.",
+            "isTrue": false,
+            "explanation": "A reversão é vedada para o ágio por expectativa de rentabilidade futura."
+          },
+          {
+            "statement": "O intangível de vida útil indefinida deve ser submetido anualmente ao teste de recuperabilidade, ainda que não haja indícios de desvalorização.",
+            "isTrue": true,
+            "explanation": "Como não é amortizado, o teste anual é a única forma de evitar registro acima do valor recuperável."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Se o valor em uso de um ativo é R$ 100.000 e se informa também seu valor de venda no fim da vida útil de R$ 20.000, o valor em uso a considerar é R$ 100.000.",
+            "isTrue": true,
+            "explanation": "O valor de venda ao final já está incluído no valor em uso informado."
+          },
+          {
+            "statement": "A reversão da perda por desvalorização pode elevar o valor contábil do ativo acima do seu valor original líquido de depreciação.",
+            "isTrue": false,
+            "explanation": "O limite é o valor que o ativo teria, líquido de depreciação, se a perda nunca tivesse sido reconhecida."
+          },
+          {
+            "statement": "Quando o ativo isolado não gera caixa próprio, o teste é feito sobre o conjunto mínimo de ativos cujas entradas de caixa são, em boa parte, autônomas em relação às dos demais.",
+            "isTrue": true,
+            "explanation": "Esse conjunto é a unidade geradora de caixa, usada se o valor recuperável do ativo individual não puder ser determinado."
+          },
+          {
+            "statement": "Em um ativo não reavaliado, a perda por desvalorização reconhecida é lançada como despesa no resultado do exercício.",
+            "isTrue": true,
+            "explanation": "Em ativos reavaliados, a perda é lançada contra a reserva de reavaliação."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Objetivo do teste e Lei 6.404/76",
+            "pageRef": 3
+          },
+          {
+            "topic": "Valor recuperável e ativos fora do CPC 01",
+            "pageRef": 4
+          },
+          {
+            "topic": "Valor em uso e valor justo líquido",
+            "pageRef": 5
+          },
+          {
+            "topic": "Perda por desvalorização",
+            "pageRef": 6
+          },
+          {
+            "topic": "Passos do cálculo",
+            "pageRef": 7
+          },
+          {
+            "topic": "Periodicidade e ativos de teste obrigatório",
+            "pageRef": 9
+          },
+          {
+            "topic": "Reversão da perda",
+            "pageRef": 10
+          },
+          {
+            "topic": "Indicadores de desvalorização",
+            "pageRef": 11
+          },
+          {
+            "topic": "Valor em uso e estimativas de fluxos",
+            "pageRef": 12
+          },
+          {
+            "topic": "Unidade geradora de caixa",
+            "pageRef": 13
+          },
+          {
+            "topic": "Indicadores de reversão",
+            "pageRef": 14
+          },
+          {
+            "topic": "Lançamentos da perda e da reversão",
+            "pageRef": 16
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -19,11 +19,8 @@ from textutil import FRONTMATTER, norm  # noqa: E402
 PAGES_PER_FIXACAO_HOUR = 12
 
 
-LEGACY_TITLE_EXCEPTIONS = {
-    "biologia/a16",
-    "biologia/a17",
-    "direito-constitucional/a18",
-}
+# títulos corrigidos por `title` em content/overrides.json (o nome do professor no arquivo não deve aparecer)
+LEGACY_TITLE_EXCEPTIONS: set[str] = set()
 
 
 def clean_title(raw: str, aula_id: str = "") -> str:
@@ -97,7 +94,7 @@ def main() -> int:
             if a.get("source") == "authored":  # complementos: build_complements.py mescla depois (idempotente)
                 continue
             ov = overrides.get(a["id"], {})
-            title = clean_title(a["title"], a["id"])
+            title = ov.get("title") or clean_title(a["title"], a["id"])
             kind = ov.get("kind") or ("practice" if a["theoryPages"] == 0 else "theory")
             entry = {
                 "id": a["id"],

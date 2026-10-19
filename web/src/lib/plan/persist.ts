@@ -1,6 +1,7 @@
 import "server-only";
 import { randomUUID } from "node:crypto";
 import { db } from "@/lib/db";
+import { editalItemApplies } from "@/lib/contests";
 import type { Contest } from "@/generated/prisma/client";
 import type { PlanInput, PlanResult } from "@/lib/planner/types";
 
@@ -62,10 +63,11 @@ export async function savePlan({ userId, input, result, diagnostics, foreignLang
       // Mapear assuntos do edital para as aulas correspondentes
       const editalItems = await tx.editalItem.findMany({
         where: { subjectId: { in: input.subjects.map((s) => s.id) } },
-        select: { id: true, subjectId: true, title: true, aulaIds: true },
+        select: { id: true, subjectId: true, title: true, aulaIds: true, onlyContests: true, excludeContests: true },
       });
       const aulaToEdital = new Map<string, { id: string; title: string }>();
       for (const item of editalItems) {
+        if (!editalItemApplies(item, input.contest)) continue;
         const aulas = (item.aulaIds as string[]) || [];
         for (const aid of aulas) {
           if (!aulaToEdital.has(aid)) {
