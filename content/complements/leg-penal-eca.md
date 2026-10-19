@@ -45,20 +45,20 @@ Para as carreiras policiais da Polícia Civil (Agente e Escrivão), a banca Cebr
 
 Este é o capítulo com maior incidência em provas de Escrivão e Agente de Polícia Civil:
 
-### Hipótese 1: Ato Infracional com Violência ou Grave Ameaça à Pessoa (art. 172)
+### Hipótese 1: Ato Infracional com Violência ou Grave Ameaça à Pessoa (art. 173, *caput*)
 - Havendo flagrante de ato infracional cometido com **violência ou grave ameaça à pessoa**, a autoridade policial deverá:
   1. Lavrar o **Auto de Apreensão em Flagrante**, ouvindo as testemunhas, a vítima e o adolescente;
   2. Apreender os instrumentos e objetos que guardem relação com o fato;
   3. Requisitar os exames periciais necessários para a comprovação da materialidade.
 
-### Hipótese 2: Ato Infracional sem Violência ou Grave Ameaça (art. 173)
+### Hipótese 2: Ato Infracional sem Violência ou Grave Ameaça (art. 173, parágrafo único)
 - Em caso de flagrante de ato infracional praticado **sem violência ou grave ameaça à pessoa** (ex.: furto, posse de drogas):
   - A lavratura de auto de apreensão poderá ser substituída por **Boletim de Ocorrência Circunstanciado (BOC)**, com liberação imediata do adolescente aos seus pais ou responsável mediante termo de compromisso de apresentação ao Ministério Público.
 
 ### Liberação do Adolescente ou Encaminhamento (arts. 174 e 175)
 - Comparecendo os pais ou responsável: o adolescente será liberado **sob termo de compromisso e responsabilidade** de apresentá-lo ao representante do Ministério Público no mesmo dia ou no primeiro dia útil subsequente (art. 174).
 - **Exceção (art. 174, in fine):** se a gravidade do ato infracional e a sua repercussão social demonstrarem que a liberação coloca em risco a ordem pública ou a segurança do próprio adolescente, a autoridade policial o manterá sob custódia e o apresentará desde logo ao Ministério Público.
-- Sendo impossível a apresentação imediata ao MP, o adolescente deve ser encaminhado a entidade de atendimento (art. 175). Em caso de inexistência de entidade especializada, o adolescente poderá ficar recolhido em seção isolada dos adultos na delegacia, pelo prazo estritamente necessário (art. 185, § 2º).
+- Sendo impossível a apresentação imediata ao MP, o adolescente deve ser encaminhado a entidade de atendimento (art. 175). Em caso de inexistência de entidade especializada, o adolescente poderá ficar recolhido em seção isolada dos adultos na delegacia, com instalações apropriadas, pelo prazo estritamente necessário e de no máximo 5 dias (art. 185, § 2º).
 
 ---
 
@@ -79,11 +79,11 @@ Este é o capítulo com maior incidência em provas de Escrivão e Agente de Pol
 - Significa que: mesmo que o adolescente já seja reincidente ou possua histórico de dezenas de atos infracionais anteriores, o maior de idade responde pelo crime do art. 244-B se praticar novo crime com ele.
 
 #### B. Crimes Relacionados à Pornografia Infantil (arts. 240, 241, 241-A a 241-E)
-- **Produzir / dirigir cena pornográfica com criança/adolescente (art. 240):** pena de reclusão de 4 a 8 anos e multa. (Crime Hediondo conforme Lei 8.072/1990).
-- **Vender, divulgar ou publicar material pornográfico de menor (art. 241-A):** reclusão de 3 a 6 anos e multa.
-- **Adquirir, possuir ou armazenar material pornográfico de menor (art. 241-B):** pena de reclusão de 1 a 4 anos e multa.
+- **Produzir / dirigir cena de sexo explícito ou pornográfica com criança/adolescente (art. 240):** pena de reclusão de 4 a 10 anos e multa, conforme a redação atual da Lei 15.487/2026 (que passou a tratar esses crimes como hediondos, junto com os arts. 241, 241-A, 241-B, 241-D e 244-A).
+- **Vender ou expor à venda o registro (art. 241):** reclusão de 4 a 10 anos, multa e perda de bens; e **compartilhar, divulgar ou publicar o material (art. 241-A):** reclusão de 4 a 10 anos e multa.
+- **Adquirir, possuir ou armazenar material pornográfico de menor (art. 241-B):** pena de reclusão de 3 a 6 anos e multa.
   - Pune a posse e armazenamento no computador, celular ou mídia física.
-- **Simulação / pornografia infantil gerada por Inteligência Artificial (art. 240, § 1º):** incluída recentemente, abrange imagens montadas, geradas digitalmente ou adulteradas (deepfake).
+- **Simular a participação de criança ou adolescente em cena de sexo explícito ou pornográfica (art. 241-C):** por adulteração, montagem ou modificação de imagem (alcança conteúdo manipulado digitalmente), reclusão de 1 a 3 anos e multa. O **art. 241-D** pune o aliciamento de menor de 14 anos para ato libidinoso (reclusão de 3 a 5 anos), com aumento de 1/3 a 2/3 quando se usa inteligência artificial, perfil falso, redes sociais ou jogos.
 
 #### C. Fornecimento de Bebida Alcoólica ou Produtos com Dependência (art. 243)
 - Vender, fornecer, ministrar ou entregar, ainda que gratuitamente, a criança ou adolescente, bebida alcoólica ou outros produtos cujos componentes possam causar dependência física ou psíquica.
@@ -102,7 +102,7 @@ Este é o capítulo com maior incidência em provas de Escrivão e Agente de Pol
 | Dispositivo | Conduta / Tema | Detalhe Crítico para Prova Cebraspe |
 |---|---|---|
 | **Art. 103 / 104** | Ato infracional e idade | Considera-se a idade à data do fato (Súmula 605/STJ). Criança só recebe proteção; adolescente pode receber socioeducativa. |
-| **Art. 172 / 173** | Flagrante policial | Com violência: Auto de Apreensão em Flagrante. Sem violência: Boletim de Ocorrência Circunstanciado (BOC). |
+| **Art. 173** | Flagrante policial | Com violência: Auto de Apreensão em Flagrante. Sem violência: Boletim de Ocorrência Circunstanciado (BOC). |
 | **Art. 174** | Liberação do apreendido | Regra: entrega aos pais sob termo de comparecimento ao MP. Exceção: risco à ordem pública ou ao menor. |
 | **Art. 227** | Ação penal nos crimes do ECA | Sempre pública incondicionada. |
 | **Art. 244-B** | Corrupção de menores | Crime formal: independe de o menor já ser corrompido anteriormente (Súmula 500 do STJ). |
