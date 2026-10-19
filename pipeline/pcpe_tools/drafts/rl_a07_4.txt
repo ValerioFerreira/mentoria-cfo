@@ -1,0 +1,74 @@
+@@@ raciocinio-logico/a07/s04
+@@ ANALITICO
+Este trecho trata da probabilidade condicional (probabilidade de um evento sabendo que outro ocorreu) e do teorema da multiplicação (probabilidade da interseção), com questões de tabelas, estudantes que "chutam", sistemas com máquina reserva e extrações encadeadas de urnas.
+
+### Probabilidade condicional
+
+- É a probabilidade de um evento ocorrer **sabendo que outro já ocorreu**. O fato conhecido **reduz o universo** de possibilidades. Exemplo: de 200 pessoas em um auditório, 120 homens, dos quais 40 enfermeiros. A probabilidade de ser enfermeiro **sabendo que é homem** usa só os 120 homens: 40/120 = 1/3.
+- **Fórmula**: **P(E | H) = P(E ∩ H) / P(H)**. O evento que se sabe ter ocorrido (H) é o **evento a priori**; aquele cuja probabilidade se calcula (E) é o **a posteriori**.
+- Se o evento a posteriori está **contido** no a priori, a interseção é o próprio a posteriori. Exemplo: entre 90 enfermeiros, 10 têm mais de vinte anos de profissão; P(X | E) = 10/90 = 1/9.
+- **Complementar condicional**: P(Ē | H) = 1 − P(E | H) (o evento a priori permanece o mesmo). Com P(E | H) = 1/3, P(Ē | H) = 2/3.
+
+### Questões
+
+- **QUADRIX/CGM-Fortaleza**: probabilidade condicional = probabilidade de um evento ocorrer dado que outro já ocorreu (letra B; ex.: ter febre dado que está gripado).
+- **VUNESP/Peruíbe**: pelo gráfico, 80 homens e 100 mulheres sem emprego. P(homem | sem emprego) = 80/180 = **4/9** (letra B).
+- **CESPE/ABIN (famílias Turing, Russell e Gödel)**: sabendo que o sorteado **não** é mulher da família Gödel, o universo passa a ter 28 pessoas; as mulheres da família Russell são 5. P = 5/28 ≈ 18%, **inferior** a 20% (item errado).
+- **FCC/Banrisul**: 400 funcionários (180 homens e 220 mulheres); 30% ganham mais de 5 S.M. (120). Das 220 mulheres, 160 ganham até 5 S.M., ou seja, 60 ganham mais; portanto, 120 − 60 = 60 homens ganham mais. P(mais de 5 S.M. | homem) = 60/180 = **1/3** (letra C).
+- **FGV/SEFAZ-ES**: P(A) = 0,5, P(B) = 0,8, P(A | B) = 0,6. P(A ∩ B) = 0,6 × 0,8 = 0,48. P(A ∪ B) = 0,5 + 0,8 − 0,48 = **0,82** (letra D).
+
+### Teorema da multiplicação
+
+- **P(A ∩ B) = P(B | A) × P(A)** (probabilidade da interseção = condicional × a priori). Também vale invertendo: P(A ∩ B) = P(A | B) × P(B).
+- Exemplo: P(E | H) = 1/3 e P(H) = 120/200 = 3/5; P(E ∩ H) = 1/3 × 3/5 = **1/5** = 40/200. Invertendo: P(H | E) = 40/90 = 4/9; P(E) = 90/200 = 9/20; 4/9 × 9/20 = 1/5.
+- **Três eventos**: **P(A ∩ B ∩ C) = P(A) × P(B | A) × P(C | A ∩ B)**.
+
+### Aplicações
+
+- **VUNESP/Alumínio (estudante e testes)**: sabe 75% da matéria; quando não sabe, escolhe ao acaso entre 4 alternativas. Acertar **por acaso** é "não saber **e** acertar": P(S̄) × P(A | S̄) = 0,25 × 0,25 = **6,25%** (letra A).
+- **VUNESP/Campinas (máquina reserva)**: o sistema só para se M1 **e** M2 falharem: 1/20 × 1/20 = 1/400 = 0,25%. Sistema não interromper (complementar) = **99,75%** (letra A).
+- **FGV/ALE-RO (três urnas)**: urna I (4 azuis, 6 vermelhas), urna II (5 azuis, 4 vermelhas), urna III (2 azuis, 7 vermelhas). Sorteia-se da I para a II; depois da II para a III; por fim, da III. Árvore de possibilidades, somando os quatro caminhos que terminam em azul:
+  - azul da I (4/10), azul da II (6/10), azul da III (3/10): 72/1.000;
+  - azul da I (4/10), vermelha da II (4/10), azul da III (2/10): 32/1.000;
+  - vermelha da I (6/10), azul da II (5/10), azul da III (3/10): 90/1.000;
+  - vermelha da I (6/10), vermelha da II (5/10), azul da III (2/10): 60/1.000.
+  Soma: 254/1.000 = **0,254** (letra C).
+
+### Para fixar
+- P(A | B) = P(A ∩ B)/P(B): o universo vira B.
+- Multiplicação: P(A ∩ B) = P(A) × P(B | A).
+- "Acerta por acaso" = não sabe e acerta.
+- Sistemas com reserva: falha total = todas falham (multiplicam); sucesso = complementar.
+- Em extrações encadeadas, some as probabilidades dos caminhos (árvore).
+@@ SINTETICO
+**Probabilidade condicional**: probabilidade de um evento sabendo que outro já ocorreu, com o universo reduzido.
+**Fórmula**: P de E dado H é P(E e H) dividido por P(H).
+**A priori e a posteriori**: o a priori é o fato conhecido e o a posteriori é o evento calculado.
+**Complementar condicional**: P de não E dado H é 1 menos P de E dado H.
+**Sem emprego**: 80 homens e 100 mulheres sem emprego dão 80 sobre 180 para homem dado sem emprego.
+**Multiplicação**: P(A e B) é P(B dado A) vezes P(A).
+**Três eventos**: P(A), P(B dado A) e P(C dado A e B) se multiplicam.
+**Chute**: acertar por acaso é não saber e acertar, ou seja, 0,25 vezes 0,25.
+**Máquina reserva**: o sistema só falha se as duas máquinas falham, e o sucesso é o complementar.
+**Árvore de urnas**: somam-se os caminhos que levam ao resultado, como 0,254 de bola azul final.
+@@ TEORIA
+C | A probabilidade de ser enfermeiro, sabendo que a pessoa é homem, considera apenas os homens como universo. || Universo reduzido.
+E | Na fórmula P(A | B) = P(A ∩ B)/P(B), divide-se pela probabilidade do evento que se quer calcular. || Divide-se por P(B), o a priori.
+C | P(A ∩ B) = P(A | B) × P(B). || Teorema da multiplicação.
+E | Em uma linha de produção com máquina reserva, o sistema para se uma das duas falhar. || Só para se as duas falharem.
+@@ REVISAO
+C | Se P(B) = 0,8 e P(A | B) = 0,6, então P(A ∩ B) = 0,48. || 0,6 × 0,8.
+E | A probabilidade de acertar uma questão por acaso, com 4 alternativas, quando se sabe 75% da matéria, é 25%. || É 0,25 × 0,25 = 6,25%.
+C | Se 1/20 é a probabilidade de falha de cada máquina, a probabilidade de as duas falharem (sucessivamente) é 1/400. || Multiplicação.
+C | Em extrações encadeadas, soma-se a probabilidade de cada caminho favorável. || Árvore de probabilidades.
+@@ PONTOS
+43 | Probabilidade condicional e fórmula
+44 | Evento a priori e a posteriori e complementar condicional
+45 | Questão do QUADRIX e da VUNESP (Peruíbe)
+46 | Resolução da VUNESP e questão da ABIN
+47 | Resolução da ABIN e questão da FCC (Banrisul)
+48 | Questão da FGV (SEFAZ-ES) e teorema da multiplicação
+49 | Exemplo do teorema da multiplicação
+50 | Inversão dos eventos e três eventos; questão de Alumínio
+51 | Resolução de Alumínio e questão de Campinas
+52 | Resolução de Campinas e questão das três urnas

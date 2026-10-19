@@ -1,0 +1,81 @@
+@@@ raciocinio-logico/a07/s05
+@@ ANALITICO
+Este trecho conclui a questão das três urnas e trata da independência de eventos: definição, produto das probabilidades, complementares independentes, "pelo menos um" pelo complementar e a independência de três ou mais eventos.
+
+### Fim da questão das três urnas (FGV/ALE-RO)
+
+- Probabilidade de a bola final ser azul, somando os quatro caminhos (0,4 × 0,6 × 0,3 + 0,4 × 0,4 × 0,2 + 0,6 × 0,5 × 0,3 + 0,6 × 0,5 × 0,2): 0,072 + 0,032 + 0,09 + 0,06 = **0,254** (letra C).
+
+### Eventos independentes
+
+- Dois eventos são **independentes** quando um não influencia o outro: dois lançamentos de um dado. Então **P(B | A) = P(B)** (e P(A | B) = P(A)).
+- Se A e B são independentes, os **complementares** também: P(B | Ā) = P(B); P(B̄ | A) = P(B̄); P(B̄ | Ā) = P(B̄).
+- **Teorema da multiplicação para independentes**: **P(A ∩ B) = P(A) × P(B)**. A relação é de **ida e volta**: se A e B são independentes, vale o produto; e se vale o produto, A e B são independentes. Exemplo: com P(A) = 1/6, P(B) = 1/6 e P(A ∩ B) = 1/36, concluem-se independentes.
+- **Teste prático**: P(A | B) = P(A) (a condição não altera a probabilidade) indica independência.
+
+### Questões
+
+- **IMPARH/CGM-Fortaleza**: independentes são eventos em que a ocorrência de um **não afeta** a probabilidade do outro (letra C).
+- **CEBRASPE/TJ-AM**: P(A) = 0,3 e P(B) = 0,5, independentes: P(A ∩ B) = 0,15 (item certo).
+- **FGV/Angra dos Reis (dardos)**: acerto de 90% a cada lançamento, independentes: acertar dois seguidos = 0,9 × 0,9 = **81%** (letra C).
+- **FCC/SEFAZ-PI**: P(A) = 0,4, P(B) = 0,5, independentes: pelo menos um = 0,4 + 0,5 − 0,4 × 0,5 = 0,9 − 0,2 = **70%** (letra C).
+- **CEBRASPE/EMBRAPA (sensores)**: P(F | T) = 0,2 = P(F): F e T são independentes (item certo).
+- **FGV/DPE-RJ**: (I) P(A ∪ B) ≤ P(A) + P(B) − P(A)P(B) é afirmação **errada** em geral, pois só vale com igualdade se A e B forem independentes; sem essa informação não se sabe qual é maior, P(A ∩ B) ou P(A)P(B). (II) Se P(A ∩ B) = P(A)P(B), então A e B são independentes, e também os complementares: P(Ā ∩ B̄) = P(Ā)P(B̄): **certa**.
+
+### "Pelo menos um": o complementar
+
+- **Pelo menos um** = 1 − **nenhum**. Com eventos independentes, "nenhum" é o **produto** das probabilidades de não ocorrer.
+- **CESPE/DEPEN**: probabilidade de tuberculose de 0,01 por detento; dois detentos independentes. Nenhum doente: 0,99 × 0,99 ≈ 0,98; pelo menos um: 1 − 0,98 ≈ 0,02, entre 0,01 e 0,03 (item certo).
+- **FGV/FEMPAR (vacina)**: cada dose imuniza metade dos não imunizados. Em duas doses, ficar não imunizado exige falhar nas duas: 0,5 × 0,5 = 0,25; imunizado = 1 − 0,25 = **75%** (letra C).
+
+### Independência de três eventos
+
+- Para A, B e C independentes, valem **todas** as igualdades: P(A ∩ B) = P(A)P(B); P(A ∩ C) = P(A)P(C); P(B ∩ C) = P(B)P(C); **e** P(A ∩ B ∩ C) = P(A)P(B)P(C).
+- Se A, B e C são independentes, então P(A ∩ B ∩ C) é o produto (exemplo: três moedas, cara-coroa-cara: 1/2 × 1/2 × 1/2 = 1/8).
+- **O contrário não vale**: o produto das três probabilidades igual à probabilidade da tripla interseção **não** basta para concluir independência; e eventos independentes **dois a dois** podem não ser independentes **em conjunto**. Além disso, A independente de B e B independente de C **não** garantem A independente de C (exemplo: a 3ª moeda depende do resultado da 1ª).
+- Para n eventos independentes: P(A₁ ∩ ... ∩ Aₙ) = P(A₁) × ... × P(Aₙ), mas a igualdade sozinha não prova independência.
+
+### Questões com muitos eventos independentes
+
+- **VUNESP/Cerquilho**: prova de 5 questões com 4 alternativas, tudo no chute: (1/4)⁵ = **1/1.024** (letra A).
+- **VUNESP/UNICAMP**: 1/3 dos bebedores preferem a marca A; escolhendo três ao acaso, nenhum preferir A: (2/3)³ = **8/27** (letra C).
+- **FGV/TJ-AL**: A independente de B e B independente de C **não** permitem concluir que A é independente de C, nem que os três são independentes. Concluir sobre o **complementar** é válido: "B é independente do complementar de C" (letra D).
+
+### Para fixar
+- Independentes: P(A ∩ B) = P(A)P(B); complementares também são independentes.
+- Pelo menos um = 1 − nenhum; nenhum, entre independentes, é produto dos complementos.
+- Três eventos independentes exigem as quatro igualdades.
+- Independência dois a dois não implica independência conjunta.
+- Independência não é transitiva.
+@@ SINTETICO
+**Três urnas**: somando os quatro caminhos, a probabilidade de azul no fim é 0,254.
+**Eventos independentes**: um não afeta a probabilidade do outro, e P de B dado A é P(B).
+**Interseção de independentes**: P(A e B) é P(A) vezes P(B), com ida e volta.
+**Complementares**: os complementares de eventos independentes também são independentes.
+**Dois dardos**: 90% de acerto em cada um dá 81% de acertar os dois.
+**União de independentes**: P(A ou B) é P(A) mais P(B) menos o produto.
+**Pelo menos um**: 1 menos a probabilidade de nenhum, que entre independentes é o produto dos complementos.
+**Vacina**: duas doses com 50% de eficácia cada dão 75% de imunizados.
+**Três eventos independentes**: exigem as igualdades dois a dois e a da tripla interseção.
+**Armadilha**: independência dois a dois ou o produto da tripla não bastam, e A independente de B e B de C não implica A de C.
+@@ TEORIA
+C | Se A e B são independentes, P(A | B) = P(A). || Definição de independência.
+E | Se A e B são independentes, então A e o complementar de B são dependentes. || Complementares também são independentes.
+C | A probabilidade de pelo menos um evento ocorrer é 1 menos a probabilidade de nenhum ocorrer. || Complementar.
+E | Quando A independe de B e B independe de C, segue-se que A independe de C. || Independência não é transitiva.
+@@ REVISAO
+C | Dois eventos com P(A) = 0,5, P(B) = 0,4 e P(A ∩ B) = 0,2 são independentes. || 0,5 × 0,4 = 0,2.
+E | Basta que a probabilidade da tripla interseção seja o produto das três para os eventos serem independentes. || Não basta: exigem-se também as igualdades dois a dois.
+C | Acertar ao acaso 3 questões de 5 alternativas, em sequência, tem probabilidade (1/5)³. || Eventos independentes.
+C | Duas moedas honestas: P(duas caras) = 1/4. || 1/2 × 1/2.
+@@ PONTOS
+53 | Fim das três urnas e independência
+54 | Complementares independentes e produto
+55 | Ida e volta do produto e questões do IMPARH e do TJ-AM
+56 | Questões da FGV (dardos) e da FCC
+57 | Questão da EMBRAPA e DPE-RJ
+58 | Resolução da DPE-RJ e pelo menos um (DEPEN)
+59 | Resolução do DEPEN e questão da FEMPAR
+60 | Independência de três eventos
+61 | Questão de Cerquilho e UNICAMP
+62 | Questão da FGV (TJ-AL)

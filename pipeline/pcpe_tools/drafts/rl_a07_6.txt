@@ -1,0 +1,72 @@
+@@@ raciocinio-logico/a07/s06
+@@ ANALITICO
+Este trecho apresenta o teorema da probabilidade total e o teorema de Bayes, que inverte uma probabilidade condicional, com questões de carga de trabalho, defeitos, atendimento e testes de viabilidade, e termina com um quadro-resumo da aula de probabilidade.
+
+### Teorema da probabilidade total
+
+- Permite achar a probabilidade de um evento **I** quando se conhecem as probabilidades condicionais de I em cada grupo (a priori) e as proporções dos grupos. A probabilidade total é a soma dos "pedaços" de I em cada grupo:
+  **P(I) = P(I | A) × P(A) + P(I | B) × P(B) + P(I | C) × P(C)** (para n grupos, a mesma ideia). Com dois grupos (A e Ā): P(I) = P(I | A)P(A) + P(I | Ā)P(Ā).
+- Exemplo: inadimplência de 1%, 5% e 10% nos grupos A, B e C, que representam 50%, 30% e 20% dos clientes: P(I) = 0,5 × 0,01 + 0,3 × 0,05 + 0,2 × 0,10 = 0,005 + 0,015 + 0,02 = **4%**.
+
+### Questões de probabilidade total
+
+- **CEBRASPE/SEFAZ-RJ (papel × aplicativo)**: preenchimento correto de 0,4 em papel e 0,7 por aplicativo; o aplicativo responde por 90% dos casos. P(C) = 0,4 × 0,1 + 0,7 × 0,9 = 0,04 + 0,63 = **0,67** (letra D).
+- **FGV/DPE-RJ (lâmpadas)**: queimam antes de 1.000 h: 10% (marca A, 20% do estoque), 5% (B, 30%), 1% (C, 50%). P(queimar) = 0,02 + 0,015 + 0,005 = 0,04; P(não queimar) = **0,96** (letra D).
+- **FCC/TRT-11 (processos de A e B, mesma proporção)**: A: 20% analisados no mês e 10% indeferidos, logo 90% deferidos: 0,2 × 0,9 = 0,18. B: 40% analisados e 20% indeferidos: 0,4 × 0,8 = 0,32. P(deferido no mês) = 0,5 × 0,18 + 0,5 × 0,32 = **0,25** (letra E).
+
+### Teorema de Bayes
+
+- Usa-se quando se conhecem P(B | Aᵢ) e se quer **P(Aₘ | B)**, isto é, **inverter** o evento a priori e o a posteriori.
+- Dedução: P(A | I) = P(A ∩ I)/P(I); o numerador é P(I | A)P(A) (multiplicação) e o denominador é a probabilidade total:
+  **P(Aₘ | B) = P(B | Aₘ)P(Aₘ) / [P(B | A₁)P(A₁) + ... + P(B | Aₙ)P(Aₙ)]**.
+- Exemplo (inadimplência): P(A | I) = 0,01 × 0,5/0,04 = 0,005/0,04 = **12,5%**.
+
+### Questões de Bayes
+
+- **FGV/DPE-RJ (assistência gratuita)**: 80% das demandas por hipossuficiência (90% atendidas) e 20% por causas criminais (40% atendidas). P(criminal | atendido gratuitamente) = 0,4 × 0,2/(0,4 × 0,2 + 0,9 × 0,8) = 0,08/0,80 = **1/10** (letra A).
+- **FCC/TRT-14 (varas trabalhistas)**: varas com 50%, 30% e 20% das ações; ações agropecuárias: 3%, 4% e 5%. P(1ª vara | agropecuária) = 0,015/(0,015 + 0,012 + 0,010) = 0,015/0,037 ≈ **0,4054** (letra E).
+- **CEBRASPE/TJ-AM (aula da professora)**: presente aprende com 80%, ausente aprende com 0%; ausente em 25% das aulas. P(presente | não aprendeu) = 0,2 × 0,75/(0,2 × 0,75 + 1 × 0,25) = 0,15/0,40 = **37,5%**, inferior a 50% (item certo).
+- **FUNDATEC/Porto Alegre (linhas de calçados)**: 60% das linhas têm sucesso; 80% das bem-sucedidas e 30% das malsucedidas tiveram análise favorável. P(sucesso | favorável) = 0,8 × 0,6/(0,8 × 0,6 + 0,3 × 0,4) = 0,48/0,60 = **80%** (letra E).
+
+### Quadro-resumo da probabilidade
+
+- **Condicional**: P(B | A) = P(A ∩ B)/P(A). **Multiplicação**: P(A ∩ B) = P(B | A)P(A). **Total**: P(I) = Σ P(I | Aᵢ)P(Aᵢ). **Bayes**: P(A | I) = P(I | A)P(A)/P(I).
+- **Independência**: A e B independentes ⇔ P(A ∩ B) = P(A)P(B); para três eventos independentes, P(A ∩ B ∩ C) = P(A)P(B)P(C).
+
+### Para fixar
+- Probabilidade total: soma ponderada das condicionais pelo peso de cada grupo.
+- Bayes inverte a condicional: numerador (P(I | A)P(A)), denominador (probabilidade total).
+- Desenhe a árvore: o primeiro nível são os grupos, o segundo os resultados.
+- Para "não ocorrer" use o complementar depois de calcular a probabilidade total.
+- Verifique se os pesos dos grupos somam 100%.
+@@ SINTETICO
+**Probabilidade total**: soma de P(I dado A) vezes P(A) para todos os grupos.
+**Exemplo de inadimplência**: pesos 50%, 30% e 20% com taxas 1%, 5% e 10% resultam em 4%.
+**Preenchimento correto**: 0,4 vezes 0,1 mais 0,7 vezes 0,9 dá 0,67.
+**Lâmpadas**: a probabilidade total de queimar é 4%, e de não queimar, 96%.
+**Bayes**: inverte a condicional, calculando P de A dado B a partir de P de B dado A.
+**Fórmula de Bayes**: numerador é P(B dado A) vezes P(A), e o denominador é a probabilidade total de B.
+**Inadimplente do grupo A**: 12,5%, pois 0,005 dividido por 0,04.
+**Defensoria**: 0,08 sobre 0,80 resulta em 1 décimo.
+**Varas trabalhistas**: a probabilidade de ser da 1ª vara dado agropecuária é cerca de 0,4054.
+**Quadro-resumo**: condicional, multiplicação, total, Bayes e independência.
+@@ TEORIA
+C | O teorema da probabilidade total combina as probabilidades condicionais com os pesos de cada grupo. || P(I) = Σ P(I | Aᵢ)P(Aᵢ).
+E | O teorema de Bayes é usado para calcular a probabilidade de um evento ocorrer sem qualquer condição. || Serve para inverter a condicional.
+C | No denominador do teorema de Bayes aparece a probabilidade total do evento condicionante. || P(B) total.
+E | A soma dos pesos dos grupos na probabilidade total pode ser diferente de 100%. || Os grupos formam partição: pesos somam 1.
+@@ REVISAO
+C | Se 60% dos clientes são do grupo X (com 10% de defeito) e 40% do grupo Y (com 5% de defeito), a probabilidade de defeito é 8%. || 0,06 + 0,02.
+E | A probabilidade de um cliente defeituoso ser do grupo X, no exemplo anterior, é 10%. || É 0,06/0,08 = 75%.
+C | Na fórmula de Bayes, o numerador é a probabilidade da interseção entre o grupo e o evento. || P(I | A)P(A).
+C | Para a resposta pedir a probabilidade de "não queimar", pode-se calcular a total de queimar e depois o complementar. || Complemento após a probabilidade total.
+@@ PONTOS
+63 | Teorema da probabilidade total e exemplo
+64 | Fórmula geral e questão do CEBRASPE (SEFAZ-RJ)
+65 | Resolução do CEBRASPE e questão das lâmpadas
+66 | Questão da FCC (TRT-11) e início do teorema de Bayes
+67 | Fórmula de Bayes e exemplo de inadimplência
+68 | Questão da FGV (DPE-RJ) sobre assistência
+69 | Questão da FCC (TRT-14)
+70 | Questão do TJ-AM e da FUNDATEC
+71 | Resolução da FUNDATEC e quadro-resumo

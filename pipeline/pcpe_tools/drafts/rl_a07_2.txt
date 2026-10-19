@@ -1,0 +1,76 @@
+@@@ raciocinio-logico/a07/s02
+@@ ANALITICO
+Este trecho apresenta a probabilidade como frequência relativa (empírica) e as combinações de eventos: união de dois eventos, eventos exaustivos e mutuamente excludentes, e união de três eventos, com o diagrama de Venn.
+
+### Fim da questão da QUADRIX (Enzo na equipe)
+
+- Escolher 6 entre 12 soldados ao acaso: a probabilidade de um soldado específico estar na equipe é C₁₁,₅/C₁₂,₆ = **6/12 = 50%**, e não 25% (item errado).
+
+### Frequência relativa (empírica)
+
+- Repetindo um experimento **N** vezes, com o evento ocorrendo **n** vezes, a **frequência relativa** é **f = n/N**. Em lançamentos de moeda gerados por computador: com N = 100, saíram 48 coroas (48%); com N = 1.000, 505 (50,5%); com N = 10.000, 5.016 (50,16%).
+- A frequência não é igual à probabilidade, mas se aproxima dela à medida que N cresce; no limite, **P = lim (n/N), quando N → ∞**. Essa definição vale mesmo quando os resultados **não são igualmente prováveis** (a clássica não valeria). Exemplo: uma moeda desequilibrada que dá coroa 1 vez a cada 4 lançamentos tem P(coroa) = 1/4.
+- **Pref. Candói**: 8 milheiros de tijolos (8.000), com cerca de 100 danificados: P = 100/8.000 = 1/80 = **1,25%** (letra D).
+
+### Combinações de eventos: união
+
+- **União** A ∪ B: ocorre **A ou B (ou ambos)**. **Interseção** A ∩ B: ocorrem **ambos**.
+- Eventos **exaustivos**: A ∪ B = U. Eventos **mutuamente excludentes** (disjuntos): A ∩ B = ∅ (não ocorrem juntos).
+- Para contar a união sem duplicar a interseção: **n(A ∪ B) = n(A) + n(B) − n(A ∩ B)**. Dividindo por n(U): **P(A ∪ B) = P(A) + P(B) − P(A ∩ B)**.
+- Exemplo no dado: C = {1, 2, 3, 4} e D = {4, 5, 6}, C ∩ D = {4}: 4/6 + 3/6 − 1/6 = 6/6 = 1.
+- Se os eventos são **excludentes**, P(A ∩ B) = 0 e **P(A ∪ B) = P(A) + P(B)**. Exemplo: A = {1, 2, 3}, B = {4, 5, 6}: 1/2 + 1/2 = 1.
+
+### Questões de união
+
+- **IMPARH/CGM-Fortaleza**: eventos mutuamente exclusivos não podem ocorrer ao mesmo tempo; a ocorrência de um impede a do outro (letra B).
+- **FGV/ALE-RO**: P(A) = 40%, P(B) = 30%, P(A ∪ B) = 50%. Então P(A ∩ B) = 40% + 30% − 50% = **20%** (letra B).
+- **FCC/SEFAZ-BA**: sala com 20 homens e 30 mulheres; metade dos homens e metade das mulheres têm nível superior. P(M) = 30/50; P(S) = 25/50; P(M ∩ S) = 15/50. P(M ∪ S) = 30/50 + 25/50 − 15/50 = 40/50 = **4/5** (letra E).
+
+### União de três eventos
+
+- **n(A ∪ B ∪ C) = n(A) + n(B) + n(C) − n(A ∩ B) − n(B ∩ C) − n(A ∩ C) + n(A ∩ B ∩ C)**. Subtraem-se as interseções duas a duas e **soma-se de novo** a tripla (foi subtraída demais). Dividindo por n(U), vale a mesma forma para P.
+- Em vez de decorar, pode-se usar o **diagrama de Venn**: começa-se pela interseção tripla, depois entram as regiões de duas interseções (descontando a tripla) e, por fim, as regiões exclusivas de cada conjunto.
+- Exemplo: com P(A) = 1/2, P(B) = 5/8, P(A ∩ B) = 1/4, P(A ∩ C) = 5/16, P(B ∩ C) = 3/8, P(A ∩ B ∩ C) = 3/16 e P(A ∪ B ∪ C) = 1: da fórmula, P(C) = 1 − 1/2 − 5/8 + 1/4 + 5/16 + 3/8 − 3/16 = **5/8**. Pelo diagrama chega-se ao mesmo valor.
+- **FCC/SEPLAG-Recife (sabonetes X, Y, Z)**: 40%, 40% e 47% consomem X, Y e Z; 15% X e Y; 5% X e Z; 10% Y e Z; todos consomem pelo menos uma marca. A interseção tripla é 100% − (40 + 40 + 47 − 15 − 5 − 10) % = 100% − 97% = 3%. Só X: 40 − 15 − 5 + 3 = 23; só Y: 40 − 15 − 10 + 3 = 18; só Z: 47 − 5 − 10 + 3 = 35. Quem consome **exatamente uma marca**: 23 + 18 + 35 = **76%** (letra E).
+
+### Para fixar
+- Frequência relativa tende à probabilidade quando N cresce.
+- P(A ∪ B) = P(A) + P(B) − P(A ∩ B); se excludentes, soma simples.
+- Exaustivos: união igual a U; excludentes: interseção vazia.
+- União de três eventos: soma, menos duplas, mais tripla.
+- No Venn, comece pela interseção tripla.
+@@ SINTETICO
+**Frequência relativa**: n sobre N, número de ocorrências dividido por repetições.
+**Limite**: com muitas repetições, a frequência relativa se aproxima da probabilidade.
+**Moeda desequilibrada**: a probabilidade se estima pela frequência observada.
+**União de dois eventos**: P de A ou B é P(A) mais P(B) menos P(A e B).
+**Mutuamente excludentes**: a interseção é vazia e a união é a soma das probabilidades.
+**Exaustivos**: a união dos eventos é todo o espaço amostral.
+**Exemplo de interseção**: 40% mais 30% menos 50% dá 20%.
+**União de três eventos**: soma das três, menos as interseções duas a duas, mais a tripla.
+**Diagrama de Venn**: começar pela interseção tripla e depois pelas duplas.
+**Sabonetes**: com pelo menos uma marca, a interseção tripla é 3% e quem consome só uma marca é 76%.
+@@ TEORIA
+C | À medida que o número de repetições de um experimento aumenta, a frequência relativa de um evento tende a se aproximar da probabilidade. || Definição frequentista.
+E | Para eventos mutuamente excludentes, a probabilidade da interseção é positiva e deve ser subtraída da soma. || A interseção é vazia, com probabilidade 0.
+C | Para P(A) = 0,5, P(B) = 0,3 e P(A ∩ B) = 0,1, tem-se P(A ∪ B) = 0,7. || 0,5 + 0,3 − 0,1.
+E | Na união de três eventos, soma-se a interseção tripla duas vezes. || Soma-se uma vez, para compensar o que foi subtraído em excesso.
+@@ REVISAO
+C | A probabilidade de um soldado específico estar em uma equipe formada ao acaso com metade dos soldados é 50%. || 6/12.
+E | Eventos exaustivos são aqueles que não podem ocorrer ao mesmo tempo. || Isso é excludente; exaustivos têm união igual a U.
+C | Se 100 dos 8.000 tijolos estão danificados, a probabilidade de sortear um danificado é 1,25%. || 100/8.000.
+C | Se P(A) = 40%, P(B) = 30% e P(A ∪ B) = 50%, então P(A ∩ B) = 20%. || 70% − 50%.
+@@ PONTOS
+16 | Fim da questão do capitão e frequência relativa
+17 | Convergência da frequência para a probabilidade
+18 | Questão de Candói
+19 | Combinações de eventos e união
+20 | Eventos exaustivos e excludentes
+21 | Fórmula da probabilidade da união
+22 | Excludentes e questão do IMPARH
+23 | Questão da FGV (ALE-RO) e da FCC (SEFAZ-BA)
+24 | Resolução da FCC (SEFAZ-BA) e união de três eventos
+25 | Fórmula da união de três eventos
+26 | Exemplo de P(C) pela fórmula e pelo Venn
+27 | Cálculo das regiões do Venn
+28 | Questão da FCC (SEPLAG-PE)
