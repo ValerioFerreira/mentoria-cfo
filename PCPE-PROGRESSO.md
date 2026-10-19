@@ -65,7 +65,7 @@ Concluído e **commitado**: `contabilidade-geral` a00–a19 (último 9af0199); `
 
 **Pendente (ordem sugerida, por risco jurídico):**
 1. ~~`legislacao-penal-especial`~~ **CONCLUÍDO** (a11–a21 e c01 reescritos; ECA penal `content/complements/leg-penal-eca.md` corrigido com penas de 2026 e PDF refeito). Observações para HISTORICO.md: (a) Tema 506/RE 635.659 tratado só para maconha (40 g/6 plantas) — a aula chama art. 28 de sanção administrativa; (b) na aula a18/s04 a explicação do tráfico privilegiado diz "1/6 a 1/3", mas a lei é 1/6 a 2/3; (c) art. 60 da Lei 9.605: a aula traz penas diferentes em dois pontos (6 meses a 2 anos com aumento por EIA x 1 a 6 meses): adotei a mais recente.
-2. `legislacao-pcpe` (12 trechos), `direito-administrativo` a20–a24 e c02 (complementos de PCPE), `direito-constitucional` (verificar), `lingua-portuguesa` a13 (6 trechos; `bizu.summary` com 6–14 tópicos).
+2. ~~`legislacao-pcpe`~~ **CONCLUÍDO** (a01, a03–a07 reescritos; a02 e c01 conferidos e mantidos — EC 70 e 71/2026 da CE-PE confirmadas em pesquisa), `direito-administrativo` a20–a24 e c02 (complementos de PCPE), `direito-constitucional` (verificar), `lingua-portuguesa` a13 (6 trechos; `bizu.summary` com 6–14 tópicos).
 3. `raciocinio-logico`: bizus C/E genéricos (~300 itens; 94 falhas de validação) + `apply_synthetic.py`; trechos copiados em DA/DC/Estatística/Matemática/LP (lista em `python pipeline/pcpe_tools/val_pcpe.py`).
 4. Opcional (só estilo/prolixidade; conteúdo correto): `direito-penal` a00–a03 (17 trechos), `direito-processual-penal` a04–a06, demais.
 5. Ao final: `python pipeline/apply_synthetic.py`, `python pipeline/pcpe_tools/mirror_web.py`, `python pipeline/pcpe_tools/audit_pcpe.py .`, commit do espelho e dos itens atualizados.
