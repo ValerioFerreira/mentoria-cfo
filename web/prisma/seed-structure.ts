@@ -125,10 +125,13 @@ export async function seedStructure() {
     }
   }
 
-  const existingSegCount = await db.segment.count();
-  if (existingSegCount < allSegRows.length) {
+  // Só insere o que falta. Comparar contagens não serve: trechos órfãos (resegmentação) ficam no banco e fazem a
+  // contagem passar do total do conteúdo, e então trechos novos (ex.: complementos) nunca entrariam e o Bizu falharia.
+  const existingSegIds = new Set((await db.segment.findMany({ select: { id: true } })).map((s) => s.id));
+  const missingSegRows = allSegRows.filter((r) => !existingSegIds.has(r.id));
+  if (missingSegRows.length) {
     for (const c of chunk(allTopicRows, 1000)) await db.topic.createMany({ data: c, skipDuplicates: true });
-    for (const c of chunk(allSegRows, 500)) await db.segment.createMany({ data: c, skipDuplicates: true });
+    for (const c of chunk(missingSegRows, 500)) await db.segment.createMany({ data: c, skipDuplicates: true });
   }
 
   // 4. Edital

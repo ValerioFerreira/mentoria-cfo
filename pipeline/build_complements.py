@@ -267,12 +267,20 @@ def merge(docs: list[Doc]) -> None:
             base_inc = sum(a["incidenceBase"] for a in subj["aulas"] if a.get("selectable") and not a.get("onlyContests"))
             exc_inc = sum(a["incidenceBase"] for a in subj["aulas"] if a.get("selectable") and a.get("onlyContests"))
         else:
-            raw_total = sum(d.weight for d in mine)
+            # só os complementos de todos os concursos diluem a incidência das aulas-base; os exclusivos de um concurso
+            # (onlyContests) têm fatia própria, para não mudar o planejamento dos demais concursos
+            shared = [d for d in mine if not d_meta(d).get("onlyContests")]
+            exclusive = [d for d in mine if d_meta(d).get("onlyContests")]
+            raw_total = sum(d.weight for d in shared)
             wscale = min(1.0, MAX_COMPLEMENT_SHARE / raw_total) if raw_total else 1.0
-            for d in mine:
+            for d in shared:
                 d.weight = d.weight * wscale
-            w_total = sum(d.weight for d in mine)
+            w_total = sum(d.weight for d in shared)
             assert w_total < 1, f"{subj['id']}: pesos dos complementos somam {w_total}"
+            raw_excl = sum(d.weight for d in exclusive)
+            wscale_excl = min(1.0, MAX_COMPLEMENT_SHARE / raw_excl) if raw_excl else 1.0
+            for d in exclusive:
+                d.weight = d.weight * wscale_excl
 
             for a in subj["aulas"]:
                 if a.get("selectable"):
