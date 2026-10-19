@@ -5,7 +5,7 @@ import { PixStatic } from "@/components/pix-static";
 import { mercadoPagoConfigured } from "@/lib/billing/mercado-pago";
 import { Alert, Badge, Card, PageHeader } from "@/components/ui";
 import { getCurrentUser } from "@/lib/auth/session";
-import { CONTRACT_STATUS, contestName, dateBR } from "@/lib/commerce/labels";
+import { CONTRACT_STATUS, contestName, dateBR, discountSummary } from "@/lib/commerce/labels";
 import { formatBRL, fromCents, toCents } from "@/lib/commerce/money";
 import { db } from "@/lib/db";
 import { OnlinePay } from "./online-pay";
@@ -18,7 +18,7 @@ export default async function ContractPixPage({ params }: { params: Promise<{ id
   if (!user) redirect("/login");
   const { id } = await params;
   // só o próprio cliente vê a sua contratação (o id da URL não basta)
-  const c = await db.contract.findFirst({ where: { id, OR: [{ userId: user.id }, { customerEmail: user.email.toLowerCase() }] } });
+  const c = await db.contract.findFirst({ where: { id, OR: [{ userId: user.id }, { customerEmail: user.email.toLowerCase() }] }, include: { siteCoupons: { select: { code: true, appliedPoints: true } } } });
   if (!c) notFound();
   const due = toCents(c.finalAmount) - toCents(c.paidAmount);
   const online = mercadoPagoConfigured();
@@ -41,7 +41,7 @@ export default async function ContractPixPage({ params }: { params: Promise<{ id
             <span className="text-muted line-through">De {formatBRL(toCents(c.originalAmount))}</span> por {formatBRL(toCents(c.finalAmount))}
           </p>
           <p className="text-xs text-muted">
-            {c.launchDiscountPoints}% de lançamento{c.partnerDiscountPoints ? ` + ${c.partnerDiscountPoints}% do cupom ${c.couponCode}` : ""}
+            {discountSummary(c)}
             {toCents(c.paidAmount) > 0 ? ` · já recebido: ${formatBRL(toCents(c.paidAmount))}` : ""}
           </p>
         </div>

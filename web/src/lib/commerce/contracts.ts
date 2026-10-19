@@ -2,19 +2,14 @@ import "server-only";
 import type { Contest, Prisma } from "@/generated/prisma/client";
 import { db } from "@/lib/db";
 import { audit } from "./audit";
+import { couponSetKey, parseCouponCodes, resolveCoupons } from "./coupons";
 import { CommerceError } from "./errors";
 import { fromCents, toCents } from "./money";
 import { accessEndForExamDate, quote } from "./pricing";
 
 type Tx = Prisma.TransactionClient;
 
-export const COUPON_CODE = /^[A-Z0-9]{4,20}$/;
-
-export function normalizeCouponCode(raw: unknown): string | null {
-  if (typeof raw !== "string") return null;
-  const code = raw.trim().toUpperCase();
-  return code ? code : null;
-}
+export { COUPON_CODE, normalizeCouponCode } from "./coupons";
 
 /** Trava por cliente dentro da transação: impede duas contratações simultâneas do mesmo e-mail. */
 export async function lockCustomer(tx: Tx, email: string) {
@@ -25,23 +20,6 @@ export async function lockContract(tx: Tx, contractId: string) {
   await tx.$queryRaw`SELECT "id" FROM "Contract" WHERE "id" = ${contractId} FOR UPDATE`;
 }
 
-/**
- * Valida o cupom para uma nova contratação. Recusa: inexistente, desativado, parceiro desativado e autoindicação.
- * A mensagem é a mesma para inexistente/desativado (não revela quais códigos existem).
- */
-export async function resolveCoupon(tx: Tx, code: string, customer: { email: string; userId?: string | null }) {
-  if (!COUPON_CODE.test(code)) throw new CommerceError("Cupom inválido ou desativado.", "COUPON_INVALID");
-  const coupon = await tx.partnerCoupon.findUnique({
-    where: { code },
-    include: { partner: { select: { id: true, active: true, userId: true, user: { select: { email: true } } } } },
-  });
-  if (!coupon || !coupon.active || !coupon.partner.active) throw new CommerceError("Cupom inválido ou desativado.", "COUPON_INVALID");
-  if (coupon.partner.user.email.toLowerCase() === customer.email || (customer.userId && coupon.partner.userId === customer.userId)) {
-    throw new CommerceError("O cupom de parceiro não pode ser usado pelo próprio parceiro.", "SELF_REFERRAL");
-  }
-  return coupon;
-}
-
 /** Oferta atual de um concurso (preço de lançamento sem cupom), ou motivo de indisponibilidade. */
 export async function contestOffer(contest: Contest) {
   const setting = await db.contestSetting.findUnique({ where: { contest } });
@@ -49,15 +27,19 @@ export async function contestOffer(contest: Contest) {
   return { available: true as const, category: setting.category, examDate: setting.examDate, quote: quote(setting.category, 0, setting) };
 }
 
-/** Confere categoria e cupom sem gravar nada (usado antes de criar a inscrição da lista de espera). */
-export async function previewContract(contest: Contest, customerEmail: string, couponCode?: string | null) {
-  const email = customerEmail.trim().toLowerCase();
-  const code = normalizeCouponCode(couponCode);
+/**
+ * Confere categoria e cupons sem gravar nada e devolve o preço calculado no servidor (usado na simulação do formulário
+ * e antes de criar a inscrição da lista de espera). Sem e-mail, a checagem de autoindicação fica para a contratação.
+ */
+export async function previewContract(contest: Contest, customerEmail: string | null, couponCodes?: string | null) {
+  const email = customerEmail?.trim().toLowerCase() || null;
+  const codes = parseCouponCodes(couponCodes);
   return db.$transaction(async (tx) => {
     const setting = await tx.contestSetting.findUnique({ where: { contest } });
     if (!setting?.category) throw new CommerceError("Este concurso está em revisão administrativa e ainda não pode ser contratado.", "CATEGORY_MISSING");
-    const coupon = code ? await resolveCoupon(tx, code, { email }) : null;
-    return quote(setting.category, coupon?.discountPoints ?? 0, setting);
+    const r = await resolveCoupons(tx, codes, email ? { email } : undefined);
+    const q = quote(setting.category, r.partner?.discountPoints ?? 0, setting, r.site.map((c) => c.discountPoints));
+    return { quote: q, coupons: r.applied };
   });
 }
 
@@ -67,6 +49,7 @@ export interface CreateContractInput {
   customerName?: string | null;
   userId?: string | null;
   waitlistEntryId?: string | null;
+  /** um ou mais códigos (cupom de parceiro e/ou cupons do site), separados por espaço, vírgula ou quebra de linha */
   couponCode?: string | null;
 }
 
@@ -80,43 +63,46 @@ export interface CreateContractResult {
 /**
  * Registra a contratação de acesso até a prova (= obrigação financeira) com preço calculado no servidor.
  * Há no máximo uma contratação não cancelada por e-mail e concurso: repetir o pedido devolve a existente;
- * trocar o cupom só é possível enquanto nada foi recebido (a anterior fica cancelada no histórico).
+ * trocar os cupons só é possível enquanto nada foi recebido (a anterior fica cancelada no histórico).
  */
 export async function createContract(input: CreateContractInput, actorId: string | null): Promise<CreateContractResult> {
   const email = input.customerEmail.trim().toLowerCase();
-  const code = normalizeCouponCode(input.couponCode);
+  const codes = parseCouponCodes(input.couponCode);
   return db.$transaction(async (tx) => {
     await lockCustomer(tx, email);
     const setting = await tx.contestSetting.findUnique({ where: { contest: input.contest } });
     if (!setting?.category) {
       throw new CommerceError("Este concurso está em revisão administrativa e ainda não pode ser contratado.", "CATEGORY_MISSING");
     }
-    const coupon = code ? await resolveCoupon(tx, code, { email, userId: input.userId }) : null;
+    const resolved = await resolveCoupons(tx, codes, { email, userId: input.userId });
+    const coupon = resolved.partner;
 
     const existing = await tx.contract.findFirst({
       where: { customerEmail: email, contest: input.contest, status: { not: "CANCELLED" } },
       orderBy: { createdAt: "desc" },
-      include: { _count: { select: { payments: true } } },
+      include: { _count: { select: { payments: true } }, siteCoupons: { select: { code: true } } },
     });
     let replacedId: string | undefined;
     if (existing) {
-      if ((existing.couponId ?? null) === (coupon?.id ?? null) || (!coupon && existing.couponId)) {
+      const existingKey = couponSetKey([existing.couponCode, ...existing.siteCoupons.map((c) => c.code)]);
+      const requestedKey = couponSetKey(resolved.applied.map((c) => c.code));
+      if (existingKey === requestedKey || (requestedKey === "" && existingKey !== "")) {
         // mesmo pedido (ou pedido sem cupom sobre uma contratação com cupom): mantém o que já foi registrado
         if (input.userId && !existing.userId) await tx.contract.update({ where: { id: existing.id }, data: { userId: input.userId } });
         return { contractId: existing.id, created: false };
       }
       if (existing._count.payments > 0 || existing.accessGrantedAt) {
-        throw new CommerceError("Já existe uma contratação com pagamento para este concurso; o cupom não pode mais ser alterado.", "CONTRACT_LOCKED");
+        throw new CommerceError("Já existe uma contratação com pagamento para este concurso; os cupons não podem mais ser alterados.", "CONTRACT_LOCKED");
       }
       await tx.contract.update({
         where: { id: existing.id },
-        data: { status: "CANCELLED", cancelledAt: new Date(), cancelReason: "Substituída: cupom informado depois da inscrição." },
+        data: { status: "CANCELLED", cancelledAt: new Date(), cancelReason: "Substituída: cupons informados depois da inscrição." },
       });
       await audit(tx, { actorId, action: "CONTRACT_REPLACED", entityType: "Contract", entityId: existing.id, data: { reason: "coupon_changed" } });
       replacedId = existing.id;
     }
 
-    const q = quote(setting.category, coupon?.discountPoints ?? 0, setting);
+    const q = quote(setting.category, coupon?.discountPoints ?? 0, setting, resolved.site.map((c) => c.discountPoints));
     const contract = await tx.contract.create({
       data: {
         userId: input.userId ?? null,
@@ -130,11 +116,16 @@ export async function createContract(input: CreateContractInput, actorId: string
         originalAmount: fromCents(q.originalCents),
         launchDiscountPoints: q.launchDiscountPoints,
         partnerDiscountPoints: q.partnerDiscountPoints,
+        couponDiscountPoints: q.couponDiscountPoints,
         discountAmount: fromCents(q.discountCents),
         finalAmount: fromCents(q.finalCents),
         couponId: coupon?.id ?? null,
         couponCode: coupon?.code ?? null,
         partnerId: coupon?.partnerId ?? null,
+        // cupons do site congelados com o percentual pedido e o efetivamente aplicado (teto de 100% no total)
+        siteCoupons: {
+          create: resolved.site.map((c, i) => ({ couponId: c.id, code: c.code, discountPoints: c.discountPoints, appliedPoints: q.couponAppliedPoints[i] ?? 0 })),
+        },
       },
     });
 
@@ -152,7 +143,7 @@ export async function createContract(input: CreateContractInput, actorId: string
       action: "CONTRACT_CREATED",
       entityType: "Contract",
       entityId: contract.id,
-      data: { contest: input.contest, category: q.category, rule: q.pricingRule, finalAmount: fromCents(q.finalCents), coupon: coupon?.code ?? null, partnerId: coupon?.partnerId ?? null, replacedId: replacedId ?? null },
+      data: { contest: input.contest, category: q.category, rule: q.pricingRule, finalAmount: fromCents(q.finalCents), coupon: coupon?.code ?? null, siteCoupons: resolved.site.map((c) => c.code), couponDiscountPoints: q.couponDiscountPoints, partnerId: coupon?.partnerId ?? null, replacedId: replacedId ?? null },
     });
     return { contractId: contract.id, created: true, replacedId };
   });

@@ -91,7 +91,7 @@ async function Contracts({ f }: { f: ReturnType<typeof parseFilters> }) {
                   <td className={td}>
                     <Link href={`/admin/financeiro/${c.id}`} className="font-semibold text-primary underline">{c.customerName ?? c.customerEmail}</Link>
                     <span className="block text-xs text-muted">{c.customerEmail}{c.userId ? "" : " · sem conta"}</span>
-                    <span className="block text-xs text-muted">{dateBR(c.createdAt)}{c.couponCode ? ` · cupom ${c.couponCode}${c.partner?.user.username ? ` (@${c.partner.user.username})` : ""}` : ""}</span>
+                    <span className="block text-xs text-muted">{dateBR(c.createdAt)}{c.couponCode ? ` · cupom ${c.couponCode}${c.partner?.user.username ? ` (@${c.partner.user.username})` : ""}` : ""}{c.siteCoupons.length ? ` · ${c.siteCoupons.length === 1 ? "cupom" : "cupons"} ${c.siteCoupons.map((s) => s.code).join(", ")}` : ""}</span>
                   </td>
                   <td className={td}>{contestName(c.contest)}<span className="block text-xs text-muted">{CATEGORY_LABEL[c.category]}</span></td>
                   <td className={`${td} tabular whitespace-nowrap text-muted line-through`}>{formatBRL(toCents(c.originalAmount))}</td>
@@ -330,7 +330,8 @@ async function History({ f }: { f: ReturnType<typeof parseFilters> }) {
                 <td className={`${td} whitespace-nowrap text-xs`}>{h.createdAt.toLocaleString("pt-BR", { timeZone: "America/Recife" })}</td>
                 <td className={td}>{AUDIT_LABEL[h.action] ?? h.action}</td>
                 <td className={`${td} text-xs`}>
-                  {h.entityType === "Contract" ? <Link className="text-primary underline" href={`/admin/financeiro/${h.entityId}`}>Contratação</Link>
+                  {h.entityType === "Coupon" ? <Link className="text-primary underline" href="/admin/cupons">Cupom do site</Link>
+                    : h.entityType === "Contract" ? <Link className="text-primary underline" href={`/admin/financeiro/${h.entityId}`}>Contratação</Link>
                     : h.entityType === "Partner" ? <Link className="text-primary underline" href={`/admin/parceiros/${h.entityId}`}>Parceiro</Link>
                       : `${h.entityType} ${h.entityId}`}
                 </td>

@@ -10,6 +10,7 @@ import { requireAdmin } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { audit } from "./audit";
 import { cancelContract, createContract, grantAccessUntilExam } from "./contracts";
+import { createSiteCoupon, deleteSiteCoupon, setSiteCouponActive, updateSiteCoupon } from "./coupons";
 import { importLegacyPayer } from "./legacy";
 import { type ActionResult, toActionError } from "./errors";
 import { formatBRL, parseMoneyInput } from "./money";
@@ -361,5 +362,63 @@ export async function adminRegisterPayout(_: ActionResult | null, fd: FormData):
     return { ok: true, message: r.duplicate ? "Este repasse já tinha sido registrado." : `Repasse de ${formatBRL(d.amount)} registrado.` };
   } catch (err) {
     return toActionError(err, "registrar repasse");
+  }
+}
+
+/* ───────────── Cupons do site (/admin/cupons) ───────────── */
+
+const CouponCode = z.string().trim().max(20, "O cupom deve ter de 4 a 20 letras maiúsculas ou números.");
+const CouponPoints = z.string().trim().max(6);
+
+export async function adminCreateSiteCoupon(_: ActionResult | null, fd: FormData): Promise<ActionResult> {
+  const admin = await requireAdmin();
+  const parsed = z.object({ code: CouponCode, discountPoints: CouponPoints }).safeParse(form(fd));
+  if (!parsed.success) return firstIssue(parsed.error);
+  try {
+    const c = await createSiteCoupon(parsed.data, admin.id);
+    revalidatePath("/admin/cupons");
+    return { ok: true, message: `Cupom ${c.code} criado.` };
+  } catch (err) {
+    return toActionError(err, "criar cupom");
+  }
+}
+
+export async function adminUpdateSiteCoupon(_: ActionResult | null, fd: FormData): Promise<ActionResult> {
+  const admin = await requireAdmin();
+  const parsed = z.object({ couponId: Id, code: CouponCode.optional(), discountPoints: CouponPoints }).safeParse(form(fd));
+  if (!parsed.success) return firstIssue(parsed.error);
+  try {
+    await updateSiteCoupon(parsed.data.couponId, parsed.data, admin.id);
+    revalidatePath("/admin/cupons");
+    return { ok: true, message: "Cupom atualizado. Contratações já registradas não mudam de preço." };
+  } catch (err) {
+    return toActionError(err, "editar cupom");
+  }
+}
+
+export async function adminSetSiteCouponActive(_: ActionResult | null, fd: FormData): Promise<ActionResult> {
+  const admin = await requireAdmin();
+  const parsed = z.object({ couponId: Id, active: z.enum(["true", "false"]) }).safeParse(form(fd));
+  if (!parsed.success) return firstIssue(parsed.error);
+  try {
+    const active = parsed.data.active === "true";
+    await setSiteCouponActive(parsed.data.couponId, active, admin.id);
+    revalidatePath("/admin/cupons");
+    return { ok: true, message: active ? "Cupom ativado." : "Cupom inativado: não vale para novas contratações." };
+  } catch (err) {
+    return toActionError(err, "ativar/inativar cupom");
+  }
+}
+
+export async function adminDeleteSiteCoupon(_: ActionResult | null, fd: FormData): Promise<ActionResult> {
+  const admin = await requireAdmin();
+  const parsed = z.object({ couponId: Id }).safeParse(form(fd));
+  if (!parsed.success) return firstIssue(parsed.error);
+  try {
+    await deleteSiteCoupon(parsed.data.couponId, admin.id);
+    revalidatePath("/admin/cupons");
+    return { ok: true, message: "Cupom excluído." };
+  } catch (err) {
+    return toActionError(err, "excluir cupom");
   }
 }

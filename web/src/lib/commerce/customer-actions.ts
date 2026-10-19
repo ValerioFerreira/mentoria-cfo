@@ -10,7 +10,7 @@ import { type ActionResult, toActionError } from "./errors";
 
 const Schema = z.object({
   contest: z.enum(CONTESTS.map((c) => c.key) as [string, ...string[]], { error: "Escolha o concurso." }),
-  coupon: z.string().trim().max(20).optional(),
+  coupon: z.string().trim().max(150).optional(),
 });
 
 /**

@@ -4,7 +4,7 @@ import type { Prisma } from "@/generated/prisma/client";
 import { hashPassword } from "@/lib/auth/password";
 import { db } from "@/lib/db";
 import { audit } from "./audit";
-import { COUPON_CODE, normalizeCouponCode } from "./contracts";
+import { assertCodeFree, normalizeCouponCode } from "./coupons";
 import { CommerceError } from "./errors";
 import { summarizeLedger, type PartnerBalance } from "./ledger";
 import { fromCents, toCents } from "./money";
@@ -24,20 +24,15 @@ async function lockPartner(tx: Tx, partnerId: string) {
 /** Código livre derivado do nome de usuário (ex.: "JOAO.S" -> "JOAOS15"); acrescenta dígitos se já existir. */
 async function freeCouponCode(tx: Tx, username: string): Promise<string> {
   const base = username.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 14).padEnd(4, "X");
+  const isFree = async (code: string) =>
+    !(await tx.partnerCoupon.findUnique({ where: { code }, select: { id: true } })) && !(await tx.coupon.findUnique({ where: { code }, select: { id: true } }));
   const first = `${base}${PARTNER_COUPON_DISCOUNT_POINTS}`;
-  if (!(await tx.partnerCoupon.findUnique({ where: { code: first }, select: { id: true } }))) return first;
+  if (await isFree(first)) return first;
   for (let i = 0; i < 20; i++) {
     const code = `${base}${randomInt(100, 1000)}`;
-    if (!(await tx.partnerCoupon.findUnique({ where: { code }, select: { id: true } }))) return code;
+    if (await isFree(code)) return code;
   }
   throw new CommerceError("Não foi possível gerar um código de cupom livre. Informe um código manualmente.");
-}
-
-async function assertCouponFree(tx: Tx, code: string) {
-  if (!COUPON_CODE.test(code)) throw new CommerceError("O cupom deve ter de 4 a 20 letras maiúsculas ou números.");
-  if (await tx.partnerCoupon.findUnique({ where: { code }, select: { id: true } })) {
-    throw new CommerceError("Este código de cupom já existe (códigos não são reaproveitados).", "COUPON_TAKEN");
-  }
 }
 
 export interface CreatePartnerInput {
@@ -93,7 +88,7 @@ export async function createPartner(input: CreatePartnerInput, actorId: string):
       userId = user.id;
     }
     const code = wanted ?? (await freeCouponCode(tx, username));
-    await assertCouponFree(tx, code);
+    await assertCodeFree(tx, code);
     const partner = await tx.partner.create({ data: { userId, createdById: actorId } });
     await tx.partnerCoupon.create({ data: { partnerId: partner.id, code, discountPoints: PARTNER_COUPON_DISCOUNT_POINTS } });
     await audit(tx, { actorId, action: "PARTNER_CREATED", entityType: "Partner", entityId: partner.id, data: { userId, email, username, coupon: code, linkedExisting: Boolean(existing) } });
@@ -181,7 +176,7 @@ export async function replacePartnerCoupon(partnerId: string, newCode: string | 
     const p = await tx.partner.findUnique({ where: { id: partnerId }, include: { user: { select: { username: true, email: true } } } });
     if (!p) throw new CommerceError("Parceiro não encontrado.");
     const code = normalizeCouponCode(newCode) ?? (await freeCouponCode(tx, p.user.username ?? p.user.email.split("@")[0]));
-    await assertCouponFree(tx, code);
+    await assertCodeFree(tx, code);
     const now = new Date();
     const old = await tx.partnerCoupon.findMany({ where: { partnerId, active: true }, select: { id: true, code: true } });
     await tx.partnerCoupon.updateMany({ where: { partnerId, active: true }, data: { active: false, deactivatedAt: now, replacedAt: now } });

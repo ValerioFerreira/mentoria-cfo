@@ -1,12 +1,12 @@
 "use client";
 
-import { AlertTriangle, Check, CheckCircle2, CircleAlert, Clock, Copy, Loader2, Send, ShieldCheck, X } from "lucide-react";
+import { AlertTriangle, Check, CheckCircle2, CircleAlert, Clock, Copy, Loader2, Send, ShieldCheck, Ticket, X } from "lucide-react";
 import Image from "next/image";
-import { useActionState, useRef, useState } from "react";
+import { useActionState, useRef, useState, useTransition } from "react";
 import { PriceCard, type PriceCardData } from "@/components/price-card";
 import { RouteNavigationTrap } from "@/components/route-navigation-trap";
-import { Alert, Button, Card, Field, inputCls } from "@/components/ui";
-import { checkUsername, joinWaitlist, type PaymentInfo, type UsernameCheck } from "./actions";
+import { Alert, Button, Card, Field, InfoTip, inputCls } from "@/components/ui";
+import { checkUsername, joinWaitlist, previewCoupons, type CouponPreview, type PaymentInfo, type UsernameCheck } from "./actions";
 
 export function WaitlistForm({ slug, card, examDateKnown }: { slug: string; card: PriceCardData; examDateKnown: boolean }) {
   const [state, action, pending] = useActionState(joinWaitlist.bind(null, slug), undefined);
@@ -15,6 +15,35 @@ export function WaitlistForm({ slug, card, examDateKnown }: { slug: string; card
   const [checking, setChecking] = useState(false);
   const seq = useRef(0);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // cupons: o preço mostrado vem sempre do servidor (previewCoupons); alterar o texto descarta a simulação anterior
+  const [coupon, setCoupon] = useState("");
+  const [applied, setApplied] = useState<Extract<CouponPreview, { ok: true }> | null>(null);
+  const [couponError, setCouponError] = useState<string | null>(null);
+  const [applying, startApplying] = useTransition();
+
+  function onCoupon(raw: string) {
+    setCoupon(raw.toUpperCase());
+    setApplied(null);
+    setCouponError(null);
+  }
+
+  function applyCoupons() {
+    if (!coupon.trim()) {
+      setApplied(null);
+      setCouponError("Digite o código do cupom.");
+      return;
+    }
+    startApplying(async () => {
+      const r = await previewCoupons(slug, coupon);
+      if (r.ok) {
+        setApplied(r);
+        setCouponError(null);
+      } else {
+        setApplied(null);
+        setCouponError(r.message);
+      }
+    });
+  }
 
   // valida o nome de usuário enquanto a pessoa digita (com pequena espera entre as teclas)
   function onUsername(raw: string) {
@@ -45,12 +74,57 @@ export function WaitlistForm({ slug, card, examDateKnown }: { slug: string; card
       {state?.message && <Alert tone="danger">{state.message}</Alert>}
       <fieldset className="space-y-2">
         <legend className="text-sm font-semibold">Seu acesso</legend>
-        <PriceCard data={card} radio={{ name: "offer", value: "UNTIL_EXAM", defaultChecked: true }} />
+        <PriceCard data={applied?.card ?? card} radio={{ name: "offer", value: "UNTIL_EXAM", defaultChecked: true }} />
         {!examDateKnown && <p className="text-xs text-muted">A data oficial da prova deste concurso ainda será confirmada; o acesso vale até ela.</p>}
       </fieldset>
-      <Field label="Cupom de parceiro (opcional)" error={state?.errors?.coupon} hint="Tem um cupom? O desconto é aplicado sobre o preço original e confirmado no valor do Pix.">
-        <input name="coupon" type="text" autoComplete="off" maxLength={20} className={`${inputCls} uppercase`} />
-      </Field>
+      <div className="space-y-2">
+        <Field
+          label="Cupons de desconto (opcional)"
+          error={state?.errors?.coupon ?? (couponError ? [couponError] : undefined)}
+          hint="Tem um ou mais cupons? Separe os códigos com espaço ou vírgula e toque em Aplicar."
+        >
+          <div className="flex gap-2">
+            <input
+              name="coupon"
+              type="text"
+              autoComplete="off"
+              maxLength={150}
+              value={coupon}
+              onChange={(e) => onCoupon(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  applyCoupons();
+                }
+              }}
+              className={`${inputCls} uppercase`}
+            />
+            <Button type="button" variant="secondary" onClick={applyCoupons} disabled={applying} className="shrink-0">
+              {applying ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden /> : <Ticket className="h-4 w-4" aria-hidden />}
+              Aplicar
+            </Button>
+          </div>
+        </Field>
+        {applied && applied.coupons.length > 0 && (
+          <div role="status" className="space-y-1.5 rounded-xl border border-ok/30 bg-ok/5 p-3 text-sm">
+            <p className="flex items-center gap-1.5 font-semibold text-ok">
+              <Check className="h-4 w-4" aria-hidden />
+              {applied.coupons.length === 1 ? "Cupom aplicado" : "Cupons aplicados"}: {applied.totalPoints}% de desconto no total
+              <InfoTip align="start">
+                Os descontos se somam sobre o preço original (desconto de lançamento + cupons), sem incidir uns sobre os outros. O desconto total nunca passa de 100%.
+              </InfoTip>
+            </p>
+            <ul className="flex flex-wrap gap-1.5">
+              {applied.coupons.map((c) => (
+                <li key={c.code} className="rounded-full bg-ok/15 px-2.5 py-0.5 font-mono text-xs font-semibold text-ok">
+                  {c.code} · {c.discountPoints}%
+                </li>
+              ))}
+            </ul>
+            {applied.capped && <p className="text-xs text-muted">A soma dos descontos passou de 100% e foi limitada ao preço mínimo.</p>}
+          </div>
+        )}
+      </div>
       <RefundNotice />
       <Field label="Nome completo" error={state?.errors?.name}>
         <input name="name" type="text" autoComplete="name" required minLength={5} maxLength={120} className={inputCls} />

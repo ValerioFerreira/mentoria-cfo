@@ -15,7 +15,7 @@ export async function resetTestData(client: PrismaClient, schema = TEST_SCHEMA) 
   if (!SAFE_SCHEMA.test(schema)) throw new Error("Schema de teste inválido.");
   const tables = [
     "AuditLog", "CommissionEntry", "PartnerPayout", "PaymentReversal", "ManualPayment", "PartnerReferral",
-    "OnlineCharge", "BillingWebhookEvent", "Contract", "PartnerCoupon", "Partner", "Session", "WaitlistEntry", "User",
+    "OnlineCharge", "BillingWebhookEvent", "Contract", "Coupon", "PartnerCoupon", "Partner", "Session", "WaitlistEntry", "User",
   ];
   await client.$executeRawUnsafe(`TRUNCATE ${tables.map((t) => `"${schema}"."${t}"`).join(", ")} CASCADE`);
 }

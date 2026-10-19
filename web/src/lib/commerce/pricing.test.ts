@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { summarizeLedger } from "./ledger";
 import { formatBRL, fromCents, parseMoneyInput, toCents } from "./money";
-import { accessEndForExamDate, commissionOn, commissionTarget, financialStatus, priceCardText, quote } from "./pricing";
+import { allocateDiscountPoints, accessEndForExamDate, commissionOn, commissionTarget, financialStatus, priceCardText, quote } from "./pricing";
+import { couponSetKey, parseCouponCodes } from "./coupon-codes";
 
 describe("preços por categoria", () => {
   it("lançamento: Oficial e PCPE R$ 90,00; Praça R$ 60,00", () => {
@@ -37,6 +38,75 @@ describe("preços por categoria", () => {
   it("textos do card vêm do cálculo do servidor", () => {
     expect(priceCardText(quote("OFICIAL"))).toEqual({ badge: "25% OFF · lançamento", original: "De R$ 120,00", final: "R$ 90,00" });
     expect(priceCardText(quote("PRACA"))).toEqual({ badge: "25% OFF · lançamento", original: "De R$ 80,00", final: "R$ 60,00" });
+  });
+});
+
+describe("cupons do site: descontos aditivos sobre o valor original", () => {
+  // preço original R$ 100,00 e sem desconto de lançamento, para isolar a regra dos cupons
+  const base = { priceCents: 10_000, siteDiscountPoints: 0 };
+  it("um cupom de 25% sobre R$ 100 resulta em R$ 75", () => {
+    expect(quote("OFICIAL", 0, base, [25])).toMatchObject({ originalCents: 10_000, couponDiscountPoints: 25, couponAppliedPoints: [25], discountCents: 2_500, finalCents: 7_500 });
+  });
+  it("25% + 10% somam 35% do valor original: R$ 65, nunca 10% sobre os R$ 75", () => {
+    const q = quote("OFICIAL", 0, base, [25, 10]);
+    expect(q).toMatchObject({ couponDiscountPoints: 35, couponAppliedPoints: [25, 10], discountCents: 3_500, finalCents: 6_500 });
+    expect(q.finalCents).not.toBe(6_750); // cascata (75 − 10% de 75) seria errado
+  });
+  it("a ordem dos cupons não muda o resultado", () => {
+    expect(quote("OFICIAL", 0, base, [10, 25]).finalCents).toBe(quote("OFICIAL", 0, base, [25, 10]).finalCents);
+  });
+  it("soma com o desconto de lançamento e com o cupom de parceiro, sempre sobre o original", () => {
+    // R$ 120: 25% lançamento + 15% parceiro + 10% cupom = 50% => R$ 60
+    expect(quote("OFICIAL", 15, undefined, [10])).toMatchObject({ launchDiscountPoints: 25, partnerDiscountPoints: 15, couponDiscountPoints: 10, finalCents: 6_000, discountCents: 6_000 });
+    // sem cupom do site o comportamento anterior continua igual
+    expect(quote("OFICIAL", 15).finalCents).toBe(7_200);
+    expect(quote("OFICIAL", 15, undefined, []).finalCents).toBe(7_200);
+  });
+  it("o total de desconto nunca passa de 100% (preço mínimo R$ 0)", () => {
+    const q = quote("OFICIAL", 0, base, [60, 60, 30]);
+    expect(q).toMatchObject({ couponDiscountPoints: 100, couponAppliedPoints: [60, 40, 0], finalCents: 0, discountCents: 10_000 });
+    expect(quote("OFICIAL", 15, undefined, [100]).finalCents).toBe(0);
+    expect(quote("OFICIAL", 15, undefined, [100]).partnerDiscountPoints).toBe(15);
+    expect(quote("OFICIAL", 0, { siteDiscountPoints: 100 }, [10])).toMatchObject({ couponDiscountPoints: 0, finalCents: 0 });
+  });
+  it("arredonda ao centavo uma única vez, no total (meio para cima)", () => {
+    // R$ 100,01 com 33% => 67,0067 => R$ 67,01
+    expect(quote("OFICIAL", 0, { priceCents: 10_001, siteDiscountPoints: 0 }, [33]).finalCents).toBe(6_701);
+    expect(quote("OFICIAL", 0, { priceCents: 999, siteDiscountPoints: 0 }, [10, 15]).finalCents).toBe(749); // 749,25
+  });
+  it("percentuais inválidos são recusados", () => {
+    for (const bad of [-1, 101, 7.5, Number.NaN]) expect(() => quote("OFICIAL", 0, base, [bad])).toThrow(/inválido/);
+  });
+  it("regra gravada e texto do card indicam os cupons", () => {
+    expect(quote("OFICIAL", 0, undefined, [10]).pricingRule).toMatch(/\+CUPONS-SITE$/);
+    expect(quote("OFICIAL").pricingRule).not.toMatch(/CUPONS/);
+    expect(priceCardText(quote("OFICIAL", 0, undefined, [10])).badge).toBe("35% OFF · lançamento + cupom");
+    expect(priceCardText(quote("OFICIAL", 15, undefined, [10])).badge).toBe("50% OFF · lançamento + cupons");
+    expect(priceCardText(quote("OFICIAL", 0, undefined, [10, 5])).badge).toBe("40% OFF · lançamento + cupons");
+  });
+  it("allocateDiscountPoints limita a soma a 100 na ordem dada", () => {
+    expect(allocateDiscountPoints([25, 10])).toEqual({ applied: [25, 10], total: 35 });
+    expect(allocateDiscountPoints([70, 50, 20])).toEqual({ applied: [70, 30, 0], total: 100 });
+    expect(allocateDiscountPoints([])).toEqual({ applied: [], total: 0 });
+  });
+});
+
+describe("códigos de cupom informados pelo cliente", () => {
+  it("aceita vários códigos separados por espaço, vírgula, ponto e vírgula ou quebra de linha, em maiúsculas", () => {
+    expect(parseCouponCodes(" ab12cd,  XY99 ;novo2027\nfim1 ")).toEqual(["AB12CD", "XY99", "NOVO2027", "FIM1"]);
+    expect(parseCouponCodes("")).toEqual([]);
+    expect(parseCouponCodes(undefined)).toEqual([]);
+    expect(parseCouponCodes(null)).toEqual([]);
+  });
+  it("recusa código repetido (mesmo com caixa diferente) e mais de 5 cupons", () => {
+    expect(() => parseCouponCodes("abcd ABCD")).toThrow(/mais de uma vez/);
+    expect(() => parseCouponCodes("AAAA BBBB CCCC DDDD EEEE FFFF")).toThrow(/no máximo 5/);
+    expect(parseCouponCodes("AAAA BBBB CCCC DDDD EEEE")).toHaveLength(5);
+  });
+  it("conjuntos de cupons são comparados sem depender da ordem", () => {
+    expect(couponSetKey(["B", "A"])).toBe(couponSetKey(["A", "B"]));
+    expect(couponSetKey([null, "A", undefined])).toBe("A");
+    expect(couponSetKey([])).toBe("");
   });
 });
 

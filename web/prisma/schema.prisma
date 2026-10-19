@@ -570,6 +570,8 @@ model Contract {
   originalAmount        Decimal         @db.Decimal(10, 2)
   launchDiscountPoints  Int
   partnerDiscountPoints Int             @default(0)
+  /// soma dos pontos dos cupons do site aplicados (aditivos sobre o preço original; detalhe em ContractCoupon)
+  couponDiscountPoints  Int             @default(0)
   discountAmount        Decimal         @db.Decimal(10, 2)
   finalAmount           Decimal         @db.Decimal(10, 2)
   couponId              String?
@@ -595,6 +597,7 @@ model Contract {
   commissions   CommissionEntry[]
   referral      PartnerReferral?
   charges       OnlineCharge[]
+  siteCoupons   ContractCoupon[]
 
   @@index([userId])
   @@index([waitlistEntryId])
@@ -714,6 +717,39 @@ model PartnerCoupon {
   referrals PartnerReferral[]
 
   @@index([partnerId, active])
+}
+
+// Cupom do site (gerido em /admin/cupons). Desconto em pontos percentuais SOMADOS sobre o preço original, junto com o
+// desconto de lançamento e o cupom de parceiro (nunca em cascata). Códigos únicos também em relação a PartnerCoupon.
+// Cupom já usado numa contratação não é excluído (só inativado): o histórico fica congelado em ContractCoupon.
+model Coupon {
+  id             String    @id @default(cuid())
+  code           String    @unique // maiúsculas
+  discountPoints Int // 1 a 100
+  active         Boolean   @default(true)
+  createdById    String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  deactivatedAt  DateTime?
+
+  contracts ContractCoupon[]
+}
+
+// Cupom do site usado numa contratação, com código e percentual congelados no momento do cadastro.
+model ContractCoupon {
+  id             String   @id @default(cuid())
+  contractId     String
+  couponId       String
+  code           String
+  discountPoints Int // pontos pedidos pelo cupom
+  appliedPoints  Int // pontos efetivamente aplicados (após o teto de 100% do total)
+  createdAt      DateTime @default(now())
+
+  contract Contract @relation(fields: [contractId], references: [id], onDelete: Cascade)
+  coupon   Coupon   @relation(fields: [couponId], references: [id], onDelete: Restrict)
+
+  @@unique([contractId, couponId])
+  @@index([couponId])
 }
 
 // Indicação: primeiro vínculo válido de um cliente (por e-mail) com um parceiro, criado pela 1ª contratação com cupom.

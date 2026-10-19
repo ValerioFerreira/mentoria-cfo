@@ -1,7 +1,7 @@
 // Integração com Postgres real (schema isolado `vitest_finance`): contratações, pagamentos manuais, saldos,
 // cupons, comissões, estornos e repasses persistidos de verdade. Nenhuma cobrança ou transferência real.
 import { randomUUID } from "node:crypto";
-import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 import { hasTestDb, makeTestClient, resetTestData } from "./test-support";
 
 vi.mock("server-only", () => ({}));
@@ -273,7 +273,7 @@ describe.skipIf(!hasTestDb)("financeiro com persistência real", { timeout: 60_0
       const ref = await db.partnerReferral.findUniqueOrThrow({ where: { customerEmail: "cli@x.com" } });
       expect(ref.partnerId).toBe(a.partnerId);
       await svc.payments.registerPayment({ contractId: r2.contractId, amountCents: 100, paidAt: daysAgo(0), method: "PIX", idempotencyKey: key() }, adminId);
-      await expect(svc.contracts.createContract({ contest: "CBMPE_OFICIAL", customerEmail: "cli@x.com", couponCode: a.couponCode }, null)).rejects.toThrow(/não pode mais ser alterado/);
+      await expect(svc.contracts.createContract({ contest: "CBMPE_OFICIAL", customerEmail: "cli@x.com", couponCode: a.couponCode }, null)).rejects.toThrow(/não podem mais ser alterados/);
     });
 
     it("comissão de 30% sobre pagamento integral: R$ 12,60 (Oficial) e R$ 8,40 (Praça)", async () => {
@@ -398,6 +398,156 @@ describe.skipIf(!hasTestDb)("financeiro com persistência real", { timeout: 60_0
       // usuário comum (não parceiro) não tem painel
       const common = await db.user.create({ data: { email: "comum@x.com", passwordHash: "x" } });
       expect(await partnerDashboard(common.id)).toBeNull();
+    });
+  });
+
+  describe("cupons do site (aditivos sobre o valor original)", () => {
+    let coupons: typeof import("./coupons");
+    beforeAll(async () => {
+      coupons = await import("./coupons");
+    });
+    /** concurso Oficial com preço R$ 100,00 e sem desconto de lançamento: isola a regra dos cupons */
+    async function priceHundred() {
+      await db.contestSetting.update({ where: { contest: "CBMPE_OFICIAL" }, data: { priceCents: 10_000, siteDiscountPoints: 0 } });
+    }
+    afterEach(async () => {
+      await db.contestSetting.update({ where: { contest: "CBMPE_OFICIAL" }, data: { priceCents: null, siteDiscountPoints: null } });
+    });
+    const siteCoupon = (code: string, discountPoints: number) => coupons.createSiteCoupon({ code, discountPoints }, adminId);
+
+    it("CRUD: cria, edita, inativa, reativa e exclui, com cada alteração no histórico de auditoria", async () => {
+      const { id } = await siteCoupon("promo25", 25);
+      expect(await db.coupon.findUniqueOrThrow({ where: { id } })).toMatchObject({ code: "PROMO25", discountPoints: 25, active: true, createdById: adminId });
+      await coupons.updateSiteCoupon(id, { code: "PROMO30", discountPoints: "30" }, adminId);
+      expect(await db.coupon.findUniqueOrThrow({ where: { id } })).toMatchObject({ code: "PROMO30", discountPoints: 30 });
+      await coupons.setSiteCouponActive(id, false, adminId);
+      expect((await db.coupon.findUniqueOrThrow({ where: { id } })).active).toBe(false);
+      await coupons.setSiteCouponActive(id, true, adminId);
+      expect((await db.coupon.findUniqueOrThrow({ where: { id } })).active).toBe(true);
+      expect((await coupons.listSiteCoupons()).map((c) => [c.code, c.discountPoints, c.uses])).toEqual([["PROMO30", 30, 0]]);
+      await coupons.deleteSiteCoupon(id, adminId);
+      expect(await db.coupon.count()).toBe(0);
+      const actions = (await db.auditLog.findMany({ where: { entityType: "Coupon", entityId: id }, orderBy: { createdAt: "asc" } })).map((a) => a.action);
+      expect(actions.sort()).toEqual(["SITE_COUPON_CREATED", "SITE_COUPON_UPDATED", "SITE_COUPON_DEACTIVATED", "SITE_COUPON_ACTIVATED", "SITE_COUPON_DELETED"].sort());
+      const updated = await db.auditLog.findFirstOrThrow({ where: { action: "SITE_COUPON_UPDATED" } });
+      expect(updated.data).toMatchObject({ before: { code: "PROMO25", discountPoints: 25 }, after: { code: "PROMO30", discountPoints: 30 } });
+    });
+
+    it("valida código e percentual; código é único entre cupons do site e de parceiros", async () => {
+      await siteCoupon("UNICO10", 10);
+      await expect(siteCoupon("unico10", 20)).rejects.toThrow(/já existe/);
+      const p = await newPartner();
+      await expect(siteCoupon(p.couponCode, 20)).rejects.toThrow(/já existe/);
+      await expect(svc.partners.replacePartnerCoupon(p.partnerId, "UNICO10", adminId)).rejects.toThrow(/já existe/);
+      for (const bad of [0, 101, 12.5, "abc", ""]) await expect(siteCoupon("OUTRO10", bad as never)).rejects.toThrow(/inteiro de 1 a 100/);
+      await expect(siteCoupon("a b", 10)).rejects.toThrow(/4 a 20/);
+      await expect(siteCoupon("ABC", 10)).rejects.toThrow(/4 a 20/);
+      expect(await db.coupon.count()).toBe(1);
+    });
+
+    it("R$ 100 com cupom de 25% = R$ 75; com 25% + 10% = R$ 65 (aditivo sobre o original, não em cascata)", async () => {
+      await priceHundred();
+      await siteCoupon("QUARTO25", 25);
+      await siteCoupon("DEZ10", 10);
+      const one = await svc.contracts.createContract({ contest: "CBMPE_OFICIAL", customerEmail: "um@x.com", couponCode: "quarto25" }, null);
+      expect(money((await contract(one.contractId)).finalAmount)).toBe("75");
+      const two = await svc.contracts.createContract({ contest: "CBMPE_OFICIAL", customerEmail: "dois@x.com", couponCode: "quarto25, dez10" }, null);
+      const c = await db.contract.findUniqueOrThrow({ where: { id: two.contractId }, include: { siteCoupons: { orderBy: { code: "asc" } } } });
+      expect(money(c.originalAmount)).toBe("100");
+      expect(money(c.discountAmount)).toBe("35");
+      expect(money(c.finalAmount)).toBe("65");
+      expect(c).toMatchObject({ launchDiscountPoints: 0, partnerDiscountPoints: 0, couponDiscountPoints: 35, couponCode: null, partnerId: null, pricingRule: expect.stringMatching(/\+CUPONS-SITE$/) });
+      expect(c.siteCoupons.map((s) => [s.code, s.discountPoints, s.appliedPoints])).toEqual([["DEZ10", 10, 10], ["QUARTO25", 25, 25]]);
+      // cupom do site não gera indicação nem comissão
+      expect(await db.partnerReferral.count()).toBe(0);
+    });
+
+    it("soma com o desconto de lançamento e com o cupom de parceiro: 25% + 15% + 10% sobre R$ 120 = R$ 60", async () => {
+      const p = await newPartner();
+      await siteCoupon("DEZ10", 10);
+      const r = await svc.contracts.createContract({ contest: "CBMPE_OFICIAL", customerEmail: "tudo@x.com", couponCode: `${p.couponCode} DEZ10` }, null);
+      const c = await contract(r.contractId);
+      expect(c).toMatchObject({ launchDiscountPoints: 25, partnerDiscountPoints: 15, couponDiscountPoints: 10, partnerId: p.partnerId, couponCode: p.couponCode });
+      expect(money(c.finalAmount)).toBe("60");
+      // a comissão do parceiro vale sobre o que foi efetivamente pago
+      await svc.payments.registerPayment({ contractId: r.contractId, amountCents: 6000, paidAt: daysAgo(0), method: "PIX", idempotencyKey: key() }, adminId);
+      expect((await db.commissionEntry.findMany()).map((e) => money(e.amount))).toEqual(["18"]);
+    });
+
+    it("o total de desconto nunca passa de 100%: preço mínimo R$ 0 e pontos aplicados congelados", async () => {
+      await priceHundred();
+      await siteCoupon("SESSENTA", 60);
+      await siteCoupon("QUARENTA", 40);
+      await siteCoupon("EXTRA10", 10);
+      const r = await svc.contracts.createContract({ contest: "CBMPE_OFICIAL", customerEmail: "teto@x.com", couponCode: "SESSENTA QUARENTA EXTRA10" }, null);
+      const c = await db.contract.findUniqueOrThrow({ where: { id: r.contractId }, include: { siteCoupons: true } });
+      expect(money(c.finalAmount)).toBe("0");
+      expect(money(c.discountAmount)).toBe("100");
+      expect(c.couponDiscountPoints).toBe(100);
+      expect(Object.fromEntries(c.siteCoupons.map((s) => [s.code, s.appliedPoints]))).toEqual({ SESSENTA: 60, QUARENTA: 40, EXTRA10: 0 });
+    });
+
+    it("códigos inexistentes, inativos, repetidos, em excesso ou com dois cupons de parceiro são recusados sem gravar nada", async () => {
+      const a = await newPartner("parca", "a@p.com");
+      const b = await newPartner("parcb", "b@p.com");
+      const { id } = await siteCoupon("OFF20", 20);
+      const create = (couponCode: string, email = "c@x.com") => svc.contracts.createContract({ contest: "CBMPE_OFICIAL", customerEmail: email, couponCode }, null);
+      await expect(create("OFF20 NAOEXISTE")).rejects.toThrow(/Cupom inválido ou desativado: NAOEXISTE/);
+      await expect(create("OFF20 off20")).rejects.toThrow(/mais de uma vez/);
+      await expect(create("AAAA BBBB CCCC DDDD EEEE FFFF")).rejects.toThrow(/no máximo 5/);
+      await expect(create(`${a.couponCode} ${b.couponCode}`)).rejects.toThrow(/apenas um cupom de parceiro/);
+      await expect(create(`OFF20 ${a.couponCode}`, "a@p.com")).rejects.toThrow(/próprio parceiro/);
+      await coupons.setSiteCouponActive(id, false, adminId);
+      await expect(create("OFF20")).rejects.toThrow(/Cupom inválido ou desativado: OFF20/);
+      expect(await db.contract.count()).toBe(0);
+      expect(await db.contractCoupon.count()).toBe(0);
+    });
+
+    it("mudar o percentual depois não altera contratações antigas; cupom usado não é excluído nem muda de código", async () => {
+      await priceHundred();
+      const { id } = await siteCoupon("MUDA20", 20);
+      const r = await svc.contracts.createContract({ contest: "CBMPE_OFICIAL", customerEmail: "antigo@x.com", couponCode: "MUDA20" }, null);
+      await coupons.updateSiteCoupon(id, { discountPoints: 50 }, adminId);
+      expect(money((await contract(r.contractId)).finalAmount)).toBe("80");
+      const novo = await svc.contracts.createContract({ contest: "CBMPE_OFICIAL", customerEmail: "novo@x.com", couponCode: "MUDA20" }, null);
+      expect(money((await contract(novo.contractId)).finalAmount)).toBe("50");
+      await expect(coupons.deleteSiteCoupon(id, adminId)).rejects.toThrow(/inative-o/);
+      await expect(coupons.updateSiteCoupon(id, { code: "OUTRO20", discountPoints: 50 }, adminId)).rejects.toThrow(/código não pode mais mudar/);
+      expect((await coupons.listSiteCoupons())[0]).toMatchObject({ code: "MUDA20", uses: 2 });
+      // inativar mantém o histórico congelado
+      await coupons.setSiteCouponActive(id, false, adminId);
+      const frozen = await db.contractCoupon.findFirstOrThrow({ where: { contractId: r.contractId } });
+      expect(frozen).toMatchObject({ code: "MUDA20", discountPoints: 20, appliedPoints: 20 });
+    });
+
+    it("pedir de novo é idempotente; trocar os cupons antes do pagamento substitui a obrigação; depois do pagamento trava", async () => {
+      await priceHundred();
+      await siteCoupon("PRIM10", 10);
+      await siteCoupon("SEGU15", 15);
+      const args = (couponCode?: string) => ({ contest: "CBMPE_OFICIAL" as const, customerEmail: "troca@x.com", couponCode });
+      const r1 = await svc.contracts.createContract(args("PRIM10"), null);
+      const again = await svc.contracts.createContract(args("prim10"), null);
+      expect(again).toMatchObject({ contractId: r1.contractId, created: false });
+      // pedido sem cupom sobre contratação com cupom mantém o que já foi registrado
+      expect((await svc.contracts.createContract(args(), null)).contractId).toBe(r1.contractId);
+      const r2 = await svc.contracts.createContract(args("PRIM10 SEGU15"), null);
+      expect(r2).toMatchObject({ created: true, replacedId: r1.contractId });
+      expect(money((await contract(r2.contractId)).finalAmount)).toBe("75");
+      expect((await contract(r1.contractId)).status).toBe("CANCELLED");
+      await svc.payments.registerPayment({ contractId: r2.contractId, amountCents: 100, paidAt: daysAgo(0), method: "PIX", idempotencyKey: key() }, adminId);
+      await expect(svc.contracts.createContract(args("PRIM10"), null)).rejects.toThrow(/não podem mais ser alterados/);
+    });
+
+    it("a simulação de preço (previewContract) usa o mesmo cálculo e não grava nada", async () => {
+      await priceHundred();
+      await siteCoupon("QUARTO25", 25);
+      await siteCoupon("DEZ10", 10);
+      const p = await svc.contracts.previewContract("CBMPE_OFICIAL", null, "quarto25 dez10");
+      expect(p.quote).toMatchObject({ originalCents: 10_000, couponDiscountPoints: 35, finalCents: 6_500 });
+      expect(p.coupons).toEqual([{ code: "QUARTO25", kind: "SITE", discountPoints: 25 }, { code: "DEZ10", kind: "SITE", discountPoints: 10 }]);
+      expect((await svc.contracts.previewContract("CBMPE_OFICIAL", null, "")).quote.finalCents).toBe(10_000);
+      await expect(svc.contracts.previewContract("CBMPE_OFICIAL", null, "QUARTO25 XXXXXX")).rejects.toThrow(/Cupom inválido/);
+      expect(await db.contract.count()).toBe(0);
     });
   });
 });
