@@ -1,0 +1,66 @@
+@@@ raciocinio-logico/a02/s07
+@@ ANALITICO
+Este trecho aplica a regra da bicondicional para classificar fórmulas (tautologia ou contradição) e inicia as questões comentadas de múltiplas bancas sobre equivalências lógicas, com forte presença da negação da condicional.
+
+### Bicondicional em tautologia, contradição e contingência
+
+- A bicondicional X ↔ Y é V quando X e Y têm o mesmo valor e F quando têm valores opostos. Logo:
+  - se **X e Y são equivalentes**, a bicondicional é **tautologia**;
+  - se **uma é a negação da outra**, a bicondicional é **contradição**;
+  - nos demais casos, em geral, é **contingência**.
+- **POLC-AL**: (P → Q) ↔ (~P ∨ Q). Como P → Q ≡ ~P ∨ Q, os dois lados são iguais: **tautologia** (item certo).
+- **Pref. Acrelândia**: (P ∧ Q) ↔ (~P ∨ ~Q). Por De Morgan, ~P ∨ ~Q é a **negação** de P ∧ Q; a bicondicional entre uma proposição e a sua negação é sempre F: **contradição** (letra D).
+- **Pref. Marechal Deodoro** (classificar cada fórmula): (A → B) ↔ (B → A) é **contingência** (V com A e B V; F com A V e B F); (A ∨ ~A) → (B ∧ ~B) é t → c, ou seja, sempre F: **contradição**; (A ∧ B) → (A ∨ B) é **tautologia** (~A ∨ ~B ∨ A ∨ B, com termos opostos, resulta em t ∨ t); (A ∧ B) ↔ (~A ∨ ~B) é **contradição**; ~(A ∨ B) → (~A ∧ ~B) é **tautologia** (os dois lados são iguais por De Morgan). Gabarito: a afirmação correta é a que chama (A ∧ B) ↔ (~A ∨ ~B) de contradição (letra D).
+
+### Questões de múltiplas bancas: equivalências e negações
+
+Padrões que se repetem, com os resultados que devem ser memorizados:
+
+- **Negação de "se p, então q"**: sempre **p e não q**. Foi exigida em questões de PCRS ("o servidor é aprovado e não assume o cargo", letra A), IBADE-PCES (letra B), FEPESE de Campos Novos (letra C), FUNATEC (usuário digitou a senha correta e o acesso não foi concedido, letra B) e IDIB-Jequié (letra D). Alternativas com "ou", "se... então" ou duas negações são armadilhas.
+- **Negação com consequente negativo**: negar "se tenho febre, não vou trabalhar" (f → ~t) dá **f ∧ t** ("tenho febre e vou trabalhar", letra B da FGV/ALEGO), pela dupla negação.
+- **Negação de "e"** (De Morgan): negar "Hoje estou feliz e canto" dá **"Hoje não estou feliz ou não canto"** (letra E).
+- **Equivalente de "se p, então q"**: ou a **contrapositiva** (se não q, então não p) ou **~p ∨ q** (não p ou q). No PCRS, "se o candidato estuda, é aprovado" tem como equivalente "se não é aprovado, não estuda" (letra E); no FUNATEC/V. Mearim, "se João é alto, José é baixo" tem como equivalente "João não é alto ou José é baixo" (letra A); na Consulplan/Manaus, o equivalente de "se o nível ultrapassa o limite, o alarme é acionado" é "se o alarme não for acionado, o nível não ultrapassou o limite" (letra D). Cuidado: a recíproca ("se o alarme foi acionado, o nível ultrapassou"), a inversa e a bicondicional **não** são equivalentes.
+- **Equivalente de (~p) → q**: por ~p → q ≡ p ∨ q ≡ ~(~p ∧ ~q), o equivalente é **~((~p) ∧ (~q))**, e não a condicional "p → ~q" nem a conjunção "~p ∧ q".
+
+### Para fixar
+- X ↔ Y: equivalentes dão tautologia; uma negação da outra dá contradição.
+- A negação de p → q é p ∧ ~q; nunca inclui "ou" nem "se".
+- Se o consequente já é negativo, a negação o torna afirmativo (dupla negação).
+- Condicional equivalente: contrapositiva ou ~p ∨ q.
+- t → c é sempre falso; c → qualquer coisa é sempre verdadeiro.
+@@ SINTETICO
+**Bicondicional e equivalentes**: X ↔ Y é tautologia quando X e Y são equivalentes.
+**Bicondicional e negação**: X ↔ Y é contradição quando uma é a negação da outra.
+**Exemplo de tautologia**: (P → Q) ↔ (~P ∨ Q), pois os dois lados são iguais.
+**Exemplo de contradição**: (P ∧ Q) ↔ (~P ∨ ~Q), pelas Leis de De Morgan.
+**Verdadeiro implica falso**: t → c é sempre falsa.
+**Negação da condicional**: p ∧ ~q, nunca com ou nem com se.
+**Consequente negativo**: a negação de f → ~t é f ∧ t, pela dupla negação.
+**Negação do e**: não p ou não q.
+**Equivalente da condicional**: contrapositiva ou ~p ∨ q; recíproca e inversa são armadilhas.
+**Equivalente de ~p → q**: p ∨ q, também escrito como ~(~p ∧ ~q).
+@@ TEORIA
+C | A bicondicional entre uma proposição e a sua negação é uma contradição. || Os valores são sempre opostos.
+E | A bicondicional (P → Q) ↔ (~P ∨ Q) é uma contingência. || É uma tautologia.
+C | A negação de "Se o sensor dispara, então o portão fecha" é "O sensor dispara e o portão não fecha". || p ∧ ~q.
+E | A negação de "Se chove, então não saio" é "Não chove e saio". || A negação é "Chove e saio".
+@@ REVISAO
+C | A condicional t → c, com t tautologia e c contradição, é uma contradição. || V → F é sempre F.
+C | A proposição ~(P ∨ Q) → (~P ∧ ~Q) é uma tautologia. || Os dois lados são equivalentes por De Morgan.
+E | A recíproca "Se o alarme foi acionado, então o limite foi ultrapassado" é equivalente à condicional original "Se o limite é ultrapassado, o alarme é acionado". || A equivalente é a contrapositiva.
+C | A condicional ~p → q e a negação da conjunção das negações, ~(~p ∧ ~q), valem o mesmo que p ∨ q. || Ambas equivalem a p ∨ q.
+@@ PONTOS
+72 | Bicondicional em tautologia e contradição; questão da POLC-AL
+73 | Questão de Acrelândia e questão de Marechal Deodoro
+74 | Alternativas a, b e c de Marechal Deodoro
+75 | Alternativas d e e de Marechal Deodoro
+76 | Negação da condicional (PCRS)
+77 | Equivalente da condicional (PCRS)
+78 | Negação da condicional (IBADE)
+79 | Negação da condicional (FEPESE)
+80 | Equivalência da condicional (FUNATEC)
+81 | Resolução com ou e negação da senha
+82 | Negação com consequente negativo
+83 | Negação de e (De Morgan)
+84 | Negação (IDIB) e início da questão da Consulplan
+85 | Equivalência contrapositiva e questão de ~p → q

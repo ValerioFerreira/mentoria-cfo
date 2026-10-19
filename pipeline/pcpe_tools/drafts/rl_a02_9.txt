@@ -1,0 +1,68 @@
+@@@ raciocinio-logico/a02/s09
+@@ ANALITICO
+Este trecho reúne questões comentadas de várias bancas sobre as "outras equivalências e negações": negação da bicondicional e da disjunção exclusiva, negação da conjunção na forma condicional, conjunção de condicionais e o cuidado com antônimos ao negar proposições simples.
+
+### Negação da bicondicional
+
+- Regra principal: **~(p ↔ q) ≡ p ⊻ q**. Mantêm-se os dois termos e troca-se "se e somente se" por "ou... ou".
+- Questões: IBADE/PCES (férias em Noronha × trabalho em janeiro: letra E, "Ou Olivia passou férias... ou Suzana trabalhou..."); QUADRIX/CORE-CE (casa de palha × casa de madeira: letra C); QUADRIX/CRP-6 (aranha × morcego): item **certo**; VUNESP/TCM-SP (ser feliz × você ser feliz: letra E).
+- **Armadilha recorrente**: negar os **dois** termos da bicondicional (~p ↔ ~q) não a nega, apenas dá uma **equivalente** (~p ↔ ~q ≡ p ↔ q). Alternativas assim estão erradas.
+
+### Negação da disjunção exclusiva
+
+- **Principal**: ~(p ⊻ q) ≡ p ↔ q. **Outras**: ~p ⊻ q e p ⊻ ~q (nega-se só um termo).
+- **INPI** ("Ou o jornalista é muito mal-informado ou age de má-fé"): sua negação pode ser "O jornalista é mal-informado se, e somente se, age de má-fé" (item **certo**). Já "Ou o jornalista é muito bem-informado ou age de boa-fé" está **errado** por dois motivos: (1) "bem-informado" e "boa-fé" são antônimos, não negações exatas das simples; (2) mesmo que fossem, ~m ⊻ ~a é equivalente (negam-se os dois termos), não negação.
+- **VUNESP/CMSJC**: a negação de a ⊻ ~c ("Ou arranjo emprego ou não me caso") sem bicondicional nas opções é obtida negando um só termo: **~a ⊻ ~c** (letra D).
+
+### Negação da conjunção na forma condicional
+
+- **AOCP/DEPEN-PR**: "João nunca foi privado de liberdade e o relatório é inconclusivo" é j ∧ r. Cuidado com a negação de simples: a negação de "nunca" não é "sempre", e sim "**ao menos uma vez** foi privado". Por De Morgan, a negação é ~j ∨ ~r (não está nas opções). Na forma condicional: ~(j ∧ r) ≡ r → ~j, isto é, "Se o relatório é inconclusivo, então ao menos uma vez João foi privado de liberdade" (letra E).
+
+### Bicondicional como "ida e volta"
+
+- **IDECAN/Pref. SCS**: p ↔ q ≡ (p → q) ∧ (q → p), letra B. **IDECAN/IFPA**: a bicondicional "todos os empresários terão sucesso se e somente se investirem tempo em estudo e pesquisa" equivale a duas condicionais ligadas por "e" (letra C). Atenção: as opções com "ou" entre as condicionais ou com a bicondicional repetida estão erradas.
+
+### Conjunção de condicionais
+
+- **PETROBRAS**: (p ∨ q) → r **não** é equivalente a (p → r) ∨ (q → r); o correto é (p → r) **∧** (q → r). Item **errado** (também se verifica por tabela).
+- **VUNESP/TJ-SP**: (e → p) ∧ (e → ~t) tem antecedente comum e; logo ≡ e → (p ∧ ~t): "Se Alice estuda, então faz uma boa prova e não fica triste" (letra C).
+
+### Para fixar
+- ~(p ↔ q) ≡ p ⊻ q; ~(p ⊻ q) ≡ p ↔ q.
+- Negar os dois termos de ↔ ou de ⊻ resulta em equivalência, não em negação.
+- A negação de "nunca" é "ao menos uma vez"; antônimos (sempre, boa-fé) não são negações.
+- ~(p ∧ q) ≡ p → ~q ≡ q → ~p quando as opções são condicionais.
+- (p → r) ∧ (q → r) ≡ (p ∨ q) → r; (p → q) ∧ (p → r) ≡ p → (q ∧ r).
+@@ SINTETICO
+**Negação da bicondicional**: troca o se e somente se por ou exclusivo e mantém os dois termos.
+**Negar os dois termos**: não nega a bicondicional nem a exclusiva, apenas dá equivalente.
+**Negação da exclusiva**: a principal é a bicondicional entre os mesmos termos.
+**Exclusiva sem bicondicional**: nega-se só um termo, como em ~a ⊻ ~c.
+**Antônimos**: nunca tem como negação ao menos uma vez, e sempre ou má-fé não são negações exatas.
+**Negação do e como condicional**: ~(j ∧ r) equivale a r → ~j, quando as opções são condicionais.
+**Ida e volta**: p ↔ q equivale a (p → q) ∧ (q → p).
+**Consequente comum**: (p → r) ∧ (q → r) vira (p ∨ q) → r, e não um ou entre condicionais.
+**Antecedente comum**: (e → p) ∧ (e → ~t) vira e → (p ∧ ~t).
+**Quando em dúvida**: verifique a equivalência por tabela-verdade.
+@@ TEORIA
+C | A negação de "A obra termina no prazo se, e somente se, o orçamento é liberado" pode ser "Ou a obra termina no prazo, ou o orçamento é liberado". || ~(p ↔ q) ≡ p ⊻ q.
+E | A proposição "A obra não termina no prazo se, e somente se, o orçamento não é liberado" é a negação de "A obra termina no prazo se, e somente se, o orçamento é liberado". || Negar os dois termos dá uma equivalência.
+C | A negação de "João nunca foi preso" é "João foi preso ao menos uma vez". || "Sempre" não é a negação de "nunca".
+E | Reescrever (p ∨ q) → r com um ou entre as condicionais, (p → r) ∨ (q → r), mantém a equivalência. || O conectivo entre as condicionais deve ser o e.
+@@ REVISAO
+C | A proposição "Ou o réu é culpado, ou é inocente" tem como negação a bicondicional "O réu é culpado se, e somente se, é inocente". || ~(p ⊻ q) ≡ p ↔ q.
+E | "Ele age de boa-fé" é, em lógica, a negação exata de "Ele age de má-fé". || Antônimos não são negações exatas.
+C | A proposição (e → p) ∧ (e → q) é equivalente a e → (p ∧ q). || Antecedente comum.
+C | A bicondicional p ↔ q é equivalente a (p → q) ∧ (q → p). || Ida e volta.
+@@ PONTOS
+101 | Negação da bicondicional (IBADE)
+102 | Questão da QUADRIX (CORE-CE)
+103 | Questão da QUADRIX (CRP-6) e início da AOCP
+104 | Negação de nunca e negação da conjunção
+105 | Forma condicional da negação e questão do INPI
+106 | Antônimos na negação (INPI)
+107 | Motivos do erro e bicondicional como ida e volta
+108 | Questão da VUNESP (TCM-SP)
+109 | Questão do IDECAN (IFPA)
+110 | Negação da exclusiva (CMSJC) e questão da PETROBRAS
+111 | Conjunção de condicionais (TJ-SP)
