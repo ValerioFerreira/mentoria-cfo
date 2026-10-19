@@ -22,9 +22,11 @@ Contexto: o concurso é **PCPE Agente de Polícia (Cebraspe, prova 07/03/2027, i
 3. **Edital PCPE por concurso — FEITO**: `EditalItem.onlyContests/excludeContests` (migração `20261018120000_edital_item_contests`, aplicada no dev local), seed (`prisma/seed-structure.ts`: `content/edital/pcpe/<disc>.json` → itens `<disc>/p<código>` só do PCPE; os `<disc>/e<código>` padrão ganham `excludeContests PCPE_AGENTE` nas 7 disciplinas compartilhadas), helper `editalItemApplies` (`src/lib/contests.ts`, com teste), filtros em `onboarding/page.tsx` e `plan/persist.ts`. Seed rodado no dev local sem erro.
 4. **Limpezas — PARCIAL**: títulos com "Prof." corrigidos (`title` em `content/overrides.json`, `build_catalog.py`, patch em `catalog.json` e espelho). `category:""` do cartão PCPE **não é defeito** (o card só mostra a categoria se houver; a categoria comercial `PCPE` vem de `ContestSetting`). **Lacunas ainda abertas** (3, severidade média): `rl-operacoes-conjuntos`, `rl-matrizes-determinantes` (raciocínio lógico) e `est-tamanho-amostral` (estatística): precisam de complementos autorais (`content/complements/*.md` com `onlyContests: "PCPE_AGENTE"`, `resolves: <id da lacuna>`, depois `build_complements.py`, bizu/resumo/importância do novo trecho e atualização do edital PCPE). `docs/inventario_pcpe.json` está em `docs/` (protegido, fora do git): ignorar. Falta registrar em `HISTORICO.md`.
 5. **Testes/build/seed — PARCIAL**: `pipeline/test_plan_pcpe.ts` (24 cenários, todos LIBERAR, 0 erros), vitest (533 ok; 6 falhas de integração de preço em `commerce/*` **já existiam sem as minhas mudanças**), tsc ok, seed local ok. Pendentes: `compare-plans-main.ts`, lint, `next build`. Falhas conhecidas fora do meu escopo: `pytest::test_authored_items_pass_validator` (atualidades, de outra frente).
-6. **Lista de cadernos do TEC — PENDENTE** (seção 6).
+6. **Lista de cadernos do TEC — FEITO**: `PCPE-CADERNOS-TEC.md` e `.csv` (34 cadernos, meta ~5.250 questões Cebraspe), gerados por `pipeline/pcpe_tools/gen_cadernos_tec.py`. Enviar ao dono.
 7. **Commit de liberação — PENDENTE**: `available: true` no PCPE em `web/src/lib/contests.ts`, atualizar `contests.test.ts` (lista de disponíveis passa a incluir `PCPE_AGENTE`), rodar `web/scripts/export-contests.ts`, commit local separado.
 - Ao final: informar ao dono que o importador de questões por concurso (task_62791f17) segue pendente; chamar `mcp__ccd_turn__wrap_up` antes da mensagem final.
+
+**Verificações já feitas (commit d13a9f9):** `compare-plans-main.ts` 0 divergências (96 cenários), `next build` ok, eslint ok nos arquivos alterados.
 
 **Pendências de validação nos bizus (`validate_content.py`, só nas disciplinas do PCPE):** lingua-portuguesa a01 (1), a13 (`bizu.summary` com 21/28/24 tópicos; precisa de 6–14), raciocinio-logico (94: C/E repetidos e trechos copiados), matematica (1), estatistica (1), direito-constitucional (3), direito-administrativo (9). Rodar `python pipeline/pcpe_tools/val_pcpe.py`.
 
@@ -60,18 +62,18 @@ Concluído e **commitado**: `contabilidade-geral` a00–a19 (último 9af0199); `
 **Concluído — `direito-penal/a06` (crimes sexuais, 8 trechos; Leis 15.280/25 e 15.353/26):** commitado. Observação para revisão humana: a fonte não mostra se a Lei 15.280/25 alterou as penas dos arts. 227–230 e 232-A; mantive as do texto da aula (ver `HISTORICO.md` quando for registrar).
 
 **Pendente (ordem sugerida):**
-1. `direito-penal` a07–a10 (conferir se atualizações de 2024–26 entraram), a00–a03 (verificar).
+1. `direito-penal` a10 (2 trechos) (a07, a08 e a09 já refeitos e commitados; a10 em andamento); depois a00–a03 (verificar/refazer).
 2. Opcional/qualidade: `direito-processual-penal` a04–a06 (corretos mas prolixos/acentuados em excesso).
 3. `legislacao-penal-especial` (29 trechos): corrigir Tema 506/RE 635.659 (porte de drogas para uso pessoal) e atualizações de leis.
 4. `direito-administrativo` a20–a24/c02; `legislacao-pcpe` (12 trechos); `lingua-portuguesa` a13 (6 trechos; `bizu.summary` deve ter 6–14 tópicos).
 5. `raciocinio-logico`: bizus C/E genéricos (~300 itens) a refazer + `apply_synthetic.py`.
 6. Trechos com texto copiado em DA/DC/Estatística/Matemática/LP usados pelo plano do Agente (rodar `pcpe_triage.py` e `validate_summaries.py` para listar).
 
-## 6. Cadernos do TEC (tarefa 6) — a entregar
-Lista das matérias/assuntos do PCPE Agente (Cebraspe) com quantidade sugerida de questões por caderno, agrupada por disciplina do edital PCPE (ver `content/edital/pcpe/*.json` e `content/contests.json`). Ainda **não** produzida. Formato desejado: planilha/relatório com disciplina, assunto do edital, banca (CEBRASPE), filtros (ano/área) e nº de questões. Base para a especificação: `pipeline/questoes/EXTRACAO.md`, `content/questoes/mapa-assuntos.json`.
+## 6. Cadernos do TEC — FEITO
+`PCPE-CADERNOS-TEC.md` / `.csv` (gerados por `pipeline/pcpe_tools/gen_cadernos_tec.py`). Falta só entregar ao dono (resumo na mensagem final).
 
 ## 7. Arquivos do working tree que NÃO são meus (não tocar nem commitar)
-`web/content/items/*` (ruído de CRLF), `content/questoes/*`, `pipeline/questoes/{classify,lacunas,tec_pdf}.py`, `pipeline/tests/test_questoes.py`, `content/edital/historia-pe.json` e `web/content/edital/historia-pe.json`, `web/content/overrides/*.json`, `web/public/complementos/*.pdf`, `extract_batch.py`, `resumos-colaboradores/entregas/*.zip`, `tools/estrategia-downloader/*`, `scratch/`, `web/content/questoes/`. Se aparecer algum deles em `git add`, desfaça. Esta pasta (`pipeline/pcpe_tools/`) e este arquivo são meus.
+`web/content/items/*` das disciplinas que NÃO são do PCPE (atualidades, biologia, física, línguas, etc.; ruído de CRLF), `content/questoes/*`, `pipeline/questoes/{classify,lacunas,tec_pdf}.py`, `pipeline/tests/test_questoes.py`, `content/edital/historia-pe.json` e `web/content/edital/historia-pe.json`, `web/public/complementos/*.pdf`, `extract_batch.py`, `resumos-colaboradores/entregas/*.zip`, `tools/estrategia-downloader/*`, `scratch/`, `web/content/questoes/`. Se aparecer algum deles em `git add`, desfaça. Esta pasta (`pipeline/pcpe_tools/`) e este arquivo são meus.
 
 ## 8. Referências rápidas
 - Projeto: `CLAUDE.md` (raiz). Memória: `C:\Users\Administrador\.claude\projects\C--Users-Administrador-Documents-Projetos-CFO-BM\memory\`.
