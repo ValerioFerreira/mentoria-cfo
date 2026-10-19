@@ -200,36 +200,44 @@ export function SimuladosView({ readinessMap, oficialReadiness, soldadoReadiness
             Distribuição de Questões e Critérios de Aprovação
           </h4>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div className={`grid grid-cols-1 ${config.blocks.III ? "sm:grid-cols-3" : "sm:grid-cols-2"} gap-3`}>
             <div className="rounded-xl border border-border bg-surface-2/40 p-3.5 space-y-1">
               <div className="flex items-center justify-between text-xs font-bold text-text">
-                <span>Bloco I</span>
+                <span>{config.blocks.I.name}</span>
                 <span className="text-primary">{config.blocks.I.totalQuestions} questões</span>
               </div>
               <p className="text-[11px] text-muted leading-tight">
-                Mínimo de 30% ({config.blocks.I.minQuestions} acertos) para não ser desclassificado.
+                {config.blocks.I.minQuestions > 0
+                  ? `Mínimo de ${config.minPercentPerBlock}% (${config.blocks.I.minQuestions} acertos) para não ser desclassificado.`
+                  : "Sem nota mínima eliminatória por bloco."}
               </p>
             </div>
 
             <div className="rounded-xl border border-border bg-surface-2/40 p-3.5 space-y-1">
               <div className="flex items-center justify-between text-xs font-bold text-text">
-                <span>Bloco II</span>
+                <span>{config.blocks.II.name}</span>
                 <span className="text-primary">{config.blocks.II.totalQuestions} questões</span>
               </div>
               <p className="text-[11px] text-muted leading-tight">
-                Mínimo de 30% ({config.blocks.II.minQuestions} acertos) para não ser desclassificado.
+                {config.blocks.II.minQuestions > 0
+                  ? `Mínimo de ${config.minPercentPerBlock}% (${config.blocks.II.minQuestions} acertos) para não ser desclassificado.`
+                  : "Sem nota mínima eliminatória por bloco."}
               </p>
             </div>
 
-            <div className="rounded-xl border border-border bg-surface-2/40 p-3.5 space-y-1">
-              <div className="flex items-center justify-between text-xs font-bold text-text">
-                <span>Bloco III</span>
-                <span className="text-primary">{config.blocks.III.totalQuestions} questões</span>
+            {config.blocks.III && (
+              <div className="rounded-xl border border-border bg-surface-2/40 p-3.5 space-y-1">
+                <div className="flex items-center justify-between text-xs font-bold text-text">
+                  <span>{config.blocks.III.name}</span>
+                  <span className="text-primary">{config.blocks.III.totalQuestions} questões</span>
+                </div>
+                <p className="text-[11px] text-muted leading-tight">
+                  {config.blocks.III.minQuestions > 0
+                    ? `Mínimo de ${config.minPercentPerBlock}% (${config.blocks.III.minQuestions} acertos) e não zerar nenhuma matéria.`
+                    : "Sem nota mínima eliminatória por bloco."}
+                </p>
               </div>
-              <p className="text-[11px] text-muted leading-tight">
-                Mínimo de 30% ({config.blocks.III.minQuestions} acertos) e não zerar nenhuma matéria.
-              </p>
-            </div>
+            )}
           </div>
         </div>
 

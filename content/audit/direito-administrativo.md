@@ -143,3 +143,21 @@ Ambiguidade: o edital diz "regime jurídico único" sem citar a lei. A AOCP cost
 - Ajustar a regex do item "Agentes públicos / regime disciplinar" em `edital_audit.py`, que hoje dá falso "COBERTO" (por exemplo, exigir termos do estatuto: redistribuição, vacância, readaptação).
 - (Opcional) Consertar no `.xlsx`/`xlsx_index.py` as páginas divergentes do sumário: a00 Regime Jurídico (5), a04 Deveres (3), a05 Elementos (31), a06 Conceitos (3), a07 Jurisprudência (46). Os overrides já corrigem.
 - Rodar `build_catalog.py` / `build_complements.py` / seed (não rodei, como manda o briefing).
+
+---
+
+## Auditoria de Inclusão PCPE (Aulas a20 a a24 e Complemento c02)
+
+**Data**: 16/10/2026  
+**Auditor**: Agente MentorIA  
+**Aulas auditadas**: `direito-administrativo/a20` a `a24` (pasta `docs/42`, Prof. Herbert Almeida) + complemento `c02` (`da-lei-9784.md`)  
+**Preservação da base CBMPE/PMPE**: Aulas `a00` a `a09` preservadas com **100% de correspondência exata** (69 segmentos de teoria idênticos em ID, páginas e limites).  
+**Novas aulas e segmentos**:
+- `a20` (Licitações Públicas - Parte 1, Lei 14.133/2021): 114 págs. de teoria, dividida em 9 segmentos pedagógicos (p. 17, 33, 43, 53, 63, 77, 91, 103).
+- `a21` (Licitações Públicas - Parte 2, Contratação Direta e Fases): 158 págs. de teoria, dividida em 12 segmentos pedagógicos (p. 20, 38, 56, 71, 86, 100, 114, 130, 145).
+- `a22` (Contratos Administrativos, Lei 14.133/2021): 187 págs. de teoria, dividida em 14 segmentos pedagógicos (p. 16, 27, 40, 52, 67, 78, 95, 112, 125, 133, 147, 160, 175).
+- `a23` (Processo Administrativo Estadual de Pernambuco, Lei Estadual nº 11.781/2000): 24 págs. de teoria, dividida em 2 segmentos (corte p. 15).
+- `a24` (Improbidade Administrativa, Lei nº 8.429/1992 com Lei 14.230/2021): 109 págs. de teoria, dividida em 9 segmentos pedagógicos (p. 18, 33, 45, 60, 71, 79, 96).
+- `c02` (Processo Administrativo Federal, Lei Federal nº 9.784/1999): complemento autoral com 3 págs., cobrindo princípios, competência, delegação/avocação, motivação e recursos.
+- **Resultado estrutural**: 115 segmentos totais, 0 violações de teto e 0 cortes no meio de tópico. Cobertura completa de todos os itens de Direito Administrativo do Edital PCPE.
+

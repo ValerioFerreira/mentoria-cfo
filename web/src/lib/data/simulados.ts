@@ -1,7 +1,6 @@
 import "server-only";
-import { Contest } from "@/generated/prisma/client";
 import { db } from "@/lib/db";
-import { AOCP_BANCAS } from "@/lib/quiz/banca";
+import { contestBancas } from "@/lib/quiz/banca";
 import { EXAM_CONFIGS, type ContestExamConfig, type SupportedSimuladoContest } from "@/lib/simulado-rules";
 
 export * from "@/lib/simulado-rules";
@@ -44,7 +43,7 @@ export async function checkSimuladoReadiness(
     by: ["subjectId"],
     where: {
       status: "APPROVED",
-      banca: { in: AOCP_BANCAS },
+      banca: { in: contestBancas(contest) },
       kind: "MULTIPLA_ESCOLHA", // a prova é de múltipla escolha; itens Certo/Errado ficam fora do simulado
     },
     _count: true,
@@ -135,15 +134,15 @@ export async function getUserSimulados(userId: string) {
     const contestKey = (s.contest as SupportedSimuladoContest) || "CBMPE_OFICIAL";
     const config = EXAM_CONFIGS[contestKey] || EXAM_CONFIGS.CBMPE_OFICIAL;
 
-    let score = s.score ?? 0;
-    let total = s.total ?? config.totalQuestions;
+    const score = s.score ?? 0;
+    const total = s.total ?? config.totalQuestions;
 
     // Calcular veredito de corte se finalizado
     let passedCutoff = false;
-    let cutoffDetails = {
+    const cutoffDetails = {
       blockI: { correct: 0, total: config.blocks.I.totalQuestions, passed: false },
       blockII: { correct: 0, total: config.blocks.II.totalQuestions, passed: false },
-      blockIII: { correct: 0, total: config.blocks.III.totalQuestions, passed: false },
+      blockIII: { correct: 0, total: config.blocks.III?.totalQuestions ?? 0, passed: !config.blocks.III },
       noZeroPassed: true,
     };
 
@@ -166,23 +165,28 @@ export async function getUserSimulados(userId: string) {
 
       cutoffDetails.blockI.passed = cutoffDetails.blockI.correct >= config.blocks.I.minQuestions;
       cutoffDetails.blockII.passed = cutoffDetails.blockII.correct >= config.blocks.II.minQuestions;
-      cutoffDetails.blockIII.passed = cutoffDetails.blockIII.correct >= config.blocks.III.minQuestions;
+      cutoffDetails.blockIII.passed = config.blocks.III
+        ? cutoffDetails.blockIII.correct >= config.blocks.III.minQuestions
+        : true;
 
-      // Verificar se zerou alguma disciplina
-      const distinctSubjects = new Set(answers.map((a) => a.question.subjectId));
-      for (const sid of distinctSubjects) {
-        if ((subCorrect.get(sid) ?? 0) === 0) {
-          cutoffDetails.noZeroPassed = false;
-          break;
+      // Verificar se zerou alguma disciplina apenas se a regra exigir
+      if (config.noZeroInAnyArea) {
+        const distinctSubjects = new Set(answers.map((a) => a.question.subjectId));
+        for (const sid of distinctSubjects) {
+          if ((subCorrect.get(sid) ?? 0) === 0) {
+            cutoffDetails.noZeroPassed = false;
+            break;
+          }
         }
       }
 
+      const minTotalScore = (config.minPercentTotal / 100) * total;
       passedCutoff =
         cutoffDetails.blockI.passed &&
         cutoffDetails.blockII.passed &&
         cutoffDetails.blockIII.passed &&
         cutoffDetails.noZeroPassed &&
-        (score / total) >= 0.3;
+        score >= minTotalScore;
     }
 
     return {

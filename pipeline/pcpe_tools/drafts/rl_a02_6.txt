@@ -1,0 +1,79 @@
+@@@ raciocinio-logico/a02/s06
+@@ ANALITICO
+Este trecho continua a álgebra de proposições: propriedade distributiva (a mais cobrada depois da comutativa e da associativa), propriedades da identidade, absorção e idempotência (bônus) e o uso da álgebra para classificar fórmulas em tautologia, contradição ou contingência.
+
+### Fim da questão do TRT-1
+
+- A negação ~[[A ∧ ~B] → C] mantém o antecedente e nega o consequente: [A ∧ ~B] ∧ ~C. Pela associativa, tiram-se os colchetes: **A ∧ ~B ∧ ~C** (opção a).
+
+### Propriedade distributiva
+
+- Na aritmética, 3 × (5 + 7) = 3 × 5 + 3 × 7; fazendo ao contrário, "colocamos o 3 em evidência". Na lógica há duas distributivas:
+  - **do "e" sobre o "ou"**: p ∧ (q ∨ r) ≡ (p ∧ q) ∨ (p ∧ r);
+  - **do "ou" sobre o "e"**: p ∨ (q ∧ r) ≡ (p ∨ q) ∧ (p ∨ r).
+- É preciso reconhecer também **de trás para frente** (colocar "p ∧" ou "p ∨" em evidência): (p ∧ q) ∨ (p ∧ r) ≡ p ∧ (q ∨ r) e (p ∨ q) ∧ (p ∨ r) ≡ p ∨ (q ∧ r).
+- Não existe "distributiva da conjunção sobre a condicional": o item da ISS Fortaleza que afirmava isso está **errado**.
+- Se a fórmula tem condicional, transforme antes em "ou" (p → q ≡ ~p ∨ q); se tem a negação da condicional, vire "e" (~(p → q) ≡ p ∧ ~q).
+
+### Aplicações da distributiva
+
+- **SEFAZ-SC**: (a ∧ b) ∨ (a ∧ ¬b) ≡ a ∧ (b ∨ ¬b) ≡ a ∧ t ≡ **a** (letra E), pois b ∨ ~b é tautologia e "a ∧ t" depende só de a.
+- **Pref. Alumínio**: "Sueli é professora e, pratica ginástica ou pratica corrida" (a vírgula cria parênteses) é s ∧ (g ∨ k) ≡ (s ∧ g) ∨ (s ∧ k): "é professora e pratica ginástica, ou é professora e pratica corrida" (letra C).
+- **MPE-RO**: (P → Q) ∧ (R ∨ Q) ≡ (~P ∨ Q) ∧ (R ∨ Q). Com a comutativa, (Q ∨ ~P) ∧ (Q ∨ R); colocando "Q ∨" em evidência: **Q ∨ (~P ∧ R)** (letra A). Sem álgebra, seria preciso comparar seis tabelas-verdade.
+- **TCE-RO**: P ∨ [¬(Q → R)] ≡ P ∨ (Q ∧ ~R) ≡ (P ∨ Q) ∧ (P ∨ ~R): item **certo**.
+
+### Identidade, absorção e idempotência (bônus)
+
+Raramente caem; use como apoio. Sendo t uma tautologia e c uma contradição:
+
+- **Identidade da conjunção**: p ∧ t ≡ p (o valor depende só de p) e p ∧ c ≡ c.
+- **Identidade da disjunção**: p ∨ t ≡ t e p ∨ c ≡ p.
+- **Absorção**: p ∨ (p ∧ q) ≡ p; p ∧ (p ∨ q) ≡ p. Na SEFAZ-MS, a negação de p ∧ (p ∨ q) é simplesmente **~p** (letra A).
+- **Idempotência**: p ∧ p ≡ p; p ∨ p ≡ p.
+- **ANPAD**: p ∧ (q ∨ ~p) ≡ (p ∧ q) ∨ (p ∧ ~p) ≡ (p ∧ q) ∨ c ≡ **p ∧ q** (letra B).
+- **DPEN**: ¬[(P → Q) ∨ Q] ≡ ~(P → Q) ∧ ~Q ≡ (P ∧ ~Q) ∧ ~Q ≡ P ∧ (~Q ∧ ~Q) ≡ P ∧ ~Q (De Morgan, negação da condicional, associativa e idempotência): item **certo**.
+
+### Álgebra para tautologia, contradição e contingência
+
+- Costuma ser o método mais rápido, mas exige domínio das equivalências. Desenvolve-se a fórmula até obter **t**, **c** ou uma contingência simples.
+- **STJ**: ¬P → (P → Q) ≡ P ∨ (P → Q) ≡ P ∨ (~P ∨ Q) ≡ (P ∨ ~P) ∨ Q ≡ t ∨ Q ≡ t. Tautologia (item certo).
+- **CBM-AL**: Q ∨ (Q → P) ≡ Q ∨ (~Q ∨ P) ≡ (Q ∨ ~Q) ∨ P ≡ t ∨ P ≡ t. Tautologia (item certo).
+
+### Para fixar
+- Distributiva: p ∧ (q ∨ r) ≡ (p ∧ q) ∨ (p ∧ r) e p ∨ (q ∧ r) ≡ (p ∨ q) ∧ (p ∨ r), e a leitura inversa ("colocar em evidência").
+- Antes de usar a álgebra, troque condicionais por "ou" (e negações de condicional por "e").
+- Identidade: p ∧ t ≡ p, p ∧ c ≡ c, p ∨ t ≡ t, p ∨ c ≡ p.
+- Absorção e idempotência simplificam repetições de p.
+- Tautologia por álgebra: chegue a t ∨ qualquer coisa.
+@@ SINTETICO
+**Distributiva do e**: p ∧ (q ∨ r) equivale a (p ∧ q) ∨ (p ∧ r).
+**Distributiva do ou**: p ∨ (q ∧ r) equivale a (p ∨ q) ∧ (p ∨ r).
+**Evidência**: as duas distributivas também valem de trás para frente.
+**Condicional**: não existe distributiva da conjunção sobre a condicional.
+**Preparação**: troque a condicional por ou, e a negação da condicional por e, antes da álgebra.
+**Identidade**: p ∧ t equivale a p, p ∨ t equivale a t, p ∨ c equivale a p e p ∧ c equivale a c.
+**Absorção**: p ∨ (p ∧ q) e p ∧ (p ∨ q) valem p.
+**Idempotência**: p ∧ p e p ∨ p valem p.
+**Tautologia por álgebra**: desenvolva a fórmula até chegar a t ∨ algo, que vale t.
+**Quando usar**: a álgebra é mais rápida, mas casos difíceis também saem por tabela-verdade.
+@@ TEORIA
+C | Colocar p em evidência em (p ∧ q) ∨ (p ∧ r) leva a p ∧ (q ∨ r), pela distributiva. || Distributiva lida de trás para frente.
+E | A conjunção distribui-se sobre a condicional: p ∧ (q → r) ≡ (p ∧ q) → (p ∧ r). || Não existe essa propriedade.
+C | A proposição p ∨ (p ∧ q) é equivalente a p. || Absorção.
+E | A proposição p ∧ c, em que c é uma contradição, é equivalente a p. || Equivale a c.
+@@ REVISAO
+C | A negação de p ∧ (p ∨ q) é equivalente a ~p. || Absorção: p ∧ (p ∨ q) ≡ p.
+C | A proposição (a ∧ b) ∨ (a ∧ ~b) é equivalente à proposição simples a. || Evidência de a e b ∨ ~b ≡ t.
+E | Para aplicar a distributiva a uma fórmula com condicional, deve-se manter o conectivo → sem transformá-lo. || Transforma-se em ou.
+C | A proposição Q ∨ (Q → P) é uma tautologia. || Equivale a (Q ∨ ~Q) ∨ P.
+@@ PONTOS
+62 | Fim do TRT-1 e propriedade distributiva
+63 | Questão da ISS Fortaleza e início da SEFAZ-SC
+64 | Resolução da SEFAZ-SC e questão de Alumínio
+65 | Condicional na álgebra e questão do MPE-RO
+66 | TCE-RO e identidade
+67 | Identidade da conjunção e da disjunção
+68 | Questão da ANPAD e absorção
+69 | Questão da SEFAZ-MS e idempotência
+70 | Questão do DPEN e álgebra com tautologia
+71 | Questões do STJ e do CBM-AL

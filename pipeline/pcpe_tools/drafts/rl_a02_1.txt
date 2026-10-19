@@ -1,0 +1,74 @@
+@@@ raciocinio-logico/a02/s01
+@@ ANALITICO
+Este trecho abre o estudo das equivalências lógicas: o que significa duas proposições serem equivalentes, o quadro das equivalências e negações mais cobradas, e a primeira equivalência fundamental, a contrapositiva da condicional.
+
+### Quadro das equivalências e negações essenciais
+
+- **Contrapositiva**: p → q ≡ ~q → ~p.
+- **Condicional em disjunção**: p → q ≡ ~p ∨ q. **Disjunção em condicional**: p ∨ q ≡ ~p → q.
+- **Dupla negação**: ~(~p) ≡ p.
+- **Leis de De Morgan**: para negar um "e", nega-se cada parcela e troca-se o "e" por "ou": ~(p ∧ q) ≡ ~p ∨ ~q. Para negar um "ou", nega-se cada parcela e troca-se por "e": ~(p ∨ q) ≡ ~p ∧ ~q.
+- **Negação da condicional**: ~(p → q) ≡ p ∧ ~q.
+- Equivalências lógicas se usam em prova, por isso é preciso **decorar** as principais.
+
+### O que é equivalência lógica
+
+- Duas proposições são **equivalentes** quando têm a **mesma tabela-verdade**, isto é, assumem o mesmo valor para todas as combinações de valores das simples. Informalmente, têm o **mesmo significado**. Símbolos: **⇔** ou **≡**. Atenção: o símbolo de equivalência **não é** o conectivo bicondicional (↔), embora se relacionem: A ≡ B quando A ↔ B é tautologia.
+- Exemplo informal: "Sou do interior" e "Não é verdade que eu não sou do interior" são equivalentes (dupla negação).
+- **Prova por tabela-verdade** de (p → q) ∧ (q → p) ≡ p ↔ q: com duas simples, quatro linhas. A primeira condicional é F só em p V e q F; a segunda, só em q V e p F; a conjunção é V apenas quando ambas são V (linhas VV e FF). Essa coluna coincide com a da bicondicional, que é V quando p e q têm o mesmo valor. Logo, **p ↔ q ≡ (p → q) ∧ (q → p)**.
+
+### As três equivalências fundamentais
+
+Despencam em prova: a **contrapositiva**, a **condicional em "ou"** e o **"ou" em condicional**. Este trecho trata da primeira.
+
+### Equivalência contrapositiva
+
+- Procedimento: (1) **inverter** as posições do antecedente e do consequente; (2) **negar ambos**. De "Se o alarme dispara, o vigia acorda" (p → q) obtém-se "**Se o vigia não acorda, o alarme não disparou**" (~q → ~p).
+- **Armadilha clássica**: p → q **não** é equivalente a ~p → ~q (a **inversa**). Do fato de o alarme não ter disparado nada se pode concluir sobre o vigia: ele pode ter acordado por outro motivo. Também **não** é equivalente a q → p (a **recíproca**).
+- **Tabela**: ~q → ~p só é F quando ~q é V e ~p é F, isto é, q F e p V, exatamente o único caso em que p → q é F. Colunas idênticas: p → q ≡ ~q → ~p.
+
+### Questões
+
+- **EPC (montanha/paisagem)**: de m → p, a equivalente é ~p → ~m: "Se a paisagem não compensa, então subir a montanha não é difícil" (letra C). As outras alternativas trocam o conectivo por "e"/"ou" sem a negação adequada ou apenas negam uma parte.
+- **Pref. Bagé ("Se a prova está difícil, então Antônio não será aprovado")**: com p "prova difícil" e a "Antônio será aprovado", a frase é p → ~a. A contrapositiva é ~(~a) → ~p, que pela dupla negação é **a → ~p**: "Se Antônio for aprovado, então a prova não está difícil" (letra B).
+- **Dica**: o resultado não depende de definir a simples na forma afirmativa ou negativa; pode-se definir a como "Antônio não será aprovado" e a frase vira p → a, cuja contrapositiva é ~a → ~p ("Se Antônio for aprovado, a prova não está difícil"), o mesmo resultado.
+
+### Para fixar
+- Equivalentes: mesma tabela-verdade; símbolo ≡ (ou ⇔), diferente de ↔.
+- Contrapositiva: inverter e negar ambos os termos; p → q ≡ ~q → ~p.
+- Inversa (~p → ~q) e recíproca (q → p) não são equivalentes à condicional.
+- p ↔ q ≡ (p → q) ∧ (q → p).
+- Dupla negação: ~(~p) ≡ p.
+- Memorize o quadro: contrapositiva, p → q ≡ ~p ∨ q, p ∨ q ≡ ~p → q, De Morgan e negação da condicional.
+@@ SINTETICO
+**Equivalência lógica**: duas proposições com a mesma tabela-verdade, ou seja, o mesmo significado.
+**Símbolo**: ≡ ou ⇔ indica equivalência e não se confunde com o conectivo bicondicional.
+**Quadro essencial**: contrapositiva, condicional em ou, ou em condicional, dupla negação, De Morgan e negação da condicional.
+**Bicondicional**: p ↔ q equivale a (p → q) ∧ (q → p).
+**Contrapositiva**: inverte antecedente e consequente e nega os dois, p → q ≡ ~q → ~p.
+**Inversa**: ~p → ~q não equivale a p → q, erro muito explorado pelas bancas.
+**Recíproca**: q → p também não equivale a p → q.
+**Dupla negação**: a contrapositiva de p → ~a é a → ~p.
+**Independência da forma**: definir a simples na forma afirmativa ou negativa não muda a resposta.
+**Memorização**: as equivalências devem ser decoradas para uso rápido em prova.
+@@ TEORIA
+C | Duas proposições são equivalentes quando têm exatamente a mesma tabela-verdade. || Definição.
+E | A condicional p → q é equivalente à sua inversa ~p → ~q. || A equivalente é a contrapositiva ~q → ~p.
+C | A contrapositiva de "Se há luz, a planta cresce" é "Se a planta não cresce, não há luz". || Inverte e nega.
+E | O símbolo de equivalência ≡ tem o mesmo significado do conectivo bicondicional ↔. || São conceitos diferentes.
+@@ REVISAO
+C | A bicondicional p ↔ q é equivalente à conjunção (p → q) ∧ (q → p). || Tabelas idênticas.
+E | A condicional "Se chove, o jogo é cancelado" é equivalente a "Se o jogo é cancelado, então chove". || Essa é a recíproca.
+C | A contrapositiva de p → ~a é a → ~p. || Dupla negação de ~a.
+C | ~(~p) é equivalente a p. || Dupla negação.
+@@ PONTOS
+3 | Apresentação e resumo das equivalências
+4 | Quadro de equivalências e negações
+5 | Definição de equivalência lógica
+6 | Tabela de (p → q) ∧ (q → p)
+7 | Equivalências fundamentais
+8 | Contrapositiva e erro da inversa
+9 | Tabela da contrapositiva
+10 | Questão da EPC
+11 | Questão de Bagé
+12 | Definição da simples afirmativa ou negativa

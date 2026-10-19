@@ -94,7 +94,7 @@ export default async function SimuladoResultadoPage({
   > = {
     I: { total: 0, correct: 0, requiredMin: config.blocks.I.minQuestions },
     II: { total: 0, correct: 0, requiredMin: config.blocks.II.minQuestions },
-    III: { total: 0, correct: 0, requiredMin: config.blocks.III.minQuestions },
+    III: { total: 0, correct: 0, requiredMin: config.blocks.III?.minQuestions ?? 0 },
   };
 
   // 2. Desempenho por Disciplina
@@ -131,20 +131,22 @@ export default async function SimuladoResultadoPage({
   const blockIIPct = blockII.total > 0 ? Math.round((blockII.correct / blockII.total) * 100) : 0;
   const blockIIIPct = blockIII.total > 0 ? Math.round((blockIII.correct / blockIII.total) * 100) : 0;
 
-  const blockIPassed = blockI.correct >= blockI.requiredMin;
-  const blockIIPassed = blockII.correct >= blockII.requiredMin;
-  const blockIIIPassed = blockIII.correct >= blockIII.requiredMin;
+  const blockIPassed = blockI.requiredMin > 0 ? blockI.correct >= blockI.requiredMin : true;
+  const blockIIPassed = blockII.requiredMin > 0 ? blockII.correct >= blockII.requiredMin : true;
+  const blockIIIPassed = config.blocks.III
+    ? (blockIII.requiredMin > 0 ? blockIII.correct >= blockIII.requiredMin : true)
+    : true;
 
-  // Verificar se zerou alguma matéria
+  // Verificar se zerou alguma matéria se aplicável
   const zeroedSubjects: string[] = [];
   for (const sub of subjectStats.values()) {
     if (sub.correct === 0) {
       zeroedSubjects.push(sub.name);
     }
   }
-  const noZeroPassed = zeroedSubjects.length === 0;
+  const noZeroPassed = config.noZeroInAnyArea ? zeroedSubjects.length === 0 : true;
 
-  // Nota geral mínima de 30%
+  // Nota geral mínima de corte
   const minTotalPassed = totalPercent >= config.minPercentTotal;
 
   // Aprovado no critério oficial do edital?
@@ -242,7 +244,7 @@ export default async function SimuladoResultadoPage({
         </div>
 
         {/* Diagnóstico das Regras de Corte do Edital */}
-        <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 pt-4 border-t border-border/70">
+        <div className={`grid grid-cols-1 ${config.blocks.III ? "sm:grid-cols-4" : "sm:grid-cols-3"} gap-3 pt-4 border-t border-border/70`}>
           {/* Bloco I */}
           <div
             className={`rounded-xl border p-3.5 space-y-1 ${
@@ -252,14 +254,18 @@ export default async function SimuladoResultadoPage({
             }`}
           >
             <div className="flex items-center justify-between text-xs font-bold">
-              <span>Bloco I</span>
+              <span>{config.blocks.I.name}</span>
               <span>{blockIPassed ? "Aprovado" : "Reprovado"}</span>
             </div>
             <p className="text-lg font-bold text-text tabular">
               {blockI.correct}/{blockI.total}{" "}
               <span className="text-xs font-normal text-muted">({blockIPct}%)</span>
             </p>
-            <p className="text-[11px] text-muted">Mínimo: {blockI.requiredMin} acertos (30%)</p>
+            <p className="text-[11px] text-muted">
+              {blockI.requiredMin > 0
+                ? `Mínimo: ${blockI.requiredMin} acertos (${config.minPercentPerBlock}%)`
+                : "Sem nota mínima eliminatória"}
+            </p>
           </div>
 
           {/* Bloco II */}
@@ -271,56 +277,87 @@ export default async function SimuladoResultadoPage({
             }`}
           >
             <div className="flex items-center justify-between text-xs font-bold">
-              <span>Bloco II</span>
+              <span>{config.blocks.II.name}</span>
               <span>{blockIIPassed ? "Aprovado" : "Reprovado"}</span>
             </div>
             <p className="text-lg font-bold text-text tabular">
               {blockII.correct}/{blockII.total}{" "}
               <span className="text-xs font-normal text-muted">({blockIIPct}%)</span>
             </p>
-            <p className="text-[11px] text-muted">Mínimo: {blockII.requiredMin} acertos (30%)</p>
-          </div>
-
-          {/* Bloco III */}
-          <div
-            className={`rounded-xl border p-3.5 space-y-1 ${
-              blockIIIPassed
-                ? "border-ok/30 bg-ok/5 text-ok"
-                : "border-primary/30 bg-primary/5 text-primary"
-            }`}
-          >
-            <div className="flex items-center justify-between text-xs font-bold">
-              <span>Bloco III</span>
-              <span>{blockIIIPassed ? "Aprovado" : "Reprovado"}</span>
-            </div>
-            <p className="text-lg font-bold text-text tabular">
-              {blockIII.correct}/{blockIII.total}{" "}
-              <span className="text-xs font-normal text-muted">({blockIIIPct}%)</span>
-            </p>
-            <p className="text-[11px] text-muted">Mínimo: {blockIII.requiredMin} acertos (30%)</p>
-          </div>
-
-          {/* Regra de Não Zerar Matéria */}
-          <div
-            className={`rounded-xl border p-3.5 space-y-1 ${
-              noZeroPassed
-                ? "border-ok/30 bg-ok/5 text-ok"
-                : "border-primary/30 bg-primary/5 text-primary"
-            }`}
-          >
-            <div className="flex items-center justify-between text-xs font-bold">
-              <span>Não Zerar</span>
-              <span>{noZeroPassed ? "OK" : "Eliminado"}</span>
-            </div>
-            <p className="text-sm font-bold text-text">
-              {noZeroPassed ? "Nenhuma zerada" : `${zeroedSubjects.length} zerada(s)`}
-            </p>
             <p className="text-[11px] text-muted">
-              {noZeroPassed
-                ? "Pontuou em todas as matérias"
-                : `Zerou: ${zeroedSubjects.join(", ")}`}
+              {blockII.requiredMin > 0
+                ? `Mínimo: ${blockII.requiredMin} acertos (${config.minPercentPerBlock}%)`
+                : "Sem nota mínima eliminatória"}
             </p>
           </div>
+
+          {/* Bloco III (se houver) */}
+          {config.blocks.III && (
+            <div
+              className={`rounded-xl border p-3.5 space-y-1 ${
+                blockIIIPassed
+                  ? "border-ok/30 bg-ok/5 text-ok"
+                  : "border-primary/30 bg-primary/5 text-primary"
+              }`}
+            >
+              <div className="flex items-center justify-between text-xs font-bold">
+                <span>{config.blocks.III.name}</span>
+                <span>{blockIIIPassed ? "Aprovado" : "Reprovado"}</span>
+              </div>
+              <p className="text-lg font-bold text-text tabular">
+                {blockIII.correct}/{blockIII.total}{" "}
+                <span className="text-xs font-normal text-muted">({blockIIIPct}%)</span>
+              </p>
+              <p className="text-[11px] text-muted">
+                {blockIII.requiredMin > 0
+                  ? `Mínimo: ${blockIII.requiredMin} acertos (${config.minPercentPerBlock}%)`
+                  : "Sem nota mínima eliminatória"}
+              </p>
+            </div>
+          )}
+
+          {/* Regra de Não Zerar Matéria ou Nota Geral Mínima */}
+          {config.noZeroInAnyArea ? (
+            <div
+              className={`rounded-xl border p-3.5 space-y-1 ${
+                noZeroPassed
+                  ? "border-ok/30 bg-ok/5 text-ok"
+                  : "border-primary/30 bg-primary/5 text-primary"
+              }`}
+            >
+              <div className="flex items-center justify-between text-xs font-bold">
+                <span>Não Zerar</span>
+                <span>{noZeroPassed ? "OK" : "Eliminado"}</span>
+              </div>
+              <p className="text-sm font-bold text-text">
+                {noZeroPassed ? "Nenhuma zerada" : `${zeroedSubjects.length} zerada(s)`}
+              </p>
+              <p className="text-[11px] text-muted">
+                {noZeroPassed
+                  ? "Pontuou em todas as matérias"
+                  : `Zerou: ${zeroedSubjects.join(", ")}`}
+              </p>
+            </div>
+          ) : (
+            <div
+              className={`rounded-xl border p-3.5 space-y-1 ${
+                minTotalPassed
+                  ? "border-ok/30 bg-ok/5 text-ok"
+                  : "border-primary/30 bg-primary/5 text-primary"
+              }`}
+            >
+              <div className="flex items-center justify-between text-xs font-bold">
+                <span>Corte Geral</span>
+                <span>{minTotalPassed ? "Atingido" : "Abaixo"}</span>
+              </div>
+              <p className="text-sm font-bold text-text">
+                {totalCorrect}/{totalQuestions} ({totalPercent}%)
+              </p>
+              <p className="text-[11px] text-muted">
+                Mínimo: {Math.ceil((config.minPercentTotal / 100) * totalQuestions)} acertos ({config.minPercentTotal}%)
+              </p>
+            </div>
+          )}
         </div>
       </Card>
 

@@ -1,0 +1,74 @@
+@@@ raciocinio-logico/a04/s04
+@@ ANALITICO
+Este trecho detalha o silogismo categórico (termos, premissas maior e menor, modos, figuras, oito regras de validade) e apresenta os dois primeiros métodos de verificação de validade: diagramas lógicos e o método que considera as premissas verdadeiras.
+
+### Silogismo categórico
+
+- É o argumento com **exatamente duas premissas**, ambas **proposições categóricas**, e uma conclusão. Costuma cair pouco em prova, mas completa o conteúdo.
+- **Termos**: **maior** (predicado da conclusão), **menor** (sujeito da conclusão) e **médio** (aparece nas premissas e não na conclusão). Exemplo: "Todo felino é ágil; algum caracol não é ágil; logo, nenhum caracol é felino": maior = felino, menor = caracol, médio = ágil.
+- **Premissa maior**: a que contém os termos maior e médio. **Premissa menor**: a que contém menor e médio. Por convenção a maior vem primeiro, mas a banca pode **inverter a ordem**; por isso se identificam pelos termos, não pela posição.
+
+### Modo e figura
+
+- **Modo**: três letras (A, E, I, O) na ordem [premissa maior][premissa menor][conclusão]. No exemplo: A (universal afirmativa), O (particular negativa), E (universal negativa): **AOE**.
+- **Figura** (papel do termo médio): **1ª**: sujeito na maior e predicado na menor; **2ª**: predicado nas duas; **3ª**: sujeito nas duas; **4ª**: predicado na maior e sujeito na menor. No exemplo, "ágil" é predicado nas duas: **2ª figura**.
+- **PC-SP**: um silogismo com premissa universal afirmativa sobre sapos e verde, premissa particular negativa sobre cães e verde, e conclusão universal negativa entre cães e sapos tem modo AOE e é de 2ª figura: **AOE-2** (letra D). O termo médio é "verde", o maior é "sapo" e o menor é "cão".
+
+### Oito regras de validade
+
+1. **Termos**: o silogismo usa apenas três (maior, médio, menor).
+2. **Médio universal**: o termo médio precisa ser tomado em toda a sua extensão pelo menos numa premissa.
+3. **Médio fora da conclusão**: ele só aparece nas premissas.
+4. **Extensão**: o termo da conclusão não pode abranger mais do que abrangia na premissa.
+5. **Premissa mais fraca**: premissa negativa produz conclusão negativa; premissa particular produz conclusão particular; havendo as duas, a conclusão é negativa e particular.
+6. **Afirmativas**: duas premissas afirmativas exigem conclusão afirmativa.
+7. **Particulares**: duas premissas particulares não permitem conclusão.
+8. **Negativas**: duas premissas negativas não permitem conclusão.
+
+- **Petrobras**: são regras válidas "só três termos", "duas particulares não geram conclusão" e "premissa particular ⇒ conclusão particular" (letra C). A frase "termo médio negativo ⇒ conclusão negativa" é inválida: não se fala em termo médio negativo, mas em premissas negativas.
+
+### Métodos de verificação da validade (o ponto mais importante da aula)
+
+**1. Diagramas lógicos** (argumentos categóricos): desenha-se cada premissa; se a conclusão não é obrigatória em todos os diagramas possíveis, o argumento é **inválido**.
+- **BANESTES**: I) "toda criança gosta de pizza; quem gosta de refrigerante gosta de pizza; logo, toda criança gosta de refrigerante" é **inválido** (há diagramas com criança que não gosta de refrigerante). II) mesmas premissas, conclusão "quem gosta de refrigerante é criança": **inválido** (há quem goste de refrigerante e não seja criança). III) "toda criança gosta de pizza; quem gosta de refrigerante não gosta de pizza; logo, nenhuma criança gosta de refrigerante": **válido** (conjuntos disjuntos, único diagrama). Só o III é válido (letra B).
+
+**2. Considerar as premissas verdadeiras**: é a própria definição de validade; só é prática quando há premissa em "formato fácil": **proposição simples verdadeira** ou **conjunção verdadeira**. Segue as mesmas quatro etapas das questões clássicas: identificar a premissa fácil, passar para a linguagem proposicional, achar os valores das simples e testar a conclusão.
+- **CM Taubaté**: premissas: (I) fe → fa; (II) ~ce → ~ca; (III) ce ∧ ~fa. De III: ce V e fa F. Em I, fa F obriga fe F. Em II, o antecedente ~ce é F; logo nada se sabe sobre ca. Conclusão necessariamente verdadeira: **"Cicrano não foi aprovado ou Fulano não estudou"** (~ca ∨ ~fe), pois ~fe é V (letra D). As demais dependem de ca, que não se conhece, ou são falsas.
+
+### Para fixar
+- Termos: maior (predicado da conclusão), menor (sujeito da conclusão), médio (nas premissas, não na conclusão).
+- Modo = A/E/I/O das premissas e da conclusão; figura = papel do termo médio.
+- Duas premissas particulares ou duas negativas não geram conclusão.
+- A conclusão acompanha a premissa mais fraca (negativa e/ou particular).
+- Diagramas servem para categóricos; premissa verdadeira em formato fácil serve para hipotéticos.
+@@ SINTETICO
+**Termos do silogismo**: maior é o predicado da conclusão, menor é o sujeito e médio não aparece na conclusão.
+**Premissas**: a maior contém maior e médio, a menor contém menor e médio, e a ordem na prova pode vir invertida.
+**Modo**: três letras A, E, I, O na ordem premissa maior, menor e conclusão.
+**Figuras**: dependem de o termo médio ser sujeito ou predicado em cada premissa.
+**Exemplo de modo e figura**: sapo verde, cão não verde, nenhum cão é sapo tem modo AOE e figura 2.
+**Regras com particulares e negativas**: duas premissas particulares ou duas negativas não geram conclusão.
+**Premissa mais fraca**: a conclusão acompanha a premissa mais fraca, negativa ou particular.
+**Diagramas**: o argumento é inválido se a conclusão não vale em todos os diagramas possíveis.
+**Premissas verdadeiras**: método prático quando há simples verdadeira ou conjunção verdadeira.
+**Conclusão válida**: é a que resulta verdadeira mesmo sem conhecer o valor de todas as simples.
+@@ TEORIA
+C | Num silogismo categórico, o termo médio aparece nas duas premissas e não aparece na conclusão. || Definição.
+E | De duas premissas negativas pode-se tirar uma conclusão válida afirmativa. || De duas negativas não há conclusão.
+C | Se um silogismo tem uma premissa particular, a conclusão deve ser particular. || A conclusão acompanha a premissa mais fraca.
+E | O modo do silogismo é formado pelas letras das proposições na ordem conclusão, premissa maior, premissa menor. || Ordem: premissa maior, menor, conclusão.
+@@ REVISAO
+C | Num silogismo em que o termo médio é predicado nas duas premissas, a figura é a segunda. || Definição da 2ª figura.
+C | Para argumentos categóricos, a validade é aferida por diagramas lógicos. || Método dos diagramas.
+E | Se a conclusão aparece em algum diagrama possível das premissas, o argumento é válido. || Deve valer em todos os diagramas.
+C | O método das premissas verdadeiras é prático quando há premissa em formato de simples verdadeira ou conjunção verdadeira. || Formatos fáceis.
+@@ PONTOS
+40 | Silogismo categórico e termos
+41 | Modo, figura e questão do PC-SP
+42 | Resolução do PC-SP e regras de validade
+43 | Questão da Petrobras e métodos de verificação
+44 | Questão da BANESTES
+45 | Resolução dos argumentos I e II
+46 | Argumento III e método das premissas verdadeiras
+47 | Formatos fáceis e questão do CM Taubaté
+48 | Resolução da questão do CM Taubaté

@@ -240,4 +240,41 @@ describe("Modo Turbo na seleção (resumos por unidade)", () => {
     expect(summarized(sel)).toHaveLength(ids(w).length);
     expect(selectContent(w.chosen(), w.segments, 10, {}, true, new Set(), opts(w)).turboAulas.size).toBe(0); // só conta quem entra no plano
   });
+  it("aula de teoria com todos os trechos fora do edital (nota null) é completamente ignorada", () => {
+    const w = world();
+    const imp = { ...scores(w) } as Record<string, number | null>;
+    for (const s of w.segments["a/a01"] ?? []) imp[s.id] = null;
+    const sel = selectContent(w.chosen(), w.segments, 1e6, {}, false, new Set(), { importance: imp });
+    expect(sel.blueprints.has("a/a01")).toBe(false);
+    expect(sel.tierByAula.has("a/a01")).toBe(false);
+  });
+
+  it("aula exclusiva de outro concurso não dilui o share das aulas comuns", () => {
+    const w = world();
+    // Adiciona uma aula exclusiva do concurso X na disciplina A
+    const extra = mkAulaWithSegs("a/a99", 99, 4, 12, 12, { incidence: 5 });
+    extra.aula.onlyContests = ["CONCURSO_X"];
+    const subjectWithExtra = {
+      ...w.subjects[0],
+      aulas: [...w.subjects[0].aulas, extra.aula],
+    };
+    const segmentsWithExtra = {
+      ...w.segments,
+      [extra.aula.id]: extra.segs,
+    };
+    const chosen = [
+      { subject: subjectWithExtra, level: 1 as Level },
+      { subject: w.subjects[1], level: 1 as Level },
+    ];
+
+    // Para o CONCURSO_Y (onde a aula 99 não entra), o share das aulas normais não deve ser diluído
+    const selWithout = selectContent(w.chosen(), w.segments, 1e6);
+    const selWith = selectContent(chosen, segmentsWithExtra, 1e6, {}, false, new Set(), { contest: "CONCURSO_Y" });
+
+    expect(selWith.inEditalAulas.has(extra.aula.id)).toBe(false);
+    expect(selWith.tierByAula.has(extra.aula.id)).toBe(false);
+    // A cobertura e seleção das aulas normais são idênticas
+    expect(selWith.usedMinutes).toBe(selWithout.usedMinutes);
+  });
 });
+

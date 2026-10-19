@@ -1,0 +1,77 @@
+@@@ raciocinio-logico/a07/s01
+@@ ANALITICO
+Este trecho apresenta os conceitos iniciais de probabilidade (experimento aleatório, espaço amostral, evento) e a definição clássica, com questões que combinam contagem e análise combinatória.
+
+### Experimento aleatório
+
+- A teoria da probabilidade estuda experimentos ou fenômenos **aleatórios**: resultado **incerto**, mas com **padrão** previsível quando repetidos muitas vezes. Exemplos: lançar dados e moedas, sortear uma carta, escolher alguém ao acaso, chover em certo dia.
+- Para identificar o padrão, o experimento deve poder ser **repetido indefinidamente, sob condições inalteradas**. Uma moeda lançada perto de um bueiro, que pode cair e sumir, não atende a essa condição.
+
+### Espaço amostral e evento
+
+- **Espaço amostral (U)**: conjunto de **todos os resultados possíveis**; cada resultado é um **ponto amostral**. Exemplos: moeda = {cara, coroa}; dado = {1, 2, 3, 4, 5, 6}; duas moedas = {(C,C), (C,K), (K,C), (K,K)} (4 pontos).
+- **Evento**: qualquer **subconjunto** do espaço amostral, ao qual se atribui probabilidade. Indica-se **n(A)** o número de elementos. Exemplo: nas duas moedas, "faces iguais" = {(C,C), (K,K)}, n = 2.
+- **Evento simples ou elementar**: um só elemento (soma 12 em dois dados: {(6,6)}). **Evento impossível**: conjunto vazio, n = 0 (soma 13). **Evento certo**: igual ao espaço amostral (número menor que 7 no dado).
+- Questões: o espaço amostral é o conjunto dos resultados possíveis (ex.: Sec. de Educação/MG, letra A); evento é subconjunto do espaço amostral (CEBRASPE/ANM, item certo; SELECON/SENAPPEN, letra C).
+
+### Definição clássica
+
+- **P(A) = n(A)/n(U)** = casos favoráveis / casos totais. Nas duas moedas, P(faces iguais) = 2/4 = 0,5.
+- **Condição**: todos os pontos amostrais devem ser **igualmente prováveis**. Com uma moeda viciada, não vale a definição clássica.
+
+### Questões
+
+- **FUNDATEC/Porto Alegre**: 26 anos, com 11 abaixo da média. P = 11/26 ≈ 42,3% (letra C).
+- **FGV/Angra dos Reis**: 7 + 6 + 5 + 4 + 3 = 25 alunos; torcedores do Vasco: 6. P = 6/25 = 24% (letra D).
+- **VUNESP/PM-SP**: 60 balas; 15 de café sem recheio de chocolate; as demais (60 − 15 = 45) têm chocolate. P = 45/60 = 3/4.
+- **FCC/Sec. Administração-BA**: de 120 pessoas pesquisadas, 3 já tiveram dengue: P = 3/120 = 1/40 = 2,5% (letra A).
+- **FGV/PC-RJ**: 13 cadeiras; 3 ocupadas (3, 8 e 11). A quarta pessoa escolhe entre as 10 livres. Cadeiras sem vizinho sentado: 1, 5, 6 e 13 (as 2, 4, 7, 9, 10 e 12 são vizinhas das ocupadas). P = 4/10 = **2/5** (letra C).
+
+### Probabilidade com análise combinatória
+
+- Retirar 2 peças de um saco com 5 amarelas e 6 verdes: favoráveis C₅,₂ = 10; totais C₁₁,₂ = 55; P = 10/55 = **2/11**.
+- Se a ordem importasse (presidente e vice entre 5 mulheres e 6 homens, ambos mulheres): A₅,₂/A₁₁,₂ = 20/110 = **2/11**, o **mesmo** resultado. Se favoráveis e totais usam o mesmo critério (os dois arranjos ou as duas combinações), a probabilidade não muda.
+- **FGV/Salvador**: sortear 2 entre 6 deputados (3 de cada partido): P(os 2 serem do partido A) = C₃,₂/C₆,₂ = 3/15 = **1/5** (letra D).
+- **CEBRASPE/PM-MA**: 6 agentes, 2 para a base (coordenador e assistente). Totais A₆,₂ = 30; favoráveis (André e Bruno nos dois cargos, em qualquer ordem) = 2: P = 2/30 = 1/15 ≈ 6,7%, inferior a 30% (item errado).
+
+### Para fixar
+- P(A) = n(A)/n(U), com resultados igualmente prováveis.
+- Evento impossível tem probabilidade 0; evento certo, 1.
+- Combinatória conta favoráveis e totais; use o mesmo critério nos dois.
+- O espaço amostral é o conjunto de todos os resultados possíveis.
+- Em questões de tabela e de pesquisa, some corretamente o total antes de dividir.
+@@ SINTETICO
+**Experimento aleatório**: resultado incerto, mas com padrão, e repetível sob condições inalteradas.
+**Espaço amostral**: conjunto de todos os resultados possíveis de um experimento.
+**Evento**: subconjunto do espaço amostral ao qual se atribui probabilidade.
+**Evento impossível**: conjunto vazio, com n igual a 0.
+**Evento certo**: igual ao espaço amostral.
+**Definição clássica**: P é favoráveis dividido por totais, com pontos igualmente prováveis.
+**Moeda viciada**: não permite a definição clássica.
+**Mesmo critério**: arranjos nos dois lados ou combinações nos dois lados dão a mesma probabilidade.
+**Duas peças amarelas**: entre 5 amarelas e 6 verdes, a probabilidade é 10 sobre 55, ou 2 sobre 11.
+**Comissão de deputados**: dois do partido A entre 6 deputados dão 3 sobre 15, ou 1 sobre 5.
+@@ TEORIA
+C | O espaço amostral do lançamento de um dado de seis faces é {1, 2, 3, 4, 5, 6}. || Todos os resultados possíveis.
+E | Chamamos de evento o conjunto formado por todas as saídas que um experimento aleatório pode ter. || Isso define o espaço amostral; evento é um subconjunto.
+C | A probabilidade de um evento impossível é zero e a de um evento certo é um. || n(∅) = 0 e n(A) = n(U).
+E | A definição clássica pode ser usada em uma moeda viciada. || Os resultados precisam ser igualmente prováveis.
+@@ REVISAO
+C | Ao escolher uma letra da palavra CASA ao acaso, a probabilidade de ser a letra A é 1/2. || Duas letras A em quatro.
+E | A probabilidade de a soma de dois dados ser 13 é 1/36. || Evento impossível: probabilidade 0.
+C | Se favoráveis e totais são contados por combinações, o resultado coincide com o contado por arranjos nos dois. || Mesmo critério.
+C | Em uma turma de 25 alunos, com 6 torcedores de um clube, a probabilidade de sortear um deles é 24%. || 6/25.
+@@ PONTOS
+3 | Apresentação da aula
+4 | Conceitos iniciais e espaço amostral
+5 | Pontos amostrais e conceito de evento
+6 | Evento simples, impossível e certo
+7 | Questões sobre espaço amostral e evento
+8 | Definição clássica
+9 | Condição de equiprobabilidade e questão da FUNDATEC
+10 | Questões da FGV e da VUNESP
+11 | Questões da FCC e da FGV (cadeiras)
+12 | Resolução das cadeiras e probabilidade com combinatória
+13 | Probabilidade com ordem importando
+14 | Ordem não importa no cálculo da probabilidade
+15 | Questões da FGV (Salvador) e do CEBRASPE (PM-MA)

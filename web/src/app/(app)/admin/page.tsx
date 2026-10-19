@@ -1,4 +1,4 @@
-import { ClipboardCheck, Handshake, Users, Wallet, type LucideIcon } from "lucide-react";
+import { ClipboardCheck, Handshake, Ticket, Users, Wallet, type LucideIcon } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Card, PageHeader } from "@/components/ui";
@@ -9,12 +9,13 @@ export const metadata: Metadata = { title: "Administração" };
 
 export default async function AdminHomePage() {
   await requireAdmin();
-  const [pendingSignups, draftQuestions, openReports, activePartners, openContracts] = await Promise.all([
+  const [pendingSignups, draftQuestions, openReports, activePartners, openContracts, activeCoupons] = await Promise.all([
     db.waitlistEntry.count({ where: { status: "PENDING" } }),
     db.question.count({ where: { status: "DRAFT" } }),
     db.questionReport.count({ where: { status: "OPEN" } }),
     db.partner.count({ where: { active: true } }),
     db.contract.count({ where: { status: { in: ["OPEN", "PARTIAL"] } } }),
+    db.coupon.count({ where: { active: true } }),
   ]);
 
   const cards: { href: string; title: string; text: string; icon: LucideIcon; stat: string }[] = [
@@ -38,6 +39,13 @@ export default async function AdminHomePage() {
       text: "Cadastro, cupons, comissões, repasses e indicadores da parceria.",
       icon: Handshake,
       stat: `${activePartners} ${activePartners === 1 ? "parceiro ativo" : "parceiros ativos"}`,
+    },
+    {
+      href: "/admin/cupons",
+      title: "Cupons",
+      text: "Cupons de desconto do site: criar, editar, ativar, inativar e excluir.",
+      icon: Ticket,
+      stat: `${activeCoupons} ${activeCoupons === 1 ? "cupom ativo" : "cupons ativos"}`,
     },
     {
       href: "/admin/revisao",

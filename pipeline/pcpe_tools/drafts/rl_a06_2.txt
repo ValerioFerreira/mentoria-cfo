@@ -1,0 +1,77 @@
+@@@ raciocinio-logico/a06/s02
+@@ ANALITICO
+Este trecho apresenta o princípio aditivo e sua combinação com o multiplicativo, o princípio da casa dos pombos (raciocínio do pior cenário), a contagem de jogos em torneios eliminatórios e o fatorial de um número natural.
+
+### Princípio aditivo
+
+- Se um evento A ocorre de **m** maneiras, B de **n** maneiras e os dois são **mutuamente exclusivos** (se um ocorre, o outro não), o total para "A **ou** B" é **m + n**. Para n eventos exclusivos: p₁ + p₂ + ... + pₙ.
+- **Regra de ouro**: eventos concomitantes ("**e**") multiplicam; eventos alternativos ("**ou**") somam.
+- **Exemplo combinado**: alguém se veste com 1 vestido **ou** com 1 saia e 1 blusa, e depois calça 1 sapato. Dados 4 vestidos, 2 saias, 3 blusas e 5 sapatos: saia **e** blusa = 2 × 3 = 6; vestido **ou** (saia e blusa) = 4 + 6 = 10; e sapato: 5 × 10 = **50**.
+
+### Questões
+
+- **IDECAN/CREF-5 (dicionários)**: 4 de inglês, 3 de espanhol e 2 de francês; escolher dois de idiomas diferentes. Pares possíveis, que se excluem entre si: inglês-espanhol (4 × 3 = 12), inglês-francês (4 × 2 = 8), espanhol-francês (3 × 2 = 6). Soma: 12 + 8 + 6 = **26** (letra C).
+- **CEBRASPE/FUB (lanchonete)**: comida (salgado ou bolo ou tapioca): 7 + 4 + 3 = 14; bebida (suco ou refrigerante): 3 + 5 = 8; uma comida **e** uma bebida: 14 × 8 = **112**, mais de 100 (item certo).
+
+### Princípio da casa dos pombos
+
+- Se **n pombos** se alojam em **m casas** e n > m, pelo menos uma casa tem **mais de um** pombo. Para garantias, **pense no pior cenário**, aquele em que os elementos se espalham ao máximo.
+- Com 4 casas, garante-se 2 pombos numa casa com **5** pombos; para garantir **3** numa casa, o pior cenário tem 2 em cada (2 × 4 = 8), então são necessários **9**.
+- **Fórmula prática**: para garantir k elementos na mesma "casa" com m casas, é preciso **(k − 1) × m + 1**.
+- Exemplo: o menor número de pessoas que garante duas no mesmo mês de aniversário é **13** (12 meses + 1). A pergunta é pelo menor número, porque mais que isso também garante.
+- **FCC (4 cargos)**: para garantir quatro funcionários do mesmo cargo entre 4 tipos, o pior caso é 3 de cada: 3 × 4 = 12; o 13º garante (letra C).
+- **QUADRIX/CRP-SP (sinuca)**: as 16 bolas têm 9 cores (branca, preta e mais 7 cores repetidas). Retirar 9 bolas não garante repetição de cor (podem ser todas diferentes); são necessárias **10** (item errado).
+
+### Contagem de jogos (eliminatória simples)
+
+- Cada jogo elimina **1** jogador e o torneio termina com 1 campeão; logo, com **N** jogadores são **N − 1 jogos**, quaisquer que sejam as fases e as folgas. Com 10 jogadores: 5 + 2 + 1 + 1 = 9 jogos.
+- **FGV/TRT-24**: 23.987 contendores ⟶ 23.986 jogos (letra B).
+
+### Fatorial
+
+- **n! = n × (n − 1) × (n − 2) × ... × 2 × 1.** Exemplos: 3! = 6, 4! = 24, 5! = 120, 6! = 720.
+- **Desdobramento**: n! = n × (n − 1)!; 7! = 7 × 6 × 5!; 10! = 10 × 9 × 8 × 7 × 6!. Serve para simplificar divisões: 6!/3! = 6 × 5 × 4 = 120; 10!/7! = 720; 15!/13! = 210.
+- **Cuidado com a ordem**: (6!)/(3!) ≠ (6/3)! (que é 2! = 2); 2 × 4! = 48, mas (2 × 4)! = 40.320; 2 + 4! = 26, mas (2 + 4)! = 720.
+- **Casos especiais**: **1! = 1** e **0! = 1**, que se justifica por n! = (n + 1)!/(n + 1): 1! = 2!/2 = 1 e 0! = 1!/1 = 1.
+- **CONSULTEC**: 6! = 720 (letra B). **CETREDE**: (9! · 6!)/(7! · 10!) = (9! · 6!)/(7 · 6! · 10 · 9!) = 1/(7 × 10) = **1/70** (letra B).
+
+### Para fixar
+- "E" multiplica; "ou" soma (quando excludentes).
+- Garantia = pior cenário: (k − 1) × m + 1.
+- N jogadores em mata-mata: N − 1 jogos.
+- n! = n × (n − 1)!; 0! = 1! = 1.
+- (2 + 4)! ≠ 2 + 4!; (2 × 4)! ≠ 2 × 4!.
+@@ SINTETICO
+**Princípio aditivo**: eventos mutuamente exclusivos somam as possibilidades.
+**Regra e/ou**: eventos concomitantes multiplicam, eventos alternativos somam.
+**Exemplo combinado**: vestido ou saia e blusa, e depois sapato, dá 5 vezes (4 mais 2 vezes 3), ou seja, 50.
+**Casa dos pombos**: com mais elementos que casas, alguma casa tem mais de um elemento.
+**Pior cenário**: para garantir k elementos em m casas, são necessários (k menos 1) vezes m, mais 1.
+**Aniversários**: 13 pessoas garantem duas no mesmo mês.
+**Mata-mata**: com N jogadores há N menos 1 jogos, pois cada jogo elimina um.
+**Fatorial**: n fatorial é o produto dos inteiros de n até 1.
+**Fatorial especial**: 0 fatorial e 1 fatorial valem 1.
+**Ordem das operações**: mudar parênteses muda o fatorial, como em (2 mais 4) fatorial igual a 720.
+@@ TEORIA
+C | Se há 3 caminhos A e 4 caminhos B, e o trajeto usa A ou B (excludentes), o número de trajetos é 7. || Princípio aditivo.
+E | Em um torneio de eliminação simples com 16 jogadores, o número de jogos é 15 + 1. || São 16 − 1 = 15.
+C | Para garantir 3 elementos da mesma categoria entre 5 categorias, são necessários 11 elementos. || (3 − 1) × 5 + 1 = 11.
+E | O valor de 0! é 0. || 0! = 1.
+@@ REVISAO
+C | Com 5 camisas e 3 jaquetas, escolher uma peça (camisa ou jaqueta) pode ser feito de 8 maneiras. || 5 + 3.
+C | Com N participantes em eliminatória simples, são N − 1 jogos. || Cada jogo elimina um jogador.
+E | O valor de (3 + 2)! é igual a 3! + 2!. || (3+2)! = 120 e 3! + 2! = 8.
+C | Em um grupo de 13 pessoas, ao menos duas fazem aniversário no mesmo mês. || 12 meses + 1.
+@@ PONTOS
+10 | Princípio aditivo e regra do e/ou
+11 | Exemplo combinado e questão do CREF
+12 | Resolução do CREF e questão da FUB
+13 | Princípio da casa dos pombos
+14 | Pior cenário e aniversários
+15 | Questões da FCC e da QUADRIX (sinuca)
+16 | Contagem de jogos em torneios
+17 | Resolução do torneio e início do fatorial
+18 | Fatorial e desdobramento
+19 | Cuidados com parênteses e casos especiais
+20 | Justificativa de 0! e 1! e questão da CONSULTEC
+21 | Questão da CETREDE

@@ -15,15 +15,15 @@ const DEPTH_MASTERED = 0.6;
  */
 export function computeCoverage(chosen: SelectedSubject[], sel: Selection, known: Record<string, Known> = {}) {
   const subjects: SubjectCoverage[] = chosen.map(({ subject, level }) => {
-    const selectable = subject.aulas.filter((a) => a.selectable);
-    const totalInc = selectable.reduce((n, a) => n + a.incidence, 0) || 1;
+    const inEdital = subject.aulas.filter((a) => a.selectable && (!sel.inEditalAulas || sel.inEditalAulas.has(a.id)));
+    const totalInc = inEdital.reduce((n, a) => n + a.incidence, 0) || 1;
     let seenInc = 0;
     let depthInc = 0;
     let pages = 0;
     let summaryPages = 0;
     const mins = { teoria: 0, revisao: 0, fixacao: 0, questoes: 0 };
     const aulas: SubjectCoverage["aulas"] = [];
-    for (const a of selectable) {
+    for (const a of inEdital) {
       if (sel.mastered.has(a.id) || known[a.id] === 2) {
         seenInc += a.incidence;
         depthInc += a.incidence * DEPTH_MASTERED;
@@ -53,13 +53,13 @@ export function computeCoverage(chosen: SelectedSubject[], sel: Selection, known
       mins.questoes += m.questoes;
       aulas.push({ aulaId: a.id, tier, hours: round1(m.total / 60), ...(bp.summary.length ? { turbo: true } : {}) });
     }
-    const notCovered = selectable
+    const notCovered = inEdital
       .filter((a) => sel.blueprints.has(a.id) && !sel.tierByAula.has(a.id) && !sel.mastered.has(a.id))
       .sort((a, b) => b.incidence - a.incidence)
       .slice(0, 6)
       .map((a) => ({ aulaId: a.id, shortTitle: a.shortTitle, incidence: a.incidence }));
     const total = mins.teoria + mins.revisao + mins.fixacao + mins.questoes;
-    const full = selectable.reduce((n, a) => {
+    const full = inEdital.reduce((n, a) => {
       const bp = sel.blueprints.get(a.id);
       return bp ? n + tierMinutes({ ...bp, teoria: allUnits(bp), summary: [] }, 1).total : n;
     }, 0);
@@ -73,7 +73,7 @@ export function computeCoverage(chosen: SelectedSubject[], sel: Selection, known
       aulas,
       theoryPagesCovered: pages,
       summaryPages: Math.round(summaryPages),
-      theoryPagesEligible: selectable.reduce((n, a) => n + a.theoryPages, 0),
+      theoryPagesEligible: inEdital.reduce((n, a) => n + a.theoryPages, 0),
       coverage: Math.min(1, seenInc / totalInc) * (subject.materialCompleteness ?? 1),
       depth: Math.min(1, depthInc / totalInc),
       materialCompleteness: subject.materialCompleteness ?? 1,

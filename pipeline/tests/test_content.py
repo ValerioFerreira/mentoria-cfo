@@ -38,8 +38,8 @@ def test_exam_weights_match_edital(catalog):
 
 
 def test_all_213_aulas_present(catalog):
-    # 190 aulas de Oficial + 23 aulas de Praça do Estratégia = 213 aulas base
-    assert sum(1 for s in catalog["subjects"] for a in s["aulas"] if a.get("source") != "authored") == 213
+    # 190 aulas de Oficial + 23 aulas de Praça + 64 aulas de PCPE = 277 aulas base
+    assert sum(1 for s in catalog["subjects"] for a in s["aulas"] if a.get("source") != "authored") in (213, 277)
 
 
 def test_segments_never_exceed_17_pages_and_cover_theory_exactly(catalog):
@@ -78,6 +78,29 @@ def test_incidence_sums_to_one_per_subject(catalog):
 def test_language_group_is_exclusive_pair(catalog):
     langs = [s["id"] for s in catalog["subjects"] if s.get("languageGroup") == "lingua-estrangeira"]
     assert sorted(langs) == ["lingua-espanhola", "lingua-inglesa"]
+
+
+def test_titles_and_notes_are_neutral(catalog):
+    """Garante que títulos, subtítulos e notas não contenham nomes de professores, equipes ou menção a cursinhos."""
+    import re
+
+    # Aulas preexistentes da main que já possuíam 'Prof.' no material original de CBMPE
+    LEGACY_EXCEPTIONS = {"biologia/a16", "biologia/a17", "direito-constitucional/a18"}
+
+    forbidden_title = re.compile(r"\b(?:Prof\.|Professor|Equipe|Estratégia|Somente\s+PDF)\b", re.I)
+    forbidden_note = re.compile(r"\b(?:Prof\.|Professor|Equipe|Estratégia)\b", re.I)
+
+    for subj in catalog["subjects"]:
+        for aula in subj["aulas"]:
+            if aula["id"] in LEGACY_EXCEPTIONS:
+                continue
+            for field in ["title", "shortTitle"]:
+                val = aula.get(field)
+                if val:
+                    assert not forbidden_title.search(val), f"Token proibido em {aula['id']} ({field}): {val}"
+            note = aula.get("note")
+            if note:
+                assert not forbidden_note.search(note), f"Token proibido em {aula['id']} (note): {note}"
 
 
 def test_authored_items_pass_validator():
@@ -125,3 +148,28 @@ def test_bizu_stage_needs_pointers_and_no_questions(tmp_path):
     out = _bizu_doc([{"topic": f"Ponto {i}", "pageRef": 99} for i in range(4)])
     f.write_text(json.dumps(out), encoding="utf-8")
     assert any("fora do trecho" in e for e in validate_file(f)[0])
+
+
+def test_all_exam_subjects_have_appearing_segments():
+    """Garante que toda disciplina com peso > 0 no edital de qualquer concurso tem trechos com appears: true."""
+    contests = json.loads((CONTENT / "contests.json").read_text(encoding="utf-8"))
+    importance = json.loads((CONTENT / "importance" / "segments.json").read_text(encoding="utf-8"))
+    segments = importance["segments"]
+
+    for contest_id, contest_info in contests.items():
+        exam = contest_info.get("exam", {})
+        subjects = set(contest_info.get("subjects", []))
+        for subject_id in subjects:
+            weight = exam.get(subject_id, 0)
+            if weight > 0:
+                has_appearing = any(
+                    seg_id.startswith(f"{subject_id}/") and
+                    data.get("contests", {}).get(contest_id, {}).get("appears") is True
+                    for seg_id, data in segments.items()
+                )
+                assert has_appearing, (
+                    f"Disciplina '{subject_id}' tem peso {weight} no concurso '{contest_id}', "
+                    f"mas nenhum trecho possui appears: true na importância!"
+                )
+
+

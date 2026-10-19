@@ -220,21 +220,76 @@ def merge(docs: list[Doc]) -> None:
     for subj in catalog["subjects"]:
         mine = sorted(by_subject.get(subj["id"], []), key=lambda d: d.order)
         subj["aulas"] = [a for a in subj["aulas"] if a.get("source") != "authored"]  # idempotente
-        raw_total = sum(d.weight for d in mine)
-        # as aulas do Estratégia nunca cedem mais do que (1 − MAX_COMPLEMENT_SHARE): se os pesos dos complementos somarem
-        # mais que isso, são reduzidos na mesma proporção (antes, soma > 1 deixava a incidência das aulas-base NEGATIVA)
-        wscale = min(1.0, MAX_COMPLEMENT_SHARE / raw_total) if raw_total else 1.0
-        for d in mine:
-            d.weight = d.weight * wscale
-        w_total = sum(d.weight for d in mine)
-        assert w_total < 1, f"{subj['id']}: pesos dos complementos somam {w_total}"
-        # a soma de incidências da disciplina é preservada: as aulas do Estratégia cedem a fatia dos complementos.
-        # `incidenceBase` guarda o valor original para a mescla ser idempotente.
-        for a in subj["aulas"]:
-            if a.get("selectable"):
-                a["incidenceBase"] = a.get("incidenceBase", a["incidence"])
-                a["incidence"] = round(a["incidenceBase"] * (1 - w_total), 5)
-        base_inc = sum(a["incidenceBase"] for a in subj["aulas"] if a.get("selectable"))
+        # Verifica se a disciplina possui divisão explícita entre aulas comuns e aulas exclusivas (ex: direito-administrativo)
+        has_split = any(a.get("onlyContests") for a in subj["aulas"] if a.get("selectable"))
+
+        if has_split:
+            base_mine = [d for d in mine if not d_meta(d).get("onlyContests")]
+            exc_mine = [d for d in mine if d_meta(d).get("onlyContests")]
+
+            raw_base = sum(d.weight for d in base_mine)
+            wscale_base = min(1.0, MAX_COMPLEMENT_SHARE / raw_base) if raw_base else 1.0
+            for d in base_mine:
+                d.weight = d.weight * wscale_base
+            w_base_total = sum(d.weight for d in base_mine)
+
+            raw_exc = sum(d.weight for d in exc_mine)
+            wscale_exc = min(1.0, MAX_COMPLEMENT_SHARE / raw_exc) if raw_exc else 1.0
+            for d in exc_mine:
+                d.weight = d.weight * wscale_exc
+            w_exc_total = sum(d.weight for d in exc_mine)
+
+            th_base = sum(a["theoryPages"] for a in subj["aulas"] if a.get("selectable") and not a.get("onlyContests")) or 1
+            cm_base = sum((a.get("commentedPages", 0) or a.get("listPages", 0)) + sum(l["endPage"] - l["startPage"] + 1 for l in a.get("practiceLinks", []))
+                          for a in subj["aulas"] if a.get("selectable") and not a.get("onlyContests")) or 1
+            th_exc = sum(a["theoryPages"] for a in subj["aulas"] if a.get("selectable") and a.get("onlyContests")) or 1
+            cm_exc = sum((a.get("commentedPages", 0) or a.get("listPages", 0)) + sum(l["endPage"] - l["startPage"] + 1 for l in a.get("practiceLinks", []))
+                         for a in subj["aulas"] if a.get("selectable") and a.get("onlyContests")) or 1
+            th_tot = th_base + th_exc
+            cm_tot = cm_base + cm_exc
+            w_base = 0.5 * (th_base / th_tot) + 0.5 * (cm_base / cm_tot)
+            w_exc = 1.0 - w_base
+
+            for a in subj["aulas"]:
+                if a.get("selectable") and not a.get("onlyContests"):
+                    raw = a.get("rawIncidence", a["incidence"])
+                    a["incidenceBase"] = a.get("incidenceBase", round(raw * w_base, 7))
+                    main_val = round(raw * (1 - w_base_total), 5)
+                    a["incidence"] = round(main_val * w_base, 7)
+                elif a.get("selectable") and a.get("onlyContests"):
+                    raw = a.get("rawIncidence", a["incidence"])
+                    a["incidenceBase"] = a.get("incidenceBase", round(raw * w_exc, 7))
+                    exc_val = round(raw * (1 - w_exc_total), 5)
+                    a["incidence"] = round(exc_val * w_exc, 7)
+
+            raw_base_sum = sum(a.get("rawIncidence", a["incidence"]) for a in subj["aulas"] if a.get("selectable") and not a.get("onlyContests")) or 1.0
+            raw_exc_sum = sum(a.get("rawIncidence", a["incidence"]) for a in subj["aulas"] if a.get("selectable") and a.get("onlyContests")) or 1.0
+            base_inc = sum(a["incidenceBase"] for a in subj["aulas"] if a.get("selectable") and not a.get("onlyContests"))
+            exc_inc = sum(a["incidenceBase"] for a in subj["aulas"] if a.get("selectable") and a.get("onlyContests"))
+        else:
+            # só os complementos de todos os concursos diluem a incidência das aulas-base; os exclusivos de um concurso
+            # (onlyContests) têm fatia própria, para não mudar o planejamento dos demais concursos
+            shared = [d for d in mine if not d_meta(d).get("onlyContests")]
+            exclusive = [d for d in mine if d_meta(d).get("onlyContests")]
+            raw_total = sum(d.weight for d in shared)
+            wscale = min(1.0, MAX_COMPLEMENT_SHARE / raw_total) if raw_total else 1.0
+            for d in shared:
+                d.weight = d.weight * wscale
+            w_total = sum(d.weight for d in shared)
+            assert w_total < 1, f"{subj['id']}: pesos dos complementos somam {w_total}"
+            raw_excl = sum(d.weight for d in exclusive)
+            wscale_excl = min(1.0, MAX_COMPLEMENT_SHARE / raw_excl) if raw_excl else 1.0
+            for d in exclusive:
+                d.weight = d.weight * wscale_excl
+
+            for a in subj["aulas"]:
+                if a.get("selectable"):
+                    a["incidenceBase"] = a.get("incidenceBase", a["incidence"])
+                    a["incidence"] = round(a["incidenceBase"] * (1 - w_total), 5)
+
+            base_inc = sum(a["incidenceBase"] for a in subj["aulas"] if a.get("selectable"))
+            exc_inc = base_inc
+
         # estrutura e segmentos do Estratégia, sem os complementos anteriores
         struct_path = CONTENT_DIR / "structure" / f"{subj['id']}.json"
         seg_path = CONTENT_DIR / "segments" / f"{subj['id']}.json"
@@ -245,14 +300,28 @@ def merge(docs: list[Doc]) -> None:
         for d in mine:
             seg_list = segments_for(d)
             aula_id = f"{d.subject}/c{d.order:02d}"
-            incidence = round(base_inc * d.weight, 5) if base_inc else round(d.weight, 5)
-            subj["aulas"].append({
+            is_exclusive = bool(d_meta(d).get("onlyContests"))
+            if has_split:
+                block_weight = w_exc if is_exclusive else w_base
+                base_scale = raw_exc_sum if is_exclusive else raw_base_sum
+                incidence = round(round(base_scale * d.weight, 5) * block_weight, 7)
+            else:
+                incidence = round(base_inc * d.weight, 5)
+
+            aula_entry = {
                 "id": aula_id, "number": COMPLEMENT_BASE + d.order, "title": d.title, "shortTitle": d.short,
                 "kind": "theory", "edital": "yes", "selectable": True, "note": f"Material complementar MentorIA: {d.subtitle}",
                 "totalPages": d.pages, "theoryPages": d.pages, "segmentCount": len(seg_list), "commentedPages": 0, "listPages": 0,
                 "commentedRuns": [], "practiceLinks": [], "printedOffset": 0, "incidence": incidence,
                 "source": "authored", "materialPath": f"complementos/{d.id}.pdf",
-            })
+            }
+            if is_exclusive:
+                oc = d_meta(d)["onlyContests"]
+                aula_entry["onlyContests"] = [x.strip() for x in oc.split(",")] if "," in oc else [oc.strip()]
+            ec = d_meta(d).get("excludeContests")
+            if ec:
+                aula_entry["excludeContests"] = [x.strip() for x in ec.split(",")] if "," in ec else [ec.strip()]
+            subj["aulas"].append(aula_entry)
             struct["aulas"].append({
                 "id": aula_id, "number": COMPLEMENT_BASE + d.order, "file": f"{d.id}.pdf", "totalPages": d.pages, "printedOffset": 0,
                 "theoryRuns": [[1, d.pages]], "theoryPages": d.pages, "commentedRuns": [], "commentedPages": 0, "listPages": 0,

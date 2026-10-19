@@ -1,7 +1,7 @@
 // Seleção de conteúdo: decide quais aulas entram no plano e em qual camada (tier), dado o tempo disponível (em minutos).
 import { buildBlueprint, tierMinutes, withSummaryUnit, type AulaBlueprint } from "./blueprint";
 import type { TeoriaUnit } from "./blueprint";
-import type { CatalogSubject, Known, Level, SegmentsByAula, Tier } from "./types";
+import type { CatalogAula, CatalogSubject, Known, Level, SegmentsByAula, Tier } from "./types";
 
 /** Retornos decrescentes por disciplina: V(c) côncavo, com V(0)=0 e V(1)=1. */
 export const CONCAVITY = 2;
@@ -33,6 +33,8 @@ export interface Selection {
   turboAulas: Set<string>;
   floorFraction: number;
   floorShortfall: boolean;
+  /** Aulas que pertencem ao edital do concurso selecionado (para cálculo correto de share e cobertura). */
+  inEditalAulas: Set<string>;
 }
 
 interface Item {
@@ -57,6 +59,31 @@ export interface SelectOptions {
   summaries?: Set<string>;
   /** Questões por disciplina na prova do concurso. */
   examQuestions?: Record<string, number>;
+  /** Concurso para o qual o plano é montado. */
+  contest?: string;
+}
+
+/** Determina se a aula pertence ao edital do concurso selecionado (ou se deve entrar no plano). */
+export function isAulaInEdital(
+  aula: CatalogAula,
+  segments: SegmentsByAula,
+  excludedAulas = new Set<string>(),
+  opts: SelectOptions = {},
+): boolean {
+  if (!aula.selectable || excludedAulas.has(aula.id)) return false;
+  if (opts.contest) {
+    if (aula.onlyContests && !aula.onlyContests.includes(opts.contest)) return false;
+    if (aula.excludeContests && aula.excludeContests.includes(opts.contest)) return false;
+  } else if (aula.onlyContests && aula.onlyContests.length > 0) {
+    return false;
+  }
+  if (opts.importance) {
+    const segs = segments[aula.id] ?? [];
+    if (aula.kind === "theory" && segs.length > 0 && segs.every((sg) => opts.importance?.[sg.id] === null)) {
+      return false;
+    }
+  }
+  return true;
 }
 
 export function selectContent(
@@ -74,15 +101,17 @@ export function selectContent(
   const examQ = new Map<string, number>();
   const covered = new Map<string, number>(); // cobertura (0–1) já alcançada por disciplina
   const mastered = new Set<string>();
+  const inEditalAulas = new Set<string>();
   let fullMinutes = 0;
   for (const { subject, level } of chosen) {
     levelOf.set(subject.id, level);
     const subjectQ = opts.examQuestions?.[subject.id] ?? subject.examQuestions;
     examQ.set(subject.id, subjectQ);
     covered.set(subject.id, 0);
-    const totalInc = subject.aulas.filter((a) => a.selectable && !excludedAulas.has(a.id)).reduce((n, a) => n + a.incidence, 0) || 1;
-    for (const aula of subject.aulas) {
-      if (!aula.selectable || excludedAulas.has(aula.id)) continue;
+    const inEditalForSubj = subject.aulas.filter((a) => isAulaInEdital(a, segments, excludedAulas, opts));
+    for (const a of inEditalForSubj) inEditalAulas.add(a.id);
+    const totalInc = inEditalForSubj.reduce((n, a) => n + a.incidence, 0) || 1;
+    for (const aula of inEditalForSubj) {
       const share = aula.incidence / totalInc;
       const k = known[aula.id] ?? 0;
       if (k === 2) {
@@ -92,6 +121,7 @@ export function selectContent(
       }
       // trechos fora do edital do concurso não entram no plano
       const segs = (segments[aula.id] ?? []).filter((sg) => opts.importance?.[sg.id] !== null);
+      if (aula.kind === "theory" && segs.length === 0) continue; // aula de teoria cujos trechos estão todos fora do edital
       const bp = buildBlueprint(aula, segs, level, k);
       if (bp.teoria.length === 0 && bp.fixChunksFull === 0) continue; // nada para fazer
       blueprints.set(aula.id, bp);
@@ -216,5 +246,5 @@ export function selectContent(
   }
 
   for (const id of [...turboAulas]) if (!tierByAula.has(id)) turboAulas.delete(id); // só as que de fato entram no plano
-  return { tierByAula, blueprints, mastered, usedMinutes: used, fullMinutes, turboAulas, floorFraction: f, floorShortfall };
+  return { tierByAula, blueprints, mastered, usedMinutes: used, fullMinutes, turboAulas, floorFraction: f, floorShortfall, inEditalAulas };
 }

@@ -2,6 +2,36 @@
   "_comment": "Lacunas entre o edital do 2º Tenente (Anexo II) e o curso base, reanalisadas item a item em 2026-10-07 (pipeline/edital_audit.py). resolved=true: preenchida por material complementar do MentorIA (content/complements) ou falso alarme confirmado. Rode pipeline/build_complements.py para sincronizar.",
   "gaps": [
     {
+      "id": "leg-pcpe-ce-pe",
+      "subject": "legislacao-pcpe",
+      "item": "Constituição do Estado de Pernambuco (artigos 101 a 105-B)",
+      "evidence": "Curso base não inclui aula específica dos arts. 101 a 105-B para a PCPE.",
+      "severity": "high",
+      "remedy": "Material complementar autoral com texto legal atualizado (ECs 70 e 71/2026).",
+      "resolved": true,
+      "resolution": "Complemento MentorIA: Constituição do Estado de Pernambuco — Segurança Pública (arts. 101 a 105-B)"
+    },
+    {
+      "id": "leg-penal-eca",
+      "subject": "legislacao-penal-especial",
+      "item": "Estatuto da Criança e do Adolescente (Lei nº 8.069/1990) — Aspectos Penais e Processuais",
+      "evidence": "Edital PCPE cobra ECA em Direito Penal (Item 12 — crimes em espécie, ato infracional e procedimentos). O curso base não continha aula dedicada a esses aspectos penais e procedimentais (diferente da abordagem constitucional do CBMPE em dc-eca).",
+      "severity": "high",
+      "remedy": "Material complementar autoral com ato infracional, procedimentos e crimes em espécie da Lei nº 8.069/1990.",
+      "resolved": true,
+      "resolution": "Complemento MentorIA: Estatuto da Criança e do Adolescente — Aspectos Penais e Processuais (Lei nº 8.069/1990)"
+    },
+    {
+      "id": "da-processo-adm",
+      "subject": "direito-administrativo",
+      "item": "Processo administrativo (Item 10 do edital da PCPE)",
+      "evidence": "O item 10 do edital da PCPE traz apenas a rubrica genérica 'Processo administrativo', sem citar leis expressamente. O curso-base PCPE cobriu a Lei Estadual nº 11.781/2000 (aula 23), mas o Cebraspe frequentemente cobra a Lei Federal nº 9.784/1999 sob essa rubrica.",
+      "severity": "high",
+      "remedy": "Material complementar autoral com princípios, competência, delegação, anulação e recursos da Lei nº 9.784/1999.",
+      "resolved": true,
+      "resolution": "Complemento MentorIA: Processo Administrativo Federal (Lei nº 9.784/1999)"
+    },
+    {
       "id": "leg-decreto-50014",
       "subject": "legislacoes-pe",
       "item": "Decreto Estadual 50.014/2020 (regulamenta o Código Disciplinar)",
@@ -280,6 +310,76 @@
       "remedy": "Complemento autoral: súmulas aplicáveis à Justiça Militar + artigos da Parte Especial não ensinados.",
       "resolved": true,
       "resolution": "Complemento MentorIA: Súmulas e Jurisprudência da Justiça Militar e Artigos da Parte Especial do CPM sem Aula"
+    },
+    {
+      "id": "rl-matrizes-determinantes",
+      "subject": "raciocinio-logico",
+      "item": "Matrizes e determinantes (Item 15 do edital)",
+      "evidence": "O edital Cebraspe PCPE cobra problemas matriciais (item 15). O item 5 (sistemas lineares) já é plenamente coberto pela aula matematica/a08, restando como lacuna apenas problemas matriciais e determinantes.",
+      "severity": "medium",
+      "remedy": "Estudo complementar por fontes teóricas externas ou inclusão de material próprio.",
+      "resolved": true,
+      "resolution": "Complemento MentorIA: Matrizes e determinantes: operações, propriedades, inversa e problemas matriciais"
+    },
+    {
+      "id": "rl-operacoes-conjuntos",
+      "subject": "raciocinio-logico",
+      "item": "Operações com conjuntos (Item 14 do edital)",
+      "evidence": "O edital de RL cobra Operações com conjuntos (item 14). No pacote 361849 do Estratégia, a Aula 08 (Teoria dos Conjuntos) cobre esse tema, mas não foi baixada inicialmente.",
+      "severity": "medium",
+      "remedy": "Baixar a Aula 08 do pacote 361849 ou suprir via material complementar autoral.",
+      "resolved": true,
+      "resolution": "Complemento MentorIA: Operações com conjuntos: união, interseção, diferença, complementar e contagem de elementos"
+    },
+    {
+      "id": "est-tamanho-amostral",
+      "subject": "estatistica",
+      "item": "Determinação do tamanho amostral (Item 3.2 do edital)",
+      "evidence": "O edital Cebraspe PCPE prevê cálculo de tamanho de amostra em amostragem aleatória no item 3.2 de Estatística, tópico não aprofundado nas aulas do curso base.",
+      "severity": "medium",
+      "remedy": "Aprofundamento complementar em fórmulas de dimensionamento amostral.",
+      "resolved": true,
+      "resolution": "Complemento MentorIA: Tamanho da amostra, assimetria e curtose"
+    },
+    {
+      "id": "inf-deep-dark-web-discussao",
+      "subject": "informatica",
+      "item": "Conceitos de Deep Web, Dark Web e grupos de discussão (Item 2 do edital)",
+      "evidence": "Falso alarme da 1ª análise: o material-base (informatica/a00) já cobre integralmente os tópicos nas páginas 8 (grupos de discussão), 18–20 (teoria Deep/Dark Web/Tor), 60 (resumo) e 97, 103 (questões comentadas).",
+      "severity": "low",
+      "remedy": "Nenhuma ação necessária; material-base é autossuficiente e resumo analítico já sintetizou o conteúdo.",
+      "resolved": true,
+      "resolution": "Falso alarme confirmado: coberto na íntegra no material-base informatica/a00 (págs. 8, 18–20, 60, 97, 103) e sintetizado no resumo analítico por Claude Sonnet 5.5 (commit b40cb70)."
+    },
+    {
+      "id": "est-assimetria-curtose",
+      "subject": "estatistica",
+      "item": "Assimetria e curtose (Item 1 do edital PCPE)",
+      "evidence": "O edital Cebraspe PCPE cita assimetria e curtose entre as medidas descritivas; o material-base traz apenas menções esparsas (moda de Pearson), sem coeficientes nem interpretação de curtose.",
+      "severity": "medium",
+      "remedy": "Material complementar autoral com coeficientes de assimetria e curtose e sua interpretação.",
+      "resolved": true,
+      "resolution": "Complemento MentorIA: Tamanho da amostra, assimetria e curtose"
+    },
+    {
+      "id": "mat-divisao-proporcional",
+      "subject": "matematica",
+      "item": "Divisão proporcional (Item 3.1 do edital PCPE)",
+      "evidence": "O edital PCPE cobra divisão proporcional (partilha em partes direta e inversamente proporcionais); o material-base trata razão, proporção e regras de três, mas não a divisão em partes proporcionais.",
+      "severity": "medium",
+      "remedy": "Material complementar autoral sobre divisão proporcional direta, inversa e composta.",
+      "resolved": true,
+      "resolution": "Complemento MentorIA: Divisão proporcional: partes direta, inversa e compostamente proporcionais"
+    },
+    {
+      "id": "dc-principios-fundamentais",
+      "subject": "direito-constitucional",
+      "item": "Princípios fundamentais da Constituição (arts. 1º a 4º) (Item 1.1 do edital PCPE)",
+      "evidence": "O edital PCPE inclui os princípios fundamentais da CF/88 (Título I); a busca no material-base de Direito Constitucional não encontrou tratamento dos arts. 1º a 4º (fundamentos, Poderes, objetivos e princípios das relações internacionais).",
+      "severity": "medium",
+      "remedy": "Material complementar autoral com o texto dos arts. 1º a 4º, macetes e pegadinhas.",
+      "resolved": true,
+      "resolution": "Complemento MentorIA: Princípios fundamentais da Constituição Federal (arts. 1º a 4º)"
     }
   ],
   "materialCompleteness": {

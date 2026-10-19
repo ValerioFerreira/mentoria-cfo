@@ -1,0 +1,66 @@
+@@@ raciocinio-logico/a00/s05
+@@ ANALITICO
+Este trecho estuda a disjunção inclusiva (ou), a disjunção exclusiva (ou... ou) e a condicional (se... então), com suas tabelas-verdade, as formas alternativas de escrevê-las e as questões típicas.
+
+### Disjunção inclusiva (p ∨ q)
+
+- O conectivo "ou" sozinho, simbolizado por **∨** (em conjuntos, **∪**), é a **disjunção inclusiva**. Ela é **falsa somente quando as duas parcelas são falsas**; nos demais casos é verdadeira (basta uma verdadeira).
+- Exemplos: se "João vai ao parque" é V e "Maria vai ao cinema" é F, "João vai ao parque ou Maria vai ao cinema" é V. A frase "7 + 1 = 10 ou café não é uma bebida" é F, pois as duas parcelas são F.
+- Em ~p ∨ ~q: é falsa somente se ~p e ~q forem falsas, isto é, **só quando p e q são ambas verdadeiras**. Se p é F e q é V, p ∨ q é V, mas p ∧ q é F.
+- **Sentido de inclusão**: o "ou" da lógica admite que **a primeira possibilidade ocorra sozinha**, **a segunda ocorra sozinha** ou **as duas ocorram juntas** ("Gosto de pão ou de carne": pode gostar só de pão, só de carne ou dos dois).
+
+### Disjunção exclusiva (p ∨ q, "ou... ou")
+
+- Escrita "**ou... ou**" (símbolo ⊻ ou ∨ com sublinhado). As duas parcelas **não podem ser verdadeiras ao mesmo tempo**: é **falsa quando as parcelas têm o mesmo valor lógico** (as duas V ou as duas F) e verdadeira quando os valores são diferentes. Exemplo: "Ou hoje é domingo, ou hoje é segunda": é falsa se ambas forem V (impossível ao mesmo tempo) ou ambas F (hoje é terça), e verdadeira se só uma for V.
+- Questão IFMA: se "Paulo vai ao IFMA e é carioca" (p ∧ q) e "ou Paulo vai ao IFMA ou é carioca" (exclusiva) têm o **mesmo valor**, os valores só coincidem na linha em que **p e q são ambas falsas**; logo "Paulo não vai ao IFMA e não é carioca" é verdadeira.
+- **Formas alternativas**: "**... ou ..., mas não ambos**" é exclusiva. Além disso, às vezes o "**ou" sozinho** deve ser tomado como exclusivo quando o contexto impede as duas parcelas ao mesmo tempo ("José é cearense ou paranaense", "o gato está vivo ou morto"). Use isso como **último recurso** na prova (questão CREFONO: "o gato está vivo ou morto" tem o mesmo tipo de "ou" de "o fonoaudiólogo é gaúcho ou paulista").
+
+### Condicional (p → q)
+
+- "**Se p, então q**", símbolo → (ou ⊃). **p** é a **condição suficiente** (antecedente) e **q** a necessária (consequente). É **falsa somente quando p é verdadeira e q é falsa** (V → F). Nos demais casos é verdadeira: V→V, F→V e F→F.
+- Exemplo do Frederico: "Se é matemático, sabe somar": V→V é V; matemático que não sabe somar (V→F) é F; não matemático que sabe somar (F→V) é V; recém-nascido que não é matemático e não soma (F→F) é V.
+- **Quando a condicional é falsa**, p é V e q é F. Exemplo: se (p ∧ q) → r é falsa, então p e q são verdadeiras e r é falsa. Se "Se eu almocei, então não estou com fome" é falsa, então "eu almocei" é V e "não estou com fome" é F, ou seja, **estou com fome**: logo "eu almocei e estou com fome" é verdadeira.
+- **Quando a condicional é verdadeira**, não se pode concluir o valor de q: de "Se a psicologia não é o estudo da alma, então Poliana é psicóloga" verdadeira **não decorre** que Poliana é psicóloga. Se o **antecedente é falso**, a condicional é verdadeira **qualquer que seja q** ("agentes municipais são públicos, logo devem ser concursados", com antecedente F, é V).
+- **Formas de escrever p → q**: "Se p, q" (sem o "então"); "Como p, q"; "p, logo q"; "p implica q"; "Quando p, q"; "Toda vez que p, q"; "**p somente se q**"; e, com **inversão** da ordem, "**q, se p**", "**q, pois p**" e "**q porque p**". Atenção: "somente se" é condicional, e não bicondicional ("se e somente se"). As quatro frases "Se Pedro vai ao parque, Maria vai ao cinema", "Maria vai ao cinema, se Pedro vai ao parque", "Maria vai ao cinema, pois Pedro vai ao parque" e "Maria vai ao cinema porque Pedro vai ao parque" são **a mesma condicional p → q**.
+
+### Para fixar
+- Disjunção inclusiva: falsa só com as duas parcelas falsas; inclui a possibilidade de as duas ocorrerem.
+- Disjunção exclusiva: falsa quando as parcelas têm o mesmo valor; "ou... ou" e "ou... mas não ambos".
+- Condicional: falsa apenas em V → F; antecedente falso torna a condicional verdadeira.
+- Condicional verdadeira não garante o valor do consequente.
+- "q, se p", "q, pois p" e "q porque p" são p → q; "p somente se q" também.
+@@ SINTETICO
+**Disjunção inclusiva**: é falsa apenas quando as duas parcelas são falsas.
+**Sentido do ou**: o ou sozinho admite uma parcela isolada, a outra isolada ou as duas juntas.
+**Disjunção exclusiva**: é falsa quando as parcelas têm o mesmo valor lógico e verdadeira quando diferem.
+**Ou, mas não ambos**: é uma forma de escrever a disjunção exclusiva, e o contexto pode tornar exclusivo um ou sozinho.
+**Condicional**: p → q só é falsa quando p é verdadeira e q é falsa.
+**Antecedente falso**: torna a condicional verdadeira, seja qual for o valor de q.
+**Condicional verdadeira**: não permite concluir o valor do consequente.
+**Formas da condicional**: se p, q; como p, q; p, logo q; p implica q; quando p, q; p somente se q.
+**Ordem invertida**: q, se p; q, pois p; e q porque p também são p → q.
+@@ TEORIA
+C | A disjunção inclusiva p ∨ q é falsa somente quando p e q são ambas falsas. || Basta uma verdadeira para ser V.
+E | A proposição ~p ∨ ~q é falsa quando p e q são ambas falsas. || Só é falsa quando p e q são ambas verdadeiras.
+C | A disjunção exclusiva é falsa quando as duas parcelas assumem o mesmo valor lógico. || Duas V ou duas F.
+E | Na lógica proposicional, o conectivo "ou" sozinho exclui que as duas parcelas sejam verdadeiras ao mesmo tempo, em qualquer contexto. || O "ou" sozinho é inclusivo; só o contexto pode torná-lo exclusivo.
+@@ REVISAO
+C | A condicional p → q é falsa somente quando p é verdadeira e q é falsa. || V → F.
+E | Se a condicional "Se choveu, então a rua está molhada" é verdadeira, então é certo que a rua está molhada. || Condicional verdadeira não garante o consequente: o antecedente pode ser falso.
+C | A proposição "Maria vai ao cinema porque Pedro vai ao parque" tem a forma p → q, com p: Pedro vai ao parque. || Inversão da ordem: "q porque p".
+C | Quando uma condicional cujo antecedente é uma conjunção de duas proposições é falsa, as duas proposições da conjunção são verdadeiras e o consequente é falso. || Antecedente V (logo, ambas V) e consequente F.
+@@ PONTOS
+44 | Disjunção inclusiva
+45 | Exemplos e questão sobre ~p ∨ ~q
+46 | Questões sobre a disjunção inclusiva
+47 | Sentido de inclusão do ou
+48 | Disjunção exclusiva
+49 | Exclusiva: os quatro casos e questão IFMA
+50 | Ou..., mas não ambos
+51 | Ou sozinho como exclusivo e condicional
+52 | Tabela da condicional e exemplo do Frederico
+53 | Questões sobre condicional
+54 | Condicional falsa
+55 | Formas alternativas da condicional
+56 | Somente se e inversões
+57 | Condicional com antecedente falso

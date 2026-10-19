@@ -20,11 +20,11 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 import pymupdf  # PyMuPDF
 
 sys.path.insert(0, os.path.dirname(__file__))
-from config import DOCS_DIR, PAGES_DIR, aula_id, parse_pdf_name, pdf_key, subject_by_prefix  # noqa: E402
+from config import DOCS_DIR, PAGES_DIR, aula_id, pdf_key, resolve_pdf_target, subject_by_prefix  # noqa: E402
 
 _CPF_LINE = re.compile(r"^\d{11}\s*-\s*.+$")
 _FOOTER_SITE = "www.estrategiaconcursos.com.br"
-_FOOTER_COURSE = re.compile(r"^(?:CBM-PE|CBMP-PE)\s+\((?:Oficial|Praça|Praca)\)\s+.+$", re.IGNORECASE)
+_FOOTER_COURSE = re.compile(r"^(?:CBM-PE|CBMP-PE|PM-PE|PC-PE)\s+\([^)]+\)\s+.+$", re.IGNORECASE)
 _HEADER = re.compile(r"^.{3,80}\sAula\s+\d+\s*$")
 _HIGHLIGHT = re.compile(r"==[0-9a-fA-F]{6}==")
 
@@ -72,7 +72,7 @@ def extract_pdf(pdf_path: str, out_path: str, meta: dict) -> dict:
     pages = []
     for i, page in enumerate(doc, 1):
         text = clean_page_text(page.get_text())
-        pages.append({"n": i, "chars": len(text), "fffd": text.count("�"), "text": text})
+        pages.append({"n": i, "chars": len(text), "fffd": text.count("\ufffd"), "text": text})
     out = {**meta, "pageCount": len(pages), "pages": pages}
     tmp = out_path + ".tmp"
     with open(tmp, "w", encoding="utf-8") as fh:
@@ -93,24 +93,22 @@ def main() -> int:
     jobs = []
     for folder in sorted(p for p in DOCS_DIR.iterdir() if p.is_dir()):
         prefix = folder.name[:2]
-        subj = subjects.get(prefix)
-        if subj is None or (args.only and prefix != args.only):
+        if args.only and prefix != args.only:
             continue
         for pdf in sorted(folder.glob("*.pdf")):
-            parsed = parse_pdf_name(pdf.name)
-            if parsed is None:
-                print(f"[aviso] nome fora do padrão, ignorado: {pdf.name}")
+            target = resolve_pdf_target(folder.name, pdf.name, subjects)
+            if target is None:
                 continue
-            _, aula_n = parsed
+            subj_id, aula_n = target
             key = pdf_key(folder.name, pdf.name)
             out = PAGES_DIR / f"{key}.json"
             if out.exists() and not args.force and out.stat().st_mtime > pdf.stat().st_mtime:
                 continue
             meta = {
                 "key": key,
-                "subject": subj.id,
+                "subject": subj_id,
                 "aulaNumber": aula_n,
-                "aula": aula_id(subj.id, aula_n),
+                "aula": aula_id(subj_id, aula_n),
                 "file": pdf.name,
             }
             jobs.append((str(pdf), str(out), meta))

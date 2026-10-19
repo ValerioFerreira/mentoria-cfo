@@ -1,0 +1,77 @@
+@@@ raciocinio-logico/a02/s05
+@@ ANALITICO
+Este trecho fecha as negações lógicas com as quatro formas de negar a bicondicional e abre a álgebra de proposições: o quadro das propriedades, a ideia de simplificar expressões e as propriedades comutativa e associativa.
+
+### Negações da bicondicional
+
+Há quatro formas comuns:
+
+1. **~(p ↔ q) ≡ p ⊻ q** (a negação é a disjunção exclusiva).
+2. **~(p ↔ q) ≡ ~p ↔ q**.
+3. **~(p ↔ q) ≡ p ↔ ~q** (nega-se só um termo).
+4. **~(p ↔ q) ≡ (p ∧ ~q) ∨ (q ∧ ~p)** (só com "e", "ou" e "não").
+
+- **Demonstração da 1ª**: parte-se de ~(p ⊻ q) ≡ p ↔ q e nega-se dos dois lados; a dupla negação dá p ⊻ q ≡ ~(p ↔ q). Uma proposição composta se comporta como uma simples nesse raciocínio.
+- **Demonstração da 4ª**: p ↔ q ≡ (p → q) ∧ (q → p). Negando: ~(p ↔ q) ≡ ~(p → q) ∨ ~(q → p) (De Morgan) ≡ (p ∧ ~q) ∨ (q ∧ ~p) (negação da condicional).
+- Exemplo: negar "Durmo se e somente se estou cansado" pode dar "Ou durmo, ou estou cansado" (exclusiva) ou "Durmo se e somente se não estou cansado".
+- **CAU-TO**: a negação de "A Fênix é imortal se, e somente se, renasce das cinzas" é "Ou a Fênix é imortal ou renasce das cinzas": item **certo**.
+- **Pref. Vila Lângaro**: negar "João passa se e somente se João estuda" dá "Ou João passa ou João estuda" (letra D). A alternativa que nega os dois termos (~p ↔ ~e) é **equivalência** da bicondicional, não negação.
+
+### Álgebra de proposições: panorama
+
+- Quadro das propriedades: **comutativa** (∧, ∨, ⊻ e ↔ comutam; a condicional **não**), **associativa** ((p ∧ q) ∧ r ≡ p ∧ (q ∧ r); (p ∨ q) ∨ r ≡ p ∨ (q ∨ r)), **distributiva** (p ∧ (q ∨ r) ≡ (p ∧ q) ∨ (p ∧ r); p ∨ (q ∧ r) ≡ (p ∨ q) ∧ (p ∨ r)), **identidade** (p ∧ t ≡ p; p ∧ c ≡ c; p ∨ t ≡ t; p ∨ c ≡ p), **absorção** (p ∨ (p ∧ q) ≡ p; p ∧ (p ∨ q) ≡ p) e **idempotência** (p ∧ p ≡ p; p ∨ p ≡ p). Aqui t é tautologia e c é contradição.
+- **Estratégia**: desenvolver a fórmula até chegar a uma tautologia t, uma contradição c ou uma contingência simples (uma simples, uma conjunção etc.).
+- **Bicondicional em tautologia/contradição**: X ↔ Y é **tautologia** se X e Y são equivalentes e **contradição** se uma é a negação da outra.
+- A álgebra serve para resolver mais rápido ou quando a banca "esconde" a equivalência nas alternativas. O essencial é dominar **comutativa, associativa e distributiva**; os casos complexos podem sempre ser resolvidos por tabela-verdade.
+
+### Propriedade comutativa
+
+- **p ∧ q ≡ q ∧ p; p ∨ q ≡ q ∨ p; p ⊻ q ≡ q ⊻ p; p ↔ q ≡ q ↔ p.** A condicional **não** comuta: p → q e q → p não são equivalentes (a equivalente é a contrapositiva).
+- **Aplicação**: negar "Se corro, chego a tempo" dá p ∧ ~q, "Corro e não chego a tempo"; se as alternativas trouxerem "Não chego a tempo e corro" (~q ∧ p), pode marcar, pois a conjunção comuta.
+- **EPC**: negar "(Animais são bípedes ou quadrúpedes) e árvores têm folhas verdes", isto é, (b ∨ q) ∧ a. Pela negação da conjunção: ~(b ∨ q) ∨ ~a; por De Morgan: (~b ∧ ~q) ∨ ~a. Pela comutativa: **~a ∨ (~b ∧ ~q)**: "Árvores não têm folhas verdes ou animais não são bípedes e não são quadrúpedes" (letra E).
+
+### Propriedade associativa
+
+- Como na aritmética (3 × 5) × 7 = 3 × (5 × 7), valem **(p ∧ q) ∧ r ≡ p ∧ (q ∧ r)** e **(p ∨ q) ∨ r ≡ p ∨ (q ∨ r)**. Não se misturam "e" e "ou" na associativa. Numa sequência só de "e" ou só de "ou", os parênteses podem ser retirados.
+- **Exemplo**: p ∨ (q ∨ ~p) é tautologia: comuta-se (q ∨ ~p) para (~p ∨ q), associa-se para (p ∨ ~p) ∨ q ≡ t ∨ q, e uma disjunção com um termo sempre V é sempre V. Item **certo** (inédita).
+- **TRT-1 (2008)**: a negação de uma condicional ~[[A ∧ ~B] → C] mantém o antecedente e nega o consequente: [A ∧ ~B] ∧ ~C, que pela associativa é **A ∧ ~B ∧ ~C** (opção a).
+
+### Para fixar
+- Negações da bicondicional: p ⊻ q; ~p ↔ q; p ↔ ~q; (p ∧ ~q) ∨ (q ∧ ~p).
+- ~p ↔ ~q é equivalência de p ↔ q, não negação.
+- Comutam: ∧, ∨, ⊻, ↔; a condicional não comuta.
+- Associativa: só entre "e" com "e" ou "ou" com "ou".
+- X ↔ Y é tautologia se X ≡ Y, e contradição se uma for a negação da outra.
+- Álgebra: simplificar até chegar a t, c ou uma contingência simples.
+@@ SINTETICO
+**Negações da bicondicional**: p ⊻ q, ~p ↔ q, p ↔ ~q e (p ∧ ~q) ∨ (q ∧ ~p).
+**Negar os dois termos**: ~p ↔ ~q é equivalência da bicondicional e não negação.
+**Demonstração**: a negação sem bicondicional sai de negar a ida e a volta da condicional com De Morgan.
+**Álgebra de proposições**: usa propriedades para simplificar expressões até chegar a t, c ou contingência.
+**Bicondicional X ↔ Y**: é tautologia se X e Y são equivalentes e contradição se uma é a negação da outra.
+**Prioridade de estudo**: comutativa, associativa e distributiva; os casos difíceis saem por tabela-verdade.
+**Comutativa**: vale para e, ou, ou exclusivo e bicondicional, mas não para a condicional.
+**Negação com comutativa**: a negação de p → q é p ∧ ~q, que também pode ser lida como ~q ∧ p.
+**Associativa**: (p ∨ q) ∨ r equivale a p ∨ (q ∨ r) e vale também para o e, sem misturar os dois.
+**Exemplo**: p ∨ (q ∨ ~p) é tautologia por comutar, associar e usar p ∨ ~p.
+@@ TEORIA
+C | A negação de "Estudo se e somente se descanso" pode ser "Ou estudo, ou descanso". || ~(p ↔ q) ≡ p ⊻ q.
+E | Negar os dois termos de uma bicondicional, como em ~p ↔ ~q, produz a negação de p ↔ q. || Produz uma equivalência.
+C | A conjunção, a disjunção inclusiva e a disjunção exclusiva gozam da propriedade comutativa. || Só a condicional não comuta.
+E | As proposições p → q e q → p são equivalentes pela propriedade comutativa. || A condicional não goza da comutativa.
+@@ REVISAO
+C | A proposição ~(p ↔ q) é equivalente a (p ∧ ~q) ∨ (q ∧ ~p). || Negação da bicondicional.
+E | A propriedade associativa permite trocar, numa mesma fórmula, os conectivos "e" e "ou". || Só vale entre conectivos iguais.
+C | A proposição p ∨ (q ∨ ~p) é uma tautologia. || Equivale a (p ∨ ~p) ∨ q.
+C | Se X e Y são proposições tais que uma é a negação da outra, a bicondicional X ↔ Y é uma contradição. || Os valores são sempre opostos.
+@@ PONTOS
+52 | Primeira negação da bicondicional
+53 | Demonstração da quarta negação
+54 | Quadro das negações e questão do CAU-TO
+55 | Questão de Vila Lângaro
+56 | Quadro de álgebra de proposições
+57 | Introdução e propriedade comutativa
+58 | Comutativa na negação da condicional
+59 | Questão da EPC
+60 | Conclusão da EPC e associativa
+61 | Exemplo de associativa e questão do TRT-1

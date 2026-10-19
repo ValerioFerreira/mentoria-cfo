@@ -118,6 +118,7 @@ export async function listContracts(f: FinanceFilters, take = 200) {
         id: true, customerEmail: true, customerName: true, contest: true, category: true, originalAmount: true, discountAmount: true,
         finalAmount: true, paidAmount: true, status: true, createdAt: true, couponCode: true, accessGrantedAt: true, accessUntil: true,
         userId: true, examDateAtContract: true, pricingRule: true, cancelReason: true, partner: { select: { user: { select: { username: true } } } },
+        siteCoupons: { select: { code: true } },
         _count: { select: { payments: true, reversals: true } },
       },
     }),
@@ -190,6 +191,7 @@ export async function contractDetail(id: string) {
         },
       },
       commissions: { orderBy: { createdAt: "asc" } },
+      siteCoupons: { select: { code: true, appliedPoints: true } },
     },
   });
   if (!c) return null;

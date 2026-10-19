@@ -49,7 +49,31 @@ export const AUDIT_LABEL: Record<string, string> = {
   COUPON_ACTIVATED: "Cupom ativado",
   COUPON_DEACTIVATED: "Cupom desativado",
   PAYOUT_REGISTERED: "Repasse registrado",
+  SITE_COUPON_CREATED: "Cupom do site criado",
+  SITE_COUPON_UPDATED: "Cupom do site alterado",
+  SITE_COUPON_ACTIVATED: "Cupom do site ativado",
+  SITE_COUPON_DEACTIVATED: "Cupom do site inativado",
+  SITE_COUPON_DELETED: "Cupom do site excluído",
 };
+
+/** Descontos de uma contratação em texto (lançamento + cupom de parceiro + cupons do site, todos sobre o valor original). */
+export function discountSummary(c: {
+  launchDiscountPoints: number;
+  partnerDiscountPoints: number;
+  couponDiscountPoints: number;
+  couponCode: string | null;
+  siteCoupons?: { code: string; appliedPoints: number }[];
+}): string {
+  const parts = [`${c.launchDiscountPoints}% de lançamento`];
+  if (c.partnerDiscountPoints) parts.push(`${c.partnerDiscountPoints}% do cupom ${c.couponCode}`);
+  for (const s of c.siteCoupons ?? []) parts.push(`${s.appliedPoints}% do cupom ${s.code}`);
+  return parts.join(" + ");
+}
+
+/** Códigos de cupom usados numa contratação (parceiro e site), para listagens. */
+export function couponCodesOf(c: { couponCode: string | null; siteCoupons?: { code: string }[] }): string[] {
+  return [...(c.couponCode ? [c.couponCode] : []), ...(c.siteCoupons ?? []).map((s) => s.code)];
+}
 
 /** dd/mm/aaaa no fuso de Recife */
 export function dateBR(d: Date | string | null | undefined): string {

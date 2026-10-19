@@ -1,0 +1,59 @@
+@@@ raciocinio-logico/a06/s08
+@@ ANALITICO
+Este trecho apresenta os dois lemas de Kaplansky: contagem de maneiras de escolher elementos de uma sequência de modo que nenhum par de escolhidos seja vizinho, na fila (primeiro lema) ou na roda (segundo lema).
+
+### Ideia geral
+
+- Os lemas tratam da **seleção sem importância da ordem** de **p** elementos entre **n** dispostos em sequência, de modo que **não haja dois escolhidos consecutivos**.
+- **1º lema**: os extremos do conjunto **não** são vizinhos (fila). **2º lema**: os extremos **são** vizinhos (círculo: dias da semana de segunda a domingo, meses do ano, fatias de uma pizza).
+
+### Primeiro lema de Kaplansky
+
+- **Raciocínio**: representa-se cada elemento selecionado por S e cada não selecionado por N. Para escolher p elementos entre n, há **n − p** elementos N. Entre e ao redor deles existem **n − p + 1 espaços** (antes, entre e depois dos N). Cada espaço comporta no máximo um S; assim, não há S consecutivos. Escolhem-se os p espaços:
+  **f(n, p) = C(n − p + 1, p)**.
+- **Conferência**: escolher 2 elementos não consecutivos entre 8 (fila): total C₈,₂ = 28 menos os 7 pares consecutivos = 21; pela fórmula, f(8, 2) = C₇,₂ = 21. Para 3 elementos entre 8: f(8, 3) = C₆,₃ = 20.
+- **FGV/MPE-RJ**: Valdo escolhe 3 dias de segunda a sábado (6 dias, sem que sábado e segunda sejam vizinhos), sem dois dias seguidos: f(6, 3) = C₄,₃ = **4** (letra C).
+- **CESPE/São Cristóvão (lâmpadas)**: 5 lâmpadas em fileira, sem duas adjacentes acesas. Casos: nenhuma acesa (1); uma acesa (C₅,₁ = 5); duas acesas f(5, 2) = C₄,₂ = 6; três acesas f(5, 3) = C₃,₃ = 1 (SNSNS). Quatro ou mais acesas é impossível. Soma: 1 + 5 + 6 + 1 = **13** (item certo). O lema só é necessário quando há pelo menos 2 elementos selecionados.
+
+### Segundo lema de Kaplansky
+
+- Para a **roda**: **g(n, p) = [n/(n − p)] × C(n − p, p)**.
+- Exemplo: 8 elementos em círculo, 3 não consecutivos: g(8, 3) = (8/5) × C₅,₃ = (8/5) × 10 = **16**.
+- **Por que funciona** (decomposição em dois casos): (i) se o elemento 1 é selecionado, 2 e 8 ficam excluídos e restam os elementos de 3 a 7 (5 elementos, em fila), dos quais escolhem-se 2 não consecutivos: f(5, 2) = C₄,₂ = 6; (ii) se o elemento 1 não é selecionado, escolhem-se 3 entre os elementos de 2 a 8 (7 elementos, em fila, sem que 2 e 8 sejam vizinhos): f(7, 3) = C₅,₃ = 10. Os casos são excludentes: 6 + 10 = **16**.
+- **CEBRASPE/SEED-SE (pizza)**: 3 fatias de queijo azul entre 8 fatias iguais, sem fatias vizinhas (a primeira é vizinha da última): g(8, 3) = **16** (letra B).
+
+### Para fixar
+- Fila: f(n, p) = C(n − p + 1, p). Roda: g(n, p) = [n/(n − p)] × C(n − p, p).
+- Entenda o raciocínio dos espaços entre os não escolhidos: mais importante que decorar.
+- Na roda, divida em "o primeiro é escolhido" e "o primeiro não é escolhido".
+- Para poucos casos, é possível total menos pares consecutivos.
+- Quando p = 0 ou p = 1, não se usa o lema.
+@@ SINTETICO
+**Kaplansky**: conta seleções de p elementos entre n em sequência sem dois escolhidos vizinhos.
+**Primeiro lema**: os extremos não são vizinhos, como numa fila ou nos dias de segunda a sábado.
+**Raciocínio dos espaços**: os n menos p não escolhidos geram n menos p mais 1 espaços para os escolhidos.
+**Fórmula da fila**: f de n,p igual a C de (n menos p mais 1) tomados p a p.
+**Exemplo da fila**: escolher 2 elementos não consecutivos entre 8 dá 21.
+**Lâmpadas**: cinco lâmpadas sem duas adjacentes acesas dão 13 configurações.
+**Segundo lema**: os extremos são vizinhos, como numa roda, nos dias da semana ou nas fatias de pizza.
+**Fórmula da roda**: g de n,p igual a n sobre (n menos p) vezes C de (n menos p),p.
+**Pizza**: 3 fatias não vizinhas entre 8 em círculo dão 16.
+**Decomposição**: na roda, separe o caso em que o primeiro é escolhido e o caso em que não é.
+@@ TEORIA
+C | No primeiro lema de Kaplansky, os elementos extremos do conjunto original não são considerados vizinhos. || Fila.
+E | No segundo lema de Kaplansky, os extremos do conjunto original não são vizinhos. || São considerados vizinhos (círculo).
+C | Escolher 2 elementos não consecutivos entre 8 em fila pode ser feito de 21 maneiras. || f(8,2) = C(7,2).
+E | O número de maneiras de escolher 3 fatias não vizinhas de uma pizza de 8 fatias é 20. || Na pizza (roda) são 16.
+@@ REVISAO
+C | Escolher 2 elementos não consecutivos entre 5 em fila dá 6 possibilidades. || f(5,2) = C(4,2).
+E | Para escolher 3 dias de segunda a sexta (5 dias), sem dias seguidos, há 5 maneiras. || f(5,3) = C(3,3) = 1 (segunda, quarta e sexta).
+C | A fórmula do segundo lema de Kaplansky para n = 8 e p = 3 dá 16. || (8/5) × 10.
+C | Em uma sequência de 7 elementos em fila, escolher 3 elementos sem vizinhos tem C(5,3) = 10 possibilidades. || f(7,3).
+@@ PONTOS
+72 | Introdução aos lemas e primeiro lema
+73 | Fórmula do primeiro lema e questão da FGV
+74 | Resolução da FGV e questão das lâmpadas
+75 | Resolução das lâmpadas e segundo lema
+76 | Raciocínio do segundo lema
+77 | Fim do segundo lema e questão da pizza
+78 | Resolução da pizza

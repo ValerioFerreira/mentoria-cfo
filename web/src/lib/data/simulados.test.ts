@@ -12,13 +12,13 @@ describe("Configurações dos Simulados Oficiais CBMPE 2026", () => {
     const blockTotal =
       config.blocks.I.totalQuestions +
       config.blocks.II.totalQuestions +
-      config.blocks.III.totalQuestions;
+      config.blocks.III!.totalQuestions;
     expect(blockTotal).toBe(70);
 
     // Mínimo por bloco (30%)
     expect(config.blocks.I.minQuestions).toBe(6);
     expect(config.blocks.II.minQuestions).toBe(6);
-    expect(config.blocks.III.minQuestions).toBe(9);
+    expect(config.blocks.III!.minQuestions).toBe(9);
 
     // Soma das matérias
     const subjectTotal = config.subjects.reduce((sum, s) => sum + s.count, 0);
@@ -35,16 +35,43 @@ describe("Configurações dos Simulados Oficiais CBMPE 2026", () => {
     const blockTotal =
       config.blocks.I.totalQuestions +
       config.blocks.II.totalQuestions +
-      config.blocks.III.totalQuestions;
+      config.blocks.III!.totalQuestions;
     expect(blockTotal).toBe(60);
 
     // Mínimo por bloco (30%)
     expect(config.blocks.I.minQuestions).toBe(9);
     expect(config.blocks.II.minQuestions).toBe(6);
-    expect(config.blocks.III.minQuestions).toBe(3);
+    expect(config.blocks.III!.minQuestions).toBe(3);
 
     // Soma das matérias
     const subjectTotal = config.subjects.reduce((sum, s) => sum + s.count, 0);
     expect(subjectTotal).toBe(60);
+  });
+
+  it("PCPE Agente de Polícia possui exatamente 60 questões em 2 blocos (P1=20, P2=40) e corte de 50%", () => {
+    const config = EXAM_CONFIGS.PCPE_AGENTE;
+    expect(config.totalQuestions).toBe(60);
+    expect(config.durationMinutes).toBe(240);
+    expect(config.durationSeconds).toBe(240 * 60);
+    expect(config.minPercentPerBlock).toBe(0);
+    expect(config.minPercentTotal).toBe(50);
+    expect(config.noZeroInAnyArea).toBe(false);
+
+    // Blocos P1 e P2
+    expect(config.blocks.I.totalQuestions).toBe(20);
+    expect(config.blocks.I.minQuestions).toBe(0);
+    expect(config.blocks.II.totalQuestions).toBe(40);
+    expect(config.blocks.II.minQuestions).toBe(0);
+    expect(config.blocks.III).toBeUndefined();
+
+    // Soma das matérias
+    const subjectTotal = config.subjects.reduce((sum, s) => sum + s.count, 0);
+    expect(subjectTotal).toBe(60);
+
+    // Contagem por bloco
+    const p1Count = config.subjects.filter((s) => s.block === "I").reduce((sum, s) => sum + s.count, 0);
+    const p2Count = config.subjects.filter((s) => s.block === "II").reduce((sum, s) => sum + s.count, 0);
+    expect(p1Count).toBe(20);
+    expect(p2Count).toBe(40);
   });
 });

@@ -1,0 +1,84 @@
+@@@ raciocinio-logico/a02/s03
+@@ ANALITICO
+Este trecho trata das negações lógicas essenciais: dupla negação, as Leis de De Morgan (negação do "e" e do "ou"), a negação da condicional, e questões que combinam mais de uma equivalência.
+
+### Dupla negação
+
+- **~(~p) ≡ p**: negar a negação devolve a proposição original. Exemplo: "Não é verdade que a prova não foi anulada" equivale a "A prova foi anulada".
+
+### Leis de De Morgan
+
+- **Negação do "e"**: ~(p ∧ q) ≡ ~p ∨ ~q. Nega-se cada parcela e troca-se "e" por "ou". Exemplo: a negação de "Li o edital e fiz o resumo" é "Não li o edital **ou** não fiz o resumo".
+- **Negação do "ou"**: ~(p ∨ q) ≡ ~p ∧ ~q. Nega-se cada parcela e troca-se "ou" por "e". Exemplo: a negação de "Li o edital ou fiz o resumo" é "Não li o edital **e** não fiz o resumo".
+- A prova é por tabela-verdade: a coluna de ~(p ∧ q) (V, V, V, F... na ordem inversa da conjunção) coincide com a de ~p ∨ ~q, que só é F quando ~p e ~q são F, isto é, p e q V.
+- Mnemônico: **negar o "e": nega tudo e vira "ou"; negar o "ou": nega tudo e vira "e"**.
+
+### Questões de De Morgan
+
+- **BBTS**: "Eu fiz dieta e não emagreci" é d ∧ ~e. A negação é ~d ∨ ~(~e) = **~d ∨ e**: "Eu não fiz dieta ou emagreci" (letra B).
+- **AGENERSA**: "Caminho ou não saio do lugar" é c ∨ ~s. A negação é ~c ∧ ~(~s) = **~c ∧ s**: "Não caminho e saio do lugar" (letra E).
+- **PM-CE**: a premissa é ~(d ∧ v), isto é, é falso que o policial de serviço possa, ao mesmo tempo, dormir e usar a viatura em proveito próprio. O que se pode afirmar é a negação da conjunção, ~d ∨ ~v: pelo menos uma das duas coisas não é permitida (letra B).
+
+### Negação da condicional
+
+- **~(p → q) ≡ p ∧ ~q**: mantém-se o primeiro termo, troca-se "se... então" por "e" e nega-se o segundo. Exemplo: a negação de "Se o preso foi liberado, então o alvará foi expedido" é "O preso foi liberado **e** o alvará **não** foi expedido".
+- **Demonstração sem tabela**: parte-se de p → q ≡ ~p ∨ q e nega-se os dois lados: ~(p → q) ≡ ~(~p ∨ q) ≡ ~(~p) ∧ ~q ≡ p ∧ ~q (De Morgan e dupla negação).
+- Não confundir: **equivalência** da condicional é ~p ∨ q; **negação** da condicional é p ∧ ~q.
+
+### Questões de negação da condicional
+
+- **DPE-SP**: uma frase de forma o → a (a primeira parte implica a segunda). Sua negação é o ∧ ~a: a primeira parte vale e a segunda não (letra D).
+- **MPE-SP**: a frase tem forma ~m → p, em que a primeira parte já é negativa. A negação mantém essa parte e nega a segunda: ~m ∧ ~p, ou seja, Maria não sabe Matemática e também não erra porcentagem (letra D). A parte já negativa permanece como está.
+
+### Questões com mais de uma equivalência
+
+- **SEPLAN-RR**: (A ∨ B) → C ≡ ~(A ∨ B) ∨ C ≡ (~A ∧ ~B) ∨ C (condicional em "ou" e De Morgan): o item é **certo**.
+- **TJ-SP**: a frase é b → (s ∧ v). A contrapositiva é ~(s ∧ v) → ~b e, por De Morgan, **(~s ∨ ~v) → ~b**: se faltar satisfação ou o retorno, o atendimento não é bom (letra B). A outra forma, ~b ∨ (s ∧ v), não aparece entre as opções.
+- **CBM-SC**: negar d ∧ (m → v) (doente e, se o médico permite, então viaja). Nega-se a conjunção: ~d ∨ ~(m → v); nega-se a condicional: ~d ∨ (m ∧ ~v). Lê-se: não está doente, **ou** o médico permite e a pessoa não viaja (letra E).
+
+### Início das "outras equivalências"
+
+- Fecha-se o trecho com o quadro das equivalências adicionais: negação da conjunção na forma condicional (~(p ∧ q) ≡ p → ~q ≡ q → ~p), conjunção de condicionais com termo comum (consequente comum: (p → r) ∧ (q → r) ≡ (p ∨ q) → r; antecedente comum: (p → q) ∧ (p → r) ≡ p → (q ∧ r)), além das equivalências e negações da disjunção exclusiva e da bicondicional, que são vistas no trecho seguinte.
+
+### Para fixar
+- ~(~p) ≡ p.
+- ~(p ∧ q) ≡ ~p ∨ ~q; ~(p ∨ q) ≡ ~p ∧ ~q.
+- ~(p → q) ≡ p ∧ ~q; não confundir com p → q ≡ ~p ∨ q.
+- A negação de uma proposição já negativa elimina o "não" (dupla negação).
+- Em questões compostas, negue de fora para dentro, aplicando uma regra por vez.
+@@ SINTETICO
+**Dupla negação**: negar a negação devolve a proposição original.
+**Negar o e**: nega-se cada parcela e o e vira ou, como em ~(p ∧ q) ≡ ~p ∨ ~q.
+**Negar o ou**: nega-se cada parcela e o ou vira e, como em ~(p ∨ q) ≡ ~p ∧ ~q.
+**Negar a condicional**: mantém-se o primeiro termo, usa-se e e nega-se o segundo, ~(p → q) ≡ p ∧ ~q.
+**Cuidado**: equivalência da condicional é ~p ∨ q, e a negação da condicional é p ∧ ~q.
+**Demonstração**: a negação da condicional vem de negar ~p ∨ q com De Morgan e dupla negação.
+**Primeiro termo já negativo**: na negação da condicional ele permanece como está.
+**Combinação**: em questões longas, negue de fora para dentro, uma regra por vez.
+**Conjunção de condicionais**: com consequente comum vira condicional com ou no antecedente.
+**Antecedente comum**: vira condicional com e no consequente.
+@@ TEORIA
+C | A negação de "O réu confessou e foi condenado" é "O réu não confessou ou não foi condenado". || De Morgan.
+E | A negação de "O réu confessou ou foi condenado" é "O réu não confessou ou não foi condenado". || Deve ser "e" entre as negações.
+C | A negação de "Se o prazo vence, a ação prescreve" é "O prazo vence e a ação não prescreve". || Mantém, "e", nega.
+E | A negação de p → q é ~p ∨ q. || ~p ∨ q é equivalente; a negação é p ∧ ~q.
+@@ REVISAO
+C | A negação de "Se Maria não sabe Matemática, então erra porcentagem" é "Maria não sabe Matemática e não erra porcentagem". || ~(~m → p) ≡ ~m ∧ ~p.
+C | A expressão (A ∨ B) → C é equivalente a (~A ∧ ~B) ∨ C. || Condicional em ou e De Morgan.
+E | A negação de d ∧ ~e é ~d ∨ ~e. || É ~d ∨ e, pela dupla negação.
+C | A contrapositiva de b → (s ∧ v) pode ser escrita como (~s ∨ ~v) → ~b. || Contrapositiva mais De Morgan.
+@@ PONTOS
+22 | Dupla negação e introdução a De Morgan
+23 | Negação da conjunção
+24 | Prova pela tabela e negação da disjunção
+25 | Mnemônico e questão da BBTS
+26 | Questão da AGENERSA
+27 | Questão da PM-CE
+28 | Negação da condicional
+29 | Não confundir equivalência e negação
+30 | Questões do DPE-SP e do MPE-SP
+31 | Início das questões com mais de uma equivalência
+32 | Questão da SEPLAN-RR
+33 | Questão do TJ-SP
+34 | Questão do CBM-SC
+35 | Quadro de outras equivalências e negações

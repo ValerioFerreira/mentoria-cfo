@@ -147,6 +147,36 @@ describe.skipIf(!hasTestDb)("server actions: autorização e preço do servidor"
     expect(praca?.payment?.amount).toBe("40,00");
   });
 
+  it("cupons do site: só administrador gerencia; o formulário aceita vários códigos e o preço vem do servidor", async () => {
+    const actions = await import("./admin-actions");
+    const { joinWaitlist, previewCoupons } = await import("@/app/(public)/lista-de-espera/[concurso]/actions");
+    asUser(student);
+    await expect(actions.adminCreateSiteCoupon(null, fd({ code: "FURAR10", discountPoints: "10" }))).rejects.toThrow("REDIRECT:/");
+    asUser({ ...admin, role: "ADMIN" });
+    expect(await actions.adminCreateSiteCoupon(null, fd({ code: "dez10", discountPoints: "10" }))).toMatchObject({ ok: true });
+    expect(await actions.adminCreateSiteCoupon(null, fd({ code: "QUINZE15", discountPoints: "15" }))).toMatchObject({ ok: true });
+    expect(await actions.adminCreateSiteCoupon(null, fd({ code: "DEZ10", discountPoints: "10" }))).toMatchObject({ ok: false, message: expect.stringMatching(/já existe/) });
+    expect(await actions.adminCreateSiteCoupon(null, fd({ code: "ZERO0", discountPoints: "0" }))).toMatchObject({ ok: false });
+    asUser(student);
+    await expect(actions.adminDeleteSiteCoupon(null, fd({ couponId: (await db.coupon.findFirstOrThrow()).id }))).rejects.toThrow("REDIRECT:/");
+    expect(await db.coupon.count()).toBe(2);
+    session.current = null;
+    // simulação: lançamento 25% + 10% + 15% = 50% de R$ 120,00
+    const prev = await previewCoupons("cbmpe-oficial", "dez10 quinze15");
+    expect(prev).toMatchObject({ ok: true, totalPoints: 50, capped: false, card: { originalCents: 12_000, finalCents: 6_000 } });
+    expect(await previewCoupons("cbmpe-oficial", "dez10 naoexiste")).toMatchObject({ ok: false, message: expect.stringMatching(/Cupom inválido/) });
+    expect(await previewCoupons("cbmpe-oficial", "dez10 DEZ10")).toMatchObject({ ok: false, message: expect.stringMatching(/mais de uma vez/) });
+    // a inscrição recalcula pelos códigos: qualquer preço enviado pelo navegador é ignorado
+    const r = await joinWaitlist("cbmpe-oficial", undefined, fd({ name: "Cliente Dois Cupons", email: "dois@x.com", username: "doiscup", coupon: "DEZ10, QUINZE15", amount: "1", finalCents: "1" }));
+    expect(r?.payment).toMatchObject({ amount: "60,00", discounts: "25% de lançamento + 10% do cupom DEZ10 + 15% do cupom QUINZE15" });
+    const c = await db.contract.findFirstOrThrow({ where: { customerEmail: "dois@x.com" }, include: { siteCoupons: true } });
+    expect(c).toMatchObject({ couponDiscountPoints: 25, finalAmount: expect.anything() });
+    expect(c.siteCoupons).toHaveLength(2);
+    const bad = await joinWaitlist("cbmpe-oficial", undefined, fd({ name: "Cliente Com Erro", email: "erro@x.com", username: "erro1", coupon: "DEZ10 INEXISTENTE" }));
+    expect(bad).toMatchObject({ errors: { coupon: [expect.stringMatching(/Cupom inválido/)] } });
+    expect(await db.waitlistEntry.count({ where: { email: "erro@x.com" } })).toBe(0);
+  });
+
   it("aprovação 'até a prova': exige quitação (ou justificativa), cria a conta e liga a contratação", async () => {
     const { joinWaitlist } = await import("@/app/(public)/lista-de-espera/[concurso]/actions");
     const { approveRegistration } = await import("@/lib/admin/cadastros-actions");

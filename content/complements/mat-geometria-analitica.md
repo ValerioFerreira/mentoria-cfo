@@ -7,6 +7,7 @@ subtitle: Plano cartesiano, distância, ponto médio, baricentro, retas, paralel
 weight: 0.12
 order: 1
 resolves: mat-geometria-analitica
+excludeContests: PCPE_AGENTE
 ---
 
 ## O que este material cobre e como estudar

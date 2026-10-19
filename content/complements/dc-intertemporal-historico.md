@@ -7,6 +7,7 @@ subtitle: Itens 1 e 3 do edital — histórico constitucional; recepção, repri
 weight: 0.04
 order: 5
 resolves: dc-intertemporal
+excludeContests: PCPE_AGENTE
 ---
 
 ## Direito constitucional intertemporal: recepção, repristinação e desconstitucionalização

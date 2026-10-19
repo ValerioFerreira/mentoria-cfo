@@ -7,6 +7,7 @@ subtitle: Jovens de 15 a 29 anos, princípios, direitos e Sistema Nacional de Ju
 weight: 0.03
 order: 2
 resolves: dc-juventude
+excludeContests: PCPE_AGENTE
 ---
 
 ## O que é o Estatuto e quem ele protege

@@ -1,0 +1,66 @@
+@@@ raciocinio-logico/a04/s07
+@@ ANALITICO
+Este trecho fecha as regras de inferência (dilema construtivo e dilema destrutivo) e começa as questões comentadas de múltiplas bancas sobre questões clássicas de conectivos, resolvidas pelas quatro etapas da aula.
+
+### Fim da questão do CM Indaiatuba (dilema construtivo)
+
+- Premissas: (j ∧ a) → ~c; i → j'; (j ∧ a) ∨ i. As duas condicionais e a disjunção dos antecedentes caracterizam o **dilema construtivo**; a conclusão válida é a disjunção dos consequentes: **~c ∨ j'**, "Cristina não é funcionária pública ou João é solteiro" (letra D, com a ordem das parcelas trocada).
+
+### Dilema destrutivo
+
+- Forma: p → q; r → s; **~q ou ~s**; logo **~p ou ~r**. Três premissas: duas condicionais e a disjunção das **negações dos consequentes**; a conclusão é a disjunção das **negações dos antecedentes**.
+- **PC-SP**: "se A compareceu, o boletim de A foi lavrado"; "se B compareceu, o de B foi lavrado"; "o boletim de A não foi lavrado ou o de B não foi lavrado". Conclusão válida: **A não compareceu ou B não compareceu** (letra B). Concluir sobre um só dos dois (a ou e) ou a conjunção (c) vai além do que se garante.
+- **CREA-MG**: premissas (r ∧ s) → t, s → (t ∧ u) e ~t ∨ ~(t ∧ u): a conclusão é a disjunção das negações dos antecedentes, **~(r ∧ s) ∨ ~s** (letra C).
+
+### Questões clássicas de múltiplas bancas
+
+- **VUNESP/Rio Preto Prev (Fátima, Hugo, Júlia, Gerson)**: afirmações: n ∨ j; ~j ∨ e; a ∨ ~n; ~e (todas V). Começa-se por ~e V: e F. Em ~j ∨ e, ~j é V, logo j F. Em n ∨ j, n é V. Em a ∨ ~n, a é V. A única conjunção verdadeira é **n ∧ a**: "Fátima quer ir à Noruega e Júlia escolheu a Argentina" (letra C).
+- **FEPESE/Campos Novos (monitoramento)**: regras s → a (CPU alta gera alerta) e a → d (alerta inicia diagnóstico); fato: d V. Como o consequente d é V, **nada se sabe** sobre a (e, em consequência, sobre s). Resposta: não se pode afirmar com certeza que o servidor ultrapassou o limite (letra E). Moral: afirmar o consequente não prova o antecedente.
+- **IBADE/PCES (preparo para o concurso)**: f → (~s ∧ ~c); ~c → b; b → t; e "todos **não** foram aprovados". Cuidado: "todos não foram aprovados" não é a negação de t (t = todos foram aprovados); a negação é "alguém não foi aprovado", e como a frase afirma o fato, **~t é V** (t F). Em b → t, b F; em ~c → b, ~c F (c V); em f → (~s ∧ ~c), o consequente é F, logo f F. A alternativa verdadeira: "Fernando e Bruno não se prepararam" (letra A). O valor de s é indeterminado.
+- **Fundatec/Candiota (cadeia de cinco condicionais)**: com o último consequente falso ("Bela não gosta de matemática"), todos os antecedentes anteriores são falsos; logo "Amanda não vai ao cinema" (letra D). As alternativas com "e" adicionam proposições novas e ficam falsas porque a primeira parcela é F.
+- **Legalle/Caxias do Sul**: a → b; c → ~d; b → c; d V. De c → ~d com d V: c F; de b → c: b F; de a → b: a F. Resposta: "Ana não é professora" (letra D).
+- **QUADRIX/CRMV-TO**: "ou capa laranja ou capa verde" (⊻) é V; "se verde, então vermelha" é F. A condicional falsa dá g V e l F; a exclusiva V com g V dá b F. Alternativa verdadeira: "A capa do diário não é laranja, a da agenda é verde e a do livro não é vermelha" (letra E).
+- **IBFC/SES-SE (Zorro, Tica, Diva, Dori)**: I. ~z (V); IV. z ⊻ d (V): d V; III. ~t ∧ dori (V): t F, dori V; II: t → ~d é V porque t F. Conclusão: "Diva é calopsita e Dori é tartaruga" (letra C).
+
+### Para fixar
+- Dilema construtivo: duas condicionais + disjunção dos antecedentes ⊢ disjunção dos consequentes.
+- Dilema destrutivo: duas condicionais + disjunção das negações dos consequentes ⊢ disjunção das negações dos antecedentes.
+- Consequente verdadeiro não informa o antecedente de uma condicional verdadeira.
+- "Todos não..." não é a negação de "todos..."; considere o fato dado como verdadeiro.
+- Comece sempre pela simples dada, pela conjunção verdadeira ou pela condicional falsa.
+@@ SINTETICO
+**Dilema construtivo**: a conclusão é a disjunção dos consequentes das duas condicionais.
+**Dilema destrutivo**: duas condicionais e a disjunção das negações dos consequentes levam à disjunção das negações dos antecedentes.
+**Exemplo de destrutivo**: o boletim de A ou o de B não foi lavrado leva a A ou B não compareceu.
+**Consequente verdadeiro**: não permite afirmar o antecedente de uma condicional verdadeira.
+**Todos não**: o fato todos não foram aprovados significa que alguém não foi aprovado.
+**Cadeia com final falso**: um último consequente falso torna falsos todos os antecedentes anteriores.
+**Condicional falsa**: dá antecedente verdadeiro e consequente falso.
+**Exclusiva verdadeira**: com um termo verdadeiro, o outro é falso.
+**Valor indeterminado**: uma simples pode ficar sem valor e ainda assim a questão ter resposta.
+**Ordem de ataque**: simples dada, conjunção verdadeira e condicional falsa primeiro.
+@@ TEORIA
+C | No dilema destrutivo, a conclusão é a disjunção das negações dos antecedentes das duas condicionais. || Forma ~p ou ~r.
+E | No dilema construtivo, a terceira premissa é a disjunção dos consequentes. || É a disjunção dos antecedentes.
+C | Se "Se há fumaça, o detector apita" é verdadeira e o detector apitou, nada se pode afirmar com certeza sobre a fumaça. || Consequente verdadeiro.
+E | A afirmação "Todos não foram aprovados" é a negação lógica de "Todos foram aprovados". || A negação é "Alguém não foi aprovado".
+@@ REVISAO
+C | Num dilema destrutivo com p → q, r → s e ~q ∨ ~s, a conclusão válida é ~p ∨ ~r. || Regra de inferência.
+E | Em uma cadeia de condicionais verdadeiras, se o primeiro antecedente é verdadeiro, o último consequente pode ser falso. || O encadeamento tornaria o último consequente verdadeiro.
+C | Se uma disjunção exclusiva é verdadeira e uma de suas parcelas é verdadeira, a outra é falsa. || Valores distintos.
+C | Numa questão de conectivos, deve-se começar pela afirmação em formato fácil. || Simples, conjunção V, disjunção F ou condicional F.
+@@ PONTOS
+73 | Fim do dilema construtivo e dilema destrutivo
+74 | Questão da PC-SP
+75 | Questão do CREA-MG
+76 | Questão da VUNESP (Fátima, Hugo, Júlia e Gerson)
+77 | Resolução e questão da FEPESE sobre monitoramento
+78 | Resolução da FEPESE
+79 | Alternativas da FEPESE e questão do IBADE
+80 | Resolução do IBADE
+81 | Questão da Fundatec (Candiota)
+82 | Resolução da Fundatec
+83 | Alternativas da Fundatec e questão da Legalle
+84 | Resolução da Legalle
+85 | Questão da QUADRIX (CRMV-TO)
+86 | Resolução da QUADRIX e início da questão da IBFC

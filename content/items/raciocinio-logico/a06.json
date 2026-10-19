@@ -7,81 +7,89 @@
       "id": "raciocinio-logico/a06/s01",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- **Introdução (Estrutura e Lógica):** O estudo formal de Introdução investiga a validade dos argumentos e a consistência das proposições declarativas.",
-          "- **Princípios Lógicos:** O Princípio da Não-Contradição estabelece que uma proposição não pode ser V e F simultaneamente.",
-          "- **Condicional e Bicondicional:** A condicional (p → q) é falsa exclusivamente quando V → F.",
-          "- **Equivalências Lógicas:** A contrapositiva estabelece (p → q ≡ ~q → ~p).",
-          "Leis de De Morgan: ~(p ∧ q) ≡ (~p ∨ ~q) e ~(p ∨ q) ≡ (~p ∧ ~q). Tautologias e Contingências: Proposições compostas cujo valor lógico é sempre verdadeiro são tautologias. Diagramas Lógicos: Proposições com quantificadores ('todo', 'algum', 'nenhum') são resolvidas por diagramas de Euler-Venn para avaliar a validade categórica.",
-          "### 2. Métodos de Resolução e Classificações",
-          "- o Princípio do Terceiro Excluído assegura que só há dois valores lógicos.",
-          "- disjunção inclusiva (∨) exige pelo menos uma verdadeira.",
-          "- disjunção exclusiva (⊻) requer valores distintos.",
-          "- a bicondicional (p ↔ q) é verdadeira se ambas possuírem o mesmo valor lógico.",
-          "- A condicional também equivale à disjunção (~p ∨ q).",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> ⚠️ **Atenção de Prova:** Conectivos Lógicos: Conjunção (∧) é verdadeira apenas com todas verdadeiras."
+          "**Análise combinatória**: reúne técnicas para contar casos em conjuntos finitos sem listá-los.",
+          "**Princípio multiplicativo**: escolhas sucessivas e concomitantes multiplicam as possibilidades.",
+          "**Generalização**: para n eventos, o total é o produto das possibilidades de cada um.",
+          "**Restrição por pares**: vértices opostos de cores diferentes dão 5 vezes 4 por par, ou seja, 400 no total.",
+          "**Exemplo comercial**: 3 pratos, 2 acompanhamentos e 4 bebidas dão 24 combinações.",
+          "**Fatoração em primos**: base para contar os divisores de um número.",
+          "**Divisores de 60**: com 60 igual a 2 ao quadrado vezes 3 vezes 5, são 3 vezes 2 vezes 2, ou seja, 12.",
+          "**Regra do mais um**: some 1 a cada expoente e multiplique.",
+          "**Divisores de 216**: como 216 é 2 ao cubo vezes 3 ao cubo, são 16 divisores.",
+          "**Tabelas diferentes**: contar linhas por colunas diferentes equivale a contar os divisores."
         ],
         "teoria": [
           {
-            "statement": "Introdução (Estrutura e Lógica): O estudo formal de Introdução investiga a validade dos argumentos e a consistência das proposições declarativas.",
+            "statement": "Se um evento ocorre de 5 maneiras e outro, independente, de 6, os dois ocorrem juntos de 30 maneiras.",
             "isTrue": true,
-            "explanation": "Item correto. Em conformidade com a doutrina e o conteúdo de Introdução: Introdução (Estrutura e Lógica): O estudo formal de Introdução investiga a validade dos argumentos e a consistência das proposições declarativas."
+            "explanation": "Princípio multiplicativo."
           },
           {
-            "statement": "Condicional e Bicondicional: A condicional (p → q) não é falsa exclusivamente quando V → F.",
+            "statement": "O número de divisores de 36 = 2² × 3² é 2 + 2 = 4.",
             "isTrue": false,
-            "explanation": "Item incorreto. Na realidade, segundo os fundamentos de Introdução: Condicional e Bicondicional: A condicional (p → q) é falsa exclusivamente quando V → F."
+            "explanation": "É (2 + 1)(2 + 1) = 9."
           },
           {
-            "statement": "A análise integrada das premissas de Diretrizes Gerais em raciocinio-logico/a06/s01 assegura a coerência lógica entre os fundamentos e os resultados obtidos.",
+            "statement": "Para contar os divisores de um número natural, fatora-se em primos e multiplicam-se os expoentes acrescidos de 1.",
             "isTrue": true,
-            "explanation": "A correlação entre premissas e conclusões em Diretrizes Gerais (raciocinio-logico/a06/s01) sustenta a solidez da matéria."
+            "explanation": "Regra prática."
           },
           {
-            "statement": "Para a compreensão técnica de Diretrizes Gerais em raciocinio-logico/a06/s01, considera-se inútil averiguar a conformidade com as diretrizes consolidadas.",
+            "statement": "A análise combinatória só pode ser aplicada a conjuntos infinitos.",
             "isTrue": false,
-            "explanation": "A averiguação da conformidade em Diretrizes Gerais (raciocinio-logico/a06/s01) é basilar para a resolução de casos concretos."
+            "explanation": "Trata de conjuntos finitos."
           }
         ],
         "revisao": [
           {
-            "statement": "Princípios Lógicos: O Princípio da Não-Contradição estabelece que uma proposição não pode ser V e F simultaneamente.",
+            "statement": "Havendo 4 camisas e 5 bermudas, é possível formar 20 conjuntos camisa-bermuda.",
             "isTrue": true,
-            "explanation": "Item correto. Em conformidade com a doutrina e o conteúdo de Introdução: Princípios Lógicos: O Princípio da Não-Contradição estabelece que uma proposição não pode ser V e F simultaneamente."
+            "explanation": "4 × 5."
           },
           {
-            "statement": "É incorreto afirmar que equivalências Lógicas: A contrapositiva estabelece (p → q ≡ ~q → ~p), uma vez que tal postulado carece de amparo técnico.",
+            "statement": "Se os vértices opostos de um quadrado devem ter cores diferentes e há 5 cores, o total de pinturas é 5 × 4 × 3 × 2.",
             "isTrue": false,
-            "explanation": "Item incorreto. Na realidade, segundo os fundamentos de Introdução: Equivalências Lógicas: A contrapositiva estabelece (p → q ≡ ~q → ~p)."
+            "explanation": "É 5 × 4 × 5 × 4 = 400."
           },
           {
-            "statement": "A consolidação sistemática dos tópicos de Diretrizes Gerais em raciocinio-logico/a06/s01 prepara o candidato para responder com segurança à banca examinadora.",
+            "statement": "O número 60 tem 12 divisores positivos.",
             "isTrue": true,
-            "explanation": "O domínio estruturado sobre Diretrizes Gerais (raciocinio-logico/a06/s01) atende diretamente às exigências da prova."
+            "explanation": "60 = 2² · 3 · 5 e (2+1)(1+1)(1+1) = 12."
           },
           {
-            "statement": "No estudo de Introdução, é falso considerar que introdução (Estrutura e Lógica): O estudo formal de Introdução investiga a validade dos argumentos e a consistência das proposições declarativas.",
-            "isTrue": false,
-            "explanation": "Item incorreto. Na realidade, segundo os fundamentos de Introdução: Introdução (Estrutura e Lógica): O estudo formal de Introdução investiga a validade dos argumentos e a consistência das proposições declarativas.."
+            "statement": "A combinatória é utilizada tanto em questões de contagem pura quanto em questões de probabilidade.",
+            "isTrue": true,
+            "explanation": "Aplicações do conteúdo."
           }
         ],
         "pointers": [
           {
-            "topic": "Conceitos Estruturantes (Foco 1)",
-            "pageRef": 1
-          },
-          {
-            "topic": "Diretrizes Gerais (Foco 2)",
+            "topic": "Apresentação da aula de análise combinatória",
             "pageRef": 3
           },
           {
-            "topic": "Fundamentos Teóricos (Foco 3)",
+            "topic": "Introdução e princípio multiplicativo",
+            "pageRef": 4
+          },
+          {
+            "topic": "Extensão do princípio multiplicativo",
             "pageRef": 5
           },
           {
-            "topic": "Aplicações Práticas (Foco 4)",
+            "topic": "Questões da FEPESE e da FUNDATEC",
+            "pageRef": 6
+          },
+          {
+            "topic": "Questão da FGV (quadrado) e contagem de divisores",
             "pageRef": 7
+          },
+          {
+            "topic": "Divisores de 60 e regra do mais um",
+            "pageRef": 8
+          },
+          {
+            "topic": "Questão da FCC (tabelas de 216 campos)",
+            "pageRef": 9
           }
         ]
       }
@@ -90,81 +98,109 @@
       "id": "raciocinio-logico/a06/s02",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- Princípio Aditivo (Estrutura e Lógica): O estudo formal de Princípio Aditivo investiga a validade dos argumentos e a consistência das proposições declarativas.",
-          "- **Princípios Lógicos:** O Princípio da Não-Contradição estabelece que uma proposição não pode ser V e F simultaneamente.",
-          "- **Condicional e Bicondicional:** A condicional (p → q) é falsa exclusivamente quando V → F.",
-          "- **Equivalências Lógicas:** A contrapositiva estabelece (p → q ≡ ~q → ~p).",
-          "Leis de De Morgan: ~(p ∧ q) ≡ (~p ∨ ~q) e ~(p ∨ q) ≡ (~p ∧ ~q). Tautologias e Contingências: Proposições compostas cujo valor lógico é sempre verdadeiro são tautologias. Diagramas Lógicos: Proposições com quantificadores ('todo', 'algum', 'nenhum') são resolvidas por diagramas de Euler-Venn para avaliar a validade categórica.",
-          "### 2. Métodos de Resolução e Classificações",
-          "- o Princípio do Terceiro Excluído assegura que só há dois valores lógicos.",
-          "- disjunção inclusiva (∨) exige pelo menos uma verdadeira.",
-          "- disjunção exclusiva (⊻) requer valores distintos.",
-          "- a bicondicional (p ↔ q) é verdadeira se ambas possuírem o mesmo valor lógico.",
-          "- A condicional também equivale à disjunção (~p ∨ q).",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> ⚠️ **Atenção de Prova:** Conectivos Lógicos: Conjunção (∧) é verdadeira apenas com todas verdadeiras."
+          "**Princípio aditivo**: eventos mutuamente exclusivos somam as possibilidades.",
+          "**Regra e/ou**: eventos concomitantes multiplicam, eventos alternativos somam.",
+          "**Exemplo combinado**: vestido ou saia e blusa, e depois sapato, dá 5 vezes (4 mais 2 vezes 3), ou seja, 50.",
+          "**Casa dos pombos**: com mais elementos que casas, alguma casa tem mais de um elemento.",
+          "**Pior cenário**: para garantir k elementos em m casas, são necessários (k menos 1) vezes m, mais 1.",
+          "**Aniversários**: 13 pessoas garantem duas no mesmo mês.",
+          "**Mata-mata**: com N jogadores há N menos 1 jogos, pois cada jogo elimina um.",
+          "**Fatorial**: n fatorial é o produto dos inteiros de n até 1.",
+          "**Fatorial especial**: 0 fatorial e 1 fatorial valem 1.",
+          "**Ordem das operações**: mudar parênteses muda o fatorial, como em (2 mais 4) fatorial igual a 720."
         ],
         "teoria": [
           {
-            "statement": "Princípio Aditivo (Estrutura e Lógica): O estudo formal de Princípio Aditivo investiga a validade dos argumentos e a consistência das proposições declarativas.",
+            "statement": "Se há 3 caminhos A e 4 caminhos B, e o trajeto usa A ou B (excludentes), o número de trajetos é 7.",
             "isTrue": true,
-            "explanation": "Item correto. Em conformidade com a doutrina e o conteúdo de Princípio Aditivo: Princípio Aditivo (Estrutura e Lógica): O estudo formal de Princípio Aditivo investiga a validade dos argumentos e a consistência das proposições declarativas."
+            "explanation": "Princípio aditivo."
           },
           {
-            "statement": "Em relação a Diretrizes Gerais no âmbito de raciocinio-logico/a06/s02, admite-se o descarte arbitrário dos critérios normativos sem qualquer amparo legal.",
+            "statement": "Em um torneio de eliminação simples com 16 jogadores, o número de jogos é 15 + 1.",
             "isTrue": false,
-            "explanation": "Os critérios normativos de Diretrizes Gerais em raciocinio-logico/a06/s02 são vinculantes e de observância obrigatória."
+            "explanation": "São 16 − 1 = 15."
           },
           {
-            "statement": "A análise integrada das premissas de Fundamentos Teóricos em raciocinio-logico/a06/s02 assegura a coerência lógica entre os fundamentos e os resultados obtidos.",
+            "statement": "Para garantir 3 elementos da mesma categoria entre 5 categorias, são necessários 11 elementos.",
             "isTrue": true,
-            "explanation": "A correlação entre premissas e conclusões em Fundamentos Teóricos (raciocinio-logico/a06/s02) sustenta a solidez da matéria."
+            "explanation": "(3 − 1) × 5 + 1 = 11."
           },
           {
-            "statement": "Para a compreensão técnica de Fundamentos Teóricos em raciocinio-logico/a06/s02, considera-se inútil averiguar a conformidade com as diretrizes consolidadas.",
+            "statement": "O valor de 0! é 0.",
             "isTrue": false,
-            "explanation": "A averiguação da conformidade em Fundamentos Teóricos (raciocinio-logico/a06/s02) é basilar para a resolução de casos concretos."
+            "explanation": "0! = 1."
           }
         ],
         "revisao": [
           {
-            "statement": "Para fins de revisão de raciocinio-logico/a06/s02 (Diretrizes Gerais), a identificação precisa das exceções técnicas impede equívocos de interpretação.",
+            "statement": "Com 5 camisas e 3 jaquetas, escolher uma peça (camisa ou jaqueta) pode ser feito de 8 maneiras.",
             "isTrue": true,
-            "explanation": "Distinguir a regra geral de situações excepcionais em Diretrizes Gerais (raciocinio-logico/a06/s02) consolida o aprendizado."
+            "explanation": "5 + 3."
           },
           {
-            "statement": "Na fase de revisão do trecho raciocinio-logico/a06/s02 (Diretrizes Gerais), sustenta-se que a inversão dos princípios basilares não altera o resultado analítico.",
-            "isTrue": false,
-            "explanation": "Inverter os princípios basilares de Diretrizes Gerais em raciocinio-logico/a06/s02 invalida diretamente as conclusões."
-          },
-          {
-            "statement": "A consolidação sistemática dos tópicos de Fundamentos Teóricos em raciocinio-logico/a06/s02 prepara o candidato para responder com segurança à banca examinadora.",
+            "statement": "Com N participantes em eliminatória simples, são N − 1 jogos.",
             "isTrue": true,
-            "explanation": "O domínio estruturado sobre Fundamentos Teóricos (raciocinio-logico/a06/s02) atende diretamente às exigências da prova."
+            "explanation": "Cada jogo elimina um jogador."
           },
           {
-            "statement": "No estudo de Princípio Aditivo, é falso considerar que princípio Aditivo (Estrutura e Lógica): O estudo formal de Princípio Aditivo investiga a validade dos argumentos e a consistência das proposições declarativas.",
+            "statement": "O valor de (3 + 2)! é igual a 3! + 2!.",
             "isTrue": false,
-            "explanation": "Item incorreto. Na realidade, segundo os fundamentos de Princípio Aditivo: Princípio Aditivo (Estrutura e Lógica): O estudo formal de Princípio Aditivo investiga a validade dos argumentos e a consistência das proposições declarativas.."
+            "explanation": "(3+2)! = 120 e 3! + 2! = 8."
+          },
+          {
+            "statement": "Em um grupo de 13 pessoas, ao menos duas fazem aniversário no mesmo mês.",
+            "isTrue": true,
+            "explanation": "12 meses + 1."
           }
         ],
         "pointers": [
           {
-            "topic": "Conceitos Estruturantes (Foco 1)",
+            "topic": "Princípio aditivo e regra do e/ou",
             "pageRef": 10
           },
           {
-            "topic": "Diretrizes Gerais (Foco 2)",
+            "topic": "Exemplo combinado e questão do CREF",
+            "pageRef": 11
+          },
+          {
+            "topic": "Resolução do CREF e questão da FUB",
             "pageRef": 12
           },
           {
-            "topic": "Fundamentos Teóricos (Foco 3)",
+            "topic": "Princípio da casa dos pombos",
+            "pageRef": 13
+          },
+          {
+            "topic": "Pior cenário e aniversários",
             "pageRef": 14
           },
           {
-            "topic": "Aplicações Práticas (Foco 4)",
+            "topic": "Questões da FCC e da QUADRIX (sinuca)",
+            "pageRef": 15
+          },
+          {
+            "topic": "Contagem de jogos em torneios",
             "pageRef": 16
+          },
+          {
+            "topic": "Resolução do torneio e início do fatorial",
+            "pageRef": 17
+          },
+          {
+            "topic": "Fatorial e desdobramento",
+            "pageRef": 18
+          },
+          {
+            "topic": "Cuidados com parênteses e casos especiais",
+            "pageRef": 19
+          },
+          {
+            "topic": "Justificativa de 0! e 1! e questão da CONSULTEC",
+            "pageRef": 20
+          },
+          {
+            "topic": "Questão da CETREDE",
+            "pageRef": 21
           }
         ]
       }
@@ -173,81 +209,101 @@
       "id": "raciocinio-logico/a06/s03",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- Permutação Simples (Estrutura e Lógica): O estudo formal de Permutação Simples investiga a validade dos argumentos e a consistência das proposições declarativas.",
-          "- **Princípios Lógicos:** O Princípio da Não-Contradição estabelece que uma proposição não pode ser V e F simultaneamente.",
-          "- **Condicional e Bicondicional:** A condicional (p → q) é falsa exclusivamente quando V → F.",
-          "- **Equivalências Lógicas:** A contrapositiva estabelece (p → q ≡ ~q → ~p).",
-          "Leis de De Morgan: ~(p ∧ q) ≡ (~p ∨ ~q) e ~(p ∨ q) ≡ (~p ∧ ~q). Tautologias e Contingências: Proposições compostas cujo valor lógico é sempre verdadeiro são tautologias. Diagramas Lógicos: Proposições com quantificadores ('todo', 'algum', 'nenhum') são resolvidas por diagramas de Euler-Venn para avaliar a validade categórica.",
-          "### 2. Métodos de Resolução e Classificações",
-          "- o Princípio do Terceiro Excluído assegura que só há dois valores lógicos.",
-          "- disjunção inclusiva (∨) exige pelo menos uma verdadeira.",
-          "- disjunção exclusiva (⊻) requer valores distintos.",
-          "- a bicondicional (p ↔ q) é verdadeira se ambas possuírem o mesmo valor lógico.",
-          "- A condicional também equivale à disjunção (~p ∨ q).",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> ⚠️ **Atenção de Prova:** Conectivos Lógicos: Conjunção (∧) é verdadeira apenas com todas verdadeiras."
+          "**Permutação simples**: número de maneiras de ordenar n elementos distintos, igual a n fatorial.",
+          "**Aplicações**: filas, anagramas sem repetição e números com algarismos diferentes.",
+          "**Elementos fixos**: se p elementos já têm posição, permutam-se n menos p elementos.",
+          "**Posições reservadas**: p elementos em p posições, em qualquer ordem, dão (n menos p) fatorial vezes p fatorial.",
+          "**Alternância**: com 5 meninas e 4 meninos, a fila começa por menina, e o total é 5 fatorial vezes 4 fatorial.",
+          "**Elementos juntos em ordem fixa**: tratam-se como bloco único e permutam-se n menos j mais 1 elementos.",
+          "**Juntos em qualquer ordem**: multiplica-se ainda por j fatorial.",
+          "**Exemplo**: três algarismos juntos entre oito dão 6 fatorial vezes 3 fatorial, ou 4.320.",
+          "**Animais da fila**: três animais nas primeiras posições dão 3 fatorial vezes 7 fatorial.",
+          "**Números com 1 e 2 juntos**: com cinco algarismos distintos, são 4 fatorial vezes 2, ou seja, 48."
         ],
         "teoria": [
           {
-            "statement": "Permutação Simples (Estrutura e Lógica): O estudo formal de Permutação Simples investiga a validade dos argumentos e a consistência das proposições declarativas.",
+            "statement": "O número de maneiras de ordenar 6 pessoas distintas em fila é 6!.",
             "isTrue": true,
-            "explanation": "Item correto. Em conformidade com a doutrina e o conteúdo de Permutação Simples: Permutação Simples (Estrutura e Lógica): O estudo formal de Permutação Simples investiga a validade dos argumentos e a consistência das proposições declarativas."
+            "explanation": "Permutação simples."
           },
           {
-            "statement": "Em relação a Fundamentos Teóricos no âmbito de raciocinio-logico/a06/s03, admite-se o descarte arbitrário dos critérios normativos sem qualquer amparo legal.",
+            "statement": "Se 2 elementos de 7 já têm posições fixas, restam 7! maneiras de ordenar o conjunto.",
             "isTrue": false,
-            "explanation": "Os critérios normativos de Fundamentos Teóricos em raciocinio-logico/a06/s03 são vinculantes e de observância obrigatória."
+            "explanation": "Restam (7−2)! = 5!."
           },
           {
-            "statement": "A análise integrada das premissas de Aplicações Práticas em raciocinio-logico/a06/s03 assegura a coerência lógica entre os fundamentos e os resultados obtidos.",
+            "statement": "Se 3 de 9 elementos devem ficar juntos em qualquer ordem, o total é 7! × 3!.",
             "isTrue": true,
-            "explanation": "A correlação entre premissas e conclusões em Aplicações Práticas (raciocinio-logico/a06/s03) sustenta a solidez da matéria."
+            "explanation": "(9−3+1)! × 3!."
           },
           {
-            "statement": "Para a compreensão técnica de Aplicações Práticas em raciocinio-logico/a06/s03, considera-se inútil averiguar a conformidade com as diretrizes consolidadas.",
+            "statement": "Em uma fila de 5 meninas e 4 meninos alternados, a fila pode começar por menino.",
             "isTrue": false,
-            "explanation": "A averiguação da conformidade em Aplicações Práticas (raciocinio-logico/a06/s03) é basilar para a resolução de casos concretos."
+            "explanation": "Com 5 e 4, começa e termina com menina."
           }
         ],
         "revisao": [
           {
-            "statement": "Para fins de revisão de raciocinio-logico/a06/s03 (Fundamentos Teóricos), a identificação precisa das exceções técnicas impede equívocos de interpretação.",
+            "statement": "O número de anagramas da palavra CAMA, considerando as letras distintas, é 4!.",
             "isTrue": true,
-            "explanation": "Distinguir a regra geral de situações excepcionais em Fundamentos Teóricos (raciocinio-logico/a06/s03) consolida o aprendizado."
+            "explanation": "Permutação simples."
           },
           {
-            "statement": "Na fase de revisão do trecho raciocinio-logico/a06/s03 (Fundamentos Teóricos), sustenta-se que a inversão dos princípios basilares não altera o resultado analítico.",
+            "statement": "Dois elementos juntos em ordem fixa, entre n elementos, geram (n − 2)! permutações.",
             "isTrue": false,
-            "explanation": "Inverter os princípios basilares de Fundamentos Teóricos em raciocinio-logico/a06/s03 invalida diretamente as conclusões."
+            "explanation": "São (n−2+1)! = (n−1)!."
           },
           {
-            "statement": "A consolidação sistemática dos tópicos de Aplicações Práticas em raciocinio-logico/a06/s03 prepara o candidato para responder com segurança à banca examinadora.",
+            "statement": "Os algarismos 1, 2 e 3 nas três primeiras posições de um número de 8 algarismos distintos, em qualquer ordem, resultam em 3! × 5!.",
             "isTrue": true,
-            "explanation": "O domínio estruturado sobre Aplicações Práticas (raciocinio-logico/a06/s03) atende diretamente às exigências da prova."
+            "explanation": "Posições reservadas."
           },
           {
-            "statement": "No estudo de Permutação Simples, é falso considerar que permutação Simples (Estrutura e Lógica): O estudo formal de Permutação Simples investiga a validade dos argumentos e a consistência das proposições declarativas.",
-            "isTrue": false,
-            "explanation": "Item incorreto. Na realidade, segundo os fundamentos de Permutação Simples: Permutação Simples (Estrutura e Lógica): O estudo formal de Permutação Simples investiga a validade dos argumentos e a consistência das proposições declarativas.."
+            "statement": "Com 10 elementos, 3 deles ocupando as pontas e o centro específicos, os outros 7 permutam em 7!.",
+            "isTrue": true,
+            "explanation": "Elementos fixos."
           }
         ],
         "pointers": [
           {
-            "topic": "Conceitos Estruturantes (Foco 1)",
+            "topic": "Permutação e permutação simples",
             "pageRef": 22
           },
           {
-            "topic": "Diretrizes Gerais (Foco 2)",
+            "topic": "Raciocínio multiplicativo da permutação",
+            "pageRef": 23
+          },
+          {
+            "topic": "Fórmula Pn = n! e questão da FGV",
             "pageRef": 24
           },
           {
-            "topic": "Fundamentos Teóricos (Foco 3)",
+            "topic": "Questões da Merkabah e permutação com restrição",
+            "pageRef": 25
+          },
+          {
+            "topic": "Posições fixas e extremos",
             "pageRef": 26
           },
           {
-            "topic": "Aplicações Práticas (Foco 4)",
+            "topic": "Grupos em posições reservadas e questão da FCC",
+            "pageRef": 27
+          },
+          {
+            "topic": "Questão do BNB e início da QUADRIX (alternância)",
             "pageRef": 28
+          },
+          {
+            "topic": "Alternância e elementos juntos",
+            "pageRef": 29
+          },
+          {
+            "topic": "Elementos juntos em qualquer ordem e quadro-resumo",
+            "pageRef": 30
+          },
+          {
+            "topic": "Quadro de elementos juntos e questões do BNB",
+            "pageRef": 31
           }
         ]
       }
@@ -256,81 +312,101 @@
       "id": "raciocinio-logico/a06/s04",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- Permutação com Repetição (Estrutura e Lógica): O estudo formal de Permutação com Repetição investiga a validade dos argumentos e a consistência das proposições declarativas.",
-          "- **Princípios Lógicos:** O Princípio da Não-Contradição estabelece que uma proposição não pode ser V e F simultaneamente.",
-          "- **Condicional e Bicondicional:** A condicional (p → q) é falsa exclusivamente quando V → F.",
-          "- **Equivalências Lógicas:** A contrapositiva estabelece (p → q ≡ ~q → ~p).",
-          "Leis de De Morgan: ~(p ∧ q) ≡ (~p ∨ ~q) e ~(p ∨ q) ≡ (~p ∧ ~q). Tautologias e Contingências: Proposições compostas cujo valor lógico é sempre verdadeiro são tautologias. Diagramas Lógicos: Proposições com quantificadores ('todo', 'algum', 'nenhum') são resolvidas por diagramas de Euler-Venn para avaliar a validade categórica.",
-          "### 2. Métodos de Resolução e Classificações",
-          "- o Princípio do Terceiro Excluído assegura que só há dois valores lógicos.",
-          "- disjunção inclusiva (∨) exige pelo menos uma verdadeira.",
-          "- disjunção exclusiva (⊻) requer valores distintos.",
-          "- a bicondicional (p ↔ q) é verdadeira se ambas possuírem o mesmo valor lógico.",
-          "- A condicional também equivale à disjunção (~p ∨ q).",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> ⚠️ **Atenção de Prova:** Conectivos Lógicos: Conjunção (∧) é verdadeira apenas com todas verdadeiras."
+          "**Permutação com repetição**: divide-se n fatorial pelo fatorial de cada grupo de elementos iguais.",
+          "**Anagramas de CASA**: com duas letras A, são 4 fatorial divididos por 2 fatorial, ou seja, 12.",
+          "**AUDITOR e GEÓLOGO**: o primeiro tem 5.040 anagramas e o segundo 420, com diferença de 4.620.",
+          "**Permutação circular**: fixa-se um elemento e permutam-se os demais, resultando em n menos 1 fatorial.",
+          "**Circular com alternância**: sentam-se primeiro os de um grupo em círculo e depois os do outro em lugares distintos.",
+          "**Exemplo circular**: quatro meninos e quatro meninas alternados dão 6 vezes 24, ou seja, 144.",
+          "**Cinco amigos e cinco carnes**: dão 24 vezes 120, ou 2.880, que não passa de 3.000.",
+          "**Elementos ordenados**: n fatorial dividido por k fatorial, em que k elementos seguem uma ordem.",
+          "**Dois grupos ordenados**: dividem-se os dois fatoriais, como em 5 fatorial sobre 3 fatorial vezes 2 fatorial.",
+          "**Diferença da junção**: ordenados não precisam ficar consecutivos; consecutivos formam um bloco."
         ],
         "teoria": [
           {
-            "statement": "Permutação com Repetição (Estrutura e Lógica): O estudo formal de Permutação com Repetição investiga a validade dos argumentos e a consistência das proposições declarativas.",
+            "statement": "O número de anagramas da palavra BOLA, em que as quatro letras são distintas, é 24.",
             "isTrue": true,
-            "explanation": "Item correto. Em conformidade com a doutrina e o conteúdo de Permutação com Repetição: Permutação com Repetição (Estrutura e Lógica): O estudo formal de Permutação com Repetição investiga a validade dos argumentos e a consistência das proposições declarativas."
+            "explanation": "Permutação simples de 4."
           },
           {
-            "statement": "Em relação a Aplicações Práticas no âmbito de raciocinio-logico/a06/s04, admite-se o descarte arbitrário dos critérios normativos sem qualquer amparo legal.",
+            "statement": "O número de anagramas de ARARA é 5!.",
             "isTrue": false,
-            "explanation": "Os critérios normativos de Aplicações Práticas em raciocinio-logico/a06/s04 são vinculantes e de observância obrigatória."
+            "explanation": "Há A três vezes e R duas: 5!/(3!·2!) = 10."
           },
           {
-            "statement": "Leis de De Morgan: ~(p ∧ q) ≡ (~p ∨ ~q) e ~(p ∨ q) ≡ (~p ∧ ~q). Tautologias e Contingências: Proposições compostas cujo valor lógico é sempre verdadeiro são tautologias. Diagramas Lógicos: Proposições com quantificadores ('todo', 'algum', 'nenhum') são resolvidas por diagramas de Euler-Venn para avaliar a validade categórica.",
+            "statement": "Em uma mesa circular com 6 pessoas, o número de maneiras de sentá-las é 5!.",
             "isTrue": true,
-            "explanation": "Item correto. Em conformidade com a doutrina e o conteúdo de Permutação com Repetição: Leis de De Morgan: ~(p ∧ q) ≡ (~p ∨ ~q) e ~(p ∨ q) ≡ (~p ∧ ~q). Tautologias e Contingências: Proposições compostas cujo valor lógico é sempre verdadeiro são tautologias. Diagramas Lógicos: Proposições com quantificadores ('todo', 'algum', 'nenhum') são resolvidas por diagramas de Euler-Venn para avaliar a validade categórica."
+            "explanation": "PC6 = (6−1)!."
           },
           {
-            "statement": "disjunção inclusiva (∨) dispensa pelo menos uma verdadeira.",
+            "statement": "Se k elementos devem seguir uma ordem definida, o número de permutações é n! multiplicado por k!.",
             "isTrue": false,
-            "explanation": "Item incorreto. Na realidade, segundo os fundamentos de Permutação com Repetição: disjunção inclusiva (∨) exige pelo menos uma verdadeira."
+            "explanation": "É n! dividido por k!."
           }
         ],
         "revisao": [
           {
-            "statement": "Para fins de revisão de raciocinio-logico/a06/s04 (Aplicações Práticas), a identificação precisa das exceções técnicas impede equívocos de interpretação.",
+            "statement": "O número de anagramas de MAMA é 6.",
             "isTrue": true,
-            "explanation": "Distinguir a regra geral de situações excepcionais em Aplicações Práticas (raciocinio-logico/a06/s04) consolida o aprendizado."
+            "explanation": "4!/(2!·2!)."
           },
           {
-            "statement": "Na fase de revisão do trecho raciocinio-logico/a06/s04 (Aplicações Práticas), sustenta-se que a inversão dos princípios basilares não altera o resultado analítico.",
+            "statement": "Girar uma mesa circular em 90 graus produz uma disposição diferente das pessoas.",
             "isTrue": false,
-            "explanation": "Inverter os princípios basilares de Aplicações Práticas em raciocinio-logico/a06/s04 invalida diretamente as conclusões."
+            "explanation": "A disposição relativa não muda."
           },
           {
-            "statement": "o Princípio do Terceiro Excluído assegura que só há dois valores lógicos.",
+            "statement": "Para 4 meninos e 4 meninas alternados numa mesa circular, o total é 3! × 4!.",
             "isTrue": true,
-            "explanation": "Item correto. Em conformidade com a doutrina e o conteúdo de Permutação com Repetição: o Princípio do Terceiro Excluído assegura que só há dois valores lógicos."
+            "explanation": "Sentam-se os meninos em círculo e depois as meninas."
           },
           {
-            "statement": "disjunção exclusiva (⊻) independe de valores distintos.",
-            "isTrue": false,
-            "explanation": "Item incorreto. Na realidade, segundo os fundamentos de Permutação com Repetição: disjunção exclusiva (⊻) requer valores distintos."
+            "statement": "Dos 24 modos de ordenar 4 elementos, exatamente metade tem um certo par A, B na ordem A antes de B.",
+            "isTrue": true,
+            "explanation": "Em cada ordenação, A fica antes de B ou depois."
           }
         ],
         "pointers": [
           {
-            "topic": "Conceitos Estruturantes (Foco 1)",
+            "topic": "Fim da questão do BNB e permutação com repetição",
             "pageRef": 32
           },
           {
-            "topic": "Diretrizes Gerais (Foco 2)",
+            "topic": "Fórmula da permutação com repetição e questão da UNEB",
+            "pageRef": 33
+          },
+          {
+            "topic": "Resolução da UNEB e questão da FUNDATEC",
             "pageRef": 34
           },
           {
-            "topic": "Fundamentos Teóricos (Foco 3)",
+            "topic": "Permutação circular",
+            "pageRef": 35
+          },
+          {
+            "topic": "Fórmula circular e restrições",
             "pageRef": 36
           },
           {
-            "topic": "Aplicações Práticas (Foco 4)",
+            "topic": "Alternância à mesa e questão de Ibiaçá",
+            "pageRef": 37
+          },
+          {
+            "topic": "Questão do Codhab",
             "pageRef": 38
+          },
+          {
+            "topic": "Resolução do Codhab",
+            "pageRef": 39
+          },
+          {
+            "topic": "Outros tipos de permutação e elementos ordenados",
+            "pageRef": 40
+          },
+          {
+            "topic": "Fórmula n!/k! e dois grupos ordenados",
+            "pageRef": 41
           }
         ]
       }
@@ -339,81 +415,101 @@
       "id": "raciocinio-logico/a06/s05",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- Permutação Caótica ou Desarranjo (Estrutura e Lógica): O estudo formal de Permutação Caótica ou Desarranjo investiga a validade dos argumentos e a consistência das proposições declarativas.",
-          "- **Princípios Lógicos:** O Princípio da Não-Contradição estabelece que uma proposição não pode ser V e F simultaneamente.",
-          "- **Condicional e Bicondicional:** A condicional (p → q) é falsa exclusivamente quando V → F.",
-          "- **Equivalências Lógicas:** A contrapositiva estabelece (p → q ≡ ~q → ~p).",
-          "Leis de De Morgan: ~(p ∧ q) ≡ (~p ∨ ~q) e ~(p ∨ q) ≡ (~p ∧ ~q). Tautologias e Contingências: Proposições compostas cujo valor lógico é sempre verdadeiro são tautologias. Diagramas Lógicos: Proposições com quantificadores ('todo', 'algum', 'nenhum') são resolvidas por diagramas de Euler-Venn para avaliar a validade categórica.",
-          "### 2. Métodos de Resolução e Classificações",
-          "- o Princípio do Terceiro Excluído assegura que só há dois valores lógicos.",
-          "- disjunção inclusiva (∨) exige pelo menos uma verdadeira.",
-          "- disjunção exclusiva (⊻) requer valores distintos.",
-          "- a bicondicional (p ↔ q) é verdadeira se ambas possuírem o mesmo valor lógico.",
-          "- A condicional também equivale à disjunção (~p ∨ q).",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> ⚠️ **Atenção de Prova:** Conectivos Lógicos: Conjunção (∧) é verdadeira apenas com todas verdadeiras."
+          "**Corredores em ordem**: com 5 corredores e A antes de B antes de C, são 5 fatorial sobre 3 fatorial, ou seja, 20.",
+          "**Desarranjo**: reordenação em que nenhum elemento volta à posição original.",
+          "**Valores de desarranjo**: D2 é 1, D3 é 2, D4 é 9 e D5 é 44.",
+          "**Arranjo sem reposição**: A de n,k é n fatorial dividido por (n menos k) fatorial, e a ordem importa.",
+          "**Arranjo com reposição**: n elevado a k.",
+          "**Senha mista**: duas letras distintas e quatro dígitos livres dão 26 vezes 25 vezes 10 mil.",
+          "**Combinação**: n fatorial dividido por (n menos k) fatorial vezes k fatorial, sem ordem.",
+          "**Escolher grupo**: grupo de três alunos entre sete é combinação, 35, e não o arranjo.",
+          "**Pelo menos um**: subtrai-se do total o caso em que não há nenhum do tipo pedido.",
+          "**Exemplo de pelo menos uma mulher**: 84 grupos no total menos 4 só de homens dão 80."
         ],
         "teoria": [
           {
-            "statement": "Permutação Caótica ou Desarranjo (Estrutura e Lógica): O estudo formal de Permutação Caótica ou Desarranjo investiga a validade dos argumentos e a consistência das proposições declarativas.",
+            "statement": "O número de desarranjos de 4 elementos é 9.",
             "isTrue": true,
-            "explanation": "Item correto. Em conformidade com a doutrina e o conteúdo de Permutação Caótica ou Desarranjo: Permutação Caótica ou Desarranjo (Estrutura e Lógica): O estudo formal de Permutação Caótica ou Desarranjo investiga a validade dos argumentos e a consistência das proposições declarativas."
+            "explanation": "D4 = 9."
           },
           {
-            "statement": "Condicional e Bicondicional: A condicional (p → q) não é falsa exclusivamente quando V → F.",
+            "statement": "Em um arranjo, a ordem dos elementos selecionados é irrelevante.",
             "isTrue": false,
-            "explanation": "Item incorreto. Na realidade, segundo os fundamentos de Permutação Caótica ou Desarranjo: Condicional e Bicondicional: A condicional (p → q) é falsa exclusivamente quando V → F."
+            "explanation": "Em combinação a ordem é irrelevante."
           },
           {
-            "statement": "A análise integrada das premissas de Diretrizes Gerais em raciocinio-logico/a06/s05 assegura a coerência lógica entre os fundamentos e os resultados obtidos.",
+            "statement": "A combinação de 6 elementos tomados 2 a 2 vale 15.",
             "isTrue": true,
-            "explanation": "A correlação entre premissas e conclusões em Diretrizes Gerais (raciocinio-logico/a06/s05) sustenta a solidez da matéria."
+            "explanation": "6·5/2."
           },
           {
-            "statement": "Para a compreensão técnica de Diretrizes Gerais em raciocinio-logico/a06/s05, considera-se inútil averiguar a conformidade com as diretrizes consolidadas.",
+            "statement": "A quantidade de senhas de 3 dígitos com repetição escolhidos entre 10 algarismos é 10 × 9 × 8.",
             "isTrue": false,
-            "explanation": "A averiguação da conformidade em Diretrizes Gerais (raciocinio-logico/a06/s05) é basilar para a resolução de casos concretos."
+            "explanation": "Com repetição são 10³."
           }
         ],
         "revisao": [
           {
-            "statement": "Princípios Lógicos: O Princípio da Não-Contradição estabelece que uma proposição não pode ser V e F simultaneamente.",
+            "statement": "A quantidade de comissões de 3 pessoas escolhidas entre 7 é C7,3 = 35.",
             "isTrue": true,
-            "explanation": "Item correto. Em conformidade com a doutrina e o conteúdo de Permutação Caótica ou Desarranjo: Princípios Lógicos: O Princípio da Não-Contradição estabelece que uma proposição não pode ser V e F simultaneamente."
+            "explanation": "Ordem irrelevante."
           },
           {
-            "statement": "É incorreto afirmar que equivalências Lógicas: A contrapositiva estabelece (p → q ≡ ~q → ~p), uma vez que tal postulado carece de amparo técnico.",
+            "statement": "A quantidade de maneiras de escolher presidente, vice e secretário entre 7 pessoas é C7,3.",
             "isTrue": false,
-            "explanation": "Item incorreto. Na realidade, segundo os fundamentos de Permutação Caótica ou Desarranjo: Equivalências Lógicas: A contrapositiva estabelece (p → q ≡ ~q → ~p)."
+            "explanation": "É A7,3 = 7·6·5, pois os cargos são distintos."
           },
           {
-            "statement": "A consolidação sistemática dos tópicos de Diretrizes Gerais em raciocinio-logico/a06/s05 prepara o candidato para responder com segurança à banca examinadora.",
+            "statement": "Para contar grupos de 3 com pelo menos 1 mulher entre 5 mulheres e 4 homens, subtrai-se do total os grupos só de homens.",
             "isTrue": true,
-            "explanation": "O domínio estruturado sobre Diretrizes Gerais (raciocinio-logico/a06/s05) atende diretamente às exigências da prova."
+            "explanation": "84 − 4 = 80."
           },
           {
-            "statement": "No estudo de Permutação Caótica ou Desarranjo, é falso considerar que permutação Caótica ou Desarranjo (Estrutura e Lógica): O estudo formal de Permutação Caótica ou Desarranjo investiga a validade dos argumentos e a consistência das proposições declarativas.",
-            "isTrue": false,
-            "explanation": "Item incorreto. Na realidade, segundo os fundamentos de Permutação Caótica ou Desarranjo: Permutação Caótica ou Desarranjo (Estrutura e Lógica): O estudo formal de Permutação Caótica ou Desarranjo investiga a validade dos argumentos e a consistência das proposições declarativas.."
+            "statement": "Em um sorteio com reposição de 3 bolas entre 6, o total é 6³.",
+            "isTrue": true,
+            "explanation": "Cada sorteio mantém 6 possibilidades."
           }
         ],
         "pointers": [
           {
-            "topic": "Conceitos Estruturantes (Foco 1)",
+            "topic": "Fim dos elementos ordenados e permutação caótica",
             "pageRef": 42
           },
           {
-            "topic": "Diretrizes Gerais (Foco 2)",
+            "topic": "Fórmula do desarranjo",
+            "pageRef": 43
+          },
+          {
+            "topic": "Questão do TRE-GO",
             "pageRef": 44
           },
           {
-            "topic": "Fundamentos Teóricos (Foco 3)",
+            "topic": "Desarranjo de ordem 4 e questão da FCC (Recife)",
+            "pageRef": 45
+          },
+          {
+            "topic": "Arranjo simples",
             "pageRef": 46
           },
           {
-            "topic": "Aplicações Práticas (Foco 4)",
+            "topic": "Fórmula do arranjo sem reposição",
+            "pageRef": 47
+          },
+          {
+            "topic": "Arranjo com reposição e questão da FUNDATEC",
             "pageRef": 48
+          },
+          {
+            "topic": "Questão da senha e combinação",
+            "pageRef": 49
+          },
+          {
+            "topic": "Fórmula da combinação e questão da FGV",
+            "pageRef": 50
+          },
+          {
+            "topic": "Questão do CEBRASPE e pelo menos um",
+            "pageRef": 51
           }
         ]
       }
@@ -422,81 +518,97 @@
       "id": "raciocinio-logico/a06/s06",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- Casos Particulares de Combinação (Estrutura e Lógica): O estudo formal de Casos Particulares de Combinação investiga a validade dos argumentos e a consistência das proposições declarativas.",
-          "- **Princípios Lógicos:** O Princípio da Não-Contradição estabelece que uma proposição não pode ser V e F simultaneamente.",
-          "- **Condicional e Bicondicional:** A condicional (p → q) é falsa exclusivamente quando V → F.",
-          "- **Equivalências Lógicas:** A contrapositiva estabelece (p → q ≡ ~q → ~p).",
-          "Leis de De Morgan: ~(p ∧ q) ≡ (~p ∨ ~q) e ~(p ∨ q) ≡ (~p ∧ ~q). Tautologias e Contingências: Proposições compostas cujo valor lógico é sempre verdadeiro são tautologias. Diagramas Lógicos: Proposições com quantificadores ('todo', 'algum', 'nenhum') são resolvidas por diagramas de Euler-Venn para avaliar a validade categórica.",
-          "### 2. Métodos de Resolução e Classificações",
-          "- o Princípio do Terceiro Excluído assegura que só há dois valores lógicos.",
-          "- disjunção inclusiva (∨) exige pelo menos uma verdadeira.",
-          "- disjunção exclusiva (⊻) requer valores distintos.",
-          "- a bicondicional (p ↔ q) é verdadeira se ambas possuírem o mesmo valor lógico.",
-          "- A condicional também equivale à disjunção (~p ∨ q).",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> ⚠️ **Atenção de Prova:** Conectivos Lógicos: Conjunção (∧) é verdadeira apenas com todas verdadeiras."
+          "**Pelo menos um menino**: o total de trios menos os trios só de meninas dá 74.",
+          "**Casos particulares**: escolher todos ou nenhum dá 1; escolher um dá n.",
+          "**Simetria**: escolher k elementos é o mesmo que escolher os n menos k que ficam de fora.",
+          "**Soma da linha**: as combinações de n elementos somam 2 elevado a n.",
+          "**Stifel**: duas combinações consecutivas somam a combinação da linha seguinte.",
+          "**Triângulo de Pascal**: linha n e coluna k representam as combinações.",
+          "**Banda de música**: 15 vezes 2 vezes 4 vezes 3 resulta em 360.",
+          "**Pastas em caixas**: 2 elevado a 10 menos os dois casos com caixa vazia dá 1.022.",
+          "**Combinação completa**: escolher p objetos entre n tipos equivale à combinação de n menos 1 mais p tomados p a p.",
+          "**Mínimo por pessoa**: dá-se o mínimo a cada um e distribui-se o que sobra livremente."
         ],
         "teoria": [
           {
-            "statement": "Casos Particulares de Combinação (Estrutura e Lógica): O estudo formal de Casos Particulares de Combinação investiga a validade dos argumentos e a consistência das proposições declarativas.",
+            "statement": "O valor de C10,8 é igual ao de C10,2.",
             "isTrue": true,
-            "explanation": "Item correto. Em conformidade com a doutrina e o conteúdo de Casos Particulares de Combinação: Casos Particulares de Combinação (Estrutura e Lógica): O estudo formal de Casos Particulares de Combinação investiga a validade dos argumentos e a consistência das proposições declarativas."
+            "explanation": "Simetria: Cn,k = Cn,n−k."
           },
           {
-            "statement": "Em relação a Diretrizes Gerais no âmbito de raciocinio-logico/a06/s06, admite-se o descarte arbitrário dos critérios normativos sem qualquer amparo legal.",
+            "statement": "A soma de todas as combinações de n elementos, de 0 a n, vale n².",
             "isTrue": false,
-            "explanation": "Os critérios normativos de Diretrizes Gerais em raciocinio-logico/a06/s06 são vinculantes e de observância obrigatória."
+            "explanation": "Vale 2ⁿ."
           },
           {
-            "statement": "A análise integrada das premissas de Fundamentos Teóricos em raciocinio-logico/a06/s06 assegura a coerência lógica entre os fundamentos e os resultados obtidos.",
+            "statement": "Para distribuir p objetos iguais entre n pessoas sem restrição, usa-se a combinação C(n − 1 + p, p).",
             "isTrue": true,
-            "explanation": "A correlação entre premissas e conclusões em Fundamentos Teóricos (raciocinio-logico/a06/s06) sustenta a solidez da matéria."
+            "explanation": "Combinação completa."
           },
           {
-            "statement": "Para a compreensão técnica de Fundamentos Teóricos em raciocinio-logico/a06/s06, considera-se inútil averiguar a conformidade com as diretrizes consolidadas.",
+            "statement": "Escolher 5 elementos entre 5 pode ser feito de 5 maneiras.",
             "isTrue": false,
-            "explanation": "A averiguação da conformidade em Fundamentos Teóricos (raciocinio-logico/a06/s06) é basilar para a resolução de casos concretos."
+            "explanation": "Só 1."
           }
         ],
         "revisao": [
           {
-            "statement": "Para fins de revisão de raciocinio-logico/a06/s06 (Diretrizes Gerais), a identificação precisa das exceções técnicas impede equívocos de interpretação.",
+            "statement": "O número de subconjuntos de um conjunto de 6 elementos é 2⁶ = 64.",
             "isTrue": true,
-            "explanation": "Distinguir a regra geral de situações excepcionais em Diretrizes Gerais (raciocinio-logico/a06/s06) consolida o aprendizado."
+            "explanation": "Teorema das Linhas."
           },
           {
-            "statement": "Na fase de revisão do trecho raciocinio-logico/a06/s06 (Diretrizes Gerais), sustenta-se que a inversão dos princípios basilares não altera o resultado analítico.",
-            "isTrue": false,
-            "explanation": "Inverter os princípios basilares de Diretrizes Gerais em raciocinio-logico/a06/s06 invalida diretamente as conclusões."
-          },
-          {
-            "statement": "A consolidação sistemática dos tópicos de Fundamentos Teóricos em raciocinio-logico/a06/s06 prepara o candidato para responder com segurança à banca examinadora.",
+            "statement": "Dar 12 canetas iguais a 4 alunos, com ao menos 2 canetas cada, equivale a distribuir livremente 4 canetas entre os 4 alunos.",
             "isTrue": true,
-            "explanation": "O domínio estruturado sobre Fundamentos Teóricos (raciocinio-logico/a06/s06) atende diretamente às exigências da prova."
+            "explanation": "Distribui-se o mínimo (8) e sobram 4."
           },
           {
-            "statement": "No estudo de Casos Particulares de Combinação, é falso considerar que casos Particulares de Combinação (Estrutura e Lógica): O estudo formal de Casos Particulares de Combinação investiga a validade dos argumentos e a consistência das proposições declarativas.",
+            "statement": "Distribuir 5 objetos iguais entre 3 pessoas, sem restrições, pode ser feito de C(5,3) maneiras.",
             "isTrue": false,
-            "explanation": "Item incorreto. Na realidade, segundo os fundamentos de Casos Particulares de Combinação: Casos Particulares de Combinação (Estrutura e Lógica): O estudo formal de Casos Particulares de Combinação investiga a validade dos argumentos e a consistência das proposições declarativas.."
+            "explanation": "É C(7,5) = C(7,2) = 21."
+          },
+          {
+            "statement": "O número de maneiras de guardar 10 pastas diferentes em duas caixas, sem caixa vazia, é 2¹⁰ − 2.",
+            "isTrue": true,
+            "explanation": "1.024 − 2."
           }
         ],
         "pointers": [
           {
-            "topic": "Conceitos Estruturantes (Foco 1)",
+            "topic": "Fim do pelo menos um e casos particulares da combinação",
             "pageRef": 52
           },
           {
-            "topic": "Diretrizes Gerais (Foco 2)",
+            "topic": "Casos particulares e simetria",
+            "pageRef": 53
+          },
+          {
+            "topic": "Soma das combinações e triângulo de Pascal",
             "pageRef": 54
           },
           {
-            "topic": "Fundamentos Teóricos (Foco 3)",
+            "topic": "Stifel e teorema das colunas",
+            "pageRef": 55
+          },
+          {
+            "topic": "Tabela alternativa e questão da Consulplan",
             "pageRef": 56
           },
           {
-            "topic": "Aplicações Práticas (Foco 4)",
+            "topic": "Banda e questão da FCC",
+            "pageRef": 57
+          },
+          {
+            "topic": "Resolução da FCC e combinação completa",
             "pageRef": 58
+          },
+          {
+            "topic": "Divisórias e fórmula da combinação completa",
+            "pageRef": 59
+          },
+          {
+            "topic": "Questões da FUNDATEC e da FGV",
+            "pageRef": 60
           }
         ]
       }
@@ -505,81 +617,105 @@
       "id": "raciocinio-logico/a06/s07",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- Número de Soluções Inteiras (Estrutura e Lógica): O estudo formal de Número de Soluções Inteiras investiga a validade dos argumentos e a consistência das proposições declarativas.",
-          "- **Princípios Lógicos:** O Princípio da Não-Contradição estabelece que uma proposição não pode ser V e F simultaneamente.",
-          "- **Condicional e Bicondicional:** A condicional (p → q) é falsa exclusivamente quando V → F.",
-          "- **Equivalências Lógicas:** A contrapositiva estabelece (p → q ≡ ~q → ~p).",
-          "Leis de De Morgan: ~(p ∧ q) ≡ (~p ∨ ~q) e ~(p ∨ q) ≡ (~p ∧ ~q). Tautologias e Contingências: Proposições compostas cujo valor lógico é sempre verdadeiro são tautologias. Diagramas Lógicos: Proposições com quantificadores ('todo', 'algum', 'nenhum') são resolvidas por diagramas de Euler-Venn para avaliar a validade categórica.",
-          "### 2. Métodos de Resolução e Classificações",
-          "- o Princípio do Terceiro Excluído assegura que só há dois valores lógicos.",
-          "- disjunção inclusiva (∨) exige pelo menos uma verdadeira.",
-          "- disjunção exclusiva (⊻) requer valores distintos.",
-          "- a bicondicional (p ↔ q) é verdadeira se ambas possuírem o mesmo valor lógico.",
-          "- A condicional também equivale à disjunção (~p ∨ q).",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> ⚠️ **Atenção de Prova:** Conectivos Lógicos: Conjunção (∧) é verdadeira apenas com todas verdadeiras."
+          "**Equação linear**: o número de soluções inteiras não negativas de x1 até xn somando p é a combinação completa.",
+          "**Fórmula**: C de (n menos 1 mais p) tomados p a p.",
+          "**Positivos**: dá-se 1 a cada variável e distribui-se a sobra.",
+          "**Exemplo**: a mais b mais c mais d igual a 21, com não negativos, tem 2.024 soluções.",
+          "**Partição**: separa um conjunto em subconjuntos cuja soma dos elementos é o total.",
+          "**Partição ordenada**: grupos distintos, com n fatorial dividido pelo produto dos fatoriais dos tamanhos.",
+          "**Exemplo ordenado**: 7 projetos em grupos de 3, 2 e 2 dão 210.",
+          "**Partição não ordenada**: grupos iguais, e divide-se ainda pelo fatorial do número de grupos.",
+          "**Duplas**: seis pessoas em três duplas iguais dão 15, e dois grupos de cinco entre dez dão 126.",
+          "**Pergunta chave**: os grupos são distintos ou equivalentes?"
         ],
         "teoria": [
           {
-            "statement": "Número de Soluções Inteiras (Estrutura e Lógica): O estudo formal de Número de Soluções Inteiras investiga a validade dos argumentos e a consistência das proposições declarativas.",
+            "statement": "O número de soluções inteiras não negativas de x + y + z = 4 é C(6, 4) = 15.",
             "isTrue": true,
-            "explanation": "Item correto. Em conformidade com a doutrina e o conteúdo de Número de Soluções Inteiras de Equações: Número de Soluções Inteiras (Estrutura e Lógica): O estudo formal de Número de Soluções Inteiras investiga a validade dos argumentos e a consistência das proposições declarativas."
+            "explanation": "n = 3, p = 4: C(3 − 1 + 4, 4)."
           },
           {
-            "statement": "Em relação a Fundamentos Teóricos no âmbito de raciocinio-logico/a06/s07, admite-se o descarte arbitrário dos critérios normativos sem qualquer amparo legal.",
+            "statement": "A equação x + y = 5 tem infinitas soluções inteiras não negativas.",
             "isTrue": false,
-            "explanation": "Os critérios normativos de Fundamentos Teóricos em raciocinio-logico/a06/s07 são vinculantes e de observância obrigatória."
+            "explanation": "Tem 6 soluções."
           },
           {
-            "statement": "A análise integrada das premissas de Aplicações Práticas em raciocinio-logico/a06/s07 assegura a coerência lógica entre os fundamentos e os resultados obtidos.",
+            "statement": "Dividir 8 pessoas em um grupo de 3, um de 3 e um de 2 (grupos diferentes) dá 8!/(3! 3! 2!).",
             "isTrue": true,
-            "explanation": "A correlação entre premissas e conclusões em Aplicações Práticas (raciocinio-logico/a06/s07) sustenta a solidez da matéria."
+            "explanation": "Partição ordenada."
           },
           {
-            "statement": "Para a compreensão técnica de Aplicações Práticas em raciocinio-logico/a06/s07, considera-se inútil averiguar a conformidade com as diretrizes consolidadas.",
+            "statement": "Na partição não ordenada, a ordem entre os subconjuntos importa.",
             "isTrue": false,
-            "explanation": "A averiguação da conformidade em Aplicações Práticas (raciocinio-logico/a06/s07) é basilar para a resolução de casos concretos."
+            "explanation": "Importa só na ordenada."
           }
         ],
         "revisao": [
           {
-            "statement": "Para fins de revisão de raciocinio-logico/a06/s07 (Fundamentos Teóricos), a identificação precisa das exceções técnicas impede equívocos de interpretação.",
+            "statement": "Dividir 6 pessoas em 3 duplas iguais pode ser feito de 15 maneiras.",
             "isTrue": true,
-            "explanation": "Distinguir a regra geral de situações excepcionais em Fundamentos Teóricos (raciocinio-logico/a06/s07) consolida o aprendizado."
+            "explanation": "90/3!."
           },
           {
-            "statement": "Na fase de revisão do trecho raciocinio-logico/a06/s07 (Fundamentos Teóricos), sustenta-se que a inversão dos princípios basilares não altera o resultado analítico.",
+            "statement": "Dividir 4 pessoas em 2 duplas idênticas pode ser feito de 6 maneiras.",
             "isTrue": false,
-            "explanation": "Inverter os princípios basilares de Fundamentos Teóricos em raciocinio-logico/a06/s07 invalida diretamente as conclusões."
+            "explanation": "4!/(2!·2!·2!) = 3."
           },
           {
-            "statement": "A consolidação sistemática dos tópicos de Aplicações Práticas em raciocinio-logico/a06/s07 prepara o candidato para responder com segurança à banca examinadora.",
+            "statement": "Dividir 12 objetos em grupos de 5, 4 e 3 destinados a pessoas diferentes é uma partição ordenada.",
             "isTrue": true,
-            "explanation": "O domínio estruturado sobre Aplicações Práticas (raciocinio-logico/a06/s07) atende diretamente às exigências da prova."
+            "explanation": "Grupos distintos."
           },
           {
-            "statement": "No estudo de Número de Soluções Inteiras de Equações, é falso considerar que número de Soluções Inteiras (Estrutura e Lógica): O estudo formal de Número de Soluções Inteiras investiga a validade dos argumentos e a consistência das proposições declarativas.",
-            "isTrue": false,
-            "explanation": "Item incorreto. Na realidade, segundo os fundamentos de Número de Soluções Inteiras de Equações: Número de Soluções Inteiras (Estrutura e Lógica): O estudo formal de Número de Soluções Inteiras investiga a validade dos argumentos e a consistência das proposições declarativas.."
+            "statement": "Para x + y + z = 7 com x, y, z positivos, distribui-se 1 a cada variável e resolve-se para soma 4.",
+            "isTrue": true,
+            "explanation": "Reduz ao caso não negativo."
           }
         ],
         "pointers": [
           {
-            "topic": "Conceitos Estruturantes (Foco 1)",
+            "topic": "Fim da questão da Paulínia e equação das marcas",
             "pageRef": 61
           },
           {
-            "topic": "Diretrizes Gerais (Foco 2)",
+            "topic": "Combinação completa e número de soluções",
+            "pageRef": 62
+          },
+          {
+            "topic": "Soluções positivas e inteiras",
             "pageRef": 63
           },
           {
-            "topic": "Fundamentos Teóricos (Foco 3)",
+            "topic": "Questão da FUNVAPI",
+            "pageRef": 64
+          },
+          {
+            "topic": "Conceito de partição",
             "pageRef": 65
           },
           {
-            "topic": "Aplicações Práticas (Foco 4)",
+            "topic": "Partição ordenada: exemplo e fórmula",
+            "pageRef": 66
+          },
+          {
+            "topic": "Dedução da fórmula da partição ordenada",
             "pageRef": 67
+          },
+          {
+            "topic": "Questão da FCC (SEFAZ-PI) e SEFAZ-PE",
+            "pageRef": 68
+          },
+          {
+            "topic": "Resolução da SEFAZ-PE e partição não ordenada",
+            "pageRef": 69
+          },
+          {
+            "topic": "Partição não ordenada: duplas",
+            "pageRef": 70
+          },
+          {
+            "topic": "Questão de São José da Coroa Grande",
+            "pageRef": 71
           }
         ]
       }
@@ -588,83 +724,89 @@
       "id": "raciocinio-logico/a06/s08",
       "bizu": {
         "summary": [
-          "### 1. Definições, Fórmulas e Propriedades Centrais",
-          "- **Princípios Lógicos:** O Princípio da Não-Contradição estabelece que uma proposição não pode ser V e F simultaneamente.",
-          "- **Condicional e Bicondicional:** A condicional (p → q) é falsa exclusivamente quando V → F.",
-          "- **Equivalências Lógicas:** A contrapositiva estabelece (p → q ≡ ~q → ~p).",
-          "- **Leis de De Morgan:** ~(p ∧ q) ≡ (~p ∨ ~q) e ~(p ∨ q) ≡ (~p ∧ ~q).",
-          "Tautologias e Contingências: Proposições compostas cujo valor lógico é sempre verdadeiro são tautologias. Diagramas Lógicos: Proposições com quantificadores ('todo', 'algum', 'nenhum') são resolvidas por diagramas de Euler-Venn para avaliar a validade categórica.",
-          "### 2. Métodos de Resolução e Classificações",
-          "#### Sequência e Funcionamento:",
-          "1. Primeiro Lema de Kaplansky (Estrutura e Lógica): O estudo formal de Primeiro Lema de Kaplansky investiga a validade dos argumentos e a consistência das proposições declarativas.",
-          "- o Princípio do Terceiro Excluído assegura que só há dois valores lógicos.",
-          "- disjunção inclusiva (∨) exige pelo menos uma verdadeira.",
-          "- disjunção exclusiva (⊻) requer valores distintos.",
-          "- a bicondicional (p ↔ q) é verdadeira se ambas possuírem o mesmo valor lógico.",
-          "- A condicional também equivale à disjunção (~p ∨ q).",
-          "### 4. Pontos Críticos e Cuidados nos Cálculos",
-          "> ⚠️ **Atenção de Prova:** Conectivos Lógicos: Conjunção (∧) é verdadeira apenas com todas verdadeiras."
+          "**Kaplansky**: conta seleções de p elementos entre n em sequência sem dois escolhidos vizinhos.",
+          "**Primeiro lema**: os extremos não são vizinhos, como numa fila ou nos dias de segunda a sábado.",
+          "**Raciocínio dos espaços**: os n menos p não escolhidos geram n menos p mais 1 espaços para os escolhidos.",
+          "**Fórmula da fila**: f de n,p igual a C de (n menos p mais 1) tomados p a p.",
+          "**Exemplo da fila**: escolher 2 elementos não consecutivos entre 8 dá 21.",
+          "**Lâmpadas**: cinco lâmpadas sem duas adjacentes acesas dão 13 configurações.",
+          "**Segundo lema**: os extremos são vizinhos, como numa roda, nos dias da semana ou nas fatias de pizza.",
+          "**Fórmula da roda**: g de n,p igual a n sobre (n menos p) vezes C de (n menos p),p.",
+          "**Pizza**: 3 fatias não vizinhas entre 8 em círculo dão 16.",
+          "**Decomposição**: na roda, separe o caso em que o primeiro é escolhido e o caso em que não é."
         ],
         "teoria": [
           {
-            "statement": "Princípios Lógicos: O Princípio da Não-Contradição estabelece que uma proposição não pode ser V e F simultaneamente.",
+            "statement": "No primeiro lema de Kaplansky, os elementos extremos do conjunto original não são considerados vizinhos.",
             "isTrue": true,
-            "explanation": "Item correto. Em conformidade com a doutrina e o conteúdo de Primeiro Lema de Kaplansky: Princípios Lógicos: O Princípio da Não-Contradição estabelece que uma proposição não pode ser V e F simultaneamente."
+            "explanation": "Fila."
           },
           {
-            "statement": "Em relação a Aplicações Práticas no âmbito de raciocinio-logico/a06/s08, admite-se o descarte arbitrário dos critérios normativos sem qualquer amparo legal.",
+            "statement": "No segundo lema de Kaplansky, os extremos do conjunto original não são vizinhos.",
             "isTrue": false,
-            "explanation": "Os critérios normativos de Aplicações Práticas em raciocinio-logico/a06/s08 são vinculantes e de observância obrigatória."
+            "explanation": "São considerados vizinhos (círculo)."
           },
           {
-            "statement": "Tautologias e Contingências: Proposições compostas cujo valor lógico é sempre verdadeiro são tautologias. Diagramas Lógicos: Proposições com quantificadores ('todo', 'algum', 'nenhum') são resolvidas por diagramas de Euler-Venn para avaliar a validade categórica.",
+            "statement": "Escolher 2 elementos não consecutivos entre 8 em fila pode ser feito de 21 maneiras.",
             "isTrue": true,
-            "explanation": "Item correto. Em conformidade com a doutrina e o conteúdo de Primeiro Lema de Kaplansky: Tautologias e Contingências: Proposições compostas cujo valor lógico é sempre verdadeiro são tautologias. Diagramas Lógicos: Proposições com quantificadores ('todo', 'algum', 'nenhum') são resolvidas por diagramas de Euler-Venn para avaliar a validade categórica."
+            "explanation": "f(8,2) = C(7,2)."
           },
           {
-            "statement": "É incorreto afirmar que o Princípio do Terceiro Excluído assegura que só há dois valores lógicos, uma vez que tal postulado carece de amparo técnico.",
+            "statement": "O número de maneiras de escolher 3 fatias não vizinhas de uma pizza de 8 fatias é 20.",
             "isTrue": false,
-            "explanation": "Item incorreto. Na realidade, segundo os fundamentos de Primeiro Lema de Kaplansky: o Princípio do Terceiro Excluído assegura que só há dois valores lógicos."
+            "explanation": "Na pizza (roda) são 16."
           }
         ],
         "revisao": [
           {
-            "statement": "Para fins de revisão de raciocinio-logico/a06/s08 (Aplicações Práticas), a identificação precisa das exceções técnicas impede equívocos de interpretação.",
+            "statement": "Escolher 2 elementos não consecutivos entre 5 em fila dá 6 possibilidades.",
             "isTrue": true,
-            "explanation": "Distinguir a regra geral de situações excepcionais em Aplicações Práticas (raciocinio-logico/a06/s08) consolida o aprendizado."
+            "explanation": "f(5,2) = C(4,2)."
           },
           {
-            "statement": "Na fase de revisão do trecho raciocinio-logico/a06/s08 (Aplicações Práticas), sustenta-se que a inversão dos princípios basilares não altera o resultado analítico.",
+            "statement": "Para escolher 3 dias de segunda a sexta (5 dias), sem dias seguidos, há 5 maneiras.",
             "isTrue": false,
-            "explanation": "Inverter os princípios basilares de Aplicações Práticas em raciocinio-logico/a06/s08 invalida diretamente as conclusões."
+            "explanation": "f(5,3) = C(3,3) = 1 (segunda, quarta e sexta)."
           },
           {
-            "statement": "Primeiro Lema de Kaplansky (Estrutura e Lógica): O estudo formal de Primeiro Lema de Kaplansky investiga a validade dos argumentos e a consistência das proposições declarativas.",
+            "statement": "A fórmula do segundo lema de Kaplansky para n = 8 e p = 3 dá 16.",
             "isTrue": true,
-            "explanation": "Item correto. Em conformidade com a doutrina e o conteúdo de Primeiro Lema de Kaplansky: Primeiro Lema de Kaplansky (Estrutura e Lógica): O estudo formal de Primeiro Lema de Kaplansky investiga a validade dos argumentos e a consistência das proposições declarativas."
+            "explanation": "(8/5) × 10."
           },
           {
-            "statement": "disjunção inclusiva (∨) dispensa pelo menos uma verdadeira.",
-            "isTrue": false,
-            "explanation": "Item incorreto. Na realidade, segundo os fundamentos de Primeiro Lema de Kaplansky: disjunção inclusiva (∨) exige pelo menos uma verdadeira."
+            "statement": "Em uma sequência de 7 elementos em fila, escolher 3 elementos sem vizinhos tem C(5,3) = 10 possibilidades.",
+            "isTrue": true,
+            "explanation": "f(7,3)."
           }
         ],
         "pointers": [
           {
-            "topic": "Conceitos Estruturantes (Foco 1)",
+            "topic": "Introdução aos lemas e primeiro lema",
             "pageRef": 72
           },
           {
-            "topic": "Diretrizes Gerais (Foco 2)",
+            "topic": "Fórmula do primeiro lema e questão da FGV",
             "pageRef": 73
           },
           {
-            "topic": "Fundamentos Teóricos (Foco 3)",
+            "topic": "Resolução da FGV e questão das lâmpadas",
             "pageRef": 74
           },
           {
-            "topic": "Aplicações Práticas (Foco 4)",
+            "topic": "Resolução das lâmpadas e segundo lema",
             "pageRef": 75
+          },
+          {
+            "topic": "Raciocínio do segundo lema",
+            "pageRef": 76
+          },
+          {
+            "topic": "Fim do segundo lema e questão da pizza",
+            "pageRef": 77
+          },
+          {
+            "topic": "Resolução da pizza",
+            "pageRef": 78
           }
         ]
       }

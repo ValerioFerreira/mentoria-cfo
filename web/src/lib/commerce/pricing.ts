@@ -49,34 +49,65 @@ export interface Quote {
   originalCents: number;
   launchDiscountPoints: number;
   partnerDiscountPoints: number;
+  /** soma dos pontos efetivamente aplicados pelos cupons do site */
+  couponDiscountPoints: number;
+  /** pontos efetivamente aplicados por cupom, na ordem informada (após o teto de 100% do total) */
+  couponAppliedPoints: number[];
   discountCents: number;
   finalCents: number;
 }
 
 /**
- * Preço da contratação. Descontos somam pontos percentuais sobre o preço original (limitados a 100%);
- * o valor final é arredondado ao centavo (meio para cima).
+ * Soma ADITIVA de descontos em pontos percentuais, na ordem dada, limitada a 100% no total: cada desconto incide
+ * sobre o preço ORIGINAL (nunca em cascata sobre o valor já reduzido). Devolve quanto de cada um foi realmente aplicado.
  */
-export function quote(category: ContestCategory | null | undefined, partnerDiscountPoints = 0, override?: PriceOverride | null): Quote {
+export function allocateDiscountPoints(requested: readonly number[]): { applied: number[]; total: number } {
+  let total = 0;
+  const applied = requested.map((p) => {
+    const take = Math.min(p, MAX_DISCOUNT_POINTS - total);
+    total += take;
+    return take;
+  });
+  return { applied, total };
+}
+
+function assertPoints(p: number, message: string) {
+  if (!Number.isInteger(p) || p < 0 || p > MAX_DISCOUNT_POINTS) throw new PricingError(message);
+}
+
+/**
+ * Preço da contratação. Desconto de lançamento, cupom de parceiro e cupons do site somam pontos percentuais sobre o
+ * preço original (limitados a 100%): R$ 100 com 25% e 10% = 100 − 25 − 10 = R$ 65, nunca 10% sobre os R$ 75.
+ * O valor final é arredondado ao centavo (meio para cima).
+ */
+export function quote(
+  category: ContestCategory | null | undefined,
+  partnerDiscountPoints = 0,
+  override?: PriceOverride | null,
+  couponPoints: readonly number[] = [],
+): Quote {
   if (!isContestCategory(category)) throw new PricingError("Concurso sem categoria comercial definida: encaminhado para revisão administrativa.");
-  if (!Number.isInteger(partnerDiscountPoints) || partnerDiscountPoints < 0 || partnerDiscountPoints > MAX_DISCOUNT_POINTS) {
-    throw new PricingError("Desconto de cupom inválido.");
-  }
+  assertPoints(partnerDiscountPoints, "Desconto de cupom inválido.");
+  for (const p of couponPoints) assertPoints(p, "Desconto de cupom inválido.");
   const customPrice = override?.priceCents ?? null;
   const customSite = override?.siteDiscountPoints ?? null;
   if (customPrice !== null && (!Number.isSafeInteger(customPrice) || customPrice <= 0 || customPrice > 10_000_000)) throw new PricingError("Preço do concurso inválido.");
   if (customSite !== null && (!Number.isInteger(customSite) || customSite < 0 || customSite > MAX_DISCOUNT_POINTS)) throw new PricingError("Desconto do site inválido.");
   const originalCents = customPrice ?? CATEGORY_PRICE_CENTS[category];
   const siteDiscount = customSite ?? LAUNCH_DISCOUNT_POINTS;
-  const points = Math.min(MAX_DISCOUNT_POINTS, siteDiscount + partnerDiscountPoints);
-  const partner = points - siteDiscount;
+  // ordem de prioridade quando o teto de 100% é atingido: lançamento, cupom de parceiro, cupons do site
+  const { applied, total: points } = allocateDiscountPoints([siteDiscount, partnerDiscountPoints, ...couponPoints]);
+  const [, partner, ...couponApplied] = applied;
   const finalCents = Math.round((originalCents * (MAX_DISCOUNT_POINTS - points)) / MAX_DISCOUNT_POINTS);
+  const configured = customPrice !== null || customSite !== null;
   return {
     category,
-    pricingRule: customPrice !== null || customSite !== null ? `${PRICING_RULE}+CONFIG-CONCURSO` : PRICING_RULE,
+    pricingRule: `${PRICING_RULE}${configured ? "+CONFIG-CONCURSO" : ""}${couponPoints.length ? "+CUPONS-SITE" : ""}`,
     originalCents,
     launchDiscountPoints: siteDiscount,
     partnerDiscountPoints: partner,
+    couponDiscountPoints: couponApplied.reduce((a, b) => a + b, 0),
+    couponAppliedPoints: couponApplied,
     discountCents: originalCents - finalCents,
     finalCents,
   };
@@ -121,8 +152,10 @@ export function accessEndForExamDate(examDate: Date): Date {
 
 /** Textos do card de preço (servidor calcula; componentes só exibem). */
 export function priceCardText(q: Quote) {
+  const extras = (q.partnerDiscountPoints ? 1 : 0) + q.couponAppliedPoints.length;
+  const source = extras === 0 ? "lançamento" : extras === 1 ? "lançamento + cupom" : "lançamento + cupons";
   return {
-    badge: `${q.launchDiscountPoints + q.partnerDiscountPoints}% OFF · ${q.partnerDiscountPoints ? "lançamento + cupom" : "lançamento"}`,
+    badge: `${q.launchDiscountPoints + q.partnerDiscountPoints + q.couponDiscountPoints}% OFF · ${source}`,
     original: `De ${formatBRL(q.originalCents)}`,
     final: formatBRL(q.finalCents),
   };

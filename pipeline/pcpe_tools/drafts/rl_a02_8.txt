@@ -1,0 +1,77 @@
+@@@ raciocinio-logico/a02/s08
+@@ ANALITICO
+Este trecho segue com questões comentadas de várias bancas sobre equivalências e negações, agora com fórmulas mais longas: negar condicionais cujo consequente é um "ou", achar a contrapositiva de antecedentes compostos, usar De Morgan em sequência e contar elementos em conjuntos.
+
+### Equivalente de ~p → q
+
+- Contrapositiva: ~q → p (não aparece nas opções). Condicional em "ou": ~(~p) ∨ q = **p ∨ q**. Desenvolvendo ~((~p) ∧ (~q)) por De Morgan, obtém-se p ∨ q também. Logo ~p → q ≡ p ∨ q ≡ ~(~p ∧ ~q) (letra D).
+
+### Negação de condicional com "ou" e "e" dentro
+
+- **Gameleira/Verbena**: "Se hoje não chover, então vou à praia ou vou correr". Nega-se mantendo o antecedente, trocando por "e" e negando o consequente: ~c ∧ ~(p ∨ o). Por De Morgan: **~c ∧ ~p ∧ ~o**: não chove, não vou à praia e não corro (letra A).
+- **VUNESP (Rio Preto Prev)**: a frase é (l ∧ s) ∨ ~v ("A e B bem, ou não devem seguir viagem"). Negando o "ou": ~(l ∧ s) ∧ ~(~v) = (~l ∨ ~s) ∧ v. Lê-se: um dos dois não está bem **e** devem seguir viagem (letra B).
+- **Sinop (Joelma procuradora/competente)**: negação de p → c é p ∧ ~c (letra A). **Mariano**: "Vou dormir até meio-dia ou não me chamo Mariano" é d ∨ ~m; a negação é ~d ∧ m: "não vou dormir até meio-dia e me chamo Mariano" (letra C).
+- **ISS-BH**: a declaração "o computador estava sem internet ou a porta emperrou" é falsa (o suspeito mentiu): vale a negação c ∧ ~p, isto é, o computador **tinha internet e a porta não emperrou** (letra C). Cuidado ao escolher a simples: "sem internet" é a negação de "com internet".
+
+### Equivalentes de condicionais com antecedente composto
+
+- **P → (Q ∨ R)** ≡ **(~Q ∧ ~R) → ~P** (contrapositiva + De Morgan; letra A).
+- **VUNESP**: (v ∧ ~g) → s ("se como verduras e não como gordura, minha saúde agradece"). A contrapositiva é ~s → ~(v ∧ ~g) ≡ **~s → (~v ∨ g)** (letra E). Pelo "ou": (~v ∨ g) ∨ s, que não aparecia.
+- **FGV/ALEGO**: (b ∧ ~a) → v não tem a contrapositiva nas opções (~v → (~b ∨ a)); mas pela transformação em "ou": ~(b ∧ ~a) ∨ v = **~b ∨ a ∨ v** (letra C).
+- **AOCP/PMPE** ("Se Carlos mentiu, será criticado pela família"): a equivalente é a contrapositiva "Se Carlos não foi criticado, então não mentiu" (letra D). As demais são inversa ou recíproca ou afirmam o consequente/antecedente isoladamente.
+- **Verbena/IFS** (números naturais): a contrapositiva de "se n² é par, então n é par" é "se n não é par, então n² não é par"; como "não par" é "ímpar", fica **"se n é ímpar, então n² é ímpar"** (letra A).
+- **CRESS-PR**: "Se Lucca é ortopedista, Victória não é pediatra" ≡ "Lucca não é ortopedista ou Victória não é pediatra" (l → ~v ≡ ~l ∨ ~v): item **certo**.
+- **NOVACAP**: "Se Gabriela cantou, Jacqueline não cantou" **não** é equivalente a "Ou Gabriela cantou ou Jacqueline cantou". As equivalentes da condicional são a contrapositiva (j → ~g) e ~g ∨ ~j; a exclusiva é outra coisa. Item **errado**.
+
+### Contagem com De Morgan
+
+- **Consulplan/CGM**: num grupo de 13 atletas, "no máximo 6 não têm experiência internacional e não competem profissionalmente" (~e ∧ ~p). Então pelo menos 13 − 6 = 7 atletas satisfazem a negação ~(~e ∧ ~p) ≡ e ∨ p: **pelo menos 7 têm experiência internacional ou competem profissionalmente** (letra C).
+
+### Equivalente de ~p ∧ ~q
+
+- Por De Morgan, ~p ∧ ~q ≡ **~(p ∨ q)** (letra E da ISS-BH).
+
+### Para fixar
+- Negar condicional com "ou" no consequente: mantém o antecedente, "e", e as duas negações.
+- Contrapositiva de antecedente composto: nega-se tudo e aplica-se De Morgan ao que foi negado.
+- Condicional em "ou": nega-se o antecedente inteiro (De Morgan) e mantém-se o consequente.
+- Se o suspeito mentiu, vale a negação da declaração.
+- Equivalente de condicional nunca é disjunção exclusiva.
+- "No máximo k que satisfazem X" equivale a "pelo menos n − k que não satisfazem X".
+@@ SINTETICO
+**~p → q**: equivale a p ∨ q e a ~(~p ∧ ~q).
+**Negação de condicional com ou**: mantém o antecedente, usa e e nega as duas parcelas do consequente.
+**Contrapositiva composta**: P → (Q ∨ R) equivale a (~Q ∧ ~R) → ~P.
+**Condicional em ou**: (b ∧ ~a) → v equivale a ~b ∨ a ∨ v.
+**Condicional com antecedente e**: (v ∧ ~g) → s equivale a ~s → (~v ∨ g).
+**Declaração falsa**: se o suspeito mentiu, vale a negação da declaração.
+**Escolha da simples**: sem internet é a negação de com internet.
+**Números naturais**: a contrapositiva de n² par implicar n par é n ímpar implicar n² ímpar.
+**Exclusiva**: não é equivalente de uma condicional.
+**Contagem**: no máximo 6 em ~e ∧ ~p, num grupo de 13, equivale a pelo menos 7 em e ∨ p.
+@@ TEORIA
+C | Pela transformação da condicional em ou, a condicional ~p → q vale p ∨ q. || Dupla negação.
+E | A proposição "Se a luz acende, a porta abre" é equivalente a "Ou a luz acende ou a porta abre". || Equivalente é a contrapositiva ou o ou inclusivo.
+C | Se alguém afirma "Estudei ou viajei" e se prova que mentiu, conclui-se que não estudou e não viajou. || Negação do ou.
+E | A negação de "Se chove, então ventou ou fez frio" é "Chove e ventou e fez frio". || A negação é "Chove e não ventou e não fez frio".
+@@ REVISAO
+C | A proposição P → (Q ∨ R) é equivalente a (~Q ∧ ~R) → ~P. || Contrapositiva e De Morgan.
+C | A contrapositiva de "Se n² é par, então n é par" pode ser lida como "Se n é ímpar, então n² é ímpar". || "Não par" é "ímpar".
+E | A conjunção das negações, ~p ∧ ~q, vale o mesmo que a disjunção das negações, ~p ∨ ~q. || É equivalente a ~(p ∨ q).
+C | Se, em um grupo de 13, no máximo 6 pessoas têm duas características negativas ao mesmo tempo, então pelo menos 7 têm uma das características positivas. || ~(~e ∧ ~p) ≡ e ∨ p.
+@@ PONTOS
+86 | Resolução de ~p → q
+87 | Questão do Verbena sobre a praia
+88 | Questão de P → (Q ∨ R) e VUNESP
+89 | Resolução do VUNESP sobre dirigir
+90 | Questão da saúde (verduras e gorduras)
+91 | Segunda equivalência da questão da saúde
+92 | Questão da FGV sobre bola, caixa e ficha
+93 | Questão dos atletas
+94 | Questões da Selecon
+95 | Questão do Mariano
+96 | Questão do CRESS-PR
+97 | Questão da PMPE
+98 | Questão da NOVACAP
+99 | Contrapositiva com números naturais
+100 | Questões da Consulplan sobre computador

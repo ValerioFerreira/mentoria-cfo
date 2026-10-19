@@ -7,6 +7,7 @@ subtitle: Violência doméstica e familiar contra a mulher, medidas protetivas d
 weight: 0.05
 order: 3
 resolves: dc-maria-da-penha
+excludeContests: PCPE_AGENTE
 ---
 
 ## Como a banca cobra a Lei Maria da Penha

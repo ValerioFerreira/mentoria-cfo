@@ -1,0 +1,64 @@
+@@@ raciocinio-logico/a01/s06
+@@ ANALITICO
+Este trecho reúne questões comentadas de várias bancas sobre tabela-verdade: contar linhas, completar colunas, descobrir valores ocultos e contar quantas linhas dão verdadeiro.
+
+### Contar as linhas (2ⁿ)
+
+- A regra é sempre a mesma: **n simples distintas → 2ⁿ linhas**; a negação e a repetição de uma simples não alteram o número.
+- Exemplos de questões: uma condicional entre duas simples tem **4** linhas; p ∧ q → r tem **8**; uma fórmula com quatro simples (como (p ∨ q) ∧ (r ∨ s)) tem **16**; "se ele fizer bolo ou não comprar pão, haverá piquenique" tem três simples (bolo, pão, piquenique), logo **8** linhas (o item que dizia 16 estava errado); ~(~r → (q ∧ ~p)) ∨ (q ∧ (p → s)) tem p, q, r, s: **16**; [(p → q) ∧ ~r] ∨ (s ↔ t) tem cinco simples: 32 linhas, e **um quarto** disso é **8**.
+- Cuidado com o que a pergunta pede: "o número de possibilidades de valor lógico" é o mesmo que o número de linhas; "1/4 do número de linhas" pede mais uma divisão.
+
+### Completar colunas (FGV, Fundatec e outras)
+
+- **S = (p → q) ↔ (~p ∨ q)** (FGV/ALEGO): calculando ~p, p → q (só F em p V, q F), ~p ∨ q (só F em ~p F e q F, isto é, p V e q F) e a bicondicional (V quando os dois têm o mesmo valor), obtém-se **V – V – V – V**; a sentença é uma tautologia.
+- **~p ∨ q** (Fundatec): com a ordem V V / V F / F V / F F, a coluna fica **V – F – V – V**. A disjunção só é F quando ~p e q são ambos F, que é a linha p V, q F.
+- **R(p, q) = ~(p ∨ q) ∧ ~p** (CPCON): p ∨ q é V, V, V, F; a negação é F, F, F, V; ~p é F, F, V, V; a conjunção só é V na última linha. Coluna final: **F – F – F – V**.
+- **Valores ocultos (FAFIPA)** em ~p → q: na linha p F, ~p é V (a = V); com ~p V e q F a condicional é F (b = F); na linha p V, ~p é F e a condicional é V qualquer que seja q (c = V). Resposta: **V, F, V**.
+
+### Contar linhas verdadeiras
+
+- **(p ∧ ~q) → ~p** (AOCP/TJPR, "se o servidor concluiu e o sistema não emitiu, então o servidor não concluiu"): a condicional só é F quando p ∧ ~q é V e ~p é F, isto é, p V e q F. Das 4 linhas, só uma é F: **3 linhas V**.
+- **(p → ~q) ∨ ~r** (Instituto Mais): com 8 linhas, a disjunção só é F quando as duas parcelas são F: p → ~q é F em p V e q V; ~r é F em r V. Isso ocorre numa única linha (V, V, V). Logo, há **7 linhas V**.
+- Método econômico: em vez de calcular todas as colunas, descubra em **quais linhas a fórmula é falsa** (pelo caso único em que o conectivo principal é F) e subtraia de 2ⁿ.
+
+### Para fixar
+- Número de linhas: 2ⁿ, com n simples distintas; a negação não conta.
+- Ordem das linhas com duas simples: VV, VF, FV, FF.
+- A bicondicional é V quando os dois lados têm o mesmo valor; a condicional só é F em V → F.
+- Para contar linhas V, ache as linhas F do conectivo principal e subtraia do total.
+- Se a pergunta cita uma fração das linhas, calcule 2ⁿ e depois a fração.
+@@ SINTETICO
+**Quantidade de linhas**: n simples distintas dão 2ⁿ linhas, e a negação não conta.
+**Exemplos de contagem**: duas simples têm 4 linhas, três têm 8, quatro têm 16 e cinco têm 32.
+**Fração do total**: um quarto de 32 linhas é 8; primeiro calcule 2ⁿ e depois a fração.
+**Bicondicional tautológica**: (p → q) ↔ (~p ∨ q) dá verdadeiro em todas as linhas.
+**Disjunção ~p ∨ q**: com a ordem usual das linhas, a coluna é V, F, V, V.
+**Coluna F F F V**: é a de ~(p ∨ q) ∧ ~p, verdadeira só quando p e q são falsas.
+**Valores ocultos**: ~p → q falha só quando ~p é verdadeira e q falsa.
+**Contar linhas verdadeiras**: ache a linha falsa do conectivo principal e subtraia do total.
+**Exemplos de contagem de V**: (p ∧ ~q) → ~p tem 3 linhas V; (p → ~q) ∨ ~r tem 7.
+@@ TEORIA
+C | A tabela-verdade de uma fórmula com cinco proposições simples distintas tem 32 linhas. || 2⁵ = 32.
+E | Se uma simples aparece duas vezes numa fórmula, ela acrescenta linhas à tabela. || Conta-se uma só vez.
+C | A bicondicional (p → q) ↔ (~p ∨ q) assume valor verdadeiro em todas as linhas. || É tautologia, pois p → q e ~p ∨ q têm sempre o mesmo valor.
+E | A coluna final de ~p ∨ q, com linhas na ordem VV, VF, FV, FF, é V, V, F, F. || É V, F, V, V.
+@@ REVISAO
+C | A fórmula (p ∧ ~q) → ~p tem exatamente uma linha falsa na tabela-verdade. || Só quando p é V e q é F.
+C | A fórmula (p → ~q) ∨ ~r é falsa apenas quando p, q e r são verdadeiras. || As duas parcelas só são F nessa linha.
+E | Para calcular um quarto do número de linhas de uma tabela com 5 simples, basta dividir 5 por 4. || 2⁵ = 32 e 32 ÷ 4 = 8.
+C | Quando ~p é verdadeira e q é falsa, a condicional ~p → q é falsa. || Caso V → F.
+@@ PONTOS
+57 | Questão da FGV sobre a sentença S
+58 | Preenchimento da tabela de S
+59 | Contagem de linhas: duas e três simples
+60 | Contagem de linhas: quatro simples
+61 | Questão do piquenique
+62 | Fração das linhas e valores ocultos
+63 | Valores ocultos em ~p → q
+64 | Coluna de ~p ∨ q
+65 | Fórmula R(p, q)
+66 | Coluna final de R(p, q)
+67 | Contagem de linhas verdadeiras
+68 | Resolução da questão do servidor
+69 | Questão de (p → ~q) ∨ ~r
+70 | Colunas intermediárias de (p → ~q) ∨ ~r

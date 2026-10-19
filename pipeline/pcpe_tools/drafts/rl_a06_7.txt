@@ -1,0 +1,74 @@
+@@@ raciocinio-logico/a06/s07
+@@ ANALITICO
+Este trecho mostra que a combinação completa equivale ao número de soluções inteiras não negativas de uma equação linear e apresenta as partições (ordenada e não ordenada): dividir um conjunto em subconjuntos.
+
+### Fim da questão da FGV/Paulínia
+
+- 9 maçãs iguais para 3 amigos, com pelo menos 2 cada: dão-se 2 a cada (6 maçãs), sobram 3 para distribuir livremente: CR₃³ = 5!/(3! × 2!) = **10** (letra B).
+
+### Número de soluções inteiras não negativas de equações
+
+- Escolher 3 potes de sorvete entre 5 marcas é o mesmo que achar o número de soluções de **xA + xB + xC + xD + xE = 3**, com cada xᵢ ≥ 0 (a quantidade de potes de cada marca). Exemplos de solução: (1, 2, 0, 0, 0) ou (0, 0, 0, 0, 3).
+- **Fórmula**: para **x₁ + x₂ + ... + xₙ = p** com xᵢ inteiros e **não negativos**: **CRₙ^p = (n − 1 + p)!/[(n − 1)! × p!]**. O número de variáveis é n (as "seções"); o valor da soma é p (os "objetos").
+- Por que só **inteiros não negativos**? Com números negativos ou reais, dá para transferir quantidades entre variáveis mantendo a soma, o que geraria infinitas soluções.
+- **Soluções positivas** (xᵢ > 0): distribui-se 1 a cada variável e resolve-se a equação com a sobra livre. Exemplo: xA + xB + xC + xD = 6, com todos positivos: sobram 6 − 4 = 2 para distribuir entre 4 variáveis: CR₄² = 5!/(3! × 2!) = 10.
+- **FUNVAPI**: a + b + c + d = 21 (inteiros não negativos): CR₄²¹ = 24!/(3! × 21!) = 24 × 23 × 22/6 = **2.024** (letra A).
+
+### Partições
+
+- **Partição** de um conjunto é a separação em **subconjuntos** cuja soma de elementos é o total (como fatiar uma pizza). Os problemas de partição também se resolvem com combinações em etapas, mas a fórmula específica acelera e reduz erros.
+- **Ordenada**: os grupos são **diferentes entre si** (gerentes, coordenadores, trabalhadores; departamentos distintos). A ordem entre os grupos importa; a ordem **dentro** de cada grupo não.
+- **Não ordenada**: os grupos são **equivalentes** (equipes com a mesma tarefa, duplas iguais). A ordem entre grupos não importa.
+
+### Partição ordenada
+
+- Dividir 10 profissionais em 1 gerente, 2 coordenadores e 7 trabalhadores: C₁₀,₁ × C₉,₂ × C₇,₇ = 10 × 36 × 1 = 360. Pela fórmula: **n!/(p₁! × p₂! × ... × pₘ!)**, com p₁ + ... + pₘ = n. Aqui: 10!/(1! × 2! × 7!) = 360.
+- A fórmula resulta do produto das combinações sucessivas, com cancelamentos (e (n − p₁ − ... − pₘ)! = 0! = 1).
+- **FCC/SEFAZ-PI**: 7 projetos entre 3 departamentos, um com 3 e os outros dois com 2 cada (departamentos distintos): 7!/(3! × 2! × 2!) = **210** (letra C).
+- **FCC/SEFAZ-PE (metrô)**: só aprovam-se as empresas com mais de 150 pontos (I, II e III, com 500, 300 e 200 pontos). A distribuição é proporcional: 500x + 300x + 200x = 10, logo x = 1/100 e as empresas recebem 5, 3 e 2 estações. Como as estações são iguais e as empresas diferentes: 10!/(5! × 3! × 2!) = **2.520** (letra B).
+
+### Partição não ordenada
+
+- Divide-se o resultado da ordenada pelo número de maneiras de permutar os m grupos iguais (m!): **n!/(p₁! p₂! ... pₘ! × m!)**. Para grupos do mesmo tamanho p e total m × p: **(m × p)!/[m! × (p!)^m]**.
+- Exemplo: 6 profissionais em 3 duplas iguais: ordenada 6!/(2! 2! 2!) = 90; cada divisão em duplas foi contada 3! = 6 vezes; logo 90/6 = **15**.
+- **Pref. São José da Coroa Grande**: dividir 10 pessoas em dois grupos de 5 (grupos equivalentes): 10!/(2! × (5!)²) = **126** (letra D).
+
+### Para fixar
+- x₁ + ... + xₙ = p (inteiros ≥ 0): CR = C(n − 1 + p, p).
+- Se exigir positivos: dê 1 a cada variável e use o que sobra.
+- Partição ordenada: n!/(p₁! p₂! ... pₘ!).
+- Partição não ordenada: divida ainda por m! (grupos de mesmo tamanho).
+- Pergunte-se sempre: os grupos são distintos ou iguais?
+@@ SINTETICO
+**Equação linear**: o número de soluções inteiras não negativas de x1 até xn somando p é a combinação completa.
+**Fórmula**: C de (n menos 1 mais p) tomados p a p.
+**Positivos**: dá-se 1 a cada variável e distribui-se a sobra.
+**Exemplo**: a mais b mais c mais d igual a 21, com não negativos, tem 2.024 soluções.
+**Partição**: separa um conjunto em subconjuntos cuja soma dos elementos é o total.
+**Partição ordenada**: grupos distintos, com n fatorial dividido pelo produto dos fatoriais dos tamanhos.
+**Exemplo ordenado**: 7 projetos em grupos de 3, 2 e 2 dão 210.
+**Partição não ordenada**: grupos iguais, e divide-se ainda pelo fatorial do número de grupos.
+**Duplas**: seis pessoas em três duplas iguais dão 15, e dois grupos de cinco entre dez dão 126.
+**Pergunta chave**: os grupos são distintos ou equivalentes?
+@@ TEORIA
+C | O número de soluções inteiras não negativas de x + y + z = 4 é C(6, 4) = 15. || n = 3, p = 4: C(3 − 1 + 4, 4).
+E | A equação x + y = 5 tem infinitas soluções inteiras não negativas. || Tem 6 soluções.
+C | Dividir 8 pessoas em um grupo de 3, um de 3 e um de 2 (grupos diferentes) dá 8!/(3! 3! 2!). || Partição ordenada.
+E | Na partição não ordenada, a ordem entre os subconjuntos importa. || Importa só na ordenada.
+@@ REVISAO
+C | Dividir 6 pessoas em 3 duplas iguais pode ser feito de 15 maneiras. || 90/3!.
+E | Dividir 4 pessoas em 2 duplas idênticas pode ser feito de 6 maneiras. || 4!/(2!·2!·2!) = 3.
+C | Dividir 12 objetos em grupos de 5, 4 e 3 destinados a pessoas diferentes é uma partição ordenada. || Grupos distintos.
+C | Para x + y + z = 7 com x, y, z positivos, distribui-se 1 a cada variável e resolve-se para soma 4. || Reduz ao caso não negativo.
+@@ PONTOS
+61 | Fim da questão da Paulínia e equação das marcas
+62 | Combinação completa e número de soluções
+63 | Soluções positivas e inteiras
+64 | Questão da FUNVAPI
+65 | Conceito de partição
+66 | Partição ordenada: exemplo e fórmula
+67 | Dedução da fórmula da partição ordenada
+68 | Questão da FCC (SEFAZ-PI) e SEFAZ-PE
+69 | Resolução da SEFAZ-PE e partição não ordenada
+70 | Partição não ordenada: duplas
+71 | Questão de São José da Coroa Grande

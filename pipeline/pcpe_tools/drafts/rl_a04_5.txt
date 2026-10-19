@@ -1,0 +1,74 @@
+@@@ raciocinio-logico/a04/s05
+@@ ANALITICO
+Este trecho conclui a questão do CM Taubaté e apresenta mais dois métodos de verificação da validade de argumentos: a tabela-verdade da condicional associada (com seleção das linhas em que as premissas são verdadeiras) e o método da conclusão falsa.
+
+### Fim da questão do CM Taubaté
+
+- Com ce V, fa F e fe F, e nada se sabendo sobre ca, a alternativa "Cicrano não foi aprovado ou Fulano não estudou" (~ca ∨ ~fe) é verdadeira porque ~fe é V; as demais dependem de ca (inconclusivas) ou são falsas. Gabarito: letra D.
+
+### Método da tabela-verdade
+
+- A condicional associada (P1 ∧ ... ∧ Pn) → C: se for **tautologia**, o argumento é **válido**; se não, é **inválido**. O método é **lento**, usado com moderação (2ⁿ linhas).
+- **TRE-RJ (esquema de compra de votos)**: premissas P → ~Q; R ⊻ Q; P → ~R; conclusão avaliada ~Q ("o prefeito não sabia"). Na tabela há uma linha em que as três premissas são V e ~Q é F (por exemplo, P F, Q V, R F): a condicional associada não é tautologia, logo o argumento é **inválido** (item errado).
+
+### Tabela-verdade em questões de múltipla escolha
+
+Quando se pede a conclusão que "torna o argumento válido", não se faz uma tabela por alternativa. Três etapas:
+
+1. Passar as premissas para a linguagem proposicional.
+2. Montar **uma** tabela com todas as premissas e marcar as **linhas em que todas são V**.
+3. A resposta é a alternativa **verdadeira em todas essas linhas**.
+
+- **SEFAZ-ES (Pedro, Raquel e Renata)**: com p, a, e e as três premissas, as linhas em que todas valem são as de número 2, 5 e 6 da tabela; a única alternativa verdadeira em todas é "Raquel é carioca" (a V) (letra B). "Pedro é capixaba" falha nas linhas 5 e 6, "Renata é pernambucana" falha nas linhas 2 e 6, e "Pedro não é capixaba" e "Renata não é pernambucana" também falham em alguma linha.
+- **BANESTES (Ana, Bruna e Carla)**: premissas a → b; c → ~b; ~a → ~c; a ∨ c. Só **uma** linha as torna V: a V, b V, c F. A conclusão é "Ana é capixaba, Bruna é carioca e Carla não é paulista" (letra D), uma conjunção em que todas as parcelas são verdadeiras nessa linha.
+
+### Afirmações falsas no enunciado, sem "formato fácil"
+
+- Quando o enunciado dá afirmações sem nenhum dos quatro formatos fáceis (simples, conjunção V, disjunção inclusiva F, condicional F), usa-se a mesma tabela: marcam-se as linhas em que **todas as afirmações têm o valor indicado** (V ou F) e escolhe-se a alternativa que é V (ou F, se a pergunta pedir) em todas elas.
+- **TCM-SP**: I. c ∧ j é F; II. c → j é V. Duas linhas satisfazem (c F, j V) e (c F, j F). Em ambas c é F; logo é necessariamente falso que Camila seja auditora em Ciências Atuariais (letra D).
+
+### Método da conclusão falsa
+
+- Exige conclusão em um destes formatos: **proposição simples**, **disjunção inclusiva** ou **condicional**.
+- Etapas: (1) passar as premissas para símbolos; (2) supor a conclusão **falsa**; (3) tentar tornar **todas as premissas verdadeiras** mantendo a conclusão falsa. Se for possível, o argumento é **inválido**; se for impossível, é **válido**. Muito rápido em questões de certo/errado.
+- **DATAPREV**: P1: (r ∨ d) → p; P2: p → a; P3: ~d ∧ a; C: r. Com r F, P3 exige d F e a V; P2 fica V qualquer que seja p; P1 fica V (antecedente F). Foi possível manter C falsa com as premissas V: argumento **inválido** (item errado).
+- **PGE-PE** (início): premissas e ∧ g → s; s → p; e ∧ ~g → f; f → p; conclusão p. Supondo p F, Q2 e P2 exigem f F e s F (continua no trecho seguinte).
+
+### Para fixar
+- Condicional associada tautológica ⇒ argumento válido.
+- Em múltipla escolha, ache as linhas com todas as premissas V e escolha a conclusão V em todas.
+- Conclusão falsa: se as premissas ainda podem ser todas V, o argumento é inválido.
+- O método da conclusão falsa serve para conclusão simples, "ou" ou condicional.
+- Premissa V com antecedente F não obriga o consequente.
+@@ SINTETICO
+**Tabela-verdade**: a condicional associada tautológica indica argumento válido.
+**Lentidão**: o método da tabela-verdade é demorado e deve ser usado com moderação.
+**Linhas úteis**: em múltipla escolha, marque as linhas em que todas as premissas são verdadeiras.
+**Resposta**: a conclusão correta é verdadeira em todas as linhas marcadas.
+**Sem formato fácil**: use a mesma tabela com os valores V ou F indicados no enunciado.
+**Conclusão falsa**: exige conclusão simples, ou ou condicional.
+**Procedimento**: supõe-se a conclusão falsa e tenta-se tornar verdadeiras todas as premissas.
+**Resultado**: se for possível, o argumento é inválido; se for impossível, é válido.
+**Velocidade**: é um dos métodos mais rápidos para itens de certo ou errado.
+**Exemplo inválido**: com r falsa, d falsa e a verdadeira, as premissas valem e a conclusão r é falsa.
+@@ TEORIA
+C | Se a condicional associada a um argumento é uma tautologia, o argumento é válido. || Critério da tabela-verdade.
+E | O método da conclusão falsa pode ser aplicado a qualquer formato de conclusão, inclusive à conjunção. || Só vale para simples, disjunção inclusiva e condicional.
+C | Se é possível tornar todas as premissas verdadeiras mantendo a conclusão falsa, o argumento é inválido. || Contraexemplo.
+E | Em uma questão de múltipla escolha, deve-se montar uma tabela-verdade para cada alternativa. || Basta uma tabela, com as linhas das premissas V.
+@@ REVISAO
+C | Numa tabela-verdade de um argumento, a resposta correta é a conclusão que é verdadeira em todas as linhas em que todas as premissas são verdadeiras. || Etapa 3 do método.
+E | Num argumento com premissas P → ~Q, R ⊻ Q e P → ~R, a conclusão ~Q é válida. || Com P F, Q V e R F tudo vale e ~Q é F: inválido.
+C | Se F e G são afirmações, sendo "F ∧ G" declarada falsa e "F → G" declarada verdadeira, então F é falsa. || Linhas (F falsa, G verdadeira) e (F falsa, G falsa).
+C | O método da conclusão falsa é rápido porque as questões de certo e errado costumam trazer uma só conclusão. || Verifica-se uma única hipótese.
+@@ PONTOS
+49 | Alternativas do CM Taubaté e método da tabela-verdade
+50 | Questão do TRE-RJ e etapas para múltipla escolha
+51 | Questão da SEFAZ-ES
+52 | Alternativas da SEFAZ-ES e questão do BANESTES
+53 | Resolução do BANESTES e afirmações falsas
+54 | Passos sem formato fácil e questão do TCM-SP
+55 | Resolução do TCM-SP e método da conclusão falsa
+56 | Etapas da conclusão falsa e questão da DATAPREV
+57 | Resolução da DATAPREV
+58 | Questão da PGE-PE (início)

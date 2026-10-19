@@ -317,3 +317,235 @@ PARA REVISÃO HUMANA
 - Amostragem das questões antes de aprovar (APPROVED) em /admin/revisao, principalmente lei seca (CPM, Estatuto dos Militares de PE,
   Código Disciplinar) e temas com alterações recentes de lei.
 - Língua Portuguesa: conferir os textos-base originais e a gramática normativa (dúvidas já mapeadas em B.1).
+
+
+---
+
+# Inclusão do PCPE (Outubro/2026)
+
+## 0. Decisão do Dono do Produto (Out/2026)
+**O único concurso da PCPE que será oferecido na plataforma é o de AGENTE DE POLÍCIA (`PCPE_AGENTE`).**
+O cargo de Escrivão de Polícia (`PCPE_ESCRIVAO`) e a disciplina de Noções de Arquivologia estão **definitivamente fora do escopo**. Não haverá "Fase B" nem disciplina de Arquivologia. Todo o código, catálogo, enum, simulados e testes foram consolidados estritamente para `PCPE_AGENTE`.
+
+## 1. Análise do Edital Oficial (`docs/edital-pcpe.pdf`)
+- **Norma**: Portaria Conjunta SAD/SDS nº 306, de 02/10/2026 (Polícia Civil de Pernambuco — PCPE).
+- **Banca**: **Cebraspe** (Centro Brasileiro de Pesquisa em Avaliação e Seleção e de Promoção de Eventos).
+- **Cargo incluído**: **Agente de Polícia** (`PCPE_AGENTE`) — 1.200 vagas (780 AC, 60 PCD, 300 PPP, 36 PI, 24 PQ). Remuneração inicial: R$ 5.667,92.
+- **Fora do escopo**: Escrivão de Polícia (`PCPE_ESCRIVAO`) e Delegado de Polícia (`PCPE_DELEGADO`).
+- **Data da Prova Objetiva e Discursiva (Anexo I)**: **07/03/2027** (`2027-03-07`, turno da tarde; duração de 4 horas).
+- **Estrutura da Prova Objetiva (Itens 7.1 e 8)**:
+  - **Formato (Item 8.2)**: **Múltipla escolha com 5 opções (`A` a `E`)**, uma única resposta correta por questão.
+  - **Pontuação (Itens 8.11.1 e 8.11.2)**: **60 questões = 60,00 pontos** (`+1,00` ponto por questão certa; `0,00` por questão errada, em branco ou com marcação dupla — **sem penalidade negativa**).
+  - **Critério de aprovação / corte (Item 8.11.4)**: Eliminado quem obtiver **menos de 30,00 pontos** no conjunto das provas objetivas (`P1 + P2`, 50% do total), sem nota mínima separada por bloco ou disciplina. Classificados para correção da Discursiva (Item 8.11.7): até 7.200 candidatos para Agente (4.680 AC).
+  - **Distribuição dos blocos e disciplinas (`PCPE_AGENTE`)**:
+    - **Bloco I — Noções de Direito (`P1`, 20 questões)**:
+      1. *Legislação Estadual* (`legislacao-pcpe`): 4 questões.
+      2. *Noções de Direito Constitucional* (`direito-constitucional`): 4 questões.
+      3. *Noções de Direito Administrativo* (`direito-administrativo`): 4 questões.
+      4. *Noções de Direito Penal* (`direito-penal`, Parte Geral e Especial): 3 questões.
+      5. *Legislação Penal Extravagante* (`legislacao-penal-especial`): 2 questões.
+      6. *Noções de Direito Processual Penal* (`direito-processual-penal`): 3 questões.
+    - **Bloco II — Conhecimentos Específicos (`P2`, 40 questões)**:
+      1. *Língua Portuguesa* (`lingua-portuguesa`): 10 questões.
+      2. *Informática* (`informatica`): 10 questões.
+      3. *Contabilidade Geral* (`contabilidade-geral`): 10 questões.
+      4. *Raciocínio Lógico* (`raciocinio-logico`): 5 questões.
+      5. *Estatística* (`estatistica`): 5 questões.
+- **Prova Discursiva (`P3`)**: Decisão estratégica do Dono do Produto: A prova discursiva NÃO entra no sistema MentorIA. Nada será criado nem mantido para redação/discursiva. O escopo do sistema é 100% voltado para a prova objetiva (questões, simulados, bizus, resumos e teoria).
+
+## 2. Decisões de Arquitetura e Preservação de IDs
+1. **Preservação absoluta de IDs existentes (`<disc>/aNN/sNN`)**:
+   - Nenhuma disciplina, aula ou trecho existente teve seu ID ou intervalo de páginas alterado (verificado contra baseline em `pipeline/.cache/pcpe-baseline/`).
+   - Em `direito-administrativo`, as aulas novas entram como **`a20` a `a24`** e o complemento autoral da Lei Federal nº 9.784/1999 entra como **`c02`**, todas marcadas com `onlyContests: ["PCPE_AGENTE"]`. Os planos de `CBMPE_OFICIAL`, `CBMPE_SOLDADO`, `PMPE_OFICIAL` e `PMPE_SOLDADO` permanecem **100% idênticos** ao baseline de produção.
+2. **Separação entre `direito-penal` e `legislacao-penal-especial`**:
+   - *Noções de Direito Penal* (`direito-penal`, `a00`–`a10`: Parte Geral, Parte Especial e LCP) e *Legislação Penal Extravagante* (`legislacao-penal-especial`, `a11`–`a22` + `c01` ECA) estruturadas separadamente para evitar estrangular o limite diário por disciplina (`MAX_DAILY_SUBJECT_MIN = 120`).
+3. **Complementos autorais para lacunas do edital**:
+   - `legislacao-pcpe/c01` (`content/complements/leg-pcpe-ce-pe.md`): arts. 101 a 105-B da Constituição Estadual de PE (Polícia Civil e Segurança Pública), 100% neutro e autoral.
+   - `direito-administrativo/c02` (`content/complements/da-lei-9784.md`): Lei Federal nº 9.784/1999 (Processo Administrativo Federal).
+   - `legislacao-penal-especial/c01` (`content/complements/leg-penal-eca.md`): aspectos penais e procedimentais policiais do ECA (arts. 103–109, 171–178, 228–244-B e Súmula 500 do STJ).
+4. **Cálculo de Importância e Exclusões Versionadas**:
+   - Algoritmo de `pipeline/importance.py` recalculado de forma puramente funcional sobre `content/contests.json` e `catalog.json`.
+   - Exclusões versionadas em `content/overrides/`:
+     - `informatica`: `a07`, `a09`, `a11` (LibreOffice Writer, Calc, Impress excluídos para `PCPE_AGENTE` por exigir estritamente Microsoft 365).
+     - `estatistica`: `a11`..`a14` (inferência estatística, testes de hipóteses, ANOVA e regressão múltipla excluídos para `PCPE_AGENTE` por exigir apenas descritiva, probabilidade e amostragem).
+     - `direito-constitucional`: `a18` (art. 100 dos Militares de PE excluído para `PCPE_AGENTE`, que utiliza os arts. 101–105-B da Polícia Civil em `legislacao-pcpe/c01`).
+   - Comprovada divergência zero (0 discrepâncias) nos 897 trechos de CBMPE e PMPE contra `main`.
+
+## 3. Estado Atual dos Componentes
+- **Banco de Dados Local**: Migração `20261016140000_pcpe_agente_settings` aplicada localmente (`category = 'PCPE'`, `examDate = '2027-03-07'`). `seedContestSettings` removido do seed de estrutura para respeitar as configurações manuais do administrador.
+- **Next.js & Tipagem**: `typecheck` e `npm run build` aprovados com zero erros.
+- **Motor de Planejamento**: 330 testes de planejador aprovados com 100% de sucesso.
+- **Disponibilidade Comercial**: `available: false` mantido para `PCPE_AGENTE` até que as pendências de conteúdo autoral e questões sejam atendidas.
+
+## 4. Pendências Identificadas para o Dono do Produto
+1. **Cadernos de Questões Cebraspe (TecConcursos)**: Não existem cadernos baixados em `docs/questoes/` para as novas disciplinas da PCPE (Contabilidade Geral, Direito Penal, Processo Penal, Legislação PCPE e Leis Penais Especiais Cebraspe). O download deve ser realizado pelo Dono do Produto com sua conta e importado via `python pipeline/questoes/importar.py --remoto`.
+2. **Bizus autorais (`content/items/`)**: Faltam 239 trechos nas disciplinas novas e em `direito-administrativo` `a20`..`a24`.
+3. **Resumos analíticos (`content/summaries/`)**: Faltam 309 trechos (239 das matérias novas + 70 de raciocínio lógico em produção).
+
+## 5. Rodada 3 de Correções (Outubro/2026) — Homologação Completa
+
+Após a terceira rodada de revisão técnica e auditoria dos planos, foram implementadas e homologadas as seguintes correções:
+
+### 5.1 Bloqueante 1: Prevenção de Diluição no Planejador (Isolamento por Concurso)
+- **Problema:** O planejador calculava `totalInc` e `share` somando a incidência de todas as aulas selecionáveis do catálogo da disciplina, sem filtrar se pertenciam ao edital do concurso selecionado. Com isso, as aulas exclusivas de Direito Administrativo da PCPE (`a20` a `a24` + `c02`) diluíam o peso das aulas comuns no CBMPE e PMPE em cerca de 37%.
+- **Solução:** 
+  - Adicionado suporte aos campos `onlyContests` e `excludeContests` no tipo `CatalogAula` (`web/src/lib/planner/types.ts`).
+  - Implementada a função pura `isAulaInEdital` em `web/src/lib/planner/select.ts`, garantindo que apenas aulas elegíveis para o concurso ativo entrem no somatório de incidência, ganho e share.
+  - Exportado `inEditalAulas` em `Selection` e ajustado `web/src/lib/planner/coverage.ts` para que `totalInc`, `seenInc` e `notCovered` considerem estritamente as aulas do concurso.
+- **Validação:** O script `web/scripts/compare-plans-main.ts` executou uma matriz de 48 cenários legados (CBMPE_OFICIAL, CBMPE_SOLDADO, PMPE_OFICIAL, PMPE_SOLDADO com 15h, 25h, 40h, níveis 0 e 2, com e sem Turbo) contra a branch `main`: **exatamente 0 divergências** de minutos, atividades ou cobertura.
+
+### 5.2 Bloqueante 2: Escopo de Contabilidade Geral, Matemática em RL e Lacunas
+- **Contabilidade Geral:** Auditoria detalhada dos itens 1 a 10 do edital. Aulas cobrindo normas societárias avançadas (`a09` CPC 01, `a10` CPC 04, `a12` CPC 25, `a14` Reservas de Capital, `a15` Reservas de Lucros, `a18` CPC 00 R2, `a19` CPC 26) marcadas com `edital: "partial"` e notas pedagógicas justificando o escopo.
+- **Raciocínio Lógico & Matemática:** O edital Cebraspe (subitem 22.2.3.2) cobra 15 itens combinando matemática elementar e lógica sentencial. `matematica` foi adicionada a `CONTEST_SUBJECTS.PCPE_AGENTE`, com as aulas não pertinentes (`a06`, `a07`, `a12`, `a13`, `a16`, `a17` e complementos `c01`/`c02`) excluídas via `excludeContests: ["PCPE_AGENTE"]`.
+- **Lacunas (`content/gaps.json`):**
+  - `da-processo-adm`: mapeado explicitamente ao Item 10 do edital (Processo Administrativo Estadual Lei 11.781/2000 e Federal Lei 9.784/1999).
+  - `leg-penal-eca`: detalhado como aspectos penais e procedimentais policiais (diferenciando de `dc-eca` do CBMPE).
+  - `rl-matrizes-sistemas-lineares`: registrada lacuna média não resolvida para itens 5 e 15 do edital.
+  - `est-tamanho-amostral`: registrada lacuna média não resolvida para o item 3.2 do edital.
+  - `inf-deep-dark-web-discussao`: registrada como resolvida via resumo analítico de `informatica/a00`.
+
+### 5.3 Bloqueante 3: Neutralidade Pedagógica Total
+- Removidas menções a professores e equipes nos títulos das aulas através de higienização automatizada em `pipeline/build_catalog.py` (`clean_title`).
+- Removidas menções a professores dos comentários e notas em `content/overrides/`.
+- Adicionado teste automatizado de neutralidade em `pipeline/tests/test_content.py` (`test_titles_and_notes_are_neutral`), aprovado com sucesso.
+
+### 5.4 Reestruturação da Prova Objetiva e Simulados (Cebraspe)
+- Atualizado `EXAM_CONFIGS.PCPE_AGENTE` em `web/src/lib/simulado-rules.ts`:
+  - **Bloco I (P1 — Noções de Direito, 20 questões):** Legislação PCPE (4), Direito Constitucional (4), Direito Administrativo (4), Direito Penal (3), Legislação Penal Especial (2), Direito Processual Penal (3).
+  - **Bloco II (P2 — Conhecimentos Específicos, 40 questões):** Língua Portuguesa (10), Informática (10), Contabilidade Geral (10), Raciocínio Lógico (3), Matemática (3), Estatística (4).
+  - **Critérios de Corte:** 60 questões no total, corte de 30 pontos (50%), `minPercentPerBlock: 0`, `noZeroInAnyArea: false`.
+- Tornou-se opcional o campo `blocks.III` na interface `ContestExamConfig`, adaptando `simulados-view.tsx` e `resultado/[id]/page.tsx` para suporte dinâmico a 2 ou 3 blocos.
+
+### 5.5 Resultados da Bateria de Verificação
+- `npm run typecheck`: 0 erros.
+- `npm test -- --project unit`: 462 testes unitários aprovados em 43 arquivos.
+- `pipeline/test_plan_pcpe.ts`: 18 de 18 cenários aprovados com veredicto `LIBERAR` e 0 erros de integridade.
+- `compare_importance_main.py`: 0 discrepâncias em 897 trechos legados.
+- `compare-plans-main.ts`: 0 divergências em 48 cenários.
+- `npm run build`: Build Next.js Turbopack com sucesso (código 0).
+
+## 6. Rodada 4 de Correções (Outubro/2026) — Robustez e Consolidação Final
+
+### 6.1 Robustez do Filtro por Concurso no Banco de Produção (Solução A)
+- **Decisão:** Implementação da Solução (a), persistindo `onlyContests` e `excludeContests` no banco relacional.
+- **Implementação:**
+  - Adicionadas colunas `onlyContests TEXT[] @default([])` e `excludeContests TEXT[] @default([])` no modelo `Aula` de `web/prisma/schema.prisma`.
+  - Criada e aplicada a migração `20261017130000_aula_contest_filters`.
+  - Atualizados `web/prisma/seed-structure.ts` e `web/prisma/seed.ts` para persistirem os filtros durante o processo de seed idempotente.
+  - Atualizado `web/src/lib/data/planner-data.ts` para carregar `onlyContests` e `excludeContests` em `CatalogAula` no runtime de produção.
+- **Benefício:** Elimina a fragilidade da dependência do fallback exclusivo de importância (evita que eventuais aulas práticas sem trechos ou segmentos pontuais vazem para outros concursos).
+
+### 6.2 Modo Dual no Comparador de Planos (`compare-plans-main.ts`)
+- Implementado comparador com modo dual:
+  1. `FIXTURES`: testa os planos com os campos nativos do catálogo.
+  2. `COMO NO BANCO`: purga programaticamente `onlyContests` e `excludeContests` de `branchCat` antes de invocar o planejador para validar a robustez do fallback por importância.
+- Tolerância de cobertura ajustada para `1e-6` (isolando resíduos de arredondamento de float de ~1.6e-8 sem mascarar regressões de planejamento).
+- **Resultado:** 96 cenários executados (48 em fixtures + 48 como no banco) com **exatamente 0 divergências** em relação à `main`.
+
+### 6.3 Generalização da Limpeza de Títulos (`clean_title`)
+- Higienização de títulos em `pipeline/build_catalog.py` generalizada com expressões regulares para eliminar menções a professores (`- Prof./Professor(a) <Nome>`), equipes (`- Equipe <Nome>`) e mídias (`- Somente (em) PDF`, `(Somente em PDF)`).
+- Preservadas intencionalmente as 3 exceções legadas herdadas da `main` (`biologia/a16`, `biologia/a17` e `direito-constitucional/a18`) para submissão à decisão do Dono do Produto.
+
+### 6.4 Auditoria e Correção de Lacunas (`content/gaps.json`)
+- `inf-deep-dark-web-discussao`: auditado e confirmado como **Falso Alarme**. O material-base `informatica/a00` já cobre integralmente os temas nas páginas 8 (grupos de discussão), 18–20 (teoria Deep/Dark Web/Tor), 60 (resumo) e 97, 103 (questões comentadas). Resumo analítico elaborado por Claude Sonnet 5.5 no commit `b40cb70`.
+- `da-processo-adm`: ajustada a descrição da evidência para esclarecer que o item 10 do edital da PCPE traz a rubrica genérica "Processo administrativo" (sem números de leis). O curso-base supriu a Lei Estadual nº 11.781/2000 (`a23`) e o MentorIA complementou com a Lei Federal nº 9.784/1999 (`c02`), muito cobrada pelo Cebraspe.
+
+### 6.5 Pesos de Disciplina Documentados como Estimativa de Projeto
+- Documentado em `content/contests.json`, `web/content/contests.json` e `web/scripts/export-contests.ts` que o subitem 7.1.1 do edital PCPE fixa apenas `P1 = 20` (Noções de Direito) e `P2 = 40` (Conhecimentos Específicos).
+- As quantidades individuais por matéria são estimativas técnicas de projeto do MentorIA:
+  - Raciocínio Lógico (3) + Matemática (3) desmembrando o bloco RLM de 6 questões.
+  - Estatística fixada em 4 questões (baseada em provas anteriores Cebraspe para carreiras policiais).
+
+### 6.6 Rótulos de Perfis e Coluna Fixação no `pipeline/test_plan_pcpe.ts`
+- Perfis atualizados para a nomenclatura oficial: `0: Iniciante`, `1: Básico`, `2: Intermediário`, `3: Domina`.
+- Adicionada a coluna `Fixacao` na tabela de resultados da verificação.
+- Execução de 24 cenários (4 perfis × 3 cargas × 2 turbos) aprovada com 100% de veredito `LIBERAR` e 0 erros de verificação independente.
+
+### 6.7 Homologação e Verificação da Rodada 4
+- `npm run typecheck`: 0 erros.
+- `npm test -- --project unit`: 462 testes unitários aprovados (43 arquivos).
+- `npm run lint`: 9 erros exatamente iguais à baseline da `main`.
+- `pipeline/compare_importance_main.py`: 0 discrepâncias em 897 trechos legados.
+- `web/scripts/compare-plans-main.ts`: 0 divergências em 96 cenários (modos fixtures e como no banco).
+- `pipeline/test_plan_pcpe.ts`: 24 de 24 cenários aprovados com LIBERAR.
+- `npm run build`: Build de produção Next.js Turbopack finalizado com sucesso (código 0).
+
+## 7. Rodada 5 de Correções (Outubro/2026) — Alinhamento Fino do Edital e Priorização de Conteúdo
+
+### 7.1 Importância Corrigida com Matemática no PCPE Agente
+- **Problema:** `content/importance/segments.json` não havia sido recalculado após a ativação de `matematica` no PCPE Agente, mantendo os 76 trechos de Matemática com `appears: false` para o concurso.
+- **Solução:**
+  - Regenerada a importância via `pipeline/importance.py`, ativando 44 trechos de Matemática com `appears: true` no `PCPE_AGENTE`.
+  - Criado teste invariante no pytest (`test_all_exam_subjects_have_appearing_segments` em `pipeline/tests/test_content.py`), garantindo que nenhuma disciplina com peso na prova fique sem trechos ativos no respectivo concurso.
+  - Arquivo espelhado em `web/content/importance/segments.json`.
+
+### 7.2 Alinhamento Cirúrgico das Disciplinas Comuns ao Edital do Agente
+- **Mapeamento Próprio:** Criados 7 arquivos em `content/edital/pcpe/` (espelhados em `web/content/edital/pcpe/`), cobrindo item a item o subitem 22.2.3 do edital da PCPE sem alterar os mapas do CBMPE/PMPE:
+  - `lingua-portuguesa.json`, `informatica.json`, `raciocinio-logico.json`, `matematica.json`, `estatistica.json`, `direito-constitucional.json`, `direito-administrativo.json`.
+- **Inclusão da Aula 13 de Língua Portuguesa:** Incluída a aula `lingua-portuguesa/a13` (Manual de Redação da Presidência da República / Redação Oficial) com `onlyContests: ["PCPE_AGENTE"]`, dividida estritamente em 6 trechos de 14 a 17 páginas.
+- **Exclusões de Conteúdos Fora do Edital:**
+  - **Língua Portuguesa:** `a12` (variação linguística), `c01` (figuras de linguagem), `c02` (formação de palavras).
+  - **Direito Constitucional:** `a16` (ordem social), `a17` (controle de constitucionalidade) e complementos autorais `c01` a `c05`.
+  - **Informática:** `a14` (hardware e arquitetura), `c01` (prompt e periféricos).
+  - **Estatística:** `a07` a `a10` (distribuições de probabilidade contínuas/discretas fora do escopo do Agente).
+  - **Direito Administrativo:** `c01` (Lei 8.112/1990 pura), visto que o regime dos policiais civis de PE é regido pelo Estatuto Estadual (Lei 6.123/1968).
+- **Ajustes de Lacunas (`content/gaps.json`):**
+  - Adicionada lacuna `rl-operacoes-conjuntos` (subitem 1 do edital de RLM / Aula 08 não baixada do pacote 361849).
+  - Refinada `rl-matrizes-sistemas-lineares` para `rl-matrizes-determinantes` (sistemas lineares já contemplados em `matematica/a08`).
+- **Proporcionalidade dos Complementos:** Ajustado `pipeline/build_complements.py` para preservar a proporção exata `raw_base_sum * d.weight * block_weight`, eliminando qualquer distorção na base comum.
+
+### 7.3 Arquitetura de Classificação Multiconcurso
+- Desenvolvido e validado teste de arquitetura `pipeline/tests/test_multicontest_classifier.py` com 3 cenários de roteamento:
+  1. Questão Cebraspe de Licitações (Lei 14.133/2021) classifica para `direito-administrativo/a20` ou `a21` na PCPE.
+  2. Questão AOCP de Licitações no CBMPE nunca vaza para as aulas exclusivas da PCPE.
+  3. Questão do ECA classifica em Direito Constitucional no CBMPE e em Legislação Penal Especial na PCPE.
+
+### 7.4 Diretriz do Dono do Produto: Foco Exclusivo em Atividades, Bizus e Resumos
+- O download de cadernos de questões Cebraspe do TecConcursos foi postergado pelo Dono do Produto para execução posterior.
+- O foco integral do projeto passa a ser a catalogação de todas as atividades do edital, a garantia de que os planejamentos possam ser montados e a produção massiva dos Bizus (`content/items/`) e Resumos Analíticos (`content/summaries/`) dos 657 trechos ativos da PCPE.
+
+### 7.5 Conclusão da Produção Massiva: 100% dos 657 Trechos com Bizus e Resumos Analíticos
+- **Mobilização de Agentes Especialistas em Paralelo:** 7 subagentes executaram a geração e validação rigorosa de conteúdo pedagógico a partir dos PDFs do material-base:
+  1. `legislacao-pcpe`: 12 trechos (96 itens C/E, 9.121 palavras).
+  2. `legislacao-penal-especial`: 29 trechos (232 itens C/E, 26.525 palavras).
+  3. `direito-processual-penal`: 38 trechos (304 itens C/E, 29.806 palavras).
+  4. `contabilidade-geral`: 44 trechos (352 itens C/E, 24.944 palavras).
+  5. `direito-administrativo` (aulas exclusivas `a20`..`a24`, `c02`): 47 trechos (376 itens C/E, 39.357 palavras).
+  6. `raciocinio-logico` (`a00`..`a07`) + `lingua-portuguesa` (`a13`): 76 trechos (40.461 palavras).
+  7. `direito-penal`: 69 trechos (552 itens C/E, 44.791 palavras).
+- **Inventário 100% Concluído (`docs/inventario_pcpe.json`):**
+  - Total de trechos ativos no `PCPE_AGENTE`: **657 trechos**.
+  - Bizus (`content/items/`): **657 / 657 (100.0%)** — 0 pendências.
+  - Resumos Analíticos (`content/summaries/`): **657 / 657 (100.0%)** — 0 pendências.
+  - Todas as 12 disciplinas com 100% de cobertura.
+- **Validação Estrita:** 100% dos arquivos validados via `pipeline/validate_content.py` e `pipeline/validate_summaries.py` com zero erros de esquema, integridade de fingerprints e conformidade de originalidade.
+- **Banco de Dados Local Sincronizado (`prisma/seed-structure.ts`):** 1.142 bizus, 9.913 itens C/E e 1.076 resumos analíticos carregados com sucesso no banco de dados relacional local (`npx prisma dev`).
+- **Homologação Completa:**
+  - `npx tsc --noEmit`: 0 erros.
+  - `npx vitest run --project unit`: 462 de 462 testes aprovados.
+  - `npx tsx pipeline/test_plan_pcpe.ts`: 24 de 24 cenários com 100% `LIBERAR` e 0 erros.
+  - `npx tsx web/scripts/compare-plans-main.ts`: 96 de 96 cenários com 0 divergências em relação à `main`.
+  - `npm run build`: Build de produção Turbopack do Next.js finalizado com código 0.
+
+
+
+
+
+## 8. Rodada 6 (19/10/2026) — Auditoria de qualidade, complementos e mapa do edital do Agente
+
+### 8.1 Auditoria de qualidade dos resumos e bizus
+- Triagem automática (`pipeline/pcpe_triage.py`, `pipeline/pcpe_tools/audit_pcpe.py`, `val_pcpe.py`) mais leitura por amostragem encontrou conteúdo gerado a partir do **título do tópico** (e não do texto-fonte) em várias disciplinas: itens C/E preenchedores ("Em relação a Aplicações Práticas…"), ponteiros genéricos ("Conceitos Estruturantes (Foco 1)…"), resumos que não correspondiam às páginas do trecho e sequências copiadas do material.
+- Foram **refeitos, lendo o texto-fonte trecho a trecho**: Contabilidade Geral (a00–a19), Direito Processual Penal (a00–a03), Direito Penal (a04–a10), Legislação Penal Especial (a11–a21 e ECA penal), Legislação da PCPE (a01, a03–a07; a02 e c01 conferidos), Direito Administrativo (a20–a24; o complemento c02 foi conferido e mantido), Língua Portuguesa a13 e **Raciocínio Lógico inteiro** (a00–a07, 70 trechos). Cada trecho tem resumo analítico, sintético (Bizu), 8 itens C/E e ponteiros de página reais. Estado final: `validate_content.py`, `validate_summaries.py` e `pipeline/pcpe_tools/runs.py` sem erros nas 12 disciplinas do PCPE.
+- Rascunhos versionados em `pipeline/pcpe_tools/drafts/` (uma refação por trecho); método e ferramentas em `PCPE-PROGRESSO.md`.
+
+### 8.2 Dúvidas do material-base (para revisão humana; nenhuma altera o gabarito)
+- **Raciocínio Lógico:** (1) a01/s07–s08, questão da UFRGS: a coluna da tabela 3 de (p ∨ ~q) → (p ∧ ~q) vem impressa como F, F, F, F; o cálculo correto é F, V, V, F. (2) a02/s03, questão da AGENERSA: a negação aparece como "~c ∨ s" e deveria ser "~c ∧ s". (3) a04/s09 (Consulplan/Prodabel): a afirmação III é chamada de "condicional falsa", mas é uma conjunção verdadeira. (4) a04/s03, questão da PF: a premissa 3 é chamada de "f" quando é "d" (o número de linhas, 8, não muda). (5) a06/s05: o desarranjo de 3 elementos é escrito como "D4 = 3! × …" (deveria ser D3). (6) a06/s06: no texto da combinação completa, "5 − 1 + 3" é dado como 8 (o correto é 7). (7) a04/s05: "inocente" e "culpado" são tratados como negações exatas, o que não vale em geral.
+- **Legislação Penal Especial:** (a) o Tema 506/RE 635.659 foi tratado só para a maconha (40 g / 6 plantas), e a aula chama o art. 28 de sanção administrativa; (b) em a18/s04 o tráfico privilegiado aparece como "1/6 a 1/3", mas a lei diz 1/6 a 2/3; (c) Lei 9.605, art. 60: a aula traz duas penas diferentes (6 meses a 2 anos, com aumento por EIA × 1 a 6 meses); adotou-se o texto mais recente.
+- **Direito Penal a06 (s05–s06):** a fonte não mostra se a Lei 15.280/2025 alterou as penas dos arts. 227–230 e 232-A; mantiveram-se as da aula.
+- **Direito Administrativo a22/s14:** o Tema 1.118 do STF aparece grafado "118" na fonte.
+
+### 8.3 Complementos novos do Agente (`onlyContests: PCPE_AGENTE`)
+Lacunas do edital sem aula no material-base, resolvidas com texto autoral (aulas `c`, PDF em `web/public/complementos/`, com resumo, sintético, 8 itens C/E e importância): `rl-operacoes-conjuntos` (item 14 de RL → `raciocinio-logico/c01`), `rl-matrizes-determinantes` (item 15, problemas matriciais → `raciocinio-logico/c02`), `est-tamanho-amostral` e `est-assimetria-curtose` (itens 1 e 3.2 de Estatística → `estatistica/c02`), `mat-divisao-proporcional` (item 3.1 → `matematica/c03`) e `dc-principios-fundamentais` (arts. 1º a 4º da CF → `direito-constitucional/c06`). Todas registradas em `content/gaps.json`.
+
+### 8.4 Mapa edital → material do Agente refeito
+Os sete arquivos `content/edital/pcpe/*.json` entregues antes tinham `where` inventado (aulas, páginas e tópicos inexistentes). Foram regenerados por `pipeline/pcpe_tools/build_edital_pcpe.py` a partir dos itens do edital oficial e dos trechos reais (códigos = numeração do edital; Raciocínio Lógico e Matemática dividem o bloco "Raciocínio Lógico"): RL 12 itens, Matemática 11, Estatística 5, Direito Constitucional 14, Direito Administrativo 20, Língua Portuguesa 21 e Informática 12. Itens tratados em outra disciplina (segurança pública na CE-PE; disposições constitucionais do agente público) ficam `elsewhere`. Sistemas lineares (Matemática 5) está `partial`: a escrita matricial e a regra de Cramer estão no complemento de matrizes.

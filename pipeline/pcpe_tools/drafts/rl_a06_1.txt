@@ -1,0 +1,62 @@
+@@@ raciocinio-logico/a06/s01
+@@ ANALITICO
+Este trecho abre a análise combinatória: a ideia de contar sem listar tudo, o princípio multiplicativo e sua aplicação à contagem de divisores de um número natural.
+
+### Para que serve a análise combinatória
+
+- A **análise combinatória** reúne técnicas de **contagem** em conjuntos finitos, para evitar listar todos os casos. Com poucos elementos basta enumerar (os números de 3 algarismos distintos com {1, 3, 4} são 134, 143, 314, 341, 413 e 431: seis). Com muitos elementos, enumerar toma tempo e leva a erros.
+- Permite também contar **subconjuntos** com certas características (só os pares, só os primos). Aparece em questões puras e como base para **probabilidade**.
+
+### Princípio multiplicativo
+
+- Se um evento A pode ocorrer de **m** maneiras e, para cada uma, um evento B pode ocorrer de **n** maneiras, os dois eventos ocorrem juntos de **m × n** maneiras. É usado quando as escolhas são **sucessivas e concomitantes** ("e").
+- Exemplo: 3 calças e 4 blusas dão 12 combinações (para cada calça há 4 blusas: 4 + 4 + 4 = 12). Com um terceiro evento de p maneiras (2 cintos): 3 × 4 × 2 = 24.
+- Para n eventos com p₁, p₂, ..., pₙ possibilidades: **p₁ × p₂ × ... × pₙ**.
+
+### Questões de aplicação
+
+- **FEPESE (restaurante)**: 3 pratos, 2 acompanhamentos e 4 bebidas, um de cada: 3 × 2 × 4 = **24** (letra D).
+- **FUNDATEC (outdoor)**: 5 saias, 8 blusas, 4 pares de sapatos e 3 óculos: 5 × 8 × 4 × 3 = **480** (letra C).
+- **FGV/PM-PB (quadrado)**: pintar os 4 vértices com 5 cores, com os extremos de cada diagonal em cores **diferentes**. Para A e C: 5 × 4; para B e D: 5 × 4. Total: 5 × 4 × 5 × 4 = **400** (letra E). Cada restrição afeta apenas um par.
+
+### Contagem de divisores
+
+- Fatora-se o número em primos: 60 = 2² × 3¹ × 5¹. Todo divisor tem a forma 2ˣ · 3ʸ · 5ᶻ com x ≤ 2, y ≤ 1, z ≤ 1. Há 3 valores para x (0, 1, 2), 2 para y e 2 para z: 3 × 2 × 2 = **12 divisores**.
+- **Regra prática**: some 1 a cada expoente e multiplique: (2 + 1)(1 + 1)(1 + 1). O "+1" corresponde ao expoente zero.
+- **FCC (tabelas de 216 campos)**: uma tabela de A linhas por B colunas com A · B = 216 é diferente de B por A. O total de tabelas é o número de divisores de 216 = 2³ × 3³: (3 + 1)(3 + 1) = **16** (letra D).
+
+### Para fixar
+- Princípio multiplicativo: escolhas sucessivas ("e") multiplicam as possibilidades.
+- Restrições entre pares independentes valem para cada par separadamente.
+- Número de divisores: fatore, some 1 a cada expoente e multiplique.
+- Se a ordem de linhas e colunas diferencia as tabelas, cada divisor conta uma vez como número de linhas.
+- Combinatória serve para contar sem listar.
+@@ SINTETICO
+**Análise combinatória**: reúne técnicas para contar casos em conjuntos finitos sem listá-los.
+**Princípio multiplicativo**: escolhas sucessivas e concomitantes multiplicam as possibilidades.
+**Generalização**: para n eventos, o total é o produto das possibilidades de cada um.
+**Restrição por pares**: vértices opostos de cores diferentes dão 5 vezes 4 por par, ou seja, 400 no total.
+**Exemplo comercial**: 3 pratos, 2 acompanhamentos e 4 bebidas dão 24 combinações.
+**Fatoração em primos**: base para contar os divisores de um número.
+**Divisores de 60**: com 60 igual a 2 ao quadrado vezes 3 vezes 5, são 3 vezes 2 vezes 2, ou seja, 12.
+**Regra do mais um**: some 1 a cada expoente e multiplique.
+**Divisores de 216**: como 216 é 2 ao cubo vezes 3 ao cubo, são 16 divisores.
+**Tabelas diferentes**: contar linhas por colunas diferentes equivale a contar os divisores.
+@@ TEORIA
+C | Se um evento ocorre de 5 maneiras e outro, independente, de 6, os dois ocorrem juntos de 30 maneiras. || Princípio multiplicativo.
+E | O número de divisores de 36 = 2² × 3² é 2 + 2 = 4. || É (2 + 1)(2 + 1) = 9.
+C | Para contar os divisores de um número natural, fatora-se em primos e multiplicam-se os expoentes acrescidos de 1. || Regra prática.
+E | A análise combinatória só pode ser aplicada a conjuntos infinitos. || Trata de conjuntos finitos.
+@@ REVISAO
+C | Havendo 4 camisas e 5 bermudas, é possível formar 20 conjuntos camisa-bermuda. || 4 × 5.
+E | Se os vértices opostos de um quadrado devem ter cores diferentes e há 5 cores, o total de pinturas é 5 × 4 × 3 × 2. || É 5 × 4 × 5 × 4 = 400.
+C | O número 60 tem 12 divisores positivos. || 60 = 2² · 3 · 5 e (2+1)(1+1)(1+1) = 12.
+C | A combinatória é utilizada tanto em questões de contagem pura quanto em questões de probabilidade. || Aplicações do conteúdo.
+@@ PONTOS
+3 | Apresentação da aula de análise combinatória
+4 | Introdução e princípio multiplicativo
+5 | Extensão do princípio multiplicativo
+6 | Questões da FEPESE e da FUNDATEC
+7 | Questão da FGV (quadrado) e contagem de divisores
+8 | Divisores de 60 e regra do mais um
+9 | Questão da FCC (tabelas de 216 campos)

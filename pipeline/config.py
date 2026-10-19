@@ -69,6 +69,57 @@ def pdf_key(folder_name: str, filename: str) -> str:
     return f"{folder_name[:2]}_{filename[:3]}"
 
 
+# Mapeamento explícito para pastas extras/compartilhadas (PCPE): chave '<pasta>_<ordem>' -> (subject_id, aula_number)
+PDF_TARGET_OVERRIDES: dict[str, tuple[str, int] | None] = {
+    # docs/42 -> novas aulas de Direito Administrativo (a20..a24, preservando a00..a09)
+    "42_007": ("direito-administrativo", 20),
+    "42_008": ("direito-administrativo", 21),
+    "42_009": ("direito-administrativo", 22),
+    "42_014": ("direito-administrativo", 23),
+    "42_015": ("direito-administrativo", 24),
+    # docs/46 -> Aulas 15 e 19 pertencem a legislacao-penal-especial (mantendo numeração do curso PC-PE)
+    "46_016": ("legislacao-penal-especial", 15),
+    "46_020": ("legislacao-penal-especial", 19),
+    # docs/30 -> Aulas 00..10 ignoradas (duplicadas ou fora do edital PCPE); 012..020 mapeadas para Aula 11..21 do curso PC-PE
+    "30_001": None,
+    "30_002": None,
+    "30_003": None,
+    "30_004": None,
+    "30_005": None,
+    "30_006": None,
+    "30_007": None,
+    "30_008": None,
+    "30_009": None,
+    "30_010": None,
+    "30_011": None,
+    "30_014": ("legislacao-penal-especial", 11),  # Lei 8.072/1990 - Crimes Hediondos
+    "30_013": ("legislacao-penal-especial", 12),  # Lei 7.716/1989 - Preconceito de Raça ou de Cor
+    "30_012": ("legislacao-penal-especial", 13),  # Lei 13.869/2019 - Abuso de Autoridade
+    "30_016": ("legislacao-penal-especial", 14),  # Lei 9.455/1997 - Crimes de Tortura
+    "30_015": ("legislacao-penal-especial", 16),  # Lei 9.503/1997 - Crimes de Trânsito (CTB)
+    "30_019": ("legislacao-penal-especial", 17),  # Lei 11.340/2006 - Lei Maria da Penha
+    "30_020": ("legislacao-penal-especial", 18),  # Lei 11.343/2006 - Lei de Drogas
+    "30_017": ("legislacao-penal-especial", 20),  # Lei 9.605/1998 - Crimes Ambientais
+    "30_018": ("legislacao-penal-especial", 21),  # Lei 10.826/2003 - Estatuto do Desarmamento
+}
+
+
+def resolve_pdf_target(folder_name: str, filename: str, subjects_by_pref: dict[str, Subject] | None = None) -> tuple[str, int] | None:
+    """Resolve (subject_id, aula_number) para um PDF em docs/, respeitando PDF_TARGET_OVERRIDES."""
+    parsed = parse_pdf_name(filename)
+    if parsed is None:
+        return None
+    key = pdf_key(folder_name, filename)
+    if key in PDF_TARGET_OVERRIDES:
+        return PDF_TARGET_OVERRIDES[key]
+    by_pref = subjects_by_pref if subjects_by_pref is not None else subject_by_prefix()
+    subj = by_pref.get(folder_name[:2])
+    if subj is None:
+        return None
+    return (subj.id, parsed[1])
+
+
+
 def load_overrides() -> dict[str, dict]:
     """Ajustes manuais por aula: content/overrides.json + content/overrides/<disciplina>.json (auditoria por disciplina).
     Chaves do arquivo por disciplina sobrepõem as do arquivo geral, aula a aula."""

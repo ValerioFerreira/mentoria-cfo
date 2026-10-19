@@ -1,0 +1,202 @@
+{
+  "aula": "contabilidade-geral/a07",
+  "batch": "pcpe-bizu-contabilidade-geral",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "contabilidade-geral/a07/s01",
+      "bizu": {
+        "summary": [
+          "**Estoques (CPC 16)**: ativos destinados à venda, em fase de produção ou materiais e suprimentos a consumir na produção ou nos serviços.",
+          "**Inventário periódico × permanente**: o periódico conta fisicamente e apura CMV = estoque inicial + compras − estoque final; o permanente dá baixa a cada venda.",
+          "**PEPS**: custo das saídas é o das primeiras compras, e o estoque final fica avaliado pelas compras mais recentes.",
+          "**UEPS**: custo das saídas é o das últimas compras; em inflação gera maior CMV e menor lucro e é proibido no Brasil.",
+          "**Média ponderada**: a fixa usa um custo médio único do período; a móvel recalcula a cada entrada e é a escolha quando a questão não especifica.",
+          "**Método do varejo**: estoque a custo é igual ao preço de venda dividido por um mais a margem.",
+          "**Ficha de estoque**: vendas a preço de custo, CMV é a soma das saídas, estoque final é a soma do saldo e devoluções entram com sinal negativo.",
+          "**Inflação × deflação**: com preços subindo PEPS dá maior lucro e UEPS menor; em deflação os efeitos se invertem."
+        ],
+        "teoria": [
+          {
+            "statement": "Pelo método PEPS, o estoque final é composto pelas aquisições mais recentes.",
+            "isTrue": true,
+            "explanation": "As primeiras unidades a entrar são as primeiras a sair, restando em estoque as últimas compradas."
+          },
+          {
+            "statement": "O UEPS é admitido pela legislação brasileira, pois reduz o lucro e, portanto, a carga tributária.",
+            "isTrue": false,
+            "explanation": "O UEPS é vedado no Brasil; é admitido apenas para fins gerenciais."
+          },
+          {
+            "statement": "No inventário periódico, o CMV é obtido pela soma do estoque inicial com as compras, deduzido o estoque final.",
+            "isTrue": true,
+            "explanation": "A fórmula é CMV = EI + Compras − EF, a partir da contagem física."
+          },
+          {
+            "statement": "Se a questão não indicar o tipo de média ponderada, deve-se utilizar a média ponderada fixa.",
+            "isTrue": false,
+            "explanation": "Na omissão, utiliza-se a média ponderada móvel."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Em economia inflacionária, o método PEPS apresenta menor CMV e maior lucro que o método UEPS.",
+            "isTrue": true,
+            "explanation": "Como as primeiras compras são mais baratas, o PEPS baixa custos menores e deixa estoque final maior."
+          },
+          {
+            "statement": "Se o preço de venda de itens em estoque é R$ 1.500 e a margem sobre o custo é de 50%, o estoque pelo método do varejo vale R$ 1.000.",
+            "isTrue": true,
+            "explanation": "Estoque a custo = 1.500 ÷ 1,5 = 1.000."
+          },
+          {
+            "statement": "Na tabela de controle de estoque, as vendas são registradas pelo preço de venda.",
+            "isTrue": false,
+            "explanation": "As saídas são lançadas ao custo; o preço de venda é irrelevante para a ficha de estoque."
+          },
+          {
+            "statement": "Em um cenário deflacionário, as relações de CMV e lucro entre PEPS e UEPS se invertem em relação ao cenário inflacionário.",
+            "isTrue": true,
+            "explanation": "Com preços caindo, o PEPS passa a ter maior CMV e menor lucro, e o UEPS o contrário."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Conceito de estoques e inventário periódico",
+            "pageRef": 3
+          },
+          {
+            "topic": "Inventário permanente",
+            "pageRef": 4
+          },
+          {
+            "topic": "PEPS",
+            "pageRef": 5
+          },
+          {
+            "topic": "UEPS",
+            "pageRef": 6
+          },
+          {
+            "topic": "Média ponderada fixa",
+            "pageRef": 7
+          },
+          {
+            "topic": "Média ponderada móvel, custo específico e varejo",
+            "pageRef": 8
+          },
+          {
+            "topic": "Tabela de controle de estoque",
+            "pageRef": 9
+          },
+          {
+            "topic": "Efeitos dos métodos e vedação do UEPS",
+            "pageRef": 10
+          }
+        ]
+      }
+    },
+    {
+      "id": "contabilidade-geral/a07/s02",
+      "bizu": {
+        "summary": [
+          "**Tributo recuperável**: permite compensar o pago na entrada com o devido na saída; ICMS a recuperar é ativo e ICMS a recolher é passivo, e o recuperável não entra no custo do estoque.",
+          "**Por dentro × por fora**: ICMS, PIS e COFINS já estão no preço; o IPI é somado ao preço, e o valor da nota fiscal inclui o IPI.",
+          "**Alíquotas de PIS e COFINS**: no regime cumulativo, 0,65% e 3%; no não cumulativo, 1,65% e 7,6%.",
+          "**Apuração do ICMS**: a despesa sobre vendas entra integral na DRE, mas recolhe-se só a diferença entre o ICMS a recolher e o ICMS a recuperar, apurada por período.",
+          "**Lucro bruto**: receita bruta menos deduções (devoluções, descontos incondicionais, abatimentos, impostos sobre vendas) dá a receita líquida, da qual se subtrai o CMV.",
+          "**CPC 16**: estoque avaliado pelo menor valor entre custo e valor realizável líquido, que é o preço de venda estimado menos custos de conclusão e venda.",
+          "**Custo do estoque**: compreende preço, tributos não recuperáveis, frete, seguro e demais gastos para deixá-lo pronto; descontos, abatimentos e devoluções o reduzem.",
+          "**Lei 6.404/76**: custo menos provisão para valor de mercado inferior; commodities podem usar o valor de mercado e matérias-primas, o preço de reposição."
+        ],
+        "teoria": [
+          {
+            "statement": "O IPI é um imposto por dentro, razão pela qual já está incluído no preço da mercadoria.",
+            "isTrue": false,
+            "explanation": "O IPI é por fora e se soma ao preço; o ICMS é que está incluído no preço."
+          },
+          {
+            "statement": "O tributo recuperável pago na aquisição de mercadorias para revenda não integra o custo do estoque.",
+            "isTrue": true,
+            "explanation": "Esse valor é um direito perante o Fisco (ICMS a recuperar) e fica no ativo."
+          },
+          {
+            "statement": "O valor realizável líquido e o valor de mercado da Lei 6.404/76 têm o mesmo conceito, pois ambos são definidos de forma externa à entidade.",
+            "isTrue": false,
+            "explanation": "O VRL é específico da entidade (preço de venda estimado menos gastos necessários), e o valor de mercado é externo."
+          },
+          {
+            "statement": "O desconto comercial concedido na nota fiscal reduz a base de cálculo do ICMS, do PIS, da COFINS e do IPI, enquanto o abatimento posterior não a altera.",
+            "isTrue": true,
+            "explanation": "O desconto incondicional é dedução da base; o abatimento ocorre depois do fato gerador."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A despesa com ICMS sobre vendas lançada na DRE corresponde ao valor integral do imposto incidente sobre as vendas, enquanto o valor a recolher é a diferença para o ICMS a recuperar.",
+            "isTrue": true,
+            "explanation": "Com vendas de R$ 15.000 e compras de R$ 10.000 a 18%, a despesa é R$ 2.700 e o valor a recolher é R$ 900."
+          },
+          {
+            "statement": "Os juros embutidos na compra a prazo de estoques comuns integram o custo do estoque.",
+            "isTrue": false,
+            "explanation": "O estoque é registrado pelo valor à vista; os encargos são despesa pela competência, exceto em ativo qualificável."
+          },
+          {
+            "statement": "Commodities, como soja e café, estocadas para venda, admitem avaliação pela cotação de mercado se essa for a prática comercial aceita pela técnica contábil.",
+            "isTrue": true,
+            "explanation": "Trata-se da regra do art. 183, § 4º, da Lei 6.404/76 para mercadorias fungíveis."
+          },
+          {
+            "statement": "Para matérias-primas, o valor justo considerado na Lei 6.404/76 é o preço pelo qual possam ser repostas mediante compra no mercado.",
+            "isTrue": true,
+            "explanation": "A queda do preço da matéria-prima pode ser compensada na venda do produto acabado."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Tributos recuperáveis e cumulativos",
+            "pageRef": 12
+          },
+          {
+            "topic": "IPI, ICMS, PIS e COFINS",
+            "pageRef": 13
+          },
+          {
+            "topic": "Contabilização da compra com ICMS e IPI",
+            "pageRef": 15
+          },
+          {
+            "topic": "Venda e ICMS sobre vendas",
+            "pageRef": 16
+          },
+          {
+            "topic": "Apuração do ICMS a recolher",
+            "pageRef": 18
+          },
+          {
+            "topic": "Lucro bruto e dedução da receita",
+            "pageRef": 19
+          },
+          {
+            "topic": "Avaliação pelo CPC 16",
+            "pageRef": 20
+          },
+          {
+            "topic": "Custo de aquisição",
+            "pageRef": 21
+          },
+          {
+            "topic": "Descontos, abatimentos e Lei 6.404/76",
+            "pageRef": 22
+          },
+          {
+            "topic": "Matérias-primas, commodities e juros",
+            "pageRef": 24
+          }
+        ]
+      }
+    }
+  ]
+}

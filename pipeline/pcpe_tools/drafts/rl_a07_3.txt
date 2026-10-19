@@ -1,0 +1,92 @@
+@@@ raciocinio-logico/a07/s03
+@@ ANALITICO
+Este trecho conclui as questões de união de três eventos e apresenta o evento complementar, a relação de De Morgan em probabilidade (complementar da união e da interseção) e os axiomas de Kolmogorov com suas propriedades.
+
+### Fim da questão dos sabonetes (SEPLAG-PE)
+
+- Quem consome somente uma marca: 23% (só X) + 18% (só Y) + 35% (só Z) = **76%**.
+
+### Evento complementar
+
+- O **complementar** de A (Ā) é o conjunto dos elementos do espaço amostral que **não** pertencem a A. Como n(A) + n(Ā) = n(U), dividindo por n(U): **P(Ā) = 1 − P(A)**.
+- Exemplo: C = {1, 2, 3, 4} no dado, P(C) = 4/6 = 2/3; C̄ = {5, 6}, P(C̄) = 2/6 = 1/3 = 1 − 2/3.
+- **Pref. Palhoça**: urna com 10 bolas vermelhas, 3 azuis e 2 pretas (15 no total); P(não vermelha) = 1 − 10/15 = 5/15 = **33,33%** (letra A).
+- **CEBRASPE/BNB (tabuleiro 12 × 12)**: 144 quadrados, 30 marrons. P(não marrom) = 1 − 30/144 ≈ **0,79**, que é **superior** a 0,72 (item errado).
+- O complemento é útil sempre que o evento pedido contém "pelo menos", "não" ou "nem... nem".
+
+### Complementar da união e da interseção (Leis de De Morgan)
+
+- **Complementar da união**: P(Ā ∩ B̄) = P(complemento de A ∪ B) = **1 − P(A ∪ B)**. A situação "nem A nem B" é "não A **e** não B".
+- **Complementar da interseção**: P(Ā ∪ B̄) = P(complemento de A ∩ B) = **1 − P(A ∩ B)**. "Não A **ou** não B" é o mesmo que "não ocorrerem ambos".
+- Exemplo no dado: A = {2, 4, 6}, B = {1, 2, 3}. A ∪ B = {1, 2, 3, 4, 6}, P = 5/6; "nem A nem B" = {5}, probabilidade 1 − 5/6 = 1/6. A ∩ B = {2}; "não A ou não B" = {1, 3, 4, 5, 6}, probabilidade 1 − 1/6 = 5/6.
+- Para três eventos: P(Ā ∩ B̄ ∩ C̄) = 1 − P(A ∪ B ∪ C) e P(Ā ∪ B̄ ∪ C̄) = 1 − P(A ∩ B ∩ C).
+
+### Questões
+
+- **FGV/SEPOG-RO**: P(A) = 20%, P(B) = 30%, P(A ∩ B) = 10%. P(A ∪ B) = 40%; "nem A nem B" = 1 − 40% = **60%** (letra D).
+- **Fundação Santo André**: de 1.000 torcedores, 440 do time A e 320 do B, sem torcida dupla (excludentes): P(A ∪ B) = 76%, e nenhum dos dois: **24%** (letra A).
+- **CRMV-ES (pastas A, B e C, 200 usuários)**: P(A ∪ B ∪ C) = (76 + 86 + 140 − 68 − 34 − 48 + 30)/200 = 182/200; nenhuma das três: 1 − 182/200 = 18/200 = **9%** (letra B).
+
+### Axiomas de Kolmogorov
+
+1. **P(A) ≥ 0**: nenhuma probabilidade é negativa.
+2. **P(U) = 1** (algum resultado do espaço amostral ocorre).
+3. Se A e B são **mutuamente excludentes**, **P(A ∪ B) = P(A) + P(B)**.
+
+### Propriedades deduzidas
+
+- **i)** Evento impossível: P(∅) = 0. Mas **probabilidade zero não implica evento impossível** (obter infinitas caras em lançamentos infinitos é possível e tem probabilidade zero); de modo análogo, probabilidade 1 não implica evento certo.
+- **ii)** 0 ≤ P(A) ≤ 1.
+- **iii)** P(A − B) = P(A) − P(A ∩ B) (ocorre A e não B).
+- **iv)** Se A ⊆ B, então P(A) ≤ P(B).
+- **v)** P(A ∪ B) = P(A) + P(B) − P(A ∩ B). **vi)** P(Ā) = 1 − P(A).
+
+### Questões sobre axiomas
+
+- **FCC/SANASA**: distribuição de probabilidade 0,20; p; 2p; 3p; 2p; p. A soma é 1: 0,20 + 9p = 1 ⟹ p = 0,8/9 = 4/45. P(1 a 3 ocorrências) = p + 2p + 3p = 6p = 24/45 = **8/15** (letra E).
+- **Consulplan/CONAB**: a alternativa **errada** é a que afirma P(união de n eventos quaisquer) = soma das probabilidades; só vale para eventos mutuamente excludentes. As demais (complementar, A₁ ⊂ A₂ ⇒ P(A₁) ≤ P(A₂), decomposição da união em partes disjuntas) estão corretas (letra A).
+- **CEBRASPE/ANM**: "um evento com probabilidade zero é impossível" está **errado**.
+- **FCC/SABESP**: 100 pessoas, 80 com celular, 50 com fixo, 10 sem nenhum dos dois. Quem tem pelo menos um: 90; n(C ∩ F) = 80 + 50 − 90 = 40; só fixo: 50 − 40 = 10; P = **10%** (letra E).
+
+### Para fixar
+- P(Ā) = 1 − P(A); "nem A nem B" = 1 − P(A ∪ B); "não ambos" = 1 − P(A ∩ B).
+- Axiomas: P(A) ≥ 0, P(U) = 1, soma para excludentes.
+- Probabilidade zero não garante evento impossível.
+- A ⊆ B implica P(A) ≤ P(B); P(A − B) = P(A) − P(A ∩ B).
+- A soma das probabilidades de um espaço amostral discreto é 1.
+@@ SINTETICO
+**Evento complementar**: a probabilidade do complementar é 1 menos a probabilidade do evento.
+**Exemplo**: 10 bolas vermelhas em 15 dão 5 sobre 15, ou 33,33%, para não vermelha.
+**Nem A nem B**: é o complementar da união, igual a 1 menos P(A ou B).
+**Não ambos**: é o complementar da interseção, igual a 1 menos P(A e B).
+**Três eventos**: nenhum dos três é 1 menos a probabilidade da união dos três.
+**Axioma 1**: não existe probabilidade negativa, isto é, P(A) é sempre maior ou igual a zero.
+**Axioma 2**: a probabilidade do espaço amostral é 1.
+**Axioma 3**: para eventos excludentes, a probabilidade da união é a soma.
+**Probabilidade zero**: não implica evento impossível, e probabilidade 1 não implica evento certo.
+**Contenção**: se A está em B, a probabilidade de A não supera a de B.
+@@ TEORIA
+C | A probabilidade de não ocorrer um evento A é 1 − P(A). || Evento complementar.
+E | A probabilidade de "nem A nem B" é P(A) + P(B). || É 1 − P(A ∪ B).
+C | Um evento de probabilidade zero pode ser possível. || Ex.: infinitas caras em lançamentos infinitos.
+E | O terceiro axioma de Kolmogorov vale para quaisquer eventos, ainda que se intersectem. || Vale para eventos mutuamente excludentes.
+@@ REVISAO
+C | Se A está contido em B, então P(A) ≤ P(B). || Propriedade da inclusão.
+C | Se P(A ∪ B) = 0,7, a probabilidade de não ocorrer nenhum dos dois é 0,3. || Complementar da união.
+E | Numa distribuição de probabilidades sobre todo o espaço amostral, a soma das probabilidades pode ser maior que 1. || Soma exatamente 1.
+C | Em uma urna com 8 bolas pretas e 2 brancas, a probabilidade de sortear uma bola não preta é 1 − 8/10. || Complementar.
+@@ PONTOS
+29 | Fim dos sabonetes e evento complementar
+30 | Fórmula do complementar e questão de Palhoça
+31 | Questão do BNB (tabuleiro)
+32 | Complementar da união e da interseção
+33 | Exemplo com o dado e união dos complementares
+34 | Exemplos de A ou não B e extensão a três eventos
+35 | Questões da FGV (SEPOG) e da Fundação Santo André
+36 | Resolução e questão do CRMV-ES
+37 | Resolução do CRMV-ES e axiomas de Kolmogorov
+38 | Axiomas e propriedades
+39 | Propriedades deduzidas
+40 | Questões da FCC (SANASA) e da Consulplan
+41 | Resolução da Consulplan e questão do CEBRASPE (ANM)
+42 | Questão da FCC (SABESP)

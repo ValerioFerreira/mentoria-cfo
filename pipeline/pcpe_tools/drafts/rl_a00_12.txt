@@ -1,0 +1,57 @@
+@@@ raciocinio-logico/a00/s12
+@@ ANALITICO
+Este trecho conclui a aula com a resolução passo a passo de uma fórmula aninhada em dois cenários, a dedução a partir de uma condicional verdadeira (alarme e protocolo; estudo e nota) e uma revisão de composta × simples, tradução de símbolos e tabela da condicional.
+
+### Fórmula aninhada em dois cenários
+
+- Para P(p, q) = (~(p ∧ q) ∨ ~p) → (~p ∨ ~q), substitui-se a letra pelos valores e resolve-se de dentro para fora.
+  - **p e q verdadeiros**: p ∧ q = V, logo ~(p ∧ q) = F; ~p = F, então o antecedente é F ∨ F = **F**; no consequente, ~p ∨ ~q = F ∨ F = **F**. A condicional é **F → F = V**.
+  - **p e q falsos**: p ∧ q = F, logo ~(p ∧ q) = V; ~p = V, então o antecedente é V ∨ V = **V**; consequente V ∨ V = **V**. A condicional é **V → V = V**.
+  - Resultado: **V e V**.
+
+### Dedução a partir de condicional verdadeira
+
+- Dada como verdadeira "Se o alarme de incêndio dispara, o protocolo de evacuação é ativado" (a → p) e sabendo que o protocolo **não** foi ativado (p é F): se a fosse V, teríamos V → F, que é falsa; então **a é F** ("o alarme **não** disparou"). Não se pode afirmar que o protocolo é opcional.
+- Dada "Se estudo bastante, tiro uma boa nota" (e → n): **estudar é condição suficiente** e **tirar boa nota é condição necessária**. Estudar bastante implica boa nota; a recíproca (boa nota implica ter estudado) não está garantida. A equivalência correta é a **contrapositiva**: **~n → ~e** ("se não tirei boa nota, então não estudei bastante"). As versões "n → ~e" e "~n → e" **não** são equivalentes.
+
+### Revisão rápida
+
+- **Composta × simples**: "O número 5 é primo e múltiplo de 1.120" é composta (conectivo "e"); frases com uma só afirmação ou com equação de variável solta não são compostas.
+- **Tradução**: ~p ∨ (p ∧ ~q) = "o sol não brilha, ou [o sol brilha e não está um dia ensolarado]"; "Eduardo não é inteligente, então é estudioso" = **~p → q** (o "se" omitido não muda o conectivo).
+- **Comando condicional** ("Se o usuário aperta o botão verde, imprime"): só é violado se **aperta o verde e não imprime** (V → F).
+- **Coluna P → Q** nas linhas VV, VF, FV, FF: **V, F, V, V**.
+
+### Para fixar
+- Escreva o valor de cada subexpressão antes de aplicar o conectivo seguinte.
+- Condicional verdadeira com consequente falso força antecedente falso.
+- Contrapositiva: p → q ≡ ~q → ~p.
+- O "se" omitido continua sendo condicional.
+- A coluna da condicional é V, F, V, V: só a linha VF é falsa.
+@@ SINTETICO
+**Fórmula aninhada**: resolve-se substituindo os valores e calculando de dentro para fora.
+**Caso de valores verdadeiros**: o antecedente e o consequente ficam falsos, e a condicional resulta verdadeira.
+**Caso de valores falsos**: o antecedente e o consequente ficam verdadeiros, e a condicional também resulta verdadeira.
+**Consequente falso**: se a condicional é verdadeira e o consequente é falso, o antecedente é falso.
+**Suficiente e necessária**: estudar é condição suficiente e a boa nota é condição necessária.
+**Contrapositiva**: p → q equivale a ~q → ~p, e as trocas n → ~e e ~n → e não equivalem.
+**Se omitido**: a frase com então sem se continua sendo uma condicional.
+**Comando**: a regra se desrespeita apenas quando a condição ocorre e a ação não.
+**Tabela**: a coluna P → Q das linhas VV, VF, FV e FF é V, F, V, V.
+@@ TEORIA
+C | Na fórmula (~(p ∧ q) ∨ ~p) → (~p ∨ ~q), com p e q falsas, o antecedente e o consequente são verdadeiros. || ~(F ∧ F) = V; ~p = V.
+E | Se a condicional "Se há alarme, o protocolo é ativado" é verdadeira e o protocolo não foi ativado, o alarme necessariamente disparou. || O alarme não disparou.
+C | A condicional "Se estudo bastante, tiro boa nota" é equivalente a "Se não tirei boa nota, então não estudei bastante". || Contrapositiva.
+E | A condicional "Se estudo bastante, tiro boa nota" é equivalente a "Se tirei boa nota, então estudei bastante". || A recíproca não é equivalente.
+@@ REVISAO
+C | O comando "se o sensor detecta fumaça, a sirene toca" só é desrespeitado quando o sensor detecta fumaça e a sirene não toca. || V → F.
+E | A frase "Maria é professora e é mãe" é uma proposição simples. || Duas simples ligadas por e.
+C | A frase "João não é paciente, então é impulsivo" corresponde à condicional ~p → q. || O "se" está omitido.
+C | Em uma tabela com as linhas VV, VF, FV e FF, a coluna da condicional P → Q é V, F, V, V. || Falsa só na linha VF.
+@@ PONTOS
+143 | Resolução da fórmula aninhada
+144 | Dedução com protocolo de evacuação
+145 | Condição suficiente e contrapositiva
+146 | Proposição composta ou simples
+147 | Tradução de fórmulas
+148 | Condicional implícita e comando condicional
+149 | Tabela da condicional

@@ -50,12 +50,14 @@ export default async function SimuladosPage() {
     cbmpeSoldadoReadiness,
     pmpeOficialReadiness,
     pmpeSoldadoReadiness,
+    pcpeAgenteReadiness,
     history,
   ] = await Promise.all([
     checkSimuladoReadiness("CBMPE_OFICIAL"),
     checkSimuladoReadiness("CBMPE_SOLDADO"),
     checkSimuladoReadiness("PMPE_OFICIAL"),
     checkSimuladoReadiness("PMPE_SOLDADO"),
+    checkSimuladoReadiness("PCPE_AGENTE"),
     getUserSimulados(user.id),
   ]);
 
@@ -64,6 +66,7 @@ export default async function SimuladosPage() {
     CBMPE_SOLDADO: cbmpeSoldadoReadiness,
     PMPE_OFICIAL: pmpeOficialReadiness,
     PMPE_SOLDADO: pmpeSoldadoReadiness,
+    PCPE_AGENTE: pcpeAgenteReadiness,
   };
 
   return (

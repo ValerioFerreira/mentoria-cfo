@@ -1,0 +1,91 @@
+{
+  "aula": "estatistica/c02",
+  "batch": "pcpe-revisao",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "estatistica/c02/s01",
+      "bizu": {
+        "summary": [
+          "**Erro e confiança**: a margem de erro limita a distância entre estimativa e parâmetro; cada confiança tem seu z.",
+          "**Tamanho para média**: n é o quadrado de z vezes sigma dividido pelo erro.",
+          "**Tamanho para proporção**: usa z ao quadrado vezes p e (1 − p) sobre o erro ao quadrado; sem informação, p vale meio.",
+          "**Arredondamento**: o resultado da fórmula sobe sempre para o inteiro seguinte, para não perder precisão.",
+          "**Reação de n**: erro pela metade quadruplica a amostra; mais confiança e mais variabilidade também aumentam.",
+          "**População finita**: a correção diminui a amostra necessária.",
+          "**Estratificada**: proporcional segue o tamanho do estrato; Neyman inclui também o desvio padrão.",
+          "**Sistemática**: sorteia-se o ponto de partida e toma-se uma unidade a cada N dividido por n.",
+          "**Assimetria**: positiva tem moda abaixo da mediana e da média; negativa inverte.",
+          "**Curtose**: leptocúrtica é afunilada, platicúrtica é achatada e mesocúrtica se parece com a normal."
+        ],
+        "teoria": [
+          {
+            "statement": "Para estimar uma proporção sem informação prévia, usa-se p igual a 0,5 por ser o caso que exige a maior amostra.",
+            "isTrue": true,
+            "explanation": "Maximiza p(1 − p)."
+          },
+          {
+            "statement": "Se o erro tolerado cai pela metade, o tamanho da amostra também cai pela metade.",
+            "isTrue": false,
+            "explanation": "Quadruplica."
+          },
+          {
+            "statement": "Numa distribuição assimétrica negativa, a média é menor que a mediana.",
+            "isTrue": true,
+            "explanation": "Média < mediana < moda."
+          },
+          {
+            "statement": "Uma distribuição leptocúrtica é mais achatada que a curva normal.",
+            "isTrue": false,
+            "explanation": "Leptocúrtica é mais afunilada."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Na amostragem sistemática de uma população de 900 unidades com amostra de 30, escolhe-se uma unidade a cada 30.",
+            "isTrue": true,
+            "explanation": "k = 900/30."
+          },
+          {
+            "statement": "Na alocação proporcional, o estrato mais variável recebe sempre a maior parte da amostra.",
+            "isTrue": false,
+            "explanation": "A variabilidade só pesa na alocação ótima."
+          },
+          {
+            "statement": "O valor de n obtido pela fórmula deve ser arredondado para o inteiro imediatamente superior.",
+            "isTrue": true,
+            "explanation": "Para garantir a precisão."
+          },
+          {
+            "statement": "Coeficiente de assimetria negativo indica cauda mais longa à esquerda.",
+            "isTrue": true,
+            "explanation": "Assimetria negativa."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Erro, confiança e valor crítico",
+            "pageRef": 1
+          },
+          {
+            "topic": "Tamanho para estimar uma média",
+            "pageRef": 2
+          },
+          {
+            "topic": "Tamanho para uma proporção e variação de n",
+            "pageRef": 3
+          },
+          {
+            "topic": "Estratos e amostragem sistemática",
+            "pageRef": 4
+          },
+          {
+            "topic": "Assimetria e curtose",
+            "pageRef": 5
+          }
+        ]
+      }
+    }
+  ]
+}

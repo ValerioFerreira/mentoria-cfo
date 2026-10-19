@@ -2,6 +2,7 @@
 
 import { headers } from "next/headers";
 import * as z from "zod";
+import type { PriceCardData } from "@/components/price-card";
 import { registerFailure, tooManyAttempts } from "@/lib/auth/rate-limit";
 import { contestBySlug } from "@/lib/contests";
 import { db } from "@/lib/db";
@@ -9,7 +10,9 @@ import { mercadoPagoConfigured } from "@/lib/billing/mercado-pago";
 import { createContract, previewContract } from "@/lib/commerce/contracts";
 import { cancelPendingCharges, startPixCharge } from "@/lib/commerce/online";
 import { CommerceError } from "@/lib/commerce/errors";
+import { discountSummary } from "@/lib/commerce/labels";
 import { formatBRL, fromCents, toCents } from "@/lib/commerce/money";
+import { priceCardText } from "@/lib/commerce/pricing";
 import { buildPixPayload, pixConfig, pixQrDataUri } from "@/lib/pix";
 
 /** Nome de usuário: 3 a 20 caracteres, minúsculas, números, ponto, hífen e sublinhado. */
@@ -55,7 +58,7 @@ const JoinSchema = z.object({
   name: z.string().trim().min(5, "Informe o nome completo.").max(120, "Nome muito longo."),
   email: z.email("E-mail inválido.").trim().toLowerCase().max(60, "Use um e-mail com até 60 caracteres."),
   username: z.string().trim().toLowerCase(),
-  coupon: z.string().trim().max(20, "Cupom inválido.").optional(),
+  coupon: z.string().trim().max(150, "Cupons demais: informe até 5 códigos.").optional(),
 });
 
 /**
@@ -63,7 +66,7 @@ const JoinSchema = z.object({
  * dinâmico e a confirmação é automática; só SEM o Mercado Pago vale o Pix estático (PIX_KEY) conferido pela administração.
  */
 async function paymentFor(contractId: string, alreadyJoined: boolean): Promise<PaymentInfo | null> {
-  const c = await db.contract.findUniqueOrThrow({ where: { id: contractId } });
+  const c = await db.contract.findUniqueOrThrow({ where: { id: contractId }, include: { siteCoupons: { select: { code: true, appliedPoints: true } } } });
   const due = toCents(c.finalAmount) - toCents(c.paidAmount);
   if (due <= 0) return null;
   let payload: string | null = null;
@@ -93,11 +96,53 @@ async function paymentFor(contractId: string, alreadyJoined: boolean): Promise<P
     plan: "Acesso ilimitado até a prova",
     amount: formatBRL(due).replace("R$ ", ""),
     original: formatBRL(toCents(c.originalAmount)),
-    discounts: `${c.launchDiscountPoints}% de lançamento${c.partnerDiscountPoints ? ` + ${c.partnerDiscountPoints}% do cupom ${c.couponCode}` : ""}`,
+    discounts: discountSummary(c),
     couponCode: c.couponCode,
     alreadyJoined,
     txId,
   };
+}
+
+export type CouponPreview =
+  | {
+      ok: true;
+      card: PriceCardData;
+      /** desconto total em % sobre o valor original (lançamento + cupons), já limitado a 100% */
+      totalPoints: number;
+      /** cupons aceitos pelo servidor */
+      coupons: { code: string; kind: "SITE" | "PARTNER"; discountPoints: number }[];
+      /** a soma passou de 100% e foi limitada */
+      capped: boolean;
+    }
+  | { ok: false; message: string };
+
+/**
+ * Simulação do preço com os cupons digitados. Só exibe: a inscrição recalcula tudo no servidor a partir dos códigos
+ * (o navegador nunca envia preço). Tem limite próprio de tentativas porque confirma se um código existe.
+ */
+export async function previewCoupons(slug: string, raw: string): Promise<CouponPreview> {
+  const contest = contestBySlug(slug);
+  if (!contest) return { ok: false, message: "Concurso não encontrado." };
+  const key = `${await clientKey()}:cupom`;
+  if (tooManyAttempts(key)) return { ok: false, message: "Muitas tentativas. Aguarde alguns minutos e tente novamente." };
+  registerFailure(key);
+  if (typeof raw !== "string" || raw.length > 150) return { ok: false, message: "Cupons demais: informe até 5 códigos." };
+  try {
+    const { quote: q, coupons } = await previewContract(contest.key, null, raw);
+    const total = q.launchDiscountPoints + q.partnerDiscountPoints + q.couponDiscountPoints;
+    const requested = q.launchDiscountPoints + coupons.reduce((sum, c) => sum + c.discountPoints, 0);
+    return {
+      ok: true,
+      card: { badge: priceCardText(q).badge, originalCents: q.originalCents, finalCents: q.finalCents },
+      totalPoints: total,
+      coupons,
+      capped: requested > total,
+    };
+  } catch (err) {
+    if (err instanceof CommerceError) return { ok: false, message: err.message };
+    console.error("[waitlist] simulação de cupom falhou", err instanceof Error ? err.message : "erro desconhecido");
+    return { ok: false, message: "Não foi possível conferir os cupons agora. Tente novamente em instantes." };
+  }
 }
 
 async function clientKey(): Promise<string> {

@@ -1,0 +1,67 @@
+@@@ raciocinio-logico/a01/s07
+@@ ANALITICO
+Este trecho conclui as questões de tabela-verdade (contagem de linhas verdadeiras) e traz questões de várias bancas sobre classificar fórmulas em tautologia, contradição ou contingência, quase sempre resolvidas pela prova por absurdo.
+
+### Fim da contagem de linhas verdadeiras
+
+- Em (p → ~q) ∨ ~r, a disjunção só é falsa quando as duas parcelas são falsas, e isso acontece em uma única linha (p, q e r verdadeiras): a coluna final tem **7 linhas V**.
+- Em F = [(P ∨ Q) → (P ∧ Q)] ∨ R, com 8 linhas: a condicional interna só é F quando P ∨ Q é V e P ∧ Q é F, isto é, quando **P e Q têm valores diferentes** (2 combinações). Para a fórmula toda ser F, é preciso ainda R falso. Há então **2 linhas F** e **6 linhas V** (resposta C).
+- Fórmula com duas simples distintas (por exemplo, "o número de professores aumenta ou o analfabetismo funcional aumenta") tem **4 linhas**.
+
+### Classificar fórmulas (tautologia, contradição, contingência)
+
+- **p ∨ ~p**: sempre V (se p é V, ~p é F e a disjunção é V; se p é F, ~p é V e a disjunção é V): **tautologia**.
+- **(p → q) ∨ (r ↔ p)** (CPCON): são 3 simples (8 linhas, não 16). Para ser F, ambas as parcelas devem ser F: p V e q F (para a condicional) e r diferente de p (r F). Como existe esse caso F e também casos V (por exemplo, tudo V), é **contingência**. Os itens corretos eram "formada por 3 simples" e "é contingente".
+- **Associação da UEL**: (I) (p → q) ∧ (p ∧ ~q): para ser V, p ∧ ~q exige p V e q F, mas então p → q é F. Absurdo: **contradição**. (II) [(p → q) ∧ ~q] → ~p: para ser F, p V, q F e p → q V, o que é impossível: **tautologia**. (III) ~p ∧ (q ∨ ~q): como q ∨ ~q é sempre V, a fórmula equivale a ~p, **contingência V só quando p é F**. (IV) p ↔ q: **contingência V só quando p e q têm o mesmo valor**.
+- **(P ∧ Q) → (P ∨ Q)** é tautologia (P e Q verdadeiras e, ao mesmo tempo, falsas seria absurdo). **(P ∨ Q) → (P ∧ Q)** é contingência: com P V e Q F fica F; com P e Q V fica V.
+- **Afirmativas da UEL (p chuva, q temperatura)**: (p ∧ q) → p é tautologia; (p ∧ ~p) → p é tautologia (antecedente sempre F torna a condicional V); (p ∨ q) → p **não** é contradição (com p e q V é V); (q ∨ ~q) é tautologia, e não contradição. Corretas: só I e II.
+- **Definição de contradição** (Fundatec): operação cujo resultado final é **sempre falso**; o caso clássico é p ∧ ~p (V ∧ F ou F ∧ V, sempre F).
+
+### Classificar a partir de tabelas prontas
+
+- Tabela de (q → p) → (p → q): última coluna V, F, V, V → **contingência**. Tabela de (r ∧ s) → (r ↔ s): V, V, V, V → **tautologia**.
+- Em outra questão (UFRGS), (p ∧ q) → (p ∨ q) tem coluna V, V, V, V (tautologia) e (p ∨ q) → (p ∧ q) tem V, F, F, V (contingência). Uma coluna com algum V nunca indica contradição; confira sempre a coluna com a regra de cada conectivo.
+
+### Para fixar
+- Duas simples: 4 linhas; três: 8 linhas.
+- Em [(P ∨ Q) → (P ∧ Q)] ∨ R há 6 linhas V (F só com P ≠ Q e R falso).
+- Ache o caso em que o conectivo principal é falso para testar tautologia; ache o caso verdadeiro para testar contradição.
+- Antecedente sempre falso torna a condicional tautológica.
+- p ∨ ~p é tautologia, p ∧ ~p é contradição; q ∨ ~q pode ser trocada por V na simplificação.
+- Última coluna misturando V e F indica contingência.
+@@ SINTETICO
+**Linhas V**: em (p → ~q) ∨ ~r há 7 linhas verdadeiras, porque só a primeira linha é falsa.
+**Fórmula com três simples**: [(P ∨ Q) → (P ∧ Q)] ∨ R é falsa só quando P e Q diferem e R é falsa, portanto tem 6 linhas V.
+**Duas simples**: a tabela-verdade tem quatro linhas.
+**Tautologia clássica**: p ∨ ~p é sempre verdadeira.
+**Contingência**: (p → q) ∨ (r ↔ p) pode ser falsa (p V, q F, r F) e verdadeira.
+**Contradição por absurdo**: (p → q) ∧ (p ∧ ~q) exige p V e q F, mas aí p → q é falsa.
+**Simplificação**: q ∨ ~q vale sempre V, então ~p ∧ (q ∨ ~q) equivale a ~p.
+**Antecedente falso**: se o antecedente é sempre falso, a condicional é tautologia.
+**Contradição**: operação com resultado sempre falso, como p ∧ ~p.
+**Leitura de tabelas**: coluna só V é tautologia, só F é contradição, misturada é contingência.
+@@ TEORIA
+C | A fórmula (p ∧ ~p) → p é uma tautologia. || Antecedente sempre falso.
+E | A fórmula q ∨ ~q é uma contradição. || É tautologia.
+C | A fórmula (p ∨ q) → p é verdadeira quando p e q são ambos verdadeiros. || V → V é V; logo não é contradição.
+E | Uma coluna final com os valores V, F, V, V caracteriza uma contradição. || Como há V e F, é contingência.
+@@ REVISAO
+C | A fórmula ~p ∧ (q ∨ ~q) é verdadeira exatamente quando p é falsa. || Equivale a ~p.
+E | A fórmula (P ∨ Q) → (P ∧ Q) é uma tautologia. || Com P V e Q F ela é F: é contingência.
+C | Na fórmula (r ∧ s) → (r ↔ s), a última coluna é V, V, V, V. || É tautologia.
+C | Uma tabela-verdade de duas proposições simples distintas tem quatro linhas. || 2² = 4.
+@@ PONTOS
+71 | Coluna final da fórmula (p → ~q) ∨ ~r
+72 | Questão de contagem com três simples
+73 | Colunas intermediárias da fórmula com R
+74 | Linhas da tabela com duas simples
+75 | Tautologia p ∨ ~p
+76 | Fórmula (p → q) ∨ (r ↔ p)
+77 | Contingência e questão da UEL
+78 | Associação da UEL: itens I e II
+79 | Associação da UEL: itens III e IV
+80 | Tautologia e contingência com P e Q
+81 | Afirmativas I e II da UEL
+82 | Afirmativas III e IV e definição de contradição
+83 | Tabelas 1 e 2 da Fundatec
+84 | Tabelas da UFRGS

@@ -1,0 +1,99 @@
+{
+  "aula": "raciocinio-logico/c02",
+  "batch": "pcpe-revisao",
+  "status": "DRAFT",
+  "stage": "bizu",
+  "segments": [
+    {
+      "id": "raciocinio-logico/c02/s01",
+      "bizu": {
+        "summary": [
+          "**Ordem**: m por n significa m linhas e n colunas, nessa ordem.",
+          "**Produto**: exige colunas da primeira iguais às linhas da segunda e não é comutativo.",
+          "**Transposta e inversa do produto**: ambas invertem a ordem dos fatores.",
+          "**Determinante 2 por 2**: diagonal principal menos diagonal secundária.",
+          "**Determinante nulo**: fila nula, filas iguais ou proporcionais.",
+          "**Troca de filas**: inverte o sinal do determinante; somar múltiplo de outra fila não muda nada.",
+          "**Multiplicar por k**: numa matriz de ordem n, o determinante fica multiplicado por k elevado a n.",
+          "**Binet**: o determinante do produto é o produto dos determinantes.",
+          "**Inversa**: existe quando o determinante não é zero; na ordem 2, troca a principal, muda o sinal da secundária e divide pelo determinante.",
+          "**Sistemas**: com determinante diferente de zero, X é a inversa de A vezes B, ou se usa Cramer."
+        ],
+        "teoria": [
+          {
+            "statement": "O produto de uma matriz de ordem 4 × 2 por outra de ordem 2 × 5 existe e é de ordem 4 × 5.",
+            "isTrue": true,
+            "explanation": "Colunas da primeira = linhas da segunda."
+          },
+          {
+            "statement": "Se A e B são matrizes quadradas de mesma ordem, o produto AB é sempre igual ao produto BA.",
+            "isTrue": false,
+            "explanation": "A multiplicação não é comutativa."
+          },
+          {
+            "statement": "Uma matriz quadrada que tem uma fila inteira de zeros tem determinante nulo.",
+            "isTrue": true,
+            "explanation": "Fila nula."
+          },
+          {
+            "statement": "Uma matriz de determinante nulo possui matriz inversa.",
+            "isTrue": false,
+            "explanation": "A inversa exige determinante diferente de zero."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "Se A é de ordem 2 e det A = 3, então det(4A) = 48.",
+            "isTrue": true,
+            "explanation": "4² · 3 = 48."
+          },
+          {
+            "statement": "Para matrizes quadradas de mesma ordem, o determinante de A + B é a soma dos determinantes de A e de B.",
+            "isTrue": false,
+            "explanation": "O determinante não é linear na soma."
+          },
+          {
+            "statement": "A matriz de linhas (1 2) e (2 4) não admite inversa.",
+            "isTrue": true,
+            "explanation": "Linhas proporcionais, determinante nulo."
+          },
+          {
+            "statement": "Se A e B são invertíveis, a inversa do produto AB é B⁻¹ multiplicada por A⁻¹.",
+            "isTrue": true,
+            "explanation": "A ordem se inverte."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Conceito de matriz e ordem",
+            "pageRef": 1
+          },
+          {
+            "topic": "Tipos de matriz",
+            "pageRef": 1
+          },
+          {
+            "topic": "Soma, produto e propriedades",
+            "pageRef": 2
+          },
+          {
+            "topic": "Determinantes, Sarrus e Laplace",
+            "pageRef": 3
+          },
+          {
+            "topic": "Propriedades dos determinantes",
+            "pageRef": 3
+          },
+          {
+            "topic": "Matriz inversa",
+            "pageRef": 4
+          },
+          {
+            "topic": "Sistemas lineares em forma matricial",
+            "pageRef": 5
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+@@@ raciocinio-logico/a01/s04
+@@ ANALITICO
+Este trecho aplica os dois métodos de classificação de fórmulas: a tabela-verdade completa (com a fórmula [(p ∧ q) ∧ r] → [p ↔ (q ∨ r)] e questões de concurso) e a prova por absurdo, que costuma ser mais rápida.
+
+### Método da tabela-verdade
+
+- Roteiro dos quatro passos: (1) contar as linhas, 2ⁿ; (2) montar as colunas por "engenharia reversa"; (3) alternar V e F nas simples; (4) calcular as demais colunas. Depois, olha-se a **última coluna**: só V = **tautologia**; só F = **contradição**; V e F = **contingência**.
+- Na fórmula [(p ∧ q) ∧ r] → [p ↔ (q ∨ r)] há três simples (8 linhas). As colunas são p ∧ q, (p ∧ q) ∧ r, q ∨ r, p ↔ (q ∨ r) e a condicional final. A conjunção tripla só é V quando p, q e r são V; nesse caso a bicondicional também é V (p e q ∨ r são V). Logo o antecedente V **nunca** convive com consequente F, e a condicional é **tautologia**.
+- Cada conectivo segue a sua regra: ∧ só é V com as duas parcelas V; ∨ só é F com as duas F; ↔ é V quando os dois lados têm o mesmo valor; → só é F no caso V → F.
+
+### Questões pelo método da tabela
+
+- **CRO-RS (apontar uma contradição)**: com duas simples, são 4 linhas. (p ∧ q) → (p ∨ q), p ∨ ~p, p → (q → p) e (p ∧ q) → p são **tautologias** (a condicional só seria F com antecedente V e consequente F, o que não ocorre). A alternativa **(p ∨ ~q) ↔ (~p ∧ q)** é a contradição: o lado esquerdo é a **negação** do direito (p ∨ ~q é falso exatamente quando ~p ∧ q é verdadeiro), então os dois lados **nunca** têm o mesmo valor e a bicondicional é sempre F.
+- **ISS Fortaleza (item sobre a frase "se a pessoa trabalha no que gosta e está de férias, então é feliz ou está de férias")**: com t, f e z, a forma é (t ∧ f) → (z ∨ f), com 8 linhas. Se o antecedente é V, f é V, e então z ∨ f é V. A condicional não tem linha F: **tautologia** (item certo).
+
+### Método da prova por absurdo
+
+- **Suspeita de tautologia**: tentar tornar a fórmula **falsa**. Se for possível, não é tautologia (é contradição ou contingência). Se levar a um **absurdo**, ela nunca é falsa: **tautologia**.
+- **Suspeita de contradição**: tentar torná-la **verdadeira**. Se for possível, não é contradição. Se levar a absurdo, é **contradição**.
+- Se for possível obter F e também V, a fórmula é **contingência**.
+- **Absurdo** aqui é a situação contraditória que surge ao exigir F de uma tautologia (ou V de uma contradição): por exemplo, uma simples teria de ser V e F ao mesmo tempo.
+- Aplicação a [(p ∧ q) ∧ r] → [p ↔ (q ∨ r)]: com p, q e r todos F, o antecedente é F e a condicional é V, logo **não é contradição**. Para torná-la F exige-se antecedente V (p, q, r verdadeiras) e consequente F; mas a bicondicional só é F com p V e q ∨ r F (impossível, pois q e r são V) ou com p F e q ∨ r V (impossível, pois p é V). **Absurdo**: é tautologia.
+- Para questões de tautologia, contradição e contingência a prova por absurdo costuma ser **melhor** que a tabela, que dá mais trabalho.
+
+### Questões pelo método do absurdo
+
+- **Prefeitura de Penedo**: nas fórmulas formadas só por simples distintas (como P ∧ Q ∧ R, P ∨ Q ∧ R ∨ S, P ∨ Q ∨ R → S) basta mostrar uma atribuição que as torna V e outra que as torna F: são **contingências**. A que tem P e ~P na mesma disjunção, P ∨ Q ∨ R ∨ ~S ∨ ~P, é **tautologia**: para ser F, todos os termos teriam de ser F, inclusive P e ~P ao mesmo tempo, o que é absurdo.
+- **Petrobras**: [(p → r) ∧ (q → r)] → [r → (p ∨ q)]. Para ser F, o consequente r → (p ∨ q) deve ser F: r V, p F, q F. Com esses valores, p → r e q → r são V, e o antecedente é V. Como foi possível obter F, **não é tautologia** (item errado).
+- **ISS Fortaleza (de novo)**: pelo método do absurdo a conclusão é a mesma da tabela: tautologia.
+
+### Para fixar
+- Última coluna da tabela: só V (tautologia), só F (contradição) ou misto (contingência).
+- Prova por absurdo: suspeitou de tautologia, tente F; suspeitou de contradição, tente V.
+- Chegar a um absurdo significa que o valor testado é impossível para a fórmula.
+- Se F e V forem ambos possíveis, é contingência.
+- Fórmulas com P e ~P num mesmo "ou" são tautologias; com P e ~P num mesmo "e" são contradições.
+- Duas fórmulas ligadas por ↔ em que uma é a negação da outra formam uma contradição.
+@@ SINTETICO
+**Tabela-verdade**: a última coluna decide: só verdadeiros é tautologia, só falsos é contradição e misto é contingência.
+**Fórmula tripla**: [(p ∧ q) ∧ r] → [p ↔ (q ∨ r)] nunca é falsa, pois o antecedente verdadeiro obriga o consequente a ser verdadeiro.
+**Contradição por negação**: (p ∨ ~q) ↔ (~p ∧ q) é sempre falsa, porque os dois lados têm valores opostos.
+**Prova por absurdo (tautologia)**: tentar falso; se isso exigir uma simples verdadeira e falsa ao mesmo tempo, é tautologia.
+**Prova por absurdo (contradição)**: tentar verdadeiro; se for impossível, é contradição.
+**Contingência**: se tanto verdadeiro quanto falso são possíveis, é contingência.
+**Simples sem repetição**: fórmulas com simples distintas, como P ∧ Q ∧ R, são contingências.
+**P e ~P**: P ∨ Q ∨ ~P é tautologia, pois não há como todos os termos serem falsos.
+**Petrobras**: com r verdadeira, p e q falsas, a fórmula fica falsa, logo não é tautologia.
+**Escolha do método**: o absurdo costuma ser mais rápido que a tabela.
+@@ TEORIA
+C | Uma fórmula cuja tabela-verdade tem só valores falsos na última coluna é uma contradição. || Definição de contradição.
+E | Ao tentar tornar falsa uma fórmula que se suspeita ser tautologia, se isso for possível, conclui-se que ela é tautologia. || Se for possível, não é tautologia.
+C | Se, ao exigir o valor verdadeiro de uma fórmula, surge um absurdo, a fórmula é uma contradição. || Nunca pode ser verdadeira.
+C | A fórmula P ∨ Q ∨ ~P é uma tautologia. || Para ser falsa, P e ~P teriam de ser falsas juntas.
+@@ REVISAO
+E | A fórmula (p ∧ q) → p pode ser falsa quando p é falso e q é verdadeiro. || Se p é falso, p ∧ q é falso e a condicional é verdadeira: é tautologia.
+C | A bicondicional (p ∨ ~q) ↔ (~p ∧ q) é uma contradição. || Os dois lados têm sempre valores opostos.
+E | A fórmula P ∧ Q ∧ R, com simples distintas, é uma tautologia. || É contingência: pode ser V ou F.
+C | Na prova por absurdo, uma contingência é identificada quando é possível obter tanto o valor falso quanto o verdadeiro. || Nem tautologia, nem contradição.
+@@ PONTOS
+31 | Método da tabela-verdade e os quatro passos
+32 | Passos 3 e 4 da fórmula tripla
+33 | Condicional final e questão do CRO-RS
+34 | Alternativas a e c
+35 | Alternativa d e esquema
+36 | Alternativa e (contradição)
+37 | Questão do ISS Fortaleza
+38 | Método da prova por absurdo
+39 | O que é um absurdo
+40 | Aplicação do absurdo à fórmula tripla
+41 | Questão de Penedo
+42 | Tautologia com P e ~P e questão da Petrobras
+43 | Antecedente e consequente da questão da Petrobras

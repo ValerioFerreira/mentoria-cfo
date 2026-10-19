@@ -1,0 +1,66 @@
+@@@ raciocinio-logico/a01/s02
+@@ ANALITICO
+Este trecho trata do efeito de "não é verdade que" e "é falso que" sobre proposições compostas, do significado das proposições (frases diferentes com a mesma proposição) e do início da tabela-verdade: definição, número de linhas e construção passo a passo.
+
+### Fim da conversão do exemplo (UFRJ)
+
+- Aplicando a precedência (primeiro o "e", depois o "ou", por fim o "se e somente se"), a frase inteira do exemplo anterior, com "Marcos não é ator e nem biólogo" de um lado e "Marcos é biólogo ou não é rico" do outro, vira **(~p ∧ q) ↔ (~q ∨ ~r)**.
+
+### "Não é verdade que" e "é falso que" em compostas
+
+- Em regra, esses termos, no início de uma composta, **negam a composta como um todo**. Numa questão sobre uma pessoa que fala alemão ou português, mas não fala inglês, o "mas" funciona como "e": a composta é (q ∨ r) ∧ ~p, e o "é falso que" colocado antes nega o conjunto: **~((q ∨ r) ∧ ~p)**. Já **~(p ∧ ~q)** lê-se "**Não é verdade que** [p **e** não q]", isto é, a negação alcança a conjunção inteira. Existe outra forma de negar compostas (leis de De Morgan, vistas em equivalências).
+
+### Significado das proposições
+
+- **Proposição** refere-se ao **significado** da oração, e não à forma escrita: "João bebeu café", "O café foi bebido por João" e "John drank coffee" são **a mesma proposição**. Use essa análise como **último recurso**; se aparecerem conectivos tradicionais, apenas aplique a regra (por exemplo, "q, pois p" é p → q).
+- Frases sem conectivo claro podem esconder uma condicional: "**Ao treinar** todos os dias, a atleta ganha resistência" equivale a "Se a atleta treina todos os dias, então ganha resistência" (**p → q**): o treino é a causa e o ganho de resistência, a consequência.
+- Questão do Ibama: "Se o aquecimento é só mais um ciclo, **como** a presença humana é recente, então a presença humana não causa o aquecimento" tem antecedente formado por **duas causas**; reescrita como "**Como** [ciclo **e** presença recente], [humanos não causam]" é a mesma condicional (a forma "Como p, q"). Logo, são logicamente equivalentes.
+
+### Tabela-verdade: definição e número de linhas
+
+- **Tabela-verdade** lista todos os valores (V ou F) de uma composta em função dos valores das simples. Se há **n proposições simples distintas**, a tabela tem **2ⁿ linhas** (2 × 2 × ... × 2), e a **negação não altera** o número de linhas. Com três simples (p, q, r) são **8 linhas**; com quatro (P, Q, R, S), **16**; numa frase em que o mesmo fato aparece duas vezes (por exemplo, "está de férias" no antecedente e no consequente) ele conta uma única vez: com três simples distintas, **8 linhas**.
+
+### Construção em quatro passos
+
+1. Determinar o número de linhas (2ⁿ).
+2. **Desenhar o esquema**, fragmentando a composta por "engenharia reversa": partindo de ~(p → ~q) ∨ (~r → q), é preciso obter ~(p → ~q) e (~r → q); para o primeiro, (p → ~q), depois p e ~q, depois q; para o segundo, ~r e q, e r. Cada fragmento vira uma coluna (simples, negações, compostas intermediárias, até a fórmula inteira).
+3. **Atribuir V e F às simples de maneira alternada** (coluna de p: blocos grandes; q: blocos menores; r: alternando linha a linha) para esgotar as combinações.
+4. Obter os valores das demais colunas, uma por vez, da mais simples para a mais complexa. No exemplo, a linha 1 (V, V, V) dá V e a linha 4 (V, F, F) dá F.
+
+### Para fixar
+- "Não é verdade que" e "é falso que" negam a composta inteira.
+- Frases diferentes com o mesmo significado são a mesma proposição; use isso por último.
+- Linhas da tabela: 2ⁿ, com n simples distintas; negação não conta.
+- Construa as colunas da mais simples para a mais complexa e alterne V e F nas simples.
+- Frases com "ao" + verbo ou "como" no início podem esconder uma condicional (causa → consequência).
+@@ SINTETICO
+**Conversão completa**: respeita a precedência dos conectivos, como em (~p ∧ q) ↔ (~q ∨ ~r).
+**É falso que**: no início de uma composta nega o conjunto inteiro, como em ~((q ∨ r) ∧ ~p).
+**Não é verdade que**: ~(p ∧ ~q) se lê não é verdade que p e não q.
+**Significado**: frases diferentes com o mesmo sentido expressam a mesma proposição.
+**Causa e consequência**: frases como ao estudar... eu me dedico escondem a condicional se... então.
+**Como p, q**: forma de escrever a condicional, aceitando antecedente com duas causas.
+**Tabela-verdade**: lista os valores de uma composta em função dos valores das simples.
+**Número de linhas**: é 2 elevado ao número de proposições simples distintas, e a negação não altera esse número.
+**Repetição de simples**: a mesma proposição repetida conta uma só vez.
+**Construção**: contar linhas, desenhar as colunas por engenharia reversa, alternar V e F nas simples e calcular as demais colunas.
+@@ TEORIA
+C | A proposição "É falso que Ana fala alemão ou português" nega a disjunção inteira. || O "é falso que" abrange a composta.
+E | A tabela-verdade de uma fórmula com quatro proposições simples distintas tem oito linhas. || 2⁴ = 16.
+C | As frases "A prova foi corrigida pelo professor" e "O professor corrigiu a prova" expressam a mesma proposição. || Mesmo significado.
+E | A negação ~ acrescenta uma linha à tabela-verdade da proposição. || A negação não altera o número de linhas.
+@@ REVISAO
+C | A frase "Ao revisar toda semana, o aluno fixa o conteúdo" pode ser interpretada como uma condicional. || Causa e consequência.
+E | Em uma tabela-verdade, a proposição simples que aparece repetida na fórmula deve ser contada duas vezes no cálculo de 2ⁿ. || Conta-se uma só vez.
+C | Em uma tabela-verdade de três simples, a coluna da primeira simples costuma ter quatro V seguidos e quatro F seguidos. || Alternância dos valores.
+C | Na construção da tabela-verdade, as colunas intermediárias devem ser calculadas das mais simples para a fórmula completa. || Engenharia reversa.
+@@ PONTOS
+10 | Conclusão da conversão UFRJ e é falso que
+11 | Tradução de ~(p ∧ ~q) e significado das proposições
+12 | Causa e consequência como condicional
+13 | Condicional com duas causas
+14 | Definição de tabela-verdade
+15 | Número de linhas
+16 | Questões sobre número de linhas
+17 | Passos 1 e 2 da construção
+18 | Passo 3: alternância de V e F

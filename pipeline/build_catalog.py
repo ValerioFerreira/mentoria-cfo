@@ -19,8 +19,22 @@ from textutil import FRONTMATTER, norm  # noqa: E402
 PAGES_PER_FIXACAO_HOUR = 12
 
 
-def clean_title(raw: str) -> str:
-    t = re.sub(r"\s+", " ", raw.replace("_ ", ": ").replace("_", ":")).strip().rstrip(".")
+# títulos corrigidos por `title` em content/overrides.json (o nome do professor no arquivo não deve aparecer)
+LEGACY_TITLE_EXCEPTIONS: set[str] = set()
+
+
+def clean_title(raw: str, aula_id: str = "") -> str:
+    t = re.sub(r"^\s*\(Somente\s+(?:em\s+)?PDF\)\s*", "", raw, flags=re.I)
+    if aula_id not in LEGACY_TITLE_EXCEPTIONS:
+        t = re.sub(
+            r"^\s*-\s*(?:Prof(?:essor(?:a)?|\.)?\s+(?:[A-ZÀ-ÿ][a-zà-ÿ]+\s+){1,2}|Equipe\s+[A-ZÀ-ÿ][a-zà-ÿ]+)(?:\s*-\s*Somente\s+(?:em\s+)?PDF)?\s*",
+            "",
+            t,
+            flags=re.I,
+        )
+        t = re.sub(r"\s*-\s*Somente\s+(?:em\s+)?PDF\b", "", t, flags=re.I)
+        t = re.sub(r"^\s*nvestigação\b", "Investigação", t, flags=re.I)
+    t = re.sub(r"\s+", " ", t.replace("_ ", ": ").replace("_", ":")).strip().rstrip(".")
     return t
 
 
@@ -80,7 +94,7 @@ def main() -> int:
             if a.get("source") == "authored":  # complementos: build_complements.py mescla depois (idempotente)
                 continue
             ov = overrides.get(a["id"], {})
-            title = clean_title(a["title"])
+            title = ov.get("title") or clean_title(a["title"], a["id"])
             kind = ov.get("kind") or ("practice" if a["theoryPages"] == 0 else "theory")
             entry = {
                 "id": a["id"],
@@ -100,6 +114,10 @@ def main() -> int:
                 "flags": a["flags"],
             }
             entry["selectable"] = ov.get("edital", "yes") != "no"
+            if "onlyContests" in ov:
+                entry["onlyContests"] = ov["onlyContests"]
+            if "excludeContests" in ov:
+                entry["excludeContests"] = ov["excludeContests"]
             if "practiceFor" in ov:
                 secs = practice_sections(a, ov["practiceFor"])
                 entry["practiceSections"] = secs
@@ -128,17 +146,43 @@ def main() -> int:
 
     # Incidência (proxy v1): metade pela fatia de páginas de teoria, metade pela fatia de questões comentadas
     for s in subjects_out:
-        eligible = [a for a in s["aulas"] if a["selectable"]]
-        th = sum(a["theoryPages"] for a in eligible) or 1
-        cm = sum((a["commentedPages"] or a["listPages"]) + sum(l["endPage"] - l["startPage"] + 1 for l in a["practiceLinks"])
-                 for a in eligible) or 1
+        base_eligible = [a for a in s["aulas"] if a["selectable"] and not a.get("onlyContests")]
+        exc_eligible = [a for a in s["aulas"] if a["selectable"] and a.get("onlyContests")]
+
+        th_base = sum(a["theoryPages"] for a in base_eligible) or 1
+        cm_base = sum((a["commentedPages"] or a["listPages"]) + sum(l["endPage"] - l["startPage"] + 1 for l in a["practiceLinks"])
+                      for a in base_eligible) or 1
+
+        if base_eligible and exc_eligible:
+            th_exc = sum(a["theoryPages"] for a in exc_eligible) or 1
+            cm_exc = sum((a["commentedPages"] or a["listPages"]) + sum(l["endPage"] - l["startPage"] + 1 for l in a["practiceLinks"])
+                         for a in exc_eligible) or 1
+            th_tot = th_base + th_exc
+            cm_tot = cm_base + cm_exc
+            w_base = 0.5 * (th_base / th_tot) + 0.5 * (cm_base / cm_tot)
+            w_exc = 1.0 - w_base
+        else:
+            th_exc = 1
+            cm_exc = 1
+            w_base = 1.0
+            w_exc = 1.0
+
         for a in s["aulas"]:
             if not a["selectable"]:
                 a["incidence"] = 0.0
                 continue
+            is_exc = bool(a.get("onlyContests"))
+            th = th_exc if is_exc else th_base
+            cm = cm_exc if is_exc else cm_base
             comm = (a["commentedPages"] or a["listPages"]) + sum(l["endPage"] - l["startPage"] + 1 for l in a["practiceLinks"])
             weight = 0.5 if a["edital"] == "partial" else 1.0
-            a["incidence"] = round(weight * (0.5 * a["theoryPages"] / th + 0.5 * comm / cm), 5)
+            raw = round(weight * (0.5 * a["theoryPages"] / th + 0.5 * comm / cm), 5)
+            if base_eligible and exc_eligible:
+                block_weight = w_exc if is_exc else w_base
+                a["incidence"] = round(raw * block_weight, 7)
+                a["rawIncidence"] = raw
+            else:
+                a["incidence"] = raw
             a["fixacaoHoursFull"] = round(comm / PAGES_PER_FIXACAO_HOUR, 1)
 
     out = {"exam": exam, "subjects": subjects_out, "gaps": gaps}

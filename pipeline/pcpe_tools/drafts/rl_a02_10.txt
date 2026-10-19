@@ -1,0 +1,67 @@
+@@@ raciocinio-logico/a02/s10
+@@ ANALITICO
+Este trecho reúne questões comentadas de álgebra de proposições: negação da bicondicional sem o "ou exclusivo", simplificações com idempotência, classificação de fórmulas (tautologia, contradição, contingência) e uso da distributiva. O final reapresenta a lista de questões de equivalências e negações para treino.
+
+### Questões resolvidas por álgebra
+
+- **FUNATEC/V. do Mearim**: negar "João é bom em Matemática se, e somente se, Maria é boa em Português" (j ↔ m) sem usar o ou exclusivo: **(j ∧ ~m) ∨ (~j ∧ m)** (letra A). A forma ~j ↔ ~m (letra D) é equivalente, não negação.
+- **UEL**: ~p → (p ∨ q) ≡ ~(~p) ∨ (p ∨ q) ≡ p ∨ (p ∨ q) ≡ (p ∨ p) ∨ q ≡ **p ∨ q**: o computador foi atualizado ou a impressora imprimiu corretamente (letra D). Usa: condicional em "ou", dupla negação, associativa, idempotência.
+- **FEPESE/Campos Novos**: a regra ~i → b (sem identificação, acesso bloqueado) é equivalente a i ∨ b. A alternativa E, "(b quando ~i) ou i", é (~i → b) ∨ i ≡ (i ∨ b) ∨ i ≡ i ∨ b (comutativa + associativa + idempotência), portanto equivalente à regra. Note que "q, quando p" tem a forma p → q.
+- **Cavalo forte e veloz (Fundatec)**: f ∧ v ≡ v ∧ f (comutativa): "O cavalo é veloz e forte" (letra D). As condicionais e o "ou" não são equivalentes a um "e".
+- **FGV/PPBA**: (~p ∨ q) ∧ (~p ∨ r) ≡ ~p ∨ (q ∧ r), colocando "~p ∨" em evidência (distributiva; letra A).
+
+### Classificação de fórmulas (tautologia, contradição, contingência)
+
+- **FAUEL (1)**: ~(p ∧ q) ↔ (~p ∨ ~q): por De Morgan os dois lados são iguais, logo **tautologia**. **FAUEL (2)**: (~p ∨ ~q) ↔ (q ∧ p): o lado esquerdo é ~(p ∧ q) e o direito é p ∧ q (comutativa); como um é a negação do outro, é **contradição**.
+- **FAUEL (3)**: (p ∧ (q → p)) → p ≡ ~(p ∧ (q → p)) ∨ p ≡ (~p ∨ ~(q → p)) ∨ p ≡ (~p ∨ p) ∨ ~(q → p) ≡ t ∨ ... ≡ **tautologia**.
+- **CPCON/Nazarezinho**: R = ~(p ∧ q), S = ~(p ∧ q) ∨ ~p e T = ~p ∨ ~q são todas equivalentes a ~p ∨ ~q (contingências); U = S → T tem a forma T → T, que é **tautologia** (letra E). Em S usou-se De Morgan, associativa, comutativa e idempotência.
+- **Instituto Mais/CM Santo André**: (~q → ~p) ∧ (p ∧ ~q). A contrapositiva dá (p → q), e (p ∧ ~q) é a negação de p → q: fica (p → q) ∧ ~(p → q), forma "x ∧ ~x", **contradição** (letra A). As outras alternativas misturam termos que não são opostos.
+- **Consulplan/CM-BH**: R = ~[P ∨ ~Q] ↔ [~P ∧ Q] (por De Morgan os lados são iguais) e S = [P → Q] ↔ [Q ∨ ~P] (condicional em "ou" + comutativa) são ambas **tautologias** (letra A).
+- **Verbena/MPE-GO**: ~p ∧ (p ∧ ~q) ≡ c ∧ ~q ≡ **contradição**; p ∨ (p ∧ ~q) ≡ p (absorção) = **contingência**; (p ∧ q) ∨ (~p ∨ ~q) ≡ (p ∧ q) ∨ ~(p ∧ q) = **tautologia** (letra E).
+
+### Lista de questões (final do trecho)
+
+- As últimas páginas repetem a lista das questões de negação da condicional, equivalências e negação do "e" já resolvidas, para o aluno refazer antes de olhar a resolução.
+
+### Para fixar
+- Para negar a bicondicional sem "ou exclusivo": (p ∧ ~q) ∨ (q ∧ ~p).
+- ~p → (p ∨ q) simplifica para p ∨ q.
+- X ↔ Y: equivalentes dão tautologia; uma é a negação da outra, contradição.
+- "x ∨ ~x" é tautologia; "x ∧ ~x" é contradição, mesmo com x sendo composta.
+- A conjunção comuta; "e" não vira condicional nem "ou".
+@@ SINTETICO
+**Negação da bicondicional sem exclusiva**: (j ∧ ~m) ∨ (~j ∧ m).
+**Simplificação**: ~p → (p ∨ q) equivale a p ∨ q, usando dupla negação, associativa e idempotência.
+**Q quando P**: a expressão tem a forma de condicional, de P para Q.
+**Distributiva**: (~p ∨ q) ∧ (~p ∨ r) equivale a ~p ∨ (q ∧ r).
+**Comutativa**: f ∧ v equivale a v ∧ f, mas não a uma condicional nem a um ou.
+**Bicondicional entre equivalentes**: ~(p ∧ q) ↔ (~p ∨ ~q) é tautologia.
+**Bicondicional entre opostos**: (~p ∨ ~q) ↔ (q ∧ p) é contradição.
+**Forma x ∧ ~x**: (p → q) ∧ ~(p → q) é contradição, e x ∨ ~x é tautologia.
+**Forma T → T**: uma condicional com os dois termos equivalentes é tautologia.
+**Absorção**: p ∨ (p ∧ ~q) equivale a p, contingência.
+@@ TEORIA
+C | Uma bicondicional entre ~(p ∧ q) e (~p ∨ ~q) é tautologia, pois De Morgan mostra que os lados são iguais. || Lados equivalentes.
+E | Uma bicondicional entre (~p ∨ ~q) e (p ∧ q) também é tautologia. || Os lados são opostos: é contradição.
+C | A condicional X → X, em que X é qualquer proposição, é uma tautologia. || V → V ou F → F.
+E | A negação da bicondicional j ↔ m pode ser escrita como (j ∧ m) ∨ (~j ∧ ~m). || Essa é a própria bicondicional (equivalente); a negação é (j ∧ ~m) ∨ (~j ∧ m).
+@@ REVISAO
+C | A proposição (p → q) ∧ ~(p → q) é uma contradição. || Forma x ∧ ~x.
+C | Pela distributiva, colocar ~p em evidência em (~p ∨ q) ∧ (~p ∨ r) resulta em ~p ∨ (q ∧ r). || Evidência de ~p.
+E | A proposição p ∨ (p ∧ ~q) é uma tautologia. || Por absorção equivale a p: é contingência.
+C | Uma proposição ligada por ou à sua própria negação, como (p ∧ q) ∨ ~(p ∧ q), é tautologia. || Forma x ∨ ~x.
+@@ PONTOS
+112 | Negação da bicondicional sem exclusiva
+113 | Questão da UEL sobre ~p → (p ∨ q)
+114 | Questão da FEPESE sobre a regra de acesso
+115 | Resolução da FEPESE e questão da FAUEL
+116 | Segunda questão da FAUEL
+117 | Questão do CPCON sobre R, S, T e U
+118 | Conclusão do CPCON e questão do cavalo
+119 | Questão do Instituto Mais
+120 | Questão da Consulplan sobre R e S
+121 | Terceira questão da FAUEL
+122 | Questão do MPE-GO
+123 | Resolução do MPE-GO e questão da FGV
+124 | Lista de questões de equivalências
+125 | Continuação da lista de questões

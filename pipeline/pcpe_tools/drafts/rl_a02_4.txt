@@ -1,0 +1,82 @@
+@@@ raciocinio-logico/a02/s04
+@@ ANALITICO
+Este trecho reúne as equivalências e negações de menor incidência, mas que podem cair: negação da conjunção na forma condicional, conjunção de condicionais, equivalências e negações da disjunção exclusiva (ou... ou) e equivalências da bicondicional.
+
+### Negação do "e" na forma condicional
+
+- Além de De Morgan, vale: **~(p ∧ q) ≡ p → ~q** e **~(p ∧ q) ≡ q → ~p**. Exemplo: negar "Estudo à noite e trabalho de dia" pode dar "Se estudo à noite, então não trabalho de dia" ou "Se trabalho de dia, então não estudo à noite".
+- Demonstração: De Morgan dá ~p ∨ ~q; usando p ∨ q ≡ ~p → q com o primeiro termo ~p, obtém-se ~(~p) → ~q, isto é, p → ~q. A segunda vem da **contrapositiva** de p → ~q (que é q → ~p).
+- **MRE**: negar "Corro e não fico cansado" (c ∧ ~f). Por De Morgan: ~c ∨ f, que não está nas alternativas; pela forma condicional: **c → f**, "Se corro, então fico cansado" (letra A). Moral: se De Morgan não gera nenhuma alternativa e as alternativas são condicionais, use a forma condicional.
+
+### Conjunção de condicionais
+
+- **Consequente comum**: (p → r) ∧ (q → r) ≡ **(p ∨ q) → r**. O antecedente vira "ou".
+- **Antecedente comum**: (p → q) ∧ (p → r) ≡ **p → (q ∧ r)**. O consequente vira "e".
+- **SEFAZ-AL**: P1 "se há carência, o trabalho pode ficar prejudicado" e P2 "se há carência, os beneficiários podem ser mal atendidos". P1 ∧ P2 equivale a "Se há carência, o trabalho pode ficar prejudicado **e** os beneficiários podem ser mal atendidos" (antecedente comum; item **certo**). Esquecendo a regra, sempre se pode conferir por **tabela-verdade**.
+- **PF/2004**: (P ∨ Q) → S **não** é equivalente a (P → S) ∨ (Q → S). A equivalência correta é com o "e" entre as condicionais: (P → S) ∧ (Q → S). Item **errado**.
+
+### Disjunção exclusiva (ou... ou): equivalências
+
+- **p ⊻ q ≡ ~p ⊻ ~q** (negam-se os dois termos). Exemplo: "Ou jogo bola, ou jogo sinuca" ≡ "Ou não jogo bola, ou não jogo sinuca".
+- **p ⊻ q ≡ ~p ↔ q** e **p ⊻ q ≡ p ↔ ~q** (nega-se apenas um termo e troca-se por bicondicional). Exemplo: "Não jogo bola se e somente se jogo sinuca".
+- **TCE-SP**: "Ou Renato é o gerente ou Rodrigo é o dono" é g ⊻ d, equivalente a g ↔ ~d: "Renato é o gerente se, e somente se, Rodrigo não é o dono" (letra B). Como nenhuma alternativa tem "ou... ou", testam-se as formas com bicondicional.
+
+### Disjunção exclusiva: negações
+
+- Principal: **~(p ⊻ q) ≡ p ↔ q**. A exclusiva é V quando os valores são diferentes; a bicondicional é V quando são iguais; logo uma é a negação da outra.
+- Outras duas: **~(p ⊻ q) ≡ ~p ⊻ q** e **~(p ⊻ q) ≡ p ⊻ ~q** (nega-se só um termo; a forma ~p ⊻ ~q é **equivalência**, não negação).
+- **DPE-SP**: negar "Ou Flávio é funcionário público ou de empresa privada". Condicional, "e" e "ou" inclusivo não servem como negação de exclusiva. A alternativa que nega os dois termos (~p ⊻ ~e) é **equivalência**, não negação. A correta é a **bicondicional** "Flávio é funcionário de empresa privada se, e somente se, é funcionário público" (letra B).
+- **CMSJC**: "Ou arranjo emprego ou não me caso" é a ⊻ ~c. Sem bicondicional nas alternativas, nega-se só um termo: ~a ⊻ ~c, "Ou não arranjo emprego ou não me caso" (letra D). A outra forma (a ⊻ c) não aparece.
+
+### Bicondicional: equivalências
+
+- **p ↔ q ≡ (p → q) ∧ (q → p)**: "ir e voltar" com a condicional. Exemplo: "Durmo se e somente se estou cansado" ≡ "Se estou cansado, durmo, e se durmo, estou cansado".
+- **p ↔ q ≡ ~p ↔ ~q** (negam-se os dois termos).
+- **p ↔ q ≡ ~p ⊻ q** e **p ↔ q ≡ p ⊻ ~q** (nega-se só um termo e troca-se por exclusiva).
+- **APPGG-SP**: "Adriano é pai se, e somente se, Giuliano é filho": não equivale a condicionais simples nem a conjunção; entre as exclusivas, só a que nega **um** termo serve. A correta é "Ou Giuliano é filho, ou Adriano não é pai" (letra E; na exclusiva a ordem das parcelas pode ser trocada).
+- **ISS-RJ**: "Um número inteiro é par se e somente se seu quadrado for par" ≡ (p → q) ∧ (~p → ~q), pois a contrapositiva de q → p é ~p → ~q (letra A).
+
+### Para fixar
+- ~(p ∧ q) ≡ p → ~q ≡ q → ~p.
+- (p → r) ∧ (q → r) ≡ (p ∨ q) → r; (p → q) ∧ (p → r) ≡ p → (q ∧ r).
+- Exclusiva: p ⊻ q ≡ ~p ⊻ ~q ≡ ~p ↔ q ≡ p ↔ ~q; ~(p ⊻ q) ≡ p ↔ q ≡ ~p ⊻ q ≡ p ⊻ ~q.
+- Bicondicional: p ↔ q ≡ (p → q) ∧ (q → p) ≡ ~p ↔ ~q ≡ ~p ⊻ q ≡ p ⊻ ~q.
+- Negar os dois termos nunca é negação da exclusiva nem da bicondicional: é equivalência.
+@@ SINTETICO
+**Negar o e em condicional**: ~(p ∧ q) equivale a p → ~q e a q → ~p.
+**Consequente comum**: (p → r) ∧ (q → r) equivale a (p ∨ q) → r.
+**Antecedente comum**: (p → q) ∧ (p → r) equivale a p → (q ∧ r).
+**Verificação**: sempre é possível comprovar uma equivalência pela tabela-verdade.
+**Exclusiva equivalente**: p ⊻ q equivale a ~p ⊻ ~q, a ~p ↔ q e a p ↔ ~q.
+**Negação da exclusiva**: ~(p ⊻ q) equivale a p ↔ q, a ~p ⊻ q e a p ⊻ ~q.
+**Negar os dois termos**: dá equivalência da exclusiva e da bicondicional, e não negação.
+**Bicondicional equivalente**: p ↔ q equivale a ir e voltar com a condicional e a ~p ↔ ~q.
+**Bicondicional em exclusiva**: p ↔ q equivale a ~p ⊻ q e a p ⊻ ~q.
+**Ordem na exclusiva**: as parcelas podem trocar de posição.
+@@ TEORIA
+C | A negação de "Faço o curso e não passo" pode ser escrita como "Se faço o curso, então passo". || ~(p ∧ ~q) ≡ p → q.
+E | A proposição (P ∨ Q) → S é equivalente a (P → S) ∨ (Q → S). || O correto seria o "e" entre as condicionais.
+C | A negação da disjunção exclusiva p ⊻ q pode ser escrita como a bicondicional p ↔ q. || Principal negação.
+E | A proposição ~p ⊻ ~q é a negação de p ⊻ q. || É uma equivalência.
+@@ REVISAO
+C | A proposição (p → q) ∧ (p → r) é equivalente a p → (q ∧ r). || Antecedente comum.
+C | A bicondicional p ↔ q é equivalente a ~p ↔ ~q. || Negam-se os dois termos.
+E | A bicondicional p ↔ q é equivalente à conjunção p ∧ q. || Apenas a ida e a volta com condicionais.
+C | A afirmação "Ou o cofre abre, ou a porta trava" é equivalente a "O cofre abre se, e somente se, a porta não trava". || p ⊻ q ≡ p ↔ ~q.
+@@ PONTOS
+36 | Negação do e na forma condicional
+37 | Demonstração da segunda forma e questão do MRE
+38 | Resolução da questão do MRE
+39 | Conjunção de condicionais
+40 | Questão da SEFAZ-AL
+41 | Tabela da conjunção de condicionais e questão da PF
+42 | Equivalências da disjunção exclusiva
+43 | Questão do TCE-SP
+44 | Negação da disjunção exclusiva
+45 | Outras negações da exclusiva
+46 | Questão da DPE-SP
+47 | Questão da CMSJC
+48 | Equivalências da bicondicional
+49 | Bicondicional em disjunção exclusiva
+50 | Questão da APPGG
+51 | Questão do ISS-RJ

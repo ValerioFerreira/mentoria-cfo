@@ -22,7 +22,7 @@ export const CONTESTS: ContestInfo[] = [
   { slug: "cbmpe-oficial", key: "CBMPE_OFICIAL", org: "CBMPE", role: "2º Tenente", category: "Oficial", image: "/images/CBMPE.webp", imagePosition: "center 70%", available: true },
   { slug: "pmpe-soldado", key: "PMPE_SOLDADO", org: "PMPE", role: "Soldado", category: "Praça", image: "/images/PMPE.webp", imagePosition: "center 30%", available: true },
   { slug: "pmpe-oficial", key: "PMPE_OFICIAL", org: "PMPE", role: "2º Tenente", category: "Oficial", image: "/images/PMPE.webp", imagePosition: "center 70%", available: true },
-  { slug: "pcpe-agente", key: "PCPE_AGENTE", org: "PCPE", role: "Agente de Polícia", category: "", image: "/images/PCPE.webp", imagePosition: "center", available: false },
+  { slug: "pcpe-agente", key: "PCPE_AGENTE", org: "PCPE", role: "Agente de Polícia", category: "", image: "/images/PCPE.webp", imagePosition: "center", available: true },
 ];
 
 export const CONTEST_SUBTITLES: Record<Contest, string> = {
@@ -55,6 +55,10 @@ export const CONTEST_PACKAGES: Partial<Record<Contest, ContestPackage>> = {
   PMPE_OFICIAL: {
     name: "PM-PE (Oficial) Pacote",
     url: "https://www.estrategiaconcursos.com.br/app/dashboard/pacote/361831",
+  },
+  PCPE_AGENTE: {
+    name: "PC-PE (Agente de Polícia) Pacote",
+    url: "https://www.estrategiaconcursos.com.br/app/dashboard/pacote/361849",
   },
 };
 
@@ -107,10 +111,16 @@ export const CONTEST_SUBJECTS: Record<Contest, string[]> = {
   PCPE_AGENTE: [
     "lingua-portuguesa",
     "informatica",
+    "raciocinio-logico",
+    "matematica",
+    "estatistica",
+    "contabilidade-geral",
+    "legislacao-pcpe",
     "direito-constitucional",
     "direito-administrativo",
-    "direito-penal-militar",
-    "legislacoes-pe",
+    "direito-penal",
+    "legislacao-penal-especial",
+    "direito-processual-penal",
   ],
 };
 
@@ -125,4 +135,17 @@ export function contestBySlug(slug: string): ContestInfo | undefined {
 
 export function contestTitle(c: ContestInfo): string {
   return `${c.org} · Cargo: ${c.role}${c.category ? ` (${c.category})` : ""}`;
+}
+
+/**
+ * Um assunto do edital (EditalItem) vale para o concurso quando não é restrito a outros (`onlyContests`) nem o exclui
+ * (`excludeContests`). Sem concurso informado, só valem os assuntos não restritos.
+ */
+export function editalItemApplies(
+  item: { onlyContests?: readonly string[] | null; excludeContests?: readonly string[] | null },
+  contest: string | null | undefined,
+): boolean {
+  const only = item.onlyContests ?? [];
+  if (only.length) return !!contest && only.includes(contest);
+  return !contest || !(item.excludeContests ?? []).includes(contest);
 }

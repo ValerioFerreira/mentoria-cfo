@@ -6,7 +6,7 @@ import { Alert, Badge, Card, Field, PageHeader, Stat, inputCls } from "@/compone
 import { requireAdmin } from "@/lib/auth/dal";
 import { adminCancelContract, adminGrantAccess, adminRegisterPayment, adminReversePayment } from "@/lib/commerce/admin-actions";
 import { newIdempotencyKey } from "@/lib/commerce/keys";
-import { AUDIT_LABEL, CONTRACT_STATUS, PAYMENT_METHOD_LABEL, REVERSAL_KIND_LABEL, actorLabel, contestName, dateBR, dayBR } from "@/lib/commerce/labels";
+import { AUDIT_LABEL, CONTRACT_STATUS, PAYMENT_METHOD_LABEL, REVERSAL_KIND_LABEL, actorLabel, contestName, dateBR, dayBR, discountSummary } from "@/lib/commerce/labels";
 import { formatBRL, toCents } from "@/lib/commerce/money";
 import { CATEGORY_LABEL } from "@/lib/commerce/pricing";
 import { contractDetail } from "@/lib/commerce/queries";
@@ -40,7 +40,7 @@ export default async function ContractPage({ params }: { params: Promise<{ id: s
       />
 
       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-        <Stat label="Preço original" value={formatBRL(toCents(c.originalAmount))} hint={`Descontos: ${c.launchDiscountPoints}% lançamento${c.partnerDiscountPoints ? ` + ${c.partnerDiscountPoints}% cupom ${c.couponCode}` : ""} (${formatBRL(toCents(c.discountAmount))})`} />
+        <Stat label="Preço original" value={formatBRL(toCents(c.originalAmount))} hint={`Descontos: ${discountSummary(c)} (${formatBRL(toCents(c.discountAmount))})`} />
         <Stat label="Valor devido" value={formatBRL(due)} />
         <Stat label="Recebido (válido)" value={formatBRL(paid)} />
         <Stat label={paid > due ? "Excedente" : "Saldo pendente"} value={formatBRL(Math.abs(due - paid))} hint={`Saldo consolidado do cliente (${customer.contracts} contratação/ões): ${formatBRL(customer.balanceCents)}`} />

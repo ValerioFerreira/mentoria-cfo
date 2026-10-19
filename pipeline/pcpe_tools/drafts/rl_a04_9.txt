@@ -1,0 +1,65 @@
+@@@ raciocinio-logico/a04/s09
+@@ ANALITICO
+Este trecho conclui as questões clássicas de conectivos e abre as questões comentadas de lógica de argumentação (argumentos dedutivos): analisar se a conclusão decorre das premissas, com tabela-verdade e com diagramas lógicos.
+
+### Questões clássicas (continuação)
+
+- **AOCP/DEPEN-PR (cinco suspeitos)**: d → e; ~d → c; (b ∨ c) → ~a; ~e. De ~e: e F. De d → e: d F. De ~d → c com ~d V: c V. Em (b ∨ c) → ~a, o antecedente é V (c V), logo ~a V (a F). O valor de b não se determina. Não foram capturados, além de Enzo, **Adelmo e Dênis** (letra C).
+- **Consulplan/Prodabel (afirmação I falsa)**: I. b → a é F, logo b V e a F; II. "ou d ou c" (exclusiva) V; III. c ∧ b V, logo c V e b V; com c V, d F. A conclusão verdadeira é a condicional "se Daniela é engenheira, então Adriana é analista" (d → a, caso F → F; letra D). A opção que usa "ou exclusivo" entre b e c é falsa (os dois são V).
+- **Consulplan/Prodabel (cinco proposições com valores dados)**: IV (m → d) é F: m V e d F. I (t ∨ d) V com d F: t V. III (~c ∨ ~t) V com ~t F: ~c V (c F). V (~c ⊻ ~j) V com ~c V: ~j F (j V). II (f ∧ j) é F com j V: f F. A conclusão: "Jonatas fez intercâmbio **ou** Diana é advogada" (j ∨ d) é V (letra A).
+- **AOCP/PMPE (Beth, Carla, Esther)**: ~b → c; b → ~e; e V. De b → ~e com ~e F: b F; de ~b → c: c V. A conclusão verdadeira é "Carla é cantora" (letra E).
+- **AOCP/PMPE (André, César, Paula, Roberto)**: a → (c ∨ r); c → p; p → r; ~r. De trás: r F; p F; c F; a F. A condicional "se André é de Alagoas, então César não é do Ceará" (a → ~c) tem antecedente F e é V (letra C).
+
+### Lógica de argumentação: argumentos dedutivos (múltiplas bancas)
+
+- **FEPESE/Campos Novos (backup)**: premissas f → b ("sempre que há falha, o backup é acionado") e b V. Afirmar o consequente **não** permite concluir o antecedente. A conclusão válida é "não é possível afirmar que houve falha" (letra E).
+- **QUADRIX/CFO (brinquedos de Gael)**: c → e; e → o; ~e ⊻ ~o; c ∨ o. Por tabela, só uma linha torna as quatro premissas V: **c F, e F, o V**. Caminho curto: em ~e ⊻ ~o, e e o diferem; se e fosse V, e → o exigiria o V (e iguais), contradição; logo e F e o V; de c → e com e F: c F. Itens: "O caminhão é vermelho" (**errado**), "A escavadeira é laranja" (**errado**), "O ônibus é azul" (**certo**).
+- **Consulplan/CM Araraquara (quatro argumentos)**: por diagramas, só vale o que decorre em todos os diagramas possíveis.
+  - **I** (todo aprovado é sancionado; todo sancionado está no orçamento; alguns do orçamento são da saúde; X aprovado): **inválido**, pois X pode estar fora da parte "saúde".
+  - **II** (quem falta três vezes é advertido; Carlos foi advertido; logo, faltou): **inválido** (afirmação do consequente; pode haver outro motivo de advertência).
+  - **III** (nenhum temporário tem licença remunerada; João está de licença; logo, João não é temporário): **válido** (conjuntos disjuntos).
+  - **IV** (se a Câmara rejeita, o projeto é arquivado; Y foi arquivado; logo, Y foi rejeitado): **inválido** (afirmação do consequente).
+  - Total de válidos: **um** (letra A).
+
+### Para fixar
+- Condicional verdadeira com consequente verdadeiro: o antecedente fica indeterminado; não se pode "voltar" da consequência para a causa.
+- Premissa de "nenhum" gera conjuntos disjuntos: bom para conclusões negativas.
+- Premissa "alguns" não garante a pertença de um elemento específico.
+- Em exclusiva verdadeira, os termos têm valores diferentes.
+- Quando um dos termos de uma exclusiva é conhecido, o outro se obtém por oposição.
+@@ SINTETICO
+**Capturados e não capturados**: com ~e fixo, cadeia de condicionais fixa d, c e a; b fica indeterminado.
+**Condicional falsa no enunciado**: dá antecedente verdadeiro e consequente falso logo no início.
+**Disjunção inclusiva verdadeira**: se uma parcela é falsa, a outra é verdadeira.
+**Condicional com antecedente falso**: é verdadeira, como a → ~c quando a é falsa.
+**Afirmação do consequente**: não permite concluir o antecedente nem validar o argumento.
+**Brinquedos de Gael**: a única linha que satisfaz as quatro premissas tem c falso, e falso e o verdadeiro.
+**Argumento com alguns**: não garante que um elemento específico pertença à categoria.
+**Argumento com nenhum**: gera conjuntos disjuntos e permite concluir pela exclusão.
+**Quatro argumentos de Araraquara**: apenas o de nenhum e licença remunerada é válido.
+**Teste por diagramas**: o argumento só é válido se a conclusão vale em todo diagrama.
+@@ TEORIA
+C | Dado "Se há erro, o sistema avisa" e "O sistema avisou", não se pode concluir que houve erro. || Afirmação do consequente.
+E | Numa condicional verdadeira com consequente verdadeiro, o antecedente é necessariamente verdadeiro. || Pode ser V ou F.
+C | O argumento "Nenhum fiscal é temporário; Rui é fiscal; logo, Rui não é temporário" é válido. || Conjuntos disjuntos.
+E | O argumento "Alguns servidores são médicos; Ana é servidora; logo, Ana é médica" é válido. || "Alguns" não garante que Ana esteja na interseção.
+@@ REVISAO
+C | Se uma condicional é verdadeira e o seu antecedente é falso, o valor do consequente é indeterminado. || F → V e F → F são V.
+E | A afirmação do consequente ("Se p, então q; q; logo p") é uma forma válida de argumento. || É falácia.
+C | Num conjunto de premissas em que a ⊻ b é verdadeira e a é verdadeira, concluímos que b é falsa. || Exclusiva V.
+C | No teste de validade por diagramas, a conclusão deve ser verdadeira em todos os diagramas possíveis. || Condição de validade.
+@@ PONTOS
+101 | Questão do DEPEN e início da resolução
+102 | Resolução do DEPEN e início da questão da Prodabel
+103 | Questão da Prodabel (afirmação I falsa)
+104 | Alternativas e questão da Prodabel com cinco proposições
+105 | Resolução da Prodabel e questão da AOCP (Beth)
+106 | Resolução da AOCP (Beth)
+107 | Questão da AOCP (André, César, Paula e Roberto)
+108 | Resolução da AOCP (André) e início dos argumentos dedutivos
+109 | Questão da FEPESE sobre backups
+110 | Resolução da FEPESE e início dos brinquedos de Gael
+111 | Tabela-verdade dos brinquedos de Gael
+112 | Itens sobre escavadeira e ônibus
+113 | Questão de Araraquara com quatro argumentos
+114 | Resolução dos argumentos II, III e IV
