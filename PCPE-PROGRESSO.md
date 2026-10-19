@@ -61,13 +61,14 @@ Concluído e **commitado**: `contabilidade-geral` a00–a19 (último 9af0199); `
 
 **Concluído — `direito-penal/a06` (crimes sexuais, 8 trechos; Leis 15.280/25 e 15.353/26):** commitado. Observação para revisão humana: a fonte não mostra se a Lei 15.280/25 alterou as penas dos arts. 227–230 e 232-A; mantive as do texto da aula (ver `HISTORICO.md` quando for registrar).
 
-**Pendente (ordem sugerida):**
-1. `direito-penal` a10 (2 trechos) (a07, a08 e a09 já refeitos e commitados; a10 em andamento); depois a00–a03 (verificar/refazer).
-2. Opcional/qualidade: `direito-processual-penal` a04–a06 (corretos mas prolixos/acentuados em excesso).
-3. `legislacao-penal-especial` (29 trechos): corrigir Tema 506/RE 635.659 (porte de drogas para uso pessoal) e atualizações de leis.
-4. `direito-administrativo` a20–a24/c02; `legislacao-pcpe` (12 trechos); `lingua-portuguesa` a13 (6 trechos; `bizu.summary` deve ter 6–14 tópicos).
-5. `raciocinio-logico`: bizus C/E genéricos (~300 itens) a refazer + `apply_synthetic.py`.
-6. Trechos com texto copiado em DA/DC/Estatística/Matemática/LP usados pelo plano do Agente (rodar `pcpe_triage.py` e `validate_summaries.py` para listar).
+**Concluído também:** `direito-penal` a07, a08, a09, a10 (commits bbc4eb9, 44e009c, 06972c8, c96f04d). Direito Penal a04–a10 está inteiro refeito.
+
+**Pendente (ordem sugerida, por risco jurídico):**
+1. `legislacao-penal-especial` (29 trechos): **a11–a17 reescritas e commitadas** (hediondos, racismo, abuso de autoridade, tortura, org. criminosa, CTB, Maria da Penha). Faltam a18 (Lei de Drogas, 6 trechos: corrigir Tema 506/RE 635.659, porte para uso pessoal), a19, a20, a21 e c01 (armas, ambiental, ECA etc.; atualizar com a Lei 15.358/26).
+2. `legislacao-pcpe` (12 trechos), `direito-administrativo` a20–a24 e c02 (complementos de PCPE), `direito-constitucional` (verificar), `lingua-portuguesa` a13 (6 trechos; `bizu.summary` com 6–14 tópicos).
+3. `raciocinio-logico`: bizus C/E genéricos (~300 itens; 94 falhas de validação) + `apply_synthetic.py`; trechos copiados em DA/DC/Estatística/Matemática/LP (lista em `python pipeline/pcpe_tools/val_pcpe.py`).
+4. Opcional (só estilo/prolixidade; conteúdo correto): `direito-penal` a00–a03 (17 trechos), `direito-processual-penal` a04–a06, demais.
+5. Ao final: `python pipeline/apply_synthetic.py`, `python pipeline/pcpe_tools/mirror_web.py`, `python pipeline/pcpe_tools/audit_pcpe.py .`, commit do espelho e dos itens atualizados.
 
 ## 6. Cadernos do TEC — FEITO
 `PCPE-CADERNOS-TEC.md` / `.csv` (gerados por `pipeline/pcpe_tools/gen_cadernos_tec.py`). Falta só entregar ao dono (resumo na mensagem final).
