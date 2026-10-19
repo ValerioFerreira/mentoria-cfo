@@ -144,6 +144,59 @@ DICAS = {
     },
 }
 
+# códigos do mapa edital → material refeito em 2026-10-19 (build_edital_pcpe.py): substituem os antigos
+DICAS["direito-constitucional"] = {
+    "1.1": "Princípios fundamentais da CF/88 (arts. 1º a 4º)", "1.2": "Poder constituinte (originário, derivado e decorrente)",
+    "2": "Aplicabilidade e eficácia das normas constitucionais",
+    "3": "Direitos e garantias fundamentais (individuais, coletivos, sociais, nacionalidade, políticos); remédios constitucionais",
+    "4": "Organização do Estado: federação, União, estados, DF, municípios, territórios; competências; intervenção",
+    "5": "Administração pública (art. 37) e servidores públicos", "6": "Poder Executivo", "7": "Poder Legislativo; processo legislativo; CPI",
+    "8": "Poder Judiciário", "9.1": "Ministério Público", "9.2": "Advocacia pública", "9.3": "Defensoria Pública",
+    "10": "Defesa do Estado e das instituições democráticas; Segurança Pública (art. 144)",
+    "11": "Constituição do Estado de Pernambuco – Segurança Pública",
+}
+DICAS["direito-administrativo"] = {
+    "1": "Estado, governo e administração pública", "2": "Conceito, objeto e fontes do Direito Administrativo", "3": "Atos administrativos",
+    "4.1": "Poderes: hierárquico, disciplinar, regulamentar e de polícia", "4.2": "Uso e abuso do poder",
+    "5.1": "Regime jurídico-administrativo", "5.2": "Princípios expressos e implícitos da administração", "6": "Responsabilidade civil do Estado",
+    "7": "Serviços públicos; concessão, permissão, autorização", "8.1": "Centralização, descentralização, concentração e desconcentração",
+    "8.2": "Administração direta e indireta", "9.1": "Controle administrativo", "9.2": "Controle judicial", "9.3": "Controle legislativo",
+    "9.4": "Improbidade administrativa (Lei 8.429/1992)", "10": "Processo administrativo (Lei 9.784/1999 e Lei estadual 11.781/2000)",
+    "11": "Licitações e contratos (Lei 14.133/2021 e, para provas antigas, 8.666/1993)", "12.1": "Agentes públicos: legislação pertinente",
+    "12.2": "Agentes públicos: disposições constitucionais", "13": "Cargo, emprego e função pública; provimento e vacância",
+}
+DICAS["lingua-portuguesa"] = {
+    "1": "Compreensão e interpretação de textos", "2": "Tipologia e gêneros textuais", "3": "Ortografia oficial; acentuação",
+    "4.1": "Coesão textual: referenciação, conectores, sequenciação", "4.2": "Tempos e modos verbais", "5.1": "Classes de palavras",
+    "5.2": "Coordenação (orações e termos)", "5.3": "Subordinação (orações e termos)", "5.4": "Pontuação", "5.5": "Concordância verbal e nominal",
+    "5.6": "Regência verbal e nominal", "5.7": "Crase", "5.8": "Colocação pronominal", "6.1": "Significação das palavras",
+    "6.2": "Substituição de palavras ou trechos", "6.3": "Reorganização de orações e períodos", "6.4": "Reescrita e níveis de formalidade",
+    "7.1": "Redação oficial: aspectos gerais", "7.2": "Redação oficial: finalidade dos expedientes", "7.3": "Redação oficial: adequação da linguagem",
+    "7.4": "Redação oficial: formato do texto",
+}
+DICAS["informatica"] = {
+    "1.1": "Windows: janelas, menus, barra de tarefas, área de trabalho", "1.2": "Windows: pastas e arquivos", "1.3": "Windows: configurações básicas",
+    "1.4": "Windows Explorer", "2.1": "Word", "2.2": "Excel", "2.3": "PowerPoint",
+    "3.1": "Internet, intranet, redes sociais, nuvem, deep web e dark web", "3.2": "Correio eletrônico", "3.3": "Navegadores e sítios de busca",
+    "3.4": "Segurança: malwares, antivírus, criptografia", "3.5": "Backup e armazenamento na nuvem",
+}
+DICAS["raciocinio-logico"] = {
+    "7": "Princípios de contagem (análise combinatória)", "9": "Estruturas lógicas", "10": "Lógica de argumentação",
+    "11.1": "Proposições simples e compostas", "11.2": "Tabelas-verdade", "11.3": "Equivalências lógicas", "11.4": "Leis de De Morgan; negações",
+    "11.5": "Diagramas lógicos", "12": "Lógica de primeira ordem (quantificadores)", "13": "Contagem e probabilidade",
+    "14": "Operações com conjuntos (diagramas de Venn)", "15": "Problemas matriciais: matrizes e determinantes",
+}
+DICAS["matematica"] = {
+    "1": "Conjuntos numéricos e operações", "2": "Sistema legal de medidas", "3": "Razões e proporções", "3.1": "Divisão proporcional",
+    "3.2": "Regras de três simples e compostas", "3.3": "Porcentagem", "4": "Equações e inequações de 1º e 2º graus", "5": "Sistemas lineares",
+    "6": "Funções e gráficos (afim e quadrática)", "8": "Progressões aritméticas e geométricas", "15": "Problemas aritméticos e geométricos (geometria plana)",
+}
+DICAS["estatistica"] = {
+    "1": "Estatística descritiva: gráficos, medidas de posição e dispersão, assimetria e curtose",
+    "2.1": "Probabilidade: definições e axiomas", "2.2": "Probabilidade condicional e independência",
+    "3.1": "Amostragem: simples, estratificada, sistemática, conglomerados", "3.2": "Tamanho amostral",
+}
+
 ORDEM = [
     "legislacao-pcpe", "direito-constitucional", "direito-administrativo", "direito-penal", "legislacao-penal-especial",
     "direito-processual-penal", "lingua-portuguesa", "informatica", "raciocinio-logico", "matematica", "estatistica",
@@ -171,8 +224,10 @@ def main() -> None:
             f = C / "edital" / f"{sub}.json"
         items = json.loads(f.read_text(encoding="utf-8"))["items"]
         rows = []
+        vistos: set[str] = set()  # cada trecho conta uma vez por disciplina (itens vizinhos repartem os mesmos trechos)
         for it in items:
-            segs = {sg for w in it.get("where", []) for sg in w.get("segments", []) if sg in appears}
+            segs = {sg for w in it.get("where", []) for sg in w.get("segments", []) if sg in appears} - vistos
+            vistos |= segs
             n = len(segs)
             meta = min(320, max(12, n * 8))
             piso = min(200, max(8, n * 5))
@@ -233,7 +288,7 @@ def main() -> None:
     out += ["## Avisos", "",
             "1. **Contabilidade Geral:** o Cebraspe cobra pouca Contabilidade em provas de polícia; é provável que o TEC devolva menos que a meta. O plano e os simulados do PCPE só usam Cebraspe, então vale decidir antes se Contabilidade pode usar outras bancas (FCC, FGV, Vunesp…) no caderno das atividades. Monte também um caderno **sem filtro de banca** (nome `PCPE CONT extra`) para o treino livre.",
             "2. **Itens com ⚠:** têm material complementar ou lacuna no conteúdo; a classificação dessas questões depende de os complementos estarem no catálogo.",
-            "3. **Matemática × Raciocínio Lógico:** o edital do PCPE repete assuntos (análise combinatória, probabilidade) nas duas disciplinas. Os cadernos de RL cobrem esses assuntos; no de Matemática, itens 4 e 5 não geram trechos próprios (marcados com 0 trechos): pode pular.",
+            "3. **Matemática × Raciocínio Lógico:** o edital do PCPE reúne os dois no bloco \"Raciocínio Lógico\"; análise combinatória e probabilidade ficam nos cadernos de RL (itens 7 e 13). Cada trecho do plano é contado uma só vez por disciplina (itens vizinhos que dividem os mesmos trechos aparecem com meta mínima).",
             "4. **Importação:** `content/questoes/mapa-assuntos.json` ainda não tem as matérias do TEC de Direito Penal, Processo Penal, Contabilidade e Legislação PCPE, e o classificador só reconhece os cadernos do CBMPE/PMPE. Isso faz parte do **importador de questões por concurso** (sessão separada, ainda pendente): baixar os PDFs agora e importar depois é seguro."]
     (ROOT / "PCPE-CADERNOS-TEC.md").write_text("\n".join(out) + "\n", encoding="utf-8")
     print(f"{len(cadernos)} cadernos, meta total {tot_m}, trechos {tot_t}")
