@@ -55,8 +55,10 @@ Concluído e **commitado**: `contabilidade-geral` a00–a19 (último 9af0199); `
 
 **Concluído — `direito-penal/a05` (14 trechos, crimes patrimoniais, leis até 2026):** todos os trechos reescritos e validados [ok]; commitado. Rascunhos em `pipeline/pcpe_tools/drafts/dp_a05_*`.
 
+**Concluído — `direito-penal/a06` (crimes sexuais, 8 trechos; Leis 15.280/25 e 15.353/26):** commitado. Observação para revisão humana: a fonte não mostra se a Lei 15.280/25 alterou as penas dos arts. 227–230 e 232-A; mantive as do texto da aula (ver `HISTORICO.md` quando for registrar).
+
 **Pendente (ordem sugerida):**
-1. `direito-penal` a06 (8 trechos; crimes sexuais; Leis 12.015, 15.280, 15.353…), a07–a10 (conferir se atualizações de 2024–26 entraram), a00–a03 (verificar).
+1. `direito-penal` a07–a10 (conferir se atualizações de 2024–26 entraram), a00–a03 (verificar).
 2. Opcional/qualidade: `direito-processual-penal` a04–a06 (corretos mas prolixos/acentuados em excesso).
 3. `legislacao-penal-especial` (29 trechos): corrigir Tema 506/RE 635.659 (porte de drogas para uso pessoal) e atualizações de leis.
 4. `direito-administrativo` a20–a24/c02; `legislacao-pcpe` (12 trechos); `lingua-portuguesa` a13 (6 trechos; `bizu.summary` deve ter 6–14 tópicos).
@@ -73,3 +75,4 @@ Lista das matérias/assuntos do PCPE Agente (Cebraspe) com quantidade sugerida d
 - Projeto: `CLAUDE.md` (raiz). Memória: `C:\Users\Administrador\.claude\projects\C--Users-Administrador-Documents-Projetos-CFO-BM\memory\`.
 - Transcrição completa da sessão (para detalhes): `C:\Users\Administrador\.claude\projects\C--Users-Administrador-Documents-Projetos-CFO-BM\0c43eefc-d4c6-413a-a2cd-5b076462aef5.jsonl`.
 - Scripts do agente anterior já versionados: `pipeline/pcpe_author.py`, `pipeline/pcpe_triage.py`; migração `20261016140000_pcpe_agente_settings`; filtros por concurso em Aulas (`onlyContests/excludeContests`); `EXAM_CONFIGS` em `simulado-rules.ts`; `banca.ts` (CEBRASPE).
+- Se `ap.sh`/`aula.sh` falharem por CRLF: `sed -i 's/\r$//' pipeline/pcpe_tools/*.sh`.
