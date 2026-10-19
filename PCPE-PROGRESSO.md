@@ -1,5 +1,7 @@
 # PCPE Agente — registro de andamento (retomada de sessão)
 
+> **ESTADO FINAL (2026-10-19): TUDO FEITO, exceto as questões (fora do escopo).** Concluídos: refação de resumos/bizus (12 disciplinas, 662 trechos com resumo + bizu + importância, espelhados em `web/content`), 6 complementos autorais do PCPE, mapa do edital refeito, `available: true` do PCPE (commit 538ba70), cadernos do TEC (`PCPE-CADERNOS-TEC.md/.csv`). Verificações: tsc, vitest unit (465), `pipeline/test_plan_pcpe.ts` (24 LIBERAR), `compare-plans-main.ts` (0 divergências). **Pendências do dono:** baixar os cadernos do TEC e importar (o importador por concurso, task_62791f17, ainda não existe); 6 falhas de integração de preço em `commerce/*` já existiam antes; lint acusa 2 `any` antigos em `seed-structure.ts`. **Armadilhas aprendidas:** (1) `build_complements.py` inteiro reescreve formatação de segmentos/estruturas alheios e todos os PDFs: reverta com `git checkout --`; (2) complemento `onlyContests` agora tem fatia própria de incidência (não dilui os demais concursos; senão `compare-plans-main.ts` diverge); (3) o seed só inseria trechos se a contagem do banco fosse menor que a do conteúdo (corrigido: insere os ids que faltam).
+
 > Documento de passagem de bastão. Atualizar a cada bloco concluído. Última atualização: 2026-10-18.
 > Quem retomar: leia tudo, confira `git log --oneline | head -20` e `git status`, e continue pelo item **"Onde parei"**.
 
