@@ -1,0 +1,73 @@
+@@@ raciocinio-logico/a00/s09
+@@ ANALITICO
+Este trecho reúne questões sobre proposições compostas: identificar o conectivo pelo símbolo, traduzir frases, determinar quando uma composta é verdadeira, deduzir os valores das simples a partir da composta e calcular valores de proposições aritméticas e aninhadas.
+
+### Símbolos e tradução
+
+- Símbolos: **∧** conjunção ("e"), **∨** disjunção inclusiva ("ou"), **⊻** exclusiva ("ou... ou"), **→** condicional, **↔** bicondicional. Ler uma fórmula significa trocar cada letra pela frase e manter o conectivo: com p "Hoje está chovendo" e q "Vou levar guarda-chuva", **(¬p) ∨ q** é "Hoje **não** está chovendo **ou** vou levar guarda-chuva" (e não a versão com ~q, nem a condicional, nem a conjunção).
+- Uma condicional cujo antecedente reúne duas ações com "e" e cujo consequente é uma terceira ação é **(p ∧ q) → r** (antecedente conjunção, consequente simples). "Seguirá defendendo seu caso **se, e somente se**, o cliente seguir as orientações" é **bicondicional**.
+- **Q: quando (p ∨ q) ∧ ¬p é verdadeira?** A conjunção exige as duas parcelas V: ¬p V (logo **p é falso**) e p ∨ q V (com p falso, **q é verdadeiro**). Resposta: p falso e q verdadeiro.
+
+### Deduzir os valores a partir da composta
+
+- **Disjunção falsa** ⇒ **as duas parcelas são falsas**. Se "X ou Y" é falsa, com X "Paula é engenheira" e Y a condicional "se Roberto é advogado, então Lucas é médico": X é F (Paula não é engenheira) e Y é F, e a condicional falsa exige antecedente V e consequente F (Roberto é advogado e Lucas **não** é médico).
+- **Condicional falsa** ⇒ antecedente V e consequente F. **Conjunção verdadeira** ⇒ as duas V.
+- **Fatos dados e conclusão**: com "o carro é preto" (V), "a moto não é branca" (V, logo moto branca = F) e "a bicicleta é vermelha" (V), a única condicional verdadeira entre as opções é "Se a bicicleta não é vermelha **e** o carro é preto, então a moto é branca", pois é (F ∧ V) → F, isto é, **F → F, verdadeira**. As outras terminam em V → F.
+- **Condicional verdadeira com consequente falso** ⇒ **antecedente falso**. Se "Se o alarme dispara, o protocolo de evacuação é ativado" é verdadeira e o protocolo **não** foi ativado, conclui-se que o alarme **não** disparou.
+
+### Afirmativas sobre conectivos
+
+- A **disjunção** é verdadeira se **pelo menos uma** parcela for **verdadeira** (e não "falsa"); a **negação** inverte o valor; a **conjunção** é verdadeira só se as duas forem verdadeiras. A conjunção **nunca** é verdadeira se uma parcela for falsa.
+- **Disjunção exclusiva** "Ou Maria é magra ou João é fraco": V⊻V = F, V⊻F = V, F⊻V = V, F⊻F = F. Logo é errado dizer que, com P verdadeira e Q falsa, a exclusiva é falsa.
+
+### Valor lógico de proposições aritméticas
+
+- Primeiro determine o valor de cada simples: p: 4³ = 12 (F, pois é 64); q: 6 × 9 = 54 (V); r: √121 = 11 (V). Então p ∧ q = F; r → p = V → F = **F**; ~r ∧ q = F ∧ V = **F**; **r ↔ q = V ↔ V = V**; q → p = V → F = **F**.
+- Em uma lista de frases, avalie cada uma pelo conectivo: "Se o dobro de dois é quatro, então o triplo de cinco é 125" é V → F, **falsa**; "Ou 4 + 2 = 5 ou 7 × 3 = 20" é F ⊻ F, **falsa**; "O quadrado de dez é cem **e** o quádruplo de cinco é vinte e cinco" é V ∧ F, **falsa**; "9 × 5 = 35 **ou** 8 × 4 = 36" é F ∨ F, **falsa**; "O triplo de seis é dezenove **se, e somente se**, o quadrado de três é seis" é F ↔ F, **verdadeira**.
+
+### Fórmulas aninhadas
+
+- Resolva dos parênteses internos para os externos. Para P(p, q) = (~(p ∧ q) ∨ ~p) → (~p ∨ ~q): com p = q = V, fica (F ∨ F) → (F ∨ F) = F → F = **V**; com p = q = F, fica (V ∨ V) → (V ∨ V) = V → V = **V**. Resultado: V e V.
+
+### Para fixar
+- Disjunção falsa: ambas falsas; condicional falsa: V e F; conjunção verdadeira: ambas V.
+- Condicional verdadeira com consequente falso exige antecedente falso.
+- Avalie cada proposição simples primeiro e depois o conectivo, dos parênteses internos para os externos.
+- A exclusiva é falsa quando as parcelas têm o mesmo valor; a bicondicional, verdadeira.
+- Traduza fórmulas mantendo a posição do "não".
+@@ SINTETICO
+**Símbolos**: conjunção, disjunção, exclusiva, condicional e bicondicional se leem trocando cada letra pela frase e preservando a posição das negações.
+**Disjunção falsa**: obriga as duas parcelas a serem falsas.
+**Condicional falsa**: exige antecedente verdadeiro e consequente falso.
+**Condicional verdadeira com consequente falso**: leva a antecedente falso, como em alarme que não disparou.
+**Alternativa verdadeira**: valore as simples e procure a alternativa que não resulta em V → F nem em conjunção com parcela falsa.
+**Afirmativas sobre conectivos**: a disjunção é verdadeira se ao menos uma parcela é verdadeira.
+**Exclusiva**: verdadeira apenas quando as parcelas diferem.
+**Aritmética**: calcule cada igualdade antes de aplicar o conectivo.
+**Bicondicional aritmética**: duas parcelas falsas tornam o conjunto verdadeiro.
+**Fórmulas aninhadas**: resolvem-se do parêntese interno para o externo.
+@@ TEORIA
+C | A proposição (¬p) ∨ q, com p "hoje chove" e q "vou levar guarda-chuva", significa "hoje não chove ou vou levar guarda-chuva". || A negação incide só em p.
+E | Se a disjunção "X ou Y" é falsa, basta que uma das parcelas seja falsa. || Para a disjunção inclusiva ser falsa, as duas são falsas.
+C | Se a condicional "Se o alarme dispara, o protocolo é ativado" é verdadeira e o protocolo não foi ativado, o alarme não disparou. || Consequente falso com condicional V exige antecedente F.
+E | A disjunção exclusiva "ou P ou Q" é falsa quando P é verdadeira e Q é falsa. || V ⊻ F = V.
+@@ REVISAO
+C | A frase "Se Ana estuda e Bia revisa, então Caio passa" tem a forma (p ∧ q) → r. || O antecedente é uma conjunção.
+E | A conjunção p ∧ q é verdadeira se somente uma das parcelas for verdadeira. || As duas devem ser verdadeiras.
+C | Uma bicondicional entre duas igualdades aritméticas ambas falsas tem valor lógico verdadeiro. || Mesmo valor nas duas parcelas.
+C | A proposição (p ∨ q) ∧ ¬p é verdadeira quando p é falsa e q é verdadeira. || ¬p V exige p F, e então q deve ser V.
+@@ PONTOS
+101 | Reconhecer a conjunção
+102 | Tradução de (¬p) ∨ q e questão sobre (p ∨ q) ∧ ¬p
+103 | Disjunção falsa e valores das simples
+104 | Condicional falsa
+105 | Alternativa com condicional verdadeira
+106 | Bicondicional e tradução simbólica
+107 | Afirmativas sobre conectivos
+108 | Conjunção e disjunção exclusiva
+109 | Questão sobre exclusiva e valores aritméticos
+110 | Valor das alternativas aritméticas
+111 | Conectivos em frases aritméticas
+112 | Bicondicional com duas falsas e fórmula aninhada
+113 | Resolução da fórmula aninhada
+114 | Antecedente falso e consequente falso
