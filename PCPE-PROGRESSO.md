@@ -28,7 +28,9 @@ Contexto: o concurso é **PCPE Agente de Polícia (Cebraspe, prova 07/03/2027, i
 
 **Verificações já feitas (commit d13a9f9):** `compare-plans-main.ts` 0 divergências (96 cenários), `next build` ok, eslint ok nos arquivos alterados.
 
-**Pendências de validação nos bizus (`validate_content.py`, só nas disciplinas do PCPE):** lingua-portuguesa a01 (1), a13 (`bizu.summary` com 21/28/24 tópicos; precisa de 6–14), raciocinio-logico (94: C/E repetidos e trechos copiados), matematica (1), estatistica (1), direito-constitucional (3), direito-administrativo (9). Rodar `python pipeline/pcpe_tools/val_pcpe.py`.
+**Pendências de validação nos bizus (`validate_content.py`, só nas disciplinas do PCPE) — atualizado em 2026-10-19:** zeradas em todas as disciplinas, EXCETO `raciocinio-logico` (93). Os `bizu.summary` dos trechos passam a vir dos sintéticos: rode `python pipeline/pcpe_tools/apply_synth_pcpe.py [disc ...]` (aplica só nas disciplinas do PCPE; `apply_synthetic.py` do projeto mexe em todas). `python pipeline/pcpe_tools/val_pcpe.py` mostra a contagem.
+
+**DESCOBERTA (2026-10-19) sobre `raciocinio-logico`:** 419 dos 560 itens C/E (67 dos 70 trechos) são TEXTO PREENCHEDOR gerado ("Em relação a Aplicações Práticas no âmbito de raciocinio-logico/a00/s04…", "O estudo formal de … investiga a validade dos argumentos…"), os ponteiros de 8 aulas são "Conceitos Estruturantes (Foco 1)…" e os resumos são genéricos e nem sempre correspondem ao trecho-fonte (ex.: a00/s04 trata de negação de período composto por subordinação, dupla negação e conectivos, e o resumo antigo fala de tabela-verdade da negação). **Precisa ser TODO refeito, trecho a trecho, lendo o fonte** (70 trechos: a00 12, a01 9, a02 11, a03 2, a04 12, a05 10, a06 8, a07 6). Mesmo método do DA (rascunhos `rl_aNN_K.txt`).
 
 ## 4. Como funciona o fluxo de reescrita (método validado)
 Ferramentas (todas em `pipeline/pcpe_tools/`, rodar da raiz com `pipeline/.venv/Scripts/python`; defina `PYTHONIOENCODING=utf-8`):
