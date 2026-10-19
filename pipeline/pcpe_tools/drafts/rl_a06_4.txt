@@ -1,0 +1,70 @@
+@@@ raciocinio-logico/a06/s04
+@@ ANALITICO
+Este trecho trata de três tipos de permutação: com elementos repetidos (anagramas), circular (elementos em roda) e com elementos ordenados (alguns devem seguir uma ordem definida), com questões de concurso.
+
+### Fim da questão do BNB (números com 1 e 2 juntos)
+
+- Considera-se "1-2" um bloco: permutam-se 4 elementos (4! = 24); dentro do bloco, 1-2 ou 2-1 (× 2): 24 × 2 = **48**, superior a 25 (item errado).
+
+### Permutação com repetição
+
+- Quando há elementos **iguais**, nem toda ordenação é distinta. Ao ordenar {A, A, B}, as 6 permutações de três elementos distintos viram só **3** (ABA, AAB, BAA), porque trocar os dois A entre si não altera nada.
+- **Regra**: divide-se a permutação simples pela permutação dos elementos repetidos. Para n elementos com repetições de m₁, m₂, ..., m_k elementos iguais:
+  **Pₙ^(m₁,m₂,...,m_k) = n! / (m₁! × m₂! × ... × m_k!)**.
+- Exemplos: com 5 elementos, 3 deles iguais: 5!/3! = 20. Com {A, A, B, B, B, C, D} (7 elementos; A duas vezes e B três): 7!/(2! × 3!) = 420.
+- **UNEB/PC-BA**: anagramas de CASA (duas letras A): 4!/2! = **12** (letra E).
+- **FUNDATEC/Três Passos**: AUDITOR (7 letras distintas) tem 7! = 5.040 anagramas; GEÓLOGO (7 letras, com G duas vezes e O três vezes) tem 7!/(2! × 3!) = 420. Diferença: 5.040 − 420 = **4.620** (letra D).
+
+### Permutação circular
+
+- Os elementos estão em **círculo**, sem "primeiro lugar" nem referências fixas: girar a mesa não muda a disposição. Muda apenas a posição **relativa** de um elemento em relação aos outros.
+- **Fixa-se um elemento** e permutam-se os demais: **PCₙ = (n − 1)!** (para 8 elementos, 7! = 5.040).
+- **Com restrições** (alternar meninos e meninas à mesa): resolve-se em **duas etapas**. Sentam-se primeiro os 4 meninos em círculo (PC₄ = 3! = 6); depois as 4 meninas, que passam a ter lugares distintos (4! = 24). Total: 6 × 24 = **144**.
+- **FUNDATEC/Ibiaçá**: 5 amigos em mesa circular: PC₅ = 4! = **24** (letra C).
+- **Codhab/DF**: 5 amigos e 5 carnes servidas entre cada par de cadeiras: sentam-se os amigos (PC₅ = 4! = 24) e, depois, as carnes ocupam espaços já distintos (5! = 120). Total: 24 × 120 = **2.880**, que **não** é maior que 3.000 (item errado).
+
+### Permutação com elementos ordenados
+
+- Alguns elementos devem seguir uma **ordem definida**, mas não precisam ficar juntos. Exemplo: Ana, Beto e Caio ordenados por nota, sabendo que Ana foi **melhor** que Beto: das 3! = 6 ordenações, só a metade atende (em cada uma, ou Ana está à frente de Beto, ou o contrário): 3!/2! = **3**.
+- **Regra**: com n elementos, dos quais k devem seguir uma ordem específica, o número é **n!/k!**, a mesma fórmula da permutação com repetição.
+- Se os elementos devem ficar **consecutivos**, trata-se o grupo como um bloco, como já visto.
+- Para dois grupos com ordens fixas (k₁ e k₂ elementos): **n!/(k₁! × k₂!)**. Exemplo: anagramas de ORDEM em que ORD aparece na ordem O-R-D e EM aparece na ordem E-M (não necessariamente juntos): 5!/(3! × 2!) = **10**.
+
+### Para fixar
+- Permutação com repetição: n! dividido pelo fatorial de cada grupo de iguais.
+- Circular: (n − 1)!; com restrição, sentar um grupo primeiro e depois o outro.
+- Elementos ordenados: n!/k!; vários grupos ordenados dividem por cada k!.
+- Giros do círculo não geram disposições novas.
+- Anagramas de palavra com letras repetidas dividem pelas repetições.
+@@ SINTETICO
+**Permutação com repetição**: divide-se n fatorial pelo fatorial de cada grupo de elementos iguais.
+**Anagramas de CASA**: com duas letras A, são 4 fatorial divididos por 2 fatorial, ou seja, 12.
+**AUDITOR e GEÓLOGO**: o primeiro tem 5.040 anagramas e o segundo 420, com diferença de 4.620.
+**Permutação circular**: fixa-se um elemento e permutam-se os demais, resultando em n menos 1 fatorial.
+**Circular com alternância**: sentam-se primeiro os de um grupo em círculo e depois os do outro em lugares distintos.
+**Exemplo circular**: quatro meninos e quatro meninas alternados dão 6 vezes 24, ou seja, 144.
+**Cinco amigos e cinco carnes**: dão 24 vezes 120, ou 2.880, que não passa de 3.000.
+**Elementos ordenados**: n fatorial dividido por k fatorial, em que k elementos seguem uma ordem.
+**Dois grupos ordenados**: dividem-se os dois fatoriais, como em 5 fatorial sobre 3 fatorial vezes 2 fatorial.
+**Diferença da junção**: ordenados não precisam ficar consecutivos; consecutivos formam um bloco.
+@@ TEORIA
+C | O número de anagramas da palavra BOLA, em que as quatro letras são distintas, é 24. || Permutação simples de 4.
+E | O número de anagramas de ARARA é 5!. || Há A três vezes e R duas: 5!/(3!·2!) = 10.
+C | Em uma mesa circular com 6 pessoas, o número de maneiras de sentá-las é 5!. || PC6 = (6−1)!.
+E | Se k elementos devem seguir uma ordem definida, o número de permutações é n! multiplicado por k!. || É n! dividido por k!.
+@@ REVISAO
+C | O número de anagramas de MAMA é 6. || 4!/(2!·2!).
+E | Girar uma mesa circular em 90 graus produz uma disposição diferente das pessoas. || A disposição relativa não muda.
+C | Para 4 meninos e 4 meninas alternados numa mesa circular, o total é 3! × 4!. || Sentam-se os meninos em círculo e depois as meninas.
+C | Dos 24 modos de ordenar 4 elementos, exatamente metade tem um certo par A, B na ordem A antes de B. || Em cada ordenação, A fica antes de B ou depois.
+@@ PONTOS
+32 | Fim da questão do BNB e permutação com repetição
+33 | Fórmula da permutação com repetição e questão da UNEB
+34 | Resolução da UNEB e questão da FUNDATEC
+35 | Permutação circular
+36 | Fórmula circular e restrições
+37 | Alternância à mesa e questão de Ibiaçá
+38 | Questão do Codhab
+39 | Resolução do Codhab
+40 | Outros tipos de permutação e elementos ordenados
+41 | Fórmula n!/k! e dois grupos ordenados

@@ -1,0 +1,74 @@
+@@@ raciocinio-logico/a06/s05
+@@ ANALITICO
+Este trecho conclui a permutação com elementos ordenados, apresenta a permutação caótica (desarranjo) e inicia arranjo e combinação: seleção de subconjuntos com e sem importância da ordem, com e sem reposição, e o método do "pelo menos um".
+
+### Fim dos elementos ordenados
+
+- **FCC/TRF-3 (corrida)**: 5 corredores, em que A chega antes de B e B antes de C: 5!/3! = 5 × 4 = **20** (letra A).
+
+### Permutação caótica (desarranjo)
+
+- Elementos que estavam em certa ordem são reordenados de modo que **nenhum volte à posição original**. Com {A, B, C}: A não fica em 1º, B não fica em 2º, C não fica em 3º. As possibilidades são C-A-B e B-C-A: **2**.
+- **Fórmula**: **Dₙ = n! × [1/0! − 1/1! + 1/2! − 1/3! + ... + (−1)ⁿ/n!]**. As duas primeiras frações (1 − 1) se anulam, então: Dₙ = n! × [1/2! − 1/3! + ... + (−1)ⁿ/n!].
+- **Valores a memorizar**: **D₂ = 1, D₃ = 2, D₄ = 9, D₅ = 44**. Cálculo de D₄: 4! × (1/2 − 1/6 + 1/24) = 12 − 4 + 1 = **9**.
+- **CESPE/TRE-GO**: 3 servidores analisam as contas de 3 candidatos, cada um parente de um servidor, e nenhum pode avaliar o próprio parente: D₃ = **2**, que é inferior a 5 (item certo).
+- **FCC/Recife**: 4 funcionários trocam de mesa sem que nenhum fique na sua: D₄ = **9** (letra C).
+
+### Arranjo simples
+
+- **Arranjo** é a seleção de **k** elementos de um conjunto de **n** em que a **ordem importa** (primeiro sorteado ganha o carro, segundo ganha a bicicleta; Ana-Beto é diferente de Beto-Ana).
+- **Sem reposição**: n × (n − 1) × ... com k fatores: **Aₙ,ₖ = n!/(n − k)!**. Exemplos: 6 pessoas, 3 sorteios: 6 × 5 × 4 = 120; 10 pessoas, 4 sorteios: 10 × 9 × 8 × 7 = 5.040; 8 pessoas, 5 prêmios distintos: A₈,₅ = 6.720.
+- Seleções para cargos distintos (supervisor, coordenador e técnico entre 10 funcionários) são arranjos, porque ser escolhido para um cargo difere de ser escolhido para outro.
+- **Com reposição** (o mesmo elemento pode se repetir): **nᵏ**. Exemplo: 3 escolhas entre 6, com repetição: 6³ = 216.
+- **FUNDATEC/Jari**: números de 3 algarismos distintos com 3, 5, 7 e 9: A₄,₃ = **24** (letra D).
+- **CEBRASPE/TJ-PA (senha)**: duas letras minúsculas distintas (26 × 25) e quatro dígitos com repetição (10⁴): 26 × 25 × 10.000 = **6.500.000** (letra E): mistura de arranjo sem e com reposição.
+
+### Combinação simples
+
+- **Combinação** é a seleção em que a **ordem não importa**: A e B é o mesmo que B e A. O resultado é menor que o do arranjo: divide-se o arranjo pela permutação dos selecionados (que podem trocar de lugar).
+- **Cₙ,ₖ = Aₙ,ₖ/Pₖ = n!/[(n − k)! × k!]**. Notações: Cₙ,ₖ ou o binomial "n sobre k".
+- **FGV/PC-RJ**: escolher 2 de 6 policiais: C₆,₂ = 6 × 5/2 = **15** (letra C).
+- **CEBRASPE (grupo de três alunos entre sete)**: o número de grupos é C₇,₃ = 35, e não o arranjo 7 × 6 × 5 (que conta a ordem): o item que afirmava 7 × 6 × 5 é **errado**.
+
+### "Pelo menos um": calcule o complemento
+
+- Para contar seleções com "pelo menos um" de certo tipo, calcula-se o **total** e **subtrai-se** o número de seleções que não têm nenhum desse tipo. Exemplo: grupos de 3 entre 5 mulheres e 4 homens, com pelo menos uma mulher: C₉,₃ = 84; sem mulher (só homens): C₄,₃ = 4. Resposta: 84 − 4 = **80**.
+
+### Para fixar
+- Desarranjos: D₂ = 1, D₃ = 2, D₄ = 9, D₅ = 44.
+- Ordem importa: arranjo A = n!/(n − k)!; ordem não importa: combinação C = n!/[(n − k)! k!].
+- Com reposição: nᵏ.
+- "Pelo menos um": total menos o caso sem nenhum.
+- Cargos distintos e prêmios distintos são arranjos; grupos e comissões são combinações.
+@@ SINTETICO
+**Corredores em ordem**: com 5 corredores e A antes de B antes de C, são 5 fatorial sobre 3 fatorial, ou seja, 20.
+**Desarranjo**: reordenação em que nenhum elemento volta à posição original.
+**Valores de desarranjo**: D2 é 1, D3 é 2, D4 é 9 e D5 é 44.
+**Arranjo sem reposição**: A de n,k é n fatorial dividido por (n menos k) fatorial, e a ordem importa.
+**Arranjo com reposição**: n elevado a k.
+**Senha mista**: duas letras distintas e quatro dígitos livres dão 26 vezes 25 vezes 10 mil.
+**Combinação**: n fatorial dividido por (n menos k) fatorial vezes k fatorial, sem ordem.
+**Escolher grupo**: grupo de três alunos entre sete é combinação, 35, e não o arranjo.
+**Pelo menos um**: subtrai-se do total o caso em que não há nenhum do tipo pedido.
+**Exemplo de pelo menos uma mulher**: 84 grupos no total menos 4 só de homens dão 80.
+@@ TEORIA
+C | O número de desarranjos de 4 elementos é 9. || D4 = 9.
+E | Em um arranjo, a ordem dos elementos selecionados é irrelevante. || Em combinação a ordem é irrelevante.
+C | A combinação de 6 elementos tomados 2 a 2 vale 15. || 6·5/2.
+E | A quantidade de senhas de 3 dígitos com repetição escolhidos entre 10 algarismos é 10 × 9 × 8. || Com repetição são 10³.
+@@ REVISAO
+C | A quantidade de comissões de 3 pessoas escolhidas entre 7 é C7,3 = 35. || Ordem irrelevante.
+E | A quantidade de maneiras de escolher presidente, vice e secretário entre 7 pessoas é C7,3. || É A7,3 = 7·6·5, pois os cargos são distintos.
+C | Para contar grupos de 3 com pelo menos 1 mulher entre 5 mulheres e 4 homens, subtrai-se do total os grupos só de homens. || 84 − 4 = 80.
+C | Em um sorteio com reposição de 3 bolas entre 6, o total é 6³. || Cada sorteio mantém 6 possibilidades.
+@@ PONTOS
+42 | Fim dos elementos ordenados e permutação caótica
+43 | Fórmula do desarranjo
+44 | Questão do TRE-GO
+45 | Desarranjo de ordem 4 e questão da FCC (Recife)
+46 | Arranjo simples
+47 | Fórmula do arranjo sem reposição
+48 | Arranjo com reposição e questão da FUNDATEC
+49 | Questão da senha e combinação
+50 | Fórmula da combinação e questão da FGV
+51 | Questão do CEBRASPE e pelo menos um

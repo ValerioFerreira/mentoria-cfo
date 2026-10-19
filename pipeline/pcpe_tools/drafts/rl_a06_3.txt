@@ -1,0 +1,76 @@
+@@@ raciocinio-logico/a06/s03
+@@ ANALITICO
+Este trecho ensina a permutação simples (ordenar elementos distintos) e as principais restrições: elementos fixos, posições reservadas a grupos e elementos que devem ficar juntos.
+
+### Permutação simples
+
+- **Permutar** é trocar de lugar: calcula de quantas maneiras se podem **ordenar** elementos. Na permutação simples, os elementos são todos **distintos**.
+- Exemplo com 3 alunos a ranquear: 3 possibilidades para o 1º lugar, 2 para o 2º e 1 para o 3º: 3 × 2 × 1 = 6 (princípio multiplicativo). Com 4: 4 × 3 × 2 × 1; com 10: 10 × 9 × ... × 1.
+- **Pₙ = n!**
+- Serve para filas, anagramas de palavras sem letras repetidas, números formados com algarismos diferentes etc.
+- **FGV/Salvador**: anagramas de PMS (3 letras diferentes): 3! = **6** (letra E). **QUADRIX/CFO**: a fila de 9 crianças tem 9! maneiras (item certo). **Merkabah**: fila de 8 crianças: 8! = **40.320** (letra D).
+
+### Permutação com restrição: elementos fixos
+
+- Com **n** elementos, dos quais **p** ocupam posições **fixas** já determinadas, permutam-se os demais: **Pₙ₋ₚ = (n − p)!**. Exemplo: algarismos 1 a 8, com o 1 na primeira posição e o 8 na última: 6! = 720.
+- **FCC/TRF-3**: 5 aprovados em 5 municípios, o primeiro colocado já em A: os outros 4 em 4 municípios: 4! = **24** (letra D).
+
+### Posições reservadas a um grupo, sem fixar quem ocupa qual
+
+- Se **p** elementos devem ocupar **p posições** reservadas, em qualquer ordem entre si, multiplica-se: **(n − p)! × p!**.
+- Extremos: o 1 e o 8 nas pontas, em qualquer ordem: 2! × 6! = 2 × 720 = 1.440.
+- Os três primeiros algarismos nas três primeiras posições e os cinco restantes nas outras: 3! × 5! = 720.
+- Ímpares em posições ímpares e pares em posições pares (8 algarismos): 4! × 4! = 576.
+- **CEBRASPE/BNB (animais)**: elefante, camelo e leão devem ocupar as três primeiras posições da fila de 10 animais, em qualquer ordem: 3! × 7!. O item que afirma 3 × 7! é **errado** (o resultado correto é o dobro).
+- **QUADRIX/CFO (alternância)**: 5 meninas e 4 meninos alternados exigem começar e terminar com menina (M H M H M H M H M); meninas: 5! = 120; meninos: 4! = 24. Total: 120 × 24 = **2.880** (item certo).
+
+### Elementos que devem ficar juntos
+
+- **Juntos em ordem fixa**: tratam-se como um único elemento. Com **n** elementos e **j** juntos em determinada ordem, permutam-se **n − j + 1**: **(n − j + 1)!**. Exemplo: 8 algarismos com 1 e 2 juntos nessa ordem: 7! = 5.040.
+- **Juntos, em qualquer ordem entre si**: multiplica-se ainda por j!: **(n − j + 1)! × j!**. Exemplo: 1, 2 e 3 juntos entre 8 algarismos: 6! × 3! = 720 × 6 = 4.320.
+- **BNB (animais juntos em ordem fixa)**: leão, camelo e elefante juntos, nessa ordem, entre 10 animais: o trio vira 1 elemento, restam 8 elementos: 8! = 8 × 7!. O item que dizia 7 × 7! é **errado**.
+- **BNB (números de 5 algarismos com 1, 2, 3, 4, 5)**: 1 e 2 sempre juntos em qualquer ordem: (5 − 2 + 1)! × 2! = 4! × 2 = **48**, que **não** é inferior a 25 (item errado).
+
+### Quadro-resumo da permutação com restrição
+
+- **Posições designadas**: p fixos ⇒ (n − p)!; p reordenáveis nas posições designadas ⇒ (n − p)! × p!.
+- **Elementos juntos**: j juntos em ordem fixa ⇒ (n − j + 1)!; j juntos reordenáveis ⇒ (n − j + 1)! × j!.
+
+### Para fixar
+- Pₙ = n! para elementos distintos.
+- Fixos reduzem n; grupos reservados exigem permutar o grupo e o resto separadamente.
+- Para elementos juntos: junte-os como um bloco e depois permute o bloco por dentro, se a ordem interna puder variar.
+- Alternância de 5 e 4 elementos começa pelo grupo maior.
+- Confira sempre se o enunciado permite a troca interna.
+@@ SINTETICO
+**Permutação simples**: número de maneiras de ordenar n elementos distintos, igual a n fatorial.
+**Aplicações**: filas, anagramas sem repetição e números com algarismos diferentes.
+**Elementos fixos**: se p elementos já têm posição, permutam-se n menos p elementos.
+**Posições reservadas**: p elementos em p posições, em qualquer ordem, dão (n menos p) fatorial vezes p fatorial.
+**Alternância**: com 5 meninas e 4 meninos, a fila começa por menina, e o total é 5 fatorial vezes 4 fatorial.
+**Elementos juntos em ordem fixa**: tratam-se como bloco único e permutam-se n menos j mais 1 elementos.
+**Juntos em qualquer ordem**: multiplica-se ainda por j fatorial.
+**Exemplo**: três algarismos juntos entre oito dão 6 fatorial vezes 3 fatorial, ou 4.320.
+**Animais da fila**: três animais nas primeiras posições dão 3 fatorial vezes 7 fatorial.
+**Números com 1 e 2 juntos**: com cinco algarismos distintos, são 4 fatorial vezes 2, ou seja, 48.
+@@ TEORIA
+C | O número de maneiras de ordenar 6 pessoas distintas em fila é 6!. || Permutação simples.
+E | Se 2 elementos de 7 já têm posições fixas, restam 7! maneiras de ordenar o conjunto. || Restam (7−2)! = 5!.
+C | Se 3 de 9 elementos devem ficar juntos em qualquer ordem, o total é 7! × 3!. || (9−3+1)! × 3!.
+E | Em uma fila de 5 meninas e 4 meninos alternados, a fila pode começar por menino. || Com 5 e 4, começa e termina com menina.
+@@ REVISAO
+C | O número de anagramas da palavra CAMA, considerando as letras distintas, é 4!. || Permutação simples.
+E | Dois elementos juntos em ordem fixa, entre n elementos, geram (n − 2)! permutações. || São (n−2+1)! = (n−1)!.
+C | Os algarismos 1, 2 e 3 nas três primeiras posições de um número de 8 algarismos distintos, em qualquer ordem, resultam em 3! × 5!. || Posições reservadas.
+C | Com 10 elementos, 3 deles ocupando as pontas e o centro específicos, os outros 7 permutam em 7!. || Elementos fixos.
+@@ PONTOS
+22 | Permutação e permutação simples
+23 | Raciocínio multiplicativo da permutação
+24 | Fórmula Pn = n! e questão da FGV
+25 | Questões da Merkabah e permutação com restrição
+26 | Posições fixas e extremos
+27 | Grupos em posições reservadas e questão da FCC
+28 | Questão do BNB e início da QUADRIX (alternância)
+29 | Alternância e elementos juntos
+30 | Elementos juntos em qualquer ordem e quadro-resumo
+31 | Quadro de elementos juntos e questões do BNB
