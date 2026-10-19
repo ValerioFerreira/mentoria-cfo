@@ -2,12 +2,13 @@ import { describe, expect, it } from "vitest";
 import { CONTEST_SUBTITLES, CONTESTS, contestBySlug, contestTitle, editalItemApplies } from "./contests";
 
 describe("concursos", () => {
-  it("concursos disponíveis no lançamento", () => {
+  it("concursos disponíveis (inclui o Agente da PCPE)", () => {
     expect(CONTESTS.filter((c) => c.available).map((c) => c.key)).toEqual([
       "CBMPE_SOLDADO",
       "CBMPE_OFICIAL",
       "PMPE_SOLDADO",
       "PMPE_OFICIAL",
+      "PCPE_AGENTE",
     ]);
   });
   it("slugs e chaves são únicos e toda chave tem subtítulo", () => {

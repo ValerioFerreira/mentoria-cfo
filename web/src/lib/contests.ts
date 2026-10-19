@@ -22,7 +22,7 @@ export const CONTESTS: ContestInfo[] = [
   { slug: "cbmpe-oficial", key: "CBMPE_OFICIAL", org: "CBMPE", role: "2º Tenente", category: "Oficial", image: "/images/CBMPE.webp", imagePosition: "center 70%", available: true },
   { slug: "pmpe-soldado", key: "PMPE_SOLDADO", org: "PMPE", role: "Soldado", category: "Praça", image: "/images/PMPE.webp", imagePosition: "center 30%", available: true },
   { slug: "pmpe-oficial", key: "PMPE_OFICIAL", org: "PMPE", role: "2º Tenente", category: "Oficial", image: "/images/PMPE.webp", imagePosition: "center 70%", available: true },
-  { slug: "pcpe-agente", key: "PCPE_AGENTE", org: "PCPE", role: "Agente de Polícia", category: "", image: "/images/PCPE.webp", imagePosition: "center", available: false },
+  { slug: "pcpe-agente", key: "PCPE_AGENTE", org: "PCPE", role: "Agente de Polícia", category: "", image: "/images/PCPE.webp", imagePosition: "center", available: true },
 ];
 
 export const CONTEST_SUBTITLES: Record<Contest, string> = {
