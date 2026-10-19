@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { AOCP_BANCAS, activityQuizWhere } from "./banca";
+import { AOCP_BANCAS, INEDITA_BANCA, activityQuizWhere, contestBancas, hideInedita } from "./banca";
 import type { QuestionStatus } from "@/generated/prisma/client";
 
 // Simula o filtro do Prisma sobre um acervo pequeno para mostrar que o caderno de uma atividade só
@@ -51,5 +51,13 @@ describe("activityQuizWhere", () => {
 
     const wPcpe = activityQuizWhere(["direito-administrativo/a04/s01"], ["APPROVED"], "PCPE_AGENTE");
     expect(wPcpe.banca.in).toEqual(expect.arrayContaining(["CEBRASPE", "Cebraspe", "CESPE", "Cespe", "AOCP", "Instituto AOCP"]));
+  });
+
+  it("as inéditas MentorIA só entram para o PCPE", () => {
+    expect(contestBancas("PCPE_AGENTE")).toContain(INEDITA_BANCA);
+    expect(contestBancas("CBMPE_OFICIAL")).not.toContain(INEDITA_BANCA);
+    expect(hideInedita("PCPE_AGENTE")).toEqual({});
+    expect(hideInedita("CBMPE_OFICIAL")).toEqual({ NOT: { banca: INEDITA_BANCA } });
+    expect(hideInedita(undefined)).toEqual({ NOT: { banca: INEDITA_BANCA } });
   });
 });
