@@ -1,0 +1,58 @@
+@@@ estatistica/c02/s01
+@@ ANALITICO
+Este resumo reúne dois pontos do edital de Estatística que o material-base não desenvolve: o dimensionamento de amostras (média, proporção e divisão por estratos) e as medidas de assimetria e curtose. As questões de tamanho amostral pedem uma conta curta; as de forma da distribuição pedem interpretação.
+
+### Tamanho da amostra
+
+- A **margem de erro** (E) é a distância máxima aceita entre a estimativa e o parâmetro; o **nível de confiança** fornece o valor crítico z da normal padrão (cerca de 1,645 para 90%, 1,96 para 95% e 2,576 para 99%).
+- Para estimar uma **média** com desvio padrão σ, o tamanho é **n = (z · σ / E)²**. Para uma **proporção**, n = z² · p · (1 − p) / E². Sem informação prévia sobre p, adota-se **p = 0,5**, o caso mais exigente, porque maximiza o produto p(1 − p).
+- O resultado é sempre **arredondado para cima**: uma amostra menor não garantiria a precisão pretendida.
+- O tamanho cresce com a variabilidade e com a confiança, e cai com o aumento do erro tolerado. Como E entra ao quadrado, **reduzir o erro à metade quadruplica a amostra**.
+- Quando a amostra é fração relevante de uma população de tamanho N, aplica-se a **correção para população finita**: n = n₀ / [1 + (n₀ − 1)/N]. A correção sempre diminui a amostra e perde importância se N é muito grande. Dobrar N não dobra n.
+- A fórmula pressupõe seleção aleatória; amostra grande com seleção viciada não torna a pesquisa representativa.
+
+### Estratos e amostragem sistemática
+
+- Na **amostragem estratificada**, a população é dividida em grupos homogêneos e sorteia-se dentro de cada um. A divisão do total n pode ser **uniforme** (igual por estrato), **proporcional** (nₕ = n · Nₕ / N) ou **ótima de Neyman**, proporcional ao produto do tamanho pelo desvio padrão do estrato (Nₕσₕ). Na ótima, estratos maiores e mais variáveis recebem mais unidades.
+- Na **amostragem sistemática**, o intervalo de seleção é k = N/n: sorteia-se um ponto de partida entre 1 e k e toma-se uma unidade a cada k.
+
+### Assimetria e curtose
+
+- **Assimetria** indica de que lado a distribuição tem a cauda mais longa. Na simétrica, média, mediana e moda coincidem. Na assimétrica **positiva** (cauda à direita), moda < mediana < média; na **negativa** (cauda à esquerda), média < mediana < moda. A média é a medida mais puxada pelos extremos.
+- Coeficientes: os dois de **Pearson** usam a diferença entre a média e a moda (primeiro) ou a mediana (segundo, multiplicada por 3), dividida pelo desvio padrão; o de **Bowley** usa os quartis, com valores de −1 a +1. Em todos, sinal positivo indica assimetria positiva, negativo indica negativa e zero indica simetria.
+- **Curtose** compara o achatamento com o da curva normal: **mesocúrtica** (como a normal), **leptocúrtica** (mais afunilada, com pico alto) e **platicúrtica** (mais achatada).
+- Pelo coeficiente percentílico K = (Q₃ − Q₁) / [2(P₉₀ − P₁₀)], a normal vale **0,263**: abaixo disso a curva é leptocúrtica; acima, platicúrtica. Pelo momento de quarta ordem dividido por s⁴, a normal vale 3.
+
+### Para fixar
+- n = (zσ/E)² para média e z²p(1 − p)/E² para proporção; arredonde para cima e use p = 0,5 sem informação.
+- Metade do erro significa quatro vezes a amostra; população finita reduz o n.
+- Proporcional: nₕ = n · Nₕ/N; Neyman considera também o desvio padrão; sistemática: k = N/n.
+- Assimetria positiva: moda < mediana < média; negativa: o inverso.
+- Curtose: K = 0,263 é mesocúrtica; menor é leptocúrtica; maior é platicúrtica.
+@@ SINTETICO
+**Erro e confiança**: a margem de erro limita a distância entre estimativa e parâmetro; cada confiança tem seu z.
+**Tamanho para média**: n é o quadrado de z vezes sigma dividido pelo erro.
+**Tamanho para proporção**: usa z ao quadrado vezes p e (1 − p) sobre o erro ao quadrado; sem informação, p vale meio.
+**Arredondamento**: o resultado da fórmula sobe sempre para o inteiro seguinte, para não perder precisão.
+**Reação de n**: erro pela metade quadruplica a amostra; mais confiança e mais variabilidade também aumentam.
+**População finita**: a correção diminui a amostra necessária.
+**Estratificada**: proporcional segue o tamanho do estrato; Neyman inclui também o desvio padrão.
+**Sistemática**: sorteia-se o ponto de partida e toma-se uma unidade a cada N dividido por n.
+**Assimetria**: positiva tem moda abaixo da mediana e da média; negativa inverte.
+**Curtose**: leptocúrtica é afunilada, platicúrtica é achatada e mesocúrtica se parece com a normal.
+@@ TEORIA
+C | Para estimar uma proporção sem informação prévia, usa-se p igual a 0,5 por ser o caso que exige a maior amostra. || Maximiza p(1 − p).
+E | Se o erro tolerado cai pela metade, o tamanho da amostra também cai pela metade. || Quadruplica.
+C | Numa distribuição assimétrica negativa, a média é menor que a mediana. || Média < mediana < moda.
+E | Uma distribuição leptocúrtica é mais achatada que a curva normal. || Leptocúrtica é mais afunilada.
+@@ REVISAO
+C | Na amostragem sistemática de uma população de 900 unidades com amostra de 30, escolhe-se uma unidade a cada 30. || k = 900/30.
+E | Na alocação proporcional, o estrato mais variável recebe sempre a maior parte da amostra. || A variabilidade só pesa na alocação ótima.
+C | O valor de n obtido pela fórmula deve ser arredondado para o inteiro imediatamente superior. || Para garantir a precisão.
+C | Coeficiente de assimetria negativo indica cauda mais longa à esquerda. || Assimetria negativa.
+@@ PONTOS
+1 | Erro, confiança e valor crítico
+2 | Tamanho para estimar uma média
+3 | Tamanho para uma proporção e variação de n
+4 | Estratos e amostragem sistemática
+5 | Assimetria e curtose

@@ -1,0 +1,60 @@
+@@@ raciocinio-logico/c02/s01
+@@ ANALITICO
+Este resumo trata da parte matricial do item 15 do edital: tipos de matriz, operações, determinantes, matriz inversa e o uso de matrizes em tabelas e sistemas. As questões costumam ser curtas: montar matriz por lei de formação, conferir se um produto existe, calcular determinante pequeno ou aplicar propriedade para evitar a conta.
+
+### Matrizes e suas operações
+
+- Uma matriz de **ordem m × n** tem m linhas e n colunas (linhas primeiro). O elemento da linha i e coluna j é aᵢⱼ, e uma lei de formação, como aᵢⱼ = i + j, permite montar a tabela inteira.
+- Tipos que aparecem na prova: linha, coluna, quadrada, nula, **identidade** (1 na diagonal principal), diagonal, triangular, **transposta** (troca linhas por colunas), simétrica (igual à transposta) e antissimétrica (transposta igual à oposta, com diagonal nula).
+- A **soma** e a subtração só existem entre matrizes da mesma ordem e se fazem posição a posição. Multiplicar por um número multiplica todos os elementos.
+- O **produto** A · B só existe se o número de colunas de A for igual ao de linhas de B; o resultado tem as linhas de A e as colunas de B. Cada elemento vem da linha de A combinada com a coluna de B. Uma 2 × 3 vezes uma 3 × 2 resulta numa 2 × 2.
+- O produto **não é comutativo**, é associativo e distributivo, e a identidade é o elemento neutro. Do produto nulo não se conclui que um dos fatores é nulo. A transposta do produto inverte a ordem: (AB)ᵗ = BᵗAᵗ.
+- Matrizes organizam dados: se as linhas são lojas e as colunas, produtos, multiplicar essa tabela pela coluna dos preços fornece a receita de cada loja.
+
+### Determinante e matriz inversa
+
+- O determinante existe só para matrizes quadradas. Na ordem 2 é o produto da diagonal principal menos o da secundária; na ordem 3 usa-se a **regra de Sarrus** ou o **teorema de Laplace**, escolhendo a fila com mais zeros.
+- Propriedades que dispensam conta: o determinante é **zero** se há fila nula, filas iguais ou proporcionais; trocar duas filas muda o sinal; somar a uma fila um múltiplo de outra não altera o valor (Jacobi); matriz triangular tem o produto da diagonal; **det(AB) = det A · det B** (Binet); a transposta tem o mesmo determinante.
+- Multiplicar a matriz inteira por k, numa matriz de ordem n, multiplica o determinante por **kⁿ**, e não por k. Já o determinante da soma não é a soma dos determinantes.
+- A **inversa** A⁻¹ cumpre A · A⁻¹ = I e só existe quando o determinante é **diferente de zero**. Na ordem 2, trocam-se os elementos da diagonal principal, inverte-se o sinal dos da secundária e divide-se tudo pelo determinante. O determinante da inversa é o inverso do determinante, e a inversa do produto inverte a ordem dos fatores.
+
+### Sistemas lineares em forma matricial
+
+- Um sistema com o mesmo número de equações e incógnitas escreve-se como A · X = B. Se det A ≠ 0, a solução é única e vale **X = A⁻¹ · B**.
+- Pela **regra de Cramer**, cada incógnita é o quociente de dois determinantes: o da matriz com a coluna dos termos independentes no lugar da coluna da incógnita, dividido pelo determinante dos coeficientes. Se este for zero, o sistema é impossível ou indeterminado, e é preciso analisar melhor.
+
+### Para fixar
+- Produto exige colunas da primeira iguais às linhas da segunda; em geral AB ≠ BA.
+- (AB)ᵗ = BᵗAᵗ e (AB)⁻¹ = B⁻¹A⁻¹: nos dois casos a ordem se inverte.
+- Fila nula, filas iguais ou proporcionais tornam o determinante zero, e então não há inversa.
+- det(kA) = kⁿ · det A, e det(AB) = det A · det B.
+- Com det A diferente de zero, o sistema A · X = B tem solução única, X = A⁻¹ · B.
+@@ SINTETICO
+**Ordem**: m por n significa m linhas e n colunas, nessa ordem.
+**Produto**: exige colunas da primeira iguais às linhas da segunda e não é comutativo.
+**Transposta e inversa do produto**: ambas invertem a ordem dos fatores.
+**Determinante 2 por 2**: diagonal principal menos diagonal secundária.
+**Determinante nulo**: fila nula, filas iguais ou proporcionais.
+**Troca de filas**: inverte o sinal do determinante; somar múltiplo de outra fila não muda nada.
+**Multiplicar por k**: numa matriz de ordem n, o determinante fica multiplicado por k elevado a n.
+**Binet**: o determinante do produto é o produto dos determinantes.
+**Inversa**: existe quando o determinante não é zero; na ordem 2, troca a principal, muda o sinal da secundária e divide pelo determinante.
+**Sistemas**: com determinante diferente de zero, X é a inversa de A vezes B, ou se usa Cramer.
+@@ TEORIA
+C | O produto de uma matriz de ordem 4 × 2 por outra de ordem 2 × 5 existe e é de ordem 4 × 5. || Colunas da primeira = linhas da segunda.
+E | Se A e B são matrizes quadradas de mesma ordem, o produto AB é sempre igual ao produto BA. || A multiplicação não é comutativa.
+C | Uma matriz quadrada que tem uma fila inteira de zeros tem determinante nulo. || Fila nula.
+E | Uma matriz de determinante nulo possui matriz inversa. || A inversa exige determinante diferente de zero.
+@@ REVISAO
+C | Se A é de ordem 2 e det A = 3, então det(4A) = 48. || 4² · 3 = 48.
+E | Para matrizes quadradas de mesma ordem, o determinante de A + B é a soma dos determinantes de A e de B. || O determinante não é linear na soma.
+C | A matriz de linhas (1 2) e (2 4) não admite inversa. || Linhas proporcionais, determinante nulo.
+C | Se A e B são invertíveis, a inversa do produto AB é B⁻¹ multiplicada por A⁻¹. || A ordem se inverte.
+@@ PONTOS
+1 | Conceito de matriz e ordem
+1 | Tipos de matriz
+2 | Soma, produto e propriedades
+3 | Determinantes, Sarrus e Laplace
+3 | Propriedades dos determinantes
+4 | Matriz inversa
+5 | Sistemas lineares em forma matricial

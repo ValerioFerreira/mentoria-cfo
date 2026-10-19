@@ -1,0 +1,62 @@
+@@@ raciocinio-logico/c01/s01
+@@ ANALITICO
+Este resumo cobre o item 14 do edital de Raciocínio Lógico: conceitos básicos de conjuntos, relações de inclusão, operações, propriedades e problemas de contagem com diagramas de Venn. A prova cobra a teoria em julgamentos diretos e a contagem em problemas de pesquisa com pessoas.
+
+### Conceitos e relações
+
+- Um **conjunto** reúne elementos; cada objeto pertence ou não pertence a ele. A pertinência (∈, ∉) liga **elemento a conjunto**; a inclusão (⊂, ⊄) liga **conjunto a conjunto**. Escrever que um número "está contido" num conjunto, ou que um conjunto "pertence" a outro que só lista números, é erro de notação e torna o item errado.
+- A descrição pode ser por **listagem**, por **propriedade** ou por diagrama. A ordem dos elementos e as repetições não alteram o conjunto: {5, 7, 9} e {9, 5, 7, 7} são o mesmo conjunto.
+- O **conjunto vazio** não tem elementos e está contido em qualquer conjunto. Não confunda ∅ com {∅}, que possui um elemento, nem com {0}, que possui o zero.
+- Dizer que A é subconjunto de B significa que todo elemento de A também é de B. A inclusão é transitiva, e dois conjuntos que se contêm mutuamente são iguais.
+- O **conjunto das partes** P(A) reúne todos os subconjuntos de A, inclusive o vazio e o próprio A. Um conjunto de n elementos gera **2ⁿ** subconjuntos, porque cada elemento pode entrar ou ficar de fora. Com 5 elementos há 32 subconjuntos.
+
+### Operações e propriedades
+
+- **União** (A ∪ B): quem está em A, em B ou em ambos. **Interseção** (A ∩ B): quem está nos dois. Se a interseção é vazia, os conjuntos são **disjuntos**.
+- **Diferença** (A − B): elementos de A que não estão em B. Não é comutativa, e A − B equivale a A ∩ B̄.
+- **Complementar**: os elementos do universo que ficaram fora de A; depende do universo adotado. A união de A com seu complementar é o universo, e a interseção é vazia.
+- **Diferença simétrica**: elementos que estão em apenas um dos dois conjuntos (o "ou exclusivo" da lógica).
+- **Produto cartesiano**: pares ordenados; n(A × B) = n(A) · n(B), e a ordem do par importa.
+- Valem comutativa, associativa, distributiva, idempotência, elemento neutro e absorção. As **leis de De Morgan** dizem que o complementar da união é a interseção dos complementares, e o complementar da interseção é a união dos complementares. Há uma correspondência direta com a lógica: união é "ou", interseção é "e", complementar é "não".
+
+### Contagem e vocabulário
+
+- Para dois conjuntos: **n(A ∪ B) = n(A) + n(B) − n(A ∩ B)**. A interseção é subtraída porque foi contada duas vezes. Quem está em exatamente um dos conjuntos soma os totais e desconta duas vezes a interseção.
+- A interseção de dois conjuntos nunca supera o menor deles e, num universo de tamanho U, não pode ficar abaixo de n(A) + n(B) − U. Isso permite achar mínimos e máximos quando o enunciado omite a interseção.
+- Com três conjuntos, subtrai-se cada interseção dupla e soma-se de volta a tripla. Na prática, desenhe o Venn e preencha do **centro para fora**: tripla, depois as duplas (cada uma menos a tripla), depois as regiões exclusivas e, por último, o que ficou fora de todos.
+- Traduza a linguagem: "pelo menos um" é a união; "apenas" ou "somente" exclui a interseção; "nem... nem" é a região externa; "pelo menos dois" soma duplas e tripla. O erro mais comum é confundir o **total** de um conjunto, que já inclui a interseção, com a parte exclusiva dele.
+
+### Para fixar
+- ∈ relaciona elemento com conjunto; ⊂ relaciona conjunto com conjunto; o vazio está contido em todos.
+- Um conjunto com n elementos tem 2ⁿ subconjuntos.
+- União corresponde a "ou", interseção a "e", complementar a "não"; De Morgan troca união por interseção ao complementar.
+- n(A ∪ B) = n(A) + n(B) − n(A ∩ B); com três conjuntos, comece pelo centro do diagrama.
+- Total do conjunto não é "apenas": cuidado com as palavras da pergunta.
+@@ SINTETICO
+**Pertinência e inclusão**: o símbolo de pertence liga elemento a conjunto; o de contido liga conjunto a conjunto.
+**Conjunto vazio**: está contido em qualquer conjunto, e é diferente de um conjunto que contém o vazio.
+**Conjunto das partes**: n elementos geram 2 elevado a n subconjuntos, incluindo o vazio e o próprio conjunto.
+**União e interseção**: correspondem ao "ou" e ao "e" da lógica; interseção vazia indica conjuntos disjuntos.
+**Diferença**: A menos B não é comutativa e equivale a A com o complementar de B.
+**De Morgan**: o complementar da união é a interseção dos complementares, e vice-versa.
+**Dois conjuntos**: n da união é n de A mais n de B menos n da interseção.
+**Limites da interseção**: nunca passa do menor conjunto e não fica abaixo da soma dos dois menos o universo.
+**Três conjuntos**: preencha o Venn do centro para fora, começando pela interseção tripla.
+**Linguagem**: total do conjunto inclui a interseção; "apenas" a exclui, e "nem um nem outro" fica fora dos círculos.
+@@ TEORIA
+C | O conjunto das partes de um conjunto com seis elementos possui sessenta e quatro elementos. || 2 elevado a 6.
+E | O complementar da união de dois conjuntos é igual à união dos complementares desses conjuntos. || É a interseção dos complementares.
+C | Se todo elemento de A pertence a B, então a união de A com B é igual a B. || A está contido em B.
+E | Em um grupo, o número de pessoas que praticam apenas um esporte é igual ao total desse esporte. || O total inclui a interseção; "apenas" a exclui.
+@@ REVISAO
+C | Em um universo de 70 pessoas, se 40 fumam e 45 bebem, ao menos 15 fazem as duas coisas. || 40 + 45 − 70 = 15.
+E | Para dois conjuntos quaisquer, a diferença de A e B é igual à diferença de B e A. || Não é comutativa.
+C | Se n(A) = 14, n(B) = 11 e n(A ∩ B) = 5, então n(A ∪ B) = 20. || 14 + 11 − 5.
+C | Escrever que o elemento 3 está contido no conjunto {1, 2, 3} é um erro de notação. || Elemento pertence; só conjunto está contido.
+@@ PONTOS
+1 | Conceitos e descrição de conjuntos
+2 | Inclusão e conjunto das partes
+3 | União, interseção, diferença e complementar
+4 | Propriedades e leis de De Morgan
+5 | Fórmula de n(A ∪ B) e limites da interseção
+6 | Três conjuntos e vocabulário das questões

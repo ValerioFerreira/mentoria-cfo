@@ -12,5 +12,5 @@ for a in s["aulas"]:
     if only and a["id"].split("/")[1] not in only: continue
     print(f"## {a['id']} | {a['title']} | only={a.get('onlyContests')} excl={a.get('excludeContests')} sel={a.get('selectable')}")
     for g in by.get(a["id"], []):
-        tc = "; ".join(t[:55] for t in g.get("topicsCovered", [])[:6])
+        tc = "; ".join(t[:45] for t in g.get("topicsCovered", [])[:4])
         print(f"   {g['id']} pp{g['startPage']}-{g['endPage']} | {tc}")
