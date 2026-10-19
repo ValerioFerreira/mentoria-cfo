@@ -7,7 +7,9 @@ export const CEBRASPE_BANCAS = ["CEBRASPE", "Cebraspe", "CESPE", "Cespe / UnB", 
 
 export function contestBancas(contest?: Contest | null): string[] {
   if (contest === "PCPE_AGENTE") {
-    return CEBRASPE_BANCAS;
+    // Provisório (decisão do dono em 2026-10-19): enquanto os cadernos Cebraspe não são importados, o PCPE também
+    // recebe as questões AOCP que cobrem os assuntos do seu edital. Depois, volta a ser só CEBRASPE_BANCAS.
+    return [...CEBRASPE_BANCAS, ...AOCP_BANCAS];
   }
   return AOCP_BANCAS;
 }

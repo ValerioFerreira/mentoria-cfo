@@ -35,12 +35,12 @@ describe("activityQuizWhere", () => {
     expect(AOCP_BANCAS).toEqual(expect.arrayContaining(["AOCP", "Instituto AOCP"]));
   });
 
-  it("filtra por CEBRASPE quando o concurso é PCPE", () => {
+  it("no PCPE, enquanto não há cadernos Cebraspe, entram Cebraspe e AOCP", () => {
     const w = activityQuizWhere(["direito-administrativo/a04/s01"], ["APPROVED"], "PCPE_AGENTE");
-    expect(acervo.filter((q) => matches(q, w)).map((q) => q.id)).toEqual(["b"]);
+    expect(acervo.filter((q) => matches(q, w)).map((q) => q.id)).toEqual(["a", "b"]);
   });
 
-  it("garante que planos CBMPE e PMPE buscam AOCP e PCPE_AGENTE busca Cebraspe", () => {
+  it("garante que planos CBMPE e PMPE buscam só AOCP e PCPE_AGENTE busca Cebraspe e AOCP", () => {
     const wCbmpe = activityQuizWhere(["direito-administrativo/a04/s01"], ["APPROVED"], "CBMPE_OFICIAL");
     expect(wCbmpe.banca.in).toEqual(expect.arrayContaining(["AOCP", "Instituto AOCP"]));
     expect(wCbmpe.banca.in).not.toContain("CEBRASPE");
@@ -50,7 +50,6 @@ describe("activityQuizWhere", () => {
     expect(wPmpe.banca.in).not.toContain("CEBRASPE");
 
     const wPcpe = activityQuizWhere(["direito-administrativo/a04/s01"], ["APPROVED"], "PCPE_AGENTE");
-    expect(wPcpe.banca.in).toEqual(expect.arrayContaining(["CEBRASPE", "Cebraspe", "CESPE", "Cespe"]));
-    expect(wPcpe.banca.in).not.toContain("AOCP");
+    expect(wPcpe.banca.in).toEqual(expect.arrayContaining(["CEBRASPE", "Cebraspe", "CESPE", "Cespe", "AOCP", "Instituto AOCP"]));
   });
 });
