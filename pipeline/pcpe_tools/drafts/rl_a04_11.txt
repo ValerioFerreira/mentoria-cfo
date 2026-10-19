@@ -1,0 +1,71 @@
+@@@ raciocinio-logico/a04/s11
+@@ ANALITICO
+Este trecho conclui as questões comentadas de argumentos dedutivos (com dois métodos para a mesma questão e o dilema construtivo) e reapresenta, para treino, a lista das questões clássicas de conectivos resolvidas anteriormente.
+
+### Fim da questão do TCM-SP (modus tollens com De Morgan)
+
+- Premissas: (f ∧ a) → m e ~m. Modus tollens: ~(f ∧ a), que por De Morgan é ~f ∨ ~a (letra E).
+
+### VUNESP/PC-SP: afirmações sem formato fácil
+
+- Dados: "Fulano é culpado e Beltrano é inocente" é **falsa**; "se Fulano é culpado, Beltrano é inocente" é **verdadeira**. Chamando a simples de "inocente" (f para Fulano, b para Beltrano), ~f é "culpado".
+- **Por tabela-verdade**: I. ~f ∧ b (F); II. ~f → b (V). As linhas com I falsa e II verdadeira têm f V; logo é falso que Fulano seja culpado (letra E).
+- **Por transitividade**: a afirmação I falsa vira verdadeira por negação: ~(~f ∧ b) ≡ f ∨ ~b. Pela regra "ou em condicional", f ∨ ~b ≡ ~f → ~b. Com II (~f → b, cuja contrapositiva é ~b → f), encadeia-se ~f → ~b → f, ou seja, **~f → f**, o que prova que f é V (se f fosse F ocorreria V → F). Mesmo resultado.
+
+### VUNESP/Docas-PB: dilema construtivo
+
+- Premissas: c → m (mais novo que Helena ⇒ Maria estudante); a → j (Amanda trabalha com Ricardo ⇒ José tem 30 anos); c ∨ a. A conclusão do dilema construtivo é **m ∨ j** ("Maria é estudante ou José tem 30 anos"), que aparece com a ordem trocada (letra E).
+
+### QUADRIX/CRN-4: bicondicional e cadeia
+
+- Fatos: "Beatriz come salada ⇔ a salada está temperada" (b ↔ t); João sempre come; t → a (Ana); b → m (Maurício); ~t → j' (Josefina). A bicondicional se quebra em duas condicionais: b → t e t → b.
+- **Item 1**: "Se Maurício não comeu salada, ela não estava temperada": contrapositiva de b → m é ~m → ~b; contrapositiva de t → b é ~b → ~t; encadeando ~m → ~b → ~t: item **certo**.
+- **Item 2**: "Se Ana não comeu salada, Beatriz também não comeu": contrapositiva de t → a é ~a → ~t; contrapositiva de b → t é ~t → ~b; encadeando ~a → ~t → ~b: item **certo**.
+- Observação: as expressões "no almoço" e "todos os dias" são desconsideradas para identificar a mesma simples.
+
+### Lista de questões para treino
+
+- As páginas finais repetem, sem resolução, as questões clássicas já comentadas (Fátima e a Noruega, monitoramento de CPU, preparo para o concurso, cadeia de cinco condicionais, Legalle, capas da Quadrix, IBFC com animais, EMPARN, jardim, batata/pastel/empada, irmão/irmã/primo, itens do CRESS, xadrez/dama/gamão, Demétrio, DEPEN, Prodabel, Beth e Esther, André e Roberto). A recomendação é refazer todas e só depois conferir.
+
+### Para fixar
+- Afirmação falsa pode ser reescrita pela sua negação verdadeira (De Morgan).
+- Quando surgir ~f → f, f é verdadeira; quando surgir p → ~p, p é falsa.
+- Bicondicional vira duas condicionais; depois encadeie com contrapositivas.
+- Dilema construtivo: duas condicionais e a disjunção dos antecedentes dão a disjunção dos consequentes.
+- Nas listas finais, refaça as questões antes de ver as resoluções.
+@@ SINTETICO
+**Modus tollens com conjunção**: (f ∧ a) → m com ~m leva a ~f ∨ ~a.
+**Afirmação falsa**: troca-se pela sua negação, que é verdadeira, e aplica-se De Morgan.
+**Dois métodos**: a mesma questão pode ser resolvida por tabela-verdade ou por transitividade.
+**Contradição em cadeia**: chegar a ~f → f prova que f é verdadeira.
+**Dilema construtivo**: a conclusão é m ∨ j, disjunção dos consequentes das duas condicionais.
+**Bicondicional em condicionais**: b ↔ t equivale a b → t e t → b.
+**Contrapositiva encadeada**: ~m → ~b e ~b → ~t levam a ~m → ~t.
+**Circunstâncias**: expressões como no almoço são desconsideradas para reconhecer a mesma simples.
+**Listas finais**: repetem as questões clássicas sem resolução para treino.
+**Revisão**: refazer as questões e só depois conferir a resolução.
+@@ TEORIA
+C | Se "(f ∧ a) → m" é verdadeira e m é falsa, então é verdadeiro que f é falsa ou a é falsa. || Modus tollens e De Morgan.
+E | Obter a conclusão ~f → f indica que f é falsa. || Indica que f é verdadeira.
+C | A bicondicional "Maria vai se, e somente se, João vai" pode ser decomposta em duas condicionais. || p ↔ q ≡ (p → q) ∧ (q → p).
+E | No dilema construtivo, a conclusão é a disjunção das negações dos antecedentes. || A conclusão é a disjunção dos consequentes.
+@@ REVISAO
+C | Uma afirmação declarada falsa pode ser substituída pela sua negação, que é verdadeira, para efeito de encadeamento. || Estratégia da transitividade.
+C | Das premissas "Se o fiscal vai, a obra para; se o gerente vai, o prazo muda; o fiscal ou o gerente vai", conclui-se "A obra para ou o prazo muda". || Dilema construtivo.
+E | A contrapositiva de "t → a" é "a → t". || É ~a → ~t.
+C | Expressões como "no almoço" podem ser desconsideradas ao definir as simples, se aparecem nas várias premissas do mesmo modo. || Identificação da mesma simples.
+@@ PONTOS
+129 | Resolução da questão do TCM-SP e questão da PC-SP
+130 | Resolução da PC-SP por tabela-verdade
+131 | Resolução da PC-SP por transitividade
+132 | Conclusão da PC-SP e questão da Docas
+133 | Resolução da questão da Docas e texto da salada
+134 | Item 1 da questão do CRN
+135 | Item 2 do CRN
+136 | Lista de questões clássicas (início)
+137 | Lista de questões clássicas (continuação)
+138 | Lista de questões clássicas (IBFC e Sarandi)
+139 | Lista de questões clássicas (jardim e batata)
+140 | Lista de questões clássicas (CRESS e PM-ES)
+141 | Lista de questões clássicas (DEPEN e Prodabel)
+142 | Lista de questões clássicas (PMPE)
