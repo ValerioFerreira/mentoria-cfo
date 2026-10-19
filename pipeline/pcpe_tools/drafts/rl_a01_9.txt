@@ -1,0 +1,70 @@
+@@@ raciocinio-logico/a01/s09
+@@ ANALITICO
+Este trecho é a lista de questões de múltiplas bancas, sem resolução, sobre tabela-verdade e sobre tautologia, contradição e contingência, seguida do gabarito de cada bloco. Serve para treino: resolva primeiro, depois compare. Abaixo está o roteiro de resolução de cada tipo e os resultados que se esperam.
+
+### Bloco 1: tabela-verdade (15 questões)
+
+- **Contar linhas** (6 questões): aplique 2ⁿ com n simples distintas. Duas simples: 4; três: 8; quatro: 16; cinco: 32. Cuidado com as armadilhas: "possibilidades de valor lógico" é o número de linhas; "1/4 do número de linhas" de uma fórmula com cinco simples é 8; uma fórmula com bolo, pão e piquenique tem 8 linhas (e não 16); a fórmula com p, q, r e s dá 16.
+- **Completar coluna** (3 questões): a sentença (p → q) ↔ (~p ∨ q) dá V em todas as linhas; ~p ∨ q dá V, F, V, V; ~(p ∨ q) ∧ ~p dá F, F, F, V.
+- **Valores ocultos** (1 questão): numa tabela de ~p → q, as linhas com p F e q F dão ~p V e condicional F; com p V a condicional é V.
+- **Contar linhas V** (3 questões): (p ∧ ~q) → ~p tem 3 linhas V; (p → ~q) ∨ ~r tem 7; [(P ∨ Q) → (P ∧ Q)] ∨ R tem 6.
+- **Gabarito do bloco**: A, B, C, C, D, ERRADO, D, C, C, C, D, B, D, C, B (na ordem da lista).
+
+### Bloco 2: tautologia, contradição e contingência (15 questões)
+
+- **Formas básicas**: p ∨ ¬p é tautologia; "sempre falso" define contradição; frases como "tatuou ou não tatuou" e "ou gosta de pequi ou não gosta" são tautologias (a exclusiva entre uma simples e a sua negação é sempre V).
+- **Fórmula (p → q) ∨ (r ↔ p)**: composta por três simples, tem 8 linhas, pode ser falsa (p V, q F, r F) e pode ser verdadeira: contingência. Corretas: I e IV.
+- **Associação da UEL (I–IV)**: contradição, tautologia, contingência V só com p F, contingência V só com valores iguais de p e q (I-B, II-A, III-D, IV-C).
+- **Comparação de pares**: (P ∧ Q) → (P ∨ Q) é tautologia; (P ∨ Q) → (P ∧ Q) é contingência.
+- **Afirmativas I a IV da UEL (chuva e temperatura)**: só I e II estão corretas.
+- **Tabelas prontas**: a de (q → p) → (p → q) é contingência (V, F, V, V) e a de (r ∧ s) → (r ↔ s) é tautologia; entre as tabelas da UFRGS, a que traz (p ∨ q) → (p ∧ q) é contingência.
+- **Só uma tautologia entre as alternativas**: P ∨ ¬P (Selecon), "se Maria estuda, então Maria estuda ou Pedro trabalha" (FEPESE) e ((P ∨ Q) ∧ (P → Q)) → Q (SEBRAE).
+- **Contradição em frases**: "não é caro, mas custa muito caro".
+- **Gabarito do bloco**: B, D, D, D, A, D, A, D, ERRADO, ERRADO, A, D, A, C, C.
+
+### Como usar a lista
+
+- Primeiro cronometre: ~1 minuto por questão de contagem, ~2 minutos por questão de classificação.
+- Para classificar, use o absurdo: tente F (suspeita de tautologia) ou V (suspeita de contradição).
+- Erros recorrentes: contar linhas por número de conectivos em vez de simples distintas; esquecer que "mas" é "e"; confundir contradição com contingência.
+
+### Para fixar
+- Contagem de linhas depende só das simples distintas.
+- Tautologia: sempre V; contradição: sempre F; contingência: pode ser V ou F.
+- Simples e a sua negação ligadas por "ou" (inclusivo ou exclusivo) dão tautologia.
+- Condicional com antecedente impossível é tautologia.
+- Resolva a lista antes de olhar o gabarito.
+@@ SINTETICO
+**Contagem de linhas**: depende apenas do número de simples distintas, 2 elevado a n.
+**Completar colunas**: confira cada conectivo pela sua regra, linha a linha.
+**Contagem de linhas V**: encontre as linhas falsas do conectivo principal e subtraia do total.
+**Tautologias frequentes**: p ∨ ¬p e uma exclusiva entre uma simples e sua negação.
+**Contradições frequentes**: p ∧ ¬p e frases do tipo não é caro, mas é caro.
+**Contingência**: é a classificação das fórmulas que podem ser verdadeiras e falsas.
+**Absurdo**: tentar falso para tautologia e verdadeiro para contradição.
+**Erros comuns**: contar conectivos em vez de simples, esquecer que mas é e, confundir contradição com contingência.
+**Treino**: resolver a lista antes de consultar o gabarito de cada bloco.
+@@ TEORIA
+C | Para saber quantas linhas tem a tabela-verdade, basta contar as proposições simples distintas e elevar 2 a esse número. || Regra 2ⁿ.
+E | Uma fórmula com três conectivos e duas proposições simples tem oito linhas. || Duas simples dão 4 linhas.
+C | A proposição "Chove ou não chove" é uma tautologia. || Forma p ∨ ~p.
+E | A bicondicional entre p e ~p é uma tautologia. || Seus lados têm sempre valores opostos: é contradição.
+@@ REVISAO
+C | Uma fórmula que pode ser falsa e pode ser verdadeira é uma contingência. || Definição.
+E | A fórmula (p → ~q) ∨ ~r é falsa em quatro das oito linhas. || Só é falsa quando p, q e r são verdadeiras.
+C | Em (p ∧ ~q) → ~p, três das quatro linhas da tabela são verdadeiras. || A única F é p V e q F.
+C | Ao treinar com uma lista de questões, o ideal é resolvê-las antes de consultar o gabarito. || Treino ativo.
+@@ PONTOS
+99 | Lista de questões de tabela-verdade
+100 | Questões de contagem de linhas
+101 | Questões de colunas e valores ocultos
+102 | Questões de contagem de linhas verdadeiras
+103 | Questão do ISS BH
+104 | Gabarito do bloco de tabela-verdade
+105 | Lista de classificação de fórmulas
+106 | Associação da UEL e pares de fórmulas
+107 | Afirmativas e tabelas prontas
+108 | Tabelas da UFRGS e questões da Quadrix
+109 | Questões da Selecon, FEPESE e SEBRAE
+110 | Questão do médico
+111 | Gabarito do bloco de classificação

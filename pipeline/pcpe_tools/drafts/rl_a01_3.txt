@@ -1,0 +1,70 @@
+@@@ raciocinio-logico/a01/s03
+@@ ANALITICO
+Este trecho conclui a construção da tabela-verdade (passo 4, com um exemplo completo e questões) e apresenta tautologia, contradição e contingência, com os métodos para identificá-las e a noção de implicação.
+
+### Passo 4: calcular as colunas
+
+- Para ~(p → ~q) ∨ (~r → q), calculam-se, nesta ordem: **~q** e **~r** (invertem q e r); **(p → ~q)**, falsa só quando p é V e ~q é F; **~(p → ~q)**; **(~r → q)**, falsa só quando ~r é V e q é F; e a **disjunção final**, falsa só quando as duas parcelas são falsas. A tabela mostra que a fórmula só é falsa em **dois casos**: p V com q e r F, e p, q e r todos F.
+- Na prática, faz-se uma única tabela e calculam-se as colunas em sequência, sempre usando as colunas já calculadas como referência.
+
+### Questões resolvidas
+
+- **Questão do IBGE**: uma frase do tipo "se o instituto produz dados, então orienta as políticas públicas **e** justifica o uso dos recursos" tem a forma p → (a ∧ j), com três simples (8 linhas). A conjunção a ∧ j é V só quando a e j são V; a condicional é falsa quando p é V e (a ∧ j) é F, o que ocorre em **3 linhas**.
+- **Tabela incompleta** de ((p ∧ q) → ~r) ↔ q: a bicondicional é V quando as duas colunas têm o **mesmo valor** e F quando diferem; assim se completam os pontos de interrogação (resposta V, F, V, F).
+- **(Q ∨ R) ∧ P**: a disjunção é F apenas com Q e R falsas; a conjunção é V só com as duas parcelas V. Com a ordem padrão dos valores, a última coluna é **V V V F F F F F**, e a sequência V V V F V V F F seria **errada**.
+
+### Tautologia, contradição e contingência
+
+- **Tautologia**: a coluna final da tabela é **sempre V**. **Contradição**: **sempre F**. **Contingência**: **V e F**, dependendo dos valores das simples. Clássicas: **p ∨ ~p é tautologia** ("A Terra é plana ou a Terra não é plana") e **p ∧ ~p é contradição**. Na questão da ALMG, ~(p ∧ q) ↔ (~p ∨ ~q) é tautologia, (p ∧ ~q) ↔ (~p ∨ q) é contradição e (p ∨ q) → p (da tabela III) é contingência.
+- Podem-se representar a tautologia pela proposição genérica **⊤** (ou t) e a contradição por **⊥** (ou c): p ∨ ~p ≡ t (V) e p ∧ ~p ≡ c (F). Duas proposições com sempre os mesmos valores são **equivalentes** (símbolo ≡ ou ⇔).
+- Em provas, as letras c e t às vezes designam proposições simples quaisquer (por exemplo, "Tiago é engenheiro"), quando isso estiver claro.
+
+### Como identificar: três métodos
+
+1. **Tabela-verdade** (olhar a última coluna).
+2. **Prova por absurdo**: suspeitando de **tautologia**, tente atribuir **F** à fórmula; se for possível, **não** é tautologia (pode ser contradição ou contingência); se chegar a um **absurdo**, ela **nunca é falsa**: é tautologia. Suspeitando de **contradição**, tente atribuir **V**; se for possível, não é contradição; se levar a absurdo, é contradição. Se for possível F e também V, é **contingência**.
+3. **Equivalências lógicas** (álgebra de proposições), vista em aula própria.
+
+### Implicação
+
+- **p implica q** (p ⇒ q) quando a condicional **p → q é uma tautologia**.
+
+### Para fixar
+- Passo 4: calcule negações, depois compostas internas, depois a fórmula final, usando as regras de cada conectivo.
+- Tautologia: sempre V; contradição: sempre F; contingência: V e F.
+- p ∨ ~p é tautologia; p ∧ ~p é contradição.
+- Prova por absurdo: tente F para tautologia e V para contradição.
+- p ⇒ q quando p → q é tautologia.
+@@ SINTETICO
+**Passo final**: calculam-se negações, compostas internas e, por fim, a fórmula completa, usando a regra de cada conectivo.
+**Resultado do exemplo**: a fórmula só é falsa quando p é verdadeira e q e r são falsas, ou quando as três são falsas.
+**Condicional com conjunção**: p → (a ∧ j) com três simples tem oito linhas e três delas falsas.
+**Bicondicional na tabela**: é verdadeira quando as colunas têm o mesmo valor.
+**Tautologia**: valor final sempre verdadeiro, como p ∨ ~p.
+**Contradição**: valor final sempre falso, como p ∧ ~p.
+**Contingência**: valores verdadeiros e falsos, conforme as simples.
+**Prova por absurdo**: tentar falso prova tautologia se levar a absurdo, e tentar verdadeiro prova contradição se levar a absurdo.
+**Implicação**: p implica q quando p → q é tautologia.
+@@ TEORIA
+C | A proposição p ∨ ~p é uma tautologia, pois resulta sempre em verdadeiro. || Terceiro excluído em forma de fórmula.
+E | A proposição p ∧ ~p é uma contingência. || É uma contradição: sempre falsa.
+C | Se, ao supor falsa uma proposição, chega-se a um absurdo, então ela é uma tautologia. || Nunca poderá ser falsa.
+E | Se é possível tornar uma proposição falsa e também verdadeira, ela é uma tautologia. || Nesse caso é contingência.
+@@ REVISAO
+C | A condicional ~(p ∧ q) → (~p ∨ ~q) é verdadeira em todas as linhas da tabela-verdade. || É uma tautologia.
+E | Na tabela de (Q ∨ R) ∧ P com a ordem usual de valores, a última coluna é V V V F V V F F. || É V V V F F F F F.
+C | Dizer que p implica q equivale a afirmar que a condicional p → q é uma tautologia. || Definição de implicação.
+C | Duas proposições que têm sempre os mesmos valores lógicos são equivalentes. || Símbolo ≡ ou ⇔.
+@@ PONTOS
+19 | Passo 4 e preenchimento das colunas
+20 | Tabela completa do exemplo
+21 | Questão do IBGE
+22 | Esquema da tabela da questão do IBGE
+23 | Tabela incompleta
+24 | Bicondicional na tabela
+25 | Tabela de (Q ∨ R) ∧ P
+26 | Última coluna e conferência
+27 | Tautologia, contradição e contingência
+28 | Questão da ALMG
+29 | Tautologia e contradição clássicas
+30 | Representação e métodos

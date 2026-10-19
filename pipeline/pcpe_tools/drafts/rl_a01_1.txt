@@ -1,0 +1,66 @@
+@@@ raciocinio-logico/a01/s01
+@@ ANALITICO
+Este trecho abre a aula de estruturas lógicas e trata da conversão da linguagem natural para a proposicional: letras para as proposições simples, símbolos para os conectivos, ordem de precedência, uso de vírgulas como parênteses e a tradução de frases.
+
+### Por que converter
+
+- A língua portuguesa admite várias formas de dizer a mesma ideia, por isso é **inexata**; a linguagem proposicional é **exata**. A representação usa **letras** para as proposições simples e **símbolos** para os conectivos. Exemplo: "João é meu amigo, consequentemente empresto dinheiro para ele" passa a ser **a → d**, com a "João é meu amigo" e d "Empresto dinheiro para João" (a ideia de causa e consequência é uma condicional).
+
+### Ordem de precedência
+
+Sem parênteses, a fórmula é lida nesta ordem:
+
+1. **Negação (~)**: atinge o **menor enunciado possível** à sua direita;
+2. **Conjunção (∧)** e **disjunção inclusiva (∨)**, resolvidas **conforme a ordem de leitura**;
+3. **Disjunção exclusiva (⊻)**;
+4. **Condicional (→)**;
+5. **Bicondicional (↔)**.
+
+- Alguns autores dão precedência à conjunção sobre a disjunção inclusiva, mas para a prova considere a **ordem de aparição**. Em "~p → q ∧ r": a negação atinge **só p**, depois se resolve a conjunção e, por último, a condicional: **(~p) → (q ∧ r)** (e não ~[p → (q ∧ r)] nem [(~p) → q] ∧ r).
+- Fórmulas iniciadas por "**não é verdade que**" ou "**é falso que**" normalmente negam a **composta toda**.
+- Questão: em (p ∨ ¬q) → (p ∧ q), o termo de **maior prioridade** é **¬q** (a negação). Na questão da CRA-PR, (2 > 3) ↔ (1 < 0) → (3 ≠ 4) deve ser lido como **(2 > 3) ↔ ((1 < 0) → (3 ≠ 4))**, porque a condicional tem precedência sobre a bicondicional: F ↔ (F → V) = F ↔ V = **F**. (Calcular na ordem escrita daria outro resultado, V.)
+
+### Vírgulas como parênteses
+
+- As bancas usam **vírgulas** para marcar a fronteira de uma operação. "Se Laura é engenheira, então foi aprovada no concurso**,** e hoje ela calcula estruturas" é **(p → a) ∧ c**. Sem a vírgula, valeria a precedência e a leitura seria p → (a ∧ c).
+- Questão do TCU, com "então" sem o "se" inicial: "Hoje não choveu **então** Maria não foi ao comércio e José não foi à praia" vira **~P → (~R ∧ ~Q)**, pois, sem indício contrário, a conjunção precede a condicional. Para obter (~P → ~R) ∧ ~Q seria necessária uma vírgula logo após "comércio".
+
+### Conversão de frases (exemplo UFRJ)
+
+- Defina p como "Marcos é ator", q como "É falso que Marcos é biólogo" (o mesmo que "Marcos não é biólogo") e r como "Marcos é rico": "Marcos não é ator **e nem** biólogo" é **~p ∧ q**; "Marcos é biólogo ou não é rico" é **~q ∨ ~r** (~q é "Marcos é biólogo"). A frase completa, ligada por "se e somente se", é a bicondicional **(~p ∧ q) ↔ (~q ∨ ~r)**. Atenção: como a simples q já é negativa, sua negação ~q é a afirmativa.
+- Não há "teoria" além da prática: defina as simples de forma afirmativa (ou cuidadosamente) e traduza cada conectivo.
+
+### Para fixar
+- Precedência: negação, depois ∧/∨ na ordem em que aparecem, depois ⊻, → e por último ↔.
+- A negação atinge o menor enunciado possível; "não é verdade que" nega o conjunto.
+- Vírgula funciona como parêntese; o "se" omitido continua sendo condicional.
+- Condicional tem precedência sobre bicondicional.
+- "Nem" equivale a "e não" ao converter frases para símbolos.
+@@ SINTETICO
+**Linguagem proposicional**: usa letras para as proposições simples e símbolos para os conectivos, tornando a frase exata.
+**Precedência**: negação, conjunção e disjunção inclusiva na ordem de aparição, disjunção exclusiva, condicional e bicondicional.
+**Negação**: atinge o menor enunciado possível, e não é verdade que nega a composta inteira.
+**Termo de maior prioridade**: em (p ∨ ¬q) → (p ∧ q) é a negação de q.
+**Condicional e bicondicional**: a condicional é resolvida antes da bicondicional.
+**Vírgulas**: funcionam como parênteses e indicam qual operação vem primeiro.
+**Se omitido**: sem vírgula, a conjunção precede a condicional, como em ~P → (~R ∧ ~Q).
+**Nem**: equivale a e... não, como em Marcos não é ator e nem biólogo.
+**Simples negativa**: quando a simples já é negativa, sua negação é a frase afirmativa.
+@@ TEORIA
+C | Na expressão ~p → q ∧ r, a negação se refere apenas a p, e a conjunção é feita antes da condicional. || Precedência: ~, depois ∧, depois →.
+E | Na expressão ~p → q ∧ r, a negação atinge a composta p → q ∧ r inteira. || A negação abrange o menor enunciado possível.
+C | Em (p ∨ ¬q) → (p ∧ q), o termo com maior prioridade de execução é ¬q. || A negação é o primeiro operador.
+E | Na ordem de precedência, a bicondicional é resolvida antes da condicional. || A condicional vem antes.
+@@ REVISAO
+C | A vírgula pode indicar parênteses: "Se Ana estuda, aprende, e Bia ajuda" tende a ser (p → q) ∧ r. || A vírgula marca a operação que vem primeiro.
+E | Em "Não choveu então Maria ficou em casa e José ficou em casa", sem vírgulas, a leitura correta é (~P → ~R) ∧ ~Q. || Sem indício, a conjunção precede a condicional: ~P → (R ∧ Q).
+C | A expressão (2 > 3) ↔ (1 < 0) → (3 ≠ 4) tem valor falso quando a condicional é resolvida antes da bicondicional. || F ↔ (F → V) = F ↔ V = F.
+C | A frase "Marcos não é ator e nem biólogo" pode ser escrita como ~p ∧ ~b. || "Nem" equivale a e + não.
+@@ PONTOS
+3 | Apresentação da aula
+4 | Resumo da conversão e precedência
+5 | Por que converter a linguagem
+6 | Ordem de precedência e vírgulas
+7 | Uso de vírgulas e questão sobre prioridade
+8 | Condicional e bicondicional; frase do TCU
+9 | Vírgula decisiva e conversão UFRJ
