@@ -84,6 +84,22 @@ def check(qs: list[dict]) -> list[str]:
         right = ln[LETTERS.index(q["answer"])]
         if right > 1.8 * (sum(ln) - right) / 4 and right > 80:
             errs.append(f"{tag}: alternativa do gabarito bem mais longa que as outras (equilibre os tamanhos)")
+    # comentário não pode citar a letra do gabarito como se fosse alternativa errada (ex.: "As alternativas A, B e D erram" com D correta)
+    ref = re.compile(r"(?:[Aa]s?\s+)?(?:alternativas?|op[çc][ãa]o|op[çc][õo]es)\s+((?:[A-E](?:,\s*|\s+e\s+|\s+ou\s+))*[A-E])")
+    for q in qs:
+        e = q["explanation"]
+        for m in ref.finditer(e):
+            letras = re.findall(r"[A-E]", m.group(1))
+            if q["answer"] in letras and not re.match(r"\s*(?:est[áa]\s+correta|[ée]\s+(?:a\s+)?correta|correta)", e[m.end():m.end() + 25]):
+                errs.append(f"{q['subject']} #{q['n']}: o comentário cita a alternativa correta ({q['answer']}) entre as erradas")
+                break
+    # gabaritos em sequência previsível (A,B,C,D,E,A,...) por disciplina
+    seq = defaultdict(list)
+    for q in qs:
+        seq[q["subject"]].append("ABCDE".index(q["answer"]))
+    for sbj, l in seq.items():
+        if len(l) >= 20 and sum((l[i + 1] - l[i]) % 5 == 1 for i in range(len(l) - 1)) > 0.5 * (len(l) - 1):
+            errs.append(f"{sbj}: gabaritos em sequência cíclica; sorteie as posições (nada de A,B,C,D,E em ordem)")
     by = defaultdict(Counter)
     for q in qs:
         by[q["subject"]][q["answer"]] += 1
