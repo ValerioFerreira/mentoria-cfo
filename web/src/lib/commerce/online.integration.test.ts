@@ -187,7 +187,7 @@ describe.skipIf(!hasTestDb)("pagamento online (Mercado Pago da empresa)", { time
       expect(c.checkoutUrl).toBe("https://mp.test/checkout/start");
       const pref = fake.calls.find((x) => x.path === "/checkout/preferences")!.body!;
       expect(pref).toMatchObject({ external_reference: id, auto_return: "approved" });
-      expect((pref.items as { unit_price: number }[])[0].unit_price).toBe(40);
+      expect((pref.items as { unit_price: number }[])[0].unit_price).toBe(60);
       expect((pref.payment_methods as { installments: number }).installments).toBe(1);
       expect(String((pref.back_urls as { success: string }).success)).toContain(`contrato=${id}`);
     });

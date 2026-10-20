@@ -130,12 +130,12 @@ describe.skipIf(!hasTestDb)("server actions: autorização e preço do servidor"
     await expect(requirePartner()).rejects.toThrow("REDIRECT:/");
   });
 
-  it("lista de espera com cupom: Pix de R$ 42,00; autoindicação recusada; atribuição pelo cupom", async () => {
+  it("lista de espera com cupom: Pix de R$ 72,00; autoindicação recusada; atribuição pelo cupom", async () => {
     const { createPartner } = await import("./partners");
     const { joinWaitlist } = await import("@/app/(public)/lista-de-espera/[concurso]/actions");
     const p = await createPartner({ email: "div@x.com", username: "divulga", password: "senha-forte-1" }, admin.id);
     const r = await joinWaitlist("cbmpe-oficial", undefined, fd({ name: "Cliente Indicado", email: "novo@x.com", username: "novo1", coupon: p.couponCode.toLowerCase(), amount: "1" }));
-    expect(r?.payment).toMatchObject({ amount: "42,00", couponCode: p.couponCode });
+    expect(r?.payment).toMatchObject({ amount: "72,00", couponCode: p.couponCode });
     expect(r?.payment?.payload).toContain("540572.00");
     expect(await db.partnerReferral.count({ where: { partnerId: p.partnerId, customerEmail: "novo@x.com" } })).toBe(1);
     const self = await joinWaitlist("cbmpe-oficial", undefined, fd({ name: "O Próprio Parceiro", email: "div@x.com", username: "divulga2", coupon: p.couponCode }));
@@ -144,7 +144,7 @@ describe.skipIf(!hasTestDb)("server actions: autorização e preço do servidor"
     expect(bad).toMatchObject({ errors: { coupon: [expect.stringMatching(/Cupom inválido/)] } });
     expect(await db.waitlistEntry.count({ where: { email: "outra@x.com" } })).toBe(0);
     const praca = await joinWaitlist("cbmpe-soldado", undefined, fd({ name: "Outra Pessoa", email: "outra@x.com", username: "outra1" }));
-    expect(praca?.payment?.amount).toBe("40,00");
+    expect(praca?.payment?.amount).toBe("60,00");
   });
 
   it("cupons do site: só administrador gerencia; o formulário aceita vários códigos e o preço vem do servidor", async () => {
@@ -188,7 +188,7 @@ describe.skipIf(!hasTestDb)("server actions: autorização e preço do servidor"
     const blocked = await approveRegistration(entry.id, "UNTIL_EXAM");
     expect(blocked).toMatchObject({ success: false, message: expect.stringMatching(/saldo pendente/) });
     expect(await db.user.count({ where: { email: "apr@x.com" } })).toBe(0); // nada foi criado pela metade
-    await registerPayment({ contractId: contract.id, amountCents: 6000, paidAt: new Date(), method: "PIX", idempotencyKey: "pag-aprovacao-1" }, admin.id);
+    await registerPayment({ contractId: contract.id, amountCents: 9000, paidAt: new Date(), method: "PIX", idempotencyKey: "pag-aprovacao-1" }, admin.id);
     const ok = await approveRegistration(entry.id, "UNTIL_EXAM");
     expect(ok.success).toBe(true);
     const user = await db.user.findUniqueOrThrow({ where: { email: "apr@x.com" } });
