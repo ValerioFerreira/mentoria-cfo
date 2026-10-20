@@ -46,3 +46,31 @@ for r in rows:
     if r["materiaTEC"].startswith("Direito Administrativo") and r["PMPE_OFICIAL"] in ("sim", "parcial") and r["tipo"] in ("SEM_CORRESPONDENCIA", "PARCIAL"):
         c[(r["PMPE_OFICIAL_edital"] or "?")[:70]] += int(r["questoes"])
 for k, v in c.most_common(): print(f"- {k}: {v} questões")
+
+# ── poucas questões: assuntos (1–9) e trechos (< 5 = o caderno da atividade não abre)
+import json as _j
+segs = {}
+for f in glob.glob(str(ROOT / "content/segments/*.json")):
+    for s in _j.loads(Path(f).read_text(encoding="utf-8"))["segments"]:
+        segs[s["id"]] = s
+segc = Counter()
+for q in ac.values():
+    if q["problems"] or q["anulada"]:
+        continue
+    r = clf.classify(q)
+    if r.status == "APPROVED" and r.segmentId:
+        segc[r.segmentId] += 1
+print("\n# Assuntos com poucas questões (1 a 9 aprovadas)\n")
+for s, its in items.items():
+    few = [(i, t, ap[i]) for i, t in its if 0 < ap[i] < 10]
+    if few:
+        print(f"## {s}: {len(few)} assuntos\n")
+        for i, t, n in sorted(few, key=lambda x: x[2]): print(f"- `{i.split('/')[1]}` {t[:80]}: {n}")
+        print()
+print("\n# Trechos (atividades de Teoria) com menos de 5 questões: o caderno da atividade não abre\n")
+by = defaultdict(list)
+for sid in segs:
+    by[sid.split("/")[0]].append(sid)
+print("| Disciplina | Trechos | Com < 5 questões | Sem nenhuma | Com ≥ 10 |\n|---|---:|---:|---:|---:|")
+for s, ids in sorted(by.items()):
+    print(f"| {s} | {len(ids)} | {sum(1 for i in ids if segc[i] < 5)} | {sum(1 for i in ids if segc[i] == 0)} | {sum(1 for i in ids if segc[i] >= 10)} |")
