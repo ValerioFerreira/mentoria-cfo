@@ -171,6 +171,24 @@ export async function seedStructure() {
     await db.editalItem.updateMany({ where: { id: { in: rows.map((r) => r.id) } }, data: { onlyContests: key.split(",") } });
   }
 
+  // createMany também não atualiza título, ordem e aulas de assunto já semeado (o mapa do edital muda): sincroniza, e
+  // aposenta os assuntos próprios de um concurso (`/p`) que saíram do mapa (apaga se ninguém usa; senão, inativa)
+  const existingItems = await db.editalItem.findMany({ select: { id: true, code: true, title: true, sortOrder: true, aulaIds: true } });
+  const existingById = new Map(existingItems.map((e) => [e.id, e]));
+  for (const r of allEditalRows) {
+    const e = existingById.get(r.id);
+    if (e && (e.title !== r.title || e.code !== r.code || e.sortOrder !== r.sortOrder || JSON.stringify(e.aulaIds) !== JSON.stringify(r.aulaIds))) {
+      await db.editalItem.update({ where: { id: r.id }, data: { title: r.title, code: r.code, sortOrder: r.sortOrder, aulaIds: r.aulaIds } });
+    }
+  }
+  const liveItemIds = new Set(allEditalRows.map((r) => r.id));
+  for (const e of existingItems) {
+    if (!/\/p[^/]*$/.test(e.id) || liveItemIds.has(e.id)) continue;
+    const used = (await db.question.count({ where: { editalItemId: e.id } })) + (await db.activity.count({ where: { editalItemId: e.id } }));
+    if (used === 0) await db.editalItem.delete({ where: { id: e.id } });
+    else await db.editalItem.update({ where: { id: e.id }, data: { onlyContests: ["__INATIVO__"] } });
+  }
+
   // 5. Lacunas
   console.log(`[Seed Structure] 5/6 Sincronizando lacunas...`);
   const gapRows = catalog.gaps.map((g) => ({

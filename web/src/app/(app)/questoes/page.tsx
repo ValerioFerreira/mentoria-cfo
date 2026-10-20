@@ -107,6 +107,7 @@ export default async function QuestoesPage() {
       {/* Navegador e Filtros de Questões por Matéria e Assunto */}
       <QuestoesFilterList
         subjects={subjects}
+        blockNames={overview.blockNames}
         availableBancas={availableBancas}
         bancaCounts={bancaCounts}
       />

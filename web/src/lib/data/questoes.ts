@@ -2,6 +2,8 @@ import "server-only";
 import { db } from "@/lib/db";
 import { subjectName } from "@/lib/ui-format";
 import { hideInedita } from "@/lib/quiz/banca";
+import { makeTopicResolver, type TopicItem } from "@/lib/quiz/topic-map";
+import { EXAM_CONFIGS, type SupportedSimuladoContest } from "@/lib/simulado-rules";
 import type { Contest } from "@/generated/prisma/client";
 
 // "Assunto" = item do edital (Question.editalItemId). Questões sem item ficam em OTHER_TOPIC_ID.
@@ -45,6 +47,8 @@ export interface QuestoesOverview {
     subjectsCount: number;
   };
   subjects: SubjectOverview[];
+  /** nomes dos blocos da prova do concurso (no PCPE: P1 e P2); ausente = "Bloco I/II/III" */
+  blockNames?: Partial<Record<"I" | "II" | "III", string>>;
   availableBancas: string[];
   bancaCounts: Record<string, number>;
 }
@@ -58,6 +62,7 @@ export async function getQuestoesOverview(userId: string, subjectIds: string[], 
       select: {
         id: true,
         subjectId: true,
+        aulaId: true,
         editalItemId: true,
         banca: true,
       },
@@ -79,8 +84,10 @@ export async function getQuestoesOverview(userId: string, subjectIds: string[], 
       select: { id: true, name: true, block: true },
     }),
   ]);
-  const editalItems = await db.editalItem.findMany({ select: { id: true, code: true, title: true, sortOrder: true } });
+  const editalItems = await db.editalItem.findMany({ select: { id: true, subjectId: true, code: true, title: true, sortOrder: true, aulaIds: true, onlyContests: true, excludeContests: true } });
   const itemInfo = new Map(editalItems.map((e) => [e.id, e]));
+  // cada questão cai no assunto do edital do concurso do aluno (no PCPE, os assuntos próprios dele)
+  const resolveTopic = makeTopicResolver(editalItems.map((e): TopicItem => ({ ...e, aulaIds: (e.aulaIds as string[]) ?? [] })), contest);
 
   const bancaCounts: Record<string, number> = {};
   for (const q of questions) {
@@ -116,7 +123,7 @@ export async function getQuestoesOverview(userId: string, subjectIds: string[], 
 
   for (const q of questions) {
     const sId = q.subjectId;
-    const topicName = q.editalItemId && itemInfo.has(q.editalItemId) ? q.editalItemId : OTHER_TOPIC_ID;
+    const topicName = resolveTopic(q);
     const qBanca = q.banca || "AOCP";
 
     let sData = subjectMap.get(sId);
@@ -149,7 +156,9 @@ export async function getQuestoesOverview(userId: string, subjectIds: string[], 
   }
 
   // Construir o retorno estruturado
-  const subjectBlockMap = new Map(dbSubjects.map((s) => [s.id, s.block as "I" | "II" | "III"]));
+  const exam = contest === "PCPE_AGENTE" ? EXAM_CONFIGS[contest as SupportedSimuladoContest] : undefined;
+  const examBlock = new Map((exam?.subjects ?? []).map((x) => [x.subjectId, x.block]));
+  const subjectBlockMap = new Map(dbSubjects.map((s) => [s.id, (examBlock.get(s.id) ?? s.block) as "I" | "II" | "III"]));
   const subjectsList: SubjectOverview[] = [];
 
   for (const s of dbSubjects) {
@@ -209,6 +218,7 @@ export async function getQuestoesOverview(userId: string, subjectIds: string[], 
       subjectsCount: subjectsList.filter((s) => s.totalQuestions > 0).length,
     },
     subjects: subjectsList,
+    blockNames: exam ? { I: exam.blocks.I.name, II: exam.blocks.II.name } : undefined,
     availableBancas: availableBancas.length > 0 ? availableBancas : ["AOCP"],
     bancaCounts,
   };

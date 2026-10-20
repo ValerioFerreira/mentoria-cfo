@@ -55,9 +55,9 @@ describe("datas da interface (UTC)", () => {
 });
 
 describe("rótulos de disciplina", () => {
-  it("conhece todas as 16 disciplinas e devolve o próprio id quando desconhecida", () => {
-    expect(Object.keys(SUBJECT_SHORT)).toHaveLength(16);
-    expect(Object.keys(SUBJECT_NAME)).toHaveLength(16);
+  it("conhece todas as 21 disciplinas (16 do CBMPE/PMPE + 5 do PCPE) e devolve o próprio id quando desconhecida", () => {
+    expect(Object.keys(SUBJECT_SHORT)).toHaveLength(21);
+    expect(Object.keys(SUBJECT_NAME)).toHaveLength(21);
     expect(subjectShort("matematica")).toBe("Matemática");
     expect(subjectName("legislacoes-pe")).toBe("Legislações Militares de PE");
     expect(subjectShort("nao-existe")).toBe("nao-existe");
