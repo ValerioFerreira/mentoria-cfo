@@ -227,6 +227,17 @@ export function selectContent(
   }
   for (const it of picked) apply(it, 1);
 
+  // Garante ao menos o ciclo mínimo da aula de maior valor de cada disciplina antes de completar as demais
+  const unrepresented = [...bySubject.values()]
+    .filter((list) => (covered.get(list[0].subjectId) ?? 0) === 0)
+    .sort((a, b) => b[0].examQuestions - a[0].examQuestions || density(b[0], 1) - density(a[0], 1));
+  for (const list of unrepresented) {
+    const first = list[0];
+    if (used + incMinutes(first, 1) <= capacityMinutes + 1e-9) {
+      apply(first, 1);
+    }
+  }
+
   // 2) Amplitude primeiro: enquanto houver aula do edital ainda não vista, ela entra (ciclo mínimo) antes de qualquer aprofundamento.
   //    Depois, o que sobrar de tempo vira profundidade (Completo → Aprofundamento), sempre pelo maior ganho por minuto.
   for (const breadthOnly of [true, false]) {

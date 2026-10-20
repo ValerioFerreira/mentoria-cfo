@@ -427,4 +427,28 @@ describe("modelo de tempo", () => {
     const roomy = generatePlan(input(35, ["legislacoes-pe"], 1));
     expect(roomy.weeks.filter((w) => w.kind === "FINAL_REVIEW").length).toBeGreaterThanOrEqual(2); // sobra vira revisão geral antes de D-2
   });
+
+  it("PCPE com 10h/semana e todas as 12 disciplinas sem Turbo não deixa nenhuma disciplina de fora", () => {
+    const pcpeSubjects = CONTEST_SUBJECTS.PCPE_AGENTE.filter((id) => id !== "lingua-espanhola" && id !== "lingua-inglesa");
+    const importance = loadImportance("PCPE_AGENTE");
+    const examQuestions = loadExamQuestions("PCPE_AGENTE");
+    const p = generatePlan({
+      catalog,
+      segments,
+      contest: "PCPE_AGENTE",
+      importance,
+      examQuestions,
+      startDate: "2026-10-19",
+      firstDay: 1,
+      examDate: "2027-03-07",
+      hoursPerWeek: 10,
+      subjects: pcpeSubjects.map((id) => ({ id, level: 0 as const })),
+      turbo: false,
+    });
+    for (const sub of pcpeSubjects) {
+      const hasActs = flat(p).some((a) => a.subjectId === sub && a.scope !== "FINAL");
+      expect(hasActs, `disciplina ${sub} deve ter ao menos uma aula no plano`).toBe(true);
+    }
+  });
 });
+
