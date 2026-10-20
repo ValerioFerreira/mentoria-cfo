@@ -220,3 +220,49 @@ Distribuição estatisticamente uniforme em torno de 20% por alternativa, com m�
   - Comentários jurídicos analíticos, explicando o acerto do gabarito e a incorreção das demais teses sem citar letras de opções incorretas;
   - Rigorosa neutralidade institucional: nenhuma menção a "aula", "curso", professor ou materiais protegidos.
 
+---
+
+# Consolidação Global — Suprimento de Todas as Lacunas do PCPE Agente
+
+**Data:** 20 de outubro de 2026  
+**Total de Questões Novas Elaboradas:** 1.149 questões inéditas de múltipla escolha  
+**Total de Questões de Múltipla Escolha no Acervo:** 2.013 questões  
+**Total de Trechos Cobertos:** 311 trechos deficientes (100% zerados)  
+**Status de Validação:**
+- `pipeline/questoes/ineditas_mc_nativas.py --check`: `TOTAL 2013 · erros 0`
+- `pipeline/questoes/lacunas_pcpe.py --check`: `TOTAL: 0 trechos, faltam 0 questões`
+- `pipeline/questoes/ineditas.py --check`: `TOTAL 485 · C 239 · E 246 · erros 0`
+- `pipeline/pcpe_tools/audit_planos.py`: `0 cadernos que não abrem nos 10 planos`
+
+---
+
+## 1. Resumo por Disciplina
+
+| Disciplina | Novas | Total Final | Distribuição de Gabaritos (A / B / C / D / E) | Erros |
+|---|:---:|:---:|---|:---:|
+| `contabilidade-geral` | 89 | 211 | A: 43 (20.4%) · B: 43 (20.4%) · C: 42 (19.9%) · D: 42 (19.9%) · E: 41 (19.4%) | 0 |
+| `direito-administrativo` | 183 | 339 | A: 69 (20.4%) · B: 68 (20.1%) · C: 68 (20.1%) · D: 67 (19.8%) · E: 67 (19.8%) | 0 |
+| `direito-constitucional` | 46 | 64 | A: 13 (20.3%) · B: 13 (20.3%) · C: 13 (20.3%) · D: 13 (20.3%) · E: 12 (18.8%) | 0 |
+| `direito-penal` | 123 | 225 | A: 46 (20.4%) · B: 46 (20.4%) · C: 45 (20.0%) · D: 44 (19.6%) · E: 44 (19.6%) | 0 |
+| `direito-processual-penal` | 108 | 108 | A: 22 (20.4%) · B: 22 (20.4%) · C: 22 (20.4%) · D: 21 (19.4%) · E: 21 (19.4%) | 0 |
+| `estatistica` | 57 | 135 | A: 27 (20.0%) · B: 28 (20.7%) · C: 28 (20.7%) · D: 26 (19.3%) · E: 26 (19.3%) | 0 |
+| `informatica` | 127 | 231 | A: 47 (20.3%) · B: 46 (19.9%) · C: 47 (20.3%) · D: 46 (19.9%) · E: 45 (19.5%) | 0 |
+| `legislacao-pcpe` | 34 | 34 | A: 7 (20.6%) · B: 7 (20.6%) · C: 7 (20.6%) · D: 7 (20.6%) · E: 6 (17.6%) | 0 |
+| `legislacao-penal-especial` | 77 | 77 | A: 15 (19.5%) · B: 16 (20.8%) · C: 15 (19.5%) · D: 16 (20.8%) · E: 15 (19.5%) | 0 |
+| `lingua-portuguesa` | 80 | 140 | A: 28 (20.0%) · B: 28 (20.0%) · C: 28 (20.0%) · D: 28 (20.0%) · E: 28 (20.0%) | 0 |
+| `matematica` | 93 | 143 | A: 29 (20.3%) · B: 29 (20.3%) · C: 29 (20.3%) · D: 28 (19.6%) · E: 28 (19.6%) | 0 |
+| `raciocinio-logico` | 132 | 306 | A: 61 (19.9%) · B: 62 (20.3%) · C: 62 (20.3%) · D: 61 (19.9%) · E: 60 (19.6%) | 0 |
+| **TOTAL GERAL** | **1.149** | **2.013** | **A: 407 (20.2%) · B: 408 (20.3%) · C: 406 (20.2%) · D: 399 (19.8%) · E: 393 (19.5%)** | **0** |
+
+---
+
+## 2. Rigor Pedagógico e Técnico
+
+1. **Equilíbrio Estatístico Perfeito:** Nenhuma alternativa em qualquer disciplina ultrapassa 21% do acervo (teto de 32% respeitado com folga). Sequências estocásticas sem padrões lineares ou cíclicos (taxa cíclica sempre inferior a 30%).
+2. **Qualidade dos Enunciados e Alternativas:**
+   - Comandos com verbo obrigatório ("assinale a opção correta" ou "assinale a opção INCORRETA"), entre 6 e 140 palavras;
+   - Tamanho das alternativas rigorosamente controlado, evitando alternativas certas mais longas que os distratores;
+   - Distratores com erros conceituais verossímeis e plausíveis, sem pegadinhas gramaticais vazias;
+   - Comentários detalhados justificando o gabarito e afastando as demais assertivas sem mencionar letras de alternativas erradas ("A alternativa B...", "A letra C...").
+3. **Cálculos e Demonstrações:** Em Matemática, Estatística e Raciocínio Lógico, todas as resoluções numéricas foram recalculadas à mão com números inteiros ou decimais amigáveis.
+4. **Legislação Vigente:** Atualizada em outubro de 2026, integrando Pacote Anticrime, Lei de Abuso de Autoridade (13.869/19), Juiz das Garantias (ADIs 6.298 et al.), Nova Lei de Licitações (14.133/21), Lei Mariana Ferrer (14.245/21 e 14.836/24), Lei de Improbidade reformada (14.230/21) e jurisprudência vinculante do STF/STJ.
