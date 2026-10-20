@@ -216,7 +216,7 @@ B) Os arquivos de log constituem evidências descartáveis em processos forenses
 C) A rastreabilidade é assegurada pela exclusão rotineira de registros com mais de vinte e quatro horas para evitar sobrecarga de armazenamento.
 D) A sincronização temporal dos servidores é dispensável para a análise pericial de trilhas de auditoria em ambientes corporativos distribuídos.
 E) A confiabilidade dos logs de auditoria requer armazenamento em regime de somente anexação, sincronização por NTP e controle rigoroso de acesso.
-// Comentário: A alternativa E está correta, visto que os logs de auditoria devem manter integridade e imutabilidade (política append-only), isolamento de armazenamento em relação a tabelas comuns, sincronização temporal rigorosa (Network Time Protocol - NTP) e controle restrito de acesso. A alternativa A facilita a adulteração de provas. A alternativa C prejudica a retenção e a memória dos fatos. As alternativas D e E erram sobre a importância forense e temporal dos registros.
+// Comentário: A alternativa E está correta, visto que os logs de auditoria devem manter integridade e imutabilidade (política append-only), isolamento de armazenamento em relação a tabelas comuns, sincronização temporal rigorosa (Network Time Protocol - NTP) e controle restrito de acesso. As demais alternativas apresentam afirmações incorretas.
 
 @@ a02/s02 | A
 As violações de segurança da informação podem ser classificadas conforme o tipo de interferência praticada pelo invasor sobre o fluxo regular de comunicação. No que concerne aos tipos de ataques e aos princípios correspondentes violados, assinale a opção correta.
@@ -266,7 +266,7 @@ B) A adição de novos membros a uma rede simétrica dispensa a geração de cha
 C) O gerenciamento de chaves simétricas é mais escalável que o assimétrico, exigindo menos chaves à medida que a quantidade de nós se expande.
 D) A troca de chaves simétricas por canais abertos e não seguros é uma prática recomendada pelas normas internacionais de segurança da informação.
 E) Para conectar n usuários aos pares de maneira estritamente privativa, o ecossistema puramente simétrico demanda um total de n(n - 1) / 2 chaves.
-// Comentário: A alternativa E está correta, pois a fórmula matemática de combinações simples para conectar n participantes aos pares com chaves simétricas exclusivas é C(n, 2) = n(n - 1) / 2. A alternativa A cita a fórmula do modelo assimétrico (que exige 2n chaves, uma pública e uma privada por usuário). A alternativa C erra porque o modelo simétrico é de difícil escalabilidade em redes grandes. As alternativas D e E violam preceitos criptográficos essenciais.
+// Comentário: A alternativa E está correta, pois a fórmula matemática de combinações simples para conectar n participantes aos pares com chaves simétricas exclusivas é C(n, 2) = n(n - 1) / 2. As demais alternativas apresentam afirmações incorretas.
 
 @@ a02/s03 | C
 A criptografia assimétrica baseia-se em fundamentos matemáticos que envolvem o emprego de um par de chaves complementares associadas a cada entidade participante. Acerca da utilização das chaves no paradigma de chave pública, assinale a opção correta.
@@ -286,7 +286,7 @@ B) A criptografia híbrida utiliza algoritmos simétricos apenas para assinar di
 C) A criptografia híbrida emprega o método assimétrico para trocar com segurança uma chave de sessão simétrica, que passa a cifrar todo o tráfego.
 D) A criptografia híbrida exige o envio manual e físico de cartões magnéticos contendo a chave de sessão antes de cada conexão web efetuada.
 E) A chave de sessão gerada na criptografia híbrida é permanente e reutilizada indefinidamente ao longo de todos os acessos subsequentes do usuário.
-// Comentário: A alternativa C está correta, pois a criptografia híbrida aproveita a segurança de distribuição da criptografia assimétrica para autenticar e acordar uma chave simétrica temporária (chave de sessão) e, em seguida, utiliza essa chave com um algoritmo simétrico veloz (ex.: AES) para cifrar a comunicação volumosa. As alternativas A, B e C distorcem o modelo. A alternativa E erra, pois a chave de sessão é efêmera/descartável.
+// Comentário: A alternativa C está correta, pois a criptografia híbrida aproveita a segurança de distribuição da criptografia assimétrica para autenticar e acordar uma chave simétrica temporária (chave de sessão) e, em seguida, utiliza essa chave com um algoritmo simétrico veloz (ex.: AES) para cifrar a comunicação volumosa. As demais alternativas apresentam afirmações incorretas.
 
 @@ a02/s03 | B
 A robustez de um sistema criptográfico é avaliada segundo princípios científicos consolidados que orientam o projeto e a auditoria de algoritmos seguros. Em relação ao Princípio de Kerckhoffs, assinale a opção correta.
@@ -296,7 +296,7 @@ B) A segurança de um sistema criptográfico deve repousar exclusivamente no seg
 C) A comprovação de que uma cifra resiste a ataques de texto cifrado simples atesta de forma incondicional a sua inviolabilidade perpétua.
 D) A complexidade das instruções do programa executável constitui o único elemento determinante para a resistência de uma cifra matemática.
 E) O algoritmo criptográfico deve ser mantido em segredo absoluto, enquanto a chave privada do sistema pode ser divulgada publicamente.
-// Comentário: A alternativa B está correta, pois o clássico Princípio de Kerckhoffs estabelece que a segurança de um criptossistema não deve decorrer do segredo do algoritmo (que deve ser público e testado por especialistas), mas unicamente do sigilo da chave criptográfica. As alternativas A e B pregam a falaciosa "segurança por obscuridade". A alternativa C é falsa, pois testes simples não garantem segurança incondicional. A alternativa D erra ao focar em detalhes de programação em vez do tamanho e sigilo da chave.
+// Comentário: A alternativa B está correta, pois o clássico Princípio de Kerckhoffs estabelece que a segurança de um criptossistema não deve decorrer do segredo do algoritmo (que deve ser público e testado por especialistas), mas unicamente do sigilo da chave criptográfica. As demais alternativas apresentam afirmações incorretas.
 
 @@ a02/s06 | C
 A utilização de certificados digitais permite atestar com segurança a identidade de pessoas, empresas e servidores em transações eletrônicas na Internet. Em relação à estrutura padrão de um certificado digital segundo o padrão ITU-T X.509, assinale a opção correta.
@@ -316,7 +316,7 @@ B) A AC-Raiz emite certificados diretamente para usuários finais e computadores
 C) A AC-Raiz é encarregada de realizar a conferência presencial de documentos de identificação de todos os cidadãos solicitantes de certificados.
 D) A AC-Raiz possui vigência operacional subordinada a autoridades de registro locais, dependendo de sua validação para operar no país.
 E) A AC-Raiz, operada pelo Instituto Nacional de Tecnologia da Informação (ITI), ocupa o topo da hierarquia e emite certificados apenas para outras ACs.
-// Comentário: A alternativa E está correta, pois a AC-Raiz da ICP-Brasil é executada institucionalmente pelo ITI (Instituto Nacional de Tecnologia da Informação), ocupando o vértice da cadeia hierárquica e emitindo certificados exclusivamente para as Autoridades Certificadoras subordinadas credenciadas (ela não atende diretamente o usuário comum). A alternativa A erra a natureza pública e gestora do ITI. A alternativa C descreve atribuições da Autoridade de Registro (AR). As alternativas D e E contradizem a hierarquia da ICP-Brasil.
+// Comentário: A alternativa E está correta, pois a AC-Raiz da ICP-Brasil é executada institucionalmente pelo ITI (Instituto Nacional de Tecnologia da Informação), ocupando o vértice da cadeia hierárquica e emitindo certificados exclusivamente para as Autoridades Certificadoras subordinadas credenciadas (ela não atende diretamente o usuário comum). As demais alternativas apresentam afirmações incorretas.
 
 @@ a02/s06 | C
 O processo de emissão de um certificado digital na ICP-Brasil requer etapas formais de verificação cadastral e presencial do solicitante. No que se refere às competências de uma Autoridade de Registro (AR), assinale a opção correta.
@@ -336,7 +336,7 @@ B) O certificado do tipo A1 armazena a chave em arquivo de software com validade
 C) O certificado do tipo A1 permite a extração física de chips criptográficos dedicados para instalação em múltiplos computadores portáteis.
 D) O certificado do tipo A3 tem sua chave privada gerada e armazenada em arquivo de software no disco rígido com validade máxima de doze meses.
 E) Os certificados A1 e A3 são idênticos em infraestrutura física, diferenciando-se apenas pelo preço de comercialização no mercado.
-// Comentário: A alternativa B está correta, pois o certificado A1 armazena a chave privada em software (arquivo com extensão .pfx ou .p12 no computador) com validade de até 1 ano, enquanto o tipo A3 armazena a chave em dispositivo físico dedicado inexportável (token USB ou smart card criptográfico) com validade comumente de até 3 ou 5 anos. As alternativas A e B invertem as características do A1 e do A3. As alternativas C e E ignoram a diferença estrutural entre software e hardware criptográfico.
+// Comentário: A alternativa B está correta, pois o certificado A1 armazena a chave privada em software (arquivo com extensão .pfx ou .p12 no computador) com validade de até 1 ano, enquanto o tipo A3 armazena a chave em dispositivo físico dedicado inexportável (token USB ou smart card criptográfico) com validade comumente de até 3 ou 5 anos. As demais alternativas apresentam afirmações incorretas.
 
 @@ a02/s06 | E
 Na eventualidade de perda, roubo da mídia criptográfica ou suspeita de comprometimento da chave privada, um certificado digital deve perder imediatamente sua eficácia antes do término de sua vigência temporal. Acerca dos mecanismos de revogação de certificados, assinale a opção correta.
@@ -356,7 +356,7 @@ B) Os certificados da categoria A são voltados exclusivamente ao carimbo do tem
 C) Os certificados da categoria T destinam-se ao sigilo de mensagens confidenciais trocadas entre servidores de bancos de dados relacionais.
 D) Os certificados da categoria A destinam-se à assinatura e autenticação digital, enquanto os da categoria S voltam-se ao sigilo e à criptografia.
 E) Os certificados da categoria T operam substituindo a autoridade certificadora raiz na fiscalização técnica de prestadores de serviços.
-// Comentário: A alternativa D está correta, pois na ICP-Brasil a série A (A1, A3, A4) destina-se à autenticação e assinatura digital, a série S (S1, S2, S3, S4) volta-se ao sigilo (criptografia de conteúdos) e a série T (T3, T4) é dedicada ao carimbo do tempo (Time Stamping). As alternativas B, C, D e E misturam e desvirtuam essas categorias funcionais.
+// Comentário: A alternativa D está correta, pois na ICP-Brasil a série A (A1, A3, A4) destina-se à autenticação e assinatura digital, a série S (S1, S2, S3, S4) volta-se ao sigilo (criptografia de conteúdos) e a série T (T3, T4) é dedicada ao carimbo do tempo (Time Stamping). As demais alternativas apresentam afirmações incorretas.
 
 @@ a03/s01 | B
 A literatura técnica de segurança da informação e a comunidade de segurança computacional utilizam terminologia precisa para qualificar diferentes atores e comportamentos no ambiente digital. Acerca da distinção entre Hacker e Cracker, assinale a opção correta.
@@ -406,7 +406,7 @@ B) O sistema operacional Linux é invulnerável a qualquer código malicioso em 
 C) Nenhum sistema operacional é completamente imune a pragas virtuais, embora plataformas Unix e macOS possuam modelos rigorosos de permissão.
 D) A maior prevalência histórica de vírus para o Windows decorre da ausência total de mecanismos de segurança no núcleo do sistema operacional.
 E) Os vírus para computadores conseguem executar com facilidade qualquer binário em qualquer sistema operacional, independentemente da arquitetura.
-// Comentário: A alternativa C está correta, pois é um consenso técnico que nenhum sistema operacional é totalmente invulnerável ou imune a malwares; a maior incidência no Windows deve-se à sua imensa base instalada corporativa e doméstica, e não a imunidade mágica do Linux ou macOS. As alternativas B e C propagam mitos de imunidade absoluta. A alternativa D é falsa, pois o Windows possui robustos mecanismos de segurança em seu kernel. A alternativa E desconsidera a especificidade de código de máquina e chamadas de sistema entre diferentes sistemas operacionais.
+// Comentário: A alternativa C está correta, pois é um consenso técnico que nenhum sistema operacional é totalmente invulnerável ou imune a malwares; a maior incidência no Windows deve-se à sua imensa base instalada corporativa e doméstica, e não a imunidade mágica do Linux ou macOS. As demais alternativas apresentam afirmações incorretas.
 
 @@ a03/s01 | D
 As políticas corporativas de segurança da informação devem contemplar não apenas defesas perimetrais contra ataques externos, mas também ameaças internas à infraestrutura. Quanto ao conceito de Insider no contexto das ameaças cibernéticas, assinale a opção correta.
@@ -416,7 +416,7 @@ B) O insider atua exclusivamente mediante o envio massivo de e-mails de propagan
 C) O insider representa um tipo específico de vírus de setor de inicialização que infecta comutadores ópticos de alta velocidade.
 D) O insider é um colaborador ou agente interno que se aproveita de seus acessos e privilégios legítimos para violar normas ou vazar dados.
 E) O insider é um robô de inteligência artificial autônomo programado para monitorar vulnerabilidades em roteadores de borda.
-// Comentário: A alternativa D está correta, pois o termo insider (ameaça interna) designa o colaborador, prestador de serviço ou funcionário que, detendo privilégios e credenciais legítimas dentro da rede institucional, comete fraudes, subtrai dados confidenciais ou sabota sistemas. As alternativas A, C, D e E trazem definições incorretas ou absurdas para o termo.
+// Comentário: A alternativa D está correta, pois o termo insider (ameaça interna) designa o colaborador, prestador de serviço ou funcionário que, detendo privilégios e credenciais legítimas dentro da rede institucional, comete fraudes, subtrai dados confidenciais ou sabota sistemas. As demais alternativas apresentam afirmações incorretas.
 
 @@ a03/s02 | D
 Ambientes corporativos que utilizam intensivamente pacotes de automação de escritório frequentemente lidam com arquivos de texto e planilhas contendo rotinas automatizadas. Com relação às características dos vírus de macro, assinale a opção correta.
@@ -426,7 +426,7 @@ B) Os vírus de macro são autônomos e se propagam automaticamente por difusão
 C) Os vírus de macro afetam unicamente arquivos executáveis com extensão .exe, alterando os binários do compilador do sistema operacional.
 D) Os vírus de macro contaminam arquivos de aplicativos que utilizam linguagem de automação, como o Microsoft Office, agindo ao abrir o documento.
 E) Os vírus de macro não podem ser prevenidos pela desativação de recursos de macros ou pela exigência de certificados de confiança nos editores.
-// Comentário: A alternativa D está correta, pois os vírus de macro infectam arquivos de dados de aplicativos de produtividade (Word, Excel, PowerPoint) que executam rotinas em linguagens de script/macro (como VBA); a infecção propaga-se ao abrir o documento se as macros forem habilitadas. As alternativas A e D confundem vírus de macro com vírus de boot ou de arquivo. A alternativa B erra ao descrever o comportamento de worms. A alternativa E erra porque desabilitar macros é a principal medida de proteção contra esses códigos.
+// Comentário: A alternativa D está correta, pois os vírus de macro infectam arquivos de dados de aplicativos de produtividade (Word, Excel, PowerPoint) que executam rotinas em linguagens de script/macro (como VBA); a infecção propaga-se ao abrir o documento se as macros forem habilitadas. As demais alternativas apresentam afirmações incorretas.
 
 @@ a03/s02 | B
 Determinados códigos maliciosos atuam na fase inicial de carregamento do computador para assumir o controle do sistema antes da ativação dos mecanismos de proteção do sistema operacional. A respeito do vírus de boot, assinale a opção correta.
@@ -436,7 +436,7 @@ B) O vírus de boot instala-se na área de partida do disco (como o registro mes
 C) O vírus de boot aloja-se nas portas lógicas do firewall de borda, impedindo que requisições HTTP alcancem os servidores de aplicação.
 D) O vírus de boot atua apagando planilhas de cálculo financeiro no momento em que macros são salvas em formato de texto estruturado.
 E) A formatação rápida de um disco removível contaminado garante de forma infalível e definitiva a eliminação de qualquer vírus de boot residual.
-// Comentário: A alternativa B está correta, pois o vírus de boot (setor de inicialização) aloja-se no Master Boot Record (MBR) ou primeiro setor do disco/pendrive, carregando-se na memória RAM antes do sistema operacional. As alternativas A, B e C descrevem outros alvos. A alternativa E erra, pois a formatação rápida pode não reescrever o setor de boot/MBR, deixando o vírus latente na mídia.
+// Comentário: A alternativa B está correta, pois o vírus de boot (setor de inicialização) aloja-se no Master Boot Record (MBR) ou primeiro setor do disco/pendrive, carregando-se na memória RAM antes do sistema operacional. As demais alternativas apresentam afirmações incorretas.
 
 @@ a03/s02 | C
 Algumas pragas virtuais sofisticadas combinam diferentes vetores de ataque para ampliar sua persistência no sistema computacional e dificultar a ação de desinfecção. Acerca do vírus multipartite, assinale a opção correta.
@@ -446,7 +446,7 @@ B) O vírus multipartite atua unicamente durante o tráfego de pacotes UDP na re
 C) O vírus multipartite infecta simultaneamente arquivos executáveis e o setor de inicialização, exigindo tratamento em ambas as áreas para desinfecção.
 D) A remoção de um vírus multipartite é trivial, bastando fechar as janelas ativas do navegador sem necessidade de checagem do setor de boot.
 E) O vírus multipartite é uma modalidade inofensiva de código que apenas exibe mensagens humorísticas no monitor sem replicar código.
-// Comentário: A alternativa C está correta, pois o vírus multipartite reúne as características de vírus de arquivo e de vírus de boot, contaminando tanto programas executáveis (.exe) quanto o setor de inicialização (MBR); se apenas um dos focos for limpo, o sistema será reinfectado a partir do outro. As alternativas A, B, C e D trazem concepções manifestamente equivocadas.
+// Comentário: A alternativa C está correta, pois o vírus multipartite reúne as características de vírus de arquivo e de vírus de boot, contaminando tanto programas executáveis (.exe) quanto o setor de inicialização (MBR); se apenas um dos focos for limpo, o sistema será reinfectado a partir do outro. As demais alternativas apresentam afirmações incorretas.
 
 @@ a03/s02 | A
 As técnicas de evasão desenvolvidas por criadores de malwares visam burlar a detecção realizada por soluções antivírus baseadas em padrões estáticos de assinaturas binárias. Com relação às diferenças entre vírus polimórficos e metamórficos, assinale a opção correta.
@@ -476,7 +476,7 @@ B) O vírus time bomb caracteriza-se por deletar arquivos instantaneamente no ex
 C) O vírus time bomb propaga-se exclusivamente por meio de frequências sonoras emitidas pelos alto-falantes de computadores portáteis.
 D) O vírus time bomb afeta unicamente dispositivos periféricos de impressão, impedindo a emissão de comprovantes de pagamento bancário.
 E) O vírus time bomb permanece dormente após a infecção e dispara sua carga maliciosa em uma data ou horário pré-determinado pelo criador.
-// Comentário: A alternativa E está correta, pois a bomba-relógio (time bomb) é o malware dotado de mecanismo de ativação programado para detonar sua carga útil somente quando uma data, horário ou contagem de eventos específicos for atingida (ex.: vírus Sexta-feira 13, Chernobyl). As alternativas A, B, D e E trazem assertivas absurdas ou incorretas.
+// Comentário: A alternativa E está correta, pois a bomba-relógio (time bomb) é o malware dotado de mecanismo de ativação programado para detonar sua carga útil somente quando uma data, horário ou contagem de eventos específicos for atingida (ex.: vírus Sexta-feira 13, Chernobyl). As demais alternativas apresentam afirmações incorretas.
 
 @@ a03/s05 | D
 Ataques cibernéticos contra serviços governamentais frequentemente não buscam a invasão de bases nem a violação de sigilo, mas a paralisia do atendimento aos cidadãos. Com relação aos ataques de Negação de Serviço (DoS e DDoS), assinale a opção correta.
@@ -536,7 +536,7 @@ B) O honeypot é um recurso de defesa que simula um sistema deliberadamente vuln
 C) O honeypot opera interceptando silenciosamente senhas em texto claro em redes locais desprovidas de isolamento de portas comutadas.
 D) O honeypot é uma técnica de falsificação de páginas web que redireciona clientes bancários para servidores clonados da quadrilha criminosa.
 E) O honeypot substitui integralmente a necessidade de firewalls corporativos e antivírus residentes nos servidores centrais de produção.
-// Comentário: A alternativa B está correta, pois o honeypot (pote de mel) é uma ferramenta estritamente defensiva concebida para parecer um sistema real vulnerável; seu papel é atrair atacantes para longe dos ativos reais, retardá-los e coletar informações forenses sobre suas técnicas de ataque. As alternativas A, B e C confundem honeypot com malware, pharming/phishing ou sniffing. A alternativa E erra ao sugerir que o honeypot dispense os demais controles essenciais.
+// Comentário: A alternativa B está correta, pois o honeypot (pote de mel) é uma ferramenta estritamente defensiva concebida para parecer um sistema real vulnerável; seu papel é atrair atacantes para longe dos ativos reais, retardá-los e coletar informações forenses sobre suas técnicas de ataque. As demais alternativas apresentam afirmações incorretas.
 
 @@ a04/s02 | E
 A evolução dos programas antivírus levou ao desenvolvimento de técnicas capazes de identificar pragas virtuais antes que seus padrões binários fossem catalogados formalmente em bases de assinaturas. A respeito da análise heurística adotada pelos antivírus de 2ª geração, assinale a opção correta.
@@ -586,7 +586,7 @@ B) O antispyware combate programas espiões em segundo plano, como keyloggers e 
 C) O antispyware é desenvolvido unicamente para combater vírus de macro que infectam apresentações de slides em formato digital.
 D) O antispyware substitui os protocolos de roteamento dinâmico em redes corporativas comutadas para evitar congestionamentos de dados.
 E) O antispyware atua exclusivamente quando o usuário autoriza formalmente a gravação de suas senhas em servidores públicos remotos.
-// Comentário: A alternativa B está correta, pois o antispyware é uma ferramenta especializada em rastrear, bloquear e remover spywares (keyloggers, screenloggers, adwares intrusivos) projetados para espionar e violar a privacidade do usuário em segundo plano, disponibilizando área de quarentena para isolar arquivos sob suspeita. As alternativas A, B, C e E apresentam funções equivocadas ou desconexas.
+// Comentário: A alternativa B está correta, pois o antispyware é uma ferramenta especializada em rastrear, bloquear e remover spywares (keyloggers, screenloggers, adwares intrusivos) projetados para espionar e violar a privacidade do usuário em segundo plano, disponibilizando área de quarentena para isolar arquivos sob suspeita. As demais alternativas apresentam afirmações incorretas.
 
 @@ a04/s02 | C
 A análise dinâmica em ambientes controlados permite que pesquisadores e sistemas de proteção avaliem códigos suspeitos antes que provoquem danos aos sistemas reais. No que tange ao conceito e à operação de Sandbox em soluções antivírus, assinale a opção correta.
@@ -596,7 +596,7 @@ B) A sandbox atua desativando permanentemente a memória volátil do computador 
 C) A sandbox é um ambiente virtual isolado onde o código suspeito é executado para que seu comportamento seja monitorado com segurança.
 D) A sandbox realiza a assinatura digital de contratos corporativos utilizando algoritmos quânticos padronizados internacionalmente.
 E) A sandbox é um módulo de hardware conectado à placa-mãe que destrói fisicamente o disco rígido em caso de tentativa de invasão.
-// Comentário: A alternativa C está correta, pois uma sandbox (caixa de areia) consiste em um ambiente virtual restrito e rigorosamente isolado do restante do sistema operacional, permitindo executar programas suspeitos para observar suas ações (como tentativas de criar chaves no registro ou abrir conexões clandestinas) sem colocar em risco a máquina real. As alternativas A, B, C e D trazem concepções distorcidas ou fantasiosas do recurso.
+// Comentário: A alternativa C está correta, pois uma sandbox (caixa de areia) consiste em um ambiente virtual restrito e rigorosamente isolado do restante do sistema operacional, permitindo executar programas suspeitos para observar suas ações (como tentativas de criar chaves no registro ou abrir conexões clandestinas) sem colocar em risco a máquina real. As demais alternativas apresentam afirmações incorretas.
 
 @@ a04/s03 | E
 O policiamento de tráfego perimetral e a imposição de barreiras lógicas entre redes de diferentes níveis de confiança representam a essência técnica dos firewalls. Em relação à definição e às formas de implementação de um firewall corporativo, assinale a opção correta.
@@ -606,7 +606,7 @@ B) Um firewall existe exclusivamente na forma de dispositivos físicos de hardwa
 C) Um firewall destina-se primordialmente a identificar e eliminar arquivos executáveis contaminados por vírus já residentes no disco rígido.
 D) O firewall atua apenas sobre a rede elétrica dos servidores, protegendo centros de dados contra picos e descargas atmosféricas.
 E) Um firewall pode ser implementado exclusivamente em software, em hardware dedicado ou em soluções híbridas combinadas de ambos.
-// Comentário: A alternativa E está correta, pois o firewall pode ser implementado em software (aplicativos residentes no sistema operacional), em hardware dedicado (appliances corporativos) ou em modelos híbridos combinados. A alternativa B erra ao dizer que existe apenas em hardware. A alternativa C confunde firewall com antivírus. As alternativas D e E trazem assertivas absurdas sobre eletricidade e backups.
+// Comentário: A alternativa E está correta, pois o firewall pode ser implementado em software (aplicativos residentes no sistema operacional), em hardware dedicado (appliances corporativos) ou em modelos híbridos combinados. As demais alternativas apresentam afirmações incorretas.
 
 @@ a04/s03 | E
 A política de segurança perimetral configurada em um firewall dita o comportamento padrão do dispositivo diante de conexões desconhecidas ou não catalogadas. A respeito do modo operacional restritivo (baseado em lista branca), assinale a opção correta.
@@ -616,7 +616,7 @@ B) O modo restritivo é incompatível com ambientes corporativos públicos, send
 C) O modo restritivo é considerado tecnicamente menos seguro que o modo permissivo, pois aumenta a exposição das portas lógicas do sistema.
 D) O modo restritivo dispensa a criação de regras em listas de controle de acesso, operando por adivinhação estatística em redes locais.
 E) O modo restritivo bloqueia todo tráfego por padrão, autorizando somente as comunicações expressamente permitidas na política de segurança.
-// Comentário: A alternativa E está correta, pois a política restritiva (lista branca / default deny) bloqueia tudo aquilo que não foi expressamente autorizado, sendo a postura considerada mais segura em segurança da informação (análoga à estrita legalidade da administração pública). A alternativa A define o modo permissivo (lista negra). As alternativas C, D e E contêm afirmações sabidamente erradas.
+// Comentário: A alternativa E está correta, pois a política restritiva (lista branca / default deny) bloqueia tudo aquilo que não foi expressamente autorizado, sendo a postura considerada mais segura em segurança da informação (análoga à estrita legalidade da administração pública). As demais alternativas apresentam afirmações incorretas.
 
 @@ a04/s03 | E
 Em estações de trabalho individuais e computadores corporativos portáteis, soluções defensivas locais atuam para blindar o dispositivo contra explorações externas. No que tange às funcionalidades de um firewall pessoal, assinale a opção correta.
@@ -626,7 +626,7 @@ B) O firewall pessoal é capaz de desinfectar arquivos corrompidos por ransomwar
 C) O firewall pessoal impede a emissão de ondas de rádio em redes móveis 5G, limitando o dispositivo a cabos coaxiais de alta tensão.
 D) O firewall pessoal substitui a função dos navegadores de Internet, gerenciando o histórico de cookies e senhas bancárias em nuvem.
 E) O firewall pessoal monitora conexões de entrada e saída da máquina, bloqueando tentativas de invasão e comunicações de backdoors.
-// Comentário: A alternativa E está correta, pois o firewall pessoal (como o Windows Defender Firewall) inspeciona o tráfego que entra e sai do host local, protegendo portas lógicas contra varreduras externas e impedindo que backdoors ou trojans enviem dados não autorizados para fora. As alternativas A, B, D e E atribuem papéis alheios ao firewall pessoal.
+// Comentário: A alternativa E está correta, pois o firewall pessoal (como o Windows Defender Firewall) inspeciona o tráfego que entra e sai do host local, protegendo portas lógicas contra varreduras externas e impedindo que backdoors ou trojans enviem dados não autorizados para fora. As demais alternativas apresentam afirmações incorretas.
 
 @@ a04/s03 | D
 Os primeiros modelos de firewall surgiram integrados a roteadores de pacotes e baseavam suas decisões em campos básicos dos cabeçalhos dos protocolos de rede. Acerca do filtro de pacotes estático (stateless), assinale a opção correta.
@@ -656,7 +656,7 @@ B) O firewall garante proteção absoluta e infalível contra fraudes de engenha
 C) O firewall tem como objetivo primário monitorar a integridade física de cabos de fibra óptica e emissores laser em redes metropolitanas.
 D) O firewall não é capaz de detectar malwares embutidos no interior de arquivos transmitidos em conexões previamente autorizadas em suas regras.
 E) O firewall elimina completamente a necessidade de aplicação de patches de segurança e de atualizações nos softwares da rede local.
-// Comentário: A alternativa D está correta, pois o firewall convencional valida portas lógicas e endereços IP; se uma conexão for permitida (como o download de um arquivo executável via HTTP na porta 80/443), o firewall tradicional deixará o tráfego passar sem inspecionar o conteúdo interno do arquivo, papel que cabe ao antivírus. As alternativas B, C, D e E extrapolam totalmente o escopo e as capacidades de um firewall.
+// Comentário: A alternativa D está correta, pois o firewall convencional valida portas lógicas e endereços IP; se uma conexão for permitida (como o download de um arquivo executável via HTTP na porta 80/443), o firewall tradicional deixará o tráfego passar sem inspecionar o conteúdo interno do arquivo, papel que cabe ao antivírus. As demais alternativas apresentam afirmações incorretas.
 
 @@ a10/s01 | D
 O Microsoft PowerPoint consolidou-se como a ferramenta mais amplamente utilizada para a confecção e projeção de apresentações visuais no ambiente corporativo e governamental. Quanto ao histórico evolutivo e à origem do PowerPoint, assinale a opção correta.
@@ -666,7 +666,7 @@ B) O PowerPoint surgiu como um software proprietário desenvolvido pelas Forças
 C) O PowerPoint foi criado originariamente como um módulo acessório de edição de áudio da IBM para computadores de grande porte (mainframes).
 D) O PowerPoint foi concebido em 1987 pela empresa Forethought para computadores Macintosh, sendo adquirido logo em seguida pela Microsoft.
 E) O PowerPoint foi lançado inicialmente no ano de 2016 pela Microsoft como aplicativo de código aberto para sistemas operacionais Linux.
-// Comentário: A alternativa D está correta, pois o PowerPoint foi criado em 1987 por Robert Gaskins e Dennis Austin na empresa Forethought para a plataforma Apple Macintosh; pouco tempo após o lançamento, a Microsoft adquiriu a Forethought e incorporou o programa à sua suíte de escritório Office. As alternativas A, C, D e E trazem dados históricos manifestamente incorretos.
+// Comentário: A alternativa D está correta, pois o PowerPoint foi criado em 1987 por Robert Gaskins e Dennis Austin na empresa Forethought para a plataforma Apple Macintosh; pouco tempo após o lançamento, a Microsoft adquiriu a Forethought e incorporou o programa à sua suíte de escritório Office. As demais alternativas apresentam afirmações incorretas.
 
 @@ a10/s01 | A
 O lançamento do Microsoft PowerPoint 2013 trouxe alterações significativas na identidade visual padrão dos documentos e na usabilidade da ferramenta em telas modernas. A respeito das inovações introduzidas na versão 2013 do PowerPoint, assinale a opção correta.
@@ -716,7 +716,7 @@ B) A coautoria em tempo real elimina automaticamente qualquer versão anterior d
 C) A coautoria em tempo real bloqueia o arquivo por setenta e duas horas sempre que um segundo usuário tenta visualizar os slides já prontos.
 D) A coautoria em tempo real restringe-se a apresentações contendo no máximo três slides desprovidos de elementos visuais ou ilustrações.
 E) A coautoria em tempo real permite que múltiplos usuários editem a mesma apresentação simultaneamente na nuvem, vendo as ações de cada um.
-// Comentário: A alternativa E está correta, pois a coautoria em tempo real no Microsoft 365 permite que vários usuários abram e trabalhem simultaneamente sobre a mesma apresentação armazenada no OneDrive ou SharePoint, exibindo a presença, o cursor e as edições de cada participante em tempo real com preservação de versões anteriores. As alternativas A, C, D e E distorcem o funcionamento do recurso colaborativo.
+// Comentário: A alternativa E está correta, pois a coautoria em tempo real no Microsoft 365 permite que vários usuários abram e trabalhem simultaneamente sobre a mesma apresentação armazenada no OneDrive ou SharePoint, exibindo a presença, o cursor e as edições de cada participante em tempo real com preservação de versões anteriores. As demais alternativas apresentam afirmações incorretas.
 
 @@ a10/s02 | C
 A janela principal de trabalho do Microsoft PowerPoint apresenta elementos de interface organizados para agilizar o fluxo produtivo do usuário. No que se refere à Barra de Ferramentas de Acesso Rápido, assinale a opção correta.
@@ -796,7 +796,7 @@ B) O comando Caixa de Texto está situado compulsoriamente na guia Design, dentr
 C) O comando Caixa de Texto pertence à guia Transições, integrando as opções avançadas de intervalo entre diapositivos.
 D) O comando Caixa de Texto localiza-se na guia Inserir, integrando o grupo Texto ao lado de Cabeçalho e Rodapé e WordArt.
 E) O comando Caixa de Texto situa-se prioritariamente na guia Página Inicial, compondo o grupo de formatação de Parágrafo.
-// Comentário: A alternativa D está correta, pois na interface padrão do Microsoft PowerPoint o comando "Caixa de Texto" situa-se na guia Inserir, grupo Texto (ao lado de Cabeçalho e Rodapé, WordArt, Número do Slide e Data e Hora). Uma pegadinha muito comum de bancas examinadoras é sugerir que a Caixa de Texto pertença à guia Página Inicial ou Design, o que torna as alternativas A, B, C e D incorretas.
+// Comentário: A alternativa D está correta, pois na interface padrão do Microsoft PowerPoint o comando "Caixa de Texto" situa-se na guia Inserir, grupo Texto (ao lado de Cabeçalho e Rodapé, WordArt, Número do Slide e Data e Hora). Uma pegadinha muito comum de bancas examinadoras é sugerir que a Caixa de Texto pertença à guia Página Inicial ou Design, o que torna as alternativas A, B, C e E incorretas.
 
 @@ a10/s04 | C
 A preparação de uma apresentação pode exigir a adequação das dimensões dos slides ao equipamento de projeção ou a padrões impressos personalizados. No Microsoft PowerPoint, para personalizar as dimensões físicas dos slides, assinale a opção que apresenta o procedimento correto.
@@ -806,7 +806,7 @@ B) Guia Inserir > grupo Ilustrações > comando Formas > Redimensionar Telas de 
 C) Guia Design > grupo Personalizar > comando Tamanho do Slide > Tamanho do Slide Personalizado.
 D) Guia Exibir > grupo Modos de Exibição de Apresentação > comando Classificação de Slides.
 E) Guia Transições > grupo Intervalo > comando Duração de Slides em Tela Panorâmica.
-// Comentário: A alternativa C está correta, pois o caminho oficial e padronizado para alterar a proporção (16:9 ou 4:3) ou ajustar medidas personalizadas de largura e altura em centímetros é: guia Design > grupo Personalizar > comando Tamanho do Slide > Tamanho do Slide Personalizado. As alternativas B, C, D e E apontam caminhos inexistentes ou alheios à definição das dimensões do slide.
+// Comentário: A alternativa C está correta, pois o caminho oficial e padronizado para alterar a proporção (16:9 ou 4:3) ou ajustar medidas personalizadas de largura e altura em centímetros é: guia Design > grupo Personalizar > comando Tamanho do Slide > Tamanho do Slide Personalizado. As demais alternativas apresentam afirmações incorretas.
 
 @@ a10/s04 | D
 A distinção conceitual e prática entre os recursos visuais disponíveis no Microsoft PowerPoint é frequentemente cobrada em concursos públicos. Acerca das diferenças entre Transição e Animação no PowerPoint, assinale a opção correta.
@@ -816,7 +816,7 @@ B) A animação pode ser aplicada unicamente ao plano de fundo geral dos slides,
 C) A transição e a animação são termos estritamente sinônimos no aplicativo, aplicando-se indistintamente a qualquer elemento gráfico da tela.
 D) A transição consiste no efeito visual ao passar de um slide para o outro, ao passo que a animação é o efeito em objetos dentro de um mesmo slide.
 E) O efeito de transição é visível apenas no Modo de Exibição Normal, sendo suprimido quando a apresentação é projetada em tela cheia.
-// Comentário: A alternativa D está correta, sintetizando a distinção fundamental do PowerPoint: "Transição" é o efeito visual exibido durante a passagem de um slide para o seguinte (no modo Apresentação de Slides), enquanto "Animação" é o efeito visual dinâmico aplicado a objetos específicos (textos, gráficos, imagens) situados dentro de um mesmo slide. As alternativas A, C, D e E trazem confusões conceituais recorrentes em provas.
+// Comentário: A alternativa D está correta, sintetizando a distinção fundamental do PowerPoint: "Transição" é o efeito visual exibido durante a passagem de um slide para o seguinte (no modo Apresentação de Slides), enquanto "Animação" é o efeito visual dinâmico aplicado a objetos específicos (textos, gráficos, imagens) situados dentro de um mesmo slide. As demais alternativas apresentam afirmações incorretas.
 
 @@ a10/s04 | C
 Ao configurar os efeitos visuais de mudança de tela em uma apresentação com dezenas de diapositivos, o apresentador busca padronizar a experiência do público. Na guia Transições do Microsoft PowerPoint, assinale a opção que indica a finalidade do recurso "Aplicar a Todos":
@@ -836,7 +836,7 @@ B) As animações classificam-se em efeitos de hardware de vídeo, efeitos de ca
 C) Os efeitos de animação subdividem-se exclusivamente em efeitos monetários, efeitos contábeis e efeitos estatísticos descritivos.
 D) A guia Animações disponibiliza apenas efeitos de Saída, sendo vedado animar o surgimento ou o deslocamento de objetos no slide.
 E) As animações estruturam-se em quatro tipos formais: efeitos de Entrada, efeitos de Ênfase, efeitos de Saída e Caminhos de Animação.
-// Comentário: A alternativa E está correta, pois os efeitos de animação de objetos no PowerPoint organizam-se formalmente em quatro categorias estruturadas: Entrada (como o objeto aparece na tela), Ênfase (destaque do objeto já presente, mudando cor ou tamanho), Saída (como o objeto sai ou desaparece do slide) e Caminhos de Animação (trajetórias pré-definidas ou personalizadas de deslocamento espacial). As alternativas A, B, C e E apresentam classificações inexistentes.
+// Comentário: A alternativa E está correta, pois os efeitos de animação de objetos no PowerPoint organizam-se formalmente em quatro categorias estruturadas: Entrada (como o objeto aparece na tela), Ênfase (destaque do objeto já presente, mudando cor ou tamanho), Saída (como o objeto sai ou desaparece do slide) e Caminhos de Animação (trajetórias pré-definidas ou personalizadas de deslocamento espacial). As demais alternativas apresentam afirmações incorretas.
 
 @@ a10/s04 | B
 Na edição avançada de animações, replicar individualmente conjuntos complexos de temporização e efeitos sobre dezenas de objetos pode tornar-se uma tarefa repetitiva e sujeita a falhas. No Microsoft PowerPoint, para copiar rapidamente os efeitos de animação de um objeto para outro, assinale a opção que indica a ferramenta adequada:
@@ -926,7 +926,7 @@ B) As imagens da apresentação de slides devem ser obrigatoriamente gravadas em
 C) A tela de fundo em modo de apresentação de slides suporta exclusivamente imagens no formato vetorial EPS com resolução padronizada em 8K.
 D) A apresentação de slides na tela de fundo exige a desativação permanente de todos os ícones e atalhos presentes na Área de Trabalho.
 E) O usuário pode apontar uma pasta contendo suas imagens e definir o intervalo de alternância entre as opções de um minuto até um dia.
-// Comentário: A alternativa E está correta, pois em Configurações > Personalização > Tela de Fundo > Apresentação de Slides, o usuário escolhe uma pasta de imagens (álbum) e pode ajustar a frequência de mudança entre 1 minuto, 10 minutos, 30 minutos, 1 hora, 6 horas ou 1 dia, além de poder ativar a ordem aleatória (embaralhar). As alternativas A, B, D e E trazem restrições inexistentes.
+// Comentário: A alternativa E está correta, pois em Configurações > Personalização > Tela de Fundo > Apresentação de Slides, o usuário escolhe uma pasta de imagens (álbum) e pode ajustar a frequência de mudança entre 1 minuto, 10 minutos, 30 minutos, 1 hora, 6 horas ou 1 dia, além de poder ativar a ordem aleatória (embaralhar). As demais alternativas apresentam afirmações incorretas.
 
 @@ a12/s09 | D
 O conforto visual e o contraste da interface do Windows 11 podem ser adaptados por meio de paletas escuras ou claras em conformidade com as preferências individuais. Em relação aos ajustes disponíveis em Configurações > Personalização > Cores, assinale a opção correta.
@@ -966,7 +966,7 @@ B) A criação de uma Conta Local transforma automaticamente o usuário em admin
 C) A Conta Local exige conexão ininterrupta à Internet para validar o login do usuário no momento de inicialização do sistema operacional.
 D) A Conta Microsoft impede a utilização de autenticação biométrica e do recurso de proteção Windows Hello em computadores compatíveis.
 E) A Conta Microsoft vincula-se a um e-mail e permite sincronizar configurações e senhas na nuvem, enquanto a Conta Local opera apenas no computador físico.
-// Comentário: A alternativa E está correta, pois a Conta Microsoft utiliza credenciais integradas a serviços online (OneDrive, Store), permitindo sincronizar preferências, papéis de parede e senhas entre múltiplos dispositivos conectados; já a Conta Local opera de forma offline e independente, mantendo seus dados e autenticação restritos à máquina física. A alternativa A inverte os conceitos. A alternativa C erra porque contas locais funcionam perfeitamente sem Internet. As alternativas D e E trazem assertivas descabidas.
+// Comentário: A alternativa E está correta, pois a Conta Microsoft utiliza credenciais integradas a serviços online (OneDrive, Store), permitindo sincronizar preferências, papéis de parede e senhas entre múltiplos dispositivos conectados; já a Conta Local opera de forma offline e independente, mantendo seus dados e autenticação restritos à máquina física. As demais alternativas apresentam afirmações incorretas.
 
 @@ a12/s09 | B
 O trabalho de editoração gráfica e formatação textual exige a instalação e o gerenciamento de famílias tipográficas no sistema operacional. No Windows 11, em relação à seção Fontes (localizada em Configurações > Personalização), assinale a opção correta.
@@ -976,7 +976,7 @@ B) O usuário pode visualizar amostras, desinstalar famílias tipográficas e ob
 C) As fontes tipográficas no Windows 11 são armazenadas como tabelas dinâmicas em servidores de bancos de dados relacionais na rede local.
 D) A instalação de novas fontes no Windows 11 depende obrigatoriamente da exclusão prévia do aplicativo Bloco de Notas do computador.
 E) A seção Fontes destina-se a gerenciar a voltagem e o fornecimento elétrico da fonte de alimentação de energia do centro de processamento de dados.
-// Comentário: A alternativa B está correta, pois em Configurações > Personalização > Fontes o usuário pode gerenciar todas as tipografias instaladas no sistema, inspecionar variações de pesos e amostras de caracteres, arrastar e soltar arquivos nos formatos .ttf e .otf para instalação ou baixá-las da Microsoft Store. As alternativas A, B e D trazem regras inexistentes. A alternativa E confunde fonte tipográfica com a fonte de alimentação elétrica de hardware.
+// Comentário: A alternativa B está correta, pois em Configurações > Personalização > Fontes o usuário pode gerenciar todas as tipografias instaladas no sistema, inspecionar variações de pesos e amostras de caracteres, arrastar e soltar arquivos nos formatos .ttf e .otf para instalação ou baixá-las da Microsoft Store. As demais alternativas apresentam afirmações incorretas.
 
 @@ a12/s10 | A
 O recurso Windows Hello proporciona mecanismos modernos de autenticação sem senha baseados em reconhecimento biométrico e chaves seguras. A respeito do armazenamento e do tratamento de dados biométricos no Windows Hello, assinale a opção correta.
@@ -996,7 +996,7 @@ B) O Bloqueio Dinâmico exige a leitura contínua da íris ocular por câmeras t
 C) O Bloqueio Dinâmico utiliza o pareamento Bluetooth com o celular do usuário para bloquear o computador automaticamente quando a pessoa se afasta do alcance.
 D) O Bloqueio Dinâmico transfere compulsoriamente os arquivos confidenciais do usuário para repositórios em nuvem pública sempre que uma janela é minimizada.
 E) O Bloqueio Dinâmico bloqueia a tela automaticamente no exato milissegundo em que um cabo de rede de fibra óptica sofre oscilação de temperatura.
-// Comentário: A alternativa C está correta, pois o Bloqueio Dinâmico (Dynamic Lock) emparelha o computador com um smartphone via Bluetooth; quando o sinal enfraquece indicando que o usuário se afastou levando o telefone, o Windows 11 bloqueia a tela automaticamente após breve intervalo, prevenindo acessos indevidos. As alternativas A, B, C e D trazem afirmativas fantasiosas.
+// Comentário: A alternativa C está correta, pois o Bloqueio Dinâmico (Dynamic Lock) emparelha o computador com um smartphone via Bluetooth; quando o sinal enfraquece indicando que o usuário se afastou levando o telefone, o Windows 11 bloqueia a tela automaticamente após breve intervalo, prevenindo acessos indevidos. As demais alternativas apresentam afirmações incorretas.
 
 @@ a12/s10 | C
 As ferramentas de acessibilidade integradas ao Windows 11 destinam-se a garantir a inclusão digital e facilitar o uso do sistema por pessoas com limitações visuais ou auditivas. Com relação à ferramenta Lupa (Magnifier) do Windows 11, assinale a opção correta.
@@ -1016,7 +1016,7 @@ B) Iniciar > Configurações > Jogos > Xbox Game Bar e Widgets
 C) Iniciar > Configurações > Rede e Internet > Conexões de Rede Dial-up
 D) Iniciar > Configurações > Hora e Idioma > Idioma e Região (ou Digitação)
 E) Iniciar > Configurações > Aplicativos > Aplicativos Instalados e Recursos
-// Comentário: A alternativa D está correta, pois as configurações relativas a leiaute de teclado (como ABNT, ABNT2 ou teclado internacional dos EUA), idiomas preferenciais de digitação e formatos regionais localizam-se na categoria "Hora e Idioma" do aplicativo Configurações do Windows 11. Uma pegadinha comum de provas é sugerir que ajustes de teclado estejam em Dispositivos ou Sistema. As alternativas A, C, D e E indicam seções alheias a teclados e idiomas.
+// Comentário: A alternativa D está correta, pois as configurações relativas a leiaute de teclado (como ABNT, ABNT2 ou teclado internacional dos EUA), idiomas preferenciais de digitação e formatos regionais localizam-se na categoria "Hora e Idioma" do aplicativo Configurações do Windows 11. Uma pegadinha comum de provas é sugerir que ajustes de teclado estejam em Dispositivos ou Sistema. As demais alternativas apresentam afirmações incorretas.
 
 @@ a12/s10 | C
 A preservação de documentos e arquivos de trabalho contra exclusões acidentais ou danos físicos em unidades de armazenamento pode ser realizada por recursos nativos de salvaguarda do Windows. A respeito do Histórico de Arquivos no sistema operacional Windows, assinale a opção correta.
