@@ -2,9 +2,11 @@
 // edital do PCPE que ainda não têm questão real. Fonte: content/questoes/ineditas/*.txt (veja
 // pipeline/questoes/ineditas.py). São provisórias: quando as questões reais do TecConcursos chegarem, aposente-as.
 //
-//   pipeline/.venv/Scripts/python pipeline/questoes/ineditas.py --json lote.json     (gera o lote)
+//   pipeline/.venv/Scripts/python pipeline/questoes/ineditas.py --json lote.json     (gera o lote certo/errado)
+//   pipeline/.venv/Scripts/python pipeline/questoes/ineditas_mc.py --json lote-mc.json   (lote de múltipla escolha, o formato da prova)
 //   npx tsx scripts/questoes-ineditas.ts lote.json                  # grava no banco local (web/.env)
 //   npx tsx scripts/questoes-ineditas.ts lote.json --remoto         # grava na produção (web/.env.remote)
+//   npx tsx scripts/questoes-ineditas.ts lote.json --retirar-ausentes   # grava e aposenta (RETIRED) as inéditas do mesmo batch que não estão mais no lote (texto editado = id novo)
 //   npx tsx scripts/questoes-ineditas.ts --contar [--remoto]        # só leitura: inéditas por assunto
 //   npx tsx scripts/questoes-ineditas.ts --aposentar [--minimo 8] [--remoto]
 //        # inédita de assunto que já tem ao menos N questões reais aprovadas (de outra origem) vira RETIRED
@@ -39,7 +41,9 @@ const db = new PrismaClient({ adapter: new PrismaPg({ connectionString: url }) }
 
 type Row = {
   id: string; subjectId: string; aulaId: string; segmentId: string; editalItemId: string | null;
-  statement: string; answer: "C" | "E"; explanation: string; banca: string; batch: string;
+  statement: string; answer?: "C" | "E"; explanation: string; banca: string; batch: string;
+  kind?: "MULTIPLA_ESCOLHA" | "CERTO_ERRADO"; // padrão: CERTO_ERRADO (ineditas.py); múltipla escolha vem de ineditas_mc.py
+  options?: { label: string; text: string; isCorrect: boolean }[];
 };
 
 async function contar() {
@@ -81,23 +85,29 @@ async function gravar(rows: Row[]) {
       subjectId: r.subjectId, aulaId: r.aulaId, segmentId: r.segmentId, editalItemId,
       topic: editalItemId ? titles.get(editalItemId) ?? null : null,
       support: null, statement: r.statement, explanation: r.explanation, difficulty: 2, pattern: "CEBRASPE",
-      status: "APPROVED" as const, batch: r.batch, banca: r.banca, kind: "CERTO_ERRADO" as const,
+      status: "APPROVED" as const, batch: r.batch, banca: r.banca, kind: (r.kind ?? "CERTO_ERRADO") as "MULTIPLA_ESCOLHA" | "CERTO_ERRADO",
       tecMateria: "Inédita MentorIA", tecAssunto: editalItemId ? titles.get(editalItemId) ?? null : null,
       classifiedBy: "MANUAL" as const, importedAt: new Date(),
     };
     const exists = await db.question.findUnique({ where: { id: r.id }, select: { id: true } });
     if (exists) await db.question.update({ where: { id: r.id }, data });
     else await db.question.create({ data: { id: r.id, ...data } });
-    for (const [label, text] of [["C", "Certo"], ["E", "Errado"]] as const) {
+    const opts = r.options ?? ([["C", "Certo"], ["E", "Errado"]] as const).map(([label, text]) => ({ label, text, isCorrect: r.answer === label }));
+    for (const o of opts) {
       await db.questionOption.upsert({
-        where: { questionId_label: { questionId: r.id, label } },
-        create: { questionId: r.id, label, text, isCorrect: r.answer === label },
-        update: { text, isCorrect: r.answer === label },
+        where: { questionId_label: { questionId: r.id, label: o.label } },
+        create: { questionId: r.id, label: o.label, text: o.text, isCorrect: o.isCorrect },
+        update: { text: o.text, isCorrect: o.isCorrect },
       });
     }
     if (exists) updated++; else created++;
   }
-  console.log(JSON.stringify({ target: remote ? "remoto" : "local", total: rows.length, created, updated, skipped }));
+  let retired = 0;
+  if (args.includes("--retirar-ausentes")) {
+    const r = await db.question.updateMany({ where: { banca: BANCA, batch: { in: [...new Set(rows.map((x) => x.batch))] }, id: { notIn: rows.map((x) => x.id) }, status: "APPROVED" }, data: { status: "RETIRED" } });
+    retired = r.count;
+  }
+  console.log(JSON.stringify({ target: remote ? "remoto" : "local", total: rows.length, created, updated, retired, skipped }));
 }
 
 (async () => {

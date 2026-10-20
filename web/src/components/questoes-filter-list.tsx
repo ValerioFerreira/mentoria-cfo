@@ -24,11 +24,12 @@ import { MontarCadernoModal } from "@/components/montar-caderno-modal";
 
 interface Props {
   subjects: SubjectOverview[];
+  blockNames?: Partial<Record<"I" | "II" | "III", string>>;
   availableBancas?: string[];
   bancaCounts?: Record<string, number>;
 }
 
-export function QuestoesFilterList({ subjects, availableBancas = [], bancaCounts = {} }: Props) {
+export function QuestoesFilterList({ subjects, blockNames, availableBancas = [], bancaCounts = {} }: Props) {
   const [search, setSearch] = useState("");
   const [selectedBlock, setSelectedBlock] = useState<string>("ALL");
   const [selectedBancas, setSelectedBancas] = useState<string[]>([]);
@@ -227,10 +228,10 @@ export function QuestoesFilterList({ subjects, availableBancas = [], bancaCounts
           <div className="flex items-center gap-1.5 overflow-x-auto pb-0.5 sm:pb-0">
             {[
               { id: "ALL", label: "Todos os Blocos" },
-              { id: "I", label: "Bloco I" },
-              { id: "II", label: "Bloco II" },
-              { id: "III", label: "Bloco III" },
-            ].map((b) => (
+              { id: "I", label: blockNames?.I ?? "Bloco I" },
+              { id: "II", label: blockNames?.II ?? "Bloco II" },
+              { id: "III", label: blockNames?.III ?? "Bloco III" },
+            ].filter((b) => b.id === "ALL" || subjects.some((s) => s.block === b.id)).map((b) => (
               <button
                 key={b.id}
                 onClick={() => setSelectedBlock(b.id)}
@@ -437,7 +438,7 @@ export function QuestoesFilterList({ subjects, availableBancas = [], bancaCounts
                           {s.name}
                         </span>
                         <Badge tone="neutral" className="text-[10px]">
-                          Bloco {s.block}
+                          {blockNames?.[s.block] ?? `Bloco ${s.block}`}
                         </Badge>
                         {/* Regra de exibição dos badges de banca:
                             - Em "Todas as bancas": NÃO APARECEM nomes das bancas

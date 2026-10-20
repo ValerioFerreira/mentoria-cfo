@@ -57,13 +57,13 @@ function perDay(h: number) {
 type Preview = Awaited<ReturnType<typeof previewPlan>>;
 type Marks = Record<string, 1 | 2>;
 
-export function Wizard({ subjects, todayIso, initial }: { subjects: WizardSubject[]; todayIso: string; initial?: WizardInitial | null }) {
+export function Wizard({ subjects, todayIso, initial, defaultExamDate, blockNames }: { subjects: WizardSubject[]; todayIso: string; initial?: WizardInitial | null; defaultExamDate?: string | null; blockNames?: Partial<Record<"I" | "II" | "III", string>> }) {
   const [step, setStep] = useState(0);
   // ao refazer o plano, tudo já vem com as escolhas do plano vigente; sem plano anterior valem os padrões
   const [selected, setSelected] = useState<Set<string>>(() => new Set(initial?.selected ?? subjects.filter((s) => s.id !== "lingua-inglesa").map((s) => s.id)));
   const [unselectedTopics, setUnselectedTopics] = useState<Set<string>>(() => new Set(initial?.unselectedTopics));
   const [hours, setHours] = useState(initial?.hours ?? 38);
-  const [examDate, setExamDate] = useState(initial?.examDate ?? EXAM_DEFAULT);
+  const [examDate, setExamDate] = useState(initial?.examDate ?? defaultExamDate ?? EXAM_DEFAULT);
   // início dos estudos: "now" = hoje (calculado no servidor, fuso de Recife) ou uma data da agenda
   const [startMode, setStartMode] = useState<"now" | "date">(initial?.startMode ?? "now");
   const [startPick, setStartPick] = useState(initial?.startPick ?? todayIso);
@@ -245,11 +245,11 @@ export function Wizard({ subjects, todayIso, initial }: { subjects: WizardSubjec
               <Button variant="ghost" size="sm" onClick={() => setSelected(new Set())}>Limpar</Button>
               <span className="ml-auto font-semibold text-muted tabular"><strong className="font-display text-xl text-text">{chosen.length}</strong> escolhidas · <strong className="font-display text-xl text-text">{points}</strong> questões da prova</span>
             </div>
-            {(["I", "II", "III"] as const).map((b) => (
+            {(["I", "II", "III"] as const).filter((b) => others.some((s) => s.block === b) || (b === "I" && langs.length > 0)).map((b) => (
               <fieldset key={b} className="space-y-2.5">
                 <legend className="mb-1 flex items-center gap-2 font-display text-xl font-bold uppercase tracking-wide">
                   <span className="h-3 w-3 rounded-[4px]" style={{ background: BLOCK_COLOR[b] }} aria-hidden />
-                  {BLOCK_NAME[b]}
+                  {blockNames?.[b] ?? BLOCK_NAME[b]}
                 </legend>
                 <div className="grid gap-2.5 sm:grid-cols-2">
                   {others.filter((s) => s.block === b).map((s) => (
@@ -263,7 +263,7 @@ export function Wizard({ subjects, todayIso, initial }: { subjects: WizardSubjec
                       onSetAllTopics={(selectAll) => setAllTopics(s, selectAll)}
                     />
                   ))}
-                  {b === "I" && (
+                  {b === "I" && langs.length > 0 && (
                     <Card className={cx("p-4 transition sm:col-span-2 space-y-3", langs.some((l) => selected.has(l.id)) && "border-primary")}>
                       <div className="flex flex-wrap items-center justify-between gap-3">
                         <div>

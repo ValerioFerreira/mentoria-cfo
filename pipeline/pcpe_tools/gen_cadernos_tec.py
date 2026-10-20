@@ -259,7 +259,7 @@ def main() -> None:
            "> Gerado por `pipeline/pcpe_tools/gen_cadernos_tec.py` a partir do edital do PCPE (`content/edital`) e dos trechos do plano (`importance/segments.json`). Planilha equivalente: `PCPE-CADERNOS-TEC.csv`.", "",
            "## Filtros comuns a todos os cadernos", "",
            "- **Banca:** CEBRASPE (aparece como *CESPE / CEBRASPE*, *Cebraspe* ou *Cespe/UnB*; marque todas as grafias que o TEC oferecer). O caderno das atividades e os simulados do PCPE usam **só** essa banca.",
-           "- **Questões:** exclua *anuladas* e *desatualizadas*. Mantenha **Certo/Errado e múltipla escolha** (a prova do PCPE tem 60 itens e o sistema importa os dois tipos).",
+           "- **Questões:** exclua *anuladas* e *desatualizadas*. Prefira **múltipla escolha com 5 alternativas**: o edital do PCPE (item 8.2) define a prova objetiva assim, com 60 questões (20 de Noções de Direito e 40 de Conhecimentos Específicos). Certo/Errado também serve para treino por assunto, e o sistema importa os dois tipos.",
            "- **Ano:** de 2015 em diante para as disciplinas de legislação (Direito Constitucional, Administrativo, Penal, Processual Penal, Legislação Penal Especial, Legislação do PCPE); de 2012 em diante nas demais. Se faltar volume, amplie o intervalo.",
            "- **Órgão/Cargo:** não restrinja (Polícia Civil, Polícia Federal, PRF, tribunais e MP servem); só na *Legislação do PCPE* filtre **Órgão = PC-PE**.",
            "- **Ordenação:** por **Assunto** (ajuda a importar e classificar). **Nome do caderno:** exatamente o da tabela (o importador usa o título do caderno para organizar o relatório).",

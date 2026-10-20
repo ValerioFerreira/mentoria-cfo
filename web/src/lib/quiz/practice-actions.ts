@@ -7,6 +7,7 @@ import { subjectName } from "@/lib/ui-format";
 import { canUserAccessCoreFeatures } from "@/lib/system-settings";
 import { getUserContest, getUserEditalSubjects } from "@/lib/user-contest";
 import { hideInedita } from "@/lib/quiz/banca";
+import { filterByTopics, makeTopicResolver } from "@/lib/quiz/topic-map";
 
 const OUTSIDE_EDITAL = "Esta disciplina não faz parte do edital do seu concurso.";
 
@@ -19,17 +20,12 @@ function shuffle<T>(arr: T[]): T[] {
   return copy;
 }
 
-// "topic" é o id do item do edital (ou "outros" para as questões sem item); "bancas" vazio = todas.
-function topicWhere(topic: string): Record<string, unknown> {
-  return topic === "outros" ? { editalItemId: null } : { editalItemId: topic };
-}
-
-function topicsWhere(topics: string[]): Record<string, unknown>[] {
-  const ids = topics.filter((t) => t !== "outros");
-  const out: Record<string, unknown>[] = [];
-  if (ids.length) out.push({ editalItemId: { in: ids } });
-  if (topics.includes("outros")) out.push({ editalItemId: null });
-  return out;
+// "topic" é o id do item do edital do concurso do aluno (ou "outros" para as questões sem item); "bancas" vazio = todas.
+// O assunto de cada questão é resolvido por `makeTopicResolver` (no PCPE, as questões de aulas que o edital dele trata
+// entram nos assuntos próprios dele), então o filtro por assunto é feito aqui, e não no banco.
+async function topicResolver(contest: Parameters<typeof makeTopicResolver>[1]) {
+  const items = await db.editalItem.findMany({ select: { id: true, subjectId: true, onlyContests: true, excludeContests: true, aulaIds: true } });
+  return makeTopicResolver(items.map((i) => ({ ...i, aulaIds: (i.aulaIds as string[]) ?? [] })), contest);
 }
 
 export async function startSubjectPracticeQuiz(input: {
@@ -53,17 +49,16 @@ export async function startSubjectPracticeQuiz(input: {
     ...hideInedita(contest),
   };
 
-  if (input.topic && input.topic.trim()) {
-    Object.assign(whereClause, topicWhere(input.topic.trim()));
-  }
   if (input.bancas && input.bancas.length > 0) {
     whereClause.banca = { in: input.bancas };
   }
 
-  const questions = await db.question.findMany({
+  const candidates = await db.question.findMany({
     where: whereClause,
-    select: { id: true, segmentId: true },
+    select: { id: true, segmentId: true, subjectId: true, aulaId: true, editalItemId: true },
   });
+  const topic = input.topic?.trim();
+  const questions = topic ? filterByTopics(candidates, [topic], await topicResolver(contest)) : candidates;
 
   if (questions.length === 0) {
     return { error: "Nenhuma questão disponível para este filtro no momento." };
@@ -148,35 +143,22 @@ export async function createCustomNotebook(
   }
 
   const selectedQuestionIds = new Set<string>();
-  const hide = hideInedita(await getUserContest(user.email));
+  const contest = await getUserContest(user.email);
+  const hide = hideInedita(contest);
+  const resolve = await topicResolver(contest);
 
   if (input.mode === "TOTAL") {
     // Modo Quantidade Total: seleciona aleatoriamente entre o universo dos filtros escolhidos
     const requestedTotal = input.totalCount && input.totalCount > 0 ? input.totalCount : 20;
 
-    // Montar filtros OR para as matérias e seus respectivos tópicos
-    const orConditions: any[] = [];
-    for (const item of input.items) {
-      if (item.topics && item.topics.length > 0) {
-        orConditions.push({
-          subjectId: item.subjectId,
-          OR: topicsWhere(item.topics),
-          status: "APPROVED",
-          ...hide,
-        });
-      } else {
-        orConditions.push({
-          subjectId: item.subjectId,
-          status: "APPROVED",
-          ...hide,
-        });
-      }
-    }
-
-    const availableQuestions = await db.question.findMany({
-      where: { OR: orConditions },
-      select: { id: true, subjectId: true },
+    // Questões das matérias escolhidas; o filtro por assunto vale por matéria (assunto do edital do concurso do aluno)
+    const candidates = await db.question.findMany({
+      where: { OR: input.items.map((item) => ({ subjectId: item.subjectId, status: "APPROVED" as const, ...hide })) },
+      select: { id: true, subjectId: true, aulaId: true, editalItemId: true },
     });
+    const availableQuestions = input.items.flatMap((item) =>
+      filterByTopics(candidates.filter((q) => q.subjectId === item.subjectId), item.topics, resolve),
+    );
 
     if (availableQuestions.length === 0) {
       return { error: "Não foram encontradas questões aprovadas para os filtros selecionados." };
@@ -210,20 +192,11 @@ export async function createCustomNotebook(
     for (const item of input.items) {
       const want = item.count && item.count > 0 ? item.count : 5;
 
-      const whereClause: any = {
-        subjectId: item.subjectId,
-        status: "APPROVED",
-        ...hide,
-      };
-
-      if (item.topics && item.topics.length > 0) {
-        whereClause.OR = topicsWhere(item.topics);
-      }
-
-      const questions = await db.question.findMany({
-        where: whereClause,
-        select: { id: true },
+      const subjectQuestions = await db.question.findMany({
+        where: { subjectId: item.subjectId, status: "APPROVED", ...hide },
+        select: { id: true, subjectId: true, aulaId: true, editalItemId: true },
       });
+      const questions = filterByTopics(subjectQuestions, item.topics, resolve);
 
       if (questions.length < want) {
         const sName = subjectName(item.subjectId);
