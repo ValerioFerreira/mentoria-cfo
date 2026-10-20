@@ -168,3 +168,75 @@
 
 1. **Mapeamento de trechos e itens do edital**: Todos os 17 trechos de Informática possuem correspondência automática direta e unívoca no mapa do edital do PCPE (`p1.2`, `p1.3`, `p2.3`, `p3.1` e `p3.4`), dispensando o uso de qualificadores `| item=` adicionais.
 2. **Nenhuma controvérsia técnica remanescente**: Todas as opções e conceitos adotados representam o estado da arte e a doutrina unânime da área de tecnologia da informação em concursos públicos contemporâneos.
+
+
+---
+
+## 13. Raciocínio Lógico — Resumo da Produção e Validação
+
+- **Trechos cobertos:** 29 trechos (todos os 29 trechos faltantes de Raciocínio Lógico).
+- **Questões escritas:** 174 questões inéditas de múltipla escolha (5 alternativas A a E, uma única correta, padrão Cebraspe).
+- **Meta por trecho:** 6 questões por trecho (todos com 6/6 atingidos).
+- **Arquivo gerado:** `content/questoes/ineditas/mc/raciocinio-logico.txt`.
+- **Resultado do validador (`ineditas_mc_nativas.py --check`):**
+  - Raciocínio Lógico: 174 questões · A 35 · B 35 · C 35 · D 35 · E 34
+  - Erros: 0 (distribuição perfeitamente equilibrada de ~20% por alternativa, sem nenhuma letra excedendo o limite de 30%/32%).
+- **Resultado da cobertura (`cobertura_ineditas.py --minimo 6`):**
+  - Raciocínio Lógico integralmente coberto (29/29 trechos com >= 6 questões; 140/140 trechos no projeto global).
+
+---
+
+## 14. Raciocínio Lógico — Detalhamento por Trecho
+
+| Trecho | Aula | Tópicos Cobertos | Qtd | Gabaritos |
+|---|---|---|:---:|---|
+| `raciocinio-logico/a00/s02` | Estruturas Lógicas I | Conceito de proposição; orações não proposicionais; sentenças abertas e equações; quantificadores lógicos; princípios fundamentais; paradoxos lógicos | 6 | A, B, C, D, E, A |
+| `raciocinio-logico/a00/s06` | Estruturas Lógicas I | Tabela-verdade da bicondicional; condição suficiente e necessária na bicondicional; simbolização formal; valoração com proposições aritméticas; equivalência com conjunção de condicionais; dedução prática em normas | 6 | B, C, D, E, A, B |
+| `raciocinio-logico/a00/s11` | Estruturas Lógicas I | Número de linhas da tabela-verdade ($2^n$); disjunção falsa e deduções necessárias; valoração com fatos dados; negação na linguagem natural vs lógica; condicional falsa; Modus Tollens básico | 6 | C, D, E, A, B, C |
+| `raciocinio-logico/a01/s03` | Estruturas Lógicas II | Tabela-verdade de condicional com conjunção; conceito de contingência; identificação de tautologia; cálculo passo a passo de composta; definição e reconhecimento de contradição; implicação lógica tautológica | 6 | D, E, A, B, C, D |
+| `raciocinio-logico/a01/s04` | Estruturas Lógicas II | Método da prova por absurdo; tautologia do Modus Ponens; custo operacional da tabela-verdade em $n \ge 4$; teste rápido de contingência; análise indireta de contradição; análise tautológica de fórmula complexa | 6 | E, A, B, C, D, E |
+| `raciocinio-logico/a01/s08` | Estruturas Lógicas II | Terceiro excluído ($p \lor \sim p$ tautologia); não contradição ($p \land \sim p$ contradição); disjunção exclusiva tautológica ($p \underline{\lor} \sim p$); contingência em proposições simples atômicas; contradição disfarçada em adversativas; bicondicional contraditória ($p \leftrightarrow \sim p$) | 6 | A, B, C, D, E, A |
+| `raciocinio-logico/a02/s02` | Equivalências Lógicas e Negações | Condicional em disjunção inclusiva ($\sim p \lor q$); contrapositiva ($\sim q \rightarrow \sim p$); disjunção em condicional ($\sim p \rightarrow q$); as duas únicas equivalentes da condicional; negação da condicional ($p \land \sim q$); negação de condicional no contexto policial | 6 | B, C, D, E, A, B |
+| `raciocinio-logico/a02/s05` | Equivalências Lógicas e Negações | Negação da bicondicional em disjunção exclusiva ($p \underline{\lor} q$); negação com bicondicional e um termo negado; negação com e/ou/não; comutatividade e a exceção da condicional; associatividade de conjunção e disjunção; armadilha da negação dupla ($\sim p \leftrightarrow \sim q$) | 6 | C, D, E, A, B, C |
+| `raciocinio-logico/a02/s06` | Equivalências Lógicas e Negações | Distributiva do e sobre o ou; distributiva do ou sobre o e; colocar em evidência (fatoração lógica); lei da absorção; idempotência; leis da identidade com verdadeiro e falso | 6 | D, E, A, B, C, D |
+| `raciocinio-logico/a02/s08` | Equivalências Lógicas e Negações | Negação de condicional com disjunção no consequente ($p \land \sim q \land \sim r$); negação com conjunção no consequente; contrapositiva com antecedente disjuntivo; equivalente de $\sim p \rightarrow q$ em disjunção; De Morgan em expressão mista; contrapositiva com termos negativos | 6 | E, A, B, C, D, E |
+| `raciocinio-logico/a02/s09` | Equivalências Lógicas e Negações | Negação da disjunção exclusiva em bicondicional; negação de conjunção transformada em condicional; negação de quantificador universal (Todo); negação de quantificador existencial (Algum); negação de universal negativo (Nenhum); contraposição em conjunção de condicionais | 6 | A, B, C, D, E, A |
+| `raciocinio-logico/a04/s01` | Lógica de Argumentação | Método em quatro etapas em questões clássicas de conectivos; Modus Ponens direto; disjunção exclusiva e fixação de valor único; condicional com consequente falso; conjunção verdadeira e propagação; cadeia de condicionais com consequente final falso | 6 | B, C, D, E, A, B |
+| `raciocinio-logico/a04/s02` | Lógica de Argumentação | Definição estrutural de argumento dedutivo; validade vs verdade; critério de invalidade dedutiva; argumento válido com premissas falsas; conceito de argumento sólido (sound argument); análise com variável indeterminada | 6 | C, D, E, A, B, C |
+| `raciocinio-logico/a04/s04` | Lógica de Argumentação | Estrutura canônica do silogismo categórico; função lógica do termo médio; regra das duas premissas negativas; regra da conclusão seguir a premissa mais fraca; teste por diagramas de Euler-Venn; falácia do termo médio não distribuído | 6 | D, E, A, B, C, D |
+| `raciocinio-logico/a04/s07` | Lógica de Argumentação | Estrutura clássica do Dilema Construtivo; estrutura clássica do Dilema Destrutivo; regra do Silogismo Disjuntivo; transitividade no Silogismo Hipotético; aplicação prática de Dilema Construtivo em operação; encadeamento de Silogismo Disjuntivo e Modus Ponens | 6 | E, A, B, C, D, E |
+| `raciocinio-logico/a04/s08` | Lógica de Argumentação | Resolução de trás para frente em cadeia de condicionais; inconsistência lógica interna em sistema de premissas; condicional com disjunção no antecedente e Modus Tollens; bicondicional combinada com disjunção; dedução em sistema com três agentes; encadeamento reverso em escala funcional | 6 | A, B, C, D, E, A |
+| `raciocinio-logico/a04/s09` | Lógica de Argumentação | Apuração com cinco suspeitos e implicação lógica; dedução a partir de condicional declarada falsa; teste dedutivo com quatro agentes e bicondicional; depoimentos contraditórios e terceiro excluído; disjunção exclusiva combinada com condicional; problema dos três policiais que mentem ou dizem a verdade | 6 | B, C, D, E, A, B |
+| `raciocinio-logico/a04/s10` | Lógica de Argumentação | Falácia formal da afirmação do consequente; falácia formal da negação do antecedente; Modus Ponens válido; Modus Tollens válido; validação silogística por diagramas de inclusão de conjuntos; dedução vs indução (validade vs força) | 6 | C, D, E, A, B, C |
+| `raciocinio-logico/a04/s11` | Lógica de Argumentação | Modus Tollens combinado com De Morgan; inferência a partir de conjunção falsa; encadeamento de Modus Tollens e Silogismo Disjuntivo; cadeia em linguagem natural dedutiva; Dilema Destrutivo em contexto operacional; princípio da explosão (ex contradictione sequitur quodlibet) | 6 | D, E, A, B, C, D |
+| `raciocinio-logico/a04/s12` | Lógica de Argumentação | Roteiro de verificação de validade dedutiva; identificação de argumentos dedutivamente válidos em grupo; dedução em cadeia com negação fática; definição técnica de conjunto consistente de premissas; escala de plantão e deduções necessárias; intercambialidade dos métodos de teste de validade | 6 | E, A, B, C, D, E |
+| `raciocinio-logico/a05/s01` | Raciocínio Crítico I | Estrutura básica dos argumentos (premissas e conclusão); indicadores linguísticos de premissa; identificação de conclusão em texto forense; argumento vs explicação; premissas como razões probatórias; identificação de premissa em parágrafo discursivo | 6 | A, B, C, D, E, A |
+| `raciocinio-logico/a05/s02` | Raciocínio Crítico I | Inferências analíticas (dedutivas) vs sintéticas (indutivas/abdutivas); argumento indutivo por regularidade observada; raciocínio abdutivo (inferência para a melhor explicação); argumento por analogia e critérios de força; indução por generalização estatística; fatores determinantes da força indutiva | 6 | B, C, D, E, A, B |
+| `raciocinio-logico/a05/s04` | Raciocínio Crítico I | Falácia Ad Hominem (ataque à pessoa); apelo à autoridade indevida (Ad Verecundiam); apelo à ignorância (Ad Ignorantiam); falácia do Falso Dilema; falácia da Pergunta Complexa; falácia formal da afirmação do consequente vs falácias informais | 6 | C, D, E, A, B, C |
+| `raciocinio-logico/a05/s05` | Raciocínio Crítico I | Falácia do Espantalho (homem de palha); petição de princípio (raciocínio circular); conclusão irrelevante (Ignoratio Elenchi); falácia do Falso Escocês (nenhum escocês verdadeiro); apelo à piedade (Ad Misericordiam); falácia do Acidente (Dicto Simpliciter) | 6 | D, E, A, B, C, D |
+| `raciocinio-logico/a05/s06` | Raciocínio Crítico I | Falácia da causa falsa (Post hoc ergo propter hoc); falácia da causa complexa; falácia da causa insignificante; falácias de Composição e de Divisão; falácia do equívoco (ambiguidade lexical); falácia da anfibologia (ambiguidade sintática) | 6 | E, A, B, C, D, E |
+| `raciocinio-logico/a05/s07` | Raciocínio Crítico I | Entimemas e premissas ocultas; identificação de pressuposto implícito em caso penal; enfraquecimento de argumento causal por rota alternativa; fortalecimento de argumento por validação de premissa oculta; pressupostos em declarações de autoridades; enfraquecimento por hipótese alternativa | 6 | A, B, C, D, E, A |
+| `raciocinio-logico/a05/s08` | Raciocínio Crítico I | Apelo ao povo (Argumentum ad Populum); falácia da Ladeira Escorregadia (Slippery Slope); apelo às consequências (Ad Consequentiam); falácia Tu Quoque (você também); apelo ao medo e às consequências institucionais; Ad Hominem Circunstancial em contestação pericial | 6 | B, C, D, E, A, B |
+| `raciocinio-logico/a05/s09` | Raciocínio Crítico I | Conclusões intermediárias (subconclusões); premissas dependentes (copulativas); premissas independentes (convergentes); análise de convergência probatória em inquérito; identificação de conclusão principal em cadeia; método de identificação da tese central | 6 | C, D, E, A, B, C |
+| `raciocinio-logico/a05/s10` | Raciocínio Crítico I | Método do contraexemplo na refutação dedutiva; inconsistência lógica interna em relatos; avaliação crítica de amostragem indutiva; refutação de falsa analogia por dessemelhanças essenciais; falha de relevância lógica temática (non sequitur); critérios clássicos ARS de avaliação crítica | 6 | D, E, A, B, C, D |
+
+---
+
+## 15. Raciocínio Lógico — Revisão Cruzada e Conformidade Lógica
+
+- **Conformidade teórica e matemática:** Todas as deduções, tabelas-verdade, aplicações de De Morgan, contrapositivas, propriedades algébricas e regras de inferência foram rigorosamente calculadas e conferidas à mão antes de fixar cada gabarito.
+- **Padrão Cebraspe em múltipla escolha:**
+  - Enunciados claros, objetivos e contextualizados com situações operacionais, periciais e institucionais da Polícia Civil, além de problemas lógicos formais canônicos.
+  - Todos os 174 enunciados contêm comandos explícitos ("assinale a opção correta", "assinale a opção que indica...", etc.) e extensão entre 20 e 65 palavras (dentro da faixa exigida de 6 a 140 palavras).
+  - Alternativas A a E homogêneas em conteúdo e extensão, sem distratores absurdos e sem pistas de comprimento no gabarito (todas com `len(certa) <= 1.8 * média(distratores)`).
+  - Distribuição ciclicamente perfeita: exatamente A 35, B 35, C 35, D 35, E 34 (nenhuma letra ultrapassa 20.12%, longe do limite de 30%/32%).
+- **Comentários didáticos:** Cada questão traz justificativa dedutiva e matemática completa do porquê o gabarito é verdadeiro e por que cada um dos quatro distratores é incorreto ou falacioso.
+- **Neutralidade absoluta:** Sem nenhuma menção a "aula", "curso", "professor" ou nomes de materiais-base protegidos.
+- **Sem figuras:** Todas as tabelas, diagramas e dados foram perfeitamente descritos em prosa textual inteligível.
+
+---
+
+## 16. Dúvidas para o Dono do Projeto (Raciocínio Lógico)
+
+1. **Correspondência de itens do edital:** Todos os 29 trechos mapeiam diretamente e sem ambiguidades para os códigos do edital do PCPE (`raciocinio-logico/p9`, `p10`, `p11.1`, `p11.2`, `p11.3` e `p11.4`), dispensando o uso de qualificadores `item=` manuais.
+2. **Nenhuma controvérsia remanescente:** Todos os 29 trechos atingiram a meta integral de 6 questões inéditas de múltipla escolha validadas com zero erros (`erros 0`) pelo validador oficial.
