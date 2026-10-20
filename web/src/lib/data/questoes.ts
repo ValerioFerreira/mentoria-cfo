@@ -1,6 +1,8 @@
 import "server-only";
 import { db } from "@/lib/db";
 import { subjectName } from "@/lib/ui-format";
+import { hideInedita } from "@/lib/quiz/banca";
+import type { Contest } from "@/generated/prisma/client";
 
 // "Assunto" = item do edital (Question.editalItemId). Questões sem item ficam em OTHER_TOPIC_ID.
 export const OTHER_TOPIC_ID = "outros";
@@ -48,11 +50,11 @@ export interface QuestoesOverview {
 }
 
 /** `subjectIds`: disciplinas do edital do aluno; as demais não aparecem nem entram nas contagens. */
-export async function getQuestoesOverview(userId: string, subjectIds: string[]): Promise<QuestoesOverview> {
+export async function getQuestoesOverview(userId: string, subjectIds: string[], contest?: Contest | null): Promise<QuestoesOverview> {
   // 1. Buscar as questões aprovadas do edital com seu assunto, disciplina e banca
   const [questions, userAnswers, dbSubjects] = await Promise.all([
     db.question.findMany({
-      where: { status: "APPROVED", subjectId: { in: subjectIds } },
+      where: { status: "APPROVED", subjectId: { in: subjectIds }, ...hideInedita(contest) },
       select: {
         id: true,
         subjectId: true,

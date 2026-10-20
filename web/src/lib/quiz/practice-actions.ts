@@ -5,7 +5,8 @@ import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { subjectName } from "@/lib/ui-format";
 import { canUserAccessCoreFeatures } from "@/lib/system-settings";
-import { getUserEditalSubjects } from "@/lib/user-contest";
+import { getUserContest, getUserEditalSubjects } from "@/lib/user-contest";
+import { hideInedita } from "@/lib/quiz/banca";
 
 const OUTSIDE_EDITAL = "Esta disciplina não faz parte do edital do seu concurso.";
 
@@ -45,9 +46,11 @@ export async function startSubjectPracticeQuiz(input: {
     return { error: OUTSIDE_EDITAL };
   }
 
+  const contest = await getUserContest(user.email);
   const whereClause: any = {
     subjectId: input.subjectId,
     status: "APPROVED",
+    ...hideInedita(contest),
   };
 
   if (input.topic && input.topic.trim()) {
@@ -145,6 +148,7 @@ export async function createCustomNotebook(
   }
 
   const selectedQuestionIds = new Set<string>();
+  const hide = hideInedita(await getUserContest(user.email));
 
   if (input.mode === "TOTAL") {
     // Modo Quantidade Total: seleciona aleatoriamente entre o universo dos filtros escolhidos
@@ -158,11 +162,13 @@ export async function createCustomNotebook(
           subjectId: item.subjectId,
           OR: topicsWhere(item.topics),
           status: "APPROVED",
+          ...hide,
         });
       } else {
         orConditions.push({
           subjectId: item.subjectId,
           status: "APPROVED",
+          ...hide,
         });
       }
     }
@@ -207,6 +213,7 @@ export async function createCustomNotebook(
       const whereClause: any = {
         subjectId: item.subjectId,
         status: "APPROVED",
+        ...hide,
       };
 
       if (item.topics && item.topics.length > 0) {

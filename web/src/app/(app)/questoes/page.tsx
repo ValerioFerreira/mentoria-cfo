@@ -28,7 +28,7 @@ export default async function QuestoesPage() {
   }
 
   const contest = await getUserContest(user.email);
-  const overview = await getQuestoesOverview(user.id, contestSubjectIds(contest));
+  const overview = await getQuestoesOverview(user.id, contestSubjectIds(contest), contest);
   const { globalStats, subjects, availableBancas, bancaCounts } = overview;
 
   return (
