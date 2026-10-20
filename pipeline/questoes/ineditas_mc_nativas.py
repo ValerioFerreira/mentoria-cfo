@@ -104,8 +104,10 @@ def main() -> None:
     ap.add_argument("--check", action="store_true")
     ap.add_argument("--json")
     ap.add_argument("--resumo", action="store_true")
+    ap.add_argument("files", nargs="*")
     a = ap.parse_args()
-    qs = [q for f in sorted(MC_DIR.glob("*.txt")) for q in parse(f)]
+    files = [Path(f) for f in a.files] or sorted(MC_DIR.glob("*.txt"))
+    qs = [q for f in files for q in parse(f)]
     errs = check(qs)
     for e in errs:
         print("ERRO", e)
