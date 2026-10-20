@@ -1,0 +1,779 @@
+@@ a00/s03 | B
+Em uma pesquisa sobre a idade de servidores públicos, os dados foram agrupados em quatro classes de mesma amplitude: 20 |- 30, 30 |- 40, 40 |- 50 e 50 |- 60 anos. Com base nessa distribuição de frequências, assinale a opção correta.
+
+A) A amplitude de cada intervalo de classe é de 5 anos, e a amplitude total da distribuição é de 50 anos.
+B) A amplitude de cada intervalo de classe é igual a 10 anos, e a amplitude total da distribuição é de 40 anos.
+C) O ponto médio da terceira classe de idade é igual a 40 anos.
+D) A amplitude total da distribuição é obtida multiplicando-se o número de classes pelo limite superior da última classe.
+E) O limite superior da segunda classe pertence a ela e não pertence à terceira classe.
+// Comentário: A amplitude de classe é h = 30 - 20 = 10 anos. Como são 4 classes de mesma amplitude, a amplitude total é AT = 60 - 20 = 40 anos (ou AT = k * h = 4 * 10 = 40 anos). A opção A erra as amplitudes. A opção C está errada porque o ponto médio da terceira classe (40 |- 50) é (40 + 50)/2 = 45 anos. A opção D erra a fórmula de AT. A opção E erra a convenção: a notação "|-" inclui o limite inferior e exclui o superior, logo 40 pertence à terceira classe e não à segunda.
+
+@@ a00/s03 | B
+Uma tabela de frequências apresenta intervalos de classe com amplitude constante h. Sabe-se que o ponto médio de determinada classe é igual a 45 e a amplitude do intervalo é h = 10. A respeito dessa classe, assinale a opção correta.
+
+A) Os limites inferior e superior dessa classe são 45 e 55, respectivamente.
+B) Os limites inferior e superior dessa classe são 40 e 50, respectivamente.
+C) Os limites inferior e superior dessa classe são 35 e 45, respectivamente.
+D) O ponto médio da classe imediatamente subsequente é necessariamente 60.
+E) A frequência acumulada dessa classe é obrigatoriamente igual a 45.
+// Comentário: O ponto médio PM é a média aritmética dos limites e fica no centro do intervalo: l_inf = PM - h/2 e l_sup = PM + h/2. Como PM = 45 e h = 10, temos l_inf = 45 - 5 = 40 e l_sup = 45 + 5 = 50, definindo a classe 40 |- 50. As opções A e C apresentam intervalos incorretos. A opção D está errada pois o ponto médio subsequente seria 45 + 10 = 55. A opção E confunde ponto médio com frequência acumulada.
+
+@@ a00/s03 | E
+Considere a seguinte distribuição do tempo de atendimento (em minutos) em uma delegacia: 0 |- 10 (fi = 8), 10 |- 20 (fi = 14), 20 |- 30 (fi = 20), 30 |- 40 (fi = 8). Com base nesses dados, assinale a opção correta.
+
+A) O número total de atendimentos registrados nessa amostra é igual a 42.
+B) A frequência absoluta acumulada da segunda classe é igual a 14.
+C) A frequência absoluta acumulada da última classe é igual a 8.
+D) A quantidade de atendimentos com duração igual ou superior a 20 minutos é 20.
+E) A quantidade de atendimentos que duraram menos de 30 minutos é igual a 42.
+// Comentário: O total de atendimentos é n = 8 + 14 + 20 + 8 = 50. A frequência absoluta acumulada crescente (fac) da 3ª classe é 8 + 14 + 20 = 42, indicando quantos atendimentos duraram menos de 30 minutos (limite superior da 3ª classe). A opção A está errada porque o total é 50. A opção B erra pois a fac da 2ª classe é 8 + 14 = 22. A opção D está errada porque os atendimentos com 20 min ou mais somam 20 + 8 = 28. A opção C erra pois a fac da última classe é sempre n = 50.
+
+@@ a00/s03 | D
+Em um levantamento com 80 servidores públicos, 16 possuem tempo de serviço na faixa de 5 |- 10 anos. Acerca das frequências associadas a essa faixa, assinale a opção correta.
+
+A) A frequência relativa simples dessa faixa é de 16%.
+B) A frequência acumulada dessa faixa é obrigatoriamente igual a 80%.
+C) A densidade de frequência dessa faixa é igual a 0,2 servidor por ano.
+D) A frequência relativa simples dessa faixa é igual a 20%.
+E) A frequência relativa acumulada decrescente da primeira classe é de 20%.
+// Comentário: A frequência relativa simples é Fi = fi / n = 16 / 80 = 0,20 = 20%. A opção A erra ao confundir fi com percentual direto. A opção B confunde fac com porcentagem. A opção C erra a densidade: d = fi / h = 16 / (10 - 5) = 16 / 5 = 3,2 servidores por ano. A opção E erra pois a frequência relativa acumulada decrescente (Fad) da primeira classe é sempre 100%.
+
+@@ a00/s03 | C
+Em distribuições de frequências em que as classes apresentam amplitudes desiguais, assinale a opção correta acerca da comparação entre as classes.
+
+A) A comparação direta das frequências absolutas simples reflete adequadamente a concentração dos dados.
+B) A amplitude de cada classe deve ser multiplicada pela respectiva frequência para permitir a comparação.
+C) Deve-se utilizar a densidade de frequência, calculada pela razão entre a frequência da classe e sua amplitude.
+D) As frequências relativas acumuladas tornam-se constantes quando as amplitudes são desiguais.
+E) O ponto médio de cada classe substitui a frequência para avaliar a concentração de observações.
+// Comentário: Quando as classes têm larguras desiguais, intervalos mais amplos tendem a capturar mais dados sem que haja maior concentração pontual. Para corrigir a distorção do tamanho do intervalo e comparar adequadamente a concentração, utiliza-se a densidade de frequência (d = fi / h ou Fi / h). As opções A, B, C e D apresentam procedimentos incorretos ou falsos.
+
+@@ a00/s03 | B
+Em uma tabela de frequências de n observações com k classes, representam-se por fac_i a frequência acumulada crescente da classe i e por fad_i a frequência acumulada decrescente da classe i. A respeito dessas medidas, assinale a opção correta.
+
+A) A frequência acumulada crescente é construída somando-se as frequências de baixo para cima na tabela.
+B) A soma da frequência acumulada crescente da classe i com a decrescente da classe i + 1 é igual a n.
+C) A frequência acumulada decrescente da primeira classe é sempre igual à frequência simples dessa classe.
+D) A frequência acumulada crescente da última classe é igual à amplitude total da distribuição.
+E) A frequência acumulada decrescente indica o número de valores inferiores ao limite inferior da classe.
+// Comentário: Vale a identidade fac_i + fad_(i+1) = n, pois fac_i conta os dados abaixo do limite superior da classe i, e fad_(i+1) conta os dados a partir do limite inferior da classe i+1 (que coincidem). A opção A está errada pois a fac cresce de cima para baixo. A opção C erra pois fad da primeira classe é n. A opção D erra pois fac da última classe é n. A opção E erra pois fad indica os valores maiores ou iguais ao limite inferior da classe.
+
+@@ a00/s04 | E
+A respeito das características que diferenciam o histograma do gráfico de colunas convencional, assinale a opção correta.
+
+A) O histograma é formado por barras verticais separadas por espaços regulares para destacar cada categoria.
+B) No histograma, o número de retângulos é sempre igual ao dobro do número de classes da tabela.
+C) O gráfico de colunas convencional é exclusivo para representar distribuições contínuas agrupadas em intervalos.
+D) O histograma não acarreta nenhuma perda de informação quanto aos valores individuais observados na amostra.
+E) O histograma é composto por retângulos contíguos cujas bases coincidem com os intervalos de classe no eixo horizontal.
+// Comentário: O histograma representa dados quantitativos contínuos agrupados em classes por meio de retângulos contíguos (sem espaço entre si), onde as bases são os intervalos de classe. A opção A erra ao descrever barras separadas (próprias de colunas). A opção C erra pois gráfico de colunas serve para variáveis discretas ou qualitativas. A opção D erra pois o agrupamento em classes acarreta perda das posições exatas dos dados. A opção B erra pois o número de retângulos é exatamente o número de classes.
+
+@@ a00/s04 | C
+Em um histograma com classes de amplitudes desiguais, determinada classe tem intervalo de 10 a 30 (amplitude 20) e densidade de frequência relativa de 0,015. Sabendo que o conjunto possui 200 observações, assinale a opção que indica o número de observações dessa classe.
+
+A) 15 observações.
+B) 30 observações.
+C) 60 observações.
+D) 90 observações.
+E) 120 observações.
+// Comentário: A densidade de frequência relativa é dada por d = Fi / h. Portanto, a frequência relativa da classe é Fi = d * h = 0,015 * 20 = 0,30 (30% do total). Com n = 200 observações, o número de observações na classe é fi = 0,30 * 200 = 60 observações. As demais alternativas apresentam cálculos incorretos.
+
+@@ a00/s04 | D
+Quanto à construção e às propriedades do polígono de frequências de uma distribuição em classes, assinale a opção correta.
+
+A) O polígono de frequências é construído ligando-se os limites superiores de cada retângulo do histograma.
+B) As extremidades do polígono de frequências permanecem abertas acima do eixo horizontal.
+C) A área sob o polígono de frequências independe da soma das frequências observadas na distribuição.
+D) Para fechar o polígono no eixo horizontal, acrescentam-se duas classes fictícias de frequência zero nas extremidades.
+E) O polígono de frequências só pode ser traçado se todas as frequências absolutas forem ímpares.
+// Comentário: O polígono de frequências é obtido ligando-se por segmentos de reta os pontos médios dos topos dos retângulos do histograma. Para fechar a figura no eixo horizontal, acrescentam-se uma classe imediatamente anterior à primeira e uma imediatamente posterior à última, ambas com frequência nula (zero). A opção A erra os vértices (são pontos médios). A opção B erra pois o polígono é fechado. A opção C erra pois a área é proporcional à soma das frequências. A opção E é absurda.
+
+@@ a00/s04 | E
+Uma distribuição de frequências apresentou, em três classes consecutivas, as seguintes frequências absolutas simples: 6, 14 e 10. Aplicando-se a fórmula usual de polimento para a curva de frequências, assinale a opção que indica a frequência corrigida da classe central.
+
+A) 8,0.
+B) 10,0.
+C) 12,0.
+D) 10,5.
+E) 11,0.
+// Comentário: A fórmula do polimento pondera as três classes consecutivas atribuindo peso 2 à classe central: fc = (f_ant + 2 * f_central + f_post) / 4. Substituindo os valores dados: fc = (6 + 2 * 14 + 10) / 4 = (6 + 28 + 10) / 4 = 44 / 4 = 11,0. As demais opções resultam de erros na aplicação dos pesos ou na divisão.
+
+@@ a00/s04 | D
+A ogiva (ou polígono de frequências acumuladas) é uma representação gráfica frequentemente utilizada na análise estatística descritiva. A respeito da ogiva, assinale a opção correta.
+
+A) A ogiva é formada por retângulos justapostos cuja altura representa a frequência relativa simples de cada classe.
+B) No eixo horizontal são marcados exclusivamente os pontos médios das classes, associados às frequências simples.
+C) A ogiva crescente parte do total de observações e decresce até atingir o valor zero na última classe.
+D) No eixo horizontal são marcados os limites dos intervalos de classe, e no eixo vertical constam as frequências acumuladas.
+E) A ogiva não permite estimar medidas separatrizes como a mediana ou os quartis da distribuição.
+// Comentário: A ogiva representa frequências acumuladas; no eixo horizontal posicionam-se os limites dos intervalos de classe (e não os pontos médios) e no eixo vertical marcam-se as frequências acumuladas (crescentes ou decrescentes). A opção B descreve o polígono de frequências. A opção C inverte a ogiva crescente com a decrescente. A opção A descreve o histograma. A opção E erra pois a ogiva é amplamente usada para estimar graficamente mediana e quartis.
+
+@@ a00/s04 | D
+Considere uma curva de frequências univariada unimodal que apresenta uma cauda longa e alongada para o lado direito do gráfico, enquanto a maior concentração de dados situa-se à esquerda. A respeito dessa distribuição, assinale a opção correta.
+
+A) Trata-se de uma distribuição perfeitamente simétrica em forma de sino.
+B) Trata-se de uma distribuição com curva em forma de U, com dois máximos nas pontas.
+C) Trata-se de uma distribuição assimétrica negativa (ou assimétrica à esquerda).
+D) Trata-se de uma distribuição assimétrica positiva (ou assimétrica à direita).
+E) Trata-se de uma distribuição em forma de J invertido com frequência constante.
+// Comentário: A nomenclatura da assimetria orienta-se pela cauda da distribuição. Quando a cauda se prolonga para os valores mais altos (lado direito do eixo), a distribuição é classificada como assimétrica à direita ou assimétrica positiva. A opção A erra a simetria. A opção C inverte o sentido da assimetria. As opções B e E descrevem outras formas morfológicas (curva em U e curva em J).
+
+@@ a01/s01 | E
+As medidas descritivas de posição dividem-se em medidas de tendência central e medidas separatrizes. A respeito dessa classificação, assinale a opção correta.
+
+A) A média aritmética, a mediana e o desvio-padrão são medidas de tendência central.
+B) Os quartis, decis e percentis são medidas de tendência central que não dividem a série em partes proporcionais.
+C) As medidas separatrizes dividem uma série ordenada em partes com amplitudes de valores obrigatoriamente idênticas.
+D) A variância e a covariância são medidas separatrizes calculadas a partir de frequências relativas.
+E) A mediana pertence simultaneamente ao grupo das medidas de tendência central e ao das medidas separatrizes.
+// Comentário: A mediana é o valor central da série ordenada, constituindo medida de tendência central, e divide a distribuição em duas partes com igual número de elementos (50% abaixo e 50% acima), sendo também a separatriz fundamental (Q2 = D5 = P50). A opção A inclui desvio-padrão (medida de dispersão). A opção B erra o grupo dos quartis (são separatrizes). A opção D cita medidas de dispersão e associação. A opção C erra ao dizer que as partes têm amplitudes idênticas (têm igual quantidade de dados, não igual amplitude).
+
+@@ a01/s01 | E
+Seja uma sequência de n observações numéricas x1, x2, ..., xn e uma constante real k. Com relação às propriedades formais do operador somatório (Σ), assinale a opção correta.
+
+A) O somatório da constante k para i de 1 até n é igual a k / n.
+B) O somatório do produto de k por xi equivale a (Σ xi) / k.
+C) O somatório de k para i variando de 1 a n é invariavelmente igual a k.
+D) O somatório da constante k independe do número de termos somados.
+E) O somatório da constante k para i de 1 até n é igual a n * k.
+// Comentário: Pela 1ª propriedade do somatório, somar uma constante k por n parcelas consecutivas resulta em k + k + ... + k = n * k. A opção A erra a operação. A opção B erra pois a constante multiplica o somatório: Σ (k * xi) = k * Σ xi. A opção C desconsidera o número de termos n. A opção D é falsa pois o resultado é diretamente proporcional a n.
+
+@@ a01/s01 | E
+Considere um conjunto de 10 dados cuja soma é igual a 80, isto é, Σ xi = 80 para i de 1 a 10. Deseja-se calcular o valor da expressão Σ (3*xi - 4) com i variando de 1 a 10. Assinale a opção que indica o resultado correto.
+
+A) 236.
+B) 240.
+C) 210.
+D) 196.
+E) 200.
+// Comentário: Aplicando a linearidade do somatório: Σ (3*xi - 4) = 3 * Σ xi - Σ 4. Como i varia de 1 a 10, a soma de xi é 80 e a constante 4 é repetida 10 vezes: 3 * 80 - 10 * 4 = 240 - 40 = 200. As opções A, B, C e D decorrem de não multiplicar a constante por 10 (240 - 4 = 236), ignorar a subtração (240), ou erros aritméticos.
+
+@@ a01/s01 | D
+Considere a sequência de 4 elementos x = {2, 3, 5, 10}. Ao comparar a soma dos quadrados desses termos, Σ xi², com o quadrado da soma deles, (Σ xi)², assinale a opção correta.
+
+A) Ambas as operações fornecem rigorosamente o mesmo resultado numérico para qualquer sequência.
+B) A soma dos quadrados é igual a 400 e o quadrado da soma é igual a 138.
+C) A soma dos quadrados é igual a 100 e o quadrado da soma é igual a 200.
+D) A soma dos quadrados é igual a 138 e o quadrado da soma é igual a 400.
+E) A soma dos quadrados é igual a 116 e o quadrado da soma é igual a 360.
+// Comentário: Calculando a soma dos termos: Σ xi = 2 + 3 + 5 + 10 = 20. O quadrado da soma é (Σ xi)² = 20² = 400. Calculando a soma dos quadrados: Σ xi² = 2² + 3² + 5² + 10² = 4 + 9 + 25 + 100 = 138. Portanto, Σ xi² = 138 e (Σ xi)² = 400, comprovando que em geral Σ xi² ≠ (Σ xi)². As opções B, C, D e E trazem valores invertidos ou incorretos.
+
+@@ a01/s01 | B
+Dadas as sequências x = {1, 2, 4} e y = {3, 0, 5}, assinale a opção que apresenta, respectivamente, o valor da soma dos produtos, Σ (xi * yi), e do produto das somas, (Σ xi) * (Σ yi).
+
+A) 23 e 46.
+B) 23 e 56.
+C) 20 e 56.
+D) 28 e 48.
+E) 15 e 45.
+// Comentário: A soma dos produtos par a par é Σ (xi * yi) = 1*3 + 2*0 + 4*5 = 3 + 0 + 20 = 23. A soma dos elementos de x é Σ xi = 1 + 2 + 4 = 7, e a soma dos elementos de y é Σ yi = 3 + 0 + 5 = 8. Logo, o produto das somas é (Σ xi) * (Σ yi) = 7 * 8 = 56. Assim, temos 23 e 56. As opções A, C, D e E trazem valores errados.
+
+@@ a01/s01 | C
+Considere a sequência x1 = 4, x2 = 7, x3 = 10, x4 = 12 e x5 = 15. Assinale a opção que indica o valor correto do somatório de xi para o índice i variando de 3 a 5.
+
+A) 48.
+B) 41.
+C) 37.
+D) 33.
+E) 27.
+// Comentário: O somatório com limite inferior i = 3 e limite superior 5 inclui apenas os termos x3, x4 e x5. Logo, Σ xi (de i=3 a 5) = x3 + x4 + x5 = 10 + 12 + 15 = 37. A opção A soma todos os 5 termos (48). A opção B soma de i=2 a 5 (44). As opções D e E resultam de combinações parciais equivocadas.
+
+@@ a01/s02 | D
+Um candidato realizou 5 avaliações em um concurso público. Suas notas nas 4 primeiras provas foram 6,0, 8,0, 7,5 e 5,5. Sabendo que a média aritmética final obtida nas 5 provas foi exatamente igual a 7,0, assinale a opção que indica a nota obtida na quinta prova.
+
+A) 6,5.
+B) 7,0.
+C) 7,5.
+D) 8,0.
+E) 8,5.
+// Comentário: Como a média de 5 provas é 7,0, a soma total das 5 notas deve ser 5 * 7,0 = 35,0. A soma das 4 primeiras notas conhecidas é 6,0 + 8,0 + 7,5 + 5,5 = 27,0. Portanto, a nota da quinta prova é 35,0 - 27,0 = 8,0. As demais opções resultam em médias diferentes de 7,0.
+
+@@ a01/s02 | E
+Em um departamento policial, o grupo A é composto por 20 agentes com média de idade de 30 anos, e o grupo B é formado por 30 agentes com média de idade de 40 anos. Ao reunir todos os 50 agentes em um único grupo, assinale a opção que indica a média de idade do conjunto.
+
+A) 34 anos.
+B) 35 anos.
+C) 37 anos.
+D) 38 anos.
+E) 36 anos.
+// Comentário: Para unir grupos de tamanhos diferentes, calcula-se a soma total das idades: grupo A soma 20 * 30 = 600 anos; grupo B soma 30 * 40 = 1200 anos. O total geral de idade é 600 + 1200 = 1800 anos para 50 agentes. A média geral é 1800 / 50 = 36 anos. A opção B é a média simples das médias (35 anos), que seria válida apenas se os grupos tivessem o mesmo tamanho. As demais opções trazem cálculos incorretos.
+
+@@ a01/s02 | A
+Um conjunto de dados salariais x possui média aritmética igual a R$ 4.000. Todos os servidores receberam um aumento linear de 10% seguido de um abono fixo de R$ 300, passando o novo salário a ser y = 1,10*x + 300. Assinale a opção que indica o novo salário médio.
+
+A) R$ 4.700.
+B) R$ 4.400.
+C) R$ 4.300.
+D) R$ 5.000.
+E) R$ 4.600.
+// Comentário: Pela propriedade da transformação linear da média aritmética, se y_i = a*x_i + b, a nova média é y_barra = a*x_barra + b. Logo, com x_barra = 4.000, temos y_barra = 1,10 * 4.000 + 300 = 4.400 + 300 = R$ 4.700. As demais opções ignoram o abono fixo, o reajuste percentual ou efetuam cálculo incorreto.
+
+@@ a01/s02 | B
+A respeito dos desvios de um conjunto de dados quantitativos em relação à sua média aritmética simples, assinale a opção correta.
+
+A) A soma dos desvios em relação à média é sempre positiva para dados assimétricos à direita.
+B) A soma algébrica de todos os desvios calculados em relação à média aritmética é sempre igual a zero.
+C) A soma dos valores absolutos dos desvios em relação à média é invariavelmente nula.
+D) A soma dos desvios em relação à média só é nula quando todos os valores da amostra forem positivos.
+E) A média aritmética maximiza a soma dos quadrados dos desvios em relação a qualquer outro ponto de referência.
+// Comentário: Pela 5ª propriedade da média aritmética, a soma algébrica dos desvios é sempre zero: Σ (x_i - x_barra) = Σ x_i - n*x_barra = n*x_barra - n*x_barra = 0. A opção A é falsa pois a soma algébrica independe da assimetria. A opção C erra pois os valores absolutos somam zero apenas se todos os dados forem idênticos. A opção D impõe restrição inexistente. A opção E inverte a propriedade (a média minimiza, não maximiza, a soma dos quadrados dos desvios).
+
+@@ a01/s02 | C
+Considere o conjunto de números {3, 5, 8, 12}. Deseja-se encontrar o valor real a que torna mínima a expressão f(a) = Σ (xi - a)². Com base nas propriedades da média aritmética, assinale a opção que apresenta esse valor a.
+
+A) 5,0.
+B) 6,5.
+C) 7,0.
+D) 8,0.
+E) 7,5.
+// Comentário: Pela 6ª propriedade da média aritmética, a soma dos quadrados dos desvios Σ (xi - a)² atinge o valor mínimo absoluto quando a coincide com a média aritmética do conjunto. Calculando a média: x_barra = (3 + 5 + 8 + 12) / 4 = 28 / 4 = 7,0. Portanto, a = 7,0 minimiza a função quadrática. As opções A, B, D e E trazem outros pontos de referência.
+
+@@ a01/s02 | A
+Em relação às propriedades fundamentais e aos limites da média aritmética de uma amostra finita de dados reais, assinale a opção correta.
+
+A) O valor da média aritmética situa-se sempre entre o valor mínimo e o valor máximo da amostra observada.
+B) A média aritmética obrigatoriamente pertence ao conjunto de dados observados.
+C) A média aritmética de uma amostra com valores inteiros deve ser necessariamente um número inteiro.
+D) A média aritmética pode assumir valor estritamente superior ao valor máximo observado na amostra.
+E) Ao somar uma constante estritamente positiva c a todos os elementos, a média permanece inalterada.
+// Comentário: Pela propriedade dos limites, para qualquer amostra finita vale mín(xi) <= x_barra <= máx(xi). A média nunca é menor que o mínimo nem maior que o máximo (afastando a opção D). A opção B erra pois a média é um valor sintético e frequentemente não pertence ao rol. A opção C erra pois médias de inteiros podem ser fracionárias (ex.: (2+3)/2 = 2,5). A opção E erra pois somar c desloca a média em c.
+
+@@ a01/s05 | E
+Considere os números positivos 3, 6 e 9. Assinale a opção que indica o valor da média harmônica desse conjunto.
+
+A) 6,00.
+B) 5,45.
+C) 5,14.
+D) 4,50.
+E) 4,91.
+// Comentário: A média harmônica de n valores é H = n / Σ (1/xi). Para os valores 3, 6 e 9, calculamos a soma dos inversos: 1/3 + 1/6 + 1/9 = 6/18 + 3/18 + 2/18 = 11/18. Logo, H = 3 / (11/18) = 3 * 18 / 11 = 54 / 11 ≈ 4,909... ≈ 4,91. A opção A é a média aritmética ((3+6+9)/3 = 6). As demais opções decorrem de aproximações incorretas ou fórmulas erradas.
+
+@@ a01/s05 | A
+Uma viatura policial realizou um patrulhamento de ida e volta entre duas cidades, percorrendo distâncias rigorosamente idênticas. No trajeto de ida, desenvolveu velocidade média de 60 km/h; no trajeto de volta, desenvolveu velocidade média de 90 km/h. Assinale a opção que indica a velocidade média desenvolvida em todo o percurso.
+
+A) 72 km/h.
+B) 75 km/h.
+C) 70 km/h.
+D) 80 km/h.
+E) 68 km/h.
+// Comentário: Quando distâncias iguais são percorridas a velocidades diferentes, a velocidade média do trajeto total é a média harmônica das velocidades parciais: H = 2 * v1 * v2 / (v1 + v2) = 2 * 60 * 90 / (60 + 90) = 10800 / 150 = 72 km/h. A opção B é a média aritmética simples ((60+90)/2 = 75 km/h), pegadinha clássica em provas de concurso. As opções C, D e E trazem outros valores incorretos.
+
+@@ a01/s05 | B
+Dois peritos criminais realizam individualmente a análise de determinado tipo de laudo pericial. O primeiro perito conclui a análise de um laudo em 4 horas, enquanto o segundo perito conclui a mesma tarefa em 6 horas. Trabalhando conjuntamente, assinale a opção que indica o tempo necessário para que ambos analisem um laudo completo.
+
+A) 2,0 horas.
+B) 2,4 horas.
+C) 2,5 horas.
+D) 3,0 horas.
+E) 5,0 horas.
+// Comentário: O tempo de trabalho conjunto de dois agentes para realizar uma mesma tarefa é a metade da média harmônica dos seus tempos individuais: H = 2 * 4 * 6 / (4 + 6) = 48 / 10 = 4,8 horas. Como trabalham juntos, o tempo conjunto é H / 2 = 4,8 / 2 = 2,4 horas (equivalente a 1/(1/4 + 1/6) = 1/(5/12) = 12/5 = 2,4 horas). A opção C toma metade da média aritmética ((4+6)/4 = 2,5). As opções A, D e E trazem valores errados.
+
+@@ a01/s05 | A
+Seja um conjunto de números reais estritamente positivos x1, x2, ..., xn, não todos iguais entre si. Denotando por x_barra a média aritmética, G a média geométrica e H a média harmônica desses valores, assinale a opção correta.
+
+A) x_barra > G > H.
+B) G > x_barra > H.
+C) H > G > x_barra.
+D) x_barra = G = H.
+E) H > x_barra > G.
+// Comentário: Pela desigualdade clássica das médias para valores positivos, tem-se x_barra >= G >= H. A igualdade x_barra = G = H ocorre se, e somente se, todos os elementos forem idênticos. Como o enunciado estabelece explicitamente que os números não são todos iguais, as desigualdades são estritas: x_barra > G > H. As opções C, B, D e E contrariam esse teorema.
+
+@@ a01/s05 | D
+Para exatamente dois números reais estritamente positivos a e b, a respeito da relação matemática entre sua média aritmética (x_barra), sua média geométrica (G) e sua média harmônica (H), assinale a opção correta.
+
+A) A média aritmética é a média harmônica entre a geométrica e a harmônica.
+B) O produto das três médias é sempre igual à soma dos dois números originais.
+C) A média aritmética multiplicada pela média geométrica resulta na média harmônica.
+D) O quadrado da média geométrica é igual ao produto da média aritmética pela harmônica (G² = x_barra * H).
+E) A soma da média aritmética com a harmônica é rigorosamente igual ao dobro da geométrica.
+// Comentário: Para dois números positivos a e b, temos x_barra = (a+b)/2, G = raiz(a*b) e H = 2*a*b/(a+b). Multiplicando a aritmética pela harmônica: x_barra * H = [(a+b)/2] * [2*a*b/(a+b)] = a*b = G². Portanto, G² = x_barra * H (a média geométrica é a média geométrica entre a aritmética e a harmônica). As opções A, B, C e E apresentam relações falsas.
+
+@@ a01/s05 | A
+Acerca do domínio de definição e das restrições para o cálculo da média harmônica, assinale a opção correta.
+
+A) A média harmônica restringe-se a valores positivos, pois a presença de zero implicaria divisão impossível por zero.
+B) A inclusão de números negativos não impõe nenhuma restrição teórica à existência da média harmônica.
+C) A média harmônica de dois números distintos pode ser calculada pela média aritmética dos valores originais.
+D) A média harmônica é aplicável a grandezas diretamente proporcionais em que os produtos são constantes.
+E) A média harmônica pode ser calculada normalmente para conjuntos que contenham o número zero.
+// Comentário: A média harmônica é definida por H = n / Σ(1/xi). Se algum elemento xi for zero, o termo 1/xi representa uma divisão por zero, tornando o cálculo inviável. Além disso, se houver valores negativos, a soma dos inversos pode se anular, impedindo a determinação da média. Portanto, exige-se estritamente que todos os valores sejam positivos. As opções E e B contrariam essa regra; a opção C descreve a média aritmética; a opção D cita grandezas inversamente (e não diretamente) proporcionais.
+
+@@ a02/s04 | B
+As medidas separatrizes denominadas decis dividem uma série estatística ordenada em partes iguais. A respeito dos decis, assinale a opção correta.
+
+A) Existem 10 decis que dividem a série em 9 partes, sendo D5 igual ao terceiro quartil.
+B) Existem 9 decis (D1 a D9) que dividem a série ordenada em 10 partes com igual quantidade de dados, sendo D5 igual à mediana.
+C) O nono decil (D9) deixa exatamente 10% dos dados da série abaixo de seu valor.
+D) O primeiro decil (D1) corresponde a 25% das observações ordenadas da amostra.
+E) Os decis dividem a distribuição em partes que possuem rigorosamente a mesma amplitude numérica de valores.
+// Comentário: Os decis são 9 valores que repartem a série ordenada em 10 grupos contendo cada um 10% das observações. O quinto decil (D5) deixa 50% abaixo e 50% acima, coincidindo perfeitamente com a mediana (D5 = Md = Q2 = P50). A opção A erra o número de decis. A opção C inverte D9 (deixa 90% abaixo e 10% acima). A opção D confunde D1 (10%) com Q1 (25%). A opção E confunde igual quantidade de dados com igual amplitude de valores.
+
+@@ a02/s04 | B
+Considere a seguinte amostra de 10 dados já ordenados em rol: {12, 15, 18, 22, 25, 28, 32, 36, 40, 45}. Utilizando o critério da posição inteira P(Dk) = k*n/10, assinale a opção que indica o valor do quarto decil (D4).
+
+A) 18.
+B) 22.
+C) 25.
+D) 28.
+E) 32.
+// Comentário: Com n = 10 observações ordenadas, a posição do quarto decil é P(D4) = 4 * 10 / 10 = 4. O quarto elemento do rol ordenado é 22 (1º: 12, 2º: 15, 3º: 18, 4º: 22). Logo, D4 = 22. As opções A, C, D e E indicam o 3º (18), 5º (25), 6º (28) e 7º (32) elementos do rol.
+
+@@ a02/s04 | C
+A tabela a seguir apresenta o número de ocorrências diárias (Xi) registradas por uma equipe policial e suas respectivas frequências absolutas (fi): Xi = 0 (fi = 8), Xi = 1 (fi = 14), Xi = 2 (fi = 18), Xi = 3 (fi = 12), Xi = 4 (fi = 8). Com base nesses dados, assinale a opção que indica o valor do terceiro decil (D3).
+
+A) 0 ocorrência.
+B) 2 ocorrências.
+C) 1 ocorrência.
+D) 3 ocorrências.
+E) 4 ocorrências.
+// Comentário: O total de observações é n = 8 + 14 + 18 + 12 + 8 = 60. As frequências acumuladas (fac) são: 8, 22, 40, 52 e 60. A posição do terceiro decil é P(D3) = 3 * 60 / 10 = 18. Na coluna da fac, a primeira frequência acumulada igual ou superior a 18 é 22, correspondente ao valor Xi = 1. Portanto, D3 = 1 ocorrência. As opções A, B, D e E trazem valores incorretos.
+
+@@ a02/s04 | D
+Em uma distribuição de frequências agrupadas em classes, a classe do sétimo decil (D7) é 40 |- 50 (amplitude h = 10, frequência simples f = 20). Sabe-se que o total de observações é n = 100 e a frequência acumulada da classe anterior é fac_ant = 65. Assinale a opção que indica o valor aproximado de D7 por interpolação linear.
+
+A) 41,5.
+B) 43,0.
+C) 44,0.
+D) 42,5.
+E) 45,0.
+// Comentário: A posição de D7 é P(D7) = 7 * 100 / 10 = 70. Aplicando a fórmula de interpolação: D7 = l_inf + [(P(D7) - fac_ant) / f] * h = 40 + [(70 - 65) / 20] * 10 = 40 + [5 / 20] * 10 = 40 + 0,25 * 10 = 40 + 2,5 = 42,5. As demais opções decorrem de erros aritméticos na aplicação da fórmula.
+
+@@ a02/s04 | D
+Uma distribuição de salários em uma corporação é agrupada em classes. Pelo método de interpolação linear, determinou-se que o segundo decil é D2 = R$ 2.400 e o oitavo decil é D8 = R$ 5.800. A respeito do intervalo delimitado por D2 e D8, assinale a opção correta.
+
+A) O intervalo entre D2 e D8 concentra exatamente 20% do total de servidores da corporação.
+B) O intervalo entre D2 e D8 concentra exatamente 80% do total de servidores da corporação.
+C) Cerca de 40% dos servidores recebem remuneração estritamente inferior a R$ 2.400.
+D) O intervalo entre D2 e D8 concentra exatamente 60% do total de servidores da corporação.
+E) Cerca de 80% dos servidores recebem remuneração estritamente superior a R$ 5.800.
+// Comentário: Por definição, D2 deixa 20% das observações abaixo de si e D8 deixa 80% abaixo de si. Portanto, a proporção de servidores com salários compreendidos entre D2 e D8 é 80% - 20% = 60%. A opção A cita a porcentagem abaixo de D2. A opção B cita a porcentagem acumulada até D8. A opção C erra pois abaixo de D2 estão 20%. A opção E erra pois acima de D8 estão 100% - 80% = 20%.
+
+@@ a02/s04 | B
+Em um teste de aptidão física com 150 participantes, o sexto decil (D6) da pontuação obtida foi calculado em 74 pontos. Assinale a opção que apresenta a interpretação correta desse resultado.
+
+A) Cerca de 40% dos participantes obtiveram pontuação menor ou igual a 74 pontos, e 60% obtiveram pontuação superior.
+B) Cerca de 60% dos participantes obtiveram pontuação menor ou igual a 74 pontos, e 40% obtiveram pontuação superior.
+C) Exatamente 74 participantes obtiveram a nota máxima no teste de aptidão física.
+D) A pontuação média de todos os 150 participantes é obrigatoriamente igual a 74 pontos.
+E) O decil D6 divide a amostra em duas metades com 50% dos participantes cada.
+// Comentário: O decil de ordem k deixa k * 10% dos elementos abaixo ou iguais a ele e (100 - k * 10)% acima. Logo, D6 deixa 60% dos participantes com pontuações até 74 pontos e 40% com pontuações superiores a 74. A opção A inverte as porcentagens. A opção C confunde a pontuação com o número de candidatos. A opção D confunde decil com média aritmética. A opção E descreve a mediana (D5).
+
+@@ a02/s05 | C
+Os percentis (P1 a P99) constituem uma generalização das medidas separatrizes. A respeito das correspondências exatas entre percentis e outras medidas de posição, assinale a opção correta.
+
+A) P25 coincide com a mediana e P50 coincide com o primeiro quartil.
+B) P75 coincide com o primeiro decil e P10 coincide com o terceiro quartil.
+C) P50 coincide com a mediana, com o segundo quartil e com o quinto decil.
+D) P90 coincide com o nono quartil da distribuição amostral.
+E) P100 é o maior percentil calculado e divide a amostra em 100 decis.
+// Comentário: P50 deixa 50% dos dados abaixo e 50% acima, coincidindo perfeitamente com a mediana (Md), com o segundo quartil (Q2) e com o quinto decil (D5). A opção A inverte P25 e P50. A opção B inverte quartis e decis (P75 = Q3 e P10 = D1). A opção D cita nono quartil (só existem 3 quartis). A opção E erra pois só existem 99 percentis (P1 a P99).
+
+@@ a02/s05 | C
+Considere o rol com 10 dados ordenados: {4, 7, 10, 14, 18, 21, 26, 30, 35, 42}. Utilizando o critério da posição P(Pk) = k*n/100 com arredondamento para a posição inteira mais próxima, assinale a opção que indica o valor do percentil 70 (P70).
+
+A) 21.
+B) 30.
+C) 26.
+D) 35.
+E) 18.
+// Comentário: Com n = 10 observações, a posição de P70 é P = 70 * 10 / 100 = 7. O 7º elemento do rol ordenado é 26 (1º: 4, 2º: 7, 3º: 10, 4º: 14, 5º: 18, 6º: 21, 7º: 26). Logo, P70 = 26. A opção A é o 6º elemento (21). A opção B é o 8º elemento (30). As opções D e E trazem outros elementos do rol.
+
+@@ a02/s05 | D
+As notas de 50 alunos em uma avaliação foram agrupadas por valores discretos: nota 4 (f = 5), nota 5 (f = 10), nota 6 (f = 15), nota 7 (f = 12), nota 8 (f = 8). Com base na distribuição acumulada, assinale a opção que indica o valor do percentil 35 (P35).
+
+A) Nota 4.
+B) Nota 5.
+C) Nota 7.
+D) Nota 6.
+E) Nota 8.
+// Comentário: A posição de P35 é P = 35 * 50 / 100 = 17,5. As frequências acumuladas (fac) são: nota 4 (5), nota 5 (15), nota 6 (30), nota 7 (42), nota 8 (50). A primeira frequência acumulada maior ou igual a 17,5 é 30, correspondente à nota 6. Portanto, P35 = 6. As opções A, B, C e E trazem notas incorretas.
+
+@@ a02/s05 | E
+Em uma tabela de frequências de salários com 100 trabalhadores, a classe correspondente ao percentil 40 (P40) é 2.000 |- 3.000 (amplitude h = 1.000, frequência simples f = 25). Sabendo que a frequência acumulada da classe anterior é fac_ant = 30, assinale a opção que indica o valor de P40 por interpolação.
+
+A) R$ 2.200.
+B) R$ 2.600.
+C) R$ 2.800.
+D) R$ 2.500.
+E) R$ 2.400.
+// Comentário: A posição de P40 é P = 40 * 100 / 100 = 40. Aplicando a fórmula de interpolação linear: P40 = l_inf + [(P - fac_ant) / f] * h = 2.000 + [(40 - 30) / 25] * 1.000 = 2.000 + [10 / 25] * 1.000 = 2.000 + 0,40 * 1.000 = 2.000 + 400 = R$ 2.400. As demais opções trazem resultados de cálculos errados.
+
+@@ a02/s05 | A
+Uma distribuição contínua é apresentada por faixas de idade com frequências relativas: 18 |- 26 (20%), 26 |- 34 (35%), 34 |- 42 (30%), 42 |- 50 (15%). Assinale a opção que indica o valor aproximado do percentil 45 (P45) por interpolação linear.
+
+A) 31,7 anos.
+B) 28,5 anos.
+C) 34,0 anos.
+D) 30,0 anos.
+E) 26,0 anos.
+// Comentário: As frequências relativas acumuladas são: 18 |- 26 (20%), 26 |- 34 (55%), 34 |- 42 (85%), 42 |- 50 (100%). O percentil 45 (posição 45%) cai na segunda classe (26 |- 34), pois 55% >= 45%. Temos l_inf = 26, fac_ant = 20%, f = 35% e h = 34 - 26 = 8 anos. P45 = 26 + [(45% - 20%) / 35%] * 8 = 26 + (25 / 35) * 8 = 26 + (5/7) * 8 = 26 + 40/7 ≈ 26 + 5,71 = 31,71 anos ≈ 31,7 anos. As demais opções resultam de falhas na interpolação.
+
+@@ a02/s05 | E
+Em uma amostra de tempos de deslocamento agrupados em classes, o primeiro quartil (Q1) foi calculado em 25 minutos e o terceiro quartil (Q3) em 45 minutos. A respeito do intervalo interquartílico dessa distribuição, assinale a opção correta.
+
+A) O intervalo de 25 a 45 minutos compreende cerca de 25% do total de observações da amostra.
+B) A mediana da distribuição é obrigatoriamente igual à média aritmética de 25 e 45 minutos.
+C) Exatamente 75% das observações encontram-se no intervalo de 25 a 45 minutos.
+D) A distância interquartílica dessa distribuição é igual a 10 minutos.
+E) O intervalo de 25 a 45 minutos compreende cerca de 50% do total de observações da amostra.
+// Comentário: O primeiro quartil Q1 corresponde a P25 (25% abaixo) e o terceiro quartil Q3 corresponde a P75 (75% abaixo). Logo, a faixa compreendida entre Q1 e Q3 (a distância interquartílica DIQ = 45 - 25 = 20 min) abriga exatamente 75% - 25% = 50% dos dados centrais da amostra. A opção A erra o percentual (cita 25%). A opção C erra ao dizer 75%. A opção D erra o cálculo da DIQ (45 - 25 = 20, não 10). A opção B erra pois a mediana só seria a média dos quartis em caso de perfeita simetria.
+
+@@ a02/s06 | B
+O box plot (diagrama de caixa) é um gráfico amplamente utilizado na análise exploratória de dados. A respeito dos elementos representados em um box plot padrão, assinale a opção correta.
+
+A) A caixa retangular é delimitada pelo valor mínimo e pelo valor máximo da amostra.
+B) O gráfico sintetiza cinco estatísticas fundamentais: mínimo, primeiro quartil, mediana, terceiro quartil e máximo.
+C) A linha traçada no interior da caixa retangular representa obrigatoriamente a média aritmética da amostra.
+D) O comprimento de cada bigode (whisker) contém obrigatoriamente 50% das observações da amostra.
+E) A presença de caixas de tamanhos idênticos em dois grupos distintos garante que ambos possuam o mesmo número de observações.
+// Comentário: O box plot sintetiza o chamado resumo dos cinco números: mínimo, Q1, Q2 (mediana), Q3 e máximo (quando não há outliers). A opção A erra pois a caixa é delimitada por Q1 e Q3. A opção C erra pois a linha interna representa a mediana, não a média. A opção D erra pois cada bigode abriga cerca de 25% dos dados. A opção E erra pois o box plot mostra proporções relativas e dispersão, não o tamanho absoluto (número de observações) da amostra.
+
+@@ a02/s06 | D
+Em um conjunto de dados relativos a tempos de atendimento policial, constatou-se que o primeiro quartil é Q1 = 18 minutos e o terceiro quartil é Q3 = 34 minutos. Assinale a opção que indica, respectivamente, a distância interquartílica (DIQ) e o desvio quartílico dessa distribuição.
+
+A) 16 minutos e 16 minutos.
+B) 8 minutos e 16 minutos.
+C) 26 minutos e 13 minutos.
+D) 16 minutos e 8 minutos.
+E) 34 minutos e 17 minutos.
+// Comentário: A distância interquartílica (ou amplitude interquartílica) é DIQ = Q3 - Q1 = 34 - 18 = 16 minutos. O desvio quartílico (ou amplitude semi-interquartílica) é a metade da distância interquartílica: Dq = DIQ / 2 = 16 / 2 = 8 minutos. As opções A, B, C e E invertem ou calculam incorretamente as medidas.
+
+@@ a02/s06 | E
+No método padrão de Tukey para construção do box plot com detecção de valores discrepantes (outliers), consideram-se o primeiro quartil Q1, o terceiro quartil Q3 e a distância interquartílica DIQ = Q3 - Q1. Assinale a opção que indica a regra para classificação de um valor x como outlier.
+
+A) x < Q1 - 1,0*DIQ ou x > Q3 + 1,0*DIQ.
+B) x < Q1 - 2,0*DIQ ou x > Q3 + 2,0*DIQ.
+C) x < Q1 - 0,5*DIQ ou x > Q3 + 0,5*DIQ.
+D) x < Q1 - 3,0*DIQ ou x > Q3 + 3,0*DIQ.
+E) x < Q1 - 1,5*DIQ ou x > Q3 + 1,5*DIQ.
+// Comentário: O critério de Tukey estabelece os limites inferior e superior de corte: Limite Inferior = Q1 - 1,5 * DIQ e Limite Superior = Q3 + 1,5 * DIQ. Qualquer observação abaixo do limite inferior ou acima do limite superior é classificada como outlier e representada por ponto ou asterisco individual. As opções A, B, C e D trazem multiplicadores incorretos da DIQ.
+
+@@ a02/s06 | D
+Uma amostra ordenada de salários apresenta Q1 = R$ 3.000 e Q3 = R$ 5.000. Analisando os salários de três servidores que ganham R$ 1.500, R$ 7.500 e R$ 8.500, assinale a opção correta quanto à presença de outliers pelo critério de 1,5*DIQ.
+
+A) Todos os três salários analisados são considerados outliers.
+B) Os salários de R$ 7.500 e R$ 8.500 são considerados outliers.
+C) Apenas o salário de R$ 1.500 é considerado outlier.
+D) Apenas o salário de R$ 8.500 é considerado outlier.
+E) Nenhum dos três salários analisados é considerado outlier.
+// Comentário: A distância interquartílica é DIQ = 5.000 - 3.000 = 2.000. O limite inferior é LI = Q1 - 1,5 * DIQ = 3.000 - 1,5 * 2.000 = 3.000 - 3.000 = R$ 0. O limite superior é LS = Q3 + 1,5 * DIQ = 5.000 + 1,5 * 2.000 = 5.000 + 3.000 = R$ 8.000. O valor R$ 1.500 está acima de 0 (não é outlier). O valor R$ 7.500 está abaixo de 8.000 (não é outlier). O valor R$ 8.500 é estritamente maior que 8.000, sendo o único outlier entre os três. As opções B, C, D e E trazem conclusões erradas.
+
+@@ a02/s06 | B
+Considere um box plot construído a partir de dados em que o valor mínimo da amostra coincide exatamente com o primeiro quartil (mínimo = Q1). A respeito da representação visual desse gráfico, assinale a opção correta.
+
+A) A caixa retangular do box plot não poderá ser desenhada.
+B) O bigode (whisker) inferior à esquerda da caixa deixa de existir no gráfico.
+C) A linha interna indicativa da mediana desaparecerá obrigatoriamente.
+D) O bigode superior à direita da caixa terá necessariamente comprimento nulo.
+E) Todos os valores da amostra serão classificados como outliers.
+// Comentário: O bigode inferior estende-se do menor valor não discrepante até Q1. Se o valor mínimo coincide com Q1, a distância entre eles é zero e não há traçado de bigode à esquerda (inferior) da caixa. A caixa continua existindo (vai de Q1 a Q3), a mediana permanece marcada em seu interior e o bigode superior pode existir normalmente. Portanto, as opções A, C, D e E são falsas.
+
+@@ a02/s06 | A
+Dois grupos de policiais civis, Grupo 1 e Grupo 2, tiveram seus tempos de resposta a chamados representados em box plots no mesmo eixo. O box plot do Grupo 1 tem mediana 15 min e DIQ = 10 min. O do Grupo 2 tem mediana 22 min e DIQ = 10 min. Assinale a opção correta.
+
+A) Ambos os grupos apresentam o mesmo nível de dispersão medido pela distância interquartílica.
+B) O Grupo 2 apresenta maior dispersão central de dados que o Grupo 1.
+C) O Grupo 1 apresenta maior dispersão central de dados que o Grupo 2.
+D) O Grupo 2 possui obrigatoriamente mais servidores policiais do que o Grupo 1.
+E) A pontuação mínima do Grupo 1 é necessariamente superior à do Grupo 2.
+// Comentário: A dispersão medida pelo comprimento da caixa interquartílica (DIQ = Q3 - Q1) é rigorosamente a mesma em ambos os grupos (10 minutos), indicando idêntica variabilidade no miolo dos 50% dados centrais. As opções C e B são falsas pois a DIQ é igual. A opção D erra pois o box plot não informa o tamanho da amostra (número de servidores). A opção E é falsa pois a mediana de 1 é 15 e de 2 é 22 (a distribuição do Grupo 1 tende a valores menores).
+
+@@ a03/s01 | A
+Entre as medidas de tendência central da estatística descritiva, assinale a opção que indica a única medida aplicável a variáveis qualitativas em escala puramente nominal (como tipo sanguíneo ou naturalidade).
+
+A) Moda da distribuição.
+B) Média geométrica ponderada.
+C) Mediana da série.
+D) Média aritmética simples.
+E) Desvio quartílico padrão.
+// Comentário: A média exige operações de soma e divisão (viáveis apenas em dados quantitativos); a mediana exige ordenação dos dados (possível apenas em quantitativos ou qualitativos ordinais). A moda exige unicamente a contagem da frequência de ocorrência, sendo a única medida de posição central aplicável a variáveis qualitativas nominais (ex.: o tipo sanguíneo mais frequente é a moda). As opções D, B, C e E trazem medidas que demandam operações algébricas ou ordenação prévia.
+
+@@ a03/s01 | E
+Considere os três conjuntos de dados a seguir: X = {2, 4, 6, 8, 10}, Y = {3, 3, 5, 7, 7, 9} e Z = {1, 2, 2, 2, 5, 8}. A respeito da modalidade desses conjuntos, assinale a opção correta.
+
+A) X é unimodal com moda igual a 6, Y é bimodal e Z é amodal.
+B) X é amodal, Y é unimodal com moda igual a 7 e Z é bimodal.
+C) X é bimodal, Y é amodal e Z é unimodal com moda igual a 2.
+D) X, Y e Z são todos classificados como conjuntos unimodais.
+E) X é amodal, Y é bimodal com modas 3 e 7, e Z é unimodal com moda 2.
+// Comentário: No conjunto X, todos os elementos aparecem uma única vez com a mesma frequência, logo X é amodal (não possui moda). No conjunto Y, os valores 3 e 7 empatam na maior frequência (duas ocorrências cada), logo Y é bimodal com modas 3 e 7. No conjunto Z, o valor 2 aparece três vezes, destacando-se dos demais, logo Z é unimodal com moda igual a 2. As opções A, B, C e D apresentam classificações incorretas.
+
+@@ a03/s01 | A
+A tabela a seguir apresenta o número de faltas não justificadas (Xi) de 40 agentes durante o ano e suas respectivas frequências absolutas (fi): Xi = 0 (fi = 5), Xi = 1 (fi = 9), Xi = 2 (fi = 16), Xi = 3 (fi = 7), Xi = 4 (fi = 3). Com base nessa distribuição, assinale a opção que indica o valor da moda.
+
+A) 2 faltas.
+B) 16 faltas.
+C) 3 faltas.
+D) 1 falta.
+E) 4 faltas.
+// Comentário: Em dados agrupados por valores sem intervalos de classe, a moda é o valor da variável Xi que apresenta a maior frequência absoluta fi. A maior frequência na tabela é 16, associada ao valor Xi = 2 faltas. Portanto, Mo = 2. A opção B é uma pegadinha clássica em provas, confundindo a frequência máxima (16) com o valor da moda (2). As opções C, D e E apontam outros valores da variável.
+
+@@ a03/s01 | B
+Em uma distribuição de tempos de espera com classes de mesma amplitude, a classe de maior frequência (classe modal) é 20 |- 30 minutos (fi = 25). Assinale a opção que indica o valor da moda bruta dessa distribuição.
+
+A) 20 minutos.
+B) 25 minutos.
+C) 30 minutos.
+D) 22,5 minutos.
+E) 27,5 minutos.
+// Comentário: A moda bruta para dados agrupados em classes é o ponto médio da classe modal: Mo_bruta = (l_inf + l_sup) / 2. Como a classe modal é 20 |- 30, seu ponto médio é Mo_bruta = (20 + 30) / 2 = 50 / 2 = 25 minutos. As opções A e C indicam os limites inferior e superior. As opções D e E trazem outros pontos fracionários.
+
+@@ a03/s01 | C
+Em uma pesquisa de satisfação, as notas atribuídas a um serviço policial apresentaram as seguintes frequências relativas percentuais: nota 5 (10%), nota 6 (20%), nota 7 (35%), nota 8 (25%) e nota 9 (10%). Assinale a opção que indica a moda e a respectiva classificação dessa distribuição.
+
+A) Bimodal com modas 6 e 8.
+B) Unimodal com moda igual a 35%.
+C) Unimodal com moda igual à nota 7.
+D) Amodal, pois todas as notas receberam avaliações.
+E) Unimodal com moda igual à nota 8.
+// Comentário: A moda corresponde ao valor da variável associado à maior frequência (seja absoluta ou relativa). A maior frequência relativa é 35%, associada à nota 7. Como apenas a nota 7 atinge essa frequência máxima, a distribuição é unimodal com moda igual a 7. A opção A aponta notas vizinhas de menor frequência. A opção B erra ao tomar a frequência relativa percentual (35%) como se fosse a moda. A opção D erra a classificação. A opção E aponta nota com 25%.
+
+@@ a03/s01 | C
+Considere a amostra de idades de 7 indivíduos: {20, 22, 22, 25, 28, 30, 42}. A respeito da média aritmética, da mediana e da moda dessa amostra, assinale a opção correta.
+
+A) A média é 25 anos, a mediana é 22 anos e a moda é 25 anos.
+B) A média é 28 anos, a mediana é 25 anos e a moda é 22 anos.
+C) A média é 27 anos, a mediana é 25 anos e a moda é 22 anos.
+D) A média é 27 anos, a mediana é 22 anos e a moda é 28 anos.
+E) A média é 25 anos, a mediana é 27 anos e a moda é 22 anos.
+// Comentário: Calculando as três medidas: a soma dos valores é 20 + 22 + 22 + 25 + 28 + 30 + 42 = 189. A média é 189 / 7 = 27 anos. Com n = 7 dados já ordenados, a mediana é o 4º termo: Md = 25 anos. O valor que mais se repete é 22 (duas vezes), logo a moda é Mo = 22 anos. Portanto: média = 27, mediana = 25 e moda = 22. As opções A, B, C e E apresentam cálculos incorretos de ao menos uma das medidas.
+
+@@ a03/s03 | C
+No cálculo da moda para dados agrupados em classes de mesma amplitude, o método de King estima o valor modal no interior da classe modal. Assinale a opção que apresenta a expressão correta da Moda de King.
+
+A) Mo = l_inf + [f_ant / (f_ant + f_post)] * h.
+B) Mo = l_inf + [(f_mo - f_ant) / (f_mo + f_post)] * h.
+C) Mo = l_inf + [f_post / (f_ant + f_post)] * h.
+D) Mo = (l_inf + l_sup) / 2.
+E) Mo = l_inf + [f_mo / (f_ant + f_post)] * h.
+// Comentário: A fórmula da Moda de King é Mo = l_inf + [f_post / (f_ant + f_post)] * h, em que l_inf é o limite inferior da classe modal, h é a sua amplitude, e f_ant e f_post são as frequências absolutas das classes vizinhas (anterior e posterior). A opção A inverte o numerador (coloca f_ant em vez de f_post). As opções B e C misturam King com Czuber. A opção D representa a moda bruta.
+
+@@ a03/s03 | A
+Uma distribuição com classes de amplitude h = 10 apresenta as seguintes frequências consecutivas: 10 |- 20 (fi = 12), 20 |- 30 (fi = 25, classe modal), 30 |- 40 (fi = 18). Aplicando-se a fórmula de King, assinale a opção que indica o valor da moda.
+
+A) 26,0.
+B) 24,0.
+C) 25,0.
+D) 27,5.
+E) 23,5.
+// Comentário: Na classe modal 20 |- 30, temos l_inf = 20, h = 10, f_ant = 12 e f_post = 18. Pela fórmula de King: Mo = l_inf + [f_post / (f_ant + f_post)] * h = 20 + [18 / (12 + 18)] * 10 = 20 + [18 / 30] * 10 = 20 + 0,6 * 10 = 20 + 6 = 26,0. A opção B inverte as vizinhas usando f_ant no numerador (20 + 4 = 24). A opção C é a moda bruta ((20+30)/2 = 25). As opções D e E trazem outros valores incorretos.
+
+@@ a03/s03 | C
+Considere uma distribuição de frequências em que as classes possuem amplitudes desiguais: 0 |- 4 (fi = 12), 4 |- 10 (fi = 30), 10 |- 12 (fi = 14) e 12 |- 20 (fi = 8). Assinale a opção correta a respeito da identificação da classe modal.
+
+A) A classe modal é 4 |- 10, pois apresenta a maior frequência absoluta simples (30).
+B) A classe modal é 0 |- 4, pois apresenta o menor limite inferior da distribuição.
+C) A classe modal é 10 |- 12, pois apresenta a maior densidade de frequência (d = 7).
+D) A classe modal é 12 |- 20, pois possui a maior amplitude entre todos os intervalos.
+E) Em classes de larguras diferentes, não é teoricamente possível definir a classe modal.
+// Comentário: Quando as classes têm amplitudes desiguais, a concentração de dados deve ser avaliada pela densidade de frequência (d = fi / h): classe 0 |- 4 tem d = 12 / 4 = 3; classe 4 |- 10 tem d = 30 / 6 = 5; classe 10 |- 12 tem d = 14 / 2 = 7; classe 12 |- 20 tem d = 8 / 8 = 1. A maior densidade ocorre na classe 10 |- 12 (d = 7), que é a verdadeira classe modal. A opção A erra ao guiar-se pela frequência bruta sem corrigir pela largura da classe. As opções B, D e E apresentam afirmações falsas.
+
+@@ a03/s03 | C
+Em uma distribuição contínua agrupada em classes de mesma amplitude, a classe modal é 40 |- 50 e as duas classes vizinhas (imediatamente anterior e imediatamente posterior) possuem rigorosamente a mesma frequência simples (f_ant = f_post = 15). Com base no método de King, assinale a opção que indica o valor da moda.
+
+A) 40.
+B) 42,5.
+C) 45.
+D) 47,5.
+E) 50.
+// Comentário: Pela fórmula de King, quando f_ant = f_post, temos Mo = l_inf + [f_post / (f_ant + f_post)] * h = 40 + [15 / (15 + 15)] * 10 = 40 + [15 / 30] * 10 = 40 + 0,5 * 10 = 45. Ou seja, as forças das classes vizinhas se equilibram perfeitamente e a moda coincide exatamente com o ponto médio da classe modal ((40 + 50)/2 = 45). As opções A, B, D e E trazem outros valores no intervalo.
+
+@@ a03/s03 | D
+Um conjunto de dados observados x apresenta moda Mo(x) = 15. Todos os elementos do conjunto sofrem uma transformação linear da forma y = 3*x + 5. Com base nas propriedades formais da moda, assinale a opção que indica a nova moda Mo(y).
+
+A) 45.
+B) 15.
+C) 20.
+D) 50.
+E) 55.
+// Comentário: A moda acompanha rigorosamente as transformações lineares aplicadas aos dados. Se y = a*x + b, a nova moda é Mo(y) = a*Mo(x) + b. Substituindo a = 3, b = 5 e Mo(x) = 15: Mo(y) = 3 * 15 + 5 = 45 + 5 = 50. A opção A esquece o termo constante (45). A opção B supõe que a moda não muda. As opções C e E trazem cálculos equivocados.
+
+@@ a03/s03 | C
+A respeito da comparação conceitual e estrutural entre o método de King e o método de Czuber para estimar a moda em distribuições por classes de mesma amplitude, assinale a opção correta.
+
+A) O método de King utiliza a frequência simples da própria classe modal em sua fórmula de cálculo.
+B) O método de Czuber independe da frequência da classe modal e utiliza exclusivamente as classes vizinhas.
+C) O método de King utiliza apenas as frequências das classes vizinhas, enquanto Czuber utiliza a frequência da classe modal e as das vizinhas.
+D) O método de King não depende da amplitude do intervalo de classe para determinar a moda.
+E) Ambos os métodos fornecem invariavelmente resultados idênticos para quaisquer valores de frequências vizinhas.
+// Comentário: A fórmula de King emprega apenas as frequências das classes adjacentes (f_ant e f_post): Mo = l_inf + [f_post / (f_ant + f_post)] * h. Já a fórmula de Czuber baseia-se nos excessos da frequência da classe modal em relação às vizinhas: Mo = l_inf + [Δ1 / (Δ1 + Δ2)] * h, onde Δ1 = f_mo - f_ant e Δ2 = f_mo - f_post, exigindo diretamente a frequência da classe modal (f_mo). As opções A e B invertem as propriedades dos dois métodos. A opção E é falsa pois os resultados em geral diferem. A opção D é falsa pois a amplitude h multiplica o quociente em ambos os métodos.
+
+@@ a04/s02 | A
+Seja um conjunto de n observações reais {x1, x2, ..., xn} com média aritmética x_barra. Denota-se por di = xi - x_barra o desvio da i-ésima observação em relação à média. A respeito da soma algébrica de todos os desvios, Σ di, assinale a opção correta.
+
+A) A soma algébrica dos desvios em relação à média é sempre identicamente nula (Σ di = 0).
+B) A soma algébrica dos desvios é sempre positiva se a distribuição for assimétrica à direita.
+C) A soma algébrica dos desvios coincide com a variância amostral multiplicada por n.
+D) A soma algébrica dos desvios só é nula quando todos os valores da amostra forem positivos.
+E) A soma algébrica dos desvios é igual ao produto da média pelo número de observações.
+// Comentário: Pela 1ª propriedade dos desvios, a soma com sinal de todos os desvios tomados em relação à média aritmética é sempre zero: Σ (xi - x_barra) = Σ xi - n*x_barra = n*x_barra - n*x_barra = 0. A opção B é falsa pois os desvios positivos e negativos se anulam exatamente em qualquer formato de distribuição. As opções C, D e E trazem formulações falsas.
+
+@@ a04/s02 | E
+Considere a soma dos quadrados dos desvios de uma série {x1, x2, ..., xn} em relação a uma constante real c, dada por S(c) = Σ (xi - c)². Assinale a opção que indica o valor de c que minimiza a função S(c).
+
+A) A mediana da série.
+B) O ponto médio da amplitude total.
+C) A moda da série.
+D) O primeiro quartil da série.
+E) A média aritmética da série.
+// Comentário: Pela 2ª propriedade dos desvios (critério dos mínimos quadrados), a soma dos quadrados dos desvios atinge seu valor mínimo estrito quando o ponto de referência c coincide com a média aritmética das observações (c = x_barra). Se c for qualquer outro número, S(c) = S(x_barra) + n*(x_barra - c)² > S(x_barra). A mediana minimiza a soma dos desvios absolutos (módulos), e não a dos quadrados. As opções A, C, D e E estão erradas.
+
+@@ a04/s02 | A
+Deseja-se determinar a constante real c que torna mínima a soma dos valores absolutos dos desvios, dada por M(c) = Σ |xi - c|, para um conjunto com n elementos (com n ímpar). Assinale a opção que indica esse ponto de mínimo c.
+
+A) A mediana da série.
+B) A média aritmética da série.
+C) A média harmônica da série.
+D) A moda da série.
+E) A média geométrica da série.
+// Comentário: Pela 3ª propriedade dos desvios (critério dos mínimos desvios absolutos), a soma dos módulos dos desvios Σ |xi - c| atinge o valor mínimo absoluto quando c é a mediana da série (quando n é ímpar, o ponto central do rol ordenado). A opção B cita a média aritmética, que minimiza a soma dos quadrados. As opções C, D e E não guardam relação com essa propriedade de mínimo.
+
+@@ a04/s02 | B
+Considere o conjunto de 4 valores já ordenados {2, 6, 10, 14}. Para avaliar a soma dos desvios absolutos M(c) = Σ |xi - c|, assinale a opção correta a respeito do ponto de mínimo dessa função.
+
+A) O valor mínimo ocorre exclusivamente no ponto c = 8 (média aritmética).
+B) O valor mínimo é atingido para qualquer valor de c pertencente ao intervalo fechado [6, 10].
+C) O valor mínimo ocorre exclusivamente no ponto c = 10 (terceiro elemento).
+D) O valor mínimo ocorre exclusivamente no ponto c = 6 (segundo elemento).
+E) Não existe nenhum valor real c que minimize a soma dos desvios absolutos para conjuntos pares.
+// Comentário: Quando o número de elementos n é par, a soma dos desvios absolutos atinge o valor mínimo em qualquer ponto c situado entre os dois termos centrais do rol ordenado, inclusive nos extremos do intervalo. No conjunto {2, 6, 10, 14}, os termos centrais são 6 e 10. Para qualquer c em [6, 10], a soma M(c) é constante e igual a |c - 2| + |c - 6| + |10 - c| + |14 - c| = (c - 2) + (c - 6) + (10 - c) + (14 - c) = 16. Fora desse intervalo, a soma é estritamente maior. As opções A, B, C e E apresentam conclusões incorretas.
+
+@@ a04/s02 | C
+Considere a sequência de 4 observações {3, 7, 8, 14}. A respeito do desvio de cada observação em relação à média aritmética e da soma dos quadrados desses desvios, assinale a opção correta.
+
+A) A média aritmética é 7 e a soma dos desvios algébricos é 4.
+B) A média aritmética é 8 e a soma dos quadrados dos desvios é 80.
+C) A média aritmética é 8 e a soma dos quadrados dos desvios é 66.
+D) A média aritmética é 8 e a soma dos desvios absolutos é 0.
+E) A média aritmética é 9 e a soma dos desvios algébricos é negativa.
+// Comentário: A média aritmética é x_barra = (3 + 7 + 8 + 14) / 4 = 32 / 4 = 8. Os desvios em relação à média são: 3 - 8 = -5; 7 - 8 = -1; 8 - 8 = 0; 14 - 8 = +6. A soma algébrica dos desvios é -5 + (-1) + 0 + 6 = 0. A soma dos quadrados dos desvios é (-5)² + (-1)² + 0² + 6² = 25 + 1 + 0 + 36 = 66. As opções A, B, C e D trazem valores errados para a média, a soma dos desvios ou a soma dos quadrados.
+
+@@ a04/s02 | A
+Acerca das propriedades teóricas dos desvios de uma série de dados em relação às medidas de tendência central, assinale a opção correta.
+
+A) A média aritmética anula a soma algébrica dos desvios e minimiza a soma dos seus quadrados.
+B) A mediana anula a soma algébrica dos desvios e minimiza a soma dos seus cubos.
+C) A moda anula a soma dos quadrados dos desvios e minimiza a variância dos dados.
+D) A média aritmética minimiza a soma dos módulos dos desvios para qualquer distribuição.
+E) A soma dos valores absolutos dos desvios em relação à média é sempre identicamente nula.
+// Comentário: A síntese exata das propriedades dos desvios é: (1) em relação à média aritmética, a soma algébrica dos desvios é sempre zero (Σ (xi - x_barra) = 0) e a soma dos quadrados dos desvios é mínima; (2) em relação à mediana, a soma dos desvios absolutos (módulos) é mínima. A opção B atribui anulação de desvios à mediana. A opção C inventa propriedades para a moda. A opção D confunde média com mediana. A opção E é falsa pois os módulos somam zero apenas se todos os dados forem iguais.
+
+@@ a04/s03 | B
+O desvio absoluto médio (ou desvio médio) é uma medida de dispersão que avalia o afastamento dos dados em relação à média aritmética. A respeito da razão fundamental pela qual essa medida emprega valores absolutos (módulos), assinale a opção correta.
+
+A) O uso do módulo visa a elevar os desvios a potências superiores para penalizar valores extremos.
+B) A soma algébrica dos desvios simples sem o módulo é sempre identicamente nula para qualquer conjunto.
+C) O módulo permite transformar uma medida de dispersão em uma medida adimensional de assimetria.
+D) O desvio absoluto médio não pode ser calculado se existirem observações menores do que a média.
+E) A eliminação do sinal decorre da necessidade de igualar o desvio médio à variância da amostra.
+// Comentário: Como a soma algébrica de todos os desvios em relação à média aritmética é sempre igual a zero (os desvios positivos compensam exatamente os negativos), uma média aritmética direta dos desvios simples resultaria invariavelmente em zero, nada informando sobre a dispersão. O módulo elimina os sinais negativos, permitindo mensurar a distância média real dos dados até a média. As opções A, C, D e E trazem justificativas incorretas ou sem fundamento estatístico.
+
+@@ a04/s03 | C
+Considere o conjunto de 5 observações {4, 6, 8, 10, 12}. Assinale a opção que indica o valor do desvio absoluto médio (desvio médio) dessa amostra.
+
+A) 1,6.
+B) 2,0.
+C) 2,4.
+D) 2,8.
+E) 3,2.
+// Comentário: A média aritmética é x_barra = (4 + 6 + 8 + 10 + 12) / 5 = 40 / 5 = 8. Os desvios em relação à média são: 4 - 8 = -4; 6 - 8 = -2; 8 - 8 = 0; 10 - 8 = +2; 12 - 8 = +4. Os módulos desses desvios são 4, 2, 0, 2 e 4. A soma dos módulos é 4 + 2 + 0 + 2 + 4 = 12. O desvio absoluto médio é Dm = 12 / 5 = 2,4. As opções A, B, D e E decorrem de erros aritméticos.
+
+@@ a04/s03 | A
+Em uma delegacia, o número de flagrantes registrados nos últimos 5 dias foi 10, 14, 15, 18 e 23. A respeito do maior desvio absoluto em relação à média e do desvio absoluto médio dessa série, assinale a opção correta.
+
+A) O maior desvio absoluto é igual a 7 e o desvio absoluto médio é igual a 3,6.
+B) O maior desvio absoluto é igual a 6 e o desvio absoluto médio é igual a 3,6.
+C) O maior desvio absoluto é igual a 4 e o desvio absoluto médio é igual a 2,8.
+D) O maior desvio absoluto é igual a 13 e o desvio absoluto médio é igual a 5,0.
+E) O maior desvio absoluto é igual a 7 e o desvio absoluto médio é igual a 4,2.
+// Comentário: A média da série é x_barra = (10 + 14 + 15 + 18 + 23) / 5 = 80 / 5 = 16 flagrantes. Os desvios absolutos |xi - 16| são: |10 - 16| = 6; |14 - 16| = 2; |15 - 16| = 1; |18 - 16| = 2; |23 - 16| = 7. O maior desvio absoluto é 7 (correspondente ao valor 23). A soma dos módulos é 6 + 2 + 1 + 2 + 7 = 18. O desvio absoluto médio é Dm = 18 / 5 = 3,6 flagrantes. Logo, o maior desvio absoluto é 7 e o desvio médio é 3,6. As opções D, B, C e E apresentam valores incorretos.
+
+@@ a04/s03 | E
+Uma tabela de frequências de dados discretos apresenta os seguintes valores Xi e frequências fi: Xi = 0 (fi = 3), Xi = 2 (fi = 4), Xi = 4 (fi = 3). Assinale a opção que indica o valor do desvio absoluto médio ponderado dessa distribuição.
+
+A) 0,8.
+B) 1,0.
+C) 1,4.
+D) 1,5.
+E) 1,2.
+// Comentário: O total de observações é n = 3 + 4 + 3 = 10. A soma de Xi * fi é 0*3 + 2*4 + 4*3 = 0 + 8 + 12 = 20. A média aritmética é x_barra = 20 / 10 = 2,0. Os desvios absolutos ponderados pelas frequências são: |0 - 2| * 3 = 2 * 3 = 6; |2 - 2| * 4 = 0 * 4 = 0; |4 - 2| * 3 = 2 * 3 = 6. A soma dos módulos ponderados é 6 + 0 + 6 = 12. O desvio absoluto médio é Dm = 12 / 10 = 1,2. As opções A, B, C e D trazem outros valores calculados incorretamente.
+
+@@ a04/s03 | D
+Em distribuições de frequências agrupadas em classes, os cálculos da média aritmética e do desvio absoluto médio adotam uma convenção operacional específica. Assinale a opção correta a respeito dessa convenção.
+
+A) A amplitude de cada classe substitui o ponto médio nas diferenças modulares da fórmula do desvio médio.
+B) Cada classe é representada pelo seu limite superior para o cálculo da média e pelo limite inferior no dos desvios.
+C) O desvio absoluto médio de dados em classes independe das frequências simples das classes.
+D) Cada classe é representada pelo seu respectivo ponto médio, tanto no cálculo da média quanto no dos desvios.
+E) O divisor da fórmula do desvio médio em classes é o número de classes, e não a soma das frequências.
+// Comentário: Para dados agrupados em intervalos de classe, admite-se a hipótese de distribuição uniforme no interior de cada classe, utilizando-se o ponto médio PM = (l_inf + l_sup) / 2 como representante de todos os valores da classe. Assim, calcula-se a média ponderada dos pontos médios e, em seguida, a média ponderada dos desvios absolutos entre os pontos médios e a média geral: Dm = Σ (|PMi - x_barra| * fi) / n. A opção B erra os limites utilizados. As opções C, D e E trazem formulações contrárias à teoria estatística.
+
+@@ a04/s03 | B
+Considere um conjunto de dados quantitativos com desvio absoluto médio igual a 6,0. Se cada valor do conjunto for multiplicado por 3 e, em seguida, acrescido de 10 unidades (y = 3*x + 10), assinale a opção que indica o novo desvio absoluto médio.
+
+A) 28,0.
+B) 18,0.
+C) 8,0.
+D) 6,0.
+E) 24,0.
+// Comentário: Pelas propriedades do desvio absoluto médio: somar uma constante não altera a dispersão (Dm permanece inalterado por translação), enquanto multiplicar por uma constante c multiplica o desvio médio pelo módulo dessa constante: Dm(y) = |a| * Dm(x). Como y = 3*x + 10, o acréscimo de 10 não afeta a dispersão e o fator multiplicativo 3 triplica a medida: Dm(y) = 3 * 6,0 = 18,0. A opção A soma indevidamente a constante 10 (18 + 10 = 28). A opção C toma (6 - 10 + 3) ou erro similar. A opção D supõe invariância total. A opção E usa outro multiplicador.
+
+@@ a05/s05 | C | item=2.1
+Oito policiais civis serão distribuídos em três equipes operacionais com atribuições distintas: 3 policiais para a equipe de investigação Alfa, 3 policiais para a equipe tática Beta e 2 policiais para a equipe de inteligência Gama. Assinale a opção que indica o número de maneiras distintas de formar essas três equipes.
+
+A) 120 maneiras.
+B) 280 maneiras.
+C) 560 maneiras.
+D) 1.120 maneiras.
+E) 3.360 maneiras.
+// Comentário: Trata-se de uma partição ordenada, pois os grupos possuem atribuições e denominações distintas (Alfa, Beta e Gama). Pela fórmula do coeficiente multinomial: 8! / (3! * 3! * 2!) = 40.320 / (6 * 6 * 2) = 40.320 / 72 = 560 maneiras. Alternativamente, por combinações sucessivas: C(8, 3) * C(5, 3) * C(2, 2) = 56 * 10 * 1 = 560. As opções A, B, D e E decorrem de divisões incorretas por fatoriais adicionais ou omissão de denominadores.
+
+@@ a05/s05 | D | item=2.1
+Seis peritos criminais devem ser divididos em três duplas para realizar simultaneamente a mesma tarefa de inspeção pericial, não havendo qualquer distinção de função, ordem ou denominação entre as duplas formadas. Assinale a opção que indica de quantas formas distintas essas duplas podem ser constituídas.
+
+A) 90 formas.
+B) 45 formas.
+C) 30 formas.
+D) 15 formas.
+E) 10 formas.
+// Comentário: Trata-se de uma partição não-ordenada, pois as três duplas realizam a mesma tarefa e são indistinguíveis entre si. Se as duplas fossem ordenadas, o total seria 6! / (2! * 2! * 2!) = 720 / 8 = 90 formas. Como a ordem entre as 3 duplas de mesmo tamanho não importa, divide-se por 3! = 6: 90 / 6 = 15 formas distintas. A opção A erra ao calcular a partição ordenada sem dividir por 3!. As opções B, C e E trazem outros valores incorretos.
+
+@@ a05/s05 | A | item=2.1
+O Primeiro Lema de Kaplansky estabelece o número de maneiras de selecionar p elementos de um conjunto de n elementos dispostos em uma fila linear, de modo que não haja dois elementos selecionados consecutivos (adjacentes). Assinale a opção que apresenta a expressão correta para f(n, p).
+
+A) f(n, p) = C(n - p + 1, p).
+B) f(n, p) = C(n - p, p).
+C) f(n, p) = C(n - 1, p - 1).
+D) f(n, p) = [n / (n - p)] * C(n - p, p).
+E) f(n, p) = C(n + p - 1, p).
+// Comentário: Pelo Primeiro Lema de Kaplansky para elementos dispostos em fila linear, o número de subconjuntos de p elementos sem elementos adjacentes é f(n, p) = C(n - p + 1, p). Isso ocorre porque os n - p elementos não selecionados criam n - p + 1 espaços vazios (antes, entre e depois), cabendo escolher p desses espaços. A opção E expressa combinações completas com repetição. A opção B esquece o espaço adicional (+1). A opção C é fórmula para partições de inteiros. A opção D expressa o Segundo Lema de Kaplansky (para disposição circular).
+
+@@ a05/s05 | A | item=2.1
+Um policial civil deve cumprir 3 plantões em um período de 8 dias consecutivos (de segunda-feira a segunda-feira seguinte, em sequência linear), sem que possa cumprir plantão em dois dias seguidos. Assinale a opção que indica de quantas maneiras distintas essa escala de plantão pode ser montada.
+
+A) 20 maneiras.
+B) 56 maneiras.
+C) 35 maneiras.
+D) 16 maneiras.
+E) 10 maneiras.
+// Comentário: Como os 8 dias formam uma sequência linear (fila, em que o primeiro e o oitavo dia não são vizinhos) e desejamos escolher p = 3 dias sem dias consecutivos, aplicamos o 1º Lema de Kaplansky: f(n, p) = C(n - p + 1, p) = C(8 - 3 + 1, 3) = C(6, 3) = (6 * 5 * 4) / (3 * 2 * 1) = 20 maneiras. A opção B é o total sem restrição C(8, 3) = 56. A opção C toma C(7, 3) = 35. A opção D aplica indevidamente o 2º Lema circular (16). A opção E traz cálculo equivocado.
+
+@@ a05/s05 | B | item=2.1
+Em uma mesa de reuniões circular, 8 policiais civis estão sentados ao redor de uma mesa redonda. Deseja-se formar uma comissão de 3 desses policiais, com a restrição de que nenhum par de membros da comissão esteja sentado em posições imediatamente adjacentes (vizinhas) na mesa. Assinale a opção que indica o número de comissões possíveis.
+
+A) 20 comissões.
+B) 16 comissões.
+C) 24 comissões.
+D) 12 comissões.
+E) 35 comissões.
+// Comentário: Como a disposição é circular (o primeiro e o oitavo assento são adjacentes), aplica-se o Segundo Lema de Kaplansky: g(n, p) = [n / (n - p)] * C(n - p, p). Para n = 8 e p = 3: g(8, 3) = [8 / (8 - 3)] * C(8 - 3, 3) = (8 / 5) * C(5, 3) = (8 / 5) * 10 = 16 comissões. A opção A aplica incorretamente o primeiro lema linear (20). As opções C, D e E trazem outros valores incorretos.
+
+@@ a05/s05 | E | item=2.1
+A respeito dos Lemas de Kaplansky para a contagem de subconjuntos de p elementos sem elementos adjacentes, assinale a opção correta.
+
+A) O primeiro lema aplica-se a disposições circulares em que o primeiro e o último elemento são adjacentes.
+B) Para uma mesma quantidade de elementos n e de escolhas p, a disposição circular sempre admite mais configurações válidas do que a linear.
+C) O segundo lema de Kaplansky independe de o conjunto estar organizado em ordem cíclica fechada.
+D) Em uma fila linear de 5 posições, é teoricamente possível escolher 4 posições sem que existam posições adjacentes.
+E) O primeiro lema aplica-se a disposições lineares, enquanto o segundo lema aplica-se a disposições circulares onde os extremos também são vizinhos.
+// Comentário: O 1º Lema de Kaplansky conta escolhas de elementos não adjacentes em fila linear (em que o primeiro e o último elemento não são vizinhos), com fórmula f(n, p) = C(n - p + 1, p). O 2º Lema aplica-se a disposições em círculo (onde o primeiro e o último elemento são adjacentes), com fórmula g(n, p) = [n / (n - p)] * C(n - p, p). A opção A inverte as disposições. A opção B erra pois a disposição circular impõe mais uma restrição de vizinhança (entre os extremos), gerando sempre menos configurações do que a linear. A opção D é impossível pois 5 posições comportam no máximo 3 elementos não adjacentes (posições 1, 3 e 5). A opção C é falsa.
