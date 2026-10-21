@@ -11,7 +11,7 @@ import { Alert, Badge, Card, Count, InfoTip, Kbd, LinkButton, PageHeader, Ring, 
 import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { attentionPoints, score, type AnswerRow } from "@/lib/quiz/logic";
-import { servableStatuses } from "@/lib/quiz/servable";
+import { loadQuizPool } from "@/lib/quiz/pool";
 import { fmtDuration, subjectShort } from "@/lib/ui-format";
 
 export const metadata: Metadata = { title: "Caderno de questões" };
@@ -32,7 +32,7 @@ export default async function QuizPage({ params }: PageProps<"/caderno/[id]">) {
   const { id } = await params; // id da atividade
   const activity = await db.activity.findFirst({
     where: { id, type: "QUESTOES", week: { plan: { userId: user.id, status: "ACTIVE" } } },
-    include: { aula: { select: { number: true, shortTitle: true } }, segments: { select: { segmentId: true } }, week: { select: { index: true } } },
+    include: { aula: { select: { number: true, shortTitle: true } }, segments: { select: { segmentId: true } }, week: { select: { index: true, plan: { select: { contest: true } } } } },
   });
   if (!activity) notFound();
 
@@ -199,7 +199,8 @@ export default async function QuizPage({ params }: PageProps<"/caderno/[id]">) {
   }
 
   // ───────── introdução ─────────
-  const available = await db.question.count({ where: { segmentId: { in: activity.segments.map((s) => s.segmentId) }, status: { in: servableStatuses() } } });
+  const pool = await loadQuizPool(activity, activity.week.plan.contest);
+  const available = pool.primary.length + pool.extra.length;
   const n = Math.min(activity.quizQuestions ?? 25, available);
   return (
     <div className="mx-auto max-w-2xl space-y-6">

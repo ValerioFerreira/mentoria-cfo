@@ -65,6 +65,21 @@ export function pickQuestions(candidates: Candidate[], n: number, seed: number):
   return picked.map((c) => c.id);
 }
 
+/**
+ * Monta o caderno: todas as questões dos trechos do próprio caderno entram; se não bastarem para `n`, o resto vem de
+ * `extra` (trechos já estudados da mesma disciplina), sorteado com os mesmos pesos de `pickQuestions`.
+ */
+export function pickWithFallback(primary: Candidate[], extra: Candidate[], n: number, seed: number): string[] {
+  if (primary.length >= n || extra.length === 0) return pickQuestions(primary, n, seed);
+  const ids = [...primary.map((c) => c.id), ...pickQuestions(extra, n - primary.length, seed)];
+  const rand = rng(seed ^ 0x9e3779b9);
+  for (let i = ids.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [ids[i], ids[j]] = [ids[j], ids[i]];
+  }
+  return ids;
+}
+
 export interface AnswerRow {
   questionId: string;
   topic: string | null;

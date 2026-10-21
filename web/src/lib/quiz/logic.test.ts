@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { attentionPoints, hashSeed, pickQuestions, remainingSeconds, score, type AnswerRow, type Candidate } from "./logic";
+import { attentionPoints, hashSeed, pickQuestions, pickWithFallback, remainingSeconds, score, type AnswerRow, type Candidate } from "./logic";
 
 const cand = (n: number, segs = 3): Candidate[] =>
   Array.from({ length: n }, (_, i) => ({ id: `q${i}`, segmentId: `s${i % segs}`, seen: 0, lastCorrect: null }));
@@ -74,5 +74,28 @@ describe("remainingSeconds", () => {
   it("conta regressivamente e não fica negativo", () => {
     expect(remainingSeconds(0, 3600, 600_000)).toBe(3000);
     expect(remainingSeconds(0, 3600, 4_000_000)).toBe(0);
+  });
+});
+
+describe("pickWithFallback", () => {
+  const prim = (n: number): Candidate[] => Array.from({ length: n }, (_, i) => ({ id: `p${i}`, segmentId: "a", seen: 0, lastCorrect: null }));
+  const ext = (n: number): Candidate[] => Array.from({ length: n }, (_, i) => ({ id: `e${i}`, segmentId: "b", seen: 0, lastCorrect: null }));
+  it("com questões próprias de sobra, não toca nas extras", () => {
+    const ids = pickWithFallback(prim(30), ext(40), 25, 3);
+    expect(ids).toHaveLength(25);
+    expect(ids.every((id) => id.startsWith("p"))).toBe(true);
+  });
+  it("caderno curto leva todas as próprias e completa com as extras sem repetir", () => {
+    const ids = pickWithFallback(prim(8), ext(40), 25, 3);
+    expect(ids).toHaveLength(25);
+    expect(new Set(ids).size).toBe(25);
+    expect(ids.filter((id) => id.startsWith("p"))).toHaveLength(8);
+  });
+  it("sem extras ou com extras insuficientes, devolve o que existe", () => {
+    expect(pickWithFallback(prim(8), [], 25, 3)).toHaveLength(8);
+    expect(pickWithFallback(prim(8), ext(5), 25, 3)).toHaveLength(13);
+  });
+  it("é determinístico para a mesma semente", () => {
+    expect(pickWithFallback(prim(8), ext(40), 25, 9)).toEqual(pickWithFallback(prim(8), ext(40), 25, 9));
   });
 });
