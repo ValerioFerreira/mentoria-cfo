@@ -1010,16 +1010,16 @@
       "id": "raciocinio-logico/a02/s10",
       "bizu": {
         "summary": [
-          "**Negação da bicondicional sem exclusiva**: (j ∧ ~m) ∨ (~j ∧ m).",
-          "**Simplificação**: ~p → (p ∨ q) equivale a p ∨ q, usando dupla negação, associativa e idempotência.",
-          "**Q quando P**: a expressão tem a forma de condicional, de P para Q.",
-          "**Distributiva**: (~p ∨ q) ∧ (~p ∨ r) equivale a ~p ∨ (q ∧ r).",
-          "**Comutativa**: f ∧ v equivale a v ∧ f, mas não a uma condicional nem a um ou.",
-          "**Bicondicional entre equivalentes**: ~(p ∧ q) ↔ (~p ∨ ~q) é tautologia.",
-          "**Bicondicional entre opostos**: (~p ∨ ~q) ↔ (q ∧ p) é contradição.",
-          "**Forma x ∧ ~x**: (p → q) ∧ ~(p → q) é contradição, e x ∨ ~x é tautologia.",
-          "**Forma T → T**: uma condicional com os dois termos equivalentes é tautologia.",
-          "**Absorção**: p ∨ (p ∧ ~q) equivale a p, contingência."
+          "**Roteiro de simplificação**: elimine → e ↔, aplique De Morgan e dupla negação, reagrupe e procure repetições ou termos opostos.",
+          "**Idempotência e absorção**: p ∨ p ≡ p; p ∨ (p ∧ q) ≡ p; p ∧ (p ∨ q) ≡ p. São as leis que mais encurtam as fórmulas.",
+          "**Distributiva em evidência**: (~x ∨ y) ∧ (~x ∨ z) ≡ ~x ∨ (y ∧ z), que também se lê x → (y ∧ z).",
+          "**~a → (a ∨ b)**: vira a ∨ (a ∨ b) e, por idempotência, a ∨ b.",
+          "**Tautologia**: X ∨ ~X, X → X ou A ↔ B com A e B equivalentes; vale também quando X é composta.",
+          "**Contradição**: X ∧ ~X ou A ↔ B com uma sendo a negação da outra, como (a → b) ∧ (a ∧ ~b).",
+          "**Contingência**: a simplificação termina em algo que depende dos valores, como x, x ∨ y ou ~x ∨ ~y.",
+          "**Teste rápido da condicional**: ela só é falsa em V → F; se isso nunca pode ocorrer, a fórmula é tautologia.",
+          "**Negação da bicondicional**: p ⊻ q ≡ (p ∧ ~q) ∨ (~p ∧ q) ≡ p ↔ ~q. Negar os dois lados (~p ↔ ~q) dá equivalência, não negação.",
+          "**Leitura de \"quando\"**: \"q, quando p\" é p → q; a conjunção comuta, a condicional não."
         ],
         "teoria": [
           {
@@ -1129,15 +1129,17 @@
       "id": "raciocinio-logico/a02/s11",
       "bizu": {
         "summary": [
-          "**Objetivo**: refazer todas as questões dos três blocos antes de olhar o gabarito.",
-          "**Identificar a regra**: contrapositiva, ou, De Morgan, negação da condicional, bicondicional, distributiva e demais.",
-          "**Segundo método**: se o primeiro não gera nenhuma alternativa, tente o outro ou use a tabela-verdade.",
-          "**Bloco 1**: concentra negações e equivalências da condicional e De Morgan, com 25 questões.",
-          "**Bloco 2**: concentra bicondicional, exclusiva, antônimos e conjunção de condicionais, com 12 questões.",
-          "**Bloco 3**: concentra álgebra, tautologia, contradição e simplificações, com 12 questões.",
-          "**Antônimos**: não são negações exatas, e a negação de nunca é ao menos uma vez.",
-          "**Contagem**: no máximo k satisfazem a negação equivale a pelo menos n menos k satisfazem o oposto.",
-          "**Revisão**: refaça os erros, as questões lentas e monte uma folha das equivalências."
+          "**Negação da condicional**: p ∧ ~q (\"Se o drone decola, a câmera grava\" → \"o drone decola e a câmera não grava\"); nunca é outra condicional.",
+          "**Equivalentes da condicional**: contrapositiva ~q → ~p e forma ~p ∨ q; recíproca e inversa não valem.",
+          "**Consequente composto**: p → (q ∨ r) ≡ (~q ∧ ~r) → ~p; ao negar o \"ou\", ele vira \"e\".",
+          "**De Morgan**: ~(p ∧ q) ≡ ~p ∨ ~q; ~(p ∨ q) ≡ ~p ∧ ~q. Suspeito que mentiu dizendo \"A ou B\" afirmou, na verdade, \"não A e não B\".",
+          "**\"Nunca\"**: nega-se com \"pelo menos uma vez\".",
+          "**Antônimo**: \"bem-informado\" não é a negação de \"mal-informado\"; a negação é \"não é mal-informado\".",
+          "**Complemento**: em n pessoas, \"no máximo k sem X\" equivale a \"pelo menos n − k com X\".",
+          "**Bicondicional × exclusivo**: ~(p ↔ q) ≡ ou p, ou q; ~(ou p, ou q) ≡ p ↔ q.",
+          "**Exclusivo não é condicional**: \"ou p, ou q\" exige exatamente um verdadeiro; p → ~q aceita os dois falsos.",
+          "**Junção de condicionais**: (p → q) ∧ (p → r) ≡ p → (q ∧ r); (p → r) ∧ (q → r) ≡ (p ∨ q) → r.",
+          "**Plano B**: valore as proposições para tornar a original falsa e elimine alternativas; tabela-verdade só no fim."
         ],
         "teoria": [
           {

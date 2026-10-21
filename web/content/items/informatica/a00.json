@@ -435,14 +435,15 @@
       "id": "informatica/a00/s05",
       "bizu": {
         "summary": [
-          "**Composição da URL**: engloba protocolo, domínio, porta lógica, caminho nos diretórios, parâmetros de busca e âncora de fragmento.",
-          "**Fragmento de Documento**: delimitado por `#`, localiza posições internas na página e é interpretado exclusivamente no navegador.",
-          "**Protocolo HTTP**: protocolo de transferência de hipertexto sem estado (*stateless*), operando na porta 80 sob códigos de resposta estruturados.",
-          "**Protocolo HTTPS**: encapsulamento do tráfego web sob cifras SSL/TLS na porta 443, afiançando confidencialidade e autenticidade.",
-          "**Duplo Canal do FTP**: arquitetura que separa o fluxo de comandos de controle (porta TCP 21) da transmissão dos arquivos em si (porta TCP 20).",
-          "**Finalidade do FTP versus Web**: o FTP é especialista em arquivos; transferências na Web operam rotineiramente via comandos HTTP/HTTPS.",
-          "**Conceito de VoIP**: conversão e transporte de fluxos de voz por comutação de pacotes IP, substituindo canais contínuos da telefonia PSTN.",
-          "**Transporte e Sinalização no VoIP**: utilização de datagramas UDP para áudio em tempo real amparados por protocolos de sessão SIP ou H.323."
+          "**URL completa**: protocolo, domínio, porta, caminho, recurso, consulta e fragmento; só protocolo e domínio são obrigatórios, e trocar o recurso muda a URL sem mudar o domínio.",
+          "**Consulta e fragmento**: a consulta começa em `?` e junta pares chave=valor com `&`, enquanto o fragmento começa em `#` e é tratado apenas pelo navegador, sem ser enviado ao servidor.",
+          "**DNS e registro**: o DNS é hierárquico e distribuído e traduz nome em IP; a ICANN coordena o registro mundial e o Registro.br cuida do `.br`, que indica onde o domínio foi registrado, não onde o site está hospedado.",
+          "**Nome no .br**: de 2 a 26 caracteres, alfanuméricos, nunca só números e sem hífen no início ou no fim; `x.com.br` e `123.com.br` são inválidos.",
+          "**HTTP**: protocolo requisição-resposta na porta 80, sem criptografia e sem estado; HTML é a linguagem das páginas, não confunda com o protocolo.",
+          "**Códigos de status**: 2xx sucesso (200), 3xx redirecionamento (301), 4xx erro do cliente (404 não encontrada, 403 proibida) e 5xx erro do servidor (500, 503).",
+          "**HTTPS**: HTTP sobre SSL/TLS na porta 443, com cifragem, integridade e autenticação do servidor por certificado digital de uma AC; certificado expirado ou revogado gera alerta, e o cadeado não é garantia absoluta de confiança.",
+          "**FTP**: transfere arquivos com duas conexões, controle na porta 21 e dados na 20; download obtém e upload envia, e anexos de e-mail (SMTP/MIME) ou downloads em páginas (HTTP) não são FTP.",
+          "**VoIP**: voz digitalizada em pacotes IP, normalmente por UDP, com SIP ou H.323 para iniciar e encerrar a chamada; reduz o custo das ligações, mas depende de banda, energia e sofre com latência."
         ],
         "teoria": [
           {
