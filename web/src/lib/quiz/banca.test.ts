@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { AOCP_BANCAS, INEDITA_BANCA, activityQuizWhere, contestBancas, hideInedita } from "./banca";
+import { AOCP_BANCAS, INEDITA_BANCA, activityQuizWhere, contestBancas, hideInedita, reinforcementQuizWhere, usesReinforcement } from "./banca";
 import type { QuestionStatus } from "@/generated/prisma/client";
 
 // Simula o filtro do Prisma sobre um acervo pequeno para mostrar que o caderno de uma atividade só
@@ -61,3 +61,22 @@ describe("activityQuizWhere", () => {
     expect(hideInedita(undefined)).toEqual({ NOT: { banca: INEDITA_BANCA } });
   });
 });
+
+describe("reforço do caderno (CBMPE Oficial)", () => {
+  it("só o CBMPE Oficial (e planos antigos sem concurso) recorre ao reforço", () => {
+    expect(usesReinforcement("CBMPE_OFICIAL")).toBe(true);
+    expect(usesReinforcement(null)).toBe(true);
+    expect(usesReinforcement(undefined)).toBe(true);
+    expect(usesReinforcement("PCPE_AGENTE")).toBe(false);
+    expect(usesReinforcement("CBMPE_SOLDADO")).toBe(false);
+    expect(usesReinforcement("PMPE_OFICIAL")).toBe(false);
+  });
+  it("o filtro pega só múltipla escolha de fora da AOCP, nos trechos dados", () => {
+    const w = reinforcementQuizWhere(["x/a01/s01"], ["APPROVED"]);
+    expect(w.kind).toBe("MULTIPLA_ESCOLHA");
+    expect(w.banca.notIn).toEqual(AOCP_BANCAS);
+    expect(w.segmentId.in).toEqual(["x/a01/s01"]);
+    expect(w.status.in).toEqual(["APPROVED"]);
+  });
+});
+

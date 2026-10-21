@@ -12,7 +12,7 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient, type Contest } from "../src/generated/prisma/client";
-import { INEDITA_BANCA, contestBancas } from "../src/lib/quiz/banca";
+import { AOCP_BANCAS, INEDITA_BANCA, contestBancas, usesReinforcement } from "../src/lib/quiz/banca";
 import { CONTEST_SUBJECTS } from "../src/lib/contests";
 
 const args = process.argv.slice(2);
@@ -20,6 +20,8 @@ const remote = args.includes("--remoto");
 const arg = (n: string) => (args.includes(n) ? args[args.indexOf(n) + 1] : undefined);
 const contests = (arg("--concurso") ?? "CBMPE_OFICIAL,PCPE_AGENTE").split(",") as Contest[];
 const stamp = new Date().toISOString().slice(0, 10);
+// --lote arquivo.json (formato de questoes-ineditas.ts): soma ao reforço, só na conta, as inéditas que ainda NÃO estão no banco.
+const loteFile = arg("--lote");
 const outDir = resolve(arg("--saida") ?? resolve(__dirname, "../reports", `cadernos-${stamp}-${remote ? "remoto" : "local"}`));
 
 function remoteUrl(): string {
@@ -48,13 +50,24 @@ async function supplyBySegment(contest: Contest): Promise<Map<string, number>> {
   return new Map(g.map((r) => [r.segmentId, r._count]));
 }
 
+/** Reforço por trecho (concursos em REFORCO_CONTESTS): múltipla escolha aprovada fora da AOCP, inéditas incluídas, mais o lote virtual. */
+async function supplyReinforcement(): Promise<Map<string, number>> {
+  const g = await db.question.groupBy({ by: ["segmentId"], where: { status: "APPROVED", kind: "MULTIPLA_ESCOLHA", banca: { notIn: AOCP_BANCAS } }, _count: true });
+  const m = new Map(g.map((r) => [r.segmentId, r._count]));
+  if (loteFile) {
+    const lote = JSON.parse(readFileSync(resolve(loteFile), "utf8")) as { segmentId: string; kind?: string }[];
+    for (const r of lote) if ((r.kind ?? "CERTO_ERRADO") === "MULTIPLA_ESCOLHA") m.set(r.segmentId, (m.get(r.segmentId) ?? 0) + 1);
+  }
+  return m;
+}
+
 /** Questões aprovadas de QUALQUER banca (menos as inéditas), para dimensionar o que sobra fora da banca do concurso. */
 async function supplyAnyBanca(): Promise<Map<string, number>> {
   const g = await db.question.groupBy({ by: ["segmentId"], where: { status: "APPROVED", banca: { not: INEDITA_BANCA } }, _count: true });
   return new Map(g.map((r) => [r.segmentId, r._count]));
 }
 
-async function realPlans(contest: Contest, supply: Map<string, number>, names: Map<string, string>) {
+async function realPlans(contest: Contest, supply: Map<string, number>, reinf: Map<string, number>, names: Map<string, string>) {
   const plans = await db.plan.findMany({
     where: { status: { in: ["ACTIVE", "PENDING_ANALYSIS"] }, ...(contest === "CBMPE_OFICIAL" ? { OR: [{ contest }, { contest: null }] } : { contest }) },
     select: { id: true, status: true, user: { select: { email: true } } },
@@ -84,11 +97,19 @@ async function realPlans(contest: Contest, supply: Map<string, number>, names: M
           extra = [...prior].reduce((s, id) => s + (supply.get(id) ?? 0), 0);
         }
       }
-      const total = primary >= want ? primary : primary + extra;
+      const totalHoje = primary >= want ? primary : primary + extra;
+      let total = totalHoje;
+      if (total < want && usesReinforcement(contest)) {
+        const priorIds = new Set(a.dayIndex === null ? [] : teorias
+          .filter((t) => t.subjectId === a.subjectId && (t.week.index < a.week.index || (t.week.index === a.week.index && (t.dayIndex ?? 99) < a.dayIndex!)))
+          .flatMap((t) => t.segments.map((x) => x.segmentId)));
+        for (const id of own) priorIds.add(id);
+        total += [...priorIds].reduce((acc, id) => acc + (reinf.get(id) ?? 0), 0);
+      }
       rows.push({
         concurso: contest, plano: p.id, statusPlano: p.status, aluno: p.user.email, disciplina: names.get(a.subjectId) ?? a.subjectId, aula: a.aula.title,
         atividade: a.id, semana: a.week.index, dia: a.dayIndex, turbo: a.turbo, misto: a.quizMixed, pede: want, trechos: own.length,
-        dosTrechos: primary, completadoDosJaEstudados: extra, recebe: Math.min(want, total), falta: Math.max(0, want - total),
+        dosTrechos: primary, completadoDosJaEstudados: extra, recebeHoje: Math.min(want, totalHoje), recebe: Math.min(want, total), falta: Math.max(0, want - total),
       });
     }
   }
@@ -103,6 +124,7 @@ async function realPlans(contest: Contest, supply: Map<string, number>, names: M
   for (const contest of contests) {
     const supply = await supplyBySegment(contest);
     const anyBanca = await supplyAnyBanca();
+    const reinf = await supplyReinforcement();
     const subs = (CONTEST_SUBJECTS as Record<string, string[]>)[contest] ?? [];
     // 2. oferta por trecho
     const segs = await db.segment.findMany({
@@ -116,13 +138,14 @@ async function realPlans(contest: Contest, supply: Map<string, number>, names: M
       const n = supply.get(s.id) ?? 0;
       const c = (cum.get(s.aula.subjectId) ?? 0) + n;
       cum.set(s.aula.subjectId, c);
-      oferta.push({ concurso: contest, disciplina: names.get(s.aula.subjectId) ?? s.aula.subjectId, aula: s.aula.title, trecho: s.id, questoes: n, outrasBancas: (anyBanca.get(s.id) ?? 0) - n, acumuladoDaDisciplina: c, abaixoDe7: n < 7 });
+      oferta.push({ concurso: contest, disciplina: names.get(s.aula.subjectId) ?? s.aula.subjectId, aula: s.aula.title, trecho: s.id, questoes: n, outrasBancas: (anyBanca.get(s.id) ?? 0) - n, reforco: usesReinforcement(contest) ? reinf.get(s.id) ?? 0 : 0, efetiva: n + (usesReinforcement(contest) ? reinf.get(s.id) ?? 0 : 0), acumuladoDaDisciplina: c, abaixoDe7: n + (usesReinforcement(contest) ? reinf.get(s.id) ?? 0 : 0) < 7 });
     }
     writeFileSync(resolve(outDir, `oferta-por-trecho-${contest}.csv`), csv(oferta));
     // 1. planos reais
-    const { rows, semDia, plans } = await realPlans(contest, supply, names);
+    const { rows, semDia, plans } = await realPlans(contest, supply, reinf, names);
     writeFileSync(resolve(outDir, `planos-reais-${contest}.csv`), csv(rows));
     const curtos = rows.filter((r) => Number(r.falta) > 0);
+    const curtosHoje = rows.filter((r) => Number(r.recebeHoje) < Number(r.pede)).length;
     writeFileSync(resolve(outDir, `planos-reais-CURTOS-${contest}.csv`), csv(curtos));
     const porDisc: Record<string, { cadernos: number; curtos: number; menor: number }> = {};
     for (const r of rows) {
@@ -143,7 +166,7 @@ async function realPlans(contest: Contest, supply: Map<string, number>, names: M
     }
     summary[contest] = {
       bancas: contestBancas(contest),
-      planosAnalisados: plans, cadernosNosPlanos: rows.length, cadernosCurtos: curtos.length, cadernosCurtosSemDiaNoPlano: semDia,
+      planosAnalisados: plans, cadernosNosPlanos: rows.length, cadernosCurtosRegraAtual: curtosHoje, cadernosCurtosComReforco: curtos.length, cadernosCurtosSemDiaNoPlano: semDia,
       porDisciplinaNosPlanos: porDisc, ofertaPorDisciplina: ofertaPorDisc,
     };
   }

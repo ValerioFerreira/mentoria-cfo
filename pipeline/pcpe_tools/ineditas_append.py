@@ -4,7 +4,7 @@ Rascunho: blocos '@@ trecho [| item=cod]' + enunciado + 5 alternativas 'A)'..'E)
 O script sorteia a posição da correta (balanceando as letras, também em relação ao que já existe no arquivo) e reescreve o cabeçalho.
 Uso: python pipeline/pcpe_tools/ineditas_append.py <rascunho.txt> <disciplina> [--dry]
 """
-import random, re, sys
+import os, random, re, sys, time
 sys.stdout.reconfigure(encoding="utf-8")
 from collections import Counter
 from pathlib import Path
@@ -13,6 +13,22 @@ ROOT = Path(__file__).resolve().parents[2]
 draft = Path(sys.argv[1]).read_text(encoding="utf-8").replace("\r\n", "\n")
 disc = sys.argv[2]
 target = ROOT / "content/questoes/ineditas/mc" / f"{disc}.txt"
+if not target.exists():
+    target.write_bytes(b"")
+# trava simples: vários agentes podem anexar à mesma disciplina sem sobrescrever um ao outro
+lock = target.with_suffix(".lock")
+for _ in range(600):
+    try:
+        os.close(os.open(lock, os.O_CREAT | os.O_EXCL | os.O_WRONLY))
+        break
+    except FileExistsError:
+        if time.time() - lock.stat().st_mtime > 120:  # trava velha (processo morto)
+            lock.unlink(missing_ok=True)
+        time.sleep(0.5)
+else:
+    sys.exit("não consegui a trava de " + str(target))
+import atexit
+atexit.register(lambda: lock.unlink(missing_ok=True))
 raw = target.read_bytes()
 crlf = b"\r\n" in raw
 cur = raw.decode("utf-8").replace("\r\n", "\n")
