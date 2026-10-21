@@ -14,7 +14,7 @@ import {
   aulaLabel, fixacaoSteps, questoesSteps, revisaoFinalSteps, revisaoSteps, teoriaDirective, turboDirective,
   type AulaRef, type FixRange, type SegmentRef,
 } from "@/lib/directive";
-import { servableStatuses } from "@/lib/quiz/servable";
+import { loadQuizPool } from "@/lib/quiz/pool";
 import { STATUS_LABEL, subjectShort } from "@/lib/ui-format";
 import { MaterialLink } from "@/components/material-link";
 import { CONTEST_PACKAGES } from "@/lib/contests";
@@ -65,7 +65,7 @@ export default async function ActivityPage({ params }: PageProps<"/atividade/[id
   const [aulas, notes, approvedQuestions, analytics] = await Promise.all([
     db.aula.findMany({ where: { id: { in: aulaIds } }, select: { id: true, number: true, shortTitle: true, printedOffset: true, source: true, materialPath: true, subject: { select: { name: true } } } }),
     db.note.findMany({ where: { userId: user.id, segmentId: { in: segIds } } }),
-    a.type === "QUESTOES" ? db.question.count({ where: { segmentId: { in: segIds }, status: { in: servableStatuses() } } }) : Promise.resolve(0),
+    a.type === "QUESTOES" ? loadQuizPool(a, a.week.plan.contest).then((p) => p.primary.length + p.extra.length) : Promise.resolve(0),
     a.type === "TEORIA" || a.type === "REVISAO" ? db.analyticSummary.findMany({ where: { segmentId: { in: segIds } }, select: { segmentId: true, markdown: true, status: true, readMinutes: true } }) : Promise.resolve([]),
   ]);
   const analyticBySeg = new Map(analytics.map((x) => [x.segmentId, x]));

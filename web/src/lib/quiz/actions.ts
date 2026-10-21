@@ -4,9 +4,8 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
-import { hashSeed, pickQuestions, score, type AnswerRow } from "./logic";
-import { servableStatuses } from "./servable";
-import { activityQuizWhere } from "./banca";
+import { hashSeed, pickWithFallback, score, type AnswerRow } from "./logic";
+import { DEFAULT_QUIZ_QUESTIONS, loadQuizPool } from "./pool";
 
 const MIN_QUESTIONS = 5;
 
@@ -15,7 +14,7 @@ async function ownedQuizActivity(userId: string, activityId: string) {
     where: { id: activityId, type: "QUESTOES", week: { plan: { userId, status: "ACTIVE" } } },
     include: {
       segments: { select: { segmentId: true } },
-      week: { select: { plan: { select: { contest: true } } } },
+      week: { select: { index: true, plan: { select: { contest: true } } } },
     },
   });
   if (!a) throw new Error("Atividade de questões não encontrada ou plano não liberado.");
@@ -30,12 +29,9 @@ export async function startQuiz(activityId: string): Promise<{ error: string } |
   const open = await db.quizSession.findFirst({ where: { userId: user.id, activityId, finishedAt: null }, orderBy: { startedAt: "desc" } });
   if (open) redirect(`/caderno/${activityId}`);
 
-  const segmentIds = a.segments.map((s) => s.segmentId);
-  const questions = await db.question.findMany({
-    where: activityQuizWhere(segmentIds, servableStatuses(), a.week.plan.contest),
-    select: { id: true, segmentId: true },
-  });
-  const want = a.quizQuestions ?? 25;
+  const pool = await loadQuizPool(a, a.week.plan.contest);
+  const questions = [...pool.primary, ...pool.extra];
+  const want = a.quizQuestions ?? DEFAULT_QUIZ_QUESTIONS;
   const n = Math.min(want, questions.length);
   if (n < MIN_QUESTIONS) return { error: "Ainda não há questões suficientes para este caderno." };
 
@@ -49,13 +45,10 @@ export async function startQuiz(activityId: string): Promise<{ error: string } |
     const cur = seen.get(h.questionId) ?? { n: 0, last: null };
     seen.set(h.questionId, { n: cur.n + 1, last: h.isCorrect });
   }
+  const candidate = (q: { id: string; segmentId: string }) => ({ id: q.id, segmentId: q.segmentId, seen: seen.get(q.id)?.n ?? 0, lastCorrect: seen.get(q.id)?.last ?? null });
 
   const sessionId = crypto.randomUUID();
-  const ids = pickQuestions(
-    questions.map((q) => ({ id: q.id, segmentId: q.segmentId, seen: seen.get(q.id)?.n ?? 0, lastCorrect: seen.get(q.id)?.last ?? null })),
-    n,
-    hashSeed(sessionId),
-  );
+  const ids = pickWithFallback(pool.primary.map(candidate), pool.extra.map(candidate), n, hashSeed(sessionId));
   await db.quizSession.create({
     data: {
       id: sessionId, userId: user.id, activityId, kind: a.quizMixed ? "SIMULADO_BLOCO" : "CADERNO",
