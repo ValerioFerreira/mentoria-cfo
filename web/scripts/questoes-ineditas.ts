@@ -8,8 +8,8 @@
 //   npx tsx scripts/questoes-ineditas.ts lote.json --remoto         # grava na produção (web/.env.remote)
 //   npx tsx scripts/questoes-ineditas.ts lote.json --retirar-ausentes   # grava e aposenta (RETIRED) as inéditas do mesmo batch que não estão mais no lote (texto editado = id novo)
 //   npx tsx scripts/questoes-ineditas.ts --contar [--remoto]        # só leitura: inéditas por assunto
-//   npx tsx scripts/questoes-ineditas.ts --aposentar [--minimo 8] [--remoto]
-//        # inédita de assunto que já tem ao menos N questões reais aprovadas (de outra origem) vira RETIRED
+//   npx tsx scripts/questoes-ineditas.ts --aposentar [--minimo 8] [--simular] [--remoto]
+//        # inédita de um TRECHO que já tem ao menos N questões reais aprovadas das bancas do caderno (Cebraspe e AOCP) vira RETIRED; --simular só lista
 //
 // Marcação no banco: banca = "Inédita MentorIA", batch = "mentoria-inedita-AAAA-MM-DD", id "mentoria_<disciplina>_NNN_<hash>",
 // externalId nulo (nunca mexe nas questões "tec_*") e classifiedBy = MANUAL (a reclassificação do importador não as toca).
@@ -19,6 +19,8 @@ import { readFileSync, existsSync } from "node:fs";
 import { resolve } from "node:path";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "../src/generated/prisma/client";
+
+import { AOCP_BANCAS, CEBRASPE_BANCAS } from "../src/lib/quiz/banca";
 
 const BANCA = "Inédita MentorIA";
 const args = process.argv.slice(2);
@@ -58,18 +60,22 @@ async function contar() {
   console.log("total de inéditas:", total);
 }
 
-async function aposentar(min: number) {
-  const items = await db.question.groupBy({ by: ["editalItemId"], where: { banca: BANCA, status: "APPROVED", editalItemId: { not: null } } });
+async function aposentar(min: number, simular: boolean) {
+  // Conta só as reais que o caderno do PCPE realmente usa (Cebraspe e AOCP, ver contestBancas) e por TRECHO,
+  // que é o recorte do caderno das atividades; outras bancas só servem ao treino livre e não substituem a inédita.
+  const usadas = [...CEBRASPE_BANCAS, ...AOCP_BANCAS];
+  const segs = await db.question.groupBy({ by: ["segmentId"], where: { banca: BANCA, status: "APPROVED" } });
   let retired = 0;
-  for (const it of items) {
-    const reais = await db.question.count({ where: { editalItemId: it.editalItemId, status: "APPROVED", banca: { not: BANCA } } });
+  for (const sg of segs) {
+    const reais = await db.question.count({ where: { segmentId: sg.segmentId, status: "APPROVED", banca: { in: usadas } } });
     if (reais >= min) {
-      const r = await db.question.updateMany({ where: { banca: BANCA, status: "APPROVED", editalItemId: it.editalItemId }, data: { status: "RETIRED" } });
-      retired += r.count;
-      console.log(`${it.editalItemId}: ${reais} reais → ${r.count} inéditas aposentadas`);
+      const where = { banca: BANCA, status: "APPROVED" as const, segmentId: sg.segmentId };
+      const n = simular ? await db.question.count({ where }) : (await db.question.updateMany({ where, data: { status: "RETIRED" } })).count;
+      retired += n;
+      console.log(`${sg.segmentId}: ${reais} reais (Cebraspe/AOCP) → ${n} inéditas ${simular ? "seriam aposentadas" : "aposentadas"}`);
     }
   }
-  console.log("aposentadas:", retired);
+  console.log(simular ? "seriam aposentadas:" : "aposentadas:", retired);
 }
 
 async function gravar(rows: Row[]) {
@@ -112,7 +118,7 @@ async function gravar(rows: Row[]) {
 
 (async () => {
   if (args.includes("--contar")) await contar();
-  else if (args.includes("--aposentar")) await aposentar(Number(args[args.indexOf("--minimo") + 1]) || 8);
+  else if (args.includes("--aposentar")) await aposentar(Number(args[args.indexOf("--minimo") + 1]) || 8, args.includes("--simular"));
   else if (file) await gravar(JSON.parse(readFileSync(file, "utf8")) as Row[]);
   else throw new Error("uso: questoes-ineditas.ts <lote.json> | --contar | --aposentar [--minimo N]  [--remoto]");
   await db.$disconnect();
