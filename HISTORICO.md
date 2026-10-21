@@ -571,3 +571,27 @@ Os sete arquivos `content/edital/pcpe/*.json` entregues antes tinham `where` inv
 - **Seed:** `seed-structure.ts` passou a atualizar título, ordem e aulas dos assuntos do edital já semeados e a aposentar assuntos próprios (`/p`) que saíram do mapa (apaga se ninguém usa; senão, inativa). Antes, `createMany` ignorava mudanças e o banco local mantinha títulos do mapa antigo.
 - **Achado:** alguns trechos de Direito Penal têm zero questões (o caderno da atividade fica vazio); `pipeline/questoes/lacunas.py` lista os trechos com menos de 5 questões.
 
+
+## 10. Finalização do PCPE (21/10/2026)
+
+### 10.1 Inéditas na produção
+- 409 inéditas de múltipla escolha novas gravadas na produção (2.013 atualizadas), com backup íntegro antes (`backups/questoes-remoto-20261021-031903`). Total: 2.999 inéditas. A regra de completar caderno curto com trechos já estudados da mesma disciplina está na `main` (e4cf70d). A conferência visual de um caderno curto no app exige sessão de aluno e não foi feita; a regra tem testes em `logic.test.ts`.
+
+### 10.2 Os 76 resumos em rascunho
+- Relatório por trecho em `content/audit/pcpe-resumos.md` (tipo a/b/c, ação, cobertura, dúvidas). Todos seguem `DRAFT`. Foram corrigidos erros do resumo anterior: audiência de custódia agora por videoconferência (Lei 15.358/2026), transação penal não é direito subjetivo, rito sumaríssimo com até 5 testemunhas, lei de recorrência de Matemática (a perda de expoente na extração do PDF trocava 2^n por 2n), Manual de Redação (regras inexistentes no Manual), Lei 9.605 (arts. 49, 60 e 67), EC 139/2026 e LC 219/2025.
+- **Atenção à nota de cobertura**: nos guias de método de Raciocínio Lógico ela cai de propósito (não repetem nomes dos enunciados).
+- **Pendência técnica**: a extração dos PDFs pode ter perdido expoentes e índices em outras disciplinas exatas. Vale conferir as fórmulas de Estatística, Matemática e Contabilidade na revisão humana.
+- Dúvidas do material registradas em `notes` de cada aula (ex.: Lei 15.371/2026 licença-paternidade; Lei 15.142/2025 e o "mais de duas vagas" do STF; conflito entre o Manual de Redação e o Decreto 9.758/2019).
+
+### 10.3 Questões reais do TecConcursos (cadernos de 20 e 21/10)
+- 20 cadernos ("Caderno Falta adm 1–10" e "Caderno Falta Matemática, Consti, Penal, Racio e Adm 1–10"): 3.859 questões, 0 anuladas, 0 quarentena. **Só 309 são Cebraspe**; o resto é FGV, Quadrix, Fundatec, VUNESP, Consulplan, AOCP e outras. O caderno das atividades do PCPE usa só Cebraspe e AOCP; as demais bancas servem ao treino livre.
+- `mapa-assuntos.json`: `Direito Processual Penal` passou a mapear para `direito-processual-penal` (517 questões: 397 aprovadas, 120 rascunho). Não importadas: Engenharia Elétrica (399) e Direito Digital (48), sem mapa nem aula; licitações (Lei 14.133) e improbidade seguem `skip`.
+- Importação feita só no banco **local** (11.920 questões). Produção ainda sem as reais.
+- Auditoria (`auditoria.py`, backup de 21/10): nos 20 cadernos, 24 questões com defeito real de extração (perda de texto, enunciado vazio, alternativa duplicada, referência visual sem figura) listadas em `docs/questoes/auditoria/2026-10-21/problemas-novos.csv`; `web/scripts/questoes-marcar-rascunho.ts` as manda para `DRAFT` (14 estavam aprovadas; feito no local). As 113+76 ocorrências de "texto virou imagem/recorte" são só de legibilidade.
+- `questoes-ineditas.ts --aposentar` passou a contar só as reais **Cebraspe/AOCP por trecho** (as demais bancas não entram no caderno do plano) e ganhou `--simular`. Com N = 8, 29 inéditas passam do limite (6 trechos); simulação de cadernos: 0 curtos em 8.348.
+
+### 10.4 Verificações
+- typecheck e 576 testes (vitest) passando; eslint limpo nos scripts alterados; `compare-plans-main.ts`: 0 divergências em 96 cenários (com a `main` atualizada); `pcpe-plan-test.ts`: 10 de 10 planos LIBERAR; `audit_planos.py`: 0 cadernos que não abrem (a coluna "menores que o pedido" desse script ignora a regra de completar do app).
+- `pytest`: 5 falhas que não vêm desta rodada (`test_complements` ×2, `test_content` ×3, entre elas as inéditas de atualidades com C/E repetido, já conhecida).
+- `validate_summaries.py`: 35 arquivos com "impressão digital diferente": só o nome do tópico inicial mudou depois da resegmentação, as páginas batem. Corrigir o `startTopic` desses resumos precisa de decisão do dono.
+- `verify-plans.ts --remoto` (só leitura): 1 plano real em análise, LIBERAR.

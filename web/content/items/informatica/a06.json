@@ -725,18 +725,16 @@
       "id": "informatica/a06/s07",
       "bizu": {
         "summary": [
-          "**Constante PI()**: devolve o número irracional com alta precisão decimal sem receber parâmetros dentro dos parênteses.",
-          "**Função POTÊNCIA**: computa a potenciação entre a base e o expoente, correspondendo rigorosamente ao operador `^`.",
-          "**Função TRUNCAR**: decepa as frações decimais na quantidade de dígitos indicada, sem efetuar aproximação para cima ou para baixo.",
-          "**Diferença TRUNCAR e INT**: para termos negativos, `TRUNCAR(-3,5)` gera `-3`, enquanto `INT(-3,5)` recua para o inteiro menor `-4`.",
-          "**Funções SOMA e SOMAQUAD**: `SOMA` acumula valores diretos e `SOMAQUAD` eleva individualmente cada argumento ao quadrado antes de somá-los.",
-          "**Sintaxe de SOMASE e SOMASES**: em `SOMASE`, o intervalo a somar situa-se no término da função; em `SOMASES`, o bloco de soma fica logo no primeiro argumento.",
-          "**Contagem por Tipo de Dado**: `CONT.NÚM` conta somente dados numéricos e datas, enquanto `CONT.VALORES` totaliza todas as células não vazias.",
-          "**Contagens Condicionais**: `CONT.SE` afere um filtro específico em um intervalo e `CONT.SES` processa múltiplos critérios sob conjunção simultânea.",
-          "**Função MÉDIA e MÉDIAA**: `MÉDIA` calcula a média aritmética simples apenas de números; `MÉDIAA` agrega textos como zero e booleanos.",
-          "**Mediana com Função MED**: ordena o conjunto para extrair o valor central em séries ímpares ou a média dos dois números centrais em séries pares.",
-          "**Moda com Função MODO**: aponta a entidade numérica de maior recorrência no intervalo, diferindo da função `MOD` de resto aritmético.",
-          "**Extremos Hierárquicos**: `MÍNIMO` e `MÁXIMO` acham os limites gerais; `MENOR(matriz; k)` e `MAIOR(matriz; k)` exigem a posição classificatória `k`."
+          "**PI e POTÊNCIA**: `PI()` não tem argumentos e devolve π com 15 dígitos; `POTÊNCIA(base; expoente)` é igual a `base^expoente`, e a potência é calculada antes da multiplicação e da soma.",
+          "**PAR, TRUNCAR e INT**: `PAR` arredonda para longe do zero até o par mais próximo (`PAR(35) = 36`); `TRUNCAR` apenas corta as casas e `INT` arredonda para baixo, o que dá resultados diferentes nos negativos (`-3,55` vira `-3` e `-4`).",
+          "**SOMA**: soma números, células e intervalos; `A:C` são colunas inteiras e `1:3` são linhas inteiras, e `SOMAQUAD` soma os quadrados dos argumentos.",
+          "**SOMASE**: soma o que cumpre um critério, com o intervalo de soma opcional e por último; sem ele, soma o próprio intervalo testado.",
+          "**SOMASES**: aceita vários critérios ao mesmo tempo (E lógico) e inverte a ordem, pois o intervalo de soma vem em primeiro lugar.",
+          "**CONT.NÚM e CONT.VALORES**: a primeira conta só números e datas, e a segunda conta toda célula não vazia, inclusive texto; `CONTAR.VAZIO` conta as vazias.",
+          "**CONT.SE e CONT.SES**: contam células que cumprem um critério ou vários critérios simultâneos, e usam intervalos com dois-pontos, nunca com ponto e vírgula.",
+          "**MÉDIA e MÉDIAA**: a média ignora texto e vazios, enquanto a `MÉDIAA` conta texto como zero e lógicos como 0 ou 1.",
+          "**MED, MODO e MOD**: a mediana ordena e pega o valor central (média dos dois centrais se a quantidade for par), a moda é o valor mais repetido e `MOD` é só o resto da divisão.",
+          "**MÍNIMO, MÁXIMO, MENOR e MAIOR**: os dois primeiros dão os extremos, e `MENOR` e `MAIOR` pedem o `k` obrigatório, que com valor 1 reproduz os extremos."
         ],
         "teoria": [
           {

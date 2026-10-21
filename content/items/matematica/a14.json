@@ -7,14 +7,14 @@
       "id": "matematica/a14/s01",
       "bizu": {
         "summary": [
-          "**Posição**: a_n representa o termo n; uma lei como a_n=3n fornece diretamente o valor de cada posição.",
-          "**Substituição**: em fórmulas com (−1)^n, calcule o expoente e o sinal com cuidado antes de achar o termo.",
-          "**Fibonacci**: F_1=F_2=1 e F_n=F_(n−1)+F_(n−2); gera 1,1,2,3,5,8,13,...",
-          "**Indexação**: também se pode iniciar a sequência em F_0=0; identifique a convenção para não deslocar os termos.",
-          "**Recorrência**: a_1=7 e a_n=2a_(n−1) produzem 7,14,28,56; cada passo depende do anterior.",
-          "**Exemplo**: a_1=5 e a_(n+1)=2a_n+3 levam a 13,29,61,... e a_8=1021.",
-          "**Propriedade**: F_(n+1)−F_n=F_(n−1), pois o próximo termo soma os dois anteriores.",
-          "**Estratégia**: calcule sequencialmente se não houver fórmula explícita e verifique a ordem de cada termo."
+          "**Notação e posição**: a_n é o termo da posição n (n = 1, 2, 3, ...); a lei a_n = 3n gera 3, 6, 9, 12, 15 e permite achar qualquer termo direto, sem listar os anteriores.",
+          "**Lei com potência e alternância**: em a_n = 2^n + 5·(−1)^(n−1) os termos são 7, −1, 13, 11, ...; como 2^n é par e ±5 é ímpar, nenhum termo é par, mas a sequência não é crescente nem tem diferença constante.",
+          "**Fibonacci**: F_1 = F_2 = 1 e F_n = F_(n−1) + F_(n−2), dando 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144; na prova, some os termos em vez de usar a fórmula com √5.",
+          "**Variante iniciada em zero**: na lista 0, 1, 1, 2, 3, 5, ..., o 34 é o décimo termo (não o nono) e F_11 − F_10 = 55 − 34 = 21 = F_9; conte as posições com cuidado.",
+          "**Propriedade e falsas**: F_(n+1) − F_n = F_(n−1) porque cada termo soma os dois anteriores; já F_9 + F_11 = F_10 é falso (21 + 55 = 76) e nem todo termo é primo (8).",
+          "**Recorrência**: define-se um termo inicial e uma regra com os termos anteriores; a_1 = 7 e a_n = 2·a_(n−1) geram 7, 14, 28, 56.",
+          "**Equação de recorrência**: a_1 = 5 e a_(n+1) − 2·a_n = 3 viram a_(n+1) = 2·a_n + 3 e dão 5, 13, 29, 61, 125, 253, 509, 1021; o oitavo termo é 1021, e 253 e 509 são armadilhas.",
+          "**Explícita × recorrente**: a recorrente depende dos termos anteriores e a explícita só de n (Fibonacci tem as duas); confira somando 3 aos termos, que dobram a cada passo."
         ],
         "teoria": [
           {

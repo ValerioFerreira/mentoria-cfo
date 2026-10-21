@@ -1,156 +1,189 @@
-# Auditoria e Revisão de Resumos Analíticos em Rascunho (PCPE Agente)
+# Auditoria e revisão dos 76 resumos analíticos em rascunho (PCPE Agente) — Etapa B
 
-## Contexto e Critérios de Triagem
-Os 662 resumos analíticos utilizados na geração dos 10 planos de teste do PCPE Agente encontram-se no estágio `DRAFT`.
-A ferramenta de triagem léxica automatizada (`pipeline/summary_coverage.py`) apontou **76 resumos** com veredito `REVISAR` (67) ou `REFAÇÃO` (9), distribuídos pelas 11 disciplinas teóricas mais Raciocínio Lógico.
+Atualizado em 21/10/2026. **Substitui o relatório anterior**, que concluía de forma genérica que os termos faltantes eram ruído: a verificação trecho a trecho achou omissões reais, números errados e normas desatualizadas.
 
-### Análise Metodológica da Triagem Léxica
-A métrica de cobertura calcula a proporção de termos específicos do texto-fonte (com repetição >= 2 e IDF > 2.2) presentes no resumo.
-A auditoria qualitativa dos 76 casos revelou os seguintes fatores determinantes para a pontuação:
-1. **Exercícios e Gabaritos (Raciocínio Lógico e Exatas):** Trechos finais de aula que contêm listas de questões de fixação repetem massivamente nomes próprios fictícios dos enunciados ("Joelma", "Mariano", "Godofredo", "Beltrano"), códigos de questão ou termos matemáticos isolados. Os resumos pedagógicos dessas seções estruturam roteiros de revisão e resolução, omitindo propositalmente tais nomes arbitrários, o que derruba a cobertura estatística sem que haja omissão conceitual.
-2. **Páginas de Apresentação e Índice (Aulas 00):** Repetição de vocábulos pedagógicos ("vídeos", "concursos", "metodologia", "dúvidas"), que não constituem matéria substantiva de prova.
-3. **Estrutura Pedagógica:** Todos os 76 resumos analisados possuem a estrutura obrigatória: abrem com contextualização, desenvolvem ao menos 3 seções temáticas (`###`), contêm tabelas comparativas e finalizam rigorosamente com a seção `### Para fixar` (5 a 8 itens).
-4. **Resumos Sintéticos (Bizu):** Todos possuem síntese de 6 a 12 pontos com explicações técnicas substanciais.
+## Como foi feito
 
----
+- Cada trecho foi classificado em (a) seção de exercícios/gabaritos, reescrita como guia de método com exemplos autorais; (b) omissão real ou norma desatualizada, complementada; (c) termos faltantes eram ruído (nomes, números de questões, falas do professor), sem mudança de conteúdo além de nota.
+- Foram gravados só `analytic`, `synthetic` e `notes` (ferramenta `pipeline/pcpe_tools/patch_summary.py`). `status` continua `DRAFT`, `fingerprint` intacto. Cobertura medida com `pipeline/pcpe_tools/cov76.py`.
+- Leis conferidas no Planalto em 21/10/2026: Lei 15.134/2025, 15.159/2025, 15.272/2025, 15.358/2026, 15.371/2026, 15.190/2025, 15.299/2025, 15.142/2025, EC 139/2026, LC 219/2025 e Decreto 9.758/2019 (ver as observações por trecho).
+- **Atenção à nota de cobertura nos guias de Raciocínio Lógico**: ela mede a presença de termos do texto-fonte (nomes dos personagens dos enunciados). Um guia de método não os traz de propósito; a queda não indica perda de conteúdo.
+- Os exercícios do material são tratados só como padrões: nenhum gabarito por letra ficou em resumo.
 
-## Avaliação Detalhada por Disciplina (76 Trechos)
+## Raciocínio Lógico (10, tipo a)
 
-### contabilidade-geral (5 trechos)
+| Trecho | Tipo | Ação | Cobertura antes → depois | Palavras antes → depois | Observações |
+| --- | --- | --- | --- | --- | --- |
+| `raciocinio-logico/a00/s10` | a | Guia de método: o que é proposição, simples × composta, negação sem antônimo, tradução simbólica, condicional falsa. | 0.40 → 0.17 | 476 → 683 | Sem gabaritos por letra. |
+| `raciocinio-logico/a00/s11` | a | Guia: tabelas dos conectivos, casos únicos, roteiro de valoração, fórmulas aninhadas, contrários × negação. | 0.28 → 0.15 | 561 → 729 |  |
+| `raciocinio-logico/a01/s08` | a | Guia: classificação (tautologia/contradição/contingência), precedência, tradução de "mas", "nem", causais. | 0.30 → 0.15 | 500 → 635 |  |
+| `raciocinio-logico/a02/s10` | a | Guia: leis da álgebra de proposições, roteiro de simplificação, classificação, negação da bicondicional. | 0.39 → 0.22 | 517 → 1001 |  |
+| `raciocinio-logico/a02/s11` | a | Guia: equivalências e negações (condicional, De Morgan, "nunca", complemento, bicondicional, conjunção de condicionais). | 0.07 → 0.12 | 437 → 876 |  |
+| `raciocinio-logico/a04/s01` | a | Guia: formatos fáceis, método de quatro etapas, três exemplos resolvidos autorais. | 0.39 → 0.22 | 613 → 634 |  |
+| `raciocinio-logico/a04/s11` | a | Guia: sem formato fácil, autocondicional, regras de inferência, dilemas, bicondicional em cadeia. | 0.29 → 0.09 | 489 → 640 | Corrigido exemplo (l → ~l). |
+| `raciocinio-logico/a04/s12` | a | Guia: validade × verdade, modus ponens/tollens, falácias formais, método da conclusão falsa, silogismos categóricos. | 0.10 → 0.14 | 349 → 640 |  |
+| `raciocinio-logico/a05/s09` | a | Guia: premissa × conclusão, dedução, indução, abdução, analogia, como classificar. | 0.23 → 0.21 | 447 → 596 |  |
+| `raciocinio-logico/a05/s10` | a | Guia: falácias formais e informais em tabela por grupo. | 0.22 → 0.19 | 338 → 485 |  |
 
-| Trecho | Veredito | Cob. | Palavras | Diagnóstico e Análise do Conteúdo |
-|---|---|---|---|---|
-| `contabilidade-geral/a01/s01` | REVISAR | 45.5% | 654 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *representados, afirmativas, verdadeiras, elenca*) |
-| `contabilidade-geral/a00/s01` | REVISAR | 47.9% | 793 | Abertura/apresentação do curso; termos ausentes são menções a vídeos e suporte. (termos acusados: *videos, avancada, duvidas, concursos*) |
-| `contabilidade-geral/a05/s01` | REVISAR | 48.9% | 789 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *2019, sensores, antec, reivindicacoes*) |
-| `contabilidade-geral/a02/s01` | REVISAR | 49.2% | 812 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *sofreu, consequentemente, gostam, pedimos*) |
-| `contabilidade-geral/a07/s01` | REVISAR | 49.2% | 669 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *unit, uant, 339, first*) |
+## Direito Penal (7)
 
-### direito-administrativo (12 trechos)
+| Trecho | Tipo | Ação | Cobertura antes → depois | Palavras antes → depois | Observações |
+| --- | --- | --- | --- | --- | --- |
+| `direito-penal/a00/s01` | b | Legalidade, MP em matéria penal, normas penais em branco, analogia, intranscendência (multa), 40 anos, presunção de inocência, Tema 1068. | 0.42 → 0.54 | 840 → 1010 |  |
+| `direito-penal/a00/s02` | b | Princípios de contenção, ne bis in idem, insignificância (vetores, 10% do salário-mínimo, exceções, descaminho R$ 20 mil, contrabando), bagatela imprópria. | 0.42 → 0.54 | 781 → 975 |  |
+| `direito-penal/a02/s01` | b | Conceitos de crime, teorias da conduta, omissão própria × imprópria, garantidor. | 0.41 → 0.57 | 679 → 813 |  |
+| `direito-penal/a02/s03` | b | Tipicidade formal/material/conglobante, espécies, elementos, funções, classificação dos tipos, exclusão do fato típico. | 0.34 → 0.57 | 601 → 897 | Impressão digital desatualizada (preexistente). |
+| `direito-penal/a02/s04` | b | Todas as classificações dos crimes (relevantes e menos relevantes) em tabelas. | 0.28 → 0.59 | 636 → 1071 |  |
+| `direito-penal/a02/s08` | b | Estado de necessidade, legítima defesa (ADPF 779, refém), estrito cumprimento, exercício regular, consentimento, excesso. | 0.39 → 0.54 | 874 → 1093 |  |
+| `direito-penal/a04/s01` | b | Mapa do art. 121 vigente (incisos VII–X, §§ 2º-B a 2º-D, perdão judicial). | 0.42 → 0.59 | 590 → 977 | Leis 15.134/2025, 15.159/2025 e 15.358/2026 conferidas no Planalto. |
 
-| Trecho | Veredito | Cob. | Palavras | Diagnóstico e Análise do Conteúdo |
-|---|---|---|---|---|
-| `direito-administrativo/a21/s06` | REVISAR | 56.5% | 817 | Licitações (Lei 14.133/21); cobre regras, exceções e procedimentos legais essenciais. (termos acusados: *exigira, onerosa, divida, quitar*) |
-| `direito-administrativo/a21/s03` | REVISAR | 58.8% | 867 | Licitações (Lei 14.133/21); cobre regras, exceções e procedimentos legais essenciais. (termos acusados: *serv, parado, comprometer, gigabytes*) |
-| `direito-administrativo/a09/s09` | REVISAR | 59.7% | 1065 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *grevista, entraram, negociacoes, 693*) |
-| `direito-administrativo/a00/s03` | REVISAR | 59.8% | 958 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *sirvam, conquistadas, penalizado, basilares*) |
-| `direito-administrativo/a09/s05` | REVISAR | 60.3% | 1461 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *prosperar, ticio, merece, convola*) |
-| `direito-administrativo/a09/s06` | REVISAR | 60.5% | 898 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *carla, negros, debora, alcancariam*) |
-| `direito-administrativo/a09/s13` | REVISAR | 60.6% | 1054 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *5000, incidir, 1000, ganha*) |
-| `direito-administrativo/a08/s03` | REVISAR | 60.9% | 1545 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *movida, suframa, 256, mover*) |
-| `direito-administrativo/a09/s04` | REVISAR | 61.2% | 1028 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *acarrete, plantao, invoca, datas*) |
-| `direito-administrativo/a09/s14` | REVISAR | 61.7% | 999 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *joana, juliana, 786, 7518*) |
-| `direito-administrativo/a20/s01` | REVISAR | 62.1% | 955 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *fundo, preocupe, fundeb, formularem*) |
-| `direito-administrativo/a20/s03` | REVISAR | 62.3% | 1023 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *encarregado, vazar, metade, foca*) |
+## Direito Processual Penal (8)
 
-### direito-constitucional (6 trechos)
+| Trecho | Tipo | Ação | Cobertura antes → depois | Palavras antes → depois | Observações |
+| --- | --- | --- | --- | --- | --- |
+| `direito-processual-penal/a04/s02` | b | Flagrante: espécies, quem prende, quem não pode ser preso, etapas, crimes habituais/permanentes, esperado × preparado, Lei de Drogas. | 0.39 → 0.56 | 845 → 811 |  |
+| `direito-processual-penal/a04/s03` | b | Forjado × diferido, ordem do APF, prazos, art. 310, conversão em preventiva (Lei 15.272/2025). | 0.36 → 0.51 | 785 → 881 | Nota: art. 53, II (não § 2º) da Lei de Drogas. |
+| `direito-processual-penal/a04/s04` | b | Custódia: finalidade, alcance, videoconferência como regra (Lei 15.358/2026), perfil genético (art. 310-A), jurisprudência. | 0.33 → 0.50 | 859 → 870 | Corrige erro do resumo anterior (presencial como regra). |
+| `direito-processual-penal/a04/s05` | b | Preventiva: art. 311, pressupostos/fundamentos, contemporaneidade, Lei 15.272/2025, art. 313 incisos V e VI, art. 314. | 0.37 → 0.51 | 884 → 999 | Lei 15.487/2026 conferida em fontes secundárias. |
+| `direito-processual-penal/a04/s07` | b | Temporária: rol, requisitos do STF, prazos, procedimento, relação com o prazo do inquérito. | 0.32 → 0.50 | 769 → 816 |  |
+| `direito-processual-penal/a06/s03` | b | Transação penal e rito sumaríssimo. | 0.32 → 0.59 | 823 → 901 | Corrige "direito subjetivo" e nº de testemunhas. |
+| `direito-processual-penal/a06/s04` | b | Suspensão condicional do processo: cálculo da pena mínima, requisitos, condições, revogação, súmulas. | 0.37 → 0.54 | 865 → 869 |  |
+| `direito-processual-penal/a06/s05` | b | Execução, multa como dívida de valor, Juizados Federais, dispositivos da Lei 9.099/95, súmulas. | 0.34 → 0.56 | 801 → 944 | Refeito: o anterior citava súmulas ausentes do trecho. |
 
-| Trecho | Veredito | Cob. | Palavras | Diagnóstico e Análise do Conteúdo |
-|---|---|---|---|---|
-| `direito-constitucional/a10/s07` | REVISAR | 63.6% | 1094 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *instalacao, 139, extincao, haveres*) |
-| `direito-constitucional/a08/s03` | REVISAR | 64.8% | 1785 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *000, correspondera, quinhentos, sete*) |
-| `direito-constitucional/a08/s09` | REVISAR | 64.8% | 885 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *elencadas, adin, preveja, nessas*) |
-| `direito-constitucional/a09/s02` | REVISAR | 65.1% | 1362 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *aptidao, eivados, almejados, privilegiando*) |
-| `direito-constitucional/a02/s02` | REVISAR | 65.6% | 1501 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *pecas, revista, praticada, 722*) |
-| `direito-constitucional/a06/s02` | REVISAR | 66.0% | 1702 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *alckmin, couves, leonice, covas*) |
+## Contabilidade Geral e Estatística
 
-### direito-penal (7 trechos)
+Todos os trechos continuam em DRAFT, com a impressão digital original. Foram gravados apenas `analytic`, `synthetic` e `notes`. Contas refeitas à mão (estoques por PEPS, UEPS e média móvel, DRE/ARE, situação líquida, médias, mediana e modas de Pearson e Czuber).
 
-| Trecho | Veredito | Cob. | Palavras | Diagnóstico e Análise do Conteúdo |
-|---|---|---|---|---|
-| `direito-penal/a02/s04` | REVISAR | 28.3% | 636 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *tendencia, transcendente, interna, evadir*) |
-| `direito-penal/a02/s03` | REVISAR | 34.0% | 601 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *mistos, cumulativos, abertos, fechados*) |
-| `direito-penal/a02/s08` | REVISAR | 38.5% | 874 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *repelir, poliana, agredido, coletes*) |
-| `direito-penal/a02/s01` | REVISAR | 40.7% | 679 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *aspecto, rene, dotti, defensores*) |
-| `direito-penal/a00/s01` | REVISAR | 41.8% | 840 | Abertura/apresentação do curso; termos ausentes são menções a vídeos e suporte. (termos acusados: *portaria, dimensao, branco, regressao*) |
-| `direito-penal/a00/s02` | REVISAR | 42.4% | 781 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *adulterio, patamar, duplamente, reincidencia*) |
-| `direito-penal/a04/s01` | REVISAR | 42.4% | 590 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *luis, tutelada, provado, 134*) |
+Cobertura: nota automática de `summary_coverage.py`. Palavras: analítico, antes → depois.
 
-### direito-processual-penal (8 trechos)
+| Trecho | Tipo | Ação | Cobertura antes→depois | Palavras antes→depois | Problemas do material / dúvidas para revisão humana |
+| --- | --- | --- | --- | --- | --- |
+| contabilidade-geral/a01/s01 | (a)+(b): exercícios comentados | Mantido o que estava certo; acrescentados exemplo passo a passo de cálculo de situação líquida (lista de contas com depreciação acumulada), percentual de capital próprio, quadro "como a banca cobra" e esclarecimentos (receita/despesa fora da equação; nula = patrimônio de terceiros) | 0,46 → 0,54 | 654 → 1.239 | Sem erro conceitual. Termos que faltam são vocabulário de enunciados ("afirmativas", "assertivas", "oriundos"). |
+| contabilidade-geral/a00/s01 | (c) em boa parte: apresentação do curso e dicas de estudo | Conteúdo cobrável já estava; acrescentados "ciência social, não exata", aspectos qualitativo e quantitativo, tabela de interesses dos usuários externos, item certo do Cebraspe sobre objetivo | 0,48 → 0,50 | 793 → 1.053 | Termos faltantes são apresentação do curso (vídeos, fórum, dúvidas, mapas mentais, dicas). Pendência já existente: o validador acusa impressão digital diferente (startTopic "Conceito, Objeto, Finalidade e Funções da Contabilidade" na segmentação atual × "Apresentação do Curso…" no resumo); não alterei, conforme instrução. |
+| contabilidade-geral/a05/s01 | (b) | Acrescentados fato gerador por tipo de receita/despesa, exemplo autoral resolvido (resultado de abril por competência), tabela receita antecipada × despesa antecipada, exemplo com prejuízo na ARE e lançamento de prejuízo acumulado | 0,49 → 0,52 | 789 → 1.249 | Material usa "Lucros acumulados" como destino do resultado; em S.A., desde a Lei 11.638/2007 (art. 178 e art. 202 da Lei 6.404/76) o saldo de lucros deve ser destinado (reservas/dividendos), restando "prejuízos acumulados" no PL. Registrado em `notes`; confirmar a abordagem que o dono quer manter. Termos faltantes: nomes de empresas e anos das questões. |
+| contabilidade-geral/a02/s01 | (b) | Acrescentados tabela completa de débito/crédito (aumenta/diminui) com retificadoras, exemplos numéricos de Bancos e Fornecedores, exemplos de depreciação, "como a banca cobra" | 0,49 → 0,52 | 812 → 1.225 | Sem erro. A ITG 2000 é citada só pelo nome (não conferi o número do item). Termos faltantes são expressões informais do professor ("gostam", "pedimos", "mente"). |
+| contabilidade-geral/a07/s01 | (b) | Acrescentados exemplo autoral completo de ficha de estoque com PEPS, UEPS e média móvel (CMV + estoque final = compras como conferência), exemplo de inventário periódico, exemplo de diferença entre métodos, cálculo de lucro bruto do exemplo base | 0,49 → 0,56 | 669 → 1.208 | Sem erro conceitual. A vedação ao UEPS é tratada de forma genérica no material (CPC 16 e legislação); conferir redação exata se for citar artigo. Aviso do validador de 12 palavras iguais refere-se a tabela de efeitos (UEPS/PEPS/média), conteúdo factual curto. |
+| estatistica/a01/s03 | (b) | Acrescentados exemplo de dados brutos → tabela, ponto médio em classes (média aproximada), exemplo com incógnita nas frequências, exemplo de nota mínima com pesos, exemplo de casais e filhos | 0,41 → 0,59 | 1.046 → 1.478 | Material: a tabela de notas do candidato traz 7,0 e 8,0 e o cálculo usa 6,0 e 7,0 (resultado 98/17 ≈ 5,76 corresponde ao cálculo). No exercício dos salários, 260/1.060 = 24,53% (material diz 24,52%); alternativa não muda. |
+| estatistica/a01/s04 | (b) | Acrescentados exemplo de classes desiguais com conversão de minutos em segundos, exemplo proporção × média, correção da taxa média de 3%, 8% e 9% (≈ 6,6%, não 6,7%), exemplo do sistema com três médias, exemplo de notas por raiz do produto | 0,43 → 0,49 | 1.147 → 1.556 | Material extrai a raiz do produto das próprias taxas (3 × 8 × 9 = 6%); pelos fatores a taxa média é ≈ 6,6%. O resumo já alertava e foi corrigido o valor. Termos faltantes: Mat1, Mat2, "prisional", "telefônicas", números de tabelas. |
+| estatistica/a03/s01 | (b) | Acrescentados exemplo com tabela rotulada (valor mais alto não é moda), exemplo por valores com gráfico, exemplo conjunto de média e moda bruta | 0,45 → 0,56 | 1.134 → 1.502 | Sem erro. Material informa que moda em classes é pouco cobrada. |
+| estatistica/a03/s02 | (b) | Acrescentados exemplo completo (incógnita k) com média, mediana por interpolação, Pearson (27) e Czuber (≈ 26,67), exemplo com frequências relativas acumuladas e k, exemplo da forma alternativa de Czuber | 0,43 → 0,47 | 942 → 1.406 | Sem erro. Termos faltantes são rótulos de colunas e tokens de fórmulas ("fmofant", "5060", "etária"). Material informa que o assunto é pouco cobrado. |
 
-| Trecho | Veredito | Cob. | Palavras | Diagnóstico e Análise do Conteúdo |
-|---|---|---|---|---|
-| `direito-processual-penal/a04/s07` | REVISAR | 31.8% | 769 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *violento, combinacao, 223, 869*) |
-| `direito-processual-penal/a06/s03` | REVISAR | 31.9% | 823 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *81, 719, orais, 78*) |
-| `direito-processual-penal/a04/s04` | REVISAR | 32.9% | 859 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *358, 272, leino, 2026*) |
-| `direito-processual-penal/a06/s05` | REVISAR | 34.4% | 801 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *eleitorais, punitivo, despesas, 2007*) |
-| `direito-processual-penal/a04/s03` | REVISAR | 35.8% | 785 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *272, leino, livrar, apfd*) |
-| `direito-processual-penal/a04/s05` | REVISAR | 36.8% | 884 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *tipos, 241, instalacoes, apoderar*) |
-| `direito-processual-penal/a06/s04` | REVISAR | 37.1% | 865 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *1984, 543, aumento, diminuicao*) |
-| `direito-processual-penal/a04/s02` | REVISAR | 39.2% | 845 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *ativo, disfarcado, tavora, rosmar*) |
+### Trechos que ficaram abaixo de 0,55 de cobertura (justificativa)
+- Os termos que faltam são, em geral, ruído: palavras de enunciado ("afirmativas", "assertivas"), nomes de empresas e anos de questões, falas do professor, rótulos de colunas de tabelas e tokens de fórmulas. A análise de contexto (`res_ctx.py`) não mostrou conceito cobrável ausente nos trechos a00/s01, a02/s01, a05/s01, a01/s04 e a03/s02.
+- Nenhum trecho foi classificado como (a) puro (seção só de exercícios); todos tinham conteúdo teórico, então nenhum foi reescrito como guia de método do zero.
 
-### estatistica (4 trechos)
+### Dúvidas para o dono
+1. Contabilidade a05/s01: manter "Lucros acumulados" no exemplo de encerramento da ARE (didático) ou usar "Reservas de lucros/dividendos" para S.A.? Sem alteração de conteúdo por enquanto.
+2. Fingerprint de contabilidade-geral/a00/s01 (startTopic diferente do segmento atual): precisa de ajuste do orquestrador, se desejado.
+3. A impressão digital divergente de estatistica/a01/s01 (outro trecho) já existia e não foi mexida.
 
-| Trecho | Veredito | Cob. | Palavras | Diagnóstico e Análise do Conteúdo |
-|---|---|---|---|---|
-| `estatistica/a01/s03` | REVISAR | 41.2% | 1046 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *casais, direito, passeio, circulando*) |
-| `estatistica/a03/s02` | REVISAR | 43.0% | 942 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *fmofant, 220, fmofpost, 5060*) |
-| `estatistica/a01/s04` | REVISAR | 43.5% | 1147 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *mat1, portuguesa, mat2, lingua*) |
-| `estatistica/a03/s01` | REVISAR | 45.3% | 1128 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *acertos, registradas, 75kg, 69kg*) |
+## Direito Administrativo
 
-### informatica (6 trechos)
+Data: 2026-10-21. Legenda: (a) exercícios/gabaritos; (b) omissão real; (c) termos faltantes eram ruído (nomes de personagens, números de exemplos, processos), nenhuma alteração de conteúdo além de nota.
 
-| Trecho | Veredito | Cob. | Palavras | Diagnóstico e Análise do Conteúdo |
-|---|---|---|---|---|
-| `informatica/a12/s03` | REVISAR | 49.6% | 921 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *sugerir, daquelas, direto, prefere*) |
-| `informatica/a00/s05` | REVISAR | 50.4% | 835 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *netflix, alternativamente, estrategiaconcursos, solicitacao*) |
-| `informatica/a06/s07` | REVISAR | 51.0% | 974 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *1414, 1415, diarias, contribuicao*) |
-| `informatica/a12/s06` | REFAÇÃO | 51.1% | 514 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *store, solucionar, parede, desfragmentador*) |
-| `informatica/a13/s02` | REVISAR | 51.2% | 668 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *cuidar, unidas, daas, transferimos*) |
-| `informatica/a01/s02` | REVISAR | 51.3% | 503 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *estrategia, vendedores, visitado, homepage*) |
+| Trecho | Tipo | Ação | Cobertura antes→depois | Palavras antes→depois | Problemas do material / dúvidas para revisão humana |
+| --- | --- | --- | --- | --- | --- |
+| a21/s06 (alienação de bens, art. 76 e 77) | b | Acrescentados investidura (art. 76, § 5º), formas de alienação nas alíneas f/g, título/CDRU a pessoa natural em área rural (§§ 3º e 4º), hipoteca de segundo grau na doação com encargo (§ 7º), exemplo numérico da permuta, dação e decisão judicial; sintético ajustado | 0,56→0,65 | 817→1.122 | Texto do art. 76 e 77 conferido no Planalto, sem alteração recente. O material cita investidura e as alíneas f a j só por remissão. |
+| a21/s03 (dispensa por valor e situação, art. 75) | c | Sem alteração de conteúdo; só nota | 0,59→0,59 | 867→887 | Valores de 2026 (R$ 130.984,20; R$ 65.492,11; R$ 10.478,74) conferidos no Decreto 12.807/2025. O material diz que, após a ADI 6.890, o contrato de emergência "pode ser prorrogado até 1 ano", o que conflita com a vedação literal de prorrogação do inciso VIII; o resumo segue a lei e a tese do STF. |
+| a09/s09 (nepotismo, sindicato, greve) | c | Sem alteração; nota | 0,60→0,60 | 1.065→1.101 | Faltantes eram nomes e números de processos. Sem alteração normativa encontrada (Temas 541 e 531, Lei 7.783/1989). |
+| a00/s03 (princípios implícitos) | c | Sem alteração; nota | 0,60→0,60 | 958→966 | Faltantes eram adjetivos e nomes de autores; conteúdo conceitual coberto. |
+| a09/s05 (direito à nomeação) | c | Sem alteração; nota | 0,60→0,60 | 1.461→1.508 | Lei 14.965/2024 (art. 1º, § 3º; art. 3º, III e parágrafo único) conferida no Planalto. Tema 1.164 conferido no portal do STF (tese de 10/10/2025, por maioria; embargos de declaração com julgamento virtual iniciado em 13/2/2026, resultado não verificado). |
+| a09/s06 (nomeação tardia, PcD, cotas, taxa) | b | Acrescentadas as regras da Lei 15.142/2025 (a partir de 2 vagas, arredondamento de 0,5, confirmação complementar da autodeclaração, dupla disputa, reversão de vagas, fraude, transição para a Lei 12.990); alcance da lei corrigido; Para fixar e sintético ajustados | 0,60→0,63 | 898→1.143 | Divergências do material: (1) diz que a Lei 15.142 vale "em todos os Poderes", mas o texto legal fala em administração federal direta, autarquias, fundações, empresas públicas e sociedades de economia mista controladas pela União, e em processos seletivos simplificados federais; (2) "mais de duas vagas" (ADC 41, regra da Lei 12.990, que pedia 3 ou mais) × "2 ou mais vagas" (Lei 15.142, art. 5º). Lei 14.768/2023, Lei 8.213 (art. 93) e Lei 8.112 (até 20%) não conferidas no Planalto neste ciclo. |
+| a09/s13 (remuneração: cascata, irredutibilidade, direitos sociais) | c | Sem alteração; nota | 0,61→0,61 | 1.054→1.084 | Faltantes eram os valores dos exemplos numéricos (já presentes de forma resumida). |
+| a08/s03 (omissão, regresso, prescrição) | c | Sem alteração; nota | 0,61→0,61 | 1.545→1.604 | Faltantes eram números de processos e exemplos. Temas 940, 666, 897 e 899 conferidos por conhecimento, sem consulta online neste ciclo. |
+| a09/s04 (concurso: remarcação, religião, psicotécnico, exceções, validade) | b | Acrescentada a seção "Composição do concurso e regras restritivas" (provas ou provas e títulos, título só classificatório, cláusula eliminatória × de barreira), que o material resume no quadro do início; Para fixar e sintético ajustados | 0,61→0,64 | 1.028→1.202 | Art. 37, II a IV, e art. 198, § 4º, sem alteração. |
+| a09/s14 (licenças, fim do RJU, previdência) | b | Atualizada a licença-paternidade com a Lei 15.371/2026; Para fixar e sintético ajustados | 0,62→0,63 | 999→1.129 | Material desatualizado: diz que sem lei vale só o mínimo de 5 dias. A Lei 15.371, de 31/3/2026, prevê 10 dias a partir de 1º/1/2027, 15 a partir de 1º/1/2028 e 20 a partir de 1º/1/2029 (condicionada a meta fiscal) e salário-paternidade, com vigência em 1º/1/2027, antes da prova de 07/03/2027. O texto trata do "empregado"; não verifiquei o alcance para servidores estatutários (cada ente legisla). |
+| a20/s01 (introdução e âmbito da Lei 14.133) | c | Removida a expressão "A aula cita…" do resumo; nota | 0,62→0,62 | 955→941 | Todos os valores do Decreto 12.807/2025 conferidos no Planalto. Atualização de 1º/1/2027 virá por ato do Ministério da Gestão (art. 3º do decreto). |
+| a20/s03 (princípios correlatos da licitação) | c | Corrigido o dispositivo do impedimento do autor do projeto básico: art. 14, e não art. 9º, § 1º; nota | 0,62→0,62 | 1.023→1.050 | Material cita o art. 9º, § 1º (conflito de interesses de agentes públicos) para a vedação ao autor do projeto básico; o dispositivo correto é o art. 14 (no inciso II, a empresa responsável pelo projeto básico ou executivo). |
 
-### legislacao-penal-especial (3 trechos)
+### Pendências e dúvidas para o dono / revisão humana
+1. Licença-paternidade (a09/s14): confirmar se a Lei 15.371/2026 se aplica aos servidores estatutários e se há regulamento; o PCPE será provavelmente cobrado com a regra vigente em 07/03/2027.
+2. Lei 15.142/2025 (a09/s06): decidir qual redação considerar quando a prova usar a regra do STF ("mais de duas vagas") ou o alcance "todos os Poderes" do material.
+3. ADI 6.890 (a21/s03): o material fala em prorrogação até 1 ano; o resumo segue o texto legal.
+4. Erros "impressão digital diferente" em a20/s09, a21/s09 e a21/s12 já existiam e não foram tocados.
+5. O validador acusa AVISOS de coincidência (10 a 15 palavras) em trechos de lei (art. 13 e 337-J do CP, art. 2º da Lei 14.133); não há ERRO de originalidade nos trechos alterados.
 
-| Trecho | Veredito | Cob. | Palavras | Diagnóstico e Análise do Conteúdo |
-|---|---|---|---|---|
-| `legislacao-penal-especial/a20/s04` | REVISAR | 45.5% | 579 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *artistico, contados, arqueologico, outorgada*) |
-| `legislacao-penal-especial/a21/s03` | REVISAR | 51.9% | 1244 | Licitações (Lei 14.133/21); cobre regras, exceções e procedimentos legais essenciais. (termos acusados: *consideravel, astromio, turma, info*) |
-| `legislacao-penal-especial/a12/s01` | REVISAR | 54.1% | 1345 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *agravo, fachin, edson, genero*) |
+## Direito Constitucional e Legislação Penal Especial
 
-### lingua-portuguesa (7 trechos)
+Revisão de 9 resumos analíticos em rascunho (status DRAFT, impressão digital intocada). Vigência conferida em out/2026 no Planalto (EC 139/2026, quadro de emendas até a EC 141/2026, Lei 7.716/89, Lei 9.605/98, Lei 10.826/2003, LC 64/90 com a LC 219/2025).
 
-| Trecho | Veredito | Cob. | Palavras | Diagnóstico e Análise do Conteúdo |
-|---|---|---|---|---|
-| `lingua-portuguesa/a13/s06` | REVISAR | 28.0% | 646 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *uerj, teuto, hispano, festanca*) |
-| `lingua-portuguesa/a13/s03` | REVISAR | 38.9% | 655 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *inciso, siglas, acronimos, constituicao*) |
-| `lingua-portuguesa/a13/s04` | REVISAR | 40.3% | 681 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *carta, abreviacoes, reuniao, manual*) |
-| `lingua-portuguesa/a07/s02` | REVISAR | 46.7% | 1143 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *uber, custoso, grajau, mestrado*) |
-| `lingua-portuguesa/a04/s05` | REVISAR | 47.3% | 946 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *microscopio, pres, pret, tecnologicas*) |
-| `lingua-portuguesa/a11/s05` | REVISAR | 50.0% | 1467 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *fabricas, competia, virus, 850*) |
-| `lingua-portuguesa/a13/s05` | REVISAR | 50.3% | 610 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *aviso, comunicado, memorando, firmado*) |
+Tipos: (a) exercícios/gabaritos, (b) omissão real ou texto desatualizado, (c) termos faltantes são ruído.
 
-### matematica (8 trechos)
+| Trecho | Tipo | Ação | Cobertura antes→depois | Palavras antes→depois | Problemas do material / dúvidas para revisão humana |
+| --- | --- | --- | --- | --- | --- |
+| direito-constitucional/a10/s07 | b | Acrescentada a EC 139/2026 (5/5/2026): Tribunais de Contas passam a ser permanentes e a extinção, além da criação e da instalação, é vedada (arts. 31, § 1º, e 75); nota sobre o caso do TCM-CE (ADI 5.763), superado quanto à extinção; sintético e "Para fixar" atualizados | 0,64→0,70 | 1094→1266 | O material fala ora em "PEC 139/2026", ora em "EC 139/2026"; é emenda promulgada. TCM-GO existe (confere com o exemplo do material). Atenção: a data de promulgação da EC 139 é 5/5/2026 (fonte secundária citou março). |
+| direito-constitucional/a08/s03 | c | Sem alteração de conteúdo; nota registrada. Faltantes = números por extenso da tabela de vereadores (já em algarismos) e números de processos. Conferido arts. 29 e 29-A (EC 58/2009, 109/2021, 111/2021) | 0,65→0,65 | 1785→1964 | Material diz que crimes próprios do DL 201/67 levam a cassação **e** suspensão de direitos políticos; o art. 4º só prevê cassação (o resumo já segue a lei). |
+| direito-constitucional/a08/s09 | c | Sem alteração de conteúdo; nota registrada. Faltantes são palavras soltas (elencadas, adin, normalidade...) | 0,65→0,65 | 885→977 | Material afirma que a decisão do TJ que NEGA a representação do PGJ não admite RE; a Súmula 637/STF trata do acórdão que DEFERE a intervenção estadual (resumo segue a súmula). Possível acréscimo (fora do material): ADI interventiva regulada pela Lei 12.562/2011. |
+| direito-constitucional/a09/s02 | c | Sem alteração de conteúdo; nota registrada. Faltantes = números de processos, anos e nomes | 0,65→0,65 | 1362→1450 | Sem divergência. A EC 138/2025 (acumulação de cargo de professor, art. 37, XVI) é tema vizinho, não coberto no trecho. Confirmar se vale reforçar a cobertura em outro trecho. |
+| direito-constitucional/a02/s02 | c (com ajuste pontual) | Corrigida a referência à Súmula 37/STJ (só cobre dano material e moral) no analítico e no sintético; faltantes são nomes de ministros e números de processos; a revista íntima (Tema 998) do início da pág. 13 pertence ao assunto anterior | 0,66→0,66 | 1501→1568 | O trecho começa no meio do julgado do Tema 998 (art. 5º, III), que a aula anterior deveria conter; vale revisar o corte do trecho. |
+| direito-constitucional/a06/s02 | b | Acrescentada a LC 219/2025 (Ficha Limpa): oito anos passam a contar, em regra, da decisão, teto de 12 anos, crimes graves mantêm oito anos após a pena; sintético atualizado | 0,66→0,66 | 1702→1921 | Material não menciona a LC 219/2025 (30/9/2025); os vetos presidenciais mantiveram a regra antiga para a alínea j (contagem a partir da eleição). Conferir texto consolidado da LC 64/90 antes de gerar questões sobre prazos. Faltantes são nomes de políticos e número de RE (ruído). |
+| legislacao-penal-especial/a20/s04 | b | Reescrito do zero a partir do texto vigente da Lei 9.605/98 (arts. 44 a 69-A, 71 e 77): tabelas com artigo, conduta e pena; atualizações da Lei 15.190/2025 (art. 60: 6 meses a 2 anos, até o dobro com EIA; art. 67 só doloso, sem culposo) e da Lei 15.299/2025 (art. 49, § 2º, poda tácita em 45 dias); cooperação internacional reconstruída | 0,46→0,82 | 579→1811 | Material trazia o art. 60 com 1 a 6 meses e o art. 67 com forma culposa (desatualizado); quadro de cooperação internacional vazio; os tópicos do quadro diziam só "flora". Vigência da Lei 15.190 (4/2/2026) confirmada por fonte secundária; Planalto exibe o texto novo. O "Para fixar" anterior citava incêndio florestal e unidades de conservação, que não são deste trecho. |
+| legislacao-penal-especial/a21/s03 | c (com ajuste pontual) | Conferido arts. 12 a 21-A no Planalto: sem divergência. Acrescentados: Lei 15.358/2026 como origem do art. 21-A e a ordem de grandeza da "quantidade ínfima" de munição (1 a 4 unidades) | 0,52→0,53 | 1244→1325 | Faltantes são nomes de ministros e números de processos. Texto do Planalto ainda mostra remissões à ADI 3.112 (inconstitucionalidades dos arts. 14, par. único, 15, par. único, e 21). |
+| legislacao-penal-especial/a12/s01 | c | Sem alteração de conteúdo; nota registrada. Texto conferido com a Lei 7.716/89 (Leis 9.459/97, 12.288/10, 12.735/12 e 14.532/23) | 0,54→0,54 | 1345→1382 | Sem mudança posterior a 2023 localizada. Parte do texto-fonte vem com caracteres invisíveis, o que embaralha a triagem de cobertura. |
 
-| Trecho | Veredito | Cob. | Palavras | Diagnóstico e Análise do Conteúdo |
-|---|---|---|---|---|
-| `matematica/a05/s03` | REVISAR | 46.5% | 902 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *estela, pfinal, vfinal, vinicial*) |
-| `matematica/a11/s01` | REVISAR | 46.7% | 740 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *x3x4, palmeira, missoes, nota*) |
-| `matematica/a08/s02` | REVISAR | 47.3% | 977 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *delta, ressalto, existir, famoso*) |
-| `matematica/a08/s01` | REVISAR | 47.5% | 578 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *arembepe, pojuca, desembarcam, jaua*) |
-| `matematica/a14/s01` | REVISAR | 47.7% | 505 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *nono, decimo, 509, 253*) |
-| `matematica/a03/s03` | REVISAR | 47.9% | 486 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *gerson, gilson, manaus, torce*) |
-| `matematica/a05/s02` | REVISAR | 47.9% | 512 | Conteúdo conceitual completo e aderente; termos faltantes são ruídos de exemplos ou exercícios. (termos acusados: *mercadoria, vfinal, custar, sofreu*) |
-| `matematica/a00/s01` | REVISAR | 48.2% | 446 | Abertura/apresentação do curso; termos ausentes são menções a vídeos e suporte. (termos acusados: *6666, finita, divisores, obte*) |
+### Pendências e dúvidas para o dono
 
-### raciocinio-logico (10 trechos)
+- Impressão digital: `legislacao-penal-especial/a20/s04` (e `a21/s02`, que não tratei) ainda acusam "impressão digital diferente" no validador; já existia antes e não foi alterada.
+- Cobertura abaixo de 0,55 permanece só nos trechos (c) por ruído; o único (b) com cobertura baixa foi corrigido (a20/s04, 0,82).
+- Os 9 trechos devem ser espelhados em `web/content` por `apply_synthetic.py` na consolidação (não executado aqui).
 
-| Trecho | Veredito | Cob. | Palavras | Diagnóstico e Análise do Conteúdo |
-|---|---|---|---|---|
-| `raciocinio-logico/a02/s11` | REFAÇÃO | 7.2% | 437 | Seção de gabarito/exercícios da aula; termos ausentes são nomes fictícios de questões. (termos acusados: *joelma, jornalista, computador, empresarios*) |
-| `raciocinio-logico/a04/s12` | REFAÇÃO | 9.6% | 349 | Seção de gabarito/exercícios da aula; termos ausentes são nomes fictícios de questões. (termos acusados: *salada, temperada, defeitos, consistentes*) |
-| `raciocinio-logico/a05/s10` | REVISAR | 22.4% | 338 | Conceitos lógicos essenciais cobertos; termos faltantes referem-se a exemplos pontuais. (termos acusados: *antenor, seguridade, araques, tecnologia*) |
-| `raciocinio-logico/a05/s09` | REFAÇÃO | 22.6% | 447 | Seção de gabarito/exercícios da aula; termos ausentes são nomes fictícios de questões. (termos acusados: *oxigenio, superficie, trf6, corpo*) |
-| `raciocinio-logico/a00/s11` | REFAÇÃO | 28.5% | 561 | Seção de gabarito/exercícios da aula; termos ausentes são nomes fictícios de questões. (termos acusados: *chovendo, levar, guarda, roberto*) |
-| `raciocinio-logico/a04/s11` | REFAÇÃO | 28.6% | 489 | Seção de gabarito/exercícios da aula; termos ausentes são nomes fictícios de questões. (termos acusados: *capa, angela, frita, edelson*) |
-| `raciocinio-logico/a01/s08` | REFAÇÃO | 30.2% | 500 | Seção de gabarito/exercícios da aula; termos ausentes são nomes fictícios de questões. (termos acusados: *suspensao, atendeu, porte, adequado*) |
-| `raciocinio-logico/a04/s01` | REVISAR | 38.9% | 613 | Conceitos lógicos essenciais cobertos; termos faltantes referem-se a exemplos pontuais. (termos acusados: *sandra, gastador, luciana, bernardo*) |
-| `raciocinio-logico/a02/s10` | REFAÇÃO | 39.0% | 517 | Seção de gabarito/exercícios da aula; termos ausentes são nomes fictícios de questões. (termos acusados: *revisado, passagens, leonardo, jeniffer*) |
-| `raciocinio-logico/a00/s10` | REFAÇÃO | 39.9% | 476 | Seção de gabarito/exercícios da aula; termos ausentes são nomes fictícios de questões. (termos acusados: *kris, acusam, cipo, capao*) |
+## Informática
 
----
+Seis trechos revisados. Status continua DRAFT; impressão digital e demais disciplinas intactas. Palavras = analítico + sintético conforme `cov76.py`.
 
-## Conclusão e Preservação de Status
-Conforme estipulado no briefing `pipeline/briefs/pcpe-correcoes.md`:
-- O status de todos os 662 resumos permanece rigorosamente mantido em `DRAFT`.
-- As impressões digitais de autoria não foram alteradas.
-- A aprovação definitiva (`APPROVED`) fica a critério do proprietário após processo de amostragem pedagógica.
+| Trecho | Tipo | Ação | Cobertura antes → depois | Palavras antes → depois | Problemas do material / dúvidas para revisão humana |
+| --- | --- | --- | --- | --- | --- |
+| informatica/a12/s03 (Windows 11: barra de tarefas, Iniciar) | (c) ruído | Resumo já completo (todos os componentes, atalhos, tabela de energia, pegadinhas). Os termos que faltam são palavras genéricas da linguagem do professor ("daquelas", "direto", "discreto"). Apenas reescrita de uma frase que repetia 10 palavras do material e nota de versão. | 0,50 → 0,50 | 921 → 1001 | Atalhos e visual dependem da versão do Windows 11 (por exemplo Win + C do Copilot e Win + N). Verificar na versão cobrada pela banca. |
+| informatica/a00/s05 (URL, HTTP/HTTPS, FTP, VoIP) | (b) | Reescrito: tabela dos componentes da URL (só protocolo e domínio obrigatórios), URL × domínio, codificação, DNS/ICANN/Registro.br, regras do nome `.br`, tabela de códigos HTTP (100, 200, 204, 301, 304, 403, 404, 500, 503), HTTP × HTML, certificado e AC, FTP (portas 20/21, usos, nem toda transferência é FTP), VoIP (UDP, SIP/H.323, ATA, vantagens e desvantagens). | 0,50 → 0,57 | 835 → 1326 | O material diz que o Registro.br aceita acento "desde 2008" (não confirmado, omitido). A porta 20 vale para o modo ativo do FTP. Corrigida a imprecisão "autenticação mútua" no HTTPS (só o servidor é autenticado, salvo certificado de cliente). Os termos que ainda faltam são nomes e exemplos do professor (Netflix, domínio do Estratégia, etc.). |
+| informatica/a06/s07 (Excel: funções matemáticas e estatísticas) | (a)+(b) | Mantido o que estava certo e acrescentados: PAR, INT, MOD x MODO, MÉDIAA, CONTAR.VAZIO, tabela de prioridade por incidência, regras de sintaxe (`:` e `;`), método para resolver soma condicional, SOMASE com um só intervalo, CONT.NÚM x CONT.VALORES x CONT.SE, MAIOR/MENOR com `k`, exemplos autorais. | 0,51 → 0,51 | 984 → 1131 | O material diz PI() "com precisão de até 10 dígitos", mas o valor exibido tem 15 casas (o Excel guarda 15 dígitos). A função MODO foi renomeada para MODO.ÚNICO nas versões recentes (a antiga funciona). A nota de cobertura não sobe porque os termos que faltam vêm de enunciados de exercícios (1414, diárias, Diogo, UFRN). |
+| informatica/a12/s06 (Painel de Controle) | (b) | Reescrito do zero (REFAÇÃO): acesso e modos de exibição, Painel × Configurações, tabelas por categoria com todos os itens (Sistema, Energia, Histórico, Backup e Restauração, BitLocker, Espaços de Armazenamento, Pastas de Trabalho, Ferramentas do Windows, Central de Rede, Opções da Internet, Dispositivos e Impressoras, Reprodução Automática, Som, Programas e Recursos, Programas Padrão, Contas, Credenciais, Mail, Barra de Tarefas, Explorador, Fontes, Data e Hora, Região, Facilidade de Acesso, Reconhecimento de Fala), UAC e pegadinhas de categoria. | 0,51 → 0,69 | 514 → 1257 | "Windows To Go" foi omitido (recurso descontinuado). Nomes variam com a versão ("Ferramentas do Windows", antes "Ferramentas Administrativas"; "Opções do Explorador de Arquivos", antes "Opções de Pasta"). O material coloca a Central de Facilidade de Acesso também em Aparência e Personalização; mantida apenas em Facilidade de Acesso. "Opções da Internet" é configuração do navegador legado. |
+| informatica/a13/s02 (computação em nuvem) | (b) | Reescrito: tabela IaaS/PaaS/SaaS, pilha e matriz de responsabilidade, outros "aaS" (CaaS comunicação e contêiner, DevaaS, EaaS, BDaaS, DaaS, TaaS, FaaS), Xen e SECaaS como distratores, quatro modelos de implantação com tabela comparativa, cloud bursting, pública não é gratuita, cloud storage e pegadinhas Cebraspe. | 0,51 → 0,62 | 668 → 1211 | A nota de rodapé do material afirma que "na prática" o SO seria do IaaS e que "em prova vale a teoria". Adotada a norma NIST (SO do cliente no IaaS, do provedor no PaaS). O material cita "Office 365" (hoje Microsoft 365). HaaS e MaaS aparecem só como distratores. |
+| informatica/a01/s02 (extranet e VPN) | (b) | Reescrito: definição e características da extranet, usos (B2B), três cenários (intranet, intranet remota, extranet) e a ambiguidade da banca, login em site público não é intranet, VPN (oculta o IP, criptografia, quando usar), tunelamento passo a passo, IPSec/L2TP (enlace e rede), Site-to-Site × Client-to-Site, pegadinha "extranet é de uso público". | 0,51 → 0,61 | 503 → 853 | O material reconhece que "extranet" é termo ambíguo (acesso externo em geral × parceiros). A explicação do material de que o site "só sabe que foi uma VPN" vale para o IP; o provedor ainda vê o tráfego cifrado até o servidor VPN. |
+
+### Observações gerais
+
+- Validação: sem erros nas aulas a00, a01, a06, a12 e a13 (exceto "impressão digital diferente" preexistente em a12, a06 e outras, não tocado). Restam apenas avisos preexistentes de outros trechos.
+- Os trechos (b) não passaram de 0,55 de cobertura em a06/s07 (0,51) nem em a12/s03 (0,50): em ambos os termos faltantes são palavras comuns da fala do professor ou dados de exercícios, sem conceito omitido.
+- Para a revisão humana: fatos que dependem de versão (atalhos do Windows 11, nomes de itens do Painel de Controle, renomeações de funções do Excel) devem ser reconferidos periodicamente.
+
+## Língua Portuguesa
+
+Status de todos os resumos: continua DRAFT; impressão digital e outras disciplinas intactas. Validador sem erros em a04, a07, a11 e a13. Cobertura = nota de `summary_coverage` (antes → depois).
+
+| Trecho | Tipo | Ação | Cobertura | Palavras (analítico) | Problemas do material / dúvidas para revisão humana |
+| --- | --- | --- | --- | --- | --- |
+| a13/s03 | b | Reescrito do zero: fechos, signatário, numeração de páginas, formatação do padrão ofício (tabela), siglas/acrônimos (MRPR + Decreto 9.191/2017), circular/conjunto, exposição de motivos, mensagem (finalidades, "outras mensagens" com artigos da CF, forma). O resumo antigo trazia fontes de 10 pt, "Governador" como superior, "impacto orçamentário" e numeração de parágrafos que não constam do Manual. Conferido no texto oficial (Planalto). | 0,39 → 0,77 | 655 → 1.987 (teto 2.000) | Numeração de páginas: material diz "dentro da área de 2 cm"; versão consultada do Manual diz "no rodapé, ou acima da área de 2 cm" e "centralizada". Exemplo do Manual com nome antigo do INSS ("Seguridade"). Conflito Manual (2018, "Excelentíssimo Senhor Presidente da República" no modelo da EM) × Decreto 9.758/2019. O material corta a lista de mensagens no item "veto" (completado pelo Manual). |
+| a13/s04 | b | Reescrito do zero: e-mail (3 sentidos, MP 2.200-2/2001 e ICP-Brasil, estrutura, anexos, recomendações), carta, despacho, ata, declaração. O resumo antigo tinha Mensagem Presidencial no lugar errado e inventava campos Cc/Cco, formatos PDF/ODS/CSV, zip. | 0,40 → 0,72 | 681 → 1.300 | Material diz que o e-mail é documento oficial "como o ofício e o memorando"; o Manual cita só o ofício (memorando foi abolido). Carta, despacho, ata e declaração vêm de manuais diversos (RJ, CNJ, Câmara, UFF): definições variam; classificação do despacho (interlocutório/ordenatório/definitivo) é do material. "Relação com a câmara" na estrutura da declaração é resquício do manual da Câmara (omitido). |
+| a13/s05 | b | Reescrito do zero: atestado × declaração × certidão, circular, comunicado/aviso, convite, convocação, edital, ordem de serviço × portaria (tabela), requerimento, relatório. O resumo antigo usava critério "fato transitório × permanente" e exemplos que não constam da fonte. | 0,50 → 0,84 | 610 → 1.214 | Distinção atestado (fato que não consta nos registros) × declaração/certidão (consta) é do material e não é unânime entre manuais. Publicação obrigatória do edital em três veículos é regra do modelo de origem, não norma geral (licitações: Lei 14.133/2021). Aviso só aparece em comentário; no Manual (2018) deixou de existir como espécie. |
+| a13/s06 | b | Reescrito do zero: abreviatura × abreviação × símbolo, regras do Manual do Senado (unidades, horas, mi/bi/tri, cidades, tratamento), siglas e acrônimos (Senado/Funag × MRPR), tabela de tratamentos abreviados, tabela de adjetivos pátrios reduzidos (conferida em gramática), armadilhas FGV (festança, batucada, 15hs, 2h:15mins, 30cms). O resumo antigo trazia regras inventadas (vogal subsequente, "8 h 30 min", abreviaturas oficiais sempre em consoante). | 0,28 → 0,55 | 646 → 1.423 | Conceito de acrônimo diverge (Senado × MRPR); siglas mistas (Dnit × DNIT); hora no estilo do Senado (10h30) × SI/Inmetro (10 h 30 min); tabela de tratamentos conflita com o Decreto 9.758/2019; plural com letra dobrada (pp., VV.MM.) aceito por exclusão numa questão FGV; "ásio-" vem de gramáticas tradicionais; palavras que faltam (Uerj, crawl, motocicletas...) são exemplos de enunciados/exercícios. |
+| a07/s02 | c (com ajuste) | Resumo já era completo (gabaritos e exemplos de provas). Ajustes: corrigida a observação sobre porcentagem (60% pede plural; oscilação só com "um por cento") e acrescentado roteiro de resolução em cinco passos com exemplo autoral. Parafraseada uma coincidência de 10 palavras. | 0,47 → 0,48 | 1.143 → 1.331 | A nota baixa vem de palavras de enunciados de questão (Uber, custoso, Grajaú, mestrado, eleitorais, cemitério, morasse, tormentoso...), não de regra omitida. Sem erro no material. |
+| a04/s05 | c (com ajuste) | Resumo correto; acrescentada seção "O subjuntivo acompanha o tempo da principal" (tabela + locução "vir a" + pegadinha) com exemplos autorais, que cobre o par "venha a/viesse a" dos gabaritos. | 0,47 → 0,50 | 946 → 1.194 | Palavras que faltam (microscópio, tropa, organismos, pres., pret., subj.) são texto de enunciados e anotações de esquema. Sem erro no material; as "substituições equivalentes" (tem gerado = gerou etc.) são de gabarito e dependem do contexto. |
+| a11/s05 | c (sem alteração) | Nada alterado: o resumo cobre intertextualidade, compreensão × interpretação, pressuposto × subentendido e os cinco desvios de assertiva, com exemplos autorais; checado contra a fonte e a teoria (Ducrot) sem encontrar erro. | 0,50 → 0,50 | 1.467 → 1.467 | Palavras que faltam (fábricas, vírus, 850, evolutivo, sofisticadas, sábios, mutação, ciberespaço) são do texto de apoio das questões (desemprego, programação genética) e dos enunciados, sem conceito novo. |
+
+### Outras observações para o dono
+
+1. **a13/s01 e a13/s02 não faziam parte desta parte** e foram preservados. Pela leitura de a13/s02: o quadro de pronomes de tratamento difere do Manual (3ª ed.), onde "Excelentíssimo Senhor" vai só para Presidente da República, do Congresso Nacional e do STF (o resumo estende a governadores, prefeitos e presidentes de tribunais); e omite o Decreto 9.758/2019 (a abolição de Digníssimo/Ilustríssimo está correta, consta do Manual). Vale revisar.
+2. O arquivo `a13.json` guarda no campo `notes` as quatro notas acima (uma por trecho).
+3. Os fingerprints `startTopic` aparecem com acentos corrompidos apenas na saída de terminal do Windows; o JSON está em UTF-8 correto. Não foram tocados.
+4. Fontes consultadas: Manual de Redação da Presidência da República, 3ª ed. (Planalto, texto completo), Decreto 9.758/2019 (Planalto), Acordo Ortográfico, Base XIX (confirma a regra de siglas em maiúsculas), lista de adjetivos pátrios em gramática normativa (Só Português).
+
+## Matemática
+
+Cobertura medida por `pipeline/pcpe_tools/cov76.py`. A coluna "antes" da cobertura vem do briefing (`pcpe-resumos-76.json`); as palavras "antes" são as do arquivo no momento em que esta parte começou (três trechos já tinham sido revisados numa passagem anterior, por isso diferem do briefing). Contas refeitas à mão, cada uma por dois caminhos (ver coluna Ação).
+
+| Trecho | Tipo | Ação | Cobertura antes → depois | Palavras antes → depois | Problemas do material / dúvidas para revisão humana |
+| --- | --- | --- | --- | --- | --- |
+| matematica/a05/s03 | c (exercícios, sem omissão) | Nada alterado. Todas as contas conferidas (195·1,1·1,1·0,93 = 219,43; 54→29 = −46,3%; 0,06P = 426 → P = 7.100; 0,6·0,7 = 0,42; 1,1·1,05·1,06 = 1,2243). Os "termos que faltam" são nomes de personagens e rótulos de variáveis (Vfinal, Vinicial). | 0,465 → 0,47 | 852 → 852 | Material, Exemplo 3 da aula 05: "10%, 11% e 12%" com valor final 139,22 e variação de 39,2%. O certo para 10/11/12 é 136,75 (36,75%); 139,22 corresponde a 10/12/13. A nota já está em `notes` da aula; o resumo não usa o exemplo. |
+| matematica/a11/s01 | c | Nada alterado. Conferidos os pontos dos gráficos (x²+2x−3 em −3..1 dá 0, −3, −4, −3, 0; −x²+x+2 em −1..3 dá 0, 2, 2, 0, −4), R(8) = 140, Bhaskara de x²−3x−4 (−1 e 4) e c = −14 → c² = 196. Termos faltantes são nomes de prefeituras. | 0,467 → 0,47 | 609 → 609 | Nenhum neste trecho (a divergência da questão do gráfico está em a11/s02, já anotada). |
+| matematica/a08/s02 | c (+ ajuste mínimo) | Conteúdo completo (Bhaskara, discriminante, produto nulo, forma fatorada, conversões, 3 questões). Só incluí o termo "delta" na seção do discriminante, para o aluno que ouve a palavra. Contas conferidas: 2x²−10x+12 → x²−5x+6 (raízes 2 e 3, perímetro 10); x²−2x+5 (Δ = −16); −2x²−8x+10 → x²+4x−5 (1 e −5). | 0,473 → 0,49 | 1028 → 1032 | Nenhum. |
+| matematica/a08/s01 | b (omissão real, leve) | Acrescentados: ideia "entrou = saiu"; uma equação com duas incógnitas tem infinitas soluções (n incógnitas, n equações); exemplo x+y=10 e x−y=4 (substituição e soma, x=7, y=3); sistema 3×3 resolvido por inteiro (x=1, y=2, z=0, produto 0), com conferência nas equações (2) e (3) e pegadinha de parar antes de z. Sintético com 9 pontos. | 0,475 → 0,54 | 578 → 841 | Nenhum. |
+| matematica/a14/s01 | b (**erro no resumo anterior**) | Reescrito. A lei da questão é 2^n + 5·(−1)^(n−1) (o expoente se perde na extração e aparece "2n"); a versão anterior leu "2n" e dava os termos 7, −1, 11, 3 (errados). Corretos: 7, −1, 13, 11, com a tabela de alternativas (sem pares: verdadeira; diferenças −8 e 14). A lista de Fibonacci pulava o 89 (corrigido). Acrescentadas a variante iniciada em 0 (34 é o 10º termo; F11 − F10 = 21 = F9; F9 + F11 ≠ F10; 8 não é primo), a conferência da fórmula explícita (n = 1 e 2) e a recorrência a1 = 5, a(n+1) = 2a(n) + 3 por dois caminhos (iteração até a8 = 1021 e a(n) + 3 = 8·2^(n−1) → 1024 − 3). | 0,477 → 0,66 | 531 → 971 | Material: a extração do PDF perde expoentes (2^n virou "2n"), o que confunde quem lê só o texto. Convém conferir no PDF o enunciado da PC-SC 2024. |
+| matematica/a03/s03 | b (omissão real) | Acrescentados: dízima com parte inteira (5,333... = 16/3); período de 5 algarismos (67234/99999); questão 0,60666... = 182/300 = 546/900 com a pegadinha da fração não simplificada; atalho de conferência (606 − 60)/900 e (553 − 55)/900 = 498/900; soma de dízimas (0,8666... + 0,7111... + 0,4222... = 2, triplo 6; conferido por frações 13/15 + 32/45 + 19/45). | 0,479 → 0,56 | 486 → 721 | Dúvida: o "atalho de conferência" (noves e zeros) não está no material, é identidade matemática padrão; mantido só como verificação. Retirar se o dono preferir ficar estritamente no método da decomposição. |
+| matematica/a05/s02 | b (omissão leve) | Acrescentados: origem do fator (V + iV = V(1+i)); aumento acumulado de 8% e 9% = 17,72%; o caso de abertura (+8%, +9%, −17% = R$ 977,08, queda líquida de 2,292%, não volta a R$ 1.000); tabela dos seis casos-base (115; 121; 136,75; 99; 79,90; 92,16) e pegadinha. | 0,479 → 0,50 | 457 (analítico 455) → 705 | Nenhum (aqui o Exemplo 3, 10/11/12 → 136,75, está correto; o erro é o da aula 05, trecho s03). |
+| matematica/a00/s01 | b (omissão real, leve) | Corrigida a frase do antecessor (todo natural tem sucessor; só o 0 não tem antecessor natural). Acrescentados: caso N* (1 sem antecessor), propriedade (a+1)+(b+1) = (a+b)+2, quociente de naturais, pegadinha "inteiros partem do zero", cadeia N ⊂ Z ⊂ Q ⊂ R com I disjunto de Q, tabela de classificação (13, 0,75, 743,8432, 0,666..., 1,351351..., 1,301313..., √2/√3/π, √4). | 0,482 → 0,51 | 446 → 760 | Nenhum. |
+
+### Resumo
+- Tipo (c), sem mudança de conteúdo: a05/s03, a11/s01 e a08/s02 (este só com o termo "delta"). Motivo: já cobrem todo método, fórmula e caso especial do trecho; a nota baixa vem de nomes de personagens, números de questões e símbolos de variáveis. Nada a revisar além das notas de material já existentes.
+- O único erro de conteúdo encontrado foi em a14/s01 (lei da sequência lida como 2n em vez de 2^n e termo 89 omitido em Fibonacci). Vale conferir se outros resumos de Matemática (e Raciocínio Lógico) foram escritos a partir do texto extraído sem recuperar expoentes.
+- Nenhum trecho (b) ficou abaixo de 0,50; os de 0,50 a 0,54 (a05/s02, a00/s01, a08/s01) cobrem o método por inteiro e o restante são termos de enunciados.
+- Validação: todos os JSON das aulas tocadas (a00, a03, a05, a08, a11, a14) passam sem erro; `status` e `fingerprint` intactos.
