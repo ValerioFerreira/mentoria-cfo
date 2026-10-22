@@ -32,6 +32,7 @@ from ineditas import DIR, BANCA, item_for_segment, segments  # noqa: E402
 MC_DIR = DIR / "mc"
 BATCH_MCN = "mentoria-inedita-mcn-2026-10-20"
 LETTERS = "ABCDE"
+AVISOS: list[str] = []
 
 
 def parse(path: Path) -> list[dict]:
@@ -61,7 +62,9 @@ def check(qs: list[dict]) -> list[str]:
         if q["segment"] not in segments(q["subject"]):
             errs.append(f"{tag}: trecho inexistente")
         elif not item_for_segment(q["subject"], q["segment"], q.get("item")):
-            errs.append(f"{tag}: trecho sem assunto do edital do PCPE")
+            # trecho de concurso sem esse assunto no mapa do edital (ex.: CBMPE): a questão entra só no caderno do plano,
+            # com editalItemId nulo; não é erro
+            AVISOS.append(f"{tag}: trecho sem assunto do edital (editalItemId nulo)")
         if [l for l, _ in q["options"]] != list(LETTERS):
             errs.append(f"{tag}: precisa de exatamente 5 alternativas A) a E) em ordem")
             continue
@@ -127,6 +130,8 @@ def main() -> None:
     errs = check(qs)
     for e in errs:
         print("ERRO", e)
+    if AVISOS and (a.resumo or a.check):
+        print(f"AVISO {len(AVISOS)} questões em trechos sem assunto do edital (ok para o CBMPE)")
     if a.resumo or a.check:
         by = defaultdict(Counter)
         for q in qs:

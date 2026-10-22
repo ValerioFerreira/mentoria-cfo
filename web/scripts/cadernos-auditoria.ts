@@ -55,8 +55,16 @@ async function supplyReinforcement(): Promise<Map<string, number>> {
   const g = await db.question.groupBy({ by: ["segmentId"], where: { status: "APPROVED", kind: "MULTIPLA_ESCOLHA", banca: { notIn: AOCP_BANCAS } }, _count: true });
   const m = new Map(g.map((r) => [r.segmentId, r._count]));
   if (loteFile) {
-    const lote = JSON.parse(readFileSync(resolve(loteFile), "utf8")) as { segmentId: string; kind?: string }[];
-    for (const r of lote) if ((r.kind ?? "CERTO_ERRADO") === "MULTIPLA_ESCOLHA") m.set(r.segmentId, (m.get(r.segmentId) ?? 0) + 1);
+    const lote = JSON.parse(readFileSync(resolve(loteFile), "utf8")) as { id: string; segmentId: string; kind?: string }[];
+    // só o que ainda não está no banco (o resto já entrou na contagem acima)
+    const jaNoBanco = new Set((await db.question.findMany({ where: { id: { in: lote.map((r) => r.id) } }, select: { id: true } })).map((q) => q.id));
+    let novas = 0;
+    for (const r of lote) {
+      if (jaNoBanco.has(r.id) || (r.kind ?? "CERTO_ERRADO") !== "MULTIPLA_ESCOLHA") continue;
+      m.set(r.segmentId, (m.get(r.segmentId) ?? 0) + 1);
+      novas++;
+    }
+    console.log(`lote: ${lote.length} questões, ${novas} ainda não estão no banco e entram na simulação`);
   }
   return m;
 }
