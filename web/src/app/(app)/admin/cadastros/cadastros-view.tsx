@@ -17,7 +17,7 @@ import {
   X,
 } from "lucide-react";
 import Link from "next/link";
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { Alert, Badge, Button, Card, SectionTitle } from "@/components/ui";
 import {
   approveRegistration,
@@ -119,8 +119,9 @@ export function CadastrosView({
   // Modal de Reenvio de E-mail com Nova Senha
   const [resendEntry, setResendEntry] = useState<WaitlistRow | null>(null);
 
-  // Feedback geral e clipboard
+  // Feedback geral, erro interno de modais e clipboard
   const [statusMessage, setStatusMessage] = useState<AdminActionResult | null>(null);
+  const [modalError, setModalError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [isPending, startTransition] = useTransition();
 
@@ -128,8 +129,39 @@ export function CadastrosView({
   const approvedList = entries.filter((e) => e.status === "APPROVED");
   const rejectedList = entries.filter((e) => e.status === "REJECTED");
 
+  // Trava a rolagem do fundo quando qualquer modal estiver aberto
+  useEffect(() => {
+    const hasModal = Boolean(selectedEntry || rejectEntry || validityEntry || resendEntry);
+    if (hasModal) {
+      const orig = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = orig;
+      };
+    }
+  }, [selectedEntry, rejectEntry, validityEntry, resendEntry]);
+
+  // Fecha modais com a tecla Escape
+  useEffect(() => {
+    const hasModal = Boolean(selectedEntry || rejectEntry || validityEntry || resendEntry);
+    if (!hasModal) return;
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && !isPending) {
+        setSelectedEntry(null);
+        setRejectEntry(null);
+        setValidityEntry(null);
+        setResendEntry(null);
+        setModalError(null);
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [selectedEntry, rejectEntry, validityEntry, resendEntry, isPending]);
+
   function handleApprove(e: WaitlistRow) {
     setStatusMessage(null);
+    setModalError(null);
     setSelectedEntry(e);
     setOverride(false);
     setJustification("");
@@ -144,29 +176,57 @@ export function CadastrosView({
 
   function confirmApproval() {
     if (!selectedEntry) return;
+    setModalError(null);
+
+    // Validação preventiva no cliente para liberação com saldo pendente
+    if (
+      duration === "UNTIL_EXAM" &&
+      selectedEntry.contract &&
+      selectedEntry.contract.paidCents < selectedEntry.contract.finalCents
+    ) {
+      if (!override) {
+        setModalError(
+          "Há saldo pendente nesta contratação. Para liberar mesmo assim, marque a opção 'Liberar mesmo com saldo pendente' e forneça a justificativa."
+        );
+        return;
+      }
+      if (justification.trim().length < 10) {
+        setModalError("A justificativa para liberação com saldo pendente deve ter no mínimo 10 caracteres.");
+        return;
+      }
+    }
+
     startTransition(async () => {
       const res = await approveRegistration(selectedEntry.id, duration, { override, justification });
-      setStatusMessage(res);
       if (res.success) {
+        setStatusMessage(res);
         setSelectedEntry(null);
+        setModalError(null);
+      } else {
+        setModalError(res.message);
       }
     });
   }
 
   function confirmRejection() {
     if (!rejectEntry) return;
+    setModalError(null);
     startTransition(async () => {
       const res = await rejectRegistration(rejectEntry.id, rejectReason);
-      setStatusMessage(res);
       if (res.success) {
+        setStatusMessage(res);
         setRejectEntry(null);
         setRejectReason("");
+        setModalError(null);
+      } else {
+        setModalError(res.message);
       }
     });
   }
 
   function handleOpenValidity(e: WaitlistRow) {
     setStatusMessage(null);
+    setModalError(null);
     setValidityEntry(e);
     setValidityOption("EXTEND_30_DAYS");
     const initialDate = e.user?.accessExpiresAt
@@ -177,27 +237,36 @@ export function CadastrosView({
 
   function confirmValidityUpdate() {
     if (!validityEntry) return;
+    setModalError(null);
     startTransition(async () => {
       const res = await updateAccessValidity(validityEntry.id, validityOption, customDate);
-      setStatusMessage(res);
       if (res.success) {
+        setStatusMessage(res);
         setValidityEntry(null);
+        setModalError(null);
+      } else {
+        setModalError(res.message);
       }
     });
   }
 
   function handleOpenResend(e: WaitlistRow) {
     setStatusMessage(null);
+    setModalError(null);
     setResendEntry(e);
   }
 
   function confirmResendCredentials() {
     if (!resendEntry) return;
+    setModalError(null);
     startTransition(async () => {
       const res = await resendTemporaryPassword(resendEntry.id);
-      setStatusMessage(res);
       if (res.success) {
+        setStatusMessage(res);
         setResendEntry(null);
+        setModalError(null);
+      } else {
+        setModalError(res.message);
       }
     });
   }
@@ -316,14 +385,26 @@ export function CadastrosView({
 
       {/* Modal de Aprovação Inicial */}
       {selectedEntry && (
-        <div className="modal-scroll fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/75 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="relative w-full max-w-lg rounded-2xl border border-primary/30 bg-surface text-text shadow-2xl overflow-hidden flex flex-col">
-            <div className="flex items-center justify-between border-b border-border/70 px-6 py-4 bg-surface-2/40">
+        <div
+          className="fixed inset-0 z-[70] flex items-center justify-center overflow-y-auto p-3 sm:p-6 bg-ink/80 backdrop-blur-sm animate-in fade-in duration-200"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-aprovar-titulo"
+          onClick={(e) => {
+            if (e.target === e.currentTarget && !isPending) {
+              setSelectedEntry(null);
+              setModalError(null);
+            }
+          }}
+        >
+          <div className="relative w-full max-w-lg max-h-[calc(100vh-1.5rem)] sm:max-h-[calc(100vh-3rem)] rounded-2xl border border-primary/30 bg-surface text-text shadow-2xl overflow-hidden flex flex-col my-auto">
+            {/* Header fixo */}
+            <div className="shrink-0 flex items-center justify-between border-b border-border/70 px-6 py-4 bg-surface-2/40">
               <div>
                 <p className="eyebrow text-primary text-[11px] uppercase tracking-wider font-bold">
                   Aprovar Cadastro
                 </p>
-                <h3 className="font-display text-lg font-bold uppercase text-text">
+                <h3 id="modal-aprovar-titulo" className="font-display text-lg font-bold uppercase text-text">
                   {selectedEntry.name}
                 </h3>
                 <p className="text-xs text-muted">
@@ -332,14 +413,26 @@ export function CadastrosView({
               </div>
               <button
                 type="button"
-                onClick={() => setSelectedEntry(null)}
+                onClick={() => {
+                  setSelectedEntry(null);
+                  setModalError(null);
+                }}
+                disabled={isPending}
+                aria-label="Fechar"
                 className="flex h-8 w-8 items-center justify-center rounded-lg text-muted hover:bg-surface-3 hover:text-text transition cursor-pointer"
               >
                 <X className="h-4 w-4" />
               </button>
             </div>
 
-            <div className="p-6 space-y-4">
+            {/* Corpo rolável */}
+            <div className="flex-1 overflow-y-auto min-h-0 p-6 space-y-4">
+              {modalError && (
+                <Alert tone="danger">
+                  <p className="text-xs font-semibold">{modalError}</p>
+                </Alert>
+              )}
+
               <div className="space-y-2">
                 <label className="block text-xs font-bold uppercase tracking-wider text-muted">
                   Duração Inicial do Acesso:
@@ -371,8 +464,11 @@ export function CadastrosView({
                         value={o.key}
                         checked={duration === o.key}
                         disabled={o.disabled}
-                        onChange={() => setDuration(o.key)}
-                        className="accent-primary"
+                        onChange={() => {
+                          setDuration(o.key);
+                          setModalError(null);
+                        }}
+                        className="accent-primary cursor-pointer"
                       />
                       <div>
                         <p className="font-bold text-xs text-text">{o.title}</p>
@@ -384,26 +480,56 @@ export function CadastrosView({
               </div>
 
               {selectedEntry.contract ? (
-                <div className="rounded-xl border border-border p-3 text-xs space-y-2">
-                  <p className="text-muted">
+                <div className="rounded-xl border border-border p-3.5 text-xs space-y-2.5 bg-surface-2/30">
+                  <p className="text-muted leading-relaxed">
                     Contratação: <strong className="text-text">{brl(selectedEntry.contract.finalCents)}</strong> · recebido{" "}
                     <strong className="text-text">{brl(selectedEntry.contract.paidCents)}</strong> · {selectedEntry.contract.statusLabel}
                     {selectedEntry.contract.couponCode ? ` · cupom ${selectedEntry.contract.couponCode}` : ""}{" "}
-                    <Link href={`/admin/financeiro/${selectedEntry.contract.id}`} className="font-semibold text-primary underline">registrar pagamento</Link>
+                    <Link href={`/admin/financeiro/${selectedEntry.contract.id}`} className="font-semibold text-primary underline hover:text-primary-hover">
+                      registrar pagamento
+                    </Link>
                   </p>
                   {duration === "UNTIL_EXAM" && selectedEntry.contract.paidCents < selectedEntry.contract.finalCents && (
-                    <div className="space-y-2 rounded-lg bg-warn-soft p-2.5 text-warn">
-                      <label className="flex items-center gap-2 font-semibold">
-                        <input type="checkbox" checked={override} onChange={(ev) => setOverride(ev.target.checked)} />
+                    <div className="space-y-2.5 rounded-xl border border-warn/40 bg-warn-soft/60 p-3 text-xs text-warn">
+                      <div className="flex items-start gap-2">
+                        <AlertCircle className="h-4 w-4 shrink-0 mt-0.5 text-warn" />
+                        <div className="space-y-1">
+                          <p className="font-bold">Pagamento pendente de confirmação</p>
+                          <p className="text-[11px] leading-relaxed opacity-90 text-text">
+                            Para liberar o acesso antes da quitação financeira, é obrigatório marcar a opção abaixo e fornecer uma justificativa formal (mínimo de 10 caracteres).
+                          </p>
+                        </div>
+                      </div>
+                      <label className="flex items-center gap-2 font-semibold text-text cursor-pointer pt-1">
+                        <input
+                          type="checkbox"
+                          checked={override}
+                          onChange={(ev) => {
+                            setOverride(ev.target.checked);
+                            setModalError(null);
+                          }}
+                          className="h-4 w-4 rounded accent-primary cursor-pointer"
+                        />
                         Liberar mesmo com saldo pendente
                       </label>
                       {override && (
-                        <input
-                          value={justification}
-                          onChange={(ev) => setJustification(ev.target.value)}
-                          placeholder="Justificativa (mínimo de 10 caracteres)"
-                          className="w-full rounded-lg border border-border bg-surface px-2.5 py-1.5 text-text"
-                        />
+                        <div className="space-y-1 pt-1">
+                          <input
+                            value={justification}
+                            onChange={(ev) => {
+                              setJustification(ev.target.value);
+                              setModalError(null);
+                            }}
+                            placeholder="Justificativa (mínimo de 10 caracteres, ex: comprovante enviado no WhatsApp)"
+                            className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-xs text-text placeholder:text-muted focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                            autoFocus
+                          />
+                          <p className="text-[10px] text-muted">
+                            {justification.trim().length < 10
+                              ? `Faltam ${10 - justification.trim().length} caractere(s) para o mínimo exigido.`
+                              : "✓ Justificativa válida para liberação."}
+                          </p>
+                        </div>
                       )}
                     </div>
                   )}
@@ -422,8 +548,17 @@ export function CadastrosView({
               </div>
             </div>
 
-            <div className="flex items-center justify-end gap-2 border-t border-border/70 px-6 py-4 bg-surface-2/40">
-              <Button variant="secondary" size="sm" onClick={() => setSelectedEntry(null)} disabled={isPending}>
+            {/* Footer fixo */}
+            <div className="shrink-0 flex items-center justify-end gap-2 border-t border-border/70 px-6 py-4 bg-surface-2/40">
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => {
+                  setSelectedEntry(null);
+                  setModalError(null);
+                }}
+                disabled={isPending}
+              >
                 Cancelar
               </Button>
               <Button variant="primary" size="sm" onClick={confirmApproval} disabled={isPending}>
@@ -437,40 +572,75 @@ export function CadastrosView({
 
       {/* Modal de Rejeição */}
       {rejectEntry && (
-        <div className="modal-scroll fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/75 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="relative w-full max-w-lg rounded-2xl border border-danger/30 bg-surface text-text shadow-2xl overflow-hidden flex flex-col">
-            <div className="flex items-center justify-between border-b border-border/70 px-6 py-4 bg-surface-2/40">
+        <div
+          className="fixed inset-0 z-[70] flex items-center justify-center overflow-y-auto p-3 sm:p-6 bg-ink/80 backdrop-blur-sm animate-in fade-in duration-200"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-rejeitar-titulo"
+          onClick={(e) => {
+            if (e.target === e.currentTarget && !isPending) {
+              setRejectEntry(null);
+              setModalError(null);
+            }
+          }}
+        >
+          <div className="relative w-full max-w-lg max-h-[calc(100vh-1.5rem)] sm:max-h-[calc(100vh-3rem)] rounded-2xl border border-danger/30 bg-surface text-text shadow-2xl overflow-hidden flex flex-col my-auto">
+            {/* Header fixo */}
+            <div className="shrink-0 flex items-center justify-between border-b border-border/70 px-6 py-4 bg-surface-2/40">
               <div>
                 <p className="eyebrow text-danger text-[11px] uppercase tracking-wider font-bold">
                   Rejeitar Cadastro
                 </p>
-                <h3 className="font-display text-lg font-bold uppercase text-text">
+                <h3 id="modal-rejeitar-titulo" className="font-display text-lg font-bold uppercase text-text">
                   {rejectEntry.name}
                 </h3>
                 <p className="text-xs text-muted">E-mail: {rejectEntry.email}</p>
               </div>
               <button
                 type="button"
-                onClick={() => setRejectEntry(null)}
+                onClick={() => {
+                  setRejectEntry(null);
+                  setModalError(null);
+                }}
+                disabled={isPending}
+                aria-label="Fechar"
                 className="flex h-8 w-8 items-center justify-center rounded-lg text-muted hover:bg-surface-3 hover:text-text transition cursor-pointer"
               >
                 <X className="h-4 w-4" />
               </button>
             </div>
 
-            <div className="p-6 space-y-3">
+            {/* Corpo rolável */}
+            <div className="flex-1 overflow-y-auto min-h-0 p-6 space-y-3">
+              {modalError && (
+                <Alert tone="danger">
+                  <p className="text-xs font-semibold">{modalError}</p>
+                </Alert>
+              )}
               <label className="block text-xs font-bold text-text">Motivo da Rejeição (opcional):</label>
               <input
                 type="text"
                 value={rejectReason}
-                onChange={(e) => setRejectReason(e.target.value)}
+                onChange={(e) => {
+                  setRejectReason(e.target.value);
+                  setModalError(null);
+                }}
                 placeholder="Ex.: Comprovante de Pix não identificado"
                 className="w-full rounded-xl border border-border bg-surface px-3.5 py-2 text-sm text-text outline-none focus:border-primary"
               />
             </div>
 
-            <div className="flex items-center justify-end gap-2 border-t border-border/70 px-6 py-4 bg-surface-2/40">
-              <Button variant="secondary" size="sm" onClick={() => setRejectEntry(null)} disabled={isPending}>
+            {/* Footer fixo */}
+            <div className="shrink-0 flex items-center justify-end gap-2 border-t border-border/70 px-6 py-4 bg-surface-2/40">
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => {
+                  setRejectEntry(null);
+                  setModalError(null);
+                }}
+                disabled={isPending}
+              >
                 Cancelar
               </Button>
               <Button variant="danger" size="sm" onClick={confirmRejection} disabled={isPending}>
@@ -484,15 +654,27 @@ export function CadastrosView({
 
       {/* Modal de Renovar / Alterar Validade */}
       {validityEntry && (
-        <div className="modal-scroll fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/75 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="relative w-full max-w-lg rounded-2xl border border-border bg-surface text-text shadow-2xl overflow-hidden flex flex-col">
-            <div className="flex items-center justify-between border-b border-border/70 px-6 py-4 bg-surface-2/40">
+        <div
+          className="fixed inset-0 z-[70] flex items-center justify-center overflow-y-auto p-3 sm:p-6 bg-ink/80 backdrop-blur-sm animate-in fade-in duration-200"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-validade-titulo"
+          onClick={(e) => {
+            if (e.target === e.currentTarget && !isPending) {
+              setValidityEntry(null);
+              setModalError(null);
+            }
+          }}
+        >
+          <div className="relative w-full max-w-lg max-h-[calc(100vh-1.5rem)] sm:max-h-[calc(100vh-3rem)] rounded-2xl border border-border bg-surface text-text shadow-2xl overflow-hidden flex flex-col my-auto">
+            {/* Header fixo */}
+            <div className="shrink-0 flex items-center justify-between border-b border-border/70 px-6 py-4 bg-surface-2/40">
               <div className="flex items-center gap-2.5">
                 <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
                   <Calendar className="h-5 w-5" />
                 </div>
                 <div>
-                  <h3 className="font-display text-lg font-bold uppercase tracking-wide text-text">
+                  <h3 id="modal-validade-titulo" className="font-display text-lg font-bold uppercase tracking-wide text-text">
                     Renovar / Alterar Validade
                   </h3>
                   <p className="text-xs text-muted">
@@ -502,14 +684,26 @@ export function CadastrosView({
               </div>
               <button
                 type="button"
-                onClick={() => setValidityEntry(null)}
+                onClick={() => {
+                  setValidityEntry(null);
+                  setModalError(null);
+                }}
+                disabled={isPending}
+                aria-label="Fechar"
                 className="flex h-8 w-8 items-center justify-center rounded-lg text-muted hover:bg-surface-3 hover:text-text transition cursor-pointer"
               >
                 <X className="h-4 w-4" />
               </button>
             </div>
 
-            <div className="p-6 space-y-4">
+            {/* Corpo rolável */}
+            <div className="flex-1 overflow-y-auto min-h-0 p-6 space-y-4">
+              {modalError && (
+                <Alert tone="danger">
+                  <p className="text-xs font-semibold">{modalError}</p>
+                </Alert>
+              )}
+
               {/* Situação Atual */}
               <div className="rounded-xl border border-border bg-surface-2 p-3.5 text-xs space-y-1">
                 <p className="font-semibold text-text">Situação Atual do Acesso:</p>
@@ -561,7 +755,10 @@ export function CadastrosView({
                         name="validityOption"
                         value={opt.val}
                         checked={validityOption === opt.val}
-                        onChange={() => setValidityOption(opt.val as ValidityOption)}
+                        onChange={() => {
+                          setValidityOption(opt.val as ValidityOption);
+                          setModalError(null);
+                        }}
                         className="mt-0.5 accent-primary"
                       />
                       <div>
@@ -585,7 +782,10 @@ export function CadastrosView({
                     name="validityOption"
                     value="CUSTOM_DATE"
                     checked={validityOption === "CUSTOM_DATE"}
-                    onChange={() => setValidityOption("CUSTOM_DATE")}
+                    onChange={() => {
+                      setValidityOption("CUSTOM_DATE");
+                      setModalError(null);
+                    }}
                     className="mt-0.5 accent-primary"
                   />
                   <div className="flex-1 space-y-1.5">
@@ -594,7 +794,10 @@ export function CadastrosView({
                       <input
                         type="date"
                         value={customDate}
-                        onChange={(e) => setCustomDate(e.target.value)}
+                        onChange={(e) => {
+                          setCustomDate(e.target.value);
+                          setModalError(null);
+                        }}
                         className="w-full rounded-lg border border-border bg-surface px-3 py-1.5 text-xs text-text outline-none focus:border-primary"
                       />
                     )}
@@ -607,8 +810,17 @@ export function CadastrosView({
               </p>
             </div>
 
-            <div className="flex items-center justify-end gap-2 border-t border-border/70 px-6 py-4 bg-surface-2/40">
-              <Button variant="secondary" size="sm" onClick={() => setValidityEntry(null)} disabled={isPending}>
+            {/* Footer fixo */}
+            <div className="shrink-0 flex items-center justify-end gap-2 border-t border-border/70 px-6 py-4 bg-surface-2/40">
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => {
+                  setValidityEntry(null);
+                  setModalError(null);
+                }}
+                disabled={isPending}
+              >
                 Cancelar
               </Button>
               <Button
@@ -627,15 +839,27 @@ export function CadastrosView({
 
       {/* Modal de Reenviar E-mail com Nova Senha */}
       {resendEntry && (
-        <div className="modal-scroll fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/75 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="relative w-full max-w-lg rounded-2xl border border-border bg-surface text-text shadow-2xl overflow-hidden flex flex-col">
-            <div className="flex items-center justify-between border-b border-border/70 px-6 py-4 bg-surface-2/40">
+        <div
+          className="fixed inset-0 z-[70] flex items-center justify-center overflow-y-auto p-3 sm:p-6 bg-ink/80 backdrop-blur-sm animate-in fade-in duration-200"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-reenvio-titulo"
+          onClick={(e) => {
+            if (e.target === e.currentTarget && !isPending) {
+              setResendEntry(null);
+              setModalError(null);
+            }
+          }}
+        >
+          <div className="relative w-full max-w-lg max-h-[calc(100vh-1.5rem)] sm:max-h-[calc(100vh-3rem)] rounded-2xl border border-border bg-surface text-text shadow-2xl overflow-hidden flex flex-col my-auto">
+            {/* Header fixo */}
+            <div className="shrink-0 flex items-center justify-between border-b border-border/70 px-6 py-4 bg-surface-2/40">
               <div className="flex items-center gap-2.5">
                 <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
                   <KeyRound className="h-5 w-5" />
                 </div>
                 <div>
-                  <h3 className="font-display text-lg font-bold uppercase tracking-wide text-text">
+                  <h3 id="modal-reenvio-titulo" className="font-display text-lg font-bold uppercase tracking-wide text-text">
                     Reenviar Acesso com Nova Senha
                   </h3>
                   <p className="text-xs text-muted">
@@ -645,14 +869,26 @@ export function CadastrosView({
               </div>
               <button
                 type="button"
-                onClick={() => setResendEntry(null)}
+                onClick={() => {
+                  setResendEntry(null);
+                  setModalError(null);
+                }}
+                disabled={isPending}
+                aria-label="Fechar"
                 className="flex h-8 w-8 items-center justify-center rounded-lg text-muted hover:bg-surface-3 hover:text-text transition cursor-pointer"
               >
                 <X className="h-4 w-4" />
               </button>
             </div>
 
-            <div className="p-6 space-y-4">
+            {/* Corpo rolável */}
+            <div className="flex-1 overflow-y-auto min-h-0 p-6 space-y-4">
+              {modalError && (
+                <Alert tone="danger">
+                  <p className="text-xs font-semibold">{modalError}</p>
+                </Alert>
+              )}
+
               <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-3.5 text-xs text-amber-200 space-y-1.5">
                 <p className="font-bold flex items-center gap-1.5">
                   <AlertCircle className="h-4 w-4 shrink-0 text-amber-400" />
@@ -667,8 +903,17 @@ export function CadastrosView({
               </div>
             </div>
 
-            <div className="flex items-center justify-end gap-2 border-t border-border/70 px-6 py-4 bg-surface-2/40">
-              <Button variant="secondary" size="sm" onClick={() => setResendEntry(null)} disabled={isPending}>
+            {/* Footer fixo */}
+            <div className="shrink-0 flex items-center justify-end gap-2 border-t border-border/70 px-6 py-4 bg-surface-2/40">
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => {
+                  setResendEntry(null);
+                  setModalError(null);
+                }}
+                disabled={isPending}
+              >
                 Cancelar
               </Button>
               <Button
