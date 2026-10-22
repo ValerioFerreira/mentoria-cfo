@@ -99,3 +99,29 @@ describe("pickWithFallback", () => {
     expect(pickWithFallback(prim(8), ext(40), 25, 9)).toEqual(pickWithFallback(prim(8), ext(40), 25, 9));
   });
 });
+
+describe("pickWithFallback com reforço", () => {
+  const mk = (pre: string, n: number, seg: string): Candidate[] => Array.from({ length: n }, (_, i) => ({ id: `${pre}${i}`, segmentId: seg, seen: 0, lastCorrect: null }));
+  it("o reforço só entra depois de esgotadas as próprias e as extras", () => {
+    const ids = pickWithFallback(mk("p", 8, "a"), mk("e", 5, "b"), 25, 3, mk("r", 40, "c"));
+    expect(ids).toHaveLength(25);
+    expect(new Set(ids).size).toBe(25);
+    expect(ids.filter((id) => id.startsWith("p"))).toHaveLength(8);
+    expect(ids.filter((id) => id.startsWith("e"))).toHaveLength(5);
+    expect(ids.filter((id) => id.startsWith("r"))).toHaveLength(12);
+  });
+  it("com próprias e extras suficientes, não usa reforço", () => {
+    const ids = pickWithFallback(mk("p", 8, "a"), mk("e", 30, "b"), 25, 3, mk("r", 40, "c"));
+    expect(ids.some((id) => id.startsWith("r"))).toBe(false);
+  });
+  it("sem extras, o reforço completa as próprias", () => {
+    const ids = pickWithFallback(mk("p", 18, "a"), [], 25, 4, mk("r", 40, "c"));
+    expect(ids).toHaveLength(25);
+    expect(ids.filter((id) => id.startsWith("p"))).toHaveLength(18);
+  });
+  it("reforço insuficiente devolve o que existe e é determinístico", () => {
+    expect(pickWithFallback(mk("p", 8, "a"), [], 25, 4, mk("r", 3, "c"))).toHaveLength(11);
+    expect(pickWithFallback(mk("p", 8, "a"), [], 25, 9, mk("r", 40, "c"))).toEqual(pickWithFallback(mk("p", 8, "a"), [], 25, 9, mk("r", 40, "c")));
+  });
+});
+

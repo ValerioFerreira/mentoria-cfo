@@ -22,6 +22,27 @@ export function hideInedita(contest?: Contest | null): { NOT?: { banca: string }
   return contest === "PCPE_AGENTE" ? {} : { NOT: { banca: INEDITA_BANCA } };
 }
 
+/**
+ * Concursos cujo caderno das atividades pode recorrer a REFORÇO quando a banca do concurso não tem questões bastantes:
+ * questões de múltipla escolha de outras bancas (já aprovadas no banco) e as inéditas MentorIA, nessa ordem de preferência
+ * depois das questões da própria banca. Decisão do dono (2026-10-21) para o CBMPE Oficial; para estender a outro concurso,
+ * acrescente-o aqui. Planos antigos sem concurso (null) valem como CBMPE Oficial.
+ */
+export const REFORCO_CONTESTS: Contest[] = ["CBMPE_OFICIAL"];
+export function usesReinforcement(contest?: Contest | null): boolean {
+  return REFORCO_CONTESTS.includes(contest ?? "CBMPE_OFICIAL");
+}
+
+/** Filtro das questões de reforço (outras bancas em múltipla escolha, mais as inéditas) para os trechos dados. */
+export function reinforcementQuizWhere(segmentIds: string[], statuses: QuestionStatus[]) {
+  return {
+    segmentId: { in: segmentIds },
+    status: { in: statuses },
+    kind: "MULTIPLA_ESCOLHA",
+    banca: { notIn: AOCP_BANCAS },
+  } satisfies Prisma.QuestionWhereInput;
+}
+
 /** Filtro das questões do caderno de uma atividade do plano: só os trechos estudados, banca do concurso. */
 export function activityQuizWhere(segmentIds: string[], statuses: QuestionStatus[], contest?: Contest | null) {
   return {

@@ -2414,3 +2414,327 @@ C) a data de criação dos arquivos com a data do último backup.
 D) a sequência de bytes dos arquivos com um banco de dados de vírus já catalogados.
 E) o comportamento dos programas em um ambiente isolado.
 // Comentário: A assinatura é uma sequência de bytes, padrão binário ou hash característico de um malware já conhecido. O antivírus compara os arquivos com sua base de vacinas; por isso é ineficaz contra ameaças de dia zero e polimórficas. A análise de comportamento em ambiente isolado é a sandbox.
+
+@@ a00/s03 | E
+Quanto aos protocolos TCP e UDP da camada de transporte, assinale a opção correta.
+A) O TCP não é orientado à conexão e não oferece controle de fluxo, sendo usado em transmissões de voz em tempo real.
+B) O UDP realiza retransmissão automática de segmentos perdidos, sendo por isso preferido para transferência de arquivos.
+C) O TCP e o UDP são protocolos da camada de rede, responsáveis pelo roteamento dos pacotes entre redes distintas.
+D) O UDP estabelece conexão por meio de handshake em três vias e garante a entrega ordenada dos dados.
+E) O UDP não é orientado à conexão e não garante entrega nem ordem dos datagramas, sendo útil em aplicações sensíveis a atraso, como voz e vídeo em tempo real.
+// Comentário: O UDP é simples, sem conexão e sem garantia de entrega, o que reduz o atraso e o torna adequado a voz e vídeo em tempo real. O TCP é orientado à conexão (handshake em três vias), com controle de fluxo, de erros e retransmissão. Ambos operam na camada de transporte, e o roteamento é função do protocolo IP.
+
+@@ a00/s05 | B
+Quanto às portas padrão utilizadas pelos protocolos de aplicação, assinale a opção correta.
+A) O protocolo POP3 utiliza a porta 143 para o recebimento de mensagens.
+B) O protocolo HTTPS utiliza, por padrão, a porta 443.
+C) O protocolo SMTP utiliza a porta 110 para o envio de mensagens.
+D) O protocolo IMAP utiliza a porta 80 para o acesso às caixas de correio.
+E) O protocolo FTP utiliza a porta 25 para o canal de controle.
+// Comentário: O HTTPS usa a porta 443 (o HTTP usa a 80). As demais associações estão trocadas: o canal de controle do FTP usa a porta 21, o SMTP usa a 25, o POP3 usa a 110 e o IMAP usa a 143.
+
+@@ a02/s01 | C
+No contexto da segurança da informação, assinale a opção que define corretamente os conceitos de ameaça, vulnerabilidade e risco.
+A) Ameaça é o impacto financeiro de um ataque, e risco é o agente externo que o provoca.
+B) Ameaça é uma fragilidade de um ativo que pode ser explorada, e vulnerabilidade é a causa potencial de um incidente indesejado.
+C) Vulnerabilidade é uma fragilidade de um ativo ou de um controle que pode ser explorada por uma ameaça, e o risco é a possibilidade de que isso cause dano.
+D) Vulnerabilidade é um evento que causa dano ao ativo, e incidente é a fragilidade que permite o evento.
+E) Risco é a fragilidade interna do sistema, e ameaça é a probabilidade de que um controle de segurança falhe.
+// Comentário: A vulnerabilidade é a fraqueza que pode ser explorada, a ameaça é a causa potencial de um incidente, e o risco combina a probabilidade de a ameaça explorar a vulnerabilidade com o impacto resultante. As demais trocam ou confundem essas definições.
+
+@@ a02/s02 | A
+Quanto aos princípios da segurança da informação, assinale a opção que define corretamente a irretratabilidade (não repúdio).
+A) Garantia de que o autor de uma informação ou ação não possa negar sua autoria, o que costuma ser obtido por assinatura digital.
+B) Garantia de que a informação só seja acessada por pessoas autorizadas, o que costuma ser obtido por criptografia.
+C) Garantia de que a identidade do usuário seja verificada no momento do acesso ao sistema.
+D) Garantia de que o sistema esteja acessível aos usuários autorizados sempre que necessário.
+E) Garantia de que a informação não foi alterada de forma não autorizada durante o trânsito ou o armazenamento.
+// Comentário: A irretratabilidade, ou não repúdio, impede que o emissor negue ter praticado a ação, e a assinatura digital é o mecanismo típico para isso. As demais alternativas descrevem confidencialidade, integridade, disponibilidade e autenticação.
+
+@@ a02/s03 | E
+Acerca de esteganografia e criptografia, assinale a opção correta.
+A) A criptoanálise é o ramo que estuda a ocultação de mensagens dentro de imagens, áudios e vídeos.
+B) A esteganografia e a criptografia são sinônimas, pois ambas tornam o conteúdo ilegível sem a chave.
+C) A esteganografia transforma a mensagem em texto cifrado ilegível, e a criptografia oculta a existência da mensagem em outro arquivo.
+D) A criptografia só pode ser aplicada a mensagens de texto e nunca a arquivos de imagem ou de áudio.
+E) A esteganografia oculta a existência da mensagem, por exemplo dentro de uma imagem, enquanto a criptografia torna o conteúdo ilegível a quem não possui a chave.
+// Comentário: A esteganografia esconde que há uma mensagem, ao passo que a criptografia a deixa incompreensível mesmo que seja interceptada. A criptoanálise estuda como quebrar sistemas criptográficos, e a criptografia se aplica a qualquer tipo de dado digital.
+
+@@ a02/s04 | B
+Assinale a opção em que todos os algoritmos citados são de criptografia de chave simétrica.
+A) DES, ElGamal e RC4.
+B) DES, 3DES e AES.
+C) 3DES, RSA e Diffie-Hellman.
+D) RSA, DES e AES.
+E) AES, RSA e ECC.
+// Comentário: DES, 3DES e AES usam a mesma chave para cifrar e decifrar. RSA, ECC, Diffie-Hellman e ElGamal pertencem à criptografia assimétrica, que usa um par de chaves, e por isso as demais combinações misturam as duas categorias.
+
+@@ a02/s05 | C
+Acerca da assinatura digital, assinale a opção correta.
+A) O destinatário cifra o resumo da mensagem com sua chave privada para provar o recebimento.
+B) A assinatura digital garante a confidencialidade da mensagem, pois impede que terceiros leiam seu conteúdo.
+C) O remetente gera o resumo (hash) da mensagem e o cifra com sua chave privada, e o destinatário o verifica com a chave pública do remetente.
+D) A assinatura digital dispensa o uso de funções de hash, pois utiliza apenas chaves simétricas.
+E) O remetente cifra a mensagem inteira com a chave pública do destinatário, o que garante a autoria do documento.
+// Comentário: Na assinatura digital, o hash da mensagem é cifrado com a chave privada do remetente e verificado com sua chave pública, o que garante integridade, autenticidade e não repúdio. Ela não garante confidencialidade, e a cifra com a chave pública do destinatário protege o sigilo, não a autoria.
+
+@@ a02/s06 | D
+Quanto ao certificado digital, assinale a opção correta.
+A) Contém a senha do titular e é emitido pelo provedor de acesso à internet, sem necessidade de autoridade certificadora.
+B) Contém a chave privada do titular e é assinado pelo próprio titular, que o utiliza para provar sua identidade.
+C) Tem validade indeterminada, pois não é possível sua revogação depois de emitido.
+D) Contém a chave pública do titular, seus dados de identificação e o período de validade, e é assinado pela autoridade certificadora emissora.
+E) É emitido pela Receita Federal para todos os cidadãos, vinculado ao CPF.
+// Comentário: O certificado digital vincula a identidade do titular à sua chave pública e é assinado pela autoridade certificadora, o que permite verificar sua autenticidade. Ele tem prazo de validade, pode ser revogado e nunca contém a chave privada, que deve ficar sob guarda exclusiva do titular.
+
+@@ a03/s01 | D
+Quanto ao conceito de malware, assinale a opção correta.
+A) É o nome dado apenas aos programas que se replicam sozinhos pela rede, como os worms.
+B) É o nome dado aos ataques realizados por pessoas, e não por programas, como a engenharia social.
+C) É o nome dado a falhas de programação não intencionais que causam travamento do sistema.
+D) É termo genérico para programas projetados para executar ações danosas em sistemas, como vírus, worms, trojans, spyware e ransomware.
+E) É o nome dado aos programas de proteção, como antivírus e firewall, que impedem ataques.
+// Comentário: Malware, ou software malicioso, é a categoria geral que abrange vários tipos de código criado para causar danos ou obter informações indevidas. As demais alternativas restringem o termo a um único tipo, tratam de falhas acidentais, de ferramentas de defesa ou de ataques sem programa.
+
+@@ a03/s02 | E
+Acerca de tipos de vírus de computador, assinale a opção correta.
+A) O vírus de macro infecta o setor de inicialização do disco, sendo executado antes do sistema operacional.
+B) O vírus de script é um programa que registra tudo o que o usuário digita no teclado.
+C) O vírus stealth se propaga por si mesmo pela rede, explorando vulnerabilidades dos sistemas.
+D) O vírus de boot infecta documentos do pacote de escritório que utilizam linguagem de macro.
+E) O vírus polimórfico gera cópias de si com assinaturas diferentes, o que dificulta sua detecção por antivírus baseados em assinatura.
+// Comentário: O vírus polimórfico muda sua forma, normalmente por criptografia variável, para escapar da detecção por assinatura. O vírus de macro infecta documentos, e o de boot infecta o setor de inicialização. O stealth tenta se esconder, e quem se propaga pela rede sozinho é o worm.
+
+@@ a03/s03 | B
+Acerca de worms, trojans, backdoors e rootkits, assinale a opção correta.
+A) O bot é um programa que apenas captura imagens da tela quando o usuário acessa sites bancários.
+B) O rootkit é um conjunto de programas e técnicas usado para esconder a presença do invasor e manter o acesso privilegiado ao sistema comprometido.
+C) O trojan horse se replica automaticamente pela rede, explorando vulnerabilidades, sem qualquer interação do usuário.
+D) O backdoor é um software de proteção que bloqueia as portas de rede não utilizadas pelo usuário.
+E) O worm precisa de um programa hospedeiro e da ação do usuário para se propagar de uma máquina para outra.
+// Comentário: O rootkit esconde a presença do invasor e de seus processos, arquivos e conexões. O worm se propaga sozinho, sem hospedeiro, o trojan se disfarça de programa legítimo e não se replica, o backdoor abre uma porta para retorno do invasor e o bot permite o controle remoto da máquina.
+
+@@ a03/s04 | A
+Acerca de keylogger, screenlogger, adware, sniffer e bomba lógica, assinale a opção correta.
+A) O sniffer captura e inspeciona os pacotes que trafegam na rede, podendo revelar dados transmitidos sem criptografia.
+B) O screenlogger registra apenas as teclas digitadas pelo usuário, sem capturar qualquer imagem.
+C) O keylogger captura imagens da tela e a posição do mouse, o que permite burlar teclados virtuais.
+D) O adware instala programas de proteção que bloqueiam anúncios nos navegadores.
+E) A bomba lógica é ativada em qualquer momento, sem depender de condição ou data específica.
+// Comentário: O sniffer intercepta o tráfego da rede, podendo ler informações em texto claro. O keylogger registra teclas, o screenlogger captura a tela e o mouse, o adware exibe propagandas e a bomba lógica é programada para disparar quando uma condição, como data ou evento, é satisfeita.
+
+@@ a03/s05 | C
+Acerca dos ataques de negação de serviço, assinale a opção correta.
+A) O DoS tem como objetivo principal capturar as senhas dos usuários do serviço atacado.
+B) O IP spoofing consiste em quebrar a criptografia do tráfego para obter as senhas do administrador.
+C) No DDoS, várias máquinas, geralmente controladas em uma botnet, enviam requisições simultâneas para tornar o serviço indisponível.
+D) O ataque de força bruta consiste em enviar milhares de requisições para derrubar o servidor.
+E) O ataque de negação de serviço compromete a confidencialidade dos dados, e não a disponibilidade.
+// Comentário: O DDoS é a versão distribuída do DoS, em que muitos computadores, em geral parte de uma botnet, sobrecarregam o alvo e comprometem a disponibilidade. A força bruta tenta adivinhar credenciais, o IP spoofing falsifica o endereço de origem e o DoS não busca capturar dados.
+
+@@ a03/s06 | A
+Acerca de técnicas de phishing e golpes correlatos, assinale a opção correta.
+A) O pharming altera o funcionamento do DNS para redirecionar o usuário a um site falso, mesmo que ele digite o endereço correto.
+B) O baiting consiste em enviar e-mails em massa com anexos infectados a todos os contatos do usuário.
+C) O smishing é o golpe aplicado por ligação telefônica, em que o atacante finge ser funcionário de uma instituição.
+D) O vishing é o golpe aplicado por mensagens SMS com links fraudulentos.
+E) O whaling é o golpe aplicado a usuários comuns, de baixo escalão, em campanhas em massa.
+// Comentário: No pharming, a resolução de nomes é manipulada para levar o usuário a um site fraudulento. O smishing usa SMS e o vishing usa voz, o baiting usa uma isca física ou digital, como um pen drive deixado em local público, e o whaling mira executivos e autoridades de alto escalão.
+
+@@ a03/s07 | B
+Acerca de golpes e ataques a sistemas, assinale a opção correta.
+A) O hoax é um boato que visa instalar programas maliciosos de modo automático, sem a necessidade de ação do usuário.
+B) Na injeção de SQL, o atacante insere comandos SQL em campos de entrada de uma aplicação para acessar ou alterar o banco de dados.
+C) A fraude de antecipação de recursos consiste em invadir contas bancárias por meio de falhas no sistema do banco.
+D) O defacement consiste em interceptar a comunicação entre duas partes, sem que elas percebam, para ler ou alterar as mensagens.
+E) No ataque man in the middle, o atacante apenas altera o visual da página inicial de um site, sem interceptar nenhuma comunicação.
+// Comentário: Na injeção de SQL, entradas não tratadas permitem ao atacante executar comandos no banco de dados. O man in the middle intercepta a comunicação, o defacement altera a aparência de páginas, o hoax é um boato disseminado por mensagens, e a fraude de antecipação de recursos convence a vítima a pagar uma quantia para receber um benefício prometido.
+
+@@ a04/s02 | D
+Quanto às gerações de antivírus, assinale a opção correta.
+A) Os antivírus de quarta geração eliminam a necessidade de atualizar o banco de assinaturas, pois não usam assinaturas.
+B) Os antivírus de terceira geração dependem exclusivamente de varredura simples por sequências de bytes conhecidas.
+C) Os antivírus de primeira geração monitoram o comportamento dos programas em execução na memória para bloquear ações maliciosas.
+D) Os antivírus de segunda geração usam heurística para identificar códigos suspeitos mesmo sem uma assinatura conhecida do malware.
+E) Os antivírus de segunda geração só detectam malwares que já tenham sido catalogados e incluídos no banco de dados.
+// Comentário: A heurística analisa estrutura e instruções do código em busca de padrões suspeitos, e permite identificar ameaças ainda não catalogadas. A primeira geração usa assinaturas simples, a terceira intercepta atividades maliciosas e a quarta combina várias técnicas, sem abandonar as assinaturas.
+
+@@ a04/s03 | E
+Acerca do firewall do tipo filtro de pacotes, assinale a opção correta.
+A) Atua como intermediário na comunicação, recebendo as requisições do cliente e repassando-as ao servidor em seu nome.
+B) Examina o conteúdo das mensagens de aplicação, como o texto dos e-mails, para identificar vírus embutidos nos anexos.
+C) Registra o estado de cada sessão e só permite pacotes que pertençam a conexões legítimas já estabelecidas.
+D) Identifica aplicações e usuários, bloqueando funcionalidades específicas de sites, mesmo que usem portas comuns.
+E) Decide permitir ou bloquear o tráfego com base em informações do cabeçalho, como endereços IP e portas, sem examinar o conteúdo da aplicação.
+// Comentário: O filtro de pacotes opera nas camadas de rede e de transporte, avaliando cabeçalhos (IP de origem e destino, portas, protocolo) sem analisar o conteúdo. A análise de sessão é do filtro com estado, a intermediação é do proxy e a identificação de aplicações é característica de firewalls de nova geração.
+
+@@ a04/s04 | C
+Acerca do servidor proxy, assinale a opção correta.
+A) Encaminha os pacotes diretamente ao destino, sem registrar a navegação nem fazer cache de páginas acessadas.
+B) Executa a criptografia de todo o tráfego da rede interna, substituindo o uso de certificados digitais.
+C) Atua como intermediário entre o cliente e o servidor de destino, podendo filtrar conteúdo, manter cache e ocultar os endereços da rede interna.
+D) Atua exclusivamente nas camadas de rede, sem conseguir interpretar protocolos de aplicação como o HTTP.
+E) Substitui o firewall, pois dispensa qualquer regra de filtragem e controla apenas o uso de banda.
+// Comentário: O proxy recebe as requisições do cliente e as refaz ao servidor de destino, o que permite filtrar conteúdo, armazenar cache para acelerar acessos e esconder a rede interna. Ele atua na camada de aplicação, normalmente registra o uso e não substitui o firewall nem a criptografia.
+
+@@ a06/s03 | E
+Em uma planilha do Microsoft Excel, ao selecionar um intervalo de células com valores numéricos, a barra de status exibe, por padrão, informações sobre a seleção. Assinale a opção que as apresenta.
+A) Soma, produto e raiz quadrada dos valores.
+B) Mediana, desvio padrão e variância dos valores.
+C) Valor absoluto, contagem e logaritmo dos valores.
+D) Máximo, mínimo e moda dos valores selecionados.
+E) Média, contagem e soma dos valores selecionados.
+// Comentário: A barra de status do Excel mostra, por padrão, a média, a contagem e a soma da seleção, e permite personalizar para incluir outras estatísticas, como mínimo e máximo. As demais combinações apresentam funções que não aparecem por padrão.
+
+@@ a06/s11 | D
+Em uma planilha do Microsoft Excel foi digitada a fórmula =VP(0,08; 5; 1000), em que o primeiro argumento é a taxa por período, o segundo é o número de períodos e o terceiro é o pagamento periódico. Sabendo que (1 - 1,08^-5)/0,08 vale aproximadamente 3,9927, assinale a opção que apresenta o resultado aproximado exibido pela fórmula.
+A) 3.992,71
+B) 5.000,00
+C) 5.866,60
+D) -3.992,71
+E) 1.469,33
+// Comentário: O valor presente de cinco pagamentos de 1.000 a 8% ao período é 1.000 × 3,9927 = 3.992,71. Como o Excel segue a convenção de sinais, em que o pagamento positivo representa entrada de caixa e o valor presente retorna como saída, o resultado exibido é negativo, -3.992,71. O valor 5.866,60 seria o valor futuro, e 1.469,33 corresponde a 1,08 elevado a 5, multiplicado por 1.000.
+
+@@ a07/s04 | B
+No LibreOffice Calc, as células A1 a A5 contêm, respectivamente, os valores 12, 7, 25, 18 e 9. Assinale a opção que apresenta o resultado da fórmula =MAIOR(A1:A5; 2) + MÍNIMO(A1:A5).
+A) 21
+B) 25
+C) 32
+D) 43
+E) 30
+// Comentário: Ordenando os valores em ordem decrescente (25, 18, 12, 9 e 7), o segundo maior é 18, e o mínimo é 7, de modo que 18 + 7 = 25. O valor 32 seria o resultado com o maior valor (25) no lugar do segundo, e 43 somaria o primeiro e o segundo maiores.
+
+@@ a07/s04 | C
+No LibreOffice Calc, o intervalo A1:A6 contém os valores Recife, Olinda, Recife, Recife, Olinda e Recife, e o intervalo B1:B6 contém 10, 25, 30, 5, 40 e 20. Assinale a opção que apresenta o resultado da fórmula =CONT.SES(A1:A6; "Recife"; B1:B6; ">=10").
+A) 2
+B) 6
+C) 3
+D) 5
+E) 4
+// Comentário: A função CONT.SES conta as linhas que atendem a todos os critérios. Há quatro linhas com Recife (1, 3, 4 e 6), mas a linha 4 tem valor 5, que não é maior ou igual a 10. Restam as linhas 1, 3 e 6, ou seja, 3 ocorrências. Por outro caminho, há cinco valores iguais ou maiores que 10 (linhas 1, 2, 3, 5 e 6), e destes só três são de Recife.
+
+@@ a07/s04 | A
+No LibreOffice Calc, a coluna B contém nomes de produtos, a coluna C o estoque e a coluna D o preço. O produto TECLADO está na linha 7, com estoque 15 em C7 e preço 89 em D7. Assinale a opção que apresenta o resultado da fórmula =PROCV("TECLADO"; B5:D10; 3; FALSO), considerando que B5:B10 não tem nomes repetidos.
+A) 89
+B) 15
+C) 3
+D) TECLADO
+E) #N/D
+// Comentário: O PROCV procura o valor na primeira coluna do intervalo (B) e devolve o conteúdo da coluna indicada pelo terceiro argumento, contada a partir da primeira coluna do intervalo: B é a 1ª, C é a 2ª e D é a 3ª, portanto o preço 89. O argumento FALSO exige correspondência exata e, como o produto existe, não ocorre erro #N/D.
+
+@@ a07/s05 | C
+No LibreOffice Calc, a célula A1 contém o texto "capitão silva". Assinale a opção que apresenta o resultado da fórmula =DIREITA(PRI.MAIÚSCULA(A1); 5).
+A) Capit
+B) pitão
+C) Silva
+D) ilva
+E) Capitão
+// Comentário: PRI.MAIÚSCULA converte a primeira letra de cada palavra em maiúscula e as demais em minúscula, resultando em "Capitão Silva". DIREITA(...; 5) retorna os cinco últimos caracteres, "Silva", com a inicial maiúscula.
+
+@@ a07/s05 | A
+No LibreOffice Calc, a célula B2 contém o valor 6,5. Assinale a opção que apresenta o resultado da fórmula =SE(B2>=7; "Aprovado"; SE(B2>=5; "Recuperação"; "Reprovado")).
+A) Recuperação
+B) Reprovado
+C) 6,5
+D) VERDADEIRO
+E) Aprovado
+// Comentário: O primeiro teste (6,5 >= 7) é falso, e a função passa ao SE aninhado. O segundo teste (6,5 >= 5) é verdadeiro, o que devolve o texto "Recuperação". A fórmula retorna sempre um dos três textos, e nunca o valor da célula nem VERDADEIRO.
+
+@@ a13/s01 | E
+Quanto às características essenciais da computação em nuvem, segundo o NIST, assinale a opção que define corretamente a elasticidade rápida.
+A) Capacidade de monitorar, controlar e reportar o uso dos recursos, de forma transparente para o provedor e o consumidor.
+B) Capacidade de o provedor atender vários consumidores com recursos compartilhados, atribuídos dinamicamente conforme a demanda.
+C) Capacidade de acessar os serviços por meio de mecanismos padronizados em diferentes dispositivos, como celulares e computadores.
+D) Capacidade de o consumidor contratar recursos computacionais sem interação humana com o provedor, por meio de portal.
+E) Capacidade de provisionar e liberar recursos de forma rápida, muitas vezes automática, de acordo com a demanda, aparentando recursos ilimitados ao consumidor.
+// Comentário: A elasticidade rápida permite aumentar ou reduzir recursos conforme a demanda. As outras alternativas descrevem as demais características essenciais: amplo acesso à rede, agrupamento de recursos, autosserviço sob demanda e serviço mensurado.
+
+@@ a13/s02 | B
+Quanto aos modelos de serviço da computação em nuvem, assinale a opção correta.
+A) No PaaS, o consumidor tem controle total sobre os servidores físicos, a rede e o armazenamento do provedor.
+B) No PaaS, o provedor oferece uma plataforma para desenvolver e implantar aplicações, e o consumidor não gerencia a infraestrutura subjacente.
+C) No SaaS, o consumidor gerencia o sistema operacional e a rede, e implanta suas próprias aplicações sobre máquinas virtuais.
+D) No SaaS, o consumidor desenvolve o código do aplicativo e gerencia o ambiente de execução e os bancos de dados.
+E) No IaaS, o provedor fornece aplicativos prontos para uso, e o consumidor apenas os acessa por navegador.
+// Comentário: No PaaS o consumidor implanta e gerencia suas aplicações sobre uma plataforma mantida pelo provedor. No IaaS ele controla sistemas operacionais e armazenamento sobre infraestrutura virtual, e no SaaS apenas usa o aplicativo pronto. As demais alternativas trocam essas responsabilidades.
+
+@@ a13/s03 | D
+Quanto aos serviços de armazenamento em nuvem, assinale a opção que associa corretamente o serviço ao seu fornecedor.
+A) OneDrive, da Apple, e iCloud, da Microsoft.
+B) Dropbox, da Google, e Google Drive, da Apple.
+C) iCloud, da Google, e OneDrive, da Dropbox.
+D) OneDrive, da Microsoft, e iCloud, da Apple.
+E) Google Drive, da Microsoft, e Dropbox, da Apple.
+// Comentário: O OneDrive pertence à Microsoft e o iCloud à Apple, enquanto o Google Drive é da Google e o Dropbox é de empresa homônima. As demais alternativas atribuem os serviços a fornecedores errados.
+
+@@ a13/s04 | E
+Acerca das ferramentas colaborativas em nuvem, como o Google Docs e o Microsoft 365, assinale a opção correta.
+A) Funcionam somente com conexão permanente à internet e não oferecem recursos de compartilhamento por link.
+B) Impedem o uso de comentários e sugestões, que só podem ser feitos por meio de e-mail.
+C) Bloqueiam o acesso ao documento por mais de um usuário por vez, para evitar conflitos de edição.
+D) Exigem que cada usuário trabalhe em uma cópia local do arquivo, que é mesclada manualmente ao final da edição.
+E) Permitem que vários usuários editem o mesmo documento simultaneamente e consultem o histórico de versões para restaurar versões anteriores.
+// Comentário: A coautoria em tempo real, o histórico de versões, os comentários e o compartilhamento por link são recursos típicos de ferramentas colaborativas em nuvem. As demais alternativas descrevem fluxos de trabalho locais ou limitações que essas ferramentas não têm.
+
+@@ a14/s08 | B
+Acerca da memória cache, assinale a opção correta.
+A) É uma memória somente de leitura, gravada pelo fabricante, que contém o firmware da placa-mãe.
+B) É uma memória de alta velocidade situada entre o processador e a memória principal, que armazena dados e instruções usados com frequência.
+C) É uma memória secundária removível, como pen drives, usada para transporte de dados entre computadores.
+D) É uma memória não volátil, de grande capacidade, usada para armazenar o sistema operacional e os arquivos do usuário.
+E) É uma memória mais lenta que a memória principal, usada como área de troca quando a RAM está cheia.
+// Comentário: A cache é pequena, rápida e volátil, e fica entre a CPU e a RAM para reduzir o tempo de acesso aos dados mais usados. Armazenamento permanente é função de disco ou SSD, área de troca é a memória virtual e o firmware fica em memória ROM.
+
+@@ a14/s08 | C
+Quanto à hierarquia e aos níveis da memória cache, assinale a opção correta.
+A) A cache L3 é a mais rápida de todas e fica dentro de cada registrador do processador.
+B) A cache L1 é a mais distante do processador e tem maior capacidade que a memória RAM.
+C) Os níveis L1, L2 e L3 vão do menor e mais rápido (L1) ao maior e mais lento (L3), e a L3 costuma ser compartilhada entre os núcleos do processador.
+D) Os níveis de cache têm todos o mesmo tamanho e a mesma velocidade, diferindo apenas no custo.
+E) Os níveis L1, L2 e L3 vão do maior e mais lento (L1) ao menor e mais rápido (L3), e cada núcleo tem sua própria L3.
+// Comentário: Na hierarquia de memória, quanto mais perto da CPU, menor, mais rápida e mais cara por byte é a memória: L1 é a mais rápida e menor, e a L3 é maior e mais lenta, normalmente compartilhada entre núcleos. A cache tem capacidade muito menor que a RAM.
+
+@@ a14/s08 | D
+Acerca da memória ROM, assinale a opção correta.
+A) É uma memória de alta velocidade que fica entre o processador e a RAM, para reduzir o tempo de acesso.
+B) É uma memória volátil, que perde seu conteúdo ao desligar o computador e armazena os programas em execução.
+C) É uma memória magnética, formada por discos giratórios, usada para armazenamento de longo prazo.
+D) É uma memória não volátil, que mantém seu conteúdo sem energia elétrica e armazena o firmware, como o BIOS ou o UEFI.
+E) É uma memória de acesso aleatório, de leitura e gravação, usada como memória principal do computador.
+// Comentário: A ROM guarda dados que permanecem sem energia, como o firmware de inicialização, e suas variações (PROM, EPROM, EEPROM, flash) diferem na capacidade de regravação. Volatilidade e uso como memória principal são características da RAM, e discos magnéticos são memórias secundárias.
+
+@@ a14/s08 | A
+Acerca dos conceitos de acerto (hit) e falha (miss) na memória cache, assinale a opção correta.
+A) O acerto ocorre quando o dado solicitado pelo processador já está na cache, e a falha exige buscar o dado em nível inferior da hierarquia.
+B) A falha ocorre quando a cache está cheia, e o acerto ocorre quando ela está vazia.
+C) A taxa de falhas elevada melhora o desempenho, pois reduz a quantidade de dados armazenados na cache.
+D) O acerto ocorre quando o dado solicitado não está na cache, e a falha ocorre quando o dado é encontrado e lido imediatamente.
+E) O acerto e a falha referem-se apenas ao disco rígido, e não têm relação com a memória cache.
+// Comentário: No acerto (hit) o dado está na cache e o acesso é rápido. Na falha (miss), é preciso buscar o dado na RAM ou em nível inferior, o que consome mais tempo. Por isso, uma taxa de acertos elevada melhora o desempenho, e uma taxa de falhas alta o prejudica.
+
+@@ a14/s08 | E
+O funcionamento da memória cache se baseia no princípio da localidade de referência. Assinale a opção que descreve corretamente esse princípio.
+A) Os programas acessam sempre dados em posições aleatórias da memória, o que impede qualquer previsão do próximo acesso.
+B) Os programas devem armazenar todos os dados na cache, pois a memória principal não pode ser acessada diretamente.
+C) Os programas só acessam dados armazenados no disco, e a cache é preenchida apenas no momento da instalação.
+D) Os programas executam todas as instruções ao mesmo tempo, o que torna a cache desnecessária.
+E) Os programas tendem a reutilizar dados acessados recentemente (localidade temporal) e a acessar dados próximos aos já acessados (localidade espacial).
+// Comentário: Os acessos à memória tendem a se repetir no tempo e a se concentrar em endereços vizinhos, o que torna vantajoso manter na cache os dados usados e os blocos próximos a eles. Acessos puramente aleatórios ou sem reutilização tornariam a cache pouco útil.
+
+@@ a14/s10 | B
+Quanto às mídias ópticas, assinale a opção que apresenta corretamente a ordem crescente de capacidade típica de camada simples.
+A) DVD, CD e Blu-ray.
+B) CD, DVD e Blu-ray.
+C) DVD, Blu-ray e CD.
+D) CD, Blu-ray e DVD.
+E) Blu-ray, DVD e CD.
+// Comentário: O CD armazena cerca de 700 MB, o DVD de camada simples cerca de 4,7 GB e o Blu-ray de camada simples cerca de 25 GB. O Blu-ray usa laser azul-violeta, de menor comprimento de onda, o que permite trilhas mais finas e maior capacidade.
+
+@@ a14/s10 | A
+Quanto ao SSD (Solid State Drive), assinale a opção correta.
+A) Utiliza memória flash, não possui partes mecânicas móveis e costuma ser mais rápido e resistente a impactos do que o HD.
+B) Utiliza discos magnéticos giratórios e cabeças de leitura, sendo por isso mais sensível a choques que o HD.
+C) Utiliza memória volátil, e perde os dados armazenados quando o computador é desligado.
+D) Tem capacidade limitada a 1 GB, e é usado apenas como memória cache do processador.
+E) Utiliza laser para gravar e ler os dados em discos, sendo equivalente ao DVD regravável.
+// Comentário: O SSD armazena dados em chips de memória flash, que são não voláteis e dispensam partes móveis, o que o torna mais rápido, silencioso e resistente a impactos que o HD. Discos giratórios são do HD, e a leitura por laser é das mídias ópticas.

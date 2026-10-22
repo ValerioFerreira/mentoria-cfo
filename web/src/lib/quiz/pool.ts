@@ -1,6 +1,6 @@
 import type { Contest } from "@/generated/prisma/client";
 import { db } from "@/lib/db";
-import { activityQuizWhere } from "./banca";
+import { activityQuizWhere, reinforcementQuizWhere, usesReinforcement } from "./banca";
 import { servableStatuses } from "./servable";
 
 export const DEFAULT_QUIZ_QUESTIONS = 25;
@@ -24,7 +24,11 @@ export interface QuizPool {
   primary: PoolQuestion[];
   /** questões de trechos da mesma disciplina que o plano já mandou estudar antes (só quando o caderno fica curto) */
   extra: PoolQuestion[];
+  /** reforço (só concursos em REFORCO_CONTESTS): outras bancas em múltipla escolha e inéditas, dos trechos do caderno e dos já estudados; só entra quando as duas listas acima não bastam */
+  reinforcement: PoolQuestion[];
 }
+
+export const poolSize = (p: QuizPool): number => p.primary.length + p.extra.length + p.reinforcement.length;
 
 /** Trechos da mesma disciplina cujas Teorias vêm antes da atividade na ordem do plano (semana e dia). */
 async function priorSegmentIds(a: QuizPoolActivity): Promise<string[]> {
@@ -49,14 +53,13 @@ async function priorSegmentIds(a: QuizPoolActivity): Promise<string[]> {
  */
 export async function loadQuizPool(a: QuizPoolActivity, contest: Contest | null): Promise<QuizPool> {
   const select = { id: true, segmentId: true } as const;
-  const primary = await db.question.findMany({
-    where: activityQuizWhere(a.segments.map((s) => s.segmentId), servableStatuses(), contest),
-    select,
-  });
+  const own = a.segments.map((s) => s.segmentId);
+  const primary = await db.question.findMany({ where: activityQuizWhere(own, servableStatuses(), contest), select });
   const want = a.quizQuestions ?? DEFAULT_QUIZ_QUESTIONS;
-  if (primary.length >= want) return { primary, extra: [] };
+  if (primary.length >= want) return { primary, extra: [], reinforcement: [] };
   const prior = await priorSegmentIds(a);
-  if (prior.length === 0) return { primary, extra: [] };
-  const extra = await db.question.findMany({ where: activityQuizWhere(prior, servableStatuses(), contest), select });
-  return { primary, extra };
+  const extra = prior.length > 0 ? await db.question.findMany({ where: activityQuizWhere(prior, servableStatuses(), contest), select }) : [];
+  if (primary.length + extra.length >= want || !usesReinforcement(contest)) return { primary, extra, reinforcement: [] };
+  const reinforcement = await db.question.findMany({ where: reinforcementQuizWhere([...own, ...prior], servableStatuses()), select });
+  return { primary, extra, reinforcement };
 }

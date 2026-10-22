@@ -56,6 +56,14 @@ def item_for_segment(subject: str, seg: str, code: str | None = None) -> str | N
         ids = {s for w in it.get("where", []) for s in w.get("segments", [])}
         if seg in ids and (best is None or len(ids) < best[0]):
             best = (len(ids), it["id"])
+    if not best and subject in OWN_EDITAL:
+        # trecho que o edital do PCPE não lista (só existe nos concursos CBMPE/PMPE): usa o mapa padrão da disciplina
+        std = json.loads((CONTENT / "edital" / f"{subject}.json").read_text(encoding="utf-8"))["items"]
+        for it in std:
+            ids = {s for w in it.get("where", []) for s in w.get("segments", [])}
+            if seg in ids and (best is None or len(ids) < best[0]):
+                best = (len(ids), it["id"])
+        return f"{subject}/e{best[1]}" if best else None
     if not best:
         return None
     return f"{subject}/{'p' if subject in OWN_EDITAL else 'e'}{best[1]}"

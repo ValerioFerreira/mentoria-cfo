@@ -30,7 +30,7 @@ export async function startQuiz(activityId: string): Promise<{ error: string } |
   if (open) redirect(`/caderno/${activityId}`);
 
   const pool = await loadQuizPool(a, a.week.plan.contest);
-  const questions = [...pool.primary, ...pool.extra];
+  const questions = [...pool.primary, ...pool.extra, ...pool.reinforcement];
   const want = a.quizQuestions ?? DEFAULT_QUIZ_QUESTIONS;
   const n = Math.min(want, questions.length);
   if (n < MIN_QUESTIONS) return { error: "Ainda não há questões suficientes para este caderno." };
@@ -48,7 +48,7 @@ export async function startQuiz(activityId: string): Promise<{ error: string } |
   const candidate = (q: { id: string; segmentId: string }) => ({ id: q.id, segmentId: q.segmentId, seen: seen.get(q.id)?.n ?? 0, lastCorrect: seen.get(q.id)?.last ?? null });
 
   const sessionId = crypto.randomUUID();
-  const ids = pickWithFallback(pool.primary.map(candidate), pool.extra.map(candidate), n, hashSeed(sessionId));
+  const ids = pickWithFallback(pool.primary.map(candidate), pool.extra.map(candidate), n, hashSeed(sessionId), pool.reinforcement.map(candidate));
   await db.quizSession.create({
     data: {
       id: sessionId, userId: user.id, activityId, kind: a.quizMixed ? "SIMULADO_BLOCO" : "CADERNO",

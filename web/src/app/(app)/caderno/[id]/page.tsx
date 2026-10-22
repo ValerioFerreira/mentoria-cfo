@@ -11,7 +11,7 @@ import { Alert, Badge, Card, Count, InfoTip, Kbd, LinkButton, PageHeader, Ring, 
 import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { attentionPoints, score, type AnswerRow } from "@/lib/quiz/logic";
-import { loadQuizPool } from "@/lib/quiz/pool";
+import { loadQuizPool, poolSize } from "@/lib/quiz/pool";
 import { fmtDuration, subjectShort } from "@/lib/ui-format";
 
 export const metadata: Metadata = { title: "Caderno de questões" };
@@ -200,7 +200,7 @@ export default async function QuizPage({ params }: PageProps<"/caderno/[id]">) {
 
   // ───────── introdução ─────────
   const pool = await loadQuizPool(activity, activity.week.plan.contest);
-  const available = pool.primary.length + pool.extra.length;
+  const available = poolSize(pool);
   const n = Math.min(activity.quizQuestions ?? 25, available);
   return (
     <div className="mx-auto max-w-2xl space-y-6">
