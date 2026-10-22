@@ -2738,3 +2738,192 @@ C) Utiliza memória volátil, e perde os dados armazenados quando o computador �
 D) Tem capacidade limitada a 1 GB, e é usado apenas como memória cache do processador.
 E) Utiliza laser para gravar e ler os dados em discos, sendo equivalente ao DVD regravável.
 // Comentário: O SSD armazena dados em chips de memória flash, que são não voláteis e dispensam partes móveis, o que o torna mais rápido, silencioso e resistente a impactos que o HD. Discos giratórios são do HD, e a leitura por laser é das mídias ópticas.
+
+@@ a05/s01 | C
+Em relação ao atributo de arquivamento (bit archive) dos arquivos usado pelos programas de backup, assinale a opção correta.
+A) O atributo é marcado apenas depois da execução de um backup completo, indicando que o arquivo foi arquivado.
+B) O atributo é um conjunto de bits que registra a data e o horário de cada cópia de segurança realizada.
+C) O atributo é marcado quando o arquivo é criado ou modificado, indicando que ele ainda precisa passar por backup.
+D) O atributo é o mesmo que o de somente leitura (R), impedindo a alteração do arquivo após a cópia.
+E) O atributo é desmarcado quando o arquivo é modificado, indicando que o conteúdo já foi copiado para a mídia.
+// Comentário: O atributo de arquivamento (A) é um único bit: fica marcado (1) quando o arquivo é criado ou alterado, sinalizando que precisa de backup, e é desmarcado (0) por backups que o limpam, como o completo e o incremental. Ele não registra data nem se confunde com o atributo de somente leitura.
+
+@@ a05/s01 | D
+Quanto ao backup diário, assinale a opção correta.
+A) Copia todos os arquivos selecionados, independentemente da data, e desmarca o atributo de arquivamento.
+B) Copia apenas os arquivos cujo atributo de arquivamento está marcado e depois o desmarca.
+C) Copia somente os arquivos criados no dia, ignorando os que foram apenas modificados nessa data.
+D) Copia os arquivos alterados na data em que a rotina é executada e não altera o atributo de arquivamento.
+E) Copia todos os arquivos alterados desde o último backup completo e desmarca o atributo de arquivamento.
+// Comentário: O backup diário considera apenas a data de modificação: copia o que foi alterado no dia em que roda e não mexe no atributo de arquivamento. Por isso não substitui o incremental nem o diferencial, que dependem do estado do atributo, e também inclui arquivos modificados, e não só criados.
+
+@@ a05/s01 | E
+Uma empresa faz backup completo aos domingos e backups incrementais de segunda a sexta-feira. Se o disco falhar no sábado pela manhã, assinale a opção que indica o que será necessário recuperar para restaurar os dados.
+A) os cinco incrementais, que dispensam o completo por já conterem os arquivos alterados.
+B) apenas o incremental de sexta-feira, pois ele reúne todas as alterações desde o domingo.
+C) apenas o backup completo de domingo, pois ele contém todas as informações da semana.
+D) o backup completo de domingo e apenas o incremental de sexta-feira, que acumula as alterações.
+E) o backup completo de domingo e os cinco backups incrementais de segunda a sexta-feira, em ordem.
+// Comentário: Como cada incremental guarda somente o que mudou desde o backup anterior, a restauração exige o último completo e todos os incrementais em sequência: 1 + 5 = 6 conjuntos de dados. Apenas no diferencial bastaria o último backup, somado ao completo.
+
+@@ a05/s01 | D
+Uma empresa faz backup completo aos domingos e backups diferenciais de segunda a sexta-feira. Se o disco falhar no sábado pela manhã, assinale a opção que indica o que será necessário recuperar para restaurar os dados.
+A) apenas o backup completo de domingo, já que os diferenciais são descartáveis.
+B) apenas o backup diferencial de sexta-feira, que contém todos os arquivos.
+C) o backup completo de domingo e os cinco diferenciais, em ordem.
+D) o backup completo de domingo e apenas o diferencial de sexta-feira.
+E) os cinco diferenciais, em ordem, sem necessidade do completo de domingo.
+// Comentário: O diferencial acumula tudo o que mudou desde o último completo, pois não desmarca o atributo de arquivamento. Assim, a restauração usa só dois conjuntos: o completo e o último diferencial, o de sexta-feira. Não é preciso restaurar os diferenciais anteriores.
+
+@@ a05/s01 | A
+Quanto à localização das cópias de segurança, assinale a opção correta.
+A) A cópia off-site, armazenada em local geograficamente distante, protege contra desastres que atinjam a sede.
+B) A cópia off-site é desaconselhada, porque o armazenamento fora da sede elimina a integridade dos dados.
+C) A cópia on-site é a mais recomendada, pois fica no mesmo local dos dados e protege contra incêndios.
+D) A cópia on-site e a off-site são equivalentes quanto à proteção, pois ambas ficam sob controle da instituição.
+E) A cópia off-site só se justifica quando a mídia utilizada for a memória RAM do servidor principal.
+// Comentário: A cópia off-site fica em local distante, de modo que um desastre (incêndio, enchente, furto) na sede não alcança também a cópia. Manter apenas cópias on-site deixa dados e backup expostos ao mesmo risco. A memória RAM é volátil e nunca serve como mídia de backup.
+
+@@ a05/s01 | B
+A respeito da escolha da mídia para armazenamento de backups, assinale a opção INCORRETA.
+A) O pendrive atende bem ao uso doméstico, mas não é o mais indicado para uma empresa.
+B) A memória RAM é adequada para guardar cópias de segurança por ter acesso muito rápido.
+C) A fita magnética é indicada para grandes volumes guardados por longo prazo e a custo baixo.
+D) O disco permite acesso aleatório e costuma recuperar arquivos individuais com mais rapidez.
+E) A nuvem oferece infraestrutura protegida, redundância geográfica e possibilidade de criptografia.
+// Comentário: A RAM é memória volátil: o conteúdo se perde quando a energia é interrompida, o que a torna inadequada para backup. As demais afirmações estão corretas: a fita é boa para volume e prazo, mas a gravação é sequencial; o disco tem acesso aleatório; a nuvem tem redundância e criptografia; e o pendrive é aceitável apenas em uso doméstico.
+
+@@ a05/s01 | C
+Comparando fita magnética e disco como mídias de backup, assinale a opção correta.
+A) Na fita, o acesso é aleatório e a recuperação de um arquivo isolado é mais rápida que no disco.
+B) A fita é uma mídia volátil, por isso exige alimentação elétrica constante para manter os dados.
+C) Na fita, o acesso é sequencial e a recuperação de um arquivo isolado tende a ser mais lenta que no disco.
+D) O disco não pode ser usado para backup, pois sua capacidade é sempre menor que a da fita.
+E) No disco, o acesso é sequencial, o que o torna menos indicado para restaurar arquivos individuais.
+// Comentário: A fita é gravada e lida sequencialmente: para chegar a um arquivo, a unidade percorre a fita, o que torna a recuperação lenta. O disco permite acesso aleatório e é mais ágil para arquivos individuais. Nenhuma das duas é volátil, e a capacidade do disco não o impede de ser usado em backup.
+
+@@ a05/s01 | C
+Sobre o teste de restauração dos backups, assinale a opção correta.
+A) Substitui a necessidade de manter cópias em locais distintos, pois comprova que a mídia está funcionando.
+B) Deve ser feito apenas após um desastre real, para não consumir recursos da rotina de produção.
+C) Deve ser feito periodicamente, para confirmar que as cópias estão íntegras e que o procedimento de recuperação funciona.
+D) É necessário somente para backups incrementais, uma vez que os completos nunca apresentam falhas.
+E) É dispensável quando o backup é concluído sem mensagens de erro, pois a gravação garante a restauração.
+// Comentário: Só se sabe que um backup é útil quando se consegue restaurá-lo. Por isso as boas práticas recomendam testar a restauração periodicamente, simulando desastres e documentando o procedimento. O teste não substitui as cópias off-site nem se limita a certos tipos de backup.
+
+@@ a05/s01 | B
+Quanto à definição da periodicidade dos backups, assinale a opção correta.
+A) Deve ser definida apenas pelo volume de armazenamento disponível, independentemente da importância dos dados.
+B) Deve considerar a criticidade dos dados e a frequência com que eles mudam, aumentando a regularidade para dados críticos.
+C) Deve ser semestral para qualquer tipo de dado, a fim de reduzir o consumo de mídia e de tempo.
+D) Deve ser evitada em dados que sofrem muitas alterações, pois o backup interfere em sua integridade.
+E) Deve ser igual para todos os dados da organização, evitando tratamentos diferenciados entre sistemas.
+// Comentário: A frequência dos backups deve refletir a importância e a taxa de alteração dos dados: informações críticas e muito alteradas exigem cópias mais frequentes. Backup semestral de dados que mudam todo dia deixaria grande janela de perda, e o volume de armazenamento não pode ser o único critério.
+
+@@ a05/s01 | A
+Considerando o comportamento dos tipos de backup diante do atributo de arquivamento, assinale a opção que indica corretamente os tipos que NÃO desmarcam o atributo.
+A) Diferencial, de cópia e diário.
+B) Incremental, diferencial e diário.
+C) Completo, incremental e diferencial.
+D) Completo, incremental e de cópia.
+E) Completo, de cópia e diário.
+// Comentário: Os backups diferencial, de cópia e diário preservam o atributo marcado. Já o completo e o incremental desmarcam o atributo após copiar, indicando que os arquivos passaram por backup.
+
+@@ a05/s01 | D
+Uma pasta tem os arquivos A, B e C, copiados em backup completo no domingo. Na segunda-feira, o arquivo B é alterado; na terça-feira, é criado o arquivo D. Se na segunda e na terça forem feitos backups diferenciais, assinale a opção que indica o que o backup de terça-feira copiará.
+A) apenas o arquivo D.
+B) os arquivos A, C e D.
+C) apenas o arquivo B.
+D) os arquivos B e D.
+E) os arquivos A, B, C e D.
+// Comentário: O diferencial não desmarca o atributo de arquivamento, por isso acumula tudo o que mudou desde o último completo. Na terça-feira, o backup inclui o arquivo B (alterado na segunda) e o arquivo D (criado na terça). Os arquivos A e C não foram modificados.
+
+@@ a05/s01 | E
+Uma pasta tem os arquivos A, B e C, copiados em backup completo no domingo. Na segunda-feira, o arquivo B é alterado; na terça-feira, é criado o arquivo D. Se na segunda e na terça forem feitos backups incrementais, assinale a opção que indica o que o backup de terça-feira copiará.
+A) os arquivos A, B, C e D.
+B) apenas o arquivo B.
+C) os arquivos B e D.
+D) os arquivos A, C e D.
+E) apenas o arquivo D.
+// Comentário: O incremental desmarca o atributo de arquivamento após copiar. O arquivo B foi copiado no incremental de segunda-feira e não mudou depois, de modo que o incremental de terça-feira leva só o arquivo novo, D. Os arquivos A e C não foram alterados desde o completo.
+
+@@ a05/s01 | E
+Acerca das características dos backups completo, incremental e diferencial, assinale a opção correta.
+A) O completo é o que ocupa menos espaço e o mais rápido para executar, mas o mais difícil de restaurar.
+B) O diferencial é o mais rápido para executar e o que ocupa menos espaço, embora seja o mais demorado para restaurar.
+C) O incremental é o mais lento para executar e o mais simples de restaurar, ao passo que o completo é o mais rápido de executar.
+D) O completo e o incremental têm o mesmo tempo de execução, pois ambos desmarcam o atributo de arquivamento.
+E) O incremental é o mais rápido para executar e o mais trabalhoso para restaurar, enquanto o completo é o mais simples de restaurar.
+// Comentário: O incremental copia apenas o novo desde o último backup, então executa depressa e ocupa pouco espaço, mas exige vários conjuntos na restauração. O completo é o mais demorado e volumoso, porém é o mais simples e rápido de restaurar. O diferencial fica no meio-termo: cresce a cada dia e restaura com apenas dois conjuntos.
+
+@@ a05/s01 | A
+Em uma rotina com backup completo na segunda-feira, incremental na terça-feira e diferencial na quarta-feira, assinale a opção correta sobre o diferencial de quarta-feira.
+A) copia os arquivos alterados desde o incremental de terça-feira e não desmarca o atributo de arquivamento.
+B) copia somente os arquivos alterados na quarta-feira, usando a data de modificação como critério.
+C) copia os arquivos alterados desde o completo de segunda-feira, repetindo os do incremental de terça-feira.
+D) não copia nenhum arquivo, pois o incremental de terça-feira já salvou todas as alterações da semana.
+E) copia todos os arquivos selecionados, alterados ou não, e desmarca o atributo de arquivamento.
+// Comentário: O diferencial copia o que foi criado ou alterado desde o último backup completo ou incremental e não desmarca o atributo. Como houve incremental na terça-feira, esse é o ponto de partida do diferencial de quarta-feira, que não repete o que o incremental já copiou. Considerar apenas a data do dia é característica do backup diário.
+
+@@ a05/s01 | D
+Entre as boas práticas de backup, assinale a opção INCORRETA.
+A) Agendar a execução dos backups e monitorar o sucesso e a integridade das cópias geradas.
+B) Utilizar criptografia nas cópias e guardá-las em local seguro, como um cofre ou a nuvem.
+C) Documentar os procedimentos de restauração e conscientizar os usuários sobre a política adotada.
+D) Dispensar o armazenamento da cópia fora do local principal quando a mídia utilizada for um HD externo.
+E) Manter várias cópias, em mídias e em locais diferentes, com ao menos uma fora do local principal.
+// Comentário: Uma boa política mantém pelo menos uma cópia em outro local, independentemente do tipo de mídia. Um HD externo guardado ao lado do servidor sofreria o mesmo desastre que os dados originais. As demais práticas (agendar e monitorar, documentar, criptografar e diversificar cópias) são recomendadas.
+
+@@ a05/s01 | C
+Uma instituição deseja copiar todos os arquivos de um servidor antes de uma atualização crítica, sem alterar a sequência normal dos backups incrementais já programados. Assinale a opção que indica o tipo de backup mais adequado a essa necessidade.
+A) Backup diferencial, que copia os arquivos alterados desde o completo e desmarca o atributo.
+B) Backup incremental, que copia os arquivos alterados e desmarca o atributo de arquivamento.
+C) Backup de cópia, que copia todos os arquivos selecionados sem desmarcar o atributo de arquivamento.
+D) Backup completo, que copia todos os arquivos e desmarca o atributo de arquivamento dos arquivos copiados.
+E) Backup diário, que copia todos os arquivos selecionados e desmarca o atributo após a execução.
+// Comentário: O backup de cópia grava todos os arquivos escolhidos sem alterar o atributo de arquivamento, de modo que não interfere nos incrementais futuros. O completo e o incremental desmarcam o atributo, e o diferencial e o diário copiam apenas parte dos arquivos.
+
+@@ a05/s01 | B
+Considerando as vantagens e desvantagens do backup completo, assinale a opção correta.
+A) Copia apenas os arquivos alterados desde o backup anterior, porém não desmarca o atributo de arquivamento.
+B) Garante restauração rápida, pois basta o último completo, porém exige mais tempo de execução e mais espaço.
+C) Ocupa o menor espaço entre os tipos, porém a restauração exige todos os backups anteriores.
+D) É obrigatório executá-lo diariamente, já que os demais tipos de backup não funcionam sem ele.
+E) Executa mais depressa que o incremental, porém não permite recuperar arquivos individuais.
+// Comentário: O completo copia todos os dados selecionados, então demora mais e consome mais espaço, mas a restauração é a mais simples e rápida, pois basta o último completo. Os demais tipos dependem de um completo como ponto de partida, o que não significa que ele deva ser diário.
+
+@@ a11/s02 | B
+No LibreOffice Impress, assinale a opção que descreve corretamente a função "Ocultar Slide".
+A) Converte o slide em imagem, impedindo qualquer edição de seu conteúdo posteriormente.
+B) Suprime o slide da apresentação durante a exibição, mantendo-o no arquivo e no painel de slides.
+C) Aplica transição automática ao slide, fazendo-o desaparecer no início da apresentação.
+D) Move o slide para o final da apresentação e o converte em página de anotações.
+E) Exclui definitivamente o slide do arquivo, sem possibilidade de recuperá-lo depois.
+// Comentário: Ocultar Slide faz com que o slide não seja exibido durante a apresentação, mas ele permanece no arquivo e no painel de slides, onde aparece com a miniatura marcada para indicar que está oculto. Não exclui, não move nem converte o slide e não é um efeito de transição.
+
+@@ a11/s02 | D
+Sobre o Slide Mestre no LibreOffice Impress, assinale a opção correta.
+A) Serve apenas para armazenar anotações do apresentador, sem influenciar o visual dos slides.
+B) Permite apenas um slide mestre por apresentação, de modo que todos os slides têm sempre o mesmo plano de fundo.
+C) Define o conteúdo de um único slide e não pode ser compartilhado com outros slides da mesma apresentação.
+D) Define elementos comuns, como plano de fundo e estilos de título, aplicados aos slides que o utilizam; é possível ter mais de um mestre em uma apresentação.
+E) É acessado pelo menu Arquivo, na opção Slide Mestre, e não pode ser modificado depois de criado.
+// Comentário: O slide mestre estabelece a formatação básica (plano de fundo, fontes, cores, marcas) que se propaga aos slides associados a ele, e o Impress permite usar mais de um mestre em uma mesma apresentação. Ele é acessado pelo menu Exibir e pode ser editado, e as anotações do apresentador ficam em outra visão.
+
+@@ a11/s02 | A
+Acerca da Barra Lateral do LibreOffice Impress, assinale a opção correta.
+A) Reúne painéis como Propriedades, Transição de Slides, Animação, Slides Mestres, Estilos, Galeria e Navegador.
+B) Reúne os menus Arquivo, Editar, Exibir e Ajuda, substituindo a barra de menus do programa.
+C) Está disponível somente no modo de apresentação, ocupando a tela inteira durante a exibição.
+D) É exibida na parte inferior da janela e mostra o número do slide e o zoom da apresentação.
+E) Mostra apenas as miniaturas dos slides, com opções para duplicar, renomear e excluir cada um.
+// Comentário: A Barra Lateral, ativada no menu Exibir, fica à direita da área de edição e reúne painéis como Propriedades, Transição de Slides, Animação, Slides Mestres, Estilos, Galeria e Navegador. A barra inferior é a de status, os menus compõem a barra de menus e as miniaturas ficam no painel de slides.
+
+@@ a11/s02 | E
+Na Barra de Status do LibreOffice Impress, o campo que informa a posição do slide atual e o total de slides (por exemplo, "Slide 2 de 10") assinale a opção que o identifica.
+A) Indicador de alterações não salvas
+B) Indicador de assinatura digital
+C) Nível de zoom
+D) Estilo do slide
+E) Número do slide
+// Comentário: O campo de número do slide exibe a posição do slide atual e o total da apresentação. O estilo do slide mostra o nome do modelo aplicado, o zoom indica a ampliação, a assinatura digital sinaliza autenticidade do documento e o indicador de alterações mostra se há mudanças pendentes de salvamento.

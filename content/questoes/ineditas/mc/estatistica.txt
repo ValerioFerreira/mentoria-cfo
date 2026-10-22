@@ -3207,3 +3207,39 @@ C) O termo 1 da fórmula do erro padrão da predição individual é omitido qua
 D) O intervalo para a predição de um valor individual é mais largo que o da resposta média e se alarga quando X0 se afasta da média de X.
 E) O intervalo para um valor individual é igual ao da resposta média, pois ambos usam a mesma reta.
 // Comentário: Na predição individual, o erro padrão tem o termo adicional "1 +" (variabilidade de uma nova observação), o que alarga o intervalo; além disso, o termo (X0 - X̄)² faz o intervalo crescer à medida que X0 se afasta da média, onde a predição é mais precisa. Com variância desconhecida e amostra pequena, usa-se a t de Student.
+
+@@ a13/s01 | A
+Em um modelo de regressão linear múltipla com variáveis explicativas X1, X2 e X3, assinale a opção que apresenta uma situação de multicolinearidade perfeita.
+A) X3 = 2·X1 + X2, para todas as observações.
+B) Y = 2·X1 + X2, para todas as observações.
+C) X1 e X2 têm correlação nula entre si.
+D) X1 e Y têm correlação positiva e alta.
+E) X3 não tem relação linear com X1 nem com X2.
+// Comentário: Multicolinearidade é a relação linear entre variáveis explicativas. Em X3 = 2·X1 + X2, uma explicativa é combinação linear de outras, e a matriz XᵀX deixa de ser inversível. A correlação entre a variável dependente e as explicativas é desejável, e variáveis sem relação linear entre si não geram o problema.
+
+@@ a13/s01 | B
+Um modelo de regressão linear múltipla com intercepto e 3 variáveis explicativas é ajustado a 12 observações, na forma matricial y = Xβ + E. Assinale a opção que indica corretamente as dimensões de X e de XᵀX, nessa ordem.
+A) X é 12 × 4 e XᵀX é 12 × 12.
+B) X é 12 × 4 e XᵀX é 4 × 4.
+C) X é 12 × 3 e XᵀX é 3 × 3.
+D) X é 4 × 12 e XᵀX é 12 × 12.
+E) X é 12 × 3 e XᵀX é 12 × 3.
+// Comentário: X tem n linhas e k + 1 colunas, pois a primeira coluna, só de uns, corresponde ao intercepto: 12 × (3 + 1) = 12 × 4. Então XᵀX é (4 × 12)·(12 × 4) = 4 × 4, matriz quadrada de ordem k + 1. Conferência: β tem 4 elementos, compatíveis com 4 colunas de X.
+
+@@ a13/s02 | C
+Em um modelo de regressão linear múltipla com intercepto e 3 variáveis explicativas, ajustado a 24 observações, a soma de quadrados do modelo é 120 e a soma de quadrados dos resíduos é 80. Assinale a opção que indica o valor da estatística F do teste global do modelo.
+A) 1,5
+B) 6
+C) 10
+D) 12
+E) 15
+// Comentário: Há p = 4 parâmetros: gl do modelo = 3 e gl dos resíduos = 24 − 4 = 20. QMM = 120/3 = 40 e QMR = 80/20 = 4, logo F = 40/4 = 10. Conferência por R²: SQT = 200 e R² = 0,6, então F = (0,6/3)/(0,4/20) = 0,2/0,02 = 10.
+
+@@ a13/s03 | D
+Um analista ajusta uma reta aos dados de uma variável cujo comportamento verdadeiro é curvo, com a forma Y = α + β·X + γ·X². Assinale a opção correta.
+A) Ocorre superespecificação, e a correção é retirar a variável X do modelo.
+B) Ocorre apenas heterocedasticidade, o que não afeta a forma funcional do modelo.
+C) Não há erro de especificação, pois toda relação curva é bem representada por uma reta.
+D) Ocorre erro de especificação da forma funcional, e a inclusão do termo quadrático corrigiria o modelo.
+E) Ocorre multicolinearidade perfeita, e a correção é retirar o intercepto do modelo.
+// Comentário: Ajustar uma reta a dados que seguem uma curva é erro de especificação da forma funcional: o termo X² relevante foi omitido. A correção consiste em incluí-lo, passando a um modelo polinomial. Não se trata de excesso de variáveis nem de colinearidade entre explicativas.
