@@ -2,6 +2,7 @@ import "server-only";
 import { db } from "@/lib/db";
 import { loadPlannerData } from "@/lib/data/planner-data";
 import { loadContestPlanData } from "@/lib/data/contest-data";
+import { buildPlanInput } from "./plan-input";
 import { getUserContest } from "@/lib/user-contest";
 import { bandOf, dayIndexOf, generatePlan, mondayOf } from "@/lib/planner";
 import { todayISO } from "@/lib/plan-time";
@@ -110,7 +111,7 @@ export async function regeneratePlanForUser(
   const firstDay = dayIndexOf(effectiveStart);
 
   // 6. Modo Turbo e Língua Estrangeira
-  const savedRequest = (params.request as { turbo?: boolean; excludedAulas?: string[] } | undefined) ?? undefined;
+  const savedRequest = (params.request as { turbo?: boolean; excludedAulas?: string[]; combo?: { priority?: string } } | undefined) ?? undefined;
   const turbo = Boolean(savedRequest?.turbo ?? params.turbo ?? false);
   const foreignLanguage =
     user.profile?.foreignLanguage ??
@@ -122,15 +123,13 @@ export async function regeneratePlanForUser(
 
   // 7. Carrega dados estruturais atualizados do catálogo e do concurso
   const data = await loadPlannerData();
-  const contestData = await loadContestPlanData(contest);
+  const contestData = await loadContestPlanData(contest, savedRequest?.combo?.priority);
 
   // 8. Monta a entrada para o gerador de plano atual
-  const planInput: PlanInput = {
-    ...data,
+  const planInput: PlanInput = buildPlanInput({
+    data,
     contest,
-    importance: contestData.importance,
-    summaries: contestData.summaries,
-    examQuestions: contestData.examQuestions,
+    contestData,
     startDate,
     firstDay,
     examDate: examDateStr,
@@ -139,7 +138,7 @@ export async function regeneratePlanForUser(
     known,
     excludedAulas: savedRequest?.excludedAulas ?? [],
     turbo,
-  };
+  });
 
   // 9. Gera o novo plano com todas as regras atualizadas
   const result = generatePlan(planInput);

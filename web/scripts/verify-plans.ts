@@ -13,6 +13,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient, type Contest } from "../src/generated/prisma/client";
+import { comboWeights, isCombo, mergeComboImportance } from "../src/lib/combos";
 import { dayIndexOf, diffDays } from "../src/lib/planner/dates";
 import { loadCatalog, loadSegments } from "../src/lib/planner/fixtures";
 import type { Known, Level, PlanRequest } from "../src/lib/planner/types";
@@ -55,13 +56,25 @@ async function main() {
   const catalog = loadCatalog();
   const segments = loadSegments();
   const summaries = new Set((await db.analyticSummary.findMany({ select: { segmentId: true } })).map((s) => s.segmentId));
-  const importanceBy = new Map<Contest, Record<string, number | null>>();
-  const importanceOf = async (c: Contest) => {
-    if (!importanceBy.has(c)) {
-      const rows = await db.segmentImportance.findMany({ where: { contest: c }, select: { segmentId: true, appears: true, score: true } });
-      importanceBy.set(c, Object.fromEntries(rows.map((r) => [r.segmentId, r.appears ? r.score : null])));
+  const importanceBy = new Map<string, Record<string, number | null>>();
+  const importanceOf = async (c: Contest, priority?: string) => {
+    const key = `${c}|${priority ?? ""}`;
+    if (!importanceBy.has(key)) {
+      if (isCombo(c)) {
+        // combo: união dos editais dos dois concursos-membro, como no assistente
+        const weights = comboWeights(c, priority ?? "");
+        const rows = await db.segmentImportance.findMany({ where: { contest: { in: weights.map((w) => w.contest) } }, select: { segmentId: true, contest: true, appears: true, score: true, expected: true } });
+        const members = weights.map(({ contest, weight }) => {
+          const mine = rows.filter((r) => r.contest === contest);
+          return { weight, importance: Object.fromEntries(mine.map((r) => [r.segmentId, r.appears ? r.score : null])), expected: Object.fromEntries(mine.map((r) => [r.segmentId, r.expected])) };
+        });
+        importanceBy.set(key, mergeComboImportance(members));
+      } else {
+        const rows = await db.segmentImportance.findMany({ where: { contest: c }, select: { segmentId: true, appears: true, score: true } });
+        importanceBy.set(key, Object.fromEntries(rows.map((r) => [r.segmentId, r.appears ? r.score : null])));
+      }
     }
-    const m = importanceBy.get(c)!;
+    const m = importanceBy.get(key)!;
     return Object.keys(m).length ? m : undefined; // banco sem notas: não filtra
   };
 
@@ -113,10 +126,11 @@ async function main() {
       params: params as VerifyPlan["params"],
       coverage: p.coverage as VerifyPlan["coverage"],
       request,
+      contest: p.contest,
       weeks: p.weeks.map((w) => ({ index: w.index, startDate: ymd(w.startDate), targetMinutes: w.targetMinutes })),
       activities,
     };
-    const report = verifyPlan(vp, { catalog, segments, importance: await importanceOf(contest), summaries });
+    const report = verifyPlan(vp, { catalog, segments, importance: await importanceOf(contest, request.combo?.priority), summaries });
     if (rebuilt) report.warnings.unshift({ code: "SOLICITACAO_RECONSTRUIDA", message: "plano antigo, sem a solicitação original gravada: pedido reconstruído a partir das disciplinas, níveis e anamnese (assuntos desmarcados não são conhecidos)" });
 
     results.push({ id: p.id, email: p.user.email, verdict: report.verdict, errors: report.errors.length, warnings: report.warnings.length });

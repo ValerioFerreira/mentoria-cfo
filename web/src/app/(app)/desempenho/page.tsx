@@ -12,6 +12,7 @@ import { PendingPlanView } from "@/components/pending-plan-view";
 import { db } from "@/lib/db";
 import { CONTESTS } from "@/lib/contests";
 import { getUserContest } from "@/lib/user-contest";
+import { comboMembers, isCombo } from "@/lib/combos";
 import { MIN_HEAT_DAYS, MIN_QUESTIONS_FOR_PROJECTION, MIN_TREND_CADERNOS, MIN_WEEKS_WITH_STUDY, chartReadiness, weeksWithStudy } from "@/lib/metrics";
 import { dateOfPlanDay, firstStudyISO, effectiveDays, planPosition, todayISO } from "@/lib/plan-time";
 import { fmtDuration, subjectName, subjectShort } from "@/lib/ui-format";
@@ -34,7 +35,8 @@ function mastery(acc: number | null, total: number): { label: string; tone: "ok"
   return { label: "Precisa de atenção", tone: "primary" };
 }
 
-export default async function PerformancePage() {
+export default async function PerformancePage({ searchParams }: { searchParams: Promise<{ prova?: string }> }) {
+  const { prova } = await searchParams;
   const user = await requireUser();
   const plan = await getActivePlan(user.id);
   if (!plan) {
@@ -52,6 +54,9 @@ export default async function PerformancePage() {
     }
   }
   const contest = await getUserContest(user.email);
+  // combo: a comparação com os aprovados é feita prova a prova (padrão: a prioridade escolhida no plano)
+  const comboPriority = (plan?.params as { request?: { combo?: { priority?: string } } } | undefined)?.request?.combo?.priority;
+  const refContest = isCombo(contest) ? (comboMembers(contest).find((m) => m === prova) ?? comboMembers(contest).find((m) => m === comboPriority) ?? comboMembers(contest)[0]) : contest;
   const planSubjects = plan?.subjects.map((s) => s.subjectId) ?? [];
   const totalWeeks = plan?.weeks.length ?? 0;
   const perf = await getPerformance(user.id, plan?.startDate ?? null, totalWeeks, planSubjects);
@@ -202,7 +207,18 @@ export default async function PerformancePage() {
             {zeroed.length ? `Disciplina zerada: ${zeroed.map((s) => subjectShort(s.id)).join(", ")}` : "Nenhuma disciplina zerada"}
           </span>
         </Card>
-        <ApprovalComparison subjects={perf.projection.flatMap((b) => b.subjects)} contest={contest} contestLabel={contestLabel(contest)} />
+        {isCombo(contest) && (
+          <nav aria-label="Prova de referência" className="flex flex-wrap items-center gap-2 text-sm">
+            <span className="text-muted">Comparar com os aprovados de:</span>
+            {comboMembers(contest).map((m) => (
+              <Link key={m} href={`/desempenho?prova=${m}`} scroll={false} aria-current={m === refContest ? "page" : undefined}
+                className={`rounded-full border px-3 py-1 font-semibold transition ${m === refContest ? "border-primary bg-primary-soft text-primary" : "border-border text-muted hover:text-text"}`}>
+                {contestLabel(m)}
+              </Link>
+            ))}
+          </nav>
+        )}
+        <ApprovalComparison subjects={perf.projection.flatMap((b) => b.subjects)} contest={refContest} contestLabel={contestLabel(refContest)} />
       </section>
 
       <section aria-labelledby="sub">

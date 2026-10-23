@@ -30,6 +30,16 @@ export interface WizardSubject {
   aulaIds: string[];
   /** a disciplina inclui conteúdo exclusivo do MentorIA sobre pontos do edital */
   hasComplement: boolean;
+  /** Combo: questões da disciplina na prova de cada concurso-membro (só os que a cobram) */
+  perContest?: Record<string, number>;
+  /** Combo: "5 questões no 2º Tenente · 10 no Soldado" */
+  questionsLabel?: string;
+}
+
+/** Pacote combo: os dois concursos-membro (rótulo curto) e o prioritário padrão. */
+export interface WizardCombo {
+  members: { contest: string; label: string }[];
+  defaultPriority: string;
 }
 
 const BANDS = [
@@ -39,6 +49,8 @@ const BANDS = [
 ] as const;
 
 const BLOCK_NAME = { I: "Bloco I", II: "Bloco II", III: "Bloco III" } as const;
+const COMBO_GROUPS = ["both", "oficial", "praca"] as const;
+const COMBO_GROUP_BLOCK = { both: "I", oficial: "II", praca: "III" } as const;
 const STEPS = ["Disciplinas", "Anamnese", "Tempo", "Revisão"] as const;
 const EXAM_DEFAULT = "2027-02-28";
 const KNOWN_OPTIONS = [
@@ -57,8 +69,11 @@ function perDay(h: number) {
 type Preview = Awaited<ReturnType<typeof previewPlan>>;
 type Marks = Record<string, 1 | 2>;
 
-export function Wizard({ subjects, todayIso, initial, defaultExamDate, blockNames }: { subjects: WizardSubject[]; todayIso: string; initial?: WizardInitial | null; defaultExamDate?: string | null; blockNames?: Partial<Record<"I" | "II" | "III", string>> }) {
+export function Wizard({ subjects, todayIso, initial, defaultExamDate, blockNames, combo }: { subjects: WizardSubject[]; todayIso: string; initial?: WizardInitial | null; defaultExamDate?: string | null; blockNames?: Partial<Record<"I" | "II" | "III", string>>; combo?: WizardCombo }) {
   const [step, setStep] = useState(0);
+  const [priority, setPriority] = useState<string>(() => (combo?.members.some((m) => m.contest === initial?.priority) ? initial!.priority! : combo?.defaultPriority ?? ""));
+  const comboLabels = useMemo(() => Object.fromEntries((combo?.members ?? []).map((m) => [m.contest, m.label])), [combo]);
+  const priorityArg = combo ? priority : undefined;
   // ao refazer o plano, tudo já vem com as escolhas do plano vigente; sem plano anterior valem os padrões
   const [selected, setSelected] = useState<Set<string>>(() => new Set(initial?.selected ?? subjects.filter((s) => s.id !== "lingua-inglesa").map((s) => s.id)));
   const [unselectedTopics, setUnselectedTopics] = useState<Set<string>>(() => new Set(initial?.unselectedTopics));
@@ -101,11 +116,12 @@ export function Wizard({ subjects, todayIso, initial, defaultExamDate, blockName
         known: knownChosen,
         turbo,
         unselectedTopicIds: unselectedTopicList,
+        priority: priorityArg,
       });
       if (id === seq.current) setPreview(r);
     }, 350);
     return () => clearTimeout(t);
-  }, [chosen.length, levels, hours, examDate, start, knownChosen, step, turbo, unselectedTopicList]);
+  }, [chosen.length, levels, hours, examDate, start, knownChosen, step, turbo, unselectedTopicList, priorityArg]);
 
   function toggle(s: WizardSubject) {
     setSelected((prev) => {
@@ -183,6 +199,7 @@ export function Wizard({ subjects, todayIso, initial, defaultExamDate, blockName
         turbo,
         unselectedTopicIds: unselectedTopicList,
         marks,
+        priority: priorityArg,
         diagnostics: answers,
       });
       if (res?.error) setError(res.error);
@@ -196,6 +213,19 @@ export function Wizard({ subjects, todayIso, initial, defaultExamDate, blockName
   const canNext = step === 0 ? chosen.length > 0 : true;
   const langs = subjects.filter((s) => s.languageGroup);
   const others = subjects.filter((s) => !s.languageGroup);
+  // blocos da prova; no combo, grupos pelo que cada concurso cobra
+  const groupKeys: readonly string[] = combo ? COMBO_GROUPS : ["I", "II", "III"];
+  const langGroup = combo ? "oficial" : "I";
+  const groupOf = (s: WizardSubject): string => {
+    if (!combo) return s.block;
+    const hit = combo.members.filter((m) => (s.perContest?.[m.contest] ?? 0) > 0);
+    return hit.length > 1 ? "both" : hit[0]?.contest === combo.members[0].contest ? "oficial" : "praca";
+  };
+  const groupColor = (g: string) => BLOCK_COLOR[(COMBO_GROUP_BLOCK as Record<string, "I" | "II" | "III">)[g] ?? (g as "I" | "II" | "III")];
+  const groupName = (g: string) => {
+    if (!combo) return blockNames?.[g as "I" | "II" | "III"] ?? BLOCK_NAME[g as "I" | "II" | "III"];
+    return g === "both" ? "Comuns aos dois concursos" : `Só ${comboLabels[g === "oficial" ? combo.members[0].contest : combo.members[1].contest]}`;
+  };
 
   return (
     <div className="mx-auto max-w-3xl space-y-8">
@@ -240,19 +270,39 @@ export function Wizard({ subjects, todayIso, initial, defaultExamDate, blockName
                 <InfoTip align="start">A prova tem 70 questões. Em Língua Estrangeira você faz Inglês ou Espanhol.</InfoTip>
               </h1>
             </div>
+            {combo && (
+              <Card className="space-y-3">
+                <p className="flex items-center gap-2 text-sm font-semibold">
+                  Qual concurso é a sua prioridade?
+                  <InfoTip align="start">Se o tempo não der para tudo, o concurso prioritário é mais atendido: cada questão dele vale o dobro na divisão das horas. O outro concurso continua no plano, inclusive nas disciplinas que só ele cobra.</InfoTip>
+                </p>
+                <div role="radiogroup" aria-label="Concurso prioritário" className="grid gap-2 sm:grid-cols-2">
+                  {combo.members.map((m) => {
+                    const on = priority === m.contest;
+                    return (
+                      <button key={m.contest} type="button" role="radio" aria-checked={on} onClick={() => setPriority(m.contest)}
+                        className={cx("cursor-pointer rounded-xl border-2 p-3 text-left transition duration-200", on ? "border-primary bg-primary-soft" : "border-border bg-surface hover:border-border-strong")}>
+                        <span className="block text-sm font-semibold">{m.label}</span>
+                        <span className="block text-xs text-muted">{on ? "Prioridade" : "Também no plano"}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </Card>
+            )}
             <div className="flex flex-wrap items-center gap-2 text-sm">
               <Button variant="secondary" size="sm" onClick={() => setSelected(new Set(subjects.filter((s) => s.id !== "lingua-inglesa").map((s) => s.id)))}>Selecionar todas</Button>
               <Button variant="ghost" size="sm" onClick={() => setSelected(new Set())}>Limpar</Button>
-              <span className="ml-auto font-semibold text-muted tabular"><strong className="font-display text-xl text-text">{chosen.length}</strong> escolhidas · <strong className="font-display text-xl text-text">{points}</strong> questões da prova</span>
+              <span className="ml-auto font-semibold text-muted tabular"><strong className="font-display text-xl text-text">{chosen.length}</strong> escolhidas · {combo ? combo.members.map((m, i) => (<span key={m.contest}>{i > 0 && " · "}<strong className="font-display text-xl text-text">{chosen.reduce((n, s) => n + (s.perContest?.[m.contest] ?? 0), 0)}</strong> questões no {m.label}</span>)) : <><strong className="font-display text-xl text-text">{points}</strong> questões da prova</>}</span>
             </div>
-            {(["I", "II", "III"] as const).filter((b) => others.some((s) => s.block === b) || (b === "I" && langs.length > 0)).map((b) => (
+            {groupKeys.filter((b) => others.some((s) => groupOf(s) === b) || (b === langGroup && langs.length > 0)).map((b) => (
               <fieldset key={b} className="space-y-2.5">
                 <legend className="mb-1 flex items-center gap-2 font-display text-xl font-bold uppercase tracking-wide">
-                  <span className="h-3 w-3 rounded-[4px]" style={{ background: BLOCK_COLOR[b] }} aria-hidden />
-                  {blockNames?.[b] ?? BLOCK_NAME[b]}
+                  <span className="h-3 w-3 rounded-[4px]" style={{ background: groupColor(b) }} aria-hidden />
+                  {groupName(b)}
                 </legend>
                 <div className="grid gap-2.5 sm:grid-cols-2">
-                  {others.filter((s) => s.block === b).map((s) => (
+                  {others.filter((s) => groupOf(s) === b).map((s) => (
                     <SubjectCard
                       key={s.id}
                       s={s}
@@ -263,7 +313,7 @@ export function Wizard({ subjects, todayIso, initial, defaultExamDate, blockName
                       onSetAllTopics={(selectAll) => setAllTopics(s, selectAll)}
                     />
                   ))}
-                  {b === "I" && langs.length > 0 && (
+                  {b === langGroup && langs.length > 0 && (
                     <Card className={cx("p-4 transition sm:col-span-2 space-y-3", langs.some((l) => selected.has(l.id)) && "border-primary")}>
                       <div className="flex flex-wrap items-center justify-between gap-3">
                         <div>
@@ -371,7 +421,7 @@ export function Wizard({ subjects, todayIso, initial, defaultExamDate, blockName
               <div className="flex justify-between text-xs font-semibold text-muted tabular"><span>{band.min} h</span><span>{band.max} h</span></div>
             </Card>
             <HeavyWorkloadDisclaimer hours={hours} onGoToDisciplines={() => goStep(0)} />
-            <PreviewBox preview={preview} subjects={chosen} hours={hours} onUseHours={setHours} />
+            <PreviewBox preview={preview} subjects={chosen} hours={hours} onUseHours={setHours} contestLabels={comboLabels} />
             <TurboOption preview={preview} on={turbo} onChange={setTurbo} />
           </section>
         )}
@@ -390,6 +440,7 @@ export function Wizard({ subjects, todayIso, initial, defaultExamDate, blockName
                   <input type="date" value={examDate} onChange={(e) => setExamDate(e.target.value)} className="rounded-lg border border-border bg-surface px-2.5 py-1.5 text-sm font-normal" />
                 </label>
               </div>
+              {combo && <p className="text-sm"><span className="text-muted">Prioridade:</span> <strong>{comboLabels[priority]}</strong></p>}
               <ul className="flex flex-wrap gap-2">
                 {chosen.map((s) => (
                   <li key={s.id}><Badge className="!py-1">{s.name} · {LEVEL_LABEL[levels.find((l) => l.id === s.id)!.level]}</Badge></li>
@@ -423,7 +474,7 @@ export function Wizard({ subjects, todayIso, initial, defaultExamDate, blockName
               )}
             </Card>
             <HeavyWorkloadDisclaimer hours={hours} onGoToDisciplines={() => goStep(0)} />
-            <PreviewBox preview={preview} subjects={chosen} hours={hours} detailed />
+            <PreviewBox preview={preview} subjects={chosen} hours={hours} detailed contestLabels={comboLabels} />
             <TurboOption preview={preview} on={turbo} onChange={setTurbo} />
             {error && <Alert tone="danger">{error}</Alert>}
           </section>
@@ -511,7 +562,7 @@ function SubjectCard({
           >
             <p className="font-semibold leading-snug">{s.name}</p>
             <p className="mt-1 text-xs text-muted tabular">
-              {s.examQuestions} {s.examQuestions === 1 ? "questão" : "questões"} na prova · {selectedCount} de {s.items.length} assuntos
+              {s.questionsLabel ?? `${s.examQuestions} ${s.examQuestions === 1 ? "questão" : "questões"} na prova`} · {selectedCount} de {s.items.length} assuntos
             </p>
             {s.hasComplement && (
               <p className="mt-1 flex items-center gap-1 text-xs font-medium text-gold-text">
@@ -727,7 +778,7 @@ function AssuntoChecklist({ items, marks, onSet, onAll, summary }: { items: Wiza
   );
 }
 
-function PreviewBox({ preview, subjects, hours, detailed, onUseHours }: { preview: Preview | null; subjects: WizardSubject[]; hours: number; detailed?: boolean; onUseHours?: (h: number) => void }) {
+function PreviewBox({ preview, subjects, hours, detailed, onUseHours, contestLabels }: { preview: Preview | null; subjects: WizardSubject[]; hours: number; detailed?: boolean; onUseHours?: (h: number) => void; contestLabels?: Record<string, string> }) {
   if (!preview) return <Card className="flex items-center gap-3 text-sm text-muted"><Loader2 className="h-4 w-4 animate-spin" aria-hidden />Calculando cobertura estimada…</Card>;
   if ("error" in preview) return <Alert tone="danger">{preview.error}</Alert>;
   const pct = Math.round(preview.coverageSelected * 100);
@@ -758,6 +809,20 @@ function PreviewBox({ preview, subjects, hours, detailed, onUseHours }: { previe
           )}
         </div>
       </div>
+
+      {preview.contests && contestLabels && (
+        <ul className="grid gap-x-8 gap-y-2.5 text-sm sm:grid-cols-2">
+          {preview.contests.map((c) => (
+            <li key={c.contest} className="space-y-1">
+              <div className="flex items-center justify-between gap-3">
+                <span className="truncate">{contestLabels[c.contest] ?? c.contest}</span>
+                <span className="tabular text-on-ink-muted">{Math.round(c.selected * 100)}% do edital</span>
+              </div>
+              <Progress value={c.selected} size="sm" color="var(--gold)" label={`Cobertura do ${contestLabels[c.contest] ?? c.contest}`} className="!bg-white/10" />
+            </li>
+          ))}
+        </ul>
+      )}
 
       {pct < 100 && (
         <div className="rounded-xl border border-white/15 bg-white/5 p-3.5 text-xs leading-relaxed text-on-ink-muted">

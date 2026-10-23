@@ -61,6 +61,8 @@ export interface SelectOptions {
   examQuestions?: Record<string, number>;
   /** Concurso para o qual o plano é montado. */
   contest?: string;
+  /** Combo: concursos-membro; a aula entra se valer para qualquer um deles. */
+  members?: string[];
 }
 
 /** Determina se a aula pertence ao edital do concurso selecionado (ou se deve entrar no plano). */
@@ -71,9 +73,10 @@ export function isAulaInEdital(
   opts: SelectOptions = {},
 ): boolean {
   if (!aula.selectable || excludedAulas.has(aula.id)) return false;
-  if (opts.contest) {
-    if (aula.onlyContests && !aula.onlyContests.includes(opts.contest)) return false;
-    if (aula.excludeContests && aula.excludeContests.includes(opts.contest)) return false;
+  const contests = opts.members?.length ? opts.members : opts.contest ? [opts.contest] : [];
+  if (contests.length) {
+    const applies = (c: string) => !(aula.onlyContests && !aula.onlyContests.includes(c)) && !(aula.excludeContests && aula.excludeContests.includes(c));
+    if (!contests.some(applies)) return false;
   } else if (aula.onlyContests && aula.onlyContests.length > 0) {
     return false;
   }

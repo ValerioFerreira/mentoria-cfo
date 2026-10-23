@@ -26,6 +26,8 @@ const CONTEST_OPTIONS = [
   { key: "PMPE_OFICIAL", label: "OFICIAL - PMPE" },
   { key: "PMPE_SOLDADO", label: "PRAÇA - PMPE" },
   { key: "PCPE_AGENTE", label: "AGENTE - PCPE" },
+  { key: "CBMPE_COMBO", label: "OFICIAL + PRAÇA - CBMPE" },
+  { key: "PMPE_COMBO", label: "OFICIAL + PRAÇA - PMPE" },
 ];
 
 export function PerfilView({ user }: { user: UserProfileData }) {

@@ -2,12 +2,14 @@ import { describe, expect, it } from "vitest";
 import { CONTEST_SUBTITLES, CONTESTS, contestBySlug, contestTitle, editalItemApplies } from "./contests";
 
 describe("concursos", () => {
-  it("concursos disponíveis (inclui o Agente da PCPE)", () => {
+  it("concursos disponíveis (inclui os combos e o Agente da PCPE)", () => {
     expect(CONTESTS.filter((c) => c.available).map((c) => c.key)).toEqual([
       "CBMPE_SOLDADO",
       "CBMPE_OFICIAL",
       "PMPE_SOLDADO",
       "PMPE_OFICIAL",
+      "CBMPE_COMBO",
+      "PMPE_COMBO",
       "PCPE_AGENTE",
     ]);
   });

@@ -13,7 +13,13 @@ const DEPTH_MASTERED = 0.6;
  * incidência em prova e descontada a parte que o material não traz. Profundidade = fração da prática completa (fixação e
  * cadernos do nível Aprofundamento) que foi planejada nessas aulas — é outra dimensão e não entra na cobertura.
  */
-export function computeCoverage(chosen: SelectedSubject[], sel: Selection, known: Record<string, Known> = {}) {
+export function computeCoverage(
+  chosen: SelectedSubject[],
+  sel: Selection,
+  known: Record<string, Known> = {},
+  /** Combo: peso combinado por disciplina (substitui o do catálogo) e total de questões de referência da cobertura do edital. */
+  weights?: { examQuestions: Record<string, number>; editalTotal: number },
+) {
   const subjects: SubjectCoverage[] = chosen.map(({ subject, level }) => {
     const inEdital = subject.aulas.filter((a) => a.selectable && (!sel.inEditalAulas || sel.inEditalAulas.has(a.id)));
     const totalInc = inEdital.reduce((n, a) => n + a.incidence, 0) || 1;
@@ -66,7 +72,7 @@ export function computeCoverage(chosen: SelectedSubject[], sel: Selection, known
     return {
       subjectId: subject.id,
       level,
-      examQuestions: subject.examQuestions,
+      examQuestions: weights?.examQuestions[subject.id] ?? subject.examQuestions,
       plannedHours: round1(total / 60),
       minutes: mins,
       fullMinutes: full,
@@ -80,11 +86,11 @@ export function computeCoverage(chosen: SelectedSubject[], sel: Selection, known
       notCovered,
     };
   });
-  const pts = chosen.reduce((n, c) => n + c.subject.examQuestions, 0) || 1;
+  const pts = subjects.reduce((n, s) => n + s.examQuestions, 0) || 1;
   const covPts = subjects.reduce((n, s) => n + s.examQuestions * s.coverage, 0);
   const depthPts = subjects.reduce((n, s) => n + s.examQuestions * s.depth, 0);
   const summaryPts = subjects.reduce((n, s) => n + s.examQuestions * (s.theoryPagesCovered > 0 ? s.coverage * (s.summaryPages / s.theoryPagesCovered) : 0), 0);
-  return { selected: covPts / pts, edital: covPts / EXAM_TOTAL_QUESTIONS, depth: depthPts / pts, summaryShare: covPts > 0 ? summaryPts / covPts : 0, subjects };
+  return { selected: covPts / pts, edital: covPts / (weights?.editalTotal ?? EXAM_TOTAL_QUESTIONS), depth: depthPts / pts, summaryShare: covPts > 0 ? summaryPts / covPts : 0, subjects };
 }
 
 export function gapWarnings(catalog: Catalog, subjectIds: string[]): string[] {

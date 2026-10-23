@@ -17,7 +17,7 @@ import {
 import { loadQuizPool, poolSize } from "@/lib/quiz/pool";
 import { STATUS_LABEL, subjectShort } from "@/lib/ui-format";
 import { MaterialLink } from "@/components/material-link";
-import { CONTEST_PACKAGES } from "@/lib/contests";
+import { packageFor } from "@/lib/contests";
 
 export const metadata: Metadata = { title: "Atividade" };
 
@@ -110,7 +110,7 @@ export default async function ActivityPage({ params }: PageProps<"/atividade/[id
   const bizuItems = bizus.flatMap((b) => b.items.filter((i) => i.set === bizuSet));
   const limitMin = Math.round((a.quizLimitSec ?? 3600) / 60);
   const meta = TYPE_META[a.type];
-  const materialPackage = CONTEST_PACKAGES[a.week.plan.contest ?? "CBMPE_OFICIAL"];
+  const materialPackage = packageFor(a.week.plan.contest, a.subjectId);
   // Revisão e Caderno de uma aula pressupõem a Teoria feita: avisa (sem bloquear) se alguma ainda está pendente
   const pendingTheory = !isFinal && (a.type === "REVISAO" || a.type === "QUESTOES") ? a.refs.filter((r) => r.refActivity.status !== "DONE") : [];
 

@@ -10,6 +10,8 @@ import { bandOf, dayIndexOf, generatePlan, mondayOf, PlanInputError } from "@/li
 import { addDays } from "@/lib/planner/dates";
 import { todayISO } from "@/lib/plan-time";
 import { savePlan } from "@/lib/plan/persist";
+import { buildPlanInput } from "@/lib/plan/plan-input";
+import { isCombo, isValidPriority } from "@/lib/combos";
 import type { Known, Level } from "@/lib/planner/types";
 
 /** Data real no formato AAAA-MM-DD (rejeita 2027-02-30) e no máximo ~2 anos à frente (evita planos com milhares de semanas). */
@@ -36,6 +38,8 @@ const Selection = z.object({
   unselectedTopicIds: z.array(z.string()).default([]),
   /** Marcas da anamnese por assunto (id do assunto → 1 ou 2); só guardadas para pré-selecionar o assistente ao refazer o plano */
   marks: z.record(z.string(), z.union([z.literal(1), z.literal(2)])).default({}),
+  /** Combo: concurso prioritário (chave do concurso-membro); ausente = o 2º Tenente */
+  priority: z.string().optional(),
 });
 export type SelectionInput = z.input<typeof Selection>;
 
@@ -84,15 +88,14 @@ export async function previewPlan(input: SelectionInput) {
   if ("error" in begin) return { error: begin.error } as const;
   const data = await loadPlannerData();
   const contest = await getUserContest(user.email);
-  const contestData = await loadContestPlanData(contest);
+  if (isCombo(contest) && parsed.data.priority && !isValidPriority(contest, parsed.data.priority)) return { error: "Concurso prioritário inválido." } as const;
+  const contestData = await loadContestPlanData(contest, parsed.data.priority);
   const excludedAulas = await resolveExcludedAulas(parsed.data.subjects.map((s) => s.id), parsed.data.unselectedTopicIds);
   try {
     const base = {
-      ...data,
+      data,
       contest,
-      importance: contestData.importance,
-      summaries: contestData.summaries,
-      examQuestions: contestData.examQuestions,
+      contestData,
       startDate: begin.startDate,
       firstDay: begin.firstDay,
       examDate: parsed.data.examDate,
@@ -101,9 +104,9 @@ export async function previewPlan(input: SelectionInput) {
       known: parsed.data.known as Record<string, Known>,
       excludedAulas,
     };
-    const r = generatePlan({ ...base, turbo: parsed.data.turbo });
+    const r = generatePlan(buildPlanInput({ ...base, turbo: parsed.data.turbo }));
     // a oferta do Modo Turbo depende da cobertura SEM ele (com ele ligado a cobertura sobe e a opção sumiria)
-    const withoutTurbo = parsed.data.turbo ? generatePlan({ ...base, turbo: false }) : r;
+    const withoutTurbo = parsed.data.turbo ? generatePlan(buildPlanInput({ ...base, turbo: false })) : r;
     return {
       ok: true as const,
       coverageWithoutTurbo: withoutTurbo.coverage.selected,
@@ -116,6 +119,7 @@ export async function previewPlan(input: SelectionInput) {
       fullEditalHoursPerWeek: r.params.fullEditalHoursPerWeek,
       editalFits: r.params.editalFits,
       turboAulas: r.params.turboAulas,
+      contests: r.coverage.contests ?? null,
       subjects: r.coverage.subjects.map((s) => ({ id: s.subjectId, hours: s.plannedHours, coverage: s.coverage, depth: s.depth })),
     };
   } catch (e) {
@@ -132,14 +136,13 @@ export async function createPlanAction(input: SelectionInput & { diagnostics: Re
   if ("error" in begin) return { error: begin.error };
   const data = await loadPlannerData();
   const contest = await getUserContest(user.email);
-  const contestData = await loadContestPlanData(contest);
+  if (isCombo(contest) && parsed.data.priority && !isValidPriority(contest, parsed.data.priority)) return { error: "Concurso prioritário inválido." };
+  const contestData = await loadContestPlanData(contest, parsed.data.priority);
   const excludedAulas = await resolveExcludedAulas(parsed.data.subjects.map((s) => s.id), parsed.data.unselectedTopicIds);
-  const planInput = {
-    ...data,
+  const planInput = buildPlanInput({
+    data,
     contest,
-    importance: contestData.importance,
-    summaries: contestData.summaries,
-    examQuestions: contestData.examQuestions,
+    contestData,
     startDate: begin.startDate,
     firstDay: begin.firstDay,
     examDate: parsed.data.examDate,
@@ -148,7 +151,7 @@ export async function createPlanAction(input: SelectionInput & { diagnostics: Re
     known: parsed.data.known as Record<string, Known>,
     excludedAulas,
     turbo: parsed.data.turbo,
-  };
+  });
   let result;
   try {
     result = generatePlan(planInput);
