@@ -61,6 +61,13 @@ async function contar() {
 }
 
 async function aposentar(min: number, simular: boolean) {
+  // ATENÇÃO (22/10/2026): o CBMPE Oficial usa as inéditas como REFORÇO do caderno e não aproveita questões Cebraspe (certo/errado).
+  // Aposentar inédita por contagem de reais Cebraspe/AOCP vale para o PCPE, mas pode reabrir cadernos curtos do CBMPE.
+  // Por isso só roda de verdade com --sei-do-cbmpe (rode antes `scripts/cadernos-auditoria.ts` e confira que não há caderno curto).
+  if (!simular && !args.includes("--sei-do-cbmpe")) {
+    console.log("Recusado: veja o aviso no código. Use --simular para listar, ou --sei-do-cbmpe depois de conferir o levantamento dos cadernos.");
+    return;
+  }
   // Conta só as reais que o caderno do PCPE realmente usa (Cebraspe e AOCP, ver contestBancas) e por TRECHO,
   // que é o recorte do caderno das atividades; outras bancas só servem ao treino livre e não substituem a inédita.
   const usadas = [...CEBRASPE_BANCAS, ...AOCP_BANCAS];
