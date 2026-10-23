@@ -29,6 +29,8 @@ export interface VerifyPlan {
   params: Partial<PlanResult["params"]> & { weeklyMinutes?: number; capacityHours?: number };
   coverage?: { selected?: number } | null;
   request: PlanRequest;
+  /** concurso (ou combo) do plano gravado; opcional */
+  contest?: string | null;
   weeks: { index: number; startDate: string; targetMinutes: number }[];
   activities: VerifyActivity[];
 }
@@ -120,6 +122,13 @@ export function verifyPlan(plan: VerifyPlan, ctx: VerifyContext): VerifyReport {
   const eve = acts.filter((a) => ord(a) === eveOrd);
   if (eve.length !== 1 || eve[0].type !== "REVISAO" || eve[0].scope !== "FINAL") err("VESPERA", `a véspera da prova (D-1) deve ter uma única Revisão final (tem ${eve.length} atividade(s))`);
   if (dayIndexOf(plan.examDate) < 0) err("DATA_PROVA", "data da prova inválida");
+
+  // ───── 1b. combo ─────
+  const combo = req.combo;
+  if (combo) {
+    if (combo.contests.length !== 2 || !combo.contests.includes(combo.priority)) err("COMBO_PEDIDO", `combo inválido: prioridade ${combo.priority} fora dos concursos ${combo.contests.join(", ")}`);
+    if (plan.contest && req.contest && plan.contest !== req.contest) err("COMBO_PEDIDO", `plano de ${plan.contest} com pedido de ${req.contest}`);
+  }
 
   // ───── 2. o que o aluno pediu ─────
   const requested = new Set(req.subjects.map((s) => s.id));

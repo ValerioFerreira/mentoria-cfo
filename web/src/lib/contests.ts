@@ -1,4 +1,5 @@
 import type { Contest } from "@/generated/prisma/client";
+import { COMBOS, comboMembers, isCombo, type ComboKey } from "./combos";
 
 export interface ContestInfo {
   /** parte da URL: /lista-de-espera/<slug> */
@@ -22,6 +23,8 @@ export const CONTESTS: ContestInfo[] = [
   { slug: "cbmpe-oficial", key: "CBMPE_OFICIAL", org: "CBMPE", role: "2º Tenente", category: "Oficial", image: "/images/CBMPE.webp", imagePosition: "center 70%", available: true },
   { slug: "pmpe-soldado", key: "PMPE_SOLDADO", org: "PMPE", role: "Soldado", category: "Praça", image: "/images/PMPE.webp", imagePosition: "center 30%", available: true },
   { slug: "pmpe-oficial", key: "PMPE_OFICIAL", org: "PMPE", role: "2º Tenente", category: "Oficial", image: "/images/PMPE.webp", imagePosition: "center 70%", available: true },
+  { slug: "cbmpe-combo", key: "CBMPE_COMBO", org: "CBMPE", role: "2º Tenente + Soldado", category: "Combo", image: "/images/CBMPE.webp", imagePosition: "center 50%", available: true },
+  { slug: "pmpe-combo", key: "PMPE_COMBO", org: "PMPE", role: "2º Tenente + Soldado", category: "Combo", image: "/images/PMPE.webp", imagePosition: "center 50%", available: true },
   { slug: "pcpe-agente", key: "PCPE_AGENTE", org: "PCPE", role: "Agente de Polícia", category: "", image: "/images/PCPE.webp", imagePosition: "center", available: true },
 ];
 
@@ -31,6 +34,8 @@ export const CONTEST_SUBTITLES: Record<Contest, string> = {
   PMPE_OFICIAL: "OFICIAL - PMPE",
   PMPE_SOLDADO: "PRAÇA - PMPE",
   PCPE_AGENTE: "AGENTE - PCPE",
+  CBMPE_COMBO: "OFICIAL + PRAÇA - CBMPE",
+  PMPE_COMBO: "OFICIAL + PRAÇA - PMPE",
 };
 
 export interface ContestPackage {
@@ -62,7 +67,7 @@ export const CONTEST_PACKAGES: Partial<Record<Contest, ContestPackage>> = {
   },
 };
 
-export const CONTEST_SUBJECTS: Record<Contest, string[]> = {
+const BASE_CONTEST_SUBJECTS = {
   CBMPE_OFICIAL: [
     "lingua-portuguesa",
     "lingua-inglesa",
@@ -122,6 +127,18 @@ export const CONTEST_SUBJECTS: Record<Contest, string[]> = {
     "legislacao-penal-especial",
     "direito-processual-penal",
   ],
+} satisfies Record<Exclude<Contest, ComboKey>, string[]>;
+
+/** União das disciplinas dos dois concursos do combo (a ordem do Oficial primeiro, depois as exclusivas do Soldado). */
+function unionSubjects(combo: ComboKey): string[] {
+  const { oficial, praca } = COMBOS[combo];
+  return [...new Set([...BASE_CONTEST_SUBJECTS[oficial], ...BASE_CONTEST_SUBJECTS[praca]])];
+}
+
+export const CONTEST_SUBJECTS: Record<Contest, string[]> = {
+  ...BASE_CONTEST_SUBJECTS,
+  CBMPE_COMBO: unionSubjects("CBMPE_COMBO"),
+  PMPE_COMBO: unionSubjects("PMPE_COMBO"),
 };
 
 /** Disciplinas do edital do concurso (as duas línguas estrangeiras quando o edital dá a opção). */
@@ -145,7 +162,15 @@ export function editalItemApplies(
   item: { onlyContests?: readonly string[] | null; excludeContests?: readonly string[] | null },
   contest: string | null | undefined,
 ): boolean {
+  if (isCombo(contest)) return comboMembers(contest).some((m) => editalItemApplies(item, m));
   const only = item.onlyContests ?? [];
   if (only.length) return !!contest && only.includes(contest);
   return !contest || !(item.excludeContests ?? []).includes(contest);
+}
+
+/** Pacote do material usado como referência de uma disciplina: no combo, o do membro cujo edital a tem (o Oficial primeiro). */
+export function packageFor(contest: Contest | null | undefined, subjectId: string): ContestPackage | undefined {
+  const c = contest ?? "CBMPE_OFICIAL";
+  const member = comboMembers(c).find((m) => BASE_CONTEST_SUBJECTS[m as keyof typeof BASE_CONTEST_SUBJECTS]?.includes(subjectId)) ?? comboMembers(c)[0];
+  return CONTEST_PACKAGES[member];
 }

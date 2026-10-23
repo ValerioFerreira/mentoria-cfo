@@ -79,6 +79,8 @@ const CONTEST_LABELS: Record<string, string> = {
   PMPE_SOLDADO: "PMPE Soldado",
   PMPE_OFICIAL: "PMPE 2º Tenente",
   PCPE_AGENTE: "PCPE Agente",
+  CBMPE_COMBO: "CBMPE Combo (2º Tenente + Soldado)",
+  PMPE_COMBO: "PMPE Combo (2º Tenente + Soldado)",
 };
 
 // planos das inscrições anteriores ao acesso até a prova (histórico)

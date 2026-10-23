@@ -6,7 +6,7 @@ import { calendarCapacity, scheduleCalendar } from "./days";
 import { buildEveReview, buildSpareReview, type ReviewSubject } from "./review";
 import { buildSubjectQueue } from "./schedule";
 import { selectContent, type SelectedSubject } from "./select";
-import type { Known, PlanInput, PlanResult, PlannedActivity, PlannedWeek } from "./types";
+import type { ContestCoverage, Known, PlanInput, PlanResult, PlannedActivity, PlannedWeek } from "./types";
 
 export * from "./types";
 export { nextMonday, mondayOf, dayIndexOf } from "./dates";
@@ -16,6 +16,10 @@ export class PlanInputError extends Error {}
 
 function validate(input: PlanInput): void {
   if (input.subjects.length === 0) throw new PlanInputError("Escolha ao menos uma disciplina.");
+  if (input.combo) {
+    const { members, priority } = input.combo;
+    if (members.length !== 2 || !members.some((m) => m.contest === priority)) throw new PlanInputError("Combo inválido: escolha qual concurso é a prioridade.");
+  }
   if (!(input.hoursPerWeek >= 5 && input.hoursPerWeek <= 80)) throw new PlanInputError("Horas por semana fora do intervalo (5–80).");
   if (weekday(input.startDate) !== 1) throw new PlanInputError("A data de início do plano deve ser uma segunda-feira.");
   const fd = input.firstDay ?? 0;
@@ -71,6 +75,7 @@ function generatePlanOnce(input: PlanInput): PlanResult {
       summaries: input.summaries ? new Set(input.summaries) : undefined,
       examQuestions: input.examQuestions,
       contest: input.contest,
+      members: input.combo?.members.map((m) => m.contest),
     });
     // filas por disciplina: ciclos das aulas selecionadas na ordem do curso (e blocos de resumo, no Turbo)
     const streams = chosen.map(({ subject }) => {
@@ -113,7 +118,7 @@ function generatePlanOnce(input: PlanInput): PlanResult {
       .sort((a, b) => b.incidence - a.incidence);
     return {
       subjectId: subject.id,
-      examQuestions: subject.examQuestions,
+      examQuestions: input.combo ? (input.examQuestions?.[subject.id] ?? subject.examQuestions) : subject.examQuestions,
       sortOrder: subject.sortOrder,
       segments: aulas.flatMap((a) =>
         (input.segments[a.id] ?? []).filter((s) => sel.mastered.has(a.id) || studied.has(s.id)).map((s) => ({ id: s.id, aulaId: a.id })),
@@ -143,7 +148,7 @@ function generatePlanOnce(input: PlanInput): PlanResult {
   }
   const contentWeeks = weeks.reduce((n, w) => (w.kind === "CONTENT" ? w.index : n), 0);
 
-  const coverage = computeCoverage(chosen, sel, known);
+  const coverage = input.combo ? comboCoverage(chosen, sel, known, input.combo, input.examQuestions ?? {}) : computeCoverage(chosen, sel, known);
   const warnings: string[] = [];
   if (sel.turboAulas.size > 0) {
     warnings.push(`Modo Turbo: ${[...sel.tierByAula.keys()].reduce((n, id) => n + sel.blueprints.get(id)!.summary.length, 0)} assuntos de menor importância no concurso serão estudados por resumo analítico para você ver mais do edital no tempo disponível.`);
@@ -161,6 +166,7 @@ function generatePlanOnce(input: PlanInput): PlanResult {
         turbo: input.turbo === true,
         firstDay: firstOrd,
         ...(input.contest ? { contest: input.contest } : {}),
+        ...(input.combo ? { combo: { contests: input.combo.members.map((m) => m.contest), priority: input.combo.priority } } : {}),
         subjects: input.subjects.map((s) => ({ id: s.id, level: s.level })),
         known: Object.fromEntries(Object.entries(known).filter(([, v]) => v > 0)) as Record<string, Known>,
         excludedAulas: [...excludedAulas],
@@ -186,6 +192,21 @@ function generatePlanOnce(input: PlanInput): PlanResult {
     coverage,
     warnings,
   };
+}
+
+/** Cobertura do combo: o geral usa o peso combinado (W); cada prova é detalhada com as questões e o total dela. */
+function comboCoverage(chosen: SelectedSubject[], sel: ReturnType<typeof selectContent>, known: Record<string, Known>, combo: NonNullable<PlanInput["combo"]>, weightedQuestions: Record<string, number>) {
+  const editalTotal = combo.members.reduce((n, m) => n + m.weight * m.totalQuestions, 0);
+  const cov = computeCoverage(chosen, sel, known, { examQuestions: weightedQuestions, editalTotal });
+  const contests: ContestCoverage[] = combo.members.map((m) => {
+    const rows = cov.subjects
+      .map((s) => ({ subjectId: s.subjectId, examQuestions: m.examQuestions[s.subjectId] ?? 0, coverage: s.coverage }))
+      .filter((r) => r.examQuestions > 0);
+    const pts = rows.reduce((n, r) => n + r.examQuestions, 0);
+    const covPts = rows.reduce((n, r) => n + r.examQuestions * r.coverage, 0);
+    return { contest: m.contest, weight: m.weight, selected: pts > 0 ? covPts / pts : 0, edital: covPts / m.totalQuestions, subjects: rows };
+  });
+  return { ...cov, contests };
 }
 
 export { EXAM_TOTAL_QUESTIONS };

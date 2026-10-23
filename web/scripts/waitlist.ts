@@ -21,6 +21,8 @@ const LABEL: Record<string, string> = {
   PMPE_SOLDADO: "PMPE Soldado",
   PMPE_OFICIAL: "PMPE 2º Tenente",
   PCPE_AGENTE: "PCPE Agente",
+  CBMPE_COMBO: "CBMPE Combo (2º Tenente + Soldado)",
+  PMPE_COMBO: "PMPE Combo (2º Tenente + Soldado)",
 };
 // planos gravados na inscrição; os valores atuais ficam na contratação (Contract), vista em /admin/financeiro
 const PLAN = { MONTHLY: "R$ 30/mês (antigo)", UNTIL_EXAM: "acesso até a prova" } as const;

@@ -16,6 +16,8 @@ const DEFAULT_CATEGORY: Record<Contest, ContestCategory> = {
   CBMPE_SOLDADO: "PRACA",
   PMPE_SOLDADO: "PRACA",
   PCPE_AGENTE: "PCPE",
+  CBMPE_COMBO: "COMBO",
+  PMPE_COMBO: "COMBO",
 };
 
 /**

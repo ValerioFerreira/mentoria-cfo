@@ -27,7 +27,7 @@ import {
   updatePartnerProfile,
 } from "./partners";
 
-const CONTESTS = ["CBMPE_SOLDADO", "CBMPE_OFICIAL", "PCPE_AGENTE", "PMPE_SOLDADO", "PMPE_OFICIAL"] as const;
+const CONTESTS = ["CBMPE_SOLDADO", "CBMPE_OFICIAL", "PCPE_AGENTE", "PMPE_SOLDADO", "PMPE_OFICIAL", "CBMPE_COMBO", "PMPE_COMBO"] as const;
 const Id = z.string().trim().min(1).max(64);
 const IsoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Data inválida.");
 const Money = z.string().transform((v, ctx) => {
@@ -191,7 +191,7 @@ export async function adminUpdateContestSetting(_: ActionResult | null, fd: Form
   const parsed = z
     .object({
       contest: z.enum(CONTESTS),
-      category: z.enum(["", "OFICIAL", "PCPE", "PRACA"]),
+      category: z.enum(["", "OFICIAL", "PCPE", "PRACA", "COMBO"]),
       examDate: z.union([z.literal(""), IsoDate]),
       price: z.string().trim().max(20).default(""),
       siteDiscount: z.string().trim().max(5).default(""),

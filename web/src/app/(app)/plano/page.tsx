@@ -120,6 +120,16 @@ export default async function PlanPage() {
               Parte do edital das suas disciplinas que o plano faz você estudar até a prova, ponderada pelo número de questões de cada uma. Assuntos que você marcou como dominados já contam como cobertos.
             </InfoTip>
           </p>
+          {coverage.contests && (
+            <ul className="w-full space-y-1 text-sm text-on-ink-muted">
+              {coverage.contests.map((c) => (
+                <li key={c.contest} className="flex items-center justify-between gap-3">
+                  <span>{c.contest.endsWith("_OFICIAL") ? "2º Tenente" : "Soldado"}{c.contest === (params.request as { combo?: { priority?: string } } | undefined)?.combo?.priority ? " (prioridade)" : ""}</span>
+                  <strong className="text-on-ink tabular">{Math.round(c.selected * 100)}%</strong>
+                </li>
+              ))}
+            </ul>
+          )}
         </Card>
 
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">

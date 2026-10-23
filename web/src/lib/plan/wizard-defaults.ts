@@ -29,6 +29,8 @@ export interface WizardInitial {
   answers: Record<string, DiagnosticAnswer>;
   marks: Record<string, 1 | 2>;
   turbo: boolean;
+  /** combo: concurso prioritário escolhido antes */
+  priority?: string;
 }
 
 const rec = (v: unknown): Record<string, unknown> => (v && typeof v === "object" && !Array.isArray(v) ? (v as Record<string, unknown>) : {});
@@ -102,5 +104,6 @@ export function wizardDefaultsFromPlan(plan: SavedPlan | null, subjects: Default
     answers,
     marks,
     turbo: request.turbo === true || params.turbo === true,
+    ...(typeof rec(request.combo).priority === "string" ? { priority: rec(request.combo).priority as string } : {}),
   };
 }

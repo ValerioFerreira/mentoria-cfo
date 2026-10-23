@@ -8,9 +8,12 @@ import { todayISO } from "@/lib/plan-time";
 import { getUserContest } from "@/lib/user-contest";
 import { wizardDefaultsFromPlan } from "@/lib/plan/wizard-defaults";
 import { CONTEST_SUBJECTS, editalItemApplies } from "@/lib/contests";
+import { comboMembers, defaultPriority, isCombo } from "@/lib/combos";
 import { contestExamQuestions } from "@/lib/data/contest-data";
 import { EXAM_CONFIGS, type SupportedSimuladoContest } from "@/lib/simulado-rules";
-import { Wizard, type WizardSubject } from "./wizard";
+import { Wizard, type WizardCombo, type WizardSubject } from "./wizard";
+
+const MEMBER_LABEL = (c: string) => (c.endsWith("_OFICIAL") ? "2º Tenente" : "Soldado");
 
 export const metadata: Metadata = { title: "Montar plano" };
 
@@ -29,6 +32,8 @@ export default async function OnboardingPage() {
   ]);
   const itemsBySubject = Map.groupBy(items, (i) => i.subjectId);
   const weights = contestExamQuestions(contest);
+  // combo: questões de cada disciplina na prova de cada concurso-membro
+  const memberWeights = isCombo(contest) ? comboMembers(contest).map((m) => ({ contest: m, label: MEMBER_LABEL(m), q: contestExamQuestions(m) })) : [];
   // blocos da prova do concurso (no PCPE: P1 Noções de Direito e P2 Conhecimentos Específicos) e data da prova cadastrada
   const exam = EXAM_CONFIGS[contest as SupportedSimuladoContest];
   const blockOf = new Map((exam?.subjects ?? []).map((x) => [x.subjectId, x.block]));
@@ -43,6 +48,15 @@ export default async function OnboardingPage() {
         name: s.name,
         block: (contest === "PCPE_AGENTE" ? blockOf.get(s.id) : undefined) ?? s.block,
         examQuestions: weights[s.id] ?? s.examQuestions,
+        ...(memberWeights.length
+          ? {
+              perContest: Object.fromEntries(memberWeights.filter((m) => (m.q[s.id] ?? 0) > 0).map((m) => [m.contest, m.q[s.id]])),
+              questionsLabel: memberWeights
+                .filter((m) => (m.q[s.id] ?? 0) > 0)
+                .map((m) => `${m.q[s.id]} ${m.q[s.id] === 1 ? "questão" : "questões"} no ${m.label}`)
+                .join(" · "),
+            }
+          : {}),
         languageGroup: s.languageGroup ?? null,
         items: (itemsBySubject.get(s.id) ?? []).filter((i) => editalItemApplies(i, contest)).map((i) => ({ id: i.id, title: i.title, aulaIds: i.aulaIds as string[] })),
         aulaIds: aulas.map((a) => a.id),
@@ -66,5 +80,8 @@ export default async function OnboardingPage() {
     subjects.map((s) => ({ id: s.id, languageGroup: s.languageGroup, items: s.items })),
     today,
   );
-  return <Wizard subjects={subjects} todayIso={today} initial={initial} defaultExamDate={examDate} blockNames={blockNames} />;
+  const combo: WizardCombo | undefined = isCombo(contest)
+    ? { members: memberWeights.map((m) => ({ contest: m.contest, label: m.label })), defaultPriority: defaultPriority(contest) }
+    : undefined;
+  return <Wizard subjects={subjects} todayIso={today} initial={initial} defaultExamDate={examDate} blockNames={blockNames} combo={combo} />;
 }

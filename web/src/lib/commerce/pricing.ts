@@ -11,12 +11,14 @@ export const CATEGORY_PRICE_CENTS: Record<ContestCategory, number> = {
   OFICIAL: 12_000,
   PCPE: 12_000,
   PRACA: 8_000,
+  COMBO: 16_000,
 };
 
 export const CATEGORY_LABEL: Record<ContestCategory, string> = {
   OFICIAL: "Oficial",
   PCPE: "PCPE",
   PRACA: "Praça",
+  COMBO: "Combo Oficial + Praça",
 };
 
 /** Desconto de lançamento, em pontos percentuais sobre o preço original. */
@@ -34,7 +36,7 @@ export const COMMISSION_RATE_BP = 3_000;
 export const COMMISSION_HOLD_DAYS = 7;
 
 export function isContestCategory(v: unknown): v is ContestCategory {
-  return v === "OFICIAL" || v === "PCPE" || v === "PRACA";
+  return v === "OFICIAL" || v === "PCPE" || v === "PRACA" || v === "COMBO";
 }
 
 /** Preço e desconto do site definidos no concurso (Financeiro › Concursos). Campos nulos usam o padrão da categoria. */

@@ -101,7 +101,23 @@ export interface PlanInput {
   examQuestions?: Record<string, number>;
   /** Modo Turbo: se o tempo não fechar o edital, as unidades de menor importância viram resumos analíticos (até 3 por atividade). */
   turbo?: boolean;
+  /**
+   * Pacote combo (dois concursos da mesma corporação em um plano). `contest` é a chave do combo, `importance` já é a união dos
+   * editais e `examQuestions` o peso combinado por disciplina (W = Σ peso × questões do concurso). Como o "aparece no edital"
+   * é decidido por disciplina, a seleção com W equivale a somar o ganho de cada prova ponderado pelo peso.
+   */
+  combo?: { priority: string; members: ComboMember[] };
   slack?: number;
+}
+
+export interface ComboMember {
+  contest: string;
+  /** 1 para o concurso prioritário, 0,5 para o outro (peso fixo 2:1) */
+  weight: number;
+  /** total de questões da prova do concurso */
+  totalQuestions: number;
+  /** questões de cada disciplina na prova do concurso */
+  examQuestions: Record<string, number>;
 }
 
 export interface FixRange {
@@ -170,11 +186,23 @@ export interface PlanRequest {
   turbo: boolean;
   firstDay: number;
   contest?: string;
+  /** combo: concursos-membro e prioridade escolhida */
+  combo?: { contests: string[]; priority: string };
   subjects: { id: string; level: Level }[];
   /** anamnese por aula: 1 já estudei · 2 domino */
   known: Record<string, Known>;
   /** aulas fora do plano porque o aluno desmarcou todos os assuntos delas */
   excludedAulas: string[];
+}
+
+export interface ContestCoverage {
+  contest: string;
+  weight: number;
+  /** cobertura ponderada pelos pontos da prova deste concurso, relativa às disciplinas escolhidas */
+  selected: number;
+  /** cobertura relativa ao total de questões da prova deste concurso */
+  edital: number;
+  subjects: { subjectId: string; examQuestions: number; coverage: number }[];
 }
 
 export interface PlanResult {
@@ -214,6 +242,8 @@ export interface PlanResult {
     edital: number;
     /** Profundidade média da prática, ponderada pelos pontos da prova. */
     depth: number;
+    /** Combo: cobertura de cada prova (disciplinas que ela cobra, com as questões dela). */
+    contests?: ContestCoverage[];
     /** 0–1: fração do que o plano cobre que é lida por resumo analítico (Modo Turbo), ponderada pelos pontos da prova. */
     summaryShare: number;
     subjects: SubjectCoverage[];

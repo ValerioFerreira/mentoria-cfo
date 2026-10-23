@@ -1,4 +1,5 @@
 import type { Contest, Prisma, QuestionStatus } from "@/generated/prisma/client";
+import { comboMembers } from "@/lib/combos";
 
 // Banca dos concursos atendidos. Planejamento (caderno das atividades) e simulados usam só questões dela;
 // o banco de questões livre (treino e caderno personalizado) continua aceitando as demais bancas.
@@ -9,6 +10,7 @@ export const INEDITA_BANCA = "Inédita MentorIA";
 export const CEBRASPE_BANCAS = ["CEBRASPE", "Cebraspe", "CESPE", "Cespe / UnB", "CESPE / CEBRASPE", "Cespe", "CEBRASPE (CESPE)"];
 
 export function contestBancas(contest?: Contest | null): string[] {
+  // combos: só CBMPE/PMPE (AOCP) por enquanto
   if (contest === "PCPE_AGENTE") {
     // Provisório (decisão do dono em 2026-10-19): enquanto os cadernos Cebraspe não são importados, o PCPE também
     // recebe as questões AOCP que cobrem os assuntos do seu edital. Depois, volta a ser só CEBRASPE_BANCAS.
@@ -30,7 +32,8 @@ export function hideInedita(contest?: Contest | null): { NOT?: { banca: string }
  */
 export const REFORCO_CONTESTS: Contest[] = ["CBMPE_OFICIAL"];
 export function usesReinforcement(contest?: Contest | null): boolean {
-  return REFORCO_CONTESTS.includes(contest ?? "CBMPE_OFICIAL");
+  // no combo, vale se algum dos concursos-membro usa o reforço (o combo CBMPE usa; o PMPE não)
+  return comboMembers(contest ?? "CBMPE_OFICIAL").some((m) => REFORCO_CONTESTS.includes(m));
 }
 
 /** Filtro das questões de reforço (outras bancas em múltipla escolha, mais as inéditas) para os trechos dados. */
