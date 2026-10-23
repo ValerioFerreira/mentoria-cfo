@@ -6,7 +6,14 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Badge } from "@/components/ui";
 import { getCurrentUser } from "@/lib/auth/session";
-import { CONTESTS, type ContestInfo } from "@/lib/contests";
+import { contestBySlug, type ContestInfo } from "@/lib/contests";
+
+// uma linha por corporação (Soldado, 2º Tenente e Combo); o Combo recebe um selo de destaque
+const ROWS: string[][] = [
+  ["cbmpe-soldado", "cbmpe-oficial", "cbmpe-combo"],
+  ["pmpe-soldado", "pmpe-oficial", "pmpe-combo"],
+  ["pcpe-agente"],
+];
 
 export const metadata: Metadata = { title: "Escolha seu concurso" };
 
@@ -27,17 +34,30 @@ export default async function ContestsPage() {
           Qual é a sua <span className="text-primary">missão?</span>
         </h1>
       </div>
-      <ul className="flex flex-wrap justify-center gap-6 w-full max-w-5xl mx-auto">
-        {CONTESTS.map((c, i) => (
-          <li
-            key={c.slug}
-            className="rise text-left w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] max-w-sm shrink-0"
-            style={{ ["--i" as string]: i * 0.6 }}
-          >
-            <ContestCard c={c} />
-          </li>
+      <div className="w-full max-w-5xl mx-auto space-y-6">
+        {ROWS.map((row, r) => (
+          <ul key={r} className="flex flex-wrap justify-center gap-6">
+            {row.map((slug, i) => {
+              const c = contestBySlug(slug)!;
+              const combo = c.category === "Combo";
+              return (
+                <li
+                  key={c.slug}
+                  className="rise text-left w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] max-w-sm shrink-0"
+                  style={{ ["--i" as string]: (r * 3 + i) * 0.6 }}
+                >
+                  {row.length > 1 && (
+                    <p aria-hidden={!combo} className={`mb-2 inline-flex items-center rounded-full bg-gold px-3 py-1 text-xs font-bold uppercase tracking-wider text-ink ${combo ? "" : "invisible"}`}>
+                      Estude os dois e economize
+                    </p>
+                  )}
+                  <ContestCard c={c} />
+                </li>
+              );
+            })}
+          </ul>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
