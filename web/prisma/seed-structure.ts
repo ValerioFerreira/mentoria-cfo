@@ -6,7 +6,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "../src/generated/prisma/client";
-import type { SummaryStatus, Contest } from "../src/generated/prisma/enums";
+import { Contest, type SummaryStatus } from "../src/generated/prisma/enums";
 
 function findContentDir(): string {
   const candidates = [
@@ -392,13 +392,15 @@ export async function seedImportance() {
     score: number | null;
   }[] = Object.entries(doc.segments).flatMap(([segmentId, rec]) =>
     segIds.has(segmentId)
-      ? Object.entries(rec.contests).map(([contest, c]) => ({
-          segmentId,
-          contest: contest as Contest,
-          appears: c.appears,
-          expected: c.expected,
-          score: c.score,
-        }))
+      ? Object.entries(rec.contests)
+          .filter(([contest]) => contest in Contest)
+          .map(([contest, c]) => ({
+            segmentId,
+            contest: contest as Contest,
+            appears: c.appears,
+            expected: c.expected,
+            score: c.score,
+          }))
       : []
   );
   await db.segmentImportance.deleteMany({});
