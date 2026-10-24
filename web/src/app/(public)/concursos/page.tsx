@@ -72,18 +72,20 @@ function ContestCard({ c }: { c: ContestInfo }) {
       href={`/lista-de-espera/${c.slug}`}
       className={`group relative flex min-h-[5.5rem] items-end overflow-hidden rounded-xl border ${tone.border} bg-ink text-on-ink shadow-card outline-none transition duration-300 hover:-translate-y-0.5 hover:border-primary/60 hover:shadow-lift focus-visible:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-primary`}
     >
-      <Image
-        src={c.image}
-        alt=""
-        fill
-        sizes="(min-width: 1024px) 30vw, 100vw"
-        className="object-cover opacity-60 transition duration-500 ease-out group-hover:scale-105 group-hover:opacity-100"
-        style={{ objectPosition: c.imagePosition }}
-      />
-      <div className={`absolute inset-0 bg-gradient-to-r ${tone.fade} to-ink/30`} aria-hidden />
+      <div className={`absolute inset-0 bg-gradient-to-r ${tone.fade} to-ink`} aria-hidden />
+      {/* brasão grande, cortado pela borda do card; mesma posição em todos os cards do órgão */}
+      <div className="pointer-events-none absolute inset-y-0 right-10 w-24 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_30%,black_70%,transparent)]" aria-hidden>
+        <Image
+          src={c.image}
+          alt=""
+          fill
+          sizes="96px"
+          className="scale-[1.7] object-cover object-[center_30%] opacity-90 transition duration-500 group-hover:scale-[1.8] group-hover:opacity-100"
+        />
+      </div>
       <div className="absolute inset-y-0 left-0 w-1 origin-top scale-y-0 bg-primary transition duration-500 group-hover:scale-y-100" aria-hidden />
-      <div className="relative flex w-full items-center justify-between gap-3 px-3 py-2.5">
-        <div className="min-w-0">
+      <div className="relative flex w-full items-center justify-between gap-3 py-2.5 pl-3 pr-12">
+        <div className="min-w-0 pr-6">
           <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-semibold uppercase tracking-wider text-on-ink-muted">
             {c.category || "Cargo"}
             {combo && <span className="whitespace-nowrap rounded-full bg-gold px-2 py-0.5 text-[10px] font-bold text-ink">Estude os dois e economize</span>}
@@ -91,8 +93,7 @@ function ContestCard({ c }: { c: ContestInfo }) {
           </p>
           <h3 className="font-display text-lg font-bold uppercase leading-tight sm:text-xl">{c.role}</h3>
         </div>
-        <div className="flex shrink-0 items-center gap-2">
-          <Image src={c.image} alt="" width={36} height={42} className="h-10 w-auto object-contain drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]" />
+        <div className="flex shrink-0 items-center">
           <ArrowRight className="h-5 w-5 shrink-0 text-gold transition duration-300 group-hover:translate-x-1.5" aria-hidden />
         </div>
       </div>
