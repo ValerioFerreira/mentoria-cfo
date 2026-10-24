@@ -7,6 +7,7 @@ subtitle: Organização Básica do Corpo de Bombeiros Militar do Estado de Perna
 weight: 0.2
 order: 2
 resolves: leg-lei-15187
+excludeContests: CBMPE_CFOA
 ---
 
 ## Como atacar esta lei

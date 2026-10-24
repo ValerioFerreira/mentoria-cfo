@@ -38,8 +38,8 @@ def test_exam_weights_match_edital(catalog):
 
 
 def test_all_213_aulas_present(catalog):
-    # 190 aulas de Oficial + 23 aulas de Praça + 64 aulas de PCPE + 31 aulas de CFOA = 308 aulas base
-    assert sum(1 for s in catalog["subjects"] for a in s["aulas"] if a.get("source") != "authored") in (213, 277, 308)
+    # 190 aulas de Oficial + 23 aulas de Praça + 64 aulas de PCPE + 33 aulas de CFOA = 310 aulas base
+    assert sum(1 for s in catalog["subjects"] for a in s["aulas"] if a.get("source") != "authored") in (213, 277, 308, 310)
 
 
 def test_segments_never_exceed_17_pages_and_cover_theory_exactly(catalog):

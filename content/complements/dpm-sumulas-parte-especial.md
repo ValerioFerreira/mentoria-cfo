@@ -8,6 +8,7 @@ weight: 0.15
 order: 1
 norma: true
 resolves: dpm-sumulas-especial
+excludeContests: CBMPE_CFOA
 ---
 
 ## Como usar este complemento

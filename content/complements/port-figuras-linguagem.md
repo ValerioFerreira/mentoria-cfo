@@ -7,7 +7,7 @@ subtitle: Figuras de palavras, de pensamento, de construção e de som — com m
 weight: 0.04
 order: 1
 resolves: port-figuras-formacao
-excludeContests: PCPE_AGENTE
+excludeContests: PCPE_AGENTE, CBMPE_CFOA
 ---
 
 ## Para que servem as figuras de linguagem
