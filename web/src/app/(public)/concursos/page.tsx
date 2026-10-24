@@ -57,33 +57,44 @@ export default async function ContestsPage() {
   );
 }
 
+// tom discreto por órgão: vermelho (CBMPE), preto (PMPE) e azul (PCPE)
+const ORG_TONE: Record<ContestInfo["org"], { fade: string; border: string }> = {
+  CBMPE: { fade: "from-red-950 via-red-950/70", border: "border-red-500/30" },
+  PMPE: { fade: "from-black via-black/75", border: "border-white/20" },
+  PCPE: { fade: "from-blue-950 via-blue-950/70", border: "border-blue-400/30" },
+};
+
 function ContestCard({ c }: { c: ContestInfo }) {
   const combo = c.category === "Combo";
+  const tone = ORG_TONE[c.org];
   return (
     <Link
       href={`/lista-de-espera/${c.slug}`}
-      className="group relative flex min-h-[5.5rem] items-end overflow-hidden rounded-xl border border-white/10 bg-ink text-on-ink shadow-card outline-none transition duration-300 hover:-translate-y-0.5 hover:border-primary/60 hover:shadow-lift focus-visible:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-primary"
+      className={`group relative flex min-h-[5.5rem] items-end overflow-hidden rounded-xl border ${tone.border} bg-ink text-on-ink shadow-card outline-none transition duration-300 hover:-translate-y-0.5 hover:border-primary/60 hover:shadow-lift focus-visible:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-primary`}
     >
       <Image
         src={c.image}
         alt=""
         fill
         sizes="(min-width: 1024px) 30vw, 100vw"
-        className="object-cover opacity-80 transition duration-500 ease-out group-hover:scale-105 group-hover:opacity-100"
+        className="object-cover opacity-60 transition duration-500 ease-out group-hover:scale-105 group-hover:opacity-100"
         style={{ objectPosition: c.imagePosition }}
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/75 to-ink/20" aria-hidden />
+      <div className={`absolute inset-0 bg-gradient-to-r ${tone.fade} to-ink/30`} aria-hidden />
       <div className="absolute inset-y-0 left-0 w-1 origin-top scale-y-0 bg-primary transition duration-500 group-hover:scale-y-100" aria-hidden />
-      <div className="relative flex w-full items-center justify-between gap-3 px-4 py-3">
+      <div className="relative flex w-full items-center justify-between gap-3 px-3 py-2.5">
         <div className="min-w-0">
           <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-semibold uppercase tracking-wider text-on-ink-muted">
             {c.category || "Cargo"}
-            {combo && <span className="rounded-full bg-gold px-2 py-0.5 text-[10px] font-bold text-ink">Estude os dois e economize</span>}
+            {combo && <span className="whitespace-nowrap rounded-full bg-gold px-2 py-0.5 text-[10px] font-bold text-ink">Estude os dois e economize</span>}
             {!c.available && <span className="rounded-full bg-white/15 px-2 py-0.5 text-on-ink">Em breve</span>}
           </p>
-          <h3 className="font-display text-xl font-bold uppercase leading-tight sm:text-2xl">{c.role}</h3>
+          <h3 className="font-display text-lg font-bold uppercase leading-tight sm:text-xl">{c.role}</h3>
         </div>
-        <ArrowRight className="h-5 w-5 shrink-0 text-gold transition duration-300 group-hover:translate-x-1.5" aria-hidden />
+        <div className="flex shrink-0 items-center gap-2">
+          <Image src={c.image} alt="" width={36} height={42} className="h-10 w-auto object-contain drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]" />
+          <ArrowRight className="h-5 w-5 shrink-0 text-gold transition duration-300 group-hover:translate-x-1.5" aria-hidden />
+        </div>
       </div>
     </Link>
   );
