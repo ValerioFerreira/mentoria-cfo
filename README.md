@@ -1,6 +1,6 @@
 # MentorIA · Missão Oficial CBMPE
 
-Site que monta o plano de estudos para o concurso de 2º Tenente do CBMPE (banca Instituto AOCP, prova em 28/02/2027) e aponta *onde* estudar no material (aula, página, tópico). Atende também PMPE (Oficial e Soldado) e CBMPE Soldado sobre o mesmo catálogo.
+Site que monta o plano de estudos para o concurso de 2º Tenente do CBMPE (banca Instituto AOCP, prova em 28/02/2027) e aponta *onde* estudar no material (aula, página, tópico). Atende também CBMPE Soldado, CBMPE 2º Tenente CFOA, PMPE (Oficial e Soldado) e PCPE Agente de Polícia sobre o mesmo catálogo.
 
 ## Documentação
 

@@ -622,3 +622,63 @@ Os sete arquivos `content/edital/pcpe/*.json` entregues antes tinham `where` inv
 - **Resultado do motor** (`web/scripts/combo-demo.ts`, nível 0, sem Turbo; cobertura 2º Tenente · Soldado): CBMPE 15 h — prioridade Oficial 40% · 50%, prioridade Soldado 35% · 56%; PMPE 15 h — 53% · 63% contra 49% · 67%. Todos os planos testados (15/25/40 h, com e sem Turbo) passam em `verifyPlan`.
 - **Verificado:** snapshot dos 60 planos individuais idêntico antes e depois (`scripts/plan-snapshot.ts`); migrações aplicadas no banco de desenvolvimento; assistente, `/plano` e Desempenho conferidos no navegador com um usuário local.
 - **Pendências.** Revisar o texto de venda dos combos nas páginas públicas (hoje o cartão diz "2º Tenente + Soldado · Combo"); aplicar as migrações e o seed na produção; decidir quando o combo PMPE deixa de ser "o Oficial mais História PE" (depende de estruturar o edital da PMPE).
+
+## 13. Inclusão do CFOA (24/10/2026)
+
+- **O que é:** Concurso interno para 2º Tenente CFOA do CBMPE (Quadro de Oficiais da Administração), 100 questões objetivas (50 Bloco I - Direito, 50 Bloco II - Conhecimentos Gerais), 9 disciplinas, sem língua estrangeira nem matérias de ciências da natureza/exatas além de Raciocínio Lógico.
+- **Decisões do dono:**
+  - Base no edital de 2023 (código próprio, edital próprio via `content/edital/cfoa/` com prefixo `f`).
+  - Data da prova: ainda não divulgada (prevista para 2024/2025; no sistema, campo de data fica vazio até sair o edital; no onboarding, o assistente sugere hoje em Recife + 365 dias com InfoTip explicativo).
+  - Preço: categoria `OFICIAL` (R$ 120 / R$ 90 lançamento / R$ 72 parceiro).
+  - Banca da prova: qualquer banca com prioridade AOCP. Ordem do caderno: AOCP primeiro, seguido pelo reforço de outras bancas e inéditas MentorIA (`REFORCO_CONTESTS`).
+  - Treino livre: aluno do CFOA vê as inéditas normalmente (`hideInedita("CBMPE_CFOA") = {}`).
+  - Inéditas provisórias: redigir inéditas de múltipla escolha (padrão AOCP, 5 alternativas) para garantir cadernos completos em todas as 365 atividades (meta de >= 7 por trecho e >= 25 na soma dos 4 primeiros trechos de cada aula).
+- **Correções do commit anterior (6c13e84 revertido):**
+  - Isolamento de aulas exclusivas (`onlyContests: CBMPE_CFOA`): `direito-administrativo` (a00, a01, a03, a05, a07, a08, c01) e `lingua-portuguesa` (a13) para não poluir os outros concursos.
+  - Correção na soma de fatias exclusivas em `build_catalog.py` e `build_complements.py` para calcular fatias por concurso, garantindo 0 divergência nos 5 concursos existentes.
+- **Aulas e trechos por disciplina (365 trechos no total):**
+  - `administracao` (NOVA): 8 aulas, 24 trechos.
+  - `direito-administrativo`: 27 aulas, 119 trechos (inclui 7 aulas exclusivas: a00, a01, a03, a05, a07, a08, c01).
+  - `direito-constitucional`: 15 aulas, 94 trechos.
+  - `direito-penal-militar`: 15 aulas, 41 trechos (inclui novas: a20, a21, c02).
+  - `direito-processual-penal-militar` (NOVA): 9 aulas, 15 trechos.
+  - `direitos-humanos` (NOVA): 7 aulas, 13 trechos.
+  - `legislacoes-pe`: 13 aulas, 13 trechos (inclui novos complementos c06 a c09).
+  - `lingua-portuguesa`: 14 aulas, 62 trechos (inclui a13 Manual de Redação).
+  - `raciocinio-logico`: 8 aulas, 70 trechos.
+- **Complementos novos criados:**
+  - `direito-processual-penal-militar/c01`: Organização Judiciária Militar Estadual em Pernambuco (LC 284/2014 e 353/2017).
+  - `direito-penal-militar/c02`: Crimes em Licitações e Contratos Administrativos (arts. 337-E a 337-P do Código Penal).
+  - `direitos-humanos/c01`: Convenção Interamericana contra o Racismo e toda Forma de Discriminação (Decreto 10.932/2022).
+  - `direitos-humanos/c02`: Convenção sobre os Direitos das Pessoas com Deficiência (Decreto 6.949/2009).
+  - `legislacoes-pe/c06`: Código de Ética Profissional dos Militares de Pernambuco (Decreto Estadual nº 22.114/2000).
+  - `legislacoes-pe/c07`: Lei de Promoção dos Militares de Pernambuco (LC Estadual nº 470/2021).
+  - `legislacoes-pe/c08`: Lei de Acesso à Informação (Lei Federal nº 12.527/2011).
+  - `legislacoes-pe/c09`: Vedação ao Assédio Moral e Sexual no Serviço Público de Pernambuco (Lei Estadual nº 13.314/2007).
+  - `administracao/c01`: Gestão Estratégica e BSC na Segurança Pública (PDD, BSC, OKR).
+- **Bizus e Resumos Analíticos:**
+  - 100% de cobertura nos 365 trechos do CFOA.
+  - Validação `validate_content.py`: 0 erros.
+  - Validação `validate_summaries.py`: 0 erros (58.302 palavras de resumo analítico adicionadas).
+- **Questões Inéditas de Múltipla Escolha (1.333 novas questões):**
+  - Mapeadas por trecho com comentários didáticos e 5 alternativas balanceadas (~20% por letra A-E).
+  - `administracao`: 233 questões em 8 aulas.
+  - `direito-processual-penal-militar`: 228 questões em 9 aulas.
+  - `direitos-humanos`: 175 questões em 7 aulas.
+  - `direito-constitucional`: 25 questões em 1 aula (a18).
+  - `direito-administrativo`: 192 questões em 7 aulas.
+  - `direito-penal-militar`: 158 questões em 5 aulas.
+  - `legislacoes-pe`: 184 questões em 9 aulas.
+  - `lingua-portuguesa`: 91 questões em 7 aulas.
+  - `raciocinio-logico`: 47 questões em 5 aulas.
+  - `ineditas_mc_nativas.py --check`: 6.509 questões totais, 0 erros.
+  - `lacunas_cfoa.py --check`: 0 trechos < 7, 0 aulas < 25, 0 questões faltantes.
+  - Gravadas no banco de dados local com lote `mentoria-inedita-2026-10-24-cfoa`. Relatório em `content/questoes/ineditas/REVISAO-2026-10-24-cfoa.md`.
+- **Verificações e Testes:**
+  - `compare-plans-main.ts`: 0 divergências nos 96 cenários de teste entre main e branch.
+  - `plan-snapshot.ts`: 0 diferenças para os 5 concursos existentes contra `scratch/plan-snapshot-main.json`.
+  - `compare_importance_main.py`: 0 discrepâncias nos trechos dos concursos existentes.
+  - 12 planos de teste do CFOA (10/20/40h × iniciante/avançado × Turbo off/on): 100% LIBERAR em `verifyPlan`, sem erros, sem atividades de disciplinas proibidas e sem aulas excluídas.
+  - `buildSpareReview` aprimorado com teto semanal para evitar `SEMANA_EXCESSO` em horizontes longos (52 semanas) mantendo rigorosamente `sum <= weeklyMinutes * 1.05`.
+  - `vitest`: todos os testes unitários passando.
+

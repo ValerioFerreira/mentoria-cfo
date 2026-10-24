@@ -6,6 +6,7 @@ describe("concursos", () => {
     expect(CONTESTS.filter((c) => c.available).map((c) => c.key)).toEqual([
       "CBMPE_SOLDADO",
       "CBMPE_OFICIAL",
+      "CBMPE_CFOA",
       "PMPE_SOLDADO",
       "PMPE_OFICIAL",
       "CBMPE_COMBO",
