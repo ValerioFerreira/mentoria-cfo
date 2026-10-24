@@ -50,7 +50,7 @@ interface SegJson {
 }
 interface EditalFile {
   subject: string;
-  items: { id: string; item: string; where?: { aula: string }[] }[];
+  items: { id: string; item?: string; title?: string; where?: { aula: string }[] }[];
 }
 interface BizuItemJson { statement: string; isTrue: boolean; explanation: string }
 interface QuestionJson {
@@ -150,7 +150,7 @@ export async function seedStructure() {
     for (const [i, it] of doc.items.entries()) {
       const aulaIds = [...new Set((it.where ?? []).map((w) => w.aula).filter((id) => id.startsWith(`${s.id}/`) && planavel.has(id)))];
       if (aulaIds.length) {
-        allEditalRows.push({ id: `${s.id}/${idPrefix}${it.id}`, subjectId: s.id, code: it.id, title: it.item, aulaIds, sortOrder: i, onlyContests, excludeContests });
+        allEditalRows.push({ id: `${s.id}/${idPrefix}${it.id}`, subjectId: s.id, code: it.id, title: (it.item ?? it.title ?? "").trim(), aulaIds, sortOrder: i, onlyContests, excludeContests });
       }
     }
   };
