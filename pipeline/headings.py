@@ -30,6 +30,9 @@ STOP = re.compile(
 )
 
 
+_BIDI = re.compile(r"[\u200e\u200f\u202a-\u202e\ufeff]")
+
+
 def extract_headings(pdf_path: str, out_path: str) -> int:
     doc = pymupdf.open(pdf_path)
     sizes: collections.Counter = collections.Counter()
@@ -39,11 +42,11 @@ def extract_headings(pdf_path: str, out_path: str) -> int:
         for b in page.get_text("dict")["blocks"]:
             for l in b.get("lines", []):
                 spans = l["spans"]
-                txt = "".join(s["text"] for s in spans).strip()
+                txt = _BIDI.sub("", "".join(s["text"] for s in spans)).strip()
                 if not txt:
                     continue
                 for s in spans:
-                    sizes[round(s["size"], 1)] += len(s["text"])
+                    sizes[round(s["size"], 1)] += len(_BIDI.sub("", s["text"]))
                 mx = max(s["size"] for s in spans)
                 mn = min(s["size"] for s in spans)
                 if mx - mn > 1.0:  # versaletes/misto: ignora
