@@ -123,6 +123,7 @@ def main() -> None:
     ap.add_argument("--check", action="store_true")
     ap.add_argument("--json")
     ap.add_argument("--resumo", action="store_true")
+    ap.add_argument("--batch", default=BATCH_MCN)
     ap.add_argument("files", nargs="*")
     a = ap.parse_args()
     files = [Path(f) for f in a.files] or sorted(MC_DIR.glob("*.txt"))
@@ -140,10 +141,11 @@ def main() -> None:
             print(f"{s}: {sum(c.values())} questões · " + " ".join(f"{l} {c[l]}" for l in LETTERS))
         print(f"TOTAL {len(qs)} · erros {len(errs)}")
     if a.json and not errs:
+        batch_val = a.batch
         rows = [{
             "id": qid(q), "subjectId": q["subject"], "segmentId": q["segment"], "aulaId": "/".join(q["segment"].split("/")[:2]),
             "editalItemId": item_for_segment(q["subject"], q["segment"], q.get("item")), "kind": "MULTIPLA_ESCOLHA",
-            "statement": q["stem"], "banca": BANCA, "batch": BATCH_MCN, "explanation": q["explanation"],
+            "statement": q["stem"], "banca": BANCA, "batch": batch_val, "explanation": q["explanation"],
             "options": [{"label": l, "text": t, "isCorrect": l == q["answer"]} for l, t in q["options"]],
         } for q in qs]
         Path(a.json).write_text(json.dumps(rows, ensure_ascii=False, indent=1), encoding="utf-8")
