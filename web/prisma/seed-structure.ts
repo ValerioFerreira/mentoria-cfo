@@ -140,8 +140,11 @@ export async function seedStructure() {
   const allEditalRows: { id: string; subjectId: string; code: string; title: string; aulaIds: string[]; sortOrder: number; onlyContests: string[]; excludeContests: string[] }[] = [];
 
   // Disciplinas compartilhadas com um concurso de edital próprio (content/edital/<concurso>/<disciplina>.json): os
-  // assuntos padrão deixam de valer para ele e os do edital próprio (`<disciplina>/p<código>`) valem só para ele.
-  const OWN_EDITAL_DIRS: { dir: string; contest: string }[] = [{ dir: "pcpe", contest: "PCPE_AGENTE" }];
+  // assuntos padrão deixam de valer para ele e os do edital próprio (`<disciplina>/p<código>`, `<disciplina>/f<código>`) valem só para ele.
+  const OWN_EDITAL_DIRS: { dir: string; contest: string; prefix: string }[] = [
+    { dir: "pcpe", contest: "PCPE_AGENTE", prefix: "p" },
+    { dir: "cfoa", contest: "CBMPE_CFOA", prefix: "f" },
+  ];
   const ownEditalPath = (dir: string, subjectId: string) => path.join(CONTENT, "edital", dir, `${subjectId}.json`);
   const pushItems = (s: { id: string }, doc: EditalFile, idPrefix: string, onlyContests: string[], excludeContests: string[]) => {
     for (const [i, it] of doc.items.entries()) {
@@ -155,7 +158,7 @@ export async function seedStructure() {
   for (const s of catalog.subjects) {
     const own = OWN_EDITAL_DIRS.filter((o) => fs.existsSync(ownEditalPath(o.dir, s.id)));
     pushItems(s, read<EditalFile>("edital", `${s.id}.json`), "e", [], own.map((o) => o.contest));
-    for (const o of own) pushItems(s, read<EditalFile>("edital", o.dir, `${s.id}.json`), "p", [o.contest], []);
+    for (const o of own) pushItems(s, read<EditalFile>("edital", o.dir, `${s.id}.json`), o.prefix, [o.contest], []);
   }
 
   for (const c of chunk(allEditalRows, 500)) {
@@ -172,7 +175,7 @@ export async function seedStructure() {
   }
 
   // createMany também não atualiza título, ordem e aulas de assunto já semeado (o mapa do edital muda): sincroniza, e
-  // aposenta os assuntos próprios de um concurso (`/p`) que saíram do mapa (apaga se ninguém usa; senão, inativa)
+  // aposenta os assuntos próprios de um concurso (`/p`, `/f`) que saíram do mapa (apaga se ninguém usa; senão, inativa)
   const existingItems = await db.editalItem.findMany({ select: { id: true, code: true, title: true, sortOrder: true, aulaIds: true } });
   const existingById = new Map(existingItems.map((e) => [e.id, e]));
   for (const r of allEditalRows) {
@@ -181,9 +184,10 @@ export async function seedStructure() {
       await db.editalItem.update({ where: { id: r.id }, data: { title: r.title, code: r.code, sortOrder: r.sortOrder, aulaIds: r.aulaIds } });
     }
   }
+  const ownPrefixRe = new RegExp(`/(?:${OWN_EDITAL_DIRS.map((o) => o.prefix).join("|")})[^/]*$`);
   const liveItemIds = new Set(allEditalRows.map((r) => r.id));
   for (const e of existingItems) {
-    if (!/\/p[^/]*$/.test(e.id) || liveItemIds.has(e.id)) continue;
+    if (!ownPrefixRe.test(e.id) || liveItemIds.has(e.id)) continue;
     const used = (await db.question.count({ where: { editalItemId: e.id } })) + (await db.activity.count({ where: { editalItemId: e.id } }));
     if (used === 0) await db.editalItem.delete({ where: { id: e.id } });
     else await db.editalItem.update({ where: { id: e.id }, data: { onlyContests: ["__INATIVO__"] } });

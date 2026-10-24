@@ -21,6 +21,7 @@ export interface ContestInfo {
 export const CONTESTS: ContestInfo[] = [
   { slug: "cbmpe-soldado", key: "CBMPE_SOLDADO", org: "CBMPE", role: "Soldado", category: "Praça", image: "/images/CBMPE.webp", imagePosition: "center 30%", available: true },
   { slug: "cbmpe-oficial", key: "CBMPE_OFICIAL", org: "CBMPE", role: "2º Tenente", category: "Oficial", image: "/images/CBMPE.webp", imagePosition: "center 70%", available: true },
+  { slug: "cbmpe-cfoa", key: "CBMPE_CFOA", org: "CBMPE", role: "2º Tenente CFOA", category: "Quadro de Administração", image: "/images/CBMPE.webp", imagePosition: "center 70%", available: false },
   { slug: "pmpe-soldado", key: "PMPE_SOLDADO", org: "PMPE", role: "Soldado", category: "Praça", image: "/images/PMPE.webp", imagePosition: "center 30%", available: true },
   { slug: "pmpe-oficial", key: "PMPE_OFICIAL", org: "PMPE", role: "2º Tenente", category: "Oficial", image: "/images/PMPE.webp", imagePosition: "center 70%", available: true },
   { slug: "cbmpe-combo", key: "CBMPE_COMBO", org: "CBMPE", role: "2º Tenente + Soldado", category: "Combo", image: "/images/CBMPE.webp", imagePosition: "center 50%", available: true },
@@ -30,6 +31,7 @@ export const CONTESTS: ContestInfo[] = [
 
 export const CONTEST_SUBTITLES: Record<Contest, string> = {
   CBMPE_OFICIAL: "OFICIAL - CBMPE",
+  CBMPE_CFOA: "2º TENENTE CFOA - CBMPE",
   CBMPE_SOLDADO: "PRAÇA - CBMPE",
   PMPE_OFICIAL: "OFICIAL - PMPE",
   PMPE_SOLDADO: "PRAÇA - PMPE",
@@ -82,6 +84,17 @@ const BASE_CONTEST_SUBJECTS = {
     "direito-administrativo",
     "direito-penal-militar",
     "legislacoes-pe",
+  ],
+  CBMPE_CFOA: [
+    "direito-penal-militar",
+    "direito-constitucional",
+    "direito-administrativo",
+    "direitos-humanos",
+    "direito-processual-penal-militar",
+    "administracao",
+    "raciocinio-logico",
+    "legislacoes-pe",
+    "lingua-portuguesa",
   ],
   CBMPE_SOLDADO: [
     "lingua-portuguesa",

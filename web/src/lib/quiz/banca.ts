@@ -20,8 +20,10 @@ export function contestBancas(contest?: Contest | null): string[] {
 }
 
 /** Filtro Prisma que esconde as questões inéditas dos alunos de outros concursos (treino livre e cadernos montados). */
-export function hideInedita(contest?: Contest | null): { NOT?: { banca: string } } {
-  return contest === "PCPE_AGENTE" ? {} : { NOT: { banca: INEDITA_BANCA } };
+export function hideInedita(contest?: Contest | null): Prisma.QuestionWhereInput {
+  if (contest === "PCPE_AGENTE") return {};
+  if (contest === "CBMPE_CFOA") return { NOT: { banca: INEDITA_BANCA, kind: "CERTO_ERRADO" } };
+  return { NOT: { banca: INEDITA_BANCA } };
 }
 
 /**
@@ -30,7 +32,7 @@ export function hideInedita(contest?: Contest | null): { NOT?: { banca: string }
  * depois das questões da própria banca. Decisão do dono (2026-10-21) para o CBMPE Oficial; para estender a outro concurso,
  * acrescente-o aqui. Planos antigos sem concurso (null) valem como CBMPE Oficial.
  */
-export const REFORCO_CONTESTS: Contest[] = ["CBMPE_OFICIAL"];
+export const REFORCO_CONTESTS: Contest[] = ["CBMPE_OFICIAL", "CBMPE_CFOA"];
 export function usesReinforcement(contest?: Contest | null): boolean {
   // no combo, vale se algum dos concursos-membro usa o reforço (o combo CBMPE usa; o PMPE não)
   return comboMembers(contest ?? "CBMPE_OFICIAL").some((m) => REFORCO_CONTESTS.includes(m));
@@ -52,5 +54,7 @@ export function activityQuizWhere(segmentIds: string[], statuses: QuestionStatus
     segmentId: { in: segmentIds },
     status: { in: statuses },
     banca: { in: contestBancas(contest) },
+    ...(contest === "CBMPE_CFOA" ? { kind: "MULTIPLA_ESCOLHA" as const } : {}),
   } satisfies Prisma.QuestionWhereInput;
 }
+

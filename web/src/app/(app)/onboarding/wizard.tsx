@@ -8,7 +8,7 @@ import {
   DEFAULT_ANSWER, EXPERIENCE_OPTIONS, HIT_OPTIONS, LEVEL_LABEL, SELF_OPTIONS, levelFromAnswer,
   type DiagnosticAnswer,
 } from "@/lib/diagnostic";
-import { longDate } from "@/lib/plan-time";
+import { addDaysISO, longDate } from "@/lib/plan-time";
 import type { WizardInitial } from "@/lib/plan/wizard-defaults";
 import { createPlanAction, previewPlan } from "./actions";
 
@@ -52,7 +52,6 @@ const BLOCK_NAME = { I: "Bloco I", II: "Bloco II", III: "Bloco III" } as const;
 const COMBO_GROUPS = ["both", "oficial", "praca"] as const;
 const COMBO_GROUP_BLOCK = { both: "I", oficial: "II", praca: "III" } as const;
 const STEPS = ["Disciplinas", "Anamnese", "Tempo", "Revisão"] as const;
-const EXAM_DEFAULT = "2027-02-28";
 const KNOWN_OPTIONS = [
   { value: 0, label: "Nunca vi" },
   { value: 1, label: "Já estudei" },
@@ -69,7 +68,7 @@ function perDay(h: number) {
 type Preview = Awaited<ReturnType<typeof previewPlan>>;
 type Marks = Record<string, 1 | 2>;
 
-export function Wizard({ subjects, todayIso, initial, defaultExamDate, blockNames, combo }: { subjects: WizardSubject[]; todayIso: string; initial?: WizardInitial | null; defaultExamDate?: string | null; blockNames?: Partial<Record<"I" | "II" | "III", string>>; combo?: WizardCombo }) {
+export function Wizard({ subjects, todayIso, initial, defaultExamDate, examDateUndisclosed, blockNames, combo }: { subjects: WizardSubject[]; todayIso: string; initial?: WizardInitial | null; defaultExamDate?: string | null; examDateUndisclosed?: boolean; blockNames?: Partial<Record<"I" | "II" | "III", string>>; combo?: WizardCombo }) {
   const [step, setStep] = useState(0);
   const [priority, setPriority] = useState<string>(() => (combo?.members.some((m) => m.contest === initial?.priority) ? initial!.priority! : combo?.defaultPriority ?? ""));
   const comboLabels = useMemo(() => Object.fromEntries((combo?.members ?? []).map((m) => [m.contest, m.label])), [combo]);
@@ -78,7 +77,7 @@ export function Wizard({ subjects, todayIso, initial, defaultExamDate, blockName
   const [selected, setSelected] = useState<Set<string>>(() => new Set(initial?.selected ?? subjects.filter((s) => s.id !== "lingua-inglesa").map((s) => s.id)));
   const [unselectedTopics, setUnselectedTopics] = useState<Set<string>>(() => new Set(initial?.unselectedTopics));
   const [hours, setHours] = useState(initial?.hours ?? 38);
-  const [examDate, setExamDate] = useState(initial?.examDate ?? defaultExamDate ?? EXAM_DEFAULT);
+  const [examDate, setExamDate] = useState(() => initial?.examDate ?? defaultExamDate ?? addDaysISO(todayIso, 365));
   // início dos estudos: "now" = hoje (calculado no servidor, fuso de Recife) ou uma data da agenda
   const [startMode, setStartMode] = useState<"now" | "date">(initial?.startMode ?? "now");
   const [startPick, setStartPick] = useState(initial?.startPick ?? todayIso);
@@ -438,6 +437,11 @@ export function Wizard({ subjects, todayIso, initial, defaultExamDate, blockName
                 <label className="flex items-center gap-2 font-semibold">
                   Data da prova
                   <input type="date" value={examDate} onChange={(e) => setExamDate(e.target.value)} className="rounded-lg border border-border bg-surface px-2.5 py-1.5 text-sm font-normal" />
+                  {examDateUndisclosed && (
+                    <InfoTip align="start">
+                      A data da prova ainda não foi divulgada. Informe a data prevista; você pode alterá-la depois refazendo o plano.
+                    </InfoTip>
+                  )}
                 </label>
               </div>
               {combo && <p className="text-sm"><span className="text-muted">Prioridade:</span> <strong>{comboLabels[priority]}</strong></p>}

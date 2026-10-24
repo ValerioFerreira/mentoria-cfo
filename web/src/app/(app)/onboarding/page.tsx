@@ -4,13 +4,13 @@ import { requireUser } from "@/lib/auth/dal";
 import { loadPlannerData } from "@/lib/data/planner-data";
 import { db } from "@/lib/db";
 import { getPendingPlan } from "@/lib/data/study";
-import { todayISO } from "@/lib/plan-time";
+import { addDaysISO, todayISO } from "@/lib/plan-time";
 import { getUserContest } from "@/lib/user-contest";
 import { wizardDefaultsFromPlan } from "@/lib/plan/wizard-defaults";
 import { CONTEST_SUBJECTS, editalItemApplies } from "@/lib/contests";
 import { comboMembers, defaultPriority, isCombo } from "@/lib/combos";
 import { contestExamQuestions } from "@/lib/data/contest-data";
-import { EXAM_CONFIGS, type SupportedSimuladoContest } from "@/lib/simulado-rules";
+import { EXAM_CONFIGS, usesOwnExamBlocks, type SupportedSimuladoContest } from "@/lib/simulado-rules";
 import { Wizard, type WizardCombo, type WizardSubject } from "./wizard";
 
 const MEMBER_LABEL = (c: string) => (c.endsWith("_OFICIAL") ? "2º Tenente" : "Soldado");
@@ -34,10 +34,11 @@ export default async function OnboardingPage() {
   const weights = contestExamQuestions(contest);
   // combo: questões de cada disciplina na prova de cada concurso-membro
   const memberWeights = isCombo(contest) ? comboMembers(contest).map((m) => ({ contest: m, label: MEMBER_LABEL(m), q: contestExamQuestions(m) })) : [];
-  // blocos da prova do concurso (no PCPE: P1 Noções de Direito e P2 Conhecimentos Específicos) e data da prova cadastrada
+  // blocos da prova do concurso (no PCPE e CFOA: blocos próprios de EXAM_CONFIGS) e data da prova cadastrada
+  const ownBlocks = usesOwnExamBlocks(contest);
   const exam = EXAM_CONFIGS[contest as SupportedSimuladoContest];
   const blockOf = new Map((exam?.subjects ?? []).map((x) => [x.subjectId, x.block]));
-  const blockNames = contest === "PCPE_AGENTE" && exam ? { I: exam.blocks.I.name, II: exam.blocks.II.name } : undefined;
+  const blockNames = ownBlocks && exam ? { I: exam.blocks.I.name, II: exam.blocks.II.name } : undefined;
   const examDate = (await db.contestSetting.findUnique({ where: { contest }, select: { examDate: true } }))?.examDate?.toISOString().slice(0, 10) ?? null;
   const subjects: WizardSubject[] = catalog.subjects
     .filter((s) => allowed.has(s.id))
@@ -46,7 +47,7 @@ export default async function OnboardingPage() {
       return {
         id: s.id,
         name: s.name,
-        block: (contest === "PCPE_AGENTE" ? blockOf.get(s.id) : undefined) ?? s.block,
+        block: (ownBlocks ? blockOf.get(s.id) : undefined) ?? s.block,
         examQuestions: weights[s.id] ?? s.examQuestions,
         ...(memberWeights.length
           ? {
@@ -83,5 +84,16 @@ export default async function OnboardingPage() {
   const combo: WizardCombo | undefined = isCombo(contest)
     ? { members: memberWeights.map((m) => ({ contest: m.contest, label: m.label })), defaultPriority: defaultPriority(contest) }
     : undefined;
-  return <Wizard subjects={subjects} todayIso={today} initial={initial} defaultExamDate={examDate} blockNames={blockNames} combo={combo} />;
+  return (
+    <Wizard
+      subjects={subjects}
+      todayIso={today}
+      initial={initial}
+      defaultExamDate={examDate ?? addDaysISO(today, 365)}
+      examDateUndisclosed={!examDate}
+      blockNames={blockNames}
+      combo={combo}
+    />
+  );
 }
+

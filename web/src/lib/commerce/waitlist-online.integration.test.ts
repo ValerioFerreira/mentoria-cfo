@@ -144,4 +144,39 @@ describe.skipIf(!hasTestDb)("lista de espera com Pix dinâmico do Mercado Pago",
     expect(JSON.stringify(r)).not.toContain("br.gov.bcb.pix");
     expect(fake.posts).toHaveLength(0);
   });
+
+  it("CFOA sem examDate: inscrição e pagamento funcionam e a pendência de data da prova vai para os pontos de atenção", async () => {
+    await db.contestSetting.upsert({
+      where: { contest: "CBMPE_CFOA" },
+      create: { contest: "CBMPE_CFOA", category: "OFICIAL", examDate: null },
+      update: { category: "OFICIAL", examDate: null },
+    });
+    const { joinWaitlist } = await import("@/app/(public)/lista-de-espera/[concurso]/actions");
+    const r = await joinWaitlist("cbmpe-cfoa", undefined, fd({ name: "Cliente CFOA", email: "cfoa@x.com", username: "cfoa1" }));
+    expect(r?.payment).toMatchObject({ amount: "90,00", plan: "Acesso ilimitado até a prova" });
+    const contract = await db.contract.findFirstOrThrow({ where: { customerEmail: "cfoa@x.com", contest: "CBMPE_CFOA" } });
+    expect(contract.examDateAtContract).toBeNull();
+    expect(contract.category).toBe("OFICIAL");
+
+    const { syncContractPayment, onlineOverview } = await import("./online");
+    const mpPay = [...fake.payments.values()][0]!;
+    await syncContractPayment({
+      id: Number(mpPay.id),
+      status: "approved",
+      status_detail: "accredited",
+      transaction_amount: 90,
+      currency_id: "BRL",
+      payment_method_id: "pix",
+      date_approved: new Date().toISOString(),
+      external_reference: contract.id,
+      metadata: { contract_id: contract.id },
+    });
+
+    const updated = await db.contract.findUniqueOrThrow({ where: { id: contract.id } });
+    expect(updated.status).toBe("PAID");
+    expect(updated.accessGrantedAt).toBeNull();
+    const overview = await onlineOverview();
+    expect(overview.alerts.some((a) => a.entityId === contract.id && a.action === "ACCESS_GRANT_PENDING")).toBe(true);
+  });
 });
+

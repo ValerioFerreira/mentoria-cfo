@@ -18,6 +18,7 @@ const db = new PrismaClient({ adapter: new PrismaPg({ connectionString: process.
 const LABEL: Record<string, string> = {
   CBMPE_SOLDADO: "CBMPE Soldado",
   CBMPE_OFICIAL: "CBMPE 2º Tenente",
+  CBMPE_CFOA: "CBMPE 2º Tenente CFOA",
   PMPE_SOLDADO: "PMPE Soldado",
   PMPE_OFICIAL: "PMPE 2º Tenente",
   PCPE_AGENTE: "PCPE Agente",

@@ -3,7 +3,7 @@ import { db } from "@/lib/db";
 import { subjectName } from "@/lib/ui-format";
 import { hideInedita } from "@/lib/quiz/banca";
 import { makeTopicResolver, type TopicItem } from "@/lib/quiz/topic-map";
-import { EXAM_CONFIGS, type SupportedSimuladoContest } from "@/lib/simulado-rules";
+import { EXAM_CONFIGS, usesOwnExamBlocks, type SupportedSimuladoContest } from "@/lib/simulado-rules";
 import type { Contest } from "@/generated/prisma/client";
 
 // "Assunto" = item do edital (Question.editalItemId). Questões sem item ficam em OTHER_TOPIC_ID.
@@ -156,7 +156,7 @@ export async function getQuestoesOverview(userId: string, subjectIds: string[], 
   }
 
   // Construir o retorno estruturado
-  const exam = contest === "PCPE_AGENTE" ? EXAM_CONFIGS[contest as SupportedSimuladoContest] : undefined;
+  const exam = usesOwnExamBlocks(contest) ? EXAM_CONFIGS[contest as SupportedSimuladoContest] : undefined;
   const examBlock = new Map((exam?.subjects ?? []).map((x) => [x.subjectId, x.block]));
   const subjectBlockMap = new Map(dbSubjects.map((s) => [s.id, (examBlock.get(s.id) ?? s.block) as "I" | "II" | "III"]));
   const subjectsList: SubjectOverview[] = [];

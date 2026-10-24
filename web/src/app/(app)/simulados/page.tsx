@@ -47,6 +47,7 @@ export default async function SimuladosPage() {
 
   const [
     cbmpeOficialReadiness,
+    cbmpeCfoaReadiness,
     cbmpeSoldadoReadiness,
     pmpeOficialReadiness,
     pmpeSoldadoReadiness,
@@ -54,6 +55,7 @@ export default async function SimuladosPage() {
     history,
   ] = await Promise.all([
     checkSimuladoReadiness("CBMPE_OFICIAL"),
+    checkSimuladoReadiness("CBMPE_CFOA"),
     checkSimuladoReadiness("CBMPE_SOLDADO"),
     checkSimuladoReadiness("PMPE_OFICIAL"),
     checkSimuladoReadiness("PMPE_SOLDADO"),
@@ -63,6 +65,7 @@ export default async function SimuladosPage() {
 
   const readinessMap: Record<SupportedSimuladoContest, SimuladoReadiness> = {
     CBMPE_OFICIAL: cbmpeOficialReadiness,
+    CBMPE_CFOA: cbmpeCfoaReadiness,
     CBMPE_SOLDADO: cbmpeSoldadoReadiness,
     PMPE_OFICIAL: pmpeOficialReadiness,
     PMPE_SOLDADO: pmpeSoldadoReadiness,

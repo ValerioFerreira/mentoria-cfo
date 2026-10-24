@@ -32,8 +32,10 @@ CONTENT = ROOT / "content"
 DIR = CONTENT / "questoes" / "ineditas"
 BATCH = "mentoria-inedita-2026-10-19"
 BANCA = "Inédita MentorIA"
-# disciplinas do PCPE com mapa próprio (`content/edital/pcpe/`): itens `<disciplina>/p<código>`; as demais usam `/e<código>`
+# disciplinas do PCPE com mapa próprio (`content/edital/pcpe/`): itens `<disciplina>/p<código>`;
+# disciplinas do CFOA com mapa próprio (`content/edital/cfoa/`): itens `<disciplina>/f<código>`; as demais usam `/e<código>`
 OWN_EDITAL = {"direito-administrativo", "direito-constitucional", "estatistica", "informatica", "lingua-portuguesa", "matematica", "raciocinio-logico"}
+OWN_EDITAL_CFOA = {"direito-penal-militar", "direito-constitucional", "direito-administrativo", "raciocinio-logico", "legislacoes-pe", "lingua-portuguesa"}
 MIN_WORDS, MAX_WORDS = 14, 140
 
 
@@ -42,31 +44,49 @@ def segments(subject: str) -> dict[str, dict]:
     return {g["id"]: g for g in doc["segments"]}
 
 
-def edital_items(subject: str) -> list[dict]:
-    path = CONTENT / "edital" / ("pcpe" if subject in OWN_EDITAL else "") / f"{subject}.json"
+def edital_items(subject: str, subdir: str = "") -> list[dict]:
+    if subdir:
+        path = CONTENT / "edital" / subdir / f"{subject}.json"
+    else:
+        path = CONTENT / "edital" / ("pcpe" if subject in OWN_EDITAL else "") / f"{subject}.json"
     return json.loads(path.read_text(encoding="utf-8"))["items"]
 
 
 def item_for_segment(subject: str, seg: str, code: str | None = None) -> str | None:
     """Assunto do edital (id no banco) mais específico que lista o trecho (ou o código informado em `item=`)."""
     if code:
-        return f"{subject}/{'p' if subject in OWN_EDITAL else 'e'}{code}"
+        if code[0] in ("e", "p", "f") and len(code) > 1 and code[1].isdigit():
+            return f"{subject}/{code}"
+        if subject in OWN_EDITAL:
+            return f"{subject}/p{code}"
+        if subject in OWN_EDITAL_CFOA and not any(it["id"] == code for it in json.loads((CONTENT / "edital" / f"{subject}.json").read_text(encoding="utf-8"))["items"]):
+            return f"{subject}/f{code}"
+        return f"{subject}/e{code}"
     best = None
     for it in edital_items(subject):
         ids = {s for w in it.get("where", []) for s in w.get("segments", [])}
         if seg in ids and (best is None or len(ids) < best[0]):
             best = (len(ids), it["id"])
-    if not best and subject in OWN_EDITAL:
+    if best:
+        return f"{subject}/{'p' if subject in OWN_EDITAL else 'e'}{best[1]}"
+    if subject in OWN_EDITAL:
         # trecho que o edital do PCPE não lista (só existe nos concursos CBMPE/PMPE): usa o mapa padrão da disciplina
         std = json.loads((CONTENT / "edital" / f"{subject}.json").read_text(encoding="utf-8"))["items"]
         for it in std:
             ids = {s for w in it.get("where", []) for s in w.get("segments", [])}
             if seg in ids and (best is None or len(ids) < best[0]):
                 best = (len(ids), it["id"])
-        return f"{subject}/e{best[1]}" if best else None
-    if not best:
-        return None
-    return f"{subject}/{'p' if subject in OWN_EDITAL else 'e'}{best[1]}"
+        if best:
+            return f"{subject}/e{best[1]}"
+    if subject in OWN_EDITAL_CFOA:
+        # trecho exclusivo do CFOA numa disciplina compartilhada: usa content/edital/cfoa/<disciplina>.json
+        for it in edital_items(subject, "cfoa"):
+            ids = {s for w in it.get("where", []) for s in w.get("segments", [])}
+            if seg in ids and (best is None or len(ids) < best[0]):
+                best = (len(ids), it["id"])
+        if best:
+            return f"{subject}/f{best[1]}"
+    return None
 
 
 def parse(path: Path) -> list[dict]:

@@ -27,10 +27,16 @@ export interface ContestExamConfig {
 
 export type SupportedSimuladoContest =
   | "CBMPE_OFICIAL"
+  | "CBMPE_CFOA"
   | "CBMPE_SOLDADO"
   | "PMPE_OFICIAL"
   | "PMPE_SOLDADO"
   | "PCPE_AGENTE";
+
+/** Concursos cujo edital agrupa as disciplinas em blocos próprios (não usam os blocos I/II/III globais de Subject.block). */
+export function usesOwnExamBlocks(contest?: Contest | string | null): boolean {
+  return contest === "PCPE_AGENTE" || contest === "CBMPE_CFOA";
+}
 
 export const EXAM_CONFIGS: Record<SupportedSimuladoContest, ContestExamConfig> = {
   CBMPE_OFICIAL: {
@@ -64,6 +70,34 @@ export const EXAM_CONFIGS: Record<SupportedSimuladoContest, ContestExamConfig> =
       { subjectId: "direito-administrativo", name: "Direito Administrativo", block: "III", count: 7 },
       { subjectId: "direito-penal-militar", name: "Direito Penal Militar", block: "III", count: 5 },
       { subjectId: "legislacoes-pe", name: "Legislações Pertinentes aos Militares de PE", block: "III", count: 10 },
+    ],
+  },
+  CBMPE_CFOA: {
+    contest: "CBMPE_CFOA",
+    title: "CBMPE — 2º Tenente CFOA (Oficiais da Administração)",
+    role: "Oficial CFOA",
+    durationMinutes: 300, // 5h00min
+    durationSeconds: 300 * 60,
+    totalQuestions: 100,
+    minPercentPerBlock: 0,
+    minPercentTotal: 50, // mínimo de 50 pontos no total
+    noZeroInAnyArea: true, // zerar qualquer disciplina reprova
+    blocks: {
+      I: { name: "Bloco I (Direito)", totalQuestions: 50, minQuestions: 0 },
+      II: { name: "Bloco II (Conhecimentos Gerais)", totalQuestions: 50, minQuestions: 0 },
+    },
+    subjects: [
+      // Bloco I – Direito (50 questões)
+      { subjectId: "direito-penal-militar", name: "Direito Penal Militar", block: "I", count: 10 },
+      { subjectId: "direito-constitucional", name: "Direito Constitucional", block: "I", count: 10 },
+      { subjectId: "direito-administrativo", name: "Direito Administrativo", block: "I", count: 15 },
+      { subjectId: "direitos-humanos", name: "Direitos Humanos", block: "I", count: 5 },
+      { subjectId: "direito-processual-penal-militar", name: "Direito Processual Penal Militar", block: "I", count: 10 },
+      // Bloco II – Conhecimentos Gerais (50 questões)
+      { subjectId: "administracao", name: "Noções de Administração", block: "II", count: 10 },
+      { subjectId: "raciocinio-logico", name: "Raciocínio Lógico", block: "II", count: 5 },
+      { subjectId: "legislacoes-pe", name: "Legislação Extravagante", block: "II", count: 15 },
+      { subjectId: "lingua-portuguesa", name: "Língua Portuguesa", block: "II", count: 20 },
     ],
   },
   CBMPE_SOLDADO: {

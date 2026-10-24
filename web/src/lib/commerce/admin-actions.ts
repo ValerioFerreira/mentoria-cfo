@@ -27,7 +27,7 @@ import {
   updatePartnerProfile,
 } from "./partners";
 
-const CONTESTS = ["CBMPE_SOLDADO", "CBMPE_OFICIAL", "PCPE_AGENTE", "PMPE_SOLDADO", "PMPE_OFICIAL", "CBMPE_COMBO", "PMPE_COMBO"] as const;
+const CONTESTS = ["CBMPE_SOLDADO", "CBMPE_OFICIAL", "CBMPE_CFOA", "PCPE_AGENTE", "PMPE_SOLDADO", "PMPE_OFICIAL", "CBMPE_COMBO", "PMPE_COMBO"] as const;
 const Id = z.string().trim().min(1).max(64);
 const IsoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Data inválida.");
 const Money = z.string().transform((v, ctx) => {

@@ -22,6 +22,7 @@ vi.mock("next/headers", () => ({
 describe("CONTEST_SUBTITLES", () => {
   it("mapeia os concursos para os subtítulos esperados", () => {
     expect(CONTEST_SUBTITLES.CBMPE_OFICIAL).toBe("OFICIAL - CBMPE");
+    expect(CONTEST_SUBTITLES.CBMPE_CFOA).toBe("2º TENENTE CFOA - CBMPE");
     expect(CONTEST_SUBTITLES.CBMPE_SOLDADO).toBe("PRAÇA - CBMPE");
     expect(CONTEST_SUBTITLES.PCPE_AGENTE).toBe("AGENTE - PCPE");
   });
