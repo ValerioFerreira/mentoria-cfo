@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { ActionForm } from "@/components/action-form";
 import { Alert, Badge, Card, Field, PageHeader, Stat, inputCls } from "@/components/ui";
 import { requireAdmin } from "@/lib/auth/dal";
-import { adminCancelContract, adminCreateContract, adminImportLegacyPayer, adminReconcileOnline, adminUpdateContestSetting } from "@/lib/commerce/admin-actions";
-import { AUDIT_LABEL, CONTRACT_STATUS, PAYMENT_METHOD_LABEL, REVERSAL_KIND_LABEL, actorLabel, contestName, dateBR, dayBR } from "@/lib/commerce/labels";
+import { adminCancelContract, adminCreateContract, adminImportLegacyPayer, adminReconcileOnline } from "@/lib/commerce/admin-actions";
+import { AUDIT_LABEL, CONTRACT_STATUS, PAYMENT_METHOD_LABEL, REVERSAL_KIND_LABEL, actorLabel, contestName, dateBR } from "@/lib/commerce/labels";
 import { formatBRL, toCents } from "@/lib/commerce/money";
-import { CATEGORY_LABEL, CATEGORY_PRICE_CENTS, LAUNCH_DISCOUNT_POINTS, PARTNER_COUPON_DISCOUNT_POINTS, quote } from "@/lib/commerce/pricing";
+import { CATEGORY_LABEL } from "@/lib/commerce/pricing";
 import { mercadoPagoAccountStatus, onlineOverview } from "@/lib/commerce/online";
 import { auditHistory, listContracts, listCustomers, listPayments } from "@/lib/commerce/queries";
 import { listLegacyPayers, LEGACY_PRICING_RULE } from "@/lib/commerce/legacy";
-import { db } from "@/lib/db";
 import { todayISO } from "@/lib/plan-time";
 import { FilterBar } from "./filter-bar";
 import { FILTER_CONTESTS, parseFilters, type SearchParams } from "./filters";
@@ -21,7 +21,6 @@ const TABS = [
   { key: "contratacoes", label: "Contratações" },
   { key: "pagamentos", label: "Pagamentos" },
   { key: "clientes", label: "Clientes e saldos" },
-  { key: "concursos", label: "Concursos e preços" },
   { key: "mercadopago", label: "Mercado Pago" },
   { key: "historico", label: "Histórico" },
 ] as const;
@@ -33,6 +32,7 @@ const td = "px-3 py-2 align-top";
 export default async function FinanceiroPage({ searchParams }: { searchParams: Promise<SearchParams> }) {
   await requireAdmin();
   const sp = await searchParams;
+  if (sp.aba === "concursos") redirect("/admin/concursos");
   const tab: Tab = TABS.find((t) => t.key === sp.aba)?.key ?? "contratacoes";
   const f = parseFilters(sp);
 
@@ -42,7 +42,7 @@ export default async function FinanceiroPage({ searchParams }: { searchParams: P
       <PageHeader
         eyebrow="Administração"
         title="Financeiro"
-        description="Contratações, pagamentos recebidos, saldos, preços e datas das provas, Mercado Pago e histórico. O acesso acadêmico é liberado à parte, na contratação."
+        description="Contratações, pagamentos recebidos, saldos, Mercado Pago e histórico. Preços e datas das provas ficam em Administração › Concursos. O acesso acadêmico é liberado à parte, na contratação."
       />
       <nav className="flex flex-wrap gap-2" aria-label="Seções do financeiro">
         {TABS.map((t) => (
@@ -59,7 +59,6 @@ export default async function FinanceiroPage({ searchParams }: { searchParams: P
       {tab === "contratacoes" && <Contracts f={f} />}
       {tab === "pagamentos" && <Payments f={f} />}
       {tab === "clientes" && <Customers f={f} />}
-      {tab === "concursos" && <ContestsTab />}
       {tab === "mercadopago" && <MercadoPagoTab />}
       {tab === "historico" && <History f={f} />}
     </div>
@@ -100,7 +99,7 @@ async function Contracts({ f }: { f: ReturnType<typeof parseFilters> }) {
                   <td className={`${td} tabular whitespace-nowrap`}>{due - paid < 0 ? <span className="text-primary">excedente {formatBRL(paid - due)}</span> : formatBRL(due - paid)}</td>
                   <td className={td}><Badge tone={CONTRACT_STATUS[c.status].tone}>{CONTRACT_STATUS[c.status].label}</Badge></td>
                   <td className={`${td} text-xs`}>
-                    {c.pricingRule === LEGACY_PRICING_RULE ? <Badge tone="gold">Pagante anterior</Badge> : c.accessGrantedAt ? `Liberado até ${dateBR(c.accessUntil)}` : c.examDateAtContract ? "Não liberado" : <span className="text-warn">Data da prova pendente</span>}
+                    {c.pricingRule === LEGACY_PRICING_RULE ? <Badge tone="gold">Pagante anterior</Badge> : c.accessGrantedAt ? (c.accessUntil ? `Liberado até ${dateBR(c.accessUntil)}` : "Liberado, sem prazo (data da prova pendente)") : c.examDateAtContract ? "Não liberado" : <span className="text-warn">Data da prova pendente</span>}
                   </td>
                   <td className={td}>
                     {c.status === "CANCELLED" ? (
@@ -246,69 +245,6 @@ async function Customers({ f }: { f: ReturnType<typeof parseFilters> }) {
           </tbody>
         </table>
       </Card>
-    </div>
-  );
-}
-
-async function ContestsTab() {
-  const settings = await db.contestSetting.findMany();
-  const byKey = new Map(settings.map((s) => [s.contest, s]));
-  return (
-    <div className="space-y-4">
-      <Card tone="soft" className="space-y-1 text-sm">
-        <p className="font-semibold">Regras comerciais padrão</p>
-        <p className="text-muted">Valem quando o concurso não tem preço ou desconto próprio, definidos nos cartões abaixo. </p>
-        <p className="text-muted">
-          Preço original: Oficial e PCPE {formatBRL(CATEGORY_PRICE_CENTS.OFICIAL)}; Praça {formatBRL(CATEGORY_PRICE_CENTS.PRACA)}. Lançamento: {LAUNCH_DISCOUNT_POINTS}% ({formatBRL(quote("OFICIAL").finalCents)} e {formatBRL(quote("PRACA").finalCents)}).
-          Cupom de parceiro: +{PARTNER_COUPON_DISCOUNT_POINTS} p.p. ({formatBRL(quote("OFICIAL", PARTNER_COUPON_DISCOUNT_POINTS).finalCents)} e {formatBRL(quote("PRACA", PARTNER_COUPON_DISCOUNT_POINTS).finalCents)}).
-        </p>
-        <p className="text-muted">Sem categoria, o concurso não pode ser contratado. Sem data da prova, a contratação é registrada, mas o acesso até a prova não é liberado.</p>
-      </Card>
-      <div className="grid gap-3 md:grid-cols-2">
-        {FILTER_CONTESTS.map((c) => {
-          const s = byKey.get(c);
-          return (
-            <Card key={c} className="space-y-3">
-              <div className="flex items-center justify-between gap-2">
-                <h3 className="font-display text-lg font-bold uppercase">{contestName(c)}</h3>
-                {!s?.category ? <Badge tone="warn">Sem categoria</Badge> : !s.examDate ? <Badge tone="warn">Data da prova pendente</Badge> : <Badge tone="ok">Completo</Badge>}
-              </div>
-              <ActionForm action={adminUpdateContestSetting} submitLabel="Salvar" submitSize="sm" resetOnSuccess={false} className="grid gap-3 sm:grid-cols-2">
-                <input type="hidden" name="contest" value={c} />
-                <Field label="Categoria comercial">
-                  <select name="category" defaultValue={s?.category ?? ""} className={inputCls}>
-                    <option value="">— em revisão —</option>
-                    <option value="OFICIAL">Oficial</option>
-                    <option value="PCPE">PCPE</option>
-                    <option value="PRACA">Praça</option>
-                  </select>
-                </Field>
-                <Field label="Data oficial da prova">
-                  <input type="date" name="examDate" defaultValue={s?.examDate?.toISOString().slice(0, 10) ?? ""} className={inputCls} />
-                </Field>
-                <Field label="Preço do concurso (R$)" hint={`Vazio: padrão da categoria${s?.category ? ` (${formatBRL(CATEGORY_PRICE_CENTS[s.category])})` : ""}.`}>
-                  <input name="price" inputMode="decimal" defaultValue={s?.priceCents ? (s.priceCents / 100).toFixed(2).replace(".", ",") : ""} placeholder={s?.category ? (CATEGORY_PRICE_CENTS[s.category] / 100).toFixed(2).replace(".", ",") : ""} className={inputCls} />
-                </Field>
-                <Field label="Desconto do site (%)" hint={`Vazio: desconto de lançamento padrão (${LAUNCH_DISCOUNT_POINTS}%). Use 0 para não dar desconto.`}>
-                  <input name="siteDiscount" inputMode="numeric" defaultValue={s?.siteDiscountPoints ?? ""} placeholder={String(LAUNCH_DISCOUNT_POINTS)} className={inputCls} />
-                </Field>
-              </ActionForm>
-              {s?.category && (() => {
-                const q = quote(s.category, 0, s);
-                const qc = quote(s.category, PARTNER_COUPON_DISCOUNT_POINTS, s);
-                return (
-                  <p className="rounded-lg bg-surface-2 px-3 py-2 text-xs text-muted">
-                    Valor ao aluno: <strong className="text-text">{formatBRL(q.finalCents)}</strong>
-                    {q.discountCents > 0 && <> (de {formatBRL(q.originalCents)}, {q.launchDiscountPoints}% de desconto)</>}
-                    {" · "}com cupom de parceiro: <strong className="text-text">{formatBRL(qc.finalCents)}</strong>. Contratações já registradas não mudam de preço.
-                  </p>
-                );
-              })()}
-              {s?.examDate && <p className="text-xs text-muted">Acesso das contratações vale até 23:59 de {dayBR(s.examDate)} (Recife).</p>}
-            </Card>
-          );
-        })}
-      </div>
     </div>
   );
 }

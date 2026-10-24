@@ -39,7 +39,7 @@ export function isContestCategory(v: unknown): v is ContestCategory {
   return v === "OFICIAL" || v === "PCPE" || v === "PRACA" || v === "COMBO";
 }
 
-/** Preço e desconto do site definidos no concurso (Financeiro › Concursos). Campos nulos usam o padrão da categoria. */
+/** Preço e desconto do site definidos no concurso (Administração › Concursos). Campos nulos usam o padrão da categoria. */
 export interface PriceOverride {
   priceCents?: number | null;
   siteDiscountPoints?: number | null;

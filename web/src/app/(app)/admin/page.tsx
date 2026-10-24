@@ -1,22 +1,25 @@
-import { ClipboardCheck, Handshake, Ticket, Users, Wallet, type LucideIcon } from "lucide-react";
+import { ClipboardCheck, Flag, Handshake, Ticket, Users, Wallet, type LucideIcon } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Card, PageHeader } from "@/components/ui";
 import { requireAdmin } from "@/lib/auth/dal";
+import { CONTESTS } from "@/lib/contests";
 import { db } from "@/lib/db";
 
 export const metadata: Metadata = { title: "Administração" };
 
 export default async function AdminHomePage() {
   await requireAdmin();
-  const [pendingSignups, draftQuestions, openReports, activePartners, openContracts, activeCoupons] = await Promise.all([
+  const [pendingSignups, draftQuestions, openReports, activePartners, openContracts, activeCoupons, datedContests] = await Promise.all([
     db.waitlistEntry.count({ where: { status: "PENDING" } }),
     db.question.count({ where: { status: "DRAFT" } }),
     db.questionReport.count({ where: { status: "OPEN" } }),
     db.partner.count({ where: { active: true } }),
     db.contract.count({ where: { status: { in: ["OPEN", "PARTIAL"] } } }),
     db.coupon.count({ where: { active: true } }),
+    db.contestSetting.count({ where: { examDate: { not: null } } }),
   ]);
+  const pendingDates = Math.max(0, CONTESTS.length - datedContests);
 
   const cards: { href: string; title: string; text: string; icon: LucideIcon; stat: string }[] = [
     {
@@ -29,9 +32,16 @@ export default async function AdminHomePage() {
     {
       href: "/admin/financeiro",
       title: "Financeiro",
-      text: "Contratações, pagamentos, clientes, preços e datas das provas, Mercado Pago e histórico.",
+      text: "Contratações, pagamentos, clientes, saldos, Mercado Pago e histórico.",
       icon: Wallet,
       stat: `${openContracts} ${openContracts === 1 ? "contratação com saldo" : "contratações com saldo"}`,
+    },
+    {
+      href: "/admin/concursos",
+      title: "Concursos",
+      text: "Categoria, preço, desconto e data oficial da prova de cada concurso. A data define o limite de acesso dos alunos.",
+      icon: Flag,
+      stat: `${pendingDates} ${pendingDates === 1 ? "concurso sem data de prova" : "concursos sem data de prova"}`,
     },
     {
       href: "/admin/parceiros",

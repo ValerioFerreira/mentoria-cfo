@@ -145,7 +145,7 @@ describe.skipIf(!hasTestDb)("lista de espera com Pix dinâmico do Mercado Pago",
     expect(fake.posts).toHaveLength(0);
   });
 
-  it("CFOA sem examDate: inscrição e pagamento funcionam e a pendência de data da prova vai para os pontos de atenção", async () => {
+  it("CFOA sem examDate: pago online, conta criada com acesso sem prazo; ao cadastrar a data, o limite vale até o dia da prova", async () => {
     await db.contestSetting.upsert({
       where: { contest: "CBMPE_CFOA" },
       create: { contest: "CBMPE_CFOA", category: "OFICIAL", examDate: null },
@@ -174,9 +174,21 @@ describe.skipIf(!hasTestDb)("lista de espera com Pix dinâmico do Mercado Pago",
 
     const updated = await db.contract.findUniqueOrThrow({ where: { id: contract.id } });
     expect(updated.status).toBe("PAID");
-    expect(updated.accessGrantedAt).toBeNull();
+    expect(updated.accessGrantedAt).not.toBeNull();
+    expect(updated.accessUntil).toBeNull();
+    const account = await db.user.findUniqueOrThrow({ where: { email: "cfoa@x.com" } });
+    expect(account.accessExpiresAt).toBeNull();
     const overview = await onlineOverview();
-    expect(overview.alerts.some((a) => a.entityId === contract.id && a.action === "ACCESS_GRANT_PENDING")).toBe(true);
+    expect(overview.alerts.some((a) => a.entityId === contract.id && a.action === "ACCESS_GRANT_PENDING")).toBe(false);
+
+    // edital publicado: a data da prova define o limite de todo aluno que contratou o concurso
+    const { applyExamDateToContracts } = await import("./contracts");
+    const exam = new Date("2027-06-20T00:00:00Z");
+    const changed = await db.$transaction((tx) => applyExamDateToContracts(tx, "CBMPE_CFOA", exam, null, null));
+    expect(changed).toBe(1);
+    const end = new Date("2027-06-21T02:59:59.999Z"); // 20/06/2027 23:59:59,999 em Recife
+    expect((await db.contract.findUniqueOrThrow({ where: { id: contract.id } })).accessUntil?.toISOString()).toBe(end.toISOString());
+    expect((await db.user.findUniqueOrThrow({ where: { id: account.id } })).accessExpiresAt?.toISOString()).toBe(end.toISOString());
   });
 });
 

@@ -9,7 +9,7 @@ import type { Contest } from "@/generated/prisma/client";
 import { requireAdmin } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { audit } from "./audit";
-import { cancelContract, createContract, grantAccessUntilExam } from "./contracts";
+import { applyExamDateToContracts, cancelContract, createContract, grantAccessUntilExam } from "./contracts";
 import { createSiteCoupon, deleteSiteCoupon, setSiteCouponActive, updateSiteCoupon } from "./coupons";
 import { importLegacyPayer } from "./legacy";
 import { type ActionResult, toActionError } from "./errors";
@@ -161,6 +161,7 @@ export async function adminGrantAccess(_: ActionResult | null, fd: FormData): Pr
     const r = await grantAccessUntilExam(parsed.data.contractId, admin.id, { override: parsed.data.override === "on", justification: parsed.data.justification });
     refreshFinance(parsed.data.contractId);
     revalidatePath("/admin/cadastros");
+    if (!r.until) return { ok: true, message: "Acesso liberado sem prazo. Ele passa a valer até o dia da prova assim que a data for cadastrada em Administração › Concursos." };
     const until = r.until.toLocaleDateString("pt-BR", { timeZone: "America/Recife" });
     return { ok: true, message: r.keptIndefinite ? `A conta já tinha acesso sem prazo, que foi mantido. Contratação marcada como liberada até ${until}.` : `Acesso liberado até ${until} (dia da prova).` };
   } catch (err) {
@@ -211,10 +212,15 @@ export async function adminUpdateContestSetting(_: ActionResult | null, fd: Form
     if (!Number.isInteger(siteDiscountPoints) || siteDiscountPoints < 0 || siteDiscountPoints > 100) return { ok: false, message: "Desconto do site: número inteiro de 0 a 100 (%)." };
   }
   try {
+    let updatedAccess = 0;
     await db.$transaction(async (tx) => {
       const before = await tx.contestSetting.findUnique({ where: { contest: contest as Contest } });
       const data = { category: category || null, examDate: examDate ? new Date(`${examDate}T00:00:00Z`) : null, priceCents, siteDiscountPoints, updatedById: admin.id };
       await tx.contestSetting.upsert({ where: { contest: contest as Contest }, create: { contest: contest as Contest, ...data }, update: data });
+      // data oficial cadastrada/alterada: quem já contratou (acesso sem prazo) passa a ter o limite no dia da prova
+      if (data.examDate && data.examDate.getTime() !== before?.examDate?.getTime()) {
+        updatedAccess = await applyExamDateToContracts(tx, contest as Contest, data.examDate, before?.examDate ?? null, admin.id);
+      }
       await audit(tx, {
         actorId: admin.id,
         action: "CONTEST_SETTING_UPDATED",
@@ -226,9 +232,13 @@ export async function adminUpdateContestSetting(_: ActionResult | null, fd: Form
         },
       });
     });
+    revalidatePath("/admin/concursos");
     revalidatePath("/admin/financeiro");
     revalidatePath("/lista-de-espera", "layout");
-    return { ok: true, message: "Concurso atualizado. Contratações já registradas não mudam de preço." };
+    return {
+      ok: true,
+      message: `Concurso atualizado. Contratações já registradas não mudam de preço.${updatedAccess ? ` Limite de acesso definido para ${updatedAccess} ${updatedAccess === 1 ? "contratação" : "contratações"} (dia da prova).` : ""}`,
+    };
   } catch (err) {
     return toActionError(err, "atualizar concurso");
   }

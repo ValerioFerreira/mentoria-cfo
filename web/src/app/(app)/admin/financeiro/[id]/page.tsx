@@ -75,7 +75,7 @@ export default async function ContractPage({ params }: { params: Promise<{ id: s
         <Card className="space-y-3">
           <h2 className="font-display text-lg font-bold uppercase">Acesso acadêmico</h2>
           <p className="text-sm text-muted">
-            {c.accessGrantedAt ? `Liberado em ${dateBR(c.accessGrantedAt)} até ${dateBR(c.accessUntil)}.` : "Ainda não liberado por esta contratação."}{" "}
+            {c.accessGrantedAt ? c.accessUntil ? `Liberado em ${dateBR(c.accessGrantedAt)} até ${dateBR(c.accessUntil)}.` : `Liberado em ${dateBR(c.accessGrantedAt)}, sem prazo até a data da prova ser cadastrada.` : "Ainda não liberado por esta contratação."}{" "}
             {c.user ? `Conta: validade atual ${c.user.accessExpiresAt ? dateBR(c.user.accessExpiresAt) : "sem prazo"}.` : "Sem conta: aprove o cadastro em Cadastros."}
           </p>
           <p className="text-sm text-muted">Data oficial da prova: {setting?.examDate ? dayBR(setting.examDate) : <strong className="text-warn">pendente</strong>}.</p>

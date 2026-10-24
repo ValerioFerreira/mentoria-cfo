@@ -78,7 +78,7 @@ export default async function BillingPage({ searchParams }: { searchParams: Prom
                     <div><dt className="text-xs text-muted">Saldo</dt><dd className="font-semibold tabular">{formatBRL(Math.max(0, due - paid))}</dd></div>
                   </dl>
                   <p className="text-xs text-muted">
-                    {c.accessGrantedAt ? `Acesso liberado até ${dateBR(c.accessUntil)} (dia da prova).` : "O acesso é liberado pela administração após a confirmação do pagamento."}
+                    {c.accessGrantedAt ? (c.accessUntil ? `Acesso liberado até ${dateBR(c.accessUntil)} (dia da prova).` : "Acesso liberado. O prazo será até o dia da prova, assim que a data oficial for divulgada.") : "O acesso é liberado pela administração após a confirmação do pagamento."}
                     {c.couponCode ? ` Cupom ${c.couponCode}.` : ""}
                   </p>
                   {due - paid > 0 && (

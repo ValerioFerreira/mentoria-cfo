@@ -196,14 +196,15 @@ describe.skipIf(!hasTestDb)("server actions: autorização e preço do servidor"
     expect((await db.contract.findUniqueOrThrow({ where: { id: contract.id } })).userId).toBe(user.id);
   });
 
-  it("aprovação com data da prova indefinida não atribui validade incorreta", async () => {
+  it("aprovação com data da prova indefinida cria a conta com acesso sem prazo", async () => {
     const { joinWaitlist } = await import("@/app/(public)/lista-de-espera/[concurso]/actions");
     const { approveRegistration } = await import("@/lib/admin/cadastros-actions");
     await joinWaitlist("cbmpe-soldado", undefined, fd({ name: "Aluno Praça", email: "praca@x.com", username: "praca1" }));
     const entry = await db.waitlistEntry.findFirstOrThrow({ where: { email: "praca@x.com" } });
     asUser({ ...admin, role: "ADMIN" });
     const r = await approveRegistration(entry.id, "UNTIL_EXAM", { override: true, justification: "Pagamento conferido no extrato" });
-    expect(r).toMatchObject({ success: false, message: expect.stringMatching(/Data da prova/) });
-    expect(await db.user.count({ where: { email: "praca@x.com" } })).toBe(0);
+    expect(r).toMatchObject({ success: true });
+    const user = await db.user.findUniqueOrThrow({ where: { email: "praca@x.com" } });
+    expect(user.accessExpiresAt).toBeNull();
   });
 });
