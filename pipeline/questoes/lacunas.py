@@ -24,7 +24,7 @@ items = defaultdict(list)
 for f in sorted(glob.glob(str(ROOT / "content/edital/*.json"))):
     d = json.loads(Path(f).read_text(encoding="utf-8"))
     for it in d["items"]:
-        items[d["subject"]].append((f"{d['subject']}/e{it['id']}", it["item"]))
+        items[d["subject"]].append((f"{d['subject']}/e{it['id']}", (it.get("item") or it.get("title") or "")))
 print("# Assuntos do edital (sistema) sem nenhuma questão nos PDFs\n")
 print("Aprovada = vai ao aluno; rascunho = só após revisão. 'Sem nenhuma' = 0 aprovadas e 0 rascunhos.\n")
 tot0 = 0

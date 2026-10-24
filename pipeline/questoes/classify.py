@@ -241,8 +241,8 @@ def _build_catalog(use_material: bool = True) -> Catalog:
             eid = f"{subj}/e{it['id']}"
             segs = [x for w in it.get("where", []) for x in w.get("segments", [])]
             auls = [w.get("aula") for w in it.get("where", []) if w.get("aula")]
-            txt = it["item"] + " " + " ".join(w.get("topic", "") for w in it.get("where", []))
-            edital_items[eid] = {"subject": subj, "title": it["item"], "segments": segs, "aulas": auls, "text": txt}
+            txt = (it.get("item") or it.get("title") or "") + " " + " ".join(w.get("topic", "") for w in it.get("where", []))
+            edital_items[eid] = {"subject": subj, "title": (it.get("item") or it.get("title") or ""), "segments": segs, "aulas": auls, "text": txt}
             for sid in segs:
                 if sid in segments:
                     segments[sid].edital.append((eid, txt))
@@ -398,6 +398,12 @@ class Classifier:
                 subj = seg.subject
                 return Result(subj, seg.aula, sid, self.edital_item(sid, self.qvec(q, subj)), 1.0, "manual", "APPROVED", "decisão da auditoria (14/10/2026)")
         subject, entry = self.subject_for(materia, assunto)
+        # curadoria por banca: AOCP segue o destino do CBMPE/PMPE; as demais bancas (ex.: Cebraspe, para o PCPE) vão para
+        # o destino alternativo, porque cada questão só pode ficar em um trecho
+        alt = entry.get("outras_bancas")
+        if alt and q.get("banca") != "AOCP":
+            entry = {**entry, **alt}
+            subject = entry.get("subject", subject)
         if entry.get("skip"):
             return Result(subject, None, None, None, 0.0, "manual", "SKIP", str(entry["skip"]))
         if not subject:
