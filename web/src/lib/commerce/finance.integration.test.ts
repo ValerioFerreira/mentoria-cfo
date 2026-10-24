@@ -75,13 +75,20 @@ describe.skipIf(!hasTestDb)("financeiro com persistência real", { timeout: 60_0
       expect(await db.contract.count()).toBe(0);
     });
 
-    it("data da prova indefinida: a contratação é registrada, mas o acesso até a prova fica pendente", async () => {
-      const user = await db.user.create({ data: { email: "praca@x.com", passwordHash: "x", accessExpiresAt: null } });
+    it("data da prova indefinida: a contratação é registrada e o acesso fica sem prazo até a data ser cadastrada", async () => {
+      const user = await db.user.create({ data: { email: "praca@x.com", passwordHash: "x", accessExpiresAt: new Date(Date.now() + DAY) } });
       const r = await svc.contracts.createContract({ contest: "CBMPE_SOLDADO", customerEmail: user.email, userId: user.id }, null);
       expect((await contract(r.contractId)).examDateAtContract).toBeNull();
       await svc.payments.registerPayment({ contractId: r.contractId, amountCents: 6000, paidAt: daysAgo(1), method: "PIX", idempotencyKey: key() }, adminId);
-      await expect(svc.contracts.grantAccessUntilExam(r.contractId, adminId)).rejects.toThrow(/Data da prova/);
-      expect((await contract(r.contractId)).accessGrantedAt).toBeNull();
+      const g = await svc.contracts.grantAccessUntilExam(r.contractId, adminId);
+      expect(g).toMatchObject({ until: null, pendingExamDate: true });
+      expect((await contract(r.contractId)).accessGrantedAt).not.toBeNull();
+      expect((await db.user.findUniqueOrThrow({ where: { id: user.id } })).accessExpiresAt).toBeNull();
+      // sai o edital: o limite vale para quem já contratou
+      const exam = new Date("2027-02-28T00:00:00Z");
+      expect(await db.$transaction((tx) => svc.contracts.applyExamDateToContracts(tx, "CBMPE_SOLDADO", exam, null, adminId))).toBe(1);
+      expect((await db.user.findUniqueOrThrow({ where: { id: user.id } })).accessExpiresAt?.toISOString()).toBe("2027-03-01T02:59:59.999Z");
+      expect((await contract(r.contractId)).accessUntil?.toISOString()).toBe("2027-03-01T02:59:59.999Z");
     });
 
     it("pedido repetido não duplica a obrigação; o preço é sempre o do servidor", async () => {
@@ -196,7 +203,7 @@ describe.skipIf(!hasTestDb)("financeiro com persistência real", { timeout: 60_0
       await expect(svc.contracts.grantAccessUntilExam(r.contractId, adminId)).rejects.toThrow(/saldo pendente/);
       await svc.payments.registerPayment({ contractId: r.contractId, amountCents: 6000, paidAt: daysAgo(0), method: "PIX", idempotencyKey: key() }, adminId);
       const g = await svc.contracts.grantAccessUntilExam(r.contractId, adminId);
-      expect(g.until.toISOString()).toBe("2027-03-01T02:59:59.999Z"); // 28/02/2027 23:59:59,999 em Recife
+      expect(g.until?.toISOString()).toBe("2027-03-01T02:59:59.999Z"); // 28/02/2027 23:59:59,999 em Recife
       expect((await db.user.findUniqueOrThrow({ where: { id: user.id } })).accessExpiresAt?.toISOString()).toBe("2027-03-01T02:59:59.999Z");
     });
 

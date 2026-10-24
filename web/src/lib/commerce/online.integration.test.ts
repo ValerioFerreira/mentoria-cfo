@@ -321,13 +321,15 @@ describe.skipIf(!hasTestDb)("pagamento online (Mercado Pago da empresa)", { time
       expect((await reload(id)).accessGrantedAt).toBeNull();
     });
 
-    it("prova sem data cadastrada: recebe, registra a pendência e não libera o acesso", async () => {
+    it("prova sem data cadastrada: recebe e libera o acesso sem prazo (o limite vem quando a data for cadastrada)", async () => {
       const { id } = await contractFor({ contest: "CBMPE_SOLDADO" });
       const paymentId = await pixPaid(id);
       expect((await POST(signed(paymentId))).status).toBe(200);
-      expect((await reload(id)).status).toBe("PAID");
-      expect((await reload(id)).accessGrantedAt).toBeNull();
-      expect(await db.auditLog.count({ where: { action: "ACCESS_GRANT_PENDING", entityId: id } })).toBe(1);
+      const c = await reload(id);
+      expect(c.status).toBe("PAID");
+      expect(c.accessGrantedAt).not.toBeNull();
+      expect(c.accessUntil).toBeNull();
+      expect(await db.auditLog.count({ where: { action: "ACCESS_GRANT_PENDING", entityId: id } })).toBe(0);
     });
 
     it("pagamento aprovado em contratação cancelada: aviso para devolução, sem lançar nem repetir o evento", async () => {
@@ -383,15 +385,17 @@ describe.skipIf(!hasTestDb)("pagamento online (Mercado Pago da empresa)", { time
       expect(await db.auditLog.count({ where: { action: "AUTO_APPROVED", entityId: contractId } })).toBe(1);
     });
 
-    it("prova sem data cadastrada: nada é criado e a inscrição segue pendente para o administrador", async () => {
+    it("prova sem data cadastrada: a conta é criada com acesso sem prazo e a senha segue por e-mail", async () => {
       const { entry, contractId } = await waitlisted("CBMPE_SOLDADO");
       const paymentId = await pixPaid(contractId);
       expect((await POST(signed(paymentId))).status).toBe(200);
       expect((await reload(contractId)).status).toBe("PAID");
-      expect(await db.user.count({ where: { email: "lista@teste.local" } })).toBe(0);
-      expect((await db.waitlistEntry.findUniqueOrThrow({ where: { id: entry.id } })).status).toBe("PENDING");
-      expect(await db.auditLog.count({ where: { action: "ACCESS_GRANT_PENDING", entityId: contractId } })).toBe(1);
-      expect(mail.sent).toHaveLength(0);
+      const user = await db.user.findUniqueOrThrow({ where: { email: "lista@teste.local" } });
+      expect(user.accessExpiresAt).toBeNull();
+      expect((await db.waitlistEntry.findUniqueOrThrow({ where: { id: entry.id } })).status).toBe("APPROVED");
+      expect((await reload(contractId)).accessUntil).toBeNull();
+      expect(await db.auditLog.count({ where: { action: "ACCESS_GRANT_PENDING", entityId: contractId } })).toBe(0);
+      expect(mail.sent).toHaveLength(1);
     });
 
     it("e-mail de parceiro não é tocado (a senha dele é da administração): fica para decisão manual", async () => {

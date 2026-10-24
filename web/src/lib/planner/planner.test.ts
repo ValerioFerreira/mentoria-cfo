@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { bandOf, generatePlan, hoursPerDayLabel, nextMonday, PlanInputError, type Level, type PlanInput, type PlanResult } from "./index";
 import { dayIndexOf, mondayOf, weeksUntil } from "./dates";
 import { loadCatalog, loadExamQuestions, loadImportance, loadSegments } from "./fixtures";
+import { planFromResult, verifyPlan } from "./verify";
 import { CONTEST_SUBJECTS } from "../contests";
 
 const catalog = loadCatalog();
@@ -450,5 +451,39 @@ describe("modelo de tempo", () => {
       expect(hasActs, `disciplina ${sub} deve ter ao menos uma aula no plano`).toBe(true);
     }
   });
+
+  it("CFOA com 20h/semana e todas as 9 disciplinas cobre as 9 disciplinas, não inclui disciplina fora do edital e passa em verifyPlan", () => {
+    const cfoaSubjects = CONTEST_SUBJECTS.CBMPE_CFOA;
+    expect(cfoaSubjects).toHaveLength(9);
+    const importance = loadImportance("CBMPE_CFOA");
+    const examQuestions = loadExamQuestions("CBMPE_CFOA");
+    const startDate = "2026-10-19";
+    const examDate = "2027-04-25";
+    const p = generatePlan({
+      catalog,
+      segments,
+      contest: "CBMPE_CFOA",
+      importance,
+      examQuestions,
+      startDate,
+      firstDay: 0,
+      examDate,
+      hoursPerWeek: 20,
+      subjects: cfoaSubjects.map((id) => ({ id, level: 1 as const })),
+      turbo: false,
+    });
+    const acts = flat(p);
+    for (const sub of cfoaSubjects) {
+      expect(acts.some((a) => a.subjectId === sub && a.scope !== "FINAL"), `disciplina ${sub} deve entrar no plano`).toBe(true);
+    }
+    const allowedSet = new Set<string>(cfoaSubjects);
+    for (const a of acts) {
+      expect(allowedSet.has(a.subjectId), `disciplina ${a.subjectId} fora do edital do CFOA`).toBe(true);
+    }
+    const report = verifyPlan(planFromResult(p, startDate, examDate), { catalog, segments, importance });
+    expect(report.errors).toEqual([]);
+    expect(report.verdict).toBe("LIBERAR");
+  });
 });
+
 

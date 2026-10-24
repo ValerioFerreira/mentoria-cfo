@@ -49,22 +49,30 @@ describe("activityQuizWhere", () => {
     expect(wPmpe.banca.in).toEqual(expect.arrayContaining(["AOCP", "Instituto AOCP"]));
     expect(wPmpe.banca.in).not.toContain("CEBRASPE");
 
+    const wCfoa = activityQuizWhere(["direito-administrativo/a04/s01"], ["APPROVED"], "CBMPE_CFOA");
+    expect(wCfoa.banca.in).toEqual(expect.arrayContaining(["AOCP", "Instituto AOCP"]));
+    expect(wCfoa.banca.in).not.toContain("CEBRASPE");
+    expect(wCfoa.kind).toBe("MULTIPLA_ESCOLHA");
+
     const wPcpe = activityQuizWhere(["direito-administrativo/a04/s01"], ["APPROVED"], "PCPE_AGENTE");
     expect(wPcpe.banca.in).toEqual(expect.arrayContaining(["CEBRASPE", "Cebraspe", "CESPE", "Cespe", "AOCP", "Instituto AOCP"]));
   });
 
-  it("as inéditas MentorIA só entram para o PCPE", () => {
+  it("as inéditas MentorIA entram para o PCPE (todas) e no banco livre do CFOA (só múltipla escolha)", () => {
     expect(contestBancas("PCPE_AGENTE")).toContain(INEDITA_BANCA);
     expect(contestBancas("CBMPE_OFICIAL")).not.toContain(INEDITA_BANCA);
+    expect(contestBancas("CBMPE_CFOA")).toEqual(AOCP_BANCAS);
     expect(hideInedita("PCPE_AGENTE")).toEqual({});
+    expect(hideInedita("CBMPE_CFOA")).toEqual({ NOT: { banca: INEDITA_BANCA, kind: "CERTO_ERRADO" } });
     expect(hideInedita("CBMPE_OFICIAL")).toEqual({ NOT: { banca: INEDITA_BANCA } });
     expect(hideInedita(undefined)).toEqual({ NOT: { banca: INEDITA_BANCA } });
   });
 });
 
-describe("reforço do caderno (CBMPE Oficial)", () => {
-  it("só o CBMPE Oficial (e planos antigos sem concurso) recorre ao reforço", () => {
+describe("reforço do caderno (CBMPE Oficial e CFOA)", () => {
+  it("CBMPE Oficial, CFOA e planos antigos sem concurso recorrem ao reforço", () => {
     expect(usesReinforcement("CBMPE_OFICIAL")).toBe(true);
+    expect(usesReinforcement("CBMPE_CFOA")).toBe(true);
     expect(usesReinforcement(null)).toBe(true);
     expect(usesReinforcement(undefined)).toBe(true);
     expect(usesReinforcement("PCPE_AGENTE")).toBe(false);
@@ -79,4 +87,5 @@ describe("reforço do caderno (CBMPE Oficial)", () => {
     expect(w.status.in).toEqual(["APPROVED"]);
   });
 });
+
 

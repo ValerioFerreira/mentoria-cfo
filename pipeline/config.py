@@ -101,6 +101,17 @@ PDF_TARGET_OVERRIDES: dict[str, tuple[str, int] | None] = {
     "30_020": ("legislacao-penal-especial", 18),  # Lei 11.343/2006 - Lei de Drogas
     "30_017": ("legislacao-penal-especial", 20),  # Lei 9.605/1998 - Crimes Ambientais
     "30_018": ("legislacao-penal-especial", 21),  # Lei 10.826/2003 - Estatuto do Desarmamento
+    # docs/39 -> Aulas 03 e 06 mapeadas para direito-penal-militar a20 e a21 (CFOA itens 6.2 e 6.3, banca AOCP)
+    "39_001": None,
+    "39_002": None,
+    "39_003": None,
+    "39_004": ("direito-penal-militar", 20),  # Lei 13.869/2019 - Abuso de Autoridade
+    "39_005": None,
+    "39_006": None,
+    "39_007": ("direito-penal-militar", 21),  # Lei 7.716/1989 - Crimes de Preconceito de Raça ou de Cor
+    "39_008": None,
+    "39_009": None,
+    "39_010": None,
 }
 
 

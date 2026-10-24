@@ -6,7 +6,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "../src/generated/prisma/client";
-import type { SummaryStatus, Contest } from "../src/generated/prisma/enums";
+import { Contest, type SummaryStatus } from "../src/generated/prisma/enums";
 
 function findContentDir(): string {
   const candidates = [
@@ -50,7 +50,7 @@ interface SegJson {
 }
 interface EditalFile {
   subject: string;
-  items: { id: string; item: string; where?: { aula: string }[] }[];
+  items: { id: string; item?: string; title?: string; where?: { aula: string }[] }[];
 }
 interface BizuItemJson { statement: string; isTrue: boolean; explanation: string }
 interface QuestionJson {
@@ -140,14 +140,17 @@ export async function seedStructure() {
   const allEditalRows: { id: string; subjectId: string; code: string; title: string; aulaIds: string[]; sortOrder: number; onlyContests: string[]; excludeContests: string[] }[] = [];
 
   // Disciplinas compartilhadas com um concurso de edital próprio (content/edital/<concurso>/<disciplina>.json): os
-  // assuntos padrão deixam de valer para ele e os do edital próprio (`<disciplina>/p<código>`) valem só para ele.
-  const OWN_EDITAL_DIRS: { dir: string; contest: string }[] = [{ dir: "pcpe", contest: "PCPE_AGENTE" }];
+  // assuntos padrão deixam de valer para ele e os do edital próprio (`<disciplina>/p<código>`, `<disciplina>/f<código>`) valem só para ele.
+  const OWN_EDITAL_DIRS: { dir: string; contest: string; prefix: string }[] = [
+    { dir: "pcpe", contest: "PCPE_AGENTE", prefix: "p" },
+    { dir: "cfoa", contest: "CBMPE_CFOA", prefix: "f" },
+  ];
   const ownEditalPath = (dir: string, subjectId: string) => path.join(CONTENT, "edital", dir, `${subjectId}.json`);
   const pushItems = (s: { id: string }, doc: EditalFile, idPrefix: string, onlyContests: string[], excludeContests: string[]) => {
     for (const [i, it] of doc.items.entries()) {
       const aulaIds = [...new Set((it.where ?? []).map((w) => w.aula).filter((id) => id.startsWith(`${s.id}/`) && planavel.has(id)))];
       if (aulaIds.length) {
-        allEditalRows.push({ id: `${s.id}/${idPrefix}${it.id}`, subjectId: s.id, code: it.id, title: it.item, aulaIds, sortOrder: i, onlyContests, excludeContests });
+        allEditalRows.push({ id: `${s.id}/${idPrefix}${it.id}`, subjectId: s.id, code: it.id, title: (it.item ?? it.title ?? "").trim(), aulaIds, sortOrder: i, onlyContests, excludeContests });
       }
     }
   };
@@ -155,7 +158,7 @@ export async function seedStructure() {
   for (const s of catalog.subjects) {
     const own = OWN_EDITAL_DIRS.filter((o) => fs.existsSync(ownEditalPath(o.dir, s.id)));
     pushItems(s, read<EditalFile>("edital", `${s.id}.json`), "e", [], own.map((o) => o.contest));
-    for (const o of own) pushItems(s, read<EditalFile>("edital", o.dir, `${s.id}.json`), "p", [o.contest], []);
+    for (const o of own) pushItems(s, read<EditalFile>("edital", o.dir, `${s.id}.json`), o.prefix, [o.contest], []);
   }
 
   for (const c of chunk(allEditalRows, 500)) {
@@ -172,7 +175,7 @@ export async function seedStructure() {
   }
 
   // createMany também não atualiza título, ordem e aulas de assunto já semeado (o mapa do edital muda): sincroniza, e
-  // aposenta os assuntos próprios de um concurso (`/p`) que saíram do mapa (apaga se ninguém usa; senão, inativa)
+  // aposenta os assuntos próprios de um concurso (`/p`, `/f`) que saíram do mapa (apaga se ninguém usa; senão, inativa)
   const existingItems = await db.editalItem.findMany({ select: { id: true, code: true, title: true, sortOrder: true, aulaIds: true } });
   const existingById = new Map(existingItems.map((e) => [e.id, e]));
   for (const r of allEditalRows) {
@@ -181,9 +184,10 @@ export async function seedStructure() {
       await db.editalItem.update({ where: { id: r.id }, data: { title: r.title, code: r.code, sortOrder: r.sortOrder, aulaIds: r.aulaIds } });
     }
   }
+  const ownPrefixRe = new RegExp(`/(?:${OWN_EDITAL_DIRS.map((o) => o.prefix).join("|")})[^/]*$`);
   const liveItemIds = new Set(allEditalRows.map((r) => r.id));
   for (const e of existingItems) {
-    if (!/\/p[^/]*$/.test(e.id) || liveItemIds.has(e.id)) continue;
+    if (!ownPrefixRe.test(e.id) || liveItemIds.has(e.id)) continue;
     const used = (await db.question.count({ where: { editalItemId: e.id } })) + (await db.activity.count({ where: { editalItemId: e.id } }));
     if (used === 0) await db.editalItem.delete({ where: { id: e.id } });
     else await db.editalItem.update({ where: { id: e.id }, data: { onlyContests: ["__INATIVO__"] } });
@@ -392,13 +396,15 @@ export async function seedImportance() {
     score: number | null;
   }[] = Object.entries(doc.segments).flatMap(([segmentId, rec]) =>
     segIds.has(segmentId)
-      ? Object.entries(rec.contests).map(([contest, c]) => ({
-          segmentId,
-          contest: contest as Contest,
-          appears: c.appears,
-          expected: c.expected,
-          score: c.score,
-        }))
+      ? Object.entries(rec.contests)
+          .filter(([contest]) => contest in Contest)
+          .map(([contest, c]) => ({
+            segmentId,
+            contest: contest as Contest,
+            appears: c.appears,
+            expected: c.expected,
+            score: c.score,
+          }))
       : []
   );
   await db.segmentImportance.deleteMany({});

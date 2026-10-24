@@ -42,8 +42,20 @@ export function buildSpareReview(args: {
     return picked;
   };
 
+  const weekCap = args.weeklyMinutes * 1.05;
+  const weekUsed = new Map<number, number>();
+
   for (let ord = args.fromOrd; ord <= args.toOrd; ord++) {
-    const slots = Math.max(1, Math.round(dayTarget(args.weeklyMinutes, ord) / ACTIVITY_MINUTES));
+    const week = Math.floor(ord / 7);
+    const dayOfWeek = ord % 7;
+    const lastDayOfWeek = Math.min(6, args.toOrd - week * 7);
+    const daysRemaining = Math.max(0, lastDayOfWeek - dayOfWeek);
+    const usedInWeek = weekUsed.get(week) ?? 0;
+    const isEveWeek = Math.floor((args.toOrd + 1) / 7) === week;
+    const reservedForRemaining = daysRemaining * ACTIVITY_MINUTES + (isEveWeek ? EVE_REVIEW_MINUTES : 0);
+    const rawSlots = Math.max(1, Math.round(dayTarget(args.weeklyMinutes, ord) / ACTIVITY_MINUTES));
+    const maxSlotsForCap = Math.max(1, Math.floor((weekCap - usedInWeek - reservedForRemaining) / ACTIVITY_MINUTES));
+    const slots = Math.min(rawSlots, maxSlotsForCap);
     const used = new Map<string, number>();
     const acts: PlannedActivity[] = [];
     for (let k = 0; k < slots; k++) {
@@ -74,6 +86,7 @@ export function buildSpareReview(args: {
     // revisão aquece o dia; caderno fecha
     acts.sort((a, b) => (a.type === b.type ? 0 : a.type === "REVISAO" ? -1 : 1));
     days.set(ord, acts);
+    weekUsed.set(week, usedInWeek + acts.length * ACTIVITY_MINUTES);
   }
   return days;
 }

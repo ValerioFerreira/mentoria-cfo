@@ -3,7 +3,7 @@
  * "Seu planejamento está em análise, em até 24h estará disponível na plataforma") até o dono revisar e liberar em Cadastros
  * (ou por `scripts/verify-plans.ts --apply`). Tirar um concurso daqui o devolve ao fluxo normal.
  */
-export const CONTESTS_HELD_FOR_REVIEW: readonly string[] = ["PCPE_AGENTE"];
+export const CONTESTS_HELD_FOR_REVIEW: readonly string[] = ["PCPE_AGENTE", "CBMPE_CFOA"];
 
 interface Args {
   role?: string | null;

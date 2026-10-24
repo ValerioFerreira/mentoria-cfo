@@ -191,17 +191,28 @@ export async function grantAccessUntilExam(contractId: string, actorId: string |
     if (c.status === "CANCELLED") throw new CommerceError("Contratação cancelada não concede acesso.");
     if (!c.user) throw new CommerceError("A contratação ainda não está ligada a uma conta: aprove o cadastro primeiro.", "NO_USER");
     const setting = await tx.contestSetting.findUnique({ where: { contest: c.contest } });
-    if (!setting?.examDate) {
-      throw new CommerceError("Data da prova deste concurso pendente: cadastre a data oficial em Financeiro › Concursos antes de liberar o acesso.", "EXAM_DATE_PENDING");
-    }
     const settled = c.status === "PAID" || c.status === "OVERPAID";
     const justification = opts.justification?.trim() ?? "";
     if (!settled) {
       if (!opts.override) throw new CommerceError("Há saldo pendente nesta contratação. Para liberar mesmo assim, confirme com justificativa.", "BALANCE_PENDING");
       if (justification.length < 10) throw new CommerceError("Justifique a liberação com saldo pendente (mínimo de 10 caracteres).");
     }
-    const end = accessEndForExamDate(setting.examDate);
     const current = c.user.accessExpiresAt;
+    if (!setting?.examDate) {
+      // Data da prova ainda sem edital: o acesso fica sem prazo e passa a valer até a prova quando a data for cadastrada
+      // (`applyExamDateToContracts`).
+      await tx.user.update({ where: { id: c.user.id }, data: { accessExpiresAt: null } });
+      await tx.contract.update({ where: { id: c.id }, data: { accessGrantedAt: new Date(), accessUntil: null, accessGrantedById: actorId } });
+      await audit(tx, {
+        actorId,
+        action: "ACCESS_GRANTED",
+        entityType: "Contract",
+        entityId: c.id,
+        data: { userId: c.user.id, until: null, pendingExamDate: true, settled, override: !settled, justification: settled ? null : justification },
+      });
+      return { until: null as Date | null, keptIndefinite: false, pendingExamDate: true };
+    }
+    const end = accessEndForExamDate(setting.examDate);
     // `null` = acesso sem prazo (cadastros antigos): não é reduzido, salvo em conta recém-criada
     const keepIndefinite = current === null && !opts.newAccount;
     const nextExpires = keepIndefinite ? null : current && current > end ? current : end;
@@ -214,7 +225,7 @@ export async function grantAccessUntilExam(contractId: string, actorId: string |
       entityId: c.id,
       data: { userId: c.user.id, until: end.toISOString(), settled, override: !settled, justification: settled ? null : justification, keptIndefinite: keepIndefinite },
     });
-    return { until: end, keptIndefinite: keepIndefinite };
+    return { until: end as Date | null, keptIndefinite: keepIndefinite, pendingExamDate: false };
   };
   return client ? run(client) : db.$transaction(run);
 }
@@ -228,9 +239,13 @@ export async function revokeAccessAfterFullReversal(contractId: string, reason: 
   return db.$transaction(async (tx) => {
     await lockContract(tx, contractId);
     const c = await tx.contract.findUnique({ where: { id: contractId }, include: { user: { select: { id: true, accessExpiresAt: true } } } });
-    if (!c || !c.accessGrantedAt || !c.accessUntil) return { revoked: false as const, reviewNeeded: false };
+    if (!c || !c.accessGrantedAt) return { revoked: false as const, reviewNeeded: false };
     if (toCents(c.paidAmount) > 0) return { revoked: false as const, reviewNeeded: false };
-    const ownsDeadline = Boolean(c.user?.accessExpiresAt && c.user.accessExpiresAt.getTime() === c.accessUntil.getTime());
+    // liberação sem prazo (data da prova pendente): a conta só é encerrada se nenhuma outra contratação liberada a sustenta
+    const othersGranted = c.userId ? await tx.contract.count({ where: { userId: c.userId, id: { not: c.id }, status: { not: "CANCELLED" }, accessGrantedAt: { not: null } } }) : 0;
+    const ownsDeadline = c.accessUntil
+      ? Boolean(c.user?.accessExpiresAt && c.user.accessExpiresAt.getTime() === c.accessUntil.getTime())
+      : Boolean(c.user && c.user.accessExpiresAt === null && othersGranted === 0);
     if (c.user && ownsDeadline) await tx.user.update({ where: { id: c.user.id }, data: { accessExpiresAt: new Date() } });
     await tx.contract.update({ where: { id: c.id }, data: { accessGrantedAt: null, accessUntil: null, accessGrantedById: null } });
     await audit(tx, {
@@ -238,8 +253,43 @@ export async function revokeAccessAfterFullReversal(contractId: string, reason: 
       action: ownsDeadline ? "ACCESS_REVOKED" : "ACCESS_REVIEW_NEEDED",
       entityType: "Contract",
       entityId: c.id,
-      data: { reason, userId: c.userId, previousUntil: c.accessUntil.toISOString() },
+      data: { reason, userId: c.userId, previousUntil: c.accessUntil?.toISOString() ?? null },
     });
     return { revoked: ownsDeadline as boolean, reviewNeeded: !ownsDeadline } as { revoked: boolean; reviewNeeded: boolean };
   });
+}
+
+/**
+ * Cadastrada (ou alterada) a data oficial da prova: toda contratação com acesso liberado sem prazo (ou com o prazo da data
+ * antiga) passa a valer até o fim do dia da prova, e a conta recebe esse limite. Se a conta tem outra contratação liberada
+ * sem prazo, ela continua sem prazo; se tem outra com prazo maior, vale o maior. Retorna quantas contratações mudaram.
+ */
+export async function applyExamDateToContracts(tx: Tx, contest: Contest, newDate: Date, oldDate: Date | null, actorId: string | null) {
+  const end = accessEndForExamDate(newDate);
+  const oldEnd = oldDate ? accessEndForExamDate(oldDate) : null;
+  const rows = await tx.contract.findMany({
+    where: {
+      contest,
+      status: { not: "CANCELLED" },
+      accessGrantedAt: { not: null },
+      userId: { not: null },
+      OR: [{ accessUntil: null }, ...(oldEnd ? [{ accessUntil: oldEnd }] : [])],
+    },
+    select: { id: true, userId: true },
+  });
+  let changed = 0;
+  for (const c of rows) {
+    const others = await tx.contract.findMany({
+      where: { userId: c.userId, id: { not: c.id }, status: { not: "CANCELLED" }, accessGrantedAt: { not: null } },
+      select: { accessUntil: true },
+    });
+    const otherOpen = others.some((o) => o.accessUntil === null);
+    const otherMax = others.reduce<Date | null>((m, o) => (o.accessUntil && (!m || o.accessUntil > m) ? o.accessUntil : m), null);
+    const nextExpires = otherOpen ? null : otherMax && otherMax > end ? otherMax : end;
+    await tx.user.update({ where: { id: c.userId as string }, data: { accessExpiresAt: nextExpires } });
+    await tx.contract.update({ where: { id: c.id }, data: { accessUntil: end } });
+    await audit(tx, { actorId, action: "ACCESS_DEADLINE_SET", entityType: "Contract", entityId: c.id, data: { userId: c.userId, contest, until: end.toISOString(), accountExpiresAt: nextExpires?.toISOString() ?? null } });
+    changed++;
+  }
+  return changed;
 }

@@ -8,7 +8,7 @@ weight: 0.22
 order: 1
 norma: true
 resolves: da-lei-8112
-excludeContests: PCPE_AGENTE
+excludeContests: PCPE_AGENTE, CBMPE_CFOA
 ---
 
 ## Como encaixar a Lei 8.112/1990 no edital

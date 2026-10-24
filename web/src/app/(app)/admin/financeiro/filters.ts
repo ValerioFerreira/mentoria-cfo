@@ -3,7 +3,7 @@ import type { FinanceFilters } from "@/lib/commerce/queries";
 
 export type SearchParams = Record<string, string | string[] | undefined>;
 
-const CONTESTS: Contest[] = ["CBMPE_OFICIAL", "CBMPE_SOLDADO", "PMPE_OFICIAL", "PMPE_SOLDADO", "PCPE_AGENTE", "CBMPE_COMBO", "PMPE_COMBO"];
+const CONTESTS: Contest[] = ["CBMPE_OFICIAL", "CBMPE_CFOA", "CBMPE_SOLDADO", "PMPE_OFICIAL", "PMPE_SOLDADO", "PCPE_AGENTE", "CBMPE_COMBO", "PMPE_COMBO"];
 const STATUSES: ContractStatus[] = ["OPEN", "PARTIAL", "PAID", "OVERPAID", "CANCELLED"];
 const METHODS: PaymentMethod[] = ["PIX", "CARTAO", "TRANSFERENCIA", "DINHEIRO", "OUTRO"];
 const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v)?.trim() || undefined;

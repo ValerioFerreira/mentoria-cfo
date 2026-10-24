@@ -116,6 +116,8 @@ export async function sendApprovalEmail(params: {
   const durationText =
     params.accessDuration === "UNTIL_EXAM" && params.accessUntil
       ? `Acesso ilimitado até a data da prova (${params.accessUntil.toLocaleDateString("pt-BR", { timeZone: "America/Recife" })})`
+      : params.accessDuration === "UNTIL_EXAM"
+        ? "Acesso ilimitado até a data da prova (a data será informada assim que o edital for publicado)"
       : params.accessDuration === "30_DAYS"
         ? "30 dias de acesso"
         : "Acesso por prazo indeterminado (até a homologação do concurso)";

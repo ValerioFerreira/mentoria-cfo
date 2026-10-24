@@ -147,7 +147,7 @@ def main() -> int:
     # Incidência (proxy v1): metade pela fatia de páginas de teoria, metade pela fatia de questões comentadas
     for s in subjects_out:
         base_eligible = [a for a in s["aulas"] if a["selectable"] and not a.get("onlyContests")]
-        exc_eligible = [a for a in s["aulas"] if a["selectable"] and a.get("onlyContests")]
+        exc_eligible = [a for a in s["aulas"] if a["selectable"] and "PCPE_AGENTE" in (a.get("onlyContests") or [])]
 
         th_base = sum(a["theoryPages"] for a in base_eligible) or 1
         cm_base = sum((a["commentedPages"] or a["listPages"]) + sum(l["endPage"] - l["startPage"] + 1 for l in a["practiceLinks"])
@@ -171,7 +171,7 @@ def main() -> int:
             if not a["selectable"]:
                 a["incidence"] = 0.0
                 continue
-            is_exc = bool(a.get("onlyContests"))
+            is_exc = "PCPE_AGENTE" in (a.get("onlyContests") or [])
             th = th_exc if is_exc else th_base
             cm = cm_exc if is_exc else cm_base
             comm = (a["commentedPages"] or a["listPages"]) + sum(l["endPage"] - l["startPage"] + 1 for l in a["practiceLinks"])

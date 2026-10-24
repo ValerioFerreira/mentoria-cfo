@@ -54,7 +54,7 @@ export default async function CouponsPage() {
               <th className={th}>
                 <span className="inline-flex items-center gap-1">
                   Exemplo (Oficial)
-                  <InfoTip align="start">Preço do concurso Oficial no valor padrão, com o desconto de lançamento e só este cupom. Cada concurso pode ter preço e desconto próprios (Financeiro › Concursos).</InfoTip>
+                  <InfoTip align="start">Preço do concurso Oficial no valor padrão, com o desconto de lançamento e só este cupom. Cada concurso pode ter preço e desconto próprios (Administração › Concursos).</InfoTip>
                 </span>
               </th>
               <th className={th}>Usos</th>

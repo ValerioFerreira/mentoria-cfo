@@ -7,6 +7,7 @@ subtitle: Lei Orgânica Nacional das Polícias Militares e dos Corpos de Bombeir
 weight: 0.25
 order: 3
 resolves: leg-lei-14751
+excludeContests: CBMPE_CFOA
 ---
 
 ## Visão geral: o que é a "Lei Orgânica Nacional"

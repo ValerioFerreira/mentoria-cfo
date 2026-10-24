@@ -8,7 +8,7 @@ weight: 0.10
 order: 4
 norma: true
 resolves: dc-ce-pe
-excludeContests: PCPE_AGENTE
+excludeContests: PCPE_AGENTE, CBMPE_CFOA
 ---
 
 ## Como a banca cobra a CE-PE e o que há de novo

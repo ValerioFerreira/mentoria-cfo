@@ -51,7 +51,9 @@ export default async function ContractPixPage({ params }: { params: Promise<{ id
         <Alert tone="info">
           {c.accessGrantedAt && c.accessUntil
             ? `Pagamento confirmado. Seu acesso está liberado até ${dateBR(c.accessUntil)}.`
-            : "Pagamento confirmado. O acesso até a data da prova é liberado pela administração."}
+            : c.accessGrantedAt
+              ? "Pagamento confirmado. Seu acesso está liberado e valerá até o dia da prova, assim que a data oficial for divulgada."
+              : "Pagamento confirmado. O acesso até a data da prova é liberado pela administração."}
         </Alert>
       ) : c.status === "CANCELLED" ? (
         <Alert tone="warn">Esta contratação foi cancelada. Faça uma nova contratação em Contratações e pagamentos.</Alert>

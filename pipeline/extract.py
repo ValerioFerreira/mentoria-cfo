@@ -24,13 +24,17 @@ from config import DOCS_DIR, PAGES_DIR, aula_id, pdf_key, resolve_pdf_target, su
 
 _CPF_LINE = re.compile(r"^\d{11}\s*-\s*.+$")
 _FOOTER_SITE = "www.estrategiaconcursos.com.br"
-_FOOTER_COURSE = re.compile(r"^(?:CBM-PE|CBMP-PE|PM-PE|PC-PE)\s+\([^)]+\)\s+.+$", re.IGNORECASE)
+_FOOTER_COURSE = re.compile(r"^(?:CBM-[A-Z]{2}|CBMP-PE|PM-PE|PC-PE)\s+\([^)]+\)\s+.+$", re.IGNORECASE)
 _HEADER = re.compile(r"^.{3,80}\sAula\s+\d+\s*$")
 _HIGHLIGHT = re.compile(r"==[0-9a-fA-F]{6}==")
 
 
+_BIDI = re.compile(r"[\u200e\u200f\u202a-\u202e\ufeff]")
+
+
 def clean_page_text(raw: str) -> str:
     """Remove rodapé do Estratégia, marca d'água (nome/CPF), cabeçalho e artefatos de destaque."""
+    raw = _BIDI.sub("", raw)
     lines = raw.splitlines()
 
     # 1) bloco de rodapé: [CBM-PE (Oficial) X] … [site] … [CPF - nome]
