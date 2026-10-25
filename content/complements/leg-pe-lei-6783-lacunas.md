@@ -108,4 +108,4 @@ Os deveres nascem dos vínculos racionais e morais com a comunidade e são, esse
 
 Lei Estadual nº 6.783, de 16 de outubro de 1974 (Estatuto dos Militares do Estado de Pernambuco), texto atualizado no portal Alepe Legis, com as alterações da Lei Complementar nº 460/2021, consultado em 10/2026. Explicação e tabelas elaboradas pelo MentorIA, em linguagem própria.
 
-**Pendências de verificação:** (1) o art. 74-AD foi lido truncado na conversão do texto; conferir a redação integral; (2) o art. 60 (quota compulsória) tem mais proporções do que as resumidas aqui; (3) conferir se o edital considera a redação com "militar do Estado" (alterações recentes) ou a original "policial-militar".
+**Nota de conferência (24/10/2026):** O art. 74-AD foi conferido e confirmado na íntegra no texto oficial da LC 460/2021 (o militar inativo demitido/excluído por fatos posteriores continua percebendo os proventos do posto/graduação, mas perde a paridade remuneratória). A ementa da Lei 6.783/1974 foi atualizada pela LC 460/2021 para "Estatuto dos Militares do Estado de Pernambuco", aplicando-se expressamente à PMPE e ao CBMPE.
