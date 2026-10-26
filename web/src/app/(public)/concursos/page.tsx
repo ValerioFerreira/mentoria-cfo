@@ -73,14 +73,14 @@ function ContestCard({ c }: { c: ContestInfo }) {
       className={`group relative flex min-h-[5.5rem] items-end overflow-hidden rounded-xl border ${tone.border} bg-ink text-on-ink shadow-card outline-none transition duration-300 hover:-translate-y-0.5 hover:border-primary/60 hover:shadow-lift focus-visible:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-primary`}
     >
       <div className={`absolute inset-0 bg-gradient-to-r ${tone.fade} to-ink`} aria-hidden />
-      {/* brasão grande, cortado pela borda do card; mesma posição em todos os cards do órgão */}
-      <div className="pointer-events-none absolute inset-y-0 right-10 w-24 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_30%,black_70%,transparent)]" aria-hidden>
+      {/* brasão inteiro dentro do card, com fade leve nas laterais; mesma posição em todos os cards do órgão */}
+      <div className="pointer-events-none absolute inset-y-1.5 right-12 w-24 [mask-image:linear-gradient(to_right,transparent,black_25%,black_80%,transparent)]" aria-hidden>
         <Image
           src={c.image}
           alt=""
           fill
           sizes="96px"
-          className="scale-[1.7] object-cover object-[center_30%] opacity-90 transition duration-500 group-hover:scale-[1.8] group-hover:opacity-100"
+          className="object-contain opacity-80 transition duration-500 group-hover:scale-105 group-hover:opacity-100"
         />
       </div>
       <div className="absolute inset-y-0 left-0 w-1 origin-top scale-y-0 bg-primary transition duration-500 group-hover:scale-y-100" aria-hidden />
