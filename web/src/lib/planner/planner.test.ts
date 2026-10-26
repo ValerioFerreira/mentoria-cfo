@@ -484,6 +484,30 @@ describe("modelo de tempo", () => {
     expect(report.errors).toEqual([]);
     expect(report.verdict).toBe("LIBERAR");
   });
+  it("concurso individual: véspera e cobertura usam os pesos da prova do concurso, não os do catálogo (CBMPE Oficial)", () => {
+    const examQuestions = loadExamQuestions("CBMPE_CFOA");
+    const subjects = CONTEST_SUBJECTS.CBMPE_CFOA;
+    const top = [...subjects].sort((a, b) => (examQuestions[b] ?? 0) - (examQuestions[a] ?? 0))[0];
+    const catalogTop = catalog.subjects.filter((s) => subjects.includes(s.id)).sort((a, b) => b.examQuestions - a.examQuestions)[0].id;
+    expect(top).not.toBe(catalogTop); // o teste só faz sentido se os pesos do concurso e do catálogo divergem
+    const p = generatePlan({
+      catalog,
+      segments,
+      contest: "CBMPE_CFOA",
+      importance: loadImportance("CBMPE_CFOA"),
+      examQuestions,
+      examTotalQuestions: 100,
+      startDate: "2026-10-19",
+      firstDay: 0,
+      examDate: "2027-04-25",
+      hoursPerWeek: 30,
+      subjects: subjects.map((id) => ({ id, level: 1 as const })),
+    });
+    const eve = flat(p).filter((a) => a.key.endsWith("#VESPERA"));
+    expect(eve).toHaveLength(1);
+    expect(eve[0].subjectId).toBe(top);
+    for (const s of p.coverage.subjects) expect(s.examQuestions).toBe(examQuestions[s.subjectId]);
+  });
 });
 
 

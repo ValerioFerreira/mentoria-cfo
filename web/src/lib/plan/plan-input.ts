@@ -24,6 +24,7 @@ export function buildPlanInput(args: {
     importance: contestData.importance,
     summaries: contestData.summaries,
     examQuestions: contestData.examQuestions,
+    ...(contestData.examTotalQuestions ? { examTotalQuestions: contestData.examTotalQuestions } : {}),
     ...(contestData.combo ? { combo: contestData.combo } : {}),
     ...rest,
   };

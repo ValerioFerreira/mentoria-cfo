@@ -99,6 +99,8 @@ export interface PlanInput {
   summaries?: string[];
   /** Questões de cada disciplina na prova do concurso (substitui `examQuestions` do catálogo, que é o do CBMPE Oficial). */
   examQuestions?: Record<string, number>;
+  /** Total de questões da prova do concurso (base da cobertura do edital); ausente = total do CBMPE Oficial. */
+  examTotalQuestions?: number;
   /** Modo Turbo: se o tempo não fechar o edital, as unidades de menor importância viram resumos analíticos (até 3 por atividade). */
   turbo?: boolean;
   /**

@@ -24,6 +24,8 @@ export interface ContestPlanData {
   /** trechos com resumo analítico (rascunho ou aprovado) */
   summaries: string[];
   examQuestions: Record<string, number>;
+  /** total de questões da prova (base da cobertura do edital); ausente no combo, que usa o total dos membros */
+  examTotalQuestions?: number;
   /** pacote combo: concursos-membro com o peso de cada um (dependem da prioridade escolhida) */
   combo?: NonNullable<PlanInput["combo"]>;
 }
@@ -45,6 +47,7 @@ export async function loadContestPlanData(contest: Contest, priority?: string): 
     importance: Object.fromEntries(rows.map((r) => [r.segmentId, r.appears ? r.score : null])),
     summaries: sums.map((s) => s.segmentId),
     examQuestions: contestExamQuestions(contest),
+    examTotalQuestions: (EXAM_CONFIGS as Partial<Record<Contest, (typeof EXAM_CONFIGS)[SupportedSimuladoContest]>>)[contest]?.totalQuestions,
   };
   cache.set(contest, { at: Date.now(), data });
   return data;

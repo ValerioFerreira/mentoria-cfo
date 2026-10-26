@@ -1,94 +1,99 @@
 {
   "aula": "raciocinio-logico/a01",
-  "batch": "praca-raciocinio-logico",
-  "status": "APPROVED",
+  "batch": "rl-resegment-2026-10-26",
+  "status": "DRAFT",
+  "stage": "bizu",
   "segments": [
     {
       "id": "raciocinio-logico/a01/s01",
       "bizu": {
         "summary": [
-          "**Linguagem proposicional**: usa letras para as proposições simples e símbolos para os conectivos, tornando a frase exata.",
-          "**Precedência**: negação, conjunção e disjunção inclusiva na ordem de aparição, disjunção exclusiva, condicional e bicondicional.",
-          "**Negação**: atinge o menor enunciado possível, e não é verdade que nega a composta inteira.",
-          "**Termo de maior prioridade**: em (p ∨ ¬q) → (p ∧ q) é a negação de q.",
-          "**Condicional e bicondicional**: a condicional é resolvida antes da bicondicional.",
-          "**Vírgulas**: funcionam como parênteses e indicam qual operação vem primeiro.",
-          "**Se omitido**: sem vírgula, a conjunção precede a condicional, como em ~P → (~R ∧ ~Q).",
-          "**Nem**: equivale a e... não, como em Marcos não é ator e nem biólogo.",
-          "**Simples negativa**: quando a simples já é negativa, sua negação é a frase afirmativa."
+          "**Tradução**: letras para as proposições simples e símbolos para os conectivos; o português é inexato, a linguagem proposicional é exata.",
+          "**Precedência**: negação; depois conjunção e disjunção inclusiva na ordem em que aparecem; depois disjunção exclusiva, condicional e, por último, bicondicional.",
+          "**Negação sem parênteses**: atinge só o menor trecho à direita; em ~p → q ∧ r lê-se (~p) → (q ∧ r).",
+          "**→ antes de ↔**: a ↔ b → c significa a ↔ (b → c).",
+          "**Vírgula**: pode fazer papel de parêntese; \"Se m, então r, e h\" é (m → r) ∧ h; sem a vírgula, m → (r ∧ h).",
+          "**Letra negativa**: se q já é \"é falso que X\", então \"X\" é ~q; confira a definição antes de montar a fórmula.",
+          "**\"Não é verdade que\" / \"é falso que\"**: no início de uma composta, negam a composta inteira: ~[(q ∨ r) ∧ ~p].",
+          "**Proposição = significado**: voz ativa, voz passiva ou outro idioma expressam a mesma proposição.",
+          "**Sem conectivo**: ideia de causa e consequência (\"Ao estudar, passo\") é condicional; interpretar o sentido é último recurso quando há conectivo clássico."
         ],
         "teoria": [
           {
-            "statement": "Na expressão ~p → q ∧ r, a negação se refere apenas a p, e a conjunção é feita antes da condicional.",
+            "statement": "Na ordem de precedência, a condicional é resolvida antes da bicondicional.",
             "isTrue": true,
-            "explanation": "Precedência: ~, depois ∧, depois →."
+            "explanation": "A ordem é negação, conjunção/disjunção inclusiva, disjunção exclusiva, condicional e, por último, bicondicional."
           },
           {
-            "statement": "Na expressão ~p → q ∧ r, a negação atinge a composta p → q ∧ r inteira.",
+            "statement": "Sem parênteses, a fórmula ~p → q ∧ r deve ser lida como ~[p → (q ∧ r)].",
             "isTrue": false,
-            "explanation": "A negação abrange o menor enunciado possível."
+            "explanation": "A negação atinge só p, e a conjunção vem antes da condicional: (~p) → (q ∧ r)."
           },
           {
-            "statement": "Em (p ∨ ¬q) → (p ∧ q), o termo com maior prioridade de execução é ¬q.",
+            "statement": "Expressões como \"é falso que\", no início de uma proposição composta, em regra negam a proposição composta inteira.",
             "isTrue": true,
-            "explanation": "A negação é o primeiro operador."
+            "explanation": "É a leitura padrão dessas expressões quando abrem uma composta."
           },
           {
-            "statement": "Na ordem de precedência, a bicondicional é resolvida antes da condicional.",
+            "statement": "As frases \"Lucas pintou o muro\" e \"O muro foi pintado por Lucas\" são proposições distintas, por terem estruturas gramaticais diferentes.",
             "isTrue": false,
-            "explanation": "A condicional vem antes."
+            "explanation": "Proposição é o significado da oração; mesma ideia, mesma proposição."
           }
         ],
         "revisao": [
           {
-            "statement": "A vírgula pode indicar parênteses: \"Se Ana estuda, aprende, e Bia ajuda\" tende a ser (p → q) ∧ r.",
+            "statement": "Na frase \"Se Beto é médico, então fez residência, e hoje atende em Recife\", a vírgula antes do \"e\" indica a estrutura (m → r) ∧ h.",
             "isTrue": true,
-            "explanation": "A vírgula marca a operação que vem primeiro."
+            "explanation": "A vírgula isola a condicional, que passa a ser uma das partes da conjunção."
           },
           {
-            "statement": "Em \"Não choveu então Maria ficou em casa e José ficou em casa\", sem vírgulas, a leitura correta é (~P → ~R) ∧ ~Q.",
+            "statement": "Sem parênteses, a disjunção exclusiva é resolvida antes da conjunção.",
             "isTrue": false,
-            "explanation": "Sem indício, a conjunção precede a condicional: ~P → (R ∧ Q)."
+            "explanation": "Conjunção e disjunção inclusiva vêm antes da disjunção exclusiva."
           },
           {
-            "statement": "A expressão (2 > 3) ↔ (1 < 0) → (3 ≠ 4) tem valor falso quando a condicional é resolvida antes da bicondicional.",
+            "statement": "A frase \"Ao treinar todos os dias, melhoro meu tempo\" pode ser representada como uma condicional, mesmo sem a expressão \"se...então\".",
             "isTrue": true,
-            "explanation": "F ↔ (F → V) = F ↔ V = F."
+            "explanation": "Há relação de causa e consequência, interpretada como condicional."
           },
           {
-            "statement": "A frase \"Marcos não é ator e nem biólogo\" pode ser escrita como ~p ∧ ~b.",
-            "isTrue": true,
-            "explanation": "\"Nem\" equivale a e + não."
+            "statement": "Sendo a, b e c proposições falsas, a fórmula a ↔ b → c, lida conforme a precedência, é verdadeira.",
+            "isTrue": false,
+            "explanation": "Lê-se a ↔ (b → c): b → c = F → F = V e F ↔ V = F."
           }
         ],
         "pointers": [
           {
-            "topic": "Apresentação da aula",
-            "pageRef": 3
-          },
-          {
-            "topic": "Resumo da conversão e precedência",
-            "pageRef": 4
-          },
-          {
-            "topic": "Por que converter a linguagem",
+            "topic": "Linguagem natural × proposicional",
             "pageRef": 5
           },
           {
-            "topic": "Ordem de precedência e vírgulas",
+            "topic": "Ordem de precedência dos operadores",
             "pageRef": 6
           },
           {
-            "topic": "Uso de vírgulas e questão sobre prioridade",
+            "topic": "Vírgula indicando parênteses",
             "pageRef": 7
           },
           {
-            "topic": "Condicional e bicondicional; frase do TCU",
+            "topic": "Condicional antes da bicondicional em valoração",
             "pageRef": 8
           },
           {
-            "topic": "Vírgula decisiva e conversão UFRJ",
+            "topic": "Tradução com proposição já negativa",
             "pageRef": 9
+          },
+          {
+            "topic": "Não é verdade que / é falso que em compostas",
+            "pageRef": 10
+          },
+          {
+            "topic": "Proposição como significado da oração",
+            "pageRef": 11
+          },
+          {
+            "topic": "Causa e consequência sem conectivo",
+            "pageRef": 12
           }
         ]
       }
@@ -97,97 +102,92 @@
       "id": "raciocinio-logico/a01/s02",
       "bizu": {
         "summary": [
-          "**Conversão completa**: respeita a precedência dos conectivos, como em (~p ∧ q) ↔ (~q ∨ ~r).",
-          "**É falso que**: no início de uma composta nega o conjunto inteiro, como em ~((q ∨ r) ∧ ~p).",
-          "**Não é verdade que**: ~(p ∧ ~q) se lê não é verdade que p e não q.",
-          "**Significado**: frases diferentes com o mesmo sentido expressam a mesma proposição.",
-          "**Causa e consequência**: frases como ao estudar... eu me dedico escondem a condicional se... então.",
-          "**Como p, q**: forma de escrever a condicional, aceitando antecedente com duas causas.",
-          "**Tabela-verdade**: lista os valores de uma composta em função dos valores das simples.",
-          "**Número de linhas**: é 2 elevado ao número de proposições simples distintas, e a negação não altera esse número.",
-          "**Repetição de simples**: a mesma proposição repetida conta uma só vez.",
-          "**Construção**: contar linhas, desenhar as colunas por engenharia reversa, alternar V e F nas simples e calcular as demais colunas."
+          "**Tabela-verdade**: lista todas as combinações de V e F das proposições simples e o valor resultante da composta.",
+          "**Linhas = 2ⁿ**: n é o número de proposições simples distintas; 3 → 8 linhas, 4 → 16 linhas.",
+          "**Letra repetida e negação**: contam uma vez e não alteram o número de linhas; (a ∧ b) → (c ∨ b) tem 8 linhas.",
+          "**Passos**: (1) calcular 2ⁿ; (2) montar as colunas por engenharia reversa; (3) distribuir V/F alternando; (4) calcular as colunas compostas.",
+          "**Alternância**: 1ª coluna em metades (VVVVFFFF), 2ª em blocos menores (VVFFVVFF), última de um em um (VFVF...).",
+          "**Exemplo**: ~(p → ~q) ∨ (~r → q) só é F quando q e r são F (2 das 8 linhas).",
+          "**Contagem de linhas F**: a → (b ∧ c) é F em 3 linhas (a V e b ∧ c F).",
+          "**Última coluna**: só V = tautologia (p ∨ ~p); só F = contradição (p ∧ ~p); V e F = contingência.",
+          "**Absurdo e implicação**: tentar tornar falsa uma suspeita de tautologia e chegar a absurdo confirma a tautologia; p ⇒ q quando p → q é tautologia."
         ],
         "teoria": [
           {
-            "statement": "A proposição \"É falso que Ana fala alemão ou português\" nega a disjunção inteira.",
-            "isTrue": true,
-            "explanation": "O \"é falso que\" abrange a composta."
-          },
-          {
-            "statement": "A tabela-verdade de uma fórmula com quatro proposições simples distintas tem oito linhas.",
+            "statement": "A tabela-verdade da proposição (p ∧ q) → (r ∨ q) tem 16 linhas, pois q aparece duas vezes.",
             "isTrue": false,
-            "explanation": "2⁴ = 16."
+            "explanation": "Conta-se cada proposição simples distinta uma vez: p, q e r, logo 2³ = 8 linhas."
           },
           {
-            "statement": "As frases \"A prova foi corrigida pelo professor\" e \"O professor corrigiu a prova\" expressam a mesma proposição.",
+            "statement": "Uma proposição formada por cinco proposições simples distintas tem tabela-verdade com 32 linhas.",
             "isTrue": true,
-            "explanation": "Mesmo significado."
+            "explanation": "2⁵ = 32."
           },
           {
-            "statement": "A negação ~ acrescenta uma linha à tabela-verdade da proposição.",
+            "statement": "O uso do operador de negação aumenta o número de linhas da tabela-verdade.",
             "isTrue": false,
-            "explanation": "A negação não altera o número de linhas."
+            "explanation": "A negação não cria nova proposição simples, então o número de linhas não muda."
+          },
+          {
+            "statement": "Na tabela-verdade de a → (b ∧ c), há exatamente três linhas em que a proposição é falsa.",
+            "isTrue": true,
+            "explanation": "É falsa quando a é V e b ∧ c é F: das 4 linhas com a V, 3 têm b ∧ c falsa."
           }
         ],
         "revisao": [
           {
-            "statement": "A frase \"Ao revisar toda semana, o aluno fixa o conteúdo\" pode ser interpretada como uma condicional.",
+            "statement": "Na construção com 8 linhas, a primeira proposição simples recebe quatro valores V seguidos de quatro valores F.",
             "isTrue": true,
-            "explanation": "Causa e consequência."
+            "explanation": "A primeira coluna é dividida em metades; as seguintes alternam em blocos menores."
           },
           {
-            "statement": "Em uma tabela-verdade, a proposição simples que aparece repetida na fórmula deve ser contada duas vezes no cálculo de 2ⁿ.",
+            "statement": "A proposição ~(p → ~q) ∨ (~r → q) é falsa apenas quando p, q e r são todas falsas.",
             "isTrue": false,
-            "explanation": "Conta-se uma só vez."
+            "explanation": "Ela é falsa quando q e r são falsas, qualquer que seja p: duas linhas."
           },
           {
-            "statement": "Em uma tabela-verdade de três simples, a coluna da primeira simples costuma ter quatro V seguidos e quatro F seguidos.",
+            "statement": "Uma proposição cuja última coluna da tabela-verdade apresenta valores V e F é uma contingência.",
             "isTrue": true,
-            "explanation": "Alternância dos valores."
+            "explanation": "Contingência é a que pode ser V ou F conforme os valores das simples."
           },
           {
-            "statement": "Na construção da tabela-verdade, as colunas intermediárias devem ser calculadas das mais simples para a fórmula completa.",
-            "isTrue": true,
-            "explanation": "Engenharia reversa."
+            "statement": "Diz-se que p implica q (p ⇒ q) quando a condicional p → q é uma contingência.",
+            "isTrue": false,
+            "explanation": "A implicação exige que p → q seja tautologia."
           }
         ],
         "pointers": [
-          {
-            "topic": "Conclusão da conversão UFRJ e é falso que",
-            "pageRef": 10
-          },
-          {
-            "topic": "Tradução de ~(p ∧ ~q) e significado das proposições",
-            "pageRef": 11
-          },
-          {
-            "topic": "Causa e consequência como condicional",
-            "pageRef": 12
-          },
-          {
-            "topic": "Condicional com duas causas",
-            "pageRef": 13
-          },
           {
             "topic": "Definição de tabela-verdade",
             "pageRef": 14
           },
           {
-            "topic": "Número de linhas",
+            "topic": "Número de linhas 2 elevado a n",
             "pageRef": 15
           },
           {
-            "topic": "Questões sobre número de linhas",
+            "topic": "Contagem de proposições distintas em questões",
             "pageRef": 16
           },
           {
-            "topic": "Passos 1 e 2 da construção",
+            "topic": "Passos 1 e 2: linhas e engenharia reversa",
             "pageRef": 17
           },
           {
             "topic": "Passo 3: alternância de V e F",
             "pageRef": 18
+          },
+          {
+            "topic": "Passo 4 e resultado do exemplo",
+            "pageRef": 20
+          },
+          {
+            "topic": "Contagem de linhas falsas",
+            "pageRef": 21
+          },
+          {
+            "topic": "Prévia de tautologia, absurdo e implicação",
+            "pageRef": 27
           }
         ]
       }
@@ -196,108 +196,92 @@
       "id": "raciocinio-logico/a01/s03",
       "bizu": {
         "summary": [
-          "**Passo final**: calculam-se negações, compostas internas e, por fim, a fórmula completa, usando a regra de cada conectivo.",
-          "**Resultado do exemplo**: a fórmula só é falsa quando p é verdadeira e q e r são falsas, ou quando as três são falsas.",
-          "**Condicional com conjunção**: p → (a ∧ j) com três simples tem oito linhas e três delas falsas.",
-          "**Bicondicional na tabela**: é verdadeira quando as colunas têm o mesmo valor.",
-          "**Tautologia**: valor final sempre verdadeiro, como p ∨ ~p.",
-          "**Contradição**: valor final sempre falso, como p ∧ ~p.",
-          "**Contingência**: valores verdadeiros e falsos, conforme as simples.",
-          "**Prova por absurdo**: tentar falso prova tautologia se levar a absurdo, e tentar verdadeiro prova contradição se levar a absurdo.",
-          "**Implicação**: p implica q quando p → q é tautologia."
+          "**Tautologia**: última coluna só com V; sempre verdadeira, quaisquer que sejam os valores das simples.",
+          "**Contradição**: última coluna só com F; sempre falsa.",
+          "**Contingência**: última coluna com V e F; depende dos valores das simples (ex.: p → q, (p ∨ q) ↔ p).",
+          "**De cor**: p ∨ ~p é tautologia; p ∧ ~p é contradição.",
+          "**Notação**: ⊤ ou t para tautologia, ⊥ ou c para contradição; ≡ ou ⇔ para equivalência. Cuidado: t e c também podem nomear proposições comuns.",
+          "**Métodos**: tabela-verdade, absurdo e equivalências; na tabela, basta ler a última coluna.",
+          "**Condicionais tautológicas**: (p ∧ q) → p, (p ∧ q) → (p ∨ q) e p → (q → p) nunca caem no caso V → F.",
+          "**Contradição por negação**: (p ∨ ~q) ↔ (~p ∧ q) é contradição, pois um lado é a negação do outro.",
+          "**Exemplo**: [(p ∧ q) ∧ r] → [p ↔ (q ∨ r)] é tautologia: o antecedente só é V com tudo V, e aí o consequente também é V."
         ],
         "teoria": [
           {
-            "statement": "A proposição p ∨ ~p é uma tautologia, pois resulta sempre em verdadeiro.",
+            "statement": "A proposição \"O portão está fechado ou o portão não está fechado\" é uma tautologia.",
             "isTrue": true,
-            "explanation": "Terceiro excluído em forma de fórmula."
+            "explanation": "Tem a forma p ∨ ~p, sempre verdadeira."
           },
           {
-            "statement": "A proposição p ∧ ~p é uma contingência.",
+            "statement": "Contingência é a proposição cuja tabela-verdade apresenta apenas valores falsos na última coluna.",
             "isTrue": false,
-            "explanation": "É uma contradição: sempre falsa."
+            "explanation": "Só F caracteriza contradição; contingência tem V e F."
           },
           {
-            "statement": "Se, ao supor falsa uma proposição, chega-se a um absurdo, então ela é uma tautologia.",
+            "statement": "A proposição (p ∧ q) → p é uma contingência, pois depende dos valores de p e q.",
+            "isTrue": false,
+            "explanation": "Se p ∧ q é V, p é V; o caso V → F nunca ocorre, logo é tautologia."
+          },
+          {
+            "statement": "A proposição (p ∨ ~q) ↔ (~p ∧ q) é uma contradição.",
             "isTrue": true,
-            "explanation": "Nunca poderá ser falsa."
-          },
-          {
-            "statement": "Se é possível tornar uma proposição falsa e também verdadeira, ela é uma tautologia.",
-            "isTrue": false,
-            "explanation": "Nesse caso é contingência."
+            "explanation": "~p ∧ q é a negação de p ∨ ~q; os lados sempre diferem e a bicondicional é sempre falsa."
           }
         ],
         "revisao": [
           {
-            "statement": "A condicional ~(p ∧ q) → (~p ∨ ~q) é verdadeira em todas as linhas da tabela-verdade.",
-            "isTrue": true,
-            "explanation": "É uma tautologia."
-          },
-          {
-            "statement": "Na tabela de (Q ∨ R) ∧ P com a ordem usual de valores, a última coluna é V V V F V V F F.",
+            "statement": "A letra t usada em uma questão de lógica representa obrigatoriamente uma tautologia.",
             "isTrue": false,
-            "explanation": "É V V V F F F F F."
+            "explanation": "t e c podem nomear proposições comuns; só valem como tautologia/contradição quando o contexto indica."
           },
           {
-            "statement": "Dizer que p implica q equivale a afirmar que a condicional p → q é uma tautologia.",
+            "statement": "A proposição p → (q → p) é uma tautologia.",
             "isTrue": true,
-            "explanation": "Definição de implicação."
+            "explanation": "Para ser falsa, p seria V e q → p seria F, o que exige p F: impossível."
           },
           {
-            "statement": "Duas proposições que têm sempre os mesmos valores lógicos são equivalentes.",
+            "statement": "Considerando p falsa e q verdadeira, a bicondicional (p ∨ q) ↔ p assume valor falso, o que impede que ela seja tautologia.",
             "isTrue": true,
-            "explanation": "Símbolo ≡ ou ⇔."
+            "explanation": "Fica V ↔ F, que é falso; como com p verdadeira ela vale V, é contingência."
+          },
+          {
+            "statement": "A proposição \"Se Ana trabalha e está de férias, então Ana é feliz ou está de férias\" é uma tautologia.",
+            "isTrue": true,
+            "explanation": "Se o antecedente é V, \"está de férias\" é V, e o consequente, que a contém num \"ou\", também é V."
           }
         ],
         "pointers": [
           {
-            "topic": "Passo 4 e preenchimento das colunas",
-            "pageRef": 19
-          },
-          {
-            "topic": "Tabela completa do exemplo",
-            "pageRef": 20
-          },
-          {
-            "topic": "Questão do IBGE",
-            "pageRef": 21
-          },
-          {
-            "topic": "Esquema da tabela da questão do IBGE",
-            "pageRef": 22
-          },
-          {
-            "topic": "Tabela incompleta",
-            "pageRef": 23
-          },
-          {
-            "topic": "Bicondicional na tabela",
-            "pageRef": 24
-          },
-          {
-            "topic": "Tabela de (Q ∨ R) ∧ P",
-            "pageRef": 25
-          },
-          {
-            "topic": "Última coluna e conferência",
-            "pageRef": 26
-          },
-          {
-            "topic": "Tautologia, contradição e contingência",
-            "pageRef": 27
-          },
-          {
-            "topic": "Questão da ALMG",
+            "topic": "Definições de tautologia, contradição e contingência",
             "pageRef": 28
           },
           {
-            "topic": "Tautologia e contradição clássicas",
+            "topic": "p ou não p e p e não p",
             "pageRef": 29
           },
           {
-            "topic": "Representação e métodos",
+            "topic": "Símbolos t, c, ⊤ e ⊥ e ressalva sobre as letras",
             "pageRef": 30
+          },
+          {
+            "topic": "Método da tabela-verdade: leitura da última coluna",
+            "pageRef": 31
+          },
+          {
+            "topic": "Exemplo [(p∧q)∧r]→[p↔(q∨r)]",
+            "pageRef": 33
+          },
+          {
+            "topic": "Casos de tautologia e contradição em alternativas",
+            "pageRef": 34
+          },
+          {
+            "topic": "Contradição por bicondicional entre negações",
+            "pageRef": 36
+          },
+          {
+            "topic": "Tautologia (t∧f)→(z∨f)",
+            "pageRef": 37
           }
         ]
       }
@@ -306,699 +290,88 @@
       "id": "raciocinio-logico/a01/s04",
       "bizu": {
         "summary": [
-          "**Tabela-verdade**: a última coluna decide: só verdadeiros é tautologia, só falsos é contradição e misto é contingência.",
-          "**Fórmula tripla**: [(p ∧ q) ∧ r] → [p ↔ (q ∨ r)] nunca é falsa, pois o antecedente verdadeiro obriga o consequente a ser verdadeiro.",
-          "**Contradição por negação**: (p ∨ ~q) ↔ (~p ∧ q) é sempre falsa, porque os dois lados têm valores opostos.",
-          "**Prova por absurdo (tautologia)**: tentar falso; se isso exigir uma simples verdadeira e falsa ao mesmo tempo, é tautologia.",
-          "**Prova por absurdo (contradição)**: tentar verdadeiro; se for impossível, é contradição.",
-          "**Contingência**: se tanto verdadeiro quanto falso são possíveis, é contingência.",
-          "**Simples sem repetição**: fórmulas com simples distintas, como P ∧ Q ∧ R, são contingências.",
-          "**P e ~P**: P ∨ Q ∨ ~P é tautologia, pois não há como todos os termos serem falsos.",
-          "**Petrobras**: com r verdadeira, p e q falsas, a fórmula fica falsa, logo não é tautologia.",
-          "**Escolha do método**: o absurdo costuma ser mais rápido que a tabela."
+          "**Prova por absurdo**: parte de uma suspeita (tautologia ou contradição) e tenta derrubá-la, sem montar a tabela inteira.",
+          "**Suspeita de tautologia**: tente tornar a proposição F; se surgir absurdo, ela é tautologia; se conseguir, é contradição ou contingência.",
+          "**Suspeita de contradição**: tente torná-la V; absurdo confirma a contradição.",
+          "**Contingência**: quando é possível torná-la V e também torná-la F.",
+          "**Absurdo**: exigência impossível, como uma mesma proposição ter de ser V e F, ou p e ~p ambas F.",
+          "**Fixando valores**: condicional F ⇒ antecedente V e consequente F; conjunção V ⇒ partes V; disjunção F ⇒ partes F.",
+          "**Exemplos**: (a ∧ f) → (z ∨ f) é tautologia (f teria de ser V e F); [(p → r) ∧ (q → r)] → [r → (p ∨ q)] não é (fica F com r V, p F, q F).",
+          "**Vantagem**: costuma ser mais rápido que a tabela-verdade, sobretudo com muitas proposições simples.",
+          "**Implicação (p ⇒ q)**: afirma que a condicional p → q é tautologia; \"A implica B\" = A → B tautológica. Algumas bancas usam ⇒ como simples condicional."
         ],
         "teoria": [
           {
-            "statement": "Uma fórmula cuja tabela-verdade tem só valores falsos na última coluna é uma contradição.",
+            "statement": "Para verificar, pela prova por absurdo, se uma proposição é tautologia, tenta-se atribuir a ela o valor lógico falso.",
             "isTrue": true,
-            "explanation": "Definição de contradição."
+            "explanation": "Se tornar a proposição falsa levar a absurdo, ela nunca é falsa: é tautologia."
           },
           {
-            "statement": "Ao tentar tornar falsa uma fórmula que se suspeita ser tautologia, se isso for possível, conclui-se que ela é tautologia.",
+            "statement": "Se for possível tornar uma proposição verdadeira, conclui-se pela prova por absurdo que ela é uma tautologia.",
             "isTrue": false,
-            "explanation": "Se for possível, não é tautologia."
+            "explanation": "Isso só mostra que não é contradição; pode ser tautologia ou contingência."
           },
           {
-            "statement": "Se, ao exigir o valor verdadeiro de uma fórmula, surge um absurdo, a fórmula é uma contradição.",
+            "statement": "Com r verdadeira e p e q falsas, a condicional cujo antecedente é (p → r) ∧ (q → r) e cujo consequente é r → (p ∨ q) resulta falsa.",
             "isTrue": true,
-            "explanation": "Nunca pode ser verdadeira."
+            "explanation": "O antecedente fica V (F → V em ambas) e o consequente fica V → F = F."
           },
           {
-            "statement": "A fórmula P ∨ Q ∨ ~P é uma tautologia.",
-            "isTrue": true,
-            "explanation": "Para ser falsa, P e ~P teriam de ser falsas juntas."
+            "statement": "Dizer que A implica B (A ⇒ B) equivale a afirmar que a bicondicional A ↔ B é uma tautologia.",
+            "isTrue": false,
+            "explanation": "A ⇒ B significa que a condicional A → B, nessa ordem, é tautologia."
           }
         ],
         "revisao": [
           {
-            "statement": "A fórmula (p ∧ q) → p pode ser falsa quando p é falso e q é verdadeiro.",
-            "isTrue": false,
-            "explanation": "Se p é falso, p ∧ q é falso e a condicional é verdadeira: é tautologia."
-          },
-          {
-            "statement": "A bicondicional (p ∨ ~q) ↔ (~p ∧ q) é uma contradição.",
+            "statement": "Na prova por absurdo, o absurdo corresponde a exigir valores incompatíveis, como uma mesma proposição simples ser verdadeira e falsa ao mesmo tempo.",
             "isTrue": true,
-            "explanation": "Os dois lados têm sempre valores opostos."
+            "explanation": "Essa incompatibilidade mostra que o valor tentado é impossível."
           },
           {
-            "statement": "A fórmula P ∧ Q ∧ R, com simples distintas, é uma tautologia.",
+            "statement": "Uma proposição que pode assumir tanto o valor verdadeiro quanto o falso é classificada como contradição.",
             "isTrue": false,
-            "explanation": "É contingência: pode ser V ou F."
+            "explanation": "Admitir os dois valores caracteriza contingência."
           },
           {
-            "statement": "Na prova por absurdo, uma contingência é identificada quando é possível obter tanto o valor falso quanto o verdadeiro.",
+            "statement": "A proposição a ∨ b ∨ ~c ∨ ~a é uma tautologia, pois torná-la falsa exigiria a e ~a falsas ao mesmo tempo.",
             "isTrue": true,
-            "explanation": "Nem tautologia, nem contradição."
+            "explanation": "Disjunção falsa exige todas as parcelas falsas, o que é impossível com a e ~a."
+          },
+          {
+            "statement": "Os símbolos → e ⇒ têm sempre o mesmo significado, e nenhuma banca os distingue.",
+            "isTrue": false,
+            "explanation": "Formalmente, ⇒ indica que a condicional é tautologia; algumas bancas é que os usam como sinônimos."
           }
         ],
         "pointers": [
           {
-            "topic": "Método da tabela-verdade e os quatro passos",
-            "pageRef": 31
-          },
-          {
-            "topic": "Passos 3 e 4 da fórmula tripla",
-            "pageRef": 32
-          },
-          {
-            "topic": "Condicional final e questão do CRO-RS",
-            "pageRef": 33
-          },
-          {
-            "topic": "Alternativas a e c",
-            "pageRef": 34
-          },
-          {
-            "topic": "Alternativa d e esquema",
-            "pageRef": 35
-          },
-          {
-            "topic": "Alternativa e (contradição)",
-            "pageRef": 36
-          },
-          {
-            "topic": "Questão do ISS Fortaleza",
-            "pageRef": 37
-          },
-          {
-            "topic": "Método da prova por absurdo",
+            "topic": "Procedimento da prova por absurdo",
             "pageRef": 38
           },
           {
-            "topic": "O que é um absurdo",
+            "topic": "O que é o absurdo",
             "pageRef": 39
           },
           {
-            "topic": "Aplicação do absurdo à fórmula tripla",
+            "topic": "Exemplo resolvido: tautologia por absurdo",
             "pageRef": 40
           },
           {
-            "topic": "Questão de Penedo",
-            "pageRef": 41
-          },
-          {
-            "topic": "Tautologia com P e ~P e questão da Petrobras",
+            "topic": "Disjunção com P e ~P e contingências",
             "pageRef": 42
           },
           {
-            "topic": "Antecedente e consequente da questão da Petrobras",
+            "topic": "Condicional que não é tautologia",
             "pageRef": 43
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a01/s05",
-      "bizu": {
-        "summary": [
-          "**Absurdo no exemplo**: o antecedente exige a simples verdadeira e o consequente exige a mesma simples falsa, logo a frase é tautologia.",
-          "**Implicação**: p implica q quando p → q é tautologia, mas as bancas às vezes usam a palavra para uma condicional qualquer.",
-          "**Cadeia de condicionais**: (p → q) ∧ (q → r) afirma duas condicionais juntas.",
-          "**Frase longa**: separe em partes; o além disso vira conjunção e o se e somente se vira bicondicional.",
-          "**Precedência**: em p ∨ q → r ↔ s ∧ t, agrupa-se primeiro ∨ e ∧, depois a condicional e por fim a bicondicional.",
-          "**Conectivo principal**: é o último a ser resolvido e dá nome à proposição.",
-          "**Como e uma vez que**: são formas de escrever a condicional.",
-          "**Sinonímia**: faltar com a verdade é não falar a verdade.",
-          "**Não só, como também**: tem sentido de adição, ou seja, conjunção.",
-          "**Contagens**: repetição de simples conta uma vez; e e mas são o mesmo conectivo; o tempo verbal não importa.",
-          "**Com isso**: o termo ligando causa e consequência indica condicional."
-        ],
-        "teoria": [
-          {
-            "statement": "Dizer que a proposição A implica a proposição B é afirmar que a condicional A → B é uma tautologia.",
-            "isTrue": true,
-            "explanation": "Definição de implicação."
           },
           {
-            "statement": "Em lógica, a expressão \"p implica q\" nunca pode ser usada para designar uma condicional comum.",
-            "isTrue": false,
-            "explanation": "Algumas bancas usam \"implica\" para a condicional."
-          },
-          {
-            "statement": "A expressão \"Como p, q\" e a expressão \"Uma vez que p, q\" podem ser reescritas como \"Se p, então q\".",
-            "isTrue": true,
-            "explanation": "Formas de condicional."
-          },
-          {
-            "statement": "A expressão \"não só ..., como também\" indica uma disjunção.",
-            "isTrue": false,
-            "explanation": "Tem sentido de adição: conjunção."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "Em (p → q) ∧ (q → r), as duas condicionais são afirmadas ao mesmo tempo.",
-            "isTrue": true,
-            "explanation": "O ∧ une as duas."
-          },
-          {
-            "statement": "Em \"Treine e passe\", usada como incentivo no sentido de causa e consequência, o \"e\" pode ocultar uma condicional.",
-            "isTrue": true,
-            "explanation": "Como em \"Pague com Pix e ganhe desconto\"."
-          },
-          {
-            "statement": "Na contagem de simples distintas de uma frase, uma simples que se repete deve ser contada duas vezes.",
-            "isTrue": false,
-            "explanation": "Conta-se uma só vez."
-          },
-          {
-            "statement": "Nas proposições em que \"e\" e \"mas\" aparecem, ambos correspondem ao mesmo conectivo, a conjunção.",
-            "isTrue": true,
-            "explanation": "Contam como um único conectivo distinto."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Fim do absurdo e definição de implicação",
+            "topic": "Implicação lógica p ⇒ q",
             "pageRef": 44
           },
           {
-            "topic": "Implicação e questão da PC-SE",
+            "topic": "Bancas que usam ⇒ como condicional",
             "pageRef": 45
-          },
-          {
-            "topic": "Questão da FEPESE",
-            "pageRef": 46
-          },
-          {
-            "topic": "Questão de laboratório (UFG)",
-            "pageRef": 47
-          },
-          {
-            "topic": "Precedência: questão da VUNESP",
-            "pageRef": 48
-          },
-          {
-            "topic": "Conectivo principal",
-            "pageRef": 49
-          },
-          {
-            "topic": "Condicional com como e uma vez que",
-            "pageRef": 50
-          },
-          {
-            "topic": "Questão do INPI e cartaz do Pix",
-            "pageRef": 51
-          },
-          {
-            "topic": "Sinonímia e questão do TRT-8",
-            "pageRef": 52
-          },
-          {
-            "topic": "Não só, como também",
-            "pageRef": 53
-          },
-          {
-            "topic": "Contagem de simples e de conectivos (IBFC)",
-            "pageRef": 54
-          },
-          {
-            "topic": "Questão da Petrobras sobre o como",
-            "pageRef": 55
-          },
-          {
-            "topic": "Questão da ADAPAR (com isso)",
-            "pageRef": 56
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a01/s06",
-      "bizu": {
-        "summary": [
-          "**Quantidade de linhas**: n simples distintas dão 2ⁿ linhas, e a negação não conta.",
-          "**Exemplos de contagem**: duas simples têm 4 linhas, três têm 8, quatro têm 16 e cinco têm 32.",
-          "**Fração do total**: um quarto de 32 linhas é 8; primeiro calcule 2ⁿ e depois a fração.",
-          "**Bicondicional tautológica**: (p → q) ↔ (~p ∨ q) dá verdadeiro em todas as linhas.",
-          "**Disjunção ~p ∨ q**: com a ordem usual das linhas, a coluna é V, F, V, V.",
-          "**Coluna F F F V**: é a de ~(p ∨ q) ∧ ~p, verdadeira só quando p e q são falsas.",
-          "**Valores ocultos**: ~p → q falha só quando ~p é verdadeira e q falsa.",
-          "**Contar linhas verdadeiras**: ache a linha falsa do conectivo principal e subtraia do total.",
-          "**Exemplos de contagem de V**: (p ∧ ~q) → ~p tem 3 linhas V; (p → ~q) ∨ ~r tem 7."
-        ],
-        "teoria": [
-          {
-            "statement": "A tabela-verdade de uma fórmula com cinco proposições simples distintas tem 32 linhas.",
-            "isTrue": true,
-            "explanation": "2⁵ = 32."
-          },
-          {
-            "statement": "Se uma simples aparece duas vezes numa fórmula, ela acrescenta linhas à tabela.",
-            "isTrue": false,
-            "explanation": "Conta-se uma só vez."
-          },
-          {
-            "statement": "A bicondicional (p → q) ↔ (~p ∨ q) assume valor verdadeiro em todas as linhas.",
-            "isTrue": true,
-            "explanation": "É tautologia, pois p → q e ~p ∨ q têm sempre o mesmo valor."
-          },
-          {
-            "statement": "A coluna final de ~p ∨ q, com linhas na ordem VV, VF, FV, FF, é V, V, F, F.",
-            "isTrue": false,
-            "explanation": "É V, F, V, V."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "A fórmula (p ∧ ~q) → ~p tem exatamente uma linha falsa na tabela-verdade.",
-            "isTrue": true,
-            "explanation": "Só quando p é V e q é F."
-          },
-          {
-            "statement": "A fórmula (p → ~q) ∨ ~r é falsa apenas quando p, q e r são verdadeiras.",
-            "isTrue": true,
-            "explanation": "As duas parcelas só são F nessa linha."
-          },
-          {
-            "statement": "Para calcular um quarto do número de linhas de uma tabela com 5 simples, basta dividir 5 por 4.",
-            "isTrue": false,
-            "explanation": "2⁵ = 32 e 32 ÷ 4 = 8."
-          },
-          {
-            "statement": "Quando ~p é verdadeira e q é falsa, a condicional ~p → q é falsa.",
-            "isTrue": true,
-            "explanation": "Caso V → F."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Questão da FGV sobre a sentença S",
-            "pageRef": 57
-          },
-          {
-            "topic": "Preenchimento da tabela de S",
-            "pageRef": 58
-          },
-          {
-            "topic": "Contagem de linhas: duas e três simples",
-            "pageRef": 59
-          },
-          {
-            "topic": "Contagem de linhas: quatro simples",
-            "pageRef": 60
-          },
-          {
-            "topic": "Questão do piquenique",
-            "pageRef": 61
-          },
-          {
-            "topic": "Fração das linhas e valores ocultos",
-            "pageRef": 62
-          },
-          {
-            "topic": "Valores ocultos em ~p → q",
-            "pageRef": 63
-          },
-          {
-            "topic": "Coluna de ~p ∨ q",
-            "pageRef": 64
-          },
-          {
-            "topic": "Fórmula R(p, q)",
-            "pageRef": 65
-          },
-          {
-            "topic": "Coluna final de R(p, q)",
-            "pageRef": 66
-          },
-          {
-            "topic": "Contagem de linhas verdadeiras",
-            "pageRef": 67
-          },
-          {
-            "topic": "Resolução da questão do servidor",
-            "pageRef": 68
-          },
-          {
-            "topic": "Questão de (p → ~q) ∨ ~r",
-            "pageRef": 69
-          },
-          {
-            "topic": "Colunas intermediárias de (p → ~q) ∨ ~r",
-            "pageRef": 70
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a01/s07",
-      "bizu": {
-        "summary": [
-          "**Linhas V**: em (p → ~q) ∨ ~r há 7 linhas verdadeiras, porque só a primeira linha é falsa.",
-          "**Fórmula com três simples**: [(P ∨ Q) → (P ∧ Q)] ∨ R é falsa só quando P e Q diferem e R é falsa, portanto tem 6 linhas V.",
-          "**Duas simples**: a tabela-verdade tem quatro linhas.",
-          "**Tautologia clássica**: p ∨ ~p é sempre verdadeira.",
-          "**Contingência**: (p → q) ∨ (r ↔ p) pode ser falsa (p V, q F, r F) e verdadeira.",
-          "**Contradição por absurdo**: (p → q) ∧ (p ∧ ~q) exige p V e q F, mas aí p → q é falsa.",
-          "**Simplificação**: q ∨ ~q vale sempre V, então ~p ∧ (q ∨ ~q) equivale a ~p.",
-          "**Antecedente falso**: se o antecedente é sempre falso, a condicional é tautologia.",
-          "**Contradição**: operação com resultado sempre falso, como p ∧ ~p.",
-          "**Leitura de tabelas**: coluna só V é tautologia, só F é contradição, misturada é contingência."
-        ],
-        "teoria": [
-          {
-            "statement": "A fórmula (p ∧ ~p) → p é uma tautologia.",
-            "isTrue": true,
-            "explanation": "Antecedente sempre falso."
-          },
-          {
-            "statement": "A fórmula q ∨ ~q é uma contradição.",
-            "isTrue": false,
-            "explanation": "É tautologia."
-          },
-          {
-            "statement": "A fórmula (p ∨ q) → p é verdadeira quando p e q são ambos verdadeiros.",
-            "isTrue": true,
-            "explanation": "V → V é V; logo não é contradição."
-          },
-          {
-            "statement": "Uma coluna final com os valores V, F, V, V caracteriza uma contradição.",
-            "isTrue": false,
-            "explanation": "Como há V e F, é contingência."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "A fórmula ~p ∧ (q ∨ ~q) é verdadeira exatamente quando p é falsa.",
-            "isTrue": true,
-            "explanation": "Equivale a ~p."
-          },
-          {
-            "statement": "A fórmula (P ∨ Q) → (P ∧ Q) é uma tautologia.",
-            "isTrue": false,
-            "explanation": "Com P V e Q F ela é F: é contingência."
-          },
-          {
-            "statement": "Na fórmula (r ∧ s) → (r ↔ s), a última coluna é V, V, V, V.",
-            "isTrue": true,
-            "explanation": "É tautologia."
-          },
-          {
-            "statement": "Uma tabela-verdade de duas proposições simples distintas tem quatro linhas.",
-            "isTrue": true,
-            "explanation": "2² = 4."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Coluna final da fórmula (p → ~q) ∨ ~r",
-            "pageRef": 71
-          },
-          {
-            "topic": "Questão de contagem com três simples",
-            "pageRef": 72
-          },
-          {
-            "topic": "Colunas intermediárias da fórmula com R",
-            "pageRef": 73
-          },
-          {
-            "topic": "Linhas da tabela com duas simples",
-            "pageRef": 74
-          },
-          {
-            "topic": "Tautologia p ∨ ~p",
-            "pageRef": 75
-          },
-          {
-            "topic": "Fórmula (p → q) ∨ (r ↔ p)",
-            "pageRef": 76
-          },
-          {
-            "topic": "Contingência e questão da UEL",
-            "pageRef": 77
-          },
-          {
-            "topic": "Associação da UEL: itens I e II",
-            "pageRef": 78
-          },
-          {
-            "topic": "Associação da UEL: itens III e IV",
-            "pageRef": 79
-          },
-          {
-            "topic": "Tautologia e contingência com P e Q",
-            "pageRef": 80
-          },
-          {
-            "topic": "Afirmativas I e II da UEL",
-            "pageRef": 81
-          },
-          {
-            "topic": "Afirmativas III e IV e definição de contradição",
-            "pageRef": 82
-          },
-          {
-            "topic": "Tabelas 1 e 2 da Fundatec",
-            "pageRef": 83
-          },
-          {
-            "topic": "Tabelas da UFRGS",
-            "pageRef": 84
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a01/s08",
-      "bizu": {
-        "summary": [
-          "**Tautologia**: sempre V; formas p ∨ ~p, p ⊻ ~p, p → (p ∨ q). Prove tentando torná-la F e chegando a absurdo.",
-          "**Contradição**: sempre F; formas p ∧ ~p e p ↔ ~p, inclusive disfarçadas por sinônimos (\"não é barato, mas custa pouquíssimo\").",
-          "**Contingência**: depende dos valores; proposição simples isolada, p ∧ q, p → ~p e (p ∨ q) → p.",
-          "**Teste por absurdo**: (P ∨ Q) ∧ (P → Q) → Q é tautologia, pois Q F e antecedente V são incompatíveis.",
-          "**Precedência**: ~, depois ∧, ∨, → e, por último, ↔; o conectivo principal é o de menor precedência.",
-          "**\"Mas\", \"porém\", \"embora\"**: valem \"e\" na lógica, ainda que indiquem contraste no português.",
-          "**Causal vira condicional**: \"como o ônibus atrasou, Rita pegou táxi\" → a → t.",
-          "**\"Nem... nem\"**: equivale a ~p ∧ ~q (\"não estudou e não passou\"), que é contingência.",
-          "**Contagem**: sinônimos são uma só proposição; \"mas\" e vírgula aditiva contam como conectivo.",
-          "**Equivalência por sentido**: \"faltar com a verdade\" = \"não falar a verdade\"."
-        ],
-        "teoria": [
-          {
-            "statement": "\"O Brasil vence ou o Brasil não vence\" é uma tautologia, qualquer que seja o resultado do jogo.",
-            "isTrue": true,
-            "explanation": "Forma p ∨ ~p."
-          },
-          {
-            "statement": "\"Ou chove, ou não chove\" é uma contradição.",
-            "isTrue": false,
-            "explanation": "A exclusiva entre p e ~p é sempre V: tautologia."
-          },
-          {
-            "statement": "A frase \"Não está calor, mas está muito quente\" tem a forma ~p ∧ p quando \"está muito quente\" significa \"está calor\".",
-            "isTrue": true,
-            "explanation": "É contradição."
-          },
-          {
-            "statement": "A proposição simples \"Todo cachorro é preto\" é uma tautologia.",
-            "isTrue": false,
-            "explanation": "Pode ser V ou F: contingência."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "A fórmula P → ~P pode ser verdadeira e pode ser falsa.",
-            "isTrue": true,
-            "explanation": "V → F é F; F → V é V."
-          },
-          {
-            "statement": "A fórmula m → (m ∨ p) é uma tautologia.",
-            "isTrue": true,
-            "explanation": "Com m V, a disjunção é V."
-          },
-          {
-            "statement": "A fórmula (m ∨ p) → p é uma tautologia.",
-            "isTrue": false,
-            "explanation": "Com m V e p F ela é F."
-          },
-          {
-            "statement": "A fórmula ~p ∧ ~q é V quando p e q são ambas falsas e F nos demais casos.",
-            "isTrue": true,
-            "explanation": "Contingência."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Conclusão das tabelas e questão da tatuagem",
-            "pageRef": 85
-          },
-          {
-            "topic": "Ou exclusivo e questão da Selecon",
-            "pageRef": 86
-          },
-          {
-            "topic": "Alternativas da Selecon",
-            "pageRef": 87
-          },
-          {
-            "topic": "Questão da FEPESE sobre tautologia",
-            "pageRef": 88
-          },
-          {
-            "topic": "Alternativa d e questão do SEBRAE",
-            "pageRef": 89
-          },
-          {
-            "topic": "Alternativas b, c e d do SEBRAE",
-            "pageRef": 90
-          },
-          {
-            "topic": "Questão de contradição da Fundatec",
-            "pageRef": 91
-          },
-          {
-            "topic": "Contradição disfarçada por sinonímia",
-            "pageRef": 92
-          },
-          {
-            "topic": "Questão do médico (p ∨ ~p)",
-            "pageRef": 93
-          },
-          {
-            "topic": "Lista de questões de conversão",
-            "pageRef": 94
-          },
-          {
-            "topic": "Lista de questões de conversão (continuação)",
-            "pageRef": 95
-          },
-          {
-            "topic": "Lista de questões de conversão (cont.)",
-            "pageRef": 96
-          },
-          {
-            "topic": "Questões do IBFC, Petrobras e ADAPAR",
-            "pageRef": 97
-          },
-          {
-            "topic": "Gabarito das questões de conversão",
-            "pageRef": 98
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a01/s09",
-      "bizu": {
-        "summary": [
-          "**Contagem de linhas**: depende apenas do número de simples distintas, 2 elevado a n.",
-          "**Completar colunas**: confira cada conectivo pela sua regra, linha a linha.",
-          "**Contagem de linhas V**: encontre as linhas falsas do conectivo principal e subtraia do total.",
-          "**Tautologias frequentes**: p ∨ ¬p e uma exclusiva entre uma simples e sua negação.",
-          "**Contradições frequentes**: p ∧ ¬p e frases do tipo não é caro, mas é caro.",
-          "**Contingência**: é a classificação das fórmulas que podem ser verdadeiras e falsas.",
-          "**Absurdo**: tentar falso para tautologia e verdadeiro para contradição.",
-          "**Erros comuns**: contar conectivos em vez de simples, esquecer que mas é e, confundir contradição com contingência.",
-          "**Treino**: resolver a lista antes de consultar o gabarito de cada bloco."
-        ],
-        "teoria": [
-          {
-            "statement": "Para saber quantas linhas tem a tabela-verdade, basta contar as proposições simples distintas e elevar 2 a esse número.",
-            "isTrue": true,
-            "explanation": "Regra 2ⁿ."
-          },
-          {
-            "statement": "Uma fórmula com três conectivos e duas proposições simples tem oito linhas.",
-            "isTrue": false,
-            "explanation": "Duas simples dão 4 linhas."
-          },
-          {
-            "statement": "A proposição \"Chove ou não chove\" é uma tautologia.",
-            "isTrue": true,
-            "explanation": "Forma p ∨ ~p."
-          },
-          {
-            "statement": "A bicondicional entre p e ~p é uma tautologia.",
-            "isTrue": false,
-            "explanation": "Seus lados têm sempre valores opostos: é contradição."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "Uma fórmula que pode ser falsa e pode ser verdadeira é uma contingência.",
-            "isTrue": true,
-            "explanation": "Definição."
-          },
-          {
-            "statement": "A fórmula (p → ~q) ∨ ~r é falsa em quatro das oito linhas.",
-            "isTrue": false,
-            "explanation": "Só é falsa quando p, q e r são verdadeiras."
-          },
-          {
-            "statement": "Em (p ∧ ~q) → ~p, três das quatro linhas da tabela são verdadeiras.",
-            "isTrue": true,
-            "explanation": "A única F é p V e q F."
-          },
-          {
-            "statement": "Ao treinar com uma lista de questões, o ideal é resolvê-las antes de consultar o gabarito.",
-            "isTrue": true,
-            "explanation": "Treino ativo."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Lista de questões de tabela-verdade",
-            "pageRef": 99
-          },
-          {
-            "topic": "Questões de contagem de linhas",
-            "pageRef": 100
-          },
-          {
-            "topic": "Questões de colunas e valores ocultos",
-            "pageRef": 101
-          },
-          {
-            "topic": "Questões de contagem de linhas verdadeiras",
-            "pageRef": 102
-          },
-          {
-            "topic": "Questão do ISS BH",
-            "pageRef": 103
-          },
-          {
-            "topic": "Gabarito do bloco de tabela-verdade",
-            "pageRef": 104
-          },
-          {
-            "topic": "Lista de classificação de fórmulas",
-            "pageRef": 105
-          },
-          {
-            "topic": "Associação da UEL e pares de fórmulas",
-            "pageRef": 106
-          },
-          {
-            "topic": "Afirmativas e tabelas prontas",
-            "pageRef": 107
-          },
-          {
-            "topic": "Tabelas da UFRGS e questões da Quadrix",
-            "pageRef": 108
-          },
-          {
-            "topic": "Questões da Selecon, FEPESE e SEBRAE",
-            "pageRef": 109
-          },
-          {
-            "topic": "Questão do médico",
-            "pageRef": 110
-          },
-          {
-            "topic": "Gabarito do bloco de classificação",
-            "pageRef": 111
           }
         ]
       }

@@ -29,6 +29,14 @@ const WEEK_OVERSHOOT = 1.05;
 const MIN_WIP_AULAS = 3;
 const WIP_PER_DAILY_ACTIVITY = 2.5;
 const TYPICAL_ACTIVITY_MINUTES = 55;
+/**
+ * Urgência de uma fila: minutos que faltam ÷ (dias restantes × ritmo de ~1 atividade por dia). Acima de URGENCY_START a
+ * disciplina ganha prioridade crescente; sem isso, a fila mais longa (que só anda 1 atividade/dia) sobra sozinha nas últimas
+ * semanas, com dias quase vazios, enquanto aulas de outras disciplinas ficam fora do plano por "falta de tempo".
+ */
+const URGENCY_DAILY_PACE = 60;
+const URGENCY_START = 1.0;
+const URGENCY_WEIGHT = 2;
 
 /** Minutos de estudo previstos para o dia `ord` (0 = segunda da semana 1). */
 export function dayTarget(weeklyMinutes: number, ord: number): number {
@@ -185,6 +193,9 @@ export function scheduleCalendar(
           if (load + a.minutes > cap) continue;
           if (today.length > 0 && load + a.minutes > stopAt * 1.25 && load >= stopAt * 0.6) continue; // não estoura o dia
           let score = (1 - s.done / s.total) * 2 + s.examQuestions / 1000 - s.sortOrder * 0.001;
+          // fila longa que, a ~1 atividade por dia, não cabe nos dias restantes: ganha prioridade (senão sobra só ela no fim do plano)
+          const urgency = (s.total - s.done) / ((lastOrd - ord + 1) * URGENCY_DAILY_PACE);
+          if (urgency > URGENCY_START) score += (urgency - URGENCY_START) * URGENCY_WEIGHT;
           score -= (families.get(s.family) ?? 0) * 0.4; // evita colar famílias iguais no mesmo dia
           if (isPractice(a)) score += streak >= 2 ? 1 : streak === 1 ? 0.4 : 0.15; // teoria e prática se alternam
           if (started.has(a.cycle)) score += 0.4; // terminar o ciclo já aberto antes de abrir outros

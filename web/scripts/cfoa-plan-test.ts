@@ -54,7 +54,7 @@ const aulaById = new Map(catalog.subjects.flatMap((s) => s.aulas.map((a) => [a.i
 const result: unknown[] = [];
 for (const s of SC) {
   const input = {
-    catalog, segments, contest: CONTEST, importance, summaries, examQuestions, startDate: s.start, firstDay: s.firstDay, examDate: EXAM,
+    catalog, segments, contest: CONTEST, importance, summaries, examQuestions, examTotalQuestions: 100, startDate: s.start, firstDay: s.firstDay, examDate: EXAM,
     hoursPerWeek: s.hours, subjects: s.subjects.map((id) => ({ id, level: s.level })), known: s.known ?? {}, excludedAulas: s.excluded ?? [], turbo: s.turbo,
   };
   const plan = generatePlan(input);

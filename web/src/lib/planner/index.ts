@@ -45,6 +45,7 @@ export function generatePlan(input: PlanInput): PlanResult {
   const plan = generatePlanOnce(input);
   if (!input.turbo || plan.params.summaryUnits === 0) return plan;
   const normal = generatePlanOnce({ ...input, turbo: false });
+  if (normal.params.editalFits) return normal; // o edital já cabe sem resumos: o Turbo não tem o que trocar
   if (plan.coverage.selected + 1e-9 >= normal.coverage.selected) return plan;
   return { ...normal, warnings: ["Modo Turbo: com os resumos disponíveis hoje ele não aumentaria a cobertura do edital, então o plano foi montado no modo normal.", ...normal.warnings] };
 }
@@ -118,7 +119,8 @@ function generatePlanOnce(input: PlanInput): PlanResult {
       .sort((a, b) => b.incidence - a.incidence);
     return {
       subjectId: subject.id,
-      examQuestions: input.combo ? (input.examQuestions?.[subject.id] ?? subject.examQuestions) : subject.examQuestions,
+      // peso do concurso do aluno (ou do combo); o do catálogo é o do CBMPE Oficial
+      examQuestions: input.examQuestions?.[subject.id] ?? subject.examQuestions,
       sortOrder: subject.sortOrder,
       segments: aulas.flatMap((a) =>
         (input.segments[a.id] ?? []).filter((s) => sel.mastered.has(a.id) || studied.has(s.id)).map((s) => ({ id: s.id, aulaId: a.id })),
@@ -148,7 +150,9 @@ function generatePlanOnce(input: PlanInput): PlanResult {
   }
   const contentWeeks = weeks.reduce((n, w) => (w.kind === "CONTENT" ? w.index : n), 0);
 
-  const coverage = input.combo ? comboCoverage(chosen, sel, known, input.combo, input.examQuestions ?? {}) : computeCoverage(chosen, sel, known);
+  const coverage = input.combo
+    ? comboCoverage(chosen, sel, known, input.combo, input.examQuestions ?? {})
+    : computeCoverage(chosen, sel, known, input.examQuestions ? { examQuestions: input.examQuestions, editalTotal: input.examTotalQuestions ?? EXAM_TOTAL_QUESTIONS } : undefined);
   const warnings: string[] = [];
   if (sel.turboAulas.size > 0) {
     warnings.push(`Modo Turbo: ${[...sel.tierByAula.keys()].reduce((n, id) => n + sel.blueprints.get(id)!.summary.length, 0)} assuntos de menor importância no concurso serão estudados por resumo analítico para você ver mais do edital no tempo disponível.`);

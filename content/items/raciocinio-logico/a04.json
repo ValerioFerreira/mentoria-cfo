@@ -1,114 +1,99 @@
 {
   "aula": "raciocinio-logico/a04",
-  "batch": "praca-raciocinio-logico",
-  "status": "APPROVED",
+  "batch": "rl-resegment-2026-10-26",
+  "status": "DRAFT",
   "segments": [
     {
       "id": "raciocinio-logico/a04/s01",
       "bizu": {
         "summary": [
-          "**Questão clássica**: várias afirmações dadas e uma alternativa que decorre delas; trabalhe só com letras e conectivos.",
-          "**Formatos fáceis**: simples conhecida, conjunção V (ambas V), disjunção F (ambas F) e condicional F (V e F).",
-          "**Afirmação que não entrega nada**: condicional V, disjunção V ou conjunção F só servem depois de algum valor conhecido.",
-          "**Modus ponens e tollens**: condicional V com antecedente V dá consequente V; com consequente F dá antecedente F.",
-          "**Disjunção V**: se uma parcela é F, a outra é V.",
-          "**Conjunção F**: se uma parcela é V, a outra é F.",
-          "**Exclusiva V**: valores opostos; conhecida uma parcela, a outra tem o valor contrário.",
-          "**Cadeia de condicionais**: último consequente F torna falsos todos os antecedentes; primeiro antecedente V torna verdadeiros todos os consequentes.",
-          "**\"Nem\"**: equivale a \"e não\"; confira cada parte da alternativa com os valores obtidos."
+          "**Tabelas de cor**: conjunção só é V com tudo V; disjunção inclusiva só é F com tudo F; exclusiva é F com valores iguais; condicional só é F no V → F; bicondicional é V com valores iguais.",
+          "**Questão clássica**: o enunciado dá afirmações e pede a consequência necessariamente verdadeira; todas valem como V, salvo aviso de que alguma é falsa.",
+          "**Quatro etapas**: achar o formato fácil, traduzir para símbolos, descobrir os valores das proposições simples e testar as alternativas.",
+          "**Formatos fáceis**: proposição simples, conjunção V (tudo V), disjunção inclusiva F (tudo F) e condicional F (antecedente V, consequente F).",
+          "**Condicional verdadeira**: consequente F força antecedente F; antecedente V força consequente V.",
+          "**Disjunção inclusiva verdadeira**: se uma parcela é F, a outra é obrigatoriamente V.",
+          "**Conjunção falsa**: se uma parcela é V, a outra é F; sem isso, só se sabe que alguma falhou.",
+          "**Cadeia de condicionais**: com a → b e b → c verdadeiras e c falso, o falso volta pela cadeia: b e a também são F.",
+          "**Disjunção exclusiva (ou... ou)**: verdadeira exige valores opostos nas parcelas.",
+          "**Conferência final**: conjunção de vários termos só é V com todos V; nem significa e não; condicional na alternativa só falha no V → F."
         ],
         "teoria": [
           {
-            "statement": "Na resolução de questões clássicas, as afirmações do enunciado devem ser consideradas verdadeiras, salvo indicação contrária.",
-            "isTrue": true,
-            "explanation": "Regra do método."
-          },
-          {
-            "statement": "Uma conjunção verdadeira só indica que uma de suas parcelas é verdadeira.",
+            "statement": "Em uma questão clássica de conectivos, uma disjunção inclusiva declarada verdadeira é um dos formatos fáceis para iniciar a resolução.",
             "isTrue": false,
-            "explanation": "As duas são verdadeiras."
+            "explanation": "A disjunção inclusiva só entrega valores quando é falsa (as duas parcelas F); sendo verdadeira, admite três combinações."
           },
           {
-            "statement": "Se a disjunção inclusiva \"Ana viaja ou Bia estuda\" é verdadeira e Ana não viaja, então Bia estuda.",
+            "statement": "Se a afirmação “Se Lia corre, Davi nada” é verdadeira e Davi não nada, conclui-se que Lia não corre.",
             "isTrue": true,
-            "explanation": "A outra parcela deve ser V."
+            "explanation": "Condicional verdadeira com consequente falso exige antecedente falso; senão haveria V → F."
           },
           {
-            "statement": "Se a condicional \"Se chove, o evento é cancelado\" é verdadeira e o evento não foi cancelado, não se pode afirmar nada sobre a chuva.",
+            "statement": "Uma conjunção dada como verdadeira garante que suas duas parcelas são verdadeiras.",
+            "isTrue": true,
+            "explanation": "A conjunção só é verdadeira quando todas as parcelas são verdadeiras: é um formato fácil."
+          },
+          {
+            "statement": "A frase “Rita não foi à praia nem ao clube” corresponde a uma disjunção das negações.",
             "isTrue": false,
-            "explanation": "Chover é F, pois seria V → F."
+            "explanation": "Nem equivale a e não: a frase é a conjunção ~p ∧ ~c."
           }
         ],
         "revisao": [
           {
-            "statement": "Em uma cadeia de condicionais verdadeiras cujo último consequente é falso, todos os antecedentes são falsos.",
+            "statement": "Uma condicional declarada falsa permite concluir que o antecedente é verdadeiro e o consequente é falso.",
             "isTrue": true,
-            "explanation": "Cada antecedente V levaria a V → F."
+            "explanation": "O único caso em que a condicional é falsa é V → F."
           },
           {
-            "statement": "Quando uma condicional é declarada falsa, o antecedente é falso e o consequente é verdadeiro.",
+            "statement": "Sabendo que “Tom estuda ou Gil trabalha” é verdadeira e que Gil não trabalha, conclui-se que Tom estuda.",
+            "isTrue": true,
+            "explanation": "Disjunção inclusiva verdadeira com uma parcela falsa exige a outra verdadeira."
+          },
+          {
+            "statement": "Quando o enunciado nada diz sobre o valor das afirmações, elas devem ser tomadas como falsas.",
             "isTrue": false,
-            "explanation": "Antecedente V e consequente F."
+            "explanation": "A regra é o contrário: as afirmações valem como verdadeiras, salvo indicação expressa."
           },
           {
-            "statement": "Uma disjunção inclusiva declarada falsa informa que as duas parcelas são falsas.",
-            "isTrue": true,
-            "explanation": "Formato fácil."
-          },
-          {
-            "statement": "A expressão \"não come carne nem frango\" corresponde a \"não come carne e não come frango\".",
-            "isTrue": true,
-            "explanation": "\"Nem\" equivale a \"e não\"."
+            "statement": "Uma conjunção de três termos é verdadeira sempre que pelo menos dois dos termos são verdadeiros.",
+            "isTrue": false,
+            "explanation": "Basta um termo falso para a conjunção ser falsa; todos precisam ser verdadeiros."
           }
         ],
         "pointers": [
           {
-            "topic": "Apresentação da aula",
-            "pageRef": 3
-          },
-          {
-            "topic": "Resumo do tópico e as quatro etapas",
+            "topic": "Etapas e formatos fáceis",
             "pageRef": 4
           },
           {
-            "topic": "Os cinco conectivos e exemplo típico",
+            "topic": "Tabelas dos cinco conectivos",
             "pageRef": 5
           },
           {
-            "topic": "Afirmações e consequências",
+            "topic": "Afirmações tomadas como verdadeiras",
             "pageRef": 6
           },
           {
-            "topic": "Formatos fáceis e questão do MPSP",
+            "topic": "Valores entregues pelos formatos fáceis",
             "pageRef": 7
           },
           {
-            "topic": "Etapas 1 a 3 da questão do MPSP",
+            "topic": "Propagação por conjunção, disjunção e condicional",
             "pageRef": 8
           },
           {
-            "topic": "Etapa 4 e questão de Campo Bom",
-            "pageRef": 9
-          },
-          {
-            "topic": "Resolução da cadeia de condicionais",
+            "topic": "Cadeia de condicionais",
             "pageRef": 10
           },
           {
-            "topic": "Fim da cadeia e questão da SEFAZ-ES",
-            "pageRef": 11
-          },
-          {
-            "topic": "Resolução da questão de Valter",
-            "pageRef": 12
-          },
-          {
-            "topic": "Alternativas de Valter e questão do TJ-SP",
+            "topic": "Uso do nem e afirmações declaradas falsas",
             "pageRef": 13
           },
           {
-            "topic": "Alternativas e resolução do TJ-SP",
-            "pageRef": 14
+            "topic": "Disjunção exclusiva verdadeira",
+            "pageRef": 15
           }
         ]
       }
@@ -117,121 +102,94 @@
       "id": "raciocinio-logico/a04/s02",
       "bizu": {
         "summary": [
-          "**Condicional com antecedente falso**: é verdadeira, por isso F → F e F → V não informam nada.",
-          "**Simples não determinadas**: ainda assim as alternativas podem ser testadas.",
-          "**Afirmação simples**: uma frase como não joguei futebol entra como afirmação verdadeira, e não como antecedente.",
-          "**Argumento**: relação entre premissas e conclusão; no dedutivo a conclusão não traz conhecimento novo.",
-          "**Validade e veracidade**: validade é do argumento, veracidade é das proposições.",
-          "**Argumento válido**: não admite premissas verdadeiras com conclusão falsa.",
-          "**Forma simbólica**: conjunção das premissas implicando a conclusão.",
-          "**Silogismo**: duas premissas e uma conclusão, categórico ou hipotético.",
-          "**Métodos**: diagramas, tabela-verdade, conclusão falsa, transitividade e regras de inferência.",
-          "**Regras de inferência**: modus ponens, modus tollens, silogismo hipotético e dilemas."
+          "**Valores indeterminados**: nem sempre todas as proposições simples são descobertas; escolha a alternativa verdadeira em qualquer cenário compatível.",
+          "**Conjunção falsa**: só garante que ao menos uma parcela é F; de (l ∧ t) falsa conclui-se ~l ∨ ~t.",
+          "**Condicional V com antecedente F**: F → V e F → F são verdadeiras, então o consequente fica em aberto.",
+          "**Condicional F com consequente composto**: l → (c ∧ e) falsa dá l V e c ∧ e F, sem dizer qual parcela falhou.",
+          "**Alternativa condicional**: com antecedente falso, a condicional é verdadeira; costuma ser o gabarito escondido.",
+          "**Redação ambígua**: se, no domingo, não joguei... costuma introduzir mais uma afirmação verdadeira, que é o formato fácil.",
+          "**Argumento dedutivo**: premissas (hipóteses) tomadas como verdadeiras sustentam a conclusão, que não traz conhecimento novo; silogismo tem duas premissas.",
+          "**Categórico × hipotético**: quantificadores (todo, nenhum, algum) × conectivos (e, ou, se... então).",
+          "**Validade × veracidade**: válido é o argumento cuja conclusão é forçada pelas premissas; inválido = sofisma ou falácia formal; só o válido proíbe premissas V com conclusão F.",
+          "**Condicional associada**: (P1 ∧ ... ∧ Pn) → C; tautologia significa argumento válido.",
+          "**Métodos**: diagramas, premissas verdadeiras, tabela-verdade, conclusão falsa, transitividade e regras de inferência (modus ponens, modus tollens, silogismo hipotético e dilemas)."
         ],
         "teoria": [
           {
-            "statement": "Um argumento dedutivo é válido quando não existe nenhuma situação com todas as premissas verdadeiras e a conclusão falsa.",
-            "isTrue": true,
-            "explanation": "Definição de validade."
-          },
-          {
-            "statement": "Um argumento válido pode ter premissas verdadeiras e conclusão falsa.",
+            "statement": "Se “Se Ivo treinar, vencerá” é verdadeira e Ivo não treinou, conclui-se que Ivo não venceu.",
             "isTrue": false,
-            "explanation": "É impossível: seria inválido."
+            "explanation": "Com antecedente falso, a condicional é verdadeira tanto com consequente V quanto F; nada se conclui sobre a vitória."
           },
           {
-            "statement": "Um silogismo é um argumento dedutivo com duas premissas e uma conclusão.",
+            "statement": "Uma conjunção considerada falsa pode ter as duas parcelas falsas.",
             "isTrue": true,
-            "explanation": "Definição."
+            "explanation": "Conjunção falsa exige apenas que ao menos uma parcela seja falsa; as duas podem ser."
           },
           {
-            "statement": "Validade é uma característica das proposições e veracidade é uma característica dos argumentos.",
+            "statement": "Sendo verdadeiras “Se Lia e Tom forem, Gil vai” e “Gil não vai”, é correto concluir que Lia não vai ou Tom não vai.",
+            "isTrue": true,
+            "explanation": "O consequente é falso, então o antecedente l ∧ t é falso, o que equivale a ~l ∨ ~t."
+          },
+          {
+            "statement": "Em um argumento válido, é possível que todas as premissas sejam verdadeiras e a conclusão seja falsa.",
             "isTrue": false,
-            "explanation": "É o contrário."
+            "explanation": "Essa é justamente a única combinação impossível para um argumento válido."
           }
         ],
         "revisao": [
           {
-            "statement": "O argumento \"Se estudo, passo; estudo; logo, passo\" é um exemplo de modus ponens.",
+            "statement": "Uma condicional cujo antecedente é falso é verdadeira, seja qual for o valor do consequente.",
             "isTrue": true,
-            "explanation": "Afirma o antecedente."
+            "explanation": "F → V e F → F são verdadeiras; só V → F é falsa."
           },
           {
-            "statement": "O argumento \"Se estudo, passo; passo; logo, estudo\" é válido.",
+            "statement": "Argumentos hipotéticos são os que usam quantificadores como todo, nenhum e algum.",
             "isTrue": false,
-            "explanation": "Afirma o consequente: é falácia."
+            "explanation": "Esses são os categóricos; os hipotéticos usam conectivos."
           },
           {
-            "statement": "A condicional (P1 ∧ P2) → C associada a um argumento válido é uma tautologia.",
+            "statement": "Silogismo é o argumento dedutivo formado por exatamente duas premissas e uma conclusão.",
             "isTrue": true,
-            "explanation": "Critério da tabela-verdade."
+            "explanation": "É a definição de silogismo."
           },
           {
-            "statement": "Em um silogismo categórico, o termo médio aparece nas premissas e não aparece na conclusão.",
-            "isTrue": true,
-            "explanation": "Termo médio."
+            "statement": "Pelo modus tollens, de “Se p, então q” e de “q”, conclui-se “p”.",
+            "isTrue": false,
+            "explanation": "O modus tollens usa ~q e conclui ~p; afirmar q e concluir p é a falácia da afirmação do consequente."
           }
         ],
         "pointers": [
           {
-            "topic": "Resolução da questão do TJ-SP",
-            "pageRef": 15
-          },
-          {
-            "topic": "Questão do TJ-SP com profissões",
+            "topic": "Afirmações declaradas falsas (condicional e disjunção)",
             "pageRef": 16
           },
           {
-            "topic": "Etapas da questão das profissões",
-            "pageRef": 17
-          },
-          {
-            "topic": "Alternativas e questão da SEFAZ-AM",
-            "pageRef": 18
-          },
-          {
-            "topic": "Resolução da SEFAZ-AM",
+            "topic": "Valores que não podem ser determinados",
             "pageRef": 19
           },
           {
-            "topic": "Questão do TRT-4",
-            "pageRef": 20
-          },
-          {
-            "topic": "Questão da SEFAZ-AL",
+            "topic": "Condicional com antecedente falso",
             "pageRef": 21
           },
           {
-            "topic": "Resolução da SEFAZ-AL",
-            "pageRef": 22
-          },
-          {
-            "topic": "Questão do ISS Manaus",
+            "topic": "Fato introduzido por se no enunciado",
             "pageRef": 23
           },
           {
-            "topic": "Resolução do ISS Manaus",
-            "pageRef": 24
-          },
-          {
-            "topic": "Conceitos de argumentos dedutivos e validade",
+            "topic": "Validade × veracidade (visão geral)",
             "pageRef": 25
           },
           {
-            "topic": "Silogismo categórico: termos, modos e figuras",
+            "topic": "Condicional associada e silogismo categórico",
             "pageRef": 26
           },
           {
-            "topic": "Métodos de verificação de validade",
+            "topic": "Métodos de verificação",
             "pageRef": 27
           },
           {
-            "topic": "Transitividade e regras de inferência",
+            "topic": "Regras de inferência",
             "pageRef": 28
-          },
-          {
-            "topic": "Dilemas construtivo e destrutivo",
-            "pageRef": 29
           }
         ]
       }
@@ -240,101 +198,106 @@
       "id": "raciocinio-logico/a04/s03",
       "bizu": {
         "summary": [
-          "**Argumento**: relação entre premissas e conclusão; os dedutivos não produzem conhecimento novo.",
-          "**Tipos**: dedutivos, indutivos e abdutivos; o estudo é dos dedutivos.",
-          "**Silogismo**: argumento dedutivo com duas premissas e uma conclusão.",
-          "**Categórico e hipotético**: o categórico usa quantificadores e o hipotético usa conectivos.",
-          "**Validade e veracidade**: validade é do argumento e veracidade é da proposição.",
-          "**Argumento válido**: conclusão necessariamente verdadeira se as premissas são consideradas verdadeiras.",
-          "**Argumento inválido**: é a falácia formal ou sofisma, e pode ter qualquer combinação de V e F.",
-          "**Combinações do válido**: premissas verdadeiras nunca levam a conclusão falsa.",
-          "**Condicional associada**: conjunção das premissas implicando a conclusão.",
-          "**Linhas**: a tabela da condicional associada tem 2 elevado ao número de simples distintas."
+          "**Argumento dedutivo**: premissas (hipóteses) admitidas como verdadeiras sustentam uma conclusão que já estava contida nelas; não há conhecimento novo.",
+          "**Silogismo**: dedução com duas premissas; categórico usa quantificadores, hipotético usa conectivos.",
+          "**Validade × veracidade**: validade é do argumento e depende só da forma; veracidade é da proposição e depende dos fatos.",
+          "**Válido**: aceitas as premissas, a conclusão é inevitável; vale mesmo com premissas absurdas (todo peixe voa; Nemo é peixe; logo voa).",
+          "**Inválido**: a conclusão pode falhar mesmo com premissas verdadeiras; é o sofisma ou falácia formal.",
+          "**Combinações**: o válido admite premissas/conclusão VV, FV e FF, nunca premissas V com conclusão F; o inválido admite as quatro.",
+          "**Condicional associada**: (P1 ∧ ... ∧ Pn) → C, com 2ⁿ linhas, sendo n o número de proposições simples distintas.",
+          "**Termos do silogismo categórico**: maior = predicado da conclusão; menor = sujeito da conclusão; médio = só nas premissas.",
+          "**Modo e figura**: modo = letras A, E, I, O da premissa maior, da menor e da conclusão; figura pela posição do médio (1ª: sujeito-predicado; 2ª: predicado nas duas; 3ª: sujeito nas duas; 4ª: predicado-sujeito).",
+          "**Regras de validade**: três termos; médio universal ao menos uma vez e fora da conclusão; conclusão segue a premissa mais fraca; duas particulares ou duas negativas não concluem nada."
         ],
         "teoria": [
           {
-            "statement": "Num argumento válido, é impossível ter premissas verdadeiras e conclusão falsa.",
+            "statement": "Para verificar a validade de um argumento, as premissas devem ser consideradas verdadeiras, ainda que sejam falsas no mundo real.",
             "isTrue": true,
-            "explanation": "Seria argumento inválido."
+            "explanation": "A validade depende da forma; as premissas são supostas verdadeiras para o teste."
           },
           {
-            "statement": "Um argumento válido sempre tem conclusão verdadeira no mundo real.",
+            "statement": "Se um argumento é válido, sua conclusão é necessariamente verdadeira no mundo dos fatos.",
             "isTrue": false,
-            "explanation": "Pode ter conclusão falsa se tiver premissa falsa."
+            "explanation": "Argumento válido pode ter premissas falsas e conclusão falsa."
           },
           {
-            "statement": "Um argumento dedutivo com exatamente duas premissas e uma conclusão é chamado de silogismo.",
+            "statement": "No silogismo categórico, o termo médio é aquele que aparece nas duas premissas e não aparece na conclusão.",
             "isTrue": true,
-            "explanation": "Definição."
+            "explanation": "É a definição de termo médio."
           },
           {
-            "statement": "A veracidade de uma premissa garante, por si só, a validade do argumento.",
+            "statement": "Um argumento inválido sempre tem conclusão falsa.",
             "isTrue": false,
-            "explanation": "A validade depende da forma."
+            "explanation": "O argumento inválido admite as quatro combinações, inclusive conclusão verdadeira."
           }
         ],
         "revisao": [
           {
-            "statement": "Um argumento inválido pode ter premissas verdadeiras e conclusão verdadeira.",
+            "statement": "A tabela-verdade da condicional associada a um argumento com quatro proposições simples distintas tem 16 linhas.",
             "isTrue": true,
-            "explanation": "Pode ter as quatro combinações."
+            "explanation": "São 2ⁿ linhas: 2⁴ = 16."
           },
           {
-            "statement": "Em um argumento inválido, a conclusão é sempre falsa.",
+            "statement": "O termo maior de um silogismo categórico é o sujeito da conclusão.",
             "isTrue": false,
-            "explanation": "A conclusão pode ser verdadeira."
+            "explanation": "O termo maior é o predicado da conclusão; o sujeito é o termo menor."
           },
           {
-            "statement": "A condicional associada a um argumento tem como antecedente a conjunção das premissas.",
+            "statement": "Em um silogismo de segunda figura, o termo médio ocupa a posição de predicado nas duas premissas.",
             "isTrue": true,
-            "explanation": "(P1 ∧ ... ∧ Pn) → C."
+            "explanation": "É a definição da 2ª figura."
           },
           {
-            "statement": "Um argumento é categórico quando contém proposições com quantificadores como \"todo\" e \"nenhum\".",
+            "statement": "De duas premissas negativas é possível extrair uma conclusão negativa válida.",
+            "isTrue": false,
+            "explanation": "Pela regra de validade, duas premissas negativas não geram conclusão."
+          },
+          {
+            "statement": "Argumentos dedutivos inválidos também são chamados de falácias formais ou sofismas.",
             "isTrue": true,
-            "explanation": "Classificação dos argumentos."
+            "explanation": "O erro está na forma do argumento."
           }
         ],
         "pointers": [
           {
-            "topic": "Introdução aos argumentos dedutivos e silogismo",
+            "topic": "Conceito de argumento e de premissa; silogismo",
             "pageRef": 30
           },
           {
-            "topic": "Argumentos categóricos e hipotéticos",
+            "topic": "Categóricos × hipotéticos; validade × veracidade",
             "pageRef": 31
           },
           {
-            "topic": "Validade e argumento válido",
+            "topic": "Argumento válido com premissa falsa",
             "pageRef": 32
           },
           {
-            "topic": "Questão do TCE-RO sobre argumento sem conexão",
+            "topic": "Argumento inválido (falácia formal)",
             "pageRef": 33
           },
           {
-            "topic": "Argumento inválido e veracidade",
+            "topic": "Combinações de veracidade possíveis",
             "pageRef": 34
           },
           {
-            "topic": "Relação entre validade e veracidade",
-            "pageRef": 35
-          },
-          {
-            "topic": "Questão de São Cristóvão",
-            "pageRef": 36
-          },
-          {
-            "topic": "Questões da PF e do PO-AL",
-            "pageRef": 37
-          },
-          {
-            "topic": "Representação e condicional associada",
+            "topic": "Condicional associada ao argumento",
             "pageRef": 38
           },
           {
-            "topic": "Número de linhas da condicional associada",
+            "topic": "Número de linhas da tabela",
             "pageRef": 39
+          },
+          {
+            "topic": "Termos e premissas do silogismo categórico",
+            "pageRef": 40
+          },
+          {
+            "topic": "Modo e figura",
+            "pageRef": 41
+          },
+          {
+            "topic": "Regras de validade do silogismo",
+            "pageRef": 42
           }
         ]
       }
@@ -343,97 +306,96 @@
       "id": "raciocinio-logico/a04/s04",
       "bizu": {
         "summary": [
-          "**Termos do silogismo**: maior é o predicado da conclusão, menor é o sujeito e médio não aparece na conclusão.",
-          "**Premissas**: a maior contém maior e médio, a menor contém menor e médio, e a ordem na prova pode vir invertida.",
-          "**Modo**: três letras A, E, I, O na ordem premissa maior, menor e conclusão.",
-          "**Figuras**: dependem de o termo médio ser sujeito ou predicado em cada premissa.",
-          "**Exemplo de modo e figura**: sapo verde, cão não verde, nenhum cão é sapo tem modo AOE e figura 2.",
-          "**Regras com particulares e negativas**: duas premissas particulares ou duas negativas não geram conclusão.",
-          "**Premissa mais fraca**: a conclusão acompanha a premissa mais fraca, negativa ou particular.",
-          "**Diagramas**: o argumento é inválido se a conclusão não vale em todos os diagramas possíveis.",
-          "**Premissas verdadeiras**: método prático quando há simples verdadeira ou conjunção verdadeira.",
-          "**Conclusão válida**: é a que resulta verdadeira mesmo sem conhecer o valor de todas as simples."
+          "**Escolha do método**: categórico → diagramas; premissa simples ou conjunção → premissas verdadeiras; sem atalho → tabela-verdade; conclusão simples, disjunção inclusiva ou condicional → conclusão falsa.",
+          "**Diagramas**: desenhe todas as configurações possíveis; se a conclusão falhar em uma, o argumento é inválido.",
+          "**Premissas verdadeiras**: como todas valem V, só proposição simples e conjunção servem de ponto de partida.",
+          "**Valor indeterminado**: a conclusão válida é a que fica verdadeira qualquer que seja o valor em aberto (ex.: ~a ∨ ~d com ~a já V).",
+          "**Tabela-verdade**: válido se (P1 ∧ ... ∧ Pn) → C for tautologia; são 2ⁿ linhas, por isso é método lento.",
+          "**Múltipla escolha**: separe as linhas em que todas as premissas são V; a resposta é verdadeira em todas elas.",
+          "**Afirmações falsas sem formato fácil**: selecione as linhas com os valores exigidos; p ∧ q F com p → q V obriga p F.",
+          "**Conclusão falsa**: suponha a conclusão F e tente deixar todas as premissas V; conseguiu = inválido; contradição = válido.",
+          "**Exemplo de validade**: a → b e b → c garantem a → c, porque com a V e c F o b teria de ser V e F ao mesmo tempo."
         ],
         "teoria": [
           {
-            "statement": "Num silogismo categórico, o termo médio aparece nas duas premissas e não aparece na conclusão.",
-            "isTrue": true,
-            "explanation": "Definição."
-          },
-          {
-            "statement": "De duas premissas negativas pode-se tirar uma conclusão válida afirmativa.",
+            "statement": "O método da conclusão falsa pode ser aplicado diretamente quando a conclusão é uma conjunção.",
             "isTrue": false,
-            "explanation": "De duas negativas não há conclusão."
+            "explanation": "Ele exige conclusão em proposição simples, disjunção inclusiva ou condicional, cuja falsidade fixa valores."
           },
           {
-            "statement": "Se um silogismo tem uma premissa particular, a conclusão deve ser particular.",
+            "statement": "Pelo método da tabela-verdade, um argumento é válido quando a condicional formada pela conjunção das premissas e pela conclusão é uma tautologia.",
             "isTrue": true,
-            "explanation": "A conclusão acompanha a premissa mais fraca."
+            "explanation": "(P1 ∧ ... ∧ Pn) → C tautológica significa argumento válido."
           },
           {
-            "statement": "O modo do silogismo é formado pelas letras das proposições na ordem conclusão, premissa maior, premissa menor.",
+            "statement": "No método da conclusão falsa, se for possível tornar todas as premissas verdadeiras com a conclusão falsa, o argumento é inválido.",
+            "isTrue": true,
+            "explanation": "Existir esse caso mostra que a conclusão não é forçada pelas premissas."
+          },
+          {
+            "statement": "Diagramas lógicos são o método indicado para argumentos formados apenas por condicionais.",
             "isTrue": false,
-            "explanation": "Ordem: premissa maior, menor, conclusão."
+            "explanation": "Diagramas servem para argumentos categóricos (todo, nenhum, algum)."
           }
         ],
         "revisao": [
           {
-            "statement": "Num silogismo em que o termo médio é predicado nas duas premissas, a figura é a segunda.",
-            "isTrue": true,
-            "explanation": "Definição da 2ª figura."
-          },
-          {
-            "statement": "Para argumentos categóricos, a validade é aferida por diagramas lógicos.",
-            "isTrue": true,
-            "explanation": "Método dos diagramas."
-          },
-          {
-            "statement": "Se a conclusão aparece em algum diagrama possível das premissas, o argumento é válido.",
+            "statement": "No método das premissas verdadeiras, uma disjunção inclusiva entre as premissas serve de ponto de partida, pois fixa o valor das duas parcelas.",
             "isTrue": false,
-            "explanation": "Deve valer em todos os diagramas."
+            "explanation": "Disjunção verdadeira não fixa valores; os pontos de partida são proposição simples e conjunção."
           },
           {
-            "statement": "O método das premissas verdadeiras é prático quando há premissa em formato de simples verdadeira ou conjunção verdadeira.",
+            "statement": "Em questão de múltipla escolha resolvida por tabela-verdade, a conclusão correta é a que é verdadeira em todas as linhas em que as premissas são simultaneamente verdadeiras.",
             "isTrue": true,
-            "explanation": "Formatos fáceis."
+            "explanation": "Só assim a conclusão é forçada pelas premissas."
+          },
+          {
+            "statement": "Das premissas p ∨ q e ~p, conclui-se validamente q.",
+            "isTrue": true,
+            "explanation": "Na única linha com as duas premissas verdadeiras (p F, q V), q é verdadeira."
+          },
+          {
+            "statement": "Das premissas “Todo bombeiro é treinado” e “Todo socorrista é treinado”, conclui-se validamente que todo bombeiro é socorrista.",
+            "isTrue": false,
+            "explanation": "Há diagramas em que os dois conjuntos ficam separados dentro de treinados: inválido."
           }
         ],
         "pointers": [
           {
-            "topic": "Silogismo categórico e termos",
-            "pageRef": 40
-          },
-          {
-            "topic": "Modo, figura e questão do PC-SP",
-            "pageRef": 41
-          },
-          {
-            "topic": "Resolução do PC-SP e regras de validade",
-            "pageRef": 42
-          },
-          {
-            "topic": "Questão da Petrobras e métodos de verificação",
+            "topic": "Método dos diagramas lógicos",
             "pageRef": 43
           },
           {
-            "topic": "Questão da BANESTES",
+            "topic": "Diagramas com todo e suas possibilidades",
             "pageRef": 44
           },
           {
-            "topic": "Resolução dos argumentos I e II",
-            "pageRef": 45
-          },
-          {
-            "topic": "Argumento III e método das premissas verdadeiras",
+            "topic": "Método das premissas verdadeiras",
             "pageRef": 46
           },
           {
-            "topic": "Formatos fáceis e questão do CM Taubaté",
-            "pageRef": 47
+            "topic": "Valor indeterminado na conferência",
+            "pageRef": 48
           },
           {
-            "topic": "Resolução da questão do CM Taubaté",
-            "pageRef": 48
+            "topic": "Método da tabela-verdade",
+            "pageRef": 49
+          },
+          {
+            "topic": "Etapas para múltipla escolha",
+            "pageRef": 50
+          },
+          {
+            "topic": "Tabela-verdade com afirmações falsas",
+            "pageRef": 54
+          },
+          {
+            "topic": "Método da conclusão falsa",
+            "pageRef": 55
+          },
+          {
+            "topic": "Aplicação: premissas verdadeiras com conclusão falsa",
+            "pageRef": 57
           }
         ]
       }
@@ -442,212 +404,99 @@
       "id": "raciocinio-logico/a04/s05",
       "bizu": {
         "summary": [
-          "**Tabela-verdade**: a condicional associada tautológica indica argumento válido.",
-          "**Lentidão**: o método da tabela-verdade é demorado e deve ser usado com moderação.",
-          "**Linhas úteis**: em múltipla escolha, marque as linhas em que todas as premissas são verdadeiras.",
-          "**Resposta**: a conclusão correta é verdadeira em todas as linhas marcadas.",
-          "**Sem formato fácil**: use a mesma tabela com os valores V ou F indicados no enunciado.",
-          "**Conclusão falsa**: exige conclusão simples, ou ou condicional.",
-          "**Procedimento**: supõe-se a conclusão falsa e tenta-se tornar verdadeiras todas as premissas.",
-          "**Resultado**: se for possível, o argumento é inválido; se for impossível, é válido.",
-          "**Velocidade**: é um dos métodos mais rápidos para itens de certo ou errado.",
-          "**Exemplo inválido**: com r falsa, d falsa e a verdadeira, as premissas valem e a conclusão r é falsa."
+          "**Transitividade**: p → q, q → r, ..., s → t garantem p → t; vale com qualquer número de premissas.",
+          "**Montar a corrente**: use a contrapositiva (p → q ≡ ~q → ~p) e a troca p ∨ q ≡ ~p → q.",
+          "**Afirmação falsa**: negue-a com De Morgan para obter premissa verdadeira utilizável: ~(c ∧ j) ≡ ~c ∨ ~j ≡ c → ~j.",
+          "**Conclusão simples**: chegar a ~p → p prova p verdadeira; chegar a p → ~p prova p falsa.",
+          "**Modus ponens**: p → q e p ⊢ q (afirma o antecedente).",
+          "**Modus tollens**: p → q e ~q ⊢ ~p (nega o consequente); é o ponens aplicado à contrapositiva.",
+          "**Antecedente composto**: no tollens, negue-o com De Morgan: (x ∧ y) → z e ~z ⊢ ~x ∨ ~y.",
+          "**Silogismo hipotético**: p → q e q → r ⊢ p → r (transitividade com duas premissas).",
+          "**Dilema construtivo**: p → q, r → s e p ∨ r ⊢ q ∨ s.",
+          "**Dilema destrutivo**: p → q, r → s e ~q ∨ ~s ⊢ ~p ∨ ~r.",
+          "**Regras de inferência**: são sempre válidas, qualquer que seja o conteúdo das proposições."
         ],
         "teoria": [
           {
-            "statement": "Se a condicional associada a um argumento é uma tautologia, o argumento é válido.",
+            "statement": "Um argumento cujas premissas são p → q, q → r e r → s e cuja conclusão é p → s é válido.",
             "isTrue": true,
-            "explanation": "Critério da tabela-verdade."
+            "explanation": "É a transitividade da condicional, válida com qualquer número de premissas."
           },
           {
-            "statement": "O método da conclusão falsa pode ser aplicado a qualquer formato de conclusão, inclusive à conjunção.",
+            "statement": "A condicional p → q é equivalente a q → p, o que permite inverter premissas para montar a corrente.",
             "isTrue": false,
-            "explanation": "Só vale para simples, disjunção inclusiva e condicional."
+            "explanation": "q → p é a recíproca, não equivalente; a equivalência útil é a contrapositiva ~q → ~p."
           },
           {
-            "statement": "Se é possível tornar todas as premissas verdadeiras mantendo a conclusão falsa, o argumento é inválido.",
+            "statement": "Se das premissas se obtém a condicional p → ~p, conclui-se que p é falsa.",
             "isTrue": true,
-            "explanation": "Contraexemplo."
+            "explanation": "Se p fosse verdadeira, teríamos V → F, condicional falsa."
           },
           {
-            "statement": "Em uma questão de múltipla escolha, deve-se montar uma tabela-verdade para cada alternativa.",
+            "statement": "No modus tollens, a partir de “Se p, então q” e de “p”, conclui-se “q”.",
             "isTrue": false,
-            "explanation": "Basta uma tabela, com as linhas das premissas V."
+            "explanation": "Esse é o modus ponens; o tollens parte de ~q e conclui ~p."
           }
         ],
         "revisao": [
           {
-            "statement": "Numa tabela-verdade de um argumento, a resposta correta é a conclusão que é verdadeira em todas as linhas em que todas as premissas são verdadeiras.",
+            "statement": "A disjunção p ∨ q pode ser reescrita como a condicional ~p → q.",
             "isTrue": true,
-            "explanation": "Etapa 3 do método."
+            "explanation": "Equivalência usada para transformar disjunções em condicionais."
           },
           {
-            "statement": "Num argumento com premissas P → ~Q, R ⊻ Q e P → ~R, a conclusão ~Q é válida.",
+            "statement": "No dilema destrutivo, das premissas p → q, r → s e ~q ∨ ~s conclui-se ~p ∧ ~r.",
             "isTrue": false,
-            "explanation": "Com P F, Q V e R F tudo vale e ~Q é F: inválido."
+            "explanation": "A conclusão é a disjunção ~p ∨ ~r, não a conjunção."
           },
           {
-            "statement": "Se F e G são afirmações, sendo \"F ∧ G\" declarada falsa e \"F → G\" declarada verdadeira, então F é falsa.",
+            "statement": "Das premissas (x ∧ y) → z e ~z, conclui-se validamente ~x ∨ ~y.",
             "isTrue": true,
-            "explanation": "Linhas (F falsa, G verdadeira) e (F falsa, G falsa)."
+            "explanation": "Modus tollens dá ~(x ∧ y), que por De Morgan é ~x ∨ ~y."
           },
           {
-            "statement": "O método da conclusão falsa é rápido porque as questões de certo e errado costumam trazer uma só conclusão.",
+            "statement": "O silogismo hipotético conclui p → r a partir de p → q e q → r.",
             "isTrue": true,
-            "explanation": "Verifica-se uma única hipótese."
+            "explanation": "É a transitividade com duas premissas."
+          },
+          {
+            "statement": "A validade de um modus ponens depende de as proposições envolvidas serem verdadeiras no mundo real.",
+            "isTrue": false,
+            "explanation": "Regras de inferência são válidas pela forma, independentemente do conteúdo."
           }
         ],
         "pointers": [
           {
-            "topic": "Alternativas do CM Taubaté e método da tabela-verdade",
-            "pageRef": 49
-          },
-          {
-            "topic": "Questão do TRE-RJ e etapas para múltipla escolha",
-            "pageRef": 50
-          },
-          {
-            "topic": "Questão da SEFAZ-ES",
-            "pageRef": 51
-          },
-          {
-            "topic": "Alternativas da SEFAZ-ES e questão do BANESTES",
-            "pageRef": 52
-          },
-          {
-            "topic": "Resolução do BANESTES e afirmações falsas",
-            "pageRef": 53
-          },
-          {
-            "topic": "Passos sem formato fácil e questão do TCM-SP",
-            "pageRef": 54
-          },
-          {
-            "topic": "Resolução do TCM-SP e método da conclusão falsa",
-            "pageRef": 55
-          },
-          {
-            "topic": "Etapas da conclusão falsa e questão da DATAPREV",
-            "pageRef": 56
-          },
-          {
-            "topic": "Resolução da DATAPREV",
-            "pageRef": 57
-          },
-          {
-            "topic": "Questão da PGE-PE (início)",
-            "pageRef": 58
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a04/s06",
-      "bizu": {
-        "summary": [
-          "**Transitividade**: encadear condicionais cujo consequente coincide com o antecedente seguinte produz um argumento sempre válido.",
-          "**Ajustes**: use a contrapositiva ou a transformação de ou em condicional para alinhar as premissas.",
-          "**Conclusão simples**: obter p → ~p mostra que p é falsa, e obter ~p → p mostra que p é verdadeira.",
-          "**Afirmação falsa**: troque-a pela sua negação, que é verdadeira, antes de encadear.",
-          "**Regras de inferência**: dão argumentos válidos e servem para checar a validade com rapidez.",
-          "**Modus ponens**: afirma o antecedente e conclui o consequente.",
-          "**Modus tollens**: nega o consequente e conclui a negação do antecedente.",
-          "**De Morgan com tollens**: a negação de uma conjunção vira uma disjunção de negações.",
-          "**Silogismo hipotético**: é a transitividade com duas premissas.",
-          "**Dilema construtivo**: duas condicionais e a disjunção dos antecedentes dão a disjunção dos consequentes."
-        ],
-        "teoria": [
-          {
-            "statement": "O argumento \"Se p, então q; se q, então r; logo, se p, então r\" é sempre válido.",
-            "isTrue": true,
-            "explanation": "Transitividade da condicional."
-          },
-          {
-            "statement": "O argumento \"Se p, então q; q; logo, p\" é um modus ponens.",
-            "isTrue": false,
-            "explanation": "Afirmar o consequente é falácia."
-          },
-          {
-            "statement": "O argumento \"Se há defeito, o alarme toca; o alarme não tocou; logo, não há defeito\" é um modus tollens.",
-            "isTrue": true,
-            "explanation": "Nega o consequente."
-          },
-          {
-            "statement": "Um argumento na forma de modus ponens pode ser inválido se tiver conteúdo absurdo.",
-            "isTrue": false,
-            "explanation": "A validade depende só da forma."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "Se as premissas são p → j, j → g e g → ~p, então p é falsa.",
-            "isTrue": true,
-            "explanation": "Encadeando, p → ~p."
-          },
-          {
-            "statement": "A negação de uma conjunção na conclusão do modus tollens vira uma disjunção de negações.",
-            "isTrue": true,
-            "explanation": "Exemplo: ~(d ∧ p) ≡ ~d ∨ ~p."
-          },
-          {
-            "statement": "No dilema construtivo, a conclusão é a conjunção dos consequentes das duas condicionais.",
-            "isTrue": false,
-            "explanation": "A conclusão é a disjunção dos consequentes."
-          },
-          {
-            "statement": "Para alinhar as condicionais antes de encadear, pode-se usar a contrapositiva.",
-            "isTrue": true,
-            "explanation": "Equivalência p → q ≡ ~q → ~p."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Fim da PGE-PE e transitividade da condicional",
+            "topic": "Transitividade da condicional",
             "pageRef": 59
           },
           {
-            "topic": "Questão da PGE-PE com Q1 e Q2",
+            "topic": "Corrente com antecedente composto",
             "pageRef": 60
           },
           {
-            "topic": "Questão do biba",
+            "topic": "Uso da contrapositiva",
             "pageRef": 61
           },
           {
-            "topic": "Questão de Penedo",
+            "topic": "Disjunção transformada em condicional",
             "pageRef": 62
           },
           {
-            "topic": "Conclusão simples a partir de condicionais",
+            "topic": "Conclusões ~p → p e p → ~p",
             "pageRef": 63
           },
           {
-            "topic": "Questão do BANESTES",
-            "pageRef": 64
-          },
-          {
-            "topic": "Questão do TCM-SP por transitividade",
-            "pageRef": 65
-          },
-          {
-            "topic": "Conclusão e início das regras de inferência",
+            "topic": "Modus ponens",
             "pageRef": 66
-          },
-          {
-            "topic": "Modus ponens e questão da Petrobras",
-            "pageRef": 67
           },
           {
             "topic": "Modus tollens",
             "pageRef": 68
           },
           {
-            "topic": "Questões do CM-SJC e do CBM-SC",
+            "topic": "Modus tollens com De Morgan",
             "pageRef": 69
-          },
-          {
-            "topic": "Questão da Petrobras 2018 e da SEDF",
-            "pageRef": 70
           },
           {
             "topic": "Silogismo hipotético",
@@ -656,699 +505,10 @@
           {
             "topic": "Dilema construtivo",
             "pageRef": 72
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a04/s07",
-      "bizu": {
-        "summary": [
-          "**Dilema construtivo**: a conclusão é a disjunção dos consequentes das duas condicionais.",
-          "**Dilema destrutivo**: duas condicionais e a disjunção das negações dos consequentes levam à disjunção das negações dos antecedentes.",
-          "**Exemplo de destrutivo**: o boletim de A ou o de B não foi lavrado leva a A ou B não compareceu.",
-          "**Consequente verdadeiro**: não permite afirmar o antecedente de uma condicional verdadeira.",
-          "**Todos não**: o fato todos não foram aprovados significa que alguém não foi aprovado.",
-          "**Cadeia com final falso**: um último consequente falso torna falsos todos os antecedentes anteriores.",
-          "**Condicional falsa**: dá antecedente verdadeiro e consequente falso.",
-          "**Exclusiva verdadeira**: com um termo verdadeiro, o outro é falso.",
-          "**Valor indeterminado**: uma simples pode ficar sem valor e ainda assim a questão ter resposta.",
-          "**Ordem de ataque**: simples dada, conjunção verdadeira e condicional falsa primeiro."
-        ],
-        "teoria": [
-          {
-            "statement": "No dilema destrutivo, a conclusão é a disjunção das negações dos antecedentes das duas condicionais.",
-            "isTrue": true,
-            "explanation": "Forma ~p ou ~r."
           },
           {
-            "statement": "No dilema construtivo, a terceira premissa é a disjunção dos consequentes.",
-            "isTrue": false,
-            "explanation": "É a disjunção dos antecedentes."
-          },
-          {
-            "statement": "Se \"Se há fumaça, o detector apita\" é verdadeira e o detector apitou, nada se pode afirmar com certeza sobre a fumaça.",
-            "isTrue": true,
-            "explanation": "Consequente verdadeiro."
-          },
-          {
-            "statement": "A afirmação \"Todos não foram aprovados\" é a negação lógica de \"Todos foram aprovados\".",
-            "isTrue": false,
-            "explanation": "A negação é \"Alguém não foi aprovado\"."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "Num dilema destrutivo com p → q, r → s e ~q ∨ ~s, a conclusão válida é ~p ∨ ~r.",
-            "isTrue": true,
-            "explanation": "Regra de inferência."
-          },
-          {
-            "statement": "Em uma cadeia de condicionais verdadeiras, se o primeiro antecedente é verdadeiro, o último consequente pode ser falso.",
-            "isTrue": false,
-            "explanation": "O encadeamento tornaria o último consequente verdadeiro."
-          },
-          {
-            "statement": "Se uma disjunção exclusiva é verdadeira e uma de suas parcelas é verdadeira, a outra é falsa.",
-            "isTrue": true,
-            "explanation": "Valores distintos."
-          },
-          {
-            "statement": "Numa questão de conectivos, deve-se começar pela afirmação em formato fácil.",
-            "isTrue": true,
-            "explanation": "Simples, conjunção V, disjunção F ou condicional F."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Fim do dilema construtivo e dilema destrutivo",
+            "topic": "Dilema destrutivo",
             "pageRef": 73
-          },
-          {
-            "topic": "Questão da PC-SP",
-            "pageRef": 74
-          },
-          {
-            "topic": "Questão do CREA-MG",
-            "pageRef": 75
-          },
-          {
-            "topic": "Questão da VUNESP (Fátima, Hugo, Júlia e Gerson)",
-            "pageRef": 76
-          },
-          {
-            "topic": "Resolução e questão da FEPESE sobre monitoramento",
-            "pageRef": 77
-          },
-          {
-            "topic": "Resolução da FEPESE",
-            "pageRef": 78
-          },
-          {
-            "topic": "Alternativas da FEPESE e questão do IBADE",
-            "pageRef": 79
-          },
-          {
-            "topic": "Resolução do IBADE",
-            "pageRef": 80
-          },
-          {
-            "topic": "Questão da Fundatec (Candiota)",
-            "pageRef": 81
-          },
-          {
-            "topic": "Resolução da Fundatec",
-            "pageRef": 82
-          },
-          {
-            "topic": "Alternativas da Fundatec e questão da Legalle",
-            "pageRef": 83
-          },
-          {
-            "topic": "Resolução da Legalle",
-            "pageRef": 84
-          },
-          {
-            "topic": "Questão da QUADRIX (CRMV-TO)",
-            "pageRef": 85
-          },
-          {
-            "topic": "Resolução da QUADRIX e início da questão da IBFC",
-            "pageRef": 86
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a04/s08",
-      "bizu": {
-        "summary": [
-          "**Cadeia de cinco condicionais**: com o último consequente falso, todos os antecedentes são falsos.",
-          "**Premissa simples**: as frases do tipo borboleta não pousou fixam o valor logo no começo.",
-          "**Complemento novo**: palavras como sozinha criam proposições novas, que não podem ser afirmadas.",
-          "**Bicondicional verdadeira**: as duas parcelas têm o mesmo valor, o que fixa a segunda.",
-          "**Exclusiva verdadeira**: as parcelas têm valores diferentes, o que fixa uma delas.",
-          "**Condicional com antecedente falso**: é verdadeira e não informa o consequente.",
-          "**Itens em bloco**: calcule os valores uma só vez e julgue cada item pelo resultado.",
-          "**Contrários**: tratar fácil e difícil, ou honesta e desonesta, como negações depende do enunciado.",
-          "**Condicional falsa na alternativa**: antecedente verdadeiro e consequente falso.",
-          "**Resposta**: é a alternativa cuja proposição fica verdadeira com os valores obtidos."
-        ],
-        "teoria": [
-          {
-            "statement": "Em uma cadeia de condicionais verdadeiras, se o último consequente é falso, o primeiro antecedente também é falso.",
-            "isTrue": true,
-            "explanation": "Os antecedentes vão ficando falsos de trás para frente."
-          },
-          {
-            "statement": "Se uma condicional é verdadeira e seu antecedente é falso, então o consequente é obrigatoriamente falso.",
-            "isTrue": false,
-            "explanation": "O consequente pode ser V ou F."
-          },
-          {
-            "statement": "Uma alternativa que acrescenta uma circunstância nova, como \"estudou sozinha\", cria uma proposição diferente das do enunciado.",
-            "isTrue": true,
-            "explanation": "Não se deduz das premissas."
-          },
-          {
-            "statement": "Se \"p ↔ q\" é verdadeira e p é verdadeira, então q é falsa.",
-            "isTrue": false,
-            "explanation": "Em ↔ verdadeira os valores são iguais."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "Se \"a ⊻ b\" é verdadeira e a é verdadeira, então b é falsa.",
-            "isTrue": true,
-            "explanation": "Valores distintos."
-          },
-          {
-            "statement": "Se \"~c ∨ b\" é verdadeira e b é falsa, então c é verdadeira.",
-            "isTrue": false,
-            "explanation": "~c é V, logo c é F."
-          },
-          {
-            "statement": "A condicional \"Se Carlos não joga xadrez, Arthur joga gamão\" é falsa quando Carlos não joga e Arthur não joga gamão.",
-            "isTrue": true,
-            "explanation": "V → F."
-          },
-          {
-            "statement": "Nos itens de certo ou errado em bloco, os valores das simples obtidos uma vez valem para todos os itens.",
-            "isTrue": true,
-            "explanation": "Mesmo conjunto de premissas."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Resolução da questão da IBFC (Zorro e Tica)",
-            "pageRef": 87
-          },
-          {
-            "topic": "Questão da Fundatec (Sarandi)",
-            "pageRef": 88
-          },
-          {
-            "topic": "Resolução e questão do IDECAN (EMPARN)",
-            "pageRef": 89
-          },
-          {
-            "topic": "Alternativas do EMPARN",
-            "pageRef": 90
-          },
-          {
-            "topic": "Resolução do EMPARN e questão do jardim",
-            "pageRef": 91
-          },
-          {
-            "topic": "Resolução do jardim",
-            "pageRef": 92
-          },
-          {
-            "topic": "Alternativa e questão da SELECON",
-            "pageRef": 93
-          },
-          {
-            "topic": "Resolução da SELECON e questão da IBFC (TJPE)",
-            "pageRef": 94
-          },
-          {
-            "topic": "Resolução da IBFC (TJPE)",
-            "pageRef": 95
-          },
-          {
-            "topic": "Alternativas e itens da QUADRIX (CRESS-PR)",
-            "pageRef": 96
-          },
-          {
-            "topic": "Resolução dos itens da QUADRIX",
-            "pageRef": 97
-          },
-          {
-            "topic": "Questão da IBFC (PM-ES)",
-            "pageRef": 98
-          },
-          {
-            "topic": "Resolução da PM-ES e questão da Consulplan",
-            "pageRef": 99
-          },
-          {
-            "topic": "Resolução da Consulplan e início da questão do DEPEN",
-            "pageRef": 100
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a04/s09",
-      "bizu": {
-        "summary": [
-          "**Capturados e não capturados**: com ~e fixo, cadeia de condicionais fixa d, c e a; b fica indeterminado.",
-          "**Condicional falsa no enunciado**: dá antecedente verdadeiro e consequente falso logo no início.",
-          "**Disjunção inclusiva verdadeira**: se uma parcela é falsa, a outra é verdadeira.",
-          "**Condicional com antecedente falso**: é verdadeira, como a → ~c quando a é falsa.",
-          "**Afirmação do consequente**: não permite concluir o antecedente nem validar o argumento.",
-          "**Brinquedos de Gael**: a única linha que satisfaz as quatro premissas tem c falso, e falso e o verdadeiro.",
-          "**Argumento com alguns**: não garante que um elemento específico pertença à categoria.",
-          "**Argumento com nenhum**: gera conjuntos disjuntos e permite concluir pela exclusão.",
-          "**Quatro argumentos de Araraquara**: apenas o de nenhum e licença remunerada é válido.",
-          "**Teste por diagramas**: o argumento só é válido se a conclusão vale em todo diagrama."
-        ],
-        "teoria": [
-          {
-            "statement": "Dado \"Se há erro, o sistema avisa\" e \"O sistema avisou\", não se pode concluir que houve erro.",
-            "isTrue": true,
-            "explanation": "Afirmação do consequente."
-          },
-          {
-            "statement": "Numa condicional verdadeira com consequente verdadeiro, o antecedente é necessariamente verdadeiro.",
-            "isTrue": false,
-            "explanation": "Pode ser V ou F."
-          },
-          {
-            "statement": "O argumento \"Nenhum fiscal é temporário; Rui é fiscal; logo, Rui não é temporário\" é válido.",
-            "isTrue": true,
-            "explanation": "Conjuntos disjuntos."
-          },
-          {
-            "statement": "O argumento \"Alguns servidores são médicos; Ana é servidora; logo, Ana é médica\" é válido.",
-            "isTrue": false,
-            "explanation": "\"Alguns\" não garante que Ana esteja na interseção."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "Se uma condicional é verdadeira e o seu antecedente é falso, o valor do consequente é indeterminado.",
-            "isTrue": true,
-            "explanation": "F → V e F → F são V."
-          },
-          {
-            "statement": "A afirmação do consequente (\"Se p, então q; q; logo p\") é uma forma válida de argumento.",
-            "isTrue": false,
-            "explanation": "É falácia."
-          },
-          {
-            "statement": "Num conjunto de premissas em que a ⊻ b é verdadeira e a é verdadeira, concluímos que b é falsa.",
-            "isTrue": true,
-            "explanation": "Exclusiva V."
-          },
-          {
-            "statement": "No teste de validade por diagramas, a conclusão deve ser verdadeira em todos os diagramas possíveis.",
-            "isTrue": true,
-            "explanation": "Condição de validade."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Questão do DEPEN e início da resolução",
-            "pageRef": 101
-          },
-          {
-            "topic": "Resolução do DEPEN e início da questão da Prodabel",
-            "pageRef": 102
-          },
-          {
-            "topic": "Questão da Prodabel (afirmação I falsa)",
-            "pageRef": 103
-          },
-          {
-            "topic": "Alternativas e questão da Prodabel com cinco proposições",
-            "pageRef": 104
-          },
-          {
-            "topic": "Resolução da Prodabel e questão da AOCP (Beth)",
-            "pageRef": 105
-          },
-          {
-            "topic": "Resolução da AOCP (Beth)",
-            "pageRef": 106
-          },
-          {
-            "topic": "Questão da AOCP (André, César, Paula e Roberto)",
-            "pageRef": 107
-          },
-          {
-            "topic": "Resolução da AOCP (André) e início dos argumentos dedutivos",
-            "pageRef": 108
-          },
-          {
-            "topic": "Questão da FEPESE sobre backups",
-            "pageRef": 109
-          },
-          {
-            "topic": "Resolução da FEPESE e início dos brinquedos de Gael",
-            "pageRef": 110
-          },
-          {
-            "topic": "Tabela-verdade dos brinquedos de Gael",
-            "pageRef": 111
-          },
-          {
-            "topic": "Itens sobre escavadeira e ônibus",
-            "pageRef": 112
-          },
-          {
-            "topic": "Questão de Araraquara com quatro argumentos",
-            "pageRef": 113
-          },
-          {
-            "topic": "Resolução dos argumentos II, III e IV",
-            "pageRef": 114
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a04/s10",
-      "bizu": {
-        "summary": [
-          "**Argumento IV de Araraquara**: afirma o consequente e por isso é inválido.",
-          "**Validade por diagramas**: o argumento só vale se a conclusão aparece em todos os diagramas possíveis.",
-          "**Encadeamento até contradição**: chegar a p → ~p prova que p é falsa.",
-          "**Contrapositiva no encadeamento**: converte ~a → r e r → ~m em passos de uma cadeia.",
-          "**Afirmar o consequente**: falácia comum, como choveu porque a rua está molhada.",
-          "**Modus tollens**: se não passei, não estudei, a partir de estudar leva a passar.",
-          "**Modus ponens**: afirma o antecedente e é sempre válido.",
-          "**Conclusão falsa com argumento válido**: exige pelo menos uma premissa falsa.",
-          "**Proposição estranha**: conclusão com termo ausente das premissas torna o argumento inválido.",
-          "**Perito e policial**: algum perito é observador e nenhum policial é observador levam a algum perito não é policial."
-        ],
-        "teoria": [
-          {
-            "statement": "O argumento \"Se há vazamento, o sensor alarma; o sensor alarmou; logo, houve vazamento\" é inválido.",
-            "isTrue": true,
-            "explanation": "Afirmação do consequente."
-          },
-          {
-            "statement": "O argumento \"Se há vazamento, o sensor alarma; não houve vazamento; logo, o sensor não alarmou\" é válido.",
-            "isTrue": false,
-            "explanation": "Negação do antecedente: falácia."
-          },
-          {
-            "statement": "Se um argumento válido tem conclusão falsa, então pelo menos uma de suas premissas é falsa.",
-            "isTrue": true,
-            "explanation": "Não existe válido com premissas V e conclusão F."
-          },
-          {
-            "statement": "Um argumento cuja conclusão contém uma proposição ausente das premissas é necessariamente válido.",
-            "isTrue": false,
-            "explanation": "Tende a ser inválido."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "Das premissas \"Algum atleta é paulista\" e \"Nenhum paulista é carioca\", conclui-se \"Algum atleta não é carioca\".",
-            "isTrue": true,
-            "explanation": "Peritos e policiais, em outro contexto."
-          },
-          {
-            "statement": "Se as premissas encadeadas levam a m → ~m, então m é falsa.",
-            "isTrue": true,
-            "explanation": "Se m fosse V, teríamos V → F."
-          },
-          {
-            "statement": "A frase \"Se estudo, passo; passei; logo, estudei\" é um modus ponens.",
-            "isTrue": false,
-            "explanation": "É afirmação do consequente."
-          },
-          {
-            "statement": "O modus tollens aplicado a (f ∧ a) → m e ~m leva a ~f ∨ ~a.",
-            "isTrue": true,
-            "explanation": "Negação do antecedente com De Morgan."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Fim de Araraquara e questão de Muriaé",
-            "pageRef": 115
-          },
-          {
-            "topic": "Resolução dos argumentos A1 e A2",
-            "pageRef": 116
-          },
-          {
-            "topic": "Transitividade na questão do CRESS-PR e questão da Legalle",
-            "pageRef": 117
-          },
-          {
-            "topic": "Argumentos I e II da Legalle",
-            "pageRef": 118
-          },
-          {
-            "topic": "Argumento III e questão do ACCESS",
-            "pageRef": 119
-          },
-          {
-            "topic": "Questão de Apiaí",
-            "pageRef": 120
-          },
-          {
-            "topic": "Alternativas de Apiaí e questão da AOCP",
-            "pageRef": 121
-          },
-          {
-            "topic": "Fim da AOCP e questão do astronauta",
-            "pageRef": 122
-          },
-          {
-            "topic": "Questão da Fundatec (UFCSPA)",
-            "pageRef": 123
-          },
-          {
-            "topic": "Questão da FGV (DNIT)",
-            "pageRef": 124
-          },
-          {
-            "topic": "Questão do IBFC (silogismo)",
-            "pageRef": 125
-          },
-          {
-            "topic": "Resolução do silogismo e questão da VUNESP (PC-SP)",
-            "pageRef": 126
-          },
-          {
-            "topic": "Resolução da PC-SP",
-            "pageRef": 127
-          },
-          {
-            "topic": "Alternativas e início da questão do TCM-SP",
-            "pageRef": 128
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a04/s11",
-      "bizu": {
-        "summary": [
-          "**Afirmação falsa**: negue-a e use como verdadeira; \"A e B\" falsa vira \"não A ou não B\".",
-          "**Autocondicional**: ~x → x obriga x V; x → ~x obriga x F.",
-          "**Sem formato fácil**: teste os dois valores de uma simples; o valor que gera contradição é descartado.",
-          "**Silogismo hipotético**: p → q e q → r dão p → r; é a base das cadeias.",
-          "**Silogismo disjuntivo**: p ∨ q com ~p dá q.",
-          "**Dilema construtivo**: p → q, r → s, p ∨ r ⊢ q ∨ s (a alternativa pode trocar a ordem).",
-          "**Dilema destrutivo**: p → q, r → s, ~q ∨ ~s ⊢ ~p ∨ ~r.",
-          "**Bicondicional**: p ↔ q equivale a (p → q) ∧ (q → p); use a metade que encaixa na cadeia.",
-          "**Provar \"se não A, então não B\"**: comece por ~A e encadeie contrapositivas até ~B.",
-          "**Mesma simples**: \"no almoço\" ou \"todos os dias\" não criam proposição nova."
-        ],
-        "teoria": [
-          {
-            "statement": "Se \"(f ∧ a) → m\" é verdadeira e m é falsa, então é verdadeiro que f é falsa ou a é falsa.",
-            "isTrue": true,
-            "explanation": "Modus tollens e De Morgan."
-          },
-          {
-            "statement": "Obter a conclusão ~f → f indica que f é falsa.",
-            "isTrue": false,
-            "explanation": "Indica que f é verdadeira."
-          },
-          {
-            "statement": "A bicondicional \"Maria vai se, e somente se, João vai\" pode ser decomposta em duas condicionais.",
-            "isTrue": true,
-            "explanation": "p ↔ q ≡ (p → q) ∧ (q → p)."
-          },
-          {
-            "statement": "No dilema construtivo, a conclusão é a disjunção das negações dos antecedentes.",
-            "isTrue": false,
-            "explanation": "A conclusão é a disjunção dos consequentes."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "Uma afirmação declarada falsa pode ser substituída pela sua negação, que é verdadeira, para efeito de encadeamento.",
-            "isTrue": true,
-            "explanation": "Estratégia da transitividade."
-          },
-          {
-            "statement": "Das premissas \"Se o fiscal vai, a obra para; se o gerente vai, o prazo muda; o fiscal ou o gerente vai\", conclui-se \"A obra para ou o prazo muda\".",
-            "isTrue": true,
-            "explanation": "Dilema construtivo."
-          },
-          {
-            "statement": "A contrapositiva de \"t → a\" é \"a → t\".",
-            "isTrue": false,
-            "explanation": "É ~a → ~t."
-          },
-          {
-            "statement": "Expressões como \"no almoço\" podem ser desconsideradas ao definir as simples, se aparecem nas várias premissas do mesmo modo.",
-            "isTrue": true,
-            "explanation": "Identificação da mesma simples."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Resolução da questão do TCM-SP e questão da PC-SP",
-            "pageRef": 129
-          },
-          {
-            "topic": "Resolução da PC-SP por tabela-verdade",
-            "pageRef": 130
-          },
-          {
-            "topic": "Resolução da PC-SP por transitividade",
-            "pageRef": 131
-          },
-          {
-            "topic": "Conclusão da PC-SP e questão da Docas",
-            "pageRef": 132
-          },
-          {
-            "topic": "Resolução da questão da Docas e texto da salada",
-            "pageRef": 133
-          },
-          {
-            "topic": "Item 1 da questão do CRN",
-            "pageRef": 134
-          },
-          {
-            "topic": "Item 2 do CRN",
-            "pageRef": 135
-          },
-          {
-            "topic": "Lista de questões clássicas (início)",
-            "pageRef": 136
-          },
-          {
-            "topic": "Lista de questões clássicas (continuação)",
-            "pageRef": 137
-          },
-          {
-            "topic": "Lista de questões clássicas (IBFC e Sarandi)",
-            "pageRef": 138
-          },
-          {
-            "topic": "Lista de questões clássicas (jardim e batata)",
-            "pageRef": 139
-          },
-          {
-            "topic": "Lista de questões clássicas (CRESS e PM-ES)",
-            "pageRef": 140
-          },
-          {
-            "topic": "Lista de questões clássicas (DEPEN e Prodabel)",
-            "pageRef": 141
-          },
-          {
-            "topic": "Lista de questões clássicas (PMPE)",
-            "pageRef": 142
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a04/s12",
-      "bizu": {
-        "summary": [
-          "**Validade**: premissas V garantem conclusão V; depende só da forma do argumento.",
-          "**Válido com conclusão falsa**: possível, desde que alguma premissa seja falsa.",
-          "**Sólido**: válido e com todas as premissas verdadeiras.",
-          "**Modus ponens e tollens**: p → q com p dá q; p → q com ~q dá ~p.",
-          "**Falácias formais**: afirmar o consequente (q ⊢ p) e negar o antecedente (~p ⊢ ~q) são inválidos.",
-          "**Conclusão falsa**: suponha-a F, tente deixar todas as premissas V; se conseguir, inválido.",
-          "**Diagramas**: \"todo A é B\" põe A dentro de B; \"nenhum\" separa; \"algum\" exige interseção.",
-          "**Regras do silogismo**: duas negativas ou duas particulares não concluem; a conclusão segue a premissa mais fraca.",
-          "**Exemplo de \"algum\"**: \"algum motorista é ciclista\" e \"nenhum taxista é ciclista\" dão \"algum motorista não é taxista\"."
-        ],
-        "teoria": [
-          {
-            "statement": "Um argumento válido pode ter conclusão falsa, desde que pelo menos uma premissa seja falsa.",
-            "isTrue": true,
-            "explanation": "Não é possível premissas V e conclusão F."
-          },
-          {
-            "statement": "Afirmar o antecedente de uma condicional e concluir o consequente é uma falácia.",
-            "isTrue": false,
-            "explanation": "É modus ponens, forma válida."
-          },
-          {
-            "statement": "Em um silogismo categórico, duas premissas negativas não permitem conclusão.",
-            "isTrue": true,
-            "explanation": "Regra de validade."
-          },
-          {
-            "statement": "A negação do antecedente (\"não p, logo não q\" a partir de \"se p, então q\") é uma forma de argumento válida.",
-            "isTrue": false,
-            "explanation": "É falácia."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "Para revisar a lista, convém resolver as questões antes de consultar o gabarito.",
-            "isTrue": true,
-            "explanation": "Treino ativo."
-          },
-          {
-            "statement": "O método da conclusão falsa serve para qualquer formato de conclusão, inclusive conjunção.",
-            "isTrue": false,
-            "explanation": "Só simples, disjunção inclusiva e condicional."
-          },
-          {
-            "statement": "A condicional associada a um argumento válido é uma tautologia.",
-            "isTrue": true,
-            "explanation": "(P1 ∧ ... ∧ Pn) → C."
-          },
-          {
-            "statement": "Dois métodos diferentes, aplicados corretamente à mesma questão, levam à mesma resposta.",
-            "isTrue": true,
-            "explanation": "Tabela-verdade e transitividade."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Gabarito das questões clássicas de conectivos",
-            "pageRef": 143
-          },
-          {
-            "topic": "Lista de argumentos dedutivos (FEPESE e brinquedos de Gael)",
-            "pageRef": 144
-          },
-          {
-            "topic": "Lista de argumentos dedutivos (Araraquara)",
-            "pageRef": 145
-          },
-          {
-            "topic": "Lista de argumentos dedutivos (Muriaé, CRESS e Legalle)",
-            "pageRef": 146
-          },
-          {
-            "topic": "Lista de argumentos dedutivos (Apiaí, AOCP e astronauta)",
-            "pageRef": 147
-          },
-          {
-            "topic": "Lista de argumentos dedutivos (DNIT e IBFC)",
-            "pageRef": 148
-          },
-          {
-            "topic": "Lista de argumentos dedutivos (PC-SP, TCM-SP e Docas)",
-            "pageRef": 149
-          },
-          {
-            "topic": "Lista de argumentos dedutivos (CRN-4)",
-            "pageRef": 150
-          },
-          {
-            "topic": "Gabarito dos argumentos dedutivos",
-            "pageRef": 151
           }
         ]
       }
