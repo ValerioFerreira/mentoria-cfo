@@ -175,3 +175,49 @@ Nenhum arquivo foi commitado. Todas as alterações encontram-se salvas no *work
    ```powershell
    npx tsx web/scripts/questoes-ineditas.ts
    ```
+
+---
+
+## 9. Revisão integral de Direito Penal Militar e varredura de capitulação (25/10/2026)
+
+Executado conforme `pipeline/briefs/cfoa-conclusao.md`, Etapa A. Conferência feita contra os textos oficiais baixados do Planalto (CPM, CPPM, CP, Lei 13.869/2019, Lei 7.716/1989, Lei 8.457/1992, Lei 14.133/2021, Lei 8.429/1992, Lei 9.784/1999, CF) e do portal da ALEPE (Lei 11.817/2000, Decreto 50.014/2020, Lei 6.783/1974, Lei 14.804/2012, Lei 13.314/2007). Nenhum banco foi alterado.
+
+### 9.1 Pontos que a revisão por amostra não conseguiu ler na fonte (Etapa A.2)
+
+| Ponto | Texto oficial | Resultado |
+| :--- | :--- | :--- |
+| CPM, art. 191, II | "Modalidade complexa — II - se consumada a deserção: Pena - reclusão, de dois a quatro anos." | Confirmado; a correção da DPM2 #53 está certa. |
+| Lei 13.869/2019, art. 12, p.u., III e IV | III = deixar de entregar ao preso, em 24 h, a nota de culpa (motivo da prisão, nomes do condutor e das testemunhas); IV = prolongar a execução da prisão sem executar o alvará | Confirmado. Na mesma questão (#100) a alternativa correta dizia "nome dos executores": corrigido para "nomes do condutor e das testemunhas". |
+
+### 9.2 Direito Penal Militar: as 158 questões do CFOA relidas uma a uma
+
+A amostra anterior (48 questões, 8,33%) subestimou o problema. Na releitura integral, 63 das 158 questões precisaram de ajuste; em **cerca de 38 (24%) havia erro de fato** (o resto era imprecisão de redação ou de comentário). Gabaritos não foram trocados: as correções reescreveram a alternativa defeituosa ou o comentário, mantendo a letra e o equilíbrio de gabaritos.
+
+| Tipo | Qtd. | Exemplos (nº = ordem entre as 158 do CFOA) |
+| :--- | :---: | :--- |
+| Alternativa errada também defensável (ambiguidade) | 7 | #30 (coação física nos crimes contra o dever militar, art. 40); #47 (resistência com morte, § 1º-A incluído pela Lei 14.688/2023); #57 (embriaguez por substância análoga); #112 (Lei 7.716 tem pena de multa e PSC no art. 4º, § 2º); #140 (337-G exige invalidação judicial); #24 e #156 (insignificância no STM; falso × crime licitatório) |
+| Fato errado no enunciado ou na alternativa correta | 21 | #127 (não existe crime de "recusa hospitalar" no art. 8º da Lei 7.716: reescrita para o art. 9º); #119 (transporte é o art. 12, não o 10); #124 (efeitos não automáticos: art. 18, não art. 16, p.u.); #133 (Forças Armadas estão no art. 13, não no 3º); #137 (art. 337-E com a redação revogada do art. 89 da Lei 8.666); #108 (constranger a depor quem guarda segredo é o art. 15, não o 30); #23 (comandante de "navio, aeronave ou praça de guerra", não "força"); #38 (art. 139: violar território "para praticar ato de jurisdição em nome do Brasil"); #39 (requisito inventado "bastam dois armados"); #44 (exceção inventada "para repelir agressão"); #81 (confusão entre arts. 349 e 354); #145, #147, #148 (elementares dos arts. 337-L, 337-O, 337-P); #100 (nota de culpa) |
+| Fato errado só no comentário | 10 | #28, #55, #74, #77, #144, #146 (parágrafo/inciso inexistente ou trocado); #46 (pena do art. 175 desatualizada: 3 meses a 2 anos desde a Lei 14.688/2023); #75 (elementar do art. 324); #99 (texto antigo da Lei 4.898); #155 (art. 310 do CPM) |
+| Forma/precisão (sem erro de fato) | 25 | #14, #22, #35, #36, #42, #58, #59, #64, #65, #69, #97, #107, #126, #129, #138 e outras |
+
+Três pontos de jurisprudência foram reescritos com cautela por não haver tese firme verificável: #7 (STF e julgamento de civis pela JMU), #13 (antes "STM pacificou a não incidência da insignificância na violência doméstica"; agora a questão cobra o art. 209, § 6º, do CPM) e #12 (o veto ao § 3º do art. 9º, que excluía crimes sexuais e de violência doméstica, mantido pelo Congresso em 9/5/2024).
+
+**Parecer revisto:** a disciplina passou de "REVISAR TUDO ANTES" para **LIBERAR COM RESSALVA** após a revisão integral. A ressalva: a taxa real de erro do lote original era ~24%, então o mesmo autor/lote deve ser tratado com desconfiança em qualquer outra disciplina não revisada por inteiro.
+
+### 9.3 Varredura automatizada de capitulação (Etapa A.3)
+
+Script (fora do repositório) que extrai toda citação "art. N" das inéditas do CFOA, localiza o artigo no texto oficial e sinaliza: artigo inexistente, prazo/pena/quantidade da frase ausente do artigo, e baixa aderência lexical entre a frase e o artigo. Cada sinal foi conferido à mão.
+
+| Disciplina | Citações | Confrontadas | Questões corrigidas | Principais achados |
+| :--- | :---: | :---: | :---: | :--- |
+| Direito Processual Penal Militar | 200 | 192 (CPPM, CPM, Lei 8.457) | 31 | ~21 artigos trocados (ex.: arts. 88 → 90; 91 → 96; 92 → 94; 165/169 → 163; 315/317 → 307/309; 331 → 334/335; 363 → 366; 451 → 456; 457 § 2º → § 4º; Lei 8.457, art. 6º, I, a, para oficiais-generais); e 8 erros de conteúdo: prazo de internação de "20 + 20 dias" inexistente (art. 157 só fixa 45 dias para o laudo, #104), "internação provisória por 5 dias" (o prazo do art. 272, § 1º, é de interdição de estabelecimento, #153), "não faz coisa julgada no cível" (art. 169 só fala em processo penal ulterior, #117), "vedação de menagem ao desertor" sem base legal (#212 e #227, este reescrito para o art. 453), cassação da menagem com "prisão preventiva automática" (#152 e #214, art. 265), "rito sumaríssimo" pelo art. 458, revogado (#198, reescrito para o art. 391 do CPM) |
+| Legislações PE | 66 | 66 (textos da ALEPE) | 24 | ~18 artigos trocados (Lei 11.817: 2 → 15; 12 → 13; 14/15 → 11; 19/20 → 24/25; 29 → 28, § 4º; 31/32 → 30; Decreto 50.014: 5 → 6, I; 8 → 6, § 2º; Estatuto: 63 → 62; 72 → 69; LAI estadual 14.804: numeração da lei federal → arts. 6º, 8º e 9º; Lei 13.314: 2 → 2º-C; 5 → 6º-A, p.u.); conteúdo: "transgressão grave" como requisito da pronta intervenção (#10), atenuante inventada "evitar mal maior" (#62), "premeditação" como agravante (#63), "114 tipos" na Parte Especial (#61), autoridades da prisão sem publicação (o art. 29 cita o Chefe da Casa Militar, não o Secretário de Defesa Social, #44) |
+| Direito Administrativo | 204 | 115 (Lei 14.133, 8.429, 9.784, CF) | 0 | 13 sinais, todos conferidos e corretos (números de distratores ou de outro parágrafo do mesmo artigo). Citações de normas não baixadas (súmulas, decretos, CF em artigos longos) não foram confrontadas |
+
+Validadores após as correções: `ineditas_mc_nativas.py --check` 6.509 questões, 0 erros; `lacunas_cfoa.py --check` 0 trechos < 7, 0 aulas < 25; `validate_summaries.py` 0 erros; `validate_content.py` com 57 erros **anteriores e fora do CFOA** (afirmações C/E repetidas em `content/items/atualidades/*.json`, commit `47ec03e`).
+
+PDFs regenerados (`build_complements.py --only <id> --no-merge`) dos dois complementos ajustados na revisão por amostra: `leg-lei-12527-lai` (6 págs.) e `leg-pe-lei-6783-lacunas` (4 págs.), mesmas páginas dos trechos.
+
+### 9.4 Para gravar nos bancos (depende de autorização do dono)
+
+O id de cada inédita é um hash do texto: as ~120 questões editadas aqui e na revisão por amostra ganham id novo. A regravação deve usar `--retirar-ausentes` (aposenta as versões antigas do mesmo lote) e o relatório deve mostrar `retired` igual ao número de questões editadas. Comandos em `pipeline/briefs/cfoa-conclusao.md`, Etapa A.8.
