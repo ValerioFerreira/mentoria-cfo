@@ -28,7 +28,7 @@ export interface RegenerateResult {
  */
 export async function regeneratePlanForUser(
   userEmailOrPlanId: string,
-  options?: { activate?: boolean }
+  options?: { activate?: boolean; nextCycle?: boolean }
 ): Promise<RegenerateResult> {
   const isEmail = userEmailOrPlanId.includes("@");
 
@@ -103,7 +103,13 @@ export async function regeneratePlanForUser(
   // 5. Data de início e prova
   const today = todayISO();
   const originalStartStr = plan.startDate.toISOString().slice(0, 10);
-  const examDateStr = plan.examDate.toISOString().slice(0, 10);
+  // Ciclo do edital (concurso sem data de prova): com a data cadastrada, o plano passa a ir até a prova; sem ela,
+  // continua em ciclo (o seguinte, quando o anterior terminou)
+  const prevCycle = typeof params.cycle === "number" ? params.cycle : null;
+  const contestDate =
+    (await db.contestSetting.findUnique({ where: { contest }, select: { examDate: true } }))?.examDate?.toISOString().slice(0, 10) ?? null;
+  const cycle = prevCycle && !contestDate ? (options?.nextCycle ? prevCycle + 1 : prevCycle) : undefined;
+  const examDateStr = prevCycle && contestDate ? contestDate : plan.examDate.toISOString().slice(0, 10);
 
   // Se a data de início original já passou, inicia na data atual para não perder semanas
   const effectiveStart = originalStartStr < today ? today : originalStartStr;
@@ -138,6 +144,7 @@ export async function regeneratePlanForUser(
     known,
     excludedAulas: savedRequest?.excludedAulas ?? [],
     turbo,
+    ...(cycle ? { cycle } : {}),
   });
 
   // 9. Gera o novo plano com todas as regras atualizadas

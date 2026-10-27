@@ -25,7 +25,7 @@ export async function getPendingPlan(userId: string) {
     });
     return null;
   }
-  return db.plan.findFirst({
+  const plan = await db.plan.findFirst({
     where: { userId, status: "PENDING_ANALYSIS" },
     orderBy: { version: "desc" },
     select: {
@@ -37,6 +37,8 @@ export async function getPendingPlan(userId: string) {
       subjects: { select: { subjectId: true } },
     },
   });
+  // ciclo do edital (concurso sem data de prova): a "data" do plano é o fim do ciclo, não a prova
+  return plan && (plan.params as { cycle?: number } | null)?.cycle ? { ...plan, examDate: null } : plan;
 }
 
 /** Segundos estudados por atividade (soma dos registros de tempo). */

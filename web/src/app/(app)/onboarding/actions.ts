@@ -12,6 +12,7 @@ import { todayISO } from "@/lib/plan-time";
 import { savePlan } from "@/lib/plan/persist";
 import { buildPlanInput } from "@/lib/plan/plan-input";
 import { isCombo, isValidPriority } from "@/lib/combos";
+import { contestExamDate } from "@/lib/plan/cycle";
 import type { Known, Level } from "@/lib/planner/types";
 
 /** Data real no formato AAAA-MM-DD (rejeita 2027-02-30) e no máximo ~2 anos à frente (evita planos com milhares de semanas). */
@@ -27,6 +28,7 @@ const Selection = z.object({
     .min(1, "Escolha ao menos uma disciplina.")
     .refine((l) => new Set(l.map((s) => s.id)).size === l.length, "Há disciplinas repetidas."),
   hoursPerWeek: z.number().int().min(14).max(50),
+  /** ignorada quando o concurso não tem data de prova (o plano vira ciclo do edital) */
   examDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).refine(examDateOk, "Data da prova inválida ou distante demais (máximo de 2 anos)."),
   /** "now" = começar hoje (dia civil de Recife); ou uma data AAAA-MM-DD escolhida na agenda */
   start: z.union([z.literal("now"), z.string().regex(/^\d{4}-\d{2}-\d{2}$/)]).default("now"),
@@ -72,6 +74,15 @@ async function resolveExcludedAulas(subjectIds: string[], unselectedTopicIds: st
  * Resolve a data de início. "Começar imediatamente" usa o dia civil de Recife no servidor (não o UTC, que vira o dia
  * às 21h locais). A semana 1 sempre começa na segunda; `firstDay` marca em que dia dela o aluno entra.
  */
+/**
+ * Prova do plano: com data cadastrada no concurso, vale a escolhida no assistente; sem data, o plano é o 1º ciclo do edital
+ * (cobre o edital inteiro e recomeça ao terminar; `examDate` só cumpre a validação e é recalculada pelo planejador).
+ */
+async function resolveExam(contest: Parameters<typeof contestExamDate>[0], examDate: string, startDate: string) {
+  if (await contestExamDate(contest)) return { examDate };
+  return { examDate: addDays(startDate, 7 * 52), cycle: 1 };
+}
+
 function resolveStart(start: string): { startDate: string; firstDay: number; firstStudyDate: string } | { error: string } {
   const today = todayISO();
   const first = start === "now" ? today : start;
@@ -91,6 +102,7 @@ export async function previewPlan(input: SelectionInput) {
   if (isCombo(contest) && parsed.data.priority && !isValidPriority(contest, parsed.data.priority)) return { error: "Concurso prioritário inválido." } as const;
   const contestData = await loadContestPlanData(contest, parsed.data.priority);
   const excludedAulas = await resolveExcludedAulas(parsed.data.subjects.map((s) => s.id), parsed.data.unselectedTopicIds);
+  const exam = await resolveExam(contest, parsed.data.examDate, begin.startDate);
   try {
     const base = {
       data,
@@ -98,7 +110,7 @@ export async function previewPlan(input: SelectionInput) {
       contestData,
       startDate: begin.startDate,
       firstDay: begin.firstDay,
-      examDate: parsed.data.examDate,
+      ...exam,
       hoursPerWeek: parsed.data.hoursPerWeek,
       subjects: parsed.data.subjects as { id: string; level: Level }[],
       known: parsed.data.known as Record<string, Known>,
@@ -114,6 +126,7 @@ export async function previewPlan(input: SelectionInput) {
       coverageEdital: r.coverage.edital,
       depth: r.coverage.depth,
       totalWeeks: r.params.totalWeeks,
+      cycleEnd: r.params.cycle ? addDays(r.params.examDate, -1) : null,
       capacityHours: r.params.capacityHours,
       plannedHours: r.params.plannedHours,
       fullEditalHoursPerWeek: r.params.fullEditalHoursPerWeek,
@@ -139,13 +152,14 @@ export async function createPlanAction(input: SelectionInput & { diagnostics: Re
   if (isCombo(contest) && parsed.data.priority && !isValidPriority(contest, parsed.data.priority)) return { error: "Concurso prioritário inválido." };
   const contestData = await loadContestPlanData(contest, parsed.data.priority);
   const excludedAulas = await resolveExcludedAulas(parsed.data.subjects.map((s) => s.id), parsed.data.unselectedTopicIds);
+  const exam = await resolveExam(contest, parsed.data.examDate, begin.startDate);
   const planInput = buildPlanInput({
     data,
     contest,
     contestData,
     startDate: begin.startDate,
     firstDay: begin.firstDay,
-    examDate: parsed.data.examDate,
+    ...exam,
     hoursPerWeek: parsed.data.hoursPerWeek,
     subjects: parsed.data.subjects as { id: string; level: Level }[],
     known: parsed.data.known as Record<string, Known>,

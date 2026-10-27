@@ -42,12 +42,58 @@ function validate(input: PlanInput): void {
  * cobrir MENOS do que o plano normal, vale o normal, e o aviso diz que o Turbo não trouxe ganho.
  */
 export function generatePlan(input: PlanInput): PlanResult {
+  if (input.cycle) return generateCyclePlan(input, input.cycle);
   const plan = generatePlanOnce(input);
   if (!input.turbo || plan.params.summaryUnits === 0) return plan;
   const normal = generatePlanOnce({ ...input, turbo: false });
   if (normal.params.editalFits) return normal; // o edital já cabe sem resumos: o Turbo não tem o que trocar
   if (plan.coverage.selected + 1e-9 >= normal.coverage.selected) return plan;
   return { ...normal, warnings: ["Modo Turbo: com os resumos disponíveis hoje ele não aumentaria a cobertura do edital, então o plano foi montado no modo normal.", ...normal.warnings] };
+}
+
+/** Horizonte máximo de um ciclo do edital (semanas). */
+export const CYCLE_MAX_WEEKS = 156;
+
+/**
+ * Concurso sem data de prova: o ciclo vai até o menor prazo (em semanas) em que o edital inteiro cabe no ciclo de estudo, sem
+ * Turbo; o fim do ciclo faz o papel da prova (revisão geral nos dias que sobram e Revisão na véspera). Ao terminar, o plano é
+ * refeito como ciclo seguinte (`ensurePlanCycle`).
+ */
+function generateCyclePlan(input: PlanInput, cycle: number): PlanResult {
+  const cache = new Map<number, PlanResult>();
+  const at = (weeks: number) => {
+    if (!cache.has(weeks)) cache.set(weeks, generatePlanOnce({ ...input, turbo: false, cycle: undefined, examDate: addDays(input.startDate, weeks * 7) }));
+    return cache.get(weeks)!;
+  };
+  // estimativa pelas horas que o edital inteiro pede; depois, busca binária pelo menor horizonte em que tudo cabe
+  const probe = at(26);
+  let lo = 3;
+  let hi = 26;
+  if (!probe.params.editalFits) {
+    lo = 26;
+    hi = Math.min(CYCLE_MAX_WEEKS, Math.max(27, Math.ceil((26 * probe.params.fullEditalHoursPerWeek) / input.hoursPerWeek)));
+    while (hi < CYCLE_MAX_WEEKS && !at(hi).params.editalFits) {
+      lo = hi;
+      hi = Math.min(CYCLE_MAX_WEEKS, hi + Math.max(4, Math.ceil(hi / 4)));
+    }
+  }
+  while (hi - lo > 1) {
+    const mid = Math.floor((lo + hi) / 2);
+    if (at(mid).params.editalFits) hi = mid;
+    else lo = mid;
+  }
+  const plan = at(hi);
+  const end = addDays(plan.params.examDate, -1);
+  const [y, m, d] = end.split("-");
+  return {
+    ...plan,
+    params: { ...plan.params, cycle },
+    warnings: [
+      `Ainda não há data de prova: este ${cycle}º ciclo cobre todo o edital até ${d}/${m}/${y} e, ao terminar, um novo ciclo começa. Quando a data for definida, o plano é refeito até a prova.`,
+      ...(plan.params.editalFits ? [] : ["Mesmo no prazo máximo de um ciclo, o edital inteiro não coube nas horas escolhidas; aumente as horas por semana."]),
+      ...plan.warnings,
+    ],
+  };
 }
 
 function generatePlanOnce(input: PlanInput): PlanResult {

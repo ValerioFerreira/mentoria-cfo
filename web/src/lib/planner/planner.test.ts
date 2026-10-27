@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { bandOf, generatePlan, hoursPerDayLabel, nextMonday, PlanInputError, type Level, type PlanInput, type PlanResult } from "./index";
-import { dayIndexOf, mondayOf, weeksUntil } from "./dates";
+import { addDays, dayIndexOf, mondayOf, weeksUntil } from "./dates";
 import { loadCatalog, loadExamQuestions, loadImportance, loadSegments } from "./fixtures";
 import { planFromResult, verifyPlan } from "./verify";
 import { CONTEST_SUBJECTS } from "../contests";
@@ -507,6 +507,31 @@ describe("modelo de tempo", () => {
     expect(eve).toHaveLength(1);
     expect(eve[0].subjectId).toBe(top);
     for (const s of p.coverage.subjects) expect(s.examQuestions).toBe(examQuestions[s.subjectId]);
+  });
+  it("ciclo do edital (sem data de prova): cobre o edital inteiro no menor prazo e ignora o Turbo", () => {
+    const subjects = CONTEST_SUBJECTS.CBMPE_CFOA;
+    const base = {
+      catalog,
+      segments,
+      contest: "CBMPE_CFOA",
+      importance: loadImportance("CBMPE_CFOA"),
+      examQuestions: loadExamQuestions("CBMPE_CFOA"),
+      examTotalQuestions: 100,
+      startDate: "2026-10-19",
+      firstDay: 0,
+      examDate: "2027-10-18",
+      hoursPerWeek: 30,
+      subjects: subjects.map((id) => ({ id, level: 1 as const })),
+    };
+    const p = generatePlan({ ...base, cycle: 2, turbo: true });
+    expect(p.params.cycle).toBe(2);
+    expect(p.params.editalFits).toBe(true);
+    expect(p.params.turboAulas).toBe(0);
+    expect(p.coverage.selected).toBeCloseTo(1, 5);
+    // uma semana a menos já não comporta o edital inteiro
+    const shorter = generatePlan({ ...base, examDate: addDays(p.params.examDate, -7) });
+    expect(shorter.params.editalFits).toBe(false);
+    expect(p.warnings[0]).toContain("2º ciclo");
   });
 });
 

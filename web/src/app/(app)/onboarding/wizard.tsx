@@ -434,15 +434,22 @@ export function Wizard({ subjects, todayIso, initial, defaultExamDate, examDateU
             <Card className="space-y-4">
               <div className="flex flex-wrap items-center gap-x-8 gap-y-3 text-sm">
                 <span><strong className="font-display text-3xl tabular">{hours} h</strong> <span className="text-muted">por semana ({band.label})</span></span>
-                <label className="flex items-center gap-2 font-semibold">
-                  Data da prova
-                  <input type="date" value={examDate} onChange={(e) => setExamDate(e.target.value)} className="rounded-lg border border-border bg-surface px-2.5 py-1.5 text-sm font-normal" />
-                  {examDateUndisclosed && (
+                {examDateUndisclosed ? (
+                  <span className="flex items-center gap-2 font-semibold">
+                    Ciclo do edital
+                    {preview && "ok" in preview && preview.cycleEnd && (
+                      <span className="font-normal text-muted">até {preview.cycleEnd.split("-").reverse().join("/")}</span>
+                    )}
                     <InfoTip align="start">
-                      A data da prova ainda não foi divulgada. Informe a data prevista; você pode alterá-la depois refazendo o plano.
+                      A data da prova ainda não foi divulgada. O plano cobre todo o edital e, ao terminar, recomeça. Quando a data for definida, o plano é refeito até a prova.
                     </InfoTip>
-                  )}
-                </label>
+                  </span>
+                ) : (
+                  <label className="flex items-center gap-2 font-semibold">
+                    Data da prova
+                    <input type="date" value={examDate} onChange={(e) => setExamDate(e.target.value)} className="rounded-lg border border-border bg-surface px-2.5 py-1.5 text-sm font-normal" />
+                  </label>
+                )}
               </div>
               {combo && <p className="text-sm"><span className="text-muted">Prioridade:</span> <strong>{comboLabels[priority]}</strong></p>}
               <ul className="flex flex-wrap gap-2">

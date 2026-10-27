@@ -140,7 +140,9 @@ def build_pdf(doc: Doc, out: Path | None) -> None:
         pno += 1
     tmp.close()
     doc.pages = pno
-    doc.topics = [(h, t, p) for h, t, p in heads if h in (2, 3) and t]
+    # o texto do PDF perde o espaço na quebra de linha do título ("deJustificação"): volta ao título do .md
+    md_heads = {re.sub(r"\s+", "", h): h for h in (re.sub(r"[*_`]", "", x).strip() for x in re.findall(r"^#{2,3}\s+(.+)$", doc.body, re.M))}
+    doc.topics = [(h, md_heads.get(re.sub(r"\s+", "", t), t), p) for h, t, p in heads if h in (2, 3) and t]
     # rodapé com numeração
     pdf = fitz.open(str(out) if out else str(ROOT / "pipeline" / ".cache" / f"_tmp_{doc.id}.pdf"))
     total = len(pdf)

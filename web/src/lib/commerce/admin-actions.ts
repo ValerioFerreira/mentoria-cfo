@@ -10,6 +10,7 @@ import { requireAdmin } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
 import { audit } from "./audit";
 import { applyExamDateToContracts, cancelContract, createContract, grantAccessUntilExam } from "./contracts";
+import { replanCyclePlans } from "@/lib/plan/cycle";
 import { createSiteCoupon, deleteSiteCoupon, setSiteCouponActive, updateSiteCoupon } from "./coupons";
 import { importLegacyPayer } from "./legacy";
 import { type ActionResult, toActionError } from "./errors";
@@ -232,12 +233,14 @@ export async function adminUpdateContestSetting(_: ActionResult | null, fd: Form
         },
       });
     });
+    // concurso ganhou data: os planos em ciclo do edital são refeitos a partir de hoje, até a prova
+    const replanned = examDate ? await replanCyclePlans(contest as Contest) : { done: 0, failed: 0 };
     revalidatePath("/admin/concursos");
     revalidatePath("/admin/financeiro");
     revalidatePath("/lista-de-espera", "layout");
     return {
       ok: true,
-      message: `Concurso atualizado. Contratações já registradas não mudam de preço.${updatedAccess ? ` Limite de acesso definido para ${updatedAccess} ${updatedAccess === 1 ? "contratação" : "contratações"} (dia da prova).` : ""}`,
+      message: `Concurso atualizado. Contratações já registradas não mudam de preço.${updatedAccess ? ` Limite de acesso definido para ${updatedAccess} ${updatedAccess === 1 ? "contratação" : "contratações"} (dia da prova).` : ""}${replanned.done ? ` ${replanned.done} ${replanned.done === 1 ? "plano refeito" : "planos refeitos"} até a prova.` : ""}${replanned.failed ? ` ${replanned.failed} não puderam ser refeitos (data muito próxima?).` : ""}`,
     };
   } catch (err) {
     return toActionError(err, "atualizar concurso");

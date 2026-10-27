@@ -1,7 +1,7 @@
 // Gera 10 planos de teste do 2º Tenente CFOA com entradas variadas, roda o verificador e grava tudo em JSON para auditoria
 // (cada atividade com aula, trecho, páginas, diretriz e se há resumo analítico).
-//   npx tsx scripts/cfoa-plan-test.ts [saida.json]     (padrão: ../pipeline/.cache/cfoa-planos.json)
-// O CFOA ainda não tem data de prova: usa 28/03/2027 como hipótese.
+//   npx tsx scripts/cfoa-plan-test.ts [saida.json] [--ciclo]     (padrão: ../pipeline/.cache/cfoa-planos.json)
+// O CFOA ainda não tem data de prova: usa 28/03/2027 como hipótese; com --ciclo, gera o 1º ciclo do edital (sem data).
 import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { generatePlan } from "../src/lib/planner";
@@ -12,7 +12,8 @@ import type { Known, Level } from "../src/lib/planner/types";
 
 const CONTEST = "CBMPE_CFOA";
 const EXAM = "2027-03-28";
-const out = process.argv[2] ?? resolve(__dirname, "../../pipeline/.cache/cfoa-planos.json");
+const CYCLE = process.argv.includes("--ciclo");
+const out = process.argv.slice(2).find((a) => !a.startsWith("--")) ?? resolve(__dirname, "../../pipeline/.cache/cfoa-planos.json");
 const catalog = loadCatalog();
 const segments = loadSegments();
 const importance = loadImportance(CONTEST);
@@ -55,10 +56,12 @@ const result: unknown[] = [];
 for (const s of SC) {
   const input = {
     catalog, segments, contest: CONTEST, importance, summaries, examQuestions, examTotalQuestions: 100, startDate: s.start, firstDay: s.firstDay, examDate: EXAM,
-    hoursPerWeek: s.hours, subjects: s.subjects.map((id) => ({ id, level: s.level })), known: s.known ?? {}, excludedAulas: s.excluded ?? [], turbo: s.turbo,
+    hoursPerWeek: s.hours, subjects: s.subjects.map((id) => ({ id, level: s.level })), known: s.known ?? {}, excludedAulas: s.excluded ?? [], turbo: s.turbo, ...(CYCLE ? { cycle: 1 } : {}),
   };
+  const tGen = Date.now();
   const plan = generatePlan(input);
-  const vp = planFromResult(plan, s.start, EXAM, s.name);
+  const genMs = Date.now() - tGen;
+  const vp = planFromResult(plan, s.start, plan.params.examDate, s.name);
   const rep = verifyPlan(vp, { catalog, segments, importance, summaries: new Set(summaries) });
   const acts = plan.weeks.flatMap((w) =>
     w.activities.map((a) => {
@@ -73,7 +76,7 @@ for (const s of SC) {
       };
     }),
   );
-  console.log(`${s.name}: ${rep.verdict} erros ${rep.errors.length} avisos ${rep.warnings.length} | atividades ${acts.length} | cobertura ${(plan.coverage.selected * 100).toFixed(0)}% edital ${(plan.coverage.edital * 100).toFixed(0)}%`);
+  console.log(`${s.name}: ${rep.verdict} [${genMs} ms${CYCLE ? `, fim ${plan.params.examDate}, ${plan.params.totalWeeks} sem.` : ""}] erros ${rep.errors.length} avisos ${rep.warnings.length} | atividades ${acts.length} | cobertura ${(plan.coverage.selected * 100).toFixed(0)}% edital ${(plan.coverage.edital * 100).toFixed(0)}%`);
   for (const e of rep.errors.slice(0, 5)) console.log("   ERRO", e.code, e.message, e.where ?? "");
   result.push({ name: s.name, input: { ...s, known: s.known ? Object.keys(s.known).length : 0 }, verdict: rep.verdict, errors: rep.errors, warnings: rep.warnings.slice(0, 30), stats: rep.stats, coverage: plan.coverage, warningsPlan: plan.warnings, acts });
 }

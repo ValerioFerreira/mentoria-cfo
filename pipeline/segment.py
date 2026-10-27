@@ -15,6 +15,7 @@ import json
 import os
 import re
 import sys
+import unicodedata
 from dataclasses import dataclass
 
 sys.path.insert(0, os.path.dirname(__file__))
@@ -301,6 +302,9 @@ def build_aula(aula_id: str, topics: list[dict], data: dict, coverage: dict, pri
     forced_cuts = set(ov.get("cuts", []))  # páginas que obrigatoriamente iniciam um trecho
 
     topics = topics + auto_headings(data["key"], topics, types)
+    for t in topics:  # letras matemáticas do PDF (𝑷 → P) e caracteres invisíveis não vão para a tela
+        t["title"] = re.sub(r"[\U0001D400-\U0001D7FF]", lambda m: unicodedata.normalize("NFKC", m.group()),
+                            re.sub(r"[​-‏­﻿]", "", t["title"])).strip()
     if ov.get("dropHeadings"):  # também remove falsos subtítulos detectados por fonte (auto)
         topics, more = apply_overrides({"dropHeadings": ov["dropHeadings"]}, topics, len(pages))
         flags += [n for n in more if n not in flags]

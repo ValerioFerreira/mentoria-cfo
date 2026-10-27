@@ -16,6 +16,8 @@ export function buildPlanInput(args: {
   known: Record<string, Known>;
   excludedAulas: string[];
   turbo: boolean;
+  /** concurso sem data de prova: nº do ciclo do edital (o fim é calculado pelo planejador) */
+  cycle?: number;
 }): PlanInput {
   const { data, contest, contestData, ...rest } = args;
   return {

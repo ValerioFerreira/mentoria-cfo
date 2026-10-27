@@ -27,8 +27,8 @@ export async function savePlan({ userId, input, result, diagnostics, foreignLang
 
       await tx.profile.upsert({
         where: { userId },
-        create: { userId, examDate: new Date(input.examDate), hoursBand, hoursPerWeek: input.hoursPerWeek, foreignLanguage },
-        update: { examDate: new Date(input.examDate), hoursBand, hoursPerWeek: input.hoursPerWeek, foreignLanguage },
+        create: { userId, examDate: new Date(result.params.examDate), hoursBand, hoursPerWeek: input.hoursPerWeek, foreignLanguage },
+        update: { examDate: new Date(result.params.examDate), hoursBand, hoursPerWeek: input.hoursPerWeek, foreignLanguage },
       });
 
       const user = await tx.user.findUnique({ where: { id: userId }, select: { role: true, partner: { select: { active: true } } } });
@@ -41,7 +41,7 @@ export async function savePlan({ userId, input, result, diagnostics, foreignLang
           status: initialStatus,
           version: (prev?.version ?? 0) + 1,
           startDate: new Date(input.startDate),
-          examDate: new Date(input.examDate),
+          examDate: new Date(result.params.examDate),
           contest: (input.contest as Contest | undefined) ?? null,
           params: result.params as object,
           coverage: result.coverage as object,
