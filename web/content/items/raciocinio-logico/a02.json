@@ -1,1253 +1,514 @@
 {
-  "aula": "raciocinio-logico/a02",
-  "batch": "praca-raciocinio-logico",
-  "status": "APPROVED",
-  "segments": [
-    {
-      "id": "raciocinio-logico/a02/s01",
-      "bizu": {
-        "summary": [
-          "**Equivalência lógica**: duas proposições com a mesma tabela-verdade, ou seja, o mesmo significado.",
-          "**Símbolo**: ≡ ou ⇔ indica equivalência e não se confunde com o conectivo bicondicional.",
-          "**Quadro essencial**: contrapositiva, condicional em ou, ou em condicional, dupla negação, De Morgan e negação da condicional.",
-          "**Bicondicional**: p ↔ q equivale a (p → q) ∧ (q → p).",
-          "**Contrapositiva**: inverte antecedente e consequente e nega os dois, p → q ≡ ~q → ~p.",
-          "**Inversa**: ~p → ~q não equivale a p → q, erro muito explorado pelas bancas.",
-          "**Recíproca**: q → p também não equivale a p → q.",
-          "**Dupla negação**: a contrapositiva de p → ~a é a → ~p.",
-          "**Independência da forma**: definir a simples na forma afirmativa ou negativa não muda a resposta.",
-          "**Memorização**: as equivalências devem ser decoradas para uso rápido em prova."
-        ],
-        "teoria": [
-          {
-            "statement": "Duas proposições são equivalentes quando têm exatamente a mesma tabela-verdade.",
-            "isTrue": true,
-            "explanation": "Definição."
-          },
-          {
-            "statement": "A condicional p → q é equivalente à sua inversa ~p → ~q.",
-            "isTrue": false,
-            "explanation": "A equivalente é a contrapositiva ~q → ~p."
-          },
-          {
-            "statement": "A contrapositiva de \"Se há luz, a planta cresce\" é \"Se a planta não cresce, não há luz\".",
-            "isTrue": true,
-            "explanation": "Inverte e nega."
-          },
-          {
-            "statement": "O símbolo de equivalência ≡ tem o mesmo significado do conectivo bicondicional ↔.",
-            "isTrue": false,
-            "explanation": "São conceitos diferentes."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "A bicondicional p ↔ q é equivalente à conjunção (p → q) ∧ (q → p).",
-            "isTrue": true,
-            "explanation": "Tabelas idênticas."
-          },
-          {
-            "statement": "A condicional \"Se chove, o jogo é cancelado\" é equivalente a \"Se o jogo é cancelado, então chove\".",
-            "isTrue": false,
-            "explanation": "Essa é a recíproca."
-          },
-          {
-            "statement": "A contrapositiva de p → ~a é a → ~p.",
-            "isTrue": true,
-            "explanation": "Dupla negação de ~a."
-          },
-          {
-            "statement": "~(~p) é equivalente a p.",
-            "isTrue": true,
-            "explanation": "Dupla negação."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Apresentação e resumo das equivalências",
-            "pageRef": 3
-          },
-          {
-            "topic": "Quadro de equivalências e negações",
-            "pageRef": 4
-          },
-          {
-            "topic": "Definição de equivalência lógica",
-            "pageRef": 5
-          },
-          {
-            "topic": "Tabela de (p → q) ∧ (q → p)",
-            "pageRef": 6
-          },
-          {
-            "topic": "Equivalências fundamentais",
-            "pageRef": 7
-          },
-          {
-            "topic": "Contrapositiva e erro da inversa",
-            "pageRef": 8
-          },
-          {
-            "topic": "Tabela da contrapositiva",
-            "pageRef": 9
-          },
-          {
-            "topic": "Questão da EPC",
-            "pageRef": 10
-          },
-          {
-            "topic": "Questão de Bagé",
-            "pageRef": 11
-          },
-          {
-            "topic": "Definição da simples afirmativa ou negativa",
-            "pageRef": 12
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a02/s02",
-      "bizu": {
-        "summary": [
-          "**Condicional em ou**: p → q é equivalente a ~p ∨ q, negando o primeiro termo e mantendo o segundo.",
-          "**Duas equivalências da condicional**: a contrapositiva e a disjunção ~p ∨ q, e nenhuma outra.",
-          "**Qual usar**: se as alternativas trazem ou e e, use a disjunção; se só trazem se... então, use a contrapositiva.",
-          "**Ou em condicional**: p ∨ q é equivalente a ~p → q.",
-          "**Demonstração**: aplicando a regra da condicional a ~p → q obtém-se p ∨ q pela dupla negação.",
-          "**Segundo termo**: nunca muda, mesmo que já seja negativo.",
-          "**Comutação**: p ∨ q também equivale a ~q → p, negando o outro termo.",
-          "**Negação lógica**: é a proposição com valores sempre opostos aos da original.",
-          "**Exemplo de negação**: ~(p ∧ q) é equivalente a ~p ∨ ~q.",
-          "**Tentativa**: se um método não gera nenhuma alternativa, tente o outro."
-        ],
-        "teoria": [
-          {
-            "statement": "A condicional \"Se há estoque, a venda é feita\" é equivalente a \"Não há estoque ou a venda é feita\".",
-            "isTrue": true,
-            "explanation": "p → q ≡ ~p ∨ q."
-          },
-          {
-            "statement": "A disjunção \"Chove ou faz frio\" é equivalente a \"Se chove, então faz frio\".",
-            "isTrue": false,
-            "explanation": "A equivalente é \"Se não chove, então faz frio\"."
-          },
-          {
-            "statement": "A condicional admite apenas duas equivalências: a contrapositiva e a disjunção inclusiva ~p ∨ q.",
-            "isTrue": true,
-            "explanation": "Equivalências da condicional."
-          },
-          {
-            "statement": "Para transformar p ∨ q em condicional, nega-se o segundo termo e mantém-se o primeiro: p → ~q.",
-            "isTrue": false,
-            "explanation": "Nega-se o primeiro: ~p → q."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "A proposição p → ~q é equivalente a ~p ∨ ~q.",
-            "isTrue": true,
-            "explanation": "Nega o primeiro e mantém o segundo."
-          },
-          {
-            "statement": "\"Os alunos treinaram ou o simulado foi adiado\" é equivalente a \"Se os alunos não treinaram, o simulado foi adiado\".",
-            "isTrue": true,
-            "explanation": "p ∨ q ≡ ~p → q."
-          },
-          {
-            "statement": "Ao aplicar p ∨ q ≡ ~p → q, o segundo termo também deve ser negado.",
-            "isTrue": false,
-            "explanation": "O segundo termo é mantido."
-          },
-          {
-            "statement": "Se um método (contrapositiva) não gera nenhuma das alternativas, pode-se testar a transformação em disjunção.",
-            "isTrue": true,
-            "explanation": "As duas únicas equivalências da condicional."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Conclusão de Bagé e condicional em ou",
-            "pageRef": 13
-          },
-          {
-            "topic": "Tabela de p → q e ~p ∨ q",
-            "pageRef": 14
-          },
-          {
-            "topic": "Duas equivalências da condicional",
-            "pageRef": 15
-          },
-          {
-            "topic": "Questões do PROCON-DF e da PM-RN",
-            "pageRef": 16
-          },
-          {
-            "topic": "Questão de Parnaíba",
-            "pageRef": 17
-          },
-          {
-            "topic": "Questão da CM-POA e ou em condicional",
-            "pageRef": 18
-          },
-          {
-            "topic": "Demonstração de p ∨ q ≡ ~p → q",
-            "pageRef": 19
-          },
-          {
-            "topic": "Questão da EPC sobre ou e condicional",
-            "pageRef": 20
-          },
-          {
-            "topic": "Negações lógicas",
-            "pageRef": 21
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a02/s03",
-      "bizu": {
-        "summary": [
-          "**Dupla negação**: negar a negação devolve a proposição original.",
-          "**Negar o e**: nega-se cada parcela e o e vira ou, como em ~(p ∧ q) ≡ ~p ∨ ~q.",
-          "**Negar o ou**: nega-se cada parcela e o ou vira e, como em ~(p ∨ q) ≡ ~p ∧ ~q.",
-          "**Negar a condicional**: mantém-se o primeiro termo, usa-se e e nega-se o segundo, ~(p → q) ≡ p ∧ ~q.",
-          "**Cuidado**: equivalência da condicional é ~p ∨ q, e a negação da condicional é p ∧ ~q.",
-          "**Demonstração**: a negação da condicional vem de negar ~p ∨ q com De Morgan e dupla negação.",
-          "**Primeiro termo já negativo**: na negação da condicional ele permanece como está.",
-          "**Combinação**: em questões longas, negue de fora para dentro, uma regra por vez.",
-          "**Conjunção de condicionais**: com consequente comum vira condicional com ou no antecedente.",
-          "**Antecedente comum**: vira condicional com e no consequente."
-        ],
-        "teoria": [
-          {
-            "statement": "A negação de \"O réu confessou e foi condenado\" é \"O réu não confessou ou não foi condenado\".",
-            "isTrue": true,
-            "explanation": "De Morgan."
-          },
-          {
-            "statement": "A negação de \"O réu confessou ou foi condenado\" é \"O réu não confessou ou não foi condenado\".",
-            "isTrue": false,
-            "explanation": "Deve ser \"e\" entre as negações."
-          },
-          {
-            "statement": "A negação de \"Se o prazo vence, a ação prescreve\" é \"O prazo vence e a ação não prescreve\".",
-            "isTrue": true,
-            "explanation": "Mantém, \"e\", nega."
-          },
-          {
-            "statement": "A negação de p → q é ~p ∨ q.",
-            "isTrue": false,
-            "explanation": "~p ∨ q é equivalente; a negação é p ∧ ~q."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "A negação de \"Se Maria não sabe Matemática, então erra porcentagem\" é \"Maria não sabe Matemática e não erra porcentagem\".",
-            "isTrue": true,
-            "explanation": "~(~m → p) ≡ ~m ∧ ~p."
-          },
-          {
-            "statement": "A expressão (A ∨ B) → C é equivalente a (~A ∧ ~B) ∨ C.",
-            "isTrue": true,
-            "explanation": "Condicional em ou e De Morgan."
-          },
-          {
-            "statement": "A negação de d ∧ ~e é ~d ∨ ~e.",
-            "isTrue": false,
-            "explanation": "É ~d ∨ e, pela dupla negação."
-          },
-          {
-            "statement": "A contrapositiva de b → (s ∧ v) pode ser escrita como (~s ∨ ~v) → ~b.",
-            "isTrue": true,
-            "explanation": "Contrapositiva mais De Morgan."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Dupla negação e introdução a De Morgan",
-            "pageRef": 22
-          },
-          {
-            "topic": "Negação da conjunção",
-            "pageRef": 23
-          },
-          {
-            "topic": "Prova pela tabela e negação da disjunção",
-            "pageRef": 24
-          },
-          {
-            "topic": "Mnemônico e questão da BBTS",
-            "pageRef": 25
-          },
-          {
-            "topic": "Questão da AGENERSA",
-            "pageRef": 26
-          },
-          {
-            "topic": "Questão da PM-CE",
-            "pageRef": 27
-          },
-          {
-            "topic": "Negação da condicional",
-            "pageRef": 28
-          },
-          {
-            "topic": "Não confundir equivalência e negação",
-            "pageRef": 29
-          },
-          {
-            "topic": "Questões do DPE-SP e do MPE-SP",
-            "pageRef": 30
-          },
-          {
-            "topic": "Início das questões com mais de uma equivalência",
-            "pageRef": 31
-          },
-          {
-            "topic": "Questão da SEPLAN-RR",
-            "pageRef": 32
-          },
-          {
-            "topic": "Questão do TJ-SP",
-            "pageRef": 33
-          },
-          {
-            "topic": "Questão do CBM-SC",
-            "pageRef": 34
-          },
-          {
-            "topic": "Quadro de outras equivalências e negações",
-            "pageRef": 35
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a02/s04",
-      "bizu": {
-        "summary": [
-          "**Negar o e em condicional**: ~(p ∧ q) equivale a p → ~q e a q → ~p.",
-          "**Consequente comum**: (p → r) ∧ (q → r) equivale a (p ∨ q) → r.",
-          "**Antecedente comum**: (p → q) ∧ (p → r) equivale a p → (q ∧ r).",
-          "**Verificação**: sempre é possível comprovar uma equivalência pela tabela-verdade.",
-          "**Exclusiva equivalente**: p ⊻ q equivale a ~p ⊻ ~q, a ~p ↔ q e a p ↔ ~q.",
-          "**Negação da exclusiva**: ~(p ⊻ q) equivale a p ↔ q, a ~p ⊻ q e a p ⊻ ~q.",
-          "**Negar os dois termos**: dá equivalência da exclusiva e da bicondicional, e não negação.",
-          "**Bicondicional equivalente**: p ↔ q equivale a ir e voltar com a condicional e a ~p ↔ ~q.",
-          "**Bicondicional em exclusiva**: p ↔ q equivale a ~p ⊻ q e a p ⊻ ~q.",
-          "**Ordem na exclusiva**: as parcelas podem trocar de posição."
-        ],
-        "teoria": [
-          {
-            "statement": "A negação de \"Faço o curso e não passo\" pode ser escrita como \"Se faço o curso, então passo\".",
-            "isTrue": true,
-            "explanation": "~(p ∧ ~q) ≡ p → q."
-          },
-          {
-            "statement": "A proposição (P ∨ Q) → S é equivalente a (P → S) ∨ (Q → S).",
-            "isTrue": false,
-            "explanation": "O correto seria o \"e\" entre as condicionais."
-          },
-          {
-            "statement": "A negação da disjunção exclusiva p ⊻ q pode ser escrita como a bicondicional p ↔ q.",
-            "isTrue": true,
-            "explanation": "Principal negação."
-          },
-          {
-            "statement": "A proposição ~p ⊻ ~q é a negação de p ⊻ q.",
-            "isTrue": false,
-            "explanation": "É uma equivalência."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "A proposição (p → q) ∧ (p → r) é equivalente a p → (q ∧ r).",
-            "isTrue": true,
-            "explanation": "Antecedente comum."
-          },
-          {
-            "statement": "A bicondicional p ↔ q é equivalente a ~p ↔ ~q.",
-            "isTrue": true,
-            "explanation": "Negam-se os dois termos."
-          },
-          {
-            "statement": "A bicondicional p ↔ q é equivalente à conjunção p ∧ q.",
-            "isTrue": false,
-            "explanation": "Apenas a ida e a volta com condicionais."
-          },
-          {
-            "statement": "A afirmação \"Ou o cofre abre, ou a porta trava\" é equivalente a \"O cofre abre se, e somente se, a porta não trava\".",
-            "isTrue": true,
-            "explanation": "p ⊻ q ≡ p ↔ ~q."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Negação do e na forma condicional",
-            "pageRef": 36
-          },
-          {
-            "topic": "Demonstração da segunda forma e questão do MRE",
-            "pageRef": 37
-          },
-          {
-            "topic": "Resolução da questão do MRE",
-            "pageRef": 38
-          },
-          {
-            "topic": "Conjunção de condicionais",
-            "pageRef": 39
-          },
-          {
-            "topic": "Questão da SEFAZ-AL",
-            "pageRef": 40
-          },
-          {
-            "topic": "Tabela da conjunção de condicionais e questão da PF",
-            "pageRef": 41
-          },
-          {
-            "topic": "Equivalências da disjunção exclusiva",
-            "pageRef": 42
-          },
-          {
-            "topic": "Questão do TCE-SP",
-            "pageRef": 43
-          },
-          {
-            "topic": "Negação da disjunção exclusiva",
-            "pageRef": 44
-          },
-          {
-            "topic": "Outras negações da exclusiva",
-            "pageRef": 45
-          },
-          {
-            "topic": "Questão da DPE-SP",
-            "pageRef": 46
-          },
-          {
-            "topic": "Questão da CMSJC",
-            "pageRef": 47
-          },
-          {
-            "topic": "Equivalências da bicondicional",
-            "pageRef": 48
-          },
-          {
-            "topic": "Bicondicional em disjunção exclusiva",
-            "pageRef": 49
-          },
-          {
-            "topic": "Questão da APPGG",
-            "pageRef": 50
-          },
-          {
-            "topic": "Questão do ISS-RJ",
-            "pageRef": 51
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a02/s05",
-      "bizu": {
-        "summary": [
-          "**Negações da bicondicional**: p ⊻ q, ~p ↔ q, p ↔ ~q e (p ∧ ~q) ∨ (q ∧ ~p).",
-          "**Negar os dois termos**: ~p ↔ ~q é equivalência da bicondicional e não negação.",
-          "**Demonstração**: a negação sem bicondicional sai de negar a ida e a volta da condicional com De Morgan.",
-          "**Álgebra de proposições**: usa propriedades para simplificar expressões até chegar a t, c ou contingência.",
-          "**Bicondicional X ↔ Y**: é tautologia se X e Y são equivalentes e contradição se uma é a negação da outra.",
-          "**Prioridade de estudo**: comutativa, associativa e distributiva; os casos difíceis saem por tabela-verdade.",
-          "**Comutativa**: vale para e, ou, ou exclusivo e bicondicional, mas não para a condicional.",
-          "**Negação com comutativa**: a negação de p → q é p ∧ ~q, que também pode ser lida como ~q ∧ p.",
-          "**Associativa**: (p ∨ q) ∨ r equivale a p ∨ (q ∨ r) e vale também para o e, sem misturar os dois.",
-          "**Exemplo**: p ∨ (q ∨ ~p) é tautologia por comutar, associar e usar p ∨ ~p."
-        ],
-        "teoria": [
-          {
-            "statement": "A negação de \"Estudo se e somente se descanso\" pode ser \"Ou estudo, ou descanso\".",
-            "isTrue": true,
-            "explanation": "~(p ↔ q) ≡ p ⊻ q."
-          },
-          {
-            "statement": "Negar os dois termos de uma bicondicional, como em ~p ↔ ~q, produz a negação de p ↔ q.",
-            "isTrue": false,
-            "explanation": "Produz uma equivalência."
-          },
-          {
-            "statement": "A conjunção, a disjunção inclusiva e a disjunção exclusiva gozam da propriedade comutativa.",
-            "isTrue": true,
-            "explanation": "Só a condicional não comuta."
-          },
-          {
-            "statement": "As proposições p → q e q → p são equivalentes pela propriedade comutativa.",
-            "isTrue": false,
-            "explanation": "A condicional não goza da comutativa."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "A proposição ~(p ↔ q) é equivalente a (p ∧ ~q) ∨ (q ∧ ~p).",
-            "isTrue": true,
-            "explanation": "Negação da bicondicional."
-          },
-          {
-            "statement": "A propriedade associativa permite trocar, numa mesma fórmula, os conectivos \"e\" e \"ou\".",
-            "isTrue": false,
-            "explanation": "Só vale entre conectivos iguais."
-          },
-          {
-            "statement": "A proposição p ∨ (q ∨ ~p) é uma tautologia.",
-            "isTrue": true,
-            "explanation": "Equivale a (p ∨ ~p) ∨ q."
-          },
-          {
-            "statement": "Se X e Y são proposições tais que uma é a negação da outra, a bicondicional X ↔ Y é uma contradição.",
-            "isTrue": true,
-            "explanation": "Os valores são sempre opostos."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Primeira negação da bicondicional",
-            "pageRef": 52
-          },
-          {
-            "topic": "Demonstração da quarta negação",
-            "pageRef": 53
-          },
-          {
-            "topic": "Quadro das negações e questão do CAU-TO",
-            "pageRef": 54
-          },
-          {
-            "topic": "Questão de Vila Lângaro",
-            "pageRef": 55
-          },
-          {
-            "topic": "Quadro de álgebra de proposições",
-            "pageRef": 56
-          },
-          {
-            "topic": "Introdução e propriedade comutativa",
-            "pageRef": 57
-          },
-          {
-            "topic": "Comutativa na negação da condicional",
-            "pageRef": 58
-          },
-          {
-            "topic": "Questão da EPC",
-            "pageRef": 59
-          },
-          {
-            "topic": "Conclusão da EPC e associativa",
-            "pageRef": 60
-          },
-          {
-            "topic": "Exemplo de associativa e questão do TRT-1",
-            "pageRef": 61
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a02/s06",
-      "bizu": {
-        "summary": [
-          "**Distributiva do e**: p ∧ (q ∨ r) equivale a (p ∧ q) ∨ (p ∧ r).",
-          "**Distributiva do ou**: p ∨ (q ∧ r) equivale a (p ∨ q) ∧ (p ∨ r).",
-          "**Evidência**: as duas distributivas também valem de trás para frente.",
-          "**Condicional**: não existe distributiva da conjunção sobre a condicional.",
-          "**Preparação**: troque a condicional por ou, e a negação da condicional por e, antes da álgebra.",
-          "**Identidade**: p ∧ t equivale a p, p ∨ t equivale a t, p ∨ c equivale a p e p ∧ c equivale a c.",
-          "**Absorção**: p ∨ (p ∧ q) e p ∧ (p ∨ q) valem p.",
-          "**Idempotência**: p ∧ p e p ∨ p valem p.",
-          "**Tautologia por álgebra**: desenvolva a fórmula até chegar a t ∨ algo, que vale t.",
-          "**Quando usar**: a álgebra é mais rápida, mas casos difíceis também saem por tabela-verdade."
-        ],
-        "teoria": [
-          {
-            "statement": "Colocar p em evidência em (p ∧ q) ∨ (p ∧ r) leva a p ∧ (q ∨ r), pela distributiva.",
-            "isTrue": true,
-            "explanation": "Distributiva lida de trás para frente."
-          },
-          {
-            "statement": "A conjunção distribui-se sobre a condicional: p ∧ (q → r) ≡ (p ∧ q) → (p ∧ r).",
-            "isTrue": false,
-            "explanation": "Não existe essa propriedade."
-          },
-          {
-            "statement": "A proposição p ∨ (p ∧ q) é equivalente a p.",
-            "isTrue": true,
-            "explanation": "Absorção."
-          },
-          {
-            "statement": "A proposição p ∧ c, em que c é uma contradição, é equivalente a p.",
-            "isTrue": false,
-            "explanation": "Equivale a c."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "A negação de p ∧ (p ∨ q) é equivalente a ~p.",
-            "isTrue": true,
-            "explanation": "Absorção: p ∧ (p ∨ q) ≡ p."
-          },
-          {
-            "statement": "A proposição (a ∧ b) ∨ (a ∧ ~b) é equivalente à proposição simples a.",
-            "isTrue": true,
-            "explanation": "Evidência de a e b ∨ ~b ≡ t."
-          },
-          {
-            "statement": "Para aplicar a distributiva a uma fórmula com condicional, deve-se manter o conectivo → sem transformá-lo.",
-            "isTrue": false,
-            "explanation": "Transforma-se em ou."
-          },
-          {
-            "statement": "A proposição Q ∨ (Q → P) é uma tautologia.",
-            "isTrue": true,
-            "explanation": "Equivale a (Q ∨ ~Q) ∨ P."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Fim do TRT-1 e propriedade distributiva",
-            "pageRef": 62
-          },
-          {
-            "topic": "Questão da ISS Fortaleza e início da SEFAZ-SC",
-            "pageRef": 63
-          },
-          {
-            "topic": "Resolução da SEFAZ-SC e questão de Alumínio",
-            "pageRef": 64
-          },
-          {
-            "topic": "Condicional na álgebra e questão do MPE-RO",
-            "pageRef": 65
-          },
-          {
-            "topic": "TCE-RO e identidade",
-            "pageRef": 66
-          },
-          {
-            "topic": "Identidade da conjunção e da disjunção",
-            "pageRef": 67
-          },
-          {
-            "topic": "Questão da ANPAD e absorção",
-            "pageRef": 68
-          },
-          {
-            "topic": "Questão da SEFAZ-MS e idempotência",
-            "pageRef": 69
-          },
-          {
-            "topic": "Questão do DPEN e álgebra com tautologia",
-            "pageRef": 70
-          },
-          {
-            "topic": "Questões do STJ e do CBM-AL",
-            "pageRef": 71
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a02/s07",
-      "bizu": {
-        "summary": [
-          "**Bicondicional e equivalentes**: X ↔ Y é tautologia quando X e Y são equivalentes.",
-          "**Bicondicional e negação**: X ↔ Y é contradição quando uma é a negação da outra.",
-          "**Exemplo de tautologia**: (P → Q) ↔ (~P ∨ Q), pois os dois lados são iguais.",
-          "**Exemplo de contradição**: (P ∧ Q) ↔ (~P ∨ ~Q), pelas Leis de De Morgan.",
-          "**Verdadeiro implica falso**: t → c é sempre falsa.",
-          "**Negação da condicional**: p ∧ ~q, nunca com ou nem com se.",
-          "**Consequente negativo**: a negação de f → ~t é f ∧ t, pela dupla negação.",
-          "**Negação do e**: não p ou não q.",
-          "**Equivalente da condicional**: contrapositiva ou ~p ∨ q; recíproca e inversa são armadilhas.",
-          "**Equivalente de ~p → q**: p ∨ q, também escrito como ~(~p ∧ ~q)."
-        ],
-        "teoria": [
-          {
-            "statement": "A bicondicional entre uma proposição e a sua negação é uma contradição.",
-            "isTrue": true,
-            "explanation": "Os valores são sempre opostos."
-          },
-          {
-            "statement": "A bicondicional (P → Q) ↔ (~P ∨ Q) é uma contingência.",
-            "isTrue": false,
-            "explanation": "É uma tautologia."
-          },
-          {
-            "statement": "A negação de \"Se o sensor dispara, então o portão fecha\" é \"O sensor dispara e o portão não fecha\".",
-            "isTrue": true,
-            "explanation": "p ∧ ~q."
-          },
-          {
-            "statement": "A negação de \"Se chove, então não saio\" é \"Não chove e saio\".",
-            "isTrue": false,
-            "explanation": "A negação é \"Chove e saio\"."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "A condicional t → c, com t tautologia e c contradição, é uma contradição.",
-            "isTrue": true,
-            "explanation": "V → F é sempre F."
-          },
-          {
-            "statement": "A proposição ~(P ∨ Q) → (~P ∧ ~Q) é uma tautologia.",
-            "isTrue": true,
-            "explanation": "Os dois lados são equivalentes por De Morgan."
-          },
-          {
-            "statement": "A recíproca \"Se o alarme foi acionado, então o limite foi ultrapassado\" é equivalente à condicional original \"Se o limite é ultrapassado, o alarme é acionado\".",
-            "isTrue": false,
-            "explanation": "A equivalente é a contrapositiva."
-          },
-          {
-            "statement": "A condicional ~p → q e a negação da conjunção das negações, ~(~p ∧ ~q), valem o mesmo que p ∨ q.",
-            "isTrue": true,
-            "explanation": "Ambas equivalem a p ∨ q."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Bicondicional em tautologia e contradição; questão da POLC-AL",
-            "pageRef": 72
-          },
-          {
-            "topic": "Questão de Acrelândia e questão de Marechal Deodoro",
-            "pageRef": 73
-          },
-          {
-            "topic": "Alternativas a, b e c de Marechal Deodoro",
-            "pageRef": 74
-          },
-          {
-            "topic": "Alternativas d e e de Marechal Deodoro",
-            "pageRef": 75
-          },
-          {
-            "topic": "Negação da condicional (PCRS)",
-            "pageRef": 76
-          },
-          {
-            "topic": "Equivalente da condicional (PCRS)",
-            "pageRef": 77
-          },
-          {
-            "topic": "Negação da condicional (IBADE)",
-            "pageRef": 78
-          },
-          {
-            "topic": "Negação da condicional (FEPESE)",
-            "pageRef": 79
-          },
-          {
-            "topic": "Equivalência da condicional (FUNATEC)",
-            "pageRef": 80
-          },
-          {
-            "topic": "Resolução com ou e negação da senha",
-            "pageRef": 81
-          },
-          {
-            "topic": "Negação com consequente negativo",
-            "pageRef": 82
-          },
-          {
-            "topic": "Negação de e (De Morgan)",
-            "pageRef": 83
-          },
-          {
-            "topic": "Negação (IDIB) e início da questão da Consulplan",
-            "pageRef": 84
-          },
-          {
-            "topic": "Equivalência contrapositiva e questão de ~p → q",
-            "pageRef": 85
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a02/s08",
-      "bizu": {
-        "summary": [
-          "**~p → q**: equivale a p ∨ q e a ~(~p ∧ ~q).",
-          "**Negação de condicional com ou**: mantém o antecedente, usa e e nega as duas parcelas do consequente.",
-          "**Contrapositiva composta**: P → (Q ∨ R) equivale a (~Q ∧ ~R) → ~P.",
-          "**Condicional em ou**: (b ∧ ~a) → v equivale a ~b ∨ a ∨ v.",
-          "**Condicional com antecedente e**: (v ∧ ~g) → s equivale a ~s → (~v ∨ g).",
-          "**Declaração falsa**: se o suspeito mentiu, vale a negação da declaração.",
-          "**Escolha da simples**: sem internet é a negação de com internet.",
-          "**Números naturais**: a contrapositiva de n² par implicar n par é n ímpar implicar n² ímpar.",
-          "**Exclusiva**: não é equivalente de uma condicional.",
-          "**Contagem**: no máximo 6 em ~e ∧ ~p, num grupo de 13, equivale a pelo menos 7 em e ∨ p."
-        ],
-        "teoria": [
-          {
-            "statement": "Pela transformação da condicional em ou, a condicional ~p → q vale p ∨ q.",
-            "isTrue": true,
-            "explanation": "Dupla negação."
-          },
-          {
-            "statement": "A proposição \"Se a luz acende, a porta abre\" é equivalente a \"Ou a luz acende ou a porta abre\".",
-            "isTrue": false,
-            "explanation": "Equivalente é a contrapositiva ou o ou inclusivo."
-          },
-          {
-            "statement": "Se alguém afirma \"Estudei ou viajei\" e se prova que mentiu, conclui-se que não estudou e não viajou.",
-            "isTrue": true,
-            "explanation": "Negação do ou."
-          },
-          {
-            "statement": "A negação de \"Se chove, então ventou ou fez frio\" é \"Chove e ventou e fez frio\".",
-            "isTrue": false,
-            "explanation": "A negação é \"Chove e não ventou e não fez frio\"."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "A proposição P → (Q ∨ R) é equivalente a (~Q ∧ ~R) → ~P.",
-            "isTrue": true,
-            "explanation": "Contrapositiva e De Morgan."
-          },
-          {
-            "statement": "A contrapositiva de \"Se n² é par, então n é par\" pode ser lida como \"Se n é ímpar, então n² é ímpar\".",
-            "isTrue": true,
-            "explanation": "\"Não par\" é \"ímpar\"."
-          },
-          {
-            "statement": "A conjunção das negações, ~p ∧ ~q, vale o mesmo que a disjunção das negações, ~p ∨ ~q.",
-            "isTrue": false,
-            "explanation": "É equivalente a ~(p ∨ q)."
-          },
-          {
-            "statement": "Se, em um grupo de 13, no máximo 6 pessoas têm duas características negativas ao mesmo tempo, então pelo menos 7 têm uma das características positivas.",
-            "isTrue": true,
-            "explanation": "~(~e ∧ ~p) ≡ e ∨ p."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Resolução de ~p → q",
-            "pageRef": 86
-          },
-          {
-            "topic": "Questão do Verbena sobre a praia",
-            "pageRef": 87
-          },
-          {
-            "topic": "Questão de P → (Q ∨ R) e VUNESP",
-            "pageRef": 88
-          },
-          {
-            "topic": "Resolução do VUNESP sobre dirigir",
-            "pageRef": 89
-          },
-          {
-            "topic": "Questão da saúde (verduras e gorduras)",
-            "pageRef": 90
-          },
-          {
-            "topic": "Segunda equivalência da questão da saúde",
-            "pageRef": 91
-          },
-          {
-            "topic": "Questão da FGV sobre bola, caixa e ficha",
-            "pageRef": 92
-          },
-          {
-            "topic": "Questão dos atletas",
-            "pageRef": 93
-          },
-          {
-            "topic": "Questões da Selecon",
-            "pageRef": 94
-          },
-          {
-            "topic": "Questão do Mariano",
-            "pageRef": 95
-          },
-          {
-            "topic": "Questão do CRESS-PR",
-            "pageRef": 96
-          },
-          {
-            "topic": "Questão da PMPE",
-            "pageRef": 97
-          },
-          {
-            "topic": "Questão da NOVACAP",
-            "pageRef": 98
-          },
-          {
-            "topic": "Contrapositiva com números naturais",
-            "pageRef": 99
-          },
-          {
-            "topic": "Questões da Consulplan sobre computador",
-            "pageRef": 100
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a02/s09",
-      "bizu": {
-        "summary": [
-          "**Negação da bicondicional**: troca o se e somente se por ou exclusivo e mantém os dois termos.",
-          "**Negar os dois termos**: não nega a bicondicional nem a exclusiva, apenas dá equivalente.",
-          "**Negação da exclusiva**: a principal é a bicondicional entre os mesmos termos.",
-          "**Exclusiva sem bicondicional**: nega-se só um termo, como em ~a ⊻ ~c.",
-          "**Antônimos**: nunca tem como negação ao menos uma vez, e sempre ou má-fé não são negações exatas.",
-          "**Negação do e como condicional**: ~(j ∧ r) equivale a r → ~j, quando as opções são condicionais.",
-          "**Ida e volta**: p ↔ q equivale a (p → q) ∧ (q → p).",
-          "**Consequente comum**: (p → r) ∧ (q → r) vira (p ∨ q) → r, e não um ou entre condicionais.",
-          "**Antecedente comum**: (e → p) ∧ (e → ~t) vira e → (p ∧ ~t).",
-          "**Quando em dúvida**: verifique a equivalência por tabela-verdade."
-        ],
-        "teoria": [
-          {
-            "statement": "A negação de \"A obra termina no prazo se, e somente se, o orçamento é liberado\" pode ser \"Ou a obra termina no prazo, ou o orçamento é liberado\".",
-            "isTrue": true,
-            "explanation": "~(p ↔ q) ≡ p ⊻ q."
-          },
-          {
-            "statement": "A proposição \"A obra não termina no prazo se, e somente se, o orçamento não é liberado\" é a negação de \"A obra termina no prazo se, e somente se, o orçamento é liberado\".",
-            "isTrue": false,
-            "explanation": "Negar os dois termos dá uma equivalência."
-          },
-          {
-            "statement": "A negação de \"João nunca foi preso\" é \"João foi preso ao menos uma vez\".",
-            "isTrue": true,
-            "explanation": "\"Sempre\" não é a negação de \"nunca\"."
-          },
-          {
-            "statement": "Reescrever (p ∨ q) → r com um ou entre as condicionais, (p → r) ∨ (q → r), mantém a equivalência.",
-            "isTrue": false,
-            "explanation": "O conectivo entre as condicionais deve ser o e."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "A proposição \"Ou o réu é culpado, ou é inocente\" tem como negação a bicondicional \"O réu é culpado se, e somente se, é inocente\".",
-            "isTrue": true,
-            "explanation": "~(p ⊻ q) ≡ p ↔ q."
-          },
-          {
-            "statement": "\"Ele age de boa-fé\" é, em lógica, a negação exata de \"Ele age de má-fé\".",
-            "isTrue": false,
-            "explanation": "Antônimos não são negações exatas."
-          },
-          {
-            "statement": "A proposição (e → p) ∧ (e → q) é equivalente a e → (p ∧ q).",
-            "isTrue": true,
-            "explanation": "Antecedente comum."
-          },
-          {
-            "statement": "A bicondicional p ↔ q é equivalente a (p → q) ∧ (q → p).",
-            "isTrue": true,
-            "explanation": "Ida e volta."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Negação da bicondicional (IBADE)",
-            "pageRef": 101
-          },
-          {
-            "topic": "Questão da QUADRIX (CORE-CE)",
-            "pageRef": 102
-          },
-          {
-            "topic": "Questão da QUADRIX (CRP-6) e início da AOCP",
-            "pageRef": 103
-          },
-          {
-            "topic": "Negação de nunca e negação da conjunção",
-            "pageRef": 104
-          },
-          {
-            "topic": "Forma condicional da negação e questão do INPI",
-            "pageRef": 105
-          },
-          {
-            "topic": "Antônimos na negação (INPI)",
-            "pageRef": 106
-          },
-          {
-            "topic": "Motivos do erro e bicondicional como ida e volta",
-            "pageRef": 107
-          },
-          {
-            "topic": "Questão da VUNESP (TCM-SP)",
-            "pageRef": 108
-          },
-          {
-            "topic": "Questão do IDECAN (IFPA)",
-            "pageRef": 109
-          },
-          {
-            "topic": "Negação da exclusiva (CMSJC) e questão da PETROBRAS",
-            "pageRef": 110
-          },
-          {
-            "topic": "Conjunção de condicionais (TJ-SP)",
-            "pageRef": 111
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a02/s10",
-      "bizu": {
-        "summary": [
-          "**Roteiro de simplificação**: elimine → e ↔, aplique De Morgan e dupla negação, reagrupe e procure repetições ou termos opostos.",
-          "**Idempotência e absorção**: p ∨ p ≡ p; p ∨ (p ∧ q) ≡ p; p ∧ (p ∨ q) ≡ p. São as leis que mais encurtam as fórmulas.",
-          "**Distributiva em evidência**: (~x ∨ y) ∧ (~x ∨ z) ≡ ~x ∨ (y ∧ z), que também se lê x → (y ∧ z).",
-          "**~a → (a ∨ b)**: vira a ∨ (a ∨ b) e, por idempotência, a ∨ b.",
-          "**Tautologia**: X ∨ ~X, X → X ou A ↔ B com A e B equivalentes; vale também quando X é composta.",
-          "**Contradição**: X ∧ ~X ou A ↔ B com uma sendo a negação da outra, como (a → b) ∧ (a ∧ ~b).",
-          "**Contingência**: a simplificação termina em algo que depende dos valores, como x, x ∨ y ou ~x ∨ ~y.",
-          "**Teste rápido da condicional**: ela só é falsa em V → F; se isso nunca pode ocorrer, a fórmula é tautologia.",
-          "**Negação da bicondicional**: p ⊻ q ≡ (p ∧ ~q) ∨ (~p ∧ q) ≡ p ↔ ~q. Negar os dois lados (~p ↔ ~q) dá equivalência, não negação.",
-          "**Leitura de \"quando\"**: \"q, quando p\" é p → q; a conjunção comuta, a condicional não."
-        ],
-        "teoria": [
-          {
-            "statement": "Uma bicondicional entre ~(p ∧ q) e (~p ∨ ~q) é tautologia, pois De Morgan mostra que os lados são iguais.",
-            "isTrue": true,
-            "explanation": "Lados equivalentes."
-          },
-          {
-            "statement": "Uma bicondicional entre (~p ∨ ~q) e (p ∧ q) também é tautologia.",
-            "isTrue": false,
-            "explanation": "Os lados são opostos: é contradição."
-          },
-          {
-            "statement": "A condicional X → X, em que X é qualquer proposição, é uma tautologia.",
-            "isTrue": true,
-            "explanation": "V → V ou F → F."
-          },
-          {
-            "statement": "A negação da bicondicional j ↔ m pode ser escrita como (j ∧ m) ∨ (~j ∧ ~m).",
-            "isTrue": false,
-            "explanation": "Essa é a própria bicondicional (equivalente); a negação é (j ∧ ~m) ∨ (~j ∧ m)."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "A proposição (p → q) ∧ ~(p → q) é uma contradição.",
-            "isTrue": true,
-            "explanation": "Forma x ∧ ~x."
-          },
-          {
-            "statement": "Pela distributiva, colocar ~p em evidência em (~p ∨ q) ∧ (~p ∨ r) resulta em ~p ∨ (q ∧ r).",
-            "isTrue": true,
-            "explanation": "Evidência de ~p."
-          },
-          {
-            "statement": "A proposição p ∨ (p ∧ ~q) é uma tautologia.",
-            "isTrue": false,
-            "explanation": "Por absorção equivale a p: é contingência."
-          },
-          {
-            "statement": "Uma proposição ligada por ou à sua própria negação, como (p ∧ q) ∨ ~(p ∧ q), é tautologia.",
-            "isTrue": true,
-            "explanation": "Forma x ∨ ~x."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Negação da bicondicional sem exclusiva",
-            "pageRef": 112
-          },
-          {
-            "topic": "Questão da UEL sobre ~p → (p ∨ q)",
-            "pageRef": 113
-          },
-          {
-            "topic": "Questão da FEPESE sobre a regra de acesso",
-            "pageRef": 114
-          },
-          {
-            "topic": "Resolução da FEPESE e questão da FAUEL",
-            "pageRef": 115
-          },
-          {
-            "topic": "Segunda questão da FAUEL",
-            "pageRef": 116
-          },
-          {
-            "topic": "Questão do CPCON sobre R, S, T e U",
-            "pageRef": 117
-          },
-          {
-            "topic": "Conclusão do CPCON e questão do cavalo",
-            "pageRef": 118
-          },
-          {
-            "topic": "Questão do Instituto Mais",
-            "pageRef": 119
-          },
-          {
-            "topic": "Questão da Consulplan sobre R e S",
-            "pageRef": 120
-          },
-          {
-            "topic": "Terceira questão da FAUEL",
-            "pageRef": 121
-          },
-          {
-            "topic": "Questão do MPE-GO",
-            "pageRef": 122
-          },
-          {
-            "topic": "Resolução do MPE-GO e questão da FGV",
-            "pageRef": 123
-          },
-          {
-            "topic": "Lista de questões de equivalências",
-            "pageRef": 124
-          },
-          {
-            "topic": "Continuação da lista de questões",
-            "pageRef": 125
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a02/s11",
-      "bizu": {
-        "summary": [
-          "**Negação da condicional**: p ∧ ~q (\"Se o drone decola, a câmera grava\" → \"o drone decola e a câmera não grava\"); nunca é outra condicional.",
-          "**Equivalentes da condicional**: contrapositiva ~q → ~p e forma ~p ∨ q; recíproca e inversa não valem.",
-          "**Consequente composto**: p → (q ∨ r) ≡ (~q ∧ ~r) → ~p; ao negar o \"ou\", ele vira \"e\".",
-          "**De Morgan**: ~(p ∧ q) ≡ ~p ∨ ~q; ~(p ∨ q) ≡ ~p ∧ ~q. Suspeito que mentiu dizendo \"A ou B\" afirmou, na verdade, \"não A e não B\".",
-          "**\"Nunca\"**: nega-se com \"pelo menos uma vez\".",
-          "**Antônimo**: \"bem-informado\" não é a negação de \"mal-informado\"; a negação é \"não é mal-informado\".",
-          "**Complemento**: em n pessoas, \"no máximo k sem X\" equivale a \"pelo menos n − k com X\".",
-          "**Bicondicional × exclusivo**: ~(p ↔ q) ≡ ou p, ou q; ~(ou p, ou q) ≡ p ↔ q.",
-          "**Exclusivo não é condicional**: \"ou p, ou q\" exige exatamente um verdadeiro; p → ~q aceita os dois falsos.",
-          "**Junção de condicionais**: (p → q) ∧ (p → r) ≡ p → (q ∧ r); (p → r) ∧ (q → r) ≡ (p ∨ q) → r.",
-          "**Plano B**: valore as proposições para tornar a original falsa e elimine alternativas; tabela-verdade só no fim."
-        ],
-        "teoria": [
-          {
-            "statement": "Ao resolver uma questão de equivalência, se a contrapositiva não aparece nas opções, deve-se testar a transformação em \"ou\".",
-            "isTrue": true,
-            "explanation": "São as duas equivalências da condicional."
-          },
-          {
-            "statement": "A negação de \"nunca\" é \"sempre\".",
-            "isTrue": false,
-            "explanation": "É \"ao menos uma vez\"."
-          },
-          {
-            "statement": "Uma bicondicional entre duas proposições equivalentes é tautologia, e entre uma proposição e sua negação é contradição.",
-            "isTrue": true,
-            "explanation": "Regra da bicondicional."
-          },
-          {
-            "statement": "A negação de uma disjunção exclusiva é sempre outra disjunção exclusiva com os dois termos negados.",
-            "isTrue": false,
-            "explanation": "A principal é a bicondicional."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "A frase \"No máximo 4 de 10 pessoas não praticam esporte nem leem\" equivale a \"Pelo menos 6 de 10 praticam esporte ou leem\".",
-            "isTrue": true,
-            "explanation": "~(~a ∧ ~b) ≡ a ∨ b."
-          },
-          {
-            "statement": "Usar tabela-verdade é sempre um recurso válido para verificar se duas proposições são equivalentes.",
-            "isTrue": true,
-            "explanation": "Mesmos valores em todas as linhas."
-          },
-          {
-            "statement": "A conjunção (p → r) ∧ (q → r) é equivalente a (p ∧ q) → r.",
-            "isTrue": false,
-            "explanation": "É equivalente a (p ∨ q) → r."
-          },
-          {
-            "statement": "Em uma lista de treino, convém refazer primeiro as questões que foram erradas.",
-            "isTrue": true,
-            "explanation": "Estratégia de revisão."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Lista de equivalências: Três Passos, IDIB, Manaus",
-            "pageRef": 126
-          },
-          {
-            "topic": "Lista de equivalências: Gameleira e VUNESP",
-            "pageRef": 127
-          },
-          {
-            "topic": "Lista de equivalências: FGV, atletas e Selecon",
-            "pageRef": 128
-          },
-          {
-            "topic": "Lista de equivalências: CRESS, PMPE, NOVACAP e IFS",
-            "pageRef": 129
-          },
-          {
-            "topic": "Última questão da lista e início do gabarito",
-            "pageRef": 130
-          },
-          {
-            "topic": "Gabarito de equivalências lógicas",
-            "pageRef": 131
-          },
-          {
-            "topic": "Lista de outras equivalências e negações",
-            "pageRef": 132
-          },
-          {
-            "topic": "Lista de outras equivalências e negações (INPI e IDECAN)",
-            "pageRef": 133
-          },
-          {
-            "topic": "Lista de outras equivalências e negações (CMSJC, PETROBRAS e TJ-SP)",
-            "pageRef": 134
-          },
-          {
-            "topic": "Gabarito de outras equivalências",
-            "pageRef": 135
-          },
-          {
-            "topic": "Lista de álgebra de proposições",
-            "pageRef": 136
-          },
-          {
-            "topic": "Lista de álgebra (FEPESE, FAUEL e CPCON)",
-            "pageRef": 137
-          },
-          {
-            "topic": "Lista de álgebra (cavalo, Instituto Mais, Consulplan)",
-            "pageRef": 138
-          },
-          {
-            "topic": "Lista de álgebra (MPE-GO e FGV)",
-            "pageRef": 139
-          },
-          {
-            "topic": "Gabarito de álgebra de proposições",
-            "pageRef": 140
-          }
-        ]
-      }
-    }
-  ]
+ "aula": "raciocinio-logico/a02",
+ "batch": "rl-resegment-2026-10-26",
+ "status": "DRAFT",
+ "stage": "bizu",
+ "segments": [
+  {
+   "id": "raciocinio-logico/a02/s01",
+   "bizu": {
+    "summary": [
+     "**Equivalência lógica**: duas proposições são equivalentes quando têm o mesmo valor lógico em todas as linhas da tabela-verdade; uma única linha diferente já desfaz a equivalência.",
+     "**Notação**: escreve-se A ≡ B ou A ⇔ B; esse símbolo indica uma relação entre proposições e não se confunde com o conectivo bicondicional ↔.",
+     "**Número de linhas**: com n proposições simples distintas, a tabela-verdade tem 2^n linhas (duas proposições → 4 linhas; três → 8 linhas).",
+     "**Bicondicional desdobrada**: p↔q equivale a (p→q)∧(q→p), pois a conjunção das duas condicionais só é verdadeira quando p e q têm o mesmo valor.",
+     "**Contrapositiva**: p→q ≡ ~q→~p; inverta antecedente e consequente e negue os dois termos.",
+     "**Erro clássico**: negar os dois termos sem inverter a ordem (~p→~q) não gera equivalente; as tabelas divergem em duas linhas.",
+     "**Condicional para “ou”**: p→q ≡ ~p∨q; negue o primeiro termo, troque → por ∨ e mantenha o segundo.",
+     "**Termo já negado**: aplique a regra e use a dupla negação; c→~l tem contrapositiva l→~c e forma disjuntiva ~c∨~l.",
+     "**Escolha pela alternativa**: a condicional só tem duas equivalentes fundamentais, outra condicional (contrapositiva) ou uma disjunção inclusiva; o formato das opções indica qual testar."
+    ],
+    "teoria": [
+     {
+      "statement": "Duas proposições compostas que coincidem em três das quatro linhas da tabela-verdade são equivalentes.",
+      "isTrue": false,
+      "explanation": "A equivalência exige valores iguais em todas as linhas; uma linha divergente basta para que não sejam equivalentes."
+     },
+     {
+      "statement": "A condicional “Se o alarme tocou, então a brigada saiu” equivale a “Se a brigada não saiu, então o alarme não tocou”.",
+      "isTrue": true,
+      "explanation": "É a contrapositiva: inverte-se a ordem dos termos e negam-se os dois (p→q ≡ ~q→~p)."
+     },
+     {
+      "statement": "A proposição p→q é equivalente a ~p→~q.",
+      "isTrue": false,
+      "explanation": "Negar sem inverter não gera equivalente: com p falsa e q verdadeira, p→q é V e ~p→~q é F."
+     },
+     {
+      "statement": "Uma tabela-verdade com três proposições simples distintas tem 8 linhas.",
+      "isTrue": true,
+      "explanation": "O número de linhas é 2 elevado ao número de proposições simples: 2^3 = 8."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "A proposição p→~q é equivalente a q→~p.",
+      "isTrue": true,
+      "explanation": "Pela contrapositiva, p→~q ≡ ~(~q)→~p, e a dupla negação reduz a q→~p."
+     },
+     {
+      "statement": "A condicional “Se Lia treina, então Lia vence” equivale a “Lia não treina ou Lia vence”.",
+      "isTrue": true,
+      "explanation": "p→q ≡ ~p∨q: nega-se o primeiro termo, troca-se por “ou” e mantém-se o segundo."
+     },
+     {
+      "statement": "A condicional p→q é equivalente à disjunção p∨~q.",
+      "isTrue": false,
+      "explanation": "p∨~q equivale a ~p→~q, ou seja, a q→p. A forma disjuntiva de p→q é ~p∨q."
+     },
+     {
+      "statement": "O símbolo ⇔, usado para indicar equivalência entre proposições, é o mesmo conectivo bicondicional que forma proposições compostas.",
+      "isTrue": false,
+      "explanation": "⇔ (ou ≡) indica uma relação entre duas proposições; o conectivo bicondicional (↔) cria uma nova proposição."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Definição de equivalência lógica e notação",
+      "pageRef": 5
+     },
+     {
+      "topic": "Prova por tabela-verdade: bicondicional como ir e voltar",
+      "pageRef": 6
+     },
+     {
+      "topic": "Equivalências fundamentais e contrapositiva",
+      "pageRef": 7
+     },
+     {
+      "topic": "Erro de negar sem inverter (~p→~q)",
+      "pageRef": 8
+     },
+     {
+      "topic": "Contrapositiva com termo já negado",
+      "pageRef": 11
+     },
+     {
+      "topic": "Condicional transformada em disjunção inclusiva",
+      "pageRef": 13
+     },
+     {
+      "topic": "A condicional só tem duas equivalentes fundamentais",
+      "pageRef": 15
+     },
+     {
+      "topic": "Escolha entre contrapositiva e forma disjuntiva",
+      "pageRef": 17
+     }
+    ]
+   }
+  },
+  {
+   "id": "raciocinio-logico/a02/s02",
+   "bizu": {
+    "summary": [
+     "**Disjunção para condicional**: p∨q ≡ ~p→q; nega-se o primeiro termo, troca-se ∨ por → e mantém-se o segundo (“Rita viaja ou trabalha” = “Se Rita não viaja, então trabalha”).",
+     "**Origem da regra**: sai de p→q ≡ ~p∨q com ~p no lugar de p e a dupla negação; como o “ou” comuta, também vale ~q→p.",
+     "**Negação**: é a proposição com valor oposto ao original em todas as linhas; dizer que B nega A é o mesmo que dizer ~A ≡ B.",
+     "**“Não é verdade que...”**: o enunciado já nega a frase seguinte; o que se pode afirmar é a negação desenvolvida dessa frase.",
+     "**Dupla negação**: ~(~p) ≡ p; “não é verdade que o voo não atrasou” equivale a “o voo atrasou”.",
+     "**De Morgan no “e”**: ~(p∧q) ≡ ~p∨~q; basta uma parcela falhar para desmentir a conjunção.",
+     "**De Morgan no “ou”**: ~(p∨q) ≡ ~p∧~q; a disjunção inclusiva só é falsa quando as duas parcelas falham.",
+     "**Parcela já negada**: o “não” some na negação; a negação de t∧~s é ~t∨s e a de l∨~a é ~l∧a.",
+     "**Erro típico**: negar as parcelas e manter o conectivo; em De Morgan o “e” sempre vira “ou” e o “ou” sempre vira “e”."
+    ],
+    "teoria": [
+     {
+      "statement": "A frase “Marta canta ou Marta dança” equivale a “Se Marta não canta, então Marta dança”.",
+      "isTrue": true,
+      "explanation": "p∨q ≡ ~p→q: nega-se o primeiro termo, troca-se o “ou” por “se...então” e mantém-se o segundo."
+     },
+     {
+      "statement": "A negação de “Comprei pão e comprei leite” é “Não comprei pão e não comprei leite”.",
+      "isTrue": false,
+      "explanation": "Por De Morgan, nega-se cada parcela e troca-se “e” por “ou”: “Não comprei pão ou não comprei leite”."
+     },
+     {
+      "statement": "A negação de “O réu fugiu ou o réu confessou” é “O réu não fugiu e o réu não confessou”.",
+      "isTrue": true,
+      "explanation": "~(p∨q) ≡ ~p∧~q: negam-se as duas parcelas e o “ou” vira “e”."
+     },
+     {
+      "statement": "A disjunção p∨q é equivalente à condicional p→~q.",
+      "isTrue": false,
+      "explanation": "p→~q equivale a ~p∨~q. A forma condicional de p∨q é ~p→q (ou ~q→p)."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "A negação de “Choveu e a rua não alagou” é “Não choveu ou a rua alagou”.",
+      "isTrue": true,
+      "explanation": "~(c∧~a) ≡ ~c∨~(~a) ≡ ~c∨a: troca-se “e” por “ou” e a dupla negação elimina o “não”."
+     },
+     {
+      "statement": "Se é falso que “o guarda pode dormir e pode sair”, então é verdade que “o guarda não pode dormir ou não pode sair”.",
+      "isTrue": true,
+      "explanation": "A falsidade de p∧q equivale à verdade de ~(p∧q) ≡ ~p∨~q."
+     },
+     {
+      "statement": "A negação de uma proposição tem, em pelo menos uma linha da tabela-verdade, o mesmo valor lógico da proposição original.",
+      "isTrue": false,
+      "explanation": "A negação assume valor oposto ao da proposição original em todas as linhas."
+     },
+     {
+      "statement": "A disjunção “Lucas joga ou não descansa” equivale a “Se Lucas não joga, então descansa”.",
+      "isTrue": false,
+      "explanation": "j∨~d ≡ ~j→~d: “Se Lucas não joga, então não descansa”. O segundo termo é mantido como está."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Disjunção inclusiva transformada em condicional",
+      "pageRef": 18
+     },
+     {
+      "topic": "Demonstração de p∨q ≡ ~p→q pela dupla negação",
+      "pageRef": 19
+     },
+     {
+      "topic": "Disjunção com termo negado levada à condicional",
+      "pageRef": 21
+     },
+     {
+      "topic": "Conceito de negação lógica",
+      "pageRef": 21
+     },
+     {
+      "topic": "Dupla negação da proposição simples",
+      "pageRef": 22
+     },
+     {
+      "topic": "De Morgan: negação da conjunção",
+      "pageRef": 23
+     },
+     {
+      "topic": "De Morgan: negação da disjunção inclusiva",
+      "pageRef": 24
+     },
+     {
+      "topic": "Aplicações de De Morgan com parcelas negadas e “não é verdade que”",
+      "pageRef": 26
+     }
+    ]
+   }
+  },
+  {
+   "id": "raciocinio-logico/a02/s03",
+   "bizu": {
+    "summary": [
+     "**Negação da condicional**: ~(p→q) ≡ p∧~q; mantém o primeiro, troca por “e” e nega o segundo, pois a condicional só falha quando o antecedente ocorre e o consequente não.",
+     "**Equivalência × negação**: a equivalente de p→q usa “ou” (~p∨q); a negação usa “e” (p∧~q) e nunca é outra condicional.",
+     "**Antecedente já negado**: a negação de ~t→p é ~t∧~p; o primeiro termo fica exatamente como está.",
+     "**Várias regras juntas**: comece pelo conectivo principal; (A∨B)→C ≡ (~A∧~B)∨C e a negação de p∧(q→r) é ~p∨(q∧~r).",
+     "**Contrapositiva com “e” no consequente**: p→(q∧r) ≡ (~q∨~r)→~p, porque negar q∧r exige De Morgan.",
+     "**Negação do “e” como condicional**: ~(p∧q) ≡ p→~q ≡ q→~p; útil quando as alternativas só trazem “se...então”.",
+     "**Consequente comum**: (p→r)∧(q→r) ≡ (p∨q)→r; o antecedente vira “ou”.",
+     "**Antecedente comum**: (p→q)∧(p→r) ≡ p→(q∧r); o consequente vira “e”. Com “ou” entre as condicionais, nenhuma das duas regras vale.",
+     "**Disjunção exclusiva**: p⊻q ≡ ~p⊻~q (nega as duas parcelas) ≡ ~p↔q ≡ p↔~q (vira bicondicional negando só uma parcela)."
+    ],
+    "teoria": [
+     {
+      "statement": "A negação de “Se Davi estuda, então Davi passa” é “Davi estuda e Davi não passa”.",
+      "isTrue": true,
+      "explanation": "~(p→q) ≡ p∧~q: mantém-se o antecedente, troca-se por “e” e nega-se o consequente."
+     },
+     {
+      "statement": "A negação de “Se a loja abre, então o gerente chega” é “Se a loja não abre, então o gerente não chega”.",
+      "isTrue": false,
+      "explanation": "A negação de uma condicional é uma conjunção: “A loja abre e o gerente não chega”."
+     },
+     {
+      "statement": "A proposição (A∧B)→C é equivalente a (~A∨~B)∨C.",
+      "isTrue": true,
+      "explanation": "(A∧B)→C ≡ ~(A∧B)∨C, e por De Morgan ~(A∧B) ≡ ~A∨~B."
+     },
+     {
+      "statement": "A negação de “Se Rui não dorme, então Rui trabalha” é “Rui dorme e Rui não trabalha”.",
+      "isTrue": false,
+      "explanation": "O antecedente é mantido como está: a negação é “Rui não dorme e Rui não trabalha” (~d∧~t)."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "A proposição (p→r)∧(q→r) é equivalente a (p∨q)→r.",
+      "isTrue": true,
+      "explanation": "Na conjunção de condicionais com o mesmo consequente, os antecedentes se unem por “ou”."
+     },
+     {
+      "statement": "A proposição (p→q)∨(p→r) é equivalente a p→(q∧r).",
+      "isTrue": false,
+      "explanation": "A regra vale para a conjunção das condicionais. Com p e q verdadeiras e r falsa, (p→q)∨(p→r) é V e p→(q∧r) é F."
+     },
+     {
+      "statement": "A negação de “Bebo e não durmo” pode ser escrita como “Se bebo, então durmo”.",
+      "isTrue": true,
+      "explanation": "~(p∧q) ≡ p→~q; aqui, ~(b∧~d) ≡ b→~(~d) ≡ b→d."
+     },
+     {
+      "statement": "A disjunção exclusiva “Ou Ivo canta, ou Ivo toca” equivale a “Ivo canta se e somente se Ivo não toca”.",
+      "isTrue": true,
+      "explanation": "p⊻q ≡ p↔~q: a exclusiva vira bicondicional negando apenas uma das parcelas."
+     },
+     {
+      "statement": "A disjunção exclusiva p⊻q é equivalente a ~p⊻q.",
+      "isTrue": false,
+      "explanation": "Negar só uma parcela da exclusiva produz a negação dela; o equivalente com “ou...ou” nega as duas parcelas (~p⊻~q)."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Negação da condicional: mantém, troca por “e”, nega",
+      "pageRef": 28
+     },
+     {
+      "topic": "Não confundir equivalência e negação da condicional",
+      "pageRef": 29
+     },
+     {
+      "topic": "Negação de condicional com antecedente negado",
+      "pageRef": 30
+     },
+     {
+      "topic": "Questões com mais de uma equivalência",
+      "pageRef": 31
+     },
+     {
+      "topic": "Negação de conjunção que contém condicional",
+      "pageRef": 33
+     },
+     {
+      "topic": "Negação da conjunção na forma condicional",
+      "pageRef": 36
+     },
+     {
+      "topic": "Conjunção de condicionais com termo comum",
+      "pageRef": 39
+     },
+     {
+      "topic": "Disjunção de condicionais não é equivalente",
+      "pageRef": 41
+     },
+     {
+      "topic": "Equivalências da disjunção exclusiva",
+      "pageRef": 42
+     }
+    ]
+   }
+  },
+  {
+   "id": "raciocinio-logico/a02/s04",
+   "bizu": {
+    "summary": [
+     "**Negar o “ou...ou”**: ~(p⊻q) ≡ p↔q; a exclusiva é falsa justamente quando p e q têm o mesmo valor, que é quando a bicondicional é verdadeira.",
+     "**Outras negações da exclusiva**: ~(p⊻q) ≡ ~p⊻q ≡ p⊻~q (negue só uma parcela); negar as duas parcelas gera equivalente, não negação.",
+     "**Equivalentes da bicondicional**: p↔q ≡ (p→q)∧(q→p) (ir e voltar) ≡ ~p↔~q ≡ ~p⊻q ≡ p⊻~q.",
+     "**Ir e voltar disfarçado**: aplicando a contrapositiva à volta, p↔q ≡ (p→q)∧(~p→~q); uma única condicional não basta.",
+     "**Negações da bicondicional**: a principal é a exclusiva p⊻q; também valem a bicondicional com uma só parcela negada (~p↔q ou p↔~q) e a forma (p∧~q)∨(q∧~p), em que um ocorre sem o outro.",
+     "**Regra prática para ↔ e ⊻**: negar as duas parcelas mantém o sentido; negar uma parcela ou trocar o conectivo gera a negação; fazer as duas coisas devolve um equivalente.",
+     "**Eliminação de alternativas**: a negação da exclusiva não vem como condicional, conjunção ou disjunção inclusiva de duas parcelas, e a bicondicional não equivale a uma conjunção simples.",
+     "**Álgebra de proposições**: é o encadeamento de equivalências e propriedades para simplificar expressões; comutativa, associativa e distributiva são as mais cobradas.",
+     "**Comutativa**: ∧, ∨, ⊻ e ↔ aceitam trocar a ordem das parcelas; a condicional não (p→q não equivale a q→p).",
+     "**Uso na prova**: a negação de p→q é p∧~q, que também pode aparecer como ~q∧p; com (a∨b)∧c, a negação (~a∧~b)∨~c pode vir como ~c∨(~a∧~b)."
+    ],
+    "teoria": [
+     {
+      "statement": "A negação de “Ou Ana dança, ou Ana canta” é “Ana dança se e somente se Ana canta”.",
+      "isTrue": true,
+      "explanation": "~(p⊻q) ≡ p↔q: a exclusiva é falsa exatamente quando as parcelas têm o mesmo valor."
+     },
+     {
+      "statement": "A negação de “Ou Ivo sai, ou Ivo fica” é “Ou Ivo não sai, ou Ivo não fica”.",
+      "isTrue": false,
+      "explanation": "Negar as duas parcelas da exclusiva gera um equivalente (~p⊻~q ≡ p⊻q), não a negação."
+     },
+     {
+      "statement": "A bicondicional p↔q é equivalente a ~p↔~q.",
+      "isTrue": true,
+      "explanation": "Negar as duas parcelas da bicondicional preserva seu valor em todas as linhas."
+     },
+     {
+      "statement": "A bicondicional “Rui sai se e somente se chove” equivale a “Se Rui sai, então chove”.",
+      "isTrue": false,
+      "explanation": "A bicondicional equivale à ida e à volta juntas, (p→q)∧(q→p); uma só condicional não basta."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "A negação de p↔q pode ser escrita como (p∧~q)∨(q∧~p).",
+      "isTrue": true,
+      "explanation": "~(p↔q) ≡ ~(p→q)∨~(q→p) por De Morgan, e cada condicional negada vira “mantém o primeiro e nega o segundo”."
+     },
+     {
+      "statement": "A negação de “Lia ri se e somente se Caio chora” é “Lia não ri se e somente se Caio não chora”.",
+      "isTrue": false,
+      "explanation": "Negar as duas parcelas da bicondicional dá um equivalente. A negação seria, por exemplo, “Ou Lia ri, ou Caio chora”."
+     },
+     {
+      "statement": "A condicional possui a propriedade comutativa, de modo que p→q equivale a q→p.",
+      "isTrue": false,
+      "explanation": "A condicional é o único conectivo que não comuta; a troca válida é a contrapositiva ~q→~p."
+     },
+     {
+      "statement": "A conjunção p∧~q pode ser reescrita como ~q∧p sem alterar a tabela-verdade.",
+      "isTrue": true,
+      "explanation": "A conjunção goza da propriedade comutativa."
+     },
+     {
+      "statement": "Trocar o conectivo de uma bicondicional pela disjunção exclusiva e negar uma das parcelas produz uma proposição equivalente à original.",
+      "isTrue": true,
+      "explanation": "p↔q ≡ ~p⊻q ≡ p⊻~q: cada operação isolada inverte o valor, e as duas juntas o restauram."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Negação da disjunção exclusiva pela bicondicional",
+      "pageRef": 44
+     },
+     {
+      "topic": "Negação da exclusiva negando uma só parcela",
+      "pageRef": 45
+     },
+     {
+      "topic": "Eliminação de alternativas na negação da exclusiva",
+      "pageRef": 46
+     },
+     {
+      "topic": "Equivalências da bicondicional: ir e voltar e negar as duas",
+      "pageRef": 48
+     },
+     {
+      "topic": "Bicondicional em disjunção exclusiva",
+      "pageRef": 49
+     },
+     {
+      "topic": "Ir e voltar com contrapositiva",
+      "pageRef": 51
+     },
+     {
+      "topic": "Negações da bicondicional",
+      "pageRef": 52
+     },
+     {
+      "topic": "Negação da bicondicional por conjunções e disjunção",
+      "pageRef": 53
+     },
+     {
+      "topic": "Álgebra de proposições e propriedade comutativa",
+      "pageRef": 57
+     },
+     {
+      "topic": "Comutativa aplicada a negações",
+      "pageRef": 58
+     }
+    ]
+   }
+  },
+  {
+   "id": "raciocinio-logico/a02/s05",
+   "bizu": {
+    "summary": [
+     "**Associativa**: (p∧q)∧r ≡ p∧(q∧r) e (p∨q)∨r ≡ p∨(q∨r); numa sequência só de “e” ou só de “ou” os parênteses podem sair, mas nunca se mistura “e” com “ou”.",
+     "**Distributiva**: p∧(q∨r) ≡ (p∧q)∨(p∧r) e p∨(q∧r) ≡ (p∨q)∧(p∨r); de trás para frente, coloca-se o termo comum em evidência.",
+     "**Sem distributiva com →**: antes de simplificar, troque p→q por ~p∨q e ~(p→q) por p∧~q.",
+     "**Identidade**: com t (tautologia) e c (contradição), p∧t ≡ p, p∧c ≡ c, p∨t ≡ t e p∨c ≡ p.",
+     "**Absorção**: p∨(p∧q) ≡ p e p∧(p∨q) ≡ p; por isso a negação de p∧(p∨q) é simplesmente ~p.",
+     "**Idempotência**: p∧p ≡ p e p∨p ≡ p; termos repetidos numa sequência do mesmo conectivo se fundem.",
+     "**Classificar por álgebra**: desenvolva até chegar a t (tautologia), c (contradição) ou a algo como p ou p∧q (contingência); p∨~p é t e p∧~p é c.",
+     "**Bicondicional X↔Y**: se X e Y são equivalentes, é tautologia; se um é a negação do outro, é contradição; fora disso, teste valores.",
+     "**Casos prontos**: (p∨q)↔(~p∧~q) é contradição por De Morgan; t→c é contradição; uma condicional X→X é tautologia; (p→q)↔(q→p) é contingência.",
+     "**Prioridade**: comutativa, associativa e distributiva são as mais cobradas; as demais propriedades são atalhos, e a tabela-verdade resolve as questões mais difíceis."
+    ],
+    "teoria": [
+     {
+      "statement": "A proposição (p∧q)∨r é equivalente a p∧(q∨r) pela propriedade associativa.",
+      "isTrue": false,
+      "explanation": "A associativa não mistura “e” com “ou”. Com p falsa e r verdadeira, (p∧q)∨r é V e p∧(q∨r) é F."
+     },
+     {
+      "statement": "A proposição (x∨y)∧(x∨~y) é equivalente a x.",
+      "isTrue": true,
+      "explanation": "Colocando “x∨” em evidência, fica x∨(y∧~y) = x∨c, que equivale a x."
+     },
+     {
+      "statement": "A proposição p∨(q∧r) é equivalente a (p∨q)∧(p∨r).",
+      "isTrue": true,
+      "explanation": "É a distributiva da disjunção inclusiva em relação à conjunção."
+     },
+     {
+      "statement": "Sendo t uma tautologia, a proposição p∨t é equivalente a p.",
+      "isTrue": false,
+      "explanation": "Uma disjunção com um termo sempre verdadeiro é sempre verdadeira: p∨t ≡ t. Quem equivale a p é p∧t."
+     }
+    ],
+    "revisao": [
+     {
+      "statement": "A proposição p→(q→p) é uma tautologia.",
+      "isTrue": true,
+      "explanation": "Vira ~p∨~q∨p; como ~p∨p é sempre verdadeira, a expressão inteira é sempre verdadeira."
+     },
+     {
+      "statement": "A bicondicional (p∨q)↔(~p∧~q) é uma tautologia.",
+      "isTrue": false,
+      "explanation": "Por De Morgan, ~p∧~q é a negação de p∨q; parcelas sempre opostas tornam a bicondicional uma contradição."
+     },
+     {
+      "statement": "A negação de p∨(p∧q) é equivalente a ~p.",
+      "isTrue": true,
+      "explanation": "Pela absorção, p∨(p∧q) ≡ p, cuja negação é ~p."
+     },
+     {
+      "statement": "A proposição (p→q)↔(q→p) é uma contingência.",
+      "isTrue": true,
+      "explanation": "Com p e q verdadeiras ela é V; com p verdadeira e q falsa, fica F↔V, que é F."
+     }
+    ],
+    "pointers": [
+     {
+      "topic": "Propriedade associativa: só “e” ou só “ou”",
+      "pageRef": 60
+     },
+     {
+      "topic": "Associativa para provar tautologia e retirar parênteses",
+      "pageRef": 61
+     },
+     {
+      "topic": "Propriedade distributiva nos dois sentidos",
+      "pageRef": 62
+     },
+     {
+      "topic": "Não há distributiva com a condicional; termo em evidência",
+      "pageRef": 63
+     },
+     {
+      "topic": "Converter a condicional antes da álgebra",
+      "pageRef": 64
+     },
+     {
+      "topic": "Identidade com tautologia e contradição",
+      "pageRef": 66
+     },
+     {
+      "topic": "Absorção",
+      "pageRef": 68
+     },
+     {
+      "topic": "Idempotência",
+      "pageRef": 69
+     },
+     {
+      "topic": "Álgebra para tautologia, contradição e contingência",
+      "pageRef": 70
+     },
+     {
+      "topic": "Bicondicional entre equivalentes ou entre negações",
+      "pageRef": 72
+     },
+     {
+      "topic": "Classificação de condicionais e bicondicionais compostas",
+      "pageRef": 74
+     }
+    ]
+   }
+  }
+ ]
 }

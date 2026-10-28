@@ -1,0 +1,199 @@
+NOVAS_P5 = r"""
+@@ a12/s13 | C
+A manutenção preventiva de unidades de armazenamento no sistema operacional Microsoft Windows exige abordagens distintas conforme a tecnologia física da mídia. No que diz respeito à ferramenta Desfragmentar e Otimizar Unidades no Windows, assinale a opção correta.
+A) A desfragmentação convencional deve ser executada semanalmente em unidades SSD para prolongar a vida útil de suas células flash.
+B) O comando TRIM é aplicado exclusivamente a discos eletromecânicos para alinhar magneticamente os setores danificados da mídia.
+C) Em discos rígidos convencionais a ferramenta reagrupa clusters dispersos, enquanto em unidades SSD ela dispara o comando TRIM.
+D) A otimização de unidades no Windows atua excluindo de forma irreversível todas as partições secundárias configuradas na máquina.
+E) O utilitário Desfragmentar e Otimizar Unidades impede que o computador execute programas em segundo plano durante a leitura de arquivos.
+// Comentário: Em discos rígidos tradicionais (HDDs eletromecânicos), os arquivos gravados fragmentam-se em clusters dispersos ao longo do tempo; a desfragmentação reorganiza fisicamente esses dados em blocos adjacentes para diminuir o deslocamento mecânico da cabeça de leitura. Já em memórias de estado sólido (SSDs), a desfragmentação tradicional é desaconselhada porque degrada desnecessariamente a vida útil das células flash de escrita finita sem trazer ganhos de desempenho; por isso, a ferramenta do Windows executa a otimização por meio do comando TRIM, instruindo a controladora do SSD a descartar blocos de dados invalidados.
+
+@@ a12/s13 | B
+O acúmulo contínuo de registros temporários e arquivos obsoletos gerados pelo sistema operacional e por navegadores pode degradar o espaço livre em disco. Acerca da ferramenta Limpeza de Disco (cleanmgr.exe) no Windows, assinale a opção correta.
+A) A ferramenta exclui compulsoriamente os documentos de texto e planilhas pessoais do usuário armazenados na pasta Meus Documentos.
+B) O utilitário varre o volume e remove arquivos temporários, miniaturas em cache, despejos de memória e pacotes antigos do Windows Update.
+C) A Limpeza de Disco foi concebida exclusivamente para formatar partições de inicialização UEFI antes de atualizações de firmware.
+D) O utilitário impede o esvaziamento da Lixeira do sistema, transferindo arquivos excluídos diretamente para a pasta de arquivos de programas.
+E) A execução da Limpeza de Disco danifica o registro do Windows, exigindo a substituição física dos módulos de memória RAM instalados.
+// Comentário: A ferramenta Limpeza de Disco (`cleanmgr.exe`) realiza a análise e a exclusão segura de arquivos dispensáveis do sistema operacional, liberando espaço sem apagar documentos pessoais dos usuários. Entre os itens passíveis de expurgo estão os arquivos temporários de Internet, caches de miniaturas (*thumbnails*), relatórios de erros, arquivos de despejo de memória (*memory dumps*), o conteúdo retido na Lixeira e versões ou pacotes residuais de instalações prévias do Windows Update.
+
+@@ a12/s13 | A
+A automação de rotinas administrativas e a execução periódica de scripts no Windows são centralizadas em um console de gerenciamento nativo. A respeito do Agendador de Tarefas (taskschd.msc) do Windows, assinale a opção correta.
+A) A ferramenta permite configurar disparadores baseados em tempo ou eventos do sistema para executar automaticamente ações e programas.
+B) O utilitário restringe o agendamento de comandos à execução de uma única tarefa por ano civil em computadores corporativos.
+C) O Agendador de Tarefas opera exclusivamente quando o computador é inicializado com discos flexíveis magnéticos legados.
+D) A configuração de tarefas agendadas veda a execução de rotinas durante o processo de inicialização do sistema operacional.
+E) As tarefas programadas pelo utilitário exigem obrigatoriamente a intervenção manual de um usuário humano no momento da execução.
+// Comentário: O Agendador de Tarefas (`taskschd.msc`) é a ferramenta administrativa do Windows destinada a planejar e automatizar a execução de rotinas, comandos, scripts e softwares. Ele opera a partir de Disparadores (*triggers*, como datas/horários recorrentes, eventos gravados nos logs do sistema ou o ato de logon/inicialização) que acionam Ações pré-configuradas (como iniciar um executável ou exibir mensagens) de forma totalmente automatizada.
+
+@@ a12/s13 | B
+A proteção perimetral e a filtragem de conexões de entrada e saída no ambiente Windows baseiam-se em mecanismos de inspeção de tráfego de rede organizados por perfis de confiança. Quanto ao Windows Defender Firewall com Segurança Avançada, assinale a opção correta.
+A) O firewall opera exclusivamente bloqueando a exibição de vídeos na web, sem atuar sobre portas de comunicação TCP ou UDP.
+B) O firewall disponibiliza três perfis de rede: Domínio corporativo, Particular (para redes confiáveis) e Público (com restrições rígidas).
+C) O perfil Particular impõe regras mais restritivas que o perfil Público, bloqueando a descoberta de impressoras em redes domésticas.
+D) A inspeção perimetral do firewall do Windows restringe-se a analisar pacotes de correio eletrônico enviados por conexão discada.
+E) A desativação do firewall do Windows acarreta a exclusão definitiva do kernel do sistema operacional e de todos os drivers locais.
+// Comentário: O Windows Defender Firewall com Segurança Avançada (`wf.msc`) inspeciona o tráfego nas portas de rede e categoriza as conexões em três perfis: Domínio (aplicado quando o equipamento ingressa em um domínio do Active Directory), Particular/Privado (para redes domésticas ou corporativas de confiança, permitindo compartilhamento de arquivos e descoberta de dispositivos) e Público (desenhado para locais públicos ou de menor confiança, impondo regras de entrada muito mais severas e ocultando o computador da rede).
+
+@@ a12/s13 | C
+O diagnóstico em tempo real do consumo de recursos de hardware e a governança de daemons de fundo no Windows constituem atribuições fundamentais da administração de sistemas. Acerca do Gerenciador de Tarefas, dos Serviços e do Editor do Registro no Windows, assinale a opção correta.
+A) O Gerenciador de Tarefas veda o encerramento manual de processos travados, exigindo o desligamento súbito da chave de energia.
+B) O Editor do Registro (regedit.exe) é uma ferramenta voltada para a edição simplificada de textos e criação de tabelas de cálculo.
+C) O Gerenciador de Tarefas permite monitorar CPU e gerenciar apps de inicialização, e o console Serviços gerencia processos em segundo plano.
+D) O console de Serviços do Windows (services.msc) veda a alteração do tipo de inicialização de processos automáticos para manual.
+E) O atalho de teclado utilizado para abrir diretamente o Gerenciador de Tarefas corresponde à combinação Alt + F12 com a tecla Tab.
+// Comentário: O Gerenciador de Tarefas (`Taskmgr.exe`, acionado por `Ctrl + Shift + Esc`) permite monitorar em tempo real a utilização de CPU, memória RAM, disco e rede, finalizar tarefas inoperantes e gerenciar programas que iniciam junto com o sistema operacional. O console de Serviços (`services.msc`) controla os processos que rodam em segundo plano (*daemons*), possibilitando iniciar, pausar ou alterar seu modo de inicialização. Já o Editor do Registro (`regedit.exe`) constitui a base hierárquica de chaves e parâmetros de configuração do sistema e programas instalados.
+
+@@ a12/s15 | B
+A proteção contra a execução inadvertida de softwares maliciosos e a contenção de ameaças desconhecidas no Windows apoiam-se em tecnologias de isolamento e controle de privilégios. No que concerne ao Controle de Conta de Usuário (UAC) e ao Windows Sandbox, assinale a opção correta.
+A) O Windows Sandbox preserva permanentemente todas as alterações realizadas e armazena os vírus testados no disco rígido principal.
+B) O UAC notifica e exige autorização para alterações administrativas, e o Windows Sandbox é um ambiente descartável e isolado para testes.
+C) O UAC é ativado exclusivamente quando o computador é operado por meio de comandos de voz em terminais telefônicos analógicos.
+D) A Área Restrita do Windows (Windows Sandbox) dispensa qualquer suporte de virtualização na arquitetura do processador e na BIOS/UEFI.
+E) O fechamento da janela do Windows Sandbox bloqueia a Área de Trabalho do Windows e exige a digitação da chave de produto do sistema.
+// Comentário: O Controle de Conta de Usuário (UAC) atua prevenindo alterações não autorizadas no sistema, solicitando confirmação expressa ou credenciais de administrador antes de executar tarefas que exijam elevação de privilégios. O Windows Sandbox (Área Restrita do Windows), por sua vez, oferece um ambiente de área de trabalho isolado e temporário, baseado em virtualização leve, onde é possível executar aplicativos suspeitos sem colocar em risco a máquina física; ao fechar a sessão do Sandbox, todos os softwares, arquivos e modificações gerados nele são permanentemente descartados.
+
+@@ a12/s15 | A
+Diante de falhas críticas de instabilidade operacional, travamentos recorrentes ou incompatibilidades de drivers recém-instalados, o Windows disponibiliza rotinas avançadas de diagnóstico. A respeito do Modo de Segurança (Safe Mode) do Windows, assinale a opção correta.
+A) O Modo de Segurança inicializa o sistema com um conjunto mínimo essencial de drivers e serviços, desabilitando softwares de terceiros.
+B) O Modo de Segurança atua formatando compulsoriamente todas as partições do disco rígido sem exibir avisos na tela do computador.
+C) O carregamento em Modo de Segurança exige obrigatoriamente a presença contínua de conexão ativa com a Internet por fibra óptica.
+D) O Modo de Segurança com Rede impede o carregamento de adaptadores de rede, impossibilitando a comunicação com a rede local.
+E) A execução do Modo de Segurança acarreta a queima definitiva dos componentes eletrônicos da memória de vídeo do monitor.
+// Comentário: O Modo de Segurança inicializa o Windows em um estado básico, carregando somente o conjunto estritamente essencial de arquivos, drivers fundamentais e serviços de baixo nível. Softwares de inicialização automática e drivers de terceiros não são executados, permitindo isolar a causa de instabilidades no sistema e solucionar problemas de compatibilidade ou remover malwares persistentes.
+
+@@ a12/s15 | A
+A formatação de unidades de disco e dispositivos de armazenamento removível no Windows requer a seleção do sistema de arquivos adequado às necessidades de capacidade e interoperabilidade. Quanto às características dos sistemas de arquivos NTFS, FAT32 e exFAT, assinale a opção correta.
+A) O NTFS oferece journaling e permissões de segurança por usuário, enquanto o FAT32 impõe um limite de tamanho máximo de 4 GB por arquivo.
+B) O FAT32 suporta arquivos individuais de até 100 terabytes e disponibiliza criptografia avançada nativa em nível de cluster.
+C) O sistema de arquivos exFAT veda o armazenamento de arquivos maiores que 2 megabytes, sendo restrito a mídias de disquete flexível.
+D) O NTFS impede a compactação nativa de volumes e recusa a gravação de arquivos gerados por sistemas operacionais de computadores pessoais.
+E) O journaling constitui uma vulnerabilidade crítica do NTFS que acarreta a perda imediata de dados a cada reinicialização da máquina.
+// Comentário: O NTFS (New Technology File System) é o sistema de arquivos corporativo e padrão do Windows, contando com recursos essenciais como permissões de acesso por usuário (ACLs), cotas de disco, compactação, suporte a criptografia (EFS) e *journaling* (registro contínuo de transações em log para garantir integridade após desligamentos abruptos). Já o FAT32, embora mantenha ampla compatibilidade com equipamentos legados, sofre com a restrição arquitetural de não permitir que um arquivo individual ultrapasse 4 gigabytes de tamanho. O exFAT foi criado para mídias flash removíveis, eliminando o limite de 4 GB do FAT32 sem as sobrecargas de segurança do NTFS.
+
+@@ a12/s15 | A
+A proteção de dados sensíveis armazenados contra acessos indevidos em caso de perda ou furto de dispositivos computacionais é viabilizada por tecnologias nativas de segurança. A respeito do BitLocker no Windows, assinale a opção correta.
+A) O BitLocker cifra a partição integral de disco e apoia-se no módulo de segurança TPM para conferir a integridade da inicialização do PC.
+B) O BitLocker atua exclusivamente criptografando o protocolo de correio eletrônico IMAP sem interferir nos arquivos do disco rígido.
+C) A tecnologia BitLocker dispensa senhas ou chaves de recuperação, liberando os dados a qualquer dispositivo USB que for conectado.
+D) O BitLocker destina-se unicamente a acelerar a rotação mecânica dos discos rígidos magnéticos para duplicar a taxa de transferência.
+E) A ativação do BitLocker acarreta a exclusão instantânea de todos os certificados digitais instalados no navegador de Internet do usuário.
+// Comentário: O BitLocker é a tecnologia nativa do Windows para criptografia de unidade completa (Full Disk Encryption), protegendo todos os dados contidos na partição do sistema operacional ou volumes de dados contra acessos não autorizados decorrentes de roubo ou perda física da máquina. Ele integra-se ao Trusted Platform Module (TPM), chip de segurança da placa-mãe que verifica se a cadeia de inicialização de hardware e firmware foi alterada antes de liberar as chaves criptográficas para o boot.
+
+@@ a12/s15 | C
+No sistema operacional Windows, a personalização de perfis e os arquivos de estado mantidos por aplicativos instalados são estruturados em pastas específicas no perfil de usuário. Com relação à pasta oculta AppData, assinale a opção correta.
+A) A pasta AppData localiza-se na raiz do BIOS e reúne os códigos de baixo nível do fabricante da placa-mãe do computador.
+B) A exclusão da pasta AppData aumenta a velocidade de rotação do processador e restaura baterias descarregadas em notebooks.
+C) A pasta AppData subdivide-se em Local, LocalLow e Roaming, armazenando configurações e históricos particulares de aplicativos do usuário.
+D) O diretório AppData veda expressamente o armazenamento de dados temporários e históricos de navegação na web.
+E) Os arquivos da pasta AppData são de visualização pública na rede e não possuem qualquer relação com o perfil da conta ativa.
+// Comentário: Alocada na pasta de perfil de cada usuário (`C:\Users\<Nome>\AppData`), a pasta oculta AppData é dividida em três subdiretórios principais: Local (dados específicos da máquina local, como caches e temporários que não migram), LocalLow (para dados com menor nível de integridade de segurança) e Roaming (que armazena configurações personalizadas e dados de programas que podem sincronizar com outros computadores em domínios corporativos com perfis móveis).
+
+@@ a13/s01 | D
+A computação em nuvem revolucionou a infraestrutura de tecnologia da informação ao substituir modelos proprietários locais por serviços remotos escaláveis sob demanda. No que concerne aos conceitos e benefícios da computação em nuvem, assinale a opção correta.
+A) A computação em nuvem exige a instalação física obrigatória de geradores de energia de emergência nas dependências de cada usuário final.
+B) O termo nuvem refere-se à retenção eletrostática física de pacotes de dados nas camadas da atmosfera gasosa do planeta Terra.
+C) O modelo de nuvem obriga a empresa contratante a realizar a substituição física manual de discos rígidos queimados nos centros de dados.
+D) O modelo converte despesas de capital em despesas operacionais e transfere a responsabilidade da manutenção física ao provedor do serviço.
+E) A utilização de serviços de computação em nuvem restringe o acesso de estações locais a um único protocolo de rede cabeada proprietário.
+// Comentário: A computação em nuvem permite que organizações deixem de investir vultosas somas na aquisição prévia e depreciação de hardware local (despesas de capital ou CapEx) e passem a custear apenas os recursos computacionais efetivamente consumidos como despesas operacionais (OpEx). Além da significativa redução de custos operacionais e de espaço físico, transfere-se ao provedor de nuvem a responsabilidade contínua pela manutenção física, climatização, redundância de infraestrutura e atualização dos servidores.
+
+@@ a13/s01 | E
+O Instituto Nacional de Padrões e Tecnologia (NIST) estabeleceu o documento de referência global que padroniza os conceitos fundamentais da computação em nuvem. A respeito das cinco características essenciais definidas pelo NIST, assinale a opção correta.
+A) As características essenciais englobam o armazenamento exclusivamente local em fitas magnéticas e o provisionamento manual por fax.
+B) O modelo do NIST estabelece que todo recurso de computação em nuvem deve ser contratado com interação humana direta de atendentes.
+C) A computação em nuvem veda o uso compartilhado de infraestruturas físicas entre múltiplos clientes de uma mesma empresa de tecnologia.
+D) O acesso às aplicações na nuvem exige obrigatoriamente cabos de rede proprietários do fabricante dos servidores remotos.
+E) As cinco características são: autosserviço sob demanda, amplo acesso à rede, agrupamento de recursos, elasticidade rápida e serviço mensurado.
+// Comentário: A definição consolidada pelo NIST (Special Publication 800-145) estabelece exatamente cinco características essenciais para a computação em nuvem: Autosserviço sob demanda (*on-demand self-service*), Amplo acesso à rede (*broad network access*), Agrupamento de recursos (*resource pooling*), Elasticidade rápida (*rapid elasticity*) e Serviço mensurado (*measured service*).
+
+@@ a13/s01 | E
+As características essenciais da computação em nuvem garantem autonomia operacional ao usuário e eficiência estrutural na alocação da infraestrutura compartilhada. Quanto ao autosserviço sob demanda e ao agrupamento de recursos (resource pooling), assinale a opção correta.
+A) O agrupamento de recursos exige que cada usuário saiba o endereço de rua exato e o número de série da máquina física alocada pelo provedor.
+B) O autosserviço sob demanda determina que o consumidor deve protocolar requisições em papel perante o fornecedor para liberar conexões.
+C) O modelo de agrupamento de recursos impede a coexistência de dados de diferentes contratantes no mesmo datacenter do provedor.
+D) O autosserviço veda a expansão de limites de armazenamento sem a assinatura de aditivos contratuais presenciais em cartórios públicos.
+E) O autosserviço permite provisionar recursos sem interação humana, e o agrupamento atende múltiplos clientes de forma isolada (multi-tenant).
+// Comentário: O autosserviço sob demanda permite ao consumidor provisionar recursos computacionais (como tempo de servidor ou armazenamento em rede) de forma autônoma e automatizada, sem requerer intervenção humana de operadores do provedor. O agrupamento de recursos (*resource pooling*), por sua vez, estrutura a infraestrutura em um modelo multi-locatário (*multi-tenant*), no qual recursos físicos e virtuais são agrupados e dinamicamente redistribuídos entre múltiplos consumidores, que não necessitam conhecer a localização física exata do hardware (podendo especificar apenas países ou regiões geográficas).
+
+@@ a13/s01 | A
+A adaptação dinâmica à volatilidade do volume de tráfego e o controle preciso de custos representam pilares fundamentais da gestão em nuvem. A respeito da elasticidade rápida e do serviço mensurado na computação em nuvem, assinale a opção correta.
+A) A elasticidade expande ou reduz recursos de forma automática segundo a demanda, e o serviço mensurado viabiliza a cobrança proporcional.
+B) O serviço mensurado estabelece taxas de cobrança fixas e invariáveis, independentemente do tempo de processamento ou volume de dados.
+C) A elasticidade rápida restringe a contratação de novas instâncias de servidores a períodos noturnos com autorização prévia por e-mail.
+D) O mecanismo de serviço mensurado impede que o consumidor acompanhe relatórios de consumo em painéis de telemetria em tempo real.
+E) A elasticidade rápida desativa os mecanismos de segurança criptográfica sempre que a carga de conexões atinge o teto do servidor.
+// Comentário: A elasticidade rápida (*rapid elasticity*) é a capacidade do ambiente de nuvem de alocar e desalocar recursos computacionais de forma elástica, automática e quase em tempo real, respondendo a picos imprevisíveis de demanda e encolhendo os recursos quando o fluxo normaliza. O serviço mensurado (*measured service*) monitora, controla e registra com precisão métricas como processamento, largura de banda e armazenamento, propiciando total transparência para provedor e cliente e servindo de base para o modelo de pagamento conforme o uso (*pay-as-you-go*).
+
+@@ a13/s01 | C
+A distinção conceitual entre o dimensionamento planejado de capacidades e a adaptação automática a surtos de tráfego é amplamente avaliada em auditorias de sistemas. No que se refere às diferenças entre escalabilidade e elasticidade na nuvem, assinale a opção correta.
+A) A escalabilidade é um processo instantâneo e não planejado, enquanto a elasticidade exige compras prévias de servidores em leilões públicos.
+B) A escalabilidade horizontal consiste em aumentar exclusivamente a quantidade de memória RAM do mesmo processador físico da máquina.
+C) A escalabilidade é o planejamento de capacidade a médio ou longo prazo, enquanto a elasticidade responde dinamicamente a oscilações súbitas.
+D) A elasticidade impede a liberação de servidores alocados para eventos de pico, mantendo-os contratados de forma irrevogável por anos.
+E) Os conceitos de escalabilidade e elasticidade são incompatíveis entre si e não podem ser implementados no mesmo ambiente corporativo.
+// Comentário: A escalabilidade diz respeito à capacidade arquitetural de um sistema computacional de suportar cargas de trabalho crescentes por meio de planejamento técnico de médio a longo prazo, podendo ser vertical (adicionar mais processamento, memória ou capacidade ao mesmo servidor) ou horizontal (adicionar mais servidores ou nós à infraestrutura). A elasticidade, por sua vez, é a resposta imediata, dinâmica e orientada por métricas automáticas do próprio sistema, que escala e desescala recursos em resposta a oscilações pontuais e imprevisíveis de demanda.
+
+@@ a13/s03 | B
+Os serviços de armazenamento e sincronização de arquivos na nuvem oferecem acessibilidade ubíqua e ferramentas colaborativas em tempo real. Em relação ao serviço de armazenamento Google Drive, assinale a opção correta.
+A) O Google Drive disponibiliza armazenamento ilimitado e irrestrito em contas pessoais gratuitas sem necessidade de plano de assinatura.
+B) O plano gratuito padrão oferece 15 GB de espaço compartilhado entre arquivos do Drive, mensagens do Gmail e dados do Google Fotos.
+C) O serviço é incompatível com o acesso via navegadores de Internet, exigindo a instalação exclusiva em estações com monitores analógicos.
+D) O compartilhamento de arquivos no Google Drive veda a concessão de permissões exclusivas de visualização para usuários convidados.
+E) A plataforma Google Drive proíbe o upload de arquivos de imagem e fotos, permitindo unicamente o envio de códigos-fonte em linguagem C.
+// Comentário: O Google Drive oferece em sua conta gratuita pessoal 15 GB de espaço de armazenamento em nuvem, o qual é compartilhado conjuntamente entre os serviços Google Drive, correio eletrônico Gmail e fotos no Google Fotos. O usuário pode acessar e editar arquivos tanto por navegadores de Internet quanto por aplicativos dedicados em computadores e dispositivos móveis (Android e iOS), definindo níveis granulares de permissão para compartilhamento (leitor, comentarista ou editor).
+
+@@ a13/s03 | B
+O ecossistema operacional Microsoft Windows incorpora nativamente serviços de armazenamento em nuvem para facilitar a replicação de arquivos e a proteção de dados confidenciais. No que se refere ao serviço Microsoft OneDrive, assinale a opção correta.
+A) O OneDrive recusa a sincronização de pastas de computadores que utilizem o sistema operacional Windows 11 com conexão à Internet.
+B) O serviço vem integrado ao Windows e disponibiliza o recurso Cofre Pessoal, que exige autenticação reforçada para acesso a pastas críticas.
+C) O plano básico gratuito do OneDrive fornece 500 terabytes de espaço imediato sem exigir identificação do usuário titular da conta.
+D) O salvamento de planilhas eletrônicas no OneDrive desativa os mecanismos de edição colaborativa simultânea no Microsoft 365.
+E) O OneDrive opera exclusivamente transferindo arquivos por meio de impressoras multifuncionais ligadas a linhas telefônicas públicas.
+// Comentário: O Microsoft OneDrive é o serviço de armazenamento em nuvem pré-instalado e integrado ao Windows (aparecendo no Painel de Navegação do Explorador de Arquivos como uma pasta sincronizada). Entre seus diferenciais destaca-se o recurso "Cofre Pessoal" (Personal Vault), uma área com camada extra de segurança que requer método secundário de verificação de identidade (como biometria, PIN ou código no aplicativo autenticador) para ser aberta, trancando-se automaticamente após determinado período de inatividade.
+
+@@ a13/s03 | E
+A diversidade de provedores de armazenamento em nuvem no mercado possibilita a integração com diferentes plataformas e modelos de negócios. Acerca dos serviços de nuvem Dropbox e iCloud, assinale a opção correta.
+A) O serviço Dropbox oferece gratuitamente 1 terabyte de espaço para qualquer usuário recém-cadastrado em seu portal institucional.
+B) A plataforma iCloud da Apple fornece planos gratuitos ilimitados para armazenamento perpétuo de vídeos em resolução de ultra-alta definição.
+C) O Dropbox impede que os usuários compartilhem links de arquivos por meio da inserção de senhas de proteção ou prazos de validade.
+D) O iCloud é incompatível com computadores pessoais de mesa, sendo vedado o acesso por meio de navegadores da Internet.
+E) O Dropbox disponibiliza 2 GB de armazenamento em seu plano gratuito, e o iCloud oferece 5 GB gratuitos integrados ao ecossistema Apple.
+// Comentário: No mercado de armazenamento em nuvem pessoal: o Dropbox fornece 2 gigabytes de espaço de armazenamento em sua modalidade básica gratuita, destacando-se por seu rápido mecanismo de sincronização de arquivos e pela possibilidade de proteger links com senhas e prazos de validade; já o iCloud, da Apple, oferece 5 gigabytes de espaço gratuito para os usuários, integrado aos sistemas iOS, iPadOS e macOS (com versões para Windows e acesso web via icloud.com), necessitando de planos pagos (iCloud+) para maiores capacidades.
+
+@@ a13/s03 | D
+As plataformas corporativas de computação em nuvem disponibilizam ambientes robustos para hospedagem de aplicações críticas, inteligência artificial e bancos de dados em larga escala. A respeito da plataforma de nuvem Microsoft Azure, assinale a opção correta.
+A) O Microsoft Azure restringe a execução de servidores exclusivamente ao sistema operacional Windows, sendo incompatível com distribuições Linux.
+B) O modelo de precificação do Azure impõe a compra definitiva de placas físicas de processamento pelo cliente corporativo contratante.
+C) A plataforma Azure opera exclusivamente como software de reprodução de arquivos de mídia multimídia para computadores pessoais.
+D) O Azure é uma plataforma que provê serviços de IaaS e PaaS com cobrança baseada no uso, integrando recursos de computação, dados e IA.
+E) O acesso ao Microsoft Azure exige o desligamento de todas as conexões de Internet da empresa para evitar vazamentos de dados na rede.
+// Comentário: O Microsoft Azure é uma ampla plataforma de computação em nuvem pública corporativa pertencente à Microsoft, que compete no mercado com a AWS e o Google Cloud. Ele entrega soluções abrangentes sob as modalidades de Infraestrutura como Serviço (IaaS, como máquinas virtuais com Windows Server ou distribuições Linux) e Plataforma como Serviço (PaaS, como Azure SQL Database e serviços de IA), operando no modelo de pagamento conforme o consumo (*pay-as-you-go*) e aderindo a rigorosos padrões de conformidade (como LGPD e ISO).
+
+@@ a13/s04 | D
+A disseminação do trabalho remoto e híbrido consolidou o uso de suítes de escritório colaborativas estruturadas sobre a infraestrutura de nuvem. No que concerne às ferramentas Google Workspace e Microsoft 365, assinale a opção correta.
+A) A edição simultânea de documentos em nuvem exige que cada participante salve arquivos locais em pendrives para posterior consolidação.
+B) O Google Workspace veda a coedição de planilhas de cálculo em tempo real entre dois ou mais usuários conectados à mesma conta corporativa.
+C) As ferramentas colaborativas em nuvem operam predominantemente como modelos de IaaS, exigindo que o usuário configure bancos de dados.
+D) Essas suítes viabilizam a edição simultânea e o salvamento contínuo em nuvem, operando sob o modelo de Software como Serviço (SaaS).
+E) A utilização de processadores de texto colaborativos impede o controle e a restauração do histórico de versões anteriores do arquivo.
+// Comentário: As suítes Google Workspace (Docs, Sheets, Slides, Drive) e Microsoft 365 (Word, Excel, PowerPoint online) revolucionaram o fluxo de trabalho ao viabilizar a coautoria em tempo real, na qual múltiplos usuários editam simultaneamente o mesmo arquivo com salvamento contínuo na nuvem e rastreamento transparente de histórico de versões. Essas aplicações operam sob a modalidade de Software como Serviço (SaaS), eliminando a necessidade de gerenciamento de servidores ou infraestrutura física por parte do contratante.
+
+@@ a13/s04 | C
+A comunicação unificada em equipes corporativas apoia-se em soluções de videoconferência, canais de conversação contextual e integração documental. Acerca do Microsoft Teams e do Zoom Video Communications, assinale a opção correta.
+A) O Zoom foi projetado unicamente para o envio manual de telegramas impressos por conexões de rádio amador de ondas curtas.
+B) O Microsoft Teams impede o compartilhamento de tela durante reuniões e proíbe a integração de canais de texto com arquivos do OneDrive.
+C) O Teams integra chat, chamadas e repositórios de arquivos corporativos, e o Zoom destaca-se em videoconferências e webinars em larga escala.
+D) As reuniões virtuais conduzidas pelo Microsoft Teams exigem que os participantes permaneçam conectados à mesma tomada de energia física.
+E) O uso do aplicativo Zoom acarreta a exclusão definitiva de todo o conteúdo da Área de Trabalho do computador de todos os ouvintes da reunião.
+// Comentário: O Microsoft Teams é uma ferramenta central de colaboração corporativa que congrega chats em grupo, chamadas telefônicas, videoconferências, canais temáticos e integração nativa com o ecossistema do Microsoft 365 (compartilhamento e coedição direta de arquivos no OneDrive e SharePoint). Por sua vez, o Zoom consolidou-se como uma plataforma especializada em videoconferências de alta qualidade e estabilidade, com compartilhamento de tela, lousas virtuais interativas e suporte a grandes eventos e seminários virtuais (*webinars*).
+
+@@ a13/s04 | D
+A gestão visual de atividades coletivas e o acompanhamento do fluxo de entregas em projetos corporativos adotam comumente metodologias ágeis em ambientes digitais. Em relação ao aplicativo Trello e à filosofia Kanban, assinale a opção correta.
+A) O Trello consiste em um software de reprodução de ondas sonoras de baixa frequência utilizado para afinação de instrumentos acústicos.
+B) A filosofia de gerenciamento Kanban teve sua gênese na indústria bélica europeia do século XVI e proíbe o uso de colunas de progresso.
+C) A plataforma Trello exige obrigatoriamente a instalação de placas aceleradoras de inteligência artificial de alto desempenho na máquina.
+D) O Trello utiliza a metodologia Kanban baseada em quadros, listas de etapas e cartões móveis para acompanhamento visual do fluxo de trabalho.
+E) A movimentação de um cartão no Trello causa a destruição automática de todas as contas de e-mail cadastradas na rede da organização.
+// Comentário: O Trello é uma consagrada ferramenta de gerenciamento visual de tarefas e projetos digitais baseada na metodologia ágil Kanban (desenvolvida originalmente pela indústria automotiva japonesa Toyota). O sistema organiza os fluxos de trabalho por meio de Quadros (*Boards*), subdivididos em Listas de status representativas das etapas do processo (como "A Fazer", "Em Andamento" e "Concluído"), nos quais transitam os Cartões (*Cards*) contendo tarefas, prazos, anexos, etiquetas temáticas e responsáveis pela entrega.
+"""

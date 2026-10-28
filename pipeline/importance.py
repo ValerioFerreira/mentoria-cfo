@@ -10,6 +10,11 @@ Método (v1, determinístico, sem a frequência das questões — ver `importanc
   nota (1–100)                        = percentil das questões esperadas entre os trechos que aparecem naquele concurso
   `appears` = a disciplina e aula estão no edital do concurso (via onlyContests e excludeContests versionados).
 
+Concursos com mapa próprio do edital por trecho (EDITAL_MAPS, hoje o CFOA): a nota segue o edital, não a aula.
+  Cada item do edital recebe a mesma fatia das questões da disciplina, repartida entre os trechos que o cobrem
+  pelo nº de páginas; só aparecem os trechos citados no mapa. Assim, aula inteira fora do edital não entra e
+  complemento curto não ganha peso de aula inteira.
+
 Uso: python pipeline/importance.py          (gera/atualiza o arquivo)
 Pré-requisito: content/contests.json  (npx tsx web/scripts/export-contests.ts, em web/)
 """
@@ -28,6 +33,34 @@ if hasattr(sys.stdout, "reconfigure"):
 
 OUT = CONTENT_DIR / "importance" / "segments.json"
 EDITAL_DIR = CONTENT_DIR / "edital"
+# concurso -> pasta do mapa próprio (cai no mapa geral da disciplina quando a pasta não tem o arquivo)
+EDITAL_MAPS = {"CBMPE_CFOA": EDITAL_DIR / "cfoa"}
+
+
+def edital_map(contest: str, subject: str, exclusive: bool) -> dict | None:
+    """Mapa do concurso; o mapa geral da disciplina só vale quando nenhum outro concurso a cobra."""
+    own = EDITAL_MAPS[contest] / f"{subject}.json"
+    if own.exists():
+        return json.loads(own.read_text(encoding="utf-8"))
+    general = EDITAL_DIR / f"{subject}.json"
+    if exclusive and general.exists():
+        return json.loads(general.read_text(encoding="utf-8"))
+    return None
+
+
+def expected_by_edital(doc: dict, questions: float, eligible: set[str], seg_pages: dict[str, int]) -> dict[str, float]:
+    """Questões esperadas por trecho: fatia igual por item do edital, repartida pelas páginas dos trechos do item."""
+    items = []
+    for it in doc.get("items", []):
+        segs = sorted({s for w in it.get("where", []) for s in w.get("segments", []) if s in eligible})
+        if segs:
+            items.append(segs)
+    out: dict[str, float] = {}
+    for segs in items:
+        total = sum(seg_pages[s] for s in segs) or 1
+        for s in segs:
+            out[s] = out.get(s, 0.0) + questions / len(items) * seg_pages[s] / total
+    return out
 
 
 def load_contests() -> dict[str, dict]:
@@ -92,6 +125,13 @@ def build() -> dict:
                 continue
 
             eligible_aulas = [a for a in subj["aulas"] if is_aula_in_contest(a, c)]
+            exclusive = all(sid not in o.get("subjects", []) for k, o in contests.items() if k != c and not k.endswith("_COMBO"))
+            doc = edital_map(c, sid, exclusive) if c in EDITAL_MAPS else None
+            if doc:
+                eligible = {s["id"] for a in eligible_aulas for s in segs_by_aula.get(a["id"], [])}
+                seg_pages = {s: all_segments[s]["pages"] for s in eligible}
+                expected[c].update(expected_by_edital(doc, exam_weights[sid], eligible, seg_pages))
+                continue
             total_inc = sum(a["incidence"] for a in eligible_aulas) or 1.0
 
             for a in eligible_aulas:
@@ -103,7 +143,7 @@ def build() -> dict:
 
     scores = {c: percentile_scores(v) for c, v in expected.items()}
 
-    basis = {c: "disciplina" for c in contests}
+    basis = {c: "edital" if c in EDITAL_MAPS else "disciplina" for c in contests}
     segments: dict[str, dict] = {}
 
     for sid in all_segments:

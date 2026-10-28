@@ -1,85 +1,95 @@
 {
   "aula": "raciocinio-logico/a00",
-  "batch": "praca-raciocinio-logico",
-  "status": "APPROVED",
+  "batch": "rl-resegment-2026-10-26",
+  "status": "DRAFT",
+  "stage": "bizu",
   "segments": [
     {
       "id": "raciocinio-logico/a00/s01",
       "bizu": {
         "summary": [
-          "**Proposição**: oração declarativa à qual se atribui um, e apenas um, dos valores verdadeiro ou falso.",
-          "**Oração**: precisa de verbo e sentido completo, então expressões como teclado ou vinte e duas horas não são proposições.",
-          "**Declarativa**: apenas afirmativas e negativas são proposições, e imperativas, interrogativas, exclamativas e optativas não são.",
-          "**Valor lógico único**: sentenças abertas, paradoxos e frases subjetivas não são proposições.",
-          "**Quantificadores**: palavras como todo e existe fecham a sentença aberta e a tornam proposição.",
-          "**Sentença e expressão**: a sentença tem sentido completo e verbo, e a expressão não.",
-          "**Lógica bivalente**: também chamada de clássica, aristotélica ou proposicional, tem apenas dois valores lógicos.",
-          "**Leis do pensamento**: identidade, não contradição e terceiro excluído."
+          "**Proposição**: oração declarativa (afirmativa ou negativa) que aceita um único valor lógico, V ou F.",
+          "**Precisa de verbo**: frases sem verbo, como \"Meia-noite em ponto\", são expressões e não proposições.",
+          "**Não declarativas**: exclamativas, interrogativas, imperativas (ordem, pedido, conselho) e optativas (desejo) não são proposições, mesmo com verbo.",
+          "**Valor lógico**: basta a frase poder ser julgada V ou F; não é preciso saber o valor real. Igualdades numéricas como \"4 + 4 = 9\" são proposições (falsa).",
+          "**Sentença aberta**: o valor depende de variável (letra, pronome como \"ela\" ou termo indeterminado como \"o município\"); não é proposição. Simplifique: \"0 · y = 4\" vira \"0 = 4\", proposição falsa.",
+          "**Quantificadores**: todo (∀), existe/algum (∃), nenhum (∄) e existe um único (∃!) fecham a sentença aberta; \"Ninguém nasce sabendo\" é proposição.",
+          "**Paradoxo e opinião**: \"Eu estou mentindo agora\" e \"Carla é encantadora\" não têm valor único; não são proposições.",
+          "**Motivo certo**: uma pergunta deixa de ser proposição por ser interrogativa, não por ser opinativa; as bancas toleram pronomes e adjetivos leves em frases declarativas.",
+          "**Lógica bivalente**: também chamada clássica, aristotélica ou proposicional; leis da identidade, da não contradição e do terceiro excluído."
         ],
         "teoria": [
           {
-            "statement": "Uma proposição lógica é uma oração declarativa que admite um, e apenas um, dos valores verdadeiro ou falso.",
+            "statement": "A frase \"Feche a porta da sala.\" não é proposição, embora apresente verbo, porque é imperativa e não declarativa.",
             "isTrue": true,
-            "explanation": "Definição básica."
+            "explanation": "Ter verbo não basta: a proposição precisa ser declarativa, e a imperativa expressa ordem ou pedido."
           },
           {
-            "statement": "A expressão \"Dois mil mais vinte mais dois\" é uma proposição por indicar uma soma.",
+            "statement": "Para que uma frase seja considerada proposição, é necessário saber se ela é verdadeira no mundo dos fatos.",
             "isTrue": false,
-            "explanation": "Sem verbo: não é oração."
+            "explanation": "Basta que a frase possa receber V ou F; conhecer o valor real é dispensável."
           },
           {
-            "statement": "A frase imperativa \"Chute a bola\" tem verbo, mas não é uma proposição, por não ser declarativa.",
+            "statement": "A igualdade \"0 · x = 6\" é uma sentença aberta, pois contém a variável x.",
+            "isTrue": false,
+            "explanation": "Simplificada, ela vira \"0 = 6\", que não depende de x: é uma proposição falsa."
+          },
+          {
+            "statement": "A frase \"Alguém atravessou o canal a nado em 1990\" é uma proposição, pois o termo \"alguém\" funciona como quantificador.",
             "isTrue": true,
-            "explanation": "Ter verbo não basta."
-          },
-          {
-            "statement": "Qualquer frase com pronome é proposição, pois a pessoa referida pode ser descoberta no contexto.",
-            "isTrue": false,
-            "explanation": "Pronome sem referência gera sentença aberta."
+            "explanation": "\"Alguém\" é variante de \"algum\" (∃) e fecha a sentença, permitindo julgá-la V ou F."
           }
         ],
         "revisao": [
           {
-            "statement": "\"Maria é formosíssima\" não é proposição por carregar alta subjetividade.",
+            "statement": "A frase \"Ele foi eleito prefeito em 2020\" é uma sentença aberta, pois o pronome atua como variável.",
             "isTrue": true,
-            "explanation": "Opinião não recebe valor lógico objetivo."
+            "explanation": "Sem saber a quem \"ele\" se refere, não é possível atribuir um único valor lógico."
           },
           {
-            "statement": "Segundo o princípio do terceiro excluído, uma proposição pode ser verdadeira, falsa ou indeterminada.",
+            "statement": "\"Esta afirmação é falsa\" é uma proposição falsa.",
             "isTrue": false,
-            "explanation": "Só V ou F."
+            "explanation": "É um paradoxo: supor V leva a F e supor F leva a V; logo não é proposição."
           },
           {
-            "statement": "\"5 + 5 = 9\" é uma proposição, mesmo sendo falsa.",
+            "statement": "O princípio da não contradição impede que a mesma proposição seja, simultaneamente, verdadeira e falsa.",
             "isTrue": true,
-            "explanation": "Expressão matemática com valor lógico único."
+            "explanation": "É o enunciado do princípio; o terceiro excluído é que diz não haver terceiro valor."
           },
           {
-            "statement": "Palavras como \"todo\" e \"existe\" transformam uma sentença aberta em proposição.",
-            "isTrue": true,
-            "explanation": "Quantificadores."
+            "statement": "A frase \"O Sol é uma estrela?\" não é proposição por ter conteúdo opinativo.",
+            "isTrue": false,
+            "explanation": "Ela não é proposição por ser interrogativa; o motivo apontado está errado."
           }
         ],
         "pointers": [
           {
-            "topic": "Apresentação da aula",
-            "pageRef": 5
-          },
-          {
-            "topic": "Proposição lógica e tipos de sentença",
+            "topic": "Definição de proposição e os três requisitos",
             "pageRef": 6
           },
           {
-            "topic": "Lógica bivalente e leis do pensamento",
-            "pageRef": 7
-          },
-          {
-            "topic": "Definição de proposição e exemplo da Petrobras",
-            "pageRef": 8
-          },
-          {
-            "topic": "Oração e declarativa",
+            "topic": "Oração com verbo e sentença declarativa",
             "pageRef": 9
+          },
+          {
+            "topic": "Valor lógico independe de saber se é verdadeira",
+            "pageRef": 11
+          },
+          {
+            "topic": "Sentenças abertas com variável e com pronome",
+            "pageRef": 13
+          },
+          {
+            "topic": "Quantificadores e seus símbolos",
+            "pageRef": 19
+          },
+          {
+            "topic": "Paradoxos",
+            "pageRef": 19
+          },
+          {
+            "topic": "Frases opinativas e tolerância das bancas",
+            "pageRef": 20
           }
         ]
       }
@@ -88,169 +98,59 @@
       "id": "raciocinio-logico/a00/s02",
       "bizu": {
         "summary": [
-          "**Valor lógico**: na lógica formal é verdadeiro ou falso, mas nunca ambos.",
-          "**Reconhecer proposição**: não exige conhecer o valor real da frase, e apenas verificar se admite um único valor lógico.",
-          "**Sentença aberta**: depende de variável ou de pronome sem referência, como x + 9 = 10 ou ele correu cem metros.",
-          "**Equação que vira número**: se a equação se simplifica para uma igualdade numérica, passa a ser proposição.",
-          "**Quantificadores**: todo, existe, alguém e ninguém fecham a sentença, e ∀, ∃, ∄ e ∃! são seus símbolos.",
-          "**Valores dos exemplos**: existe x natural com x + 9 = 10 é verdadeira, e para todo x natural x + 9 = 10 é falsa.",
-          "**Paradoxo**: esta frase é uma mentira leva a verdadeiro e falso ao mesmo tempo e não é proposição.",
-          "**Opinião**: frases de alta subjetividade não recebem valor lógico objetivo.",
-          "**Pegadinha de terminologia**: proposição exclamativa não existe, pois exclamativa já é fora do conceito."
+          "**Sentença × expressão**: sentença tem sentido completo; expressão não tem verbo e nunca é proposição. Proposição é a sentença declarativa.",
+          "**Leis do pensamento**: identidade, não contradição (não é V e F ao mesmo tempo) e terceiro excluído (não existe \"talvez\").",
+          "**Proposição simples**: não se divide em menores; pode ser afirmativa ou negativa e recebe uma letra.",
+          "**Negação (~p ou ¬p)**: sempre com valor oposto; formas: inserir \"não\", \"não é verdade que\" ou \"é falso que\".",
+          "**Negar frase negativa**: basta retirar o \"não\"; a negação de uma negação é uma afirmação.",
+          "**Antônimos**: só negam quando não há meio-termo; \"ganhou\" não se nega com \"perdeu\" (pode ter empatado), mas com \"não ganhou\".",
+          "**Subordinação**: nega-se a oração principal (\"não afirmou que terminou\"), nunca a subordinada; a principal nem sempre vem primeiro.",
+          "**Negações em série**: ~(~p) ≡ p; número par devolve p, número ímpar resulta em ~p.",
+          "**Proposição composta**: une simples por conectivos; o valor depende das partes.",
+          "**Cinco conectivos**: e, ou, ou...ou, se...então, se e somente se. A negação não é conectivo; a conjunção usa ∧ (também & ou ∩)."
         ],
         "teoria": [
           {
-            "statement": "Para saber se uma frase é proposição, não é necessário saber se ela é verdadeira ou falsa no mundo real.",
+            "statement": "A negação mais usual de \"Tereza não é enfermeira\" é \"Tereza é enfermeira\".",
             "isTrue": true,
-            "explanation": "Basta admitir um único valor lógico."
+            "explanation": "Para negar uma declarativa negativa, retira-se o \"não\"."
           },
           {
-            "statement": "A frase \"Taubaté é a capital do Ceará\" não é proposição, pois é falsa.",
+            "statement": "A negação de \"O time venceu a partida\" é \"O time perdeu a partida\".",
             "isTrue": false,
-            "explanation": "Falsa, mas declarativa: é proposição."
+            "explanation": "Há meio-termo (empate); a negação correta é \"O time não venceu a partida\"."
           },
           {
-            "statement": "A equação \"x + 9 = 10\" é uma sentença aberta, pois seu valor lógico depende do valor de x.",
+            "statement": "A negação de \"O juiz declarou que o contrato é nulo\" é \"O juiz declarou que o contrato não é nulo\".",
+            "isTrue": false,
+            "explanation": "Nega-se a oração principal: \"O juiz não declarou que o contrato é nulo\"."
+          },
+          {
+            "statement": "A proposição ~(~(~(~(~p)))) tem sempre o mesmo valor lógico de ~p.",
             "isTrue": true,
-            "explanation": "Com x = 1 é V; com x = 3 é F."
-          },
-          {
-            "statement": "A equação \"0 · x = 5\" é sentença aberta, pois contém a variável x.",
-            "isTrue": false,
-            "explanation": "Reduz-se a \"0 = 5\": proposição falsa."
+            "explanation": "São cinco negações (número ímpar), o que equivale a uma única negação."
           }
         ],
         "revisao": [
           {
-            "statement": "A frase \"Ninguém ensina ninguém\" é uma proposição, pois o termo \"ninguém\" funciona como quantificador.",
-            "isTrue": true,
-            "explanation": "Variante de \"nenhum\"."
-          },
-          {
-            "statement": "A expressão \"∀ x ∈ ℕ | x + 9 = 10\" é uma proposição verdadeira.",
+            "statement": "O operador de negação é um dos cinco conectivos lógicos, ao lado da conjunção e da disjunção.",
             "isTrue": false,
-            "explanation": "É proposição, mas falsa."
+            "explanation": "A negação gera nova proposição simples e não une proposições; os cinco conectivos são e, ou, ou...ou, se...então e se e somente se."
           },
           {
-            "statement": "A frase \"Esta frase é uma mentira\" não é proposição, pois leva ao absurdo de ser verdadeira e falsa ao mesmo tempo.",
+            "statement": "A frase \"Uma dúzia de ovos\" é uma expressão, e não uma proposição, por não apresentar verbo.",
             "isTrue": true,
-            "explanation": "Paradoxo."
+            "explanation": "Sem verbo não há sentido completo; logo não é sentença nem proposição."
           },
           {
-            "statement": "A frase \"A Terra é um geoide?\" não é proposição por ser interrogativa, e não por ser opinativa.",
+            "statement": "\"Lia foi reprovada no concurso\" é negação válida de \"Lia foi aprovada no concurso\".",
             "isTrue": true,
-            "explanation": "Fundamento correto da exclusão."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Frases que não são proposições e valor lógico",
-            "pageRef": 10
+            "explanation": "Aprovada e reprovada esgotam as possibilidades nesse contexto, então o antônimo nega corretamente."
           },
           {
-            "topic": "Verdadeira ou falsa no mundo real",
-            "pageRef": 11
-          },
-          {
-            "topic": "Conceitos matemáticos e sentenças abertas",
-            "pageRef": 12
-          },
-          {
-            "topic": "Sentença aberta: equação e inequação",
-            "pageRef": 13
-          },
-          {
-            "topic": "Equações que viram proposições",
-            "pageRef": 14
-          },
-          {
-            "topic": "Pronomes e variáveis em sentenças abertas",
-            "pageRef": 15
-          },
-          {
-            "topic": "Sentenças abertas sutis",
-            "pageRef": 16
-          },
-          {
-            "topic": "Quantificadores",
-            "pageRef": 17
-          },
-          {
-            "topic": "Quantificador existe e ninguém",
-            "pageRef": 18
-          },
-          {
-            "topic": "Símbolos dos quantificadores e paradoxos",
-            "pageRef": 19
-          },
-          {
-            "topic": "Frases de opinião",
-            "pageRef": 20
-          },
-          {
-            "topic": "Opinião e jogo de cintura",
-            "pageRef": 21
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a00/s03",
-      "bizu": {
-        "summary": [
-          "**Sentença**: pensamento completo com verbo, e só as declarativas, afirmativas ou negativas, são proposições.",
-          "**Expressão**: frase sem verbo e sem sentido completo, como a casa de Pedro, que não é proposição.",
-          "**Leis do pensamento**: identidade, não contradição e terceiro excluído sustentam a lógica clássica.",
-          "**Proposição simples**: não se divide em proposições menores e costuma ser representada por letras.",
-          "**Negação**: ~p inverte o valor lógico de p, e se faz com não, não é verdade que ou é falso que.",
-          "**Negativa**: nega-se uma sentença declarativa negativa retirando o não, e a negação de uma negação é uma afirmação.",
-          "**Antônimos**: só negam quando os termos esgotam todas as possibilidades, o que raramente ocorre.",
-          "**Exemplos de erro**: vencer não se nega por perder, e quente não se nega por frio.",
-          "**Dupla negação**: número par de negações volta à original e ímpar equivale à negação.",
-          "**Português e lógica**: o não... nada do português é ênfase e não equivale à dupla negação lógica."
-        ],
-        "teoria": [
-          {
-            "statement": "\"A casa de Pedro\" é uma expressão e não uma sentença, pois não apresenta verbo.",
-            "isTrue": true,
-            "explanation": "Sem verbo."
-          },
-          {
-            "statement": "O princípio que impede uma proposição de ser, ao mesmo tempo, verdadeira e falsa é o da identidade.",
+            "statement": "O princípio da identidade afirma que uma proposição ou é verdadeira ou é falsa, sem terceira possibilidade.",
             "isTrue": false,
-            "explanation": "Esse é o da não contradição."
-          },
-          {
-            "statement": "A negação de \"Taubaté não é a capital de Mato Grosso\" pode ser \"Taubaté é a capital de Mato Grosso\".",
-            "isTrue": true,
-            "explanation": "Retira-se o não."
-          },
-          {
-            "statement": "A negação de \"O time venceu o jogo\" é \"O time perdeu o jogo\".",
-            "isTrue": false,
-            "explanation": "Pode ter empatado; a negação é \"não venceu\"."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "Se p é falsa, então ~p é verdadeira.",
-            "isTrue": true,
-            "explanation": "A negação inverte o valor."
-          },
-          {
-            "statement": "A negação de \"Está quente em Paraí\" é \"Está frio em Paraí\".",
-            "isTrue": false,
-            "explanation": "Pode estar ameno; usar \"não é verdade que está quente\"."
-          },
-          {
-            "statement": "A negação de uma sentença declarativa negativa é, em geral, uma afirmação.",
-            "isTrue": true,
-            "explanation": "Remove-se o não."
-          },
-          {
-            "statement": "A expressão \"uma dúzia e meia\" não é proposição, pois não tem verbo.",
-            "isTrue": true,
-            "explanation": "Expressões não são proposições."
+            "explanation": "Essa é a ideia do terceiro excluído; a identidade diz que o que é V permanece V e o que é F permanece F."
           }
         ],
         "pointers": [
@@ -259,36 +159,126 @@
             "pageRef": 22
           },
           {
-            "topic": "Expressão como sinônimo de sentença",
-            "pageRef": 23
-          },
-          {
             "topic": "Leis do pensamento",
             "pageRef": 24
           },
           {
-            "topic": "Resumo das proposições simples",
-            "pageRef": 25
-          },
-          {
-            "topic": "Definição e negação de proposição simples",
+            "topic": "Proposição simples e negação com não/é falso que",
             "pageRef": 26
           },
           {
-            "topic": "Negação de sentença negativa",
+            "topic": "Negar declarativa negativa",
             "pageRef": 27
           },
           {
-            "topic": "Questões sobre negação",
-            "pageRef": 28
-          },
-          {
-            "topic": "Negação usando antônimos",
+            "topic": "Negação com antônimos",
             "pageRef": 29
           },
           {
-            "topic": "Antônimos e questão de Paraí",
-            "pageRef": 30
+            "topic": "Negação em período composto por subordinação",
+            "pageRef": 31
+          },
+          {
+            "topic": "Dupla negação e número par/ímpar",
+            "pageRef": 33
+          },
+          {
+            "topic": "Proposição composta e os cinco conectivos",
+            "pageRef": 36
+          }
+        ]
+      }
+    },
+    {
+      "id": "raciocinio-logico/a00/s03",
+      "bizu": {
+        "summary": [
+          "**Conjunção (∧)**: só é V quando as duas partes são V; uma parte F já a torna falsa.",
+          "**Disfarces do \"e\"**: mas, porém, entretanto e embora valem como conjunção; \"nem\" = \"e não\" (~p ∧ ~q).",
+          "**Disjunção inclusiva (∨)**: só é F quando as duas partes são F; admite as duas verdadeiras. ~p ∨ ~q só é F com p e q V.",
+          "**Disjunção exclusiva (⊻)**: \"ou p, ou q\" ou \"p ou q, mas não ambos\"; é F quando as partes têm o mesmo valor.",
+          "**\"Ou\" sozinho**: em regra inclusivo; só leia como exclusivo quando o contexto impede as duas partes juntas (último recurso).",
+          "**∧ × ⊻**: só coincidem (ambas F) quando p e q são falsas.",
+          "**Condicional (→)**: só é F no caso V → F. Antecedente F torna a condicional V, qualquer que seja o consequente.",
+          "**Condicional verdadeira**: não garante o consequente (F → F é V). **Condicional falsa**: antecedente V e consequente F; se (p ∧ q) → r é F, p e q são V e r é F.",
+          "**Disfarces do \"se...então\"**: \"Se p, q\", \"Como p, q\", \"p, logo q\" e \"p implica q\" são todos p → q."
+        ],
+        "teoria": [
+          {
+            "statement": "Para que a proposição p ∧ ~q seja falsa, basta que p seja falsa ou que q seja verdadeira.",
+            "isTrue": true,
+            "explanation": "A conjunção é falsa se qualquer parte é falsa: p falsa ou ~q falsa (q verdadeira)."
+          },
+          {
+            "statement": "Na lógica proposicional, a frase \"Nina é atleta, mas não treina\" apresenta o conectivo disjunção inclusiva.",
+            "isTrue": false,
+            "explanation": "\"Mas\" corresponde à conjunção: Nina é atleta e não treina."
+          },
+          {
+            "statement": "A disjunção exclusiva p ⊻ q é verdadeira quando p e q são ambas verdadeiras.",
+            "isTrue": false,
+            "explanation": "Com valores iguais (V e V ou F e F) a disjunção exclusiva é falsa."
+          },
+          {
+            "statement": "Se a proposição \"Mário é contador\" é falsa, então \"Se Mário é contador, então Mário é rico\" é verdadeira.",
+            "isTrue": true,
+            "explanation": "Com antecedente falso, a condicional é verdadeira, seja qual for o consequente."
+          }
+        ],
+        "revisao": [
+          {
+            "statement": "A proposição ~p ∨ ~q é falsa somente quando p e q são ambas verdadeiras.",
+            "isTrue": true,
+            "explanation": "A disjunção inclusiva só é falsa com as duas partes falsas, ou seja, ~p e ~q falsas."
+          },
+          {
+            "statement": "Sabendo que a condicional p → q é verdadeira, conclui-se necessariamente que q é verdadeira.",
+            "isTrue": false,
+            "explanation": "A condicional também é verdadeira no caso F → F, em que q é falsa."
+          },
+          {
+            "statement": "A frase \"Rita não canta nem dança\" pode ser representada por ~c ∧ ~d, sendo c \"Rita canta\" e d \"Rita dança\".",
+            "isTrue": true,
+            "explanation": "\"Nem\" equivale a \"e não\", formando conjunção de duas negações."
+          },
+          {
+            "statement": "Se as proposições p ∧ q e p ⊻ q têm o mesmo valor lógico, então p é verdadeira e q é falsa.",
+            "isTrue": false,
+            "explanation": "As duas só coincidem (ambas falsas) quando p e q são falsas."
+          }
+        ],
+        "pointers": [
+          {
+            "topic": "Tabela-verdade da conjunção",
+            "pageRef": 40
+          },
+          {
+            "topic": "Mas, entretanto, embora e nem como conjunção",
+            "pageRef": 42
+          },
+          {
+            "topic": "Disjunção inclusiva e sentido de inclusão",
+            "pageRef": 44
+          },
+          {
+            "topic": "Disjunção exclusiva e sua tabela",
+            "pageRef": 48
+          },
+          {
+            "topic": "Ou sozinho com sentido exclusivo",
+            "pageRef": 50
+          },
+          {
+            "topic": "Tabela-verdade da condicional",
+            "pageRef": 52
+          },
+          {
+            "topic": "Condicional falsa e antecedente falso",
+            "pageRef": 54
+          },
+          {
+            "topic": "Formas alternativas da condicional: como, logo, implica",
+            "pageRef": 55
           }
         ]
       }
@@ -297,986 +287,93 @@
       "id": "raciocinio-logico/a00/s04",
       "bizu": {
         "summary": [
-          "**Negação de subordinação**: nega-se a oração principal e a subordinada permanece como está.",
-          "**Erro típico**: negar apenas a oração subordinada produz uma frase que não é a negação da original.",
-          "**Dupla negação**: ~(~p) equivale a p, e um número par de negações equivale à proposição original.",
-          "**Número ímpar de negações**: equivale à negação da proposição original.",
-          "**Proposição composta**: resulta da união de simples por conectivos e seu valor depende dos valores das partes.",
-          "**Negação e conectivos**: a negação não é conectivo, e os cinco conectivos são e, ou, ou...ou, se...então e se e somente se.",
-          "**Conjunção**: só é verdadeira quando as duas parcelas são verdadeiras e é falsa se ao menos uma for falsa.",
-          "**Sinônimos de e**: mas, entretanto e embora funcionam como a conjunção na lógica proposicional.",
-          "**Nem**: equivale a e mais negação, como em ~e ∧ ~t."
+          "**Mais formas de p → q**: \"Quando p, q\", \"Toda vez que p, q\" e \"p somente se q\".",
+          "**Ordem invertida**: em \"q, se p\", \"q, pois p\" e \"q porque p\", o antecedente é o que vem depois de se/pois/porque.",
+          "**Suficiente × necessária**: em p → q, p é condição suficiente para q e q é condição necessária para p; o \"se\" aponta o suficiente.",
+          "**Leitura reversa**: \"uma condição necessária para Q é P\" traduz Q → P.",
+          "**Nomes**: antecedente ou precedente (1ª parte) e consequente ou subsequente (2ª); condicional falsa exige antecedente V e consequente F.",
+          "**Bicondicional (↔)**: \"se e somente se\"; V quando as partes têm o mesmo valor e F quando diferem (oposto da exclusiva).",
+          "**Formas da bicondicional**: \"assim como\", \"se e só se\" e a condicional de ida e volta unida por \"e\": p ↔ q ≡ (p → q) ∧ (q → p).",
+          "**Necessária e suficiente**: na bicondicional, cada parte é condição necessária e suficiente para a outra.",
+          "**p falsa não basta**: com p F, p ↔ q pode ser F (se q for V).",
+          "**Valoração**: resolva de dentro para fora; com A = V, B = F, C = V, (A ∨ B) ↔ ~C = V ↔ F = F."
         ],
         "teoria": [
           {
-            "statement": "A negação de \"O tribunal entende que o réu tem culpa\" é \"O tribunal não entende que o réu tem culpa\".",
+            "statement": "A frase \"O alarme dispara porque a porta foi aberta\" corresponde à condicional \"Se a porta foi aberta, então o alarme dispara\".",
             "isTrue": true,
-            "explanation": "Nega-se a oração principal."
+            "explanation": "Em \"q porque p\" há inversão: o antecedente é o que vem depois de \"porque\"."
           },
           {
-            "statement": "Para negar \"A chefe afirmou que o relatório está pronto\", basta escrever \"A chefe afirmou que o relatório não está pronto\".",
+            "statement": "Na condicional \"Se Laura é juíza, então Laura é bacharel em Direito\", ser juíza é condição necessária para ser bacharel em Direito.",
             "isTrue": false,
-            "explanation": "Isso nega a subordinada; a negação correta é \"A chefe não afirmou que o relatório está pronto\"."
+            "explanation": "Ser juíza é condição suficiente; ser bacharel é a condição necessária."
           },
           {
-            "statement": "A proposição ~(~(~(~p))) tem sempre o mesmo valor lógico de p.",
+            "statement": "Se uma condicional p → q é falsa, então o seu antecedente é necessariamente falso.",
+            "isTrue": false,
+            "explanation": "A condicional só é falsa no caso V → F: o antecedente é verdadeiro."
+          },
+          {
+            "statement": "A bicondicional \"2 + 2 = 5 se e somente se 3 + 3 = 7\" é verdadeira.",
             "isTrue": true,
-            "explanation": "Quatro negações: número par."
-          },
-          {
-            "statement": "Na lógica proposicional, o símbolo da negação (~) é um dos cinco conectivos.",
-            "isTrue": false,
-            "explanation": "A negação não é conectivo."
+            "explanation": "As duas partes são falsas; valores iguais tornam a bicondicional verdadeira."
           }
         ],
         "revisao": [
           {
-            "statement": "A conjunção \"Maria foi ao cinema e João foi ao parque\" é falsa se João não foi ao parque, ainda que Maria tenha ido ao cinema.",
-            "isTrue": true,
-            "explanation": "Basta uma parcela falsa."
-          },
-          {
-            "statement": "Na proposição \"Adelaide namora, mas não consegue casar\", o conectivo lógico é a disjunção exclusiva.",
+            "statement": "A expressão \"p somente se q\" corresponde à bicondicional p ↔ q.",
             "isTrue": false,
-            "explanation": "\"Mas\" equivale ao \"e\"."
+            "explanation": "\"Somente se\" indica a condicional p → q; a bicondicional é \"se e somente se\"."
           },
           {
-            "statement": "A proposição \"Pedro não estuda nem trabalha\" pode ser representada por ~e ∧ ~t.",
+            "statement": "A bicondicional p ↔ q tem a mesma tabela-verdade de (p → q) ∧ (q → p).",
             "isTrue": true,
-            "explanation": "\"Nem\" = \"e\" + negação."
+            "explanation": "A bicondicional equivale à condicional de ida e volta unidas por conjunção."
           },
           {
-            "statement": "A proposição p ∧ ~q só é verdadeira se p for verdadeira e q for falsa.",
+            "statement": "Sendo p uma proposição falsa, a bicondicional p ↔ q é sempre verdadeira.",
+            "isTrue": false,
+            "explanation": "Se q for verdadeira, os valores diferem e a bicondicional é falsa."
+          },
+          {
+            "statement": "Considerando A verdadeira, B falsa e C verdadeira, a proposição (A ∧ B) → C é verdadeira.",
             "isTrue": true,
-            "explanation": "Para p ∧ ~q ser V, p deve ser V e ~q deve ser V."
+            "explanation": "A ∧ B é falsa; F → V é condicional verdadeira."
           }
         ],
         "pointers": [
           {
-            "topic": "Negação de período composto por subordinação",
-            "pageRef": 31
-          },
-          {
-            "topic": "Questões sobre negação da oração principal",
-            "pageRef": 32
-          },
-          {
-            "topic": "Dupla negação",
-            "pageRef": 33
-          },
-          {
-            "topic": "Proposições compostas: resumo",
-            "pageRef": 34
-          },
-          {
-            "topic": "Resumo dos cinco conectivos",
-            "pageRef": 35
-          },
-          {
-            "topic": "Definição de proposição composta",
-            "pageRef": 36
-          },
-          {
-            "topic": "Conectivos e conjunção",
-            "pageRef": 38
-          },
-          {
-            "topic": "Tabela-verdade da conjunção",
-            "pageRef": 40
-          },
-          {
-            "topic": "Questões sobre conjunção",
-            "pageRef": 41
-          },
-          {
-            "topic": "Mas, entretanto e embora",
-            "pageRef": 42
-          },
-          {
-            "topic": "A palavra nem",
-            "pageRef": 43
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a00/s05",
-      "bizu": {
-        "summary": [
-          "**Disjunção inclusiva**: é falsa apenas quando as duas parcelas são falsas.",
-          "**Sentido do ou**: o ou sozinho admite uma parcela isolada, a outra isolada ou as duas juntas.",
-          "**Disjunção exclusiva**: é falsa quando as parcelas têm o mesmo valor lógico e verdadeira quando diferem.",
-          "**Ou, mas não ambos**: é uma forma de escrever a disjunção exclusiva, e o contexto pode tornar exclusivo um ou sozinho.",
-          "**Condicional**: p → q só é falsa quando p é verdadeira e q é falsa.",
-          "**Antecedente falso**: torna a condicional verdadeira, seja qual for o valor de q.",
-          "**Condicional verdadeira**: não permite concluir o valor do consequente.",
-          "**Formas da condicional**: se p, q; como p, q; p, logo q; p implica q; quando p, q; p somente se q.",
-          "**Ordem invertida**: q, se p; q, pois p; e q porque p também são p → q."
-        ],
-        "teoria": [
-          {
-            "statement": "A disjunção inclusiva p ∨ q é falsa somente quando p e q são ambas falsas.",
-            "isTrue": true,
-            "explanation": "Basta uma verdadeira para ser V."
-          },
-          {
-            "statement": "A proposição ~p ∨ ~q é falsa quando p e q são ambas falsas.",
-            "isTrue": false,
-            "explanation": "Só é falsa quando p e q são ambas verdadeiras."
-          },
-          {
-            "statement": "A disjunção exclusiva é falsa quando as duas parcelas assumem o mesmo valor lógico.",
-            "isTrue": true,
-            "explanation": "Duas V ou duas F."
-          },
-          {
-            "statement": "Na lógica proposicional, o conectivo \"ou\" sozinho exclui que as duas parcelas sejam verdadeiras ao mesmo tempo, em qualquer contexto.",
-            "isTrue": false,
-            "explanation": "O \"ou\" sozinho é inclusivo; só o contexto pode torná-lo exclusivo."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "A condicional p → q é falsa somente quando p é verdadeira e q é falsa.",
-            "isTrue": true,
-            "explanation": "V → F."
-          },
-          {
-            "statement": "Se a condicional \"Se choveu, então a rua está molhada\" é verdadeira, então é certo que a rua está molhada.",
-            "isTrue": false,
-            "explanation": "Condicional verdadeira não garante o consequente: o antecedente pode ser falso."
-          },
-          {
-            "statement": "A proposição \"Maria vai ao cinema porque Pedro vai ao parque\" tem a forma p → q, com p: Pedro vai ao parque.",
-            "isTrue": true,
-            "explanation": "Inversão da ordem: \"q porque p\"."
-          },
-          {
-            "statement": "Quando uma condicional cujo antecedente é uma conjunção de duas proposições é falsa, as duas proposições da conjunção são verdadeiras e o consequente é falso.",
-            "isTrue": true,
-            "explanation": "Antecedente V (logo, ambas V) e consequente F."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Disjunção inclusiva",
-            "pageRef": 44
-          },
-          {
-            "topic": "Exemplos e questão sobre ~p ∨ ~q",
-            "pageRef": 45
-          },
-          {
-            "topic": "Questões sobre a disjunção inclusiva",
-            "pageRef": 46
-          },
-          {
-            "topic": "Sentido de inclusão do ou",
-            "pageRef": 47
-          },
-          {
-            "topic": "Disjunção exclusiva",
-            "pageRef": 48
-          },
-          {
-            "topic": "Exclusiva: os quatro casos e questão IFMA",
-            "pageRef": 49
-          },
-          {
-            "topic": "Ou..., mas não ambos",
-            "pageRef": 50
-          },
-          {
-            "topic": "Ou sozinho como exclusivo e condicional",
-            "pageRef": 51
-          },
-          {
-            "topic": "Tabela da condicional e exemplo do Frederico",
-            "pageRef": 52
-          },
-          {
-            "topic": "Questões sobre condicional",
-            "pageRef": 53
-          },
-          {
-            "topic": "Condicional falsa",
-            "pageRef": 54
-          },
-          {
-            "topic": "Formas alternativas da condicional",
-            "pageRef": 55
-          },
-          {
-            "topic": "Somente se e inversões",
+            "topic": "Formas quando, toda vez que, somente se, pois, porque",
             "pageRef": 56
           },
           {
-            "topic": "Condicional com antecedente falso",
+            "topic": "Antecedente falso torna a condicional verdadeira",
             "pageRef": 57
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a00/s06",
-      "bizu": {
-        "summary": [
-          "**Tradução simbólica**: identifique primeiro o conectivo principal e depois os internos, como em (P ∨ Q) → (R ∧ S).",
-          "**Suficiente e necessária**: em p → q, p é condição suficiente e q é condição necessária.",
-          "**Macete**: a palavra se aponta para a condição suficiente.",
-          "**Antecedente e consequente**: são os nomes das parcelas da condicional, e esta só é falsa com antecedente verdadeiro e consequente falso.",
-          "**Bicondicional**: é verdadeira quando as parcelas têm o mesmo valor lógico e falsa quando diferem.",
-          "**Formas da bicondicional**: se e somente se, se e só se, assim como e a dupla condicional de ida e volta.",
-          "**Equivalência**: p ↔ q equivale a (p → q) ∧ (q → p).",
-          "**Necessária e suficiente**: expressão própria da bicondicional.",
-          "**Somente se**: é uma condicional, e não uma bicondicional.",
-          "**Estratégia de prova**: valore as proposições simples e resolva do conectivo mais interno para o principal."
-        ],
-        "teoria": [
-          {
-            "statement": "Na condicional \"Se estudo muito, passo no exame\", estudar muito é condição suficiente para passar no exame.",
-            "isTrue": true,
-            "explanation": "O \"se\" aponta a condição suficiente."
           },
           {
-            "statement": "Em p → q, a proposição q é condição suficiente para p.",
-            "isTrue": false,
-            "explanation": "q é condição necessária para p."
-          },
-          {
-            "statement": "A bicondicional p ↔ q é verdadeira quando p e q têm o mesmo valor lógico, inclusive quando ambas são falsas.",
-            "isTrue": true,
-            "explanation": "F ↔ F é V."
-          },
-          {
-            "statement": "Se p é falsa, a bicondicional p ↔ q é sempre verdadeira.",
-            "isTrue": false,
-            "explanation": "Com q verdadeira, F ↔ V é falsa."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "A frase \"Ana viaja somente se Bruno viaja\" é uma condicional, e não uma bicondicional.",
-            "isTrue": true,
-            "explanation": "Somente se corresponde ao se... então."
-          },
-          {
-            "statement": "A proposição p ↔ q é equivalente à conjunção (p → q) ∧ (q → p).",
-            "isTrue": true,
-            "explanation": "Condicional de ida e de volta."
-          },
-          {
-            "statement": "Uma condicional é falsa quando o antecedente e o consequente são ambos falsos.",
-            "isTrue": false,
-            "explanation": "Só é falsa em V → F."
-          },
-          {
-            "statement": "Em \"A cidade é capital assim como o estado é federado\", o conectivo \"assim como\" representa uma bicondicional.",
-            "isTrue": true,
-            "explanation": "Forma alternativa de ↔."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Tradução de frase para a linguagem simbólica",
+            "topic": "Condição suficiente e condição necessária",
             "pageRef": 58
           },
           {
-            "topic": "Condição suficiente e necessária",
-            "pageRef": 59
-          },
-          {
-            "topic": "Questão sobre estudar e ser aprovado",
-            "pageRef": 60
-          },
-          {
-            "topic": "Antecedente e consequente",
+            "topic": "Antecedente/precedente e consequente/subsequente",
             "pageRef": 61
           },
           {
-            "topic": "Bicondicional",
+            "topic": "Tabela-verdade da bicondicional",
             "pageRef": 62
           },
           {
-            "topic": "Questões sobre a bicondicional",
-            "pageRef": 63
-          },
-          {
-            "topic": "Formas alternativas da bicondicional",
+            "topic": "Formas alternativas da bicondicional e ida e volta",
             "pageRef": 64
-          },
-          {
-            "topic": "Bicondicional como condicional de ida e volta",
-            "pageRef": 65
           },
           {
             "topic": "Condição necessária e suficiente",
             "pageRef": 66
           },
           {
-            "topic": "Resumo dos cinco conectivos",
+            "topic": "Resumo dos cinco conectivos e valoração",
             "pageRef": 67
-          },
-          {
-            "topic": "Valoração de proposições compostas",
-            "pageRef": 68
-          },
-          {
-            "topic": "Condicional falsa: camisa, calça, cinto e sapato",
-            "pageRef": 69
-          },
-          {
-            "topic": "Verdades a partir de duas afirmações",
-            "pageRef": 70
-          },
-          {
-            "topic": "Somente se e condição suficiente",
-            "pageRef": 71
-          },
-          {
-            "topic": "Alternativas incorretas da questão da PM BA",
-            "pageRef": 72
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a00/s07",
-      "bizu": {
-        "summary": [
-          "**Proposição**: oração declarativa com um único valor lógico, mesmo que seja falsa na realidade.",
-          "**Fora do conceito**: frases imperativas, interrogativas, exclamativas e optativas não são proposições.",
-          "**Sentença aberta**: depende de variável ou de pronome sem referência, como x + 6 = 8 ou eles saíram.",
-          "**Quantificadores**: palavras como existe, todo e para todo transformam a sentença aberta em proposição.",
-          "**Numérica sem variável**: desigualdades e igualdades constantes são proposições, verdadeiras ou falsas.",
-          "**Paradoxo**: frases como esta frase é falsa não admitem valor lógico único.",
-          "**Juízo de valor**: afirmações subjetivas, como quem é o maior jogador, não são proposições.",
-          "**Princípio da identidade**: a proposição verdadeira continua verdadeira e a falsa continua falsa.",
-          "**Não contradição**: nenhuma proposição é, no mesmo instante, verdadeira e falsa.",
-          "**Terceiro excluído**: toda proposição é verdadeira ou falsa, sem terceiro valor."
-        ],
-        "teoria": [
-          {
-            "statement": "A sentença \"A Alemanha é um país do continente americano\" é uma proposição, ainda que seja falsa.",
-            "isTrue": true,
-            "explanation": "Declarativa com um único valor lógico."
-          },
-          {
-            "statement": "A frase \"Eles saíram muito cedo da festa\" é uma proposição, pois tem sujeito e verbo.",
-            "isTrue": false,
-            "explanation": "Pronome sem referência: sentença aberta."
-          },
-          {
-            "statement": "A sentença \"Existe um número real x tal que x + 2 = 1\" é uma proposição lógica.",
-            "isTrue": true,
-            "explanation": "O quantificador existe fecha a sentença."
-          },
-          {
-            "statement": "A frase \"Estude para ser aprovado!\" é uma proposição porque contém verbo.",
-            "isTrue": false,
-            "explanation": "É imperativa."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "A sentença \"x² + 2x − 1 = 0\", sem quantificador, não é uma proposição lógica.",
-            "isTrue": true,
-            "explanation": "Sentença aberta."
-          },
-          {
-            "statement": "\"Esta frase é falsa\" é uma proposição falsa, pois não pode ser verdadeira.",
-            "isTrue": false,
-            "explanation": "Paradoxo: sem valor lógico único."
-          },
-          {
-            "statement": "A frase \"Maradona é o maior jogador argentino de todos os tempos\" não é proposição, por depender de juízo subjetivo.",
-            "isTrue": true,
-            "explanation": "Alta carga de subjetividade."
-          },
-          {
-            "statement": "Segundo o princípio da identidade, uma proposição verdadeira permanece verdadeira enquanto se mantiverem as mesmas condições.",
-            "isTrue": true,
-            "explanation": "Leis do pensamento."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Questões sobre proposições",
-            "pageRef": 73
-          },
-          {
-            "topic": "Princípio da identidade",
-            "pageRef": 74
-          },
-          {
-            "topic": "Proposição ou imperativa, exclamativa e interrogativa",
-            "pageRef": 75
-          },
-          {
-            "topic": "Paradoxo do mentiroso",
-            "pageRef": 76
-          },
-          {
-            "topic": "Sentenças abertas e pronomes",
-            "pageRef": 77
-          },
-          {
-            "topic": "Juízo de valor e sentença aberta",
-            "pageRef": 78
-          },
-          {
-            "topic": "Quantificadores e subjetividade",
-            "pageRef": 79
-          },
-          {
-            "topic": "Paradoxo e variáveis",
-            "pageRef": 80
-          },
-          {
-            "topic": "Quantificador existencial",
-            "pageRef": 81
-          },
-          {
-            "topic": "Quantificadores e proposições",
-            "pageRef": 82
-          },
-          {
-            "topic": "Sentenças com quantificadores",
-            "pageRef": 83
-          },
-          {
-            "topic": "Frases declarativas e não declarativas",
-            "pageRef": 84
-          },
-          {
-            "topic": "Proposição verdadeira ou falsa",
-            "pageRef": 85
-          },
-          {
-            "topic": "Proposição lógica e números primos",
-            "pageRef": 86
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a00/s08",
-      "bizu": {
-        "summary": [
-          "**Verdade das proposições**: descartadas as não declarativas, julga-se cada declarativa pelos fatos, e as falsas continuam sendo proposições.",
-          "**Proposição simples**: afirmação indivisível, como hoje é domingo, e a negação de uma simples continua simples.",
-          "**Quantificador**: palavras como todo não funcionam como conectivo, então a frase continua simples.",
-          "**Proposição composta**: reúne simples por e, ou, se... então, mas e conectivos equivalentes.",
-          "**Aberta ou fechada**: pronome sem referência ou variável torna a sentença aberta; sujeitos determinados a tornam fechada.",
-          "**Valores lógicos**: apenas verdadeiro ou falso, sem indeterminado, e não há contradição entre eles.",
-          "**Negação simples**: insere-se ou retira-se o não no verbo da oração principal.",
-          "**Antônimos**: trocar o predicado por seu contrário ou trocar o sujeito não é negar a proposição.",
-          "**Subordinada**: a negação atinge a oração principal e preserva a subordinada.",
-          "**Não... ninguém**: a dupla negação do português é ênfase, e a negação lógica remove o não."
-        ],
-        "teoria": [
-          {
-            "statement": "A proposição \"Joana não é loira\" é simples, pois não pode ser dividida em proposições menores.",
-            "isTrue": true,
-            "explanation": "A negação não é conectivo."
-          },
-          {
-            "statement": "A frase \"Todo servidor concursado tem estabilidade\" é composta por conter o quantificador \"todo\".",
-            "isTrue": false,
-            "explanation": "O quantificador não é conectivo: continua simples."
-          },
-          {
-            "statement": "A proposição \"A população da cidade é de 4 mil habitantes, mas a economia é agrícola\" é composta, pois o \"mas\" funciona como conjunção.",
-            "isTrue": true,
-            "explanation": "Duas simples ligadas por \"e\"."
-          },
-          {
-            "statement": "Na lógica clássica, o valor lógico de uma proposição pode ser verdadeiro, falso ou indeterminado.",
-            "isTrue": false,
-            "explanation": "Só V ou F (terceiro excluído)."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "Para negar \"Marta fez a prova de Matemática\" basta escrever \"Marta não fez a prova de Matemática\".",
-            "isTrue": true,
-            "explanation": "Inserir o não no verbo."
-          },
-          {
-            "statement": "A negação de \"O Rio Amazonas é o rio mais extenso do País\" é \"O Rio Amazonas é o rio menos extenso do País\".",
-            "isTrue": false,
-            "explanation": "Antônimo não é negação; a correta é \"não é o rio mais extenso\"."
-          },
-          {
-            "statement": "A negação de \"O síndico aprova uma obra que valoriza o prédio\" é \"O síndico aprova uma obra que não valoriza o prédio\".",
-            "isTrue": false,
-            "explanation": "Nega-se a principal: \"não aprova\"."
-          },
-          {
-            "statement": "Em \"Não vi ninguém na sala\", a negação lógica é \"Vi alguém na sala\".",
-            "isTrue": true,
-            "explanation": "O \"não... ninguém\" do português é ênfase da negação única."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Proposição falsa e imperativa",
-            "pageRef": 87
-          },
-          {
-            "topic": "Identificar a proposição verdadeira",
-            "pageRef": 88
-          },
-          {
-            "topic": "Frases que são proposições",
-            "pageRef": 89
-          },
-          {
-            "topic": "Proposição simples ou composta",
-            "pageRef": 90
-          },
-          {
-            "topic": "Composta com mas",
-            "pageRef": 91
-          },
-          {
-            "topic": "Assertivas sobre proposição e princípio",
-            "pageRef": 92
-          },
-          {
-            "topic": "Quantificador e proposições simples",
-            "pageRef": 93
-          },
-          {
-            "topic": "Composta e fechada; negação simples",
-            "pageRef": 94
-          },
-          {
-            "topic": "Negação e sentença aberta",
-            "pageRef": 95
-          },
-          {
-            "topic": "Negação com subordinadas",
-            "pageRef": 96
-          },
-          {
-            "topic": "Antônimos na negação",
-            "pageRef": 97
-          },
-          {
-            "topic": "Troca de sujeito e de adjetivo",
-            "pageRef": 98
-          },
-          {
-            "topic": "Equivalência e dupla negação",
-            "pageRef": 99
-          },
-          {
-            "topic": "Negação com oração subordinada",
-            "pageRef": 100
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a00/s09",
-      "bizu": {
-        "summary": [
-          "**Símbolos**: conjunção, disjunção, exclusiva, condicional e bicondicional se leem trocando cada letra pela frase e preservando a posição das negações.",
-          "**Disjunção falsa**: obriga as duas parcelas a serem falsas.",
-          "**Condicional falsa**: exige antecedente verdadeiro e consequente falso.",
-          "**Condicional verdadeira com consequente falso**: leva a antecedente falso, como em alarme que não disparou.",
-          "**Alternativa verdadeira**: valore as simples e procure a alternativa que não resulta em V → F nem em conjunção com parcela falsa.",
-          "**Afirmativas sobre conectivos**: a disjunção é verdadeira se ao menos uma parcela é verdadeira.",
-          "**Exclusiva**: verdadeira apenas quando as parcelas diferem.",
-          "**Aritmética**: calcule cada igualdade antes de aplicar o conectivo.",
-          "**Bicondicional aritmética**: duas parcelas falsas tornam o conjunto verdadeiro.",
-          "**Fórmulas aninhadas**: resolvem-se do parêntese interno para o externo."
-        ],
-        "teoria": [
-          {
-            "statement": "A proposição (¬p) ∨ q, com p \"hoje chove\" e q \"vou levar guarda-chuva\", significa \"hoje não chove ou vou levar guarda-chuva\".",
-            "isTrue": true,
-            "explanation": "A negação incide só em p."
-          },
-          {
-            "statement": "Se a disjunção \"X ou Y\" é falsa, basta que uma das parcelas seja falsa.",
-            "isTrue": false,
-            "explanation": "Para a disjunção inclusiva ser falsa, as duas são falsas."
-          },
-          {
-            "statement": "Se a condicional \"Se o alarme dispara, o protocolo é ativado\" é verdadeira e o protocolo não foi ativado, o alarme não disparou.",
-            "isTrue": true,
-            "explanation": "Consequente falso com condicional V exige antecedente F."
-          },
-          {
-            "statement": "A disjunção exclusiva \"ou P ou Q\" é falsa quando P é verdadeira e Q é falsa.",
-            "isTrue": false,
-            "explanation": "V ⊻ F = V."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "A frase \"Se Ana estuda e Bia revisa, então Caio passa\" tem a forma (p ∧ q) → r.",
-            "isTrue": true,
-            "explanation": "O antecedente é uma conjunção."
-          },
-          {
-            "statement": "A conjunção p ∧ q é verdadeira se somente uma das parcelas for verdadeira.",
-            "isTrue": false,
-            "explanation": "As duas devem ser verdadeiras."
-          },
-          {
-            "statement": "Uma bicondicional entre duas igualdades aritméticas ambas falsas tem valor lógico verdadeiro.",
-            "isTrue": true,
-            "explanation": "Mesmo valor nas duas parcelas."
-          },
-          {
-            "statement": "A proposição (p ∨ q) ∧ ¬p é verdadeira quando p é falsa e q é verdadeira.",
-            "isTrue": true,
-            "explanation": "¬p V exige p F, e então q deve ser V."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Reconhecer a conjunção",
-            "pageRef": 101
-          },
-          {
-            "topic": "Tradução de (¬p) ∨ q e questão sobre (p ∨ q) ∧ ¬p",
-            "pageRef": 102
-          },
-          {
-            "topic": "Disjunção falsa e valores das simples",
-            "pageRef": 103
-          },
-          {
-            "topic": "Condicional falsa",
-            "pageRef": 104
-          },
-          {
-            "topic": "Alternativa com condicional verdadeira",
-            "pageRef": 105
-          },
-          {
-            "topic": "Bicondicional e tradução simbólica",
-            "pageRef": 106
-          },
-          {
-            "topic": "Afirmativas sobre conectivos",
-            "pageRef": 107
-          },
-          {
-            "topic": "Conjunção e disjunção exclusiva",
-            "pageRef": 108
-          },
-          {
-            "topic": "Questão sobre exclusiva e valores aritméticos",
-            "pageRef": 109
-          },
-          {
-            "topic": "Valor das alternativas aritméticas",
-            "pageRef": 110
-          },
-          {
-            "topic": "Conectivos em frases aritméticas",
-            "pageRef": 111
-          },
-          {
-            "topic": "Bicondicional com duas falsas e fórmula aninhada",
-            "pageRef": 112
-          },
-          {
-            "topic": "Resolução da fórmula aninhada",
-            "pageRef": 113
-          },
-          {
-            "topic": "Antecedente falso e consequente falso",
-            "pageRef": 114
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a00/s10",
-      "bizu": {
-        "summary": [
-          "**Proposição**: frase declarativa a que se atribui um só valor (V ou F); \"21 é primo\" é proposição, só que falsa.",
-          "**Não são proposição**: perguntas, ordens, exclamações, paradoxos (\"esta frase é falsa\") e sentenças abertas (\"x + 2 = 7\", \"ele saiu\").",
-          "**Quantificador fecha a sentença**: \"existe x real com x + 2 = 7\" já tem valor (V) e é proposição.",
-          "**Simples × composta**: composta tem conectivo ligando duas afirmações (\"é branca ou cinza\"); um \"não\" isolado não a torna composta.",
-          "**Negação sem antônimo**: \"o prédio é alto\" → \"o prédio não é alto\"; \"é o mais rápido\" → \"não é o mais rápido\".",
-          "**Subordinada**: nega-se o verbo da principal e mantém-se a subordinada.",
-          "**\"Talvez\", \"pode ser que\"**: não negam a frase; só tiram a certeza do que se afirma.",
-          "**Tradução**: troque letra por frase e símbolo por conectivo, mantendo parênteses e o \"não\" no lugar certo.",
-          "**Condicional falsa**: só quando antecedente V e consequente F; coluna V, F, V, V.",
-          "**Condições**: em p → q, p é suficiente e q é necessária; equivale a ~q → ~p."
-        ],
-        "teoria": [
-          {
-            "statement": "De \"Se estudo bastante, então tiro boa nota\", conclui-se que estudar bastante é condição suficiente para tirar boa nota.",
-            "isTrue": true,
-            "explanation": "O \"se\" aponta a condição suficiente."
-          },
-          {
-            "statement": "Da condicional \"Se estudo bastante, então tiro boa nota\" decorre que \"se tiro boa nota, então não estudei bastante\".",
-            "isTrue": false,
-            "explanation": "Essa frase não é equivalente à original."
-          },
-          {
-            "statement": "A frase \"Se o usuário apertar o botão, o equipamento imprime\" só é falsa quando o usuário aperta o botão e o equipamento não imprime.",
-            "isTrue": true,
-            "explanation": "V → F."
-          },
-          {
-            "statement": "A condicional P → Q é falsa nas linhas em que Q é falso.",
-            "isTrue": false,
-            "explanation": "Só na linha em que P é verdadeiro e Q é falso."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "A frase \"O número 7 é primo e é ímpar\" é uma proposição composta.",
-            "isTrue": true,
-            "explanation": "Duas simples ligadas por \"e\"."
-          },
-          {
-            "statement": "A proposição \"Eduardo não é inteligente, então é estudioso\" é representada por ~p ∧ q.",
-            "isTrue": false,
-            "explanation": "É a condicional ~p → q."
-          },
-          {
-            "statement": "A proposição ~p ∨ (p ∧ ~q) lê-se \"não p, ou p e não q\".",
-            "isTrue": true,
-            "explanation": "Preservam-se os parênteses e as negações."
-          },
-          {
-            "statement": "A coluna P → Q de uma tabela com as linhas VV, VF, FV e FF tem a sequência V, F, V, V.",
-            "isTrue": true,
-            "explanation": "Condicional falsa só em V → F."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Condição suficiente e necessária",
-            "pageRef": 115
-          },
-          {
-            "topic": "Proposição composta ou simples",
-            "pageRef": 116
-          },
-          {
-            "topic": "Tradução de fórmulas",
-            "pageRef": 117
-          },
-          {
-            "topic": "Condicional implícita e comando condicional",
-            "pageRef": 118
-          },
-          {
-            "topic": "Tabela-verdade da condicional",
-            "pageRef": 119
-          },
-          {
-            "topic": "Lista de questões de introdução às proposições",
-            "pageRef": 120
-          },
-          {
-            "topic": "Lista de questões de proposições simples",
-            "pageRef": 126
-          },
-          {
-            "topic": "Lista sobre negação de proposições simples",
-            "pageRef": 128
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a00/s11",
-      "bizu": {
-        "summary": [
-          "**Conjunção**: só é V com as duas parcelas V; dada como V, as duas são V.",
-          "**Disjunção inclusiva**: é V com pelo menos uma V; dada como F, as duas são F.",
-          "**Condicional**: só é F em V → F; antecedente F garante condicional V.",
-          "**Bicondicional e exclusiva**: ↔ é V com valores iguais; ⊻ é V com valores diferentes.",
-          "**Simples afirmativas**: se \"a porta não está trancada\" é V, então \"a porta está trancada\" vale F.",
-          "**Propagação**: condicional V com consequente F → antecedente F; disjunção V com uma parte F → a outra é V.",
-          "**Ordem de cálculo**: parênteses de dentro para fora; negação, depois ∧/∨, por último → e ↔.",
-          "**Aritmética**: decida cada igualdade antes (7 × 8 = 54 é F); bicondicional entre duas falsas é V.",
-          "**Contrários**: \"bom\" e \"mau\" não são negações um do outro; \"não é bom\" ≠ \"é mau\".",
-          "**Dupla negação do português**: \"não conheço ninguém\" nega-se com \"conheço alguém\"."
-        ],
-        "teoria": [
-          {
-            "statement": "Se é verdadeira a frase \"A moto não é branca\", a proposição simples \"A moto é branca\" é falsa.",
-            "isTrue": true,
-            "explanation": "A negação verdadeira torna a afirmativa falsa."
-          },
-          {
-            "statement": "A proposição \"Isso é bom\" é logicamente equivalente a \"Isso não é mau\".",
-            "isTrue": false,
-            "explanation": "Bom e mau não se negam; pode não ser nenhum dos dois."
-          },
-          {
-            "statement": "A conjunção só é verdadeira quando as duas parcelas são verdadeiras, de modo que uma conjunção verdadeira obriga ambas a serem verdadeiras.",
-            "isTrue": true,
-            "explanation": "Caso único da conjunção."
-          },
-          {
-            "statement": "A disjunção inclusiva é verdadeira apenas quando pelo menos uma parcela é falsa.",
-            "isTrue": false,
-            "explanation": "É verdadeira com ao menos uma verdadeira."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "A fórmula (~(p ∧ q) ∨ ~p) → (~p ∨ ~q) é verdadeira quando p e q são ambas verdadeiras.",
-            "isTrue": true,
-            "explanation": "Fica F → F, que é V."
-          },
-          {
-            "statement": "Com p falso, a fórmula (p ∨ q) ∧ ¬p é verdadeira independentemente do valor de q.",
-            "isTrue": false,
-            "explanation": "Exige q verdadeiro."
-          },
-          {
-            "statement": "Em \"se a chuva cai, então o jogo é adiado\", se o jogo não foi adiado, então a chuva não caiu.",
-            "isTrue": true,
-            "explanation": "Consequente falso, condicional V: antecedente F."
-          },
-          {
-            "statement": "A frase \"Ele seguirá no caso se, e somente se, o cliente cumprir as orientações\" contém uma bicondicional.",
-            "isTrue": true,
-            "explanation": "Se, e somente se."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Negação de afirmações do Cebraspe",
-            "pageRef": 129
-          },
-          {
-            "topic": "Gabarito da lista de proposições simples",
-            "pageRef": 130
-          },
-          {
-            "topic": "Reconhecer a conjunção e interpretar fórmulas",
-            "pageRef": 131
-          },
-          {
-            "topic": "Deduzir valores de uma disjunção falsa",
-            "pageRef": 133
-          },
-          {
-            "topic": "Escolher a alternativa verdadeira",
-            "pageRef": 135
-          },
-          {
-            "topic": "Afirmativas sobre conectivos",
-            "pageRef": 137
-          },
-          {
-            "topic": "Disjunção exclusiva e valores aritméticos",
-            "pageRef": 139
-          },
-          {
-            "topic": "Conjunção, disjunção e bicondicional em frases numéricas",
-            "pageRef": 141
-          },
-          {
-            "topic": "Fórmula aninhada: caso de valores falsos",
-            "pageRef": 142
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a00/s12",
-      "bizu": {
-        "summary": [
-          "**Fórmula aninhada**: resolve-se substituindo os valores e calculando de dentro para fora.",
-          "**Caso de valores verdadeiros**: o antecedente e o consequente ficam falsos, e a condicional resulta verdadeira.",
-          "**Caso de valores falsos**: o antecedente e o consequente ficam verdadeiros, e a condicional também resulta verdadeira.",
-          "**Consequente falso**: se a condicional é verdadeira e o consequente é falso, o antecedente é falso.",
-          "**Suficiente e necessária**: estudar é condição suficiente e a boa nota é condição necessária.",
-          "**Contrapositiva**: p → q equivale a ~q → ~p, e as trocas n → ~e e ~n → e não equivalem.",
-          "**Se omitido**: a frase com então sem se continua sendo uma condicional.",
-          "**Comando**: a regra se desrespeita apenas quando a condição ocorre e a ação não.",
-          "**Tabela**: a coluna P → Q das linhas VV, VF, FV e FF é V, F, V, V."
-        ],
-        "teoria": [
-          {
-            "statement": "Na fórmula (~(p ∧ q) ∨ ~p) → (~p ∨ ~q), com p e q falsas, o antecedente e o consequente são verdadeiros.",
-            "isTrue": true,
-            "explanation": "~(F ∧ F) = V; ~p = V."
-          },
-          {
-            "statement": "Se a condicional \"Se há alarme, o protocolo é ativado\" é verdadeira e o protocolo não foi ativado, o alarme necessariamente disparou.",
-            "isTrue": false,
-            "explanation": "O alarme não disparou."
-          },
-          {
-            "statement": "A condicional \"Se estudo bastante, tiro boa nota\" é equivalente a \"Se não tirei boa nota, então não estudei bastante\".",
-            "isTrue": true,
-            "explanation": "Contrapositiva."
-          },
-          {
-            "statement": "A condicional \"Se estudo bastante, tiro boa nota\" é equivalente a \"Se tirei boa nota, então estudei bastante\".",
-            "isTrue": false,
-            "explanation": "A recíproca não é equivalente."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "O comando \"se o sensor detecta fumaça, a sirene toca\" só é desrespeitado quando o sensor detecta fumaça e a sirene não toca.",
-            "isTrue": true,
-            "explanation": "V → F."
-          },
-          {
-            "statement": "A frase \"Maria é professora e é mãe\" é uma proposição simples.",
-            "isTrue": false,
-            "explanation": "Duas simples ligadas por e."
-          },
-          {
-            "statement": "A frase \"João não é paciente, então é impulsivo\" corresponde à condicional ~p → q.",
-            "isTrue": true,
-            "explanation": "O \"se\" está omitido."
-          },
-          {
-            "statement": "Em uma tabela com as linhas VV, VF, FV e FF, a coluna da condicional P → Q é V, F, V, V.",
-            "isTrue": true,
-            "explanation": "Falsa só na linha VF."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Resolução da fórmula aninhada",
-            "pageRef": 143
-          },
-          {
-            "topic": "Dedução com protocolo de evacuação",
-            "pageRef": 144
-          },
-          {
-            "topic": "Condição suficiente e contrapositiva",
-            "pageRef": 145
-          },
-          {
-            "topic": "Proposição composta ou simples",
-            "pageRef": 146
-          },
-          {
-            "topic": "Tradução de fórmulas",
-            "pageRef": 147
-          },
-          {
-            "topic": "Condicional implícita e comando condicional",
-            "pageRef": 148
-          },
-          {
-            "topic": "Tabela da condicional",
-            "pageRef": 149
           }
         ]
       }

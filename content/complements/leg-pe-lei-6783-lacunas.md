@@ -3,16 +3,16 @@ id: leg-pe-lei-6783-lacunas
 subject: legislacoes-pe
 title: Lei Estadual nº 6.783/1974 — deveres, violação das obrigações, remuneração, promoção e Sistema de Proteção Social
 short: Estatuto (complementos)
-subtitle: O que a Aula 02 do curso base não ensina: arts. 30 a 48, 52 a 63 e 74-A em diante (LC 460/2021)
+subtitle: Arts. 30 a 48, 52 a 63 e 74-A em diante (LC 460/2021)
 weight: 0.25
 order: 5
 resolves: leg-lei-6783-lacunas
 ---
 
 
-## Por que este complemento existe
+## O que este material cobre
 
-O edital cobra, do Estatuto, os capítulos "Das obrigações **e dos deveres**" e "Dos direitos, das prerrogativas **e do sistema de proteção social**". A Aula 02 trata do valor e da ética (obrigações) e de parte dos direitos, mas **não ensina os deveres, o compromisso, o comando e a subordinação, a violação das obrigações** (crimes, transgressões e conselhos), **remuneração, promoção e férias** em detalhe, nem o **Sistema de Proteção Social** incluído pela **Lei Complementar nº 460/2021**. É isso que este material cobre.
+O edital cobra, do Estatuto, os capítulos "Das obrigações **e dos deveres**" e "Dos direitos, das prerrogativas **e do sistema de proteção social**". O estudo-base do Estatuto trata do valor e da ética (obrigações) e de parte dos direitos, mas **não traz os deveres, o compromisso, o comando e a subordinação, a violação das obrigações** (crimes, transgressões e conselhos), **remuneração, promoção e férias** em detalhe, nem o **Sistema de Proteção Social** incluído pela **Lei Complementar nº 460/2021**. É isso que este material cobre.
 
 > O texto do Estatuto ainda fala em "policial-militar" e "Polícia Militar"; ele se aplica também ao **CBMPE**.
 
@@ -49,7 +49,7 @@ Os deveres nascem dos vínculos racionais e morais com a comunidade e são, esse
 | **Justificação** | oficiais (ativa, reserva, reformados) | **Tribunal de Justiça** |
 | **Disciplina** | Aspirante e praças estáveis (ativa, reserva, reformadas) | **Comandante-Geral** (última instância) |
 
-## Direitos — complementos ao que a Aula 02 traz (arts. 49 a 63)
+## Direitos: complementos (arts. 49 a 63)
 
 **Rol do art. 49 (destaques):** garantia da **patente** plena (oficial); remuneração do **grau superior** ao passar para a inatividade com **mais de 30 anos** de serviço; **soldo integral** a quem vai para a reserva *ex officio* por **idade-limite** sem 30 anos; e, nas condições da lei, **estabilidade da praça com 10 anos**, uso das designações hierárquicas, ocupação de cargo do posto/graduação, remuneração, pensão, promoção, reserva a pedido, férias e licenças, demissão e licenciamento voluntário e **porte de arma** (oficial, na ativa ou na inatividade, com exceções; praças, com restrições do Comando-Geral).
 

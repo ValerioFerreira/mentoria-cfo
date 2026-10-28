@@ -1,0 +1,3 @@
+@echo off
+echo Abrindo navegador no perfil persistente para login no Estrategia Concursos...
+"C:\Users\Administrador\AppData\Local\ms-playwright\chromium-1208\chrome-win64\chrome.exe" --user-data-dir="C:\Users\Administrador\Documents\Projetos\CFO-BM\browser-profile" --disable-blink-features=AutomationControlled "https://www.estrategiaconcursos.com.br/app/dashboard/pacote/361849"

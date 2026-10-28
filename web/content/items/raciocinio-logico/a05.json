@@ -1,99 +1,104 @@
 {
   "aula": "raciocinio-logico/a05",
-  "batch": "praca-raciocinio-logico",
-  "status": "APPROVED",
+  "batch": "rl-resegment-2026-10-26",
+  "status": "DRAFT",
   "segments": [
     {
       "id": "raciocinio-logico/a05/s01",
       "bizu": {
         "summary": [
-          "**Argumento**: conjunto de premissas que sustentam uma conclusão, ligadas por um vínculo lógico.",
-          "**Premissa**: razão ou fato que sustenta a conclusão e, na dedução, é considerada verdadeira.",
-          "**Conclusão**: julgamento que se quer demonstrar, em qualquer posição do texto.",
-          "**Indicadores de conclusão**: logo, portanto, por isso, consequentemente, assim.",
-          "**Indicadores de premissa**: pois, porque, visto que, uma vez que, dado que.",
-          "**Palavras de probabilidade**: talvez, possivelmente e deve sinalizam o julgamento.",
-          "**Dedutivo**: não gera conhecimento novo, vai da regra geral ao caso particular e pode ser válido ou inválido.",
-          "**Indutivo**: generaliza além das premissas e é mais forte ou mais fraco, não válido.",
-          "**Abdutivo**: propõe a melhor explicação, uma hipótese, também sem validade formal.",
-          "**Peirce**: dedução vai da regra à conclusão, indução ao regra e abdução à hipótese."
+          "**Argumento**: premissas ligadas por vínculo lógico a uma conclusão; frase isolada não é argumento.",
+          "**Premissa × conclusão**: premissa é a razão ou o fato de apoio; conclusão é o julgamento que se quer demonstrar.",
+          "**Posição livre**: a conclusão pode aparecer no início, no meio ou no fim do texto.",
+          "**Indicadores**: logo, portanto, por isso, assim e consequentemente anunciam conclusão; pois, porque, visto que, dado que e uma vez que anunciam premissa.",
+          "**Probabilidade marca a tese**: talvez, deve e possivelmente costumam estar na conclusão.",
+          "**Três classes**: dedução (analítica) e indução e abdução (sintéticas).",
+          "**Dedutivo**: vai da regra geral ao caso particular e é o único avaliado como válido ou inválido.",
+          "**Indutivo**: a conclusão traz conhecimento novo, generalizando ou estendendo os fatos; é mais forte ou mais fraco.",
+          "**Força**: mais observações e conclusão mais modesta fortalecem; contraexemplo ou percentual menor na premissa enfraquecem.",
+          "**Faixas de valores**: entre induções com intervalos, é mais forte a que tem a conclusão cobrindo a maior fração do intervalo da premissa.",
+          "**Analogia**: indução apoiada em características comuns entre casos."
         ],
         "teoria": [
           {
-            "statement": "Em \"A obra atrasou, porque choveu muito\", a conclusão é \"A obra atrasou\".",
-            "isTrue": true,
-            "explanation": "O \"porque\" introduz a premissa."
-          },
-          {
-            "statement": "A conclusão de um argumento deve vir sempre ao final do texto.",
+            "statement": "Em “O jogo será adiado, pois o gramado está alagado”, a conclusão é “o gramado está alagado”.",
             "isTrue": false,
-            "explanation": "Pode estar no início, no meio ou no fim."
+            "explanation": "O pois introduz a premissa; a conclusão é que o jogo será adiado."
           },
           {
-            "statement": "A validade ou invalidade só se aplica ao argumento dedutivo; os demais são avaliados como fortes ou fracos.",
+            "statement": "A conclusão de um argumento pode aparecer no início, no meio ou no fim do texto.",
             "isTrue": true,
-            "explanation": "Indutivos e abdutivos não são válidos/inválidos."
+            "explanation": "Não há ordem fixa entre premissas e conclusão."
           },
           {
-            "statement": "Um argumento indutivo traz conclusão que já estava implícita nas premissas.",
+            "statement": "Argumentos indutivos não são classificados como válidos ou inválidos, mas como mais fortes ou mais fracos.",
+            "isTrue": true,
+            "explanation": "Só o dedutivo é avaliado quanto à validade."
+          },
+          {
+            "statement": "No raciocínio dedutivo, a conclusão acrescenta conhecimento que não estava contido nas premissas.",
             "isTrue": false,
-            "explanation": "A conclusão transcende as premissas."
+            "explanation": "Isso caracteriza a indução; a dedução apenas explicita o que já estava nas premissas."
           }
         ],
         "revisao": [
           {
-            "statement": "A palavra \"assim\", em \"Assim, o preço deve subir\", pode indicar uma conclusão.",
+            "statement": "Dado que e uma vez que são expressões que costumam introduzir premissas.",
             "isTrue": true,
-            "explanation": "Indicador de conclusão."
+            "explanation": "São indicadores de premissa."
           },
           {
-            "statement": "Uma enumeração de fatos sem tese defendida constitui um argumento válido.",
+            "statement": "A frase isolada “As enchentes destruíram pontes, casas e lavouras” constitui um argumento válido.",
             "isTrue": false,
-            "explanation": "Não é argumento."
+            "explanation": "Sem premissas e conclusão ligadas, não há argumento."
           },
           {
-            "statement": "A abdução propõe uma hipótese como a melhor explicação para os fatos observados.",
+            "statement": "Trocar a conclusão “a maioria dos alunos aprova o curso” por “ao menos 30% dos alunos aprovam o curso”, mantidas as premissas, torna o argumento indutivo mais forte.",
             "isTrue": true,
-            "explanation": "Definição."
+            "explanation": "Conclusão mais modesta é mais provável, logo o argumento fica mais forte."
           },
           {
-            "statement": "A analogia é um caso específico de argumento indutivo.",
-            "isTrue": true,
-            "explanation": "Destaca características comuns."
+            "statement": "Se a premissa diz que os preços vão de 10 a 50 reais, concluir que um item custa entre 20 e 30 reais gera argumento mais forte do que concluir que custa entre 10 e 40 reais.",
+            "isTrue": false,
+            "explanation": "A faixa de 20 a 30 cobre 25% do intervalo; a de 10 a 40 cobre 75% e é mais provável."
           }
         ],
         "pointers": [
           {
-            "topic": "Apresentação da aula",
-            "pageRef": 3
-          },
-          {
-            "topic": "Resumo da estrutura e da classificação dos argumentos",
+            "topic": "Visão geral: argumento, premissa e conclusão",
             "pageRef": 4
           },
           {
-            "topic": "Argumentos abdutivos e a classificação de Peirce",
-            "pageRef": 5
-          },
-          {
-            "topic": "Argumento, premissa e conclusão",
+            "topic": "Definições ampliadas de premissa e conclusão",
             "pageRef": 6
           },
           {
-            "topic": "Reconhecimento da estrutura básica",
+            "topic": "Conclusão em qualquer posição",
             "pageRef": 7
           },
           {
-            "topic": "Questão da PC-AM",
-            "pageRef": 8
-          },
-          {
-            "topic": "Alternativas da PC-AM e questão de Sete Lagoas",
+            "topic": "Palavras de probabilidade marcam a conclusão",
             "pageRef": 9
           },
           {
-            "topic": "Indicadores de premissa e de conclusão e questão do BNB",
+            "topic": "Indicadores de premissa e de conclusão",
             "pageRef": 10
+          },
+          {
+            "topic": "Classificação: analítico × sintético",
+            "pageRef": 11
+          },
+          {
+            "topic": "Argumento indutivo: generalização",
+            "pageRef": 12
+          },
+          {
+            "topic": "Força do argumento indutivo",
+            "pageRef": 15
+          },
+          {
+            "topic": "Comparação de faixas de valores",
+            "pageRef": 16
           }
         ]
       }
@@ -102,97 +107,94 @@
       "id": "raciocinio-logico/a05/s02",
       "bizu": {
         "summary": [
-          "**Inferência**: pode ser analítica (dedutiva) ou sintética (indutiva ou abdutiva).",
-          "**Dedução**: parte da regra geral para o caso particular e não traz conhecimento novo.",
-          "**Indução**: generaliza a partir de casos e a conclusão transcende as premissas.",
-          "**Mais forte ou mais fraco**: a indução é avaliada pela probabilidade da conclusão, nunca por validade.",
-          "**Mais observações**: fortalecem a indução, e contraexemplos a enfraquecem.",
-          "**Conclusão menos ambiciosa**: torna o argumento indutivo mais forte.",
-          "**Intervalos**: o argumento mais forte é o que cobre a maior fração do intervalo da premissa.",
-          "**Analogia**: indução que destaca características comuns entre casos.",
-          "**Força da analogia**: depende da relevância, da quantidade de comparações e de características.",
-          "**Frase estatística**: oitenta por cento dos professores com mestrado dá conclusão provável, não garantida."
+          "**Indução científica**: observar casos e formular lei geral é indução; já a = b e b = c, logo a = c, é dedução válida.",
+          "**Premissa estatística**: 4/5 dos servidores têm pós; Lia é servidora; logo tem pós é indução, que não pode ser chamada de válida.",
+          "**Analogia**: indução por características comuns; fica mais forte com características relevantes, mais casos, mais pontos comuns e conclusão modesta.",
+          "**Desanalogias**: diferenças relevantes entre os casos (ou um contraexemplo) enfraquecem a analogia.",
+          "**Abdução**: a conclusão é a melhor explicação (hipótese) para os fatos; fica mais forte ou mais fraca conforme surgem informações.",
+          "**Peirce**: dedução vai de regra + hipótese à conclusão; indução, de hipótese + resultado à regra; abdução, de regra + resultado à hipótese.",
+          "**Falácia ou sofisma**: erro de raciocínio persuasivo; pode ser formal (dedutiva) ou informal.",
+          "**Falácia formal**: argumento dedutivo inválido; argumento válido com premissas falsas não é falácia.",
+          "**Afirmação do consequente**: p → q; q ⊢ p (ou p → q ⊢ q → p); inválida.",
+          "**Negação do antecedente**: p → q; ~p ⊢ ~q (ou p → q ⊢ ~p → ~q); inválida.",
+          "**Partes negadas**: ~d → ~r; ~r ⊢ ~d continua sendo afirmação do consequente."
         ],
         "teoria": [
           {
-            "statement": "Um argumento indutivo pode ser considerado mais forte quando novas observações aumentam a probabilidade da conclusão.",
+            "statement": "No raciocínio abdutivo, o que se conclui é a hipótese que melhor explica os fatos observados.",
             "isTrue": true,
-            "explanation": "Força indutiva."
+            "explanation": "A abdução produz uma hipótese explicativa."
           },
           {
-            "statement": "Um argumento indutivo é válido quando a conclusão é muito provável.",
+            "statement": "Acrescentar diferenças relevantes entre os casos comparados torna um argumento por analogia mais forte.",
             "isTrue": false,
-            "explanation": "Argumento indutivo não é válido nem inválido."
+            "explanation": "Desanalogias enfraquecem a analogia."
           },
           {
-            "statement": "O raciocínio \"todos os gatos da rua são arredios; este é um gato da rua; logo, é arredio\" é dedutivo se a regra geral é tomada como premissa.",
+            "statement": "Segundo o esquema de Peirce, a indução parte de uma hipótese e de um resultado para chegar a uma regra geral.",
             "isTrue": true,
-            "explanation": "Regra geral → caso particular."
+            "explanation": "A indução determina a regra (generalização)."
           },
           {
-            "statement": "Na analogia, a quantidade de características comparadas não influencia a força do argumento.",
+            "statement": "O argumento “Se p, então q; ~p; logo ~q” é uma aplicação válida do modus tollens.",
             "isTrue": false,
-            "explanation": "Mais características relevantes fortalecem."
+            "explanation": "É a falácia da negação do antecedente; o modus tollens parte de ~q."
           }
         ],
         "revisao": [
           {
-            "statement": "Se 50% em vez de 80% dos professores de um instituto têm mestrado, o argumento \"Fulano é professor ali, logo tem mestrado\" fica mais fraco.",
-            "isTrue": true,
-            "explanation": "A conclusão fica menos provável."
-          },
-          {
-            "statement": "O raciocínio \"ontem choveu, logo hoje as ruas devem estar molhadas\" é dedutivo.",
+            "statement": "Todo argumento dedutivo válido com premissas falsas é uma falácia formal.",
             "isTrue": false,
-            "explanation": "Parte de caso particular: é indutivo."
+            "explanation": "Falácia formal é argumento inválido; premissas falsas não tornam o argumento falacioso."
           },
           {
-            "statement": "Concluir \"provavelmente todos os cisnes de uma região são brancos\" após ver vários cisnes brancos é indução.",
+            "statement": "Concluir “se q, então p” a partir de “se p, então q” é uma forma da falácia da afirmação do consequente.",
             "isTrue": true,
-            "explanation": "Generalização."
+            "explanation": "É a versão de premissa única dessa falácia."
           },
           {
-            "statement": "Uma analogia é mais forte quando as características comparadas são relevantes para a conclusão.",
+            "statement": "Um detetive que aponta como prováveis culpados os convidados que tinham desavença com a vítima usa raciocínio abdutivo.",
             "isTrue": true,
-            "explanation": "Relevância."
+            "explanation": "Ele propõe a melhor explicação para o fato, não uma generalização."
+          },
+          {
+            "statement": "Pelo esquema de Peirce, a abdução corresponde a determinar a regra geral.",
+            "isTrue": false,
+            "explanation": "Abdução determina a hipótese; quem determina a regra é a indução."
           }
         ],
         "pointers": [
           {
-            "topic": "Classificação dos argumentos e dedução",
-            "pageRef": 11
-          },
-          {
-            "topic": "Indução e questão do TJDFT",
-            "pageRef": 12
-          },
-          {
-            "topic": "Questão da SEDUC-AM",
-            "pageRef": 13
-          },
-          {
-            "topic": "Diagramas do raciocínio dedutivo",
-            "pageRef": 14
-          },
-          {
-            "topic": "Argumento mais forte ou mais fraco",
-            "pageRef": 15
-          },
-          {
-            "topic": "Questão da SEFAZ-SP",
-            "pageRef": 16
-          },
-          {
-            "topic": "Fim da SEFAZ-SP, ciências experimentais e questão do MPE-SP",
+            "topic": "Indução nas ciências experimentais",
             "pageRef": 17
           },
           {
-            "topic": "Resolução do MPE-SP e analogias",
+            "topic": "Analogia e relevância das características",
             "pageRef": 18
           },
           {
-            "topic": "Analogias: número de comparações e características",
+            "topic": "Número de casos e de características na analogia",
             "pageRef": 19
+          },
+          {
+            "topic": "Desanalogias; abdução",
+            "pageRef": 20
+          },
+          {
+            "topic": "Dedução, indução e abdução segundo Peirce",
+            "pageRef": 22
+          },
+          {
+            "topic": "Visão geral das falácias",
+            "pageRef": 25
+          },
+          {
+            "topic": "Falácias formais e afirmação do consequente",
+            "pageRef": 27
+          },
+          {
+            "topic": "Negação do antecedente",
+            "pageRef": 29
           }
         ]
       }
@@ -201,97 +203,89 @@
       "id": "raciocinio-logico/a05/s03",
       "bizu": {
         "summary": [
-          "**Desanalogias**: pontos de diferença entre os casos comparados enfraquecem a analogia.",
-          "**Analogia**: estende a um novo caso o que vale para outro com característica em comum.",
-          "**Abdução**: a conclusão é a melhor explicação, uma hipótese explicativa, sem validade formal.",
-          "**Peirce**: dedução vai da regra e do caso ao resultado, indução ao regra e abdução ao caso.",
-          "**Mais fortes ou mais fracos**: novas informações podem fortalecer ou enfraquecer uma abdução.",
-          "**Falácia**: erro de raciocínio persuasivo, formal ou informal.",
-          "**Falácia formal**: é um argumento dedutivo inválido com aparência de correto.",
-          "**Afirmação do consequente**: p implica q, q, logo p, o que é inválido.",
-          "**Recíproca**: concluir q implica p a partir de p implica q é a mesma falácia.",
-          "**Causas**: para afirmar causa são necessários correlação, precedência e eliminação de outras causas."
+          "**Falácia informal**: erro no conteúdo, não na forma; a prova cobra reconhecer o exemplo.",
+          "**Ad hominem**: ataca quem fala em vez da tese; ofensivo (ataque direto), circunstancial (põe em dúvida a imparcialidade) e tu quoque (contradição entre dizer e fazer).",
+          "**Apelo à autoridade**: fulano disse, então é verdade; é falácia quando a autoridade é de outra área ou não identificada (especialistas dizem...).",
+          "**Autoridade legítima**: competência no tema, consenso entre especialistas, outras provas e identificação da fonte.",
+          "**Apelo à ignorância**: verdadeiro porque não se provou falso, ou falso porque não se provou verdadeiro.",
+          "**Falso dilema**: reduz o problema a duas opções, escondendo as demais (ou isto ou aquilo).",
+          "**Pergunta complexa**: une dois temas; sim e não prejudicam; pressupõe só o passado; corrige-se dividindo a pergunta.",
+          "**Espantalho**: rebate uma versão distorcida da tese do oponente.",
+          "**Petição de princípio**: a premissa pressupõe a conclusão; raciocínio circular.",
+          "**Conclusão irrelevante**: premissas sem relação relevante com a conclusão tirada."
         ],
         "teoria": [
           {
-            "statement": "Em uma abdução, a conclusão é a melhor explicação para os fatos apresentados nas premissas.",
+            "statement": "No ad hominem circunstancial, expõem-se circunstâncias pessoais do oponente para pôr em dúvida sua imparcialidade.",
             "isTrue": true,
-            "explanation": "Hipótese explicativa."
+            "explanation": "Essa é a marca do ad hominem circunstancial."
           },
           {
-            "statement": "A abdução é um argumento que pode ser classificado como válido ou inválido.",
+            "statement": "Toda citação de uma autoridade para apoiar uma tese constitui falácia de apelo à autoridade.",
             "isTrue": false,
-            "explanation": "Não: é mais forte ou mais fraco."
+            "explanation": "A citação é legítima quando a autoridade é competente no tema, identificada e apoiada por consenso e outras provas."
           },
           {
-            "statement": "O argumento \"Se há incêndio, o alarme toca; o alarme tocou; logo, há incêndio\" é uma afirmação do consequente.",
+            "statement": "Diante da pergunta “Você parou de colar nas provas?”, tanto sim quanto não prejudicam quem responde.",
             "isTrue": true,
-            "explanation": "Falácia formal."
+            "explanation": "É pergunta complexa: as duas respostas admitem que a pessoa colava."
           },
           {
-            "statement": "O modus ponens é uma falácia formal.",
+            "statement": "A falácia do espantalho consiste em considerar uma tese verdadeira porque ninguém provou que ela é falsa.",
             "isTrue": false,
-            "explanation": "É uma regra de inferência válida."
+            "explanation": "Isso é apelo à ignorância; o espantalho ataca uma versão distorcida da tese."
           }
         ],
         "revisao": [
           {
-            "statement": "Na classificação de Peirce, a dedução determina o resultado a partir da regra e do caso.",
+            "statement": "Responder “Você também já fez isso!” para esvaziar uma crítica é exemplo de ad hominem tu quoque.",
             "isTrue": true,
-            "explanation": "Regra + caso ⇒ resultado."
+            "explanation": "Aponta a incoerência entre o que a pessoa diz e o que faz."
           },
           {
-            "statement": "A afirmação do consequente é válida quando as duas premissas são verdadeiras.",
+            "statement": "A pergunta “Você deixou de mentir para seus pais?” pressupõe que a pessoa já não mente mais.",
             "isTrue": false,
-            "explanation": "A forma é inválida mesmo com premissas V."
+            "explanation": "Pressupõe apenas que a pessoa mentia no passado; sobre o presente nada pressupõe."
           },
           {
-            "statement": "A falácia da causa comum ocorre quando se ignora um fator que gera os dois eventos correlacionados.",
+            "statement": "Dizer que um livro é superficial porque traz informações pouco aprofundadas é exemplo de petição de princípio.",
             "isTrue": true,
-            "explanation": "Causa comum."
+            "explanation": "Premissa e conclusão dizem a mesma coisa: raciocínio circular."
           },
           {
-            "statement": "O fato de a prova do detetive apontar nove suspeitos e supor que o culpado está entre eles é um raciocínio abdutivo.",
-            "isTrue": true,
-            "explanation": "Hipótese explicativa."
+            "statement": "No falso dilema, todas as alternativas possíveis são apresentadas ao interlocutor.",
+            "isTrue": false,
+            "explanation": "O falso dilema esconde opções, reduzindo o problema geralmente a duas."
           }
         ],
         "pointers": [
           {
-            "topic": "Desanalogias e questão da FUNPRESP sobre analogia",
-            "pageRef": 20
+            "topic": "Falácias informais e ad hominem",
+            "pageRef": 30
           },
           {
-            "topic": "Abdução e exemplo de Peirce",
-            "pageRef": 21
+            "topic": "Ad hominem circunstancial e tu quoque",
+            "pageRef": 31
           },
           {
-            "topic": "Questão da FUNPRESP sobre indução e abdução",
-            "pageRef": 22
+            "topic": "Apelo à autoridade: quando é legítimo",
+            "pageRef": 33
           },
           {
-            "topic": "Redefinição de regra, hipótese e conclusão",
-            "pageRef": 23
+            "topic": "Autoridade não identificada, apelo à ignorância e falso dilema",
+            "pageRef": 34
           },
           {
-            "topic": "Questão da MGS",
-            "pageRef": 24
+            "topic": "Pergunta complexa",
+            "pageRef": 37
           },
           {
-            "topic": "Visão geral das falácias",
-            "pageRef": 25
+            "topic": "Espantalho e petição de princípio",
+            "pageRef": 39
           },
           {
-            "topic": "Falácias informais (apelos, causais e ambiguidade)",
-            "pageRef": 26
-          },
-          {
-            "topic": "Falácias formais e afirmação do consequente",
-            "pageRef": 27
-          },
-          {
-            "topic": "Exemplo e questão do INPI",
-            "pageRef": 28
+            "topic": "Conclusão irrelevante e falso escocês",
+            "pageRef": 40
           }
         ]
       }
@@ -300,179 +294,68 @@
       "id": "raciocinio-logico/a05/s04",
       "bizu": {
         "summary": [
-          "**Negação do antecedente**: p implica q, não p, logo não q é inválido, e a inversa é a mesma falácia.",
-          "**Falácias informais**: têm erro de conteúdo e não se detectam por regras de inferência.",
-          "**Ad hominem ofensivo**: ataque direto à pessoa para afastar a discussão do conteúdo.",
-          "**Ad hominem circunstancial**: expõe circunstâncias pessoais para pôr em dúvida a imparcialidade.",
-          "**Você também**: aponta a incoerência entre o dito e o feito para desqualificar o argumento.",
-          "**Apelo à autoridade**: só é legítimo com expertise, concordância dos especialistas, outros elementos e autoridade identificada.",
-          "**Autoridade anônima**: expressões como especialistas dizem indicam apelo falacioso.",
-          "**Apelo à ignorância**: afirma algo porque não foi provado o contrário.",
-          "**Falso dilema**: restringe as opções a duas quando há outras, como ame-o ou deixe-o.",
-          "**Pergunta complexa**: embute duas questões e prejudica quem responde sim ou não."
+          "**Falso escocês**: diante do contraexemplo, restringe a definição (não é um verdadeiro...).",
+          "**Apelos emocionais**: ao povo (todos aceitam), à piedade (pena), à força (medo, inclusive ameaça velada) e às consequências (bom ou ruim, logo verdadeiro ou falso).",
+          "**Acidente × inversão**: o acidente aplica a regra geral onde cabia exceção; a inversão transforma a exceção em regra.",
+          "**Divisão × composição**: atribuir às partes o que é do todo × atribuir ao todo o que é das partes.",
+          "**Falácias indutivas**: generalização apressada (amostra não representativa), falsa analogia (casos muito diferentes) e falácia do jogador (ignora a independência dos eventos).",
+          "**Erro de generalização**: comum à inversão do acidente, à composição e à generalização apressada.",
+          "**Derrapagem**: cadeia de condicionais com algum elo fraco até uma consequência extrema.",
+          "**Causalidade**: exige correlação, precedência temporal da causa e eliminação de outras causas.",
+          "**Falácias causais**: falsa causa e suas espécies (causa comum, post hoc, inversão de causa e efeito, causa complexa e causa insignificante).",
+          "**Ambiguidade**: equívoco (palavra com dois sentidos), anfibologia (frase mal construída) e ênfase (destaque que muda o sentido)."
         ],
         "teoria": [
           {
-            "statement": "O argumento \"Se há sol, a feira abre; não há sol; logo, a feira não abre\" é uma negação do antecedente.",
+            "statement": "Achar que uma moeda tem mais chance de dar cara depois de várias coroas seguidas é exemplo da falácia do jogador.",
             "isTrue": true,
-            "explanation": "Falácia formal."
+            "explanation": "Os lançamentos são independentes; a chance continua 50%."
           },
           {
-            "statement": "A falácia do apelo à ignorância consiste em apresentar apenas duas opções ao interlocutor.",
+            "statement": "A falácia da composição consiste em atribuir às partes uma característica que pertence ao todo.",
             "isTrue": false,
-            "explanation": "Isso é falso dilema."
+            "explanation": "Isso é a divisão; a composição atribui ao todo o que é das partes."
           },
           {
-            "statement": "Na pergunta complexa, tanto \"sim\" quanto \"não\" admitem uma acusação embutida.",
+            "statement": "Para estabelecer uma relação de causa e efeito, basta que os dois eventos estejam correlacionados.",
+            "isTrue": false,
+            "explanation": "Também são exigidas a precedência temporal da causa e a eliminação de outras causas."
+          },
+          {
+            "statement": "Usar a mesma palavra com dois sentidos diferentes ao longo do argumento caracteriza a falácia do equívoco.",
             "isTrue": true,
-            "explanation": "Dois temas numa só pergunta."
-          },
-          {
-            "statement": "O ad hominem circunstancial consiste em apontar a incoerência entre o discurso e a prática do opositor.",
-            "isTrue": false,
-            "explanation": "Essa é a forma \"você também\"."
+            "explanation": "É a definição de equívoco."
           }
         ],
         "revisao": [
           {
-            "statement": "\"Ninguém provou que o produto faz mal; logo, ele é seguro\" é apelo à ignorância.",
+            "statement": "No apelo à força, a ameaça pode ser velada, sem intimidação física explícita.",
             "isTrue": true,
-            "explanation": "Verdade por falta de prova contrária."
+            "explanation": "O medo pode vir de qualquer tipo de ameaça."
           },
           {
-            "statement": "Citar um especialista identificado, de reconhecida expertise e apoiado por outros dados é sempre falácia.",
+            "statement": "A falácia do acidente consiste em transformar uma exceção em regra geral.",
             "isTrue": false,
-            "explanation": "Pode ser lícito."
+            "explanation": "Isso é a inversão do acidente; o acidente aplica a regra geral onde cabia exceção."
           },
           {
-            "statement": "\"Ou você apoia o projeto, ou é contra o progresso\" é um falso dilema.",
+            "statement": "Explicar um acidente com muitas causas apontando apenas uma delas configura a falácia da causa complexa.",
             "isTrue": true,
-            "explanation": "Reduz as opções."
+            "explanation": "Apresenta-se só parte das causas de um efeito multifatorial."
           },
           {
-            "statement": "A pergunta \"Você deixou de atrasar os pagamentos?\" pressupõe que no passado houve atrasos.",
-            "isTrue": true,
-            "explanation": "Pressuposição do passado."
+            "statement": "A anfibologia decorre do duplo sentido de uma única palavra, e não da construção da frase.",
+            "isTrue": false,
+            "explanation": "Anfibologia vem da construção ambígua; o duplo sentido de uma palavra é o equívoco."
           }
         ],
         "pointers": [
           {
-            "topic": "Negação do antecedente",
-            "pageRef": 29
-          },
-          {
-            "topic": "Falácias informais e ad hominem",
-            "pageRef": 30
-          },
-          {
-            "topic": "Ad hominem ofensivo, circunstancial e \"você também\"",
-            "pageRef": 31
-          },
-          {
-            "topic": "Questão da CGU",
-            "pageRef": 32
-          },
-          {
-            "topic": "Resolução da CGU e apelo à autoridade",
-            "pageRef": 33
-          },
-          {
-            "topic": "Autoridade anônima e apelo à ignorância",
-            "pageRef": 34
-          },
-          {
-            "topic": "Falso dilema e questão de Cruzeiro do Sul",
-            "pageRef": 35
-          },
-          {
-            "topic": "Resolução de Cruzeiro do Sul e questão da DPE-RO",
-            "pageRef": 36
-          },
-          {
-            "topic": "Resolução da DPE-RO e pergunta complexa",
-            "pageRef": 37
-          },
-          {
-            "topic": "Defesa contra a pergunta complexa e questão do INPI",
-            "pageRef": 38
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a05/s05",
-      "bizu": {
-        "summary": [
-          "**Espantalho**: combate uma versão distorcida da tese do oponente.",
-          "**Petição de princípio**: a premissa só vale se a conclusão já for aceita, num raciocínio circular.",
-          "**Conclusão irrelevante**: premissas sem relação relevante com a conclusão.",
-          "**Falso escocês**: restringe a definição para afastar o contraexemplo.",
-          "**Apelos emocionais**: ao povo, à piedade, à força (medo) e às consequências.",
-          "**Acidente**: aplica a regra geral onde havia exceção; a inversão generaliza a exceção.",
-          "**Divisão e composição**: do todo para as partes e das partes para o todo, sem justificativa.",
-          "**Falácias indutivas**: generalização apressada, falsa analogia, falácia do jogador e derrapagem.",
-          "**Causalidade**: exige correlação, precedência temporal e eliminação de outras causas.",
-          "**Falácias causais**: falsa causa, causa comum, post hoc, inversão e causa complexa."
-        ],
-        "teoria": [
-          {
-            "statement": "Quando se ataca uma versão distorcida da tese do oponente, comete-se a falácia do espantalho.",
-            "isTrue": true,
-            "explanation": "Troca-se a tese por outra."
-          },
-          {
-            "statement": "A falácia da derrapagem consiste em generalizar a partir de uma única observação.",
-            "isTrue": false,
-            "explanation": "Isso é generalização apressada."
-          },
-          {
-            "statement": "A falácia do jogador supõe que um evento tem de ocorrer porque não ocorreu por algum tempo.",
-            "isTrue": true,
-            "explanation": "Ignora a independência dos eventos."
-          },
-          {
-            "statement": "Provar causa e efeito exige apenas que a causa tenha ocorrido antes do efeito.",
-            "isTrue": false,
-            "explanation": "Exige ainda correlação e eliminação de outras causas."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "A frase \"Se o médico pode ir ao evento, todos os funcionários podem\" é inversão do acidente.",
-            "isTrue": true,
-            "explanation": "Toma uma exceção como regra."
-          },
-          {
-            "statement": "A falácia da composição afirma que as partes herdam as propriedades do todo.",
-            "isTrue": false,
-            "explanation": "É a divisão."
-          },
-          {
-            "statement": "\"Ninguém da turma usa esse aplicativo, então ele não presta\" pode ser apelo ao povo.",
-            "isTrue": true,
-            "explanation": "Aceitação geral como prova."
-          },
-          {
-            "statement": "Atribuir um acidente a uma só causa, quando houve várias, é falácia da causa complexa.",
-            "isTrue": true,
-            "explanation": "Apresenta só parte das causas."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Espantalho e petição de princípio",
-            "pageRef": 39
-          },
-          {
-            "topic": "Questão do INPI e conclusão irrelevante",
-            "pageRef": 40
-          },
-          {
-            "topic": "Falso escocês e apelo ao povo",
+            "topic": "Falso escocês e falácias emocionais",
             "pageRef": 41
           },
           {
-            "topic": "Apelo à piedade e apelo à força",
+            "topic": "Apelo à piedade e à força",
             "pageRef": 42
           },
           {
@@ -484,576 +367,28 @@
             "pageRef": 44
           },
           {
-            "topic": "Composição e generalização apressada",
+            "topic": "Composição e falácias indutivas",
             "pageRef": 45
-          },
-          {
-            "topic": "Falsa analogia",
-            "pageRef": 46
           },
           {
             "topic": "Falácia do jogador e derrapagem",
             "pageRef": 47
           },
           {
-            "topic": "Falácias causais e falsa causa",
+            "topic": "Condições de causalidade e falsa causa",
             "pageRef": 48
           },
           {
-            "topic": "Causa comum, post hoc, inversão e causa complexa",
+            "topic": "Post hoc, inversão de causa e efeito, causa complexa",
             "pageRef": 49
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a05/s06",
-      "bizu": {
-        "summary": [
-          "**Causa complexa**: explica um fenômeno multifatorial por apenas parte das causas.",
-          "**Causa insignificante**: cita uma causa real, mas pequena demais diante das demais.",
-          "**Equívoco**: usa uma palavra com dois significados no mesmo raciocínio.",
-          "**Anfibologia**: a construção da frase permite duas interpretações.",
-          "**Ênfase**: a conclusão depende de destacar certas palavras da premissa.",
-          "**Dedução**: parte da regra geral para o caso particular e a conclusão é necessária.",
-          "**Indução**: parte de casos observados para uma generalização provável.",
-          "**Abdução**: propõe a melhor explicação, como alguém ter pegado um livro que sumiu.",
-          "**Peirce**: regra e premissa levam à conclusão na dedução; conclusão e regra levam à premissa na abdução.",
-          "**Modus tollens em cadeia**: negar o último consequente nega os antecedentes anteriores."
-        ],
-        "teoria": [
-          {
-            "statement": "A frase \"A mulher viu o ladrão com o binóculo\" é um caso de anfibologia.",
-            "isTrue": true,
-            "explanation": "A construção admite duas leituras."
           },
           {
-            "statement": "A falácia do equívoco ocorre quando a construção do enunciado é ambígua.",
-            "isTrue": false,
-            "explanation": "Esse é o caso da anfibologia."
-          },
-          {
-            "statement": "\"Não achei meu caderno; logo, alguém o pegou\" é um raciocínio abdutivo.",
-            "isTrue": true,
-            "explanation": "Hipótese explicativa."
-          },
-          {
-            "statement": "Em um argumento dedutivo, a conclusão traz informação nova em relação às premissas.",
-            "isTrue": false,
-            "explanation": "Não traz conhecimento novo."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "A falácia da ênfase ocorre quando a conclusão depende de destacar certas palavras da premissa.",
-            "isTrue": true,
-            "explanation": "Mudança de sentido por destaque."
-          },
-          {
-            "statement": "Citar uma causa legítima mas desprezível diante das demais é a falácia da causa insignificante.",
-            "isTrue": true,
-            "explanation": "Definição."
-          },
-          {
-            "statement": "O argumento \"Fiz um bom negócio com três vendedores de uma cidade, logo todos os vendedores de lá são honestos\" é dedutivo.",
-            "isTrue": false,
-            "explanation": "É uma generalização: indução."
-          },
-          {
-            "statement": "Com as condicionais \"Se D, então B\" e \"Se B, então R\" e a informação \"não R\", conclui-se \"não D\".",
-            "isTrue": true,
-            "explanation": "Modus tollens em cadeia."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Causa complexa (INPI) e causa insignificante",
+            "topic": "Causa insignificante e ambiguidade",
             "pageRef": 50
           },
           {
             "topic": "Equívoco, anfibologia e ênfase",
             "pageRef": 51
-          },
-          {
-            "topic": "Ênfase enganosa e questão da FGV (TCE-PE)",
-            "pageRef": 52
-          },
-          {
-            "topic": "Resolução da FGV (TCE-PE)",
-            "pageRef": 53
-          },
-          {
-            "topic": "Questão do SEBRAE-GO e da Consulplan (DPE-PR)",
-            "pageRef": 54
-          },
-          {
-            "topic": "Resolução da Consulplan e questão do TRF-6 (abdução)",
-            "pageRef": 55
-          },
-          {
-            "topic": "Questão da FEPESE (Brusque)",
-            "pageRef": 56
-          },
-          {
-            "topic": "Questão da SELECON (Rio Brilhante)",
-            "pageRef": 57
-          },
-          {
-            "topic": "Alternativas da SELECON e questão da UFT",
-            "pageRef": 58
-          },
-          {
-            "topic": "Resolução da UFT",
-            "pageRef": 59
-          },
-          {
-            "topic": "Questão da CGE-RJ e IBFC (Cuiabá)",
-            "pageRef": 60
-          },
-          {
-            "topic": "Questões do IBFC sobre Peirce",
-            "pageRef": 61
-          },
-          {
-            "topic": "Questão do CREA-BA e da Câmara dos Deputados",
-            "pageRef": 62
-          },
-          {
-            "topic": "Resolução da Câmara e questão da IMPARH",
-            "pageRef": 63
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a05/s07",
-      "bizu": {
-        "summary": [
-          "**Regra e premissa**: levam à conclusão e caracterizam a dedução.",
-          "**Premissa e conclusão**: levam à regra e caracterizam a indução.",
-          "**Regra e conclusão**: levam à premissa explicativa e caracterizam a abdução.",
-          "**Fato antes do julgamento**: indica premissa levando à conclusão.",
-          "**Analogia**: é sempre indutiva e conclui algo apenas provável.",
-          "**Silogismo incompleto**: uma premissa mais a conclusão não forma silogismo dedutivo válido.",
-          "**Probabilidade conhecida**: calcular a chance de tirar bola azul numa urna conhecida é dedução.",
-          "**Probabilidade e viés**: concluir que o sorteio é viciado após muitas azuis seguidas é indução.",
-          "**Abdução e indução**: se só houver dedutivo ou indutivo nas opções, a abdução vai para o indutivo.",
-          "**Força indutiva**: fumaça e bombeiros a caminho tornam o incêndio muito provável, argumento forte."
-        ],
-        "teoria": [
-          {
-            "statement": "O raciocínio \"Quando faz calor, vendo mais sorvete; hoje fez calor; logo, venderei mais\" é dedutivo.",
-            "isTrue": true,
-            "explanation": "Modus ponens."
-          },
-          {
-            "statement": "O raciocínio \"Quando faz calor, vendo mais sorvete; vendi mais; logo, fez calor\" é dedutivo válido.",
-            "isTrue": false,
-            "explanation": "Seria abdução; como dedução, afirma o consequente."
-          },
-          {
-            "statement": "A indução parte de particularidades para obter uma conclusão geral.",
-            "isTrue": true,
-            "explanation": "Definição."
-          },
-          {
-            "statement": "A dedução e a indução são o mesmo tipo de raciocínio.",
-            "isTrue": false,
-            "explanation": "São tipos diferentes de inferência."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "Chegar à melhor explicação para um fato observado é um raciocínio abdutivo.",
-            "isTrue": true,
-            "explanation": "Hipótese explicativa."
-          },
-          {
-            "statement": "Determinar a premissa, dadas a regra e a conclusão, é indução.",
-            "isTrue": false,
-            "explanation": "É abdução."
-          },
-          {
-            "statement": "O argumento \"fumaça saindo de um prédio e viaturas de bombeiros a caminho; logo, há incêndio\" é abdutivo ou indutivo forte.",
-            "isTrue": true,
-            "explanation": "Depende da classificação adotada."
-          },
-          {
-            "statement": "Concluir que um sorteio é viciado por ter saído dez vezes a mesma cor é um raciocínio indutivo.",
-            "isTrue": true,
-            "explanation": "Generalização probabilística."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Fim da questão de João e questão do IBFC (MGS)",
-            "pageRef": 64
-          },
-          {
-            "topic": "Questões do IBFC e da FGV (PC-AM)",
-            "pageRef": 65
-          },
-          {
-            "topic": "Alternativas da FGV (PC-AM)",
-            "pageRef": 66
-          },
-          {
-            "topic": "Fim da PC-AM e questão da FGV (TJDFT)",
-            "pageRef": 67
-          },
-          {
-            "topic": "Resolução da TJDFT e item do FUNPRESP-Jud",
-            "pageRef": 68
-          },
-          {
-            "topic": "Itens do FUNPRESP-Jud e questão da FGV (TCE-AM)",
-            "pageRef": 69
-          },
-          {
-            "topic": "Resolução da TCE-AM e questão do IBFC (rosas e violetas)",
-            "pageRef": 70
-          },
-          {
-            "topic": "Questão do IBFC (Candeias)",
-            "pageRef": 71
-          },
-          {
-            "topic": "Questão do IBFC (urna)",
-            "pageRef": 72
-          },
-          {
-            "topic": "Resolução da urna e questão do IBFC (IDAM)",
-            "pageRef": 73
-          },
-          {
-            "topic": "Questão sobre a lei da inércia",
-            "pageRef": 74
-          },
-          {
-            "topic": "Questão do gato preto e questão do incêndio",
-            "pageRef": 75
-          },
-          {
-            "topic": "Resolução do incêndio",
-            "pageRef": 76
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a05/s08",
-      "bizu": {
-        "summary": [
-          "**Apelo à piedade**: busca pena em vez de apresentar razões.",
-          "**Apelo ao povo**: usa a aceitação geral como prova de verdade.",
-          "**Apelo à ignorância**: sustenta algo pela ausência de provas contrárias.",
-          "**Apelo às consequências**: julga a verdade pelas consequências boas ou más.",
-          "**Falso dilema**: apresenta duas opções como as únicas, escondendo outras.",
-          "**Negação do antecedente e afirmação do consequente**: falácias formais inválidas.",
-          "**Válido mas fraco**: expressão inadequada, pois fraco e forte se aplicam só a argumentos indutivos.",
-          "**Falsa analogia**: compara coisas inadequadas e conclui sem fundamento.",
-          "**Falsa causa**: confunde correlação com causalidade.",
-          "**Ad hominem circunstancial**: desqualifica o argumento pela situação pessoal de quem o formula, sem discutir o conteúdo.",
-          "**Apelo à autoridade**: invoca alguém renomado para provar um fato que ele não pode garantir só por ser renomado.",
-          "**Falsa analogia versus falsa causa**: a primeira compara coisas diferentes demais; a segunda liga eventos só porque ocorreram juntos."
-        ],
-        "teoria": [
-          {
-            "statement": "Dizer que um argumento dedutivo é \"válido, mas fraco\" é inadequado, pois a força se aplica a argumentos indutivos.",
-            "isTrue": true,
-            "explanation": "Dedutivos são válidos ou inválidos."
-          },
-          {
-            "statement": "Confundir correlação temporal com causa é a falácia da petição de princípio.",
-            "isTrue": false,
-            "explanation": "É a falácia da falsa causa."
-          },
-          {
-            "statement": "Pedir aprovação de um projeto por causa do esforço dispensado é apelo à piedade.",
-            "isTrue": true,
-            "explanation": "Busca comiseração."
-          },
-          {
-            "statement": "A afirmação do consequente é um argumento válido quando as premissas são verdadeiras.",
-            "isTrue": false,
-            "explanation": "É inválida pela forma."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "\"O senhor luta contra a corrupção ou não é digno do cargo\" é um falso dilema.",
-            "isTrue": true,
-            "explanation": "Só duas opções."
-          },
-          {
-            "statement": "Dizer que não há estudos provando que um remédio faz mal e que, por isso, ele faz bem, é apelo à ignorância.",
-            "isTrue": true,
-            "explanation": "Verdade por ausência de prova."
-          },
-          {
-            "statement": "Uma crítica geral a um grupo social sobre educação, sem desqualificar a pessoa que argumenta, é ad hominem.",
-            "isTrue": false,
-            "explanation": "Não desqualifica o interlocutor."
-          },
-          {
-            "statement": "A falsa analogia ocorre quando a comparação entre dois casos é inadequada para a conclusão.",
-            "isTrue": true,
-            "explanation": "Definição."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Apelo à piedade e apelo ao povo (TRF-6)",
-            "pageRef": 77
-          },
-          {
-            "topic": "Apelo à ignorância e às consequências",
-            "pageRef": 78
-          },
-          {
-            "topic": "Falso dilema e argumento do setor de branco",
-            "pageRef": 79
-          },
-          {
-            "topic": "Negação do antecedente e falsa dicotomia (automação)",
-            "pageRef": 80
-          },
-          {
-            "topic": "Afirmação do consequente (rua alagada) e questão do IAUPE",
-            "pageRef": 81
-          },
-          {
-            "topic": "Resolução do IAUPE e falsa analogia (água e oxigênio)",
-            "pageRef": 82
-          },
-          {
-            "topic": "Falsa analogia e questão da falsa causa",
-            "pageRef": 83
-          },
-          {
-            "topic": "Falsa causa e negação do antecedente",
-            "pageRef": 84
-          },
-          {
-            "topic": "Negação do antecedente e causa falsa (Araques)",
-            "pageRef": 85
-          },
-          {
-            "topic": "Resolução de Araques e falácia apelativa",
-            "pageRef": 86
-          },
-          {
-            "topic": "Alternativas e falsa analogia",
-            "pageRef": 87
-          },
-          {
-            "topic": "Apelo à autoridade",
-            "pageRef": 88
-          },
-          {
-            "topic": "Ad hominem e afirmação do consequente",
-            "pageRef": 89
-          },
-          {
-            "topic": "Resolução do ad hominem",
-            "pageRef": 90
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a05/s09",
-      "bizu": {
-        "summary": [
-          "**Indicadores**: \"logo\", \"portanto\", \"por isso\" anunciam conclusão; \"porque\", \"pois\", \"já que\" anunciam premissa.",
-          "**Ordem livre**: a conclusão pode vir antes das premissas (\"o piso está molhado, pois a janela ficou aberta\").",
-          "**Dedução**: regra + caso → resultado; conclusão necessária se as premissas forem V; não acrescenta conhecimento.",
-          "**Indução**: casos + resultados → regra geral; conclusão provável; avaliada como forte ou fraca.",
-          "**Abdução**: regra + resultado → caso; propõe a melhor explicação (raciocínio do investigador).",
-          "**Analogia**: forma de indução que transfere uma característica entre casos semelhantes.",
-          "**Adjetivos certos**: válido/inválido para dedução; forte/fraco para indução.",
-          "**Probabilidade**: calcular a chance a partir da composição da urna é dedução; generalizar a partir de poucas retiradas é indução.",
-          "**Entimema**: argumento com premissa implícita; a banca pede para reconhecer a premissa que falta."
-        ],
-        "teoria": [
-          {
-            "statement": "\"Se Ana mora no centro, então tem bom acesso a ônibus; logo, se não mora no centro, não tem bom acesso\" é negação do antecedente.",
-            "isTrue": true,
-            "explanation": "Segunda forma da falácia."
-          },
-          {
-            "statement": "A negação do antecedente tem apenas uma forma, a da premissa ~p com conclusão ~q.",
-            "isTrue": false,
-            "explanation": "Tem também a forma p → q, logo ~p → ~q."
-          },
-          {
-            "statement": "Nos itens do CEBRASPE, \"válido\" aplica-se a dedutivos e \"forte\" a indutivos.",
-            "isTrue": true,
-            "explanation": "Classificação dos argumentos."
-          },
-          {
-            "statement": "Uma probabilidade calculada exatamente numa urna com composição conhecida é um raciocínio indutivo.",
-            "isTrue": false,
-            "explanation": "É dedução."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "Classificar o raciocínio antes de olhar o gabarito é uma estratégia de estudo adequada.",
-            "isTrue": true,
-            "explanation": "Treino ativo."
-          },
-          {
-            "statement": "Palavras como \"deve\" e \"talvez\" costumam indicar a premissa de um argumento.",
-            "isTrue": false,
-            "explanation": "Indicam o julgamento, isto é, a conclusão."
-          },
-          {
-            "statement": "Quando só há opções dedutivas e indutivas, a abdução tende a ser tratada como indutiva.",
-            "isTrue": true,
-            "explanation": "Questão do incêndio no terminal."
-          },
-          {
-            "statement": "A lista final reapresenta questões já resolvidas para treino.",
-            "isTrue": true,
-            "explanation": "Autoavaliação."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Fim do FUNPRESP-Jud: negação do antecedente",
-            "pageRef": 91
-          },
-          {
-            "topic": "Lista de classificação (FGV, SEBRAE, Consulplan)",
-            "pageRef": 92
-          },
-          {
-            "topic": "Lista de classificação (TRF-6, FEPESE, SELECON)",
-            "pageRef": 93
-          },
-          {
-            "topic": "Lista de classificação (UFT, CGE-RJ, IBFC)",
-            "pageRef": 94
-          },
-          {
-            "topic": "Lista de classificação (CREA-BA, Câmara, IMPARH)",
-            "pageRef": 95
-          },
-          {
-            "topic": "Lista de classificação (MGS, DPE-MT, PC-AM)",
-            "pageRef": 96
-          },
-          {
-            "topic": "Lista de classificação (TJDFT, FUNPRESP-Jud, TCE-AM)",
-            "pageRef": 97
-          },
-          {
-            "topic": "Lista de classificação (rosas e violetas, Candeias, urna)",
-            "pageRef": 98
-          },
-          {
-            "topic": "Lista de classificação (IDAM, inércia, gato preto)",
-            "pageRef": 99
-          },
-          {
-            "topic": "Lista de classificação (incêndio)",
-            "pageRef": 100
-          },
-          {
-            "topic": "Gabarito de estrutura básica e classificação",
-            "pageRef": 101
-          },
-          {
-            "topic": "Lista de falácias (TRF-6)",
-            "pageRef": 102
-          },
-          {
-            "topic": "Lista de falácias (consequência, dilema, setor)",
-            "pageRef": 103
-          },
-          {
-            "topic": "Lista de falácias (rua alagada, IAUPE, Camaragibe e ACFor)",
-            "pageRef": 104
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a05/s10",
-      "bizu": {
-        "summary": [
-          "**Falácia**: argumento persuasivo, mas logicamente defeituoso; a banca descreve a fala e pede o nome.",
-          "**Formais**: afirmar o consequente (p → q; q; logo p) e negar o antecedente (p → q; ~p; logo ~q).",
-          "**Ad hominem**: ataca a pessoa (ofensivo, circunstancial ou \"você também\"), não o argumento.",
-          "**Autoridade e ignorância**: invoca especialista fora da área ou toma a falta de prova como prova.",
-          "**Falso dilema e pergunta complexa**: reduz tudo a duas opções; pergunta que já pressupõe a culpa.",
-          "**Espantalho e petição de princípio**: distorce a tese do outro; conclusão escondida na premissa.",
-          "**Apelos**: ao povo, à piedade, à força ou às consequências substituem as razões.",
-          "**Generalizações**: apressada (poucos casos), acidente (regra geral na exceção) e falsa analogia.",
-          "**Causais**: post hoc e falsa causa confundem sequência ou correlação com causa.",
-          "**Jogador e derrapagem**: ignora a independência dos eventos; encadeia consequências exageradas."
-        ],
-        "teoria": [
-          {
-            "statement": "Em questões de falácia, vale identificar primeiro o que o interlocutor faz no diálogo.",
-            "isTrue": true,
-            "explanation": "Reconhecimento antes da nomenclatura."
-          },
-          {
-            "statement": "Um argumento dedutivo pode ser classificado como forte ou fraco.",
-            "isTrue": false,
-            "explanation": "Forte e fraco são classes dos indutivos."
-          },
-          {
-            "statement": "A petição de princípio é um raciocínio circular.",
-            "isTrue": true,
-            "explanation": "A premissa pressupõe a conclusão."
-          },
-          {
-            "statement": "A falácia do jogador consiste em generalizar a partir de uma amostra pequena e tendenciosa.",
-            "isTrue": false,
-            "explanation": "É a generalização apressada; o jogador supõe que um evento \"deve\" ocorrer."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "A inversão do acidente toma a exceção como regra.",
-            "isTrue": true,
-            "explanation": "Definição."
-          },
-          {
-            "statement": "Um monte de pessoas dizendo que algo é verdade não prova que seja verdade.",
-            "isTrue": true,
-            "explanation": "Apelo ao povo."
-          },
-          {
-            "statement": "A falácia da ênfase ocorre quando uma palavra é usada com dois sentidos.",
-            "isTrue": false,
-            "explanation": "É o equívoco."
-          },
-          {
-            "statement": "Divisão e composição são falácias que passam do todo para as partes e das partes para o todo, sem justificativa.",
-            "isTrue": true,
-            "explanation": "Definições."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Lista de falácias (Serra, Araques e Basílios)",
-            "pageRef": 105
-          },
-          {
-            "topic": "Lista de falácias (PMPB, SGDA e FUNPRESP-Jud)",
-            "pageRef": 106
-          },
-          {
-            "topic": "Lista de falácias (negação do antecedente)",
-            "pageRef": 107
-          },
-          {
-            "topic": "Gabarito de falácias e argumentos apelativos",
-            "pageRef": 108
           }
         ]
       }

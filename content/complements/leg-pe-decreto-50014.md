@@ -9,7 +9,7 @@ order: 1
 resolves: leg-decreto-50014
 ---
 
-## Por que este decreto existe
+## Origem e finalidade do decreto
 
 Pessoal, este é um dos textos mais curtos do edital de Legislações — são apenas **10 artigos** — e, justamente por isso, cai com detalhe. Vale decorar cada número.
 

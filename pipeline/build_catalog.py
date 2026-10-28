@@ -35,6 +35,12 @@ def clean_title(raw: str, aula_id: str = "") -> str:
         t = re.sub(r"\s*-\s*Somente\s+(?:em\s+)?PDF\b", "", t, flags=re.I)
         t = re.sub(r"^\s*nvestigação\b", "Investigação", t, flags=re.I)
     t = re.sub(r"\s+", " ", t.replace("_ ", ": ").replace("_", ":")).strip().rstrip(".")
+    # numeração de leis vinda do nome do arquivo: "Lei no 14.133:2021", "Lei n.o 13.869:2019" -> "Lei nº 14.133/2021"
+    t = re.sub(r"\b(Lei|Complementar|Decreto|Decreto-Lei)\s+n\.?\s?o\b\.?", r"\1 nº", t)
+    t = re.sub(r"(\d{1,3}(?:\.\d{3})*):(\d{4})\b", r"\1/\2", t)
+    t = re.sub(r"\.\s+\(", " (", t)  # "Licitações. (Lei" -> "Licitações (Lei"
+    t = re.sub(r"\.\s+Não há$", "", t)  # resto do nome do arquivo
+    t = re.sub(r"\b(\d{1,2}) e (janeiro|fevereiro|março|abril|maio|junho|julho|agosto|setembro|outubro|novembro|dezembro)\b", r"\1 de \2", t)
     return t
 
 

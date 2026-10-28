@@ -1,0 +1,495 @@
+##### estatistica/a00/s02
+Uma série estatística organiza dados em torno de uma característica comum e os apresenta em tabela ou gráfico. O trecho mostra as partes de uma tabela, os tipos de série (temporal, geográfica, específica e mista) e a construção de uma distribuição de frequências, pontual ou por intervalos de classe.
+
+### Série estatística, tabela e gráfico
+
+Uma **série estatística** é um conjunto de dados ligado a uma mesma variável, apresentado de forma a facilitar a leitura. Os dois formatos usuais são a tabela e o gráfico.
+
+**Partes da tabela** (a fonte é, por exemplo, o Censo Demográfico):
+
+| Parte | O que é |
+| --- | --- |
+| Título | identifica o conteúdo da tabela |
+| Cabeçalho | parte superior que diz o que há em cada coluna |
+| Coluna indicadora | indica o conteúdo de cada linha |
+| Corpo | conjunto de linhas e colunas com os dados da variável |
+| Linhas | traços que ajudam a leitura |
+| Célula | espaço onde fica cada dado |
+| Fonte | origem dos dados, colocada no rodapé |
+
+O **gráfico** serve para dar compreensão rápida do fenômeno. Para isso precisa ser **simples** (sem detalhes irrelevantes), **claro** (permite interpretar corretamente os valores) e **verossímil** (transmite a verdade sobre o fenômeno).
+
+### Os três elementos e a classificação das séries
+
+Toda série traz três elementos: **tempo** (época), **espaço** (local) e **espécie** (o fato ou fenômeno). A série se classifica conforme o elemento que **varia**, enquanto os outros dois ficam constantes.
+
+| Série | Sinônimos | O que varia | O que fica constante |
+| --- | --- | --- | --- |
+| Temporal | cronológica, histórica, evolutiva | tempo | fato e local |
+| Geográfica | territorial, espacial, de localização | local | fato e tempo |
+| Específica | categórica | fato (categoria) | tempo e local |
+
+> 💡 **Exemplo próprio:** número de matrículas em uma escola de 2018 a 2023 é **temporal** (só o ano varia). Matrículas em 2023 nos cinco bairros da cidade é **geográfica** (só o bairro varia). Matrículas em 2023, nessa escola, por turno (manhã, tarde, noite) é **específica** (só a categoria varia).
+
+> ⚠️ **Pegadinha:** para classificar, pergunte "o que muda de linha para linha?". Se a coluna indicadora lista anos, é temporal; se lista regiões, geográfica; se lista categorias (sexo, zona, tipo), específica.
+
+### Séries mistas (compostas)
+
+Quando se precisa mostrar mais de uma variável em uma só tabela, combinam-se duas ou mais séries, formando uma **série mista (ou composta)**, apresentada em **tabela de dupla entrada** (linhas × colunas). O nome da nova série leva em conta pelo menos dois elementos (a tabela de homens e mulheres por ano é específico-temporal; a população por região e por ano é geográfico-temporal):
+
+- **específico-temporal**: fato e tempo (por exemplo, número de homens e de mulheres a cada ano);
+- **geográfico-temporal**: local e tempo (por exemplo, população de cada região a cada ano).
+
+Também é possível, em tese, ter séries com três ou mais entradas, mas são raras pela dificuldade de representação.
+
+### Dados brutos, rol e frequência
+
+Logo após a coleta, os dados estão **brutos**: na ordem em que foram obtidos, sem organização, e informam pouco. O primeiro passo é ordená-los em **rol** (ordem crescente ou decrescente). Do rol já se lê o menor e o maior valor e a **amplitude total**:
+
+**AT = valor máximo − valor mínimo**
+
+O rol também revela quais valores se repetem. O número de vezes que um valor aparece é sua **frequência**, e a tabela que reúne os valores com suas frequências é a **distribuição de frequências**. Ela é, ela própria, uma série estatística em que **fato, local e época são constantes** (só o valor da variável muda).
+
+> 💡 **Exemplo próprio:** idades de 8 pessoas: 31, 25, 25, 40, 31, 25, 52, 40. Rol: 25, 25, 25, 31, 31, 40, 40, 52. Amplitude total = 52 − 25 = 27. Distribuição pontual: 25 (3), 31 (2), 40 (2), 52 (1); soma das frequências = 8.
+
+### Distribuição pontual × intervalar
+
+| Tipo | Como apresenta | Vantagem | Desvantagem |
+| --- | --- | --- | --- |
+| **Pontual (discreta)** | cada valor observado com sua frequência | não perde nenhum dado | ocupa muito espaço quando há muitos valores distintos |
+| **Intervalar (contínua)** | classes (intervalos) com a frequência de cada uma | resume bem, ideal para variável contínua | perde o detalhe de cada observação |
+
+Na intervalar, cada valor é alocado na classe a que pertence e se lê o padrão global (onde há mais e menos casos). É o formato mais comum, porque a estatística busca visão geral e não o detalhe de casos particulares.
+
+> 💡 **Exemplo (50 tempos diários de estudo, em minutos):** o menor valor é 85 e o maior, 175, logo AT = 175 − 85 = 90. Agrupados em classes de 15 minutos (85 ≤ x < 100, 100 ≤ x < 115 e assim por diante até 175 ≤ x < 190), as frequências são 5, 5, 12, 10, 7, 9 e 2, somando 50. A classe mais frequente é 115 ≤ x < 130; a menos frequente, 175 ≤ x < 190. Em compensação, perde-se a informação detalhada de cada tempo (por exemplo, que 126, 135, 137 e 171 foram os valores mais repetidos).
+
+> 💡 **Exemplo próprio:** 20 tempos de espera entre 0 e 20 minutos agrupados em 0 ≤ x < 5 (4), 5 ≤ x < 10 (9), 10 ≤ x < 15 (5) e 15 ≤ x < 20 (2): a soma das frequências (4 + 9 + 5 + 2) é 20, e a classe modal é a de 5 a 10.
+
+### Notação dos intervalos de classe
+
+Cada classe tem **limite inferior** e **limite superior**, e é preciso dizer se o extremo pertence à classe:
+
+| Tipo | Notação | Significado |
+| --- | --- | --- |
+| Aberto | a < x < b | entre a e b, sem incluir a nem b |
+| Fechado à esquerda, aberto à direita | a ≤ x < b | inclui a, não inclui b |
+| Aberto à esquerda, fechado à direita | a < x ≤ b | inclui b, não inclui a |
+| Fechado | a ≤ x ≤ b | inclui a e b |
+
+O padrão em tabelas por classes é **fechado à esquerda e aberto à direita** (a ≤ x < b): um valor igual ao limite superior vai para a classe seguinte, o que evita contagem dupla. Assim, 100 pertence à classe 100 ≤ x < 115, e não à anterior.
+
+### Para fixar
+- Série estatística: dados de uma mesma variável organizados em tabela ou gráfico.
+- Tabela: título, cabeçalho, coluna indicadora, corpo, linhas, células e fonte; gráfico: simples, claro e verossímil.
+- Classifique pelo que varia: tempo (temporal), local (geográfica), fato (específica).
+- Série mista = tabela de dupla entrada; nomeia-se pelos dois elementos (específico-temporal, geográfico-temporal).
+- Dados brutos → rol → amplitude total (máximo − mínimo).
+- Frequência é o número de ocorrências; a distribuição de frequências tem fato, local e época constantes.
+- Pontual não perde dados; intervalar resume, mas perde o detalhe; classe típica: a ≤ x < b.
+- Exemplo de leitura: com 50 dados entre 85 e 175, AT = 90; a classe modal estava em 115 ≤ x < 130 (12 casos).
+
+##### estatistica/a00/s04
+Este trecho trata das representações gráficas de uma distribuição de frequências: gráfico de hastes, histograma, polígono de frequências, curva de frequências (com a fórmula do polimento) e ogiva. O ponto central é saber qual gráfico serve para qual tipo de dado e como cada um é construído.
+
+### Qual gráfico para qual dado
+
+| Gráfico | Dado representado | Característica principal |
+| --- | --- | --- |
+| Hastes (bastões) | não agrupado em classes, em geral discreto | uma haste por valor da variável |
+| Histograma | agrupado em classes | retângulos colados, um por classe |
+| Polígono de frequências | agrupado em classes | linha que liga os pontos médios do topo dos retângulos |
+| Curva de frequências | agrupado em classes | polígono "alisado", sem cantos |
+| Ogiva | frequências acumuladas | linha que liga os limites das classes às acumuladas |
+
+### Gráfico de hastes (bastões)
+
+Serve para dados que **não foram agrupados em classes**, o que costuma ocorrer com variáveis discretas. Como cada valor aparece individualmente, **não há perda de informação**: basta traçar, sobre cada valor da variável, uma haste com altura igual à frequência (absoluta ou relativa). Por isso é possível reconstruir a tabela a partir do gráfico e vice-versa.
+
+> 💡 **Exemplo:** numa amostra em que o valor 0 aparece 4 vezes, o 1 aparece 10, o 2 aparece 25, o 3 aparece 15 e assim por diante, desenham-se hastes de alturas 4, 10, 25, 15... sobre os valores 0, 1, 2, 3...
+
+### Histograma
+
+É o gráfico para dados **agrupados em classes**. É formado por retângulos **contíguos** (sem separação) apoiados no eixo horizontal:
+
+- o número de retângulos é igual ao **número de classes**;
+- a **largura** de cada retângulo é a **amplitude** do intervalo de classe, e as bases coincidem com os limites da classe (o ponto médio da base coincide com o ponto médio da classe);
+- a **altura** é proporcional à frequência da classe;
+- a **área total** é proporcional à soma das frequências.
+
+Como os elementos são representados pela classe e não individualmente, o histograma **perde informação** (não se sabe onde, dentro da classe, cada valor está).
+
+> ⚠️ **Pegadinha:** o que distingue histograma de **gráfico de colunas** é a separação entre as barras. Colunas separadas e categorias (qualitativas) indicam gráfico de colunas; retângulos colados e classes numéricas indicam histograma. Um gráfico com barras separadas representando fundos de investimento, por exemplo, não é histograma, pelos dois motivos: há espaço entre as barras e os dados são categorias, não intervalos de classe.
+
+A **poligonal característica** é o desenho que usa apenas o **contorno** do histograma (a linha que acompanha o topo dos retângulos).
+
+### Densidade de frequência
+
+Quando uma questão fala em histograma com "densidade", ela se refere a:
+
+densidade de frequência = frequência relativa da classe ÷ amplitude da classe
+
+Com isso, a altura "correta" de cada retângulo pode ser comparada mesmo entre classes de larguras diferentes. As provas costumam dar a densidade de uma classe, pedir o total de elementos e usar esse total em outra classe.
+
+> 💡 **Exemplo próprio:** uma classe de amplitude 1.000 tem densidade 2×10⁻⁴ e contém 30 elementos. Frequência relativa = densidade × amplitude = 2×10⁻⁴ × 1.000 = 0,2. Como 30 elementos correspondem a 20% do total, o total é 30 ÷ 0,2 = 150. Em outra classe de amplitude 2.000 e densidade 1×10⁻⁴, a frequência relativa é 0,2 e o número de elementos é 0,2 × 150 = 30.
+
+### Polígono de frequências
+
+É um **gráfico em linha**, obtido ligando-se com segmentos de reta os **pontos médios das bases superiores** dos retângulos do histograma. Para que a linha "feche" no eixo, acrescentam-se **uma classe anterior à primeira e uma posterior à última, ambas com frequência zero**. Assim como o histograma, a área sob o polígono é proporcional à soma das frequências.
+
+Para montar: calcule o ponto médio de cada classe (limite inferior + limite superior, dividido por 2) e marque o par (ponto médio, frequência). Na tabela de exemplo do assunto, a classe 85 a 100 tem ponto médio 92,5 e frequência 5; a classe fictícia 70 a 85 tem ponto médio 77,5 e frequência 0.
+
+### Curva de frequências
+
+Resulta do **polimento** do polígono: elimina-se a "quina" dos vértices, suavizando a linha. A ideia é que o polígono mostra o fenômeno **como foi observado**, enquanto a curva mostra a **tendência**, antecipando o comportamento da distribuição quando há muitos dados (com muitos dados a linha poligonal naturalmente tende a uma curva).
+
+O polimento usa uma média ponderada de três classes vizinhas, com peso 2 na classe central:
+
+**fc = (f anterior + 2 × f da classe + f posterior) ÷ 4**
+
+- fc: frequência calculada (polida) da classe;
+- f: frequência simples da classe; f anterior e f posterior: as das classes vizinhas.
+
+> 💡 **Exemplo:** frequências sequenciais 0, 5, 5, 12, 10. Para a classe de frequência 5 (a segunda): fc = (0 + 2×5 + 5) ÷ 4 = 15 ÷ 4 = 3,75. Para a classe de frequência 12: fc = (5 + 2×12 + 10) ÷ 4 = 39 ÷ 4 = 9,75.
+
+#### Formas características das curvas
+
+| Forma | Descrição |
+| --- | --- |
+| Sino, simétrica | valores concentrados no centro, com as duas caudas iguais |
+| Sino, assimétrica à direita | concentração central com cauda mais longa à direita |
+| Sino, assimétrica à esquerda | concentração central com cauda mais longa à esquerda |
+| J | ponto de máximo em uma extremidade (distribuição extremamente assimétrica) |
+| J invertido | o máximo está na extremidade oposta à do J |
+| U | máximos nas duas extremidades |
+
+O nome da assimetria segue a **cauda** (o lado em que a curva se alonga), não o lado da concentração.
+
+### Ogiva (polígono de frequências acumuladas)
+
+A ogiva representa **frequências acumuladas**, crescentes ou decrescentes. Diferenças em relação ao polígono de frequências:
+
+- no eixo horizontal vão os **extremos (limites) das classes**, e não os pontos médios;
+- no eixo vertical vão as **frequências acumuladas**;
+- também se considera uma classe anterior à primeira, com frequência nula.
+
+> 💡 **Exemplo:** com frequências 5, 5, 12, 10, 7, 9, 2 nas classes de 85 a 190, de largura 15, as acumuladas são 5, 10, 22, 32, 39, 48, 50. A ogiva sobe de 0 (no limite inferior da primeira classe, 85) até 50 (no limite superior da última, 190).
+
+### Como as questões cobram o tema
+
+- **Ler o histograma:** some as alturas para achar o total e, para "percentual a partir de certo valor", some só as colunas pedidas e divida pelo total (por exemplo, 22 de 44 elementos dá 50%).
+- **Densidade de frequência:** a conta é sempre densidade = (n da classe ÷ total) ÷ amplitude; isole o total na primeira classe e use-o na segunda.
+- **Identificar o gráfico:** verifique se o dado é agrupado em classes (histograma) ou categórico/discreto (colunas ou hastes) e se as barras estão coladas ou separadas.
+
+### Para fixar
+- Hastes: dados não agrupados (discretos), sem perda de informação; histograma: dados agrupados em classes, com perda de informação.
+- Histograma tem retângulos colados, um por classe; largura = amplitude, altura proporcional à frequência, área proporcional ao total.
+- Barras separadas ou dados qualitativos indicam gráfico de colunas, nunca histograma.
+- Polígono de frequências liga os pontos médios do topo dos retângulos e usa classes extras de frequência zero nas pontas.
+- Curva de frequências: polimento com fc = (anterior + 2 × própria + posterior) ÷ 4; mostra a tendência, não o fenômeno observado.
+- Formas: sino (simétrica ou assimétrica), J e J invertido, U.
+- Ogiva usa os limites das classes e as frequências acumuladas; o polígono usa os pontos médios.
+- Densidade de frequência = frequência relativa ÷ amplitude da classe.
+
+##### estatistica/a03/s01
+A moda é a medida de posição (tendência central) que indica o valor de maior ocorrência num conjunto de observações. Este trecho ensina a identificá-la em três situações: dados não agrupados, dados agrupados por valores (sem classes) e dados agrupados em classes, neste último caso pelo método mais simples, a moda bruta.
+
+### Conceito e classificação quanto ao número de modas
+
+A moda (Mo) é o valor que mais se repete, isto é, o de maior frequência. O termo foi introduzido na estatística por Karl Pearson, em 1895, pela ideia de "o que está em evidência". É o único valor central que pode ser usado em **variáveis qualitativas nominais** (aquelas sem ordem, como cor, time ou cidade): a média e a mediana exigem números ou ordem, a moda só exige contagem.
+
+Diferentemente da média e da mediana, a moda **pode não existir** e pode ser **mais de uma**. Por isso o conjunto é classificado assim:
+
+| Classificação | Quando ocorre | Exemplo |
+| --- | --- | --- |
+| **Amodal** | todos os valores aparecem o mesmo número de vezes (nenhum se destaca) | {2, 4, 6, 8, 10} |
+| **Unimodal** | um único valor tem a maior frequência | {3, 3, 3, 5, 5, 8}: Mo = 3 |
+| **Bimodal** | dois valores empatam na maior frequência | {1, 1, 4, 4, 4, 7, 7, 7, 9}: Mo = 4 e Mo = 7 |
+| **Plurimodal (multimodal)** | três ou mais valores empatam na maior frequência | {2, 2, 5, 5, 6, 6, 9}: Mo = 2, 5 e 6 |
+
+Para haver mais de uma moda, os valores empatados precisam ter frequência **maior** que a de todos os outros. No último exemplo, 2, 5 e 6 aparecem duas vezes cada um e o 9 aparece uma só; por isso são três modas.
+
+> ⚠️ **Pegadinha:** a moda é o **valor** que mais aparece, e não a quantidade de vezes que ele aparece. Se o 22 aparece duas vezes e é o campeão, a moda é 22, e não 2. Uma banca costuma oferecer a frequência como alternativa errada.
+
+### Dados não agrupados
+
+Basta contar as repetições e apontar o valor (ou valores) de maior frequência. Não é necessário ordenar, embora ordenar ajude a contar.
+
+> 💡 **Exemplo:** no conjunto {12, 15, 12, 20, 15, 12, 30}, o 12 aparece três vezes, o 15 duas e os demais uma. Logo, o conjunto é unimodal e Mo = 12. Já em {7, 9, 11, 13}, nenhum valor se repete: o conjunto é amodal e **não há moda**.
+
+Se os valores vêm numa tabela com rótulos (dias, meses), o raciocínio é o mesmo: procure o número que mais se repete na linha dos valores e ignore os rótulos. Um valor alto que aparece uma única vez não é moda só por ser o maior.
+
+### Dados agrupados sem intervalos de classe (por valores)
+
+Aqui há uma tabela com cada valor (Xi) e a sua frequência absoluta (fi). A moda é o **valor Xi cuja frequência é a maior**.
+
+> 💡 **Exemplo:** número de faltas de 40 alunos num bimestre, na tabela a seguir.
+
+| Faltas (Xi) | 0 | 1 | 2 | 3 | 4 |
+| --- | --- | --- | --- | --- | --- |
+| Alunos (fi) | 6 | 11 | 17 | 4 | 2 |
+
+A maior frequência é 17, associada a 2 faltas. Logo, **Mo = 2**. O 17 é só a frequência; a moda é o que está na linha dos valores.
+
+Pontos de atenção:
+
+- No gráfico de barras (frequências por valor), a moda corresponde à **barra mais alta**.
+- A mesma ideia vale quando a tabela traz **frequências relativas**: o valor com maior frequência relativa é a moda, e empates geram mais de uma moda. Numa tabela em que os valores 0 e 4 têm 0,30 cada e os demais têm menos, o conjunto é bimodal, com Mo = 0 e Mo = 4. Escolher um terceiro valor "do meio" é o erro típico.
+- Valores com frequência zero (por exemplo, nenhum aluno com 11 anos) podem aparecer na tabela, mas nunca serão moda.
+
+### Dados agrupados em classes
+
+Quando os dados estão em intervalos de classe com a **mesma amplitude**, a moda se localiza na classe de maior frequência, chamada **classe modal**. Um intervalo não revela o valor exato mais frequente, por isso a moda é estimada por fórmulas. Existem quatro métodos: **moda bruta**, **de Pearson**, **de Czuber** e **de King**. Este trecho trata do mais simples, a moda bruta.
+
+**Moda bruta** = ponto médio da classe modal:
+
+**Mo = (l_inf + l_sup) / 2**
+
+em que l_inf e l_sup são os limites inferior e superior da classe modal.
+
+Passo a passo:
+
+1. identifique a classe de maior frequência (a classe modal);
+2. anote seus limites inferior e superior;
+3. calcule a média aritmética dos dois limites.
+
+> 💡 **Exemplo resolvido:** tempo de deslocamento até o trabalho de 50 pessoas, na tabela a seguir.
+
+| Classe (min) | 0 ⊢ 10 | 10 ⊢ 20 | 20 ⊢ 30 | 30 ⊢ 40 | 40 ⊢ 50 |
+| --- | --- | --- | --- | --- | --- |
+| fi | 6 | 14 | 18 | 8 | 4 |
+
+A maior frequência é 18, logo a classe modal é 20 ⊢ 30 e **Mo bruta = (20 + 30) / 2 = 25 min**. Para fins de comparação, a média dessa distribuição usa os pontos médios (5, 15, 25, 35, 45): (5·6 + 15·14 + 25·18 + 35·8 + 45·4) / 50 = 1.150 / 50 = 23 min. Média e moda bruta são valores diferentes e podem aparecer juntas na mesma questão, como nos itens que pedem "a média e a moda bruta" de uma tabela de pesos.
+
+> ⚠️ **Pegadinha:** a classe modal é decidida pela **frequência**, não pela posição. Não confunda com a classe que contém a mediana, nem tome o ponto médio da classe do meio da tabela. O símbolo ⊢ indica intervalo fechado à esquerda e aberto à direita: o limite superior não pertence à classe.
+
+Observação de prova: a moda de dados agrupados em classes é pouco explorada nos concursos; o mais comum é cobrar a moda de listas e de tabelas por valores, o conceito (unimodal, bimodal, amodal) e a distinção entre moda, média e mediana.
+
+### Moda frente às outras medidas (confusões de prova)
+
+- **Média**: soma dos valores dividida pela quantidade deles.
+- **Mediana**: valor central que divide o conjunto ordenado em duas partes iguais; com quantidade par de observações, é a média dos dois valores do meio.
+- **Variância** (dispersão: quanto os valores se afastam da média) e **amplitude total** (maior valor menos menor valor) **não** são medidas de tendência central.
+- A questão que pede "o valor de maior frequência" de uma amostra quer a **moda**.
+
+### Para fixar
+
+- Moda é o valor de maior frequência; é medida de posição e de tendência central.
+- Pode não existir (amodal), ser única (unimodal), dupla (bimodal) ou múltipla (plurimodal).
+- É a única medida central aplicável a variáveis qualitativas nominais.
+- Em tabelas por valores, a moda é o Xi de maior fi (ou maior frequência relativa), nunca a frequência em si.
+- Em classes de mesma amplitude, a classe modal é a de maior frequência.
+- Moda bruta = (l_inf + l_sup) / 2 da classe modal.
+- Pearson, Czuber e King são outros métodos de estimar a moda em classes.
+
+##### estatistica/a03/s02
+Quando os dados vêm agrupados em classes, a moda não aparece diretamente: é preciso estimá-la. O trecho ensina dois métodos de aproximação: a **moda de Pearson**, que usa a média e a mediana, e a **moda de Czuber**, que usa as frequências da classe modal e das vizinhas.
+
+### Moda de Pearson
+
+Karl Pearson notou que, em distribuições **moderadamente assimétricas**, as três medidas de tendência central guardam uma relação aproximada:
+
+**Mo = 3 · Md − 2 · x̄**
+
+em que Md é a mediana e x̄ é a média. Em outras palavras, a distância entre a média e a moda é cerca de três vezes a distância entre a média e a mediana. Consequência prática: se a média é maior que a mediana (assimetria à direita), a moda fica abaixo da mediana, e vice-versa.
+
+O trabalho do exercício está em obter média e mediana de dados agrupados. O roteiro é:
+
+1. Monte uma tabela com ponto médio da classe (PM), frequência (f), frequência acumulada (fac) e o produto PM · f.
+2. **Média**: x̄ = Σ(PM · f) / Σf.
+3. **Mediana por interpolação linear**: localize a posição Σf / 2; a classe mediana é a primeira cuja fac alcança ou supera essa posição. Então
+   Md = linf + [ (Σf / 2 − fac anterior) / f da classe ] · h,
+   com linf = limite inferior da classe mediana e h = amplitude da classe.
+4. Aplique Mo = 3 · Md − 2 · x̄.
+
+> 💡 **Exemplo:** 40 observações nas classes 0 a 10 (f = 4), 10 a 20 (10), 20 a 30 (16), 30 a 40 (8) e 40 a 50 (2). Pontos médios 5, 15, 25, 35, 45. Soma de PM · f = 20 + 150 + 400 + 280 + 90 = 940, então x̄ = 940 / 40 = 23,5. A posição da mediana é 20; as frequências acumuladas são 4, 14, 30, 38, 40, logo a classe mediana é a de 20 a 30. Md = 20 + [(20 − 14) / 16] · 10 = 23,75. Então Mo = 3 · 23,75 − 2 · 23,5 = 71,25 − 47 = 24,25.
+
+### Moda de Czuber
+
+Emanuel Czuber propôs um processo gráfico para aproximar a moda. Ele partiu do histograma e considerou três colunas: a da **classe modal** (a de maior frequência simples) e as das classes vizinhas. A moda é o limite inferior da classe modal somado a uma fração x da amplitude. Pela semelhança de triângulos, essa fração é proporcional às diferenças de frequência:
+
+**Mo = linf + [ Δ1 / (Δ1 + Δ2) ] · h**
+
+com:
+- linf: limite inferior da classe modal;
+- h: amplitude da classe modal;
+- Δ1 = f da classe modal − f da classe anterior;
+- Δ2 = f da classe modal − f da classe posterior.
+
+A mesma expressão aparece de outras formas, todas equivalentes:
+
+| Forma | Fórmula |
+| --- | --- |
+| Com diferenças | Mo = li + [ (fMo − fant) / ((fMo − fant) + (fMo − fpost)) ] · h |
+| Com denominador simplificado | Mo = li + h · (fMo − fant) / [ 2 · fMo − (fant + fpost) ] |
+
+A ideia (hipótese de Czuber) é que a moda divide a classe modal em partes proporcionais a essas diferenças: quanto mais a vizinha anterior é menor que a classe modal, mais a moda é "puxada" para cima, e vice-versa. Note que a fórmula leva em conta a frequência da própria classe modal, e não só a das vizinhas.
+
+### Casos particulares
+
+- Se a classe modal é a **primeira**, use fant = 0; se é a **última**, use fpost = 0.
+- Se fant = fpost, então Δ1 = Δ2 e a moda cai exatamente no **ponto médio** da classe modal (linf + h / 2).
+- Lembre-se de identificar corretamente as classes: a modal é a de maior frequência **simples**, não a de maior acumulada.
+
+> 💡 **Exemplo:** classes de amplitude 10, a partir do zero, com frequências 5, 12, 16, 8 e 3 (da primeira à última). A classe modal é a terceira (20 a 30), com f = 16, anterior 12 e posterior 8. Δ1 = 4 e Δ2 = 8, então Mo = 20 + [4 / 12] · 10 = 23,33. Se, noutro caso, as frequências forem 12, 8 e 3 em classes de amplitude 5, a modal é a primeira: Δ1 = 12 − 0 = 12, Δ2 = 12 − 8 = 4 e Mo = 0 + [12 / 16] · 5 = 3,75.
+
+### Como a banca cobra
+
+- Fornece a tabela de frequências e pede a moda por Pearson ou Czuber, às vezes indicando a fórmula no próprio enunciado.
+- Dá a tabela com **frequências relativas acumuladas** e um valor desconhecido k. O caminho: tire a frequência simples de cada classe por diferença entre acumuladas consecutivas, escreva a média em função de k e iguale ao valor dado para achar k; depois calcule a mediana e a moda.
+- Dá o histograma, e é preciso ler as alturas (frequências) das classes e aplicar Czuber.
+- Em certos enunciados, as frequências aparecem em função de uma incógnita (por exemplo 2k, 8k) e o total também; a soma das frequências fornece o valor de k, e o resultado final pode ficar expresso em múltiplos de k.
+
+> ⚠️ **Pegadinha:** as classes podem ser fechadas à esquerda ou à direita; isso não altera as fórmulas, mas exige cuidado para usar o limite inferior correto da classe. Em Pearson, use a mediana por interpolação (e não a posição "aproximada") para chegar ao valor esperado pela banca.
+
+### Para fixar
+- Pearson: Mo = 3 · Md − 2 · x̄, válida para distribuições moderadamente assimétricas.
+- Média agrupada: soma de (ponto médio · f) dividida por Σf; mediana: interpolação linear na classe de posição Σf / 2.
+- Czuber: Mo = linf + [Δ1 / (Δ1 + Δ2)] · h, com Δ1 e Δ2 as diferenças entre a frequência modal e a das classes vizinhas.
+- Classe modal é a de maior frequência simples.
+- Classe modal na ponta: use zero para a vizinha que não existe.
+- Vizinhas iguais: a moda é o ponto médio da classe modal.
+- Pearson é um assunto pouco explorado em provas, mas aparece em questões que pedem média, mediana e moda juntas; exige cálculo cuidadoso.
+
+##### estatistica/a03/s03
+Este trecho completa o estudo da moda para dados agrupados em classes: o método de King, o ajuste necessário quando as classes têm larguras diferentes (uso da densidade de frequência) e as duas propriedades da moda diante de operações com constantes. Usaremos a notação: **l_inf** (limite inferior da classe modal), **h** (amplitude da classe modal), **f_ant** e **f_post** (frequências das classes vizinhas, anterior e posterior, à modal) e **f_mo** (frequência da classe modal).
+
+### Moda de King
+
+King é um método **gráfico-aproximado**: parte de um histograma e usa só os dois retângulos vizinhos da classe modal. A moda é o limite inferior da classe modal mais um deslocamento x: **Mo = l_inf + x**. O ponto é achado pelo cruzamento de dois segmentos (um liga o início da classe modal ao topo da vizinha anterior projetado no fim da classe; o outro, o topo da vizinha posterior projetado no início ao fim da classe). A ideia é que a moda "puxa" para o lado da vizinha mais frequente: ela divide o intervalo da classe modal em partes **inversamente proporcionais** às frequências das classes adjacentes. Por semelhança de triângulos, f_post / x = f_ant / (h − x). Resolvendo (multiplicação cruzada: f_post · h − f_post · x = f_ant · x):
+
+**x = [ f_post / (f_ant + f_post) ] · h**  e, portanto,  **Mo (King) = l_inf + [ f_post / (f_ant + f_post) ] · h**
+
+Passos: (1) achar a classe modal (a de maior frequência, desde que as classes tenham a mesma amplitude); (2) identificar l_inf, h, f_ant e f_post; (3) aplicar a fórmula. O resultado sempre cai **dentro da classe modal**.
+
+> 💡 **Exemplo:** idades em classes de amplitude 10 com frequências 0⊢10: 8; 10⊢20: 14; 20⊢30: 22; 30⊢40: 18; 40⊢50: 6. A classe modal é 20⊢30 (22). Então l_inf = 20, h = 10, f_ant = 14, f_post = 18 e Mo = 20 + [18 / (14 + 18)] · 10 = 20 + 5,625 = 25,625.
+
+> 💡 **Exemplo (faixas etárias de 220 alunos):** 10⊢20: 30; 20⊢30: 50; 30⊢40: 70; 40⊢50: 60; 50⊢60: 10. Classe modal 30⊢40, l_inf = 30, h = 10, f_ant = 50, f_post = 60. Mo = 30 + [60 / (50 + 60)] · 10 = 30 + 5,45 ≈ **35,45**.
+
+> 💡 **Exemplo (salários de militares, em R$ mil):** 3⊢6: 12; 6⊢9: 15; 9⊢12: 20; 12⊢15: 10; 15⊢18: 5; 18⊢21: 3. Modal 9⊢12 (20), h = 3, f_ant = 15, f_post = 10. Mo = 9 + [10 / (15 + 10)] · 3 = 9 + 0,4 · 3 = **10,2**.
+
+> 💡 **Exemplo (idades em um asilo):** 70⊢74: 7; 74⊢78: 19; 78⊢82: 13; 82⊢86: 11; 86⊢90: 6; 90⊢94: 4. Modal 74⊢78, h = 4, f_ant = 7, f_post = 13. Mo = 74 + [13 / (7 + 13)] · 4 = 74 + 2,6 = **76,6**.
+
+> ⚠️ **Pegadinha:** a fórmula de King usa **só as vizinhas**; na de Czuber entra também a frequência da própria classe modal. Em King, o numerador é a frequência da classe **posterior** (confundi-la com a anterior inverte o resultado). Czuber: Mo = l_inf + [ (f_mo − f_ant) / ((f_mo − f_ant) + (f_mo − f_post)) ] · h. Com os dados do primeiro exemplo, Czuber dá 20 + [8 / (8 + 4)] · 10 ≈ 26,67, diferente de King.
+
+Em questões de concurso, a banca costuma dar a tabela e pedir "a moda pelo método de King": basta aplicar a fórmula com cuidado ao ler as frequências das vizinhas.
+
+### Classes com amplitudes diferentes
+
+King e Czuber, na forma básica, **exigem classes de mesma amplitude**. Quando as larguras variam, a classe de maior frequência absoluta pode não ser a mais "concentrada": uma classe larga com muitos casos pode ter menos concentração que uma classe estreita com quase tantos. Por isso se compara a **densidade de frequência**:
+
+**d = f / h** (frequência da classe dividida pela sua amplitude)
+
+- A **classe modal** é a de **maior densidade**, não a de maior frequência.
+- Em histogramas com larguras desiguais, a altura do retângulo deve ser a densidade, para que a **área** seja proporcional à frequência.
+- Nas fórmulas de Czuber e King, substituem-se as frequências pelas densidades dos três retângulos (modal, anterior, posterior), mantendo l_inf e h da classe modal.
+
+> 💡 **Exemplo:** classes 0⊢4 (f = 12), 4⊢10 (f = 30), 10⊢12 (f = 14), 12⊢20 (f = 8). Densidades: 12/4 = 3; 30/6 = 5; 14/2 = 7; 8/8 = 1. A maior frequência está em 4⊢10, mas a **modal é 10⊢12** (d = 7). Com d_ant = 5 e d_post = 1: King = 10 + [1 / (5 + 1)] · 2 ≈ 10,33; Czuber = 10 + [(7 − 5) / ((7 − 5) + (7 − 1))] · 2 = 10 + (2/8) · 2 = 10,5.
+
+> 💡 **Exemplo (255 funcionários):** 10⊢20: 30; 20⊢35: 60; 35⊢55: 80; 55⊢60: 75; 60⊢70: 10. A maior frequência (80) está na 3ª classe, mas ela espalha os casos por 20 anos, enquanto a 4ª espalha 75 por apenas 5. Densidades: 3; 4; 4; 15; 1. A modal é 55⊢60 (d = 15), com d_ant = 4 e d_post = 1 e h = 5. Czuber = 55 + [(15 − 4) / ((15 − 4) + (15 − 1))] · 5 = 55 + (11/25) · 5 = **57,2**. King = 55 + [1 / (4 + 1)] · 5 = **56**.
+
+Caso particular que aparece em prova: se a densidade da classe anterior é **igual** à da posterior, a moda fica no **ponto médio** da classe modal (tanto em Czuber quanto em King, já que as forças dos vizinhos se equilibram). Ex.: uma classe modal 25 ⊢ 27,5 com vizinhas de mesma densidade tem moda (25 + 27,5)/2 = 26,25. Se os dados fornecem só a frequência relativa e todas as classes têm a mesma, a classe **mais estreita** é a de maior densidade, logo é a modal.
+
+> 💡 **Exemplo (quartis fornecem as classes):** quando se conhecem mínimo, quartis e máximo de um grupo, cada intervalo entre eles concentra 25% dos dados. Com mínimo 20, Q1 = 25, Md = 27,5, Q3 = 32,5 e máximo 50, as classes são 20⊢25, 25⊢27,5, 27,5⊢32,5 e 32,5⊢50, todas com 25%. As amplitudes são 5; 2,5; 5 e 17,5; as densidades, 5; 10; 5 e 25/17,5 ≈ 1,43. A modal é 25⊢27,5 (a mais estreita), e a moda de Czuber é 25 + [(10 − 5)/((10 − 5) + (10 − 5))] · 2,5 = 26,25, o ponto médio. Logo, afirmar que a moda está "entre 25,5 e 26" é falso.
+
+### Propriedades da moda
+
+A moda se comporta como a média e a mediana diante de transformações lineares:
+
+| Operação em todos os valores | Efeito na moda |
+| --- | --- |
+| Somar (ou subtrair) uma constante c | A moda também soma (ou subtrai) c |
+| Multiplicar (ou dividir) por uma constante c | A moda também é multiplicada (ou dividida) por c |
+
+> 💡 **Exemplo:** em {3, 8, 8, 8, 10} a moda é 8. Somando 5 a cada elemento, a lista vira {8, 13, 13, 13, 15} e a moda é 13. Multiplicando a lista original por 5, vem {15, 40, 40, 40, 50} e a moda é 40.
+
+Isso vale também para as modas aproximadas (King, Czuber), porque deslocar ou esticar a escala desloca ou estica as classes. Para uma transformação y = a·x + b com a > 0, a moda de y é a·Mo(x) + b.
+
+### Para fixar
+- King: Mo = l_inf + [ f_post / (f_ant + f_post) ] · h; só usa as frequências das classes vizinhas.
+- Czuber usa também a frequência da classe modal: Δ1 = f_mo − f_ant e Δ2 = f_mo − f_post.
+- Os métodos exigem classes de mesma amplitude; sem isso, trabalhe com a **densidade** d = f / h.
+- Classe modal com amplitudes variáveis = maior densidade (nem sempre a maior frequência).
+- Vizinhas com mesma densidade: moda no ponto médio da classe modal.
+- Somar/subtrair constante altera a moda na mesma medida; multiplicar/dividir altera a moda na mesma proporção.
+- Sempre confira se o resultado ficou dentro da classe modal.
+
+##### estatistica/c01/s01
+Este complemento cobre três pontos que costumam faltar na preparação: a probabilidade geométrica, as normas de apresentação tabular do IBGE e os tipos de amostragem. As questões sobre os dois últimos pedem identificar uma regra ou nomear a técnica descrita; a primeira rende contas curtas de razão entre áreas.
+
+### Probabilidade geométrica
+Na definição clássica o espaço amostral é finito e equiprovável: P(A) = casos favoráveis ÷ casos possíveis. Quando o espaço é contínuo (um instante dentro de uma hora, um ponto num alvo), não há o que contar; mede-se. Escolhendo um ponto "ao acaso" (distribuição **uniforme**) numa região Ω, a probabilidade de cair na parte A é:
+
+**P(A) = medida(A) ÷ medida(Ω)**
+
+A medida é o comprimento em uma dimensão, a área em duas e o volume em três. Vale todo o cálculo dos axiomas (P ≥ 0, P(Ω) = 1, aditividade para disjuntos), inclusive o complementar.
+
+> ⚠️ **Pegadinha:** um ponto ou uma linha tem medida zero e, portanto, probabilidade zero, mas pode ocorrer. Em espaço contínuo, P = 0 não significa evento impossível (o contrário vale: impossível implica P = 0). Pelo mesmo motivo, incluir ou excluir a fronteira não muda a probabilidade: P(X ≤ 3) = P(X < 3).
+
+- **Uma dimensão**: coincide com a uniforme contínua. Se X ~ U(a, b), então P(c ≤ X ≤ d) = (d − c) ÷ (b − a).
+- **Duas dimensões**: razão de áreas. Figuras semelhantes têm áreas na razão do quadrado dos lados; dobrar o raio quadruplica a área.
+
+> 💡 **Exemplo (alvo):** num alvo circular de raio 10 cm, o disco central tem raio 2 cm. A área do alvo é 100π e a do centro, 4π, logo P = 4%. O π some na divisão; basta comparar quadrados de raios.
+
+**Problema do encontro.** Duas pessoas chegam em instantes aleatórios dentro de um intervalo T e cada uma espera t minutos. Com x e y como chegadas, o espaço é um quadrado de lado T e há encontro quando |x − y| ≤ t. A região desfavorável são dois triângulos de catetos T − t, e então:
+
+**P(encontro) = 1 − ((T − t) ÷ T)²**
+
+> 💡 **Exemplo:** T = 60 min e espera de 20 min: P = 1 − (40/60)² = 1 − 4/9 = 5/9.
+
+Roteiro geral: defina as variáveis e seus intervalos; desenhe o espaço; escreva o evento como desigualdade e desenhe a região; divida a área favorável pela total, usando o complementar se for mais fácil. Outros modelos clássicos: dois números em [0, 1] com soma menor ou igual a 1/2 (triângulo de área 1/8, P = 1/8); vara quebrada em dois pontos formando triângulo (P = 1/4); agulha de Buffon, em que uma agulha de tamanho L, menor ou igual à distância d entre retas paralelas, toca uma reta com P = 2L ÷ (π·d). O paradoxo de Bertrand lembra que "ao acaso" precisa vir com a variável uniforme definida.
+
+### Normas de apresentação de dados (IBGE)
+A **tabela** traz dados numéricos e tem laterais abertas; o **quadro** traz informação textual e é fechado nas laterais.
+
+**Elementos da tabela**
+- **Título**, acima, responde o quê, onde e quando.
+- **Cabeçalho** (conteúdo das colunas) e **coluna indicadora** (conteúdo das linhas).
+- **Corpo**: o conjunto de linhas e colunas; cada cruzamento é uma **casa**, que nunca fica em branco.
+- **Fonte**, obrigatória, no rodapé.
+- **Notas** são esclarecimentos gerais; **chamadas** referem-se a células específicas, numeradas entre parênteses.
+- A unidade de medida aparece no cabeçalho ou na coluna indicadora.
+
+**Construção**: traços horizontais fecham a tabela em cima e embaixo; os verticais nas laterais não existem, e entre colunas são facultativos. Tabela que passa de uma página não fecha o rodapé e repete o cabeçalho, com "Continua" e "Conclusão". Colunas de mesma natureza têm o mesmo número de casas decimais.
+
+**Sinais convencionais**
+| Sinal | Significado |
+| --- | --- |
+| − (traço) | Zero absoluto: o fenômeno não ocorreu |
+| ... | Dado não disponível |
+| .. | Não se aplica |
+| ? | Dúvida quanto à exatidão |
+| 0, 0,0 | Zero por arredondamento de valor positivo pequeno |
+| x | Omitido por sigilo, para não identificar o informante |
+
+> ⚠️ **Pegadinha:** traço não é dado desconhecido (esse é "..."), e "x" não quer dizer valor ignorado, e sim protegido. Nas questões, procure o defeito: falta de título ou fonte, laterais fechadas, célula vazia, sinal com sentido trocado.
+
+### Amostragem
+**Vocabulário.** População (N) é o conjunto de interesse; censo investiga todos; amostra (n) é a parte observada. Parâmetro descreve a população (μ, σ, p); estatística descreve a amostra (x̄, s, p̂). O cadastro é a lista de onde se sorteia. O **erro amostral** é inevitável, diminui com n maior e só é mensurável em amostras probabilísticas; o **viés** vem de falha no plano e não some aumentando n. Amostra **aleatória** é aquela em que cada elemento tem chance conhecida e positiva de ser escolhido.
+
+| Técnica | Como funciona | Observação |
+| --- | --- | --- |
+| Aleatória simples | Sorteio direto; mesma chance para todos | Com reposição há Nⁿ amostras ordenadas; sem reposição, C(N, n) |
+| Sistemática | k = N ÷ n; sorteia-se a partida e tomam-se os elementos de k em k | Risco se a lista tiver ciclo igual a k |
+| Estratificada | Divide em estratos homogêneos por dentro e sorteia em todos | Alocação uniforme, proporcional ou ótima |
+| Conglomerados | Sorteia grupos inteiros, heterogêneos por dentro, e observa todos ou parte | Barata, porém menos precisa |
+
+> 💡 **Exemplo (sistemática):** N = 600 e n = 30 dão k = 20; se a partida sorteada é 5, a amostra é 5, 25, 45, ... , 585.
+
+> 💡 **Exemplo (proporcional):** efetivo de 800 com 560 praças e 240 oficiais, n = 80. Praças: 80 × 560/800 = 56; oficiais: 24. Na alocação **ótima de Neyman** o tamanho em cada estrato é proporcional a Nₕ·σₕ, ou seja, amostra-se mais onde há mais variabilidade.
+
+**Estratos × conglomerados.** Em estratos, todos os grupos participam e o sorteio ocorre dentro deles, buscando precisão. Em conglomerados, apenas alguns grupos são sorteados e, neles, observa-se tudo (um estágio) ou parte (dois estágios), buscando economia.
+
+**Não probabilísticas**: conveniência, intencional, por cotas (a escolha dentro da cota é do entrevistador), bola de neve e voluntária. Nenhuma permite calcular erro amostral.
+
+**Tamanho da amostra.** Para proporção, com confiança de 95% (z = 1,96) e pior caso p = 0,5: n = z²·p·(1 − p) ÷ E², arredondando sempre para cima. Com E = 0,04, n = 3,8416 × 0,25 ÷ 0,0016 = 600,25, logo 601. Para média: n = (z·σ ÷ E)².
+
+### Para fixar
+- Probabilidade geométrica = medida favorável ÷ medida total, com distribuição uniforme.
+- Probabilidade zero não é impossibilidade em espaço contínuo; fronteiras não importam.
+- Encontro: P = 1 − ((T − t) ÷ T)².
+- Tabela: título (quê, onde, quando), fonte obrigatória, laterais abertas, nenhuma casa vazia.
+- Traço é zero absoluto; "..." é indisponível; "x" é sigilo.
+- Estratificada sorteia em todos os grupos; conglomerados sorteia alguns grupos.
+- Aumentar n reduz erro amostral, mas não corrige viés.
+- Amostragem por cotas e por conveniência não são probabilísticas.
+

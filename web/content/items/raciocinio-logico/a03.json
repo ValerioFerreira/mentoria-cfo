@@ -1,213 +1,90 @@
 {
-  "aula": "raciocinio-logico/a03",
-  "batch": "praca-raciocinio-logico",
-  "status": "APPROVED",
-  "segments": [
-    {
-      "id": "raciocinio-logico/a03/s01",
-      "bizu": {
-        "summary": [
-          "**Sentença aberta**: contém variável e não permite atribuir valor lógico, por isso não é proposição.",
-          "**Variável que some**: depois de simplificar, a sentença pode virar fechada, como 0 vezes x igual a 5.",
-          "**Duas saídas**: dar um valor à variável ou usar um quantificador.",
-          "**Universal**: o símbolo ∀ representa todo, qualquer, cada ou nenhum.",
-          "**Existencial**: o símbolo ∃ representa existe, algum, pelo menos um ou há.",
-          "**Quatro tipos**: universal afirmativa, universal negativa, particular afirmativa e particular negativa.",
-          "**Todo com não**: todo ... não ... equivale a nenhum.",
-          "**Frase de um só elemento**: sem quantificador, não é proposição quantificada.",
-          "**Negar o todo**: basta um caso contrário, ou seja, pelo menos um que não.",
-          "**Erro comum**: a negação de todo não é nenhum."
-        ],
-        "teoria": [
-          {
-            "statement": "A sentença \"x + 4 = 9\", sem outras informações, é uma sentença aberta.",
-            "isTrue": true,
-            "explanation": "Depende do valor de x."
-          },
-          {
-            "statement": "A sentença \"0 · x = 3\" é uma sentença aberta.",
-            "isTrue": false,
-            "explanation": "A variável some e fica 0 = 3, falsa: é fechada."
-          },
-          {
-            "statement": "A palavra \"algum\" indica quantificador existencial.",
-            "isTrue": true,
-            "explanation": "Equivale a \"existe\" ou \"pelo menos um\"."
-          },
-          {
-            "statement": "A frase \"O hospital central tem helicóptero\" contém quantificador existencial.",
-            "isTrue": false,
-            "explanation": "Fala de um só elemento: sem quantificador."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "A frase \"Todo atleta não se cansa\" equivale a \"Nenhum atleta se cansa\".",
-            "isTrue": true,
-            "explanation": "\"Todo... não...\" vale \"nenhum\"."
-          },
-          {
-            "statement": "A negação de \"Todo aluno estudou\" é \"Nenhum aluno estudou\".",
-            "isTrue": false,
-            "explanation": "A negação é \"Algum aluno não estudou\"."
-          },
-          {
-            "statement": "A proposição \"Algum policial não é corrupto\" é particular negativa.",
-            "isTrue": true,
-            "explanation": "Existencial com predicado negativo."
-          },
-          {
-            "statement": "Atribuir um valor à variável de uma sentença aberta a torna uma sentença fechada.",
-            "isTrue": true,
-            "explanation": "Pode-se julgar o resultado."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Sentenças abertas e questão do ISS Guarulhos",
-            "pageRef": 3
-          },
-          {
-            "topic": "Alternativas B a E e questão de Hulha Negra",
-            "pageRef": 4
-          },
-          {
-            "topic": "Classificação das sentenças e atribuição de valor",
-            "pageRef": 5
-          },
-          {
-            "topic": "Quantificador universal",
-            "pageRef": 6
-          },
-          {
-            "topic": "Questão de São Gonçalo e quantificador existencial",
-            "pageRef": 7
-          },
-          {
-            "topic": "Questão de Gramado e tipos de proposição",
-            "pageRef": 8
-          },
-          {
-            "topic": "Particulares e início da negação",
-            "pageRef": 9
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a03/s02",
-      "bizu": {
-        "summary": [
-          "**Regra de negação**: troca-se o quantificador e nega-se o predicado.",
-          "**Nenhum**: sua negação é pelo menos um, sem negar o predicado, e nunca é todo.",
-          "**Existenciais**: viram universais com o predicado negado, como pelo menos uma participou virar nenhuma participou.",
-          "**Termos adicionais**: com óculos, à noite e à esquerda permanecem na negação, sem trocar por antônimos.",
-          "**Quatro formas**: A é universal afirmativa, E universal negativa, I particular afirmativa e O particular negativa.",
-          "**Contraditórias**: A com O e E com I, uma sendo a negação da outra.",
-          "**Contrárias e subcontrárias**: contrárias são A e E; subcontrárias são I e O.",
-          "**Universal afirmativa e condicional**: todo A é B equivale a se não é B, então não é A.",
-          "**Diagramas**: A é círculo dentro de outro, E são conjuntos disjuntos e I tem interseção.",
-          "**Validade**: um argumento é válido quando a conclusão decorre necessariamente das premissas."
-        ],
-        "teoria": [
-          {
-            "statement": "A negação de \"Algum aluno faltou\" é \"Nenhum aluno faltou\".",
-            "isTrue": true,
-            "explanation": "Existencial vira universal negativa."
-          },
-          {
-            "statement": "A negação de \"Nenhum produto é caro\" é \"Todo produto é caro\".",
-            "isTrue": false,
-            "explanation": "É \"Pelo menos um produto é caro\"."
-          },
-          {
-            "statement": "\"Todo juiz é imparcial\" equivale a \"Quem não é imparcial não é juiz\".",
-            "isTrue": true,
-            "explanation": "Contrapositiva."
-          },
-          {
-            "statement": "As proposições \"Todo X é Y\" e \"Todo Y é X\" são equivalentes.",
-            "isTrue": false,
-            "explanation": "Não se garante a recíproca."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "Ao negar \"Com chuva, todos os atletas treinam\", mantém-se o complemento \"com chuva\".",
-            "isTrue": true,
-            "explanation": "Troca-se o quantificador e nega-se o predicado."
-          },
-          {
-            "statement": "Na quadrado das oposições, as proposições A e E são contraditórias.",
-            "isTrue": false,
-            "explanation": "São contrárias; as contraditórias são A e O."
-          },
-          {
-            "statement": "Se alguns técnicos são fiscais e todo fiscal é servidor, então existe servidor que é técnico.",
-            "isTrue": true,
-            "explanation": "Interseção técnico-fiscal está dentro de servidor."
-          },
-          {
-            "statement": "No diagrama de \"Nenhum A é B\", os dois conjuntos são disjuntos.",
-            "isTrue": true,
-            "explanation": "Forma E."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Regra da negação e predicado",
-            "pageRef": 10
-          },
-          {
-            "topic": "Negação da universal afirmativa e negativa",
-            "pageRef": 11
-          },
-          {
-            "topic": "Negação de nenhum e das existenciais",
-            "pageRef": 12
-          },
-          {
-            "topic": "Questão do MPE-AL e termos adicionais",
-            "pageRef": 13
-          },
-          {
-            "topic": "Pegadinhas com termos adicionais e proposições categóricas",
-            "pageRef": 14
-          },
-          {
-            "topic": "Formas A, E, I, O e qualidade e quantidade",
-            "pageRef": 15
-          },
-          {
-            "topic": "Contrárias, subcontrárias, subalternas e contraditórias",
-            "pageRef": 16
-          },
-          {
-            "topic": "Equivalência da universal afirmativa",
-            "pageRef": 17
-          },
-          {
-            "topic": "Diagramas lógicos das formas A, E e I",
-            "pageRef": 18
-          },
-          {
-            "topic": "Diagrama da forma O e questão de Fernando Vasconcelos",
-            "pageRef": 19
-          },
-          {
-            "topic": "Resolução da questão com diagramas",
-            "pageRef": 20
-          },
-          {
-            "topic": "Validade de argumentos",
-            "pageRef": 21
-          },
-          {
-            "topic": "Alternativas da questão do PC-ES",
-            "pageRef": 22
-          }
-        ]
-      }
-    }
-  ]
+ "aula": "raciocinio-logico/a03",
+ "batch": "rl-resegment-2026-10-26",
+ "status": "DRAFT",
+ "stage": "bizu",
+ "segments": [
+  {
+   "id": "raciocinio-logico/a03/s01",
+   "bizu": {
+    "summary": [
+     "**Sentença aberta**: tem variável ou termo indeterminado (x + 3 = 8; “Ele é alto”) e, por isso, não recebe valor lógico nem é proposição.",
+     "**Variável que some**: simplifique antes de classificar; 0·x = 6 vira 0 = 6, sentença fechada e falsa.",
+     "**Como fechar a sentença**: atribuindo valor à variável (5 + 3 = 8) ou acrescentando um quantificador.",
+     "**Universal (∀)**: “para todo”, “qualquer que seja”, “todo”, “cada”; ∀x, x + 3 = 8 é falsa, pois a igualdade não vale para todo x.",
+     "**Existencial (∃)**: “existe”, “algum”, “pelo menos um”, “há”; ∃x, x + 3 = 8 é verdadeira (x = 5).",
+     "**Quatro tipos**: universal afirmativa (todo... é), universal negativa (nenhum... é, ou todo... não é), particular afirmativa (algum... é) e particular negativa (algum... não é).",
+     "**Regra da negação**: troque o quantificador (universal por existencial e vice-versa) e negue o predicado; “todo vigia é atento” vira “algum vigia não é atento”.",
+     "**Negar o “nenhum”**: basta trocá-lo por “algum” ou “pelo menos um”, sem acrescentar “não”, porque a negação já está embutida no “nenhum”.",
+     "**Negar o existencial**: “algum A é B” vira “nenhum A é B”; “algum A não é B” vira “todo A é B”.",
+     "**Erro clássico**: a negação de “todo” não é “nenhum”, e a de “nenhum” não é “todo”; um único contraexemplo derruba uma afirmação universal.",
+     "**Afirmação falsa**: se o enunciado declara falsa uma proposição quantificada, o que é verdade é a negação dela."
+    ],
+    "teoria": [
+     {"statement": "A sentença “x − 7 = 2”, sem outras informações, não é uma proposição.", "isTrue": true, "explanation": "É sentença aberta: o valor lógico depende do valor de x."},
+     {"statement": "A sentença “5·x − 5·x = 3” é aberta, pois contém a variável x.", "isTrue": false, "explanation": "Simplificando, os termos com x se anulam e sobra 0 = 3: sentença fechada e falsa."},
+     {"statement": "Em “Há alunos aprovados”, a palavra “há” indica um quantificador existencial.", "isTrue": true, "explanation": "“Há”, “existe”, “algum” e “pelo menos um” expressam o quantificador existencial."},
+     {"statement": "A proposição “Todo atleta não fuma” é uma particular negativa.", "isTrue": false, "explanation": "“Todo... não...” equivale a “Nenhum atleta fuma”: é universal negativa."}
+    ],
+    "revisao": [
+     {"statement": "A negação de “Todo bombeiro é corajoso” é “Algum bombeiro não é corajoso”.", "isTrue": true, "explanation": "Troca-se o universal pelo existencial e nega-se o predicado."},
+     {"statement": "A negação de “Nenhum aluno faltou” é “Todo aluno faltou”.", "isTrue": false, "explanation": "Para desmentir “nenhum”, basta um caso: a negação é “Pelo menos um aluno faltou”."},
+     {"statement": "A negação de “Existem carros que não são elétricos” é “Todo carro é elétrico”.", "isTrue": true, "explanation": "O existencial vira universal e o predicado negativo passa a afirmativo."},
+     {"statement": "Se é falso que “alguma ponte desabou”, então é verdade que “alguma ponte não desabou”.", "isTrue": false, "explanation": "A negação de “alguma ponte desabou” é “nenhuma ponte desabou”."}
+    ],
+    "pointers": [
+     {"topic": "Sentença aberta e variável que desaparece", "pageRef": 3},
+     {"topic": "Sentenças abertas com pronome e sentenças fechadas", "pageRef": 4},
+     {"topic": "Atribuir valor à variável", "pageRef": 5},
+     {"topic": "Quantificador universal", "pageRef": 6},
+     {"topic": "Quantificador existencial", "pageRef": 7},
+     {"topic": "Tipos de proposição quantificada", "pageRef": 8},
+     {"topic": "Todo... não equivale a nenhum; negação do universal", "pageRef": 9},
+     {"topic": "Sujeito e predicado na negação", "pageRef": 10},
+     {"topic": "Negação de nenhum e de existenciais", "pageRef": 12},
+     {"topic": "Proposição falsa: vale a negação", "pageRef": 13}
+    ]
+   }
+  },
+  {
+   "id": "raciocinio-logico/a03/s02",
+   "bizu": {
+    "summary": [
+     "**Termos de contexto ficam**: na negação só mudam o quantificador e o predicado; “no inverno, toda praia fica vazia” vira “no inverno, alguma praia não fica vazia”.",
+     "**Formas A, E, I, O**: A = todo A é B; E = nenhum A é B; I = algum A é B; O = algum A não é B (A e I afirmam, E e O negam).",
+     "**Quantidade e qualidade**: quantidade é ser universal ou particular; qualidade é ser afirmativa ou negativa.",
+     "**Contrárias e subcontrárias**: contrárias são as universais de qualidades opostas (A e E); subcontrárias, as particulares de qualidades opostas (I e O).",
+     "**Subalternas e contraditórias**: subalternas têm a mesma qualidade e quantidade diferente (A–I, E–O); contraditórias diferem nas duas (A–O, E–I) e uma é a negação da outra.",
+     "**Todo como condicional**: “todo A é B” = “se é A, então é B” = “se não é B, então não é A”; não equivale a “todo B é A”.",
+     "**Diagramas**: A é um círculo dentro do outro; E, círculos separados (disjuntos); I, círculos com interseção; O, a parte de A fora de B.",
+     "**Conclusão necessária**: só vale o que aparece em todos os desenhos compatíveis com as premissas; de “alguns médicos são professores” e “todo professor é servidor” conclui-se que algum servidor é médico.",
+     "**Validade**: o argumento é válido quando a conclusão decorre obrigatoriamente das premissas; basta um desenho com premissas verdadeiras e conclusão falsa para invalidá-lo.",
+     "**Erros típicos**: de “todo surfista nada” e “Léo não é surfista” nada se conclui sobre Léo; “muitos” equivale a “alguns”, não a “todos”."
+    ],
+    "teoria": [
+     {"statement": "“Algum soldado não é atleta” é uma proposição categórica de forma O.", "isTrue": true, "explanation": "Forma O é a particular negativa."},
+     {"statement": "As proposições “Todo juiz é justo” e “Nenhum juiz é justo” são contraditórias.", "isTrue": false, "explanation": "São universais de qualidades opostas (A e E): contrárias. Contraditórias seriam A e O, ou E e I."},
+     {"statement": "As proposições de forma I e de forma O são subcontrárias.", "isTrue": true, "explanation": "São particulares com qualidades opostas."},
+     {"statement": "A quantidade de uma proposição categórica diz respeito a ela ser afirmativa ou negativa.", "isTrue": false, "explanation": "Afirmativa ou negativa é a qualidade; a quantidade é ser universal ou particular."}
+    ],
+    "revisao": [
+     {"statement": "“Todo piloto é habilitado” equivale a “Se alguém não é habilitado, então não é piloto”.", "isTrue": true, "explanation": "“Todo A é B” equivale a “se A, então B”, cuja contrapositiva é “se não B, então não A”."},
+     {"statement": "A negação de “Com chuva, todos os jogos são adiados” é “Sem chuva, algum jogo não é adiado”.", "isTrue": false, "explanation": "O termo de contexto não muda: a negação é “Com chuva, algum jogo não é adiado”."},
+     {"statement": "No diagrama de “Nenhum peixe é mamífero”, os conjuntos dos peixes e dos mamíferos não têm interseção.", "isTrue": true, "explanation": "A forma E é representada por conjuntos disjuntos."},
+     {"statement": "O argumento “Todo gato é felino; Tom é felino; logo, Tom é gato” é válido.", "isTrue": false, "explanation": "O conjunto dos felinos pode ter elementos que não são gatos; a conclusão não decorre necessariamente das premissas."}
+    ],
+    "pointers": [
+     {"topic": "Termos de contexto permanecem na negação", "pageRef": 14},
+     {"topic": "Proposições categóricas: formas A e E", "pageRef": 14},
+     {"topic": "Formas I e O; quantidade e qualidade; contrárias e subcontrárias", "pageRef": 15},
+     {"topic": "Subalternas, contraditórias e quadrado lógico", "pageRef": 16},
+     {"topic": "Todo A é B como condicional e contrapositiva", "pageRef": 17},
+     {"topic": "Diagramas das formas A, E e I", "pageRef": 18},
+     {"topic": "Forma O e conclusões com duas premissas", "pageRef": 19},
+     {"topic": "Validade de argumentos com diagramas", "pageRef": 21},
+     {"topic": "Argumentos inválidos típicos", "pageRef": 22}
+    ]
+   }
+  }
+ ]
 }

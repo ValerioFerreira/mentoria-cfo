@@ -1,78 +1,81 @@
 {
   "aula": "raciocinio-logico/a07",
-  "batch": "praca-raciocinio-logico",
-  "status": "APPROVED",
+  "batch": "rl-resegment-2026-10-26",
+  "status": "DRAFT",
+  "stage": "bizu",
   "segments": [
     {
       "id": "raciocinio-logico/a07/s01",
       "bizu": {
         "summary": [
-          "**Experimento aleatório**: resultado incerto, mas com padrão, e repetível sob condições inalteradas.",
-          "**Espaço amostral**: conjunto de todos os resultados possíveis de um experimento.",
-          "**Evento**: subconjunto do espaço amostral ao qual se atribui probabilidade.",
-          "**Evento impossível**: conjunto vazio, com n igual a 0.",
-          "**Evento certo**: igual ao espaço amostral.",
-          "**Definição clássica**: P é favoráveis dividido por totais, com pontos igualmente prováveis.",
-          "**Moeda viciada**: não permite a definição clássica.",
-          "**Mesmo critério**: arranjos nos dois lados ou combinações nos dois lados dão a mesma probabilidade.",
-          "**Duas peças amarelas**: entre 5 amarelas e 6 verdes, a probabilidade é 10 sobre 55, ou 2 sobre 11.",
-          "**Comissão de deputados**: dois do partido A entre 6 deputados dão 3 sobre 15, ou 1 sobre 5."
+          "**Experimento aleatório**: pode ser repetido nas mesmas condições e tem resultado incerto, mas com padrão estável no longo prazo (moeda comum dá cerca de metade caras).",
+          "**Espaço amostral (U)**: reúne todos os resultados possíveis; cada resultado é um ponto amostral. Duas moedas têm 4 pontos, pois (cara, coroa) difere de (coroa, cara).",
+          "**Evento**: qualquer subconjunto do espaço amostral, com n(A) elementos. O todo é o espaço amostral; a parte é o evento.",
+          "**Tipos de evento**: simples tem 1 elemento; impossível é o vazio (n = 0, P = 0); certo coincide com U (P = 1).",
+          "**Definição clássica**: P(A) = n(A)/n(U), favoráveis sobre possíveis. Ex.: número primo no dado = 3/6 = 1/2.",
+          "**Condição de validade**: os resultados precisam ser igualmente prováveis; moeda viciada exige a abordagem pela frequência.",
+          "**Contagem com combinatória**: 2 brancas de uma urna com 4 brancas e 6 pretas = C(4,2)/C(10,2) = 6/45 = 2/15.",
+          "**Mesmo critério**: arranjo em cima e embaixo (12/90) ou combinação em cima e embaixo (6/45) dão o mesmo resultado; o erro é misturar os dois."
         ],
         "teoria": [
           {
-            "statement": "O espaço amostral do lançamento de um dado de seis faces é {1, 2, 3, 4, 5, 6}.",
-            "isTrue": true,
-            "explanation": "Todos os resultados possíveis."
-          },
-          {
-            "statement": "Chamamos de evento o conjunto formado por todas as saídas que um experimento aleatório pode ter.",
+            "statement": "No lançamento de duas moedas, o espaço amostral tem 3 pontos amostrais: duas caras, duas coroas e uma de cada.",
             "isTrue": false,
-            "explanation": "Isso define o espaço amostral; evento é um subconjunto."
+            "explanation": "São 4 pontos: (K,K), (K,C), (C,K) e (C,C). Cara na primeira e coroa na segunda é diferente de coroa na primeira e cara na segunda."
           },
           {
-            "statement": "A probabilidade de um evento impossível é zero e a de um evento certo é um.",
+            "statement": "Evento é qualquer subconjunto do espaço amostral, podendo inclusive ser o conjunto vazio ou o próprio espaço amostral.",
             "isTrue": true,
-            "explanation": "n(∅) = 0 e n(A) = n(U)."
+            "explanation": "O vazio é o evento impossível e o próprio U é o evento certo; ambos são subconjuntos de U."
           },
           {
-            "statement": "A definição clássica pode ser usada em uma moeda viciada.",
+            "statement": "A definição clássica de probabilidade exige que todos os resultados do espaço amostral sejam igualmente prováveis.",
+            "isTrue": true,
+            "explanation": "Favoráveis sobre possíveis só funciona com resultados equiprováveis; com moeda viciada, por exemplo, ela não vale."
+          },
+          {
+            "statement": "No lançamento de um dado comum, a probabilidade de sair um número primo é 2/3.",
             "isTrue": false,
-            "explanation": "Os resultados precisam ser igualmente prováveis."
+            "explanation": "Os primos de 1 a 6 são 2, 3 e 5: P = 3/6 = 1/2. O número 1 não é primo."
           }
         ],
         "revisao": [
           {
-            "statement": "Ao escolher uma letra da palavra CASA ao acaso, a probabilidade de ser a letra A é 1/2.",
-            "isTrue": true,
-            "explanation": "Duas letras A em quatro."
-          },
-          {
-            "statement": "A probabilidade de a soma de dois dados ser 13 é 1/36.",
+            "statement": "Ao calcular uma probabilidade com combinações no numerador e arranjos no denominador, obtém-se o mesmo resultado que usando combinações nos dois.",
             "isTrue": false,
-            "explanation": "Evento impossível: probabilidade 0."
+            "explanation": "O resultado só se mantém se favoráveis e possíveis forem contados pelo mesmo critério; misturar arranjo e combinação distorce a razão."
           },
           {
-            "statement": "Se favoráveis e totais são contados por combinações, o resultado coincide com o contado por arranjos nos dois.",
+            "statement": "No lançamento de dois dados comuns, o evento soma igual a 13 é impossível e tem probabilidade zero.",
             "isTrue": true,
-            "explanation": "Mesmo critério."
+            "explanation": "A maior soma possível é 12; o evento é o conjunto vazio, com n = 0 e P = 0."
           },
           {
-            "statement": "Em uma turma de 25 alunos, com 6 torcedores de um clube, a probabilidade de sortear um deles é 24%.",
+            "statement": "Retirando-se ao acaso 2 bolas de uma urna com 4 brancas e 6 pretas, a probabilidade de ambas serem brancas é 2/15.",
             "isTrue": true,
-            "explanation": "6/25."
+            "explanation": "C(4,2) = 6 casos favoráveis e C(10,2) = 45 possíveis: 6/45 = 2/15."
+          },
+          {
+            "statement": "Em um dado adulterado, no qual a face 6 sai com mais frequência, a probabilidade de sair 6 pode ser calculada pela definição clássica como 1/6.",
+            "isTrue": false,
+            "explanation": "Os resultados não são equiprováveis, então a definição clássica não se aplica; a probabilidade deve ser estimada pela frequência observada."
           }
         ],
         "pointers": [
           {
-            "topic": "Apresentação da aula",
-            "pageRef": 3
-          },
-          {
-            "topic": "Conceitos iniciais e espaço amostral",
+            "topic": "Experimento aleatório e suas características",
             "pageRef": 4
           },
           {
-            "topic": "Pontos amostrais e conceito de evento",
+            "topic": "Espaço amostral",
+            "pageRef": 4
+          },
+          {
+            "topic": "Pontos amostrais em duas moedas",
+            "pageRef": 5
+          },
+          {
+            "topic": "Conceito de evento e n(A)",
             "pageRef": 5
           },
           {
@@ -80,40 +83,20 @@
             "pageRef": 6
           },
           {
-            "topic": "Questões sobre espaço amostral e evento",
-            "pageRef": 7
-          },
-          {
-            "topic": "Definição clássica",
+            "topic": "Definição clássica de probabilidade",
             "pageRef": 8
           },
           {
-            "topic": "Condição de equiprobabilidade e questão da FUNDATEC",
+            "topic": "Condição de equiprobabilidade",
             "pageRef": 9
           },
           {
-            "topic": "Questões da FGV e da VUNESP",
-            "pageRef": 10
-          },
-          {
-            "topic": "Questões da FCC e da FGV (cadeiras)",
-            "pageRef": 11
-          },
-          {
-            "topic": "Resolução das cadeiras e probabilidade com combinatória",
+            "topic": "Probabilidade com combinação",
             "pageRef": 12
           },
           {
-            "topic": "Probabilidade com ordem importando",
-            "pageRef": 13
-          },
-          {
-            "topic": "Ordem não importa no cálculo da probabilidade",
+            "topic": "Arranjo e o mesmo critério nos dois termos",
             "pageRef": 14
-          },
-          {
-            "topic": "Questões da FGV (Salvador) e do CEBRASPE (PM-MA)",
-            "pageRef": 15
           }
         ]
       }
@@ -122,113 +105,96 @@
       "id": "raciocinio-logico/a07/s02",
       "bizu": {
         "summary": [
-          "**Frequência relativa**: n sobre N, número de ocorrências dividido por repetições.",
-          "**Limite**: com muitas repetições, a frequência relativa se aproxima da probabilidade.",
-          "**Moeda desequilibrada**: a probabilidade se estima pela frequência observada.",
-          "**União de dois eventos**: P de A ou B é P(A) mais P(B) menos P(A e B).",
-          "**Mutuamente excludentes**: a interseção é vazia e a união é a soma das probabilidades.",
-          "**Exaustivos**: a união dos eventos é todo o espaço amostral.",
-          "**Exemplo de interseção**: 40% mais 30% menos 50% dá 20%.",
-          "**União de três eventos**: soma das três, menos as interseções duas a duas, mais a tripla.",
-          "**Diagrama de Venn**: começar pela interseção tripla e depois pelas duplas.",
-          "**Sabonetes**: com pelo menos uma marca, a interseção tripla é 3% e quem consome só uma marca é 76%."
+          "**Pessoa específica sorteada**: escolhendo k de n ao acaso, a chance de um nome determinado estar no grupo é k/n (6 de 12 dá 1/2).",
+          "**Frequência relativa**: f = n/N; não é igual à probabilidade em poucas repetições, mas se aproxima dela quando N cresce (P é o limite).",
+          "**Uso da frequência**: estima a probabilidade de eventos não equiprováveis. Ex.: 40 defeitos em 5.000 peças dá 0,8%.",
+          "**União e interseção**: união é \"A ou B\" (ou ambos); interseção é \"A e B\" ao mesmo tempo.",
+          "**Exaustivos x excludentes**: exaustivos cobrem tudo (A ∪ B = U); excludentes não têm elemento comum (A ∩ B = ∅).",
+          "**Fórmula da união**: soma-se a chance de cada evento e desconta-se a da interseção; para excludentes, só a soma. A mesma conta, invertida, revela a interseção.",
+          "**Três eventos**: soma os três, subtrai as três interseções duplas e soma de volta a tripla, que tinha sumido.",
+          "**Diagrama de Venn**: comece pela tripla, depois \"só de dois\" (dupla − tripla) e por fim \"só de um\".",
+          "**Complementar**: P(Ā) = 1 − P(A). Ex.: 12 bolas com 5 vermelhas, não vermelha = 7/12."
         ],
         "teoria": [
           {
-            "statement": "À medida que o número de repetições de um experimento aumenta, a frequência relativa de um evento tende a se aproximar da probabilidade.",
+            "statement": "Quanto maior o número de repetições de um experimento, mais a frequência relativa de um evento tende a se aproximar de sua probabilidade.",
             "isTrue": true,
-            "explanation": "Definição frequentista."
+            "explanation": "A probabilidade é o limite da frequência relativa n/N quando N tende ao infinito."
           },
           {
-            "statement": "Para eventos mutuamente excludentes, a probabilidade da interseção é positiva e deve ser subtraída da soma.",
+            "statement": "Em qualquer número finito de repetições, a frequência relativa observada de um evento é exatamente igual à sua probabilidade.",
             "isTrue": false,
-            "explanation": "A interseção é vazia, com probabilidade 0."
+            "explanation": "Em repetições finitas a frequência oscila em torno da probabilidade; só no limite as duas se igualam."
           },
           {
-            "statement": "Para P(A) = 0,5, P(B) = 0,3 e P(A ∩ B) = 0,1, tem-se P(A ∪ B) = 0,7.",
+            "statement": "Se A e B são mutuamente excludentes, então P(A ∪ B) = P(A) + P(B).",
             "isTrue": true,
-            "explanation": "0,5 + 0,3 − 0,1."
+            "explanation": "Sem elementos comuns, P(A ∩ B) = 0 e a fórmula geral da união se reduz à soma."
           },
           {
-            "statement": "Na união de três eventos, soma-se a interseção tripla duas vezes.",
+            "statement": "Se P(A) = 0,6, P(B) = 0,5 e P(A ∪ B) = 0,8, então P(A ∩ B) = 0,1.",
             "isTrue": false,
-            "explanation": "Soma-se uma vez, para compensar o que foi subtraído em excesso."
+            "explanation": "Isolando a interseção na fórmula da união: 0,6 + 0,5 − 0,8 = 0,3."
           }
         ],
         "revisao": [
           {
-            "statement": "A probabilidade de um soldado específico estar em uma equipe formada ao acaso com metade dos soldados é 50%.",
-            "isTrue": true,
-            "explanation": "6/12."
-          },
-          {
-            "statement": "Eventos exaustivos são aqueles que não podem ocorrer ao mesmo tempo.",
+            "statement": "Dois eventos são chamados de exaustivos quando a interseção entre eles é vazia.",
             "isTrue": false,
-            "explanation": "Isso é excludente; exaustivos têm união igual a U."
+            "explanation": "Interseção vazia caracteriza eventos mutuamente excludentes; exaustivos são os que, unidos, formam todo o espaço amostral."
           },
           {
-            "statement": "Se 100 dos 8.000 tijolos estão danificados, a probabilidade de sortear um danificado é 1,25%.",
+            "statement": "Na fórmula da união de três eventos, a probabilidade da interseção dos três é somada ao final porque ela some ao se subtraírem as interseções duas a duas.",
             "isTrue": true,
-            "explanation": "100/8.000."
+            "explanation": "A região tripla entra três vezes na soma dos eventos e sai três vezes nas subtrações das duplas; por isso precisa ser somada de novo."
           },
           {
-            "statement": "Se P(A) = 40%, P(B) = 30% e P(A ∪ B) = 50%, então P(A ∩ B) = 20%.",
+            "statement": "Em uma urna com 12 bolas, das quais 5 são vermelhas, a probabilidade de sortear uma bola que não seja vermelha é 7/12.",
             "isTrue": true,
-            "explanation": "70% − 50%."
+            "explanation": "Pelo complementar: 1 − 5/12 = 7/12."
+          },
+          {
+            "statement": "Sorteando-se 4 de 10 voluntários, a probabilidade de um voluntário específico ser escolhido é 1/10.",
+            "isTrue": false,
+            "explanation": "A chance de um nome determinado estar entre os k escolhidos de n é k/n = 4/10: C(9,3)/C(10,4) = 84/210."
           }
         ],
         "pointers": [
           {
-            "topic": "Fim da questão do capitão e frequência relativa",
+            "topic": "Probabilidade de uma pessoa específica ser escolhida",
             "pageRef": 16
           },
           {
-            "topic": "Convergência da frequência para a probabilidade",
+            "topic": "Frequência relativa ou empírica",
+            "pageRef": 16
+          },
+          {
+            "topic": "Probabilidade como limite da frequência",
             "pageRef": 17
           },
           {
-            "topic": "Questão de Candói",
-            "pageRef": 18
-          },
-          {
-            "topic": "Combinações de eventos e união",
+            "topic": "União de eventos",
             "pageRef": 19
           },
           {
-            "topic": "Eventos exaustivos e excludentes",
+            "topic": "Eventos exaustivos e interseção",
             "pageRef": 20
           },
           {
-            "topic": "Fórmula da probabilidade da união",
+            "topic": "Eventos mutuamente excludentes e fórmula da união",
             "pageRef": 21
           },
           {
-            "topic": "Excludentes e questão do IMPARH",
-            "pageRef": 22
-          },
-          {
-            "topic": "Questão da FGV (ALE-RO) e da FCC (SEFAZ-BA)",
-            "pageRef": 23
-          },
-          {
-            "topic": "Resolução da FCC (SEFAZ-BA) e união de três eventos",
-            "pageRef": 24
-          },
-          {
-            "topic": "Fórmula da união de três eventos",
+            "topic": "União de três eventos",
             "pageRef": 25
           },
           {
-            "topic": "Exemplo de P(C) pela fórmula e pelo Venn",
+            "topic": "Diagrama de Venn com três eventos",
             "pageRef": 26
           },
           {
-            "topic": "Cálculo das regiões do Venn",
-            "pageRef": 27
-          },
-          {
-            "topic": "Questão da FCC (SEPLAG-PE)",
-            "pageRef": 28
+            "topic": "Teorema do evento complementar",
+            "pageRef": 29
           }
         ]
       }
@@ -237,117 +203,102 @@
       "id": "raciocinio-logico/a07/s03",
       "bizu": {
         "summary": [
-          "**Evento complementar**: a probabilidade do complementar é 1 menos a probabilidade do evento.",
-          "**Exemplo**: 10 bolas vermelhas em 15 dão 5 sobre 15, ou 33,33%, para não vermelha.",
-          "**Nem A nem B**: é o complementar da união, igual a 1 menos P(A ou B).",
-          "**Não ambos**: é o complementar da interseção, igual a 1 menos P(A e B).",
-          "**Três eventos**: nenhum dos três é 1 menos a probabilidade da união dos três.",
-          "**Axioma 1**: não existe probabilidade negativa, isto é, P(A) é sempre maior ou igual a zero.",
-          "**Axioma 2**: a probabilidade do espaço amostral é 1.",
-          "**Axioma 3**: para eventos excludentes, a probabilidade da união é a soma.",
-          "**Probabilidade zero**: não implica evento impossível, e probabilidade 1 não implica evento certo.",
-          "**Contenção**: se A está em B, a probabilidade de A não supera a de B."
+          "**Nem A nem B**: é a interseção dos complementares, igual ao complementar da união: 1 − P(A ∪ B).",
+          "**Não A ou não B**: é a união dos complementares, igual ao complementar da interseção: 1 − P(A ∩ B).",
+          "**Três eventos**: nenhum dos três = 1 − P(A ∪ B ∪ C); grupos sem sobreposição: nenhum = 1 − soma das probabilidades.",
+          "**Axiomas de Kolmogorov**: P(A) ≥ 0; P(U) = 1; para excludentes, P(A ∪ B) = P(A) + P(B).",
+          "**Propriedades**: 0 ≤ P(A) ≤ 1; A ⊆ B implica P(A) ≤ P(B); P(A − B) = P(A) − P(A ∩ B).",
+          "**Probabilidade zero**: evento impossível tem P = 0, mas P = 0 não prova impossibilidade (cara infinitas vezes); P = 1 não prova evento certo.",
+          "**Soma simples**: a probabilidade da união só é a soma das probabilidades quando os eventos são mutuamente excludentes.",
+          "**Condicional**: P(A | B) = P(A ∩ B)/P(B); saber que B ocorreu reduz o universo a B (evento a priori).",
+          "**Ordem importa**: P(A | B) costuma diferir de P(B | A); o denominador é sempre o evento dado.",
+          "**Complementar condicional**: P(Ā | B) = 1 − P(A | B), mantendo o mesmo evento dado."
         ],
         "teoria": [
           {
-            "statement": "A probabilidade de não ocorrer um evento A é 1 − P(A).",
-            "isTrue": true,
-            "explanation": "Evento complementar."
-          },
-          {
-            "statement": "A probabilidade de \"nem A nem B\" é P(A) + P(B).",
+            "statement": "A probabilidade de não ocorrer nem A nem B é igual a 1 − P(A ∩ B).",
             "isTrue": false,
-            "explanation": "É 1 − P(A ∪ B)."
+            "explanation": "\"Nem A nem B\" é Ā ∩ B̄, o complementar da união: 1 − P(A ∪ B). O complementar da interseção corresponde a \"não A ou não B\"."
           },
           {
-            "statement": "Um evento de probabilidade zero pode ser possível.",
+            "statement": "Se P(A) = 0,35, P(B) = 0,25 e P(A ∩ B) = 0,10, a probabilidade de não ocorrer nenhum dos dois eventos é 0,50.",
             "isTrue": true,
-            "explanation": "Ex.: infinitas caras em lançamentos infinitos."
+            "explanation": "P(A ∪ B) = 0,35 + 0,25 − 0,10 = 0,50; nenhum dos dois = 1 − 0,50 = 0,50."
           },
           {
-            "statement": "O terceiro axioma de Kolmogorov vale para quaisquer eventos, ainda que se intersectem.",
+            "statement": "Se um evento tem probabilidade zero, conclui-se que ele é impossível.",
             "isTrue": false,
-            "explanation": "Vale para eventos mutuamente excludentes."
+            "explanation": "Evento impossível tem P = 0, mas a recíproca não vale: há eventos possíveis com probabilidade nula."
+          },
+          {
+            "statement": "Se o evento A está contido no evento B, então P(A) ≤ P(B).",
+            "isTrue": true,
+            "explanation": "É uma das propriedades derivadas dos axiomas de Kolmogorov."
           }
         ],
         "revisao": [
           {
-            "statement": "Se A está contido em B, então P(A) ≤ P(B).",
-            "isTrue": true,
-            "explanation": "Propriedade da inclusão."
-          },
-          {
-            "statement": "Se P(A ∪ B) = 0,7, a probabilidade de não ocorrer nenhum dos dois é 0,3.",
-            "isTrue": true,
-            "explanation": "Complementar da união."
-          },
-          {
-            "statement": "Numa distribuição de probabilidades sobre todo o espaço amostral, a soma das probabilidades pode ser maior que 1.",
+            "statement": "Pelos axiomas de Kolmogorov, a probabilidade da união de quaisquer eventos é igual à soma de suas probabilidades.",
             "isTrue": false,
-            "explanation": "Soma exatamente 1."
+            "explanation": "A soma só vale para eventos mutuamente excludentes; havendo interseção, é preciso descontá-la."
           },
           {
-            "statement": "Em uma urna com 8 bolas pretas e 2 brancas, a probabilidade de sortear uma bola não preta é 1 − 8/10.",
+            "statement": "A probabilidade condicional de A dado B é obtida dividindo-se P(A ∩ B) por P(B), pois saber que B ocorreu restringe o universo a B.",
             "isTrue": true,
-            "explanation": "Complementar."
+            "explanation": "P(A | B) = P(A ∩ B)/P(B): o evento dado passa a ser o novo espaço amostral."
+          },
+          {
+            "statement": "Para quaisquer eventos A e B, P(A | B) é igual a P(B | A).",
+            "isTrue": false,
+            "explanation": "Os denominadores são diferentes (P(B) e P(A)). Na turma de 50 alunos, P(exatas | mulher) = 0,4, mas P(mulher | exatas) = 6/13."
+          },
+          {
+            "statement": "Dado que B ocorreu, a probabilidade de A não ocorrer é 1 − P(A | B).",
+            "isTrue": true,
+            "explanation": "O complementar condicional mantém o evento dado: P(Ā | B) = 1 − P(A | B)."
+          },
+          {
+            "statement": "A probabilidade de ocorrer A sem que ocorra B é P(A) − P(A ∩ B).",
+            "isTrue": true,
+            "explanation": "É a propriedade da diferença: de A retira-se a parte que também está em B."
           }
         ],
         "pointers": [
           {
-            "topic": "Fim dos sabonetes e evento complementar",
-            "pageRef": 29
-          },
-          {
-            "topic": "Fórmula do complementar e questão de Palhoça",
-            "pageRef": 30
-          },
-          {
-            "topic": "Questão do BNB (tabuleiro)",
+            "topic": "Complementar da união e da interseção",
             "pageRef": 31
           },
           {
-            "topic": "Complementar da união e da interseção",
+            "topic": "Nem A nem B: interseção dos complementares",
             "pageRef": 32
           },
           {
-            "topic": "Exemplo com o dado e união dos complementares",
+            "topic": "União dos complementares",
             "pageRef": 33
           },
           {
-            "topic": "Exemplos de A ou não B e extensão a três eventos",
+            "topic": "Extensão para três eventos",
             "pageRef": 34
           },
           {
-            "topic": "Questões da FGV (SEPOG) e da Fundação Santo André",
-            "pageRef": 35
-          },
-          {
-            "topic": "Resolução e questão do CRMV-ES",
-            "pageRef": 36
-          },
-          {
-            "topic": "Resolução do CRMV-ES e axiomas de Kolmogorov",
-            "pageRef": 37
-          },
-          {
-            "topic": "Axiomas e propriedades",
+            "topic": "Axiomas de Kolmogorov",
             "pageRef": 38
           },
           {
-            "topic": "Propriedades deduzidas",
+            "topic": "Probabilidade zero não implica evento impossível",
+            "pageRef": 38
+          },
+          {
+            "topic": "Propriedades: diferença e inclusão",
             "pageRef": 39
           },
           {
-            "topic": "Questões da FCC (SANASA) e da Consulplan",
-            "pageRef": 40
+            "topic": "Probabilidade condicional e universo reduzido",
+            "pageRef": 43
           },
           {
-            "topic": "Resolução da Consulplan e questão do CEBRASPE (ANM)",
-            "pageRef": 41
-          },
-          {
-            "topic": "Questão da FCC (SABESP)",
-            "pageRef": 42
+            "topic": "Eventos a priori e a posteriori; complementar condicional",
+            "pageRef": 44
           }
         ]
       }
@@ -356,101 +307,97 @@
       "id": "raciocinio-logico/a07/s04",
       "bizu": {
         "summary": [
-          "**Probabilidade condicional**: probabilidade de um evento sabendo que outro já ocorreu, com o universo reduzido.",
-          "**Fórmula**: P de E dado H é P(E e H) dividido por P(H).",
-          "**A priori e a posteriori**: o a priori é o fato conhecido e o a posteriori é o evento calculado.",
-          "**Complementar condicional**: P de não E dado H é 1 menos P de E dado H.",
-          "**Sem emprego**: 80 homens e 100 mulheres sem emprego dão 80 sobre 180 para homem dado sem emprego.",
-          "**Multiplicação**: P(A e B) é P(B dado A) vezes P(A).",
-          "**Três eventos**: P(A), P(B dado A) e P(C dado A e B) se multiplicam.",
-          "**Chute**: acertar por acaso é não saber e acertar, ou seja, 0,25 vezes 0,25.",
-          "**Máquina reserva**: o sistema só falha se as duas máquinas falham, e o sucesso é o complementar.",
-          "**Árvore de urnas**: somam-se os caminhos que levam ao resultado, como 0,254 de bola azul final."
+          "**Da condicional à interseção**: P(A ∩ B) = P(A | B) × P(B); com ela se chega à união. Ex.: 0,6 × 0,5 = 0,3.",
+          "**Teorema da multiplicação**: P(A ∩ B) = P(A) × P(B | A); qualquer evento pode ser o a priori, desde que a condicional corresponda.",
+          "**Sem reposição**: duas azuis de uma urna com 3 azuis e 5 verdes = 3/8 × 2/7 = 3/28.",
+          "**Três eventos**: P(A ∩ B ∩ C) = P(A) × P(B | A) × P(C | A ∩ B).",
+          "**Árvore**: multiplique ao longo de cada caminho (\"e\") e some os caminhos que levam ao mesmo resultado (\"ou\").",
+          "**Independência**: P(B | A) = P(B); vale nos dois sentidos com P(A ∩ B) = P(A) × P(B).",
+          "**Complementares**: se A e B são independentes, Ā e B, A e B̄, Ā e B̄ também são.",
+          "**Sem independência informada**: não troque a interseção pelo produto; ela pode ser maior ou menor.",
+          "**Excludente não é independente**: com probabilidades positivas, excludentes têm interseção 0, diferente do produto.",
+          "**Pelo menos um**: 1 − P(nenhum); três falhas independentes de 10%: 1 − 0,9³ = 0,271."
         ],
         "teoria": [
           {
-            "statement": "A probabilidade de ser enfermeiro, sabendo que a pessoa é homem, considera apenas os homens como universo.",
+            "statement": "Pelo teorema da multiplicação, P(A ∩ B) = P(A) × P(B | A) para quaisquer eventos A e B com P(A) > 0.",
             "isTrue": true,
-            "explanation": "Universo reduzido."
+            "explanation": "É a definição de probabilidade condicional reorganizada para isolar a interseção."
           },
           {
-            "statement": "Na fórmula P(A | B) = P(A ∩ B)/P(B), divide-se pela probabilidade do evento que se quer calcular.",
+            "statement": "Retirando-se, sem reposição, duas bolas de uma urna com 3 azuis e 5 verdes, a probabilidade de ambas serem azuis é 9/64.",
             "isTrue": false,
-            "explanation": "Divide-se por P(B), o a priori."
+            "explanation": "9/64 seria com reposição. Sem reposição: 3/8 × 2/7 = 3/28."
           },
           {
-            "statement": "P(A ∩ B) = P(A | B) × P(B).",
+            "statement": "Se A e B são independentes, então P(A | B) = P(A).",
             "isTrue": true,
-            "explanation": "Teorema da multiplicação."
+            "explanation": "Saber que B ocorreu não altera a probabilidade de A quando os eventos são independentes."
           },
           {
-            "statement": "Em uma linha de produção com máquina reserva, o sistema para se uma das duas falhar.",
+            "statement": "Em uma árvore de probabilidades, as probabilidades de caminhos diferentes que levam ao mesmo resultado devem ser multiplicadas.",
             "isTrue": false,
-            "explanation": "Só para se as duas falharem."
+            "explanation": "Multiplica-se ao longo de um caminho; caminhos diferentes são excludentes e suas probabilidades se somam."
           }
         ],
         "revisao": [
           {
-            "statement": "Se P(B) = 0,8 e P(A | B) = 0,6, então P(A ∩ B) = 0,48.",
+            "statement": "Se P(A) = 0,2, P(B) = 0,5 e P(A ∩ B) = 0,1, os eventos A e B são independentes.",
             "isTrue": true,
-            "explanation": "0,6 × 0,8."
+            "explanation": "0,2 × 0,5 = 0,1 = P(A ∩ B); a igualdade com o produto garante a independência."
           },
           {
-            "statement": "A probabilidade de acertar uma questão por acaso, com 4 alternativas, quando se sabe 75% da matéria, é 25%.",
+            "statement": "Dois eventos mutuamente excludentes, ambos com probabilidade positiva, são independentes.",
             "isTrue": false,
-            "explanation": "É 0,25 × 0,25 = 6,25%."
+            "explanation": "A interseção deles é 0, mas o produto das probabilidades é positivo; a ocorrência de um impede o outro, logo são dependentes."
           },
           {
-            "statement": "Se 1/20 é a probabilidade de falha de cada máquina, a probabilidade de as duas falharem (sucessivamente) é 1/400.",
+            "statement": "Se A e B são independentes, os complementares Ā e B̄ também são independentes.",
             "isTrue": true,
-            "explanation": "Multiplicação."
+            "explanation": "A independência se transmite aos complementares: P(B̄ | Ā) = P(B̄)."
           },
           {
-            "statement": "Em extrações encadeadas, soma-se a probabilidade de cada caminho favorável.",
-            "isTrue": true,
-            "explanation": "Árvore de probabilidades."
+            "statement": "Para dois eventos independentes com probabilidades 0,3 e 0,6, a probabilidade de ocorrer pelo menos um deles é 0,9.",
+            "isTrue": false,
+            "explanation": "É preciso descontar a interseção: 0,3 + 0,6 − 0,3 × 0,6 = 0,72."
           }
         ],
         "pointers": [
           {
-            "topic": "Probabilidade condicional e fórmula",
-            "pageRef": 43
-          },
-          {
-            "topic": "Evento a priori e a posteriori e complementar condicional",
-            "pageRef": 44
-          },
-          {
-            "topic": "Questão do QUADRIX e da VUNESP (Peruíbe)",
-            "pageRef": 45
-          },
-          {
-            "topic": "Resolução da VUNESP e questão da ABIN",
-            "pageRef": 46
-          },
-          {
-            "topic": "Resolução da ABIN e questão da FCC (Banrisul)",
-            "pageRef": 47
-          },
-          {
-            "topic": "Questão da FGV (SEFAZ-ES) e teorema da multiplicação",
+            "topic": "Da condicional à interseção e à união",
             "pageRef": 48
           },
           {
-            "topic": "Exemplo do teorema da multiplicação",
+            "topic": "Teorema da multiplicação",
             "pageRef": 49
           },
           {
-            "topic": "Inversão dos eventos e três eventos; questão de Alumínio",
+            "topic": "Inversão de a priori e a posteriori",
+            "pageRef": 49
+          },
+          {
+            "topic": "Multiplicação para três eventos",
             "pageRef": 50
           },
           {
-            "topic": "Resolução de Alumínio e questão de Campinas",
-            "pageRef": 51
+            "topic": "Árvore de probabilidades com urnas",
+            "pageRef": 52
           },
           {
-            "topic": "Resolução de Campinas e questão das três urnas",
-            "pageRef": 52
+            "topic": "Eventos independentes",
+            "pageRef": 53
+          },
+          {
+            "topic": "Complementares de independentes",
+            "pageRef": 54
+          },
+          {
+            "topic": "Produto como condição de ida e volta",
+            "pageRef": 55
+          },
+          {
+            "topic": "Pelo menos um pelo complementar",
+            "pageRef": 58
           }
         ]
       }
@@ -459,88 +406,64 @@
       "id": "raciocinio-logico/a07/s05",
       "bizu": {
         "summary": [
-          "**Três urnas**: somando os quatro caminhos, a probabilidade de azul no fim é 0,254.",
-          "**Eventos independentes**: um não afeta a probabilidade do outro, e P de B dado A é P(B).",
-          "**Interseção de independentes**: P(A e B) é P(A) vezes P(B), com ida e volta.",
-          "**Complementares**: os complementares de eventos independentes também são independentes.",
-          "**Dois dardos**: 90% de acerto em cada um dá 81% de acertar os dois.",
-          "**União de independentes**: P(A ou B) é P(A) mais P(B) menos o produto.",
-          "**Pelo menos um**: 1 menos a probabilidade de nenhum, que entre independentes é o produto dos complementos.",
-          "**Vacina**: duas doses com 50% de eficácia cada dão 75% de imunizados.",
-          "**Três eventos independentes**: exigem as igualdades dois a dois e a da tripla interseção.",
-          "**Armadilha**: independência dois a dois ou o produto da tripla não bastam, e A independente de B e B de C não implica A de C."
+          "**Repetição independente**: todas ocorrerem = produto. Chutar 4 questões de 5 alternativas e acertar todas = (1/5)⁴ = 1/625.",
+          "**Nenhum e pelo menos um**: se 1/4 prefere X, entre 3 pessoas nenhum prefere = (3/4)³ = 27/64; pelo menos um = 37/64.",
+          "**Três eventos independentes**: exigem as três igualdades duplas e a tripla; para n eventos, a interseção é o produto.",
+          "**Recíprocas falsas**: só o produto da tripla não prova independência, e independência dois a dois não garante a dos três.",
+          "**Não é transitiva**: A independente de B e B de C não implica A independente de C; mas B independente de C implica B independente de C̄.",
+          "**Probabilidade total**: P(B) = soma de P(B | Ai) × P(Ai). Ex.: 60% com 2% de defeito e 40% com 5% dão 3,2%.",
+          "**Dois grupos**: P(B) = P(B | A) × P(A) + P(B | Ā) × P(Ā).",
+          "**Bayes**: P(Ai | B) = P(B | Ai) × P(Ai) / P(B); caminho de interesse dividido pela soma dos caminhos. Peça defeituosa vir da M2: 0,02/0,032 = 0,625.",
+          "**Teste diagnóstico**: prevalência 10%, positivo em 90% dos doentes e 20% dos sadios: P(doente | +) = 0,09/0,27 = 1/3.",
+          "**Evento dado negativo**: use 1 − P(B | Ai) em cada grupo antes de aplicar Bayes."
         ],
         "teoria": [
           {
-            "statement": "Se A e B são independentes, P(A | B) = P(A).",
+            "statement": "Quando três eventos são independentes, a chance de os três ocorrerem juntos é o produto das três probabilidades individuais.",
             "isTrue": true,
-            "explanation": "Definição de independência."
+            "explanation": "A independência dos três inclui a igualdade da tripla interseção com o produto."
           },
           {
-            "statement": "Se A e B são independentes, então A e o complementar de B são dependentes.",
+            "statement": "Sabendo-se que os pares (A, B) e (B, C) são formados por eventos independentes, conclui-se necessariamente que A e C também são independentes.",
             "isTrue": false,
-            "explanation": "Complementares também são independentes."
+            "explanation": "A independência não é transitiva; a 1ª e a 3ª moeda podem depender uma da outra mesmo sendo cada uma independente da 2ª."
           },
           {
-            "statement": "A probabilidade de pelo menos um evento ocorrer é 1 menos a probabilidade de nenhum ocorrer.",
+            "statement": "Chutando ao acaso 4 questões com 5 alternativas cada, a probabilidade de acertar todas é 1/20.",
+            "isTrue": false,
+            "explanation": "Os acertos são independentes: (1/5)⁴ = 1/625. Multiplicar 4 × 5 não tem sentido aqui."
+          },
+          {
+            "statement": "Se o evento B é independente do evento C, então B também é independente do complementar de C.",
             "isTrue": true,
-            "explanation": "Complementar."
-          },
-          {
-            "statement": "Quando A independe de B e B independe de C, segue-se que A independe de C.",
-            "isTrue": false,
-            "explanation": "Independência não é transitiva."
+            "explanation": "A independência se estende aos complementares dos eventos."
           }
         ],
         "revisao": [
           {
-            "statement": "Dois eventos com P(A) = 0,5, P(B) = 0,4 e P(A ∩ B) = 0,2 são independentes.",
-            "isTrue": true,
-            "explanation": "0,5 × 0,4 = 0,2."
-          },
-          {
-            "statement": "Basta que a probabilidade da tripla interseção seja o produto das três para os eventos serem independentes.",
+            "statement": "Se M1 produz 60% das peças com 2% de defeito e M2 produz 40% com 5% de defeito, a taxa geral de defeito é 3,5%.",
             "isTrue": false,
-            "explanation": "Não basta: exigem-se também as igualdades dois a dois."
+            "explanation": "Probabilidade total: 0,6 × 0,02 + 0,4 × 0,05 = 0,012 + 0,020 = 0,032, ou seja, 3,2%. A média simples ignora os pesos."
           },
           {
-            "statement": "Acertar ao acaso 3 questões de 5 alternativas, em sequência, tem probabilidade (1/5)³.",
+            "statement": "O teorema de Bayes permite calcular P(A | B) a partir de P(B | A), de P(A) e da probabilidade total de B.",
             "isTrue": true,
-            "explanation": "Eventos independentes."
+            "explanation": "P(A | B) = P(B | A) × P(A) / P(B), com P(B) obtido pela probabilidade total."
           },
           {
-            "statement": "Duas moedas honestas: P(duas caras) = 1/4.",
+            "statement": "Se uma doença atinge 10% de um grupo e o teste dá positivo em 90% dos doentes e em 20% dos sadios, a probabilidade de alguém com resultado positivo estar doente é 90%.",
+            "isTrue": false,
+            "explanation": "P(+) = 0,09 + 0,18 = 0,27 e P(doente | +) = 0,09/0,27 = 1/3. Os 90% são P(+ | doente), a condicional invertida."
+          },
+          {
+            "statement": "Verificar apenas que a probabilidade da tripla interseção coincide com o produto das três probabilidades não basta para concluir que os três eventos são independentes.",
             "isTrue": true,
-            "explanation": "1/2 × 1/2."
+            "explanation": "Também é preciso que valham as três igualdades duas a duas."
           }
         ],
         "pointers": [
           {
-            "topic": "Fim das três urnas e independência",
-            "pageRef": 53
-          },
-          {
-            "topic": "Complementares independentes e produto",
-            "pageRef": 54
-          },
-          {
-            "topic": "Ida e volta do produto e questões do IMPARH e do TJ-AM",
-            "pageRef": 55
-          },
-          {
-            "topic": "Questões da FGV (dardos) e da FCC",
-            "pageRef": 56
-          },
-          {
-            "topic": "Questão da EMBRAPA e DPE-RJ",
-            "pageRef": 57
-          },
-          {
-            "topic": "Resolução da DPE-RJ e pelo menos um (DEPEN)",
-            "pageRef": 58
-          },
-          {
-            "topic": "Resolução do DEPEN e questão da FEMPAR",
+            "topic": "Pelo menos um e complementar com eventos repetidos",
             "pageRef": 59
           },
           {
@@ -548,110 +471,31 @@
             "pageRef": 60
           },
           {
-            "topic": "Questão de Cerquilho e UNICAMP",
+            "topic": "Recíprocas falsas e exemplo das moedas",
+            "pageRef": 60
+          },
+          {
+            "topic": "Interseção de n eventos independentes",
             "pageRef": 61
           },
           {
-            "topic": "Questão da FGV (TJ-AL)",
-            "pageRef": 62
-          }
-        ]
-      }
-    },
-    {
-      "id": "raciocinio-logico/a07/s06",
-      "bizu": {
-        "summary": [
-          "**Probabilidade total**: soma de P(I dado A) vezes P(A) para todos os grupos.",
-          "**Exemplo de inadimplência**: pesos 50%, 30% e 20% com taxas 1%, 5% e 10% resultam em 4%.",
-          "**Preenchimento correto**: 0,4 vezes 0,1 mais 0,7 vezes 0,9 dá 0,67.",
-          "**Lâmpadas**: a probabilidade total de queimar é 4%, e de não queimar, 96%.",
-          "**Bayes**: inverte a condicional, calculando P de A dado B a partir de P de B dado A.",
-          "**Fórmula de Bayes**: numerador é P(B dado A) vezes P(A), e o denominador é a probabilidade total de B.",
-          "**Inadimplente do grupo A**: 12,5%, pois 0,005 dividido por 0,04.",
-          "**Defensoria**: 0,08 sobre 0,80 resulta em 1 décimo.",
-          "**Varas trabalhistas**: a probabilidade de ser da 1ª vara dado agropecuária é cerca de 0,4054.",
-          "**Quadro-resumo**: condicional, multiplicação, total, Bayes e independência."
-        ],
-        "teoria": [
-          {
-            "statement": "O teorema da probabilidade total combina as probabilidades condicionais com os pesos de cada grupo.",
-            "isTrue": true,
-            "explanation": "P(I) = Σ P(I | Aᵢ)P(Aᵢ)."
-          },
-          {
-            "statement": "O teorema de Bayes é usado para calcular a probabilidade de um evento ocorrer sem qualquer condição.",
-            "isTrue": false,
-            "explanation": "Serve para inverter a condicional."
-          },
-          {
-            "statement": "No denominador do teorema de Bayes aparece a probabilidade total do evento condicionante.",
-            "isTrue": true,
-            "explanation": "P(B) total."
-          },
-          {
-            "statement": "A soma dos pesos dos grupos na probabilidade total pode ser diferente de 100%.",
-            "isTrue": false,
-            "explanation": "Os grupos formam partição: pesos somam 1."
-          }
-        ],
-        "revisao": [
-          {
-            "statement": "Se 60% dos clientes são do grupo X (com 10% de defeito) e 40% do grupo Y (com 5% de defeito), a probabilidade de defeito é 8%.",
-            "isTrue": true,
-            "explanation": "0,06 + 0,02."
-          },
-          {
-            "statement": "A probabilidade de um cliente defeituoso ser do grupo X, no exemplo anterior, é 10%.",
-            "isTrue": false,
-            "explanation": "É 0,06/0,08 = 75%."
-          },
-          {
-            "statement": "Na fórmula de Bayes, o numerador é a probabilidade da interseção entre o grupo e o evento.",
-            "isTrue": true,
-            "explanation": "P(I | A)P(A)."
-          },
-          {
-            "statement": "Para a resposta pedir a probabilidade de \"não queimar\", pode-se calcular a total de queimar e depois o complementar.",
-            "isTrue": true,
-            "explanation": "Complemento após a probabilidade total."
-          }
-        ],
-        "pointers": [
-          {
-            "topic": "Teorema da probabilidade total e exemplo",
+            "topic": "Teorema da probabilidade total",
             "pageRef": 63
           },
           {
-            "topic": "Fórmula geral e questão do CEBRASPE (SEFAZ-RJ)",
+            "topic": "Probabilidade total com dois grupos e caso geral",
             "pageRef": 64
           },
           {
-            "topic": "Resolução do CEBRASPE e questão das lâmpadas",
-            "pageRef": 65
-          },
-          {
-            "topic": "Questão da FCC (TRT-11) e início do teorema de Bayes",
+            "topic": "Teorema de Bayes",
             "pageRef": 66
           },
           {
-            "topic": "Fórmula de Bayes e exemplo de inadimplência",
+            "topic": "Fórmula geral de Bayes",
             "pageRef": 67
           },
           {
-            "topic": "Questão da FGV (DPE-RJ) sobre assistência",
-            "pageRef": 68
-          },
-          {
-            "topic": "Questão da FCC (TRT-14)",
-            "pageRef": 69
-          },
-          {
-            "topic": "Questão do TJ-AM e da FUNDATEC",
-            "pageRef": 70
-          },
-          {
-            "topic": "Resolução da FUNDATEC e quadro-resumo",
+            "topic": "Quadro-resumo de condicional e independência",
             "pageRef": 71
           }
         ]
