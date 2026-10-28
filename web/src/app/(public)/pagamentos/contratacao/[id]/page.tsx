@@ -3,7 +3,9 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { PixStatic } from "@/components/pix-static";
 import { mercadoPagoConfigured } from "@/lib/billing/mercado-pago";
-import { Alert, Badge, Card, PageHeader } from "@/components/ui";
+import { Alert, Badge, Button, Card, PageHeader } from "@/components/ui";
+import { isTestUser } from "@/lib/test-user";
+import { confirmTestPayment } from "@/lib/test-user-actions";
 import { getCurrentUser } from "@/lib/auth/session";
 import { CONTRACT_STATUS, contestName, dateBR, discountSummary } from "@/lib/commerce/labels";
 import { formatBRL, fromCents, toCents } from "@/lib/commerce/money";
@@ -64,12 +66,23 @@ export default async function ContractPixPage({ params }: { params: Promise<{ id
       ) : (
         <Alert tone="warn">O pagamento ainda não está configurado. Tente novamente em breve.</Alert>
       )}
+      {due > 0 && isTestUser(user.email) && (
+        <form action={confirmTestPayment.bind(null, c.id)} className="mx-auto max-w-xl">
+          <Button type="submit" size="lg" className="w-full">Confirmar pagamento</Button>
+          <p className="mt-2 text-center text-xs text-muted">Teste local: reconhece o pagamento e libera o acesso até a prova.</p>
+        </form>
+      )}
       {due > 0 && (
         <p className="text-center text-xs leading-relaxed text-muted">
           {online
             ? "O pagamento é confirmado automaticamente pelo Mercado Pago e, em seguida, o acesso até a data da prova é liberado."
             : "A administração confere o pagamento e libera o acesso. A mensagem do Pix leva o seu e-mail para identificarmos o pagamento."}
         </p>
+      )}
+      {c.pricingRule.startsWith("TROCA:") && (
+        <Link href="/perfil" className="block text-center text-sm font-semibold text-primary underline">
+          {due <= 0 ? "Concluir a troca de concurso no perfil" : "Depois de pagar, volte ao perfil para concluir a troca de concurso"}
+        </Link>
       )}
       <Link href="/pagamentos" className="block text-center text-sm font-semibold text-primary underline">Voltar a Contratações e pagamentos</Link>
     </div>

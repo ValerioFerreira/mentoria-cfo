@@ -11,12 +11,14 @@ interface Args {
   contest?: string | null;
   /** status pedido explicitamente por quem chama (ex.: refazer plano já liberado) */
   explicit?: "ACTIVE" | "PENDING_ANALYSIS";
+  /** usuário de teste local: o plano já nasce liberado */
+  testUser?: boolean;
 }
 
 /** Status inicial de um plano recém-gerado. */
-export function initialPlanStatus({ role, partnerActive, contest, explicit }: Args): "ACTIVE" | "PENDING_ANALYSIS" {
+export function initialPlanStatus({ role, partnerActive, contest, explicit, testUser }: Args): "ACTIVE" | "PENDING_ANALYSIS" {
   if (explicit) return explicit;
-  if (role === "ADMIN") return "ACTIVE";
+  if (role === "ADMIN" || testUser) return "ACTIVE";
   if (contest && CONTESTS_HELD_FOR_REVIEW.includes(contest)) return "PENDING_ANALYSIS";
   return partnerActive ? "ACTIVE" : "PENDING_ANALYSIS";
 }

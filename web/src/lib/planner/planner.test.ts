@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { bandOf, generatePlan, hoursPerDayLabel, nextMonday, PlanInputError, type Level, type PlanInput, type PlanResult } from "./index";
-import { dayIndexOf, mondayOf, weeksUntil } from "./dates";
+import { addDays, dayIndexOf, mondayOf, weeksUntil } from "./dates";
 import { loadCatalog, loadExamQuestions, loadImportance, loadSegments } from "./fixtures";
 import { planFromResult, verifyPlan } from "./verify";
 import { CONTEST_SUBJECTS } from "../contests";
@@ -483,6 +483,55 @@ describe("modelo de tempo", () => {
     const report = verifyPlan(planFromResult(p, startDate, examDate), { catalog, segments, importance });
     expect(report.errors).toEqual([]);
     expect(report.verdict).toBe("LIBERAR");
+  });
+  it("concurso individual: véspera e cobertura usam os pesos da prova do concurso, não os do catálogo (CBMPE Oficial)", () => {
+    const examQuestions = loadExamQuestions("CBMPE_CFOA");
+    const subjects = CONTEST_SUBJECTS.CBMPE_CFOA;
+    const top = [...subjects].sort((a, b) => (examQuestions[b] ?? 0) - (examQuestions[a] ?? 0))[0];
+    const catalogTop = catalog.subjects.filter((s) => subjects.includes(s.id)).sort((a, b) => b.examQuestions - a.examQuestions)[0].id;
+    expect(top).not.toBe(catalogTop); // o teste só faz sentido se os pesos do concurso e do catálogo divergem
+    const p = generatePlan({
+      catalog,
+      segments,
+      contest: "CBMPE_CFOA",
+      importance: loadImportance("CBMPE_CFOA"),
+      examQuestions,
+      examTotalQuestions: 100,
+      startDate: "2026-10-19",
+      firstDay: 0,
+      examDate: "2027-04-25",
+      hoursPerWeek: 30,
+      subjects: subjects.map((id) => ({ id, level: 1 as const })),
+    });
+    const eve = flat(p).filter((a) => a.key.endsWith("#VESPERA"));
+    expect(eve).toHaveLength(1);
+    expect(eve[0].subjectId).toBe(top);
+    for (const s of p.coverage.subjects) expect(s.examQuestions).toBe(examQuestions[s.subjectId]);
+  });
+  it("ciclo do edital (sem data de prova): cobre o edital inteiro no menor prazo e ignora o Turbo", () => {
+    const subjects = CONTEST_SUBJECTS.CBMPE_CFOA;
+    const base = {
+      catalog,
+      segments,
+      contest: "CBMPE_CFOA",
+      importance: loadImportance("CBMPE_CFOA"),
+      examQuestions: loadExamQuestions("CBMPE_CFOA"),
+      examTotalQuestions: 100,
+      startDate: "2026-10-19",
+      firstDay: 0,
+      examDate: "2027-10-18",
+      hoursPerWeek: 30,
+      subjects: subjects.map((id) => ({ id, level: 1 as const })),
+    };
+    const p = generatePlan({ ...base, cycle: 2, turbo: true });
+    expect(p.params.cycle).toBe(2);
+    expect(p.params.editalFits).toBe(true);
+    expect(p.params.turboAulas).toBe(0);
+    expect(p.coverage.selected).toBeCloseTo(1, 5);
+    // uma semana a menos já não comporta o edital inteiro
+    const shorter = generatePlan({ ...base, examDate: addDays(p.params.examDate, -7) });
+    expect(shorter.params.editalFits).toBe(false);
+    expect(p.warnings[0]).toContain("2º ciclo");
   });
 });
 

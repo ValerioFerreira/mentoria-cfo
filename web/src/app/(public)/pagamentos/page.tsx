@@ -37,7 +37,8 @@ export default async function BillingPage({ searchParams }: { searchParams: Prom
       orderBy: { createdAt: "desc" },
     }),
     db.billingPurchase.findMany({ where: { userId: user.id }, orderBy: { createdAt: "desc" } }),
-    db.contestSetting.findMany(),
+    // só os concursos que este código conhece (um banco compartilhado com outra versão pode ter chaves a mais)
+    db.contestSetting.findMany({ where: { contest: { in: CONTESTS.map((c) => c.key) } } }),
   ]);
   const settingOf = new Map(settings.map((s) => [s.contest, s]));
   const taken = new Set(contracts.map((c) => c.contest));

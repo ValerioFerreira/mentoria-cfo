@@ -6,6 +6,7 @@ import { AdvanceBox } from "@/components/advance-box";
 import { ActivityRow, activityTitle, fmtMinutes } from "@/components/activity-row";
 import { Card, EmptyState, LinkButton, PageHeader, Progress } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
+import { ensurePlanCycle } from "@/lib/plan/cycle";
 import { getMission } from "@/lib/data/mission";
 import { db } from "@/lib/db";
 import { getActivePlan, getPendingPlan } from "@/lib/data/study";
@@ -17,6 +18,7 @@ export const metadata: Metadata = { title: "Missão de hoje" };
 
 export default async function MissionPage() {
   const user = await requireUser();
+  await ensurePlanCycle(user.id); // ciclo do edital terminou (ou a prova ganhou data): refaz o plano
   const canAccess = await canUserAccessCoreFeatures(user.role, user.id);
 
   if (!canAccess) {

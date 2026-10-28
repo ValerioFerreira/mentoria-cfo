@@ -1,8 +1,21 @@
 import { describe, expect, it } from "vitest";
 import { summarizeLedger } from "./ledger";
 import { formatBRL, fromCents, parseMoneyInput, toCents } from "./money";
-import { allocateDiscountPoints, accessEndForExamDate, commissionOn, commissionTarget, financialStatus, priceCardText, quote } from "./pricing";
+import { allocateDiscountPoints, accessEndForExamDate, commissionOn, commissionTarget, financialStatus, priceCardText, quote, switchQuote } from "./pricing";
 import { couponSetKey, parseCouponCodes } from "./coupon-codes";
+
+describe("troca para concurso mais caro", () => {
+  it("diferença entre o preço do site e o já pago; cupom incide sobre a diferença", () => {
+    expect(switchQuote(9_000, 4_000)).toMatchObject({ residualCents: 5_000, finalCents: 5_000 });
+    expect(switchQuote(9_000, 4_000, [50])).toMatchObject({ residualCents: 5_000, couponPoints: 50, discountCents: 2_500, finalCents: 2_500 });
+    expect(switchQuote(9_000, 4_000, [25, 10])).toMatchObject({ couponPoints: 35, finalCents: 3_250 });
+  });
+  it("já pagou o suficiente: nada a pagar; cupons passam de 100% são limitados", () => {
+    expect(switchQuote(9_000, 9_500).finalCents).toBe(0);
+    expect(switchQuote(9_000, 0, [80, 50])).toMatchObject({ couponPoints: 100, appliedPoints: [80, 20], finalCents: 0 });
+    expect(() => switchQuote(9_000, 0, [101])).toThrow();
+  });
+});
 
 describe("preços por categoria", () => {
   it("lançamento: Oficial e PCPE R$ 90,00; Praça R$ 60,00", () => {

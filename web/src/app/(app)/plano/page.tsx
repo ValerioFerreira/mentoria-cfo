@@ -6,6 +6,7 @@ import type { CSSProperties } from "react";
 import { fmtMinutes } from "@/components/activity-row";
 import { Alert, BLOCK_COLOR, Badge, Card, Count, InfoTip, LinkButton, PageHeader, Progress, Ring, SectionTitle, TYPE_META, type ActivityType } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
+import { ensurePlanCycle, planCycle } from "@/lib/plan/cycle";
 import { db } from "@/lib/db";
 import { getActivePlan, getPendingPlan } from "@/lib/data/study";
 import { PendingPlanView } from "@/components/pending-plan-view";
@@ -28,6 +29,7 @@ const hm = (min: number) => {
 
 export default async function PlanPage() {
   const user = await requireUser();
+  await ensurePlanCycle(user.id); // ciclo do edital terminou (ou a prova ganhou data): refaz o plano
   const canAccess = await canUserAccessCoreFeatures(user.role, user.id);
 
   if (!canAccess) {
@@ -96,7 +98,7 @@ export default async function PlanPage() {
   return (
     <div className="space-y-9">
       <PageHeader
-        eyebrow={`Prova em ${fmtDate(plan.examDate)}`}
+        eyebrow={planCycle(plan.params) ? `${planCycle(plan.params)}º ciclo do edital · até ${fmtDate(new Date(plan.examDate.getTime() - 86_400_000))}` : `Prova em ${fmtDate(plan.examDate)}`}
         title="Planejamento"
         actions={
           <>

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
+import { quote } from "@/lib/commerce/pricing";
+import { pendingPaidSwitch } from "@/lib/commerce/switch";
 import { getUserContest } from "@/lib/user-contest";
 import { PerfilView, type UserProfileData } from "./perfil-view";
 
@@ -31,10 +33,18 @@ export default async function PerfilPage() {
     return null;
   }
 
+  const settings = await db.contestSetting.findMany();
+  const contestPrices: Record<string, number | null> = Object.fromEntries(
+    settings.map((s) => [s.contest, s.category ? quote(s.category, 0, s).finalCents : null]),
+  );
+  const resumePaidSwitch = Boolean(await pendingPaidSwitch(user.id, user.email));
+
   const profileData: UserProfileData = {
     ...user,
     isPartner: sessionUser.isPartner,
     contest,
+    contestPrices,
+    resumePaidSwitch,
     createdAt: user.createdAt.toISOString(),
     accessExpiresAt: user.accessExpiresAt ? user.accessExpiresAt.toISOString() : null,
   };

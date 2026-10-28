@@ -4,7 +4,8 @@ import { CheckCircle2, Eye, EyeOff, KeyRound, Loader2, Mail, Shield, User as Use
 import { useActionState, useState, useTransition } from "react";
 import { Alert, Badge, Button, Card, Field, SectionTitle, inputCls } from "@/components/ui";
 import { CONTEST_SUBTITLES } from "@/lib/contests";
-import { updateUserPassword, sendSelfPasswordReset, updateUserContest, type ProfilePasswordState } from "@/lib/profile/actions";
+import { ContestSwitcher } from "./contest-switcher";
+import { updateUserPassword, sendSelfPasswordReset, type ProfilePasswordState } from "@/lib/profile/actions";
 
 export interface UserProfileData {
   id: string;
@@ -18,18 +19,11 @@ export interface UserProfileData {
   mustChangePassword: boolean;
   /** parceiro: a senha é gerenciada pela administração */
   isPartner: boolean;
+  /** preço de cada concurso no site (centavos; nulo = sem categoria) */
+  contestPrices: Record<string, number | null>;
+  /** há uma troca de concurso paga ainda não aplicada */
+  resumePaidSwitch: boolean;
 }
-
-const CONTEST_OPTIONS = [
-  { key: "CBMPE_OFICIAL", label: "OFICIAL - CBMPE" },
-  { key: "CBMPE_CFOA", label: "2º TENENTE CFOA - CBMPE" },
-  { key: "CBMPE_SOLDADO", label: "PRAÇA - CBMPE" },
-  { key: "PMPE_OFICIAL", label: "OFICIAL - PMPE" },
-  { key: "PMPE_SOLDADO", label: "PRAÇA - PMPE" },
-  { key: "PCPE_AGENTE", label: "AGENTE - PCPE" },
-  { key: "CBMPE_COMBO", label: "OFICIAL + PRAÇA - CBMPE" },
-  { key: "PMPE_COMBO", label: "OFICIAL + PRAÇA - PMPE" },
-];
 
 export function PerfilView({ user }: { user: UserProfileData }) {
   const [state, action, pending] = useActionState(updateUserPassword, undefined);
@@ -37,19 +31,6 @@ export function PerfilView({ user }: { user: UserProfileData }) {
   const [showNew, setShowNew] = useState(false);
   const [resetMsg, setResetMsg] = useState<{ success: boolean; message: string } | null>(null);
   const [isResetPending, startResetTransition] = useTransition();
-
-  const [selectedContest, setSelectedContest] = useState(user.contest || "CBMPE_OFICIAL");
-  const [contestMsg, setContestMsg] = useState<{ success: boolean; message: string } | null>(null);
-  const [isContestPending, startContestTransition] = useTransition();
-
-  function handleContestChange(newKey: string) {
-    if (newKey === selectedContest) return;
-    startContestTransition(async () => {
-      setSelectedContest(newKey);
-      const res = await updateUserContest(newKey);
-      setContestMsg(res);
-    });
-  }
 
   function handleSendReset() {
     startResetTransition(async () => {
@@ -106,40 +87,14 @@ export function PerfilView({ user }: { user: UserProfileData }) {
             <p className="font-bold text-text mt-0.5">{expirationInfo}</p>
           </div>
 
-          <div className="rounded-xl bg-surface-2 p-3.5 border border-border sm:col-span-2">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div>
-                <p className="text-xs text-muted uppercase font-semibold">Concurso Selecionado</p>
-                <p className="font-bold text-text mt-0.5 text-base text-primary">
-                  {CONTEST_SUBTITLES[selectedContest as keyof typeof CONTEST_SUBTITLES] ?? "OFICIAL - CBMPE"}
-                </p>
-                <p className="text-xs text-muted mt-0.5">
-                  Define o subtítulo no menu lateral e o foco do seu plano de estudos.
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {CONTEST_OPTIONS.map((opt) => (
-                  <button
-                    key={opt.key}
-                    type="button"
-                    disabled={isContestPending}
-                    onClick={() => handleContestChange(opt.key)}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer ${
-                      selectedContest === opt.key
-                        ? "bg-primary text-on-primary shadow-sm"
-                        : "bg-surface-3 text-muted hover:text-text hover:bg-surface-1 border border-border"
-                    }`}
-                  >
-                    {opt.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-            {contestMsg && (
-              <p className={`mt-2 text-xs font-medium ${contestMsg.success ? "text-ok" : "text-danger"}`}>
-                {contestMsg.message}
+          <div className="rounded-xl bg-surface-2 p-4 border border-border sm:col-span-2 space-y-4">
+            <div>
+              <p className="text-xs text-muted uppercase font-semibold">Concurso Selecionado</p>
+              <p className="mt-0.5 font-display text-xl font-bold uppercase text-primary">
+                {CONTEST_SUBTITLES[user.contest as keyof typeof CONTEST_SUBTITLES] ?? "OFICIAL - CBMPE"}
               </p>
-            )}
+            </div>
+            <ContestSwitcher current={user.contest || "CBMPE_OFICIAL"} prices={user.contestPrices} resumePaid={user.resumePaidSwitch} />
           </div>
         </div>
       </Card>

@@ -115,6 +115,30 @@ export function quote(
   };
 }
 
+export interface SwitchQuote {
+  /** o que falta pagar antes dos cupons: preço do concurso no site − tudo o que o aluno já pagou (nunca negativo) */
+  residualCents: number;
+  /** soma dos pontos dos cupons efetivamente aplicados (teto de 100%) */
+  couponPoints: number;
+  /** pontos aplicados por cupom, na ordem informada */
+  appliedPoints: number[];
+  discountCents: number;
+  finalCents: number;
+}
+
+/**
+ * Troca para um concurso mais caro: o aluno paga a diferença entre o preço atual do concurso no site (já com o desconto
+ * do site) e o que ele já pagou. Os cupons incidem sobre essa diferença, somando pontos (aditivos, teto de 100%).
+ * Ex.: site R$ 90, já pagou R$ 40 → diferença R$ 50; com cupom de 50% paga R$ 25.
+ */
+export function switchQuote(targetSiteCents: number, paidCents: number, couponPoints: readonly number[] = []): SwitchQuote {
+  for (const p of couponPoints) assertPoints(p, "Desconto de cupom inválido.");
+  const residualCents = Math.max(0, targetSiteCents - Math.max(0, paidCents));
+  const { applied, total } = allocateDiscountPoints(couponPoints);
+  const finalCents = Math.round((residualCents * (MAX_DISCOUNT_POINTS - total)) / MAX_DISCOUNT_POINTS);
+  return { residualCents, couponPoints: total, appliedPoints: applied, discountCents: residualCents - finalCents, finalCents };
+}
+
 export class PricingError extends Error {
   constructor(message: string) {
     super(message);

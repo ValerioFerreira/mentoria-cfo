@@ -83,8 +83,13 @@ export interface PlanInput {
   startDate: string;
   /** Dia da semana (0 = segunda … 6 = domingo) em que os estudos começam na 1ª semana; antes dele a semana fica vazia. Padrão 0. */
   firstDay?: number;
-  /** Data da prova objetiva (YYYY-MM-DD). */
+  /** Data da prova objetiva (YYYY-MM-DD). Ignorada no ciclo do edital (`cycle`), em que o fim é calculado. */
   examDate: string;
+  /**
+   * Concurso sem data de prova: nº do ciclo do edital. O plano termina no menor prazo em que o edital inteiro cabe no
+   * ciclo de estudo e, ao acabar, recomeça (ciclo seguinte) até a data da prova ser definida.
+   */
+  cycle?: number;
   hoursPerWeek: number;
   subjects: { id: string; level: Level }[];
   /** Anamnese por aula (id da aula → conhecimento). Aulas ausentes valem 0. */
@@ -99,6 +104,8 @@ export interface PlanInput {
   summaries?: string[];
   /** Questões de cada disciplina na prova do concurso (substitui `examQuestions` do catálogo, que é o do CBMPE Oficial). */
   examQuestions?: Record<string, number>;
+  /** Total de questões da prova do concurso (base da cobertura do edital); ausente = total do CBMPE Oficial. */
+  examTotalQuestions?: number;
   /** Modo Turbo: se o tempo não fechar o edital, as unidades de menor importância viram resumos analíticos (até 3 por atividade). */
   turbo?: boolean;
   /**
@@ -232,7 +239,10 @@ export interface PlanResult {
     startDate: string;
     /** Dia em que o aluno começa a estudar (pode ser depois da segunda da semana 1). */
     firstStudyDate: string;
+    /** Data da prova; no ciclo do edital, o dia seguinte ao fim do ciclo. */
     examDate: string;
+    /** Nº do ciclo do edital (concurso ainda sem data de prova). */
+    cycle?: number;
   };
   weeks: PlannedWeek[];
   coverage: {
