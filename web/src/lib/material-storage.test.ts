@@ -15,6 +15,12 @@ describe("armazenamento do material (R2)", () => {
     expect(r2Config(env({}))).toBeNull();
   });
 
+  it("ignora aspas e espaços colados no valor", () => {
+    const c = r2Config(env({ ...completo, R2_BUCKET: ' "balde" ', R2_ACCOUNT_ID: "'conta'" }));
+    expect(c?.bucket).toBe("balde");
+    expect(c?.accountId).toBe("conta");
+  });
+
   it("MATERIAL_STORAGE=disk força o disco mesmo com o R2 configurado", () => {
     expect(r2Config(env({ ...completo, MATERIAL_STORAGE: "disk" }))).toBeNull();
   });

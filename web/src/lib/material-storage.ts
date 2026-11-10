@@ -11,12 +11,19 @@ export type R2Config = { accountId: string; accessKeyId: string; secretAccessKey
 /** Lê a configuração do R2 do ambiente; devolve null se faltar qualquer variável (aí vale o disco). */
 export function r2Config(env: NodeJS.ProcessEnv = process.env): R2Config | null {
   if (env.MATERIAL_STORAGE === "disk") return null;
-  const accountId = env.R2_ACCOUNT_ID?.trim();
-  const accessKeyId = env.R2_ACCESS_KEY_ID?.trim();
-  const secretAccessKey = env.R2_SECRET_ACCESS_KEY?.trim();
-  const bucket = env.R2_BUCKET?.trim();
+  // tolera espaços e aspas coladas junto do valor (comum ao copiar linhas de um .env para o painel da hospedagem)
+  const clean = (v: string | undefined) => v?.trim().replace(/^(["'])(.*)\1$/, "$2").trim();
+  const accountId = clean(env.R2_ACCOUNT_ID);
+  const accessKeyId = clean(env.R2_ACCESS_KEY_ID);
+  const secretAccessKey = clean(env.R2_SECRET_ACCESS_KEY);
+  const bucket = clean(env.R2_BUCKET);
   if (!accountId || !accessKeyId || !secretAccessKey || !bucket) return null;
   return { accountId, accessKeyId, secretAccessKey, bucket };
+}
+
+/** De onde os PDFs são lidos agora: "r2" (configurado) ou "disco". Só para diagnóstico; não revela valores. */
+export function materialSource(): "r2" | "disco" {
+  return r2Config() ? "r2" : "disco";
 }
 
 export function materialKey(disc: string, vol: string): string {

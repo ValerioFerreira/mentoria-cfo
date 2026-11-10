@@ -8,7 +8,7 @@ import { hasBillingAccess } from "@/lib/billing/access";
 import { formatCpf } from "@/lib/cpf";
 import { db } from "@/lib/db";
 import { hasVolume } from "@/lib/material";
-import { readMaterialPdf, streamBytes } from "@/lib/material-storage";
+import { materialSource, readMaterialPdf, streamBytes } from "@/lib/material-storage";
 import { stampPdf } from "@/lib/material-stamp";
 
 export const runtime = "nodejs";
@@ -33,7 +33,11 @@ export async function GET(req: NextRequest, ctx: { params: Promise<{ disc: strin
     console.error("[material] falha ao ler o PDF do armazenamento", err instanceof Error ? err.message : "erro desconhecido");
     return new Response("Não foi possível abrir o PDF agora.", { status: 502 });
   }
-  if (!pdf) return new Response("Not found", { status: 404 });
+  if (!pdf) {
+    // distingue "o volume não existe" (404 mais acima) de "o PDF não está no armazenamento", e diz de onde tentou ler
+    console.error(`[material] PDF ${disc}/${vol} não encontrado (origem: ${materialSource()})`);
+    return new Response(`PDF indisponível no momento (origem: ${materialSource()}).`, { status: 404 });
+  }
   let stamped: Uint8Array;
   try {
     stamped = await stampPdf(pdf, { id: owner.id, name: owner.name ?? owner.email, idLabel: owner.cpf ? `CPF ${formatCpf(owner.cpf)}` : owner.email.toUpperCase() });
