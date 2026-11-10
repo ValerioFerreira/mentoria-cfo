@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>{{ v.subject_name }} · {{ v.label }} · {{ v.title }}</title>
+<style>
+@font-face{font-family:"Barlow Condensed";font-weight:500;src:url("{{ fonts }}/BarlowCondensed-Medium.ttf")}
+@font-face{font-family:"Barlow Condensed";font-weight:600;src:url("{{ fonts }}/BarlowCondensed-SemiBold.ttf")}
+@font-face{font-family:"Barlow Condensed";font-weight:700;src:url("{{ fonts }}/BarlowCondensed-Bold.ttf")}
+@font-face{font-family:"Barlow Condensed";font-weight:800;src:url("{{ fonts }}/BarlowCondensed-ExtraBold.ttf")}
+@font-face{font-family:"Public Sans";font-weight:100 900;font-style:normal;src:url("{{ fonts }}/PublicSans-VF.ttf")}
+@font-face{font-family:"Public Sans";font-weight:100 900;font-style:italic;src:url("{{ fonts }}/PublicSans-Italic-VF.ttf")}
+@font-face{font-family:"IBM Plex Mono";font-weight:400;src:url("{{ fonts }}/IBMPlexMono-Regular.ttf")}
+@font-face{font-family:"Noto Sans";font-weight:100 900;font-style:normal;src:url("{{ fonts }}/NotoSans-VF.ttf")}
+@font-face{font-family:"Noto Sans";font-weight:100 900;font-style:italic;src:url("{{ fonts }}/NotoSans-Italic-VF.ttf")}
+@font-face{font-family:"Noto Sans Math";src:url("{{ fonts }}/NotoSansMath-Regular.ttf")}
+</style>
+<link rel="stylesheet" href="{{ css }}">
+<style>
+/* cabeçalho, rodapé e régua desenhados pelo handler (posições fixas na folha) */
+.pagedjs_sheet{position:relative}
+.xhd{position:absolute;top:8mm;left:18mm;right:18mm;display:flex;justify-content:space-between;gap:1em;font-family:"Barlow Condensed","Noto Sans","Noto Sans Math";font-weight:600;letter-spacing:.1em;text-transform:uppercase;font-size:7.9pt;color:#5b6778;z-index:5}
+.xhd span:first-child::before{content:"";display:inline-block;width:1.6em;height:.35em;background:#d4301f;margin-right:.6em;vertical-align:.15em}
+.xhd span:last-child{text-align:right;max-width:60%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.xrule{position:absolute;left:18mm;right:18mm;bottom:{{ g.rule_bottom }}mm;height:1.4mm;z-index:5;line-height:0}
+.xrule svg{width:100%;height:100%;display:block}
+.xft{position:absolute;left:18mm;right:18mm;bottom:{{ g.band_bottom }}mm;height:{{ g.band_h }}mm;display:grid;grid-template-columns:{{ g.side_w }}mm 1fr {{ g.side_w }}mm;align-items:center;font-family:"Public Sans","Noto Sans","Noto Sans Math";font-size:7.2pt;line-height:1.2;color:#5b6778;z-index:5}
+.xft .r{text-align:right;font-variant-numeric:tabular-nums;display:grid}
+.xft .r b{font-weight:600;color:#0e1b2e}
+</style>
+<script>
+window.PagedConfig = { auto: false };
+window.__errors = []; window.__warns = [];
+</script>
+<script src="{{ vendor }}/paged.polyfill.js"></script>
+<script src="{{ vendor }}/mermaid.min.js"></script>
+</head>
+<body>
+
+<!-- CAPA -->
+<section class="cover" id="capa"><div class="cvA">
+  {{ brand_dark }}
+  <div class="k">{{ v.subject_name }}</div>
+  <div class="au">{{ v.label | upper }}</div>
+  <h1>{{ v.title }}</h1>
+  {% if v.subtitle %}<p class="sub">{{ v.subtitle }}</p>{% endif %}
+  <div class="tape">{{ tape_cover }}</div>
+  <div class="meta"><div><b>{{ v.chapters | length }}</b><span>capítulos de Teoria</span></div><div><b class="js-pages-total">000</b><span>páginas</span></div><div><b>{{ questions | length }}</b><span>questões comentadas</span></div></div>
+  <div class="cv-foot"><span class="seal">Material exclusivo MentorIA</span><span class="site">{{ site }}</span></div>
+</div></section>
+
+<!-- SUMÁRIO E CRÉDITOS -->
+<section class="front" data-runner="Sumário" id="sumario">
+  <h2 class="pt">Sumário</h2>
+  <div class="toc">
+    <a class="row extra" href="#apresentacao"><span></span><span class="t">Apresentação do volume</span><span class="pn" data-pref="apresentacao"></span></a>
+    {% for c in chapters %}
+    <a class="row" href="#{{ c.anchor }}"><span class="n">{{ c.number }}</span><span class="t">{{ c.title }}<small>{% if c.support %}{{ c.support }} · {% endif %}<span class="chip teoria">Teoria</span></small></span><span class="pn" data-pref="{{ c.anchor }}"></span></a>
+    {% endfor %}
+    {% if questions %}
+    <a class="row extra" href="#questoes"><span></span><span class="t">Questões comentadas <span class="chip fixacao">Fixação</span></span><span class="pn" data-pref="questoes"></span></a>
+    {% endif %}
+    <a class="row extra" href="#mapa"><span></span><span class="t">Mapa de revisão <span class="chip revisao">Revisão</span></span><span class="pn" data-pref="mapa"></span></a>
+  </div>
+  <div class="credits">
+    <img class="logo-c" src="{{ logo_full }}" alt="MentorIA">
+    <div><span><b>MentorIA</b> · Material próprio · {{ v.subject_name }} · {{ v.label }}</span><span>Edição {{ edition }} · {{ site }}</span></div>
+  </div>
+  <div class="legal"><span><b>© {{ year }} MentorIA.</b> Material de uso individual e intransferível, licenciado ao titular identificado no rodapé de cada página.</span><span>É proibido reproduzir, distribuir ou compartilhar este material, no todo ou em parte, por qualquer meio (Lei 9.610/1998). Cada cópia carrega identificação do titular e do download.</span></div>
+</section>
+
+<!-- APRESENTAÇÃO -->
+<section class="front" data-runner="Apresentação" id="apresentacao">
+  <h2 class="pt"><span class="n">00</span>Apresentação do volume</h2>
+  {{ intro.apresentacao }}
+  <div class="stats">
+    <div class="stat"><b>{{ v.chapters | length }}</b><span>capítulos de Teoria</span></div>
+    <div class="stat"><b class="js-pages-theory">000</b><span>páginas de teoria</span></div>
+    <div class="stat"><b>{{ questions | length }}</b><span>questões comentadas</span></div>
+  </div>
+  <h3>Como estudar este volume</h3>
+  <div class="steps">
+    <div class="step"><span class="chip teoria">Teoria</span><span>Cada capítulo é uma atividade de Teoria do seu plano. Leia com o caderno aberto e escreva o seu resumo.</span></div>
+    <div class="step"><span class="chip revisao">Revisão</span><span>A cada até 4 capítulos, revise pelo mapa do capítulo, pelo mapa de revisão do volume e pelos seus resumos.</span></div>
+    <div class="step"><span class="chip fixacao">Fixação</span><span>Resolva as questões do fim do volume. O comentário de cada uma vem logo abaixo dela: leia todos, inclusive os dos acertos.</span></div>
+    <div class="step"><span class="chip questoes">Questões</span><span>Feche o ciclo com o caderno de questões no app.</span></div>
+  </div>
+  {% if intro.aprender %}<h3>O que você vai aprender</h3>{{ intro.aprender }}{% endif %}
+  {% if intro.prereq %}<h3>Pré-requisitos</h3>{{ intro.prereq }}{% endif %}
+</section>
+
+<!-- CAPÍTULOS -->
+{% for c in chapters %}
+<section class="opening" id="{{ c.anchor }}">
+  <div class="op-band">
+    <div class="op-txt">
+      <div class="op-num">{{ "%02d" % c.number }}</div>
+      <div class="op-kick">Capítulo {{ c.number }}</div>
+      <h2 class="op-title">{{ c.title }}</h2>
+      <div class="op-type">Atividade de Teoria</div>
+    </div>
+    <div class="op-side">
+      <div class="masc">{{ c.m_missao }}</div>
+      <div class="sec-k">Missão do capítulo</div>
+      {% if c.cai %}<div class="seal-cai"><div class="masc">{{ c.m_cai }}</div><span>Cai muito<br>na prova</span></div>{% endif %}
+    </div>
+    <div class="op-tape">{{ tape_band }}</div>
+  </div>
+  <div class="op-rest">
+    <div class="op-lead">{{ c.r.lead_html }}</div>
+    {% if c.r.objectives %}<div class="op-box co obj"><div class="co-k">Ao final do capítulo, você vai saber</div><ul>{% for o in c.r.objectives %}<li>{{ o }}</li>{% endfor %}</ul></div>{% endif %}
+    <div class="op-box"><h3>Neste capítulo</h3>
+      <div class="op-topics">{% for s in c.r.sections %}<a href="#{{ s[2] }}"><span>{{ s[0] }}</span><span>{{ s[1] }}</span><span data-pref="{{ s[2] }}"></span></a>{% endfor %}</div>
+    </div>
+  </div>
+</section>
+<section class="chapbody" id="{{ c.anchor }}-corpo" data-runner="Cap. {{ c.number }} · {{ c.title }}">
+  {{ c.r.body_html }}
+</section>
+{% endfor %}
+
+<!-- QUESTÕES (comentário logo abaixo de cada questão) -->
+{% if questions %}
+<section class="part" id="questoes" data-runner="Fixação · Questões comentadas">
+  <div class="part-h"><div class="masc">{{ m_praticar }}</div><div><div class="sec-k k-fix">Hora de praticar!</div><h2 class="pt"><span class="n">Q</span>Questões comentadas</h2><p>Resolva cada questão antes de ler o comentário, que vem logo abaixo dela. Cubra o comentário com uma folha, marque a sua resposta e só então confira.</p></div></div>
+  {% for grp in qgroups %}
+  <div class="qgrp" id="qgrp-{{ grp.anchor }}">Capítulo {{ grp.number }} · {{ grp.title }}</div>
+  {% for q in grp.qs %}
+  <div class="q" id="q{{ q.number }}">
+    <div class="q-h">Questão {{ q.number }} · {{ q.origin }} · {{ "Certo ou errado" if q.kind == "CERTO_ERRADO" else "Múltipla escolha" }}</div>
+    {% if q.base_html %}<div class="q-base">{{ q.base_html }}</div>{% endif %}
+    <div class="q-st">{{ q.st_html }}</div>
+    {% if q.kind == "CERTO_ERRADO" %}
+    <ol class="alts ce"><li><span class="L">C</span><span>Certo</span></li><li><span class="L">E</span><span>Errado</span></li></ol>
+    {% else %}
+    <ol class="alts">{% for L, t in q.opts_html %}<li><span class="L">{{ L }}</span><span>{{ t }}</span></li>{% endfor %}</ol>
+    {% endif %}
+    <div class="com{% if q.number == 1 %} has-m{% endif %}">
+      {% if q.number == 1 %}<div class="masc">{{ m_gabarito }}</div>{% endif %}
+      <div class="com-h">Gabarito <span class="g">{{ q.answer }}</span> · Comentário</div>
+      {{ q.comment_html }}
+      {% if q.alt_comments %}<ul class="alc">{% for L, t, ok in q.alt_comments %}<li class="{{ 'ok' if ok else '' }}"><span class="L">{{ L }}</span><span>{{ t }}</span></li>{% endfor %}</ul>{% endif %}
+    </div>
+  </div>
+  {% endfor %}
+  {% endfor %}
+</section>
+{% endif %}
+
+<!-- MAPA DE REVISÃO -->
+<section class="part" id="mapa" data-runner="Revisão · Mapa de revisão do volume">
+  <div class="part-h"><div class="masc">{{ m_revisao }}</div><div><div class="sec-k">Hora da revisão</div><h2 class="pt pt-rev"><span class="n">R</span>Mapa de revisão do volume</h2><p>O "Para fixar" de cada capítulo, reunido para a sua Revisão.</p></div></div>
+  {% for c in chapters %}
+  <div class="rev-chap" id="rev-{{ c.anchor }}"><h3><span class="n">{{ c.number }}</span>{{ c.title }}</h3>{% if c.r.fixar %}<ul class="fix">{% for it in c.r.fixar %}<li>{{ it }}</li>{% endfor %}</ul>{% endif %}</div>
+  {% endfor %}
+</section>
+
+<!-- ENCERRAMENTO -->
+<section class="end" id="fim" data-runner="Missão cumprida">
+  <div class="masc">{{ m_fim }}</div>
+  <h2 class="pt">Missão cumprida!</h2>
+  <p>Você concluiu o {{ v.label }} de {{ v.subject_name }}: <b>{{ v.title }}</b>.</p>
+  <h3>Próximo passo no seu plano</h3>
+  <div class="steps">
+    <div class="step"><span class="chip revisao">Revisão</span><span>Revise os capítulos com o mapa de revisão e os seus resumos.</span></div>
+    <div class="step"><span class="chip fixacao">Fixação</span><span>Refaça as questões comentadas que você errou.</span></div>
+    <div class="step"><span class="chip questoes">Questões</span><span>Feche o ciclo com o caderno de questões no app.</span></div>
+  </div>
+  <img class="logo-end" src="{{ logo_full }}" alt="MentorIA">
+  <div class="site-end">{{ site }}</div>
+  <div class="upd-end">Material atualizado em: {{ updated }}</div>
+</section>
+
+<script>
+const FOOT_LEFT = {{ foot_left | tojson }};
+const HEAD_LEFT = {{ head_left | tojson }};
+const SITE = {{ site | tojson }};
+const RULE_SVG = {{ tape_rule | string | tojson }};
+class Prontidao extends Paged.Handler {
+  constructor(chunker, polisher, caller){ super(chunker, polisher, caller); this.runner = ""; }
+  afterPageLayout(pageEl){
+    // título corrente: o da primeira seção presente na página (inclusive a que continua da anterior)
+    const first = pageEl.querySelector(".pagedjs_page_content [data-runner]");
+    if (first) this.runner = first.getAttribute("data-runner");
+    const sheet = pageEl.querySelector(".pagedjs_sheet");
+    if (pageEl.classList.contains("pagedjs_cover_page")) return;
+    if (!pageEl.classList.contains("pagedjs_open_page")) {
+      const hd = document.createElement("div"); hd.className = "xhd";
+      hd.innerHTML = `<span></span><span></span>`;
+      hd.children[0].textContent = HEAD_LEFT; hd.children[1].textContent = this.runner;
+      sheet.appendChild(hd);
+    }
+    const rule = document.createElement("div"); rule.className = "xrule"; rule.innerHTML = RULE_SVG; sheet.appendChild(rule);
+    const ft = document.createElement("div"); ft.className = "xft";
+    ft.innerHTML = `<span></span><span></span><span class="r"><b></b><span class="js-pn"></span></span>`;
+    ft.children[0].textContent = FOOT_LEFT;
+    ft.querySelector(".r b").textContent = SITE;
+    sheet.appendChild(ft);
+  }
+  afterRendered(pages){
+    const total = pages.length;
+    const pageOf = (id) => { const el = document.getElementById(id); const p = el && el.closest(".pagedjs_page"); return p ? Number(p.dataset.pageNumber) : null; };
+    document.querySelectorAll(".pagedjs_page").forEach(p => { const s = p.querySelector(".js-pn"); if (s) s.textContent = `${p.dataset.pageNumber} / ${total}`; });
+    document.querySelectorAll("[data-pref]").forEach(el => { const n = pageOf(el.dataset.pref); el.textContent = n == null ? "?" : String(n); if (n == null) window.__errors.push("âncora sem página: " + el.dataset.pref); });
+    const ids = {};
+    document.querySelectorAll(".pagedjs_page [id]").forEach(el => { if (!(el.id in ids)) ids[el.id] = pageOf(el.id); });
+    const firstChap = {{ (chapters[0].anchor if chapters else "") | tojson }};
+    const after = {{ ("questoes" if questions else "mapa") | tojson }};
+    const theory = (pageOf(after) || total) - (pageOf(firstChap) || 0);
+    document.querySelectorAll(".js-pages-total").forEach(el => el.textContent = String(total));
+    document.querySelectorAll(".js-pages-theory").forEach(el => el.textContent = String(theory));
+    window.__pages = { total, ids };
+  }
+}
+Paged.registerHandlers(Prontidao);
+
+// Pré-passo de quebras (antes da paginação), medido na largura real de impressão:
+//  - abertura de capítulo tem de caber numa página (sem cabeçalho na sobra): senão "compact" e depois "compact-2";
+//  - caixa até ~60% da área útil fica inteira; maior pode quebrar, com título e começo juntos.
+const MM = 96 / 25.4;
+const OPEN_MAX = (297 - 24) * MM;            // página "open": sem margem superior, rodapé de 24 mm
+const AREA = (297 - 21 - 24) * MM;           // área útil das páginas de corpo
+function prepass() {
+  const probe = document.createElement("style");
+  probe.textContent = ".opening{width:210mm} body>section:not(.opening):not(.cover){width:174mm}";
+  document.head.appendChild(probe);
+  for (const op of document.querySelectorAll(".opening")) {
+    for (const cls of ["", "compact", "compact-2"]) {
+      if (cls) op.classList.add(cls);
+      if (op.scrollHeight <= OPEN_MAX) break;
+    }
+    if (op.scrollHeight > OPEN_MAX) window.__errors.push(`abertura ${op.id} não cabe numa página mesmo compacta (${Math.round(op.scrollHeight / MM)} mm)`);
+  }
+  const boxes = document.querySelectorAll(".chapbody .co, .chapbody .fig, .chapbody table.tb, .chapbody .formula, .q, .rev-chap, .op-box");
+  for (const b of boxes) {
+    const h = b.getBoundingClientRect().height;
+    b.classList.add(h <= AREA * 0.6 ? "keep" : "split");
+  }
+  // Mapa do capítulo: pode quebrar (levá-lo inteiro para a página seguinte deixava meia página em branco);
+  // o título fica com o começo, e a figura e a tabela dentro dele continuam inteiras (classe "keep" acima).
+  for (const s of document.querySelectorAll(".sec.mapa")) s.classList.add("split");
+  // Partes de abertura do volume que passam pouco de uma página: compactas, para não deixar 1 ou 2 linhas sozinhas.
+  for (const s of document.querySelectorAll(".front")) {
+    const h = s.scrollHeight;
+    if (h > AREA && h < AREA * 1.2) s.classList.add("compact");
+  }
+  probe.remove();
+}
+
+(async () => {
+  try {
+    await document.fonts.ready;
+    mermaid.initialize({ startOnLoad: false, securityLevel: "strict", theme: "base", fontFamily: "Public Sans, Noto Sans, Noto Sans Math",
+      themeVariables: { primaryColor: "#f5f7fa", primaryBorderColor: "#0e1b2e", primaryTextColor: "#0e1b2e", lineColor: "#5b6778",
+        secondaryColor: "#fff4d1", tertiaryColor: "#f3f5f8", fontFamily: "Public Sans, Noto Sans, Noto Sans Math", fontSize: "13px" },
+      flowchart: { htmlLabels: true, useMaxWidth: true, curve: "basis" }, mindmap: { useMaxWidth: true } });
+    // escala de impressão: 1px do mermaid = MM_SCALE px na página; coluna útil = 174 mm ≈ 658 px
+    // altura máxima da figura = 185 mm ≈ 699 px
+    const MM_SCALE = 0.8, COL = 658, MAXH = 699;
+    const vb = (svgEl) => { const v = (svgEl.getAttribute("viewBox") || "").split(/\s+/).map(Number); return [v[2] || 1, v[3] || 1]; };
+    const fit = (svgEl) => { const [w, h] = vb(svgEl); return Math.min(MM_SCALE, COL / w, MAXH / h); };  // px na página por px do mermaid
+    const DIR = /^(\s*(?:flowchart|graph)\s+)(LR|RL|TB|TD|BT)\b/m;
+    let k = 0;
+    for (const el of document.querySelectorAll(".mmd")) {
+      const src = JSON.parse(el.dataset.src);
+      try {
+        let { svg } = await mermaid.render(`mmd${k++}`, src);
+        el.innerHTML = svg;
+        let s = el.querySelector("svg");
+        // fluxograma que não cabe na escala normal: testa a outra orientação e fica com a de letra maior (o conteúdo não muda)
+        const m = src.match(DIR);
+        if (s && m && fit(s) < MM_SCALE * 0.8) {
+          const alt = src.replace(DIR, "$1" + (/LR|RL/.test(m[2]) ? "TB" : "LR"));
+          const r2 = await mermaid.render(`mmd${k++}`, alt);
+          const box = document.createElement("div"); box.innerHTML = r2.svg;
+          const s2 = box.querySelector("svg");
+          if (s2 && fit(s2) > fit(s) * 1.15) { el.innerHTML = r2.svg; s = el.querySelector("svg"); }
+        }
+        if (s) { const [w] = vb(s); s.style.width = (w * fit(s)) + "px"; s.style.maxWidth = "100%"; s.removeAttribute("width"); }
+        if (s && fit(s) < MM_SCALE * 0.77) { /* letra abaixo de ~6 pt */ const cap = el.closest("figure")?.querySelector("figcaption")?.textContent || el.id; window.__warns.push(`figura com letra pequena (${(13 * 0.75 * fit(s)).toFixed(1)} pt): ${cap}`); }
+        if (/Syntax error/i.test(el.textContent)) window.__errors.push(`mermaid ${el.id}: Syntax error`);
+      } catch (e) {
+        window.__errors.push(`mermaid ${el.id}: ${String(e && e.message || e).split("\n")[0]}`);
+        el.textContent = "";
+      }
+    }
+    document.querySelectorAll("body > [id^='dmmd'], body > svg[id^='mmd']").forEach(n => n.remove());
+    prepass();
+    await window.PagedPolyfill.preview();
+  } catch (e) {
+    window.__errors.push("render: " + (e && e.stack || e));
+  }
+  window.__done = true;
+})();
+</script>
+</body>
+</html>

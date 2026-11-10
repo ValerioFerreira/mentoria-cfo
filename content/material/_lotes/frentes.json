@@ -1,0 +1,21 @@
+{
+  "_doc": "Frentes de produção do material próprio (coordenadores em paralelo). Todas seguem a MESMA fila, na ordem das ondas (CFOA primeiro). Cada volume NOVO é reservado na seleção (pasta + arquivo .frente), então duas frentes nunca pegam o mesmo volume; RETOMAR e CORRECAO só pegam volumes da própria frente (pasta antiga sem .frente = A). 'reservadas' não entram em lote nenhum. Lido por pipeline/material_ficha.py --lote N [--frente X] [--simular].",
+  "frentes": {
+    "A": {
+      "relatorios": "content/material/_lotes/lote-NN.md",
+      "autores": "AGENTE-MAT-NN",
+      "nota": "reativada em 01/11/2026 com --onda 2 (CFO BM), agente novo, sem subagentes; relatórios a partir de lote-07.md, autores a partir de AGENTE-MAT-30"
+    },
+    "B": {
+      "relatorios": "content/material/_lotes/B/lote-NN.md",
+      "autores": "AGENTE-MATB-NN"
+    },
+    "C": {
+      "relatorios": "content/material/_lotes/C/lote-NN.md",
+      "autores": "AGENTE-MATC-NN"
+    }
+  },
+  "reservadas": [
+    "atualidades"
+  ]
+}

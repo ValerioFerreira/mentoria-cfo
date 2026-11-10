@@ -1,0 +1,633 @@
+<title>Modelos da Apostila MentorIA</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;500;600;700;800&family=IBM+Plex+Mono:wght@400;600&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<style>
+/* Layout: galeria vertical, um bloco por modelo; cada bloco = grade de páginas A4 em escala (container queries) + faixa do rodapé ampliada. */
+:root{
+  /* moldura da galeria (segue o tema) */
+  --bg:#edf0f4; --surface:#ffffff; --text:#0e1b2e; --muted:#5b6778; --border:#dce2ea; --accent:#d4301f; --gold:#e9a90c; --gold-text:#8a5a00;
+  --shadow:0 1px 2px rgb(14 27 46/.08),0 10px 24px -14px rgb(14 27 46/.35);
+  /* papel impresso (fixo: é o PDF, não muda com o tema) */
+  --p-ink:#0e1b2e; --p-text:#1b2433; --p-mut:#5b6778; --p-line:#d5dce6; --p-s2:#f3f5f8;
+  --p-red:#d4301f; --p-red-s:#fdece9; --p-gold:#e9a90c; --p-gold-t:#8a5a00; --p-gold-s:#fff4d1;
+  --p-teo:#2563eb; --p-teo-s:#eaf1fe; --p-rev:#7c3aed; --p-rev-s:#f2ecfe; --p-fix:#d9640f; --p-fix-s:#fdf0e3; --p-que:#059669; --p-que-s:#e6f6f0;
+  --p-sepia:#f5eedc; --p-sepia-ink:#2f2a22; --p-sepia-line:#d8cbac;
+  --f-disp:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --f-body:"Public Sans",ui-sans-serif,system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#080f1a;--surface:#0f1a2b;--text:#e8eef6;--muted:#93a3b8;--border:#1f3150;--accent:#f25a45;--gold:#f6c244;--gold-text:#f6c244;--shadow:0 1px 2px rgb(0 0 0/.4),0 14px 30px -14px rgb(0 0 0/.8);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#080f1a;--surface:#0f1a2b;--text:#e8eef6;--muted:#93a3b8;--border:#1f3150;--accent:#f25a45;--gold:#f6c244;--gold-text:#f6c244;--shadow:0 1px 2px rgb(0 0 0/.4),0 14px 30px -14px rgb(0 0 0/.8);color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--f-body);font-size:15px;line-height:1.5;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:1240px;margin:0 auto}
+.intro{padding-block:40px 18px;display:grid;gap:10px;max-width:760px}
+.eyebrow{font-family:var(--f-disp);font-weight:600;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.intro h1{font-family:var(--f-disp);font-weight:800;text-transform:uppercase;font-size:clamp(2rem,5vw,3.1rem);line-height:.95;margin:0;letter-spacing:.01em;text-wrap:balance}
+.intro p{margin:0;color:var(--muted);max-width:65ch}
+nav.models{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:10px;display:flex;flex-wrap:wrap;gap:8px;border-bottom:1px solid var(--border)}
+nav.models a{display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 6px;border:1px solid var(--border);border-radius:999px;background:var(--surface);color:var(--text);text-decoration:none;font-weight:600;font-size:.88rem}
+nav.models a:hover,nav.models a:focus-visible{border-color:var(--accent);outline:none}
+nav.models b{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--text);color:var(--bg);font-family:var(--f-disp);font-size:.95rem}
+section.model{padding-block:36px 8px;scroll-margin-top:70px;display:grid;gap:18px}
+.mhead{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start}
+.mletter{font-family:var(--f-disp);font-weight:800;font-size:2.6rem;line-height:1;width:58px;height:58px;display:grid;place-items:center;border-radius:12px;background:var(--text);color:var(--bg)}
+.mhead h2{margin:0;font-family:var(--f-disp);font-weight:700;font-size:1.7rem;text-transform:uppercase;letter-spacing:.02em;line-height:1.05}
+.mhead p{margin:4px 0 0;color:var(--muted);max-width:70ch}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tags span{font-size:.76rem;padding:2px 9px;border-radius:999px;border:1px solid var(--border);color:var(--muted)}
+.pages{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:20px 16px}
+@media (max-width:520px){.pages{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 10px}}
+figure.pgfig{margin:0;display:grid;gap:6px;min-width:0}
+figure.pgfig figcaption{font-size:.78rem;color:var(--muted);font-family:var(--f-disp);letter-spacing:.06em;text-transform:uppercase}
+.stripwrap{display:grid;gap:6px}
+.stripwrap .lbl{font-size:.78rem;color:var(--muted);font-family:var(--f-disp);letter-spacing:.06em;text-transform:uppercase}
+.stripscroll{overflow-x:auto}
+.stripscroll .sheet{min-width:620px;max-width:980px}
+
+/* ========= PÁGINA A4 ========= */
+.sheet{position:relative;width:100%;aspect-ratio:210/297;container-type:inline-size;background:#fff;box-shadow:var(--shadow);overflow:hidden;border-radius:2px;cursor:zoom-in;color:var(--p-text)}
+.sheet:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.sheet.strip{aspect-ratio:595/64;cursor:default}
+.pg{position:absolute;inset:0;font-family:var(--f-body);font-size:1.86cqw;line-height:1.42;padding:5.4em 4.6em 5.6em;display:flex;flex-direction:column;gap:.85em;overflow:hidden}
+.strip .pg{padding:0}
+.cvA,.cvB,.cvC,.cvD,.cvE{font-size:1.86cqw;line-height:1.35;font-family:var(--f-body)}
+.pg h1,.pg h2,.pg h3,.pg h4{margin:0;text-wrap:balance}
+.pg p,.pg ul,.pg ol{margin:0}
+.pg h2{font-family:var(--f-disp);font-weight:700;font-size:1.6em;line-height:1.08;color:var(--p-ink)}
+.pg h3{font-size:1.04em;font-weight:700;color:var(--p-ink)}
+.pg p{font-size:.97em}
+.pg ul,.pg ol{padding-left:1.25em;font-size:.95em;display:grid;gap:.25em}
+.n{font-family:var(--f-disp);font-weight:700;margin-right:.35em}
+.hd{position:absolute;top:2.1em;left:4.6em;right:4.6em;display:flex;justify-content:space-between;gap:1em;font-size:.72em;color:var(--p-mut)}
+.ft{position:absolute;bottom:1.9em;left:4.6em;right:4.6em;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:1em;font-size:.66em;color:var(--p-mut)}
+.ft-r{text-align:right;font-variant-numeric:tabular-nums}
+.stamp{font-family:var(--f-disp);font-weight:600;letter-spacing:.06em;color:var(--p-ink);white-space:nowrap;font-size:1.06em}
+.stamp b{font-weight:800}
+.strip .ft{bottom:50%;transform:translateY(50%)}
+.tb{width:100%;border-collapse:collapse;font-size:.86em}
+.tb th{text-align:left;font-weight:700;color:var(--p-ink);padding:.35em .5em;border-bottom:.12em solid var(--p-ink);background:var(--p-s2)}
+.tb td{padding:.35em .5em;border-bottom:.06em solid var(--p-line);vertical-align:top}
+.co{padding:.65em .85em;font-size:.9em;display:grid;gap:.25em;border-radius:.25em}
+.co-k{font-family:var(--f-disp);font-weight:700;text-transform:uppercase;letter-spacing:.09em;font-size:.86em}
+.co.atencao{--c:var(--p-red);--cs:var(--p-red-s)}
+.co.bizu{--c:var(--p-gold-t);--cs:var(--p-gold-s)}
+.co.exemplo{--c:var(--p-teo);--cs:var(--p-teo-s)}
+.co.lei{--c:var(--p-ink);--cs:var(--p-s2)}
+.co.pegadinha{--c:var(--p-fix);--cs:var(--p-fix-s)}
+.co.esquema{--c:var(--p-rev);--cs:var(--p-rev-s)}
+.co .co-k{color:var(--c)}
+.co.lei p{font-style:italic}
+.cols{display:flex;flex-direction:column;gap:.85em}
+.main{display:flex;flex-direction:column;gap:.85em;min-width:0}
+.side{display:flex;flex-direction:column;gap:.85em;min-width:0}
+.flow svg{width:100%;height:auto;display:block}
+.flow text{font-family:var(--f-body)}
+.mut{color:var(--p-mut)}
+.legal{margin-top:auto;font-size:.74em;color:var(--p-mut);border-top:.06em solid var(--p-line);padding-top:.7em;display:grid;gap:.3em}
+.legal b{color:var(--p-ink)}
+.toc{display:grid;gap:.15em;font-size:.95em}
+.toc .row{display:grid;grid-template-columns:2.2em 1fr auto;gap:.5em;align-items:baseline;padding:.2em 0;border-bottom:.06em solid var(--p-line)}
+.toc .row .t{font-weight:600;color:var(--p-ink)}
+.toc .row small{display:block;font-size:.82em;color:var(--p-mut);font-weight:400}
+.toc .row .pn{font-variant-numeric:tabular-nums;font-weight:700;color:var(--p-ink)}
+.toc .row.extra .t{font-weight:700}
+.chip{display:inline-block;font-family:var(--f-disp);font-weight:700;font-size:.72em;letter-spacing:.08em;text-transform:uppercase;padding:.08em .5em;border-radius:.3em;color:#fff;vertical-align:.12em}
+.chip.teoria{background:var(--p-teo)}.chip.revisao{background:var(--p-rev)}.chip.fixacao{background:var(--p-fix)}.chip.questoes{background:var(--p-que)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.6em}
+.stat{padding:.6em .7em;background:var(--p-s2);border-radius:.3em;display:grid;gap:.1em}
+.stat b{font-family:var(--f-disp);font-size:2em;line-height:1;color:var(--p-ink)}
+.stat span{font-size:.78em;color:var(--p-mut)}
+.steps{display:grid;gap:.45em}
+.step{display:grid;grid-template-columns:auto 1fr;gap:.6em;align-items:start;font-size:.92em}
+.step .chip{min-width:5.6em;text-align:center}
+.q{display:grid;gap:.4em;padding-bottom:.7em;border-bottom:.06em solid var(--p-line)}
+.q-h{font-family:var(--f-disp);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:.82em;color:var(--p-fix)}
+.q p{font-size:.94em}
+.alts{list-style:none;padding:0 !important;display:grid;gap:.22em}
+.alts li{display:grid;grid-template-columns:1.5em 1fr;gap:.4em;align-items:start;font-size:.92em}
+.alts .L{display:inline-grid;place-items:center;width:1.35em;height:1.35em;border-radius:50%;border:.08em solid var(--p-ink);font-family:var(--f-disp);font-weight:700;font-size:.9em}
+.com{background:var(--p-fix-s);padding:.55em .75em;border-radius:.25em;font-size:.88em;display:grid;gap:.2em}
+.com b.k{font-family:var(--f-disp);letter-spacing:.08em;text-transform:uppercase;color:var(--p-fix)}
+.gab{font-size:.8em;color:var(--p-mut)}
+.fix{display:grid;gap:.3em}
+.fix li::marker{color:var(--p-rev);font-weight:700}
+
+/* abertura de capítulo (base) */
+.op-kick{font-family:var(--f-disp);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.9em;color:var(--p-teo)}
+.op-title{font-family:var(--f-disp);font-weight:800;font-size:2.7em;line-height:.98;color:var(--p-ink)}
+.op-base{font-size:.88em;color:var(--p-mut)}
+.op-box{display:grid;gap:.4em}
+.op-topics{list-style:none;padding:0 !important;display:grid;gap:0}
+.op-topics li{display:grid;grid-template-columns:2.6em 1fr auto;gap:.4em;padding:.3em 0;border-bottom:.06em solid var(--p-line)}
+.op-topics li span:last-child{font-variant-numeric:tabular-nums;color:var(--p-mut)}
+.op-bubbles{display:none}
+.op-num{display:none}
+
+/* marca */
+.bm{display:inline-grid;place-items:center;width:2.6em;height:2.6em;border-radius:.6em;background:var(--p-red);position:relative;flex:none}
+.bm svg{width:66%;height:66%}
+.bm .st{position:absolute;right:-.3em;top:-.3em;width:1.05em;height:1.05em}
+.wm{font-family:var(--f-disp);font-weight:700;font-size:1.7em;letter-spacing:.02em;line-height:1}
+.wm i{font-style:normal;background:linear-gradient(100deg,var(--p-red) 10%,var(--p-gold) 95%);-webkit-background-clip:text;background-clip:text;color:transparent;margin-left:.04em}
+.brand{display:flex;align-items:center;gap:.6em}
+
+/* ===================== A · PRONTIDÃO ===================== */
+.m-a .pg h2{text-transform:uppercase;letter-spacing:.01em;padding-bottom:.18em;border-bottom:.16em solid var(--p-red)}
+.m-a .n{color:var(--p-red)}
+.m-a .hd{font-family:var(--f-disp);font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.m-a .hd span:first-child::before{content:"";display:inline-block;width:1.6em;height:.35em;background:var(--p-red);margin-right:.6em;vertical-align:.15em}
+.m-a .ft{padding-top:.9em}
+.m-a .ft::before{content:"";position:absolute;left:0;right:0;top:0;height:.38em;background:repeating-linear-gradient(-45deg,var(--p-red) 0 .5em,#fff 0 1em);border-radius:1em}
+.m-a .co{border-left:.32em solid var(--c);background:var(--cs);border-radius:0 .25em .25em 0}
+.m-a .toc .row .n{color:var(--p-red);font-size:1.25em}
+.cvA{position:absolute;inset:0;background:var(--p-ink);color:#fff;padding:5em 4.6em 4.6em;display:flex;flex-direction:column;gap:.9em;overflow:hidden}
+.cvA .wm{color:#fff}
+.cvA .k{margin-top:auto;font-family:var(--f-disp);font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#ff8a78;font-size:1.05em}
+.cvA .au{font-family:var(--f-disp);font-weight:600;color:var(--p-gold);font-size:1.6em;letter-spacing:.06em}
+.cvA h1{font-family:var(--f-disp);font-weight:800;text-transform:uppercase;font-size:3.7em;line-height:.92;letter-spacing:.005em}
+.cvA .sub{color:#c4cfdd;font-size:1em;max-width:30em}
+.cvA .tape{position:relative;left:-8em;right:-8em;width:calc(100% + 16em);height:3.2em;margin-block:2.2em 1.4em;transform:rotate(-5deg);background:repeating-linear-gradient(-45deg,var(--p-red) 0 1.6em,#f3f5f8 0 3.2em);box-shadow:0 .4em 1.2em rgb(0 0 0/.35)}
+.cvA .meta{display:grid;grid-template-columns:repeat(3,1fr);gap:.8em;border-top:.06em solid rgb(255 255 255/.18);padding-top:.9em}
+.cvA .meta b{display:block;font-family:var(--f-disp);font-size:2em;line-height:1;color:#fff}
+.cvA .meta span{font-size:.78em;color:#9fb0c6}
+.cvA .seal{align-self:flex-start;font-family:var(--f-disp);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.78em;color:var(--p-gold);border:.1em solid var(--p-gold);padding:.25em .7em;border-radius:.3em}
+.cvA .conc{font-size:.76em;color:#9fb0c6}
+.m-a .op-band{margin:-5.4em -4.6em 0;padding:5.4em 4.6em 2.2em;background:var(--p-ink);color:#fff;display:grid;gap:.6em;position:relative}
+.m-a .op-band::after{content:"";position:absolute;left:0;right:0;bottom:-.6em;height:.6em;background:repeating-linear-gradient(-45deg,var(--p-red) 0 .8em,#f3f5f8 0 1.6em)}
+.m-a .op-num{display:block;font-family:var(--f-disp);font-weight:800;font-size:7em;line-height:.8;color:transparent;-webkit-text-stroke:.025em var(--p-red)}
+.m-a .op-band .op-kick{color:#ff8a78}
+.m-a .op-band .op-title{color:#fff}
+.m-a .op-band .op-base{color:#9fb0c6}
+.m-a .op-type{font-family:var(--f-disp);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--p-gold);font-size:.9em}
+
+/* ===================== B · CARTÃO-RESPOSTA ===================== */
+.m-b .sheet::before{content:"";position:absolute;left:1.5%;top:5%;bottom:5%;width:2%;background:repeating-linear-gradient(to bottom,var(--p-ink) 0 .9%,transparent 0 2.9%);opacity:.85;z-index:2}
+.m-b .pg{padding-left:5.4em}
+.m-b .hd{left:5.4em;font-family:var(--f-disp);text-transform:uppercase;letter-spacing:.08em;justify-content:flex-start;gap:.6em}
+.m-b .hd span{border:.08em solid var(--p-ink);padding:.1em .5em;border-radius:.2em;color:var(--p-ink)}
+.m-b .hd span::before{content:attr(data-l);color:var(--p-mut);margin-right:.5em;font-size:.85em}
+.m-b .ft{left:5.4em;grid-template-columns:auto 1fr auto}
+.m-b .stamp{border:.1em solid var(--p-ink);border-radius:.25em;padding:.35em .7em;justify-self:center;position:relative}
+.m-b .stamp::before{content:"TITULAR";position:absolute;top:-.75em;left:.6em;background:#fff;padding:0 .3em;font-size:.68em;color:var(--p-mut);letter-spacing:.1em}
+.m-b .pg h2{display:flex;align-items:center;gap:.5em}
+.m-b .n{display:inline-grid;place-items:center;min-width:1.9em;height:1.9em;padding:0 .3em;border-radius:1em;background:var(--p-ink);color:#fff;font-size:.6em;margin:0}
+.m-b .co{border:.08em solid var(--p-ink);background:#fff;border-radius:.45em;position:relative;padding-top:.9em}
+.m-b .co-k{position:absolute;top:-.75em;left:.7em;background:#fff;padding:0 .4em;display:flex;align-items:center;gap:.35em}
+.m-b .co-k::before{content:"";width:.85em;height:.85em;border-radius:50%;background:var(--c)}
+.m-b .toc .row .n{display:inline-grid;place-items:center;width:1.7em;height:1.7em;border-radius:50%;border:.08em solid var(--p-ink);font-size:.95em;margin:0}
+.m-b .alts .L{border-width:.1em}
+.cvB{position:absolute;inset:0;padding:5em 4.6em 4.4em 5.4em;display:flex;flex-direction:column;gap:1em;background:#fff}
+.cvB .top{display:flex;justify-content:space-between;align-items:center}
+.cvB .code{font-family:var(--f-mono);font-size:.8em;color:var(--p-mut);text-align:right}
+.cvB .k{font-family:var(--f-disp);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--p-red);font-size:1em;margin-top:1.4em}
+.cvB h1{font-family:var(--f-disp);font-weight:800;font-size:3.3em;line-height:.95;color:var(--p-ink);text-transform:uppercase}
+.cvB .grid{margin-top:auto;display:grid;gap:.42em;padding:1em;border:.1em solid var(--p-ink);border-radius:.5em}
+.cvB .grid .r{display:grid;grid-template-columns:3.2em repeat(5,1fr) 9em;align-items:center;gap:.4em;font-size:.85em}
+.cvB .grid .r span:first-child{font-family:var(--f-disp);font-weight:700;color:var(--p-ink)}
+.cvB .b{width:1.7em;height:1.7em;border-radius:50%;border:.1em solid var(--p-ink);display:grid;place-items:center;font-family:var(--f-disp);font-weight:700;font-size:.82em;color:var(--p-mut)}
+.cvB .b.on{background:var(--p-red);border-color:var(--p-red);color:#fff}
+.cvB .grid .r em{font-style:normal;font-size:.82em;color:var(--p-mut);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cvB .grid .h{font-family:var(--f-disp);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.8em;color:var(--p-mut)}
+.cvB .fields{display:grid;grid-template-columns:2fr 1fr 1fr;gap:.6em}
+.cvB .fields div{border:.08em solid var(--p-ink);border-radius:.25em;padding:.35em .6em;font-size:.9em;color:var(--p-ink);font-weight:600}
+.cvB .fields div small{display:block;font-family:var(--f-disp);letter-spacing:.1em;text-transform:uppercase;font-size:.72em;color:var(--p-mut);font-weight:600}
+.m-b .op-bubbles{display:flex;gap:.45em;flex-wrap:wrap}
+.m-b .op-bubbles span{width:2.3em;height:2.3em;border-radius:50%;border:.1em solid var(--p-ink);display:grid;place-items:center;font-family:var(--f-disp);font-weight:700;color:var(--p-mut)}
+.m-b .op-bubbles span.on{background:var(--p-teo);border-color:var(--p-teo);color:#fff}
+.m-b .op-type{font-family:var(--f-disp);letter-spacing:.1em;text-transform:uppercase;color:var(--p-teo);font-weight:700;font-size:.85em}
+
+/* ===================== C · MANUAL DE CAMPO ===================== */
+.m-c .sheet{background:var(--p-sepia);color:var(--p-sepia-ink)}
+.m-c .sheet::after{content:"";position:absolute;inset:3.2%;border:.12em solid transparent;background:
+ linear-gradient(var(--p-sepia-ink),var(--p-sepia-ink)) top left/5% .1em no-repeat,
+ linear-gradient(var(--p-sepia-ink),var(--p-sepia-ink)) top left/.1em 3.5% no-repeat,
+ linear-gradient(var(--p-sepia-ink),var(--p-sepia-ink)) top right/5% .1em no-repeat,
+ linear-gradient(var(--p-sepia-ink),var(--p-sepia-ink)) top right/.1em 3.5% no-repeat,
+ linear-gradient(var(--p-sepia-ink),var(--p-sepia-ink)) bottom left/5% .1em no-repeat,
+ linear-gradient(var(--p-sepia-ink),var(--p-sepia-ink)) bottom left/.1em 3.5% no-repeat,
+ linear-gradient(var(--p-sepia-ink),var(--p-sepia-ink)) bottom right/5% .1em no-repeat,
+ linear-gradient(var(--p-sepia-ink),var(--p-sepia-ink)) bottom right/.1em 3.5% no-repeat;pointer-events:none;opacity:.55}
+.m-c .pg{color:var(--p-sepia-ink)}
+.m-c .pg h2{font-family:var(--f-disp);text-transform:uppercase;letter-spacing:.03em;color:var(--p-sepia-ink);border-top:.1em solid var(--p-sepia-ink);border-bottom:.04em solid var(--p-sepia-ink);padding:.2em 0}
+.m-c .pg h3{color:var(--p-sepia-ink)}
+.m-c .n{font-family:var(--f-mono);font-weight:600;font-size:.62em;color:var(--p-red);vertical-align:.3em}
+.m-c .hd{font-family:var(--f-mono);font-size:.62em;text-transform:uppercase;letter-spacing:.06em;color:var(--p-sepia-ink);border-bottom:.15em double var(--p-sepia-ink);padding-bottom:.3em}
+.m-c .ft{font-family:var(--f-mono);font-size:.58em;color:var(--p-sepia-ink);border-top:.08em solid var(--p-sepia-ink);padding-top:.6em}
+.m-c .stamp{color:var(--p-red);border:.14em solid var(--p-red);padding:.2em .7em;font-family:var(--f-disp);transform:rotate(-1deg);font-size:1.25em}
+.m-c .cols{display:grid;grid-template-columns:minmax(0,1fr) 30%;gap:1.3em;align-items:start}
+.m-c .side{border-left:.08em solid var(--p-sepia-line);padding-left:1em}
+.m-c .side .co{background:transparent;padding:0;border:none}
+.m-c .co{background:rgb(255 255 255/.45);border:.08em solid var(--p-sepia-line);border-left:.32em double var(--c);border-radius:0}
+.m-c .co-k{font-family:var(--f-mono);font-weight:600;letter-spacing:.04em;font-size:.78em}
+.m-c .co-k::before{content:"[ "}.m-c .co-k::after{content:" ]"}
+.m-c .tb th{background:transparent;border-bottom-color:var(--p-sepia-ink);font-family:var(--f-mono);font-size:.82em;text-transform:uppercase;color:var(--p-sepia-ink)}
+.m-c .tb td{border-bottom-color:var(--p-sepia-line)}
+.m-c .toc .row{border-bottom:.06em dotted var(--p-sepia-ink)}
+.m-c .toc .row .n{font-size:.95em;vertical-align:0}
+.m-c .toc .row .t,.m-c .toc .row .pn{color:var(--p-sepia-ink)}
+.m-c .stat{background:rgb(255 255 255/.45);border:.08em solid var(--p-sepia-line)}
+.m-c .stat b{color:var(--p-sepia-ink)}
+.m-c .legal{border-top-color:var(--p-sepia-ink)}
+.m-c .com{background:rgb(255 255 255/.45);border:.08em dashed var(--p-fix)}
+.m-c .alts .L{border-color:var(--p-sepia-ink)}
+.cvC{position:absolute;inset:0;padding:5em 4.8em 4.6em;display:flex;flex-direction:column;gap:1em;color:var(--p-sepia-ink)}
+.cvC .top{font-family:var(--f-mono);font-size:.72em;letter-spacing:.06em;text-transform:uppercase;display:flex;justify-content:space-between;border-bottom:.15em double var(--p-sepia-ink);padding-bottom:.4em}
+.cvC .box{margin-top:2.6em;border:.18em solid var(--p-sepia-ink);outline:.06em solid var(--p-sepia-ink);outline-offset:.35em;padding:1.6em 1.4em;display:grid;gap:.6em;position:relative}
+.cvC .box .k{font-family:var(--f-mono);font-weight:600;font-size:.8em;letter-spacing:.08em;color:var(--p-red)}
+.cvC h1{font-family:var(--f-disp);font-weight:800;text-transform:uppercase;font-size:3.1em;line-height:.95}
+.cvC .box p{font-size:.9em}
+.cvC .rubber{position:absolute;right:-1em;bottom:-2.2em;transform:rotate(-8deg);border:.22em solid var(--p-red);color:var(--p-red);font-family:var(--f-disp);font-weight:800;letter-spacing:.14em;padding:.25em .8em;font-size:1.1em;background:var(--p-sepia);opacity:.9}
+.cvC .ctl{margin-top:auto;width:100%;border-collapse:collapse;font-size:.8em}
+.cvC .ctl td{border:.08em solid var(--p-sepia-ink);padding:.4em .6em;vertical-align:top}
+.cvC .ctl td:first-child{font-family:var(--f-mono);text-transform:uppercase;font-size:.88em;width:32%;background:rgb(255 255 255/.4)}
+.cvC .brand{font-size:.9em}
+.m-c .op-kick{font-family:var(--f-mono);color:var(--p-red);letter-spacing:.06em}
+.m-c .op-title{color:var(--p-sepia-ink);text-transform:uppercase;font-size:2.4em}
+.m-c .op-num{display:block;font-family:var(--f-mono);font-weight:600;font-size:.85em;letter-spacing:.06em;border:.1em solid var(--p-sepia-ink);padding:.3em .6em;align-self:flex-start}
+.m-c .op-type{font-family:var(--f-mono);font-size:.8em;color:var(--p-teo)}
+.m-c .op-topics li{border-bottom:.06em dotted var(--p-sepia-ink)}
+.m-c .op-base{color:var(--p-sepia-ink)}
+
+/* ===================== D · EDITORIAL ===================== */
+.m-d .pg{padding:5.6em 5.4em 5.8em 5.4em}
+.m-d .pg h2{font-weight:500;font-size:2em;letter-spacing:-.005em;line-height:1.02}
+.m-d .n{display:block;font-weight:300;color:var(--p-gold);font-size:.62em;letter-spacing:.12em;margin-bottom:.1em}
+.m-d .hd{left:5.4em;right:5.4em;justify-content:flex-end;font-family:var(--f-disp);letter-spacing:.12em;text-transform:uppercase;color:var(--p-gold-t)}
+.m-d .hd span:first-child{display:none}
+.m-d .ft{left:5.4em;right:5.4em;border-top:.06em solid var(--p-gold);padding-top:.7em}
+.m-d .stamp{font-weight:500;color:var(--p-mut)}
+.m-d .stamp b{color:var(--p-ink);font-weight:700}
+.m-d .cols{display:grid;grid-template-columns:minmax(0,1fr) 27%;gap:1.6em;align-items:start}
+.m-d .side .co{border-top:.14em solid var(--p-gold);padding:.5em 0 0;background:transparent;font-size:.86em}
+.m-d .co{background:transparent;border-top:.12em solid var(--c);border-radius:0;padding:.55em 0 0}
+.m-d .co.lei{border-top:none;border-left:.12em solid var(--p-ink);padding:.1em 0 .1em 1em}
+.m-d .co.lei p{font-size:1.08em}
+.m-d .tb th{background:transparent;border-bottom:.08em solid var(--p-gold);font-family:var(--f-disp);letter-spacing:.06em;text-transform:uppercase;font-size:.9em}
+.m-d .toc .row{border-bottom:none;padding:.45em 0}
+.m-d .toc .row .n{display:inline;font-size:1.3em;color:var(--p-gold);font-weight:300}
+.m-d .stat{background:transparent;border-top:.08em solid var(--p-gold);border-radius:0;padding:.5em 0 0}
+.m-d .stat b{font-weight:300;font-size:2.6em}
+.m-d .com{background:transparent;border-left:.12em solid var(--p-fix);border-radius:0}
+.m-d .legal{border-top-color:var(--p-gold)}
+.cvD{position:absolute;inset:0;padding:5.4em 5.4em 5em;display:flex;flex-direction:column;gap:1em;background:#fff}
+.cvD .top{display:flex;justify-content:space-between;align-items:center}
+.cvD .top span{font-family:var(--f-disp);letter-spacing:.14em;text-transform:uppercase;font-size:.8em;color:var(--p-gold-t)}
+.cvD .num{font-family:var(--f-disp);font-weight:300;font-size:14em;line-height:.8;color:transparent;-webkit-text-stroke:.012em var(--p-gold);margin-top:.15em;letter-spacing:-.02em}
+.cvD .k{font-family:var(--f-disp);letter-spacing:.2em;text-transform:uppercase;color:var(--p-mut);font-size:.9em}
+.cvD h1{font-family:var(--f-disp);font-weight:600;font-size:3.2em;line-height:1;color:var(--p-ink);max-width:12em}
+.cvD .rule{height:.1em;background:var(--p-gold);width:5em}
+.cvD .sub{color:var(--p-mut);max-width:28em;font-size:1em}
+.cvD .chap{margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:.25em 1.6em;font-size:.8em;color:var(--p-mut)}
+.cvD .chap b{color:var(--p-gold-t);font-family:var(--f-disp);margin-right:.4em}
+.m-d .op-num{display:block;font-family:var(--f-disp);font-weight:300;font-size:9em;line-height:.8;color:var(--p-gold)}
+.m-d .op-kick{color:var(--p-gold-t)}
+.m-d .op-title{font-weight:600;font-size:2.6em}
+.m-d .op-type{font-family:var(--f-disp);letter-spacing:.12em;text-transform:uppercase;color:var(--p-teo);font-size:.85em}
+.m-d .op-topics li{border-bottom:none}
+
+/* ===================== E · QUADRO TÁTICO ===================== */
+.m-e .sheet::after{content:"";position:absolute;left:0;top:0;bottom:0;width:2.4%;background:var(--strip,var(--p-ink));z-index:2}
+.m-e .sheet[data-t="teoria"]{--strip:var(--p-teo)}
+.m-e .sheet[data-t="revisao"]{--strip:var(--p-rev)}
+.m-e .sheet[data-t="fixacao"]{--strip:var(--p-fix)}
+.m-e .sheet[data-t="neutro"]{--strip:var(--p-red)}
+.m-e .pg{padding:6.2em 4.6em 6.2em 5.4em}
+.m-e .hd{top:0;left:0;right:0;padding:1.05em 4.6em 1.05em 5.4em;background:var(--p-ink);color:#e7edf5;font-family:var(--f-disp);font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:.74em}
+.m-e .hd span:last-child{color:var(--p-gold)}
+.m-e .ft{bottom:0;left:0;right:0;padding:1em 4.6em 1em 5.4em;background:var(--p-s2);border-top:.08em solid var(--p-line)}
+.m-e .pg h2{display:flex;align-items:center;gap:.45em}
+.m-e .n{display:inline-grid;place-items:center;min-width:1.9em;height:1.9em;padding:0 .25em;background:var(--strip,var(--p-teo));color:#fff;font-size:.62em;border-radius:.2em;margin:0}
+.m-e .co{background:var(--cs);border-radius:.2em;display:grid;grid-template-columns:auto 1fr;column-gap:.7em;padding:.6em .8em .6em 0;overflow:hidden}
+.m-e .co .co-k{grid-row:1/span 3;writing-mode:vertical-rl;transform:rotate(180deg);background:var(--c);color:#fff;padding:.5em .3em;font-size:.7em;text-align:center;align-self:stretch}
+.m-e .toc .row .n{min-width:1.7em;height:1.7em;font-size:.9em;background:var(--p-teo)}
+.m-e .tb th{background:var(--p-ink);color:#fff;border-bottom:none}
+.cvE{position:absolute;inset:0;display:flex;flex-direction:column;background:#fff}
+.cvE .band{background:var(--p-ink);color:#fff;padding:5em 4.6em 2.4em 5.4em;display:grid;gap:.8em}
+.cvE .band .wm{color:#fff}
+.cvE .band .k{font-family:var(--f-disp);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--p-gold);margin-top:1.6em}
+.cvE .band h1{font-family:var(--f-disp);font-weight:800;font-size:3.2em;line-height:.95;text-transform:uppercase}
+.cvE .band p{color:#c4cfdd;font-size:.92em}
+.cvE .body{padding:2em 4.6em 4.6em 5.4em;display:flex;flex-direction:column;gap:1em;flex:1}
+.cvE .body .h{font-family:var(--f-disp);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:.85em;color:var(--p-mut)}
+.cvE .tiles{display:grid;grid-template-columns:1fr 1fr;gap:.6em}
+.cvE .tile{padding:.8em .9em;border-radius:.3em;color:#fff;display:grid;gap:.15em}
+.cvE .tile b{font-family:var(--f-disp);font-size:2.4em;line-height:1}
+.cvE .tile span{font-family:var(--f-disp);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.8em}
+.cvE .tile small{font-size:.74em;opacity:.9}
+.cvE .conc{margin-top:auto;font-size:.8em;color:var(--p-mut);border-top:.06em solid var(--p-line);padding-top:.7em}
+.m-e .op-kick{color:var(--p-teo)}
+.m-e .op-type{display:inline-flex;align-self:flex-start;background:var(--p-teo);color:#fff;font-family:var(--f-disp);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.85em;padding:.3em .7em;border-radius:.2em}
+.m-e .op-num{display:block;font-family:var(--f-disp);font-weight:800;font-size:5em;line-height:.85;color:var(--p-teo)}
+.m-e .op-topics li span:first-child{font-family:var(--f-disp);font-weight:700;color:var(--p-teo)}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:20;background:rgb(8 15 26/.82);display:grid;padding:calc(56px + env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));overflow:auto}
+.lb-in{width:max(min(860px,94vw),560px);margin:0 auto;align-self:start}
+.lb-in .sheet{cursor:default}
+.lb-close{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));right:max(12px,env(safe-area-inset-right,0px));z-index:21;font:600 .95rem var(--f-body);padding:8px 14px;border-radius:999px;border:1px solid #fff4;background:#0e1b2e;color:#fff;cursor:pointer}
+.lb-close:focus-visible{outline:3px solid var(--gold)}
+.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--border);color:var(--muted);font-size:.86rem;max-width:80ch}
+@media (prefers-reduced-motion:no-preference){.sheet{transition:transform .2s ease}.pages .sheet:hover{transform:translateY(-3px)}}
+</style>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">MentorIA · Material próprio</div>
+    <h1>Modelos da apostila</h1>
+    <p>Cinco propostas de layout para os PDFs das aulas MentorIA, todas com o mesmo conteúdo de demonstração (Direito Constitucional, mandado de segurança). Toque numa página para ampliar. Responda no chat com a letra escolhida ou com os elementos que quer combinar.</p>
+  </header>
+  <nav class="models" aria-label="Modelos">
+    <a href="#modelo-a"><b>A</b>Prontidão</a>
+    <a href="#modelo-b"><b>B</b>Cartão-resposta</a>
+    <a href="#modelo-c"><b>C</b>Manual de campo</a>
+    <a href="#modelo-d"><b>D</b>Editorial</a>
+    <a href="#modelo-e"><b>E</b>Quadro tático</a>
+  </nav>
+  <main id="galeria"></main>
+  <p class="foot">Nome e CPF no rodapé são fictícios (o CPF 123.456.789-09 é um número de teste com dígitos verificadores válidos). No PDF real, essa faixa é preenchida no momento do download com o nome completo do aluno em caixa alta e o CPF com máscara. As questões da demonstração são inéditas, escritas para este exemplo.</p>
+</div>
+
+<script>
+const D = {
+  disc: "Direito Constitucional", aula: "03",
+  titulo: "Direitos fundamentais II e remédios constitucionais",
+  sub: "Art. 5º, XXXII a LXXIX: garantias penais e processuais, habeas corpus, habeas data, mandado de segurança, mandado de injunção e ação popular.",
+  conc: "2º Tenente CFOA · Oficial CBMPE · Oficial PMPE · Agente PCPE · Soldado CBMPE · Soldado PMPE",
+  stamp: 'LICENCIADO PARA <b>FULANO DE TAL DA SILVA</b> · CPF 123.456.789-09',
+  caps: [
+    ["1","Consumidor, informação, petição e júri","Art. 5º, XXXII a XXXVIII","5"],
+    ["2","Crimes, penas e garantias penais","Art. 5º, XXXIX a L","16"],
+    ["3","Extradição, devido processo e provas","Art. 5º, LI a LVIII","27"],
+    ["4","Prisão e liberdade","Art. 5º, LIX a LXVII","38"],
+    ["5","Habeas corpus e habeas data","Art. 5º, LXVIII e LXXII","49"],
+    ["6","Mandado de segurança individual e coletivo","Art. 5º, LXIX e LXX","61"],
+    ["7","Mandado de injunção e ação popular","Art. 5º, LXXI e LXXIII","72"],
+    ["8","Gratuidades, duração do processo e tratados","Art. 5º, LXXIV a LXXIX e §§ 1º a 4º","83"]
+  ]
+};
+const FLAME = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#ffb62e" d="M12 2.2c.4 3-1.4 4.7-2.9 6.6C7.6 10.6 6 12.4 6 15.4 6 19.3 8.6 22 12 22s6-2.7 6-6.6c0-2.2-.9-3.7-2-5-.1 1.5-.8 2.6-1.8 3.1.6-3.5-.2-7.5-2.2-11.3Z"/><path fill="#ffd964" d="M12 21.4c-2.4 0-4.1-1.8-4.1-4.2 0-1.7.9-2.8 1.9-3.8.7-.7 1.3-1.4 1.5-2.4 1.8 1.5 3.7 3.2 3.7 6.2 0 2.5-1.2 4.2-3 4.2Z"/><path fill="#fff6d0" d="M12 21.4c-1.3 0-2.1-1-2.1-2.3 0-1.3.7-1.9 1.4-2.6.4-.4.6-.7.7-1.2 1 .9 2.1 1.7 2.1 3.2 0 1.6-.9 2.9-2.1 2.9Z"/></svg>';
+const STAR = '<svg class="st" viewBox="0 0 24 24" aria-hidden="true"><path fill="#e9a90c" d="m12 2.5 2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8L12 2.5Z"/></svg>';
+const brand = (dark) => `<div class="brand"><span class="bm">${FLAME}${STAR}</span><span class="wm" style="color:${dark ? '#fff' : 'var(--p-ink)'}">Mentor<i>IA</i></span></div>`;
+
+const hd = (right) => `<div class="hd"><span data-l="Disciplina">${D.disc} · Aula ${D.aula}</span><span data-l="Tema">${right}</span></div>`;
+const ft = (p) => `<div class="ft"><span>MentorIA · ${D.disc} · Aula ${D.aula}</span><span class="stamp">${D.stamp}</span><span class="ft-r">${p} / 112</span></div>`;
+const sheet = (t, inner, label) => `<figure class="pgfig"><div class="sheet" data-t="${t}" tabindex="0" role="button" aria-label="Ampliar: ${label}">${inner}</div><figcaption>${label}</figcaption></figure>`;
+
+/* ---------- capas ---------- */
+const covers = {
+  a: () => `<div class="cvA">
+      ${brand(true)}
+      <div class="k">${D.disc}</div>
+      <div class="au">AULA ${D.aula}</div>
+      <h1>${D.titulo}</h1>
+      <p class="sub">${D.sub}</p>
+      <div class="tape"></div>
+      <div class="meta"><div><b>8</b><span>capítulos de Teoria</span></div><div><b>112</b><span>páginas</span></div><div><b>6</b><span>concursos cobram</span></div></div>
+      <span class="seal">Material exclusivo MentorIA</span>
+      <div class="conc">${D.conc}</div>
+    </div>`,
+  b: () => {
+    const marks = [1,3,0,4,2,1,4,0];
+    const rows = D.caps.map((c,i) => `<div class="r"><span>${c[0].padStart(2,'0')}</span>${'ABCDE'.split('').map((L,j)=>`<span class="b${marks[i]===j?' on':''}">${L}</span>`).join('')}<em>${c[1]}</em></div>`).join('');
+    return `<div class="cvB">
+      <div class="top">${brand(false)}<div class="code">FOLHA DE ESTUDO Nº ${D.aula}<br>EDIÇÃO 2026</div></div>
+      <div class="k">${D.disc}</div>
+      <h1>${D.titulo}</h1>
+      <div class="grid"><div class="r h"><span>Cap.</span><span></span><span></span><span></span><span></span><span></span><em>Conteúdo</em></div>${rows}</div>
+      <div class="fields"><div><small>Disciplina</small>${D.disc}</div><div><small>Aula</small>${D.aula}</div><div><small>Páginas</small>112</div></div>
+    </div>`;
+  },
+  c: () => `<div class="cvC">
+      <div class="top"><span>MentorIA · Manual de estudo</span><span>Nº ${D.aula} · Ed. 2026</span></div>
+      <div class="box">
+        <div class="k">${D.disc.toUpperCase()} · AULA ${D.aula}</div>
+        <h1>${D.titulo}</h1>
+        <p>${D.sub}</p>
+        <div class="rubber">USO INDIVIDUAL</div>
+      </div>
+      <table class="ctl"><tr><td>Conteúdo</td><td>Art. 5º, XXXII a LXXIX da Constituição</td></tr><tr><td>Capítulos</td><td>8 atividades de Teoria (~60 min cada)</td></tr><tr><td>Concursos</td><td>${D.conc}</td></tr><tr><td>Emissão</td><td>${brand(false)}</td></tr></table>
+    </div>`,
+  d: () => `<div class="cvD">
+      <div class="top">${brand(false)}<span>${D.disc}</span></div>
+      <div class="num">${D.aula}</div>
+      <div class="k">Aula MentorIA</div>
+      <h1>${D.titulo}</h1>
+      <div class="rule"></div>
+      <p class="sub">${D.sub}</p>
+      <div class="chap">${D.caps.map(c=>`<div><b>${c[0]}</b>${c[1]}</div>`).join('')}</div>
+    </div>`,
+  e: () => `<div class="cvE">
+      <div class="band">${brand(true)}<div class="k">${D.disc} · Aula ${D.aula}</div><h1>${D.titulo}</h1><p>${D.sub}</p></div>
+      <div class="body">
+        <div class="h">Composição da aula no seu plano</div>
+        <div class="tiles">
+          <div class="tile" style="background:var(--p-teo)"><span>Teoria</span><b>8</b><small>capítulos de ~60 min</small></div>
+          <div class="tile" style="background:var(--p-rev)"><span>Revisão</span><b>2</b><small>a cada até 4 capítulos</small></div>
+          <div class="tile" style="background:var(--p-fix)"><span>Fixação</span><b>1</b><small>questões comentadas</small></div>
+          <div class="tile" style="background:var(--p-que)"><span>Questões</span><b>2</b><small>cadernos de 25 questões</small></div>
+        </div>
+        <div class="conc">${D.conc}</div>
+      </div>
+    </div>`
+};
+
+/* ---------- páginas comuns ---------- */
+const sumario = () => `<div class="pg">${hd('Sumário')}
+  <h2>Sumário</h2>
+  <div class="toc">
+    <div class="row extra"><span></span><span class="t">Apresentação da aula</span><span class="pn">3</span></div>
+    ${D.caps.map(c=>`<div class="row"><span class="n">${c[0]}</span><span class="t">${c[1]}<small>${c[2]} · <span class="chip teoria">Teoria</span></small></span><span class="pn">${c[3]}</span></div>`).join('')}
+    <div class="row extra"><span></span><span class="t">Questões comentadas <span class="chip fixacao">Fixação</span></span><span class="pn">94</span></div>
+    <div class="row extra"><span></span><span class="t">Mapa de revisão <span class="chip revisao">Revisão</span></span><span class="pn">106</span></div>
+    <div class="row extra"><span></span><span class="t">Gabarito</span><span class="pn">111</span></div>
+  </div>
+  <div class="legal"><span><b>© 2026 MentorIA.</b> Material de uso individual e intransferível, licenciado ao titular identificado no rodapé de cada página.</span><span>É proibido reproduzir, distribuir ou compartilhar este material, no todo ou em parte, por qualquer meio (Lei 9.610/1998). Cada cópia carrega identificação do titular e do download.</span></div>
+  ${ft(2)}</div>`;
+
+const apresentacao = () => `<div class="pg">${hd('Apresentação')}
+  <h2><span class="n">00</span>Apresentação da aula</h2>
+  <p>Esta aula fecha o art. 5º da Constituição. A primeira metade trata das garantias penais e processuais; a segunda, dos remédios constitucionais, que estão entre os assuntos mais cobrados de Direito Constitucional nas provas militares e policiais de Pernambuco.</p>
+  <div class="stats">
+    <div class="stat"><b>8</b><span>questões de Direito Constitucional na prova de Oficial CBMPE (de 70)</span></div>
+    <div class="stat"><b>6</b><span>concursos do site cobram este conteúdo</span></div>
+    <div class="stat"><b>~8 h</b><span>de Teoria, em 8 capítulos</span></div>
+  </div>
+  <h3>Como estudar esta aula</h3>
+  <div class="steps">
+    <div class="step"><span class="chip teoria">Teoria</span><span>Cada capítulo é uma atividade do seu plano, de cerca de 60 minutos. Leia com o caderno aberto e escreva o seu resumo.</span></div>
+    <div class="step"><span class="chip revisao">Revisão</span><span>A cada até 4 capítulos, revise pelo mapa de revisão e pelos seus resumos.</span></div>
+    <div class="step"><span class="chip fixacao">Fixação</span><span>Resolva as questões comentadas do fim do volume e leia todos os comentários, inclusive dos acertos.</span></div>
+    <div class="step"><span class="chip questoes">Questões</span><span>Feche o ciclo com o caderno de 25 questões no app.</span></div>
+  </div>
+  <h3>Mapa da aula</h3>
+  <table class="tb"><thead><tr><th>Parte</th><th>Capítulos</th><th>O que você domina ao final</th></tr></thead><tbody>
+    <tr><td>Garantias penais e processuais</td><td>1 a 4</td><td>júri, reserva legal, crimes inafiançáveis, provas ilícitas, prisão</td></tr>
+    <tr><td>Remédios constitucionais</td><td>5 a 8</td><td>HC, HD, MS, MI, ação popular, gratuidades e tratados</td></tr>
+  </tbody></table>
+  <div class="co bizu"><div class="co-k">Bizu</div><p>Nos remédios, a banca troca o remédio de cada situação. Antes de decorar detalhes, domine a pergunta: que direito foi atingido e quem pode pedir a proteção?</p></div>
+  ${ft(3)}</div>`;
+
+const abertura = () => `<div class="pg">
+  <div class="op-band">
+    <div class="op-num">06</div>
+    <div class="op-kick">Capítulo 6</div>
+    <h2 class="op-title">Mandado de segurança individual e coletivo</h2>
+    <div class="op-base">Art. 5º, LXIX e LXX da Constituição · Lei 12.016/2009</div>
+    <div class="op-type">Atividade de Teoria · ~60 min</div>
+  </div>
+  <div class="op-bubbles"><span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span class="on">06</span><span>07</span><span>08</span></div>
+  <div class="op-box"><h3>Ao final do capítulo, você vai saber</h3>
+    <ul><li>reconhecer quando cabe mandado de segurança e quando o caso é de outro remédio;</li><li>explicar o que é direito líquido e certo e por que o mandado de segurança não admite produção de provas;</li><li>contar o prazo de 120 dias e identificar quem pode impetrar o mandado de segurança coletivo.</li></ul></div>
+  <div class="co atencao"><div class="co-k">Por que isso cai</div><p>As bancas costumam explorar três pontos do mandado de segurança: o caráter residual, o prazo de 120 dias e quem pode impetrar o mandado coletivo.</p></div>
+  <div class="op-box"><h3>Neste capítulo</h3>
+    <ol class="op-topics"><li><span>6.1</span><span>Para que serve o mandado de segurança</span><span>62</span></li><li><span>6.2</span><span>Direito líquido e certo e prazo</span><span>63</span></li><li><span>6.3</span><span>Mandado de segurança coletivo</span><span>64</span></li><li><span>6.4</span><span>Qual remédio usar?</span><span>66</span></li><li><span>6.5</span><span>Mapa do capítulo</span><span>70</span></li></ol></div>
+  ${ft(61)}</div>`;
+
+const corpo1 = () => `<div class="pg">${hd('Cap. 6 · Mandado de segurança')}
+  <div class="cols"><div class="main">
+    <h2><span class="n">6.1</span>Para que serve o mandado de segurança</h2>
+    <p>O mandado de segurança protege <b>direito líquido e certo</b> contra ilegalidade ou abuso de poder de autoridade pública ou de quem exerce atribuição do Poder Público. Ele é <b>residual</b>: só cabe quando o caso não for de habeas corpus nem de habeas data.</p>
+    <div class="co lei"><div class="co-k">Letra da lei · CF, art. 5º, LXIX</div><p>“conceder-se-á mandado de segurança para proteger direito líquido e certo, não amparado por habeas corpus ou habeas data, quando o responsável pela ilegalidade ou abuso de poder for autoridade pública ou agente de pessoa jurídica no exercício de atribuições do Poder Público;”</p></div>
+    <h3><span class="n">6.2</span>Direito líquido e certo e prazo</h3>
+    <p>É o direito provado de plano, com documentos juntados já na petição inicial. Não há fase para ouvir testemunhas nem fazer perícia. Se o fato depende de prova a ser produzida, o caminho é uma ação comum.</p>
+    <div class="co atencao"><div class="co-k">Atenção</div><p>O prazo para impetrar é de <b>120 dias</b>, contados da ciência do ato impugnado (Lei 12.016/2009, art. 23). O prazo é decadencial: não se suspende nem se interrompe.</p></div>
+    <p><b>Autoridade coatora</b> é quem praticou o ato ou ordenou a sua prática (Lei 12.016/2009, art. 6º, § 3º). Dirigentes de pessoas jurídicas e particulares que exercem atribuição do Poder Público se equiparam a autoridade, só quanto a essa atribuição.</p>
+    <h3>Quando não cabe (Lei 12.016/2009, art. 5º)</h3>
+    <ul><li>contra ato do qual caiba recurso administrativo com efeito suspensivo, independentemente de caução;</li><li>contra decisão judicial da qual caiba recurso com efeito suspensivo;</li><li>contra decisão judicial transitada em julgado.</li></ul>
+  </div>
+  <aside class="side">
+    <div class="co bizu"><div class="co-k">Bizu</div><p>Pense no MS como o remédio reserva: pergunte primeiro se cabe HC ou HD. Não cabendo, e havendo prova documental, é MS.</p></div>
+    <div class="co exemplo"><div class="co-k">Exemplo</div><p>Candidato aprovado tem a posse negada por exigência que não está no edital. Com o edital e o ato de indeferimento, impetra MS contra a autoridade que negou a posse.</p></div>
+    <div class="co pegadinha"><div class="co-k">Pegadinha da banca</div><p>Não cabe MS contra lei em tese (Súmula 266 do STF): é preciso um ato concreto que aplique a lei.</p></div>
+  </aside></div>
+  ${ft(62)}</div>`;
+
+const FLOW = `<svg viewBox="0 0 500 268" role="img" aria-label="Fluxo: qual remédio constitucional usar">
+  <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 10 5 0 10z" fill="#5b6778"/></marker></defs>
+  ${[["A ofensa atinge a liberdade de locomoção?","Habeas corpus","#2563eb"],["Pede acesso ou correção de dados da própria pessoa?","Habeas data","#7c3aed"],["Falta a norma que torna o direito exercível?","Mandado de injunção","#d9640f"],["Direito líquido e certo violado por autoridade?","Mandado de segurança","#d4301f"]].map((r,i)=>{const y=8+i*58;return `
+  <rect x="4" y="${y}" width="300" height="38" rx="6" fill="#ffffff" stroke="#0e1b2e" stroke-width="1.2"/>
+  <text x="16" y="${y+24}" font-size="12.5" fill="#0e1b2e">${r[0]}</text>
+  <line x1="304" y1="${y+19}" x2="346" y2="${y+19}" stroke="#5b6778" stroke-width="1.2" marker-end="url(#ah)"/>
+  <text x="314" y="${y+13}" font-size="10" fill="#5b6778">sim</text>
+  <rect x="350" y="${y+3}" width="146" height="32" rx="16" fill="${r[2]}"/>
+  <text x="423" y="${y+24}" font-size="12.5" font-weight="700" fill="#ffffff" text-anchor="middle">${r[1]}</text>
+  ${i<3?`<line x1="40" y1="${y+38}" x2="40" y2="${y+56}" stroke="#5b6778" stroke-width="1.2" marker-end="url(#ah)"/><text x="48" y="${y+51}" font-size="10" fill="#5b6778">não</text>`:''}`}).join('')}
+  <rect x="4" y="236" width="492" height="28" rx="6" fill="#f3f5f8"/>
+  <text x="16" y="254" font-size="11.5" fill="#1b2433">À parte: ato lesivo ao patrimônio público ou à moralidade → <tspan font-weight="700">ação popular</tspan> (qualquer cidadão)</text>
+</svg>`;
+
+const corpo2 = () => `<div class="pg">${hd('Cap. 6 · Mandado de segurança')}
+  <div class="cols"><div class="main">
+    <h2><span class="n">6.3</span>Mandado de segurança coletivo</h2>
+    <p>A Constituição lista quem pode impetrar o mandado de segurança coletivo (art. 5º, LXX). Os legitimados atuam em nome próprio, defendendo interesses dos seus membros.</p>
+    <table class="tb"><thead><tr><th>Legitimado</th><th>Requisito</th></tr></thead><tbody>
+      <tr><td>Partido político</td><td>representação no Congresso Nacional</td></tr>
+      <tr><td>Organização sindical e entidade de classe</td><td>legalmente constituída</td></tr>
+      <tr><td>Associação</td><td>legalmente constituída e em funcionamento há pelo menos 1 ano</td></tr>
+    </tbody></table>
+    <div class="co pegadinha"><div class="co-k">Pegadinha da banca</div><p>Estender o prazo de 1 ano ao sindicato e à entidade de classe. Para o STF, esse requisito vale só para a associação.</p></div>
+    <h3><span class="n">6.4</span>Qual remédio usar?</h3>
+    <div class="co esquema"><div class="co-k">Esquema</div><div class="flow">${FLOW}</div></div>
+  </div>
+  <aside class="side">
+    <div class="co bizu"><div class="co-k">Bizu</div><p>Súmula 629 do STF: a entidade de classe não precisa de autorização dos associados para impetrar o MS coletivo em favor deles.</p></div>
+  </aside></div>
+  ${ft(64)}</div>`;
+
+const questoes = () => `<div class="pg">${hd('Fixação · Capítulos 5 a 8')}
+  <h2><span class="n">Q</span>Questões comentadas</h2>
+  <div class="q"><div class="q-h">Questão 1 · Inédita MentorIA · Múltipla escolha</div>
+    <p>Sobre o mandado de segurança coletivo, assinale a alternativa correta.</p>
+    <ol class="alts">
+      <li><span class="L">A</span><span>Pode ser impetrado por qualquer partido político, com ou sem representação no Congresso Nacional.</span></li>
+      <li><span class="L">B</span><span>A associação deve estar legalmente constituída e em funcionamento há pelo menos um ano.</span></li>
+      <li><span class="L">C</span><span>Depende de autorização dos associados, colhida em assembleia, quando impetrado por entidade de classe.</span></li>
+      <li><span class="L">D</span><span>A organização sindical deve comprovar funcionamento há pelo menos dois anos.</span></li>
+      <li><span class="L">E</span><span>Destina-se a proteger direitos amparados por habeas data.</span></li>
+    </ol>
+    <div class="com"><b class="k">Comentário · Gabarito B</b><span>O requisito de um ano de funcionamento é exigido da associação (art. 5º, LXX, b). A está errada: o partido precisa de representação no Congresso. C contraria a Súmula 629 do STF. D inventa um prazo. E está errada porque o MS só cabe quando o direito não é amparado por HC ou HD.</span></div>
+  </div>
+  <div class="q"><div class="q-h">Questão 2 · Inédita MentorIA · Certo ou errado</div>
+    <p>O habeas corpus é o instrumento adequado para discutir o mérito de punição disciplinar aplicada a militar.</p>
+    <div class="com"><b class="k">Comentário · Errado</b><span>A Constituição afasta o habeas corpus em relação a punições disciplinares militares (art. 142, § 2º). O STF admite o exame só da legalidade (hierarquia, poder disciplinar, ligação com a função e pena cabível), nunca do mérito da punição.</span></div>
+  </div>
+  <div class="q"><div class="q-h">Questão 3 · Inédita MentorIA · Certo ou errado</div>
+    <p>O direito de impetrar mandado de segurança extingue-se decorridos 120 dias, contados da ciência, pelo interessado, do ato impugnado.</p>
+    <div class="com"><b class="k">Comentário · Certo</b><span>É a regra do art. 23 da Lei 12.016/2009. O prazo começa na ciência do ato, não na sua publicação, e não se suspende nem se interrompe.</span></div>
+  </div>
+  ${ft(95)}</div>`;
+
+const mapa = () => `<div class="pg">${hd('Revisão · Capítulos 5 a 8')}
+  <h2><span class="n">R</span>Mapa de revisão</h2>
+  <table class="tb"><thead><tr><th>Remédio</th><th>Protege</th><th>Quem impetra</th><th>Custo</th></tr></thead><tbody>
+    <tr><td><b>Habeas corpus</b></td><td>liberdade de locomoção</td><td>qualquer pessoa, sem advogado</td><td>gratuito</td></tr>
+    <tr><td><b>Habeas data</b></td><td>dados da própria pessoa em registros públicos</td><td>o titular dos dados</td><td>gratuito</td></tr>
+    <tr><td><b>Mandado de segurança</b></td><td>direito líquido e certo não amparado por HC ou HD</td><td>titular do direito; coletivo: partido, sindicato, entidade de classe, associação</td><td>custas normais</td></tr>
+    <tr><td><b>Mandado de injunção</b></td><td>direito inviabilizado por falta de norma</td><td>titular do direito; coletivo também pelo MP e pela Defensoria</td><td>custas normais</td></tr>
+    <tr><td><b>Ação popular</b></td><td>patrimônio público, moralidade, meio ambiente, patrimônio histórico e cultural</td><td>qualquer cidadão</td><td>isento, salvo má-fé</td></tr>
+  </tbody></table>
+  <h3>Para fixar</h3>
+  <ol class="fix">
+    <li>MS é residual: só cabe se não couber HC nem HD.</li>
+    <li>Direito líquido e certo é o provado por documento, sem fase de provas.</li>
+    <li>Prazo do MS: 120 dias da ciência do ato, decadencial.</li>
+    <li>Um ano de funcionamento é requisito só da associação no MS coletivo.</li>
+    <li>Não cabe HC quanto ao mérito de punição disciplinar militar.</li>
+  </ol>
+  <div class="co exemplo"><div class="co-k">Próximo passo no seu plano</div><p>Faça a Revisão dos capítulos 5 a 8 com este mapa e os seus resumos. Depois, a Fixação com as questões comentadas.</p></div>
+  <div class="co pegadinha"><div class="co-k">Erro mais comum</div><p>Indicar mandado de segurança para prisão ilegal. Se a ofensa é à liberdade de locomoção, o remédio é o habeas corpus, mesmo que haja ato de autoridade.</p></div>
+  <p class="gab">Gabarito das questões comentadas: 1 B · 2 Errado · 3 Certo</p>
+  ${ft(108)}</div>`;
+
+const MODELS = [
+  {id:"a",name:"Prontidão",desc:"A identidade do app levada ao papel: capa azul-marinho com a faixa refletiva vermelha e branca, títulos condensados em caixa alta e filete vermelho nos tópicos.",tags:["Capa escura","Faixa refletiva","Abertura de capítulo escura","Quadros com barra lateral"]},
+  {id:"b",name:"Cartão-resposta",desc:"O motivo do cartão de prova (bolhas A–E e marcas de leitura na borda) em todas as páginas. O titular aparece num campo de formulário, como no cartão oficial.",tags:["Marcas de leitura na borda","Bolhas numeradas","Campo TITULAR no rodapé","Fundo branco"]},
+  {id:"c",name:"Manual de campo",desc:"Papel sépia de manual técnico, numeração 6.1 / 6.2, cantos de registro e coluna lateral para bizus e exemplos. O carimbo do titular imita um carimbo de borracha.",tags:["Papel sépia","Coluna lateral","Rótulos em fonte mono","Carimbo vermelho"]},
+  {id:"d",name:"Editorial",desc:"Leitura confortável: margens largas, numerais finos em dourado, quadros só com filete e coluna de notas. O mais sóbrio e o que mais lembra um livro.",tags:["Numerais dourados","Muito espaço em branco","Coluna de notas","Quadros discretos"]},
+  {id:"e",name:"Quadro tático",desc:"Cada página leva na borda a cor do tipo de atividade do plano (azul Teoria, roxo Revisão, laranja Fixação), com cabeçalho escuro de navegação e capa que mostra a composição da aula.",tags:["Cor por atividade","Cabeçalho escuro","Blocos numerados","Capa com composição da aula"]}
+];
+
+const PAGES = [
+  ["neutro","Capa",m=>covers[m]()],
+  ["neutro","Sumário e aviso legal",()=>sumario()],
+  ["neutro","Apresentação da aula",()=>apresentacao()],
+  ["teoria","Abertura de capítulo",()=>abertura()],
+  ["teoria","Corpo: lei, atenção, bizu, exemplo",()=>corpo1()],
+  ["teoria","Corpo: tabela, pegadinha, esquema",()=>corpo2()],
+  ["fixacao","Questões comentadas",()=>questoes()],
+  ["revisao","Mapa de revisão e encerramento",()=>mapa()]
+];
+
+document.getElementById("galeria").innerHTML = MODELS.map(m => `
+  <section class="model m-${m.id}" id="modelo-${m.id}">
+    <div class="mhead"><div class="mletter">${m.id.toUpperCase()}</div><div><h2>${m.name}</h2><p>${m.desc}</p><div class="tags">${m.tags.map(t=>`<span>${t}</span>`).join('')}</div></div></div>
+    <div class="pages">${PAGES.map(p => sheet(p[0], p[2](m.id), p[1])).join('')}</div>
+    <div class="stripwrap"><span class="lbl">Rodapé ampliado (faixa do titular)</span><div class="stripscroll"><div class="sheet strip" data-t="teoria"><div class="pg">${ft(62)}</div></div></div></div>
+  </section>`).join('');
+
+/* ampliar página */
+let lb = null, lastFocus = null;
+function openLB(el){
+  lastFocus = el;
+  lb = document.createElement("div");
+  lb.className = "lb"; lb.setAttribute("role","dialog"); lb.setAttribute("aria-modal","true"); lb.setAttribute("aria-label","Página ampliada");
+  const model = el.closest("section.model").className.match(/m-[a-e]/)[0];
+  lb.innerHTML = `<button class="lb-close" type="button" id="lb-close">Fechar</button><div class="lb-in ${model}"></div>`;
+  const c = el.cloneNode(true); c.removeAttribute("tabindex"); c.removeAttribute("role");
+  lb.querySelector(".lb-in").appendChild(c);
+  document.body.appendChild(lb);
+  lb.addEventListener("click", e => { if (e.target === lb || e.target.id === "lb-close") closeLB(); });
+  lb.querySelector("#lb-close").focus();
+}
+function closeLB(){ if(!lb) return; lb.remove(); lb = null; if (lastFocus) lastFocus.focus(); }
+document.addEventListener("click", e => { const s = e.target.closest(".pages .sheet"); if (s && !lb) openLB(s); });
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") closeLB();
+  if ((e.key === "Enter" || e.key === " ") && e.target.matches(".pages .sheet")) { e.preventDefault(); openLB(e.target); }
+});
+</script>

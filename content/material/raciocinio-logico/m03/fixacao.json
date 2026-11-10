@@ -1,0 +1,671 @@
+{
+ "volume": "raciocinio-logico/m03",
+ "status": "APROVADO",
+ "autor": "AGENTE-MATB-27",
+ "notas": "Todas as 18 questoes sao reais (AOCP) do banco, com gabarito recalculado por valoracao, tabela-verdade ou regra de inferencia. Foram evitados os itens Certo/Errado, as questoes de Vunesp e FGV com texto longo e a tec_3447886 (com tabela-verdade em imagem), alem de enunciados que dependem de figura.",
+ "questoes": [
+  {
+   "id": "tec_2027471",
+   "capitulo": "raciocinio-logico/a04/s01",
+   "gabarito": "A",
+   "comentario": "A quarta afirmação é uma conjunção verdadeira: Pedro não passa no concurso e Ana não é atriz. Com Pedro reprovado, a terceira afirmação (disjunção verdadeira) obriga a mãe de Ana a não conhecer Paris. Na segunda, o antecedente é verdadeiro, então Rita não é bailarina. Portanto, Rita não é bailarina e Ana não é atriz, o que corresponde à alternativa A.",
+   "alternativas": {
+    "A": "Correta: Rita não é bailarina e Ana não é atriz decorrem das afirmações.",
+    "B": "Errada: Ana não é atriz e a mãe dela não conhecerá Paris, ao contrário do afirmado.",
+    "C": "Errada: a mãe de Ana não conhecerá Paris e Rita não é bailarina, o contrário do afirmado.",
+    "D": "Errada: Pedro não passa, e a mãe de Ana não conhecerá Paris, ao contrário do que diz a alternativa.",
+    "E": "Errada: Ana não é atriz, então a conjunção é falsa."
+   }
+  },
+  {
+   "id": "tec_177399",
+   "capitulo": "raciocinio-logico/a04/s01",
+   "gabarito": "B",
+   "comentario": "As três afirmações são disjunções exclusivas, em que exatamente uma parcela é verdadeira, e as três mulheres têm números diferentes de filhos. Testando a alternativa B (Laura com dois, Daniela com três e Luciana com um), a primeira afirmação tem Luciana com um filho e Daniela sem, a segunda tem Laura com dois e Luciana sem três, e a terceira tem Daniela com três e Luciana sem. As três valem. Na alternativa A, a segunda afirmação teria as duas parcelas verdadeiras, o que a disjunção exclusiva não admite.",
+   "alternativas": {
+    "A": "Errada: Laura com dois e Luciana com três tornaria verdadeiras as duas parcelas da segunda afirmação.",
+    "B": "Correta: satisfaz as três disjunções exclusivas ao mesmo tempo.",
+    "C": "Errada: com Laura com três filhos, a segunda afirmação teria as duas parcelas falsas.",
+    "D": "Errada: com Daniela com um e Luciana com dois, a segunda afirmação ficaria com as duas parcelas falsas.",
+    "E": "Errada: com Daniela com dois e Luciana com três, a primeira afirmação ficaria com as duas parcelas falsas."
+   }
+  },
+  {
+   "id": "tec_4216859",
+   "capitulo": "raciocinio-logico/a04/s01",
+   "gabarito": "E",
+   "comentario": "O ponto de partida é a informação final: Lucas foi selecionado. Na disjunção exclusiva \"Lucas ou Tiago, mas não ambos\", só uma parcela pode ser verdadeira; como Lucas entrou, Tiago ficou de fora. A bicondicional \"Marina se e somente se Tiago não\" exige valores iguais dos dois lados: ~Tiago é verdadeiro, então Marina foi selecionada. Na condicional \"Se Giovana, então não Marina\", o consequente é falso (Marina entrou); para a condicional não ficar falsa, o antecedente também é falso: Giovana não foi selecionada. Por fim, em \"Se Pedro não, então Giovana ou não Lucas\", o consequente é F ∨ F = F; logo, ~Pedro é falso e Pedro foi selecionado. Selecionados: Lucas, Pedro e Marina, três nomes, dentro do limite de um a quatro.",
+   "alternativas": {
+    "A": "Errada: Giovana não pode ter sido selecionada, porque Marina entrou e a primeira condicional ficaria falsa.",
+    "B": "Errada: falta Pedro; sem ele, a última condicional teria antecedente verdadeiro e consequente falso.",
+    "C": "Errada: falta Marina, que é obrigatória pela bicondicional, já que Tiago ficou de fora.",
+    "D": "Errada: Giovana e Marina juntas tornam falsa a condicional \"Se Giovana, então não Marina\"; e Pedro ficou de fora.",
+    "E": "Correta: Lucas (dado), Marina (bicondicional com ~Tiago) e Pedro (negação do antecedente forçada pela última condicional)."
+   }
+  },
+  {
+   "id": "tec_3208020",
+   "capitulo": "raciocinio-logico/a04/s01",
+   "gabarito": "E",
+   "comentario": "A afirmação V é uma condicional falsa: Keila caminha e Lídia não dança. Em II, com Keila caminhando, o consequente é falso, então Gilda não canta. A afirmação I é uma bicondicional falsa, em que as parcelas têm valores diferentes: como Gilda não canta, Lucas nada. Em III, com Lucas nadando, Ida não corre. Em IV, com Lídia sem dançar, Jader sapateia. A alternativa E, 'Keila não caminha ou Lucas nada', é verdadeira porque Lucas nada.",
+   "alternativas": {
+    "A": "Errada: Lídia não dança, então a conjunção é falsa.",
+    "B": "Errada: Ida não corre e Jader sapateia, então as duas parcelas são falsas.",
+    "C": "Errada: Ida não corre, então a conjunção é falsa.",
+    "D": "Errada: Jader sapateia e Lídia não dança, então a exclusiva é falsa.",
+    "E": "Correta: Lucas nada, e isso basta para tornar a disjunção verdadeira."
+   }
+  },
+  {
+   "id": "tec_3508621",
+   "capitulo": "raciocinio-logico/a04/s01",
+   "gabarito": "D",
+   "comentario": "As regras da empresa têm uma hierarquia clara: a quarta diz que qualquer produto com alta rotatividade vai para o armazém A, \"independentemente de seu valor ou tipo\". Essa expressão faz a regra valer acima das demais. O produto novo é não perecível e de alto valor, o que, sozinho, levaria à segunda regra (armazém B). Mas ele também tem alta rotatividade, e a quarta regra se sobrepõe: o destino é o armazém A. Repare que nada aqui depende de tabela-verdade; basta ler a condição que tem prioridade e verificar que o antecedente dela (alta rotatividade) é verdadeiro para o produto. Condicional com antecedente verdadeiro entrega o consequente.",
+   "alternativas": {
+    "A": "Errada: o armazém C só aparece para produto não perecível de baixo valor, e o produto é de alto valor.",
+    "B": "Errada: as regras não deixam o destino livre; a alta rotatividade fixa um único armazém.",
+    "C": "Errada: o armazém B valeria pela segunda regra, mas a regra da rotatividade se aplica independentemente do valor.",
+    "D": "Correta: a alta rotatividade dispara a quarta regra, que manda o produto para o armazém A em qualquer caso."
+   }
+  },
+  {
+   "id": "mentoria_mcn_raciocinio-logico_067_5f4117",
+   "capitulo": "raciocinio-logico/a04/s01",
+   "gabarito": "B",
+   "comentario": "Nas questões clássicas, todas as afirmações são tomadas como verdadeiras e o trabalho é descobrir o valor lógico de cada proposição simples. O método começa por um dos formatos fáceis, aqueles que entregam valores sem ambiguidade: uma proposição simples, uma conjunção verdadeira (todas as parcelas verdadeiras), uma disjunção inclusiva falsa (todas as parcelas falsas) ou uma condicional falsa (antecedente verdadeiro e consequente falso). A partir do valor obtido, passa-se às afirmações que usam a mesma proposição, como num dominó, até chegar às alternativas. Por isso a opção que descreve esse ponto de partida é a correta.",
+   "alternativas": {
+    "A": "Errada: atribuir falso a tudo contraria o próprio enunciado, que manda considerar as afirmações verdadeiras.",
+    "B": "Correta: proposição simples, conjunção verdadeira e disjunção falsa fixam valores únicos e abrem o caminho da dedução.",
+    "C": "Errada: a tabela-verdade completa é um método possível, mas lento, e não é obrigatória nas questões clássicas.",
+    "D": "Errada: não se troca condicional por bicondicional; isso mudaria o sentido das afirmações e geraria conclusões falsas.",
+    "E": "Errada: a ordem importa; começar por uma afirmação que admite vários casos leva a tentativas e erros."
+   }
+  },
+  {
+   "id": "mentoria_mcn_raciocinio-logico_068_76fbcc",
+   "capitulo": "raciocinio-logico/a04/s01",
+   "gabarito": "B",
+   "comentario": "Sejam c: \"Carlos é agente de plantão\" e m: \"Marcos é o escrivão responsável\". As premissas são c → m e c, ambas verdadeiras. Como a segunda é uma proposição simples, ela já entrega o valor: c é verdadeiro. Uma condicional verdadeira com antecedente verdadeiro obriga o consequente a ser verdadeiro, pois o único caso em que p → q é falsa é V → F. Essa é a regra do modus ponens (afirmação do antecedente): de p → q e p, conclui-se q. Logo, Marcos é o escrivão responsável.",
+   "alternativas": {
+    "A": "Errada: contradiz a segunda premissa, que afirma que Carlos é agente de plantão.",
+    "B": "Correta: modus ponens; antecedente verdadeiro numa condicional verdadeira garante o consequente.",
+    "C": "Errada: com c verdadeiro e m falso, a condicional c → m seria falsa, contrariando a premissa.",
+    "D": "Errada: as premissas não falam em falta ao plantão; a conclusão inventa um fato.",
+    "E": "Errada: a função de Marcos é deduzida com certeza pelo modus ponens."
+   }
+  },
+  {
+   "id": "mentoria_mcn_raciocinio-logico_069_ea194f",
+   "capitulo": "raciocinio-logico/a04/s01",
+   "gabarito": "C",
+   "comentario": "A disjunção exclusiva \"ou p, ou q\" (p ⊻ q) é verdadeira quando exatamente uma das parcelas é verdadeira. Aqui, p: \"Bruno realizou a diligência\" e q: \"Tiago realizou a diligência\". A segunda afirmação, proposição simples, diz que p é verdadeira. Se q também fosse verdadeira, as duas parcelas seriam V e a disjunção exclusiva ficaria falsa, contrariando o enunciado. Logo, q é falsa: Tiago não realizou a diligência. Note a diferença em relação à disjunção inclusiva, em que saber que uma parcela é verdadeira não diz nada sobre a outra.",
+   "alternativas": {
+    "A": "Errada: as duas parcelas verdadeiras tornam falsa a disjunção exclusiva.",
+    "B": "Errada: a segunda premissa afirma que Bruno realizou a diligência.",
+    "C": "Correta: com Bruno verdadeiro, a exclusividade obriga Tiago a ser falso.",
+    "D": "Errada: a afirmação sobre Bruno é premissa verdadeira, não pode ser declarada falsa.",
+    "E": "Errada: participação conjunta é exatamente o caso que a disjunção exclusiva proíbe."
+   }
+  },
+  {
+   "id": "mentoria_mcn_raciocinio-logico_070_0d87ed",
+   "capitulo": "raciocinio-logico/a04/s01",
+   "gabarito": "C",
+   "comentario": "Sejam a: \"o suspeito estava armado\" e p: \"cometeu crime de porte ilegal\". Premissas: a → p e ~p. A condicional só é falsa no caso V → F; como o consequente é falso, o antecedente não pode ser verdadeiro, senão a premissa ficaria falsa. Logo, a é falso: o suspeito não estava armado. Essa é a regra do modus tollens (negação do consequente): de p → q e ~q, conclui-se ~p. Ela equivale a aplicar o modus ponens à contrapositiva ~p → ~a.",
+   "alternativas": {
+    "A": "Errada: as premissas não falam em outro crime; a conclusão vai além do que foi dado.",
+    "B": "Errada: fiança e liberação não aparecem nas premissas; nada permite deduzi-las.",
+    "C": "Correta: modus tollens; consequente falso numa condicional verdadeira obriga o antecedente a ser falso.",
+    "D": "Errada: é possível concluir; a negação do consequente determina o valor do antecedente.",
+    "E": "Errada: armado (V) com porte ilegal falso (F) tornaria a condicional falsa."
+   }
+  },
+  {
+   "id": "mentoria_mcn_raciocinio-logico_071_8d3fad",
+   "capitulo": "raciocinio-logico/a04/s01",
+   "gabarito": "B",
+   "comentario": "A frase \"O mandado foi expedido e a equipe tática foi acionada\" é uma conjunção (p ∧ q). Conjunção verdadeira é um dos formatos fáceis: ela só é verdadeira quando as duas parcelas são verdadeiras. Basta uma parcela falsa para a conjunção inteira ficar falsa. Assim, sabendo que a afirmação é verdadeira, conclui-se que p é V (o mandado foi expedido) e q é V (a equipe foi acionada). A opção correta é a que reafirma as duas parcelas como verdadeiras.",
+   "alternativas": {
+    "A": "Errada: com a equipe não acionada, uma parcela seria falsa e a conjunção ficaria falsa.",
+    "B": "Correta: conjunção verdadeira exige que as duas proposições simples sejam verdadeiras.",
+    "C": "Errada: na conjunção, as parcelas não se compensam; a falsidade da segunda tornaria tudo falso.",
+    "D": "Errada: o conectivo \"e\" forma conjunção, não disjunção, e a conjunção não admite parcela falsa.",
+    "E": "Errada: contradição é proposição sempre falsa; esta é verdadeira por hipótese do enunciado."
+   }
+  },
+  {
+   "id": "tec_3140498",
+   "capitulo": "raciocinio-logico/a04/s02",
+   "gabarito": "B",
+   "comentario": "Sejam l: \"o laudo pericial foi conclusivo\" e s: \"Paulo sairá do presídio hoje\". A proposição I é l → s e a II é l, ambas verdadeiras. Pelo modus ponens, condicional verdadeira com antecedente verdadeiro garante o consequente: s é verdadeira. Logo, Paulo sairá do presídio hoje. Cuidado com as alternativas que trazem culpa ou inocência: o argumento não fala disso. Numa questão de dedução, só vale a conclusão que decorre das premissas, não o que parece plausível no mundo real.",
+   "alternativas": {
+    "A": "Errada: as premissas não tratam do passado criminal de Paulo; nada permite essa conclusão.",
+    "B": "Correta: modus ponens; de l → s e l, conclui-se s.",
+    "C": "Errada: culpa não aparece nas premissas e não decorre delas.",
+    "D": "Errada: inocência também não é tratada; sair do presídio não prova inocência.",
+    "E": "Errada: contradiz o consequente que o modus ponens obriga a ser verdadeiro."
+   }
+  },
+  {
+   "id": "tec_2561506",
+   "capitulo": "raciocinio-logico/a04/s02",
+   "gabarito": "C",
+   "comentario": "Com P falsa e Q e R verdadeiras, só uma combinação serve: Maciel não passou no concurso e usa bigode. A conjunção P é falsa, a disjunção Q é verdadeira pelo bigode e a condicional R é verdadeira porque o antecedente é falso. A alternativa C, 'se passou, então não usa bigode', é uma condicional de antecedente falso e, portanto, verdadeira. As demais afirmam que ele passou ou que não usa bigode.",
+   "alternativas": {
+    "A": "Errada: ele não passou no concurso, ao contrário do afirmado.",
+    "B": "Errada: ele usa bigode, ao contrário do afirmado.",
+    "C": "Correta: a condicional tem antecedente falso e é verdadeira.",
+    "D": "Errada: a bicondicional teria valores diferentes nas parcelas e seria falsa.",
+    "E": "Errada: a conjunção exigiria que ele tivesse passado, o que é falso."
+   }
+  },
+  {
+   "id": "tec_2980252",
+   "capitulo": "raciocinio-logico/a04/s02",
+   "gabarito": "E",
+   "comentario": "A cadeia é: sanitarista leva a agente portuário, agente portuário leva a trabalhar às quintas, e assim por diante. Como Paulo não trabalha às quintas, pelo modus tollens ele não é agente portuário, e, de novo pelo modus tollens, não é sanitarista. A alternativa E, 'Paulo não é Agente Portuário', está correta. As demais tratam do aniversário e do bolo, que dependem de trabalhar às quintas e ficam sem determinação.",
+   "alternativas": {
+    "A": "Errada: a presença no aniversário depende de trabalhar às quintas, e a premissa só vale se ele trabalhasse.",
+    "B": "Errada: o primeiro pedaço de bolo depende da presença, sem valor determinado.",
+    "C": "Errada: a felicidade do pai não é tema das premissas.",
+    "D": "Errada: se Paulo fosse sanitarista, seria agente portuário e trabalharia às quintas.",
+    "E": "Correta: a negação do consequente de Q nega o antecedente: não é agente portuário."
+   }
+  },
+  {
+   "id": "tec_2177400",
+   "capitulo": "raciocinio-logico/a04/s02",
+   "gabarito": "D",
+   "comentario": "Todo papagaio é verde e tudo que é verde é pepino. Os papagaios estão no conjunto dos verdes, que está no conjunto dos pepinos. Logo, todo papagaio é pepino. A conclusão decorre das premissas, e o argumento é válido (silogismo hipotético ou diagrama). A veracidade real das premissas é irrelevante para a validade.",
+   "alternativas": {
+    "A": "Errada: a validade independe de ser falso o conteúdo da premissa.",
+    "B": "Errada: a validade não depende de a conclusão ser verdadeira na vida real.",
+    "C": "Errada: a premissa P afirma que todo papagaio é verde, e isso é tomado como verdadeiro.",
+    "D": "Correta: as premissas P e Q implicam R pela transitividade da inclusão.",
+    "E": "Errada: P, Q e R não são verdadeiras no mundo real, mas o argumento é válido."
+   }
+  },
+  {
+   "id": "tec_1864010",
+   "capitulo": "raciocinio-logico/a04/s02",
+   "gabarito": "E",
+   "comentario": "A afirmação está errada. No argumento dedutivo, a conclusão decorre necessariamente das premissas: se o argumento é válido e as premissas são verdadeiras, a conclusão não pode ser falsa. É isso que distingue a dedução da indução, em que as premissas apenas tornam a conclusão provável. A primeira parte do item (a regra de inferência é de natureza lógica) está bem posta; o erro está em dizer que é possível ter conclusão falsa com premissas verdadeiras. Essa possibilidade é justamente a marca de um argumento inválido, ou de um raciocínio indutivo, e não da dedução.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_1864012",
+   "capitulo": "raciocinio-logico/a04/s02",
+   "gabarito": "E",
+   "comentario": "A afirmação está errada. Proposições, sim, recebem valor lógico: são verdadeiras ou falsas conforme correspondam ou não aos fatos. Os argumentos, porém, não são verdadeiros nem falsos; eles são válidos ou inválidos. A validade é uma propriedade da forma: o argumento é válido quando a verdade das premissas garante a verdade da conclusão. Um argumento pode ser válido com premissas falsas e inválido com premissas e conclusão verdadeiras. Por isso, atribuir verdade ou falsidade ao argumento como um todo mistura os dois planos que o estudo da argumentação separa: veracidade das proposições e validade da estrutura.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_1866142",
+   "capitulo": "raciocinio-logico/a04/s02",
+   "gabarito": "C",
+   "comentario": "A afirmação está certa. Silogismo é o argumento formado por exatamente duas premissas e uma conclusão, ou seja, três proposições. No silogismo categórico clássico, essas três proposições envolvem três termos (maior, menor e médio), e o termo médio aparece nas duas premissas e some na conclusão. Também se fala em silogismo hipotético (cadeia de duas condicionais) e disjuntivo, que mantêm a mesma estrutura de duas premissas e uma conclusão. O item descreve exatamente essa estrutura, sem exigir que o argumento seja válido, então está correto.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_508321",
+   "capitulo": "raciocinio-logico/a04/s02",
+   "gabarito": "B",
+   "comentario": "Cada \"ou... ou\" é disjunção exclusiva: exatamente uma parcela é verdadeira. Teste a primeira afirmação. Se Marcos fosse médico, ele não seria engenheiro, e a terceira afirmação obrigaria Tiago a ser engenheiro. Aí Tiago não seria advogado, e a quarta obrigaria Marcos a ser advogado, o que contradiz Marcos médico. Então Daniel é médico. Com isso, Daniel não é advogado, e a segunda afirmação obriga Tiago a ser engenheiro. Tiago não é advogado, logo, pela quarta, Marcos é advogado. Conferindo: Daniel médico, Tiago engenheiro e Marcos advogado deixam exatamente uma parcela verdadeira em cada uma das quatro afirmações.",
+   "alternativas": {
+    "A": "Errada: com Daniel advogado e Tiago engenheiro, a segunda afirmação fica com as duas parcelas verdadeiras, o que a disjunção exclusiva proíbe.",
+    "B": "Correta: Daniel médico, Tiago engenheiro e Marcos advogado satisfazem as quatro disjunções exclusivas.",
+    "C": "Errada: com Daniel médico e Tiago advogado, a segunda afirmação fica com as duas parcelas falsas.",
+    "D": "Errada: com Tiago médico, a primeira afirmação fica com as duas parcelas falsas (nem Daniel nem Marcos são médicos).",
+    "E": "Errada: com Marcos médico e Tiago advogado, a terceira afirmação fica sem parcela verdadeira."
+   }
+  },
+  {
+   "id": "tec_4040964",
+   "capitulo": "raciocinio-logico/a04/s02",
+   "gabarito": "D",
+   "comentario": "As afirmações formam uma cadeia de condicionais. Sejam l: liberar o laboratório, c: computadores ligados, s: software iniciado e r: registro das atividades. Temos l → c (I), c → s (III) e s → r (II). Pela transitividade, l → r. O dado novo é ~r. Pelo modus tollens, de s → r e ~r, conclui-se ~s; de c → s e ~s, conclui-se ~c; de l → c e ~c, conclui-se ~l. Numa cadeia de condicionais cujo último consequente é falso, todos os elementos anteriores são falsos, de trás para a frente. Logo, a escola não liberou o laboratório.",
+   "alternativas": {
+    "A": "Errada: liberar o laboratório levaria, pela cadeia, ao registro, que não houve.",
+    "B": "Errada: os computadores não foram ligados; se fossem, o software iniciaria e haveria registro.",
+    "C": "Errada: o software não iniciou, pois o registro estaria garantido pela afirmação II.",
+    "D": "Correta: modus tollens aplicado de trás para a frente na cadeia leva a ~l.",
+    "E": "Errada: a negação do último consequente permite concluir a negação de todos os elementos da cadeia."
+   }
+  },
+  {
+   "id": "tec_4091386",
+   "capitulo": "raciocinio-logico/a04/s02",
+   "gabarito": "C",
+   "comentario": "A afirmação está certa. A proposição (P → Q) ∧ (Q → R) é uma conjunção de duas condicionais encadeadas. Se ela é verdadeira, cada condicional é verdadeira. Supondo P verdadeira, a primeira condicional obriga Q a ser verdadeira (modus ponens); com Q verdadeira, a segunda obriga R a ser verdadeira. É a transitividade da condicional, também chamada silogismo hipotético: de P → Q e Q → R, conclui-se P → R. Assim, a verdade de P garante logicamente a verdade de R, como diz o item.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_4220109",
+   "capitulo": "raciocinio-logico/a04/s02",
+   "gabarito": "B",
+   "comentario": "Sejam p: \"Paulo é ciclista\", b: \"Bianca é tenista\" e h: \"Helena é boxeadora\". As premissas são p → b e b → ~h. A pergunta pede uma proposição obrigatoriamente verdadeira. A contrapositiva de p → b é ~b → ~p, que é equivalente à original e, portanto, também verdadeira: \"Se Bianca não é tenista, então Paulo não é ciclista\". As demais alternativas trocam a ordem (recíproca) ou só negam os dois lados (inversa), e essas formas não são equivalentes à condicional original. A transitividade daria ainda p → ~h, mas essa forma não aparece nas opções.",
+   "alternativas": {
+    "A": "Errada: ~b → h é a inversa de b → ~h (nega os dois lados) e não é equivalente à premissa.",
+    "B": "Correta: é a contrapositiva de p → b, equivalente à premissa e por isso verdadeira.",
+    "C": "Errada: ~p → h nega o antecedente de p → ~h; a falácia da negação do antecedente não garante nada.",
+    "D": "Errada: ~h → b é a recíproca de b → ~h, que não é equivalente à premissa.",
+    "E": "Errada: b → p é a recíproca de p → b; Bianca pode ser tenista sem Paulo ser ciclista."
+   }
+  },
+  {
+   "id": "tec_3706513",
+   "capitulo": "raciocinio-logico/a04/s03",
+   "gabarito": "B",
+   "comentario": "\"É suficiente ter o mapeamento completo para racionalizar\" traduz a condicional m → r: mapeamento completo é condição suficiente, e racionalizar é condição necessária. O enunciado informa ~r: o processo não foi racionalizado. Pelo modus tollens, de m → r e ~r, conclui-se ~m: o mapeamento não estava completo. Pense no caso proibido da condicional, V → F. Se o mapeamento estivesse completo e o processo não fosse racionalizado, a hipótese do gestor seria falsa. Como a hipótese é tomada como verdadeira, só resta o mapeamento incompleto.",
+   "alternativas": {
+    "A": "Errada: mapeamento completo com processo não racionalizado tornaria falsa a hipótese.",
+    "B": "Correta: modus tollens; negado o consequente, nega-se o antecedente.",
+    "C": "Errada: a hipótese fala de suficiência; ela não informa se o mapeamento é ou não necessário.",
+    "D": "Errada: o argumento não trata da possibilidade de racionalizar, só do que ocorreu.",
+    "E": "Errada: contradiz a hipótese, que afirma justamente que o mapeamento completo garante a racionalização."
+   }
+  },
+  {
+   "id": "tec_2775494",
+   "capitulo": "raciocinio-logico/a04/s03",
+   "gabarito": "C",
+   "comentario": "Refrigerantes são mais baratos que sucos. Se o dinheiro não basta para dois refrigerantes, também não basta para dois sucos, que custam mais. A alternativa C está correta. Não se pode afirmar que o dinheiro não bastaria para um refrigerante, nem que bastaria para um suco ou para um refrigerante, pois não há informação sobre o valor exato disponível.",
+   "alternativas": {
+    "A": "Errada: nada se sabe sobre o valor de um só refrigerante.",
+    "B": "Errada: o dinheiro para um suco pode ou não existir, sem informação.",
+    "C": "Correta: dois sucos custam mais que dois refrigerantes, então o dinheiro não basta.",
+    "D": "Errada: ter dinheiro para um suco não decorre da informação.",
+    "E": "Errada: ter dinheiro para um refrigerante não decorre da informação."
+   }
+  },
+  {
+   "id": "tec_2288604",
+   "capitulo": "raciocinio-logico/a04/s03",
+   "gabarito": "D",
+   "comentario": "A cadeia é: aprovado leva a escrivão, escrivão leva a expedir intimações, expedir leva a acompanhar diligências. Como José não acompanhou as diligências, por modus tollens ele não expediu intimações, não é escrivão e não foi aprovado. A alternativa D, 'não expediu intimações ou foi aprovado', é uma disjunção em que a primeira parcela é verdadeira. As demais afirmam o contrário de algum desses resultados.",
+   "alternativas": {
+    "A": "Errada: ele não foi aprovado, ao contrário do afirmado.",
+    "B": "Errada: ele não é escrivão, ao contrário do afirmado.",
+    "C": "Errada: ele não expediu intimações, ao contrário do afirmado.",
+    "D": "Correta: a primeira parcela é verdadeira, e a disjunção basta ser verdadeira.",
+    "E": "Errada: ele acompanhou as diligências, mas isso é falso."
+   }
+  },
+  {
+   "id": "tec_1674223",
+   "capitulo": "raciocinio-logico/a04/s03",
+   "gabarito": "C",
+   "comentario": "Na cadeia, se A não pousa na pista 3, então B não pousa na 2; se B não pousa na 2, então C pousa na 3; se C pousa na 3, então D não pousa na 1. Como D pousa na pista 1, por modus tollens C não pousa na 3, depois B pousa na 2 (a negação de B não pousar na 2) e A pousa na pista 3. A alternativa C, 'o avião B deve pousar na pista 2', está correta.",
+   "alternativas": {
+    "A": "Errada: A pousa na pista 3, o contrário do que diz a alternativa.",
+    "B": "Errada: A pousa na pista 3, e não na pista 1.",
+    "C": "Correta: a cadeia leva à conclusão de que B pousa na pista 2.",
+    "D": "Errada: A pousa na pista 3, e não na 2.",
+    "E": "Errada: B pousa na pista 2, o contrário do que diz a alternativa."
+   }
+  },
+  {
+   "id": "tec_1864016",
+   "capitulo": "raciocinio-logico/a04/s03",
+   "gabarito": "E",
+   "comentario": "A afirmação está errada em duas partes. A primeira frase está correta: o argumento é válido quando a conclusão é consequência do conjunto de premissas. A segunda erra: num argumento válido, premissas verdadeiras implicam necessariamente conclusão verdadeira; é exatamente isso que significa validade. A terceira também erra: a validade depende somente da relação entre premissas e conclusão, isto é, da forma do argumento, e não do conteúdo ou da veracidade das proposições. Validade e veracidade são planos distintos, e o item mistura os dois.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_1866148",
+   "capitulo": "raciocinio-logico/a04/s03",
+   "gabarito": "C",
+   "comentario": "A afirmação está certa. Sejam o: \"sou organizado\", t: \"trabalho bem\", a: \"me atraso\" e f: \"me sinto confiante\". Premissas: o → t, ~a → f, o (me organizei) e ~f (não me senti confiante). De o → t e o, pelo modus ponens, conclui-se t: trabalhei bem. De ~a → f e ~f, pelo modus tollens, conclui-se ~(~a), isto é, a: cheguei atrasado. A conclusão \"trabalhei bem, mas cheguei atrasado\" é a conjunção t ∧ a, e as duas parcelas foram obtidas por regras válidas. Logo, o argumento é válido.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_1866149",
+   "capitulo": "raciocinio-logico/a04/s03",
+   "gabarito": "E",
+   "comentario": "A afirmação está errada. Sejam e: \"o Euro estava em alta\", f: \"estamos no final do ano\" e i: \"teremos inflação\". As premissas são (e ∧ f) → i e e ∧ i; a conclusão é f. Para testar a validade, use o método da conclusão falsa: suponha f falsa. Então e ∧ f é falsa e a primeira premissa, com antecedente falso, fica verdadeira. A segunda premissa pode ser verdadeira com e e i verdadeiras. Achamos premissas todas verdadeiras e conclusão falsa, o que prova a invalidade. O argumento afirma o consequente (i) para tentar recuperar parte do antecedente.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_841683",
+   "capitulo": "raciocinio-logico/a04/s03",
+   "gabarito": "B",
+   "comentario": "Se não sou policial, a primeira afirmação (sou policial ou não sou legista) exige que eu não seja legista. Na segunda (sou médico ou sou legista), como não sou legista, sou médico. Na terceira (sou perito ou não sou médico), como sou médico, a parcela 'não sou médico' é falsa e preciso ser perito. Logo, sou perito e sou médico, alternativa B.",
+   "alternativas": {
+    "A": "Errada: sou médico, e também sou perito, ao contrário do que a alternativa diz sobre ser perito.",
+    "B": "Correta: sou médico e perito, o que decorre das afirmações.",
+    "C": "Errada: não sou legista, ao contrário do afirmado.",
+    "D": "Errada: não sou policial, mas sou perito, o que contraria a segunda parte.",
+    "E": "Errada: não sou legista, ao contrário do afirmado."
+   }
+  },
+  {
+   "id": "tec_1420349",
+   "capitulo": "raciocinio-logico/a04/s03",
+   "gabarito": "E",
+   "comentario": "As três condicionais formam uma cadeia: LEÃO → VACA → PORCO → PATO. O dado é NÃO PATO, ou seja, o último consequente é falso. Aplicando o modus tollens de trás para a frente: PORCO → PATO com ~PATO dá ~PORCO; VACA → PORCO com ~PORCO dá ~VACA; LEÃO → VACA com ~VACA dá ~LEÃO. Todos os elementos da cadeia ficam falsos. A única alternativa compatível é NÃO LEÃO.",
+   "alternativas": {
+    "A": "Errada: PORCO é falso, pois PORCO verdadeiro obrigaria PATO pela terceira condicional.",
+    "B": "Errada: VACA é falso; com VACA verdadeiro, a cadeia levaria a PORCO e a PATO.",
+    "C": "Errada: LEÃO e VACA são falsos pelo modus tollens em cadeia.",
+    "D": "Errada: VACA é falso, já que PORCO é falso e VACA → PORCO.",
+    "E": "Correta: negado o último elo (PATO), nega-se cada antecedente até LEÃO."
+   }
+  },
+  {
+   "id": "tec_3820217",
+   "capitulo": "raciocinio-logico/a04/s03",
+   "gabarito": "A",
+   "comentario": "O argumento é dedutivo, porque pretende que a conclusão decorra necessariamente das premissas (I correta), e é um silogismo categórico, pois as três proposições são do tipo \"todo\" e \"nenhum\", relacionando classes (II correta). Mas ele é inválido (III errada). A conclusão \"nenhum administrador é profissional com formação universitária\" fala de todo o grupo dos profissionais com formação universitária, enquanto a premissa 1 fala só de uma parte desse grupo (os contadores). A conclusão afirma sobre um grupo mais do que as premissas permitem. Contraexemplo: um administrador com diploma universitário torna as premissas verdadeiras e a conclusão falsa. A IV erra porque o argumento não parte de casos particulares.",
+   "alternativas": {
+    "A": "Correta: só I (dedutivo) e II (silogismo categórico) estão certas.",
+    "B": "Errada: a IV é falsa; o argumento é dedutivo, não indutivo.",
+    "C": "Errada: a III é falsa (o argumento é inválido) e a IV também.",
+    "D": "Errada: inclui a III; um administrador com diploma derruba a validade.",
+    "E": "Errada: inclui a III e a IV, ambas falsas."
+   }
+  },
+  {
+   "id": "tec_4089183",
+   "capitulo": "raciocinio-logico/a04/s04",
+   "gabarito": "A",
+   "comentario": "As duas condicionais encadeadas dizem que, se a denúncia foi aceita, o caso será julgado, e que, se o caso será julgado, o processo será iniciado. O processo não foi iniciado, então, por modus tollens, o caso não será julgado e, de novo, a denúncia não foi aceita. A alternativa A reúne as duas conclusões.",
+   "alternativas": {
+    "A": "Correta: a denúncia não foi aceita e o caso não será julgado, como a cadeia mostra.",
+    "B": "Errada: a denúncia foi aceita, o que contraria o modus tollens.",
+    "C": "Errada: o caso não será julgado, ao contrário do que diz a alternativa.",
+    "D": "Errada: a denúncia não foi aceita e o caso não será julgado, ao contrário do afirmado.",
+    "E": "Errada: nem a denúncia foi aceita nem o caso será julgado."
+   }
+  },
+  {
+   "id": "tec_2775471",
+   "capitulo": "raciocinio-logico/a04/s04",
+   "gabarito": "E",
+   "comentario": "Esther é escritora, então, pela segunda condicional (se Beth é bailarina, Esther não é escritora), por modus tollens Beth não é bailarina. Na primeira (se Beth não é bailarina, Carla é cantora), o antecedente é verdadeiro, então Carla é cantora. A alternativa E está correta. As demais afirmam que Beth é bailarina ou que Carla não é cantora.",
+   "alternativas": {
+    "A": "Errada: Beth não é bailarina, ao contrário do afirmado.",
+    "B": "Errada: Carla é cantora, ao contrário do afirmado.",
+    "C": "Errada: as duas parcelas são falsas, pois Beth não é bailarina e Esther é escritora.",
+    "D": "Errada: a exclusiva é falsa, pois as parcelas têm o mesmo valor.",
+    "E": "Correta: a primeira condicional, com antecedente verdadeiro, leva a Carla ser cantora."
+   }
+  },
+  {
+   "id": "tec_2900704",
+   "capitulo": "raciocinio-logico/a04/s04",
+   "gabarito": "C",
+   "comentario": "Enzo não foi capturado. Pela primeira condicional, se Dênis tivesse sido capturado, Enzo também teria sido; logo, Dênis não foi capturado. Pela segunda, como Dênis não foi capturado, Cícero foi. Pela terceira, como Cícero foi capturado, Adelmo não foi. Assim, além de Enzo, Adelmo e Dênis não foram capturados, alternativa C.",
+   "alternativas": {
+    "A": "Errada: Belmiro não é determinado, e Adelmo não foi capturado.",
+    "B": "Errada: Cícero foi capturado, ao contrário do afirmado.",
+    "C": "Correta: Adelmo e Dênis não foram capturados, conforme a cadeia.",
+    "D": "Errada: Cícero foi capturado, ao contrário do afirmado.",
+    "E": "Errada: nada se sabe sobre Belmiro."
+   }
+  },
+  {
+   "id": "tec_2921171",
+   "capitulo": "raciocinio-logico/a04/s04",
+   "gabarito": "C",
+   "comentario": "A frase tem uma condicional dentro de outra: \"Se o programa funciona (p), então, se disparar o alarme (a), anexa-se relatório (r)\", isto é, p → (a → r), equivalente a (p ∧ a) → r. O dado é ~r. Pelo modus tollens, conclui-se ~(p ∧ a). Pela lei de De Morgan, ~(p ∧ a) equivale a ~p ∨ ~a: o programa não estava funcionando ou o alarme não disparou. Com certeza, só se sabe que pelo menos uma das duas coisas falhou; não dá para dizer qual.",
+   "alternativas": {
+    "A": "Errada: alarme disparado só é compatível com o programa parado, e isso não está garantido.",
+    "B": "Errada: o alarme pode ter disparado com o programa parado; só a disjunção é certa.",
+    "C": "Correta: ~(p ∧ a) equivale a ~a ∨ ~p, a única conclusão garantida.",
+    "D": "Errada: é um dos cenários possíveis, mas não o único; não é conclusão certa.",
+    "E": "Errada: também é só um cenário possível; o programa pode ter estado parado."
+   }
+  },
+  {
+   "id": "tec_2959360",
+   "capitulo": "raciocinio-logico/a04/s04",
+   "gabarito": "A",
+   "comentario": "A proposição III é a condicional I → II. Condicional falsa é um dos formatos fáceis: ela só é falsa quando o antecedente é verdadeiro e o consequente é falso (V → F). Se III é falsa, então I é verdadeira (Alessandra é farmacêutica) e II é falsa (Cecília não é psicóloga). A alternativa que corresponde a esse quadro é a que afirma a verdade de I.",
+   "alternativas": {
+    "A": "Correta: na condicional falsa, o antecedente (I) é necessariamente verdadeiro.",
+    "B": "Errada: o consequente (II) de uma condicional falsa é falso.",
+    "C": "Errada: com I e II verdadeiras, a condicional III seria verdadeira.",
+    "D": "Errada: com I falsa, a condicional III seria verdadeira, qualquer que fosse II."
+   }
+  },
+  {
+   "id": "tec_2961558",
+   "capitulo": "raciocinio-logico/a04/s04",
+   "gabarito": "B",
+   "comentario": "A afirmação 'todos os servidores da UFTM foram aprovados em concurso' equivale a 'se é servidor, então foi aprovado'. Dela só se pode concluir a contrapositiva (se não foi aprovado, não é servidor). Quem não é servidor pode ter sido aprovado ou não, e por isso a alternativa B está correta. As demais negam a condicional, admitem exceção ou invertem a ordem dos termos.",
+   "alternativas": {
+    "A": "Errada: quem é servidor foi aprovado, e não o contrário do que a alternativa afirma.",
+    "B": "Correta: quem não é servidor pode ou não ter sido aprovado, o que a afirmação não exclui.",
+    "C": "Errada: quem é servidor não pode deixar de ter sido aprovado, ao contrário do que diz a alternativa.",
+    "D": "Errada: a recíproca, que parte do aprovado para o servidor, não decorre da condicional original."
+   }
+  },
+  {
+   "id": "tec_3298451",
+   "capitulo": "raciocinio-logico/a04/s04",
+   "gabarito": "E",
+   "comentario": "Sejam v: \"Paulo votou\", j: \"Paulo justificou o voto\" e a: \"terá que acertar as contas\". A proposição P é (~v ∧ ~j) → a e a Q é ~a. Pelo modus tollens, nega-se o antecedente: ~(~v ∧ ~j). Pela lei de De Morgan, a negação de uma conjunção vira a disjunção das negações: ~(~v) ∨ ~(~j), ou seja, v ∨ j. Conclusão: Paulo votou ou justificou o voto. Não há como saber qual das duas coisas ocorreu, só que ao menos uma ocorreu.",
+   "alternativas": {
+    "A": "Errada: Paulo pode ter votado; só se sabe que votou ou justificou, então ~v não é garantido.",
+    "B": "Errada: Paulo pode não ter votado e ter justificado; votar não é garantido.",
+    "C": "Errada: se não justificou, então votou; justificar ou não fica indeterminado.",
+    "D": "Errada: ele pode ter votado sem justificar; a justificativa não é garantida.",
+    "E": "Correta: a negação de (~v ∧ ~j) é, por De Morgan, v ∨ j."
+   }
+  },
+  {
+   "id": "tec_2980254",
+   "capitulo": "raciocinio-logico/a04/s04",
+   "gabarito": "B",
+   "comentario": "A afirmação é uma conjunção de duas condicionais: \"se é filho de Tião, chama-se Tiãozinho\" e \"se é filha de Tião, chama-se Tianinha\". Ambas são verdadeiras. Se Tião tem exatamente um filho ou filha, essa pessoa é filho ou é filha; no primeiro caso, a primeira condicional dá o nome Tiãozinho, e no segundo, a segunda dá Tianinha. Logo, a alternativa B decorre da afirmação. As erradas invertem as condicionais (recíproca) ou supõem fatos não informados, como a existência de dois filhos.",
+   "alternativas": {
+    "A": "Errada: a afirmação não garante que Tião tenha filho e filha; pode ter só um deles.",
+    "B": "Correta: com um único filho ou filha, uma das duas condicionais se aplica e fixa o nome.",
+    "C": "Errada: é a recíproca da segunda condicional; pode haver Tianinha que não seja filha de Tião.",
+    "D": "Errada: a quantidade de filhos não torna a afirmação falsa; cada um recebe o nome indicado.",
+    "E": "Errada: é a recíproca da primeira condicional; nem todo Tiãozinho precisa ser filho de Tião."
+   }
+  },
+  {
+   "id": "tec_2984815",
+   "capitulo": "raciocinio-logico/a04/s04",
+   "gabarito": "D",
+   "comentario": "A estrutura é a disjunção inclusiva a ∨ (f ∧ i), com a: \"Altair é alto\", f: \"é forte\" e i: \"é inteligente\". Ela é verdadeira e a primeira parcela é falsa (Altair não é alto). Numa disjunção verdadeira com uma parcela falsa, a outra tem de ser verdadeira: f ∧ i é verdadeira. Conjunção verdadeira tem as duas parcelas verdadeiras, então Altair é forte e é inteligente. Entre as alternativas, a única certa é a que afirma que ele é inteligente.",
+   "alternativas": {
+    "A": "Errada: a conjunção f ∧ i verdadeira exige que Altair seja inteligente.",
+    "B": "Errada: a mesma conjunção exige que Altair seja forte.",
+    "C": "Errada: nega as duas parcelas que a conjunção verdadeira obriga a afirmar.",
+    "D": "Correta: f ∧ i é verdadeira, e i é uma de suas parcelas.",
+    "E": "Errada: \"não é alto\" não informa altura em centímetros; a conclusão inventa um dado."
+   }
+  },
+  {
+   "id": "tec_2062910",
+   "capitulo": "raciocinio-logico/a04/s04",
+   "gabarito": "E",
+   "comentario": "A afirmação está errada. Um quarto de hora são 15 minutos e um terço de hora são 20 minutos. O mínimo múltiplo comum de 15 e 20 é 60, então, se os dois passarem juntos pelo ponto C em algum momento, voltarão a coincidir a cada 60 minutos. Mas o enunciado não diz que eles partem juntos. Se Tibúrcio passa nos minutos 0, 15, 30 e 45 e Torquato nos minutos 2, 22 e 42, eles nunca se encontram no ponto C. Além disso, equivalência exige ida e volta: saber que os dois se encontram a cada hora não informa os intervalos de 15 e 20 minutos de cada um. Logo, as duas afirmações não são equivalentes.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_2974828",
+   "capitulo": "raciocinio-logico/a04/s04",
+   "gabarito": "E",
+   "comentario": "A frase é uma condicional dentro de outra: \"se o sistema estiver ligado (s), sempre que houver atraso (a), haverá registro (r)\", ou seja, s → (a → r), equivalente a (s ∧ a) → r. Hoje não houve registro: ~r. Pelo modus tollens, conclui-se ~(s ∧ a), que pela lei de De Morgan equivale a ~s ∨ ~a. Assim, com certeza, não houve atraso ou o sistema não estava ligado. Qualquer conclusão mais específica escolhe um dos casos possíveis, mas não está garantida.",
+   "alternativas": {
+    "A": "Errada: atraso só seria possível com o sistema desligado, e isso não está garantido.",
+    "B": "Errada: pode ter havido atraso com o sistema desligado; ~a sozinho não é certo.",
+    "C": "Errada: é um cenário possível, mas não o único compatível com ~r.",
+    "D": "Errada: também é só um cenário possível; o sistema pode ter estado desligado.",
+    "E": "Correta: ~(s ∧ a) equivale a ~a ∨ ~s, a única conclusão garantida."
+   }
+  },
+  {
+   "id": "tec_1719360",
+   "capitulo": "raciocinio-logico/a04/s04",
+   "gabarito": "B",
+   "comentario": "Para achar o argumento válido, compare cada opção com as formas conhecidas. Na B, a premissa é \"se pesquisei todas as provas (p), então encontrei o culpado (c)\" e o dado é ~c. Pelo modus tollens, conclui-se ~p: não examinei todas as provas. A troca de \"pesquisado\" por \"estudei\" deve ser lida como a mesma ação; a forma é a do modus tollens, a única válida entre as opções. A traz a falácia da negação do antecedente; C e D concluem algo que as premissas não garantem; E generaliza a partir de \"muitos\".",
+   "alternativas": {
+    "A": "Errada: de p → q e ~p não se conclui ~q; é a falácia da negação do antecedente.",
+    "B": "Correta: de p → q e ~q conclui-se ~p (modus tollens).",
+    "C": "Errada: todo perito gosta de datiloscopia, mas quem não é perito também pode gostar.",
+    "D": "Errada: \"todo perito é competente\" não faz de todo competente um perito; é a inversão da relação.",
+    "E": "Errada: \"muitos peritos moram em Natal\" não garante que todo perito more lá."
+   }
+  },
+  {
+   "id": "tec_3839569",
+   "capitulo": "raciocinio-logico/a04/s05",
+   "gabarito": "D",
+   "comentario": "As premissas são 'se há investimento, a pesquisa avança' e 'a pesquisa não avançou'. A segunda nega o consequente da primeira, e a conclusão nega o antecedente: não houve investimento. Essa forma é o modus tollens, regra de inferência válida. A negação do antecedente seria a falácia que parte de 'não há investimento'. O modus ponens afirmaria o antecedente.",
+   "alternativas": {
+    "A": "Errada: a negação do antecedente parte do antecedente negado, não do consequente.",
+    "B": "Errada: o modus ponens afirmaria o antecedente.",
+    "C": "Errada: o silogismo hipotético exige duas condicionais encadeadas.",
+    "D": "Correta: nega o consequente e conclui a negação do antecedente.",
+    "E": "Errada: o argumento é válido e não contraditório."
+   }
+  },
+  {
+   "id": "tec_4162202",
+   "capitulo": "raciocinio-logico/a04/s05",
+   "gabarito": "D",
+   "comentario": "Se a bomba queima, o bairro fica sem água; o bairro não ficou sem água. A segunda premissa nega o consequente, e a conclusão válida é a negação do antecedente: a bomba de sucção não queimou. É o modus tollens. As demais acrescentam informações, como conserto ou outra bomba, que as premissas não trazem.",
+   "alternativas": {
+    "A": "Errada: afirmar que a bomba queimou contraria o modus tollens, pois o bairro não ficou sem água.",
+    "B": "Errada: o conserto rápido não é informação das premissas e não decorre delas.",
+    "C": "Errada: outra bomba assumir a operação não decorre das premissas.",
+    "D": "Correta: nega o consequente e conclui a negação do antecedente, como o modus tollens."
+   }
+  },
+  {
+   "id": "tec_3447886",
+   "capitulo": "raciocinio-logico/a04/s05",
+   "gabarito": "C",
+   "comentario": "As afirmações formam uma cadeia: A verdadeiro → (B e C mentem); C mente → D fala a verdade; D fala a verdade → Buenos Aires é capital do Brasil. Como Buenos Aires não é capital do Brasil, o último consequente é falso. Pelo modus tollens, D não falou a verdade (D mentiu). Na segunda condicional, D mentir obriga a negar o antecedente: C não mentiu, isto é, C falou a verdade. Na primeira, o consequente \"B e C mentiram\" é falso, porque C disse a verdade; então A não falou a verdade (A mentiu). Sobre B, nada se conclui. A alternativa correta é \"A e D mentiram\". A tabela citada no enunciado não é necessária para a dedução.",
+   "alternativas": {
+    "A": "Errada: C falou a verdade e D mentiu, então as duas parcelas da disjunção são falsas.",
+    "B": "Errada: A mentiu; e o valor de B não pode ser determinado.",
+    "C": "Correta: o modus tollens em cadeia dá D mentiroso e, depois, A mentiroso.",
+    "D": "Errada: C falou a verdade, pois C mentir obrigaria D a falar a verdade.",
+    "E": "Errada: C falou a verdade, e B fica indeterminado."
+   }
+  },
+  {
+   "id": "tec_3638103",
+   "capitulo": "raciocinio-logico/a04/s05",
+   "gabarito": "E",
+   "comentario": "Sejam g: \"o navio é um graneleiro\" e s: \"o navio transporta soja\". As premissas são g → s e ~s. Pelo modus tollens (negação do consequente), conclui-se ~g: o navio não é um graneleiro. Raciocine pelo caso proibido: se o navio fosse graneleiro (V) e não transportasse soja (F), a premissa P₁ seria falsa. Como P₁ é verdadeira, o navio não pode ser graneleiro. As opções sobre milho e porto trazem fatos que as premissas não mencionam.",
+   "alternativas": {
+    "A": "Errada: milho não aparece nas premissas; não transportar soja não indica a carga.",
+    "B": "Errada: graneleiro sem soja tornaria falsa a premissa P₁.",
+    "C": "Errada: P₁ fala só deste navio; generalizar para todo graneleiro vai além das premissas.",
+    "D": "Errada: a localização do navio não é tratada no argumento.",
+    "E": "Correta: modus tollens; de g → s e ~s, conclui-se ~g."
+   }
+  },
+  {
+   "id": "tec_508975",
+   "capitulo": "raciocinio-logico/a04/s05",
+   "gabarito": "B",
+   "comentario": "Calcule cada item com as tabelas dos conectivos. Na B, com p = V, q = F e r = V: ~p = F e ~q = V, então ~p ∧ ~q = F ∧ V = F; em seguida, F ∨ r = F ∨ V = V. A proposição é verdadeira, como diz a alternativa. Nas demais: a disjunção V ∨ F é V; a condicional V → V é V; p ∨ ~p é uma tautologia (sempre V); e de p → q e q → r a transitividade dá p → r, não r → p.",
+   "alternativas": {
+    "A": "Errada: disjunção com uma parcela verdadeira é verdadeira; V ∨ F = V.",
+    "B": "Correta: (F ∧ V) ∨ V = F ∨ V = V.",
+    "C": "Errada: condicional só é falsa em V → F; V → V é verdadeira.",
+    "D": "Errada: p ∨ ~p é tautologia; com p falsa, ~p é verdadeira e a disjunção é V.",
+    "E": "Errada: a cadeia dá p → r; r → p é a recíproca e não decorre das premissas."
+   }
+  },
+  {
+   "id": "tec_510145",
+   "capitulo": "raciocinio-logico/a04/s05",
+   "gabarito": "E",
+   "comentario": "A questão pede a alternativa incorreta. Na E, com p = F, q = V e r = V: ~p = V e ~q = F, logo ~p ∧ ~q = V ∧ F = F; depois, F ∨ r = F ∨ V = V. A proposição é verdadeira, e a alternativa diz que é falsa, por isso é a incorreta. As outras estão certas: a negação da conjunção vira disjunção das negações (De Morgan); a contrapositiva ~q → ~p é equivalente a p → q; F ∨ V = V; e, com p verdadeira, p ∨ ~q é verdadeira.",
+   "alternativas": {
+    "A": "Errada (afirmação verdadeira): é a lei de De Morgan, ~(p ∧ q) ≡ ~p ∨ ~q.",
+    "B": "Errada (afirmação verdadeira): a contrapositiva ~q → ~p equivale à condicional p → q.",
+    "C": "Errada (afirmação verdadeira): F ∨ V = V, pois basta uma parcela verdadeira.",
+    "D": "Errada (afirmação verdadeira): com p = V, a disjunção p ∨ ~q é V, qualquer que seja q.",
+    "E": "Correta (afirmação incorreta): (V ∧ F) ∨ V = F ∨ V = V, não F."
+   }
+  },
+  {
+   "id": "tec_400809",
+   "capitulo": "raciocinio-logico/a04/s05",
+   "gabarito": "A",
+   "comentario": "Cadeia: Beto liga leva a Glória vai, Glória vai leva a Carla cuida, Carla cuida leva a Raul liga. Como Raul não liga para Carla, por modus tollens Carla não cuida do bebê; depois Glória não vai à festa e Beto não liga para Glória. A alternativa A reúne duas dessas conclusões.",
+   "alternativas": {
+    "A": "Correta: Carla não cuida do bebê e Beto não liga, em concordância com a cadeia.",
+    "B": "Errada: Carla não cuida do bebê, então a primeira parcela é falsa.",
+    "C": "Errada: Glória não vai à festa, então a segunda parcela é falsa.",
+    "D": "Errada: Glória não vai à festa e Beto não liga, ao contrário do afirmado.",
+    "E": "Errada: Beto não liga para Glória, então a segunda parcela é falsa."
+   }
+  },
+  {
+   "id": "tec_3808881",
+   "capitulo": "raciocinio-logico/a04/s05",
+   "gabarito": "E",
+   "comentario": "O elefante não é azul, então, pela primeira condicional (modus tollens), não é verdade que exatamente um dos dois mora no Butantã: ou ambos moram, ou nenhum mora. Se nenhum mora, João não mora e a galinha é verde. Se ambos moram, Maria mora e o cavalo é amarelo. Em qualquer dos casos, a galinha é verde ou o cavalo é amarelo, alternativa E.",
+   "alternativas": {
+    "A": "Errada: não se pode afirmar que nenhum dos dois mora, pois ambos podem morar.",
+    "B": "Errada: em nenhum dos dois casos possíveis a galinha é amarela ou o cavalo é verde.",
+    "C": "Errada: ambos podem morar, mas nenhum dos dois pode ser garantido.",
+    "D": "Errada: as cores dos animais podem coincidir, sem decorrência.",
+    "E": "Correta: é verdadeira nos dois casos possíveis."
+   }
+  },
+  {
+   "id": "tec_3858789",
+   "capitulo": "raciocinio-logico/a04/s05",
+   "gabarito": "C",
+   "comentario": "Sejam t: \"Maria foi ao teatro\", c: \"foi ao cinema\", a: \"João perdeu a aposta\" e f: \"João teve onde ficar\". A premissa é (~t ∧ ~c) → (a ∧ ~f). O fato dado é ~a e ~c. Com ~a, o consequente a ∧ ~f é falso. Pelo modus tollens, o antecedente também é falso: ~(~t ∧ ~c), que por De Morgan equivale a t ∨ c. Como Maria não foi ao cinema (~c), a disjunção verdadeira obriga t: Maria foi ao teatro. Sobre João ter tido onde ficar, nada se conclui, porque o consequente já é falso só pela parcela a.",
+   "alternativas": {
+    "A": "Errada: se Maria não fosse ao teatro, o antecedente seria verdadeiro e João teria perdido a aposta.",
+    "B": "Errada: f fica indeterminado; o consequente já é falso só porque João não perdeu.",
+    "C": "Correta: t ∨ c é verdadeira e c é falsa, logo t é verdadeira.",
+    "D": "Errada: a premissa não diz com quem João ficou; a conclusão inventa um fato.",
+    "E": "Errada: também é indeterminado; nada obriga João a não ter tido onde ficar."
+   }
+  },
+  {
+   "id": "tec_3932367",
+   "capitulo": "raciocinio-logico/a04/s05",
+   "gabarito": "E",
+   "comentario": "A afirmação está errada. Sejam a: \"a cor favorita de Anderson é vermelha\", g: \"a de Gael é azul\" e m: \"a de Magali é amarela\". O ponto de partida é a condicional falsa g → a: ela só é falsa com antecedente verdadeiro e consequente falso, então g é V e a é F. A disjunção a ∨ g é verdadeira (g é V), sem conflito. A bicondicional a ↔ m é verdadeira e exige valores iguais; como a é F, m também é F. Logo, a cor favorita de Magali não é amarela.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_3948530",
+   "capitulo": "raciocinio-logico/a04/s05",
+   "gabarito": "E",
+   "comentario": "A afirmação está errada. James não é o mordomo; como \"Branca mente ou James é o mordomo\" é verdadeira, Branca mente. Com Branca mentindo, a segunda premissa dá: Rosa fala a verdade. A primeira premissa, (Marinho V ∧ Rosa V) → Violeta mente, com Rosa verdadeira, reduz-se a: se Marinho fala a verdade, Violeta mente. Equivalente (contrapositiva): se Violeta fala a verdade, Marinho mente. O item pede a bicondicional \"Marinho mente se e somente se Violeta fala a verdade\". Só a ida está garantida. Se Marinho e Violeta mentirem os dois, todas as premissas continuam verdadeiras, mas a bicondicional fica falsa (V ↔ F). Logo, ela não pode ser concluída.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_4003866",
+   "capitulo": "raciocinio-logico/a04/s05",
+   "gabarito": "D",
+   "comentario": "Sejam p: \"Paulo é analista\", a: \"Ana é coordenadora\" e b: \"Beatriz é diretora\". Comece pela proposição simples III: ~b. Na disjunção II (~a ∨ b), a parcela b é falsa, então ~a tem de ser verdadeira: Ana não é coordenadora (silogismo disjuntivo). Na condicional I (p → a), o consequente é falso; pelo modus tollens, p é falso: Paulo não é analista. As alternativas que afirmam Ana coordenadora ou Paulo analista contrariam essa cadeia.",
+   "alternativas": {
+    "A": "Errada: Paulo analista obrigaria Ana a ser coordenadora, o que a premissa II impede.",
+    "B": "Errada: com Beatriz não diretora, a disjunção II só é verdadeira se Ana não for coordenadora.",
+    "C": "Errada: as duas parcelas são falsas pelas deduções feitas.",
+    "D": "Correta: ~b leva a ~a pela disjunção e ~a leva a ~p pelo modus tollens."
+   }
+  },
+  {
+   "id": "tec_4079707",
+   "capitulo": "raciocinio-logico/a04/s05",
+   "gabarito": "D",
+   "comentario": "O argumento tem a forma p → q; p; logo, q. É o modus ponens, ou afirmação do antecedente: numa condicional verdadeira, se o antecedente é verdadeiro, o consequente também é. Há uma só inferência, que leva das duas premissas à conclusão, e ela é correta. Não confunda com a falácia da afirmação do consequente, que seria p → q; q; logo, p, inválida porque q pode ser verdadeiro sem p.",
+   "alternativas": {
+    "A": "Errada: o argumento não nega o consequente, e a negação do consequente (modus tollens) é válida, não falha.",
+    "B": "Errada: não há disjunção nas premissas; silogismo disjuntivo exige um \"ou\".",
+    "C": "Errada: aqui se afirma o antecedente; a afirmação do consequente seria partir de q para chegar a p.",
+    "D": "Correta: p → q e p levam a q por modus ponens, numa única inferência válida."
+   }
+  }
+ ],
+ "ineditas": []
+}
