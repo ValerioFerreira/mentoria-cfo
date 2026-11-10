@@ -13,7 +13,7 @@ excludeContests: PCPE_AGENTE, CBMPE_CFOA
 
 ## Como a banca cobra a CE-PE e o que há de novo
 
-Pessoal, o edital pede a **Constituição do Estado de Pernambuco** sem recorte, mas a Aula 18 do curso base cobre só os **arts. 100 a 105-B** (militares do Estado e segurança pública). Aqui está o **resto** — e a boa notícia é que a banca, em prova estadual, costuma fazer três coisas: (1) copiar o texto da CE-PE trocando um número, um prazo ou um órgão; (2) comparar a CE-PE com a Constituição Federal ("reprodução obrigatória" × regra própria); (3) cobrar o que for **novo**. Por isso, esta primeira seção é a mais importante do material.
+Pessoal, o edital pede a **Constituição do Estado de Pernambuco** sem recorte, mas a Aula 18 do curso base cobre só os **arts. 100 a 105-B** (militares do Estado e segurança pública). Aqui está o **resto** — e a boa notícia é que a AOCP, em prova estadual, costuma fazer três coisas: (1) copiar o texto da CE-PE trocando um número, um prazo ou um órgão; (2) comparar a CE-PE com a Constituição Federal ("reprodução obrigatória" × regra própria); (3) cobrar o que for **novo**. Por isso, esta primeira seção é a mais importante do material.
 
 > **Como usar com a Aula 18:** a Aula 18 ensina bem os arts. 100 a 105-B, **mas o texto dela está desatualizado no art. 101** (veja a próxima seção). Estude a Aula 18 e depois corrija o art. 101 com o que está aqui.
 
@@ -64,7 +64,7 @@ Art. 101: a segurança pública, **dever do Estado, direito e responsabilidade d
 
 ### Onde mais a CE-PE trata de PM, CBM e militares
 
-A CE-PE espalha dispositivos de interesse direto do militar estadual por vários títulos. Este é o mapa:
+A CE-PE espalha dispositivos de interesse direto do bombeiro militar por vários títulos. Este é o mapa:
 
 | Dispositivo | O que diz | Leitura para a prova |
 |---|---|---|

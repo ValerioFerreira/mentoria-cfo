@@ -2,7 +2,6 @@
 
 import { AlertTriangle, Check, CheckCircle2, CircleAlert, Clock, Copy, Loader2, Send, ShieldCheck, Ticket, X } from "lucide-react";
 import Image from "next/image";
-import { LegalConsent } from "@/components/legal-page";
 import { useActionState, useRef, useState, useTransition } from "react";
 import { PriceCard, type PriceCardData } from "@/components/price-card";
 import { RouteNavigationTrap } from "@/components/route-navigation-trap";
@@ -152,7 +151,6 @@ export function WaitlistForm({ slug, card, examDateKnown }: { slug: string; card
         </div>
         {check?.available && !checking && <p className="mt-1 text-xs font-semibold text-ok">{check.message}</p>}
       </Field>
-      <LegalConsent />
       <Button type="submit" size="lg" disabled={pending || checking || (check !== null && !check.available)} className="w-full">
         {pending ? <Loader2 className="h-5 w-5 animate-spin" aria-hidden /> : <Send className="h-5 w-5" aria-hidden />}
         {pending ? "Gerando Pix…" : "Gerar Pix para Pagamento"}

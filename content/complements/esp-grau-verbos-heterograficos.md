@@ -20,7 +20,7 @@ Pessoal, o curso principal de Espanhol cobre quase todo o edital, mas deixa **tr
 5. **Pronomes relativos** (item 1): *que, quien, el cual, cuyo, donde...*;
 6. **Heterográficos** (item 11) e uma **revisão relâmpago** das outras divergências (heterotônicos, heterogenéricos, heterossemânticos).
 
-As explicações estão em português; os exemplos, em espanhol, com tradução quando necessário. Nas provas, a língua estrangeira é cobrada em **textos curtos**, e a pergunta quase sempre é **"qual forma está correta?"** ou **"qual palavra completa a lacuna?"**.
+As explicações estão em português; os exemplos, em espanhol, com tradução quando necessário. Em prova da AOCP, a língua estrangeira é cobrada em **textos curtos**, e a pergunta quase sempre é **"qual forma está correta?"** ou **"qual palavra completa a lacuna?"**.
 
 > **Estratégia de prova:** em espanhol, o erro mais frequente do brasileiro é "traduzir do português". Sempre que o enunciado trouxer uma forma que **parece português** (*habían muchas personas*, *se alquila pisos*, *cuyo el libro*), desconfie: é a pegadinha.
 

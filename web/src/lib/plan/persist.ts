@@ -3,7 +3,6 @@ import { randomUUID } from "node:crypto";
 import { db } from "@/lib/db";
 import { editalItemApplies } from "@/lib/contests";
 import { initialPlanStatus } from "./initial-status";
-import { isTestUser } from "@/lib/test-user";
 import type { Contest } from "@/generated/prisma/client";
 import type { PlanInput, PlanResult } from "@/lib/planner/types";
 
@@ -32,9 +31,9 @@ export async function savePlan({ userId, input, result, diagnostics, foreignLang
         update: { examDate: new Date(result.params.examDate), hoursBand, hoursPerWeek: input.hoursPerWeek, foreignLanguage },
       });
 
-      const user = await tx.user.findUnique({ where: { id: userId }, select: { role: true, email: true, partner: { select: { active: true } } } });
+      const user = await tx.user.findUnique({ where: { id: userId }, select: { role: true, partner: { select: { active: true } } } });
       // administrador (e parceiro ativo, fora dos concursos em revisão) não passa pela análise: o plano já nasce liberado
-      const initialStatus = initialPlanStatus({ role: user?.role, partnerActive: user?.partner?.active, contest: input.contest, explicit: status, testUser: isTestUser(user?.email) });
+      const initialStatus = initialPlanStatus({ role: user?.role, partnerActive: user?.partner?.active, contest: input.contest, explicit: status });
 
       const plan = await tx.plan.create({
         data: {

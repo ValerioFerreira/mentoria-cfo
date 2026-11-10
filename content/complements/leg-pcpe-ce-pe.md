@@ -3,7 +3,7 @@ id: leg-pcpe-ce-pe
 subject: legislacao-pcpe
 title: Constituição do Estado de Pernambuco — Segurança Pública (arts. 101 a 105-B)
 short: CE-PE — Arts. 101 a 105-B (Segurança Pública)
-subtitle: Sistema de Segurança Pública, Polícia Civil de Pernambuco e atualizações das Emendas Constitucionais nº 70 e 71/2026
+subtitle: Item 1 do edital PCPE — Sistema de Segurança Pública, Polícia Civil de Pernambuco e atualizações das Emendas Constitucionais nº 70 e 71/2026
 weight: 0.15
 order: 1
 norma: true
@@ -13,7 +13,7 @@ onlyContests: "PCPE_AGENTE"
 
 ## Sistema de Segurança Pública na Constituição de Pernambuco
 
-A segurança pública na Constituição do Estado de Pernambuco (CE-PE) é tratada no Capítulo III do Título IV, compreendendo os artigos 101 a 105-B. Nas provas, este bloco normativo é fundamental e objeto recorrente de questões de literalidade, estrutura orgânica e competências funcionais.
+A segurança pública na Constituição do Estado de Pernambuco (CE-PE) é tratada no Capítulo III do Título IV, compreendendo os artigos 101 a 105-B. Para o concurso da Polícia Civil de Pernambuco (banca Cebraspe), este bloco normativo é fundamental e objeto recorrente de questões de literalidade, estrutura orgânica e competências funcionais.
 
 O art. 101 define que a segurança pública é dever do Estado, direito e responsabilidade de todos, exercida para a preservação da ordem pública, da incolumidade das pessoas e do patrimônio, bem como para assegurar a liberdade e as garantias individuais.
 

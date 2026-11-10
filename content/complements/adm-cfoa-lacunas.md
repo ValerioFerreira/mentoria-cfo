@@ -26,7 +26,7 @@ Toda decisão organizacional envolve seis elementos estruturais:
 
 ### As Etapas do Processo Decisório Racional
 
-Embora os autores variem na nomenclatura de 4 a 7 fases, a sequência lógica universal cobrada pelas bancas (baseada em **Herbert Simon**, **Maximiano** e **Chiavenato**) compreende **seis etapas**:
+Embora os autores variem na nomenclatura de 4 a 7 fases, a sequência lógica universal cobrada pelo Instituto AOCP (baseada em **Herbert Simon**, **Maximiano** e **Chiavenato**) compreende **seis etapas**:
 
 | Etapa do Processo Decisório | Fases de Herbert Simon | O que ocorre na prática administrativa |
 |---|---|---|
@@ -174,5 +174,5 @@ Para lidar com a resistência, **John Kotter e Leonard Schlesinger** estabelecer
 
 - CHIAVENATO, Idalberto. **Introdução à Teoria Geral da Administração**. 10ª ed. Rio de Janeiro: Atlas/GEN. Consulta em 24/10/2026.
 - ROBBINS, Stephen P.; JUDGE, Timothy A. **Comportamento Organizacional**. 18ª ed. São Paulo: Pearson. Consulta em 24/10/2026.
-- SIMON, Herbert A. **Comportamento Administrativo: Estudo dos Processos Decisórios nas Organizações Administrativas**. Rio de Janeiro: Fundação Getulio Vargas. Consulta em 24/10/2026.
+- SIMON, Herbert A. **Comportamento Administrativo: Estudo dos Processos Decisórios nas Organizações Administrativas**. Rio de Janeiro: FGV. Consulta em 24/10/2026.
 - MAXIMIANO, Antonio Cesar Amaru. **Teoria Geral da Administração**. São Paulo: Atlas. Consulta em 24/10/2026.

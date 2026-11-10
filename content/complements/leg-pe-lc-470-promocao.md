@@ -3,7 +3,7 @@ id: leg-pe-lc-470-promocao
 subject: legislacoes-pe
 title: Lei de Promoção dos Militares do Estado de Pernambuco (Lei Complementar Estadual nº 470, de 21 de dezembro de 2021)
 short: LC 470/2021 (Lei de Promoção)
-subtitle: Critérios ordinários e extraordinários de promoção, requisitos essenciais, fichas de avaliação e fórmula de pontuação, datas de promoção, CPO e CPP, Quadros de Acesso (QAA, QAM e QAD) e regras do QOA e do Curso de Formação de Oficiais da Administração
+subtitle: Critérios ordinários e extraordinários de promoção, requisitos essenciais, fichas de avaliação e fórmula de pontuação, datas de promoção, CPO e CPP, Quadros de Acesso (QAA, QAM e QAD) e regras do QOA/CFOA (Item 4 do edital)
 weight: 0.16
 order: 7
 resolves: cfoa-leg-lc-470
@@ -13,7 +13,7 @@ onlyContests: "CBMPE_CFOA"
 
 ## 1. Disposições Preliminares e Critérios de Promoção (Arts. 1º a 15)
 
-Pessoal, a **Lei Complementar Estadual nº 470, de 21 de dezembro de 2021**, unificou e modernizou o **Sistema de Promoção de Oficiais e Praças** da **Polícia Militar de Pernambuco (PMPE)** e do **Corpo de Bombeiros Militar de Pernambuco (CBMPE)**, revogando as antigas leis de promoção anteriores. Quando o edital a inclui, esta é uma das normas de maior incidência da prova!
+Pessoal, a **Lei Complementar Estadual nº 470, de 21 de dezembro de 2021**, unificou e modernizou o **Sistema de Promoção de Oficiais e Praças** da **Polícia Militar de Pernambuco (PMPE)** e do **Corpo de Bombeiros Militar de Pernambuco (CBMPE)**, revogando as antigas leis de promoção anteriores. Para a prova de **2º Tenente CFOA (Quadro de Oficiais da Administração — QOA)**, esta é uma das normas de maior incidência de todo o edital!
 
 ### Finalidade e Conceito de Promoção (Arts. 1º a 3º)
 
@@ -40,7 +40,7 @@ A LC nº 470/2021 divide as promoções em **duas categorias** — **Ordinárias
      - **A Major:** **1 (uma) por antiguidade e 2 (duas) por merecimento** (proporção **1:2**);
      - **A Tenente-Coronel:** **1 (uma) por antiguidade e 3 (três) por merecimento** (proporção **1:3**);
      - **A Coronel:** a totalidade (**100%**), pelo critério de **merecimento**.
-  2. **Regra Específica para o QOA (Quadro de Oficiais da Administração), QOMus e QCPM (§ 2º do Art. 7º — Questão Certa em Provas!):**
+  2. **Regra Específica para o QOA (Quadro de Oficiais da Administração), QOMus e QCPM (§ 2º do Art. 7º — Questão Certa no CFOA!):**
      Para os Oficiais dos Quadros da Administração (**QOA**), de Músicos (**QOMus**) e de Capelães (**QCPM**):
      - **A 2º Tenente e 1º Tenente:** a totalidade (**100%**), pelo critério de **antiguidade**;
      - **A Capitão:** **1 (uma) por antiguidade e 1 (uma) por merecimento** (proporção **1:1**);
@@ -78,7 +78,7 @@ A LC nº 470/2021 divide as promoções em **duas categorias** — **Ordinárias
 
 ---
 
-## 3. Requisitos Essenciais, Interstícios e Matrícula nos Cursos (Arts. 16 a 26)
+## 3. Requisitos Essenciais, Interstícios e Matrícula no CFOA (Arts. 16 a 26)
 
 ### Os Cinco Requisitos Essenciais para Ingresso em Quadro de Acesso (Art. 16)
 
@@ -97,19 +97,19 @@ Para ingressar em Quadro de Acesso (QAA ou QAM), o militar estadual da ativa dev
 
 - Se o cálculo dos **40% mais antigos** resultar em número fracionário, arredonda-se para o **número inteiro imediatamente superior** (§ 2º). Caso o número de militares dentro dos 40% seja insuficiente para preencher o QAM, a Comissão de Promoção poderá avançar para os lotes subsequentes de 20% (§ 3º).
 
-### Regras Específicas dos Cursos de Formação na LC nº 470/2021 (Arts. 22 e 23)
+### Regras Específicas dos Cursos e do CFOA na LC nº 470/2021 (Arts. 22 e 23)
 
 - **Cursos exigidos para Oficiais (Art. 22):**
-  - **I — Curso de Formação de Oficiais (CFO) ou Curso de Formação de Oficiais da Administração:** para acesso aos postos de **2º Tenente, 1º Tenente e Capitão**;
+  - **I — Curso de Formação de Oficiais (CFO) ou Curso de Formação de Oficiais da Administração (CFOA):** para acesso aos postos de **2º Tenente, 1º Tenente e Capitão**;
   - **II — Curso de Aperfeiçoamento de Oficiais (CAO):** para acesso aos postos de **Major e Tenente-Coronel** (inclusive para o acesso a **Major do QOA**!);
   - **III — Curso Superior de Polícia (CSP) ou Curso Superior de Bombeiro Militar (CSBM):** para acesso ao posto de **Coronel** (privativo dos Quadros QOPM/QOBM e QOS).
-- **Distribuição de Vagas para Matrícula nos Cursos de Praças e no Curso de Formação de Oficiais da Administração (Art. 23, §§ 1º a 3º — Altíssima Incidência!):**
+- **Distribuição de Vagas para Matrícula nos Cursos de Praças e no CFOA (Art. 23, §§ 1º a 3º — Altíssima Incidência!):**
   - **CFC (Cabo) e CFS (Sargento) — § 1º:** **50% (cinquenta por cento)** das vagas por **antiguidade** e **50% (cinquenta por cento)** por **seleção interna** (exame intelectual);
   - **CAS (Curso de Aperfeiçoamento de Sargentos) — § 2º:** **100% (cem por cento)** das vagas pelo critério de **antiguidade** entre os 2º Sargentos;
-  - **Curso de Formação de Oficiais da Administração — § 3º:**
+  - **CFOA (Curso de Formação de Oficiais da Administração) — § 3º:**
     1. **50% (cinquenta por cento) das vagas pelo critério de antiguidade**, destinadas exclusivamente aos **Subtenentes**; e
     2. **50% (cinquenta por cento) das vagas mediante seleção interna (concurso interno de provas)**, disputadas entre os **Subtenentes, 1º Sargentos e 2º Sargentos que possuam o Curso de Aperfeiçoamento de Sargentos (CAS)**!
-  - **Abertura obrigatória de seleção para o Curso de Formação de Oficiais da Administração (Art. 73, Parágrafo único):** sempre que o número de claros (vagas) no posto inicial de **2º Tenente QOA** atingir **25% (vinte e cinco por cento)** do efetivo previsto em lei para esse posto, deverá ser aberto processo seletivo para esse curso!
+  - **Abertura obrigatória de seleção para o CFOA (Art. 73, Parágrafo único):** sempre que o número de claros (vagas) no posto inicial de **2º Tenente QOA** atingir **25% (vinte e cinco por cento)** do efetivo previsto em lei para esse posto, deverá ser aberto processo seletivo para o CFOA!
 
 ---
 

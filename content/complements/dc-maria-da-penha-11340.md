@@ -88,7 +88,7 @@ Política pública por meio de **conjunto articulado** de ações da **União, E
 | **Art. 12-C** | Havendo **risco atual ou iminente** à vida ou à integridade (física, sexual, psicológica, moral ou patrimonial) da mulher ou de dependentes, o **agressor será imediatamente afastado do lar**: **I — pela autoridade judicial**; **II — pelo delegado de polícia**, quando o **Município não for sede de comarca**; ou **III — pelo policial**, quando o Município **não for sede de comarca e não houver delegado disponível** no momento da denúncia |
 | **Art. 12-D** | Em caso de risco, o agressor será imediatamente submetido à **monitoração eletrônica** pela autoridade judicial ou pelo delegado (se o Município não for sede de comarca); neste último caso o **juiz é comunicado em até 24 horas** e decide, em igual prazo, sobre a manutenção |
 
-> **Relevância para quem atua no socorro:** nas ocorrências que envolvam socorro a mulher agredida, o encaminhamento ao serviço de saúde e a comunicação à autoridade policial integram a rede de proteção. Fique atento à ideia de **atuação articulada** (art. 8º, I).
+> **Relevância para o oficial do CBMPE:** nas ocorrências que envolvam socorro a mulher agredida, o encaminhamento ao serviço de saúde e a comunicação à autoridade policial integram a rede de proteção. Fique atento à ideia de **atuação articulada** (art. 8º, I).
 
 ## Procedimentos e Juizados (arts. 13 a 17-A)
 
@@ -134,7 +134,7 @@ O juiz pode aplicar, **de imediato**, **em conjunto ou separadamente**, entre ou
 
 **Importante (§ 2º):** quando o agressor integrar uma das instituições cujos membros podem portar arma (art. 6º do Estatuto do Desarmamento, que inclui as polícias e os corpos de bombeiros militares), o juiz **comunica o órgão, a corporação ou a instituição** e determina a restrição do porte; o **superior imediato do agressor** fica responsável pelo cumprimento, sob pena de incorrer em **prevaricação ou desobediência**. Para garantir a efetividade das medidas, o juiz pode **requisitar a força policial** a qualquer momento (§ 3º).
 
-> **Direto ao ponto:** a restrição do porte de arma vale também para integrantes da **polícia e dos bombeiros militares**. O comandante direto responde pelo cumprimento.
+> **Direto ao ponto para a carreira militar:** a restrição do porte de arma vale também para integrantes da **polícia e dos bombeiros militares**. O comandante direto responde pelo cumprimento.
 
 ### Medidas à ofendida (arts. 23 e 24)
 

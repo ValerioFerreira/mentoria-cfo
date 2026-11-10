@@ -2,7 +2,6 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { AppearanceMenu } from "@/components/appearance-menu";
 import { Brand } from "@/components/brand";
-import { LegalFooter } from "@/components/legal-page";
 import { getTheme } from "@/lib/theme";
 
 /** Casca das páginas públicas (escolha do concurso e lista de espera). */
@@ -22,7 +21,6 @@ export default async function PublicLayout({ children }: { children: ReactNode }
         </div>
       </header>
       <main className="mx-auto w-full max-w-6xl flex-1 px-5 pb-16 sm:px-8">{children}</main>
-      <LegalFooter />
     </div>
   );
 }

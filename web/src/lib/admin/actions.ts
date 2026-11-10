@@ -3,7 +3,6 @@
 import { revalidatePath } from "next/cache";
 import * as z from "zod";
 import { requireAdmin, requireUser } from "@/lib/auth/dal";
-import { audit } from "@/lib/commerce/audit";
 import { db } from "@/lib/db";
 
 const Status = z.enum(["DRAFT", "APPROVED", "FLAGGED", "RETIRED"]);
@@ -80,17 +79,4 @@ export async function reportQuestion(questionId: string, reason: string): Promis
   const dup = await db.questionReport.findFirst({ where: { questionId, userId: user.id, status: "OPEN" } });
   if (!dup) await db.questionReport.create({ data: { userId: user.id, questionId, reason: parsed.data.reason } });
   return { ok: true };
-}
-
-/** Relato de erro no PDF do material: o administrador marca como corrigido ou descarta (com observação opcional). */
-export async function resolveMaterialReport(id: string, status: "RESOLVED" | "DISCARDED" | "OPEN", adminNote?: string) {
-  const admin = await requireAdmin();
-  if (!["RESOLVED", "DISCARDED", "OPEN"].includes(status)) return;
-  const note = (adminNote ?? "").trim().slice(0, 500) || null;
-  await db.$transaction(async (tx) => {
-    await tx.materialErrorReport.update({ where: { id }, data: { status, adminNote: note, resolvedAt: status === "OPEN" ? null : new Date() } });
-    await audit(tx, { actorId: admin.id, action: "MATERIAL_REPORT_" + status, entityType: "MaterialErrorReport", entityId: id });
-  });
-  revalidatePath("/admin/erros-material");
-  revalidatePath("/admin");
 }

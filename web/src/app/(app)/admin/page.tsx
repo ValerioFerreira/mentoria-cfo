@@ -1,4 +1,4 @@
-import { ClipboardCheck, FileWarning, Flag, Handshake, Ticket, Users, Wallet, type LucideIcon } from "lucide-react";
+import { ClipboardCheck, Flag, Handshake, Ticket, Users, Wallet, type LucideIcon } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Card, PageHeader } from "@/components/ui";
@@ -10,11 +10,10 @@ export const metadata: Metadata = { title: "Administração" };
 
 export default async function AdminHomePage() {
   await requireAdmin();
-  const [pendingSignups, draftQuestions, openReports, openMaterialReports, activePartners, openContracts, activeCoupons, datedContests] = await Promise.all([
+  const [pendingSignups, draftQuestions, openReports, activePartners, openContracts, activeCoupons, datedContests] = await Promise.all([
     db.waitlistEntry.count({ where: { status: "PENDING" } }),
     db.question.count({ where: { status: "DRAFT" } }),
     db.questionReport.count({ where: { status: "OPEN" } }),
-    db.materialErrorReport.count({ where: { status: "OPEN" } }),
     db.partner.count({ where: { active: true } }),
     db.contract.count({ where: { status: { in: ["OPEN", "PARTIAL"] } } }),
     db.coupon.count({ where: { active: true } }),
@@ -64,13 +63,6 @@ export default async function AdminHomePage() {
       text: "Aprovação, correção e classificação das questões, por matéria, assunto e banca.",
       icon: ClipboardCheck,
       stat: `${draftQuestions} rascunhos · ${openReports} ${openReports === 1 ? "denúncia" : "denúncias"}`,
-    },
-    {
-      href: "/admin/erros-material",
-      title: "Erros reportados",
-      text: "Erros apontados pelos alunos nos PDFs do material MentorIA: volume, página e explicação.",
-      icon: FileWarning,
-      stat: `${openMaterialReports} ${openMaterialReports === 1 ? "relato aberto" : "relatos abertos"}`,
     },
   ];
 

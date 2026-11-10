@@ -10,9 +10,9 @@ resolves: leg-penal-eca
 onlyContests: "PCPE_AGENTE"
 ---
 
-## Como estudar os Aspectos Penais do ECA
+## Como estudar os Aspectos Penais do ECA para a Polícia Civil
 
-Quando o edital pede os aspectos penais do ECA, a banca não costuma cobrar a parte civil de família (adoção, tutela e guarda). O foco absoluto da banca recai sobre **dois eixos principais**:
+Para as carreiras policiais da Polícia Civil (Agente e Escrivão), a banca Cebraspe não costuma cobrar a parte civil de família (adoção, tutela e guarda). O foco absoluto da banca recai sobre **dois eixos principais**:
 
 1. **Ato infracional e procedimentos policiais** (arts. 103 a 109 e 171 a 178): regras de apreensão em flagrante, garantias processuais do adolescente, lavratura de auto de apreensão ou boletim de ocorrência circunstanciado (BOC), e condições de liberação aos responsáveis.
 2. **Crimes em espécie praticados contra crianças e adolescentes** (arts. 228 a 244-B): crimes sexuais, venda de bebidas/drogas a menores, pornografia infantil e o importantíssimo crime de **corrupção de menores (art. 244-B)**, incluindo a **Súmula 500 do STJ**.
@@ -43,7 +43,7 @@ Quando o edital pede os aspectos penais do ECA, a banca não costuma cobrar a pa
 
 ## 2. Procedimento Policial na Apuração de Ato Infracional (arts. 171 a 178)
 
-Este é o capítulo com maior incidência em provas:
+Este é o capítulo com maior incidência em provas de Escrivão e Agente de Polícia Civil:
 
 ### Hipótese 1: Ato Infracional com Violência ou Grave Ameaça à Pessoa (art. 173, *caput*)
 - Havendo flagrante de ato infracional cometido com **violência ou grave ameaça à pessoa**, a autoridade policial deverá:
@@ -68,7 +68,7 @@ Este é o capítulo com maior incidência em provas:
 - **Ação Penal (art. 227):** os crimes definidos no ECA são de **ação penal pública incondicionada**.
 - Aplica-se subsidiariamente o Código Penal e o Código de Processo Penal.
 
-### Crimes de Maior Cobrança
+### Crimes de Maior Cobrança pelo Cebraspe
 
 #### A. Corrupção de Menores (art. 244-B)
 - **Tipo penal:** Corromper ou facilitar a corrupção de menor de 18 anos, com ele praticando infração penal ou induzindo-o a praticá-la.
@@ -99,7 +99,7 @@ Este é o capítulo com maior incidência em provas:
 
 ## 4. Quadro Comparativo Resumo para Revisão Rápida
 
-| Dispositivo | Conduta / Tema | Detalhe Crítico para a Prova |
+| Dispositivo | Conduta / Tema | Detalhe Crítico para Prova Cebraspe |
 |---|---|---|
 | **Art. 103 / 104** | Ato infracional e idade | Considera-se a idade à data do fato (Súmula 605/STJ). Criança só recebe proteção; adolescente pode receber socioeducativa. |
 | **Art. 173** | Flagrante policial | Com violência: Auto de Apreensão em Flagrante. Sem violência: Boletim de Ocorrência Circunstanciado (BOC). |

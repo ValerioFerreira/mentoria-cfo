@@ -12,7 +12,7 @@ excludeContests: PCPE_AGENTE
 
 ## O que este material cobre (e por quê)
 
-Pessoal, o curso principal de Informática é completo, mas trata três pontos do edital de forma **rasa**. Este complemento os aprofunda no que a banca costuma cobrar:
+Pessoal, o curso principal de Informática é completo, mas trata três pontos do edital de forma **rasa**. Este complemento os aprofunda no que a AOCP costuma cobrar:
 
 1. **Navegadores** (item 2 do edital): navegação privativa, cookies, cache, histórico, downloads, favoritos, segurança e **atalhos de teclado**; mais os **operadores de pesquisa** do Google;
 2. **Prompt de Comando do Windows 11** (item 6): comandos de arquivos e pastas, rede, processos e sistema, com **parâmetros**, redirecionamento e curingas;

@@ -12,7 +12,7 @@ onlyContests: "PCPE_AGENTE"
 
 ## O que este material cobre e como estudar
 
-Pessoal, este material fecha dois pontos de Estatística:
+Pessoal, este material fecha dois pontos do edital de Estatística da Polícia Civil:
 
 1. **Tamanho amostral** (item 3.2): quantas unidades é preciso pesquisar para estimar uma média ou uma proporção com certa **precisão** e **confiança**; e como repartir a amostra entre **estratos**;
 2. **Assimetria e curtose** (item 1, medidas descritivas): o formato da distribuição, e como a banca costuma cobrar isso, de forma conceitual (interpretar o sinal de um coeficiente, comparar média, mediana e moda).
@@ -156,4 +156,4 @@ A **curtose** mede o "achatamento" da distribuição (o peso das caudas e a altu
 
 ## Fontes
 
-Conteúdo elaborado a partir de conhecimento didático padrão de Estatística (inferência, planejamento amostral e medidas descritivas, conforme manuais clássicos de Estatística Básica e Amostragem). Os valores numéricos dos exemplos foram conferidos por cálculo direto. Consulta e revisão em 19/10/2026.
+Conteúdo elaborado a partir de conhecimento didático padrão de Estatística (inferência, planejamento amostral e medidas descritivas, conforme manuais clássicos de Estatística Básica e Amostragem) e do edital do concurso de Agente de Polícia da PCPE (Cebraspe, itens 1 e 3.2 de Estatística). Os valores numéricos dos exemplos foram conferidos por cálculo direto. Consulta e revisão em 19/10/2026.

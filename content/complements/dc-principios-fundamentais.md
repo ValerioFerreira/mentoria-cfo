@@ -3,7 +3,7 @@ id: dc-principios-fundamentais
 subject: direito-constitucional
 title: Princípios fundamentais da Constituição Federal (arts. 1º a 4º)
 short: Princípios fundamentais (arts. 1º a 4º)
-subtitle: Fundamentos da República, separação de Poderes, objetivos fundamentais e princípios das relações internacionais
+subtitle: Item 1.1 do edital de Direito Constitucional da PCPE: fundamentos da República, separação de Poderes, objetivos fundamentais e princípios das relações internacionais
 weight: 0.03
 order: 6
 resolves: dc-principios-fundamentais
@@ -119,4 +119,4 @@ Armadilhas frequentes:
 
 ## Fontes
 
-Conteúdo elaborado a partir do texto oficial da Constituição da República Federativa do Brasil de 1988 (Título I, arts. 1º a 4º, disponível no portal do Planalto). Consulta e revisão em 19/10/2026.
+Conteúdo elaborado a partir do texto oficial da Constituição da República Federativa do Brasil de 1988 (Título I, arts. 1º a 4º, disponível no portal do Planalto) e do item 1.1 do edital do concurso de Agente de Polícia da PCPE (Cebraspe). Consulta e revisão em 19/10/2026.

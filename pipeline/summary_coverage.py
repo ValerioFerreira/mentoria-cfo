@@ -46,13 +46,8 @@ assim ainda mesmo mesma desde ate sem sob apos antes depois porque porem contudo
 STEM = 6
 
 
-# Alguns PDFs separam as palavras com marcas invisíveis de direção (U+202C/U+202D) em vez de espaço; sem trocá-las por espaço,
-# a conversão para ASCII colava as palavras ("naopodemser") e criava termos falsos.
-_INVISIBLE = re.compile("[\u200b-\u200f\u202a-\u202e\u2066-\u2069\ufeff]")
-
-
 def _ascii(s: str) -> str:
-    return unicodedata.normalize("NFKD", _INVISIBLE.sub(" ", s)).encode("ascii", "ignore").decode().lower()
+    return unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode().lower()
 
 
 def tokens(s: str) -> list[str]:
@@ -138,7 +133,7 @@ def baseline_all() -> list[float]:
     return sorted(vals)
 
 
-ALGORITHM = 3  # mude ao alterar a escolha dos termos específicos ou a nota (invalida o cache de referência)
+ALGORITHM = 2  # mude ao alterar a escolha dos termos específicos ou a nota (invalida o cache de referência)
 CACHE_DIR = CONTENT_DIR.parent / "pipeline" / ".cache"
 
 

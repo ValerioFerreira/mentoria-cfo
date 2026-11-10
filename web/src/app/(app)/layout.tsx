@@ -8,8 +8,6 @@ import { getTheme } from "@/lib/theme";
 import { getUserContestSubtitle } from "@/lib/user-contest";
 import { canUserAccessCoreFeatures } from "@/lib/system-settings";
 import { logout } from "../(auth)/actions";
-import { isTestUser } from "@/lib/test-user";
-import { resetTestUser } from "@/lib/test-user-actions";
 
 const LAUNCH_TIME = new Date("2026-10-10T20:00:00-03:00").getTime();
 /** fora do componente: Date.now() direto no render viola a regra de pureza */
@@ -72,7 +70,6 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
   const name = user.name ?? user.email;
 
   const who = (
-    <div className="space-y-2">
     <div className="flex items-center gap-2">
       <Link
         href="/perfil"
@@ -104,14 +101,6 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
           <span className="sr-only">Sair</span>
         </button>
       </form>
-    </div>
-    {isTestUser(user.email) && (
-      <form action={resetTestUser}>
-        <button type="submit" className="w-full cursor-pointer rounded-lg border border-white/20 px-3 py-1.5 text-xs font-semibold text-on-ink transition hover:bg-white/10">
-          Reiniciar usuário
-        </button>
-      </form>
-    )}
     </div>
   );
 

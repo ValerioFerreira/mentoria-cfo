@@ -181,4 +181,4 @@ Um sistema com n equações e n incógnitas pode ser escrito como **A · X = B**
 
 ## Fontes
 
-Conteúdo elaborado a partir da teoria padrão de Álgebra Linear elementar e de Matemática do ensino médio (matrizes, determinantes e sistemas lineares). Todos os exemplos numéricos foram conferidos por cálculo direto. Consulta e revisão em 19/10/2026.
+Conteúdo elaborado a partir da teoria padrão de Álgebra Linear elementar e de Matemática do ensino médio (matrizes, determinantes e sistemas lineares) e do item 15 do edital do concurso de Agente de Polícia da PCPE (Cebraspe). Todos os exemplos numéricos foram conferidos por cálculo direto. Consulta e revisão em 19/10/2026.

@@ -1,4 +1,0 @@
-[
-["import { Alert, Badge, Card, PageHeader } from \"@/components/ui\";", "import { Alert, Badge, Button, Card, PageHeader } from \"@/components/ui\";\nimport { isTestUser } from \"@/lib/test-user\";\nimport { confirmTestPayment } from \"@/lib/test-user-actions\";"],
-["      {due > 0 && (\n        <p className=\"text-center text-xs leading-relaxed text-muted\">", "      {due > 0 && isTestUser(user.email) && (\n        <form action={confirmTestPayment.bind(null, c.id)} className=\"mx-auto max-w-xl\">\n          <Button type=\"submit\" size=\"lg\" className=\"w-full\">Confirmar pagamento</Button>\n          <p className=\"mt-2 text-center text-xs text-muted\">Teste local: reconhece o pagamento e libera o acesso até a prova.</p>\n        </form>\n      )}\n      {due > 0 && (\n        <p className=\"text-center text-xs leading-relaxed text-muted\">"]
-]

@@ -12,35 +12,6 @@ export interface SegmentRef {
   endsMidTopic: boolean;
   endTopic: string | null;
   endsTheory: boolean;
-  /** primeira linha da página inicial, quando não há cabeçalho algum antes dela (a diretriz cita o que a página abre dizendo) */
-  startOpening?: string | null;
-}
-
-/** Âncoras de content/directive/anchors.json (pipeline/directive_anchors.py): o texto real impresso nas páginas. */
-export interface SegmentAnchor {
-  start: { kind: "heading" | "inside" | "opens"; text: string | null };
-  stop: { kind: "heading" | "inside"; text: string | null } | null;
-  startPage: number;
-  endPage: number;
-  startPrinted: number;
-  endPrinted: number;
-}
-
-/** A diretriz do material-base usa SEMPRE as páginas e os textos das âncoras (conferidos contra o texto das páginas). */
-export function withAnchor<T extends SegmentRef>(seg: T, a: SegmentAnchor | undefined): T {
-  // trecho sem âncora (já não existe no conteúdo atual): sem texto de tópico que não possa ser conferido
-  if (!a) return { ...seg, startTopic: null, startsMidTopic: false, startOpening: null, stopBeforeTopic: null, endsMidTopic: false, endTopic: null };
-  const out: T = {
-    ...seg,
-    startPage: a.startPage, endPage: a.endPage, startPrinted: a.startPrinted, endPrinted: a.endPrinted,
-    startTopic: a.start.kind === "opens" ? null : a.start.text,
-    startsMidTopic: a.start.kind === "inside",
-    startOpening: a.start.kind === "opens" ? a.start.text : null,
-    stopBeforeTopic: null, endsMidTopic: false, endTopic: null,
-  };
-  if (a.stop?.kind === "heading") out.stopBeforeTopic = a.stop.text;
-  else if (a.stop?.kind === "inside") { out.endsMidTopic = true; out.endTopic = a.stop.text; }
-  return out;
 }
 
 export interface AulaRef {
@@ -92,7 +63,7 @@ export function aulaLabel(a: Pick<AulaRef, "number" | "shortTitle">): string {
 export function teoriaStep(seg: SegmentRef, authored = false): string {
   const start = seg.startsMidTopic
     ? `Continue na ${pageLabel(seg.startPage, seg.startPrinted)}${seg.startTopic ? `, dentro do tópico ${q(seg.startTopic)}` : ""}`
-    : `Comece na ${pageLabel(seg.startPage, seg.startPrinted)}${seg.startTopic ? `, no tópico ${q(seg.startTopic)}` : seg.startOpening ? `, que abre com ${q(seg.startOpening)}` : ""}`;
+    : `Comece na ${pageLabel(seg.startPage, seg.startPrinted)}${seg.startTopic ? `, no tópico ${q(seg.startTopic)}` : ""}`;
   let end: string;
   // o título seguinte costuma abrir no meio da página: o que vem antes dele na pág. seguinte ainda é deste assunto
   if (seg.stopBeforeTopic) end = `estude até a ${pageLabel(seg.endPage, seg.endPrinted)}, parando antes do tópico ${q(seg.stopBeforeTopic)} (se ele começar no meio da pág. ${seg.endPage + 1}, leia também a parte da pág. ${seg.endPage + 1} que vem antes do título)`;
@@ -157,88 +128,6 @@ export function fixacaoSteps(aula: AulaRef, ranges: FixRange[], sourceLabel: (id
   return [
     `Passe cerca de 1 hora fazendo e estudando as questões comentadas de ${aulaLabel(aula)}: seção “Questões Comentadas”, ${parts.join("; ")}.`,
     "Tente responder antes de ler o comentário. Leia o comentário de todas, inclusive das que acertar.",
-  ];
-}
-
-// ---------------------------------------------------------------------------------------------------------------------
-// Material próprio MentorIA: cada trecho é um capítulo de um volume em PDF (páginas do índice de pipeline/build_material.py).
-// A diretriz trata do mesmo assunto da do material-base; só muda onde ler.
-
-export type MaterialChoice = "mentoria" | "base";
-
-export interface MaterialChapter {
-  trecho: string;
-  volumeId: string;
-  volumeNumber: number;
-  volumeTitle: string;
-  subjectName: string;
-  chapter: number;
-  title: string;
-  start: number;
-  end: number;
-  mapPage: number | null;
-  reviewPage: number | null;
-  questions: { pagina: number; ate: number } | null;
-}
-
-export const volumeLabel = (c: Pick<MaterialChapter, "volumeNumber">) => `Volume ${String(c.volumeNumber).padStart(2, "0")}`;
-
-/** Link do PDF do volume, já na página (rota /material/<disciplina>/<mNN>). */
-export const materialHref = (c: Pick<MaterialChapter, "volumeId">, page?: number | null) =>
-  `/material/${c.volumeId}${page ? `#page=${page}` : ""}`;
-
-const span = (a: number, b: number) => (a === b ? `pág. ${a}` : `págs. ${a} a ${b}`);
-
-function byVolume(chs: MaterialChapter[]): MaterialChapter[][] {
-  const groups = new Map<string, MaterialChapter[]>();
-  for (const c of [...chs].sort((x, y) => x.volumeId.localeCompare(y.volumeId) || x.chapter - y.chapter)) {
-    groups.set(c.volumeId, [...(groups.get(c.volumeId) ?? []), c]);
-  }
-  return [...groups.values()];
-}
-
-export interface MentoriaBlock extends TeoriaDirective {
-  volumeId: string;
-  firstPage: number;
-}
-
-/** Teoria pelo material próprio: um bloco por volume, um passo por capítulo. */
-export function teoriaMentoria(chs: MaterialChapter[]): MentoriaBlock[] {
-  return byVolume(chs).map((list) => ({
-    heading: `${list[0].subjectName} · Material MentorIA · ${volumeLabel(list[0])}`,
-    volumeId: list[0].volumeId,
-    firstPage: list[0].start,
-    pages: list.reduce((n, c) => n + (c.end - c.start + 1), 0),
-    steps: list.map((c) =>
-      `Leia o capítulo ${c.chapter}, ${q(c.title)}, da pág. ${c.start} à pág. ${c.end}: ele abre na pág. ${c.start} com os objetivos`
-      + (c.mapPage ? ` e termina no “Mapa do capítulo” (pág. ${c.mapPage}), que resume os pontos que mais caem.` : "."),
-    ),
-  }));
-}
-
-/** Turbo: as páginas do material próprio ficam só para consulta. */
-export function turboMentoriaStep(chs: MaterialChapter[]): string | null {
-  if (!chs.length) return null;
-  const parts = byVolume(chs).map((l) => `${volumeLabel(l[0])}, ${span(Math.min(...l.map((c) => c.start)), Math.max(...l.map((c) => c.end)))}`);
-  return `Se um ponto ficar confuso, a teoria completa está no material MentorIA: ${parts.join("; ")}.`;
-}
-
-/** Revisão pelo material próprio: o Mapa do capítulo de cada Teoria revista e o bloco dela no Mapa de revisão do volume. */
-export function revisaoMentoria(chs: MaterialChapter[]): string[] {
-  return byVolume(chs).flatMap((l) => l.map((c) =>
-    `${volumeLabel(c)} · capítulo ${c.chapter}, ${q(c.title)}: Mapa do capítulo na ${c.mapPage ? `pág. ${c.mapPage}` : `${span(c.start, c.end)}`}`
-    + (c.reviewPage ? `; resumo no Mapa de revisão do volume, pág. ${c.reviewPage}` : "") + "."));
-}
-
-/** Fixação pelo material próprio: as questões comentadas dos capítulos da aula (o comentário vem logo abaixo de cada uma). */
-export function fixacaoMentoria(chs: MaterialChapter[]): string[] {
-  const withQ = chs.filter((c) => c.questions);
-  if (!withQ.length) return [];
-  const parts = byVolume(withQ).map((l) =>
-    `${volumeLabel(l[0])}, “Questões comentadas”: ${l.map((c) => `capítulo ${c.chapter} (${span(c.questions!.pagina, c.questions!.ate)})`).join("; ")}`);
-  return [
-    `Passe cerca de 1 hora fazendo e estudando as questões comentadas do material MentorIA: ${parts.join(" · ")}.`,
-    "O comentário vem logo abaixo de cada questão: cubra-o, responda e só então confira. Leia o comentário de todas, inclusive das que acertar.",
   ];
 }
 
