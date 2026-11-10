@@ -234,4 +234,4 @@ Em probabilidade, os eventos são conjuntos do espaço amostral, e P(A ∪ B) = 
 
 ## Fontes
 
-Conteúdo elaborado a partir da teoria elementar de conjuntos, de conhecimento didático padrão de Matemática (ensino médio e superior) e do item 14 do edital do concurso de Agente de Polícia da PCPE (Cebraspe). Os exemplos numéricos foram conferidos por cálculo direto. Consulta e revisão em 19/10/2026.
+Conteúdo elaborado a partir da teoria elementar de conjuntos, de conhecimento didático padrão de Matemática (ensino médio e superior). Os exemplos numéricos foram conferidos por cálculo direto. Consulta e revisão em 19/10/2026.

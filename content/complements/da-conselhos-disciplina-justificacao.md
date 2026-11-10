@@ -13,7 +13,7 @@ onlyContests: "CBMPE_CFOA"
 
 ## 1. Visão Sistemática: Conselho de Disciplina vs. Conselho de Justificação
 
-Pessoal, os itens **8 e 9** do edital de Direito Administrativo do CFOA cobram os dois processos administrativos disciplinares especiais destinados a apurar a **incapacidade moral ou profissional do militar para permanecer na ativa ou na situação de inatividade em que se encontra**:
+Pessoal, este material trata dos dois processos administrativos disciplinares especiais destinados a apurar a **incapacidade moral ou profissional do militar para permanecer na ativa ou na situação de inatividade em que se encontra**:
 
 1. **Conselho de Disciplina (Item 8 — Decreto Estadual PE nº 3.639, de 19 de agosto de 1975, e art. 48 da Lei Estadual nº 6.783/1974):** destinado a julgar da incapacidade do **Aspirante-a-Oficial** e das **demais praças com estabilidade assegurada** (na ativa, na reserva remunerada ou reformados).
 2. **Conselho de Justificação (Item 9 — Lei Federal nº 5.836, de 5 de dezembro de 1972, e art. 47 da Lei Estadual nº 6.783/1974):** destinado a julgar, através de processo especial, da incapacidade do **Oficial** — militar de carreira (na ativa, na reserva remunerada ou reformado) — para permanecer na ativa ou na situação de inatividade em que se encontra, criando-lhe condições para se justificar.
@@ -52,7 +52,7 @@ Diferentemente do Conselho de Justificação (que admite instauração a pedido 
 
 ### Composição, Funções dos Membros e Impedimentos (Art. 5º e §§ 1º e 2º)
 
-O **art. 5º** do Decreto Estadual nº 3.639/1975 é campeão absoluto de cobrança em provas militares:
+O **art. 5º** do Decreto Estadual nº 3.639/1975 é campeão absoluto de cobrança em provas:
 
 - **Composição (*caput*):** o Conselho de Disciplina é composto de **3 (três) oficiais da Corporação**.
 - **Distribuição de funções segundo a antiguidade (§ 1º):**

@@ -22,7 +22,7 @@ A ordem é a mesma de uma boa aula de óptica:
 5. Lentes esféricas delgadas;
 6. Instrumentos ópticos e o olho humano.
 
-> **Como a AOCP cobra óptica:** a maior parte das questões é **conceitual** ("a imagem é real ou virtual? direita ou invertida? maior ou menor?") ou pede **uma conta curta** com a equação de Gauss, a lei de Snell ou o ângulo limite. Quase nunca exige construção geométrica elaborada. Domine as **tabelas de imagem** e a **convenção de sinais**, que valem mais que qualquer macete.
+> **Como a banca cobra óptica:** a maior parte das questões é **conceitual** ("a imagem é real ou virtual? direita ou invertida? maior ou menor?") ou pede **uma conta curta** com a equação de Gauss, a lei de Snell ou o ângulo limite. Quase nunca exige construção geométrica elaborada. Domine as **tabelas de imagem** e a **convenção de sinais**, que valem mais que qualquer macete.
 
 ### Convenção de sinais (a de Gauss), que vamos usar o tempo todo
 

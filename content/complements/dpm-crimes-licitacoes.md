@@ -25,7 +25,7 @@ Por que os crimes em licitações e contratos administrativos são cobrados dent
 
 Assim, quando um oficial ou praça da ativa do Corpo de Bombeiros Militar de Pernambuco (CBMPE), no exercício de função em comissão de contratação, pregoeiro, fiscal de contrato ou ordenador de despesas da Corporação, pratica qualquer das condutas dos **arts. 337-E a 337-O do Código Penal** contra o patrimônio ou a ordem administrativa militar estadual, responde por **crime militar por extensão** perante a **Justiça Militar Estadual** (art. 125, § 4º, da CF/88).
 
-> **Pegadinha de Prova (Instituto AOCP):** Todos os crimes do Capítulo II-B do Código Penal (arts. 337-E a 337-O) são **crimes dolosos** (não há modalidade culposa) e submetem-se a **ação penal pública incondicionada**!
+> **Pegadinha de Prova:** Todos os crimes do Capítulo II-B do Código Penal (arts. 337-E a 337-O) são **crimes dolosos** (não há modalidade culposa) e submetem-se a **ação penal pública incondicionada**!
 
 ---
 
@@ -69,7 +69,7 @@ Assim, quando um oficial ou praça da ativa do Corpo de Bombeiros Militar de Per
 
 - **Conduta típica:** *"Impedir, perturbar ou fraudar a realização de qualquer ato de processo licitatório."*
 - **Pena:** **detenção, de 6 (seis) meses a 3 (três) anos**, e multa.
-- **Dica de Ouro (Banca AOCP):** o art. 337-I e o art. 337-J são os **dois únicos crimes** do Capítulo II-B punidos com **detenção**! Todos os demais (arts. 337-E, 337-F, 337-G, 337-H, 337-K, 337-L, 337-M, 337-N e 337-O) são punidos com **reclusão**.
+- **Dica de Ouro:** o art. 337-I e o art. 337-J são os **dois únicos crimes** do Capítulo II-B punidos com **detenção**! Todos os demais (arts. 337-E, 337-F, 337-G, 337-H, 337-K, 337-L, 337-M, 337-N e 337-O) são punidos com **reclusão**.
 
 ---
 

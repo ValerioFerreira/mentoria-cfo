@@ -11,11 +11,11 @@ norma: "true"
 onlyContests: "PCPE_AGENTE"
 ---
 
-## Como estudar a Lei nº 9.784/1999 para a Prova Cebraspe
+## Como estudar a Lei nº 9.784/1999 para a prova
 
 A **Lei nº 9.784/1999** regula o processo administrativo no âmbito da Administração Pública Federal, aplicando-se também subsidiariamente aos Estados e Municípios que não possuem lei própria de processo (segundo firme jurisprudência do STJ). Além disso, a lei estadual de Pernambuco (Lei nº 11.781/2000) reproduz grande parte dos seus dispositivos.
 
-A banca Cebraspe possui questões recorrentes concentradas em **seis pontos-chave**:
+As bancas têm questões recorrentes concentradas em **seis pontos-chave**:
 1. **Critérios e Princípios** (art. 2º);
 2. **Competência: Delegação e Avocação** (arts. 11 a 15);
 3. **Impedimento e Suspeição** (arts. 18 a 21);

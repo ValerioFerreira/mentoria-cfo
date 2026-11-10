@@ -22,7 +22,7 @@ Pessoal, a auditoria do edital de Física mostrou alguns itens que o curso princ
 7. **Medidores elétricos e símbolos de circuitos**;
 8. **Fenômenos climáticos e o ciclo da água** (calor latente em ação).
 
-> **Como a AOCP cobra estes itens:** em geral com **questões conceituais curtas** ("qual afirmativa é correta?"), muitas vezes apoiadas num texto de contexto. Por isso o foco aqui é o **conceito correto**, as **comparações** e as **pegadinhas**, com poucas contas, todas simples.
+> **Como a banca cobra estes itens:** em geral com **questões conceituais curtas** ("qual afirmativa é correta?"), muitas vezes apoiadas num texto de contexto. Por isso o foco aqui é o **conceito correto**, as **comparações** e as **pegadinhas**, com poucas contas, todas simples.
 
 ## 1. Referenciais inerciais e não inerciais
 

@@ -23,7 +23,7 @@ Pessoal, o **Decreto Estadual nº 22.114, de 13 de março de 2000**, aprova o **
 
 ### Os Quatro Conceitos Fundamentais do Art. 4º (§§ 1º a 4º — Campeão Absoluto de Prova!)
 
-Pelo **art. 4º**, o sentimento do dever, o pundonor militar e o decoro da classe impõem a cada um dos integrantes das Corporações Militares Estaduais conduta moral e profissional irrepreensíveis. As bancas como o Instituto AOCP adoram trocar as definições dos **§§ 1º a 4º do art. 4º**:
+Pelo **art. 4º**, o sentimento do dever, o pundonor militar e o decoro da classe impõem a cada um dos integrantes das Corporações Militares Estaduais conduta moral e profissional irrepreensíveis. As bancas adoram trocar as definições dos **§§ 1º a 4º do art. 4º**:
 
 | Conceito (Art. 4º) | Definição Legal Exata no Decreto Estadual nº 22.114/2000 | Palavra-Chave / Gatilho de Prova |
 |---|---|---|

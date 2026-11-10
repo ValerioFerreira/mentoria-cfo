@@ -33,7 +33,7 @@ Pessoal, o curso principal explica bem as **técnicas** de DNA recombinante, PCR
 14. **Microplásticos**;
 15. **Tecidos vegetais** (meristemáticos e permanentes), item do bloco 1 que o curso não desenvolve.
 
-> **Como a AOCP cobra:** nos itens legais, a prova costuma pedir **conceitos e categorias** ("qual unidade permite visitação para pesquisa?", "o que é APP?", "qual é o fundamento da Política de Recursos Hídricos?"), raramente números isolados. Em biotecnologia, pede **definição** (o que distingue clonagem reprodutiva de terapêutica), **aplicação** e o **debate ético**. Os artigos citados abaixo foram conferidos no texto oficial consolidado (consulta em 08/10/2026), mas em prova **entenda a lógica**; decorar numeração é secundário.
+> **Como a banca cobra:** nos itens legais, a prova costuma pedir **conceitos e categorias** ("qual unidade permite visitação para pesquisa?", "o que é APP?", "qual é o fundamento da Política de Recursos Hídricos?"), raramente números isolados. Em biotecnologia, pede **definição** (o que distingue clonagem reprodutiva de terapêutica), **aplicação** e o **debate ético**. Os artigos citados abaixo foram conferidos no texto oficial consolidado (consulta em 08/10/2026), mas em prova **entenda a lógica**; decorar numeração é secundário.
 
 ## 1. Clonagem de organismos
 

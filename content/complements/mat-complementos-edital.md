@@ -28,7 +28,7 @@ O que o curso principal já traz e **não é repetido aqui**: Girard para o 2º 
 
 > **Como estudar:** são sete blocos pequenos e independentes. Em cada um, leia a regra, refaça os exemplos **sem olhar** e, ao final, faça os 12 exercícios da seção 8. A prova costuma cobrar esses temas em questões curtas, com uma ideia só por questão.
 
-> **Sobre a prova:** no banco de questões de Matemática da AOCP que analisamos para o projeto (39 questões), o padrão é enunciado curto, 5 alternativas e alternativas numéricas curtas, com cerca de 30% pedindo cálculo. Nenhum desses sete temas aparece nessa amostra, mas todos estão no edital do CBM-PE. Treine a versão **direta** de cada um (aplicar a regra, uma conta).
+> **Sobre a prova:** numa amostra de 39 questões de Matemática que analisamos para o projeto, o padrão é enunciado curto, 5 alternativas e alternativas numéricas curtas, com cerca de 30% pedindo cálculo. Nenhum desses sete temas aparece nessa amostra, mas todos aparecem em editais. Treine a versão **direta** de cada um (aplicar a regra, uma conta).
 
 ## 1. Simetrias de figuras planas e espaciais (item 2.6)
 
@@ -506,4 +506,4 @@ Aqui vale a monotonia: se **a > 1**, a função é crescente e o sentido da desi
 
 ## Fontes
 
-Conteúdo didático padrão de matemática do ensino fundamental e médio, redigido de forma original. Contagens de simetria (cubo, tetraedro), pares de arestas reversas, divisores e demais exemplos numéricos conferidos por programa em 08/10/2026. Edital: Anexo II do cargo de 2º Tenente do CBMPE (Matemática, itens 1.3, 1.8, 2.5, 2.6, 4.4, 4.5, 4.6 e 4.8). Estilo da banca: levantamento interno de questões de Matemática da AOCP.
+Conteúdo didático padrão de matemática do ensino fundamental e médio, redigido de forma original. Contagens de simetria (cubo, tetraedro), pares de arestas reversas, divisores e demais exemplos numéricos conferidos por programa em 08/10/2026. Estilo de prova: levantamento interno de questões de Matemática.

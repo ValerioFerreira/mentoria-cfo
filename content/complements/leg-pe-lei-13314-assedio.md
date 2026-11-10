@@ -13,7 +13,7 @@ onlyContests: "CBMPE_CFOA"
 
 ## 1. Visão Geral, Evolução Legislativa e Abrangência (Art. 1º e Parágrafo Único)
 
-Pessoal, o item 8 de Legislação Extravagante do edital do CFOA cobra expressamente a **"Lei Estadual nº 13.314/2007 e alterações"**. Tenham **cuidado máximo** com materiais desatualizados na internet: a Lei Estadual nº 13.314, de 15 de outubro de 2007 (regulamentada pelo Decreto Estadual nº 30.948/2007), foi profundamente reformulada por **quatro leis estaduais posteriores**:
+Pessoal, quando o edital cobra a **"Lei Estadual nº 13.314/2007 e alterações"**, o "e alterações" pesa. Tenham **cuidado máximo** com materiais desatualizados na internet: a Lei Estadual nº 13.314, de 15 de outubro de 2007 (regulamentada pelo Decreto Estadual nº 30.948/2007), foi profundamente reformulada por **quatro leis estaduais posteriores**:
 1. **Lei Estadual nº 17.065, de 7 de outubro de 2020:** reestruturou o conceito de assédio moral (art. 2º), criou os **arts. 2º-A, 2º-B e 6º-C** e instituiu a classificação em **5 modalidades** (vertical descendente, vertical ascendente, horizontal, misto e passivo — art. 3º);
 2. **Lei Estadual nº 17.971, de 12 de dezembro de 2022:** incluiu o § 2º no art. 6º (disponibilização do inteiro teor em versão acessível a pessoas com deficiência e nos sítios eletrônicos);
 3. **Lei Estadual nº 18.379, de 17 de novembro de 2023:** ampliou toda a Lei nº 13.314/2007 para vedar e punir também o **assédio sexual**, incluindo o **art. 2º-C** e atualizando a ementa e os arts. 1º, 3º, 4º, 5º, 6º, 6º-A e 6º-B;

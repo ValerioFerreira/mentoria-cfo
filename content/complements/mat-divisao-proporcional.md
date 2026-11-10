@@ -95,4 +95,4 @@ Em problemas de sócios, o lucro é dividido proporcionalmente ao **capital inve
 
 ## Fontes
 
-Conteúdo elaborado a partir de conhecimento didático padrão de Matemática (razão, proporção e grandezas proporcionais, ensino fundamental e médio) e do item 3.1 do edital do concurso de Agente de Polícia da PCPE (Cebraspe). Os exemplos foram conferidos por cálculo direto. Consulta e revisão em 19/10/2026.
+Conteúdo elaborado a partir de conhecimento didático padrão de Matemática (razão, proporção e grandezas proporcionais, ensino fundamental e médio). Os exemplos foram conferidos por cálculo direto. Consulta e revisão em 19/10/2026.

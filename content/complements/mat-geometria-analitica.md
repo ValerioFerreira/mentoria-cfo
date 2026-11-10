@@ -26,7 +26,7 @@ Pessoal, o item 5 do edital de Matemática ("conhecimentos algébricos/geométri
 
 > **Como estudar:** geometria analítica é **pouca teoria e muita fórmula aplicada**. Memorize as 8 ou 9 fórmulas do quadro de resumo (seção 9) e treine as contas curtas: quase todo exercício se resolve com substituição direta, e os números costumam ser "bonitos" (3-4-5, 5-12-13, 6-8-10).
 
-> **O que esperar na prova:** no banco de questões de Matemática da AOCP que analisamos para este projeto (39 questões, quase todas com 5 alternativas e cerca de 30% pedindo cálculo), o enunciado é curto (mediana de 46 palavras) e as alternativas são números ou expressões curtas. Não há, nessa amostra, questão de geometria analítica, mas o edital do CBM-PE a lista expressamente. O mais provável, portanto, é a questão **curta e direta**: "qual a distância...", "qual a equação da reta...", "qual o centro e o raio...", "para que valor de k as retas são paralelas/perpendiculares". Esse é o padrão que treinamos aqui.
+> **O que esperar na prova:** numa amostra de questões de Matemática que analisamos para este projeto (39 questões, quase todas com 5 alternativas e cerca de 30% pedindo cálculo), o enunciado é curto (mediana de 46 palavras) e as alternativas são números ou expressões curtas. Não há, nessa amostra, questão de geometria analítica, mas há editais que a listam expressamente. O mais provável, portanto, é a questão **curta e direta**: "qual a distância...", "qual a equação da reta...", "qual o centro e o raio...", "para que valor de k as retas são paralelas/perpendiculares". Esse é o padrão que treinamos aqui.
 
 ## 1. Plano cartesiano (revisão curta)
 
@@ -492,4 +492,4 @@ Quando o sistema mistura uma reta e uma circunferência (ou parábola), substitu
 
 ## Fontes
 
-Conteúdo didático padrão de geometria analítica plana (nível médio), redigido de forma original. Todas as fórmulas são resultados clássicos e foram conferidas por cálculo (exemplos numéricos verificados em Python em 08/10/2026). Edital: Anexo II do edital do cargo de 2º Tenente do CBMPE (Matemática, item 5). Panorama de estilo da banca: levantamento interno de questões de Matemática da AOCP do projeto (`content/style/aocp-profile.json`).
+Conteúdo didático padrão de geometria analítica plana (nível médio), redigido de forma original. Todas as fórmulas são resultados clássicos e foram conferidas por cálculo (exemplos numéricos verificados em Python em 08/10/2026). Panorama de estilo de prova: levantamento interno de questões de Matemática do projeto.

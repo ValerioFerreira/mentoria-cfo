@@ -32,7 +32,7 @@ Os procedimentos previstos na LAI destinam-se a assegurar o direito fundamental 
 - **IV — fomento ao desenvolvimento da cultura de transparência na administração pública**;
 - **V — desenvolvimento do controle social da administração pública**.
 
-### As Nove Definições Legais do Art. 4º (Alvo Constante da Banca AOCP!)
+### As Nove Definições Legais do Art. 4º (Alvo Constante das Bancas!)
 
 Memorize com precisão cirúrgica os conceitos do **art. 4º, incisos I a IX**, especialmente as **cinco qualidades da informação** (primária, íntegra, autêntica, atualizada e disponibilidade):
 
@@ -114,7 +114,7 @@ Não confunda **informação sigilosa** (ultrassecreta, secreta ou reservada —
 ## 4. Responsabilidades dos Agentes Públicos Militares e Civis e dos Particulares (Arts. 32 a 34)
 
 - **Condutas ilícitas do agente público ou militar (Art. 32, I a VII):** constituem condutas ilícitas que ensejam responsabilidade do agente público ou militar: (I) recusar-se a fornecer informação requerida nos termos da Lei, retardar deliberadamente o seu fornecimento ou fornecê-la intencionalmente de forma incorreta, incompleta ou imprecisa; (II) utilizar indevidamente, subtrair, destruir, inutilizar, desfigurar, alterar ou ocultar, total ou parcialmente, informação; (III) agir com dolo ou má-fé na análise das solicitações de acesso; (IV) divulgar ou permitir a divulgação de informação sigilosa ou pessoal; (V) impor sigilo à informação para obter proveito pessoal ou de terceiro, ou para fins de ocultação de ato ilegal; (VI) ocultar da revisão de autoridade superior competente informação sigilosa para beneficiar a si ou a outrem, ou em prejuízo de terceiros; e (VII) destruir ou subtrair documentos concernentes a possíveis violações de direitos humanos por parte de agentes do Estado.
-- **Equiparação à transgressão militar média ou grave (Art. 32, § 1º, I — Essencial para o CBMPE!):**
+- **Equiparação à transgressão militar média ou grave (Art. 32, § 1º, I — Essencial para os militares!):**
   > **Art. 32, § 1º:** *"Atendido o princípio do contraditório, da ampla defesa e do devido processo legal, as condutas descritas no caput serão consideradas:*
   > *I — para fins dos regulamentos disciplinares das Forças Armadas, **transgressões militares médias ou graves**, segundo os critérios neles estabelecidos, **desde que não tipificadas em lei como crime ou contravenção penal**; ou*
   > *II — para fins do disposto na Lei nº 8.112, de 11 de dezembro de 1990, e suas alterações, infrações administrativas, que deverão ser apuradas e punidas, no mínimo, com **suspensão**..."*

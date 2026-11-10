@@ -26,7 +26,7 @@ Veja como o **Art. 1º, segunda parte, e a alínea "e" do Preâmbulo** definem o
 
 > **Art. 1º (Propósito):** *"O propósito da presente Convenção é promover, proteger e assegurar o exercício pleno e equitativo de todos os direitos humanos e liberdades fundamentais por todas as pessoas com deficiência e promover o respeito pela sua dignidade inerente. Pessoas com deficiência são aquelas que têm **impedimentos de longo prazo de natureza física, mental, intelectual ou sensorial, os quais, em interação com diversas barreiras, podem obstruir sua participação plena e efetiva na sociedade em igualdades de condições com as demais pessoas**."*
 
-**Equação do Modelo Social (Questão Certa na AOCP):**
+**Equação do Modelo Social (cobrada como item certo em provas):**
 `Deficiência = Impedimento de longo prazo (físico, mental, intelectual ou sensorial) + Interação com Barreiras (urbanísticas, arquitetônicas, nos transportes, nas comunicações e atitudinais)`
 
 > **Atenção:** o impedimento deve ser de **longo prazo** (uma lesão temporária, como uma fratura óssea com recuperação em semanas, gera mobilidade reduzida temporária, mas não enquadra o indivíduo no conceito de pessoa com deficiência do art. 1º).
@@ -37,7 +37,7 @@ Veja como o **Art. 1º, segunda parte, e a alínea "e" do Preâmbulo** definem o
 
 ### As Cinco Definições do Art. 2º da Convenção
 
-A banca Instituto AOCP cobra com frequência a literalidade e a distinção entre os cinco conceitos definidos no **art. 2º**:
+A banca cobra com frequência a literalidade e a distinção entre os cinco conceitos definidos no **art. 2º**:
 
 | Conceito (Art. 2º) | Definição Oficial na Convenção (Decreto nº 6.949/2009) | Palavras-Chave para a Prova |
 |---|---|---|
@@ -90,7 +90,7 @@ O **art. 12** da Convenção (que fundamentou a reforma do Código Civil brasile
 
 ### Outros Direitos Substantivos de Alta Incidência (Arts. 10 a 30)
 
-- **Direito à vida (Art. 10) e Situações de risco e emergências humanitárias (Art. 11 — essencial para o CBMPE!):** pelo **art. 11**, os Estados-Partes tomarão todas as medidas necessárias para assegurar a **proteção e a segurança das pessoas com deficiência que se encontrarem em situações de risco**, inclusive situações de conflito armado, **emergências humanitárias e ocorrência de desastres naturais**.
+- **Direito à vida (Art. 10) e Situações de risco e emergências humanitárias (Art. 11 — essencial para quem atua em socorro e defesa civil):** pelo **art. 11**, os Estados-Partes tomarão todas as medidas necessárias para assegurar a **proteção e a segurança das pessoas com deficiência que se encontrarem em situações de risco**, inclusive situações de conflito armado, **emergências humanitárias e ocorrência de desastres naturais**.
 - **Acesso à justiça (Art. 13):** inclui a provisão de **adaptações processuais e adequadas à idade**, a fim de facilitar o efetivo papel das pessoas com deficiência como participantes diretos e indiretos, **inclusive como testemunhas**, em todos os procedimentos jurídicos, tais como investigações e outras etapas preliminares, além da **capacitação** dos profissionais da administração da justiça, **incluindo o pessoal policial e prisional** (§ 2º).
 - **Liberdade e segurança da pessoa (Art. 14):** **em hipótese alguma a existência de uma deficiência justificará a privação de liberdade** (§ 1º, "b").
 - **Prevenção contra tortura (Art. 15):** ninguém será submetido a tortura ou a penas ou tratamentos cruéis, desumanos ou degradantes; em especial, **ninguém será sujeito a experimentos médicos ou científicos sem seu livre consentimento**.

@@ -24,7 +24,7 @@ Pessoal, o **bloco 4 do edital de Biologia** ("Qualidade de vida das populaçõe
 9. **Saúde mental e bem-estar social**;
 10. **Aspectos biológicos do desenvolvimento sustentável**.
 
-> **Como a AOCP cobra este bloco:** quase sempre com **texto-base** (notícia, relatório, gráfico) e uma pergunta de interpretação que pede um **conceito** (o que é IDH? o que é Saúde Única? qual doença é transmitida por X?). Decorar definições, siglas e a **lógica da prevenção** rende mais que decorar números. Números, quando aparecem aqui, têm **ano e fonte** — em prova, trate-os como ilustração, não como algo a memorizar.
+> **Como a banca cobra este bloco:** quase sempre com **texto-base** (notícia, relatório, gráfico) e uma pergunta de interpretação que pede um **conceito** (o que é IDH? o que é Saúde Única? qual doença é transmitida por X?). Decorar definições, siglas e a **lógica da prevenção** rende mais que decorar números. Números, quando aparecem aqui, têm **ano e fonte** — em prova, trate-os como ilustração, não como algo a memorizar.
 
 ## 1. Aspectos biológicos da pobreza e do desenvolvimento humano
 
@@ -381,7 +381,7 @@ Segundo a OMS, **saúde mental** não é apenas a ausência de transtornos menta
 ### 9.2 Bases biológicas (o que a Biologia cobra)
 
 - **Neurotransmissores** envolvidos: **serotonina** (humor, sono, apetite), **dopamina** (motivação, recompensa), **noradrenalina** (alerta, atenção), **GABA** (inibição/ansiolítico natural). Desequilíbrios estão associados à depressão, ansiedade e outros transtornos — mas a causa nunca é só química: envolve genética, experiências e ambiente.
-- **Estresse:** o estresse ativa o **eixo hipotálamo-hipófise-adrenal** e libera **cortisol** e adrenalina (resposta de "luta ou fuga"). Em curto prazo é adaptativo; **crônico**, prejudica sono, imunidade, pressão arterial e humor. É um tema muito relevante para a profissão de bombeiro, exposta a eventos traumáticos.
+- **Estresse:** o estresse ativa o **eixo hipotálamo-hipófise-adrenal** e libera **cortisol** e adrenalina (resposta de "luta ou fuga"). Em curto prazo é adaptativo; **crônico**, prejudica sono, imunidade, pressão arterial e humor. É um tema muito relevante para profissões expostas a eventos traumáticos, como a de bombeiro.
 - **Sono, atividade física, alimentação e vínculos sociais** são fatores de proteção.
 
 ### 9.3 Transtornos mais comuns

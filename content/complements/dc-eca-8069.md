@@ -43,7 +43,7 @@ A **garantia de prioridade** compreende (parágrafo único):
 3. **preferência na formulação e na execução** das políticas sociais públicas;
 4. **destinação privilegiada de recursos públicos** nas áreas relacionadas com a proteção à infância e à juventude.
 
-> **Atenção, futuro oficial:** o item 1 (**"primazia de receber proteção e socorro em quaisquer circunstâncias"**) é o que mais interessa à atuação do Corpo de Bombeiros. Em salvamentos e emergências, a criança e o adolescente têm prioridade de socorro.
+> **Atenção:** o item 1 (**"primazia de receber proteção e socorro em quaisquer circunstâncias"**) é o que mais interessa aos serviços de socorro, como o Corpo de Bombeiros. Em salvamentos e emergências, a criança e o adolescente têm prioridade de socorro.
 
 **Outros pontos da parte inicial:**
 

@@ -15,7 +15,7 @@ onlyContests: "CBMPE_CFOA"
 
 Pessoal, a **Convenção sobre a Eliminação de Todas as Formas de Discriminação contra a Mulher** — mundialmente conhecida pela sigla em inglês **CEDAW** (*Convention on the Elimination of All Forms of Discrimination Against Women*) — foi adotada pela Assembleia Geral da Organização das Nações Unidas (ONU) em **18 de dezembro de 1979** (Resolução 34/180), entrando em vigor internacional em **3 de setembro de 1981**.
 
-No Brasil, a trajetória de internalização da CEDAW e de seu Protocolo Facultativo envolve marcos históricos que despencam em provas do Instituto AOCP:
+No Brasil, a trajetória de internalização da CEDAW e de seu Protocolo Facultativo envolve marcos históricos que despencam em provas:
 
 1. **Ratificação inicial com reservas (1984):** o Brasil assinou a Convenção em 31/03/1981 e a ratificou em 1º/02/1984 (promulgada inicialmente pelo Decreto nº 89.460/1984), mas formulou **reservas aos arts. 15, § 4º, e 16, § 1º, alíneas "a", "c", "g" e "h"** (dispositivos sobre igualdade no direito de escolher o domicílio e igualdade de direitos e responsabilidades no casamento e na chefia da sociedade conjugal, que colidiam com o antigo Código Civil de 1916).
 2. **Retirada das reservas e promulgação plena (1994 e 2002):** após a Constituição Federal de 1988 consagrar a igualdade entre homens e mulheres em direitos e obrigações (art. 5º, I) e na sociedade conjugal (art. 226, § 5º), o Congresso Nacional aprovou a retirada de todas as reservas pelo Decreto Legislativo nº 26/1994. Em **20 de dezembro de 1994**, o Governo brasileiro notificou o Secretário-Geral da ONU sobre a retirada das reservas, e o texto integral sem reservas foi promulgado pelo **Decreto nº 4.377, de 13 de setembro de 2002**.
