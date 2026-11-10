@@ -1,3 +1,4 @@
+import { segmentAnchors } from "@/lib/directive-anchors";
 import { ArrowLeft, Clock3, Lightbulb, NotebookPen, Sparkles } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -11,12 +12,21 @@ import { requireUser } from "@/lib/auth/dal";
 import { getActivity } from "@/lib/data/study";
 import { db } from "@/lib/db";
 import {
-  aulaLabel, fixacaoSteps, questoesSteps, revisaoFinalSteps, revisaoSteps, teoriaDirective, turboDirective,
-  type AulaRef, type FixRange, type SegmentRef,
+  aulaLabel, fixacaoMentoria, fixacaoSteps, materialHref, questoesSteps, revisaoFinalSteps, revisaoMentoria, revisaoSteps,
+  teoriaDirective, teoriaMentoria, turboDirective, turboMentoriaStep,
+  withAnchor, type AulaRef, type FixRange, type MaterialChapter, type SegmentRef,
 } from "@/lib/directive";
+import { chapterFor, chaptersForAula, getMaterialChoice, volumeInfo } from "@/lib/material";
+
+/** Dados do botão "Reportar erro no PDF" (volume, rótulo e total de páginas). */
+function reportFor(volumeId: string, label: string) {
+  const info = volumeInfo(volumeId);
+  return info ? { volumeId, volumeLabel: label, maxPage: info.paginas } : undefined;
+}
 import { loadQuizPool, poolSize } from "@/lib/quiz/pool";
 import { STATUS_LABEL, subjectShort } from "@/lib/ui-format";
 import { MaterialLink } from "@/components/material-link";
+import { MaterialTabs, MentoriaPdfLink } from "@/components/material-tabs";
 import { packageFor } from "@/lib/contests";
 
 export const metadata: Metadata = { title: "Atividade" };
@@ -53,14 +63,28 @@ export default async function ActivityPage({ params }: PageProps<"/atividade/[id
 
   const segs = a.segments.map((x) => x.segment).sort((p, q) => p.aulaId.localeCompare(q.aulaId) || p.sortOrder - q.sortOrder);
   const segIds = segs.map((s) => s.id);
-  const segRefs = segs.map<SegmentRef & { aulaId: string }>((s) => ({
+  const anchors = segmentAnchors();
+  const segRefs = segs.map<SegmentRef & { aulaId: string }>((s) => withAnchor({
     id: s.id, aulaId: s.aulaId, startPage: s.startPage, endPage: s.endPage, startPrinted: s.startPrinted, endPrinted: s.endPrinted,
     startTopic: s.startTopic, startsMidTopic: s.startsMidTopic, stopBeforeTopic: s.stopBeforeTopic, endsMidTopic: s.endsMidTopic,
     endTopic: s.endTopic, endsTheory: s.endsTheory,
-  }));
+  }, anchors[s.id]));
 
-  // aulas envolvidas (atividades finais podem misturar várias aulas) e aulas de prática citadas na Fixação
-  const fixRanges = (a.fixRanges as FixRange[] | null) ?? [];
+  // aulas envolvidas (atividades finais podem misturar várias aulas) e aulas de prática citadas na Fixação.
+  // As páginas da Fixação vêm do catálogo atual (como no planejador, blueprint.ts): o que o plano gravou pode ter ficado
+  // velho depois de uma resegmentação da aula.
+  const storedFix = (a.fixRanges as FixRange[] | null) ?? [];
+  const fixAula = a.type === "FIXACAO"
+    ? await db.aula.findUnique({ where: { id: a.aulaId }, select: { commentedRuns: true, practiceLinks: true } })
+    : null;
+  const currentFix: FixRange[] = fixAula
+    ? [
+        ...((fixAula.commentedRuns as [number, number][] | null) ?? []).map(([start, end]) => ({ start, end })),
+        ...((fixAula.practiceLinks as { startPage: number; endPage: number; sourceAula: string }[] | null) ?? [])
+          .map((l) => ({ start: l.startPage, end: l.endPage, sourceAula: l.sourceAula })),
+      ]
+    : [];
+  const fixRanges = currentFix.length ? currentFix : storedFix;
   const aulaIds = [...new Set([a.aulaId, ...segs.map((s) => s.aulaId), ...fixRanges.map((r) => r.sourceAula).filter(Boolean) as string[]])];
   const [aulas, notes, approvedQuestions, analytics] = await Promise.all([
     db.aula.findMany({ where: { id: { in: aulaIds } }, select: { id: true, number: true, shortTitle: true, printedOffset: true, source: true, materialPath: true, subject: { select: { name: true } } } }),
@@ -75,6 +99,13 @@ export default async function ActivityPage({ params }: PageProps<"/atividade/[id
   const toRef = (x: (typeof aulas)[number]): AulaRef => ({ id: x.id, number: x.number, shortTitle: x.shortTitle, subjectName: x.subject.name, printedOffset: x.printedOffset, authored: x.source === "AUTHORED", materialPath: x.materialPath });
   const mainAula = toRef(aulaById.get(a.aulaId)!);
   const noteBySeg = new Map(notes.map((n) => [n.segmentId, n.text]));
+
+  // material próprio MentorIA: o mesmo assunto, nas páginas do capítulo de cada trecho (só quando todos os trechos têm capítulo)
+  const materialChoice = await getMaterialChoice();
+  const chapters = segs.map((s) => chapterFor(s.id)).filter((c): c is MaterialChapter => Boolean(c));
+  const allChapters = segs.length > 0 && chapters.length === segs.length;
+  const fixChapters = a.type === "FIXACAO" ? chaptersForAula(a.aulaId) : [];
+  const withMaterial = (mentoria: ReactNode, base: ReactNode) => <MaterialTabs initial={materialChoice} mentoria={mentoria} base={base} />;
 
   const isFinal = a.scope === "FINAL";
   const title = isFinal
@@ -194,7 +225,7 @@ export default async function ActivityPage({ params }: PageProps<"/atividade/[id
         <Section id="dir" icon={<Lightbulb className="h-5 w-5 text-gold" aria-hidden />} title="Diretriz" />
         <Card className="space-y-5">
           {a.type === "TEORIA" && (() => {
-            const pagesView = (
+            const baseView = (
               <div className="space-y-5">
                 {[...byAula].map(([aulaId, list]) => {
                   const d = teoriaDirective(toRef(aulaById.get(aulaId)!), list);
@@ -208,11 +239,27 @@ export default async function ActivityPage({ params }: PageProps<"/atividade/[id
                 })}
               </div>
             );
+            const mentoriaView = (
+              <div className="space-y-5">
+                {teoriaMentoria(chapters).map((d) => (
+                  <div key={d.volumeId} className="space-y-3">
+                    <p className="eyebrow">{d.heading} · {d.pages} págs.</p>
+                    <MentoriaPdfLink href={materialHref(d, d.firstPage)} page={d.firstPage} report={reportFor(d.volumeId, d.heading)} />
+                    <Steps items={d.steps} color={meta.color} />
+                  </div>
+                ))}
+              </div>
+            );
+            const pagesView = allChapters ? withMaterial(mentoriaView, baseView) : baseView;
             if (!hasAnalytic) return pagesView; // sem resumo analítico, só a diretriz (nunca no Turbo: ele só troca quem tem resumo)
             const first = [...byAula].map(([aulaId, list]) => turboDirective(toRef(aulaById.get(aulaId)!), list, readMinutes))[0];
+            const mentoriaLookup = allChapters ? turboMentoriaStep(chapters) : null;
+            const turboSteps = mentoriaLookup && materialChoice === "mentoria"
+              ? [...first.steps.filter((s) => !s.startsWith("Se um ponto ficar confuso")), mentoriaLookup]
+              : first.steps;
             const summaryView = (
               <div className="space-y-5">
-                {a.turbo && <Steps items={first.steps} color={meta.color} />}
+                {a.turbo && <Steps items={turboSteps} color={meta.color} />}
                 {!a.turbo && <p className="text-sm text-muted">Prefere ler um resumo em vez do material? Leia o resumo analítico abaixo (≈ {readMinutes} min). O Bizu continua valendo, no fim da página.</p>}
                 {analyticBlocks}
               </div>
@@ -231,35 +278,60 @@ export default async function ActivityPage({ params }: PageProps<"/atividade/[id
           {a.type === "REVISAO" && (
             <>
               <Steps items={isFinal ? revisaoFinalSteps() : revisaoSteps()} color={meta.color} />
-              <div className="rounded-xl bg-surface-2 p-4">
-                <p className="eyebrow mb-2">Trechos a revisar</p>
-                <ul className="space-y-1.5 text-sm">
-                  {isFinal
-                    ? [...byAula].map(([aulaId, list]) => {
-                        const au = aulaById.get(aulaId)!;
-                        return <li key={aulaId}>{aulaLabel(toRef(au))} <span className="text-muted">· págs. {list.map((s) => `${s.startPage}–${s.endPage}`).join(", ")}</span></li>;
-                      })
-                    : a.refs.map((r) => (
-                        <li key={r.refActivityId}>
-                          <Link href={`/atividade/${r.refActivityId}`} className="font-semibold text-teoria hover:underline">
-                            Teoria · {aulaLabel(r.refActivity.aula)}
-                          </Link>
-                        </li>
-                      ))}
-                </ul>
-              </div>
+              {(() => {
+                const baseList = (
+                  <div className="rounded-xl bg-surface-2 p-4">
+                    <p className="eyebrow mb-2">Trechos a revisar</p>
+                    <ul className="space-y-1.5 text-sm">
+                      {isFinal
+                        ? [...byAula].map(([aulaId, list]) => {
+                            const au = aulaById.get(aulaId)!;
+                            return <li key={aulaId}>{aulaLabel(toRef(au))} <span className="text-muted">· págs. {list.map((s) => `${s.startPage}–${s.endPage}`).join(", ")}</span></li>;
+                          })
+                        : a.refs.map((r) => (
+                            <li key={r.refActivityId}>
+                              <Link href={`/atividade/${r.refActivityId}`} className="font-semibold text-teoria hover:underline">
+                                Teoria · {aulaLabel(r.refActivity.aula)}
+                              </Link>
+                            </li>
+                          ))}
+                    </ul>
+                  </div>
+                );
+                if (!allChapters) return baseList;
+                const mentoriaList = (
+                  <div className="space-y-3 rounded-xl bg-surface-2 p-4">
+                    <p className="eyebrow">Mapas do material MentorIA</p>
+                    <ul className="list-disc space-y-1.5 pl-5 text-sm">{revisaoMentoria(chapters).map((s) => <li key={s}>{s}</li>)}</ul>
+                    <MentoriaPdfLink href={materialHref(chapters[0], chapters[0].mapPage)} page={chapters[0].mapPage} report={reportFor(chapters[0].volumeId, chapters[0].volumeTitle)} />
+                  </div>
+                );
+                return withMaterial(mentoriaList, baseList);
+              })()}
             </>
           )}
 
-          {a.type === "FIXACAO" && (
-            <Steps
-              color={meta.color}
-              items={fixacaoSteps(mainAula, fixRanges, (aid) => {
-                const x = aulaById.get(aid);
-                return x ? `Aula ${String(x.number).padStart(2, "0")} (${x.shortTitle})` : aid;
-              })}
-            />
-          )}
+          {a.type === "FIXACAO" && (() => {
+            const baseSteps = (
+              <Steps
+                color={meta.color}
+                items={fixacaoSteps(mainAula, fixRanges, (aid) => {
+                  const x = aulaById.get(aid);
+                  return x ? `Aula ${String(x.number).padStart(2, "0")} (${x.shortTitle})` : aid;
+                })}
+              />
+            );
+            const steps = fixacaoMentoria(fixChapters);
+            if (!steps.length) return baseSteps;
+            const firstQ = fixChapters.find((c) => c.questions);
+            return withMaterial(
+              <div className="space-y-3">
+                <MentoriaPdfLink href={materialHref(firstQ!, firstQ!.questions!.pagina)} page={firstQ!.questions!.pagina} report={reportFor(firstQ!.volumeId, firstQ!.volumeTitle)} />
+                <Steps color={meta.color} items={steps} />
+              </div>,
+              baseSteps,
+            );
+          })()}
 
           {a.type === "QUESTOES" && (
             <>

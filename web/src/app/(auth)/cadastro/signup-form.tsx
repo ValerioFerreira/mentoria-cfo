@@ -3,6 +3,7 @@
 import { Loader2, UserPlus } from "lucide-react";
 import Link from "next/link";
 import { useActionState } from "react";
+import { LegalConsent } from "@/components/legal-page";
 import { Alert, Button, Field, inputCls } from "@/components/ui";
 import { signup } from "../actions";
 
@@ -28,6 +29,7 @@ export function SignupForm({ invite }: { invite?: string }) {
       <Field label="Senha" error={state?.errors?.password} hint="Mínimo de 8 caracteres.">
         <input name="password" type="password" autoComplete="new-password" required minLength={8} className={inputCls} />
       </Field>
+      <LegalConsent />
       <Button type="submit" size="lg" disabled={pending} className="w-full">
         {pending ? <Loader2 className="h-5 w-5 animate-spin" aria-hidden /> : <UserPlus className="h-5 w-5" aria-hidden />}
         {pending ? "Criando…" : "Criar conta"}

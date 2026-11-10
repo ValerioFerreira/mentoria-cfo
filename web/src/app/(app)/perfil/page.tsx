@@ -5,11 +5,14 @@ import { db } from "@/lib/db";
 import { quote } from "@/lib/commerce/pricing";
 import { pendingPaidSwitch } from "@/lib/commerce/switch";
 import { getUserContest } from "@/lib/user-contest";
+import { maskCpf } from "@/lib/cpf";
+import { CpfCard } from "./cpf-card";
 import { PerfilView, type UserProfileData } from "./perfil-view";
 
 export const metadata: Metadata = { title: "Meu Perfil" };
 
-export default async function PerfilPage() {
+export default async function PerfilPage({ searchParams }: { searchParams: Promise<{ cpf?: string }> }) {
+  const { cpf: cpfParam } = await searchParams;
   const sessionUser = await requireUser();
 
   const [user, contest] = await Promise.all([
@@ -24,6 +27,7 @@ export default async function PerfilPage() {
         createdAt: true,
         accessExpiresAt: true,
         mustChangePassword: true,
+        cpf: true,
       },
     }),
     getUserContest(sessionUser.email),
@@ -39,8 +43,9 @@ export default async function PerfilPage() {
   );
   const resumePaidSwitch = Boolean(await pendingPaidSwitch(user.id, user.email));
 
+  const { cpf, ...userData } = user;
   const profileData: UserProfileData = {
-    ...user,
+    ...userData,
     isPartner: sessionUser.isPartner,
     contest,
     contestPrices,
@@ -57,6 +62,7 @@ export default async function PerfilPage() {
         description="Gerencie os dados da sua conta de acesso, validade do seu plano, concurso escolhido e suas credenciais de segurança."
       />
 
+      <CpfCard masked={cpf ? maskCpf(cpf) : null} required={cpfParam === "necessario"} />
       <PerfilView user={profileData} />
     </div>
   );

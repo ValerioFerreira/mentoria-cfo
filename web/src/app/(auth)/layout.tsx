@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { AppearanceMenu } from "@/components/appearance-menu";
 import { Brand } from "@/components/brand";
+import { LegalFooter } from "@/components/legal-page";
 import { getTheme } from "@/lib/theme";
 
 const WEEK_DAYS = [
@@ -108,6 +109,7 @@ export default async function AuthLayout({ children }: LayoutProps<"/">) {
         </div>
         <div className="mx-auto w-full max-w-sm">
           <div className="page-in">{children}</div>
+          <LegalFooter />
         </div>
       </main>
     </div>

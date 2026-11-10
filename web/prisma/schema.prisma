@@ -523,6 +523,7 @@ model User {
   role               Role      @default(USER)
   mustChangePassword Boolean   @default(false)
   accessExpiresAt    DateTime?
+  cpf                String? // só dígitos; carimbado no rodapé dos PDFs do material próprio
   createdAt          DateTime  @default(now())
 
   sessions         Session[]
@@ -533,6 +534,7 @@ model User {
   quizSessions     QuizSession[]
   bizuAnswers      BizuAnswer[]
   reports          QuestionReport[]
+  materialReports  MaterialErrorReport[]
   invite           Invite?
   billingPurchases BillingPurchase[]
 
@@ -1197,4 +1199,23 @@ model SystemSetting {
   key       String   @id
   value     String
   updatedAt DateTime @updatedAt
+}
+
+// Erro apontado pelo aluno num PDF do material próprio (volume, página e explicação). O administrador resolve ou descarta.
+model MaterialErrorReport {
+  id         String    @id @default(cuid())
+  userId     String
+  volumeId   String // "direito-penal-militar/m01"
+  chapter    String? // trecho (id) cujo capítulo contém a página, quando o índice permite descobrir
+  page       Int
+  message    String
+  status     String    @default("OPEN") // OPEN, RESOLVED, DISCARDED
+  adminNote  String?
+  createdAt  DateTime  @default(now())
+  resolvedAt DateTime?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([status, createdAt])
+  @@index([volumeId])
 }
