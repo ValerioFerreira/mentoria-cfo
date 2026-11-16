@@ -563,7 +563,7 @@ def validate_chapter(path: Path) -> tuple[list[str], list[str], dict]:
         warns.append(f"a fonte tem {metrics['source']['figures']} figuras e o capítulo nenhuma figura (só tabelas): avalie um diagrama")
 
     # higiene
-    low = body.lower()
+    low = body.lower().replace("políticas e estratégias", "").replace("cargos de professor", "").replace("cargo de professor", "")  # nomes legais (CPE, Lei PE 15.187/2013; 'cargo de professor', CF art. 37, XVI): não são menção ao provedor/instrutor
     for bad in FORBIDDEN:
         if bad in low:
             errors.append(f"expressão proibida: “{bad}”")
@@ -667,7 +667,7 @@ def validate_intro(path: Path, volume: dict) -> tuple[list[str], list[str]]:
     n = word_count(body)
     if not 150 <= n <= 450:
         errors.append(f"volume.md: {n} palavras (use 150 a 450)")
-    low = body.lower()
+    low = body.lower().replace("políticas e estratégias", "")  # nomes legais (CPE, Lei PE 15.187/2013; 'cargo de professor', CF art. 37, XVI): não são menção ao provedor/instrutor
     for bad in FORBIDDEN:
         if bad in low:
             errors.append(f"volume.md: expressão proibida “{bad}”")
