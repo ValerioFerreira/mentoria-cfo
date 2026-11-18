@@ -1,0 +1,125 @@
+{
+ "lote": "informatica/p1-a06-s05-1",
+ "trecho": "informatica/a06/s05",
+ "autor": "AGENTE-B",
+ "data": "2026-11-18",
+ "comentarios": [
+  {
+   "id": "tec_1152369",
+   "contentHash": "aa667de4da0849ccbbacf01ab382508f3c7bde21da917b5d40728cdfa346ff08",
+   "gabarito": "D",
+   "comentario": "No Microsoft Excel, os operadores de referência combinam células em fórmulas. Para indicar um intervalo contínuo de células, da primeira até a última, utiliza-se o operador de dois-pontos (:). Assim, A1:A5 representa todas as células de A1 até A5 (A1, A2, A3, A4 e A5). Vale diferenciar do ponto e vírgula (;), que funciona como operador de união em português e representa apenas células isoladas (A1;A5 inclui só A1 e A5). Portanto, o intervalo solicitado escreve-se A1:A5.",
+   "alternativas": {
+    "A": "Errada: O símbolo # não é operador de intervalo no Excel; ele aparece em mensagens de erro ou indica largura insuficiente de coluna.",
+    "B": "Errada: O símbolo @ não define intervalo de células em fórmulas do Excel 2010.",
+    "C": "Errada: O ponto de exclamação (!) separa o nome de uma planilha da referência de célula (como Plan1!A1), não formando intervalo.",
+    "D": "Correta: Os dois-pontos (:) constituem o operador de intervalo, reunindo todas as células contínuas de A1 até A5."
+   }
+  },
+  {
+   "id": "tec_1226840",
+   "contentHash": "36bdc846b07583e474309bdf3154a8e58d2caecb06dbe33ca57d764e66e98eb9",
+   "gabarito": "C",
+   "comentario": "A planilha da figura exibe em A2 o nome Antônio, em B2 o sobrenome Sutir, em C2 a idade 43 e, em D2, o texto combinado Antônio Sutir - 43 anos. No Excel, o operador de concatenação de texto é o e comercial (&), que une conteúdos de células e textos literais. Todo texto fixo — incluindo espaços em branco, o hífen com espaços e a palavra anos — precisa ser escrito entre aspas. Assim, =A2&\" \"&B2&\" - \"&C2&\" \"&\"anos\" junta A2, um espaço, B2, o hífen cercado por espaços, C2, um espaço e a palavra anos, mantendo o mesmo padrão ao ser arrastada até D5.",
+   "alternativas": {
+    "A": "Errada: Usa o cifrão ($) em vez do operador &, além de não inserir espaços nem o hífen entre os valores.",
+    "B": "Errada: Embora use &, deixa o hífen fora de aspas (interpretado como subtração) e omite os espaços necessários entre os termos.",
+    "C": "Correta: Emprega corretamente o operador de concatenação & e coloca todos os espaços, o hífen e a palavra anos entre aspas.",
+    "D": "Errada: O cifrão ($) serve para fixar referências absolutas de linha ou coluna, e não para concatenar textos.",
+    "E": "Errada: A função CONCATENAR separa argumentos por ponto e vírgula, além de faltar aspas no hífen e os espaços de separação."
+   }
+  },
+  {
+   "id": "tec_1227553",
+   "contentHash": "1450d7650f4ad74760873021fdbcde7a5507e5828a193f586225d48bcb336bf8",
+   "gabarito": "B",
+   "comentario": "O Microsoft Excel classifica seus operadores em quatro grupos: aritméticos (como +, −, *, / e %), de comparação (=, >, <, >=, <=, <>), de referência (:, ; e espaço) e de concatenação de texto. O único operador de concatenação de texto é o e comercial (&), usado para unir cadeias de caracteres ou valores de células em um único texto, produzindo efeito equivalente ao da função CONCATENAR. Por exemplo, =A1&B1 junta o conteúdo de A1 imediatamente seguido pelo conteúdo de B1.",
+   "alternativas": {
+    "A": "Errada: O símbolo # não é operador de concatenação; ocorre em códigos de erro como #VALOR! ou #DIV/0!.",
+    "B": "Correta: O caractere & (e comercial) é o operador de concatenação de texto utilizado para unir valores em uma única cadeia.",
+    "C": "Errada: O símbolo @ não atua como operador de concatenação de texto no Excel.",
+    "D": "Errada: O ponto de exclamação (!) é usado para referenciar células de outra planilha dentro da mesma pasta de trabalho.",
+    "E": "Errada: O símbolo % é um operador aritmético de porcentagem, que divide o número por 100."
+   }
+  },
+  {
+   "id": "tec_1251547",
+   "contentHash": "2c3afdc48c2ce868147496d939aa22259858eb500add5c56eafd7ca9cc508702",
+   "gabarito": "E",
+   "comentario": "A questão pede a alternativa incorreta com base na planilha da figura: A1=20, B1=3, C1=6, A2=10, B2=9, C2=15, A3=5, B3=7 e C3=4. No Excel, a ordem de precedência dos operadores aritméticos executa exponenciação primeiro, depois multiplicação e divisão, e por último adição e subtração. Na fórmula =A1+A2*C3, realiza-se primeiro a multiplicação A2 × C3 = 10 × 4 = 40 e, em seguida, soma-se A1 (20), obtendo 20 + 40 = 60. O valor 120 só ocorreria se houvesse parênteses em (A1+A2)*C3. Logo, a letra E apresenta resultado errado e responde ao comando.",
+   "alternativas": {
+    "A": "Errada: A afirmação é verdadeira, pois os valores ordenados de A1:C3 são 3, 4, 5, 6, 7, 9, 10, 15 e 20, sendo 5 o 3º menor.",
+    "B": "Errada: A afirmação é verdadeira, porque primeiro calcula-se a potência A2 elevado a B1 (10³ = 1000) e depois divide-se por C3 (1000 / 4 = 250).",
+    "C": "Errada: A afirmação é verdadeira, já que o ponto e vírgula seleciona apenas A1 (20) e C3 (4), cuja média aritmética é (20 + 4) / 2 = 12.",
+    "D": "Errada: A afirmação é verdadeira, pois A2 >= C1 (10 >= 6) é verdadeiro e executa A3 elevado a B1, resultando em 5³ = 125.",
+    "E": "Correta: A afirmação é falsa, porque a multiplicação precede a soma: 20 + (10 × 4) = 20 + 40 = 60, e não 120."
+   }
+  },
+  {
+   "id": "tec_1387033",
+   "contentHash": "303606f285769fef992f3be75c6478ad3bf53a30fbbde8411e266ccb5c34b1ba",
+   "gabarito": "A",
+   "comentario": "Para descobrir os valores de A1, B1 e C1 que fazem a fórmula =SOMA(A1:C1)+A1+B1*C1 resultar em 16, deve-se respeitar a precedência dos operadores: primeiro calcula-se SOMA(A1:C1) e a multiplicação B1 × C1, e por fim somam-se as parcelas. Testando os valores 1, 2 e 4 (alternativa A): SOMA(1; 2; 4) = 7; somando A1 (1) obtém-se 8; e B1 × C1 = 2 × 4 = 8. Ao final, 7 + 1 + 8 = 16, satisfazendo exatamente o enunciado.",
+   "alternativas": {
+    "A": "Correta: Com A1=1, B1=2 e C1=4, tem-se SOMA(1;2;4) + 1 + (2 × 4) = 7 + 1 + 8 = 16.",
+    "B": "Errada: Com 1, 1 e 2, o cálculo resulta em (1 + 1 + 2) + 1 + (1 × 2) = 4 + 1 + 2 = 7.",
+    "C": "Errada: Com 0, 1 e 2, o cálculo resulta em (0 + 1 + 2) + 0 + (1 × 2) = 3 + 0 + 2 = 5.",
+    "D": "Errada: Com 1, 1 e 1, o cálculo resulta em (1 + 1 + 1) + 1 + (1 × 1) = 3 + 1 + 1 = 5.",
+    "E": "Errada: Com 2, 1 e 1, o cálculo resulta em (2 + 1 + 1) + 2 + (1 × 1) = 4 + 2 + 1 = 7."
+   }
+  },
+  {
+   "id": "tec_1421255",
+   "contentHash": "52e0cdf57f36904a3fae1384892768993f996ebb4fc4142f85297f4f8468d7a2",
+   "gabarito": "E",
+   "comentario": "A questão pede a única opção incorreta para calcular a média aritmética dos valores em A1 (10), A2 (20) e A3 (30). No Excel em português, a média pode ser obtida pela função MÉDIA com intervalo (A1:A3), com argumentos separados por ponto e vírgula (A1;A2;A3), pela expressão manual =(A1+A2+A3)/3 ou pelo atalho Média no botão AutoSoma. Já a fórmula =MEDIANA(A1;A3) é incorreta por dois motivos: não existe função chamada MEDIANA no Excel em português (a função de mediana chama-se MED, gerando erro #NOME?) e mediana é medida de posição, não de média aritmética.",
+   "alternativas": {
+    "A": "Errada: A fórmula é válida, pois calcula a média aritmética do intervalo contínuo A1 até A3, retornando (10 + 20 + 30) / 3 = 20.",
+    "B": "Errada: A fórmula é válida, porque os parênteses garantem que a soma das três células seja feita antes da divisão por 3, dando 20.",
+    "C": "Errada: O procedimento é válido, pois a opção Média dentro do botão AutoSoma insere automaticamente =MÉDIA(A1:A3) na célula logo abaixo.",
+    "D": "Errada: A fórmula é válida, pois o ponto e vírgula lista individualmente A1, A2 e A3 na função MÉDIA, retornando 20.",
+    "E": "Correta: É a opção incorreta, pois a função MEDIANA não existe no Excel em português (o nome correto da mediana é MED) e não calcula média."
+   }
+  },
+  {
+   "id": "tec_1422842",
+   "contentHash": "8cffe754758ae37580890340c69cd0a503f84a213b7ea36c7b3c82f09457aece",
+   "gabarito": "C",
+   "comentario": "No Microsoft Excel, o formato do ponteiro do mouse indica a ação disponível em cada ponto da tela. Na imagem, o cursor aparece como uma barra vertical cortada por uma seta dupla horizontal posicionada exatamente na linha divisória entre os cabeçalhos das colunas B e C. Esse formato aparece quando o usuário aponta para a borda direita do cabeçalho de uma coluna para redimensionar sua largura arrastando para a esquerda ou para a direita, ou dando duplo clique para realizar o autoajuste automático ao conteúdo.",
+   "alternativas": {
+    "A": "Errada: Para selecionar uma linha completa, o ponteiro assume a forma de uma seta cheia voltada para a direita sobre o número da linha.",
+    "B": "Errada: Cálculos de soma são feitos por fórmulas ou pelo botão AutoSoma, sem alterar o ponteiro para seta dupla no cabeçalho.",
+    "C": "Correta: A barra vertical com seta dupla horizontal sobre a divisa entre cabeçalhos indica o ajuste manual ou automático da largura da coluna.",
+    "D": "Errada: Alterar formatação de célula é feito pela faixa de opções ou menu de contexto, não pelo redimensionamento de cabeçalhos.",
+    "E": "Errada: Para selecionar uma coluna inteira, o ponteiro assume a forma de uma seta cheia voltada para baixo no meio do cabeçalho da letra."
+   }
+  },
+  {
+   "id": "tec_1663457",
+   "contentHash": "51572eb98eaadc79cd20edb7321f6a97845db05708e5707d1ce05cb583826609",
+   "gabarito": "E",
+   "comentario": "O cenário exige que a célula retorne o valor lógico VERDADEIRO quando o conteúdo de A2 estiver entre 3 e 8 (inclusive) e FALSO caso contrário. No Excel em português, a função lógica E(teste1; teste2; ...) avalia se todas as condições informadas são verdadeiras simultaneamente: se todas forem satisfeitas, ela própria retorna VERDADEIRO; se ao menos uma falhar, retorna FALSO. Portanto, não é necessário envolver o teste em uma função SE, bastando escrever =E(A2>=3;A2<=8) com as duas comparações separadas por ponto e vírgula.",
+   "alternativas": {
+    "A": "Errada: No Excel, E é uma função e não um operador escrito entre comparações; a sintaxe A2>=3 E A2<=8 gera erro.",
+    "B": "Errada: Mistura sintaxe inválida ao usar E fora da estrutura de função e fecha incorretamente os argumentos da função SE.",
+    "C": "Errada: Insere textos literais e funções aninhadas de modo incoerente nos argumentos de E, sem testar corretamente o intervalo.",
+    "D": "Errada: Não existe função chamada ENTRE no Microsoft Excel, o que provoca erro de nome.",
+    "E": "Correta: A função =E(A2>=3;A2<=8) verifica simultaneamente os dois limites e retorna diretamente VERDADEIRO ou FALSO."
+   }
+  },
+  {
+   "id": "tec_177434",
+   "contentHash": "bfd7a4075ad0de903a954f8707756d3a26abf5c593cc712220f28c8547a8fecf",
+   "gabarito": "E",
+   "comentario": "Temos em A1:E1 os valores 2, 2, 4, 5 e 6, com C1 = 4. A fórmula =SE(MAIOR(A1:E1;2)>C1;CONT.SE(A1:E1;2);SOMA(A1:E1)) avalia primeiro o teste lógico MAIOR(A1:E1;2)>C1. A função MAIOR(A1:E1;2) retorna o 2º maior valor do intervalo (6 é o 1º e 5 é o 2º), logo vale 5. Como 5 > 4 é verdadeiro, o Excel executa o segundo argumento da função SE: CONT.SE(A1:E1;2). Essa função conta quantas células do intervalo são iguais a 2. Como apenas A1 e B1 contêm 2, o resultado final em F1 é 2.",
+   "alternativas": {
+    "A": "Errada: 5 é o valor retornado pela função MAIOR(A1:E1;2), usado apenas no teste lógico, e não o resultado final.",
+    "B": "Errada: 4 corresponde ao valor armazenado na célula C1, usado na comparação, não à contagem de células iguais a 2.",
+    "C": "Errada: 3,8 seria a média aritmética dos cinco valores (19 / 5), cálculo que não é executado pela fórmula.",
+    "D": "Errada: 19 é o resultado de SOMA(A1:E1), ramo falso da função SE que não é executado porque o teste lógico foi verdadeiro.",
+    "E": "Correta: Como 5 > 4 é verdadeiro, executa-se CONT.SE(A1:E1;2), que encontra exatamente 2 ocorrências do número 2 no intervalo."
+   }
+  }
+ ],
+ "descartes": []
+}

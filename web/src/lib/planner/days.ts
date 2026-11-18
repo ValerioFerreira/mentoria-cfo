@@ -79,15 +79,15 @@ const strip = (a: CycleActivity, day: number): PlannedActivity => {
   return { ...rest, day };
 };
 
-const isPractice = (a: PlannedActivity) => a.type !== "TEORIA";
-const isRetrieval = (a: PlannedActivity) => a.type === "REVISAO" || a.type === "QUESTOES";
+const isPractice = (a: { type: PlannedActivity["type"] }) => a.type !== "TEORIA";
+const isRetrieval = (a: { type: PlannedActivity["type"] }) => a.type === "REVISAO" || a.type === "QUESTOES";
 
 /** Ordem dentro do dia: revisão (aquece) → conteúdo novo pesado → demais → prática; sem famílias iguais coladas. */
-function orderDay(entries: { a: CycleActivity; family: string; seq: number }[]): CycleActivity[] {
-  const rank = (e: { a: CycleActivity; family: string }) =>
+export function orderDay<T extends { type: PlannedActivity["type"]; subjectId: string }>(entries: { a: T; family: string; seq: number }[]): T[] {
+  const rank = (e: { a: T; family: string }) =>
     e.a.type === "REVISAO" ? 0 : isPractice(e.a) ? 4 : e.family === "EXATAS" ? 1 : e.family === "LINGUAGEM" ? 3 : 2;
   const rest = [...entries];
-  const out: CycleActivity[] = [];
+  const out: T[] = [];
   let lastFamily = "";
   while (rest.length) {
     // dentro de uma disciplina, a ordem em que as atividades entraram no dia é a da fila

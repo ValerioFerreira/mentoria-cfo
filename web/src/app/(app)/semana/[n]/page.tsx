@@ -46,6 +46,7 @@ export default async function WeekPage({ params }: PageProps<"/semana/[n]">) {
     return { d, date, list, minutes: list.reduce((n2, a) => n2 + a.plannedMinutes, 0), done: dayDone, isToday: date === today, past: date < today };
   });
   const maxMinutes = Math.max(1, ...days.map((x) => x.minutes));
+  const lateCount = days.reduce((n2, day) => n2 + (day.past ? day.list.filter((a) => a.status === "PENDING" || a.status === "IN_PROGRESS").length : 0), 0);
 
   return (
     <div className="space-y-7">
@@ -95,6 +96,13 @@ export default async function WeekPage({ params }: PageProps<"/semana/[n]">) {
           </div>
         </div>
       </Card>
+
+      {lateCount > 0 && (
+        <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl bg-warn-soft px-4 py-3 text-sm text-warn" role="note">
+          <p className="font-semibold">{lateCount} {lateCount === 1 ? "atividade atrasada" : "atividades atrasadas"} nesta semana</p>
+          <LinkButton href="/reprogramar" variant="secondary" size="sm">Reprogramar</LinkButton>
+        </div>
+      )}
 
       {acts.length === 0 ? (
         <EmptyState icon={<CalendarOff className="h-6 w-6" aria-hidden />} title="Semana livre">

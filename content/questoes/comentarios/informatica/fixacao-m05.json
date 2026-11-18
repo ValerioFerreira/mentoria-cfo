@@ -1,0 +1,133 @@
+{
+ "lote": "informatica/fixacao-m05",
+ "origem": "content/material/informatica/m05/fixacao.json",
+ "autor": "fixacao",
+ "data": "2026-11-16",
+ "revisao": "opus-revisao01 2026-11-16",
+ "comentarios": [
+  {
+   "id": "tec_4013899",
+   "contentHash": "8f62648bab4c059ab33073b5afa1fa3860874bfd4484208b6f210df3f56cb89c",
+   "gabarito": "B",
+   "comentario": "A questão aborda a modelagem lógica condicional no Microsoft Excel para aplicação de regras de negócio. O problema exige conceder um desconto quando pelo menos uma de duas condições for atendida: a compra ser realizada à vista ou possuir montante superior a dez mil reais. No cálculo proposicional e nas rotinas do Excel, a disjunção lógica inclusiva é desempenhada pela função OU. Essa função avalia múltiplos testes lógicos e retorna VERDADEIRO se pelo menos um dos argumentos for verdadeiro, retornando FALSO unicamente se todos os testes resultarem negativos. As funções PROCV e PROCH executam buscas verticais e horizontais em matrizes, enquanto a função SOMA realiza adição numérica pura.",
+   "alternativas": {
+    "A": "Errada: A função E executa uma conjunção lógica rígida, exigindo que todos os testes sejam simultaneamente verdadeiros para retornar VERDADEIRO.",
+    "B": "Correta: A função OU representa com exatidão a disjunção inclusiva necessária para validar compras à vista ou com valor acima de dez mil reais.",
+    "C": "Errada: A função PROCV destina-se à pesquisa vertical de valores em tabelas, não exercendo funções de avaliação lógica booleana.",
+    "D": "Errada: A função PROCH opera pesquisas em sentido horizontal nas linhas de uma tabela, não atuando como operador lógico condicional.",
+    "E": "Errada: A função SOMA é uma rotina puramente matemática de adição contínua de valores numéricos, desprovida de validação de testes lógicos."
+   }
+  },
+  {
+   "id": "tec_4077009",
+   "contentHash": "04936a21e38aaa9afe9c96e2754b0a2c2bb6da58e9c3f0d30156fe0de2a8312c",
+   "gabarito": "B",
+   "comentario": "A questão pede a função que soma a coluna Valor só nas linhas em que a coluna Status traz “Férias”, sem filtro manual. Essa é a soma condicional, feita pela função SOMASE. Ela recebe três argumentos: o intervalo onde o critério será testado, o critério e o intervalo cujos valores serão somados. Se Status está na coluna C e Valor na coluna D, a fórmula fica =SOMASE(C:C;“Férias”;D:D): o Excel percorre a coluna C, encontra as linhas com “Férias” e soma apenas os valores correspondentes da coluna D. Quando há mais de um critério (por exemplo, Férias e um cargo específico), usa-se SOMASES. A função SOMA somaria a coluna inteira, sem distinguir quem está de férias; MÉDIASE também aplica um critério, mas devolve a média, e não o total pedido.",
+   "alternativas": {
+    "A": "Errada: SOMA adiciona todos os valores do intervalo, sem testar condição; somaria o pagamento de todos os servidores, e não só dos que estão de férias.",
+    "B": "Correta: SOMASE soma apenas os valores das linhas que atendem ao critério, aqui o Status igual a “Férias”, sem precisar filtrar a planilha.",
+    "C": "Errada: PROCV procura um valor na primeira coluna de uma tabela e devolve um dado da mesma linha; não soma várias linhas.",
+    "D": "Errada: MÉDIASE aplica o mesmo tipo de critério, mas calcula a média dos valores selecionados, e não o total do orçamento.",
+    "E": "Errada: CONCATENAR junta textos de várias células em um só texto; não faz cálculo numérico."
+   }
+  },
+  {
+   "id": "tec_3535695",
+   "contentHash": "20a8b7147a0dc6e78251031608d5d498e0402f9da6fd1a6b5f1d78fa7743cc35",
+   "gabarito": "A",
+   "comentario": "A questão traz quatro afirmações sobre recursos básicos do Excel 365. A primeira é verdadeira: toda fórmula começa com o sinal de igual e é recalculada automaticamente quando os valores das células mudam. A segunda também é verdadeira: o preenchimento automático (a alça no canto inferior direito da célula selecionada) estende sequências como 1, 2, 3, dias da semana ou meses para as células vizinhas, e também copia fórmulas ajustando as referências. A terceira é falsa: um arquivo do Excel é uma pasta de trabalho, que pode conter várias planilhas, mostradas como abas na parte inferior da janela; basta clicar no sinal de mais ao lado das abas para criar outra. A quarta é verdadeira: em Formatar Células (Ctrl+1) escolhe-se como números, datas e textos são exibidos, como moeda, porcentagem ou data abreviada. A sequência é V, V, F, V.",
+   "alternativas": {
+    "A": "Correta: V, V, F, V. Fórmulas e preenchimento automático existem, a pasta de trabalho aceita várias planilhas (abas) e a formatação muda a exibição de números, datas e textos.",
+    "B": "Errada: marca como falso o preenchimento automático, que existe, e como verdadeiro o limite de uma aba, que não existe.",
+    "C": "Errada: marca como falsa a primeira afirmação; o Excel calcula fórmulas automaticamente nas células.",
+    "D": "Errada: aceita a ideia de uma só aba por arquivo, que é falsa, e recusa a formatação de células, que é verdadeira.",
+    "E": "Errada: marca como falso o preenchimento automático, recurso que estende sequências para as células vizinhas."
+   }
+  },
+  {
+   "id": "tec_3100330",
+   "contentHash": "51614a01168fe6e258850bc45a86d71aae048a750ab41fdda2325062dc3ad793",
+   "gabarito": "C",
+   "comentario": "A questão pergunta como exibir, no Excel 365, a guia que dá acesso às macros em VBA. Essa guia se chama Desenvolvedor e vem oculta na instalação padrão. Para mostrá-la, o caminho é Arquivo > Opções > Personalizar Faixa de Opções; na lista da direita (Guias Principais), marca-se a caixa Desenvolvedor e confirma-se com OK. A partir daí, a guia aparece na Faixa de Opções com o grupo Código, onde estão Visual Basic (abre o editor de VBA), Macros, Gravar Macro e Segurança de Macro, além dos controles de formulário. Lembre ainda que uma pasta com macros precisa ser salva no formato .xlsm (Pasta de Trabalho Habilitada para Macro); no formato .xlsx comum, as macros são descartadas. As demais alternativas inventam guias (Avançado, Fórmula personalizada, VBA, Programador) ou caminhos que não existem no Excel em português do Brasil.",
+   "alternativas": {
+    "A": "Errada: não existe guia Avançado, e Obter Suplementos serve para instalar complementos da loja do Office, não para habilitar o VBA.",
+    "B": "Errada: a guia Fórmulas já vem visível e não dá acesso ao editor de VBA; também não há o item Fórmulas Personalizadas em Opções.",
+    "C": "Correta: a guia Desenvolvedor é ativada em Arquivo > Opções > Personalizar Faixa de Opções, marcando a caixa Desenvolvedor.",
+    "D": "Errada: não existe guia VBA, e a guia Dados trata de importação, classificação e filtros, sem opção para criar guias.",
+    "E": "Errada: Programador é o nome usado no Office em português de Portugal; no Brasil a guia é Desenvolvedor, e a guia Exibir não tem item para ativá-la."
+   }
+  },
+  {
+   "id": "tec_3452022",
+   "contentHash": "eaec90d5a93e274b051a027c58bb46a0569e1c564b71e38fd61683f41e00724a",
+   "gabarito": "B",
+   "comentario": "A questão pede um comando que fica no grupo Estilos da guia Página Inicial do Excel 2016. Esse grupo reúne três ferramentas: Formatação Condicional (muda a aparência da célula conforme o valor, por exemplo deixando em vermelho as notas abaixo de 6), Formatar como Tabela e Estilos de Célula. As outras alternativas estão em grupos vizinhos da mesma guia. Aumentar e Diminuir Casas Decimais ficam no grupo Número, ao lado do formato de moeda e de porcentagem. Cor do Preenchimento fica no grupo Fonte, com negrito, bordas e cor da fonte. Classificar e Filtrar fica no grupo Edição, no lado direito da guia, junto com AutoSoma e Localizar e Selecionar. Para não confundir, associe Estilos a formatar em bloco, conforme regra ou modelo pronto, e Fonte e Número a formatar diretamente a célula.",
+   "alternativas": {
+    "A": "Errada: Aumentar Casas Decimais fica no grupo Número da Página Inicial, e não no grupo Estilos.",
+    "B": "Correta: Formatação Condicional está no grupo Estilos, ao lado de Formatar como Tabela e Estilos de Célula.",
+    "C": "Errada: Diminuir Casas Decimais também pertence ao grupo Número, junto com o botão de aumentar casas.",
+    "D": "Errada: Classificar e Filtrar fica no grupo Edição da Página Inicial (e também na guia Dados), não no grupo Estilos.",
+    "E": "Errada: Cor do Preenchimento (o balde de tinta) fica no grupo Fonte, com negrito, bordas e cor da fonte."
+   }
+  },
+  {
+   "id": "tec_3564363",
+   "contentHash": "d70480c167d5c0e07edfe4b4af25bf5e251a7d5dc13939c89dad52a0542cb5e2",
+   "gabarito": "B",
+   "comentario": "A questão pergunta em que grupo da guia Fórmulas do Excel 365 fica a Janela de Inspeção. Esse recurso abre um painel que mostra, em tempo real, o valor e a fórmula das células escolhidas, mesmo que estejam fora da área visível ou em outra planilha; assim o usuário acompanha células-chave sem rolar a planilha. Ele faz parte do grupo Auditoria de Fórmulas, que reúne as ferramentas de conferência de cálculos: Rastrear Precedentes, Rastrear Dependentes, Remover Setas, Mostrar Fórmulas, Verificação de Erros, Avaliar Fórmula e a própria Janela de Inspeção. Os outros grupos da guia têm outra função: Biblioteca de Funções insere funções por categoria, Nomes Definidos cria e gerencia nomes de intervalos e Cálculo controla quando a planilha é recalculada. Parágrafo nem é grupo do Excel; é um grupo do Word.",
+   "alternativas": {
+    "A": "Errada: Parágrafo é grupo da guia Página Inicial do Word; a guia Fórmulas do Excel não tem esse grupo.",
+    "B": "Correta: a Janela de Inspeção fica no grupo Auditoria de Fórmulas, com Rastrear Precedentes, Rastrear Dependentes e Avaliar Fórmula.",
+    "C": "Errada: o grupo Cálculo traz as Opções de Cálculo (automático ou manual) e os botões Calcular Agora e Calcular Planilha.",
+    "D": "Errada: o grupo Nomes Definidos serve para dar nomes a células e intervalos, com Definir Nome e Gerenciador de Nomes.",
+    "E": "Errada: a Biblioteca de Funções insere funções por categoria (financeiras, lógicas, texto) e traz Inserir Função e AutoSoma."
+   }
+  },
+  {
+   "id": "tec_3100319",
+   "contentHash": "7b6f02242785ebbcefda6b000c6ee5a31cebda7766a8ef20d809342e3e88cbf2",
+   "gabarito": "A",
+   "comentario": "A questão trata de referência relativa, absoluta e mista. Ao arrastar uma fórmula para baixo pela alça de preenchimento, o Excel soma 1 ao número da linha de toda referência relativa. Copiando =F15/A6*100 de G15 para G16, o resultado seria =F16/A7*100: F16 está certo (é o próximo valor), mas A7 está vazia, e o cálculo falha. Para que todas as fórmulas usem o custo de A6, é preciso travar a linha 6 com o cifrão: =F15/A$6*100. O cifrão antes do número fixa a linha; antes da letra, fixa a coluna; antes dos dois ($A$6), fixa a célula inteira. Como a cópia é só na vertical, a coluna A nunca mudaria, e fixar a linha 6 já basta (o $A$6 também funcionaria). Fixar só a coluna ($A6) não resolve, porque a linha continuaria mudando. E o símbolo de fixação no Excel é o $, não &, ! ou %.",
+   "alternativas": {
+    "A": "Correta: com A$6 a linha 6 fica travada; ao arrastar a fórmula para baixo, todas as linhas continuam dividindo pelo custo de A6.",
+    "B": "Errada: $A6 trava só a coluna; ao arrastar para baixo a linha muda (A7, A8...), justamente o que precisa ser evitado.",
+    "C": "Errada: & é o operador que junta textos (concatenação), não o símbolo de referência absoluta, que é o $.",
+    "D": "Errada: ! separa o nome da planilha da célula (Plan1!A6); não fixa linha nem coluna.",
+    "E": "Errada: % transforma o número em porcentagem (5% vale 0,05); não fixa referências."
+   }
+  }
+ ],
+ "descartes": [],
+ "revisaoNotas": [
+  {
+   "id": "tec_4077009",
+   "problema": "TROCADO",
+   "detalhe": "O comentário falava de formatos de número (Moeda, Contábil); a questão pede a função SOMASE."
+  },
+  {
+   "id": "tec_3535695",
+   "problema": "TROCADO",
+   "detalhe": "O comentário e as notas falavam de coautoria e proteção; a questão julga fórmulas, preenchimento automático, número de abas e formatação."
+  },
+  {
+   "id": "tec_3100330",
+   "problema": "TROCADO",
+   "detalhe": "O comentário falava da versatilidade do Excel; a questão pede como habilitar a guia Desenvolvedor."
+  },
+  {
+   "id": "tec_3452022",
+   "problema": "TROCADO",
+   "detalhe": "O comentário tratava de Quebrar Texto Automaticamente; a questão pede um item do grupo Estilos (Formatação Condicional)."
+  },
+  {
+   "id": "tec_3564363",
+   "problema": "TROCADO",
+   "detalhe": "O comentário tratava de reexibir linhas ocultas; a questão pede o grupo da Janela de Inspeção (Auditoria de Fórmulas)."
+  },
+  {
+   "id": "tec_3100319",
+   "problema": "TROCADO",
+   "detalhe": "O comentário tratava de referência relativa genérica (A1+B1); a questão pede fixar a linha de A6 com o cifrão (A$6)."
+  }
+ ]
+}

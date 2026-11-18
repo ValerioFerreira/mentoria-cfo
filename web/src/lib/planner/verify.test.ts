@@ -165,3 +165,31 @@ describe("verificação de planos: defeitos injetados são encontrados", () => {
     expect(r.stats.atividades).toBe(p.activities.length);
   });
 });
+
+describe("verificação de planos: atividade reprogramada pelo aluno", () => {
+  const base = build(28, 2, { turbo: false });
+  it("excesso do dia da disciplina vira aviso quando há atividade reprogramada nele, e continua erro sem ela", () => {
+    const p = clone(base);
+    const subj = p.activities[0].subjectId;
+    const day = p.activities[0];
+    const same = p.activities.filter((x) => x.subjectId === subj).slice(0, 4);
+    for (const a of same) {
+      a.week = day.week;
+      a.day = day.day;
+    }
+    expect(codes(p)).toContain("DISCIPLINA_DIA_EXCESSO");
+    same[1].rescheduled = true;
+    const r = verifyPlan(p, ctx);
+    expect(r.errors.map((e) => e.code)).not.toContain("DISCIPLINA_DIA_EXCESSO");
+    expect(r.warnings.map((w) => w.code)).toContain("DISCIPLINA_DIA_EXCESSO");
+  });
+  it("as regras de ordem do ciclo continuam sendo erro, mesmo em atividade reprogramada", () => {
+    const p = clone(base);
+    const q = p.activities.find((a) => a.type === "QUESTOES" && a.scope === "AULA")!;
+    const f = p.activities.find((a) => a.type === "FIXACAO" && a.scope === "AULA" && a.aulaId === q.aulaId)!;
+    q.week = f.week;
+    q.day = f.day;
+    q.rescheduled = true;
+    expect(codes(p).some((c) => c.startsWith("QUESTOES_SEM_FOLGA") || c.startsWith("CICLO") || c === "REF_DEPOIS")).toBe(true);
+  });
+});

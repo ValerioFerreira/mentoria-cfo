@@ -16,6 +16,9 @@ import {
   ShieldAlert,
 } from "lucide-react";
 import { Badge, Button, Card } from "@/components/ui";
+import { InfoTip } from "@/components/info-tip";
+import { useEliminations } from "@/components/use-eliminations";
+import { resolveClick } from "@/lib/quiz/eliminations";
 import { fmtClock } from "@/lib/ui-format";
 import { finishSimulado, saveSimuladoAnswer } from "@/lib/quiz/simulado-actions";
 import { RichContent, formatInlineRich } from "@/components/rich-content";
@@ -40,6 +43,8 @@ interface Props {
   serverNowMs: number;
   questions: SimuladoQuestionItem[];
 }
+
+const SAVE_DELAY_MS = 250;
 
 export function SimuladoRunner({
   sessionId,
@@ -69,14 +74,27 @@ export function SimuladoRunner({
   // Auto-entrega ao esgotar o tempo
   const autoFinishTriggered = useRef(false);
 
+  // alternativas riscadas (dois cliques); o salvamento da escolha espera SAVE_DELAY_MS para que o 2º clique do duplo o cancele
+  const elim = useEliminations(sessionId);
+  const clickSnap = useRef<{ key: string; out: boolean; chosen: string | null } | null>(null);
+  const pendingSave = useRef<{ timer: ReturnType<typeof setTimeout>; run: () => void } | null>(null);
+  const flushPendingSave = useCallback(() => {
+    const p = pendingSave.current;
+    if (!p) return;
+    clearTimeout(p.timer);
+    pendingSave.current = null;
+    p.run();
+  }, []);
+
   const handleFinish = useCallback(async () => {
+    flushPendingSave(); // uma escolha feita há menos de 250 ms ainda não foi salva
     startTransition(async () => {
       const res = await finishSimulado(sessionId);
       if (res.ok) {
         router.push(`/simulados/resultado/${sessionId}`);
       }
     });
-  }, [sessionId, router]);
+  }, [sessionId, router, flushPendingSave]);
 
   useEffect(() => {
     if (secondsRemaining <= 0) {
@@ -105,25 +123,10 @@ export function SimuladoRunner({
   }, [secondsRemaining, handleFinish]);
 
   // Salvar resposta no servidor de forma contínua
-  const handleSelectOption = (label: string) => {
-    const newChosen = currentQ.chosenLabel === label ? null : label;
-
-    // Atualiza estado local imediatamente (otimista)
-    setQuestions((prev) =>
-      prev.map((q, idx) =>
-        idx === currentIndex ? { ...q, chosenLabel: newChosen } : q
-      )
-    );
-
+  const saveChosen = (position: number, chosen: string | null) => {
     setSaveStatus("saving");
-
     startTransition(async () => {
-      const res = await saveSimuladoAnswer({
-        sessionId,
-        position: currentQ.position,
-        chosenLabel: newChosen,
-      });
-
+      const res = await saveSimuladoAnswer({ sessionId, position, chosenLabel: chosen });
       if (res.ok) {
         setSaveStatus("saved");
         setTimeout(() => setSaveStatus("idle"), 2000);
@@ -131,6 +134,30 @@ export function SimuladoRunner({
         setSaveStatus("error");
       }
     });
+  };
+
+  /**
+   * Clique numa alternativa. Simples: marca (ou só devolve ao normal uma riscada); a tela muda na hora e o salvamento espera
+   * 250 ms. Duplo: o 2º clique cancela o salvamento do 1º, desfaz a marcação e risca (riscar a marcada desmarca a escolha).
+   */
+  const handleOptionClick = (label: string, detail: number) => {
+    const position = currentQ.position;
+    const key = `${position}:${label}`;
+    if (detail <= 1) clickSnap.current = { key, out: elim.isOut(position, label), chosen: currentQ.chosenLabel };
+    const before = clickSnap.current?.key === key ? clickSnap.current : { key, out: elim.isOut(position, label), chosen: currentQ.chosenLabel };
+    const r = resolveClick(label, detail, before);
+    if (!r) return;
+    elim.set(position, label, r.out);
+    // Atualiza estado local imediatamente (otimista)
+    setQuestions((prev) => prev.map((q) => (q.position === position ? { ...q, chosenLabel: r.chosen } : q)));
+    if (pendingSave.current) {
+      clearTimeout(pendingSave.current.timer);
+      pendingSave.current = null;
+    }
+    if (r.chosen !== before.chosen) {
+      const run = () => saveChosen(position, r.chosen);
+      pendingSave.current = { timer: setTimeout(flushPendingSave, SAVE_DELAY_MS), run };
+    }
   };
 
   // Alternar marcação para revisão (flagged)
@@ -265,31 +292,40 @@ export function SimuladoRunner({
             </div>
 
             {/* Alternativas de A a E */}
-            <div className="space-y-2.5 pt-2">
+            <div className="flex items-center gap-1.5 pt-2 text-[11px] font-semibold uppercase tracking-wider text-muted">
+              Alternativas
+              <InfoTip align="start" label="Como riscar uma alternativa">
+                Dê dois cliques numa alternativa para riscá-la. Um clique numa alternativa riscada a devolve ao normal.
+              </InfoTip>
+            </div>
+            <div className="space-y-2.5">
               {currentQ.options.map((opt) => {
                 const isSelected = currentQ.chosenLabel === opt.label;
+                const out = elim.isOut(currentQ.position, opt.label);
 
                 return (
                   <button
                     key={opt.label}
                     type="button"
-                    onClick={() => handleSelectOption(opt.label)}
-                    className={`w-full flex items-start gap-3.5 rounded-xl border p-3.5 text-left text-sm transition cursor-pointer select-none ${
+                    aria-disabled={out || undefined}
+                    onClick={(e) => handleOptionClick(opt.label, e.detail)}
+                    className={`w-full flex touch-manipulation items-start gap-3.5 rounded-xl border p-3.5 text-left text-sm transition cursor-pointer select-none ${
                       isSelected
                         ? "border-primary bg-primary/10 text-text font-medium shadow-xs"
                         : "border-border/70 bg-surface-2/30 hover:border-border hover:bg-surface-2 text-text"
-                    }`}
+                    } ${out ? "opacity-45" : ""}`}
                   >
                     <span
-                      className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-lg font-bold text-xs transition ${
+                      className={`relative flex h-6 w-6 shrink-0 items-center justify-center rounded-lg font-bold text-xs transition ${
                         isSelected
                           ? "bg-primary text-on-primary"
                           : "bg-surface-3 text-muted"
                       }`}
                     >
                       {opt.label}
+                      {out && <span aria-hidden className="pointer-events-none absolute inset-x-0 top-1/2 h-0.5 -rotate-45 rounded bg-current" />}
                     </span>
-                    <span className="flex-1 leading-snug pt-0.5">{formatInlineRich(opt.text)}</span>
+                    <span className={`flex-1 leading-snug pt-0.5 ${out ? "line-through decoration-2" : ""}`}>{formatInlineRich(opt.text)}</span>
                   </button>
                 );
               })}

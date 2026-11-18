@@ -1,0 +1,133 @@
+{
+ "lote": "estatistica/fixacao-m07",
+ "origem": "content/material/estatistica/m07/fixacao.json",
+ "autor": "fixacao",
+ "data": "2026-11-17",
+ "revisao": "opus-revisao06 2026-11-17",
+ "revisaoNotas": [
+  {
+   "id": "tec_1420405",
+   "problema": "AJUSTE",
+   "detalhe": "Texto com jargão (\"suporte\", \"valores pontuais\") e nota A imprecisa sobre a binomial (\"probabilidades que variam por coeficientes binomiais\")."
+  },
+  {
+   "id": "tec_2853875",
+   "problema": "AJUSTE",
+   "detalhe": "Nota E chamava 21 de \"mediana aproximada\" (a mediana é exatamente 21); nota A vaga; comentário passou a lembrar que a definição do enunciado divide por n."
+  },
+  {
+   "id": "tec_2987537",
+   "problema": "DESCARTE",
+   "detalhe": "Desvio-padrão populacional = √32,8 ≈ 5,73 (não arredonda para 5,8) e amostral = √41 ≈ 6,40 = letra B; o comentário afirmava um arredondamento falso para justificar o gabarito A."
+  },
+  {
+   "id": "tec_2987554",
+   "problema": "ERRO",
+   "detalhe": "Contas erradas: a soma das vendas é 677 (não 672), a média ≈ 56,4, a mediana (56 + 57)/2 = 56,5 (não 56 e 56) e a soma dos quadrados dos desvios ≈ 118,9 (não 114); comentário refeito mostrando que C é a única compatível com os valores arredondados."
+  },
+  {
+   "id": "tec_1868108",
+   "problema": "AJUSTE",
+   "detalhe": "Comentário rebuscado (\"estritamente\", \"por excelência\") e sem dizer como o desvio-padrão é obtido."
+  }
+ ],
+ "comentarios": [
+  {
+   "id": "tec_1420405",
+   "contentHash": "11105b489c15d4309f7e139af64c0edbe86ac55bfaf570a08faced7a78558ce0",
+   "gabarito": "C",
+   "comentario": "A questão pede a distribuição discreta mais simples, aquela em que cada valor possível tem a mesma probabilidade. É a distribuição uniforme discreta: se a variável pode assumir k valores, cada um tem probabilidade 1/k. Exemplo clássico: no lançamento de um dado honesto, cada face de 1 a 6 tem probabilidade 1/6. As outras distribuições citadas não dão, em geral, a mesma chance a todos os valores: na binomial e na de Poisson as probabilidades mudam de um valor para outro, e na de Bernoulli há só dois resultados, com probabilidades p e 1 − p, que só coincidem quando p = 1/2.",
+   "alternativas": {
+    "A": "Errada: a binomial conta os sucessos em n ensaios independentes com a mesma probabilidade p de sucesso; as chances de 0, 1, 2, …, n sucessos são, em geral, diferentes.",
+    "B": "Errada: a de Poisson conta ocorrências num intervalo de tempo ou espaço, com taxa média λ; as probabilidades de 0, 1, 2… ocorrências variam.",
+    "C": "Correta: na uniforme discreta todos os valores possíveis têm a mesma probabilidade, 1/k para k valores, como as faces de um dado honesto.",
+    "D": "Errada: a de Bernoulli descreve um único ensaio com dois resultados, sucesso (p) e fracasso (1 − p), que só são igualmente prováveis se p = 1/2.",
+    "E": "Errada: não existe, na Estatística, uma distribuição padrão chamada distribuição tripla."
+   }
+  },
+  {
+   "id": "tec_2853875",
+   "contentHash": "c8b6803fa2916769105edaba0dca36c390ad4d232d4b29cb67edb3f25d063065",
+   "gabarito": "C",
+   "comentario": "A amplitude é a diferença entre o maior e o menor valor: 29 − 18 = 11 anos. A média é (18 + 20 + 20 + 21 + 21 + 22 + 25 + 29)/8 = 176/8 = 22 anos. Os desvios em relação à média são −4, −2, −2, −1, −1, 0, 3 e 7, e seus quadrados somam 16 + 4 + 4 + 1 + 1 + 0 + 9 + 49 = 84. A nota do enunciado manda dividir pelo tamanho da amostra (n = 8), e não por n − 1: variância = 84/8 = 10,5. Com n − 1 daria 84/7 = 12, valor que não aparece nas alternativas.",
+   "alternativas": {
+    "A": "Errada: a amplitude 11 está certa, mas a variância pela regra do enunciado é 84/8 = 10,5, e não 4,54.",
+    "B": "Errada: A amplitude é 11 e não 29; o valor 29 é apenas o maior dado isolado do grupo.",
+    "C": "Correta: a amplitude é 29 − 18 = 11 e a variância, pela definição do enunciado, é 84/8 = 10,5.",
+    "D": "Errada: 29 é a maior idade, e não a amplitude (29 − 18 = 11); a variância vale 10,5, e não 2,68.",
+    "E": "Errada: 21 é a mediana (média do 4º e do 5º valores, 21 e 21), e não a amplitude, que é 11; a variância é 10,5."
+   }
+  },
+  {
+   "id": "tec_2987554",
+   "contentHash": "6fc7ee988ed61f398ca07fbf749bb7be9af8aee3e75576dbfe860f04ab156ef6",
+   "gabarito": "C",
+   "comentario": "A questão pede média, mediana, amplitude, desvio-padrão e uma conclusão sobre a consistência das vendas. A soma das 12 vendas é 677, e a média é 677/12 ≈ 56,4, que arredonda para 56. Em ordem crescente: 50, 53, 54, 55, 55, 56, 57, 58, 58, 59, 60, 62. Com 12 dados, a mediana é a média do 6º e do 7º valores: (56 + 57)/2 = 56,5. A amplitude é 62 − 50 = 12. A soma dos quadrados dos desvios em relação à média é cerca de 118,9; dividindo por 12, a variância é ≈ 9,9 e o desvio-padrão ≈ 3,1 (com divisor 11, ≈ 3,3). Um desvio de cerca de 3 mil dólares em vendas médias de 56 mil é só cerca de 5,5% da média, por isso as vendas são relativamente consistentes. Os valores das alternativas são arredondados, e a única que reúne amplitude 12, desvio perto de 3 e essa conclusão é a C.",
+   "alternativas": {
+    "A": "Errada: a média é cerca de 56,4 (não 54), a amplitude é 62 − 50 = 12 (não 10) e o desvio-padrão fica perto de 3 (não 2); a variação é pequena, e não muito grande.",
+    "B": "Errada: a média é cerca de 56,4 (não 55), a amplitude é 12 (não 11) e o desvio-padrão fica perto de 3, e não de 4.",
+    "C": "Correta: média ≈ 56,4, mediana 56,5, amplitude 12 e desvio-padrão ≈ 3,1; arredondados, são os valores da letra, e a dispersão pequena indica vendas consistentes.",
+    "D": "Errada: a mediana é 56,5 (não 58) e o desvio-padrão fica perto de 3 (não 4); além disso, a consistência pode ser avaliada pelo desvio pequeno em relação à média.",
+    "E": "Errada: a média é cerca de 56,4 (não 57) e a amplitude é 12 (não 10); a consistência pode ser avaliada pelo desvio-padrão."
+   }
+  },
+  {
+   "id": "tec_3104084",
+   "contentHash": "d6ec52aa68a3f6d010a743922b9ad2770c8e4f89938c71b11bf18b58875b1c8d",
+   "gabarito": "B",
+   "comentario": "O desvio padrão é uma soma de quadrados dividida por graus de liberdade sob raiz quadrada. Como quadrados são sempre maiores ou iguais a zero, a variância e o desvio padrão só podem resultar em zero se e somente se todos os desvios individuais (xi - x̄) forem identicamente nulos, o que exige que todas as observações sejam rigorosamente iguais à média.",
+   "alternativas": {
+    "A": "Errada: O desvio padrão pode ser perfeitamente igual a zero quando todos os valores da amostra forem constantes.",
+    "B": "Correta: Desvio padrão nulo indica ausência total de dispersão, significando que todos os dados são idênticos à média.",
+    "C": "Errada: Se houver diferença maior que zero entre observações, o desvio padrão será estritamente positivo.",
+    "D": "Errada: A média pode assumir qualquer valor positivo enquanto o desvio padrão permanece nulo."
+   }
+  },
+  {
+   "id": "tec_1674169",
+   "contentHash": "e9eb9c03406a8e067ba92d55bf860d20dd8798406d6a08fae347a13aed1f99d1",
+   "gabarito": "D",
+   "comentario": "A amostra de idades é {21, 22, 22, 21, 24}. A média amostral é (21 + 22 + 22 + 21 + 24) / 5 = 110 / 5 = 22 anos. Os desvios em relação à média são: -1, 0, 0, -1 e 2. Os quadrados dos desvios são: 1, 0, 0, 1 e 4, cuja soma vale 6. A variância amostral com divisor n - 1 = 4 vale s² = 6 / 4 = 1,5. O desvio padrão amostral é s = √1,5 ≈ 1,225.",
+   "alternativas": {
+    "A": "Errada: A média correta é 22 anos e não 21, tornando a assertiva incorreta em seu primeiro valor.",
+    "B": "Errada: O desvio padrão amostral vale a raiz de 1,5 (aproximadamente 1,225), e não 1,500.",
+    "C": "Errada: A média amostral é 22 e o desvio padrão calculado é diferente de 1,100.",
+    "D": "Correta: A média é exatamente 22 anos e o desvio padrão amostral s = √1,5 é igual a 1,225.",
+    "E": "Errada: A média calculada é 22 anos, divergindo do valor 21 apresentado na proposição."
+   }
+  },
+  {
+   "id": "tec_1674230",
+   "contentHash": "13d18807e537672074ac57fcad13a4f5000bed2af642bef5f33a4bbe8d1fe9fa",
+   "gabarito": "C",
+   "comentario": "A média amostral das cinco alturas é (1,60 + 1,65 + 1,72 + 1,69 + 1,75) / 5 = 8,41 / 5 = 1,6820 m. Os desvios em relação à média são: -0,082, -0,032, +0,038, +0,008 e +0,068. Elevando ao quadrado e somando: 0,006724 + 0,001024 + 0,001444 + 0,000064 + 0,004624 = 0,013880. A variância amostral com divisor n - 1 = 4 é 0,013880 / 4 = 0,003470 m². O desvio padrão amostral é √0,003470 ≈ 0,0589 m.",
+   "alternativas": {
+    "A": "Errada: A média das cinco alturas observadas é 1,6820 m e não 1,70 m.",
+    "B": "Errada: A média correta é 1,6820 m e o desvio padrão é de 0,0589 m.",
+    "C": "Correta: A média amostral calculada é 1,6820 m e o desvio padrão amostral vale 0,0589 m.",
+    "D": "Errada: Apresenta média e desvio padrão calculados incorretamente em relação aos dados.",
+    "E": "Errada: Embora acerte a média 1,6820 m, apresenta desvio padrão errado de 0,0905 m."
+   }
+  },
+  {
+   "id": "tec_1868108",
+   "contentHash": "5de7e6f4f8d4392d7a8d8f9f362b92ffc6212a8eebd2604e662b091c021596c2",
+   "gabarito": "C",
+   "comentario": "O item está certo. O desvio-padrão mede o quanto os dados se espalham em torno da média, isto é, o grau de dispersão do conjunto. Ele é a raiz quadrada da variância, que é a média dos quadrados dos desvios (x − x̄)². Por causa da raiz, fica na mesma unidade dos dados: se as alturas estão em metros, o desvio-padrão também está. Quanto maior o desvio-padrão, mais espalhados os dados; se ele vale zero, todos os valores são iguais.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_1868109",
+   "contentHash": "000513a39bb64db6f5d9a19e440e00e673900e84f12c9d1aef85b14e004cc7c8",
+   "gabarito": "C",
+   "comentario": "O item está inteiramente correto. O desvio padrão mede a proximidade dos dados em relação ao centro médio. Quanto mais próximo de zero for o desvio padrão de um grupo, menores são os desvios individuais dos pontos em relação à média, o que indica que os elementos são mais homogêneos e regulares entre si.",
+   "alternativas": {}
+  }
+ ],
+ "descartes": [
+  {
+   "id": "tec_2987537",
+   "motivo": "QUALIDADE: gabarito duvidoso: média 85, soma dos quadrados dos desvios 164; o desvio-padrão populacional é √(164/5) = √32,8 ≈ 5,73 (arredonda para 5,7, não 5,8) e o amostral é √(164/4) = √41 ≈ 6,40, exatamente a letra B; sem o enunciado dizer população ou amostra, B é a resposta mais defensável."
+  }
+ ]
+}

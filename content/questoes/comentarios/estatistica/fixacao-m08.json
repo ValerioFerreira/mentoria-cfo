@@ -1,0 +1,168 @@
+{
+ "lote": "estatistica/fixacao-m08",
+ "origem": "content/material/estatistica/m08/fixacao.json",
+ "autor": "fixacao",
+ "data": "2026-11-17",
+ "revisao": "opus-revisao06 2026-11-17",
+ "revisaoNotas": [
+  {
+   "id": "tec_624621",
+   "problema": "ERRO",
+   "detalhe": "Comentário calculava P(X = 5) e dizia que o enunciado pedia outra coisa; reescrito com P(X = 0) = 0,6⁷ ≈ 0,028; notas C e D não identificavam 0,0016 ≈ 0,4⁷ nem 0,24 = p · q."
+  },
+  {
+   "id": "tec_2173644",
+   "problema": "ERRO",
+   "detalhe": "Comentário não fazia a conta (só citava a fórmula, com ^) e era genérico; reescrito com C(4, 2) · 0,3² · 0,7² = 0,2646."
+  },
+  {
+   "id": "tec_788148",
+   "problema": "AJUSTE",
+   "detalhe": "Falava em \"aproximações de potências da banca\"; notas B a E vagas (B é a chance de a infestada ser a 2ª árvore; E é 19 · 0,025)."
+  },
+  {
+   "id": "tec_2097619",
+   "problema": "TROCADO",
+   "detalhe": "Comentário de outra questão (10 questões de probabilidade em 50, 5 sorteadas, exatamente 3); reescrito: 5 difíceis em 50, 3 sorteadas, pelo menos 2 = 460/19.600 ≈ 2,35%."
+  },
+  {
+   "id": "tec_2919672",
+   "problema": "AJUSTE",
+   "detalhe": "Introdução repetia o contexto do enunciado e não dava a fórmula de Poisson; nota E não apontava a troca entre média e desvio-padrão."
+  },
+  {
+   "id": "tec_1014343",
+   "problema": "AJUSTE",
+   "detalhe": "Notas C e E atribuíam os valores a contas que não os produzem (acumulada complementar, expoente positivo)."
+  },
+  {
+   "id": "tec_1423187",
+   "problema": "AJUSTE",
+   "detalhe": "Nota A com notação truncada (E⁻⁰·⁰³), nota E com afirmação exagerada; comentário terminava com frase vazia sobre o gabarito."
+  },
+  {
+   "id": "tec_3638404",
+   "problema": "ERRO",
+   "detalhe": "Comentário e notas não faziam a conta binomial; reescrito com 45 · 0,05² · 0,95⁸ ≈ 0,0746."
+  },
+  {
+   "id": "tec_1427261",
+   "problema": "ERRO",
+   "detalhe": "Nota D dizia que 2 = E(X) · p (dá 3); 2 = k · p, multiplicação no lugar da divisão; comentário passou a lembrar que X ≥ 3."
+  }
+ ],
+ "comentarios": [
+  {
+   "id": "tec_624621",
+   "contentHash": "86974210c1925f3522591c00559e27039293989ab5e494e606505a4d06bcc8ce",
+   "gabarito": "E",
+   "comentario": "X conta os assaltos com vítima em 7 assaltos independentes, cada um com probabilidade p = 0,4 de ter vítima: X segue a binomial com n = 7 e p = 0,4, e q = 1 − p = 0,6. Não haver vítima é X = 0: P(X = 0) = C(7, 0) · 0,4⁰ · 0,6⁷ = 0,6⁷ ≈ 0,028. Na binomial, a média é E(X) = n · p = 7 · 0,4 = 2,8 e a variância é Var(X) = n · p · q = 7 · 0,4 · 0,6 = 1,68. A única alternativa com 0,028; 2,8 e 1,68 é a E.",
+   "alternativas": {
+    "A": "Errada: 0,028 e 2,8 estão certos, mas a variância é n · p · q = 7 · 0,4 · 0,6 = 1,68, e não 0,0343.",
+    "B": "Errada: 0,24 = 0,4 · 0,6 é a variância de um único assalto, e não a média de X, que é 7 · 0,4 = 2,8; a variância é 1,68.",
+    "C": "Errada: 0,0016 ≈ 0,4⁷ é a chance de haver vítima nos 7 assaltos, o oposto do pedido; a média é 2,8 e a variância, 1,68.",
+    "D": "Errada: média 2,8 e variância 1,68 estão certas, mas 0,0016 ≈ 0,4⁷ é a chance de todos terem vítima; nenhuma vítima é 0,6⁷ ≈ 0,028.",
+    "E": "Correta: P(X = 0) = 0,6⁷ ≈ 0,028, média 7 · 0,4 = 2,8 e variância 7 · 0,4 · 0,6 = 1,68."
+   }
+  },
+  {
+   "id": "tec_2173644",
+   "contentHash": "d47a01c0107720e702483d79117a6e89ed82f78cc0ff84fc931318b7566a7295",
+   "gabarito": "C",
+   "comentario": "O item está certo. Cada produto é da Classe A com probabilidade p = 0,3, independentemente dos outros, e se observam n = 4 produtos: o número X de produtos da Classe A segue a binomial. A probabilidade de exatamente k sucessos é P(X = k) = C(n, k) · pᵏ · (1 − p)ⁿ⁻ᵏ. Para k = 2, há C(4, 2) = 6 maneiras de escolher quais dois produtos são da Classe A, e cada uma tem probabilidade 0,3² · 0,7² = 0,09 · 0,49 = 0,0441. Logo, P(X = 2) = 6 · 0,0441 = 0,2646, exatamente o valor do item.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_788148",
+   "contentHash": "74354cbedf3d78f36653566fa88380cc1021817ad98836b00589e821febd3fc2",
+   "gabarito": "A",
+   "comentario": "O produtor examina árvore após árvore até achar a primeira infestada. Cada árvore é infestada com p = 0,025 e sadia com q = 0,975, de forma independente: o número da tentativa do primeiro sucesso segue a distribuição geométrica, P(X = k) = qᵏ⁻¹ · p. A infestada ser a 20ª significa 19 árvores sadias seguidas e depois uma infestada: P(X = 20) = 0,975¹⁹ · 0,025. Como 0,975¹⁹ ≈ 0,618, o resultado é 0,618 · 0,025 ≈ 0,0155, ou cerca de 1,55%.",
+   "alternativas": {
+    "A": "Correta: P(X = 20) = 0,975¹⁹ · 0,025 ≈ 0,618 · 0,025 ≈ 0,0155.",
+    "B": "Errada: 0,0244 = 0,975 · 0,025 é a chance de a primeira infestada ser a 2ª árvore; para a 20ª são 19 sadias antes.",
+    "C": "Errada: 0,4631 é alto demais; a chance de a primeira infestada aparecer exatamente na 20ª árvore exige 19 sadias e depois uma infestada, e dá ≈ 0,0155.",
+    "D": "Errada: 0,3090 não corresponde a 0,975¹⁹ · 0,025; uma única posição exata tem chance pequena, ≈ 1,55%.",
+    "E": "Errada: 0,475 = 19 · 0,025 soma chances em vez de multiplicar 19 fracassos e um sucesso."
+   }
+  },
+  {
+   "id": "tec_2097619",
+   "contentHash": "ca76e254a0d3b2e932908c053c2804bab9a760c1deb37473b0432aadcddc155d",
+   "gabarito": "D",
+   "comentario": "Pegar 3 questões ao acaso é escolher 3 entre 50 sem importar a ordem: C(50, 3) = 50 · 49 · 48/6 = 19.600 escolhas igualmente prováveis. Das 50 questões, 5 são difíceis e 45 não. Pelo menos 2 difíceis significa exatamente 2 ou exatamente 3. Exatamente 2 difíceis e 1 não difícil: C(5, 2) · C(45, 1) = 10 · 45 = 450 escolhas. Exatamente 3 difíceis: C(5, 3) = 10 escolhas. Casos favoráveis: 450 + 10 = 460. Logo, P = 460/19.600 ≈ 0,0235, ou cerca de 2,35%, valor entre 2,0% e 2,5%.",
+   "alternativas": {
+    "A": "Errada: 1,0% de 19.600 seriam só 196 casos favoráveis; são 460, cerca de 2,35%.",
+    "B": "Errada: 1,5% de 19.600 seriam 294 casos favoráveis; são 460, cerca de 2,35%.",
+    "C": "Errada: para ficar abaixo de 2,0% seriam necessários menos de 392 casos favoráveis em 19.600; são 460.",
+    "D": "Correta: [C(5, 2) · 45 + C(5, 3)]/C(50, 3) = 460/19.600 ≈ 2,35%, entre 2,0% e 2,5%.",
+    "E": "Errada: 2,5% de 19.600 seriam 490 casos; os favoráveis são 460, abaixo disso."
+   }
+  },
+  {
+   "id": "tec_2919672",
+   "contentHash": "b21bc66765db8e711161f4160a6f1575614f9ab9074419ef93b04b9e8d3a537e",
+   "gabarito": "C",
+   "comentario": "X segue a distribuição de Poisson com λ = 2, em que P(X = k) = e⁻² · 2ᵏ/k!. Nela, a média e a variância são iguais a λ: μ = 2 e σ² = 2, logo o desvio-padrão é σ = √2 ≈ 1,41421. Pelo menos 2 chamadas é o complementar de 0 ou 1 chamada: P(X ≥ 2) = 1 − [P(X = 0) + P(X = 1)] = 1 − [e⁻² + 2 · e⁻²] = 1 − 3 · e⁻². Com e⁻² ≈ 0,135335, 3 · 0,135335 = 0,406006 e P(X ≥ 2) = 1 − 0,406006 = 0,593994.",
+   "alternativas": {
+    "A": "Errada: 0,406006 é P(X < 2), e o desvio padrão de Poisson é √2 ≈ 1,414, não 2.",
+    "B": "Errada: Inverteu a média (que é 2) com o desvio padrão (que é 1,414).",
+    "C": "Correta: P(X ≥ 2) = 1 − 0,406006 = 0,593994, com média μ = 2 e desvio padrão σ = √2 ≈ 1,41421.",
+    "D": "Errada: O desvio padrão apresentado (2) iguala-se à variância, esquecendo de extrair a raiz.",
+    "E": "Errada: 0,270671 = 2 · e⁻² é P(X = 2), e não P(X ≥ 2); além disso, a letra troca a média (2) pelo desvio-padrão (1,414)."
+   }
+  },
+  {
+   "id": "tec_1014343",
+   "contentHash": "d4e3da5dc654cf4835a55c4cc0b7ecca1b0e4bd0efb0d9fc14e2318a0c218d03",
+   "gabarito": "B",
+   "comentario": "Acidentes que ocorrem ao acaso e de forma independente, a uma taxa média de 3 por semana, seguem a distribuição de Poisson com λ = 3 para o período de uma semana. A fórmula é P(X = k) = e⁻³ · 3ᵏ/k!. Para exatamente um acidente: P(X = 1) = e⁻³ · 3¹/1! = 3 · e⁻³. Com e⁻³ ≈ 0,0498, P(X = 1) = 3 · 0,0498 ≈ 0,1494, ou 14,94%.",
+   "alternativas": {
+    "A": "Errada: 0,5976 não é P(X = 1); com λ = 3, a fórmula dá 3 · e⁻³ ≈ 0,1494.",
+    "B": "Correta: P(X = 1) = 3 · e⁻³ = 3 · 0,0498 ≈ 0,1494.",
+    "C": "Errada: 0,4024 não é P(X = 1); com λ = 3, P(X = 1) = 3 · e⁻³ ≈ 0,1494.",
+    "D": "Errada: 0,8506 seria o complementar 1 − 0,1494.",
+    "E": "Errada: 0,3528 não corresponde a 3 · e⁻³; o valor correto é ≈ 0,1494."
+   }
+  },
+  {
+   "id": "tec_1423187",
+   "contentHash": "e0649ef26e9be93c0cd05b4f67b85e8a6f9d36f89d8964a3cb2ebe238d270e35",
+   "gabarito": "C",
+   "comentario": "Cada uma das 3000 pessoas contrai a doença com probabilidade p = 0,001, de forma independente. O número de doentes é binomial, mas, com n grande e p pequeno, aproxima-se pela distribuição de Poisson com λ = n · p = 3000 · 0,001 = 3 casos esperados. Nenhum doente é X = 0: P(X = 0) = e⁻³ · 3⁰/0! = e⁻³ ≈ 0,0498. O cálculo binomial exato, 0,999³⁰⁰⁰, dá praticamente o mesmo valor.",
+   "alternativas": {
+    "A": "Errada: e elevado a −0,03 usaria λ = 0,03, mas a média de casos é λ = n · p = 3000 · 0,001 = 3.",
+    "B": "Errada: 0,001 é a probabilidade individual p de contrair a doença.",
+    "C": "Correta: A taxa média é λ = n · p = 3000 · 0,001 = 3, e a probabilidade de zero casos é P(X = 0) = e⁻³.",
+    "D": "Errada: 0,0000033 está longe de e⁻³ ≈ 0,0498; a chance de ninguém adoecer é de quase 5%.",
+    "E": "Errada: é possível calcular: exatamente, 0,999³⁰⁰⁰, ou pela aproximação de Poisson, e⁻³ ≈ 0,0498."
+   }
+  },
+  {
+   "id": "tec_3638404",
+   "contentHash": "ace75b302a61f367ac5d67a44f58a6d3e23c1faaa08b143ddb2e56d8dcae0a80",
+   "gabarito": "A",
+   "comentario": "Cada contêiner tem irregularidade com probabilidade p = 0,05, independentemente dos outros, e a equipe inspeciona n = 10: o número de contêineres irregulares segue a binomial. P(X = 2) = C(10, 2) · 0,05² · 0,95⁸. O fator C(10, 2) = 45 conta de quantas maneiras se escolhem os 2 irregulares; 0,05² = 0,0025 é a chance de esses dois serem irregulares e 0,95⁸ ≈ 0,6634, a de os outros 8 estarem regulares. Assim, P(X = 2) = 45 · 0,0025 · 0,6634 ≈ 0,0746, cerca de 7,4% a 7,5%, que corresponde à alternativa A.",
+   "alternativas": {
+    "A": "Correta: C(10, 2) · 0,05² · 0,95⁸ = 45 · 0,0025 · 0,6634 ≈ 0,0746, cerca de 7,4%.",
+    "B": "Errada: 8,1% fica acima do valor binomial, ≈ 7,46%; nem a aproximação de Poisson (λ = 0,5) chega a ele, pois dá cerca de 7,6%.",
+    "C": "Errada: 9,2% superestima a chance; o cálculo binomial dá cerca de 7,46%.",
+    "D": "Errada: 10,4% não corresponde a 45 · 0,0025 · 0,95⁸ ≈ 0,0746.",
+    "E": "Errada: esquecer o fator 0,95⁸ dá 45 · 0,0025 = 11,25%, perto deste valor; com ele, o resultado é ≈ 7,46%."
+   }
+  },
+  {
+   "id": "tec_1427261",
+   "contentHash": "c53c36d782a6296e68ae23cf6284c2fd67f5700263d83a6184535d915a8aeedf",
+   "gabarito": "E",
+   "comentario": "O pênalti tem probabilidade de sucesso p = 2/3, e X é o número de cobranças até o terceiro gol (k = 3). É a distribuição binomial negativa (ou de Pascal): o número de sucessos é fixo e o de tentativas é aleatório. Cada gol exige, em média, 1/p = 3/2 = 1,5 cobrança; três gols exigem E(X) = k/p = 3/(2/3) = 9/2 = 4,5 cobranças. Conferência rápida: como o jogador precisa de pelo menos 3 cobranças para fazer 3 gols, X ≥ 3, e a média não pode ser menor que 3.",
+   "alternativas": {
+    "A": "Errada: 4/5 é menor que 3, e são necessárias pelo menos 3 cobranças para 3 gols; a média é k/p = 4,5.",
+    "B": "Errada: 3/2 = 1,5 seria a média de ensaios para apenas 1 gol (Geométrica: 1 / (2/3) = 1,5).",
+    "C": "Errada: 2/3 é a probabilidade elementar de sucesso em uma única cobrança.",
+    "D": "Errada: 2 = 3 · 2/3 resulta de multiplicar k por p; o certo é dividir: 3/(2/3) = 4,5.",
+    "E": "Correta: E(X) = k / p = 3 / (2/3) = 9/2 = 4,5 tentativas."
+   }
+  }
+ ],
+ "descartes": []
+}

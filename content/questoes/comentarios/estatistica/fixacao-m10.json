@@ -1,0 +1,24 @@
+{
+ "lote": "estatistica/fixacao-m10",
+ "origem": "content/material/estatistica/m10/fixacao.json",
+ "autor": "fixacao",
+ "data": "2026-11-17",
+ "revisao": "opus-revisao06 2026-11-17",
+ "revisaoNotas": [
+  {
+   "id": "tec_2173655",
+   "problema": "ERRO",
+   "detalhe": "Comentário genérico e sem acentos, sem dizer se o item é certo nem fazer a conta; reescrito com a multinomial 10!/(5! · 2! · 3!) · 0,2⁵ · 0,6² · 0,2³ ≈ 0,23%. Atenção: as probabilidades dadas (0,20; 0,60; 0,20) não batem com a uniforme em [10, 12] (seriam 0,25; 0,65; 0,10), e as fórmulas do enunciado aparecem embaralhadas no texto."
+  }
+ ],
+ "comentarios": [
+  {
+   "id": "tec_2173655",
+   "contentHash": "98979ad0a4c0e183b40ea774ebf91b42cbd3fa79e28d7cae33ada58efc5e2a24",
+   "gabarito": "C",
+   "comentario": "O item está certo. Cada barra cai em exatamente uma de três categorias: A (menor que 10,5 mm), B (de 10,5 a 11,8 mm) ou C (maior que 11,8 mm), com P(A) = 0,20, P(B) = 0,60 e P(C) = 0,20, e as barras são independentes. Contar quantas das 10 barras caem em cada categoria é um problema da distribuição multinomial, a extensão da binomial para mais de dois resultados. Exatamente 5 em A e exatamente 3 em C obriga as outras 2 a ficarem em B. A probabilidade é o número de maneiras de distribuir as barras, 10!/(5! · 2! · 3!) = 3.628.800/1.440 = 2520, vezes 0,2⁵ · 0,6² · 0,2³ = 0,00032 · 0,36 · 0,008. Logo, P = 2520 · 0,00032 · 0,36 · 0,008 ≈ 0,00232, cerca de 0,23%. Observação: numa uniforme em [10, 12] essas chances seriam 0,25, 0,65 e 0,10, mas o item fixa os valores 0,20, 0,60 e 0,20, e o julgamento se faz com eles.",
+   "alternativas": {}
+  }
+ ],
+ "descartes": []
+}

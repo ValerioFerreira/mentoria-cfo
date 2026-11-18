@@ -19,6 +19,8 @@ export interface VerifyActivity {
   refKeys: string[];
   quizQuestions?: number | null;
   hasFixRanges?: boolean;
+  /** reprogramada pelo aluno (Activity.rescheduledAt): o excesso de carga do dia e da semana passa a ser escolha dele (aviso, não erro) */
+  rescheduled?: boolean;
 }
 
 export interface VerifyPlan {
@@ -33,6 +35,8 @@ export interface VerifyPlan {
   contest?: string | null;
   weeks: { index: number; startDate: string; targetMinutes: number }[];
   activities: VerifyActivity[];
+  /** atividades que o aluno dispensou na reprogramação (saíram do plano): o ciclo da aula pode ficar incompleto por escolha dele */
+  removed?: { key: string; aulaId: string }[];
 }
 
 export interface VerifyContext {
@@ -96,6 +100,8 @@ export function verifyPlan(plan: VerifyPlan, ctx: VerifyContext): VerifyReport {
   const content = acts.filter((a) => a.scope !== "FINAL");
   const ord = (a: VerifyActivity) => (a.week - 1) * 7 + (a.day ?? 0);
   const byKey = new Map(acts.map((a) => [a.key, a]));
+  const removedKeys = new Set((plan.removed ?? []).map((r) => r.key));
+  const removedAulas = new Set((plan.removed ?? []).map((r) => r.aulaId));
 
   // ───── 1. estrutura e datas ─────
   const weeks = [...plan.weeks].sort((a, b) => a.index - b.index);
@@ -104,7 +110,12 @@ export function verifyPlan(plan: VerifyPlan, ctx: VerifyContext): VerifyReport {
     const sum = acts.filter((a) => a.week === w.index).reduce((n, a) => n + a.minutes, 0);
     if (sum !== w.targetMinutes) err("SEMANA_SOMA", `semana ${w.index}: meta ${w.targetMinutes} min ≠ soma das atividades ${sum} min`);
     const weekly = plan.params.weeklyMinutes;
-    if (weekly && sum > weekly * WEEK_OVERSHOOT + 1) err("SEMANA_EXCESSO", `semana ${w.index}: ${sum} min passa de 105% da meta semanal (${weekly} min)`);
+    if (weekly && sum > weekly * WEEK_OVERSHOOT + 1) {
+      const msg = `semana ${w.index}: ${sum} min passa de 105% da meta semanal (${weekly} min)`;
+      // com atividade reprogramada pelo aluno na semana, o excesso é escolha dele (a reprogramação mostra o impacto antes de confirmar)
+      if (acts.some((a) => a.week === w.index && a.rescheduled)) warn("SEMANA_EXCESSO", `${msg}, com atividades reprogramadas pelo aluno`);
+      else err("SEMANA_EXCESSO", msg);
+    }
   });
   for (const a of acts) {
     if (a.day === null || a.day < 0 || a.day > 6) err("DIA_INVALIDO", `atividade sem dia válido (seg–dom)`, a.key);
@@ -211,7 +222,11 @@ export function verifyPlan(plan: VerifyPlan, ctx: VerifyContext): VerifyReport {
   let multi = 0;
   for (const [k, l] of perSubjectDay) {
     const m = l.reduce((n, a) => n + a.minutes, 0);
-    if (m > MAX_SUBJECT_DAY_MIN) err("DISCIPLINA_DIA_EXCESSO", `${l[0].subjectId} soma ${m} min no mesmo dia (máx. ${MAX_SUBJECT_DAY_MIN})`, `dia ${k.split("|")[0]}`);
+    if (m > MAX_SUBJECT_DAY_MIN) {
+      const msg = `${l[0].subjectId} soma ${m} min no mesmo dia (máx. ${MAX_SUBJECT_DAY_MIN})`;
+      if (l.some((a) => a.rescheduled)) warn("DISCIPLINA_DIA_EXCESSO", `${msg}, com atividade reprogramada pelo aluno`, `dia ${k.split("|")[0]}`);
+      else err("DISCIPLINA_DIA_EXCESSO", msg, `dia ${k.split("|")[0]}`);
+    }
     if (l.length > 1) multi++;
   }
   if (perSubjectDay.size > 0 && multi / perSubjectDay.size > 0.25) warn("MUITAS_ATIVIDADES_NO_DIA", `${Math.round((multi / perSubjectDay.size) * 100)}% dos dias-disciplina têm mais de uma atividade (o ideal é uma)`);
@@ -220,7 +235,9 @@ export function verifyPlan(plan: VerifyPlan, ctx: VerifyContext): VerifyReport {
   for (const a of acts) {
     for (const k of a.refKeys) {
       const r = byKey.get(k);
-      if (!r) err("REF_INEXISTENTE", `referência a atividade inexistente (${k})`, a.key);
+      if (!r) {
+        if (!removedKeys.has(k)) err("REF_INEXISTENTE", `referência a atividade inexistente (${k})`, a.key);
+      }
       else {
         if (r.subjectId !== a.subjectId) err("REF_OUTRA_DISCIPLINA", `referência a atividade de outra disciplina (${k})`, a.key);
         if (ord(r) > ord(a)) err("REF_DEPOIS", `atividade vem antes daquilo a que se atrela (${k})`, a.key);
@@ -232,7 +249,9 @@ export function verifyPlan(plan: VerifyPlan, ctx: VerifyContext): VerifyReport {
   const quizzes = content.filter((a) => a.type === "QUESTOES");
   for (const t of content.filter((a) => a.type === "TEORIA")) {
     const q = quizzes.find((x) => x.refKeys.includes(t.key));
-    if (!q) err("TEORIA_SEM_CADERNO", "Teoria sem caderno de Questões que feche o ciclo", t.key);
+    if (!q) {
+      if (!removedAulas.has(t.aulaId)) err("TEORIA_SEM_CADERNO", "Teoria sem caderno de Questões que feche o ciclo", t.key);
+    }
     else if (ord(q) - ord(t) < 1) err("CADERNO_NO_DIA_DA_TEORIA", "caderno no mesmo dia da Teoria", q.key);
   }
   const byAula = new Map<string, VerifyActivity[]>();
@@ -244,7 +263,7 @@ export function verifyPlan(plan: VerifyPlan, ctx: VerifyContext): VerifyReport {
     const Q = l.filter((a) => a.type === "QUESTOES");
     const lastT = T.length ? Math.max(...T.map(ord)) : -1;
     for (const x of [...R, ...F, ...Q]) if (T.length && ord(x) <= Math.min(...T.map(ord))) err("CICLO_ANTES_DA_TEORIA", `${x.type} antes/no dia da Teoria na aula ${aula}`, x.key);
-    if (Q.length && T.length && !R.length) err("QUESTOES_SEM_REVISAO", `aula ${aula}: Questões sem Revisão antes`);
+    if (Q.length && T.length && !R.length && !removedAulas.has(aula)) err("QUESTOES_SEM_REVISAO", `aula ${aula}: Questões sem Revisão antes`);
     if (F.length) {
       if (T.length && Math.min(...F.map(ord)) <= lastT) err("FIXACAO_ANTES_DA_TEORIA", `aula ${aula}: Fixação antes de terminar a Teoria`);
       for (const r of R) if (Math.min(...F.map(ord)) - ord(r) < 1) err("FIXACAO_SEM_FOLGA", `aula ${aula}: Fixação sem 1 dia de folga depois da Revisão`, r.key);

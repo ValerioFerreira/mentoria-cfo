@@ -1,0 +1,212 @@
+{
+ "lote": "informatica/p1-a05-s01-1",
+ "trecho": "informatica/a05/s01",
+ "autor": "opus-onda10-A",
+ "data": "2026-11-18",
+ "comentarios": [
+  {
+   "id": "tec_1376733",
+   "contentHash": "c87c78493cc9db02d916c4194d04a1a98be3350da43db83812094f09cd3c06e9",
+   "gabarito": "A",
+   "comentario": "A questão trata de backup de banco de dados. O backup incremental grava apenas o que mudou depois do backup anterior, seja ele completo ou incremental. Por isso é rápido e ocupa pouco espaço, mas a restauração exige o último completo mais todos os incrementais seguintes, na ordem. É o que diz a alternativa A. As demais trazem erros clássicos. Replicar dados em vários locais aumenta a disponibilidade, mas não substitui o backup: se alguém apaga ou corrompe um registro, a réplica copia o erro em segundos. O backup completo continua sendo a base de qualquer rotina de cópias. O backup lógico exporta o conteúdo como comandos ou dados (ex.: um arquivo de instruções SQL gerado por mysqldump); copiar os arquivos físicos do diretório de dados é o backup físico. E o log binário registra as operações que alteram dados, não as consultas SELECT, e serve para complementar um backup completo, não para substituí-lo.",
+   "alternativas": {
+    "A": "Correta: o backup incremental registra só as mudanças ocorridas depois do backup anterior, o que o torna rápido e econômico em espaço.",
+    "B": "Errada: a replicação melhora a disponibilidade, mas copia também exclusões e corrupções. Não dispensa o backup, que guarda versões anteriores dos dados.",
+    "C": "Errada: o backup completo não é técnica ultrapassada. Ele é a base das estratégias com incrementais e diferenciais e continua indispensável em bancos modernos.",
+    "D": "Errada: copiar os arquivos físicos do diretório de dados é o backup físico. O backup lógico exporta a estrutura e os dados, por exemplo em comandos SQL.",
+    "E": "Errada: o log binário registra só as operações que alteram dados (INSERT, UPDATE, DELETE), não o SELECT, e complementa o backup completo, sem substituir as outras técnicas."
+   }
+  },
+  {
+   "id": "tec_1385845",
+   "contentHash": "20ea88d5029d08db35b15b4c5f3e6e9c09199c293d3c391831885caa637415c5",
+   "gabarito": "C",
+   "comentario": "Backup, ou cópia de segurança, é a cópia dos dados para outro dispositivo ou local, feita para que possam ser recuperados se os originais forem perdidos por defeito no disco, exclusão acidental, vírus, furto ou desastre. O enunciado descreve exatamente isso: copiar os arquivos do computador para um HD externo a fim de restaurá-los em caso de perda. Repare que a cópia fica num dispositivo diferente do disco de origem, condição essencial para que o backup proteja de verdade contra falha do disco. O caminho inverso, trazer os dados da cópia de volta ao computador, é a restauração. As demais alternativas são operações com outras finalidades: organizar o disco, voltar configurações do sistema, iniciar o computador e configurar o firmware.",
+   "alternativas": {
+    "A": "Errada: a desfragmentação reorganiza os pedaços espalhados dos arquivos num disco rígido para agilizar a leitura. Não cria cópia de segurança.",
+    "B": "Errada: a Restauração do Sistema do Windows volta arquivos de sistema e configurações a um ponto anterior, sem copiar os arquivos pessoais para outro dispositivo.",
+    "C": "Correta: copiar os arquivos para outro dispositivo, como um HD externo, para poder restaurá-los em caso de perda é fazer backup.",
+    "D": "Errada: boot é o processo de inicialização do computador, em que o firmware carrega o sistema operacional.",
+    "E": "Errada: setup é o programa de configuração do firmware (BIOS ou UEFI) ou o assistente de instalação de um programa. Não faz cópia de segurança."
+   }
+  },
+  {
+   "id": "tec_1420409",
+   "contentHash": "43ecb5d9a3f402002299a123fad9dd3fc55b882cc27af0399bee46373da859f3",
+   "gabarito": "A",
+   "comentario": "Formatar um disco prepara a unidade com um novo sistema de arquivos e, na prática, apaga tudo o que havia nela. Por isso, quem vai formatar um computador precisa antes fazer o backup, isto é, copiar os arquivos importantes para outro dispositivo ou local (HD externo, pen drive, nuvem, servidor da rede). Depois da formatação e da reinstalação do sistema, os dados são trazidos de volta por meio da restauração. Note a ordem: o backup vem antes e é ele que torna possível a restauração depois. As outras operações citadas não guardam os arquivos fora do disco que será apagado, então não protegem nada contra a formatação.",
+   "alternativas": {
+    "A": "Correta: o backup copia os arquivos para outro dispositivo antes da formatação, permitindo recuperá-los depois.",
+    "B": "Errada: compactar reduz o tamanho dos arquivos, mas, se eles continuarem no disco que será formatado, serão apagados do mesmo jeito.",
+    "C": "Errada: desfragmentar apenas reorganiza os arquivos no próprio disco para acelerar a leitura e não preserva nada contra a formatação.",
+    "D": "Errada: a restauração é a etapa posterior, que traz os dados de volta a partir de um backup. Sem backup feito antes, não há o que restaurar.",
+    "E": "Errada: a Limpeza de Disco apaga arquivos temporários e desnecessários para liberar espaço. Não guarda cópia de nada."
+   }
+  },
+  {
+   "id": "tec_1868352",
+   "contentHash": "c0ea41e75fd9473473e00035932d2f3a85a0b89be396bab6edcf7101fb9ddbd9",
+   "gabarito": "E",
+   "comentario": "Errado. A referência do backup incremental é o backup imediatamente anterior, seja ele completo ou outro incremental, e não necessariamente o último completo. Ele depende do atributo de arquivamento: o sistema marca cada arquivo alterado, o incremental copia os marcados e em seguida desmarca. Assim, numa rotina com completo no domingo e incrementais nos demais dias, o incremental de terça leva só o que mudou desde o de segunda. A definição do item, copiar o que mudou desde o último backup completo, é a do backup diferencial, que não desmarca o atributo e por isso acumula as alterações a cada execução.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_2191823",
+   "contentHash": "fc56f0a70c63f06099947557252498db748005a6151c4b960b6ecb1b65af05e9",
+   "gabarito": "C",
+   "comentario": "Certo. Cloud é a palavra inglesa para nuvem, e backup em nuvem (cloud backup) é a cópia de segurança gravada em servidores de um provedor, acessados pela internet, em vez de um dispositivo físico do próprio usuário. Exemplos são OneDrive, Google Drive, iCloud e serviços corporativos de backup. As vantagens são a cópia ficar fora do local onde estão os dados originais, protegida de furto, incêndio ou falha do computador, e poder ser acessada de qualquer lugar. Os cuidados são depender da conexão com a internet para enviar e restaurar os dados e confiar a guarda a um terceiro, o que pede senha forte e, para dados sigilosos, criptografia.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_2338281",
+   "contentHash": "27a1447b0666a5631738a166fb3fd4ff34cb372c4eb0e20e51afe4cd519216ee",
+   "gabarito": "E",
+   "comentario": "O comando pede a afirmação incorreta sobre backup. Backup é a cópia de segurança de um arquivo ou conjunto de arquivos, guardada para recuperação em caso de perda; os dois termos são sinônimos. Para grandes volumes, usam-se mídias de alta capacidade, e era comum compactar os dados para economizar espaço. Já a ideia de que arquivos de backup têm extensão .src ou .com é falsa. A extensão depende do programa que gera o backup: pode ser .bak, .zip, .rar, .tar, .vhdx ou um formato próprio do software, e uma cópia simples mantém a extensão original do arquivo. Além disso, .com é a extensão de pequenos executáveis do antigo MS-DOS, e .src costuma indicar código-fonte. Observe que a alternativa C reflete a tecnologia da época da prova: disquetes e zip drives estão obsoletos; hoje se usam HD externo, fitas de alta capacidade e nuvem.",
+   "alternativas": {
+    "A": "Errada: a afirmação é verdadeira. Backup é a cópia reserva de um ou mais arquivos, guardada para recuperação.",
+    "B": "Errada: a afirmação é verdadeira. Backup e cópia de segurança são sinônimos.",
+    "C": "Errada: a afirmação é verdadeira para a época da prova. Grandes volumes iam para fitas ou discos de maior capacidade; hoje o zip drive deu lugar a HD externo, fitas modernas e nuvem.",
+    "D": "Errada: a afirmação é verdadeira. Compactar os dados no backup reduz o espaço ocupado na mídia de destino.",
+    "E": "Correta: a afirmação é falsa. Não há extensão padrão de backup; .com é extensão de executáveis do MS-DOS, e a cópia pode ter .bak, .zip ou o formato do programa usado."
+   }
+  },
+  {
+   "id": "tec_2642534",
+   "contentHash": "1902e38413cd1909f2f65ed573790c56bbf4966c696149d7bf7e29a447afe04f",
+   "gabarito": "D",
+   "comentario": "O comando pede o dispositivo que não serve para backup. Uma cópia de segurança precisa ficar gravada de forma permanente, isto é, em memória não volátil, que mantém os dados mesmo sem energia. DVD-RW e CD-R são mídias ópticas (o CD-R aceita gravação uma única vez, o DVD-RW pode ser regravado); o HD externo é um disco magnético; o pen drive usa memória flash. Todos guardam os dados com o aparelho desligado. A memória RAM, ao contrário, é volátil: serve de área de trabalho temporária para os programas em execução e perde todo o conteúdo quando o computador é desligado ou reiniciado. Por isso não pode ser usada para guardar um backup.",
+   "alternativas": {
+    "A": "Errada: o DVD-RW é mídia óptica regravável e não volátil, adequada para guardar cópias de segurança.",
+    "B": "Errada: o CD-R pode ser gravado uma única vez, mas mantém os dados de forma permanente e serve para backup, embora com pouca capacidade.",
+    "C": "Errada: o HD externo é um dos dispositivos mais usados para backup, por ter grande capacidade e guardar os dados sem energia.",
+    "D": "Correta: a memória RAM é volátil e perde tudo ao desligar o computador, por isso não pode guardar uma cópia de segurança.",
+    "E": "Errada: o pen drive usa memória flash, não volátil, e é comum como mídia de backup de pequenos volumes."
+   }
+  },
+  {
+   "id": "tec_2702979",
+   "contentHash": "80aed91035974dd2ec9b88fdfa7063cb0874faf48668b542e025e3ceac600289",
+   "gabarito": "E",
+   "comentario": "Os três tipos se distinguem pelo que copiam. O backup completo (full) copia todos os dados selecionados em cada execução: é o mais lento e o que ocupa mais espaço, mas a restauração é a mais simples. O incremental copia só o que mudou desde o último backup de qualquer tipo: é o mais rápido e econômico, porém a restauração exige o completo mais todos os incrementais, na ordem. O diferencial copia tudo o que mudou desde o último backup completo; como não toma por base os diferenciais anteriores, cresce a cada dia, mas a restauração exige só o completo e o último diferencial. Logo, a alternativa E está correta: o diferencial compara os arquivos com o último backup completo. Em velocidade de gravação, a ordem vai do incremental (mais rápido) ao diferencial e ao completo (mais lento).",
+   "alternativas": {
+    "A": "Errada: o backup full é o que mais ocupa espaço, pois copia todos os dados a cada execução. Economizar espaço é vantagem do incremental.",
+    "B": "Errada: o full é o mais lento, porque copia tudo. O incremental, que copia só as mudanças recentes, é o mais rápido.",
+    "C": "Errada: o diferencial não se baseia no último diferencial, e sim no último backup completo. Por isso acumula as alterações desde o completo.",
+    "D": "Errada: a segunda parte é verdadeira (o incremental é mais rápido que o diferencial), mas a primeira não: o full é mais lento que o diferencial.",
+    "E": "Correta: o diferencial toma como referência apenas o último backup completo e copia tudo o que mudou desde ele."
+   }
+  },
+  {
+   "id": "tec_346672",
+   "contentHash": "1bf2e676d4bb154df02b3e0ecef5f5654701c969eb8ce24d15f73b60dba578f4",
+   "gabarito": "D",
+   "comentario": "Fazer backup de um arquivo é criar uma cópia de segurança dele em outro dispositivo, para poder recuperá-lo se o original for perdido, corrompido ou apagado. No caso, o usuário copiou o arquivo para um pen drive, e o original continua onde estava. O backup não verifica vírus, não converte formato, não apaga nada e não envia o arquivo para a internet (isso só aconteceria num backup em nuvem, que não é o caso). O pen drive usa memória flash, não volátil, e serve bem para guardar cópias de poucos arquivos, embora seja fácil de perder; para dados importantes, convém ter mais de uma cópia em locais diferentes.",
+   "alternativas": {
+    "A": "Errada: quem verifica a existência de vírus é o antivírus. O backup apenas copia o arquivo.",
+    "B": "Errada: o backup grava uma cópia no pen drive, não exclui arquivo algum dele.",
+    "C": "Errada: o arquivo foi copiado para um pen drive, um dispositivo local. Enviar para a internet seria backup em nuvem.",
+    "D": "Correta: backup é cópia de segurança. O arquivo foi copiado para o pen drive para poder ser recuperado em caso de perda.",
+    "E": "Errada: o backup não muda o formato do arquivo. Converter para um formato aceito pelo Word é outra operação."
+   }
+  },
+  {
+   "id": "tec_348419",
+   "contentHash": "eb9b3f1de5e9c60242a743c16d083f8642ff47d6a36bb13b0c5600ab634f2e72",
+   "gabarito": "C",
+   "comentario": "A questão usa as definições clássicas dos tipos de backup do Windows, que dependem do atributo de arquivamento: toda vez que um arquivo é criado ou modificado, o sistema liga nele uma marca de pendente. O backup normal (completo) leva todos os arquivos e apaga a marca. O incremental leva apenas os que estão marcados e também apaga a marca, registrando que já foram copiados. O diferencial também leva apenas os marcados, mas deixa a marca ligada. Como só o normal e o incremental apagam a marca, o diferencial acaba copiando o que surgiu ou mudou depois do último normal ou incremental, exatamente como diz a alternativa C. Numa rotina de completo mais diferenciais, cada diferencial acumula tudo desde o completo. Já o diário pega o que foi criado ou modificado na data da execução, sem tocar na marca.",
+   "alternativas": {
+    "A": "Errada: o incremental registra os arquivos como já copiados, apagando a marca de arquivamento. E sua referência é o último backup normal ou incremental, não um backup sequencial.",
+    "B": "Errada: o backup diário leva também os arquivos modificados na data da execução, e não só os criados naquele dia.",
+    "C": "Correta: o diferencial leva o que foi criado ou modificado depois do último normal ou incremental e mantém a marca de arquivamento ligada.",
+    "D": "Errada: o incremental leva os arquivos novos e também os modificados, e sua referência inclui o último incremental, não só o último normal.",
+    "E": "Errada: o diferencial não se limita a arquivos novos, pois leva também os modificados, e sua referência inclui o último backup normal."
+   }
+  },
+  {
+   "id": "tec_4029118",
+   "contentHash": "d912700e726cca7a53bc2587452b2d9436b1d74fd41ef1de38e8c37d5f71b7c4",
+   "gabarito": "C",
+   "comentario": "A questão descreve os três tipos de backup pela abrangência e pela restauração. A primeira lacuna fala do backup que copia todos os dados selecionados em cada execução, mudados ou não: é o completo (full). A segunda descreve o que copia só o que mudou desde o último backup realizado, de qualquer tipo, e que na restauração exige toda a sequência de mídias até o ponto desejado: é o incremental. Como cada incremental guarda só um pedaço das mudanças, é preciso aplicar o completo e depois cada incremental, na ordem. A terceira descreve o que copia o que mudou desde uma referência fixa (o último completo), acumulando as mudanças, e que na restauração exige só dois conjuntos, o completo e o último desse tipo: é o diferencial. A ordem é completo, incremental, diferencial.",
+   "alternativas": {
+    "A": "Errada: o primeiro tipo, que copia tudo a cada execução, é o completo, e não o incremental. As outras duas lacunas também estão trocadas.",
+    "B": "Errada: a primeira lacuna é o completo, não o diferencial, e a terceira é o diferencial, não o completo.",
+    "C": "Correta: completo copia tudo; incremental copia o que mudou desde o último backup e exige a sequência inteira; diferencial acumula desde o completo e exige só dois conjuntos.",
+    "D": "Errada: a segunda e a terceira lacunas estão invertidas. Quem exige a sequência inteira de mídias é o incremental; quem exige só dois conjuntos é o diferencial.",
+    "E": "Errada: a primeira lacuna é o completo, não o incremental, e a segunda é o incremental, não o completo."
+   }
+  },
+  {
+   "id": "tec_503579",
+   "contentHash": "c1b24257f17afca6d2badc5518637da308cf78f4979d058502f3d481d12f9c22",
+   "gabarito": "C",
+   "comentario": "Certo. C: e D: são duas partições, ou seja, divisões lógicas de um mesmo disco físico. Para o sistema elas parecem unidades separadas, mas estão no mesmo HD. Se o disco sofrer uma falha de hardware (defeito mecânico, queima da placa eletrônica, setores danificados em massa), as duas partições podem se perder ao mesmo tempo, levando o original e a cópia. Por isso o backup deve ser gravado em outro dispositivo físico, como um HD externo, outro disco interno, um servidor da rede ou a nuvem, e de preferência também fora do local, para proteger contra incêndio ou furto. Uma cópia em outra partição só protege contra erros lógicos, como exclusão acidental ou corrompimento de um arquivo.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_508386",
+   "contentHash": "bf5ca35965a429f506754d116919545b8041cf0c39a8804e0b1600903d5032e2",
+   "gabarito": "B",
+   "comentario": "As situações do enunciado, perda total dos dados e disco formatado durante a manutenção, só têm remédio se existir uma cópia dos arquivos em outro lugar. Esse procedimento é o backup, a cópia de segurança dos dados em outro dispositivo ou local (HD externo, servidor, nuvem), feita periodicamente para que as informações possam ser restauradas. A periodicidade importa: a cópia só protege o que foi alterado até a última execução, então quanto maior o intervalo, mais trabalho se perde. Atualizar antivírus, sistema operacional e programas é boa prática de segurança, e auditorias ajudam a controlar processos, mas nenhuma dessas medidas recupera dados já apagados ou um disco formatado.",
+   "alternativas": {
+    "A": "Errada: o antivírus atualizado ajuda a prevenir infecções, mas não guarda cópia dos dados e não os recupera após uma formatação.",
+    "B": "Correta: o backup periódico guarda cópias dos dados em outro dispositivo, permitindo restaurá-los depois de uma perda ou formatação.",
+    "C": "Errada: atualizar o sistema operacional corrige falhas e melhora a segurança, mas não cria cópia dos arquivos do usuário.",
+    "D": "Errada: atualizar o Java só mantém essa plataforma de execução segura e em dia. Não protege os dados contra perda.",
+    "E": "Errada: auditorias verificam processos e controles, mas, sozinhas, não preservam cópia dos dados para recuperação."
+   }
+  },
+  {
+   "id": "tec_606967",
+   "contentHash": "30cba859263ae2b55434b23e633c880af5c4ec082b2de087cce800fa1165dada",
+   "gabarito": "E",
+   "comentario": "O comando pede a afirmação incorreta. Boas práticas de backup: verificar, depois da gravação, se a cópia está íntegra e pode ser restaurada; usar mídias adequadas, como pen drive, HD externo, servidor ou nuvem; criptografar cópias de informações sigilosas, para que não sejam lidas se a mídia for perdida ou furtada; e compactar os dados para economizar espaço. A regra mais importante, porém, é guardar o backup em local diferente do original, e não no mesmo dispositivo. Se a cópia fica junto com os dados, uma falha do disco, um vírus que criptografa arquivos, um furto ou um incêndio destroem as duas coisas de uma vez. A recomendação usual é a regra 3-2-1: três cópias, em dois tipos de mídia, com uma fora do local. Por isso a alternativa E é a incorreta.",
+   "alternativas": {
+    "A": "Errada: a afirmação é verdadeira. Verificar se a cópia gravada não está corrompida garante que ela poderá ser restaurada.",
+    "B": "Errada: a afirmação é verdadeira. O pen drive é dispositivo comum para guardar backups de pequenos volumes.",
+    "C": "Errada: a afirmação é verdadeira. Criptografar o backup de dados sigilosos impede a leitura por quem tiver acesso indevido à mídia.",
+    "D": "Errada: a afirmação é verdadeira. Compactar os dados do backup economiza espaço na mídia de destino.",
+    "E": "Correta: a afirmação é falsa. O backup deve ficar em outro dispositivo e, de preferência, em outro local, para não se perder junto com o original."
+   }
+  },
+  {
+   "id": "tec_652213",
+   "contentHash": "a051e9e484aeb39a682971f1b27f75b8743f085569b1a8aeb56c02ab5ae63a69",
+   "gabarito": "B",
+   "comentario": "O comando pede o recurso que não serve para backup. A cópia de segurança precisa permanecer gravada mesmo sem energia, isto é, em armazenamento não volátil. O flash drive (pen drive), o HD externo, a nuvem (servidores remotos acessados pela internet) e a fita magnética atendem a essa condição. A fita, aliás, ainda é muito usada por empresas para grandes volumes, por ter alta capacidade, baixo custo por gigabyte e longa durabilidade. A memória RAM é a exceção: é volátil, funciona apenas como área de trabalho temporária dos programas em execução e perde todo o conteúdo quando o computador é desligado. Por isso não serve para fazer backup.",
+   "alternativas": {
+    "A": "Errada: o flash drive (pen drive) usa memória flash, não volátil, e serve para guardar cópias de segurança.",
+    "B": "Correta: a memória RAM é volátil e apaga tudo ao desligar o computador, então não pode guardar backup.",
+    "C": "Errada: o HD externo é um dos meios mais usados de backup, com grande capacidade e armazenamento permanente.",
+    "D": "Errada: a nuvem guarda a cópia em servidores remotos e é muito usada para backup, inclusive fora do local dos dados.",
+    "E": "Errada: a fita magnética é mídia tradicional de backup corporativo, com grande capacidade e baixo custo por gigabyte."
+   }
+  },
+  {
+   "id": "tec_785706",
+   "contentHash": "9c69552aafd25141ce3b51197d066601133ef153ac366c04d4cf1a5318b4fa5a",
+   "gabarito": "C",
+   "comentario": "O backup normal, também chamado de completo, total ou global, grava no destino a totalidade dos arquivos escolhidos, tenham eles mudado ou não. O incremental complementa esse backup: em cada execução, leva só o que surgiu ou mudou depois da cópia anterior, seja ela a normal ou outra incremental. A combinação dos dois dá agilidade no dia a dia, e a restauração usa o normal e, depois, cada incremental na ordem. É o que diz a alternativa C. Quanto ao destino, o backup pode ser feito em discos físicos, fitas ou nuvem, mas deve ficar em dispositivo diferente do original. E o objetivo não se limita a sistema ou BIOS: o principal é proteger os dados do usuário e da organização.",
+   "alternativas": {
+    "A": "Errada: o backup pode ser feito em discos físicos, como HD externo, em fitas, em servidores e também na nuvem. Não há exclusividade.",
+    "B": "Errada: cópia em outra pasta do mesmo disco não é segura, pois uma falha do disco destrói o original e o backup ao mesmo tempo.",
+    "C": "Correta: o normal (global) copia todos os arquivos selecionados, e o incremental complementa copiando só o criado ou alterado desde o último backup.",
+    "D": "Errada: o backup serve principalmente para proteger os dados do usuário e da organização, não apenas a BIOS e o sistema operacional.",
+    "E": "Errada: inverte as definições. Quem copia tudo é o backup global (normal); o incremental copia só o que mudou desde o último backup."
+   }
+  },
+  {
+   "id": "tec_785825",
+   "contentHash": "9314bac7d26fd0e98ae9022a798f8c8be2c8c3b8944339668c29b1f82d5a3f00",
+   "gabarito": "B",
+   "comentario": "A finalidade do backup é permitir recuperar os dados se o original se perder. Para isso, a cópia precisa estar em disco, mídia ou servidor diferente daquele onde os dados estão. Se ficar no mesmo disco ou servidor, a mesma falha de hardware, ataque de vírus que criptografa arquivos, furto ou incêndio destrói o original e a cópia juntos. Por isso a alternativa B está correta. Também é boa prática manter ao menos uma cópia fora do local (regra 3-2-1). Quanto às demais ideias: a nuvem é só uma das opções de destino; o que mais importa guardar são os dados, já que os programas podem ser reinstalados; e há vários tipos de backup, como completo, incremental e diferencial.",
+   "alternativas": {
+    "A": "Errada: guardar o backup no mesmo disco ou servidor dos dados expõe as duas cópias à mesma falha, furto ou desastre.",
+    "B": "Correta: o backup deve ficar em disco, mídia ou servidor diferente do original, para sobreviver a uma falha no local de origem.",
+    "C": "Errada: a nuvem é uma possibilidade, mas o backup também pode ser feito em HD externo, pen drive, fita, DVD ou servidor da rede.",
+    "D": "Errada: o mais importante a guardar são os dados do usuário. Os instaladores podem, em regra, ser obtidos de novo com o fabricante.",
+    "E": "Errada: além do backup global (completo), existem o incremental, o diferencial, o de cópia e o diário."
+   }
+  }
+ ],
+ "descartes": []
+}

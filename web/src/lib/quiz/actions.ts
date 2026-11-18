@@ -4,8 +4,8 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireUser } from "@/lib/auth/dal";
 import { db } from "@/lib/db";
-import { hashSeed, pickWithFallback, score, type AnswerRow } from "./logic";
-import { DEFAULT_QUIZ_QUESTIONS, loadQuizPool } from "./pool";
+import { hashSeed, pickPreferCommented, score, type AnswerRow } from "./logic";
+import { DEFAULT_QUIZ_QUESTIONS, commentedAmong, loadQuizPool } from "./pool";
 
 const MIN_QUESTIONS = 5;
 
@@ -48,7 +48,9 @@ export async function startQuiz(activityId: string): Promise<{ error: string } |
   const candidate = (q: { id: string; segmentId: string }) => ({ id: q.id, segmentId: q.segmentId, seen: seen.get(q.id)?.n ?? 0, lastCorrect: seen.get(q.id)?.last ?? null });
 
   const sessionId = crypto.randomUUID();
-  const ids = pickWithFallback(pool.primary.map(candidate), pool.extra.map(candidate), n, hashSeed(sessionId), pool.reinforcement.map(candidate));
+  // o caderno prefere questões já comentadas (os comentários são escritos aos poucos; ver pickPreferCommented)
+  const commented = await commentedAmong(questions.map((q) => q.id));
+  const ids = pickPreferCommented(pool.primary.map(candidate), pool.extra.map(candidate), n, hashSeed(sessionId), pool.reinforcement.map(candidate), commented);
   await db.quizSession.create({
     data: {
       id: sessionId, userId: user.id, activityId, kind: a.quizMixed ? "SIMULADO_BLOCO" : "CADERNO",
@@ -84,6 +86,8 @@ export async function saveAnswer(input: { sessionId: string; position: number; l
     isCorrect: correct ?? false,
     correctLabel: correctOption?.label ?? "",
     explanation: row.question.explanation,
+    // nota por alternativa (só as que têm), mostrada sob cada letra depois da resposta
+    optionComments: Object.fromEntries(row.question.options.filter((o) => o.comment).map((o) => [o.label, o.comment as string])),
   } as const;
 }
 

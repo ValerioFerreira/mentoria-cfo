@@ -506,6 +506,8 @@ model QuestionOption {
   label      String // "A".."E"
   text       String
   isCorrect  Boolean
+  // nota da alternativa ("Correta: …" / "Errada: …"); gravada só por scripts/questoes-comentarios.ts
+  comment    String?
 
   question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
 
@@ -1029,6 +1031,8 @@ model Activity {
   dayIndex       Int?
   // Modo Turbo: Teoria substituída pelo resumo (Bizu) do trecho
   turbo          Boolean        @default(false)
+  // reprogramada pelo aluno (lib/plan/reschedule-actions.ts): o excesso de carga do dia/semana passa a ser escolha dele (aviso no verify)
+  rescheduledAt  DateTime?
 
   week        Week              @relation(fields: [weekId], references: [id], onDelete: Cascade)
   subject     Subject           @relation(fields: [subjectId], references: [id])

@@ -32,7 +32,7 @@ export function hideInedita(contest?: Contest | null): Prisma.QuestionWhereInput
  * depois das questões da própria banca. Decisão do dono (2026-10-21) para o CBMPE Oficial; para estender a outro concurso,
  * acrescente-o aqui. Planos antigos sem concurso (null) valem como CBMPE Oficial.
  */
-export const REFORCO_CONTESTS: Contest[] = ["CBMPE_OFICIAL", "CBMPE_CFOA"];
+export const REFORCO_CONTESTS: Contest[] = ["CBMPE_OFICIAL", "CBMPE_CFOA", "CBMPE_SOLDADO"]; // Soldado incluído em 2026-11-16: Legislações de PE e Biologia (Histologia) só têm inéditas e poucas questões AOCP
 export function usesReinforcement(contest?: Contest | null): boolean {
   // no combo, vale se algum dos concursos-membro usa o reforço (o combo CBMPE usa; o PMPE não)
   return comboMembers(contest ?? "CBMPE_OFICIAL").some((m) => REFORCO_CONTESTS.includes(m));

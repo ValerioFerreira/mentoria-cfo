@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { OptionNote } from "@/components/option-note";
 import { RichContent } from "@/components/rich-content";
 import { Alert, Badge, Card, PageHeader, SectionTitle, inputCls } from "@/components/ui";
 import { requireAdmin } from "@/lib/auth/dal";
@@ -204,6 +205,7 @@ export default async function ReviewPage({ searchParams }: PageProps<"/admin/rev
                   <strong className="font-display text-base">{o.label}</strong>
                   <div className="flex-1">
                     <RichContent content={o.text} />
+                    <OptionNote text={o.comment} className="mt-0.5" />
                   </div>
                 </li>
               ))}

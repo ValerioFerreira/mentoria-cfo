@@ -1,0 +1,231 @@
+{
+ "lote": "informatica/p1-a06-s01-1",
+ "trecho": "informatica/a06/s01",
+ "autor": "opus-onda08-B",
+ "data": "2026-11-17",
+ "comentarios": [
+  {
+   "id": "tec_1373398",
+   "contentHash": "0d0204244e4d949bfdca03a3a90047c048862072168f854ae44d8027fe02914d",
+   "gabarito": "C",
+   "comentario": "O item está certo: a fórmula devolve 2. Resolva de dentro para fora. A função MOD(número; divisor) retorna o resto da divisão inteira do primeiro argumento pelo segundo. Dividindo 17 por 5, o quociente inteiro é 3 e sobra 2, porque 5 × 3 = 15 e 17 − 15 = 2. Logo, MOD(17;5) = 2. A fórmula passa a ser =MÁXIMO(1; 2). A função MÁXIMO retorna o maior valor entre os argumentos informados, que podem ser números, células ou intervalos. Entre 1 e 2, o maior é 2, e é esse o valor exibido na célula depois do Enter. Repare no separador de argumentos: na versão em português, o Excel usa ponto e vírgula, porque a vírgula é o separador decimal. Não confunda MOD com a divisão comum (17/5 = 3,4) nem com a função QUOCIENTE, que devolveria a parte inteira, 3.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_1415148",
+   "contentHash": "65c6a6d9a69de7d4922c32ea3778db6550cb1574864faf241b7956f080366c9d",
+   "gabarito": "A",
+   "comentario": "A questão pede o que faz o Solver no Excel. O Solver é um suplemento de análise de hipóteses que encontra um valor ideal, o máximo, o mínimo ou um valor específico, para a fórmula de uma célula, chamada célula de destino nas versões antigas e célula de objetivo nas atuais. Para chegar a esse resultado, ele altera os valores de outras células, as células variáveis, respeitando restrições que o usuário define, como um orçamento máximo ou uma quantidade mínima. Tanto a célula de objetivo quanto as variáveis ficam na planilha ativa, e não espalhadas pelo arquivo. Um exemplo: descobrir quantas unidades de cada produto fabricar para ter o maior lucro sem passar do estoque. O suplemento precisa ser ativado uma vez, em Arquivo, Opções, Suplementos; depois aparece em Dados, no grupo Análise. O resultado é um valor ótimo, não vários, e o Solver não tem relação com a busca de erros nas fórmulas.",
+   "alternativas": {
+    "A": "Correta: o Solver busca um valor ideal (máximo, mínimo ou específico) para a fórmula da célula de destino, alterando células variáveis da planilha.",
+    "B": "Errada: o Solver procura um único valor ótimo para a célula de destino, e não vários valores.",
+    "C": "Errada: o resultado do Solver é um valor ideal, não vários; e o problema é montado nas células da planilha ativa.",
+    "D": "Errada: a célula de destino e as células variáveis do Solver ficam na planilha ativa. A referência correta é à planilha, não ao arquivo inteiro.",
+    "E": "Errada: verificar erros de fórmula é tarefa da Verificação de Erros e do Rastreamento, em Fórmulas, Auditoria de Fórmulas. O Solver otimiza valores."
+   }
+  },
+  {
+   "id": "tec_1419873",
+   "contentHash": "616c9de16b827b9e911fc73451bae8a10cca4472f370f83f566864e9a9784553",
+   "gabarito": "B",
+   "comentario": "A questão pede a função de uma macro no Excel. Macro é uma sequência de comandos e ações definida pelo usuário, gravada para ser repetida automaticamente sempre que for executada. O usuário pode criá-la de dois modos. O mais simples é o gravador de macros: o Excel registra cada passo, como formatar, copiar, classificar ou inserir fórmulas, e depois reproduz tudo com um clique ou um atalho. O outro é escrever o código diretamente em VBA (Visual Basic for Applications), a linguagem de programação do Office. Os comandos ficam na guia Exibir, em Macros, ou na guia Desenvolvedor. A macro serve para automatizar tarefas repetitivas, poupando tempo e evitando erros. Arquivos com macro são salvos no formato .xlsm, porque o .xlsx não guarda macros. A macro não se limita a cálculos, nem a copiar arquivos ou consultar outra planilha: executa o que o usuário programar.",
+   "alternativas": {
+    "A": "Errada: os comandos da macro são escolhidos pelo usuário, gravados ou programados em VBA. Não são sequências prontas definidas pelo sistema.",
+    "B": "Correta: macro é a sequência de comandos definida pelo usuário, gravada para ser executada automaticamente.",
+    "C": "Errada: a macro pode formatar, copiar, classificar, imprimir e muito mais. Não se limita a cálculos.",
+    "D": "Errada: copiar arquivos não é a definição de macro. Ela até poderia fazer isso se programada, mas sua função é executar os comandos que o usuário definiu.",
+    "E": "Errada: consultar outra planilha se faz com referências e funções de busca. A macro executa a sequência de comandos que o usuário definir."
+   }
+  },
+  {
+   "id": "tec_1420355",
+   "contentHash": "e880fa959b2cde27c722c07ebc877dc366731801dbae14e3d44cf29343a77d66",
+   "gabarito": "B",
+   "comentario": "A questão pede o resultado da fórmula =SOMA(A1:C1;10), digitada em E1. A figura mostra 10 em A1, 12 em B1, 15 em C1 e 25 em D1. A função SOMA aceita vários argumentos separados por ponto e vírgula, e cada um pode ser um intervalo, uma célula ou um número. O primeiro argumento, A1:C1, é o intervalo de A1 até C1: os dois-pontos querem dizer até. Ele inclui A1, B1 e C1, mas não D1. O segundo argumento é o número 10, que entra na soma como constante. A conta fica assim: 10 + 12 + 15 = 37, mais 10, igual a 47. O valor 25 de D1 fica de fora, porque o intervalo termina em C1. A fórmula funciona da mesma forma no Excel e no LibreOffice Calc, que também usa ponto e vírgula e dois-pontos. Quem esquece a constante chega a 37; quem inclui D1, a 72.",
+   "alternativas": {
+    "A": "Errada: 62 é a soma de A1 a D1 (10 + 12 + 15 + 25), sem a constante 10. O intervalo A1:C1 não inclui D1.",
+    "B": "Correta: o intervalo A1:C1 soma 10 + 12 + 15 = 37, e o argumento 10 eleva o total para 47.",
+    "C": "Errada: 37 é só a soma do intervalo A1:C1. Faltou acrescentar o segundo argumento, o número 10.",
+    "D": "Errada: 72 resulta de incluir D1 e a constante (10 + 12 + 15 + 25 + 10). O intervalo para em C1.",
+    "E": "Errada: a fórmula está correta: SOMA aceita intervalos e números como argumentos, separados por ponto e vírgula."
+   }
+  },
+  {
+   "id": "tec_1422712",
+   "contentHash": "adeb917a6d124a608f5259faee88c27ab832676efff07c1451642f50b2b7d7de",
+   "gabarito": "E",
+   "comentario": "A questão pede o resultado da função em B6: =CONT.NÚM(B2:B5). A figura mostra os valores 6, 7, 10 e 12 nas células B2 a B5. A função CONT.NÚM conta quantas células do intervalo contêm números; ela não soma nem calcula média. As quatro células têm números, então o resultado é 4. Vale guardar as irmãs dessa função, que costumam aparecer juntas nas provas. CONT.VALORES conta as células não vazias, de qualquer tipo, inclusive texto. CONTAR.VAZIO conta as células vazias. CONT.SE conta as células que atendem a um critério, como maiores que 7. Os distratores da questão são justamente os resultados de outras funções sobre o mesmo intervalo: a soma dá 6 + 7 + 10 + 12 = 35, a média dá 35 ÷ 4 = 8,75, o maior valor é 12 e o menor é 6.",
+   "alternativas": {
+    "A": "Errada: 8,75 é a média do intervalo (35 ÷ 4), resultado de MÉDIA, não de CONT.NÚM.",
+    "B": "Errada: 12 é o maior valor do intervalo, resultado de MÁXIMO. CONT.NÚM conta células, não busca o maior.",
+    "C": "Errada: 6 é o menor valor do intervalo, resultado de MÍNIMO. CONT.NÚM devolve a quantidade de números.",
+    "D": "Errada: 35 é a soma de 6 + 7 + 10 + 12, resultado de SOMA. CONT.NÚM apenas conta.",
+    "E": "Correta: CONT.NÚM conta as células com números em B2:B5: são quatro (6, 7, 10 e 12)."
+   }
+  },
+  {
+   "id": "tec_1430285",
+   "contentHash": "a21551158babe1122454ad88a1307287359d5739f0d087b222d9701068c04361",
+   "gabarito": "D",
+   "comentario": "A questão pede o nome do recurso que executa uma sequência de comandos definidos pelo usuário. É a macro. O usuário grava os passos com o gravador de macros, que registra cada ação, como formatar, classificar ou copiar, ou escreve o código em VBA (Visual Basic for Applications). Depois, a macro reproduz tudo automaticamente, a partir de um botão, de um atalho de teclado ou do comando Macros, na guia Exibir ou na guia Desenvolvedor. Ela serve para automatizar tarefas repetitivas, economizando tempo e evitando erros de digitação. Como pode conter código, a macro também é porta de entrada para vírus, e por isso o Excel bloqueia macros de arquivos de origem desconhecida até o usuário habilitá-las. Pasta de trabalho com macro é salva como .xlsm. As demais alternativas citam recursos de edição e apresentação, ou um nome que não existe no Excel.",
+   "alternativas": {
+    "A": "Errada: editar células é alterar o conteúdo delas, por exemplo com F2. Não executa uma sequência automática de comandos.",
+    "B": "Errada: gráficos representam os dados visualmente. Não executam comandos definidos pelo usuário.",
+    "C": "Errada: WordArt insere texto decorativo, com efeitos visuais. Não automatiza tarefas.",
+    "D": "Correta: a macro grava e executa automaticamente a sequência de comandos definida pelo usuário.",
+    "E": "Errada: não existe no Excel recurso com esse nome. Automatizar comandos do usuário é papel da macro."
+   }
+  },
+  {
+   "id": "tec_1559587",
+   "contentHash": "a4f2748b0efe74ec00ed461ac3ccef59e71784b3d9e919e420efc772cd2ecb31",
+   "gabarito": "A",
+   "comentario": "A questão mostra o ícone de duas setas apontando para as laterais dentro de uma célula larga, que fica na guia Página Inicial, grupo Alinhamento, do Excel 2013. É o botão Mesclar e Centralizar: ele junta as células selecionadas numa só e centraliza o conteúdo na horizontal. É muito usado em títulos que ocupam várias colunas. A setinha ao lado do botão abre as variações: Mesclar através, que mescla cada linha da seleção separadamente; Mesclar Células, que junta sem centralizar; e Desfazer Mesclagem de Células, que separa de novo. Um cuidado importante: se mais de uma célula tiver conteúdo, a mesclagem mantém só o valor da célula superior esquerda e descarta os demais, depois de um aviso. Distribuir o texto entre as margens e alinhar à esquerda ou à direita são opções de alinhamento, ajustadas em outros botões ou em Formatar Células.",
+   "alternativas": {
+    "A": "Correta: o ícone é o Mesclar e Centralizar: une as células selecionadas e centraliza o conteúdo.",
+    "B": "Errada: mesclar sem centralizar é a opção Mesclar Células, escolhida pela setinha ao lado do botão. O ícone mostrado também centraliza.",
+    "C": "Errada: Desfazer Mesclagem de Células é uma opção do menu do botão, não a função do ícone principal.",
+    "D": "Errada: distribuir o texto uniformemente é um tipo de alinhamento horizontal, configurado em Formatar Células, não a função desse ícone.",
+    "E": "Errada: alinhar à esquerda ou à direita é feito pelos botões de alinhamento do mesmo grupo. O ícone centraliza o conteúdo mesclado."
+   }
+  },
+  {
+   "id": "tec_1560538",
+   "contentHash": "114c363ccdf337692497b0dd11f0ba1afe54d4ce9e1ceec13f47b354c24d91cd",
+   "gabarito": "D",
+   "comentario": "A questão pede a fórmula que devolve o segundo maior salário da lista. A figura mostra os salários em B2:B5: 1.500, 3.800, 4.456 e 4.350. O maior é 4.456 e o segundo maior, 4.350, que é o valor exibido em B7. A função certa é MAIOR(matriz; k), que retorna o k-ésimo maior valor de um intervalo. Com k = 2, devolve o segundo maior; com k = 1, o maior, igual a MÁXIMO. A sintaxe pede o intervalo com dois-pontos, B2:B5, seguido de ponto e vírgula e da posição desejada: =MAIOR(B2:B5; 2). A função par é MENOR(matriz; k), que devolve o k-ésimo menor valor. Não confunda com MÁXIMO, que só devolve o maior valor da lista: um número colocado como argumento entra na comparação, não indica posição. A fórmula também não pode apontar para B7, a própria célula onde está.",
+   "alternativas": {
+    "A": "Errada: B7 é a própria célula da fórmula, o que gera referência circular. O intervalo dos salários é B2:B5.",
+    "B": "Errada: MÁXIMO devolve só o maior valor, e o argumento B7 é a própria célula da fórmula, o que cria referência circular.",
+    "C": "Errada: MÁXIMO não tem argumento de posição: o 2 entraria na comparação como mais um número, e o resultado seria 4.456.",
+    "D": "Correta: MAIOR(B2:B5; 2) devolve o segundo maior valor do intervalo dos salários: 4.350.",
+    "E": "Errada: B2;B5 indica só as células B2 e B5, não o intervalo. Assim B3 e B4 ficam de fora e a função leria argumentos demais."
+   }
+  },
+  {
+   "id": "tec_1657463",
+   "contentHash": "41774ad0fe23a9664be68169c0078232dadd3b463a47ce386e9c534a8270904f",
+   "gabarito": "A",
+   "comentario": "A questão pede a função do Excel que retorna o cosseno de um ângulo. É a função COS(número). Um detalhe que costuma ser cobrado: o ângulo tem de estar em radianos. Para usar graus, converta antes com a função RADIANOS, como em =COS(RADIANOS(60)), que devolve 0,5, ou multiplique por PI()/180. As demais alternativas são funções que existem, mas calculam outras coisas. COSECH é a cossecante hiperbólica, função de trigonometria hiperbólica. COT é a cotangente do ângulo, ou seja, o cosseno dividido pelo seno. COVAR calcula a covariância entre dois conjuntos de dados, uma medida estatística de como duas variáveis variam juntas. CORREL calcula o coeficiente de correlação entre dois intervalos, que vai de −1 a 1 e mede a força da relação linear entre eles. Os nomes parecidos são a armadilha.",
+   "alternativas": {
+    "A": "Correta: COS retorna o cosseno do ângulo informado, em radianos.",
+    "B": "Errada: COSECH retorna a cossecante hiperbólica de um número, não o cosseno.",
+    "C": "Errada: COT retorna a cotangente do ângulo, que é o cosseno dividido pelo seno.",
+    "D": "Errada: COVAR é estatística: calcula a covariância entre dois conjuntos de dados.",
+    "E": "Errada: CORREL calcula o coeficiente de correlação entre dois intervalos de dados, valor entre −1 e 1."
+   }
+  },
+  {
+   "id": "tec_1661666",
+   "contentHash": "ff60daab95c0bf5fb4d811073f7b1e16b293986561780132cfc3e641b4d65d7f",
+   "gabarito": "A",
+   "comentario": "A questão pede um argumento válido da função TEXTO. A sintaxe é TEXTO(valor; formato_texto). O primeiro argumento, valor, é o número, a data ou a referência de célula que se quer converter. O segundo, formato_texto, é o código de formatação entre aspas. A função transforma o número em texto com a aparência pedida, o que é útil para juntá-lo a uma frase. Exemplos: =TEXTO(0,25;\"0%\") devolve 25%; =TEXTO(A1;\"dd/mm/aaaa\") mostra a data de A1 no formato brasileiro. Como o resultado é texto, ele deixa de servir para cálculos. As demais alternativas não são argumentos dessa função. Comprimento lembra a função NÚM.CARACT, que conta caracteres. Intervalo é argumento de funções como SOMA ou CONT.SE. Condição corresponde ao teste lógico da função SE e ao critério do CONT.SE.",
+   "alternativas": {
+    "A": "Correta: valor é o primeiro argumento de TEXTO: o número ou a célula a ser convertido em texto formatado.",
+    "B": "Errada: tamanho do texto não é argumento de TEXTO. O segundo argumento é o formato_texto, o código de formatação.",
+    "C": "Errada: comprimento não é argumento de TEXTO. Quem mede a quantidade de caracteres é a função NÚM.CARACT.",
+    "D": "Errada: intervalo é argumento de funções como SOMA e CONT.SE, não de TEXTO, que recebe valor e formato_texto.",
+    "E": "Errada: condição corresponde ao teste lógico da função SE ou ao critério de CONT.SE. Não faz parte de TEXTO."
+   }
+  },
+  {
+   "id": "tec_1718887",
+   "contentHash": "969822f478e53f085bd30a60b08e6ae6b6d8e021fc0a5507f6f910aeeb5bda69",
+   "gabarito": "D",
+   "comentario": "A questão pede o recurso que destaca células com cores automaticamente, conforme os valores contidos nelas. Esse recurso é a formatação condicional, que fica na guia Página Inicial, grupo Estilos. O usuário define uma regra, como valor maior que 100, abaixo da média ou texto que contém pendente, e o formato que deve ser aplicado quando a regra é atendida: cor do preenchimento, cor da fonte, borda. O Excel também oferece barras de dados, escalas de cor e conjuntos de ícones. O que torna o recurso automático é que a formatação se atualiza sozinha quando o valor muda: se a célula deixa de atender à regra, perde o destaque. As outras alternativas aplicam formatos fixos ou fazem outra coisa: estilos de célula e formatação de tabela não dependem do valor, a tabela dinâmica resume dados e o filtro esconde linhas.",
+   "alternativas": {
+    "A": "Errada: Estilos de Célula aplicam um formato pronto e fixo, que não muda conforme o valor da célula.",
+    "B": "Errada: Formatar como Tabela aplica um visual padronizado a todo o intervalo, como linhas alternadas, sem depender dos valores.",
+    "C": "Errada: a tabela dinâmica resume e cruza grandes volumes de dados. Não colore células automaticamente segundo seus valores.",
+    "D": "Correta: a formatação condicional aplica cores e outros formatos automaticamente quando o valor da célula atende à regra definida.",
+    "E": "Errada: o filtro mostra só as linhas que atendem a um critério e esconde as demais. Não destaca células com cores."
+   }
+  },
+  {
+   "id": "tec_1931601",
+   "contentHash": "8ca78c778fcafdb9a88c401afd7fbe2075b15c24ce4a261404665372347a9b1d",
+   "gabarito": "E",
+   "comentario": "A questão pede a categoria da função EFETIVA. Ela é uma função financeira: calcula a taxa de juros efetiva anual a partir da taxa nominal anual e do número de períodos de capitalização por ano. A sintaxe é EFETIVA(taxa_nominal; núm_por_ano). Exemplo: uma taxa nominal de 12% ao ano capitalizada mensalmente rende mais que 12% no ano, porque os juros de cada mês passam a render juros. =EFETIVA(12%; 12) devolve cerca de 12,68%, resultado de (1 + 0,12/12) elevado a 12, menos 1. A função inversa é NOMINAL, que faz o caminho contrário. Outras funções da mesma categoria são VP, VF, PGTO, TAXA e NPER. No Excel, as categorias aparecem na guia Fórmulas, grupo Biblioteca de Funções, e também na janela Inserir Função, aberta pelo botão fx ou por Shift + F3.",
+   "alternativas": {
+    "A": "Errada: funções de Data e Hora tratam datas e horários, como HOJE, AGORA e DIATRABALHO. EFETIVA trata de juros.",
+    "B": "Errada: funções estatísticas analisam conjuntos de dados, como MÉDIA, DESVPAD e CONT.SE. EFETIVA calcula taxa de juros.",
+    "C": "Errada: funções de texto manipulam cadeias de caracteres, como CONCAT, ESQUERDA e TEXTO. Não é o caso de EFETIVA.",
+    "D": "Errada: funções de engenharia fazem conversões e cálculos técnicos, como CONVERTER e BINADEC. EFETIVA é de juros.",
+    "E": "Correta: EFETIVA é financeira: converte a taxa nominal anual em taxa efetiva anual, considerando os períodos de capitalização."
+   }
+  },
+  {
+   "id": "tec_1932366",
+   "contentHash": "9f81c2ebae4aa52ac5070b25948fd99f1a1e31586e37042062c8c57d60b6352a",
+   "gabarito": "E",
+   "comentario": "A questão pede o recurso que deixa acompanhar o conteúdo de certas células enquanto se trabalha em outras planilhas. É a Janela de Inspeção, que fica na guia Fórmulas, grupo Auditoria de Fórmulas. O usuário adiciona as células que quer vigiar, e a janela mostra, para cada uma, a pasta de trabalho, a planilha, o nome, a célula, o valor atual e a fórmula. Ela fica flutuando por cima da tela e se atualiza a cada mudança, mesmo que o usuário esteja em outra planilha da mesma pasta ou em outra pasta aberta. É útil em planilhas grandes, quando um total ou um resultado importante fica longe da área de trabalho. As demais alternativas são recursos de exibição com outra função. Alternar Janelas troca entre pastas de trabalho abertas. Dividir parte a janela em painéis da mesma planilha. A Visualização da Quebra de Página mostra onde cada página vai terminar na impressão.",
+   "alternativas": {
+    "A": "Errada: não existe no Excel um recurso chamado Visualização Seletiva. O nome certo é Janela de Inspeção.",
+    "B": "Errada: Alternar Janelas, na guia Exibir, troca a pasta de trabalho exibida. Não mantém células à vista enquanto se trabalha em outra planilha.",
+    "C": "Errada: Dividir, na guia Exibir, separa a janela em painéis que mostram partes da mesma planilha. Não acompanha células de outras planilhas.",
+    "D": "Errada: a Visualização da Quebra de Página mostra onde as páginas terminam na impressão. Não monitora valores de células.",
+    "E": "Correta: a Janela de Inspeção, em Fórmulas, Auditoria de Fórmulas, mostra valor e fórmula de células escolhidas enquanto se trabalha em outras planilhas."
+   }
+  },
+  {
+   "id": "tec_2016295",
+   "contentHash": "8cea1dbede150e896bfb8bd812cda2720ba8d036c7bda466930ff4eb04cdeddb",
+   "gabarito": "C",
+   "comentario": "A questão pede o resultado de =10-FATORIAL(3)*2^0+4/2. O Excel segue a ordem das operações da matemática: primeiro as funções e os parênteses, depois a potência (^), em seguida multiplicação e divisão, e por último adição e subtração, sempre da esquerda para a direita quando a prioridade é a mesma. Passo a passo: FATORIAL(3) = 3 × 2 × 1 = 6. A potência 2^0 vale 1, porque todo número diferente de zero elevado a zero é 1. A expressão vira 10 − 6 × 1 + 4 ÷ 2. Agora a multiplicação e a divisão: 6 × 1 = 6 e 4 ÷ 2 = 2. Sobra 10 − 6 + 2. Da esquerda para a direita: 10 − 6 = 4 e 4 + 2 = 6. O resultado é 6. Quem faz a conta direto da esquerda para a direita, sem respeitar as prioridades, chega a resultados como 4 ou 8.",
+   "alternativas": {
+    "A": "Errada: zero não sai da expressão. Com a ordem correta, 10 − 6 × 1 + 4 ÷ 2 = 10 − 6 + 2 = 6.",
+    "B": "Errada: 4 é só o resultado parcial de 10 − 6. Ainda falta somar 4 ÷ 2 = 2.",
+    "C": "Correta: FATORIAL(3) = 6 e 2^0 = 1; assim, 10 − 6 × 1 + 4 ÷ 2 = 10 − 6 + 2 = 6.",
+    "D": "Errada: 8 aparece quando se ignora a ordem das operações, por exemplo dividindo 4 + 4 por 2 no fim da conta. O correto é 6.",
+    "E": "Errada: 10 é o primeiro número da fórmula. Subtraindo 6 e somando 2, o resultado é 6."
+   }
+  },
+  {
+   "id": "tec_2097286",
+   "contentHash": "a072b9c161538bf03526a9ec1ac60cfe06c9a607fc8f008da2f4c9869ae12bdb",
+   "gabarito": "D",
+   "comentario": "A questão pede a função que retorna o número de combinações de um determinado número de objetos. É a COMBIN, com a sintaxe COMBIN(núm; núm_escolhido). Ela calcula quantos grupos diferentes de tamanho k se formam com n objetos, sem repetição e sem importar a ordem, pela fórmula n! ÷ [k! × (n − k)!]. Exemplo: =COMBIN(5; 2) devolve 10, que é 5! ÷ (2! × 3!) = 120 ÷ 12. A armadilha é a COMBINA, que também existe, mas conta combinações com repetição: =COMBINA(5; 2) devolve 15, porque admite pares como (1, 1). As demais são de outras áreas. COMPLEXO monta um número complexo a partir das partes real e imaginária, função de engenharia. CONCAT junta textos. CONFIDENCE é o nome em inglês da função estatística de intervalo de confiança, que no Excel em português se chama INT.CONFIANÇA.",
+   "alternativas": {
+    "A": "Errada: COMBINA conta combinações com repetição. =COMBINA(5; 2) dá 15, e não 10.",
+    "B": "Errada: COMPLEXO converte coeficientes real e imaginário em número complexo. É função de engenharia.",
+    "C": "Errada: CONCAT junta textos de várias células ou intervalos num só texto.",
+    "D": "Correta: COMBIN retorna o número de combinações de n objetos tomados k a k, sem repetição.",
+    "E": "Errada: CONFIDENCE é o nome em inglês da função de intervalo de confiança, que no Excel em português se chama INT.CONFIANÇA."
+   }
+  },
+  {
+   "id": "tec_2173457",
+   "contentHash": "dbe80b4ee92c2f895f95f1d9e3009db4a0a8ff93d6329477b1f894d84eec1b67",
+   "gabarito": "E",
+   "comentario": "O item está errado. No Excel 2013 em português, o atalho Ctrl + E aciona o Preenchimento Relâmpago, recurso que reconhece um padrão nos dados digitados e completa o restante da coluna. Por exemplo, a partir de uma coluna de nomes completos, separa só os primeiros nomes. O atalho não muda o alinhamento da célula, e o número 5 em B2 continua como está. Vale lembrar que o Excel, ao contrário do Word, não tem atalho com Ctrl para alinhar o conteúdo da célula à esquerda. O alinhamento se muda pelos botões do grupo Alinhamento, na guia Página Inicial, ou pela janela Formatar Células (Ctrl + 1), na guia Alinhamento. No Word em português, sim, há atalhos de alinhamento: Ctrl + Q alinha à esquerda, Ctrl + E centraliza, Ctrl + G alinha à direita e Ctrl + J justifica. A questão explora justamente essa confusão entre os programas.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_2173458",
+   "contentHash": "4175cd1ef0af0189d2f83c983b02c0f3d19ec17e2d30f69d817a1272c44966f8",
+   "gabarito": "E",
+   "comentario": "O item está errado. Selecionar um intervalo e pressionar Enter não copia nada. A tecla Enter apenas confirma a entrada e move a célula ativa. Com várias células selecionadas, o cursor passa para a próxima célula da seleção: de A3 para B3, depois C3, sem sair do intervalo e sem alterar os valores 10, 20 e 30. Para repetir esses valores na linha 4, o usuário teria de copiar e colar (Ctrl + C e Ctrl + V), arrastar a alça de preenchimento, o quadradinho no canto inferior direito da seleção, ou selecionar as linhas 3 e 4 juntas e usar Ctrl + D, o atalho Preencher Abaixo, que copia o conteúdo da primeira linha da seleção para as de baixo. Guarde a diferença: Enter confirma e move; Ctrl + Enter confirma e repete o que foi digitado em todas as células selecionadas.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_2179641",
+   "contentHash": "aa5fcfed1c0c0049564234c3a99a35dfe7a233aef29646202150e7a5b0677cc9",
+   "gabarito": "C",
+   "comentario": "O item está certo. Clicar com o botão direito no cabeçalho de uma coluna, a letra no topo, seleciona a coluna inteira e abre o menu de atalho. A opção Excluir remove a coluna toda, com o conteúdo e a formatação. As colunas à direita se deslocam uma posição para a esquerda e passam a ser identificadas pela letra seguinte da sequência: a antiga C vira B, a antiga D vira C, e assim por diante. As letras indicam sempre a posição, e não um conteúdo fixo. O total de colunas da planilha não diminui: uma coluna nova, vazia, surge no fim. As fórmulas que apontavam para a antiga coluna C são ajustadas automaticamente para B. Fórmulas que dependiam da coluna excluída passam a exibir o erro #REF!. Não confunda com Limpar Conteúdo, que apaga só os dados e mantém a coluna no lugar.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_2179643",
+   "contentHash": "b0fcbac871f8c108c4417d759c10c8cc08488a6cd8d00dfab6c4bb99dd8e1158",
+   "gabarito": "C",
+   "comentario": "O item está certo. No Excel, Ctrl + Enter confirma o que foi digitado sem mover o cursor. Se só A1 estiver selecionada, a fórmula =2*2 é calculada, a célula mostra 4 e A1 continua sendo a célula ativa. Com Enter sozinho, o resultado seria o mesmo, mas o cursor desceria para A2, que é o comportamento padrão. O Ctrl + Enter tem um segundo uso, muito cobrado: com várias células selecionadas, ele grava o mesmo conteúdo em todas elas de uma vez. Por exemplo, selecione A1:A10, digite 0 e pressione Ctrl + Enter, e as dez células recebem o valor 0. Outras teclas de confirmação também mudam o destino do cursor: Tab vai para a direita, Shift + Enter sobe e Shift + Tab vai para a esquerda. O asterisco é o operador de multiplicação nas fórmulas.",
+   "alternativas": {}
+  }
+ ],
+ "descartes": [
+  {
+   "id": "tec_1423775",
+   "motivo": "QUALIDADE: o gabarito A (macro executa comandos definidos pelo sistema) está errado; macro é a sequência de comandos definida pelo usuário, gravada ou escrita em VBA. A resposta certa é B, e a questão tec_1419873, de texto e alternativas idênticos, tem gabarito B."
+  }
+ ]
+}

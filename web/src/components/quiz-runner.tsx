@@ -4,6 +4,9 @@ import { ArrowLeft, ArrowRight, Check, CheckCircle2, CircleCheck, CircleX, Flag,
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState, useTransition, type ReactNode } from "react";
 import { Alert, Badge, Button, Card, Kbd, cx } from "@/components/ui";
+import { InfoTip } from "@/components/info-tip";
+import { useEliminations } from "@/components/use-eliminations";
+import { resolveClick } from "@/lib/quiz/eliminations";
 import { fmtClock } from "@/lib/ui-format";
 import { finishQuiz, saveAnswer } from "@/lib/quiz/actions";
 
@@ -17,6 +20,8 @@ export interface RunnerQuestion {
   flagged: boolean;
   correctLabel?: string | null;
   explanation?: string | null;
+  /** nota por alternativa (só depois da resposta) */
+  optionComments?: Record<string, string> | null;
   isCorrect?: boolean | null;
 }
 
@@ -28,6 +33,7 @@ interface QuestionState {
   isCorrect: boolean | null;
   correctLabel: string | null;
   explanation: string | null;
+  optionComments: Record<string, string> | null;
 }
 
 interface Props {
@@ -38,7 +44,11 @@ interface Props {
   questions: RunnerQuestion[];
 }
 
+import { OptionNote } from "@/components/option-note";
 import { RichContent, formatInlineRich } from "@/components/rich-content";
+
+/** Relógio fora do componente: o lint de pureza não aceita `Date.now()` direto em funções do componente. */
+const nowMs = () => Date.now();
 
 export function QuizRunner({ sessionId, startedAtMs, limitSeconds, serverNowMs, questions }: Props) {
   const router = useRouter();
@@ -56,6 +66,7 @@ export function QuizRunner({ sessionId, startedAtMs, limitSeconds, serverNowMs, 
           isCorrect: q.isCorrect ?? null,
           correctLabel: q.correctLabel ?? null,
           explanation: q.explanation ?? null,
+          optionComments: q.optionComments ?? null,
         },
       ]),
     ),
@@ -67,6 +78,9 @@ export function QuizRunner({ sessionId, startedAtMs, limitSeconds, serverNowMs, 
   const [pending, start] = useTransition();
   const enteredAt = useRef(0);
   const finished = useRef(false);
+  // alternativas riscadas (dois cliques) e o estado de antes do primeiro clique de uma sequência
+  const elim = useEliminations(sessionId);
+  const clickSnap = useRef<{ key: string; out: boolean; chosen: string | null } | null>(null);
 
   const q = questions[idx];
   const cur = state.get(q.position)!;
@@ -86,13 +100,13 @@ export function QuizRunner({ sessionId, startedAtMs, limitSeconds, serverNowMs, 
   );
 
   useEffect(() => {
-    offset.current = serverNowMs - Date.now();
-    enteredAt.current = Date.now();
+    offset.current = serverNowMs - nowMs();
+    enteredAt.current = nowMs();
   }, [serverNowMs]);
 
   useEffect(() => {
     const id = setInterval(() => {
-      const left = Math.max(0, limitSeconds - Math.floor((Date.now() + offset.current - startedAtMs) / 1000));
+      const left = Math.max(0, limitSeconds - Math.floor((nowMs() + offset.current - startedAtMs) / 1000));
       setRemaining(left);
       if (left === 0) finish(true);
     }, 1000);
@@ -107,6 +121,27 @@ export function QuizRunner({ sessionId, startedAtMs, limitSeconds, serverNowMs, 
       copy.set(q.position, { ...cur, staged: cur.staged === label ? null : label });
       return copy;
     });
+  }
+
+  /** Clique numa alternativa: simples marca (ou só devolve ao normal uma riscada); duplo risca e desfaz a marcação do 1º clique. */
+  function handleOptionClick(label: string, detail: number) {
+    if (cur.confirmed || submitting) return;
+    const key = `${q.position}:${label}`;
+    if (detail <= 1) clickSnap.current = { key, out: elim.isOut(q.position, label), chosen: cur.staged };
+    const before = clickSnap.current?.key === key ? clickSnap.current : { key, out: elim.isOut(q.position, label), chosen: cur.staged };
+    const r = resolveClick(label, detail, before);
+    if (!r) return;
+    elim.set(q.position, label, r.out);
+    setError(null);
+    setState((m) => new Map(m).set(q.position, { ...cur, staged: r.chosen }));
+  }
+
+  /** Shift + letra: risca a alternativa ou a devolve ao normal (riscar a marcada desmarca a escolha). */
+  function toggleOutByKey(label: string) {
+    if (cur.confirmed || submitting) return;
+    const wasOut = elim.isOut(q.position, label);
+    elim.toggle(q.position, label);
+    if (!wasOut && cur.staged === label) setState((m) => new Map(m).set(q.position, { ...cur, staged: null }));
   }
 
   function clearStaged() {
@@ -124,8 +159,8 @@ export function QuizRunner({ sessionId, startedAtMs, limitSeconds, serverNowMs, 
     setSubmitting(true);
     setError(null);
 
-    const delta = (Date.now() - enteredAt.current) / 1000;
-    enteredAt.current = Date.now();
+    const delta = (nowMs() - enteredAt.current) / 1000;
+    enteredAt.current = nowMs();
 
     try {
       const res = await saveAnswer({
@@ -152,6 +187,7 @@ export function QuizRunner({ sessionId, startedAtMs, limitSeconds, serverNowMs, 
             isCorrect: res.isCorrect,
             correctLabel: res.correctLabel,
             explanation: res.explanation,
+            optionComments: Object.keys(res.optionComments).length ? res.optionComments : null,
           });
           return copy;
         });
@@ -167,8 +203,8 @@ export function QuizRunner({ sessionId, startedAtMs, limitSeconds, serverNowMs, 
     const flagged = !cur.flagged;
     setState((m) => new Map(m).set(q.position, { ...cur, flagged }));
     if (cur.confirmed) {
-      const delta = (Date.now() - enteredAt.current) / 1000;
-      enteredAt.current = Date.now();
+      const delta = (nowMs() - enteredAt.current) / 1000;
+      enteredAt.current = nowMs();
       saveAnswer({ sessionId, position: q.position, label: cur.chosen, flagged, secondsDelta: delta });
     }
   }
@@ -177,7 +213,7 @@ export function QuizRunner({ sessionId, startedAtMs, limitSeconds, serverNowMs, 
     if (i < 0 || i >= questions.length || i === idx) return;
     setIdx(i);
     setError(null);
-    enteredAt.current = Date.now();
+    enteredAt.current = nowMs();
   }
 
   // Atalhos de teclado
@@ -190,7 +226,8 @@ export function QuizRunner({ sessionId, startedAtMs, limitSeconds, serverNowMs, 
       const k = e.key.toUpperCase();
       const opt = q.options.find((o) => o.label === k);
       if (opt && !cur.confirmed) {
-        selectOption(opt.label);
+        if (e.shiftKey) toggleOutByKey(opt.label);
+        else if (!elim.isOut(q.position, opt.label)) selectOption(opt.label); // alternativa riscada: a tecla é ignorada
       } else if (e.key === "Enter" && cur.staged && !cur.confirmed) {
         e.preventDefault();
         handleConfirmAnswer();
@@ -299,6 +336,12 @@ export function QuizRunner({ sessionId, startedAtMs, limitSeconds, serverNowMs, 
             <RichContent content={q.statement} />
           </div>
 
+          <div className="-mb-1 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-muted">
+            Alternativas
+            <InfoTip align="start" label="Como riscar uma alternativa">
+              Dê dois cliques numa alternativa para riscá-la. Um clique numa alternativa riscada a devolve ao normal. No teclado, Shift + a letra risca ou devolve.
+            </InfoTip>
+          </div>
           <div className="space-y-2.5" role="radiogroup" aria-label={`Alternativas da questão ${idx + 1}`}>
             {q.options.map((o) => {
               // item Certo/Errado: opções "C" e "E" mostradas como ✓ / ✗ (não confundir com a alternativa E)
@@ -328,24 +371,29 @@ export function QuizRunner({ sessionId, startedAtMs, limitSeconds, serverNowMs, 
                 }
               }
 
+              const note = cur.confirmed ? cur.optionComments?.[o.label] : null;
+              const out = elim.isOut(q.position, o.label);
               return (
+                <div key={o.label} className="space-y-1.5">
                 <button
-                  key={o.label}
                   type="button"
                   role="radio"
                   aria-checked={cur.confirmed ? isChosen : isStaged}
+                  aria-disabled={out || undefined}
                   disabled={cur.confirmed}
-                  onClick={() => selectOption(o.label)}
+                  onClick={(e) => handleOptionClick(o.label, e.detail)}
                   className={cx(
-                    "group flex w-full items-start gap-3.5 rounded-xl border-2 p-3.5 text-left text-[15px] leading-relaxed transition duration-200",
+                    "group flex w-full touch-manipulation select-none items-start gap-3.5 rounded-xl border-2 p-3.5 text-left text-[15px] leading-relaxed transition duration-200",
                     !cur.confirmed ? "cursor-pointer active:scale-[0.995]" : "cursor-default",
                     cardStyle,
+                    out && !cur.confirmed && "opacity-45",
                   )}
                 >
-                  <span className={cx("mt-px flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border font-display text-lg font-bold transition", badgeStyle)}>
+                  <span className={cx("relative mt-px flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border font-display text-lg font-bold transition", badgeStyle)}>
                     {ce ? (o.label === "C" ? <Check className="h-5 w-5" aria-label="Certo" /> : <X className="h-5 w-5" aria-label="Errado" />) : o.label}
+                    {out && <span aria-hidden className="pointer-events-none absolute inset-x-0.5 top-1/2 h-0.5 -rotate-45 rounded bg-current" />}
                   </span>
-                  <span className="pt-1 flex-1">{formatInlineRich(o.text)}</span>
+                  <span className={cx("pt-1 flex-1", out && "line-through decoration-2", out && cur.confirmed && "decoration-muted/60")}>{formatInlineRich(o.text)}</span>
                   {cur.confirmed && isCorrectOpt && (
                     <CircleCheck className="mt-1 h-5 w-5 shrink-0 text-ok" aria-label="Alternativa correta" />
                   )}
@@ -353,6 +401,8 @@ export function QuizRunner({ sessionId, startedAtMs, limitSeconds, serverNowMs, 
                     <CircleX className="mt-1 h-5 w-5 shrink-0 text-primary" aria-label="Sua resposta incorreta" />
                   )}
                 </button>
+                {note && <OptionNote text={note} className="page-in pl-[3.25rem] pr-2" />}
+                </div>
               );
             })}
           </div>
@@ -413,7 +463,7 @@ export function QuizRunner({ sessionId, startedAtMs, limitSeconds, serverNowMs, 
                 <div className="space-y-2 rounded-2xl border border-border bg-surface-2 p-5 shadow-xs">
                   <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-muted">
                     <Sparkles className="h-4 w-4 text-gold" />
-                    <span>Comentário do Professor</span>
+                    <span>Comentário</span>
                   </div>
                   <div className="pt-1 border-t border-border/60">
                     <RichContent content={cur.explanation} />
@@ -431,7 +481,7 @@ export function QuizRunner({ sessionId, startedAtMs, limitSeconds, serverNowMs, 
               Anterior
             </Button>
             <p className="hidden items-center gap-1.5 text-xs text-muted md:flex">
-              <Kbd>A</Kbd>–<Kbd>E</Kbd> selecionar <Kbd>Enter</Kbd> responder <Kbd>←</Kbd><Kbd>→</Kbd> navegar <Kbd>F</Kbd> marcar
+              <Kbd>A</Kbd>–<Kbd>E</Kbd> selecionar <Kbd>Shift</Kbd>+letra riscar <Kbd>Enter</Kbd> responder <Kbd>←</Kbd><Kbd>→</Kbd> navegar <Kbd>F</Kbd> marcar
             </p>
             <Button onClick={() => go(idx + 1)} disabled={idx === questions.length - 1}>
               Próxima

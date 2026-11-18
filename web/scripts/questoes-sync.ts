@@ -8,6 +8,8 @@
 //
 // Regras: upsert por id ("tec_<número TEC>"). Respostas antigas são preservadas (guardam o rótulo).
 // Questão com classifiedBy = MANUAL mantém trecho/assunto/status. Questão anulada vira RETIRED.
+// Comentários (explanation e QuestionOption.comment) NÃO vêm daqui: quem os grava é scripts/questoes-comentarios.ts. Se o
+// texto ou o gabarito mudar (contentHash), o comentário antigo é apagado e aparece em `contentChanged`.
 // Imprime na última linha um JSON com o resumo (lido pelo importador).
 import "dotenv/config";
 import { readFileSync, existsSync } from "node:fs";
@@ -110,6 +112,8 @@ async function main() {
     keptManual: 0,
     retired: 0,
     skippedMissingSegment: [] as string[],
+    // texto ou gabarito mudou: o comentário (se havia) foi apagado; o aplicador o lista como desatualizado
+    contentChanged: [] as string[],
     images: { created: 0, existing: 0 },
     purged: null as null | { questions: number; answers: number; sessions: number },
   };
@@ -206,7 +210,9 @@ async function main() {
           topic: q.topic,
           support: q.support,
           statement: q.statement,
-          explanation: q.explanation,
+          // o comentário é gravado só por scripts/questoes-comentarios.ts (content/questoes/comentarios); se o texto ou o
+          // gabarito mudou, o comentário antigo deixa de valer e sai junto com as notas das alternativas recriadas abaixo
+          ...(sameContent ? {} : { explanation: "" }),
           pattern: q.pattern,
           status,
           batch: q.batch,
@@ -223,10 +229,12 @@ async function main() {
         },
       });
       if (!sameContent) {
+        // as alternativas novas nascem sem nota (comment = null)
         await tx.questionOption.deleteMany({ where: { questionId: q.id } });
-        await tx.questionOption.createMany({ data: q.options.map((o) => ({ ...o, questionId: q.id })) });
+        await tx.questionOption.createMany({ data: q.options.map((o) => ({ label: o.label, text: o.text, isCorrect: o.isCorrect, questionId: q.id })) });
       }
     }));
+    if (!sameContent) summary.contentChanged.push(q.id);
     summary.updated++;
   }
   // atualizações, cada uma na sua transação: no Neon, 6 em paralelo (a latência domina); o Postgres

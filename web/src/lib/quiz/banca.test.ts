@@ -76,7 +76,7 @@ describe("reforço do caderno (CBMPE Oficial e CFOA)", () => {
     expect(usesReinforcement(null)).toBe(true);
     expect(usesReinforcement(undefined)).toBe(true);
     expect(usesReinforcement("PCPE_AGENTE")).toBe(false);
-    expect(usesReinforcement("CBMPE_SOLDADO")).toBe(false);
+    expect(usesReinforcement("CBMPE_SOLDADO")).toBe(true);
     expect(usesReinforcement("PMPE_OFICIAL")).toBe(false);
   });
   it("o filtro pega só múltipla escolha de fora da AOCP, nos trechos dados", () => {

@@ -6,6 +6,7 @@ import type { CSSProperties } from "react";
 import { QuizRunner } from "@/components/quiz-runner";
 import { QuizStart } from "@/components/quiz-start";
 import { ReportButton } from "@/components/report-button";
+import { OptionNote, optionComments } from "@/components/option-note";
 import { RichContent } from "@/components/rich-content";
 import { Alert, Badge, Card, Count, InfoTip, Kbd, LinkButton, PageHeader, Ring, SectionTitle } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
@@ -67,6 +68,7 @@ export default async function QuizPage({ params }: PageProps<"/caderno/[id]">) {
               flagged: a.flagged,
               correctLabel: isAnswered ? (correctOpt?.label ?? null) : null,
               explanation: isAnswered ? a.question.explanation : null,
+              optionComments: isAnswered ? optionComments(a.question.options) : null,
               isCorrect: isAnswered ? a.isCorrect : null,
             };
           })}
@@ -172,7 +174,10 @@ export default async function QuizPage({ params }: PageProps<"/caderno/[id]">) {
                   {a.question.options.map((o) => (
                     <li key={o.label} className={`flex gap-2.5 rounded-lg px-3 py-2 ${o.isCorrect ? "bg-ok/12 text-ok" : o.label === a.chosenLabel ? "bg-danger-soft text-primary" : "text-muted"}`}>
                       <strong className="font-display text-base">{o.label}</strong>
-                      <div className="flex-1"><RichContent content={o.text} /></div>
+                      <div className="flex-1">
+                        <RichContent content={o.text} />
+                        <OptionNote text={o.comment} className="mt-1" />
+                      </div>
                       {o.isCorrect && <CircleCheck className="ml-auto h-4 w-4 shrink-0" aria-label="alternativa correta" />}
                     </li>
                   ))}

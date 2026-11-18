@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { attentionPoints, hashSeed, pickQuestions, pickWithFallback, remainingSeconds, score, type AnswerRow, type Candidate } from "./logic";
+import { attentionPoints, hashSeed, pickPreferCommented, pickQuestions, pickWithFallback, remainingSeconds, score, type AnswerRow, type Candidate } from "./logic";
 
 const cand = (n: number, segs = 3): Candidate[] =>
   Array.from({ length: n }, (_, i) => ({ id: `q${i}`, segmentId: `s${i % segs}`, seen: 0, lastCorrect: null }));
@@ -125,3 +125,34 @@ describe("pickWithFallback com reforço", () => {
   });
 });
 
+
+describe("pickPreferCommented", () => {
+  const mk = (pre: string, n: number, seg: string): Candidate[] => Array.from({ length: n }, (_, i) => ({ id: `${pre}${i}`, segmentId: seg, seen: 0, lastCorrect: null }));
+  const set = (...ids: string[]) => new Set(ids);
+  it("sem nenhuma comentada, igual ao sorteio normal", () => {
+    expect(pickPreferCommented(mk("p", 8, "a"), mk("e", 40, "b"), 25, 3, [], set())).toEqual(pickWithFallback(mk("p", 8, "a"), mk("e", 40, "b"), 25, 3, []));
+  });
+  it("entre muitas próprias, só as comentadas entram enquanto bastarem", () => {
+    const commented = set(...Array.from({ length: 30 }, (_, i) => `p${i}`));
+    const ids = pickPreferCommented(mk("p", 80, "a"), [], 25, 7, [], commented);
+    expect(ids).toHaveLength(25);
+    expect(ids.every((id) => commented.has(id))).toBe(true);
+  });
+  it("ordem: própria comentada, extra comentada, própria sem comentário, extra sem comentário, reforço", () => {
+    const commented = set("p0", "p1", "e0", "r0");
+    const ids = pickPreferCommented(mk("p", 5, "a"), mk("e", 5, "b"), 6, 4, mk("r", 5, "c"), commented);
+    expect(ids).toHaveLength(6);
+    expect(ids).toEqual(expect.arrayContaining(["p0", "p1", "e0"]));
+    expect(ids.some((id) => id.startsWith("r"))).toBe(false);
+    expect(new Set(ids).size).toBe(6);
+  });
+  it("o reforço só entra quando próprias e extras acabam (comentado antes do que não tem)", () => {
+    const ids = pickPreferCommented(mk("p", 2, "a"), mk("e", 2, "b"), 8, 4, mk("r", 10, "c"), set("r3", "r4"));
+    expect(ids).toHaveLength(8);
+    expect(ids).toEqual(expect.arrayContaining(["p0", "p1", "e0", "e1", "r3", "r4"]));
+  });
+  it("é determinístico para a mesma semente", () => {
+    const c = set("p0", "p1", "p2");
+    expect(pickPreferCommented(mk("p", 20, "a"), [], 5, 9, [], c)).toEqual(pickPreferCommented(mk("p", 20, "a"), [], 5, 9, [], c));
+  });
+});

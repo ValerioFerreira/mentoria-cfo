@@ -1,0 +1,106 @@
+{
+ "lote": "estatistica/fixacao-m13",
+ "origem": "content/material/estatistica/m13/fixacao.json",
+ "autor": "fixacao",
+ "data": "2026-11-17",
+ "revisao": "opus-revisao06 2026-11-17",
+ "revisaoNotas": [
+  {
+   "id": "tec_2774989",
+   "problema": "AJUSTE",
+   "detalhe": "Nota E restringia o teste t pareado a \"condições temporais no mesmo indivíduo\"; comentário com termo impróprio (\"vício\")."
+  },
+  {
+   "id": "tec_788433",
+   "problema": "TROCADO",
+   "detalhe": "Comentário e notas falavam de postos, qui-quadrado e normalidade, e não das cinco afirmações; notas apontavam erros inexistentes; reescrito afirmação por afirmação."
+  },
+  {
+   "id": "tec_788210",
+   "problema": "DESCARTE",
+   "detalhe": "A imagem da tabela da análise de variância só traz a coluna Fonte de Variação, sem valores; o comentário inventava um F baixo e um valor-p acima de 5%."
+  },
+  {
+   "id": "tec_3104091",
+   "problema": "ERRO",
+   "detalhe": "Comentário e nota A diziam valor-p ≈ 0,38; na tabela é 0,299; nota D não dava o R² correto (827,026/1309,726 ≈ 0,63)."
+  },
+  {
+   "id": "tec_1014371",
+   "problema": "ERRO",
+   "detalhe": "Comentário dizia valor-p ≈ 0,35 e nota D \"supera 0,30\" (é 0,286); nota A não apontava o erro (B = 956,5, não 1721,9) e nota B falava de erro-padrão (a letra é R² = 0,99; o certo é ≈ 0,71)."
+  }
+ ],
+ "comentarios": [
+  {
+   "id": "tec_2774989",
+   "contentHash": "f648c2ab36cf27b83094c1f15772109bd82af8a2f1f4e7707d9187e4e046c2ff",
+   "gabarito": "D",
+   "comentario": "A questão pede a técnica para comparar, ao mesmo tempo, as médias de quatro populações independentes (cidades A, B, C e D), com dados normais e de mesma variância. Com só duas populações, usa-se o teste t de Student. Com três ou mais, fazer vários testes t, dois a dois, aumenta a chance total de cometer o erro tipo I (rejeitar uma hipótese nula verdadeira). Por isso se usa a análise da variância (ANOVA), que testa de uma vez H₀: μA = μB = μC = μD, comparando a variação entre os grupos com a variação dentro deles pela estatística F. Normalidade e variâncias iguais são justamente os pressupostos da ANOVA.",
+   "alternativas": {
+    "A": "Errada: O teste t clássico de Student destina-se à comparação das médias de no máximo duas populações independentes.",
+    "B": "Errada: O teste F aplicado à razão de variâncias avalia a homoscedasticidade entre dois grupos, não a comparação simultânea de quatro médias.",
+    "C": "Errada: A versão de Aspin-Welch é uma variante do teste t para duas amostras heteroscedásticas, não se aplicando a quatro grupos.",
+    "D": "Correta: A Análise de Variância é o método estatístico padronizado para contrastar as médias de três ou mais populações simultaneamente.",
+    "E": "Errada: o teste t pareado compara duas médias em amostras dependentes, formadas por pares de observações ligadas (como o mesmo indivíduo antes e depois); aqui são quatro cidades independentes."
+   }
+  },
+  {
+   "id": "tec_788433",
+   "contentHash": "4dee731067d175a19b5ee2f1ecf63d35e56239ee2b91fa0d0f515ddd603a749f",
+   "gabarito": "A",
+   "comentario": "O teste de Kruskal-Wallis compara k amostras independentes sem supor normalidade: os dados são substituídos pelos postos (a posição de cada valor no conjunto todo) e se comparam as somas dos postos das amostras. Seus pressupostos clássicos são três: todas as observações são independentes; dentro de cada amostra, as observações vêm da mesma população; e as k populações têm aproximadamente a mesma forma e são contínuas. Assim: 1ª, V; 2ª, F, porque as populações devem ser contínuas, e não discretas (com dados discretos surgem muitos empates de postos); 3ª, V; 4ª, V. A banca julgou a 5ª falsa: o pressuposto é a independência de todas as observações, e não só entre as amostras. As quatro primeiras já bastam: a única alternativa que começa por V – F – V – V é a A.",
+   "alternativas": {
+    "A": "Correta: V (observações independentes), F (as populações devem ser contínuas), V (cada amostra vem de uma só população), V (mesma forma e contínuas) e F.",
+    "B": "Errada: a primeira afirmação é verdadeira: a independência de todas as observações é pressuposto do teste.",
+    "C": "Errada: a terceira afirmação é verdadeira: dentro de cada amostra, as observações vêm de uma mesma população.",
+    "D": "Errada: a primeira e a quarta afirmações são verdadeiras: observações independentes e populações de mesma forma e contínuas.",
+    "E": "Errada: a segunda é falsa, pois as populações devem ser contínuas, e não discretas; e a quarta, que diz contínuas, é verdadeira."
+   }
+  },
+  {
+   "id": "tec_1421136",
+   "contentHash": "bcb0f0168fba0818543f1ad8693ab2ca120e35d6433299593ca70bb5803f7ce2",
+   "gabarito": "B",
+   "comentario": "A questão aborda os pressupostos clássicos da ANOVA de um fator formulada pelo modelo linear yij = μ + αi + εij. Para que as deduções inferenciais da tabela ANOVA e da distribuição F sejam válidas, o termo de erro residual aleatório εij deve satisfazer três premissas fundamentais: independência mútua, distribuição normal com média nula e variância constante σ² em todos os níveis do fator (homoscedasticidade). Consequentemente, o erro segue uma distribuição normal N(0, σ²).",
+   "alternativas": {
+    "A": "Errada: O erro residual do modelo linear segue distribuição Normal, e não distribuição t de Student com k graus.",
+    "B": "Correta: O modelo supõe que os erros aleatórios têm distribuição normal com média zero e variância constante em todos os níveis.",
+    "C": "Errada: A média geral μ e os efeitos dos tratamentos αi são parâmetros populacionais fixos, e não estatísticas amostrais.",
+    "D": "Errada: Os parâmetros do modelo linear são desconhecidos na população, demandando estimação pelo método de mínimos quadrados.",
+    "E": "Errada: A variância dos erros deve ser rigorosamente constante entre os diferentes níveis, configurando a homoscedasticidade."
+   }
+  },
+  {
+   "id": "tec_3104091",
+   "contentHash": "aca657fb7d4a8ae6a43f9827ba3a3d810fba0609a0b0bb03f2d96fa2f9760f86",
+   "gabarito": "C",
+   "comentario": "A tabela é de uma regressão com duas variáveis explicativas, idade e tamanho. O teste F verifica H₀: β₁ = β₂ = 0 contra H₁: pelo menos um dos βⱼ é diferente de zero. A estatística é F = quadrado médio da regressão/quadrado médio dos resíduos = 413,5/160,9 ≈ 2,57, com valor-p 0,299. Rejeita-se H₀ quando o valor-p é menor ou igual ao nível de significância α. Como o valor-p é praticamente 30%, para níveis menores que esse (5%, 10%, 20%) H₀ não é rejeitada: os dados não mostram que a regressão seja significativa. A tabela também dá a estimativa da variância dos erros, o quadrado médio dos resíduos, 160,9, e o coeficiente de determinação, R² = 827,026/1309,726 ≈ 0,63.",
+   "alternativas": {
+    "A": "Errada: o valor-p é 0,299, muito maior que 0,05; a 5% não se rejeita H₀, e a regressão não é significativa.",
+    "B": "Errada: a variância dos erros é estimada pelo quadrado médio dos resíduos, 482,700/3 = 160,9.",
+    "C": "Correta: com valor-p 0,299, praticamente 30%, H₀: β₁ = β₂ = 0 não é rejeitada para níveis de significância menores que esse.",
+    "D": "Errada: R² = soma de quadrados da regressão/total = 827,026/1309,726 ≈ 0,63, e não 0,99."
+   }
+  },
+  {
+   "id": "tec_1014371",
+   "contentHash": "3cadbb783e76d036e6bf3915db250b7059d8c78b1a6f80c1fbc726e1f0acd9c7",
+   "gabarito": "E",
+   "comentario": "As lacunas se completam pelas relações da tabela. Graus de liberdade: A = 2 + 2 = 4, logo n = A + 1 = 5 casas. Soma de quadrados da regressão: B = 1339,2 − 382,7 = 956,5 (confere com 2 · 478,2 = 956,4). Quadrado médio dos resíduos: C = 382,7/2 = 191,35, que é a estimativa da variância dos erros. Estatística F: D = 478,2/191,35 ≈ 2,5. O coeficiente de determinação é R² = 956,5/1339,2 ≈ 0,71. O teste F verifica H₀: β₁ = β₂ = 0 contra H₁: pelo menos um βⱼ diferente de zero; com valor-p 0,286, H₀ não é rejeitada nos níveis usuais (5%, 10%, 20%), e a regressão não é significativa. A rigor, níveis entre 28,6% e 30% levariam à rejeição; ainda assim, a E é a única alternativa compatível com a tabela, pois as demais têm erros claros.",
+   "alternativas": {
+    "A": "Errada: A = 4, C = 191,35 e D ≈ 2,5 estão certos, mas B = 1339,2 − 382,7 = 956,5, e não 1721,9, que é a soma em vez da diferença.",
+    "B": "Errada: R² = 956,5/1339,2 ≈ 0,71, e não 0,99.",
+    "C": "Errada: a variância dos erros é estimada pelo quadrado médio dos resíduos, C = 382,7/2 = 191,35.",
+    "D": "Errada: n = 5 está certo (4 graus de liberdade no total), mas o valor-p 0,286 é maior que 0,05, e a regressão não é significativa a 5%.",
+    "E": "Correta: com valor-p 0,286, H₀: β₁ = β₂ = 0 não é rejeitada nos níveis usuais de significância; é a única alternativa compatível com a tabela."
+   }
+  }
+ ],
+ "descartes": [
+  {
+   "id": "tec_788210",
+   "motivo": "QUALIDADE: a resposta depende da tabela da análise de variância, e a imagem disponível só mostra a coluna Fonte de Variação, sem graus de liberdade, somas de quadrados, F ou valor-p."
+  }
+ ]
+}

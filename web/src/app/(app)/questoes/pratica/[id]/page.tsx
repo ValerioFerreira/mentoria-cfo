@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { QuizRunner } from "@/components/quiz-runner";
+import { OptionNote, optionComments } from "@/components/option-note";
 import { RichContent } from "@/components/rich-content";
 import { Alert, Badge, Card, Count, LinkButton, PageHeader, Ring } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
@@ -82,6 +83,7 @@ export default async function PracticeQuizPage({ params }: { params: Promise<{ i
               flagged: a.flagged,
               correctLabel: isAnswered ? (correctOpt?.label ?? null) : null,
               explanation: isAnswered ? a.question.explanation : null,
+              optionComments: isAnswered ? optionComments(a.question.options) : null,
               isCorrect: isAnswered ? a.isCorrect : null,
             };
           })}
@@ -218,7 +220,10 @@ export default async function PracticeQuizPage({ params }: { params: Promise<{ i
                         className={`flex items-start gap-2.5 rounded-lg border p-2 text-xs transition ${bgClass}`}
                       >
                         <span className="font-bold shrink-0">{opt.label})</span>
-                        <div className="min-w-0 flex-1 break-words"><RichContent content={opt.text} /></div>
+                        <div className="min-w-0 flex-1 break-words">
+                          <RichContent content={opt.text} />
+                          <OptionNote text={opt.comment} className="mt-1" small />
+                        </div>
                         {isRight && <CircleCheck className="h-4 w-4 shrink-0 text-ok" />}
                         {isChosen && !isRight && <CircleX className="h-4 w-4 shrink-0 text-primary" />}
                       </div>
@@ -230,7 +235,7 @@ export default async function PracticeQuizPage({ params }: { params: Promise<{ i
                 {a.question.explanation && (
                   <div className="rounded-lg bg-surface-3 p-3 text-xs text-text/90 space-y-1 mt-2">
                     <span className="font-bold text-muted block uppercase tracking-wider text-[10px]">
-                      Justificativa Oficial
+                      Comentário
                     </span>
                     <div className="min-w-0 leading-relaxed"><RichContent content={a.question.explanation} /></div>
                   </div>

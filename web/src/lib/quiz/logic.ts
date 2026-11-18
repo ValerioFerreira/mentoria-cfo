@@ -84,6 +84,40 @@ export function pickWithFallback(primary: Candidate[], extra: Candidate[], n: nu
   return ids;
 }
 
+/**
+ * Igual a `pickWithFallback`, mas prefere questões que já têm comentário (decisão do dono, 17/11/2026: o aluno deve ver o
+ * comentário logo; os comentários são escritos aos poucos). Ordem de preenchimento, cada passo com os pesos de `pickQuestions`
+ * (inéditas e erradas primeiro, trechos espalhados): própria comentada → extra comentada → própria sem comentário → extra sem
+ * comentário → reforço (comentado primeiro). O reforço continua sendo o último recurso. Sem nenhuma comentada, devolve o mesmo
+ * que `pickWithFallback`.
+ */
+export function pickPreferCommented(
+  primary: Candidate[],
+  extra: Candidate[],
+  n: number,
+  seed: number,
+  reinforcement: Candidate[],
+  commented: ReadonlySet<string>,
+): string[] {
+  const all = [...primary, ...extra, ...reinforcement];
+  if (!all.some((c) => commented.has(c.id))) return pickWithFallback(primary, extra, n, seed, reinforcement);
+  const split = (cs: Candidate[]) => [cs.filter((c) => commented.has(c.id)), cs.filter((c) => !commented.has(c.id))] as const;
+  const [pc, pu] = split(primary);
+  const [ec, eu] = split(extra);
+  const [rc, ru] = split(reinforcement);
+  const steps = [pc, ec, pu, eu, rc, ru];
+  const ids: string[] = [];
+  steps.forEach((cs, i) => {
+    if (ids.length < n && cs.length > 0) ids.push(...pickQuestions(cs, n - ids.length, seed ^ (i * 0x51ed270b)));
+  });
+  const rand = rng(seed ^ 0x9e3779b9);
+  for (let i = ids.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [ids[i], ids[j]] = [ids[j], ids[i]];
+  }
+  return ids;
+}
+
 export interface AnswerRow {
   questionId: string;
   topic: string | null;

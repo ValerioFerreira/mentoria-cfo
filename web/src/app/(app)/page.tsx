@@ -116,6 +116,7 @@ export default async function MissionPage() {
               <h2 id="late" className="font-semibold">{m.overdue.length} {m.overdue.length === 1 ? "atividade atrasada" : "atividades atrasadas"}</h2>
               <p>Faça estas primeiro: a revisão perde efeito quanto mais tarde acontece.</p>
             </div>
+            <LinkButton href="/reprogramar" variant="secondary" size="sm" className="ml-auto shrink-0">Reprogramar</LinkButton>
           </div>
           {[...new Set(shownLate.map((r) => r.date))].map((date) => {
             const dayRows = shownLate.filter((r) => r.date === date);

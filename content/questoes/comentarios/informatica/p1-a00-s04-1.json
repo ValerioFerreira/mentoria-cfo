@@ -1,0 +1,195 @@
+{
+ "lote": "informatica/p1-a00-s04-1",
+ "trecho": "informatica/a00/s04",
+ "autor": "opus-onda11-A",
+ "data": "2026-11-18",
+ "comentarios": [
+  {
+   "id": "tec_1045166",
+   "contentHash": "4f55f934610bff6f9e5692a93b2716b1f4543182941af821b357e8dd6c1fb119",
+   "gabarito": "A",
+   "comentario": "A questão pede a afirmação correta sobre intranet. Intranet é uma rede privada, de uso interno de uma organização, que usa as mesmas tecnologias da internet: protocolos TCP/IP, navegador, servidores web, e-mail. Por isso se diz que ela funciona como a internet, só que de forma restrita a quem pertence à instituição. Dentro dela, as máquinas recebem endereços IP privados, reservados para redes internas e que não circulam na internet: as faixas 10.0.0.0 a 10.255.255.255, 172.16.0.0 a 172.31.255.255 e 192.168.0.0 a 192.168.255.255. Quem está fora só alcança a intranet por um acesso controlado, como VPN ou extranet, nunca por padrão. A alternativa A descreve exatamente essa ideia.",
+   "alternativas": {
+    "A": "Correta: a intranet usa os mesmos protocolos e serviços da internet, mas o acesso fica restrito aos usuários da organização.",
+    "B": "Errada: por padrão a intranet não é acessível de fora. O acesso externo depende de mecanismo próprio, como VPN ou extranet, e não é a regra.",
+    "C": "Errada: as máquinas de uma intranet costumam usar IPs privados (como 192.168.x.x), que não precisam ser únicos no mundo, só dentro da própria rede.",
+    "D": "Errada: a impressora de rede também pode usar um IP privado. Basta que o endereço seja único dentro da intranet para as máquinas internas a encontrarem.",
+    "E": "Errada: 192.169.0.1 e 192.169.0.2 não pertencem a nenhuma faixa privada. A faixa reservada é 192.168.0.0 a 192.168.255.255; 192.169 é endereço público."
+   }
+  },
+  {
+   "id": "tec_1046556",
+   "contentHash": "652e08876d2406119cecca2abf5b3004801dcd7f55ef721ea2c3fc4f5d57b53f",
+   "gabarito": "D",
+   "comentario": "A questão trata do POP3, protocolo de recebimento de e-mail. Com ele, o programa cliente se conecta ao servidor, baixa as mensagens completas (texto e anexos) para o computador e, na configuração padrão, as apaga do servidor. Como as mensagens ficam guardadas no próprio computador, o usuário pode lê-las depois mesmo sem conexão com a internet. Isso é o que diz a alternativa D. Repare que o POP3 cuida só da entrada: o envio é feito por outro protocolo, o SMTP, que o mesmo programa usa ao mandar mensagens. Por isso configurar o POP3 não impede o envio.",
+   "alternativas": {
+    "A": "Errada: o POP3 só cuida do recebimento. O envio é feito pelo SMTP, configurado no mesmo programa, então o software continua enviando e-mails.",
+    "B": "Errada: o POP3 baixa a mensagem inteira para o computador, e não apenas um aviso de chegada.",
+    "C": "Errada: receber e-mails é justamente a função do POP3; ele transfere as mensagens do servidor para o computador.",
+    "D": "Correta: as mensagens baixadas ficam armazenadas no computador e podem ser lidas depois, mesmo sem internet.",
+    "E": "Errada: os anexos fazem parte da mensagem e são baixados junto com o texto."
+   }
+  },
+  {
+   "id": "tec_1151391",
+   "contentHash": "5048030318e780ae765f256f7bc29410d459762b3e75a8e23e26bd7d1088ebef",
+   "gabarito": "A",
+   "comentario": "O Outlook é um cliente de e-mail, e a questão pede dois protocolos de correio eletrônico que ele usa. No correio eletrônico, o envio é feito pelo SMTP, e o recebimento por um de dois protocolos: o POP3, que baixa as mensagens para o computador e por padrão as apaga do servidor, ou o IMAP, que mantém as mensagens no servidor e sincroniza pastas e leitura entre vários dispositivos. Assim, IMAP e POP3 são os dois protocolos de correio da lista, e a resposta é a letra A. Os demais pares misturam protocolos de outras funções: roteamento, acesso remoto, transferência simples de arquivos e gerência de rede.",
+   "alternativas": {
+    "A": "Correta: IMAP e POP3 são os dois protocolos de recebimento de e-mail aceitos pelo Outlook; o envio fica com o SMTP.",
+    "B": "Errada: OSPF e RIP são protocolos de roteamento, usados pelos roteadores para escolher caminhos na rede, e não para e-mail.",
+    "C": "Errada: TELNET serve para acesso remoto a um terminal, e TFTP é uma versão simplificada de transferência de arquivos. Nenhum é de e-mail.",
+    "D": "Errada: o IMAP é de e-mail, mas o SNMP serve para gerenciar e monitorar equipamentos de rede."
+   }
+  },
+  {
+   "id": "tec_1151394",
+   "contentHash": "232a3ad0af575a6ea4b8352f2eb22c7b65c5e851e6fddb273f26cede576465f8",
+   "gabarito": "A",
+   "comentario": "A questão pergunta qual protocolo o navegador usa para trazer páginas do servidor web até o computador. Esse protocolo é o HTTP (Hypertext Transfer Protocol), ou sua versão segura, o HTTPS. Ele tem versões: a 1.1, usada por muitos anos, e a 2, que permite várias requisições ao mesmo tempo numa só conexão e deixa o carregamento mais rápido. Os navegadores atuais, como o Chrome, aceitam as duas, e também a versão 3, que roda sobre o protocolo QUIC. Por isso a resposta é a letra A. Note a pegadinha da letra D: HTML não é protocolo, é a linguagem de marcação em que a página é escrita; o HTTP é o que a transporta.",
+   "alternativas": {
+    "A": "Correta: HTTP/1.1 e HTTP/2 são versões do protocolo que transfere as páginas web do servidor para o navegador.",
+    "B": "Errada: RSP e ORSP não são protocolos de transferência de páginas web.",
+    "C": "Errada: não existe HTTP/3.5 (existem as versões 1.1, 2 e 3), e o TFTP é um protocolo simples de transferência de arquivos, não de páginas web.",
+    "D": "Errada: HTML é a linguagem em que a página é escrita, não um protocolo, e RCP é um comando antigo de cópia remota de arquivos."
+   }
+  },
+  {
+   "id": "tec_1373404",
+   "contentHash": "2b5ef07f5df77d849254089b08218310b3601e98772f5529e6a549f34e0ce0f4",
+   "gabarito": "C",
+   "comentario": "O item está certo. DHCP (Dynamic Host Configuration Protocol) é o protocolo de configuração dinâmica de hosts. Quando um computador entra na rede, ele pede a um servidor DHCP as configurações de que precisa, e o servidor as entrega automaticamente: endereço IP, máscara de sub-rede, gateway padrão e servidores DNS. O endereço é emprestado por um tempo (a concessão) e pode ser renovado ou trocado, e por isso o serviço também serve para atualizar essas configurações sem que alguém precise digitar nada em cada máquina. A troca entre cliente e servidor segue quatro mensagens: descoberta, oferta, pedido e confirmação. Sem DHCP, cada equipamento teria de ser configurado à mão.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_1384472",
+   "contentHash": "2deded02a5817c60167ac9f8555e6fac95face78934a992582df48f1ec1667c4",
+   "gabarito": "D",
+   "comentario": "A questão pede a afirmação incorreta, e ela é a D. Website, ou simplesmente site, é um conjunto de páginas web relacionadas, reunidas sob um mesmo endereço (domínio) e ligadas entre si por links. Não tem nada a ver com endereços de correio eletrônico. As demais afirmações são verdadeiras. No endereço de e-mail, o @ separa o nome do usuário do domínio do provedor e é obrigatório. Upload é enviar um arquivo do computador para a rede; download é o caminho inverso. No campo Cco (cópia carbono oculta), os endereços colocados ali recebem a mensagem, mas os demais destinatários não os veem.",
+   "alternativas": {
+    "A": "Errada: a afirmação é verdadeira. O @ separa usuário e domínio (usuario@dominio) e é parte obrigatória do endereço.",
+    "B": "Errada: a afirmação é verdadeira. Link é a ligação que, ao ser clicada, leva a outra página, arquivo ou parte do documento.",
+    "C": "Errada: a afirmação é verdadeira. Upload envia arquivos do computador do usuário para a rede, o contrário do download.",
+    "D": "Correta: a afirmação é falsa. Website é um conjunto de páginas web ligadas sob um mesmo domínio, e não um conjunto de endereços de e-mail.",
+    "E": "Errada: a afirmação é verdadeira. Quem está no Cco recebe a mensagem, mas seu endereço fica oculto para os demais destinatários."
+   }
+  },
+  {
+   "id": "tec_1385854",
+   "contentHash": "ae00ca9a41ab0c9dd174483b3fa852828df23829ba473a25d47d3f14d0a66c67",
+   "gabarito": "B",
+   "comentario": "A questão pede o ícone que indica que a mensagem recebida traz um anexo. O símbolo consagrado para anexo, nos programas e serviços de e-mail, é o clipe de papel, a imagem da letra B. Ele aparece na lista de mensagens, ao lado do assunto, e também no botão usado para anexar um arquivo ao escrever um e-mail. A ideia vem do papel: prender um documento a uma carta com um clipe. Os demais ícones têm outros significados: o logotipo de um navegador, o ícone de pessoas (contatos), a engrenagem (configurações) e a bandeja (caixa de entrada).",
+   "alternativas": {
+    "A": "Errada: é o logotipo do Google Chrome, um navegador de internet, e não um indicador de anexo.",
+    "B": "Correta: o clipe de papel é o símbolo de anexo nos programas e serviços de e-mail.",
+    "C": "Errada: o ícone de pessoas representa contatos ou grupos, e não anexo.",
+    "D": "Errada: a engrenagem representa as configurações do programa, e não anexo.",
+    "E": "Errada: a bandeja representa a caixa de entrada, onde chegam as mensagens."
+   }
+  },
+  {
+   "id": "tec_1419895",
+   "contentHash": "37f99946ee6f7b8455a2093bc4b7f4f6a380df11431cee2c341541b6120949dd",
+   "gabarito": "A",
+   "comentario": "A questão descreve um serviço em que cada usuário tem um endereço eletrônico, ou caixa postal, num servidor específico, e troca mensagens com outros computadores da internet. Isso é o correio eletrônico (e-mail). O endereço tem a forma usuario@dominio: a parte depois do @ indica o servidor onde fica a caixa postal. As mensagens são enviadas pelo protocolo SMTP e lidas com POP3 ou IMAP, ou pelo navegador, no webmail. As outras opções são conceitos de internet sem relação com caixa postal: a web, o ato de baixar arquivos, o programa navegador e a hipermídia.",
+   "alternativas": {
+    "A": "Correta: correio eletrônico é o serviço de troca de mensagens em que cada usuário tem uma caixa postal num servidor.",
+    "B": "Errada: a World Wide Web é o sistema de páginas ligadas por hiperlinks e acessadas pelo navegador, não um serviço de caixa postal.",
+    "C": "Errada: download é transferir um arquivo da rede para o computador do usuário.",
+    "D": "Errada: browser é o navegador, programa usado para abrir páginas web.",
+    "E": "Errada: hipermídia é a ligação, por links, de conteúdos de vários tipos (texto, imagem, som, vídeo)."
+   }
+  },
+  {
+   "id": "tec_1423811",
+   "contentHash": "b99022a5e2ba1a8b1af45056f35b85ef159e75f0b9061d7f79051e9bb5307191",
+   "gabarito": "A",
+   "comentario": "A descrição traz duas marcas do correio eletrônico: troca de mensagens entre computadores ligados à internet e um endereço eletrônico, ou caixa postal, para cada usuário num servidor. O e-mail funciona como uma agência de correio digital. O remetente envia a mensagem pelo protocolo SMTP, ela é guardada na caixa postal do destinatário, no servidor do provedor (a parte do endereço depois do @), e ele a lê quando quiser, por POP3, IMAP ou webmail. Por isso a resposta é a letra A. As demais opções são serviços, ações ou programas da internet que não envolvem caixa postal.",
+   "alternativas": {
+    "A": "Correta: o correio eletrônico reúne as duas características: troca de mensagens e uma caixa postal por usuário num servidor.",
+    "B": "Errada: a World Wide Web (grafada errado na alternativa) é o sistema de páginas ligadas por links, não um serviço de mensagens.",
+    "C": "Errada: download é o ato de baixar um arquivo da rede para o computador.",
+    "D": "Errada: browser é o programa navegador, usado para acessar páginas web.",
+    "E": "Errada: hipermídia é a reunião de textos, imagens, sons e vídeos ligados por links."
+   }
+  },
+  {
+   "id": "tec_1430251",
+   "contentHash": "6118c7e6bdc9d81aabb47080394ac5915bc3e449ef97790c9559aa348ed3ec8c",
+   "gabarito": "C",
+   "comentario": "A questão pede as características do correio eletrônico. O e-mail é o serviço que permite trocar mensagens entre computadores conectados à internet, e cada usuário tem um endereço próprio (usuario@dominio) que aponta para uma caixa postal num servidor. As mensagens podem levar anexos. O envio usa o protocolo SMTP, e a leitura usa POP3, IMAP ou o webmail, pelo navegador. A alternativa C reúne essas duas marcas, troca de mensagens e caixa postal, e é a resposta. As demais descrevem outras coisas: ferramenta de desenvolvimento, transferência de arquivos (função do FTP), navegador e sistema operacional.",
+   "alternativas": {
+    "A": "Errada: ferramenta para construir (build) sistemas é recurso de desenvolvimento de software, não correio eletrônico.",
+    "B": "Errada: o serviço feito só para transferir arquivos é o FTP. O e-mail até leva anexos, mas sua função é trocar mensagens.",
+    "C": "Correta: descreve o correio eletrônico, com troca de mensagens e um endereço ou caixa postal para cada usuário.",
+    "D": "Errada: o programa usado para navegar em páginas web é o navegador (browser), como Chrome, Firefox e Edge.",
+    "E": "Errada: sistema operacional de dispositivo móvel é, por exemplo, o Android ou o iOS, e não um serviço de e-mail."
+   }
+  },
+  {
+   "id": "tec_1472135",
+   "contentHash": "20cf76f3454046173dc71d3b4fd085811ef902e265aededefb58d5c6d75d4487",
+   "gabarito": "A",
+   "comentario": "A questão pede um protocolo que entrega as mensagens ao destinatário final e funciona com o Outlook. No e-mail, o SMTP leva a mensagem até o servidor do destinatário, e a última etapa, do servidor até o programa do usuário, fica com o POP3 ou com o IMAP. Dos protocolos listados, só o IMAP faz isso: ele permite ao cliente acessar e manipular as mensagens que ficam no servidor, sincronizando pastas e status de leitura entre vários dispositivos. Os demais são protocolos de rede com outras funções: configuração automática de IP, servidor web, roteamento e descoberta de endereço físico.",
+   "alternativas": {
+    "A": "Correta: o IMAP é protocolo de acesso às mensagens no servidor e é aceito pelo Outlook para receber e-mails.",
+    "B": "Errada: o DHCP distribui automaticamente IP, máscara, gateway e DNS às máquinas da rede; não trata de e-mail.",
+    "C": "Errada: HTTPD é o nome do programa servidor web (o serviço que atende requisições HTTP), e não protocolo de e-mail.",
+    "D": "Errada: o OSPF é protocolo de roteamento, usado pelos roteadores para escolher caminhos.",
+    "E": "Errada: o ARP descobre o endereço físico (MAC) que corresponde a um endereço IP na rede local."
+   }
+  },
+  {
+   "id": "tec_1741353",
+   "contentHash": "c0a4fa533b8a60996394eec53afc52690a5936a97e8960a14fb3529045bf0942",
+   "gabarito": "A",
+   "comentario": "A questão pede para julgar cinco afirmativas sobre os protocolos do Outlook Express 6. A regra é a mesma de qualquer cliente de e-mail: a saída (envio) usa o SMTP, e a entrada (recebimento) usa POP3 ou IMAP. O Outlook Express também aceitava contas por HTTP, usadas em serviços de webmail da época. Assim: I é falsa, porque o SMTP é de saída; II é falsa, porque o POP3 é de entrada; III é verdadeira, pois POP3, IMAP e HTTP serviam para a entrada; IV é verdadeira, pois o SMTP é o protocolo de saída; V é falsa, porque inclui o SMTP entre os de entrada. As incorretas são I, II e V.",
+   "alternativas": {
+    "A": "Correta: I, II e V são falsas porque trocam os papéis do SMTP (envio) e do POP3 (recebimento).",
+    "B": "Errada: I e II são justamente falsas; o SMTP envia e o POP3 recebe, o contrário do que elas dizem.",
+    "C": "Errada: III e IV são as verdadeiras. A entrada usa POP3, IMAP ou HTTP, e a saída usa SMTP.",
+    "D": "Errada: V é falsa, pois o SMTP é protocolo de envio e não de entrada de e-mails.",
+    "E": "Errada: III e IV estão corretas."
+   }
+  },
+  {
+   "id": "tec_177007",
+   "contentHash": "bee8ecd5d61e6ae24da83a22bff059ebae16d81536c42144a88c3430e0bd4f1a",
+   "gabarito": "A",
+   "comentario": "A questão pede a definição de URL (Uniform Resource Locator), o endereço de um recurso na internet. A URL indica, de forma única, onde está o recurso e como chegar a ele. Por exemplo, em https://www.exemplo.com.br/docs/edital.pdf, https é o protocolo (o método de acesso), www.exemplo.com.br é o nome do servidor, /docs/ é o diretório e edital.pdf é o arquivo. A alternativa A descreve essas partes. As demais trocam a URL por outros conceitos: o protocolo FTP, a linguagem HTML, um protocolo de comunicação genérico e o endereço IP, que é numérico, enquanto a URL usa nomes.",
+   "alternativas": {
+    "A": "Correta: a URL é o endereço único de um recurso e reúne o protocolo (método de acesso), o servidor, o diretório e o arquivo.",
+    "B": "Errada: a descrição é do FTP, protocolo de transferência de arquivos, e não da URL.",
+    "C": "Errada: a linguagem usada para marcar e estruturar páginas é o HTML.",
+    "D": "Errada: protocolo é um conjunto de regras de comunicação (como HTTP ou TCP); a URL é um endereço, não um protocolo.",
+    "E": "Errada: o endereço numérico que identifica um computador na rede é o endereço IP. A URL usa nomes, traduzidos em IP pelo DNS."
+   }
+  },
+  {
+   "id": "tec_2185490",
+   "contentHash": "5cbcc7131a60a0975c765d968e8b2036daacfff834b8774c0cd378e54e511994",
+   "gabarito": "E",
+   "comentario": "O item está errado. No POP3, o comportamento padrão é baixar as mensagens do servidor para o computador do usuário e, em seguida, apagá-las do servidor. Manter uma cópia no serviço de e-mail é uma opção que o usuário pode ativar no programa cliente (algo como deixar uma cópia das mensagens no servidor), mas não é o que o protocolo faz por padrão. Por isso a afirmação geral de que, com POP, sempre fica uma cópia no servidor está incorreta. Quem mantém as mensagens no servidor como regra é o IMAP, que apenas sincroniza o que está lá com o programa do usuário, permitindo acessar a mesma caixa de vários dispositivos.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_2338152",
+   "contentHash": "7d88456449c885f8374f65ce7ac46446829fb879b0a9ad176c3dbba4070eb077",
+   "gabarito": "A",
+   "comentario": "A questão pede a definição de DHCP (Dynamic Host Configuration Protocol). É o protocolo que configura automaticamente os equipamentos que entram na rede: um servidor DHCP entrega a cada máquina um endereço IP, a máscara de sub-rede, o gateway padrão e os servidores DNS, por um tempo determinado (concessão), que depois pode ser renovado. A palavra que decide a questão é automaticamente: o objetivo do DHCP é evitar a configuração manual de cada computador. Por isso a letra A está correta e a B, que diz manualmente, está errada. As demais misturam funções de outros protocolos.",
+   "alternativas": {
+    "A": "Correta: o DHCP distribui automaticamente IP, máscara, gateway e DNS para as máquinas da rede.",
+    "B": "Errada: configurar IP, máscara e gateway manualmente é justamente o que o DHCP evita; ele faz isso de forma automática.",
+    "C": "Errada: o protocolo de envio de e-mails é o SMTP.",
+    "D": "Errada: o DHCP não tem relação com vídeo; ele configura parâmetros de rede.",
+    "E": "Errada: envio e recebimento de e-mails ficam com SMTP, POP3 e IMAP, e não com o DHCP."
+   }
+  }
+ ],
+ "descartes": [
+  {
+   "id": "tec_1373418",
+   "motivo": "QUALIDADE: o gabarito oficial (Errado) contraria o conceito padrão: o IMAP é protocolo de acesso/recebimento e o envio até o destino é feito pelo SMTP, de modo que o item descreve corretamente o IMAP e deveria ser Certo."
+  }
+ ]
+}

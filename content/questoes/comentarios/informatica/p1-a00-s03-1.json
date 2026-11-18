@@ -1,0 +1,147 @@
+{
+ "lote": "informatica/p1-a00-s03-1",
+ "trecho": "informatica/a00/s03",
+ "autor": "opus-onda10-A",
+ "data": "2026-11-18",
+ "comentarios": [
+  {
+   "id": "tec_1226312",
+   "contentHash": "baa3a433c6fad5b75b8eee863a84a4a59f1619d26b1526084f61f118180a4808",
+   "gabarito": "E",
+   "comentario": "O comando pede a afirmação incorreta sobre o TCP/IP. O TCP/IP é o conjunto (pilha) de protocolos que permite a comunicação na internet, uma espécie de idioma comum entre máquinas e programas diferentes. No modelo mais cobrado, ele tem quatro camadas, de cima para baixo: aplicação (HTTP, SMTP, FTP, DNS), transporte (TCP e UDP), rede ou internet (IP) e interface com a rede (Ethernet, Wi-Fi). A lógica das camadas é esta: as mais altas ficam perto do usuário e lidam com dados mais abstratos, como uma página ou um e-mail; as mais baixas ficam perto do meio físico e cuidam de tarefas concretas, como enviar bits e quadros. Cada camada usa os serviços da camada de baixo. A alternativa E inverte tudo isso: chama de mais baixa a camada de aplicação e diz que ela depende das camadas mais altas. Por isso é a incorreta.",
+   "alternativas": {
+    "A": "Errada: a afirmação é verdadeira. De forma simplificada, o TCP/IP é o principal protocolo de envio e recebimento de dados na internet.",
+    "B": "Errada: a afirmação é verdadeira. O TCP/IP é uma pilha de protocolos dividida, no modelo mais cobrado, em aplicação, transporte, rede e interface com a rede.",
+    "C": "Errada: a afirmação é verdadeira. A camada de aplicação é a que os programas, como navegador e cliente de e-mail, usam para trocar dados pela rede.",
+    "D": "Errada: a afirmação é verdadeira. O TCP/IP funciona como um idioma comum, com regras que permitem a programas e máquinas diferentes se comunicarem.",
+    "E": "Correta: a afirmação é falsa, pois inverte o modelo. A camada de aplicação é a mais alta, perto do usuário, e se apoia nas camadas mais baixas para as tarefas de menor abstração."
+   }
+  },
+  {
+   "id": "tec_1226844",
+   "contentHash": "36243d7a96453bb8241cf8132945ae3fe1edb9c72ca8d8f3ca465418f1ba2bae",
+   "gabarito": "A",
+   "comentario": "O enunciado descreve a camada de interface com a rede (também chamada de acesso à rede ou enlace), a mais baixa do modelo TCP/IP de quatro camadas. Ela recebe os pacotes da camada de rede (IP) e os coloca no meio físico, e faz o caminho inverso na chegada. Por estar em contato com o meio de transmissão, seus protocolos mudam conforme o tipo de rede: Ethernet em rede cabeada, Wi-Fi (IEEE 802.11) em rede sem fio, PPP em ligação ponto a ponto. É essa dependência do tipo de rede que identifica a camada. As camadas acima são independentes do meio: a de rede cuida do endereçamento e do roteamento com o IP; a de transporte, da entrega entre programas com TCP ou UDP; e a de aplicação, dos serviços usados pelos programas, como HTTP e SMTP.",
+   "alternativas": {
+    "A": "Correta: a camada de interface envia e recebe os pacotes pelo meio físico, e seus protocolos (Ethernet, Wi-Fi, PPP) variam conforme o tipo de rede.",
+    "B": "Errada: a camada de aplicação é a usada pelos programas, com protocolos como HTTP, SMTP e FTP, e não depende do tipo de rede física.",
+    "C": "Errada: a camada de transporte controla a entrega entre os programas de origem e destino, com TCP ou UDP, independentemente do meio físico.",
+    "D": "Errada: a camada de rede (internet) cuida do endereçamento IP e da escolha do caminho dos pacotes entre redes diferentes, sem depender do tipo de rede local.",
+    "E": "Errada: não existe camada de operação no modelo TCP/IP. As quatro camadas são aplicação, transporte, rede e interface."
+   }
+  },
+  {
+   "id": "tec_1373406",
+   "contentHash": "b0fd8cc333738684f6a04b6138c58fbf776d8584332e400f47089c21713732c5",
+   "gabarito": "E",
+   "comentario": "Errado. O endereço IPv4 tem 32 bits, escritos em quatro grupos de 8 bits (octetos) em notação decimal separada por pontos, cada um de 0 a 255, como 192.168.0.1. Isso dá cerca de 4,3 bilhões de endereços (2³²), número que se esgotou com o crescimento da internet. Quem tem 128 bits é o IPv6, a versão criada para resolver essa escassez. O IPv6 é escrito em oito grupos de quatro dígitos hexadecimais separados por dois-pontos, como 2001:0db8:0000:0000:0000:0000:0000:0001, e permite abreviar zeros (2001:db8::1). O item troca as duas versões.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_1422843",
+   "contentHash": "244cd27368da1d961b3fc29eb4b7dcaefb1ab29ffdacc05cedcb985d327e242a",
+   "gabarito": "B",
+   "comentario": "O protocolo que transfere hipertextos, base da web, é o HTTP (Hypertext Transfer Protocol). Ele trabalha na camada de aplicação, tanto no modelo OSI quanto no TCP/IP, num esquema de requisição e resposta: o navegador pede um recurso ao servidor e recebe a página, uma imagem ou outro arquivo. A versão segura, com criptografia TLS, é o HTTPS. Atenção às confusões que a banca explora: HTML é a linguagem em que a página é escrita, o conteúdo que o HTTP transporta; FTP também é protocolo, mas de transferência de arquivos; PHP é linguagem de programação executada no servidor; e www é apenas um prefixo comum de nome de servidor, ligado à World Wide Web, e não protocolo.",
+   "alternativas": {
+    "A": "Errada: HTML (HyperText Markup Language) é a linguagem de marcação que estrutura as páginas, ou seja, o conteúdo que o HTTP transporta. Não é protocolo.",
+    "B": "Correta: o HTTP é o protocolo da camada de aplicação que transfere hipertextos entre o servidor web e o navegador.",
+    "C": "Errada: o FTP é um protocolo de aplicação, mas destinado à transferência de arquivos, não de hipertextos.",
+    "D": "Errada: PHP é uma linguagem de programação executada no servidor para gerar páginas dinâmicas, e não um protocolo de comunicação.",
+    "E": "Errada: www é o prefixo usual de endereços de sites e remete à World Wide Web, o sistema de páginas. Não é protocolo."
+   }
+  },
+  {
+   "id": "tec_1657459",
+   "contentHash": "8f8916d3b8cbe16d5844a9ccdac4823e3e82221ba703946d19d83bfa1db49db6",
+   "gabarito": "B",
+   "comentario": "O protocolo criado para transferir arquivos entre computadores é o FTP (File Transfer Protocol), especificado na RFC 959, de 1985. Ele trabalha na camada de aplicação, segue o modelo cliente-servidor e usa duas conexões TCP: uma de controle, na porta 21, por onde passam os comandos e o login, e outra de dados, em geral na porta 20 no modo ativo, por onde trafegam os arquivos. O FTP original envia senha e dados sem criptografia, por isso surgiram versões seguras, como o FTPS e o SFTP. RFCs (Requests for Comments) são os documentos que padronizam os protocolos da internet, publicados pelo IETF, que é justamente a organização citada na alternativa E. As outras siglas são protocolos com funções diferentes.",
+   "alternativas": {
+    "A": "Errada: o DHCP distribui automaticamente endereço IP, máscara, gateway e DNS aos computadores da rede. Não transfere arquivos.",
+    "B": "Correta: o FTP, definido na RFC 959, é o protocolo próprio para transferência de arquivos, com conexão de controle na porta 21.",
+    "C": "Errada: o DNS traduz nomes de domínio, como um endereço de site, em endereços IP. Não transfere arquivos.",
+    "D": "Errada: o ARP descobre o endereço físico (MAC) que corresponde a um endereço IP dentro da rede local.",
+    "E": "Errada: IETF (Internet Engineering Task Force) é a organização que publica as RFCs e padroniza protocolos. Não é um protocolo."
+   }
+  },
+  {
+   "id": "tec_1932362",
+   "contentHash": "34e4c126bd6a84e1d558f73fb6926275fcc4a1283e43aae1f13acb3cd6afee12",
+   "gabarito": "B",
+   "comentario": "O protocolo desenvolvido para transferir arquivos entre computadores é o FTP (File Transfer Protocol), da camada de aplicação, que usa a porta 21 para a conexão de controle. Por muitos anos os navegadores abriam endereços do tipo ftp:// diretamente, o que explica o enunciado. Vale saber, porém, que os principais navegadores retiraram esse suporte a partir de 2021 (Chrome, Edge e Firefox), por questões de segurança, pois o FTP envia senha e dados sem criptografia. Hoje se usa um programa cliente, como o FileZilla, ou versões seguras do protocolo, como SFTP e FTPS. Mesmo assim, entre as opções, o FTP é o único protocolo de transferência de arquivos. As demais siglas são protocolos de controle e roteamento ou padrões de discos rígidos.",
+   "alternativas": {
+    "A": "Errada: o ICMP envia mensagens de controle e de erro na rede, como as usadas pelo comando ping. Não transfere arquivos.",
+    "B": "Correta: o FTP foi criado para transferir arquivos entre computadores e por muito tempo foi aceito diretamente pelos navegadores, com endereços ftp://.",
+    "C": "Errada: o EIGRP é um protocolo de roteamento usado entre roteadores para escolher caminhos na rede.",
+    "D": "Errada: AHCI é um padrão de comunicação entre o computador e discos SATA, ligado ao hardware de armazenamento, não à rede.",
+    "E": "Errada: SATA é a interface física que liga discos rígidos e SSDs à placa-mãe. Não é protocolo de rede."
+   }
+  },
+  {
+   "id": "tec_2191702",
+   "contentHash": "747a4f64523393d4d05dc8a9c9ec08157cbbe21e8936f318d8ed85da30dc8166",
+   "gabarito": "C",
+   "comentario": "Certo. HTTP é a sigla de Hypertext Transfer Protocol, protocolo de transferência de hipertexto, o protocolo de comunicação que o navegador usa para pedir páginas ao servidor web e recebê-las. Num endereço completo (URL) como http://www.exemplo.com.br/pagina, a primeira parte, antes de ://, indica justamente o protocolo a ser usado; depois vêm o nome do servidor e o caminho do recurso. Quando aparece https, trata-se da versão segura, com os dados criptografados pelo TLS, indicada nos navegadores por um cadeado. Muitos navegadores escondem esse prefixo na barra de endereços, mas ele continua sendo usado na comunicação.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_2191822",
+   "contentHash": "4f3b149701931420aee833b256119453b9956937c7066a6a4d46248bdc7d1220",
+   "gabarito": "E",
+   "comentario": "Errado. O computador que acessa a internet é identificado por um endereço IP (Internet Protocol), como 200.150.10.5 no IPv4, atribuído pelo provedor ou pela rede, muitas vezes de forma automática pelo DHCP. Esse endereço pode mudar a cada conexão. IMEI (International Mobile Equipment Identity) é outra coisa: um número de 15 dígitos gravado em cada celular ou modem de rede móvel, que identifica o aparelho junto às operadoras. Ele não é atribuído a computadores pessoais ao acessar a internet e não é um número de protocolo. No celular, pode ser consultado digitando *#06#. O item troca o endereço IP pelo IMEI.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_2251822",
+   "contentHash": "dbcff942aeb16b49e579c7aa3bb0d292d9c5828ab3ebd38e5e5cb16c5a3469ff",
+   "gabarito": "E",
+   "comentario": "O correio eletrônico usa protocolos diferentes para enviar e para receber mensagens. O SMTP (Simple Mail Transfer Protocol) faz o envio: leva a mensagem do programa de e-mail até o servidor e de um servidor de e-mail para outro, tradicionalmente pela porta 25 (587 para envio autenticado pelo usuário). Para receber, o programa do usuário busca as mensagens no servidor por POP3 ou por IMAP. O POP3 costuma baixar as mensagens para o computador e, por padrão, apagá-las do servidor; o IMAP mantém as mensagens no servidor e sincroniza pastas e leituras entre vários aparelhos. Por isso a dupla correta é POP e SMTP, alternativa E. As demais trazem ações, padrões de hardware ou protocolos de outras funções.",
+   "alternativas": {
+    "A": "Errada: download e upload são as ações de baixar e enviar dados, e não protocolos de correio eletrônico.",
+    "B": "Errada: WWW é o sistema de páginas da web e SATA é a interface de discos rígidos. Nenhum dos dois trata de e-mail.",
+    "C": "Errada: o UDP é protocolo de transporte sem conexão e o SSH dá acesso remoto seguro a outro computador. Nenhum é próprio de e-mail.",
+    "D": "Errada: o IP endereça os pacotes na internet e não é específico de e-mail; send nem é nome de protocolo.",
+    "E": "Correta: o POP (POP3) recebe as mensagens do servidor e o SMTP envia os e-mails, por isso ambos estão ligados ao correio eletrônico."
+   }
+  },
+  {
+   "id": "tec_2338284",
+   "contentHash": "c5c4bb010f6f150d6c6332c1d7e80ab60dfea95327409a5136bb113c6d5751a3",
+   "gabarito": "C",
+   "comentario": "O comando pede a afirmação incorreta sobre IP. IP significa Internet Protocol, o protocolo da camada de rede que dá endereço a cada dispositivo e encaminha os pacotes até o destino, inclusive para outras redes, por meio do gateway (roteador). No IPv4, o endereço é formado por quatro números decimais separados por pontos, e cada número representa um octeto, ou seja, 8 bits. Com 8 bits, o maior valor possível é 2⁸ − 1 = 255. Logo, cada parte do endereço vai de 0 a 255. A cadeia 255.255.255.256 traz 256 no último octeto, valor impossível, e por isso não representa um endereço IP válido. Essa é a alternativa C, que responde ao comando. As demais trazem descrições simplificadas, mas verdadeiras, do protocolo e do endereço.",
+   "alternativas": {
+    "A": "Errada: a afirmação é verdadeira. IP é a sigla de Internet Protocol, protocolo de internet.",
+    "B": "Errada: a afirmação é verdadeira, ainda que simplificada. O IP é o protocolo que permite localizar e alcançar um servidor ou computador pelo seu endereço.",
+    "C": "Correta: a afirmação é falsa. Cada octeto do IPv4 tem 8 bits e vai de 0 a 255, então 256 no último campo torna o endereço inválido.",
+    "D": "Errada: a afirmação é verdadeira. O endereço IPv4 é escrito como quatro números separados por pontos, como 192.168.0.1.",
+    "E": "Errada: a afirmação é verdadeira, em linguagem simplificada. É pelo endereçamento IP que os pacotes são roteados para outra rede local ou para a internet."
+   }
+  },
+  {
+   "id": "tec_3013354",
+   "contentHash": "d88cfaff5a4c1b7fcecf0ee35a48329c7a12cddd6893e0bf9f8313b036fa4929",
+   "gabarito": "C",
+   "comentario": "O conjunto de protocolos que controla como os dados são enviados e recebidos na internet é o TCP/IP, a pilha que leva o nome de seus dois protocolos principais. O IP (Internet Protocol) endereça os dispositivos e encaminha os pacotes pela rede até o destino. O TCP (Transmission Control Protocol) divide os dados em segmentos, numera, confirma o recebimento, reenvia o que se perdeu e remonta tudo na ordem certa. Sobre essa base rodam os protocolos de aplicação, como HTTP, FTP, SMTP e DNS. Por isso a resposta é a C: HTTP e FTP são protocolos isolados, que fazem parte da pilha, mas não a constituem nem controlam toda a comunicação. BIOS e GUI nem são protocolos.",
+   "alternativas": {
+    "A": "Errada: o HTTP é um único protocolo, da camada de aplicação, usado para transferir páginas web. Ele depende do TCP/IP para funcionar.",
+    "B": "Errada: a BIOS é o firmware da placa-mãe que inicia o hardware e dá partida no sistema operacional. Não é protocolo de rede.",
+    "C": "Correta: o TCP/IP é o conjunto de protocolos que rege o envio e o recebimento de dados na internet, com endereçamento (IP) e entrega confiável (TCP).",
+    "D": "Errada: o FTP é um protocolo específico, de transferência de arquivos, e roda sobre o TCP/IP.",
+    "E": "Errada: GUI (Graphical User Interface) é a interface gráfica do usuário, com janelas e ícones. Não é protocolo."
+   }
+  },
+  {
+   "id": "tec_346673",
+   "contentHash": "e4f04b61edbd41d99a8e827d1a3b5d3f9b81a9eee5b03c7ea53bf51103d696e3",
+   "gabarito": "E",
+   "comentario": "SMTP e POP3 são os protocolos do correio eletrônico. O SMTP (Simple Mail Transfer Protocol) envia as mensagens do programa do usuário ao servidor e entre servidores. O POP3 (Post Office Protocol, versão 3) recebe: o programa baixa as mensagens que estão no servidor. Por isso, ao configurar manualmente uma conta num programa cliente de e-mail como o Microsoft Outlook, pede-se o endereço do servidor de saída (SMTP, por exemplo smtp.provedor.com.br) e o do servidor de entrada (POP3 ou IMAP, por exemplo pop.provedor.com.br), além de usuário, senha e portas. O IMAP é a alternativa ao POP3 que mantém as mensagens no servidor e sincroniza vários aparelhos. A resposta, portanto, é e-mails.",
+   "alternativas": {
+    "A": "Errada: SMTP e POP3 não são servidores da internet em geral, mas especificamente do envio e do recebimento de e-mails.",
+    "B": "Errada: sinal digital é forma de transmissão de dados. Os protocolos citados tratam de mensagens de correio eletrônico.",
+    "C": "Errada: energia elétrica não tem relação com protocolos de rede. SMTP e POP3 são protocolos de e-mail.",
+    "D": "Errada: SMS é o serviço de mensagens curtas da telefonia celular, que não usa SMTP nem POP3.",
+    "E": "Correta: o Outlook pede o servidor SMTP para enviar e o POP3 para receber e-mails."
+   }
+  }
+ ],
+ "descartes": []
+}

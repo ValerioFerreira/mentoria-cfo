@@ -1,0 +1,62 @@
+{
+ "lote": "informatica/p1-a02-s03-1",
+ "trecho": "informatica/a02/s03",
+ "autor": "opus-onda11-A",
+ "data": "2026-11-18",
+ "comentarios": [
+  {
+   "id": "tec_1045921",
+   "contentHash": "aad4f44a1375dd8cab2d04d4193d68c9a85e3fdefb925a74ad26db8e825adb31",
+   "gabarito": "D",
+   "comentario": "A questão pede a afirmação correta sobre assinatura digital. Ela usa criptografia assimétrica, com um par de chaves: a privada, que só o dono conhece, e a pública, que qualquer um pode ter. Para assinar, o programa calcula o hash (um resumo de tamanho fixo) da mensagem e o cifra com a chave privada do autor. Quem recebe usa a chave pública do autor para conferir. Se a conferência dá certo, só o dono da chave privada pode ter assinado (autenticidade, e ele não pode negar depois), e a mensagem não foi alterada (integridade). A letra D traduz essa lógica: só o dono conhece a chave privada, então só ele poderia ter feito a assinatura.",
+   "alternativas": {
+    "A": "Errada: a verificação usa a chave pública do autor. A chave privada nunca é compartilhada; se fosse, qualquer um poderia assinar em nome dele.",
+    "B": "Errada: a chave pública é distribuída a todos. O que só o dono conhece é a chave privada.",
+    "C": "Errada: o que foi cifrado com a chave privada é decifrado com a chave pública do mesmo par. É assim que todos conseguem verificar a assinatura.",
+    "D": "Correta: só o dono conhece a chave privada; se ela foi usada para assinar, a autoria é dele.",
+    "E": "Errada: o hash é uma função de mão única. Do resumo não se consegue recuperar a informação original."
+   }
+  },
+  {
+   "id": "tec_2185494",
+   "contentHash": "f0b8ad2183cfe646d43f64e045b4a86c4a9c2217d7e036af14fb5776bad59a3e",
+   "gabarito": "E",
+   "comentario": "O item está errado. Usar a mesma chave para codificar e decodificar é a característica da criptografia simétrica (ou de chave secreta), como no AES. A criptografia assimétrica, ou de chave pública, usa um par de chaves diferentes e relacionadas entre si: o que uma chave cifra, só a outra do par decifra. A chave pública pode ser divulgada; a privada fica só com o dono. Para mandar uma mensagem sigilosa, cifra-se com a chave pública do destinatário, e só ele a decifra com a sua privada. Na assinatura digital ocorre o inverso: o autor assina com a privada e todos conferem com a pública.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_2191511",
+   "contentHash": "35b73cc6afcad711df96c9ba5cddc2f7be26197e698c99b4e486c1e5e0121fc8",
+   "gabarito": "C",
+   "comentario": "O item está certo. RSA, DSA, ECC e Diffie-Hellman são métodos de criptografia assimétrica, ou de chave pública, todos baseados num par de chaves (pública e privada). O RSA serve para cifrar e para assinar. O DSA é próprio para assinatura digital. O ECC (criptografia de curvas elípticas) oferece a mesma segurança com chaves menores. O Diffie-Hellman é usado para duas partes combinarem uma chave secreta por um canal inseguro, sem nunca transmiti-la. Para contraste, os métodos simétricos, de chave única, são, por exemplo, AES, DES e 3DES. A grafia errada do último nome no item não muda o julgamento.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_3564374",
+   "contentHash": "294406fd6a429d3637bbdd3cf0f5f92e81dd2cd39ae5ad150284ffe25b3cc1df",
+   "gabarito": "D",
+   "comentario": "A questão pede como funciona a criptografia simétrica. Nela, uma única chave secreta serve para cifrar e para decifrar os dados: quem envia e quem recebe precisam conhecer a mesma chave. É rápida e própria para grandes volumes de dados; exemplos são AES, DES e 3DES. O ponto fraco é a distribuição da chave: ela precisa chegar ao destinatário por um meio seguro. Na assimétrica, por outro lado, há um par de chaves diferentes, pública e privada. Por isso a letra D descreve a simétrica, e as letras C e E descrevem a assimétrica.",
+   "alternativas": {
+    "A": "Errada: a criptografia simétrica usa uma única chave, e não quatro.",
+    "B": "Errada: chave pública e privada são da criptografia assimétrica. A chave de sessão é simétrica, mas é uma chave só.",
+    "C": "Errada: uma chave para cifrar e outra para decifrar é o modelo da criptografia assimétrica.",
+    "D": "Correta: na criptografia simétrica a mesma chave secreta cifra e decifra os dados.",
+    "E": "Errada: duas chaves diferentes, uma para cifrar e outra para decifrar, é a criptografia assimétrica."
+   }
+  },
+  {
+   "id": "tec_732394",
+   "contentHash": "ac64f19b768689b1cfffc77b933291fec8c860849ec939f40d3dd5dc80e44c72",
+   "gabarito": "B",
+   "comentario": "A questão pede a característica da criptografia assimétrica. Ela usa duas chaves diferentes e matematicamente ligadas: a pública, que pode ser divulgada a qualquer pessoa, e a privada, que fica só com o dono. O que é cifrado com uma só pode ser decifrado com a outra. Para garantir sigilo, o remetente cifra com a chave pública do destinatário, e só este decifra com sua chave privada. Para assinar, o autor usa a sua chave privada, e qualquer um confere com a pública. Exemplos: RSA e curvas elípticas (ECC). A letra B descreve isso. Usar uma só chave é a criptografia simétrica.",
+   "alternativas": {
+    "A": "Errada: usar a mesma chave para cifrar e decifrar é característica da criptografia simétrica.",
+    "B": "Correta: a criptografia assimétrica usa um par de chaves diferentes, uma pública e uma privada.",
+    "C": "Errada: não existem chaves de emissão, de transporte e de recepção; a assimétrica usa duas chaves, pública e privada.",
+    "D": "Errada: a criptografia não depende de a transmissão ficar dentro de uma intranet; ela protege os dados inclusive na internet.",
+    "E": "Errada: a assimétrica usa duas chaves. O hash é um resumo de mão única, usado na assinatura digital, e não uma forma de cifrar."
+   }
+  }
+ ],
+ "descartes": []
+}

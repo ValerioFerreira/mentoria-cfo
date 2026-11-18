@@ -1,0 +1,170 @@
+{
+ "lote": "informatica/p1-a02-s06-1",
+ "trecho": "informatica/a02/s06",
+ "autor": "opus-onda11-A",
+ "data": "2026-11-18",
+ "comentarios": [
+  {
+   "id": "tec_1220607",
+   "contentHash": "62509f1c5123c3bce020211be1f831498028052ab9dde556729a4f4954473fed",
+   "gabarito": "D",
+   "comentario": "A questão pede os parâmetros da Infraestrutura de Chaves Públicas Brasileira (ICP-Brasil) para que um documento eletrônico, como um e-mail, valha como original. A ICP-Brasil é a cadeia oficial de autoridades certificadoras que emitem certificados digitais no país, e a norma que a criou define sua finalidade: garantir a autenticidade, a integridade e a validade jurídica dos documentos em forma eletrônica. Autenticidade é a certeza de quem é o autor; integridade, a certeza de que o conteúdo não foi alterado; validade jurídica, o reconhecimento legal do documento assinado com certificado ICP-Brasil, que passa a valer como se fosse assinado à mão. A letra D reúne os três.",
+   "alternativas": {
+    "A": "Errada: estrutura, visibilidade e suficiência judicial não são parâmetros da ICP-Brasil. Os parâmetros são autenticidade, integridade e validade jurídica.",
+    "B": "Errada: conformidade, legibilidade e transparência não são o que a ICP-Brasil garante aos documentos eletrônicos.",
+    "C": "Errada: uniformidade, dimensionamento e atestado não fazem parte das garantias da ICP-Brasil.",
+    "D": "Correta: a ICP-Brasil existe para garantir integridade, autenticidade e validade jurídica dos documentos eletrônicos.",
+    "E": "Errada: totalidade, profissionalismo e utilidade jurídica não são parâmetros da ICP-Brasil."
+   }
+  },
+  {
+   "id": "tec_1373395",
+   "contentHash": "93f68dd3088b832165ad9b780ba77d304b9cf18fe23b613443485af85ea65395",
+   "gabarito": "E",
+   "comentario": "O item está errado. A Autoridade Certificadora (AC) é quem emite, renova e revoga certificados digitais, e cabe a ela, também, publicar quais certificados deixaram de ser confiáveis. Isso é feito pela Lista de Certificados Revogados (LCR), que reúne os certificados cancelados antes do prazo de validade, por exemplo porque a chave privada foi comprometida, o titular perdeu o token ou os dados mudaram. Também pode haver consulta em tempo real ao estado do certificado. Sem essa publicação, quem recebe um documento assinado não teria como saber que o certificado foi cancelado e confiaria nele por engano.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_2062886",
+   "contentHash": "e9c04f9fa018cd4e6c6b82cea0f831c8bea397315eaab04dca4f5a4914146f96",
+   "gabarito": "C",
+   "comentario": "O item está certo, na classificação adotada pela banca. O certificado digital do tipo A3 fica gravado num dispositivo físico, um token USB ou um cartão inteligente (smart card) lido por uma leitora, e é válido por até alguns anos. O dispositivo é ligado ao computador para fornecer a credencial do titular quando ele precisa se identificar ou assinar um documento, papel semelhante ao de um leitor de cartão. Por isso a banca o classificou como hardware de entrada. Já o certificado A1 é só um arquivo instalado no computador, sem dispositivo próprio, e costuma valer um ano. No A3, a chave privada fica guardada no dispositivo e não pode ser copiada dele.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_2191357",
+   "contentHash": "5a0db5bf02b51adbf22186166f13383f3e5c5d7ff12b4ac4f86553cc668a70dc",
+   "gabarito": "C",
+   "comentario": "O item está certo. Não repúdio (ou irretratabilidade) é a garantia de que o autor de uma ação não pode negar depois que a praticou. O certificado digital permite isso porque está ligado a um par de chaves, e só o titular tem a chave privada. Quando ele assina uma transação ou um documento com essa chave, qualquer pessoa confere a assinatura com a chave pública que está no certificado. Se a conferência dá certo, fica provado que a assinatura veio daquela chave privada, e o titular não pode alegar que não assinou. A mesma assinatura ainda garante autenticidade e integridade.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_2191360",
+   "contentHash": "15d0e048a00b7da339791cf4e6080f55e18b7358af1a0614ed664c5ae41fec47",
+   "gabarito": "E",
+   "comentario": "O item está errado no tipo de criptografia. É verdade que o certificado digital atesta a identidade do titular em operações online, como o acesso a um banco ou a assinatura de um contrato. Mas ele funciona com criptografia de chave assimétrica, ou de chave pública: o certificado liga a identidade do titular a uma chave pública, e só ele tem a chave privada correspondente. A criptografia simétrica, de chave única compartilhada, não permite provar quem é o autor, porque as duas partes têm a mesma chave e qualquer uma delas poderia ter produzido a mensagem.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_2191509",
+   "contentHash": "870d7ef73947ec61c9404ba0b2e048c88fdebd315d6c614ab81e6da9f74db4cc",
+   "gabarito": "E",
+   "comentario": "O item está errado, porque inverte os termos. Na criptografia, codificar (cifrar, criptografar) é transformar o texto claro, legível, em texto cifrado, ilegível para quem não tem a chave. O caminho inverso, transformar o texto cifrado de volta em texto claro, é decodificar (decifrar, descriptografar). Por exemplo, quem envia uma mensagem sigilosa codifica o conteúdo antes de transmiti-lo, e o destinatário, com a chave correta, decodifica para ler. O item descreveu a decodificação e a chamou de codificação.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_2191513",
+   "contentHash": "f3c42135e43d00c4fce79afeacd095f47c9ccea6d98b7af80e0ba56d9684b892",
+   "gabarito": "E",
+   "comentario": "O item está errado. A função de resumo (hash) recebe uma informação de qualquer tamanho e produz um resultado de tamanho fixo, e não variado. O MD5 sempre gera 128 bits, o SHA-1 sempre gera 160 bits e o SHA-256 sempre gera 256 bits, seja a entrada uma palavra ou um arquivo enorme. Além disso, o hash é de mão única (não dá para recuperar o original a partir dele) e muda completamente com qualquer alteração na entrada, o que o torna útil para conferir integridade e para a assinatura digital. Note também que o hash não cifra a informação; ele apenas a resume.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_2191516",
+   "contentHash": "0997700bafc7d433e20519cfd953e9c2d920c13f681dc3a98bf0442aff7d4c04",
+   "gabarito": "C",
+   "comentario": "O item está certo. A assinatura digital se apoia na criptografia assimétrica, com um par de chaves: a pública, que todos podem conhecer, e a privada, que só o dono tem. Para assinar, o programa calcula o hash do documento e o cifra com a chave privada do autor. Como só o dono conhece essa chave, só ele consegue produzir aquela assinatura. Qualquer pessoa confere o resultado usando a chave pública do autor. Se a conferência dá certo, fica comprovada a autoria (autenticidade e não repúdio) e que o conteúdo não foi alterado (integridade).",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_2191517",
+   "contentHash": "d5413dac9817ebe681d23d1989dc85883c849f8e5ff1c1f6efc018f987d96e3d",
+   "gabarito": "E",
+   "comentario": "O item está errado na segunda parte. A primeira está certa: o certificado digital é um conjunto de dados que identifica uma entidade e associa a ela uma chave pública, com a assinatura da autoridade certificadora que o emitiu. Mas os certificados não se limitam a pessoas e empresas. Também são emitidos para equipamentos e aplicações, como servidores e sites (os certificados SSL/TLS que permitem o https), além de programas e serviços. A palavra somente torna o item falso.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_2191518",
+   "contentHash": "3fa0b6948b459ffbf74260bc788e70c981c592bafedddb0ef5bb58e2151a39b3",
+   "gabarito": "C",
+   "comentario": "O item está certo. No certificado comum, quem emite é uma autoridade certificadora (AC), que assina o certificado e atesta que a chave pública pertence ao titular. No certificado autoassinado, o dono e o emissor são a mesma pessoa ou entidade: ela própria assina o certificado. Por isso não há terceiro de confiança que garanta a identidade, e os navegadores mostram alerta ao encontrá-lo. Ele é usado em testes, em redes internas, e as autoridades certificadoras raiz também têm certificado autoassinado, pois estão no topo da cadeia. O risco é que um golpista convença a vítima a instalar um certificado autoassinado falso.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_2619401",
+   "contentHash": "bc7f411630fd8e46958dafd73ce2af032c2cb1fa694f60b912dc30255d6b201f",
+   "gabarito": "D",
+   "comentario": "A questão pede para julgar três afirmações sobre mecanismos de segurança, e as três são verdadeiras. O firewall controla, em tempo real, o tráfego de pacotes entre a rede local e a internet, liberando ou bloqueando conexões conforme regras definidas. A assinatura digital garante que a mensagem veio realmente do remetente (autenticidade), que não foi alterada (integridade) e que o autor não pode negar a autoria (não repúdio). O backup cria cópias de segurança das informações importantes, permitindo recuperá-las em caso de perda, falha ou ataque, o que mantém o negócio funcionando. A sequência é V – V – V, letra D.",
+   "alternativas": {
+    "A": "Errada: a terceira afirmação também é verdadeira, pois o backup cria cópias de segurança para recuperar as informações.",
+    "B": "Errada: a segunda afirmação é verdadeira, pois a assinatura digital comprova que a mensagem veio do remetente.",
+    "C": "Errada: a segunda e a terceira afirmações são verdadeiras; assinatura digital garante autenticidade e backup cria cópias de segurança.",
+    "D": "Correta: as três afirmações são verdadeiras e descrevem bem o firewall, a assinatura digital e o backup.",
+    "E": "Errada: a primeira afirmação é verdadeira, pois o firewall controla o tráfego entre a rede local e a internet."
+   }
+  },
+  {
+   "id": "tec_3250878",
+   "contentHash": "a272a0e9ccc344cfec0caab0a89706679103f0bfcd1c60517f53c1d5ebe4d24b",
+   "gabarito": "D",
+   "comentario": "A técnica que transforma informações em código para proteger a privacidade dos dados transmitidos é a criptografia. Ela aplica um algoritmo e uma chave ao texto original e produz um texto cifrado, que só quem tem a chave correta consegue ler. Isso protege a confidencialidade na transmissão, como acontece no https e nos aplicativos de mensagem com criptografia de ponta a ponta. Recursos ligados à criptografia, como a assinatura digital e o hash, também ajudam a perceber se os dados foram alterados no caminho, o que protege a integridade. As demais opções são outros mecanismos ou ameaças.",
+   "alternativas": {
+    "A": "Errada: o firewall filtra o tráfego da rede conforme regras, mas não transforma as informações em código.",
+    "B": "Errada: o backup faz cópias de segurança para recuperar dados perdidos; não protege o sigilo na transmissão.",
+    "C": "Errada: phishing é um golpe que usa mensagens ou páginas falsas para roubar dados, e não uma técnica de proteção.",
+    "D": "Correta: a criptografia transforma as informações em código e protege a privacidade dos dados transmitidos.",
+    "E": "Errada: malware é qualquer programa malicioso, como vírus e ransomware; é uma ameaça, e não uma proteção."
+   }
+  },
+  {
+   "id": "tec_3452023",
+   "contentHash": "e793d3560ac0c0cdda4f297eab2dbbadd56de9d81e44c4c78d24b26e375b63a8",
+   "gabarito": "C",
+   "comentario": "A situação descreve dados confidenciais guardados em formato ilegível, de modo que terceiros sem autorização não conseguem entendê-los. Essa é a função da criptografia: com um algoritmo e uma chave, ela transforma a informação legível em texto cifrado, e só quem tem a chave correta consegue voltar ao original. Assim, mesmo que alguém sem permissão chegue até o arquivo, não consegue ler o conteúdo. Ela protege a confidencialidade tanto dos dados armazenados quanto dos transmitidos. As outras opções controlam quem entra, filtram tráfego ou combatem programas maliciosos, mas não tornam o dado ilegível.",
+   "alternativas": {
+    "A": "Errada: a autenticação confirma a identidade de quem acessa, por senha ou biometria, mas não torna os dados ilegíveis.",
+    "B": "Errada: o antivírus detecta e remove programas maliciosos; não transforma os dados em formato ilegível.",
+    "C": "Correta: a criptografia torna os dados ilegíveis para quem não tem a chave e protege sua confidencialidade.",
+    "D": "Errada: o firewall filtra o tráfego de rede conforme regras, sem cifrar o conteúdo dos dados.",
+    "E": "Errada: phishing é um golpe para roubar dados por mensagens ou páginas falsas."
+   }
+  },
+  {
+   "id": "tec_503575",
+   "contentHash": "a58912415741b3fbfd2bee3499f56c4cd33cfff5ab6fd76e8db4300693e0d200",
+   "gabarito": "E",
+   "comentario": "O item está errado, porque inverte o papel do https. HTTPS é o HTTP seguro: a comunicação entre o navegador e o site passa por uma camada de criptografia, o TLS (sucessor do SSL). Os dados trocados viajam cifrados, e quem os interceptar no caminho só verá um conteúdo ilegível. Além disso, o site comprova sua identidade com um certificado digital. Quem envia os dados de forma direta, sem criptografia, e permite que sejam lidos se interceptados é o http comum. Por isso o https é o indicado para senhas, compras e acesso a bancos.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_536905",
+   "contentHash": "2c2dcafed08942c86ad2c7c58c6cbc81d2b1023c1ddda6dff77c53ad6e936f9b",
+   "gabarito": "B",
+   "comentario": "A lacuna pede o elemento que, instalado de forma maliciosa, permite conexões cifradas com sites fraudulentos sem que o navegador avise do risco. É o certificado autoassinado, aquele em que o próprio dono é o emissor, sem uma autoridade certificadora que ateste a identidade. Normalmente, ao encontrar um certificado assim, o navegador exibe um alerta. Mas se o golpista convence a vítima a instalar esse certificado como confiável no navegador ou no sistema, por exemplo com uma mensagem de phishing, o alerta deixa de aparecer: a conexão com o site falso passa a ser cifrada e parece segura. Por isso a resposta é a letra B.",
+   "alternativas": {
+    "A": "Errada: o certificado EV SSL é o de validação estendida, emitido por autoridade certificadora após verificação rigorosa da organização; ele aumenta a confiança.",
+    "B": "Correta: um certificado autoassinado instalado como confiável faz o navegador aceitar o site fraudulento sem alertas.",
+    "C": "Errada: a criptografia assimétrica é a técnica de chaves pública e privada; não é algo que se instala para enganar o navegador.",
+    "D": "Errada: a criptografia simétrica é a técnica de chave única; também não é um elemento instalado para burlar os alertas do navegador."
+   }
+  },
+  {
+   "id": "tec_568377",
+   "contentHash": "7d0641bd98ca56a0384aad372e0b4dc1a1ead6b657d0d6397f65c6a7854343f9",
+   "gabarito": "E",
+   "comentario": "A questão pede a afirmação incorreta sobre certificados de segurança na navegação, e ela é a E. O certificado digital do site permite a conexão https, cifrada, e comprova a identidade do servidor. Sem certificado, o site funciona normalmente pelo http comum; o navegador apenas indica que a conexão não é segura. A falta do certificado, portanto, não impede navegar. As demais afirmações são verdadeiras. O certificado reduz o risco de interceptação. Erros de configuração, como a data e hora erradas no computador, certificado vencido ou de padrão antigo, fazem o navegador exibir avisos, porque ele não consegue confirmar a validade.",
+   "alternativas": {
+    "A": "Errada: a afirmação é verdadeira. Os certificados permitem a conexão cifrada e a identificação do site, reduzindo invasões e interceptações.",
+    "B": "Errada: a afirmação é verdadeira. Com data e hora erradas, o navegador pode julgar o certificado vencido ou ainda não válido e mostrar erro.",
+    "C": "Errada: a afirmação é verdadeira. Certificado com prazo de validade vencido faz o navegador exibir aviso de risco.",
+    "D": "Errada: a afirmação é verdadeira. Certificados com padrões antigos e fracos deixam de ser aceitos e geram mensagens de erro.",
+    "E": "Correta: a afirmação é falsa. Sem certificado o site abre por http comum; o navegador só avisa que a conexão não é segura."
+   }
+  },
+  {
+   "id": "tec_734342",
+   "contentHash": "53a71fb11a4af84a04d93ad768fedb498528d7a1779483ef53df3423530775b9",
+   "gabarito": "E",
+   "comentario": "O item está errado. Duas chaves, uma privada e outra pública, são a marca da criptografia assimétrica, como o RSA. A criptografia simétrica usa uma única chave secreta, a mesma para cifrar e para decifrar, que precisa ser conhecida pelas duas partes; exemplos são AES, DES e 3DES. A simétrica é mais rápida e serve para grandes volumes de dados, mas exige um jeito seguro de entregar a chave ao destinatário. Por isso, na prática, os dois tipos costumam ser combinados: a assimétrica é usada para combinar a chave, e a simétrica cifra os dados.",
+   "alternativas": {}
+  },
+  {
+   "id": "tec_734343",
+   "contentHash": "2d63dc1dc8193ebead1a764bda2fd64c736d686cd96357c0827ba6b9d8e265f8",
+   "gabarito": "C",
+   "comentario": "O item está certo. A assinatura digital comprova a procedência de um documento eletrônico, isto é, que ele veio mesmo de quem diz tê-lo enviado. O autor assina com sua chave privada, que só ele possui, e qualquer pessoa confere a assinatura com a chave pública correspondente, que está no certificado digital do autor. Se a conferência dá certo, ficam garantidas a autenticidade (a origem é verdadeira), a integridade (o documento não foi alterado depois de assinado) e o não repúdio (o autor não pode negar que assinou). A assinatura digital não garante sigilo; para isso é preciso cifrar o conteúdo.",
+   "alternativas": {}
+  }
+ ],
+ "descartes": []
+}

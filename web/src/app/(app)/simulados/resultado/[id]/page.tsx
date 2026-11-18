@@ -18,6 +18,7 @@ import {
   Trophy,
   XCircle,
 } from "lucide-react";
+import { OptionNote } from "@/components/option-note";
 import { RichContent } from "@/components/rich-content";
 import { Badge, Card, Count, LinkButton, PageHeader, Progress, Ring } from "@/components/ui";
 import { requireUser } from "@/lib/auth/dal";
@@ -575,7 +576,10 @@ export default async function SimuladoResultadoPage({
                         className={`flex items-start gap-2.5 rounded-lg border p-2.5 text-xs transition ${bgClass}`}
                       >
                         <span className="font-bold shrink-0">{opt.label})</span>
-                        <div className="min-w-0 flex-1 break-words leading-snug"><RichContent content={opt.text} /></div>
+                        <div className="min-w-0 flex-1 break-words leading-snug">
+                          <RichContent content={opt.text} />
+                          <OptionNote text={opt.comment} className="mt-1" small />
+                        </div>
                         {isRight && (
                           <CircleCheck className="h-4 w-4 shrink-0 text-ok" aria-hidden />
                         )}
@@ -591,7 +595,7 @@ export default async function SimuladoResultadoPage({
                 {a.question.explanation && (
                   <div className="rounded-xl bg-surface-3/80 p-3.5 text-xs text-text/90 space-y-1 mt-2">
                     <span className="font-bold text-muted block uppercase tracking-wider text-[10px]">
-                      Justificativa Oficial do Gabarito
+                      Comentário
                     </span>
                     <div className="min-w-0 leading-relaxed"><RichContent content={a.question.explanation} /></div>
                   </div>

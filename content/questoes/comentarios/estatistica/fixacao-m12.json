@@ -1,0 +1,184 @@
+{
+ "lote": "estatistica/fixacao-m12",
+ "origem": "content/material/estatistica/m12/fixacao.json",
+ "autor": "fixacao",
+ "data": "2026-11-17",
+ "revisao": "opus-revisao06 2026-11-17",
+ "revisaoNotas": [
+  {
+   "id": "tec_1420240",
+   "problema": "AJUSTE",
+   "detalhe": "Não explicava que a tabela é unilateral (5% bilateral = coluna de 2,5%; 10% bilateral = coluna de 5%); notação rho e hífen como sinal de menos."
+  },
+  {
+   "id": "tec_2018429",
+   "problema": "DESCARTE",
+   "detalhe": "Gabarito D duvidoso: DW = 1,17 com valor-p 0,0102 < 0,05 indica autocorrelação nos resíduos (letra A); o comentário era incoerente (explicava autocorrelação e a nota D dizia ausência dela)."
+  },
+  {
+   "id": "tec_674168",
+   "problema": "ERRO",
+   "detalhe": "Notas A e C diziam que o item II é falso por causa de causalidade; o erro do item II é que a linearidade da regressão é nos parâmetros, e não nas variáveis; comentário e notas reescritos."
+  },
+  {
+   "id": "tec_674169",
+   "problema": "AJUSTE",
+   "detalhe": "Notação sigma/ui em texto e afirmação imprecisa (heterocedasticidade não tira o não viés, tira a eficiência e invalida os erros-padrão usuais)."
+  },
+  {
+   "id": "tec_1417762",
+   "problema": "TROCADO",
+   "detalhe": "Notas A, B, D e E tratavam de outras alternativas (distribuição normal, teste t, qui-quadrado, análise de variância) em vez de Poisson, desvio-padrão, multicolinearidade e multiplicadores de Lagrange."
+  },
+  {
+   "id": "tec_1420192",
+   "problema": "ERRO",
+   "detalhe": "Notas davam motivos errados (II falsa por \"comportamento determinístico\"; I seria sobre fatores omitidos) e a nota E citava média nula e variância constante, que não estão nas assertivas; reescrito."
+  },
+  {
+   "id": "tec_1419077",
+   "problema": "TROCADO",
+   "detalhe": "Notas B a E tratavam de outras alternativas (coeficiente de variação, coeficiente angular, coeficiente linear, desvio-padrão) em vez de correlação, teste t, Durbin-Watson e Gauss-Markov."
+  },
+  {
+   "id": "tec_3845717",
+   "problema": "ERRO",
+   "detalhe": "Notas A, B e D descreviam erros de outras letras: A e D trocam intercepto e inclinação, B e D usam o R² ajustado (0,65)."
+  },
+  {
+   "id": "tec_2919682",
+   "problema": "ERRO",
+   "detalhe": "Comentário genérico, citava o órgão e \"o candidato\"; notas não tratavam das alternativas; reescrito com o modelo, R² = 1586,69/1634,0 ≈ 97,10% e n = 10."
+  },
+  {
+   "id": "tec_2775133",
+   "problema": "AJUSTE",
+   "detalhe": "Nota C com termo impróprio (\"significância estocástica\"); sinais de menos como hífen."
+  }
+ ],
+ "comentarios": [
+  {
+   "id": "tec_1420240",
+   "contentHash": "4e7552dbd944dd6392f4698466b68df3025b7af01bb2b12c29406ec160207b67",
+   "gabarito": "A",
+   "comentario": "O teste da correlação de Pearson usa a estatística t com n − 2 graus de liberdade: com 5 observações, são 3. A hipótese alternativa diz apenas que as variáveis são correlacionadas, sem indicar o sentido, então o teste é bilateral e se compara o módulo |t| = 2,8085 com os valores críticos. A tabela dada é unilateral: no teste bilateral a 5%, cada cauda tem 2,5%, e se usa a coluna de 2,5% (3,1824); a 10%, a coluna de 5% (2,3534). Como 2,3534 < 2,8085 < 3,1824, rejeita-se H₀ a 10%, mas não a 5%. Pelo mesmo motivo, o valor-p bilateral fica entre 0,05 e 0,10.",
+   "alternativas": {
+    "A": "Correta: com 3 graus de liberdade, |t| = 2,8085 fica entre 2,3534 (bilateral a 10%) e 3,1824 (bilateral a 5%): rejeita-se H₀ a 10%, não a 5%.",
+    "B": "Errada: a 10% bilateral o valor crítico é 2,3534, e |t| = 2,8085 o supera; portanto se rejeita H₀ a 10%.",
+    "C": "Errada: é o contrário: a 5% bilateral o valor crítico é 3,1824, maior que 2,8085, e não se rejeita H₀; a 10% se rejeita.",
+    "D": "Errada: a 5% bilateral, |t| = 2,8085 não alcança o valor crítico 3,1824, e H₀ não é rejeitada nesse nível.",
+    "E": "Errada: o intervalo [0,025; 0,050] seria o valor-p de um teste unilateral; o teste é bilateral, e o valor-p fica entre 0,05 e 0,10."
+   }
+  },
+  {
+   "id": "tec_674168",
+   "contentHash": "a3bef9175a24e3a2d4d2bd4a6a00cf93499cfca471f8c097050bca0029ba5b3a",
+   "gabarito": "C",
+   "comentario": "Item I, verdadeiro: a análise de regressão estuda como a média da variável dependente (Y) muda conforme o valor dado da variável explicativa (X), isto é, a média condicional E(Y | X). Item II, falso: o linear do modelo de regressão linear se refere aos parâmetros, e não necessariamente às variáveis. Y = β₀ + β₁X² + u, por exemplo, é linear nos parâmetros β₀ e β₁, embora não seja linear no regressor X; então a função de regressão linear não precisa ser linear no regressando (Y) nem nos regressores (X). Item III, verdadeiro: cada observação real se afasta da média por um termo de erro aleatório u; a função populacional estocástica, Yᵢ = E(Y | Xᵢ) + uᵢ, é a que descreve os dados observados e, por isso, é a que importa no trabalho empírico. Sequência: V – F – V.",
+   "alternativas": {
+    "A": "Errada: o item II é falso, pois a linearidade exigida é nos parâmetros, e não no regressando ou nos regressores; e o item III é verdadeiro.",
+    "B": "Errada: o item I é verdadeiro: a regressão estuda como a média de Y varia com o valor dado de X.",
+    "C": "Correta: I é verdadeiro (média condicional de Y dado X), II é falso (a linearidade é nos parâmetros) e III é verdadeiro (a função estocástica, com o erro, é a usada na prática).",
+    "D": "Errada: inverte os três julgamentos: I é verdadeiro, II é falso e III é verdadeiro.",
+    "E": "Errada: I e II estão julgados corretamente, mas o item III é verdadeiro: a função populacional com o termo de erro é a que descreve os dados reais."
+   }
+  },
+  {
+   "id": "tec_674169",
+   "contentHash": "c5d4001b8d725a6d7c34e3901633788436c862cf3fe2e189e71d046044bd811e",
+   "gabarito": "D",
+   "comentario": "Homocedasticidade quer dizer dispersão igual. No modelo de regressão linear clássico, é a premissa de que, dado o valor de X, a variância do erro uᵢ é a mesma para todas as observações: Var(uᵢ | Xᵢ) = σ², constante. Se a variância muda com X (por exemplo, os erros ficam maiores para valores grandes de X), há heterocedasticidade: os estimadores de mínimos quadrados continuam sem viés, mas deixam de ser os de menor variância, e os erros-padrão usuais ficam incorretos, o que compromete os testes. As demais alternativas trazem outras premissas do modelo clássico.",
+   "alternativas": {
+    "A": "Errada: média zero do erro dado X, E(uᵢ | Xᵢ) = 0, é outra premissa do modelo, e não a homocedasticidade.",
+    "B": "Errada: a ausência de autocorrelação entre os erros de observações diferentes é outra premissa, a de não correlação serial.",
+    "C": "Errada: covariância zero entre o erro e X é a premissa de que o regressor não está relacionado ao erro; não trata da variância do erro.",
+    "D": "Correta: homocedasticidade é a variância do erro igual para todas as observações, dado X: Var(uᵢ | Xᵢ) = σ².",
+    "E": "Errada: exigir valores de X diferentes na amostra é outra premissa: sem variação em X não é possível estimar a inclinação."
+   }
+  },
+  {
+   "id": "tec_1417762",
+   "contentHash": "3242048fff28982fd7caca9eed0b41707c136354fe395790bfe51d1479f7194f",
+   "gabarito": "C",
+   "comentario": "A reta de regressão é obtida pelo método dos mínimos quadrados: escolhem-se o intercepto e a inclinação que tornam mínima a soma dos quadrados dos resíduos, isto é, das diferenças verticais entre cada valor observado de Y e o valor previsto pela reta. Elevar ao quadrado impede que desvios positivos e negativos se anulem e dá mais peso aos desvios grandes. Sob as hipóteses do modelo clássico, esses estimadores são, entre os lineares e sem viés, os de menor variância.",
+   "alternativas": {
+    "A": "Errada: a distribuição de Poisson é um modelo de probabilidade para contagens de ocorrências, e não uma técnica de ajuste de reta.",
+    "B": "Errada: o desvio-padrão é uma medida da dispersão dos dados em torno da média, e não um método para obter a reta.",
+    "C": "Correta: o método dos mínimos quadrados escolhe a reta que minimiza a soma dos quadrados das diferenças verticais entre os pontos e a reta.",
+    "D": "Errada: multicolinearidade é um problema da regressão múltipla, quando as variáveis explicativas são muito correlacionadas entre si, e não uma técnica de ajuste.",
+    "E": "Errada: os multiplicadores de Lagrange servem para otimizar funções sujeitas a restrições; a reta de regressão sai da minimização da soma dos quadrados dos resíduos."
+   }
+  },
+  {
+   "id": "tec_1420192",
+   "contentHash": "0321052b40221c5380551b712153f9e476dedc81bf3e92d3f0faca49ef19e1ec",
+   "gabarito": "E",
+   "comentario": "O termo de erro reúne tudo o que afeta Y e não está na parte explicada do modelo. Item I, correto: erros de medida na variável a ser explicada (Y) vão para o termo de erro. Item II, incorreto: os valores estimados dos parâmetros (o intercepto e a inclinação) pertencem à parte sistemática do modelo, Ŷ = b₀ + b₁X, e não ao erro; o resíduo é justamente o que sobra, Y − Ŷ. Item III, correto: variáveis que influenciam Y mas ficaram fora do modelo têm seu efeito absorvido pelo erro. Item IV, correto: o erro também capta a parte imprevisível e irregular do comportamento, muito presente quando se estudam pessoas, como nas ciências sociais. Corretas: I, III e IV.",
+   "alternativas": {
+    "A": "Errada: inclui a II, que é falsa (os parâmetros estimados ficam na parte explicada do modelo, e não no erro), e deixa de fora a III e a IV, que são corretas.",
+    "B": "Errada: a II é falsa, e a I e a IV, que são corretas (erros de medida em Y e comportamento irregular), ficaram de fora.",
+    "C": "Errada: inclui a II, que é falsa, e exclui a I: erros de medida da variável explicada são absorvidos pelo termo de erro.",
+    "D": "Errada: inclui a II, que é falsa, e exclui a IV, que é correta: o erro capta o comportamento irregular, típico de estudos sobre pessoas.",
+    "E": "Correta: o erro absorve erros de medida em Y (I), variáveis omitidas (III) e o comportamento irregular (IV); os parâmetros estimados não fazem parte dele (II)."
+   }
+  },
+  {
+   "id": "tec_1419077",
+   "contentHash": "63bde817d2504e8d7d67f08a45c754bbd45c168787695990e00b5c43ae724e53",
+   "gabarito": "A",
+   "comentario": "O indicador mais usado para medir a qualidade do ajuste de uma reta de regressão é o coeficiente de determinação, R². Ele é a fração da variação total de Y explicada pela regressão: R² é a soma dos quadrados explicada pela regressão dividida pela soma dos quadrados total, ou 1 menos a parte dos resíduos. Varia de 0 a 1 (de 0% a 100%): perto de 1, os pontos ficam próximos da reta; perto de 0, a reta explica pouco da variação. Na regressão linear simples, R² é o quadrado do coeficiente de correlação r.",
+   "alternativas": {
+    "A": "Correta: o coeficiente de determinação, R², mede a fração da variação total de Y explicada pela reta, de 0 a 1.",
+    "B": "Errada: o coeficiente de correlação r mede a força e o sentido da relação linear entre duas variáveis; na regressão simples, seu quadrado é o R², este sim a medida de qualidade do ajuste.",
+    "C": "Errada: o teste t verifica se um coeficiente da regressão é estatisticamente diferente de zero; não resume a qualidade do ajuste.",
+    "D": "Errada: a estatística de Durbin-Watson testa a autocorrelação dos resíduos, e não a qualidade do ajuste.",
+    "E": "Errada: Gauss-Markov é um teorema sobre a eficiência dos estimadores de mínimos quadrados, e não um teste da qualidade do ajuste."
+   }
+  },
+  {
+   "id": "tec_3845717",
+   "contentHash": "25956f9ccbc6a68b680ac2fe0990e32be86183bc5e3b86c2a4d93336c5ea33a4",
+   "gabarito": "E",
+   "comentario": "Na saída do R, a coluna Estimate dá os coeficientes: o intercepto, (Intercept), é 1,5265409 ≈ 1,527, e o coeficiente de x, a inclinação, é 0,0027889 ≈ 0,003. O modelo estimado é ŷ = 1,527 + 0,003x. O coeficiente de determinação é o Multiple R-squared, 0,6819: a reta explica cerca de 68% da variação de y. O Adjusted R-squared, 0,6575, é o R² ajustado pelo número de variáveis, outra medida. O teste de significância do modelo é o teste F, com estatística F = 27,87 (1 e 13 graus de liberdade); 0,000149 é o valor-p desse teste, e não a estatística. Só a alternativa E reúne 1,527 + 0,003x, 0,6819 e 27,87.",
+   "alternativas": {
+    "A": "Errada: troca o intercepto e a inclinação; o intercepto é 1,527 e o coeficiente de x é 0,003.",
+    "B": "Errada: o modelo está certo, mas 0,65 vem do R² ajustado (0,6575); o coeficiente de determinação é o Multiple R-squared, 0,6819.",
+    "C": "Errada: o modelo e o R² estão certos, mas 0,000149 é o valor-p do teste F; a estatística do teste é F = 27,87.",
+    "D": "Errada: troca o intercepto e a inclinação e usa 0,65, que vem do R² ajustado, em vez de 0,6819.",
+    "E": "Correta: ŷ = 1,527 + 0,003x, coeficiente de determinação 0,6819 e estatística F = 27,87."
+   }
+  },
+  {
+   "id": "tec_2919682",
+   "contentHash": "e3e6152b456f11c25b6a368c6b3ad178d5d72fd33618ac063c943bb17f1433a7",
+   "gabarito": "E",
+   "comentario": "A questão pede a leitura dos dois quadros. No de parâmetros, a constante estimada é 27,125 e o coeficiente de X é 1,65972: o modelo ajustado é Y = 27,125 + 1,65972X. Na análise da variância, o coeficiente de determinação é a soma de quadrados do modelo dividida pela total: R² = 1586,69/1634,0 ≈ 0,9710, ou 97,10% da variação de Y explicada pela reta. A razão F = 268,33, com valor-p ≈ 0, mostra que o modelo é significativo: valor-p pequeno leva a rejeitar a hipótese de que o coeficiente de X seja zero. Os graus de liberdade do total são n − 1 = 9, logo n = 10 pares. A única alternativa compatível com tudo isso é a E.",
+   "alternativas": {
+    "A": "Errada: o modelo tem constante, 27,125, e o valor-p ≈ 0 indica que ele é significativo, e não o contrário.",
+    "B": "Errada: 268,33 é a razão F do teste de significância; o coeficiente de determinação é 1586,69/1634,0 ≈ 97,10%.",
+    "C": "Errada: os graus de liberdade do total são n − 1 = 9, logo foram usados n = 10 pares, e não 9.",
+    "D": "Errada: valor-p ≈ 0 leva a rejeitar a hipótese de constante nula; a constante é estatisticamente significativa.",
+    "E": "Correta: Y = 27,125 + 1,65972X, e R² = 1586,69/1634,0 ≈ 97,10% da variação explicada."
+   }
+  },
+  {
+   "id": "tec_2775133",
+   "contentHash": "df612f7e493ac996afe1541fde70076dfdc2f413b9e564639e129e504752af42",
+   "gabarito": "E",
+   "comentario": "Na regressão linear múltipla, a estatística F do teste global compara a variação explicada pelo modelo com a variação residual. Os graus de liberdade do numerador são o número de variáveis explicativas, k = 3. Os do denominador são o tamanho da amostra menos o número de parâmetros estimados (as 3 inclinações e a constante): n − (k + 1) = 21 − 4 = 17, como aparece na linha Residual do quadro. Logo, a estatística F tem 3 e 17 graus de liberdade.",
+   "alternativas": {
+    "A": "Errada: A equação omite o termo de intercepto estimado (-39,9197) presente no modelo completo com termo constante.",
+    "B": "Errada: Um valor-p elevado indica ausência de significância estatística do regressor, e não maior relevância prática.",
+    "C": "Errada: valor-p ≈ 0 leva a rejeitar a hipótese de que todos os coeficientes sejam zero; o modelo é significativo, e não o contrário.",
+    "D": "Errada: A proporção de variância explicada informada no quadro atinge 91,3577%, e não o valor residual complementar.",
+    "E": "Correta: com n = 21 observações e k = 3 variáveis explicativas, os graus de liberdade da estatística F são k = 3 e n − (k + 1) = 17."
+   }
+  }
+ ],
+ "descartes": [
+  {
+   "id": "tec_2018429",
+   "motivo": "QUALIDADE: gabarito duvidoso: o teste de Durbin-Watson avalia a autocorrelação dos resíduos, e não a correlação entre Y e X; com DW = 1,17 e valor-p 0,0102 < 0,05, rejeita-se a hipótese de resíduos não autocorrelacionados, o que torna correta a letra A, e não a D."
+  }
+ ]
+}

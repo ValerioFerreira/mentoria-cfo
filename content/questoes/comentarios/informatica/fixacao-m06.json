@@ -1,0 +1,245 @@
+{
+ "lote": "informatica/fixacao-m06",
+ "origem": "content/material/informatica/m06/fixacao.json",
+ "autor": "fixacao",
+ "data": "2026-11-16",
+ "revisao": "opus-revisao01 2026-11-16",
+ "comentarios": [
+  {
+   "id": "tec_4045955",
+   "contentHash": "41284908c9cbc91277cda0b0e8e828cca76a2c42689c3d1ab3c54332fec14ab6",
+   "gabarito": "D",
+   "comentario": "A questão aborda a aplicação da função mais elementar do Microsoft Excel para a totalização contínua de valores numéricos em intervalos verticais. Para calcular automaticamente o montante das despesas dispostas entre as células A1 e A5 e registrar o total na célula A6, a sintaxe padrão exige o comando de soma contínua expresso como =SOMA(A1:A5). O caractere de dois-pontos estabelece um intervalo contínuo englobando todas as células desde a coordenada inicial até o limite final, somando os respectivos conteúdos de forma agregada e dinâmica.",
+   "alternativas": {
+    "A": "Errada: A função MÉDIA divide o total pela quantidade de itens em vez de somar.",
+    "B": "Errada: CONT.NÚM apenas quantifica quantas células possuem dados numéricos gravados.",
+    "C": "Errada: A adição direta A1+A5 soma apenas as duas extremidades, ignorando o miolo.",
+    "D": "Correta: A função SOMA(A1:A5) totaliza todas as células contíguas de A1 até A5.",
+    "E": "Errada: A função MULT realiza a multiplicação sucessiva dos termos em vez da soma."
+   }
+  },
+  {
+   "id": "tec_4162283",
+   "contentHash": "7a30d698a08712655675901a160ff2413d1e844e404b24549e7cede025ba5408",
+   "gabarito": "A",
+   "comentario": "O examinador avalia o conhecimento dos operadores de referência sintática fundamentais do Microsoft Excel. Na linguagem de fórmulas do aplicativo, a definição de intervalos contínuos de células requer compulsoriamente a utilização do caractere de dois-pontos (:). Ao digitar um underline entre as coordenadas (B2_B8), o interpretador sintático não reconhece a referência como um intervalo espacial válido e falha na execução do cálculo, sendo indispensável retificar a fórmula para =SOMA(B2:B8).",
+   "alternativas": {
+    "A": "Correta: Intervalos contínuos exigem o caractere dois-pontos no lugar do sublinhado.",
+    "B": "Errada: A função clássica SOMA permanece como padrão universal no Excel 365.",
+    "C": "Errada: Símbolos gregos não fazem parte da sintaxe de digitação de fórmulas.",
+    "D": "Errada: O Excel é insensível ao uso de caracteres maiúsculos ou minúsculos em fórmulas."
+   }
+  },
+  {
+   "id": "tec_3301832",
+   "contentHash": "81dd9eab2352655d90a27ba507177b028c15dc43180a89496f52283aaf0967d9",
+   "gabarito": "C",
+   "comentario": "Em planilhas de gestão de despesas e custos operacionais, a consolidação de parcelas em uma coluna contínua de registros é realizada pela função nativa SOMA. Para acumular todas as despesas listadas na coluna B desde a linha 2 até a linha 10, a regra de sintaxe determina o emprego da fórmula =SOMA(B2:B10). Funções como SOMAR, TOTAL ou ADICIONAR não existem no vocabulário nativo de comandos em língua portuguesa do software, resultando no erro #NOME? se digitadas.",
+   "alternativas": {
+    "A": "Errada: Indicar apenas as referências sem uma função matemática não totaliza valores.",
+    "B": "Errada: O nome do comando nativo no software é SOMA e não o verbo somar.",
+    "C": "Correta: A fórmula =SOMA(B2:B10) calcula a soma aritmética contínua do intervalo indicado.",
+    "D": "Errada: A palavra TOTAL não é reconhecida como comando de cálculo no aplicativo.",
+    "E": "Errada: O termo ADICIONAR não constitui função válida nas planilhas do Microsoft Excel."
+   }
+  },
+  {
+   "id": "tec_2254172",
+   "contentHash": "4e83631ea84ec52d6681ae2b0c450046d12166387369738ab4c10e5b31ecc24b",
+   "gabarito": "C",
+   "comentario": "A questão cobra a ordem de precedência matemática que rege as operações aritméticas no Microsoft Excel. Na ausência de parênteses delimitadores, as multiplicações e divisões possuem prioridade hierárquica absoluta sobre adições e subtrações, sendo calculadas sequencialmente da esquerda para a direita. Na expressão =3+2*4/2, primeiro resolve-se a multiplicação 2*4 (resultando em 8), em seguida executa-se a divisão 8/2 (resultando em 4) e, finalmente, soma-se 3+4, culminando no valor final 7.",
+   "alternativas": {
+    "A": "Errada: O cálculo das operações com números positivos não resulta em anulação nula.",
+    "B": "Errada: Somar primeiro a adição 3+2 violaria a precedência obrigatória de cálculo.",
+    "C": "Correta: Resolvendo multiplicação e divisão antes da adição chegamos exatamente ao resultado sete.",
+    "D": "Errada: O valor 10 decorre de equívoco no sequenciamento dos operadores matemáticos.",
+    "E": "Errada: O número 22 ignora totalmente as regras de hierarquia aritmética do software."
+   }
+  },
+  {
+   "id": "tec_1900924",
+   "contentHash": "82b040f72b10c8f1061ba09de8a9abbbc1c4fdc8c6538808f1a5f16de7fd56c7",
+   "gabarito": "D",
+   "comentario": "A questão pede o valor de A3 que faz a fórmula resultar em 5. Dois pontos resolvem: o cifrão e a ordem das operações. O cifrão em A$3 só trava a linha quando a fórmula é copiada; o valor lido continua sendo o de A3. Quanto à ordem, o Excel calcula primeiro a potência (o operador ^), depois multiplicação e divisão, e por último soma e subtração. Assim, 3^3 vale 3³ = 27 e 10/5 vale 2. Chamando A3 de x, a fórmula vira 27x − 10x + 2 − 10x − 6x. Juntando os termos com x: 27 − 10 − 10 − 6 = 1, e sobra x + 2. Para o resultado ser 5, x + 2 = 5, logo x = 3. Conferindo: 27 × 3 − 30 + 2 − 30 − 18 = 81 − 78 + 2 = 5.",
+   "alternativas": {
+    "A": "Errada: Se A3 contivesse o valor 0 a equação resultaria apenas no termo independente 2.",
+    "B": "Errada: Com o valor 1 em A3 o resultado final da fórmula seria igual a 3.",
+    "C": "Errada: Com o valor 2 em A3 a resolução da expressão culminaria no valor 4.",
+    "D": "Correta: Substituindo A3 por 3 temos 1*3 + 2, resultando no valor exato de 5.",
+    "E": "Errada: Atribuir 5 à célula A3 produziria como resultado da fórmula o valor 7."
+   }
+  },
+  {
+   "id": "tec_616376",
+   "contentHash": "29fab0a7399525930a37e484d09d92c5aa57351db0b031fc51a0040ff0365db4",
+   "gabarito": "A",
+   "comentario": "A função PROCV (Pesquisa Vertical) constitui uma das ferramentas de consulta mais clássicas do ambiente Microsoft Excel. O seu mecanismo operacional impõe uma limitação arquitetural estrita: o valor de pesquisa informado no primeiro argumento deve situar-se obrigatoriamente na primeira coluna localizada à esquerda da tabela de dados selecionada. Uma vez localizado o valor correspondente nessa coluna inicial, a função percorre a mesma linha e resgata a informação da coluna cujo número de índice foi especificado.",
+   "alternativas": {
+    "A": "Correta: PROCV busca obrigatoriamente na primeira coluna à esquerda do intervalo delimitado.",
+    "B": "Errada: Buscar em linhas é atribuição da função PROCH e não do comando PROCV.",
+    "C": "Errada: A função não inicia a sua varredura pela última coluna do intervalo.",
+    "D": "Errada: A pesquisa vertical percorre colunas e não a última linha da matriz.",
+    "E": "Errada: A sintaxe tradicional do PROCV veda buscas estruturadas da direita para a esquerda."
+   }
+  },
+  {
+   "id": "tec_4014288",
+   "contentHash": "00cb9db712d2f5dc665745a74aaa66bf7eb707873d3d76ecc202b3a29e14a6b2",
+   "gabarito": "A",
+   "comentario": "Em tarefas de higienização de dados oriundos de exportações de sistemas legados ou arquivos de texto puro, é comum que palavras cheguem com espaçamentos desnecessários no início, no fim ou no meio das frases. A função ARRUMAR do Microsoft Excel foi desenvolvida especificamente para resolver esse problema. Ela remove todos os espaços em branco excedentes de uma cadeia de texto, preservando rigorosamente apenas os espaços simples convencionais entre as palavras para manter a legibilidade.",
+   "alternativas": {
+    "A": "Correta: ARRUMAR expurga espaços excedentes mantendo apenas espaços simples entre termos.",
+    "B": "Errada: CARACT retorna o caractere associado ao código numérico correspondente.",
+    "C": "Errada: CONCAT agrupa diversas cadeias textuais sem remover espaços internos.",
+    "D": "Errada: DIVIDIRTEXTO segmenta uma frase em várias células com base em delimitadores.",
+    "E": "Errada: UNICODE devolve o número inteiro correspondente ao primeiro caractere do texto."
+   }
+  },
+  {
+   "id": "tec_3558723",
+   "contentHash": "eaa8f4d905d73a405c136f1166458131c5f493b614c7161c0f97b00a27f49608",
+   "gabarito": "B",
+   "comentario": "A questão pede a descrição da função LUCRO do Excel 365, uma função financeira. LUCRO retorna o rendimento (a taxa de retorno anual) de um título que paga juros periódicos, como os títulos com cupom semestral. Seus argumentos principais são a data de liquidação, o vencimento, a taxa do cupom, o preço do título, o valor de resgate e a frequência dos pagamentos. As outras descrições pertencem a funções diferentes, que a questão coloca como distratores. Remover espaços sobrando é o papel de ARRUMAR. Juntar uma lista ou intervalo de textos é o papel de CONCAT. O rendimento anual de um título com deságio, como uma letra do tesouro, é calculado por LUCRODESC, que serve para títulos sem juros periódicos, vendidos abaixo do valor de face. O coeficiente de correlação entre dois conjuntos de dados é calculado por CORREL. Atenção ao nome: LUCRO aqui não tem nada a ver com receita menos despesa.",
+   "alternativas": {
+    "A": "Errada: remover espaços extras, deixando só um espaço entre as palavras, é a descrição da função ARRUMAR.",
+    "B": "Correta: LUCRO calcula o rendimento de um título que paga juros periódicos, a partir de preço, cupom, datas e valor de resgate.",
+    "C": "Errada: concatenar uma lista ou intervalo de textos é a descrição da função CONCAT.",
+    "D": "Errada: o rendimento anual de um título com deságio, sem juros periódicos, é calculado por LUCRODESC, e não por LUCRO.",
+    "E": "Errada: o coeficiente de correlação entre dois conjuntos de dados é calculado pela função CORREL, uma função estatística."
+   }
+  },
+  {
+   "id": "tec_4075086",
+   "contentHash": "b1ba7fb40ee8b43ad6e70e8344e31cea5c96e6695571251d5a4cb6be4a214a25",
+   "gabarito": "D",
+   "comentario": "A questão julga quatro afirmações sobre a função DATA do Excel 365, e todas são verdadeiras. Primeira: o Excel guarda cada data como um número de série, que conta os dias; por isso é possível subtrair duas datas e obter o número de dias entre elas. Segunda: no sistema de datas padrão do Windows, o número de série 1 corresponde a 01/01/1900, e cada dia seguinte soma 1. Terceira: DATA aceita mês fora do intervalo de 1 a 12 e faz o ajuste sozinha; =DATA(2025;14;1) devolve 01/02/2026, porque o mês 14 é o segundo mês do ano seguinte (o mesmo vale para dias além do fim do mês). Quarta: a ordem dos argumentos é =DATA(ano;mês;dia), separados por ponto e vírgula na versão em português. A sequência é V, V, V, V.",
+   "alternativas": {
+    "A": "Errada: marca como falsa a segunda afirmação, mas o número de série 1 é mesmo 01/01/1900 no sistema de datas padrão.",
+    "B": "Errada: nega que as datas sejam números de série e que o número 1 seja 01/01/1900; as duas afirmações são verdadeiras.",
+    "C": "Errada: marca como falsa a terceira afirmação, mas DATA ajusta meses acima de 12 para o ano seguinte.",
+    "D": "Correta: V, V, V, V. Datas são números de série, o 1 é 01/01/1900, meses excedentes passam para o ano seguinte e a ordem é ano, mês, dia.",
+    "E": "Errada: marca como falsas três afirmações verdadeiras, inclusive a ordem ano; mês; dia dos argumentos."
+   }
+  },
+  {
+   "id": "tec_4022822",
+   "contentHash": "3c7bbdc60e06d6cb5a5342bb14d869bdef050c7837e61ca5c686ac7d00bf22c0",
+   "gabarito": "B",
+   "comentario": "A questão pede o recurso que resume milhares de registros de forma interativa, agrupando o total de toneladas por Tipo de Carga e filtrando por Navio, sem fórmulas manuais. Esse recurso é a Tabela Dinâmica (guia Inserir > Tabela Dinâmica). Ela lê a base de dados e monta um resumo em que o usuário arrasta os campos para quatro áreas: Linhas (por exemplo, Tipo de Carga), Colunas, Valores (Toneladas, com a operação Soma) e Filtros (Navio). Mudar o agrupamento ou o filtro é questão de arrastar ou marcar um campo, sem redigitar nada, e o relatório é atualizado quando novos registros entram na base. Os demais recursos têm outra finalidade: Validação de Dados limita o que pode ser digitado, Atingir Meta descobre o valor de entrada que leva a um resultado desejado, Mala Direta é do Word e Operações Múltiplas é recurso do LibreOffice Calc.",
+   "alternativas": {
+    "A": "Errada: Validação de Dados restringe o que pode ser digitado numa célula (lista suspensa, faixa de valores); não resume dados.",
+    "B": "Correta: a Tabela Dinâmica agrupa, soma e filtra grandes bases de forma interativa, arrastando campos para Linhas, Valores e Filtros.",
+    "C": "Errada: Atingir Meta (em Teste de Hipóteses) calcula qual valor de entrada produz um resultado desejado numa fórmula; não monta relatórios.",
+    "D": "Errada: Mala Direta é recurso do Word para gerar cartas ou etiquetas personalizadas a partir de uma lista de dados.",
+    "E": "Errada: Operações Múltiplas é recurso do LibreOffice Calc para montar tabelas de hipóteses; não agrupa nem resume registros."
+   }
+  },
+  {
+   "id": "tec_509931",
+   "contentHash": "34ac2edf1e86379eaec1cad51047b21aa96e4439bd141a92c0334cc31ce33484",
+   "gabarito": "C",
+   "comentario": "A questão pede o item que NÃO aparece no campo Classificar em, da janela Classificar (guia Dados > Classificar) do Excel 2010. Nessa janela, cada nível de classificação tem três escolhas: a coluna, o critério (Classificar em) e a ordem. O campo Classificar em oferece quatro critérios: Valores (ordena pelo conteúdo, de A a Z, do menor para o maior ou por data), Cor da Célula, Cor da Fonte e Ícone de Célula (os ícones da formatação condicional). Nos três últimos casos, o usuário escolhe qual cor ou ícone vai para o início ou para o fim da lista. Tipo de dado não é critério de classificação: o Excel não oferece a opção de agrupar células por serem número, texto ou data. Por isso a resposta é a alternativa C.",
+   "alternativas": {
+    "A": "Errada: Valores é a opção padrão do campo Classificar em; ordena pelo conteúdo das células.",
+    "B": "Errada: Cor da Célula existe no campo Classificar em e leva a cor escolhida para o topo ou para o fim.",
+    "C": "Correta: Tipo de dado não é opção do campo Classificar em; os critérios são valores, cor da célula, cor da fonte e ícone.",
+    "D": "Errada: Cor da Fonte é um dos critérios do campo Classificar em, útil quando a fonte foi colorida por formatação condicional.",
+    "E": "Errada: Ícone de Célula existe no campo Classificar em e ordena pelos ícones da formatação condicional."
+   }
+  },
+  {
+   "id": "tec_1400009",
+   "contentHash": "aa72446e634559c87c3fa5ad84772aca5172e9fa932fc6ebd682ee27feaf5c4a",
+   "gabarito": "C",
+   "comentario": "A questão pede a alternativa que NÃO descreve corretamente um tipo de gráfico do Excel 2010. A incorreta é a C: o gráfico de barras, com retângulos horizontais, serve para comparar valores entre categorias, sobretudo quando os rótulos são longos. Para mostrar tendências ao longo do tempo, o tipo indicado é o gráfico de linhas, que liga os pontos de cada período e deixa visível a subida ou a queda. As demais descrições estão certas. O gráfico de colunas, com retângulos verticais, compara valores entre categorias. O de pizza mostra quanto cada parte representa do total, por isso usa uma única série de dados. O de dispersão relaciona pares de valores numéricos (x, y). O de bolhas é um gráfico de dispersão com um terceiro valor, representado pelo tamanho de cada bolha.",
+   "alternativas": {
+    "A": "Errada: a descrição é verdadeira; o gráfico de colunas compara valores de várias categorias com retângulos verticais.",
+    "B": "Errada: a descrição é verdadeira; a pizza mostra a parte de cada valor em relação ao total de uma série.",
+    "C": "Correta: a descrição é falsa; barras comparam categorias, e tendência ao longo do tempo é papel do gráfico de linhas.",
+    "D": "Errada: a descrição é verdadeira; o gráfico de dispersão compara pares de valores numéricos, um no eixo x e outro no eixo y.",
+    "E": "Errada: a descrição é verdadeira; o gráfico de bolhas compara três valores, sendo o terceiro mostrado pelo tamanho da bolha."
+   }
+  },
+  {
+   "id": "tec_2608825",
+   "contentHash": "79798e2d4482deb6a8bc8e15093ad635156798baf4813ba9d8e807240a744552",
+   "gabarito": "C",
+   "comentario": "A inicialização em modo de segurança do Microsoft Excel é um procedimento de resolução de problemas e diagnóstico técnico adotado quando o aplicativo apresenta instabilidades, travamentos recorrentes ou falhas provocadas por suplementos e macros corrompidos. Para iniciar o Excel em modo de segurança, o usuário deve manter pressionada a tecla Ctrl no teclado enquanto clica sobre o atalho do programa no menu Iniciar ou na Área de Trabalho, confirmando o diálogo seguinte.",
+   "alternativas": {
+    "A": "Errada: As propriedades do atalho comum no Windows não possuem caixa para modo seguro.",
+    "B": "Errada: O parâmetro de linha de comando correto no Prompt é /safe e não /safemode.",
+    "C": "Correta: Manter pressionada a tecla Ctrl ao clicar no ícone do aplicativo dispara o modo de segurança.",
+    "D": "Errada: Manter pressionada a tecla Shift abre o menu de contexto especial e não o modo seguro.",
+    "E": "Errada: O Painel de Controle não dispõe de assistente com essa opção de menu automático."
+   }
+  },
+  {
+   "id": "tec_1932364",
+   "contentHash": "4a535c8909365fe2f4fb1fb29e30856c52b7f533388071a3ea92bc811a042dcd",
+   "gabarito": "E",
+   "comentario": "Em matemática financeira aplicada a investimentos e financiamentos sob juros compostos, a apuração da quantidade de períodos necessários para liquidar uma obrigação ou alcançar determinada meta patrimonial requer a função NPER. A função NPER (Número de Períodos) recebe como argumentos a taxa periódica, o pagamento constante uniforme, o valor presente e o saldo residual pretendido, retornando a quantidade total de prazos da operação contratual.",
+   "alternativas": {
+    "A": "Errada: PERIN não é a função que retorna o número de períodos de um investimento; essa tarefa é da função NPER.",
+    "B": "Errada: SEERRO é uma função de tratamento lógico de exceções e não de finanças.",
+    "C": "Errada: DPD calcula a depreciação linear de um ativo imobilizado por período contábil.",
+    "D": "Errada: JUROSACUM calcula juros acumulados de títulos com pagamentos periódicos de cupom.",
+    "E": "Correta: A função NPER retorna o número total de períodos da transação de anuidade uniforme."
+   }
+  },
+  {
+   "id": "tec_1125601",
+   "contentHash": "90fd26eb5af23c8f2754964a59a21aa3931999edba5bc88ad0cacd0333e61fb7",
+   "gabarito": "A",
+   "comentario": "A caixa de diálogo Formatar Células é a janela mais completa de formatação do Microsoft Excel: nela se configuram formato de número, alinhamento, fonte, borda, preenchimento e proteção da célula. O atalho que a abre diretamente é Ctrl + 1 (o número 1 da parte de cima do teclado). Pressionar essa combinação poupa cliques e funciona em qualquer guia que esteja ativa. Os demais atalhos existem, mas fazem outra coisa: um alterna a exibição de fórmulas, outro cria nomes e outro aplica formato de hora.",
+   "alternativas": {
+    "A": "Correta: A combinação de teclas Ctrl + 1 abre diretamente a janela Formatar Células.",
+    "B": "Errada: O atalho Ctrl + Til alterna o modo de exibição entre valores e fórmulas na grade.",
+    "C": "Errada: Ctrl + Shift + F3 cria nomes automáticos de intervalos a partir de rótulos.",
+    "D": "Errada: A combinação Ctrl + Shift + @ aplica a formatação de hora na célula selecionada."
+   }
+  }
+ ],
+ "descartes": [],
+ "revisaoNotas": [
+  {
+   "id": "tec_3558723",
+   "problema": "TROCADO",
+   "detalhe": "O comentário tratava da função SE e de CONT.SE; a questão pede a descrição da função financeira LUCRO."
+  },
+  {
+   "id": "tec_4075086",
+   "problema": "TROCADO",
+   "detalhe": "O comentário tratava da função SEERRO; a questão julga afirmações sobre a função DATA (todas verdadeiras)."
+  },
+  {
+   "id": "tec_4022822",
+   "problema": "TROCADO",
+   "detalhe": "O comentário tratava de Autofiltro; a questão pede a Tabela Dinâmica."
+  },
+  {
+   "id": "tec_509931",
+   "problema": "TROCADO",
+   "detalhe": "O comentário tratava de tipos de gráfico; a questão pede o item ausente do campo Classificar em (Tipo de dado)."
+  },
+  {
+   "id": "tec_1400009",
+   "problema": "TROCADO",
+   "detalhe": "O comentário tratava de Formatação Condicional; a questão pede a descrição incorreta de tipo de gráfico (barras para tendência no tempo)."
+  },
+  {
+   "id": "tec_1900924",
+   "problema": "AJUSTE",
+   "detalhe": "Explicada a ordem de cálculo (potência antes de multiplicação) e o papel do cifrão em A$3, com conferência da conta."
+  },
+  {
+   "id": "tec_1932364",
+   "problema": "AJUSTE",
+   "detalhe": "A nota A atribuía a PERIN o cálculo dos juros de um período, função que não confere com o Excel; nota reescrita sem a afirmação."
+  },
+  {
+   "id": "tec_1125601",
+   "problema": "AJUSTE",
+   "detalhe": "O comentário mencionava provas de concurso público; frase retirada."
+  }
+ ]
+}

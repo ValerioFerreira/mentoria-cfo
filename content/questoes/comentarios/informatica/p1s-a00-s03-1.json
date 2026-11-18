@@ -1,0 +1,21 @@
+{
+ "lote": "informatica/p1s-a00-s03-1",
+ "trecho": "informatica/a00/s03",
+ "autor": "opus-onda01-E",
+ "data": "2026-11-16",
+ "comentarios": [
+  {
+   "id": "tec_1151382",
+   "contentHash": "ca3986d0f24b88e85ebc4924828761631eb61b254b5952f423b2234bc03de8cc",
+   "gabarito": "B",
+   "comentario": "A lacuna pede um serviço que roda sobre o TCP e serve para copiar arquivos entre máquinas na internet: é o FTP (File Transfer Protocol, protocolo de transferência de arquivos). O FTP usa duas conexões TCP: a porta 21 para os comandos (login, listar pastas, mudar de diretório) e a porta 20, no modo ativo, para os dados, isto é, o arquivo em si. Permite download e upload. O TCP é usado porque garante que o arquivo chegue completo, sem perdas e na ordem certa. Os outros protocolos das alternativas usam o UDP, mais leve e sem garantia de entrega: o NTP sincroniza relógios (porta 123), o DHCP distribui endereços IP automaticamente (portas 67 e 68) e o FSP é um protocolo de transferência de arquivos pouco usado que também roda sobre UDP. Versões seguras do FTP: o FTPS (FTP com TLS) e o SFTP, que transfere arquivos pelo SSH, na porta 22.",
+   "alternativas": {
+    "A": "Errada: o NTP (Network Time Protocol) sincroniza os relógios dos computadores pela rede e usa o UDP, porta 123. Não copia arquivos.",
+    "B": "Correta: o FTP transfere arquivos entre máquinas e roda sobre o TCP, com a porta 21 para controle e a porta 20 para dados no modo ativo.",
+    "C": "Errada: o DHCP atribui automaticamente endereço IP, máscara, gateway e DNS às máquinas da rede. Usa o UDP, portas 67 e 68.",
+    "D": "Errada: o FSP (File Service Protocol) até transfere arquivos, mas roda sobre o UDP, e não sobre o TCP, como pede o enunciado."
+   }
+  }
+ ],
+ "descartes": []
+}

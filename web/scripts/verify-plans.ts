@@ -104,7 +104,9 @@ async function main() {
         excludedAulas: [],
       };
     const weekIndex = new Map(p.weeks.map((w) => [w.id, w.index]));
-    const activities: VerifyActivity[] = (activitiesByPlan.get(p.id) ?? []).map((a) => ({
+    // atividade dispensada pelo aluno na reprogramação (SKIPPED com rescheduledAt) saiu do plano: não entra na conferência
+    const removed = (activitiesByPlan.get(p.id) ?? []).filter((a) => a.status === "SKIPPED" && a.rescheduledAt).map((a) => ({ key: a.key, aulaId: a.aulaId }));
+    const activities: VerifyActivity[] = (activitiesByPlan.get(p.id) ?? []).filter((a) => !(a.status === "SKIPPED" && a.rescheduledAt)).map((a) => ({
       key: a.key,
       type: a.type,
       subjectId: a.subjectId,
@@ -118,6 +120,7 @@ async function main() {
       refKeys: a.refs.map((r) => r.refActivity.key),
       quizQuestions: a.quizQuestions,
       hasFixRanges: Array.isArray(a.fixRanges) ? a.fixRanges.length > 0 : a.fixRanges != null,
+      rescheduled: a.rescheduledAt != null,
     }));
     const vp: VerifyPlan = {
       id: p.id,
@@ -129,6 +132,7 @@ async function main() {
       contest: p.contest,
       weeks: p.weeks.map((w) => ({ index: w.index, startDate: ymd(w.startDate), targetMinutes: w.targetMinutes })),
       activities,
+      removed,
     };
     const report = verifyPlan(vp, { catalog, segments, importance: await importanceOf(contest, request.combo?.priority), summaries });
     if (rebuilt) report.warnings.unshift({ code: "SOLICITACAO_RECONSTRUIDA", message: "plano antigo, sem a solicitação original gravada: pedido reconstruído a partir das disciplinas, níveis e anamnese (assuntos desmarcados não são conhecidos)" });

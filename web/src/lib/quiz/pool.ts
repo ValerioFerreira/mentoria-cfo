@@ -63,3 +63,13 @@ export async function loadQuizPool(a: QuizPoolActivity, contest: Contest | null)
   const reinforcement = await db.question.findMany({ where: reinforcementQuizWhere([...own, ...prior], servableStatuses()), select });
   return { primary, extra, reinforcement };
 }
+
+/** Entre `ids`, os que já têm comentário geral (o sorteio do caderno prefere essas). */
+export async function commentedAmong(ids: string[]): Promise<Set<string>> {
+  const out = new Set<string>();
+  for (let i = 0; i < ids.length; i += 2000) {
+    const rows = await db.question.findMany({ where: { id: { in: ids.slice(i, i + 2000) }, NOT: { explanation: "" } }, select: { id: true } });
+    for (const r of rows) out.add(r.id);
+  }
+  return out;
+}

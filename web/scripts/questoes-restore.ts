@@ -122,7 +122,7 @@ async function main() {
       curOpts.set(o.questionId as string, [...(curOpts.get(o.questionId as string) ?? []), o]);
     }
     const optKey = (os: Row[] | undefined) =>
-      JSON.stringify((os ?? []).map((o) => [o.label, o.text, o.isCorrect]).sort((a, b) => String(a[0]).localeCompare(String(b[0]))));
+      JSON.stringify((os ?? []).map((o) => [o.label, o.text, o.isCorrect, o.comment ?? null]).sort((a, b) => String(a[0]).localeCompare(String(b[0]))));
 
     for (const raw of bq) {
       const id = raw.id as string;
@@ -146,7 +146,7 @@ async function main() {
         if (optsDiffer) {
           await tx.questionOption.deleteMany({ where: { questionId: id } });
           await tx.questionOption.createMany({
-            data: (optsBy.get(id) ?? []).map((o) => ({ id: o.id as string, questionId: id, label: o.label as string, text: o.text as string, isCorrect: o.isCorrect as boolean })),
+            data: (optsBy.get(id) ?? []).map((o) => ({ id: o.id as string, questionId: id, label: o.label as string, text: o.text as string, isCorrect: o.isCorrect as boolean, comment: (o.comment as string | null | undefined) ?? null })),
           });
         }
       });

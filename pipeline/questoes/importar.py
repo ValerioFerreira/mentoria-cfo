@@ -405,6 +405,13 @@ def main() -> None:
         for sha in {origem[k] for k in ids if k in origem}:
             store.manifest["cadernos"][sha][target] = stamp
         store.save()
+        if target == "local":
+            # comentários versionados (content/questoes/comentarios): regrava no banco local os que conferem com a questão
+            # (questão nova ou reimportada). No remoto é manual: npx tsx scripts/questoes-comentarios.ts --remoto --aplicar
+            proc = subprocess.run(["npx", "tsx", "scripts/questoes-comentarios.ts", "--aplicar"], cwd=WEB, capture_output=True,
+                                  text=True, encoding="utf-8", shell=sys.platform == "win32")
+            last = [ln for ln in proc.stdout.strip().splitlines() if ln.startswith("{")]
+            print(f"local: comentários {last[-1] if last else proc.stderr.strip()[-400:]}", flush=True)
 
     # 5. relatório
     rel_dir = folder / "relatorios"

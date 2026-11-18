@@ -1,0 +1,232 @@
+{
+ "lote": "estatistica/fixacao-m06",
+ "origem": "content/material/estatistica/m06/fixacao.json",
+ "autor": "fixacao",
+ "data": "2026-11-17",
+ "revisao": "opus-revisao06 2026-11-17",
+ "revisaoNotas": [
+  {
+   "id": "tec_4022813",
+   "problema": "AJUSTE",
+   "detalhe": "A frase de conferência era vaga; agora mostra a contagem de 0, 1, 2 e 3 nacionais (20 + 60 + 36 + 4 = 120)."
+  },
+  {
+   "id": "tec_3571037",
+   "problema": "AJUSTE",
+   "detalhe": "Notas A, B, D e E eram vagas (\"fator indevido\", \"chance de 2/3\"); agora usam a contagem de 60 equipes e 5 favoráveis."
+  },
+  {
+   "id": "tec_3839566",
+   "problema": "ERRO",
+   "detalhe": "Nota A dizia que 10% eram os que falam os dois idiomas (são 10 em 50 = 20%); nota D dizia que 40% eram os que falam pelo menos um (são 80%); 40% é a fração dos que falam só inglês."
+  },
+  {
+   "id": "tec_3841203",
+   "problema": "AJUSTE",
+   "detalhe": "Nota B passou a mostrar que só a chance de dois pretos (≈ 42,4%) cai entre 40% e 50%, o erro de esquecer os coloridos."
+  },
+  {
+   "id": "tec_3631614",
+   "problema": "AJUSTE",
+   "detalhe": "Nota B falava de um denominador de 300 que não existe no problema."
+  }
+ ],
+ "comentarios": [
+  {
+   "id": "tec_4022813",
+   "contentHash": "388c973231240bd7ad3a8b0ca45ed536dc900c40fdd55c54058a80f01741e527",
+   "gabarito": "E",
+   "comentario": "As 3 caixas são retiradas de uma só vez, de modo que a ordem não importa e se usam combinações. O total de maneiras de escolher 3 entre 10 caixas é C(10, 3) = 120. Para ter exatamente 2 nacionais e 1 importada, há C(4, 2) · C(6, 1) = 6 · 6 = 36 maneiras. A probabilidade é 36/120 = 0,30, ou 30%. Conferência: com 0 nacionais há C(6, 3) = 20 maneiras, com 1 nacional 4 · 15 = 60, com 2 nacionais 36 e com 3 nacionais 4; a soma 20 + 60 + 36 + 4 dá 120, o total de escolhas.",
+   "alternativas": {
+    "A": "Errada: 20% corresponderia a 24 casos favoráveis em 120, e a contagem correta dá 36.",
+    "B": "Errada: 40% corresponderia a 48 casos favoráveis, número que não decorre da contagem.",
+    "C": "Errada: 25% corresponderia a 30 casos favoráveis, e o correto são 36.",
+    "D": "Errada: 35% corresponderia a 42 casos favoráveis, e o correto são 36.",
+    "E": "Correta: C(4, 2) · C(6, 1) = 36 casos favoráveis em C(10, 3) = 120, isto é, 30%."
+   }
+  },
+  {
+   "id": "tec_1116687",
+   "contentHash": "b778b919c0ca47d812ebd8c521efaa88be7ecbf4c9472fac860dd2b12074afc3",
+   "gabarito": "B",
+   "comentario": "Quatro alunos serão divididos em dois pares. O número de maneiras de formar os pares é 3: {Joana e Guilherme, Paulo e Cristina}, {Joana e Paulo, Guilherme e Cristina} e {Joana e Cristina, Guilherme e Paulo}. Só em uma delas Joana e Cristina se enfrentam. A probabilidade é 1/3, ou cerca de 33,3%. Outro raciocínio equivale: o par de Joana é sorteado entre os outros 3 alunos, e Cristina é um deles.",
+   "alternativas": {
+    "A": "Errada: 50% supõe duas formas de dividir os pares, mas são três.",
+    "B": "Correta: Há 3 maneiras de formar os pares, e em uma delas Joana e Cristina se enfrentam: 1/3, ou 33,3%.",
+    "C": "Errada: 25% supõe quatro divisões possíveis, e são apenas três.",
+    "D": "Errada: 16% não corresponde a nenhuma contagem razoável dos pares.",
+    "E": "Errada: 12,5% seria 1/8 e não corresponde ao sorteio de pares."
+   }
+  },
+  {
+   "id": "tec_3571037",
+   "contentHash": "5250301643fd12917486995a233144aa9bd1a3a3d06daad930093fc309f658d4",
+   "gabarito": "C",
+   "comentario": "A equipe tem 1 comandante e 2 soldados. Para a comandante Karina estar na equipe, a probabilidade é 1/4, pois há 4 comandantes e um é escolhido. Para a soldado Karolina estar entre os 2 soldados escolhidos entre 6, a probabilidade é C(5, 1)/C(6, 2) = 5/15 = 1/3: ela ocupa uma vaga e a outra fica com um dos 5 soldados restantes. Como as escolhas são independentes, a probabilidade de estarem juntas é 1/4 · 1/3 = 1/12. Pela contagem direta: há 4 · C(6, 2) = 4 · 15 = 60 equipes possíveis, e 5 delas têm Karina e Karolina; 5/60 = 1/12.",
+   "alternativas": {
+    "A": "Errada: 1/60 é a chance de uma equipe específica, como Karina, Karolina e um soldado determinado; com Karina e Karolina há 5 equipes possíveis, e 5/60 = 1/12.",
+    "B": "Errada: 1/30 equivale a 2 equipes favoráveis em 60; na verdade são 5, pois o segundo soldado pode ser qualquer um dos outros 5.",
+    "C": "Correta: A probabilidade de Karina ser escolhida é 1/4, a de Karolina é 1/3, e o produto é 1/12.",
+    "D": "Errada: 1/6 seria a chance de Karolina se houvesse só uma vaga de soldado; com duas vagas ela tem 2/6 = 1/3, e ainda falta multiplicar pelo 1/4 de Karina.",
+    "E": "Errada: 1/2 não decorre das chances: Karina tem 1/4, Karolina tem 1/3, e as duas precisam ocorrer juntas."
+   }
+  },
+  {
+   "id": "tec_3839566",
+   "contentHash": "dd93607c612061908b072c0c22794ce8fffb3fd628589ecd27f7815dd55e7fca",
+   "gabarito": "E",
+   "comentario": "Há 50 servidores: 30 falam inglês, 20 falam espanhol e 10 não falam nenhum. Então 40 falam pelo menos um idioma. Pela inclusão e exclusão, 30 + 20 − x = 40, e x = 10 falam os dois. Falam apenas um idioma 40 − 10 = 30 servidores: apenas inglês 20 e apenas espanhol 10. A probabilidade é 30/50 = 0,60, ou 60%.",
+   "alternativas": {
+    "A": "Errada: 10% não corresponde a nenhum grupo; os que falam os dois idiomas são 10 em 50, isto é, 20%.",
+    "B": "Errada: 12% não corresponde a nenhuma contagem de servidores do problema.",
+    "C": "Errada: 15% não decorre dos dados.",
+    "D": "Errada: 40% é só a fração dos que falam apenas inglês (20 em 50); falta somar os 10 que falam apenas espanhol.",
+    "E": "Correta: 30 servidores falam apenas um idioma em 50, isto é, 60%."
+   }
+  },
+  {
+   "id": "tec_3759040",
+   "contentHash": "2c74dad16f99d1099ad9434da44e054afb9d04610249fc9f867c5732ae986cd8",
+   "gabarito": "A",
+   "comentario": "Para eventos independentes, P(A ∩ B) = P(A) · P(B). A fórmula da união dá 0,75 = P(A) + 0,5 − P(A) · 0,5. Isolando, 0,75 = 0,5 · P(A) + 0,5, logo 0,5 · P(A) = 0,25 e P(A) = 0,5. Conferência: P(A ∩ B) = 0,25, e 0,5 + 0,5 − 0,25 = 0,75.",
+   "alternativas": {
+    "A": "Correta: Com independência, 0,75 = P(A) + 0,5 − 0,5 · P(A), e P(A) = 0,5.",
+    "B": "Errada: 0,4 daria união 0,4 + 0,5 − 0,2 = 0,7, e não 0,75.",
+    "C": "Errada: 0,25 daria união 0,25 + 0,5 − 0,125 = 0,625.",
+    "D": "Errada: 0,75 daria união 0,75 + 0,5 − 0,375 = 0,875.",
+    "E": "Errada: 0,3 daria união 0,3 + 0,5 − 0,15 = 0,65."
+   }
+  },
+  {
+   "id": "tec_3841203",
+   "contentHash": "d377f738e5c62e74699098866e42fb5ee820a8344fad58eb853ba2f4b3a7530d",
+   "gabarito": "A",
+   "comentario": "Os dois cartuchos têm a mesma cor se ambos forem pretos ou ambos coloridos. Sem reposição, P(dois pretos) = 8/12 · 7/11 = 56/132, e P(dois coloridos) = 4/12 · 3/11 = 12/132. Como os dois casos são excludentes, somam-se: 68/132 ≈ 0,515, ou 51,5%. O valor está entre 50% e 60%.",
+   "alternativas": {
+    "A": "Correta: 56/132 + 12/132 = 68/132, cerca de 51,5%, entre 50% e 60%.",
+    "B": "Errada: entre 40% e 50% está só a chance de dois pretos (56/132 ≈ 42,4%); falta somar a de dois coloridos (12/132).",
+    "C": "Errada: O valor 51,5% é maior que 40%.",
+    "D": "Errada: O valor 51,5% é muito maior que 30%.",
+    "E": "Errada: O valor 51,5% é muito maior que 20%."
+   }
+  },
+  {
+   "id": "tec_3839581",
+   "contentHash": "070385b226180ddd4aa6a9c7c13a1e97fd454fb4e2ff2b726b9f5a46fa76c748",
+   "gabarito": "D",
+   "comentario": "O evento \"pelo menos um processo de gestão de pessoal\" é o complementar de \"nenhum de gestão de pessoal\", isto é, os 3 processos são de compras. Há C(6, 3) = 20 maneiras de escolher 3 entre os 6 de compras, em um total de C(10, 3) = 120. A probabilidade de nenhum de pessoal é 20/120 = 1/6, e a de pelo menos um é 1 − 1/6 = 5/6.",
+   "alternativas": {
+    "A": "Errada: 1/6 é a probabilidade de nenhum processo de pessoal, o complementar do pedido.",
+    "B": "Errada: 2/6 não decorre da contagem dos casos.",
+    "C": "Errada: 3/6 não decorre da contagem dos casos.",
+    "D": "Correta: 1 − C(6, 3)/C(10, 3) = 1 − 1/6 = 5/6.",
+    "E": "Errada: 7/12 não corresponde ao complementar de 1/6."
+   }
+  },
+  {
+   "id": "tec_2900708",
+   "contentHash": "3c82725f42ac8a657b8ee5ca4f8916361bd7f4852316f7c22368b4e3e819476d",
+   "gabarito": "A",
+   "comentario": "A captura de cada procurado tem probabilidade 0,8, e a de não capturar é 0,2. Como a captura de um não altera as dos demais, os eventos são independentes. \"Ao menos um capturado\" é o complementar de \"nenhum capturado\", cuja probabilidade é 0,2³ = 0,008. Então a probabilidade pedida é 1 − 0,008 = 0,992, ou 99,2%.",
+   "alternativas": {
+    "A": "Correta: 1 − 0,2³ = 1 − 0,008 = 0,992, ou 99,2%.",
+    "B": "Errada: 96,4% não decorre do complementar de 0,2³.",
+    "C": "Errada: 93,6% é a probabilidade de acertar ao menos um com chance de 60% por tentativa, e não de 80%.",
+    "D": "Errada: 90,8% não decorre dos dados.",
+    "E": "Errada: 87,2% não decorre dos dados."
+   }
+  },
+  {
+   "id": "tec_3298419",
+   "contentHash": "5fc8f86a394462b8f236487357ec34a0c19e163cf8137c29798c9c0ec50b048d",
+   "gabarito": "C",
+   "comentario": "O sistema funciona se o primeiro dispositivo funciona ou, se ele falha, o segundo funciona. É um arranjo em paralelo: o sistema só falha se os dois falharem. A probabilidade de falhar de cada um é 0,15, e a de os dois falharem, 0,15² = 0,0225. A probabilidade de funcionar é 1 − 0,0225 = 0,9775, ou 97,75%.",
+   "alternativas": {
+    "A": "Errada: 170% é impossível, pois probabilidade não passa de 100%.",
+    "B": "Errada: 98,325% não decorre do complementar de 0,15 · 0,15.",
+    "C": "Correta: 1 − 0,15² = 0,9775, ou 97,75%.",
+    "D": "Errada: 92% não decorre dos dados.",
+    "E": "Errada: 85% é a chance de um dispositivo sozinho, sem o reforço do segundo."
+   }
+  },
+  {
+   "id": "tec_3625973",
+   "contentHash": "e2bd2a490a1e4eeabf3f0a312dc6c6371589d69000c15b00c6cd1e99c968a8f3",
+   "gabarito": "A",
+   "comentario": "A condição é \"não é do sexo masculino\", isto é, mulher. Se 40% são homens, 60% são mulheres. Nutricionistas são 20% do total, dos quais 5% são homens, logo 15% são mulheres nutricionistas. A probabilidade condicional é P(nutricionista | mulher) = 15%/60% = 0,25, ou 25%. Note que a condição reduz o espaço amostral às mulheres, e por isso o denominador é 60%, e não 100%.",
+   "alternativas": {
+    "A": "Correta: Mulheres nutricionistas são 20% − 5% = 15%, e mulheres são 60%: 15/60 = 25%.",
+    "B": "Errada: 30% não decorre da divisão correta.",
+    "C": "Errada: 45% não decorre dos dados.",
+    "D": "Errada: 50% resultaria de dividir por 30% em vez de 60%.",
+    "E": "Errada: 55% não decorre dos dados."
+   }
+  },
+  {
+   "id": "tec_3631614",
+   "contentHash": "349ab78dff70891155c604e4e65cf6b3445cddab6c53ed74f08f3f128f2f65ed",
+   "gabarito": "E",
+   "comentario": "O espaço amostral reduzido é o dos estudantes que praticam esporte, 120. Entre eles, 30 também tocam instrumento. A probabilidade condicional é 30/120 = 0,25, ou 25%. Não se usa o total de 200, pois a condição \"pratica esporte\" já restringe o espaço. A probabilidade sem condição de tocar instrumento seria 80/200 = 40%.",
+   "alternativas": {
+    "A": "Errada: 5% não decorre da razão 30/120.",
+    "B": "Errada: 10% não é a razão pedida; a condição restringe o espaço aos 120 que praticam esporte, e 30/120 = 25%.",
+    "C": "Errada: 15% é 30/200, que usa o total geral em vez dos praticantes de esporte.",
+    "D": "Errada: 20% não decorre da razão 30/120.",
+    "E": "Correta: P(instrumento | esporte) = 30/120 = 25%."
+   }
+  },
+  {
+   "id": "tec_3706527",
+   "contentHash": "2202ae852c85c3b3327d849b7402b1e4152daf1712dd8d213f3da80fb8389cb3",
+   "gabarito": "E",
+   "comentario": "Para o projeto ser completamente aprovado, é preciso passar nas duas fases. Pela regra da multiplicação, P(F1 ∩ F2) = P(F1) · P(F2 | F1) = 0,80 · 0,75 = 0,60, ou 60%. A probabilidade nunca pode ser a soma 155%, pois passa de 100%. O valor 75% é só a probabilidade condicional da fase 2.",
+   "alternativas": {
+    "A": "Errada: 155% é a soma das duas probabilidades e passa de 100%, o que é impossível.",
+    "B": "Errada: 80% é a probabilidade só da fase 1.",
+    "C": "Errada: 75% é a probabilidade da fase 2 dada a aprovação na fase 1, e não a de aprovação completa.",
+    "D": "Errada: 70% não decorre do produto das duas probabilidades.",
+    "E": "Correta: 0,80 · 0,75 = 0,60, ou 60%."
+   }
+  },
+  {
+   "id": "tec_2251909",
+   "contentHash": "b49425568d9ad03e2c462068eeff7a149014e935abaed0b0d8e68996abe8228c",
+   "gabarito": "E",
+   "comentario": "Pela probabilidade total, com os cenários chuva e não chuva: P(faltar) = P(chuva) · P(faltar | chuva) + P(não chuva) · P(faltar | não chuva) = 0,40 · 0,12 + 0,60 · 0,02 = 0,048 + 0,012 = 0,060, ou 6%. O resultado é uma média das duas taxas, ponderada pelas probabilidades dos cenários.",
+   "alternativas": {
+    "A": "Errada: 4% não decorre da média ponderada.",
+    "B": "Errada: 4,8% considera só o cenário de chuva, sem somar o outro.",
+    "C": "Errada: 5,2% não decorre dos dados.",
+    "D": "Errada: 5,6% não decorre dos dados.",
+    "E": "Correta: 0,40 · 0,12 + 0,60 · 0,02 = 0,06, ou 6%."
+   }
+  },
+  {
+   "id": "tec_1674233",
+   "contentHash": "bdf5295d356c021213496ab705426b07e722d1b9b3ff26279365708dd6abb36f",
+   "gabarito": "A",
+   "comentario": "É um problema de Bayes. A probabilidade de assalto é P(A) = 0,3 · 0,4 + 0,7 · 0,6 = 0,12 + 0,42 = 0,54. A probabilidade de ter chovido, dado o assalto, é 0,12/0,54 = 2/9, cerca de 22,2%. O erro comum é responder 40%, a probabilidade de assalto dado chuva, que inverte a condicional.",
+   "alternativas": {
+    "A": "Correta: P(chuva | assalto) = 0,12/0,54 = 22,2%.",
+    "B": "Errada: 54,0% é a probabilidade total de assalto, e não a de ter chovido.",
+    "C": "Errada: 31,2% não decorre da fórmula de Bayes.",
+    "D": "Errada: 12,0% é o numerador, sem dividir pela probabilidade total.",
+    "E": "Errada: 18,0% não decorre dos dados."
+   }
+  },
+  {
+   "id": "tec_616408",
+   "contentHash": "06fa85ff409054b75a7b690fc90b30d9c50a1f7e43a15fc1d5ad2fb36497faad",
+   "gabarito": "A",
+   "comentario": "O equipamento Alfa produz 55% das cópias e desperdiça 8%; o Beta produz 45% e desperdiça 12%. A probabilidade de desperdício é 0,55 · 0,08 + 0,45 · 0,12 = 0,044 + 0,054 = 0,098. Pela regra de Bayes, P(Beta | desperdiçada) = 0,054/0,098 ≈ 0,551, ou 55,1%. Mesmo produzindo menos, o Beta responde pela maior parte dos desperdícios, porque sua taxa é maior.",
+   "alternativas": {
+    "A": "Correta: 0,054/0,098, cerca de 55,1%.",
+    "B": "Errada: 45,0% é a participação do Beta na produção, e não nos desperdícios.",
+    "C": "Errada: 44,9% é a participação do Alfa nos desperdícios (0,044/0,098), o complementar.",
+    "D": "Errada: 20,0% não decorre dos dados.",
+    "E": "Errada: 5,4% é o numerador em centésimos, sem dividir pelo total."
+   }
+  }
+ ],
+ "descartes": []
+}
