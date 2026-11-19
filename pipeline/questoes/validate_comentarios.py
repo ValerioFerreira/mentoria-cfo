@@ -141,6 +141,8 @@ def validate_file(path: Path) -> tuple[list[str], list[str], int]:
                 m = NOTE_START.match(v.strip())
                 if not m:
                     errors.append(f"{qid}: a nota {k} deve começar por 'Correta:' ou 'Errada:'")
+                elif re.match(r"^(?:Correta|Errada):\s+(?:Correta|Errada|Incorreta)\s*[.:]", v.strip()):
+                    errors.append(f"{qid}: a nota {k} repete o veredito ('Errada: Errada. …'); deixe só o prefixo")
                 elif (m.group(1) == "Correta") != (k == str(c["gabarito"])):
                     errors.append(f"{qid}: a nota {k} diz {m.group(1)}, mas o gabarito é {c['gabarito']} (em 'assinale a incorreta', a letra do gabarito é a 'Correta:')")
         com = str(c["comentario"])

@@ -1,0 +1,215 @@
+{
+ "lote": "informatica/p1-a06-s07-1",
+ "trecho": "informatica/a06/s07",
+ "autor": "AGENTE-B",
+ "data": "2026-11-18",
+ "comentarios": [
+  {
+   "id": "tec_1092137",
+   "contentHash": "323b937326df299c9a190171a5ac04230d6186887c543a40dc6f88913c63310b",
+   "gabarito": "D",
+   "comentario": "No Microsoft Excel 2016 em português, cada descrição corresponde a uma função nativa específica. Para retornar o valor absoluto (módulo, sem sinal negativo) de um número, usa-se ABS. Para contar quantas células de um intervalo atendem a um critério definido, emprega-se CONT.SE. Por fim, para calcular a diferença entre duas datas expressa em dias, meses ou anos, utiliza-se DATADIF. Reunindo os três nomes na ordem exata dos itens, obtém-se ABS, CONT.SE e DATADIF.",
+   "alternativas": {
+    "A": "Errada: ABSOLUTO e CALC.SE não são nomes de funções válidas no Excel em português.",
+    "B": "Errada: Embora ABS esteja correta, CALC.SE e CALCDATA não existem no Excel em português.",
+    "C": "Errada: A função de valor absoluto é ABS, e não NUMABS.",
+    "D": "Correta: ABS retorna o valor absoluto, CONT.SE conta células segundo um critério e DATADIF calcula a diferença entre datas."
+   }
+  },
+  {
+   "id": "tec_1152235",
+   "contentHash": "545f1c66bdb2dcd864fa22c03bba3592873cdc5d9137e4fbce13f9e21e687193",
+   "gabarito": "B",
+   "comentario": "A questão relaciona quatro funções do Microsoft Excel 2013 em português às suas definições oficiais. A função financeira BD calcula a depreciação de um ativo em um período pelo método de balanço de declínio fixo (item 1). A função de engenharia DEGRAU testa se um número é maior ou igual a um limite, retornando 1 se for e 0 caso contrário (item 4). A função estatística GAUSS retorna 0,5 menos que a distribuição cumulativa normal padrão (item 3). Por fim, CONT.SE conta as células não vazias de um intervalo que atendem a uma condição (item 2). A sequência correta é 1 – 4 – 3 – 2.",
+   "alternativas": {
+    "A": "Errada: Inverte as definições das quatro funções, atribuindo depreciação a DEGRAU e contagem condicional a GAUSS.",
+    "B": "Correta: Associa exatamente BD à depreciação, DEGRAU ao teste de limite, GAUSS à distribuição normal padrão e CONT.SE à contagem condicional.",
+    "C": "Errada: Atribui erroneamente depreciação a GAUSS e contagem condicional a DEGRAU.",
+    "D": "Errada: Troca as funções BD e GAUSS, embora acerte apenas a posição final de CONT.SE."
+   }
+  },
+  {
+   "id": "tec_1223913",
+   "contentHash": "3215c1041663a95a91d269c2f459d2ebf8aee89be8aa7753cf962b985f58192a",
+   "gabarito": "B",
+   "comentario": "A fórmula =SE(10-2*4>(5+6)⁰;10;30-8*2) exige atenção à precedência dos operadores no Excel: parênteses, exponenciação, multiplicação e divisão, e por último adição e subtração. No lado esquerdo do teste lógico, calcula-se primeiro 2 × 4 = 8 e depois 10 − 8 = 2. No lado direito, resolve-se o parêntese (5 + 6 = 11) e eleva-se à potência zero (11⁰ = 1, pois todo número não nulo elevado a zero vale 1). A comparação fica 2 > 1, que é verdadeira. Assim, a função SE retorna o segundo argumento (valor se verdadeiro), que é 10.",
+   "alternativas": {
+    "A": "Errada: 0 não corresponde ao teste lógico nem a nenhum dos dois resultados possíveis da função SE.",
+    "B": "Correta: Como 10 − 8 = 2 e (5 + 6)⁰ = 1, a condição 2 > 1 é verdadeira e a função SE retorna 10.",
+    "C": "Errada: 14 é o resultado do ramo falso (30 − 8 × 2 = 30 − 16 = 14), que não é executado porque o teste é verdadeiro.",
+    "D": "Errada: 44 seria obtido apenas com erro de precedência no ramo falso, fazendo (30 − 8) × 2, que além de errado não é executado.",
+    "E": "Errada: 54 não decorre de nenhuma etapa válida da expressão apresentada."
+   }
+  },
+  {
+   "id": "tec_1226307",
+   "contentHash": "525f740267db380dd7a4e57f71fbcb07ab644958814de259c578d277b664ed74",
+   "gabarito": "A",
+   "comentario": "A questão pede a alternativa incorreta com base na planilha da imagem, cujos valores em C3:C8 são R$ 35,00 (C3), R$ 40,00 (C4), R$ 50,00 (C5), R$ 60,00 (C6), R$ 45,00 (C7) e R$ 55,00 (C8), somando 285. Na alternativa A, a fórmula =SOMASE(C3:C8;\">50\";C3:C8) soma apenas os valores estritamente maiores que 50. O valor 50 em C5 não entra no critério \">50\", restando somente C6 (60) e C8 (55), cuja soma é 60 + 55 = 115, e não 165. Portanto, a letra A está incorreta e responde ao comando.",
+   "alternativas": {
+    "A": "Correta: A afirmação é falsa, pois o critério \">50\" exclui C5 (50) e soma apenas 60 + 55 = 115, e não 165.",
+    "B": "Errada: A afirmação é verdadeira, pois o ponto e vírgula soma somente C3 (35) e C8 (55), resultando em R$ 90,00.",
+    "C": "Errada: A afirmação é verdadeira, já que C3 < C4 (35 < 40) é verdadeiro e executa SOMA(C3:C8) = 285.",
+    "D": "Errada: A afirmação é verdadeira, porque SOMA(C3:C8) = 285 é maior que 200, retornando a própria soma 285.",
+    "E": "Errada: A afirmação é verdadeira, pois MÁXIMO(C3;C8) compara apenas 35 e 55, devolvendo R$ 55,00."
+   }
+  },
+  {
+   "id": "tec_1252713",
+   "contentHash": "bb9c2f61ec6d2e334fb0d6cda862e25d592349e98bc948bfbf14ae258356e9b3",
+   "gabarito": "B",
+   "comentario": "No Microsoft Excel, a função SOMA adiciona todos os valores numéricos especificados entre parênteses. Quando as referências são separadas por dois-pontos (:), define-se um intervalo contínuo que abrange a primeira célula, a última e todas as intermediárias. Assim, SOMA(A1:F1) soma os valores das células A1, B1, C1, D1, E1 e F1. Vale lembrar que, para somar apenas A1 e F1 isoladamente, seria necessário substituir os dois-pontos por ponto e vírgula: SOMA(A1;F1).",
+   "alternativas": {
+    "A": "Errada: A sintaxe SOMA(A1:F1) está completa e válida, pois um único intervalo já constitui argumento suficiente.",
+    "B": "Correta: Os dois-pontos indicam intervalo contínuo, fazendo a função somar todos os valores de A1 até F1.",
+    "C": "Errada: Somar apenas A1 e F1 exigiria ponto e vírgula entre elas (A1;F1), e não dois-pontos.",
+    "D": "Errada: A função SOMA realiza adição, jamais divisão entre as células informadas.",
+    "E": "Errada: Para multiplicar valores usa-se a função MULT ou o operador asterisco, não a função SOMA."
+   }
+  },
+  {
+   "id": "tec_1385557",
+   "contentHash": "57649abcefe8d3e64e1ec557002e672d0c30bfe41a24f96de07eacb1e50e7216",
+   "gabarito": "C",
+   "comentario": "A figura mostra a fórmula =SOMASE(A3:A10;A4;C3:C10) inserida na célula C12. A função SOMASE(intervalo; critério; intervalo_soma) procura o critério no primeiro intervalo e soma os valores correspondentes do terceiro intervalo. Aqui, o critério é o conteúdo da célula A4, que é Lapis. Examinando a coluna A de A3 a A10, o texto Lapis aparece nas linhas 4, 9 e 10. Os valores correspondentes na coluna C (QUANT) são C4 = 200, C9 = 120 e C10 = 100. Somando esses três valores, obtém-se 200 + 120 + 100 = 420.",
+   "alternativas": {
+    "A": "Errada: 890 corresponde à soma de todas as quantidades em C3:C10 (100+200+150+100+50+70+120+100), ignorando o critério Lapis.",
+    "B": "Errada: R$ 3,00 seria a soma dos valores unitários da coluna B para Lapis, mas o intervalo de soma da fórmula é C3:C10.",
+    "C": "Correta: Somam-se as quantidades das linhas cujo produto é Lapis (linhas 4, 9 e 10): 200 + 120 + 100 = 420.",
+    "D": "Errada: 470 corresponde à soma das quantidades dos demais produtos (Caderno e Caneta), e não de Lapis.",
+    "E": "Errada: A sintaxe de SOMASE está perfeitamente correta e não gera erro no Excel."
+   }
+  },
+  {
+   "id": "tec_1385840",
+   "contentHash": "751dbf39249e7af5a609a8b3a3e80d3f298906f6a836da8d2f3a992dade34197",
+   "gabarito": "B",
+   "comentario": "A fórmula =MÉDIA(A3;C3)+C3+A3*B3 usa ponto e vírgula dentro de MÉDIA, calculando a média apenas de A3 e C3, e respeita a precedência da multiplicação A3 × B3 antes das adições. Testando os valores da alternativa B (A3 = 9, B3 = 10 e C3 = 5): primeiro, MÉDIA(9; 5) = (9 + 5) / 2 = 7; em seguida, A3 × B3 = 9 × 10 = 90; por fim, somam-se as três parcelas: 7 + 5 + 90 = 102. Esse é exatamente o resultado informado no enunciado.",
+   "alternativas": {
+    "A": "Errada: Com 8, 9 e 5, obtém-se MÉDIA(8;5) + 5 + (8 × 9) = 6,5 + 5 + 72 = 83,5.",
+    "B": "Correta: Com A3=9, B3=10 e C3=5, tem-se MÉDIA(9;5) + 5 + (9 × 10) = 7 + 5 + 90 = 102.",
+    "C": "Errada: Com 8, 10 e 5, obtém-se MÉDIA(8;5) + 5 + (8 × 10) = 6,5 + 5 + 80 = 91,5.",
+    "D": "Errada: Com 7, 12 e 8, obtém-se MÉDIA(7;8) + 8 + (7 × 12) = 7,5 + 8 + 84 = 99,5.",
+    "E": "Errada: Com 6, 13 e 8, obtém-se MÉDIA(6;8) + 8 + (6 × 13) = 7 + 8 + 78 = 93."
+   }
+  },
+  {
+   "id": "tec_1385844",
+   "contentHash": "0def1648ad6d635c8b71186bee8a2c1afba4cf711a40ca9926756fa019e66f26",
+   "gabarito": "A",
+   "comentario": "A imagem mostra o valor 1,54789 na célula A6 e a fórmula =ARRED(A6;3) na célula B6. A função ARRED(núm; núm_dígitos) arredonda um número para a quantidade de casas decimais indicada no segundo argumento seguindo a regra padrão: se o dígito imediatamente seguinte for 5 ou maior, arredonda-se para cima; se for menor que 5, mantém-se o dígito. Em 1,54789, para manter 3 casas decimais (1,547...), observa-se o 4º algarismo decimal, que é 8. Como 8 ≥ 5, o terceiro algarismo sobe de 7 para 8, resultando em 1,548.",
+   "alternativas": {
+    "A": "Correta: Arredondando 1,54789 para 3 casas decimais, o 4º dígito decimal (8) eleva o 7 para 8, resultando em 1,548.",
+    "B": "Errada: 1,5478 possui quatro casas decimais (e ainda truncadas), enquanto a fórmula solicita arredondamento para três casas.",
+    "C": "Errada: A fórmula está sintaticamente correta e recebe um argumento numérico válido, não produzindo erro.",
+    "D": "Errada: 1,547 seria o resultado da função TRUNCAR(A6;3) ou ARREDONDAR.PARA.BAIXO(A6;3), mas ARRED arredonda para cima.",
+    "E": "Errada: 1,2358 refere-se aos algarismos da célula A4 (1,23587), e não da célula A6 referenciada na fórmula."
+   }
+  },
+  {
+   "id": "tec_1385931",
+   "contentHash": "2daf81ba133061d26755869ea45c2ec93f40542b632107ff5a1c69e45d8a78ae",
+   "gabarito": "C",
+   "comentario": "Na planilha da figura, a linha 4 traz as notas de Ana: B4 = 6,5, C4 = 6,5, D4 = 8,5 e E4 = 8,5. A célula F4 contém a fórmula =ARRED(MÉDIA(B4:E4);0). Resolve-se primeiro a função interna MÉDIA(B4:E4): a soma das quatro notas é 6,5 + 6,5 + 8,5 + 8,5 = 30, e dividindo por 4 obtém-se 7,5. Em seguida, aplica-se ARRED(7,5; 0), que arredonda o valor para zero casas decimais (número inteiro). Como o dígito decimal é 5 (igual ou superior a 5), o Excel arredonda para cima, retornando 8.",
+   "alternativas": {
+    "A": "Errada: 7,5 é o resultado intermediário de MÉDIA(B4:E4) antes de ser arredondado para zero casas decimais por ARRED.",
+    "B": "Errada: O zero na fórmula indica o número de casas decimais desejadas, e não o valor final retornado.",
+    "C": "Correta: A média das quatro notas é 7,5 e ARRED(7,5;0) arredonda para o inteiro mais próximo acima, resultando em 8.",
+    "D": "Errada: 7 ocorreria apenas se fosse usada a função TRUNCAR ou ARREDONDAR.PARA.BAIXO, mas ARRED arredonda 7,5 para 8.",
+    "E": "Errada: Todas as células do intervalo contêm números válidos e a sintaxe está correta, sem gerar erro."
+   }
+  },
+  {
+   "id": "tec_1419736",
+   "contentHash": "21ef481038683527ce68c04458f62a189c9146a44fd8915570283b1ca3af305d",
+   "gabarito": "D",
+   "comentario": "Para obter a somatória das quatro notas bimestrais armazenadas nas células contíguas B1, B2, B3 e B4 no Microsoft Excel em português, utiliza-se a função SOMA aplicada ao intervalo B1:B4. Toda fórmula inicia-se com o sinal de igual (=), e o operador de dois-pontos (:) indica intervalo contínuo da primeira até a última célula. Portanto, a fórmula correta a ser digitada em B5 é =SOMA(B1:B4).",
+   "alternativas": {
+    "A": "Errada: A função MÁXIMO retorna apenas a maior nota do intervalo, não a soma das quatro notas.",
+    "B": "Errada: Não existe função chamada SOMATÓRIA no Excel em português; o nome correto da função é SOMA.",
+    "C": "Errada: A função MÉDIA calcula a média aritmética (e no Excel em português separa argumentos por ponto e vírgula, não vírgula).",
+    "D": "Correta: =SOMA(B1:B4) soma corretamente todos os valores do intervalo contínuo de B1 até B4.",
+    "E": "Errada: Além de usar MÉDIA em vez de SOMA, incluir B5 dentro da fórmula digitada na própria B5 gera referência circular."
+   }
+  },
+  {
+   "id": "tec_1421704",
+   "contentHash": "9b303fb1ba9f5a0231fec4fef98b86efbcb828f0c78fca7db2e555a6c435bc49",
+   "gabarito": "C",
+   "comentario": "No Microsoft Excel em português, a função matemática MOD(núm; divisor) devolve o resto obtido quando um valor numérico é dividido pelo divisor especificado. Por exemplo, =MOD(10;3) devolve 1, pois a divisão de 10 por 3 tem quociente 3 e sobra 1. O resultado conserva o mesmo sinal do divisor informado. Em provas, essa função costuma ser confundida com MED (que calcula a mediana) ou MODO (que obtém o valor mais frequente).",
+   "alternativas": {
+    "A": "Errada: O mínimo múltiplo comum é calculado pela função MMC, não por MOD.",
+    "B": "Errada: A média aritmética dos argumentos é calculada pela função MÉDIA.",
+    "C": "Correta: A função MOD retorna exatamente o resto da divisão de um número pelo divisor informado.",
+    "D": "Errada: A mediana de um conjunto de números é retornada pela função MED.",
+    "E": "Errada: A contagem de células com números em um intervalo é feita pela função CONT.NÚM."
+   }
+  },
+  {
+   "id": "tec_1559595",
+   "contentHash": "3d03e18e7f59f63e51fe44077cb0761026617cb12e96f8057624152a3880fc8f",
+   "gabarito": "B",
+   "comentario": "Na planilha da figura, os preços dos quatro produtos estão nas células B2 (3,56), B3 (21,99), B4 (17,80) e B5 (128,90). Para somar todos esses valores na célula B7 (total = 172,25), utiliza-se =Soma(B2:B5), empregando dois-pontos para abranger todo o intervalo. Para obter o maior valor na célula B8 (128,90) usando apenas o intervalo como argumento, usa-se =Máximo(B2:B5). Note que a função Maior exigiria um segundo argumento indicando a posição (como =Maior(B2:B5;1)), razão pela qual sem esse parâmetro ela geraria erro.",
+   "alternativas": {
+    "A": "Errada: Usa ponto e vírgula (somando apenas células isoladas) e ainda inclui as próprias células B7 e B8, gerando referência circular.",
+    "B": "Correta: =Soma(B2:B5) totaliza os quatro valores do intervalo e =Máximo(B2:B5) retorna o maior deles (R$ 128,90).",
+    "C": "Errada: A função Maior exige dois argumentos (intervalo e posição k); escrita apenas como =Maior(B2:B5) provoca erro.",
+    "D": "Errada: Soma apenas B2 e B5 (omitindo B3 e B4) e usa Maior de forma incorreta com duas células em vez de intervalo e posição.",
+    "E": "Errada: Referenciar apenas B7 dentro de B7 e B8 dentro de B8 gera referência circular e não consulta os valores de B2:B5."
+   }
+  },
+  {
+   "id": "tec_1560705",
+   "contentHash": "7595c5736d44e4d17ec3fe6f7ecc1de6bfc19ea60b97ec405f7e4d2691babedc",
+   "gabarito": "D",
+   "comentario": "Observando a planilha na imagem, as quantidades em estoque dos produtos Leite, Pão, Farinha de Trigo e Macarrão ocupam o intervalo contínuo B3:B6 (valores 7, 9, 3 e 5). Para retornar em B8 o maior valor desse conjunto (9) passando apenas o intervalo como argumento, a função adequada no Excel em português é =Máximo(B3:B6). Embora a função Maior também possa encontrar o maior valor, ela exige obrigatoriamente um segundo parâmetro indicando a posição desejada, como =Maior(B3:B6;1).",
+   "alternativas": {
+    "A": "Errada: Além de usar o intervalo errado e incluir a própria célula B8 (referência circular), a função Maior exige a posição k.",
+    "B": "Errada: Referencia apenas a própria célula B8 (referência circular) e omite o segundo argumento obrigatório da função Maior.",
+    "C": "Errada: Referenciar apenas B8 dentro da própria célula B8 gera erro de referência circular e não avalia o estoque em B3:B6.",
+    "D": "Correta: =Máximo(B3:B6) avalia todo o intervalo de estoques (7, 9, 3 e 5) e retorna diretamente o maior valor, 9.",
+    "E": "Errada: A função Maior não aceita apenas um argumento; faltou especificar a posição k após ponto e vírgula."
+   }
+  },
+  {
+   "id": "tec_1717304",
+   "contentHash": "234e7cb00a6b68b00ff2c24af79c6847146b2d31268dafee6c54f1469cb22080",
+   "gabarito": "C",
+   "comentario": "No Microsoft Excel em português, existem diferentes funções de contagem conforme o tipo de célula desejada. Para contar todas as células que não estão vazias em um intervalo — independentemente de conterem números, textos, datas ou valores de erro — utiliza-se a função CONT.VALORES. Diferencia-se de CONT.NÚM (que conta apenas células com números), CONTAR.VAZIO (que conta células em branco) e CONT.SE (que conta células que atendem a um critério específico).",
+   "alternativas": {
+    "A": "Errada: Não existe a função CONT.SEENTÃO no Microsoft Excel.",
+    "B": "Errada: NÚM.CARACT conta a quantidade de caracteres dentro de uma cadeia de texto, não células preenchidas em um intervalo.",
+    "C": "Correta: CONT.VALORES conta exatamente o número de células não vazias em um intervalo determinado.",
+    "D": "Errada: Não existe função chamada CONTA no Excel em português para contar células.",
+    "E": "Errada: SOMASE soma valores numéricos que atendem a uma condição, em vez de contar células não vazias."
+   }
+  },
+  {
+   "id": "tec_1912992",
+   "contentHash": "1410ef7c0d7186214d12cd660b2a2b07e93a8fef979485835caad968951b250e",
+   "gabarito": "A",
+   "comentario": "No Microsoft Excel em português, as funções de engenharia voltadas para números complexos (no formato x + yi ou x + yj) começam pelo prefixo IM. Para calcular o quociente (divisão) entre dois números complexos, utiliza-se a função IMDIV(inúm1; inúm2). O próprio nome facilita a associação: IM remete a número imaginário/complexo e DIV remete a divisão. As demais opções pertencem a outras categorias (estatística, financeira ou outra operação complexa).",
+   "alternativas": {
+    "A": "Correta: IMDIV é a função de engenharia do Excel que retorna o quociente de dois números complexos.",
+    "B": "Errada: MÍNIMOA é uma função estatística que retorna o menor valor em uma lista de argumentos, incluindo textos e valores lógicos.",
+    "C": "Errada: OTN é uma função financeira que retorna o preço por R$ 100 do valor nominal de uma obrigação do tesouro.",
+    "D": "Errada: IMEXP retorna o exponencial de um número complexo, e não o quociente entre dois números complexos.",
+    "E": "Errada: PPGTO é uma função financeira que calcula o pagamento de capital para um investimento em determinado período."
+   }
+  },
+  {
+   "id": "tec_1931734",
+   "contentHash": "d8e2937e26904acdd97a44fe5e68a88c55bd8fdc96b8f6ca9a9d0ecdeed6f559",
+   "gabarito": "E",
+   "comentario": "A função matemática MOD do Microsoft Excel 2013 em português recebe dois argumentos — dividendo e divisor, na forma =MOD(núm; divisor) — e retorna o resto da divisão inteira entre eles. Por exemplo, =MOD(17;5) devolve 2. É importante não confundi-la com a função MED (que calcula a mediana) nem com MINUTO (que extrai os minutos de um horário) ou MMC (mínimo múltiplo comum).",
+   "alternativas": {
+    "A": "Errada: O mínimo múltiplo comum é calculado pela função MMC, não pela função MOD.",
+    "B": "Errada: Retornar o minuto de 0 a 59 é atribuição da função MINUTO.",
+    "C": "Errada: Calcular média aritmética condicionada a critérios é papel das funções MÉDIASE e MÉDIASES.",
+    "D": "Errada: A mediana de um conjunto numérico é calculada pela função MED.",
+    "E": "Correta: MOD retorna exatamente o resto da divisão após um número ser dividido por um divisor."
+   }
+  }
+ ],
+ "descartes": []
+}

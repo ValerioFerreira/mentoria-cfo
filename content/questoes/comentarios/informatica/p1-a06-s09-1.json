@@ -1,0 +1,190 @@
+{
+ "lote": "informatica/p1-a06-s09-1",
+ "trecho": "informatica/a06/s09",
+ "autor": "AGENTE-B",
+ "data": "2026-11-18",
+ "comentarios": [
+  {
+   "id": "tec_1416486",
+   "contentHash": "ed4bdd8098891d463d2d3d750344aae5df115eb24a161aeb8b0aa8b50d6d8740",
+   "gabarito": "C",
+   "comentario": "A questão pede a alternativa incorreta sobre teclas de atalho do Microsoft Excel 2010. O atalho para expandir ou recolher (exibir ou ocultar) a Faixa de Opções é Ctrl + F1, e não Alt + F1. Já Alt + F1 cria um gráfico inserido na planilha atual com base nos dados selecionados. Todos os demais atalhos citados — formatação de data com Ctrl + Shift + #, inserção de hora atual com Ctrl + Shift + ;, caixa Ir Para com F5 e data atual com Ctrl + ; — estão corretos.",
+   "alternativas": {
+    "A": "Errada: A afirmação é verdadeira, pois Ctrl + Shift + # aplica o formato de data com dia, mês e ano à célula selecionada.",
+    "B": "Errada: A afirmação é verdadeira, porque Ctrl + Shift + ; insere a hora atual do sistema na célula.",
+    "C": "Correta: A afirmação é falsa, pois Alt + F1 cria um gráfico dos dados selecionados; quem exibe ou oculta a Faixa de Opções é Ctrl + F1.",
+    "D": "Errada: A afirmação é verdadeira, já que a tecla F5 abre diretamente a caixa de diálogo Ir Para.",
+    "E": "Errada: A afirmação é verdadeira, pois Ctrl + ; insere a data atual na célula ativa."
+   }
+  },
+  {
+   "id": "tec_1420353",
+   "contentHash": "10bf67e98a286146c05b85b33aa98984b8f367fe031052b372dfbc0b02a0e214",
+   "gabarito": "E",
+   "comentario": "Na planilha da figura, a linha 3 mostra a média em E3 (81) e as faltas em F3 (12), com resultado REPROVADO em G3. A regra exige duas condições simultâneas para aprovação: MÉDIA igual ou superior a 70 (E3>=70) e FALTAS iguais ou inferiores a 10 (F3<=10). No Excel em português, condições simultâneas são combinadas pela função lógica E(condição1; condição2), colocada como primeiro argumento da função SE. Os textos de retorno devem vir entre aspas. Assim, a fórmula correta é =SE(E(E3>=70;F3<=10);\"APROVADO\";\"REPROVADO\"). Para Ana Paula (E3=81 e F3=12), a segunda condição falha e a fórmula retorna REPROVADO.",
+   "alternativas": {
+    "A": "Errada: Usa SOMASE de modo impróprio e sem separador entre os argumentos, gerando erro de sintaxe.",
+    "B": "Errada: Emprega a função MÉDIA com teste lógico e função SE aninhada, o que não produz o texto de aprovação.",
+    "C": "Errada: Passa quatro argumentos para a função SE (que aceita no máximo três) e omite aspas nos textos e a função E.",
+    "D": "Errada: Usa operadores estritos (> e <) em vez de >= e <=, excluindo média 70 e 10 faltas, além de omitir as aspas nos textos.",
+    "E": "Correta: Combina corretamente SE e E com os operadores >= e <= e delimita os textos de retorno entre aspas."
+   }
+  },
+  {
+   "id": "tec_1661256",
+   "contentHash": "5551ae9c9a1d4b2514bdf8420fd255e6233d3828c21edfbfc1533faa7f5a05cb",
+   "gabarito": "E",
+   "comentario": "No Microsoft Excel 2013 em português, a função de texto que agrupa várias cadeias de texto ou conteúdos de células em uma única sequência de texto é CONCATENAR. Sua sintaxe é =CONCATENAR(texto1; texto2; ...), produzindo resultado equivalente ao operador e comercial (&). As demais opções também pertencem à categoria Texto, mas executam tarefas totalmente diferentes, como remover espaços extras ou converter códigos de caracteres.",
+   "alternativas": {
+    "A": "Errada: ARRUMAR remove espaços excedentes de um texto, mantendo apenas espaços únicos entre palavras.",
+    "B": "Errada: CARACT retorna o caractere correspondente a um código numérico especificado.",
+    "C": "Errada: BAHTTEXT converte um número em texto na moeda tailandesa (baht).",
+    "D": "Errada: CARACTUNICODE retorna o caractere Unicode referente ao valor numérico informado.",
+    "E": "Correta: CONCATENAR une diversas cadeias de texto em uma única sequência contínua."
+   }
+  },
+  {
+   "id": "tec_1797215",
+   "contentHash": "aea37dc6fa051f983a2683bff3089c95e478aa04a8282ff0f9d45373edfcddfc",
+   "gabarito": "A",
+   "comentario": "A função lógica SE no Microsoft Excel realiza uma comparação lógica e devolve um valor quando o teste resulta em verdadeiro e outro valor quando resulta em falso. Sua sintaxe oficial em português utiliza parênteses e ponto e vírgula na ordem exata: =SE(teste lógico; [valor verdadeiro]; [valor falso]). A inversão da ordem entre o resultado verdadeiro e o falso ou a troca dos parênteses por chaves invalida a lógica ou a sintaxe da fórmula.",
+   "alternativas": {
+    "A": "Correta: Apresenta a sintaxe oficial da função SE com parênteses e na ordem teste lógico, valor se verdadeiro e valor se falso.",
+    "B": "Errada: Inverte a ordem dos argumentos, colocando o valor falso antes do valor verdadeiro.",
+    "C": "Errada: CONT.SE conta células que atendem a um critério, não executando desvio condicional entre dois valores.",
+    "D": "Errada: CONT.VALORES conta células não vazias em um intervalo, sem realizar teste lógico condicional.",
+    "E": "Errada: Usa chaves em vez de parênteses (sintaxe inválida para argumentos de função) e ainda inverte verdadeiro e falso."
+   }
+  },
+  {
+   "id": "tec_1900653",
+   "contentHash": "cdb6e274d38611b95fd8e4e8e696eb0f1fa05b45a1dc55f318d1af7f966a1a00",
+   "gabarito": "A",
+   "comentario": "No Microsoft Excel em português, a função de texto ARRUMAR(texto) limpa espaços desnecessários de uma cadeia de caracteres: ela remove todos os espaços antes do início do texto, depois do fim e quaisquer espaços duplicados ou múltiplos no meio, preservando apenas um único espaço entre cada par de palavras. Esse recurso é muito útil ao importar dados de outros sistemas que chegam com espaçamento irregular.",
+   "alternativas": {
+    "A": "Correta: ARRUMAR elimina espaços iniciais, finais e excedentes, deixando somente espaços simples entre palavras.",
+    "B": "Errada: Ordenar células em ordem crescente ou decrescente é feito pela ferramenta Classificar, não pela função ARRUMAR.",
+    "C": "Errada: A função ARRUMAR atua exclusivamente sobre espaços em branco e não altera nem remove acentos.",
+    "D": "Errada: ARRUMAR é uma função de texto e não faz correção sintática de fórmulas ou parênteses.",
+    "E": "Errada: O ajuste de casas decimais e formatos monetários é feito pela formatação de número ou por funções como ARRED e TEXTO."
+   }
+  },
+  {
+   "id": "tec_2623076",
+   "contentHash": "16998e1cd4f1831a7d3fe28ccee7b24e10f4d8eeba7d283ecb56a557b52e97fb",
+   "gabarito": "A",
+   "comentario": "No Microsoft Excel em português, a função NÚM.CARACT(texto) retorna a quantidade total de caracteres presentes em uma cadeia de texto, incluindo letras, números, sinais de pontuação e espaços em branco. Por exemplo, =NÚM.CARACT(\"Excel 2019\") devolve 10 (5 letras, 1 espaço e 4 dígitos). É uma função da categoria Texto muito usada em validações de comprimento de códigos, senhas ou documentos.",
+   "alternativas": {
+    "A": "Correta: NÚM.CARACT conta todos os caracteres de um texto (inclusive espaços) e retorna esse número.",
+    "B": "Errada: Extrair parte de um texto é função de ESQUERDA, DIREITA ou EXT.TEXTO, não de NÚM.CARACT.",
+    "C": "Errada: Retornar o código numérico de um caractere é papel da função CÓDIGO, e localizar sua posição cabe a PROCURAR ou LOCALIZAR.",
+    "D": "Errada: NÚM.CARACT conta o total de caracteres da cadeia inteira, não as repetições de um caractere específico.",
+    "E": "Errada: A função não converte textos em códigos ASCII; ela apenas informa o comprimento do texto."
+   }
+  },
+  {
+   "id": "tec_2642138",
+   "contentHash": "94b5c8388542b3c0a2da88327bfdc3b4e9ce775cc8f22826f2c7011bc7dcd267",
+   "gabarito": "B",
+   "comentario": "No Microsoft Excel em português, duas funções voláteis sem argumentos consultam o relógio do sistema operacional: =HOJE() retorna apenas a data atual, enquanto =AGORA() retorna simultaneamente a data e a hora atuais. Ambas são atualizadas automaticamente sempre que a planilha é aberta ou recalculada. Como o enunciado pede a função que retorna tanto a data quanto a hora atual, a resposta é =AGORA().",
+   "alternativas": {
+    "A": "Errada: Não existe a função HORAEDATA no Microsoft Excel em português.",
+    "B": "Correta: =AGORA() retorna a data e a hora atuais do sistema operacional e não recebe argumentos.",
+    "C": "Errada: =HOJE() retorna somente a data atual, sem incluir a hora.",
+    "D": "Errada: Não existe função chamada ATUAL no Microsoft Excel em português.",
+    "E": "Errada: DATA&HORA não é uma função válida no Excel."
+   }
+  },
+  {
+   "id": "tec_2647501",
+   "contentHash": "bf52496d7df7b7773967b26a6650bd6cf241825c1ace64740b6fe76d4bd489c1",
+   "gabarito": "A",
+   "comentario": "A imagem mostra A1 = 10 e B1 = 20. A fórmula inserida em C1 é =SE(A1<>B1;30;40). No Excel, o operador de comparação <> significa diferente de. Substituindo os valores das células, o teste lógico fica 10 <> 20. Como 10 é de fato diferente de 20, o teste lógico resulta em VERDADEIRO. Consequentemente, a função SE devolve o seu segundo argumento (valor se verdadeiro), que é 30.",
+   "alternativas": {
+    "A": "Correta: Como A1 (10) é diferente (<>) de B1 (20), a condição é verdadeira e a função SE retorna 30.",
+    "B": "Errada: 40 seria retornado apenas se o teste lógico fosse falso, ou seja, se A1 e B1 tivessem valores iguais.",
+    "C": "Errada: 10 é o valor armazenado em A1, mas a fórmula não retorna o conteúdo de A1.",
+    "D": "Errada: 20 é o valor armazenado em B1, não o resultado da função condicional.",
+    "E": "Errada: 70 seria a soma de 30 + 40, mas a função SE retorna apenas um dos dois ramos, nunca a soma deles."
+   }
+  },
+  {
+   "id": "tec_3100909",
+   "contentHash": "771306e2d81e5f087b53cc3d9f296bcde5f998ee0916c14d6670a7c75540ce4a",
+   "gabarito": "C",
+   "comentario": "No Microsoft Excel 2016 em português, a função CONCATENAR tem como finalidade unir (agrupar) duas ou mais cadeias de texto em uma única sequência contínua de texto. Por exemplo, =CONCATENAR(\"Bom\"; \" \"; \"dia\") resulta em \"Bom dia\". Ela oferece a mesma funcionalidade do operador de concatenação & e, nas versões mais recentes, convive com a função CONCAT, que também aceita intervalos.",
+   "alternativas": {
+    "A": "Errada: O número de combinações com repetição é calculado pela função COMBIN.A (e sem repetição por COMBIN).",
+    "B": "Errada: Retornar uma referência indicada por um valor de texto é o papel da função INDIRETO.",
+    "C": "Correta: CONCATENAR agrupa várias cadeias de texto em uma única sequência de texto.",
+    "D": "Errada: Retornar o número de colunas de uma matriz ou referência é a função de COLS."
+   }
+  },
+  {
+   "id": "tec_385267",
+   "contentHash": "ed297786b13485147e8ad0e35e0e0c0cc0e494941709fae1207fe63389bb655a",
+   "gabarito": "D",
+   "comentario": "Para agrupar sequências de caracteres de texto contidas em duas ou mais células no Microsoft Excel em português, utiliza-se a função CONCATENAR, que recebe os textos ou referências como argumentos (no Excel em português separados por ponto e vírgula, embora a questão adote a notação com vírgula da documentação traduzida). As demais alternativas apresentam nomes inventados ou termos de outros recursos que não existem como funções no Excel 2007.",
+   "alternativas": {
+    "A": "Errada: Não existe a função CONEXAO no Microsoft Excel para unir textos.",
+    "B": "Errada: JOIN não é o nome da função de concatenação de texto no Excel 2007 em português.",
+    "C": "Errada: Mesclar células é um recurso de formatação visual, não existindo a função =MESCLAR() no Excel.",
+    "D": "Correta: CONCATENAR é a função do Excel usada para agrupar sequências de texto de diferentes células.",
+    "E": "Errada: Não existe a função INTERLIGAR no Microsoft Excel."
+   }
+  },
+  {
+   "id": "tec_568380",
+   "contentHash": "93e7004ddc4e3cbfa5be3b7c8056d720a96ba6cebce65961949fb12be03691f5",
+   "gabarito": "D",
+   "comentario": "A fórmula =SE(SOMA(3;4;5)>10;\"maior\";\"menor\") avalia primeiro a função interna SOMA(3;4;5). Como 3 + 4 + 5 = 12, o teste lógico da função SE torna-se 12 > 10. Essa desigualdade é verdadeira, fazendo com que a função SE retorne seu segundo argumento (valor se verdadeiro), que é o texto maior (exibido sem as aspas na célula). Não há erro de sintaxe, pois todos os nomes de funções e separadores estão corretos no Excel em português.",
+   "alternativas": {
+    "A": "Errada: #NOME? ocorreria apenas se alguma função estivesse escrita com nome inválido, o que não acontece.",
+    "B": "Errada: 10 é apenas o valor de comparação usado no teste lógico, não o retorno da função SE.",
+    "C": "Errada: 3;4;5 são os argumentos passados para a função SOMA, não o resultado exibido na célula.",
+    "D": "Correta: SOMA(3;4;5) resulta em 12, que é maior que 10, levando a função SE a retornar o texto maior.",
+    "E": "Errada: O texto menor só seria retornado caso a soma fosse igual ou inferior a 10."
+   }
+  },
+  {
+   "id": "tec_608037",
+   "contentHash": "2ddd1e10125075da282c07b20d02fcb9a6a135d64980bf3dd1ab58cbe14260a1",
+   "gabarito": "B",
+   "comentario": "No Microsoft Excel 2016 em português, para exibir a data corrente do relógio do computador e mantê-la sempre atualizada a cada abertura ou recálculo da planilha, utiliza-se =HOJE(). Trata-se de uma função volátil sem parâmetros, exigindo apenas os parênteses vazios. Quando também é necessário mostrar o horário, recorre-se a =AGORA(). Inserir caracteres dentro dos parênteses de HOJE provoca erro de sintaxe.",
+   "alternativas": {
+    "A": "Errada: A função HOJE não aceita argumentos; colocar um asterisco entre parênteses provoca erro de fórmula.",
+    "B": "Correta: =HOJE() retorna a data atual do sistema operacional e atualiza-se automaticamente ao abrir a planilha.",
+    "C": "Errada: DATA.ATUAL não existe como função no Excel, além de conter argumento inválido.",
+    "D": "Errada: Não existe a função DATA.ATUAL no Microsoft Excel em português.",
+    "E": "Errada: =DIA(HOJE()) extrai apenas o número do dia do mês (de 1 a 31), e não a data completa."
+   }
+  },
+  {
+   "id": "tec_698148",
+   "contentHash": "cdeef20c79221ccf6554b016f77ef719a87ad6f8b22a43a813ed727e815e47ea",
+   "gabarito": "D",
+   "comentario": "No Microsoft Excel em português, existem três funções principais para alterar maiúsculas e minúsculas em textos: MAIÚSCULA (converte todo o texto para letras maiúsculas), MINÚSCULA (converte tudo para minúsculas) e PRI.MAIÚSCULA. A função PRI.MAIÚSCULA transforma em maiúscula a primeira letra de cada palavra (ou letra após qualquer caractere que não seja letra) e converte todas as demais para minúsculas. É exatamente a definição trazida pelo enunciado.",
+   "alternativas": {
+    "A": "Errada: Não existe função chamada CAPITALIZADO no Microsoft Excel em português.",
+    "B": "Errada: ARRUMAR.MAIÚSCULA não é uma função válida no Excel; ARRUMAR e MAIÚSCULA são funções distintas.",
+    "C": "Errada: Não existe a função MAIÚSCULA.INICIO no Excel em português.",
+    "D": "Correta: PRI.MAIÚSCULA coloca a inicial de cada palavra em maiúscula e as demais letras em minúsculas.",
+    "E": "Errada: MAIÚSCULA.ESQUERDA não existe no Excel em português."
+   }
+  },
+  {
+   "id": "tec_863499",
+   "contentHash": "091c704c5d1c250cc0b264d9553661f89d70fd272e57c25f436f35f0617deca8",
+   "gabarito": "B",
+   "comentario": "Na tabela da imagem, a quantidade em estoque do produto Guaraná está na célula B2 (valor 10) e sua situação será calculada em C2. A regra de negócios determina que estoques menores ou iguais a 5 exibam \"Estoque Acabando\" (como ocorre em C8, onde o estoque é exatamente 5) e os demais exibam \"Estoque OK\". Traduzindo para a função SE do Excel em português, o teste lógico é B2<=5, o valor se verdadeiro é \"Estoque Acabando\" e o valor se falso é \"Estoque OK\": =SE(B2<=5;\"Estoque Acabando\";\"Estoque OK\"), exatamente como exibido na imagem da alternativa B.",
+   "alternativas": {
+    "A": "Errada: Usa o operador < em vez de <=, deixando o valor 5 fora da condição de \"Estoque Acabando\", contrariando a regra e a linha 8.",
+    "B": "Correta: A fórmula =SE(B2<=5;\"Estoque Acabando\";\"Estoque OK\") aplica exatamente o operador <= e a ordem certa das mensagens.",
+    "C": "Errada: Usa o operador > (maior que 5), invertendo completamente a lógica e marcando estoques altos como acabando.",
+    "D": "Errada: Usa >= (maior ou igual a 5), emitindo \"Estoque Acabando\" para estoques elevados em vez de baixos.",
+    "E": "Errada: Mantém o teste B2<=5, mas inverte as mensagens de saída, exibindo \"Estoque OK\" quando o estoque está baixo."
+   }
+  }
+ ],
+ "descartes": []
+}
