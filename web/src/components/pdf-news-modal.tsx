@@ -3,32 +3,31 @@
 import { BookOpen, FileText, X } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui";
 import { dismissNotice } from "@/lib/notices-actions";
 
 /**
  * Pop-up de novidade: os PDFs próprios do MentorIA. Aparece uma vez (no primeiro acesso depois da atualização) para quem
- * tem plano do CFOA; ao fechar, o aviso é gravado como visto e não volta.
+ * tem plano do CFOA. O aviso é gravado como visto assim que aparece (não depende do clique de fechar), então não volta
+ * mesmo que o aluno feche a aba ou navegue antes de dispensá-lo.
  */
 export function PdfNewsModal({ noticeId, preview = false }: { noticeId: string; preview?: boolean }) {
   const [open, setOpen] = useState(true);
-  const [, start] = useTransition();
   const router = useRouter();
 
   useEffect(() => {
+    if (!preview) void dismissNotice(noticeId);
     document.getElementById("pdf-news-cta")?.focus();
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
+      if (e.key === "Escape") setOpen(false);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [noticeId, preview]);
 
   function close(then?: () => void) {
     setOpen(false);
-    if (!preview) start(() => void dismissNotice(noticeId));
     then?.();
   }
 
