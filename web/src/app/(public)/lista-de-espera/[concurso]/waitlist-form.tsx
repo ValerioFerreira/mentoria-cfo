@@ -167,7 +167,7 @@ function RefundNotice() {
       <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-ok" aria-hidden />
       <div className="space-y-1">
         <h2 className="font-display text-lg font-bold">E se você não gostar da plataforma?</h2>
-        <p className="text-sm leading-relaxed text-muted">Você tem até 7 dias para testar a plataforma, e se desistir do acesso, devolvemos seu dinheiro!</p>
+        <p className="text-sm leading-relaxed text-muted">Você tem até 7 dias para testar a plataforma, e se desistir do acesso sem ter aberto os PDFs do material, devolvemos seu dinheiro!</p>
       </div>
     </aside>
   );

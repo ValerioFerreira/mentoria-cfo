@@ -38,6 +38,17 @@ export async function GET(req: NextRequest, ctx: { params: Promise<{ disc: strin
     console.error(`[material] PDF ${disc}/${vol} não encontrado (origem: ${materialSource()})`);
     return new Response(`PDF indisponível no momento (origem: ${materialSource()}).`, { status: 404 });
   }
+  // registra a abertura (garantia de 7 dias: a devolução vale se nenhum PDF foi aberto); falha aqui não impede a leitura
+  try {
+    const volumeId = `${disc}/${vol}`;
+    await db.materialOpen.upsert({
+      where: { userId_volumeId: { userId: owner.id, volumeId } },
+      create: { userId: owner.id, volumeId },
+      update: { lastOpenedAt: new Date(), opens: { increment: 1 } },
+    });
+  } catch (err) {
+    console.error("[material] falha ao registrar a abertura do PDF", err instanceof Error ? err.message : "erro desconhecido");
+  }
   let stamped: Uint8Array;
   try {
     stamped = await stampPdf(pdf, { id: owner.id, name: owner.name ?? owner.email, idLabel: owner.cpf ? `CPF ${formatCpf(owner.cpf)}` : owner.email.toUpperCase() });

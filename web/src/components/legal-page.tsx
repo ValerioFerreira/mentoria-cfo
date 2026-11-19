@@ -31,6 +31,18 @@ export function LegalSection({ n, title, children }: { n: number; title: string;
 /** Aviso de aceite, logo acima do botão que cria a conta ou gera o pagamento. */
 export function LegalConsent() {
   return (
+    <div className="space-y-3">
+      <label className="flex cursor-pointer items-start gap-2.5 text-left text-xs leading-relaxed text-text">
+        <input type="checkbox" name="ageOk" required className="mt-0.5 h-4 w-4 shrink-0 cursor-pointer accent-[var(--primary)]" />
+        <span>Tenho 18 anos ou mais. Se tenho 16 ou 17 anos, declaro que meu responsável legal autorizou o uso da plataforma.</span>
+      </label>
+      <LegalConsentText />
+    </div>
+  );
+}
+
+function LegalConsentText() {
+  return (
     <p className="text-center text-xs leading-relaxed text-muted">
       Ao continuar, você declara que leu e concorda com os{" "}
       <Link href="/termos" target="_blank" className="font-semibold text-primary underline">

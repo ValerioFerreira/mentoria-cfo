@@ -2,7 +2,9 @@ import Link from "next/link";
 import { LogOut, User as UserIcon } from "lucide-react";
 import { AppearanceMenu } from "@/components/appearance-menu";
 import { AppNav, type NavItem } from "@/components/app-nav";
+import { PdfNewsModal } from "@/components/pdf-news-modal";
 import { TimerWidget } from "@/components/timer-widget";
+import { PDF_NOTICE, pdfNoticePending } from "@/lib/notices";
 import { requireUser } from "@/lib/auth/dal";
 import { getTheme } from "@/lib/theme";
 import { getUserContestSubtitle } from "@/lib/user-contest";
@@ -70,6 +72,8 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
         ? [...userNav.filter((item) => item.href !== "/pagamentos"), { href: "/parceria", label: "Minha parceria", icon: "partnership" }]
         : userNav;
   const name = user.name ?? user.email;
+  // aviso dos PDFs próprios: uma vez, no primeiro acesso depois da atualização, para quem tem plano do CFOA
+  const showPdfNotice = canAccessCore && user.role === "USER" && !user.isPartner && (await pdfNoticePending(user.id));
 
   const who = (
     <div className="space-y-2">
@@ -127,6 +131,7 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
         <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-6 pb-32 lg:px-10 lg:pb-24 lg:pt-4">{children}</main>
       </div>
       <TimerWidget />
+      {showPdfNotice && <PdfNewsModal noticeId={PDF_NOTICE} />}
     </>
   );
 }

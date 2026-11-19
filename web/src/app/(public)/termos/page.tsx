@@ -46,8 +46,10 @@ export default function TermosPage() {
       <LegalSection n={3} title="Cadastro e conta">
         <ul>
           <li>A conta é pessoal e intransferível. Você é responsável por manter a senha em sigilo e por tudo o que for feito com ela.</li>
-          <li>Você deve informar dados verdadeiros e mantê-los atualizados. O CPF é necessário para abrir os PDFs do material (veja a seção 6).</li>
-          <li>A plataforma é destinada a maiores de 18 anos.</li>
+          <li>Você deve informar dados verdadeiros e mantê-los atualizados. O CPF e a confirmação do nome completo (que fica em caixa alta) são necessários para abrir os PDFs do material (veja a seção 7).</li>
+          <li>
+            A idade mínima para usar a plataforma é de {LEGAL.minAge} anos. Quem tem {LEGAL.minAge} ou 17 anos só pode se cadastrar ou contratar com a autorização do responsável legal. Ao marcar a declaração de idade no cadastro ou na inscrição, você afirma ter 18 anos ou mais ou ter essa autorização.
+          </li>
           <li>Se suspeitar de uso indevido da sua conta, avise-nos imediatamente pelo e-mail {LEGAL.contactEmail}.</li>
         </ul>
       </LegalSection>
@@ -64,7 +66,7 @@ export default function TermosPage() {
       <LegalSection n={5} title="Preço e pagamento">
         <ul>
           <li>O valor total e os descontos aplicados aparecem antes da confirmação da contratação. O cálculo é feito pelo sistema, e não pelo seu navegador.</li>
-          <li>O pagamento pode ser feito por Pix ou por cartão, conforme as opções exibidas. Os dados do cartão são digitados no ambiente do Mercado Pago e não passam pelos nossos servidores.</li>
+          <li>O pagamento pode ser feito por Pix ou por cartão, conforme as opções exibidas. Os dados do cartão são digitados no ambiente da instituição de pagamento e não passam pelos nossos servidores.</li>
           <li>Cupons de desconto têm regras próprias, são pessoais e podem ser limitados em quantidade. Descontos somam-se sobre o valor original, até o limite de 100%.</li>
           <li>Podemos alterar preços e condições de novas contratações. Contratações já feitas não mudam de valor.</li>
         </ul>
@@ -72,7 +74,10 @@ export default function TermosPage() {
 
       <LegalSection n={6} title="Garantia de 7 dias">
         <p>
-          Você tem até {LEGAL.refundDays} dias corridos, contados da contratação, para testar a plataforma. Se desistir nesse prazo, devolvemos o valor pago. Esse direito é independente do motivo e está de acordo com o art. 49 do Código de Defesa do Consumidor.
+          Você tem até {LEGAL.refundDays} dias corridos, contados da contratação, para testar a plataforma. Se desistir nesse prazo, devolvemos o valor pago, desde que nenhum PDF do material tenha sido aberto. A devolução não depende do motivo da desistência.
+        </p>
+        <p>
+          O PDF do material é entregue na hora, com o seu nome e o seu CPF, e pode ser copiado depois de aberto. Por isso, a abertura de qualquer PDF encerra a garantia. Para aplicar essa regra, registramos, por PDF, a data da primeira e da última abertura e quantas vezes ele foi aberto.
         </p>
         <p>
           Para pedir a devolução, escreva para {LEGAL.contactEmail} informando o nome e o e-mail da conta. A devolução é feita pelo mesmo meio de pagamento, e o acesso é encerrado.
@@ -106,7 +111,10 @@ export default function TermosPage() {
 
       <LegalSection n={9} title="Suspensão e encerramento">
         <p>
-          Podemos suspender ou encerrar o acesso, com aviso sempre que possível, se houver descumprimento destes Termos, em especial violação da licença do material (seção 7), fraude ou uso indevido da conta. Nesses casos, não há devolução do valor pago além do que a lei exigir.
+          Se identificarmos compartilhamento do material ou da conta (seção 7), avisaremos você por e-mail, uma vez. Se o compartilhamento se repetir, bloquearemos a conta, sem devolução do valor pago além do que a lei exigir.
+        </p>
+        <p>
+          Em caso de fraude ou de violação grave destes Termos, podemos suspender ou encerrar o acesso sem aviso prévio. Nesses casos também não há devolução do valor pago além do que a lei exigir.
         </p>
         <p>Você pode pedir o encerramento da sua conta a qualquer momento pelo e-mail {LEGAL.contactEmail}. O tratamento dos seus dados nessa situação está descrito na Política de Privacidade.</p>
       </LegalSection>
@@ -120,13 +128,19 @@ export default function TermosPage() {
         </p>
       </LegalSection>
 
-      <LegalSection n={11} title="Mudanças nestes Termos">
+      <LegalSection n={11} title="Comunicações">
+        <p>
+          Hoje enviamos apenas e-mails do serviço, como confirmação de acesso, senha temporária, recuperação de senha e respostas a pedidos seus. No futuro, a plataforma poderá enviar e-mails com promoções e novidades. Por ora isso não acontece e, se vier a acontecer, pediremos antes a sua concordância, que você poderá retirar quando quiser.
+        </p>
+      </LegalSection>
+
+      <LegalSection n={12} title="Mudanças nestes Termos">
         <p>
           Podemos atualizar estes Termos. A data de atualização fica no topo desta página. Mudanças relevantes serão informadas na plataforma ou por e-mail, e não alteram as condições de uma contratação já feita em prejuízo de quem a fez.
         </p>
       </LegalSection>
 
-      <LegalSection n={12} title="Contato">
+      <LegalSection n={13} title="Contato">
         <p>
           {LEGAL.companyName} · CNPJ {LEGAL.cnpj}
           <br />
@@ -136,7 +150,7 @@ export default function TermosPage() {
         </p>
       </LegalSection>
 
-      <LegalSection n={13} title="Lei aplicável e foro">
+      <LegalSection n={14} title="Lei aplicável e foro">
         <p>
           Estes Termos são regidos pelas leis do Brasil. Fica eleito o foro da {LEGAL.forum}, para resolver qualquer controvérsia, ressalvado o direito do consumidor de propor a ação no foro do seu próprio domicílio, como garante o Código de Defesa do Consumidor.
         </p>

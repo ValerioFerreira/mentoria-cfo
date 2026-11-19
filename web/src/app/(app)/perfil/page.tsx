@@ -62,7 +62,7 @@ export default async function PerfilPage({ searchParams }: { searchParams: Promi
         description="Gerencie os dados da sua conta de acesso, validade do seu plano, concurso escolhido e suas credenciais de segurança."
       />
 
-      <CpfCard masked={cpf ? maskCpf(cpf) : null} required={cpfParam === "necessario"} />
+      <CpfCard masked={cpf ? maskCpf(cpf) : null} name={user.name ?? ""} required={cpfParam === "necessario"} />
       <PerfilView user={profileData} />
     </div>
   );

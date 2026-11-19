@@ -41,16 +41,19 @@ export default function PrivacidadePage() {
             <strong>Conta:</strong> nome, e-mail e nome de usuário. A senha é guardada de forma irreversível (nem nós a conseguimos ler). Usamos esses dados para criar e proteger sua conta e para o contrato de acesso.
           </li>
           <li>
-            <strong>CPF:</strong> pedido uma única vez, quando você abre um PDF do material pela primeira vez. Ele aparece, com o seu nome, no rodapé de todas as páginas do PDF que você baixa, para identificar o titular da licença e coibir o compartilhamento indevido do material. O PDF carimbado contém o seu CPF, por isso não o repasse a ninguém.
+            <strong>CPF e nome completo:</strong> pedidos uma única vez, quando você tenta abrir um PDF do material pela primeira vez (o nome é confirmado e fica em caixa alta). Aparecem no rodapé de todas as páginas do PDF que você baixa, para identificar o titular da licença e coibir o compartilhamento indevido do material. O PDF carimbado contém o seu CPF, por isso não o repasse a ninguém.
           </li>
           <li>
             <strong>Estudo:</strong> concurso escolhido, data da prova, horas semanais, idioma estrangeiro, assuntos que você marcou como estudados, planos gerados, atividades concluídas, tempo de estudo lançado, anotações e resumos que você escreve, respostas a questões e simulados e o seu desempenho. Usamos esses dados para montar o plano, mostrar o seu progresso e calibrar as próximas atividades.
           </li>
           <li>
-            <strong>Contratação e pagamento:</strong> concurso contratado, valor, cupons usados, datas, situação do pagamento e identificadores da transação. Os dados do cartão são digitados direto no Mercado Pago e não chegam a nós. No Pix, recebemos a confirmação do pagamento e as informações que acompanham a transação.
+            <strong>Contratação e pagamento:</strong> concurso contratado, valor, cupons usados, datas, situação do pagamento e identificadores da transação. Os dados do cartão são digitados direto no ambiente da instituição de pagamento e não chegam a nós. No Pix, recebemos a confirmação do pagamento e as informações que acompanham a transação.
           </li>
           <li>
             <strong>Indicação por parceiros:</strong> se você usar o cupom de um parceiro, registramos essa indicação. O parceiro recebe apenas totais (quantidade de indicados e valores de comissão), e não os seus dados pessoais.
+          </li>
+          <li>
+            <strong>Abertura dos PDFs do material:</strong> para cada PDF, a data da primeira e da última abertura e quantas vezes foi aberto. Serve para aplicar a garantia de 7 dias (a devolução vale se nenhum PDF foi aberto) e para identificar uso indevido do material.
           </li>
           <li>
             <strong>Mensagens e relatos:</strong> o que você escreve ao reportar um erro em um PDF ou em uma questão, ou ao falar conosco, junto com a sua identificação na conta.
@@ -59,7 +62,9 @@ export default function PrivacidadePage() {
             <strong>Dados técnicos e de segurança:</strong> cookies de sessão, registros de acesso (como data, hora e endereço IP, mantidos pela hospedagem) e registros de ações administrativas. Servem para manter você conectado, proteger a plataforma contra fraudes e cumprir a lei.
           </li>
         </ul>
-        <p>Enviamos e-mails apenas relacionados ao serviço, como confirmação de acesso, senha temporária, recuperação de senha e respostas a pedidos seus.</p>
+        <p>
+          Enviamos e-mails apenas relacionados ao serviço, como confirmação de acesso, senha temporária, recuperação de senha e respostas a pedidos seus. Por ora não enviamos e-mails de promoções ou novidades; se isso vier a acontecer, pediremos antes a sua concordância, e você poderá retirá-la quando quiser.
+        </p>
       </LegalSection>
 
       <LegalSection n={3} title="Em que a lei nos apoia (bases legais)">
@@ -84,17 +89,17 @@ export default function PrivacidadePage() {
           </li>
         </ul>
         <p>
-          Não usamos cookies de publicidade nem ferramentas de análise de terceiros. O ambiente de pagamento do Mercado Pago pode usar os próprios cookies, regidos pela política dele.
+          Não usamos cookies de publicidade nem ferramentas de análise de terceiros. O ambiente da instituição de pagamento pode usar os próprios cookies, regidos pela política dela.
         </p>
       </LegalSection>
 
       <LegalSection n={5} title="Com quem compartilhamos">
         <p>Não vendemos nem alugamos seus dados. Compartilhamos apenas com empresas que nos prestam serviços, para que a plataforma funcione:</p>
         <ul>
-          <li>Vercel: hospedagem do site e dos servidores da aplicação.</li>
-          <li>Neon: banco de dados onde ficam os dados da sua conta e do seu estudo.</li>
-          <li>Cloudflare: armazenamento privado dos PDFs do material.</li>
-          <li>Mercado Pago: processamento dos pagamentos.</li>
+          <li>Provedor de hospedagem: site e servidores da aplicação.</li>
+          <li>Provedor de banco de dados em nuvem: onde ficam os dados da sua conta e do seu estudo.</li>
+          <li>Provedor de armazenamento privado: PDFs do material.</li>
+          <li>Instituição de pagamento: processamento dos pagamentos.</li>
           <li>Provedor de envio de e-mails: mensagens do serviço.</li>
         </ul>
         <p>Também podemos informar dados a autoridades, quando a lei ou uma ordem judicial exigir.</p>
@@ -108,7 +113,7 @@ export default function PrivacidadePage() {
 
       <LegalSection n={7} title="Por quanto tempo guardamos">
         <p>
-          Guardamos seus dados enquanto a sua conta existir. Depois do encerramento, mantemos apenas o que a lei nos obriga a manter (por exemplo, registros fiscais e contábeis, em regra por cinco anos, e registros de acesso pelo prazo legal) e o necessário para nos defender em eventuais disputas. Passado esse período, os dados são apagados ou tornados anônimos.
+          Guardamos seus dados enquanto a sua conta existir e por até {LEGAL.retentionMonths} meses depois do encerramento da conta ou do fim do acesso, para suporte, reclamações e defesa em eventuais disputas. Passado esse prazo, os dados são apagados ou tornados anônimos, exceto o que a lei nos obriga a manter por mais tempo (por exemplo, registros fiscais e contábeis, em regra por cinco anos, e registros de acesso pelo prazo legal).
         </p>
       </LegalSection>
 
@@ -141,7 +146,9 @@ export default function PrivacidadePage() {
       </LegalSection>
 
       <LegalSection n={10} title="Crianças e adolescentes">
-        <p>A plataforma é destinada a maiores de 18 anos. Não coletamos intencionalmente dados de menores. Se perceber que isso aconteceu, fale com o encarregado para que possamos apagar os dados.</p>
+        <p>
+          A idade mínima para usar a plataforma é de {LEGAL.minAge} anos. Adolescentes de {LEGAL.minAge} e 17 anos só podem se cadastrar ou contratar com a autorização do responsável legal, e tratamos os dados deles sempre no seu melhor interesse (LGPD, art. 14). Não coletamos intencionalmente dados de menores de {LEGAL.minAge} anos. Se perceber que isso aconteceu, fale com o encarregado para que possamos apagar os dados.
+        </p>
       </LegalSection>
 
       <LegalSection n={11} title="Mudanças nesta Política">

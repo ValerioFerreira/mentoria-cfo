@@ -21,6 +21,7 @@ const SignupSchema = z.object({
 });
 
 export async function signup(_: AuthState, formData: FormData): Promise<AuthState> {
+  if (formData.get("ageOk") !== "on") return { message: "Confirme a declaração de idade (18 anos ou mais, ou 16 e 17 com autorização do responsável)." };
   const parsed = SignupSchema.safeParse(Object.fromEntries(formData));
   if (!parsed.success) return { errors: z.flattenError(parsed.error).fieldErrors as Record<string, string[]> };
   const { name, email, password, invite } = parsed.data;

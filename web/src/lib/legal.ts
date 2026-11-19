@@ -11,6 +11,10 @@ export const LEGAL = {
   rightsDays: 15,
   /** Prazo da garantia de devolução (igual ao anunciado no formulário de inscrição), em dias corridos. */
   refundDays: 7,
+  /** Idade mínima de uso; de 16 a 17 anos exige autorização do responsável legal. */
+  minAge: 16,
+  /** Prazo de guarda dos dados depois do encerramento da conta ou do fim do acesso, em meses. */
+  retentionMonths: 12,
   forum: "Comarca do Recife, Estado de Pernambuco",
-  updatedAt: "10 de novembro de 2026",
+  updatedAt: "19 de novembro de 2026",
 } as const;

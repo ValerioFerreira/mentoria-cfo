@@ -60,6 +60,7 @@ vi.mock("@/lib/billing/mercado-pago", async (importActual) => {
 
 const fd = (o: Record<string, string>) => {
   const f = new FormData();
+  f.set("ageOk", "on"); // declaração de idade exigida pelo cadastro
   for (const [k, v] of Object.entries(o)) f.set(k, v);
   return f;
 };

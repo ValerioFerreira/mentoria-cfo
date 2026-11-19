@@ -526,8 +526,11 @@ model User {
   mustChangePassword Boolean   @default(false)
   accessExpiresAt    DateTime?
   cpf                String? // só dígitos; carimbado no rodapé dos PDFs do material próprio
+  /// Avisos de novidade (pop-up) que o aluno já viu ou dispensou; ids em lib/notices.ts
+  seenNotices        String[]  @default([])
   createdAt          DateTime  @default(now())
 
+  materialOpens MaterialOpen[]
   sessions         Session[]
   profile          Profile?
   plans            Plan[]
@@ -1203,6 +1206,21 @@ model SystemSetting {
   key       String   @id
   value     String
   updatedAt DateTime @updatedAt
+}
+
+// Registro de abertura de PDF do material próprio: serve à garantia de 7 dias (a devolução vale se nenhum PDF foi aberto).
+// Uma linha por aluno e volume; guarda só datas e a contagem, nada do conteúdo.
+model MaterialOpen {
+  userId        String
+  volumeId      String // "direito-penal-militar/m01"
+  firstOpenedAt DateTime @default(now())
+  lastOpenedAt  DateTime @default(now())
+  opens         Int      @default(1)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, volumeId])
+  @@index([firstOpenedAt])
 }
 
 // Erro apontado pelo aluno num PDF do material próprio (volume, página e explicação). O administrador resolve ou descarta.

@@ -169,6 +169,7 @@ export async function joinWaitlist(slug: string, _: JoinState, formData: FormDat
   if (tooManyAttempts(key)) return { message: "Muitas tentativas. Aguarde alguns minutos e tente novamente." };
   registerFailure(key); // conta toda tentativa: o limite é por envio, não por erro (também freia tentativas de cupom)
 
+  if (formData.get("ageOk") !== "on") return { message: "Confirme a declaração de idade (18 anos ou mais, ou 16 e 17 com autorização do responsável)." };
   const parsed = JoinSchema.safeParse(Object.fromEntries(formData));
   if (!parsed.success) return { errors: z.flattenError(parsed.error).fieldErrors as Record<string, string[]> };
   const { name, email, username, coupon } = parsed.data;
