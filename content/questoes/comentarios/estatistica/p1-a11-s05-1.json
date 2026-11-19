@@ -1,0 +1,60 @@
+{
+ "lote": "estatistica/p1-a11-s05-1",
+ "trecho": "estatistica/a11/s05",
+ "autor": "AGENTE-C",
+ "data": "2026-11-19",
+ "comentarios": [
+  {
+   "id": "tec_1422020",
+   "contentHash": "0498f9773f62501a1b421b58158e53d29e128f9c5b2c297ff18eb881d9a7085f",
+   "gabarito": "C",
+   "comentario": "A regra rejeita a hipótese nula apenas quando os quatro ensaios são sucessos. Sob H₀, p=1/4, então α=P(X=4|p=1/4)=(1/4)⁴=1/256≈0,003906. Sob H₁, p=3/4, o erro tipo II é a chance de não ocorrer a rejeição: β=P(X≠4|p=3/4)=1−(3/4)⁴=1−0,316406=0,683594. A alternativa C traz os dois valores, arredondados.",
+   "alternativas": {
+    "A": "Errada: α não é o nível arbitrário 0,05; deriva da probabilidade de quatro sucessos sob H₀.",
+    "B": "Errada: β é a probabilidade de não rejeitar H₀ sob H₁, e não 0,95.",
+    "C": "Correta: α=(1/4)⁴≈0,003906 e β=1−(3/4)⁴≈0,6835.",
+    "D": "Errada: os dois erros devem ser calculados a partir da regra e das probabilidades sob cada hipótese.",
+    "E": "Errada: β não é a probabilidade de quatro sucessos sob H₁; é sua complementar."
+   }
+  },
+  {
+   "id": "tec_1422118",
+   "contentHash": "95d3d0eaf84983cdacc4e6404150aebcc882e31a152bcfbc876f70616887150e",
+   "gabarito": "B",
+   "comentario": "Sob a hipótese de dados honestos, a probabilidade de soma sete é p₀=1/6. A frequência observada é 42/180≈0,2333. O erro padrão sob H₀ é √[(1/6)(5/6)/180]≈0,0278; assim, z≈(0,2333−0,1667)/0,0278≈2,4. A cauda superior informada é 0,0082 e, no teste bilateral, o valor-p é aproximadamente 2×0,0082=0,0164. Como é menor que 0,05, rejeita-se a hipótese de honestidade; B expressa essa conclusão.",
+   "alternativas": {
+    "A": "Errada: a observação é evidência contra H₀, pois valor-p≈0,0164 é inferior a 0,05.",
+    "B": "Correta: o valor-p bilateral≈0,0164, logo rejeita-se a hipótese nula de honestidade.",
+    "C": "Errada: 0,0082 é a cauda de um lado; o teste bilateral duplica esse valor.",
+    "D": "Errada: 1/6 é a probabilidade teórica sob H₀, não o valor-p calculado com os dados.",
+    "E": "Errada: 0,0082 é valor unilateral, não valor-p bilateral do teste de significância."
+   }
+  },
+  {
+   "id": "tec_3104088",
+   "contentHash": "eb670033fc0bdf2c15aa57327274f4a4840cb05792adda3caeb0132aefd9c767",
+   "gabarito": "D",
+   "comentario": "O enunciado define H₀:p=0,8 e H₁:p<0,8, com n=20. A hipótese não é rejeitada quando há mais de 12 sucessos, isto é, X≥13; portanto, o erro tipo II sob p=0,6 é β=P(X≥13|p=0,6). O dado fornece P(X≤12|p=0,6)≈0,584; pela complementaridade, β≈1−0,584=0,416. A alternativa D é compatível com essa probabilidade.",
+   "alternativas": {
+    "A": "Errada: 0,0321 não é o complemento da probabilidade acumulada informada.",
+    "B": "Errada: 0,5838 é a chance de rejeitar H₀ sob p=0,6, não o erro tipo II.",
+    "C": "Errada: 0,5960 não decorre do complemento da probabilidade até 12.",
+    "D": "Correta: β=P(X≥13|p=0,6)=1−P(X≤12)≈1−0,584=0,416."
+   }
+  }
+ ],
+ "descartes": [
+  {
+   "id": "tec_1427346",
+   "motivo": "QUALIDADE: para H₀:p=0,5 contra H₁:p=0,625, região crítica superior que respeita α≤0,05 é X>6, mas seu poder é P(X>6|p=0,625)=0,1351; nenhuma alternativa traz esse poder. O item duplicado ainda apresenta gabaritos incompatíveis."
+  },
+  {
+   "id": "tec_2052596",
+   "motivo": "QUALIDADE: para H₀:p=0,5 contra H₁:p=0,625, região crítica superior que respeita α≤0,05 é X>6, mas seu poder é P(X>6|p=0,625)=0,1351; nenhuma alternativa traz esse poder. O item duplicado ainda apresenta gabaritos incompatíveis."
+  },
+  {
+   "id": "tec_624631",
+   "motivo": "QUALIDADE: sob chute aleatório, X~Binomial(10,0,5), logo P(X≥7)=176/1024≈0,1719, não 0,176 como afirma o gabarito D; não há alternativa com o valor calculado."
+  }
+ ]
+}

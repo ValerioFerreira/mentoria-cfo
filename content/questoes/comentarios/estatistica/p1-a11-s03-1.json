@@ -1,0 +1,66 @@
+{
+ "lote": "estatistica/p1-a11-s03-1",
+ "trecho": "estatistica/a11/s03",
+ "autor": "AGENTE-C",
+ "data": "2026-11-19",
+ "comentarios": [
+  {
+   "id": "tec_1420217",
+   "contentHash": "8c99a73804779041fdeec91d4116ee68bec8248c4bc117fb07449ea3dbc0f798",
+   "gabarito": "D",
+   "comentario": "A média sob a hipótese nula é μ=13 minutos. O erro padrão da média é s/√n=10/√400=0,5 minuto. A estatística observada fica (14−13)/0,5=2, acima do valor crítico unilateral de 1,64 informado para 5%. Portanto, rejeita-se a hipótese nula em favor de que o tempo médio supera 13 minutos. A conclusão está na alternativa D; não se conclui que a média verdadeira seja maior que 14, pois 14 é a média observada.",
+   "alternativas": {
+    "A": "Errada: 14 minutos é a média observada; o teste não indica média populacional abaixo desse valor.",
+    "B": "Errada: a hipótese de igualdade é rejeitada, pois z=2 supera 1,64.",
+    "C": "Errada: não se testa se a média supera a média amostral observada de 14 minutos.",
+    "D": "Correta: z=(14−13)/(10/√400)=2, acima do crítico 1,64; há evidência de média superior a 13.",
+    "E": "Errada: o resultado aponta para média maior, e não menor, que 13 minutos."
+   }
+  },
+  {
+   "id": "tec_1420985",
+   "contentHash": "d00e8c85671ae7b1ef51f566f538ea365eb2a2654efcfc52d65aed3281a58d98",
+   "gabarito": "E",
+   "comentario": "No teste de Shapiro–Wilk, a hipótese nula é que os dados são compatíveis com uma distribuição normal. Se o valor-p excede 0,05, não há evidência suficiente para rejeitá-la nesse nível; isso não prova normalidade, mas permite seguir o procedimento paramétrico adotado no enunciado. Para comparar a média com o valor especificado, usa-se o teste t de uma amostra quando a variância populacional é desconhecida e os pressupostos são aceitáveis. A alternativa E reúne essa interpretação e o teste t.",
+   "alternativas": {
+    "A": "Errada: valor-p menor que 0,05 leva à rejeição da normalidade, não à sua aceitação.",
+    "B": "Errada: com valor-p maior que 0,05, a opção apresenta Wilcoxon em vez do teste t previsto para a média.",
+    "C": "Errada: Mann–Whitney compara grupos independentes; não é o procedimento indicado para testar uma média de uma amostra.",
+    "D": "Errada: o teste do sinal não é a escolha paramétrica para comparar a média nas condições descritas.",
+    "E": "Correta: valor-p acima de 0,05 não rejeita a normalidade e permite aplicar o teste t de uma amostra."
+   }
+  },
+  {
+   "id": "tec_1421143",
+   "contentHash": "b5da63bf615d2d2bec3d5e82a27ee27db69f16cd01e96e4164396c20e2e8ffb1",
+   "gabarito": "E",
+   "comentario": "Como a variância populacional é desconhecida e a amostra vem de uma população normal, o pivô para a média padronizada usa o desvio-padrão amostral S: (X̄−μ)/(S/√n). Sob as condições do enunciado, essa estatística segue distribuição t de Student com n−1 graus de liberdade. A alternativa E apresenta exatamente esse pivô e os graus de liberdade correspondentes. O tamanho amostral pode afetar a aproximação, mas não muda a forma do pivô nem o parâmetro de escala usado.",
+   "alternativas": {
+    "A": "Errada: não é o pivô t adequado para variância desconhecida e mistura incorretamente as condições.",
+    "B": "Errada: quando a variância populacional é conhecida, usa-se o pivô normal, não t com n−1 graus de liberdade.",
+    "C": "Errada: o pivô não usa n−2 graus de liberdade neste problema de uma média.",
+    "D": "Errada: com variância conhecida, usa-se a distribuição normal; não t com n graus de liberdade.",
+    "E": "Correta: usa S/√n e distribuição t com n−1 graus de liberdade quando σ² é desconhecida."
+   }
+  },
+  {
+   "id": "tec_1423239",
+   "contentHash": "e7423f583b298396e141da5295dc20a3604107d739e4bd0761b7e51e61c8cf39",
+   "gabarito": "A",
+   "comentario": "O erro padrão da média é σ/√n. O enunciado informa erro padrão igual a 2 produtos e n=64 supermercados, logo σ=2√64=2×8=16 produtos. O desvio-padrão populacional mede a dispersão das vendas individuais; o erro padrão mede a dispersão das médias amostrais. A alternativa A é a única que recupera corretamente σ a partir do erro padrão e do tamanho da amostra. Não se deve confundir o valor 2 do erro padrão com o desvio-padrão populacional solicitado.",
+   "alternativas": {
+    "A": "Correta: σ=2√64=16 produtos.",
+    "B": "Errada: 2 é o erro padrão da média, não o desvio-padrão individual.",
+    "C": "Errada: dividir o erro padrão por √n inverte a relação correta.",
+    "D": "Errada: 138 não resulta de σ=erro padrão×√n.",
+    "E": "Errada: 8 é √n; ainda falta multiplicar pelo erro padrão 2."
+   }
+  }
+ ],
+ "descartes": [
+  {
+   "id": "tec_1420993",
+   "motivo": "QUALIDADE: t=(2,98−3,00)/(0,2/√16)=−0,40, mas o valor-p bilateral é cerca de 0,695, não 0,347; o gabarito D contém dado incompatível com o teste bilateral do enunciado."
+  }
+ ]
+}

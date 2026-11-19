@@ -1,0 +1,118 @@
+{
+ "lote": "estatistica/p1-a11-s04-1",
+ "trecho": "estatistica/a11/s04",
+ "autor": "AGENTE-C",
+ "data": "2026-11-19",
+ "comentarios": [
+  {
+   "id": "tec_1421139",
+   "contentHash": "9dede87fc857e29b9495f57a9b50aa2a55d3c078dbcdc2e21c997b3de0edd4a0",
+   "gabarito": "D",
+   "comentario": "Para o teste t clássico de duas amostras independentes, a formulação usual pressupõe observações independentes, populações normais e variâncias populacionais iguais. A igualdade de variâncias permite reunir as informações dos dois grupos em uma estimativa combinada, usada no denominador da estatística. Se as variâncias forem diferentes, a versão de Aspin–Welch é mais apropriada; se houver pareamento, a análise deve ser feita sobre as diferenças. A alternativa D enuncia as condições clássicas.",
+   "alternativas": {
+    "A": "Errada: a formulação pede variâncias iguais para o teste clássico, e a distribuição t se refere à estatística, não às observações.",
+    "B": "Errada: observações pareadas não atendem ao requisito de independência entre grupos do teste clássico.",
+    "C": "Errada: variâncias diferentes requerem Welch, e amostras correlacionadas não são independentes.",
+    "D": "Correta: o teste t clássico pressupõe independência, normalidade e homocedasticidade.",
+    "E": "Errada: heterocedasticidade pede abordagem como Welch, não o teste clássico combinado."
+   }
+  },
+  {
+   "id": "tec_1421140",
+   "contentHash": "37459b09f7a9904894f57d1118e0bb0bf8ab3c03a2dad4a9fca01b9390cd8781",
+   "gabarito": "C",
+   "comentario": "Na versão clássica do teste t para duas médias independentes, assume-se variância populacional comum e ela é estimada pela variância combinada, ponderando cada variância amostral pelos respectivos graus de liberdade. A estatística segue distribuição t com n₁+n₂−2 graus de liberdade. Welch não combina as variâncias dessa forma e estima graus de liberdade aproximados; os tamanhos das amostras podem ser diferentes. A alternativa C apresenta a característica distintiva da versão clássica.",
+   "alternativas": {
+    "A": "Errada: a variância combinada é uma média ponderada pelos graus de liberdade, não simplesmente a média das variâncias.",
+    "B": "Errada: os graus de liberdade do teste clássico são n₁+n₂−2, não n₁+n₂.",
+    "C": "Correta: o teste clássico estima a variância comum pela combinação ponderada das variâncias amostrais.",
+    "D": "Errada: Welch usa graus de liberdade aproximados, que não são necessariamente n−2.",
+    "E": "Errada: a versão de Welch permite tamanhos amostrais distintos."
+   }
+  },
+  {
+   "id": "tec_1421142",
+   "contentHash": "8d101da99610cb3ea9ac14dc681f92fdc5197ef9aa4131d72e6b6dd019b1ab71",
+   "gabarito": "E",
+   "comentario": "No teste t pareado, cada unidade fornece duas medidas e a análise é reduzida à amostra das diferenças Dᵢ. A estatística é (D̄−μ₀)/(Sᴅ/√n), em que Sᴅ é o desvio-padrão dessas diferenças. Como se estima a variância das diferenças, a estatística segue t com n−1 graus de liberdade. A alternativa E apresenta essa estrutura. As demais trocam o denominador, o parâmetro ou os graus de liberdade.",
+   "alternativas": {
+    "A": "Errada: a fórmula ou o número de graus de liberdade não corresponde ao teste pareado; são n−1 graus.",
+    "B": "Errada: usar n−2 graus de liberdade não se justifica ao estimar apenas a média das diferenças.",
+    "C": "Errada: também atribui n−2 graus de liberdade ao teste de uma média de diferenças.",
+    "D": "Errada: embora n−1 seja o grau de liberdade, a expressão apresentada não corresponde corretamente ao pivô pareado.",
+    "E": "Correta: usa o erro padrão Sᴅ/√n e t com n−1 graus de liberdade."
+   }
+  },
+  {
+   "id": "tec_2027919",
+   "contentHash": "2d6bac868a09a76f330bab3be97dd922339badad3abb488f3b522a6cdc6e1378",
+   "gabarito": "C",
+   "comentario": "Para comparar dois grupos normais independentes com variâncias iguais, o teste t clássico avalia a igualdade das duas médias. No segundo caso há três grupos normais independentes com variâncias iguais; a comparação conjunta das médias é feita pela análise de variância, cuja estatística é F. Kruskal–Wallis é alternativa não paramétrica, e o teste exato de Fisher trata tabelas de contingência, não médias contínuas. Portanto, a sequência correta é teste t clássico e ANOVA, opção C.",
+   "alternativas": {
+    "A": "Errada: Welch não é a versão clássica para variâncias iguais, e Kruskal–Wallis não é o procedimento paramétrico indicado.",
+    "B": "Errada: acerta o primeiro teste, mas Kruskal–Wallis não é necessário sob as condições normais e homocedásticas informadas.",
+    "C": "Correta: usa t clássico para dois grupos e ANOVA F para comparar as médias dos três grupos.",
+    "D": "Errada: Mann–Whitney e Kruskal–Wallis são testes de postos, não os procedimentos paramétricos especificados.",
+    "E": "Errada: Fisher não testa igualdade de médias de três grupos."
+   }
+  },
+  {
+   "id": "tec_2775211",
+   "contentHash": "6e35b63ac32761b421ceec83578304e4f7cdd74ef527162e78dda9ad26974cca",
+   "gabarito": "D",
+   "comentario": "A tabela informa x̄₁=5, x̄₂=4, s₁=1 e s₂=0,8, com n₁=20 e n₂=25. Sob variâncias iguais, a variância combinada é [(19×1²)+(24×0,8²)]/(20+25−2)=0,7991. Logo, sₚ≈0,894. O erro padrão da diferença é sₚ√(1/20+1/25)≈0,268, e t=(5−4)/0,268≈3,72895. A resposta é D.",
+   "alternativas": {
+    "A": "Errada: 1,78951 não resulta da diferença de médias dividida pelo erro padrão combinado.",
+    "B": "Errada: 5,24901 não corresponde aos dados da tabela e ao denominador pooled.",
+    "C": "Errada: 4,25317 superestima a estatística obtida com a variância combinada.",
+    "D": "Correta: a variância combinada é cerca de 0,799 e t≈1/0,268=3,72895.",
+    "E": "Errada: 0,80522 ignora a diferença de médias de uma unidade."
+   }
+  },
+  {
+   "id": "tec_2920146",
+   "contentHash": "d1101036be4ee08328455f632c9ffa844ba05ccbc085cf1c91227b83735f0793",
+   "gabarito": "A",
+   "comentario": "A tabela mostra médias 10 e 12, desvios-padrão 0,55 e 0,40 e tamanhos 20 e 30. Como se trata do procedimento de Aspin–Welch, o erro padrão é √(0,55²/20+0,40²/30)=√0,020458≈0,1430. Assim, t=(10−12)/0,1430≈−13,9828. O sinal negativo decorre da ordem grupo 1 menos grupo 2; seu módulo é elevado porque a diferença de médias é grande diante da variabilidade amostral. Alternativa A.",
+   "alternativas": {
+    "A": "Correta: t=(10−12)/√(0,55²/20+0,40²/30)≈−13,9828.",
+    "B": "Errada: −2,1035 não é o quociente da diferença pela estimativa Welch do erro padrão.",
+    "C": "Errada: −14,2123 diverge do cálculo com os valores tabulados.",
+    "D": "Errada: −10,1521 não resulta das médias, dispersões e tamanhos informados.",
+    "E": "Errada: −2,1535 tem magnitude incompatível com o erro padrão aproximado de 0,143."
+   }
+  },
+  {
+   "id": "tec_3037379",
+   "contentHash": "d7c1203066144262a80867629dcb6b4835b5d7e90131e5a8f150cf131617182b",
+   "gabarito": "C",
+   "comentario": "Como as amostras são independentes, normais e têm variâncias desconhecidas e diferentes, aplica-se o teste t de Welch. A diferença das médias é 25−31=−6 anos. O erro padrão é √(2²/15+3,5²/20)=√(0,87875)≈0,9374. Portanto, t≈−6/0,9374=−6,399. O sinal negativo indica que a média amostral do grupo de prevaricação é menor. A alternativa C corresponde ao cálculo.",
+   "alternativas": {
+    "A": "Errada: −5,412 não corresponde ao erro padrão de Welch calculado com os dois grupos.",
+    "B": "Errada: −7,325 tem módulo maior do que a razão correta.",
+    "C": "Correta: t=−6/√(4/15+12,25/20)≈−6,399.",
+    "D": "Errada: médias amostrais distintas produzem estatística não nula.",
+    "E": "Errada: a diferença é negativa e sua magnitude fica perto de 6,399."
+   }
+  },
+  {
+   "id": "tec_624635",
+   "contentHash": "edbbd7782c37a02aff54c1634ad9da18c101bd821433b436e56d451aa35c4bf6",
+   "gabarito": "B",
+   "comentario": "Para o teste t clássico com variância combinada, as observações dos grupos precisam ser independentes, e as populações devem ser normais e ter variâncias iguais. O fato de as variâncias serem desconhecidas é compatível com esse teste porque elas são estimadas a partir das amostras. A alternativa D reúne os requisitos clássicos. Com variâncias desiguais, pode-se usar Welch, mas isso não é a versão clássica pressuposta pelas condições apresentadas.",
+   "alternativas": {
+    "A": "Errada: independência é necessária, mas sozinha não assegura validade rigorosa do teste t clássico.",
+    "B": "Correta: normalidade, variâncias desconhecidas e independência não especificam homocedasticidade para o teste clássico.",
+    "C": "Errada: omite a independência entre as amostras.",
+    "D": "Errada: normalidade, igualdade de variâncias e independência descrevem as condições clássicas.",
+    "E": "Errada: desconhecer variâncias e ter independência não substitui normalidade e homocedasticidade."
+   }
+  }
+ ],
+ "descartes": [
+  {
+   "id": "tec_1420218",
+   "motivo": "QUALIDADE: o pareado tem df=24, portanto n=25; o gabarito A relata 26 participantes. O p bilateral 0,08688 implica p unilateral≈0,04344 e rejeição a 5%, mas nenhuma alternativa descreve a decisão e o tamanho corretos simultaneamente."
+  }
+ ]
+}
