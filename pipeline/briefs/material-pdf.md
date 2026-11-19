@@ -75,7 +75,7 @@ O PDF sai **sem** carimbo, com a faixa do rodapé reservada e vazia.
 6. **Mapa do capítulo**: é a última seção de cada capítulo. Destaque leve em roxo (Revisão); o "Para fixar" em lista com marcador roxo.
 7. **Questões comentadas** (Fixação), no fim do volume. Por decisão de didática, em duas partes:
    - **Questões**: todas as questões, agrupadas por capítulo, só com enunciado, texto-base e alternativas (bolhas A–E de `.alts`), para o aluno resolver antes;
-   - **Comentários e gabarito**: para cada questão, "Questão N · Gabarito X", o comentário e o comentário de cada alternativa, em `.com`.
+   - **Comentários e gabarito**: para cada questão, "Questão N", o título "Comentário" (sem gabarito no cabeçalho) e o texto do comentário e o comentário de cada alternativa, em `.com`.
    - O cabeçalho de cada questão (`.q-h`) traz o número, a origem e o tipo. Origem: "AOCP 2024 · CBMPE" (banca, ano e órgão do arquivo de questões) ou "Inédita MentorIA". Tipo: "Múltipla escolha" ou "Certo ou errado".
    - Se o dono preferir o comentário logo após cada questão, como na galeria, isso é uma opção de configuração.
 8. **Mapa de revisão do volume**: um bloco por capítulo, com o título e o seu "Para fixar". É gerado do conteúdo, sem texto novo.

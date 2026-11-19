@@ -122,7 +122,7 @@ window.__errors = []; window.__warns = [];
 <!-- QUESTÕES (comentário logo abaixo de cada questão) -->
 {% if questions %}
 <section class="part" id="questoes" data-runner="Fixação · Questões comentadas">
-  <div class="part-h"><div class="masc">{{ m_praticar }}</div><div><div class="sec-k k-fix">Hora de praticar!</div><h2 class="pt"><span class="n">Q</span>Questões comentadas</h2><p>Resolva cada questão antes de ler o comentário, que vem logo abaixo dela. Cubra o comentário com uma folha, marque a sua resposta e só então confira.</p></div></div>
+  <div class="part-h"><div class="masc">{{ m_praticar }}</div><div><div class="sec-k k-fix">Hora de praticar!</div><h2 class="pt"><span class="n">Q</span>Questões comentadas</h2><p>Resolva cada questão antes de ler o comentário, que vem logo abaixo dela.</p></div></div>
   {% for grp in qgroups %}
   <div class="qgrp" id="qgrp-{{ grp.anchor }}">Capítulo {{ grp.number }} · {{ grp.title }}</div>
   {% for q in grp.qs %}
@@ -137,7 +137,7 @@ window.__errors = []; window.__warns = [];
     {% endif %}
     <div class="com{% if q.number == 1 %} has-m{% endif %}">
       {% if q.number == 1 %}<div class="masc">{{ m_gabarito }}</div>{% endif %}
-      <div class="com-h">Gabarito <span class="g">{{ q.answer }}</span> · Comentário</div>
+      <div class="com-h">Comentário</div>
       {{ q.comment_html }}
       {% if q.alt_comments %}<ul class="alc">{% for L, t, ok in q.alt_comments %}<li class="{{ 'ok' if ok else '' }}"><span class="L">{{ L }}</span><span>{{ t }}</span></li>{% endfor %}</ul>{% endif %}
     </div>

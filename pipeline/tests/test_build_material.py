@@ -127,8 +127,10 @@ def test_build_html_volume():
 def test_comment_right_after_each_question():
     html_, _ = build_html(_volume())
     q1, q2 = html_.index('id="q1"'), html_.index('id="q2"')
-    assert q1 < html_.index("Gabarito <span class=\"g\">B</span>", q1) < q2
-    assert html_.index("Gabarito <span class=\"g\">Certo</span>", q2) > q2
+    assert q1 < html_.index('<div class="com-h">Comentário</div>', q1) < q2
+    assert html_.index('<div class="com-h">Comentário</div>', q2) > q2
+    assert "Gabarito <span" not in html_  # o título é só "Comentário"
+    assert "Cubra o comentário" not in html_
 
 
 def test_no_contest_mentions_and_site_in_footer():

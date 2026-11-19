@@ -173,7 +173,7 @@ def check(pdf_path: Path, v: Volume, info: dict, pm: dict, sample_stamp: bool = 
         if re.search(rf"(?<!\w){re.escape(t)}(?!\w)", low):
             pg = next(i + 1 for i, tx in enumerate(texts) if t in tx.lower())
             errors.append(f"termo proibido no PDF: {term!r} (pág. {pg})")
-    # 7. cada questão aparece uma vez, com o comentário logo abaixo e o gabarito certo
+    # 7. cada questão aparece uma vez, com o comentário logo abaixo
     flat = re.sub(r"\s+", " ", full).upper()
     nums = [n for n, _ in info["questions"]]
     for i, (num, ans) in enumerate(info["questions"]):
@@ -183,8 +183,9 @@ def check(pdf_path: Path, v: Volume, info: dict, pm: dict, sample_stamp: bool = 
             continue
         nxt = re.search(rf"QUESTÃO {nums[i + 1]} ·", flat[hits[0]:]) if i + 1 < len(nums) else None
         block = flat[hits[0]: hits[0] + nxt.start()] if nxt else flat[hits[0]:]
-        if not re.search(rf"GABARITO {re.escape(str(ans).upper())} ·", block):
-            errors.append(f"questão {num}: gabarito {ans} não aparece logo abaixo dela")
+        # o cabeçalho do comentário é só "Comentário" (sem o gabarito), e vem antes da questão seguinte
+        if "COMENTÁRIO" not in block:
+            errors.append(f"questão {num}: o comentário não aparece logo abaixo dela")
     # 9. quebras: abertura numa página só, cabeçalho e rodapé, caixa partida vazia, figura cortada
     openings = {cp["pagina"] for cp in pm["capitulos"].values() if cp.get("pagina")}
     for c in info["chapters"]:
