@@ -12,6 +12,8 @@ import { db } from "@/lib/db";
 import { getActivePlan, getPendingPlan } from "@/lib/data/study";
 import { dayOfWeekIndex, longDate, shortDate, weekdayName } from "@/lib/plan-time";
 import { PendingPlanView } from "@/components/pending-plan-view";
+import { RescheduleNewsModal } from "@/components/reschedule-news-modal";
+import { RESCHEDULE_NOTICE, pdfNoticePending, rescheduleNoticePending } from "@/lib/notices";
 import { canUserAccessCoreFeatures } from "@/lib/system-settings";
 
 export const metadata: Metadata = { title: "Missão de hoje" };
@@ -84,6 +86,9 @@ export default async function MissionPage() {
   const shownLate = m.overdue.slice(0, 5);
   const upLabel = m.upcomingDate ? `${weekdayName((m.upcoming[0]?.day ?? 0))}, ${shortDate(m.upcomingDate)}` : "";
   const upItems = m.upcoming.map((r) => ({ id: r.id, type: r.type, subjectId: r.subjectId, title: activityTitle(r), minutes: r.plannedMinutes }));
+  // aviso do Reprogramar: uma vez por aluno; se o dos PDFs (vem do layout) ainda está pendente, fica para o próximo acesso
+  const showRescheduleNotice =
+    canAccess && user.role === "USER" && !user.isPartner && !(await pdfNoticePending(user.id)) && (await rescheduleNoticePending(user.id));
 
   return (
     <div className="mx-auto max-w-3xl space-y-7">
@@ -172,6 +177,7 @@ export default async function MissionPage() {
       )}
 
       <AdvanceBox items={upItems} label={upLabel} />
+      {showRescheduleNotice && <RescheduleNewsModal noticeId={RESCHEDULE_NOTICE} overdueCount={m.overdue.length} />}
     </div>
   );
 }
