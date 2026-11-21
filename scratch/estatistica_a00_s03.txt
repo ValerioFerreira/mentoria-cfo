@@ -1,0 +1,151 @@
+ID: estatistica/a00/s03
+Fingerprint: {'startPage': 27, 'endPage': 41, 'startTopic': 'Classe'}
+NOTES: - As páginas 39 a 41 contêm questões comentadas; foi aproveitada apenas a teoria (a ideia de contar valores menores que x para obter a frequência acumulada, vinda de uma delas, foi mantida com exemplo próprio).
+- O material apresenta o log de 50 como 1,7 e, na fórmula de Sturges, soma 1 + 5,61 = 6,61; o resumo informa só a fórmula e usa exemplos próprios. O material também não diz se o k obtido deve ser arredondado; o resumo registra que é uma referência.
+- Na frequência acumulada decrescente, o material diz que a sequência "termina em n"; como é calculada de baixo para cima, o valor n aparece na primeira classe, e foi assim que o resumo descreveu.
+- O comentário final sobre densidade (comparar classes de larguras diferentes) é o uso usual do conceito e não consta literalmente no trecho.
+- Há texto extraído com símbolos separados das fórmulas (subscritos fora de lugar) nas páginas 27 a 29; as fórmulas foram reconstruídas com base nos exemplos numéricos. Refeito (cobertura): tabela de densidade do material trunca 0,666 e 0,466 em 0,66 e 0,46 (corretos 0,67 e 0,47); questão da frequência relativa do primeiro elemento chama 20% de frequência simples absoluta (impreciso).
+ANALYTIC:
+Numa distribuição de frequências com dados agrupados em intervalos, cada coluna e cada medida tem nome e fórmula próprios. Este trecho descreve os elementos dessa tabela: classes, limites, amplitudes, ponto médio, os quatro tipos de frequência e a densidade de frequência, e termina com um exemplo completo que reúne todas as colunas.
+
+Para as explicações, usaremos a distribuição abaixo, com a idade de 60 servidores (n = 60). O símbolo ⊢ indica intervalo **fechado à esquerda e aberto à direita**: o limite inferior pertence à classe, o superior não (é o mesmo que 20 ≤ x < 30).
+
+| Idade (Xi) | fi |
+| --- | --- |
+| 20 ⊢ 30 | 6 |
+| 30 ⊢ 40 | 15 |
+| 40 ⊢ 50 | 24 |
+| 50 ⊢ 60 | 9 |
+| 60 ⊢ 70 | 6 |
+
+### Classes e número de classes
+
+**Classes** são os intervalos em que a variável é subdividida; aqui, cinco: a 1ª é 20 ⊢ 30, a 2ª é 30 ⊢ 40, e assim por diante. O número "ideal" de classes (k) em função do total de dados (n) pode ser estimado de duas formas:
+
+- **Fórmula de Sturges:** k = 1 + 3,3 · log n (logaritmo na base 10), válida para qualquer n;
+- **Raiz quadrada**, usada quando n ≤ 50: k = √n.
+
+Exemplo: com n = 100, Sturges dá k = 1 + 3,3 · 2 = 7,6, ou seja, em torno de 8 classes. Com n = 36, a segunda fórmula dá k = 6. Com n = 50, Sturges (log 50 ≈ 1,7) dá 1 + 3,3 · 1,7 ≈ 6,6 e a raiz dá √50 ≈ 7,07: os dois métodos são só referências, não coincidem exatamente, e o resultado costuma ser arredondado para um inteiro.
+
+### Limites de classe e amplitude do intervalo
+
+Cada classe tem **limite inferior** (l_inf), o menor valor que pode pertencer a ela, e **limite superior** (l_sup), o maior valor. Os limites são os extremos da classe. Na classe 40 ⊢ 50, l_inf = 40 e l_sup = 50.
+
+A **amplitude do intervalo de classe** (h) mede o tamanho da classe: é a distância entre os limites inferiores (ou entre os superiores) de duas classes vizinhas, e coincide com a diferença entre os limites da própria classe.
+
+**h = l_sup − l_inf**
+
+No exemplo, h = 10 em todas as classes. É desejável que seja constante, porque isso simplifica gráficos e cálculos, mas nem sempre ocorre: há distribuições com classes de larguras diferentes (por exemplo, classes mais largas nas pontas, onde há poucos dados).
+
+### Amplitude total
+
+A **amplitude total** (AT) é a distância entre o limite superior da última classe e o limite inferior da primeira, isto é, entre o maior e o menor extremo da tabela. Equivale à diferença entre o último e o primeiro elemento do conjunto ordenado:
+
+**AT = l_máx − l_mín**
+
+Se **todas as classes têm a mesma amplitude**, também vale **AT = h · k**. No exemplo: AT = 70 − 20 = 50, e 10 · 5 = 50.
+
+> ⚠️ **Pegadinha:** AT = h · k só funciona com amplitudes iguais; com classes de tamanhos diferentes, use a diferença dos extremos. E não confunda a amplitude total da tabela (que usa os limites das classes) com a amplitude dos dados brutos (maior valor observado menos o menor).
+
+### Ponto médio da classe
+
+O **ponto médio** (PM), também chamado marca ou representante da classe, é a média aritmética dos limites e divide a classe em duas metades iguais:
+
+**PM = (l_inf + l_sup) / 2**
+
+Pontos médios do exemplo: 25, 35, 45, 55 e 65. Observe que formam uma progressão aritmética de razão 10 = h: **com amplitude constante, a diferença entre pontos médios consecutivos é igual a h**. Como o ponto médio fica no meio da classe, valem também:
+
+- PM = l_inf + h/2 e PM = l_sup − h/2;
+- l_inf = PM − h/2 e l_sup = PM + h/2.
+
+Isso resolve questões em que só se conhece o ponto médio e a amplitude: um PM de 45 com h = 10 indica a classe 40 ⊢ 50. Outro caso: PM = 107,5 e h = 15 dão l_inf = 107,5 − 7,5 = 100 e l_sup = 115, ou seja, a classe 100 ⊢ 115. O ponto médio é o valor que representa a classe nos cálculos de média, variância e outras medidas com dados agrupados.
+
+### Frequência absoluta simples (fi)
+
+É o número de observações da classe (ou do valor). A soma de todas as frequências é o total de dados: **Σ fi = n**, com o somatório indo da 1ª à k-ésima classe. No exemplo: 6 + 15 + 24 + 9 + 6 = 60.
+
+### Frequência absoluta acumulada
+
+- **Crescente (fac):** soma das frequências de todas as classes desde a primeira até a considerada; indica quantos dados são **menores que o limite superior** da classe. Constrói-se **de cima para baixo**: repete-se a frequência da 1ª classe e, para as demais, soma-se a fac anterior à frequência da classe. Termina sempre em **n**. Fórmula: fac_i = f1 + f2 + ... + f_i.
+- **Decrescente (fad):** soma das frequências da classe considerada até a última; indica quantos dados são **maiores ou iguais ao limite inferior** da classe. Constrói-se **de baixo para cima**, repetindo a frequência da última classe e acrescentando as anteriores; seu valor na 1ª classe é **n**. Fórmula: fad_i = f_i + f_(i+1) + ... + f_k.
+
+| Classe | fi | fac | fad |
+| --- | --- | --- | --- |
+| 20 ⊢ 30 | 6 | 6 | 60 |
+| 30 ⊢ 40 | 15 | 21 | 54 |
+| 40 ⊢ 50 | 24 | 45 | 39 |
+| 50 ⊢ 60 | 9 | 54 | 15 |
+| 60 ⊢ 70 | 6 | 60 | 6 |
+
+Leitura: fac da 3ª classe = 45 servidores têm menos de 50 anos; fad da 3ª classe = 39 têm 40 anos ou mais. Há uma conferência útil: fac_i + fad_(i+1) = n (45 + 15 = 60).
+
+### Frequência relativa simples (Fi)
+
+É a proporção de dados da classe: a parte dividida pelo todo.
+
+**Fi = fi / Σ fi = fi / n**
+
+Multiplicando por 100%, tem-se a porcentagem. A soma de todas as Fi é **1 (100%)**. A frequência relativa facilita comparar cada classe com o conjunto: no exemplo, 24/60 = 40% dos servidores estão na classe de 40 a 50 anos.
+
+### Frequência relativa acumulada
+
+- **Crescente (Fac):** soma das Fi da 1ª classe até a considerada; é a proporção de dados abaixo do limite superior da classe. Parte da Fi da 1ª classe e termina em **100%**.
+- **Decrescente (Fad):** soma das Fi da classe considerada até a última; é a proporção de dados a partir do limite inferior. Parte da Fi da última classe e chega a 100% na 1ª classe.
+
+| Classe | Fi | Fac | Fad |
+| --- | --- | --- | --- |
+| 20 ⊢ 30 | 10% | 10% | 100% |
+| 30 ⊢ 40 | 25% | 35% | 90% |
+| 40 ⊢ 50 | 40% | 75% | 65% |
+| 50 ⊢ 60 | 15% | 90% | 25% |
+| 60 ⊢ 70 | 10% | 100% | 10% |
+
+Em dados brutos, a frequência acumulada de um valor "inferior a x" é simplesmente a contagem dos que ficam abaixo de x; dividida por n, dá a frequência relativa acumulada. Por exemplo, 11 valores menores que 30 num conjunto de 25 resultam em 11/25 = 0,44. Não é preciso montar a tabela inteira para responder: basta contar e dividir.
+
+### Densidade de frequência
+
+Divide-se a frequência da classe, absoluta ou relativa, pela largura dela:
+
+**d = fi / h** (ou Fi / h)
+
+No exemplo, as densidades absolutas são 0,6; 1,5; 2,4; 0,9 e 0,6. A densidade permite comparar classes de larguras diferentes, pois corrige o efeito do tamanho do intervalo; quando h é constante, é proporcional à frequência.
+
+### Exemplo completo: tempo de atendimento
+
+Considere 50 atendimentos classificados pelo tempo, em minutos, em sete classes de amplitude h = 15, com início em 85 e fim em 190:
+
+| Tempo (min) | fi | fac | fad | Fi | Fac | Fad | d = fi/h |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 85 ⊢ 100 | 5 | 5 | 50 | 10% | 10% | 100% | 0,33 |
+| 100 ⊢ 115 | 5 | 10 | 45 | 10% | 20% | 90% | 0,33 |
+| 115 ⊢ 130 | 12 | 22 | 40 | 24% | 44% | 80% | 0,80 |
+| 130 ⊢ 145 | 10 | 32 | 28 | 20% | 64% | 56% | 0,67 |
+| 145 ⊢ 160 | 7 | 39 | 18 | 14% | 78% | 36% | 0,47 |
+| 160 ⊢ 175 | 9 | 48 | 11 | 18% | 96% | 22% | 0,60 |
+| 175 ⊢ 190 | 2 | 50 | 2 | 4% | 100% | 4% | 0,13 |
+
+Como ler: AT = 190 − 85 = 105 = 15 · 7; os pontos médios são 92,5; 107,5; 122,5; 137,5; 152,5; 167,5 e 182,5 (razão 15). A fac da 4ª classe é 32: 32 atendimentos duraram menos de 145 minutos (Fac = 64%). A fad da 4ª classe é 28: 28 duraram 130 minutos ou mais (Fad = 56%). Para o número de classes, Sturges dá cerca de 6,6 e a raiz de n, cerca de 7,07, o que condiz com as sete classes usadas.
+
+> ⚠️ **Pegadinha:** uma tabela que só lista valores observados (um por dia, por exemplo) **não é** uma distribuição de frequências; falta associar a cada valor a sua frequência. Outra: frequência relativa é proporção (ou %), nunca contagem; se uma alternativa pede "frequência relativa" e apresenta o número 10 de 50, o correto é 20%.
+
+### Quadro-resumo
+
+| Elemento | Fórmula |
+| --- | --- |
+| Número de classes | k = 1 + 3,3 · log n ou k = √n (n ≤ 50) |
+| Amplitude de classe | h = l_sup − l_inf |
+| Amplitude total | AT = l_máx − l_mín = h · k (classes iguais) |
+| Ponto médio | PM = (l_inf + l_sup)/2 |
+| Frequência relativa | Fi = fi / n |
+| Densidade | d = fi / h |
+
+### Para fixar
+
+- Classes são os intervalos; ⊢ inclui o limite inferior e exclui o superior.
+- h = l_sup − l_inf; AT = l_máx − l_mín (= h · k só com classes iguais).
+- PM = (l_inf + l_sup)/2; com h constante, PMs consecutivos diferem de h; l_inf = PM − h/2 e l_sup = PM + h/2.
+- Σ fi = n e Σ Fi = 100%.
+- fac e Fac crescem de cima para baixo e terminam em n e 100%; fad e Fad vão de baixo para cima e começam em n e 100% (valor da 1ª classe).
+- fac responde "quantos abaixo do limite superior"; fad, "quantos a partir do limite inferior".
+- Densidade = frequência / amplitude da classe.
+- Sturges: k = 1 + 3,3 · log n; raiz de n quando n ≤ 50.

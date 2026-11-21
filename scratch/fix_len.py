@@ -1,0 +1,90 @@
+import re, sys
+# Equilibra o tamanho das alternativas das novas questões (c10, c11 e a09/s06): encurta o gabarito e/ou alonga as demais.
+R = {
+"legislacoes-pe": [
+("D) Faz-se por portaria publicada no Boletim Geral da SDS e/ou no boletim da unidade, devendo ser clara, concisa e objetiva, com breve relato dos fatos e identificação dos sindicados.",
+ "D) Faz-se por portaria publicada no Boletim Geral da SDS e/ou no da unidade, clara, concisa e objetiva, com relato breve e identificação dos sindicados."),
+("A) Faz-se por despacho verbal da autoridade, registrado em ata, dispensada a publicação em boletim.", "A) Faz-se por despacho verbal da autoridade, registrado apenas em ata da unidade, dispensada a publicação em boletim."),
+("E) Dispensa a identificação dos sindicados, que só são apontados no relatório final.", "E) Dispensa a identificação dos sindicados na portaria, que só são apontados no relatório final da sindicância."),
+("E) O prazo é de 5 dias corridos, após o interrogatório e com vista dos autos; se não forem apresentadas, o encarregado nomeia defensor para fazê-lo.",
+ "E) O prazo é de 5 dias corridos, com vista dos autos; se não forem apresentadas, o encarregado nomeia defensor."),
+("B) São dispensadas quando o sindicado confessa a transgressão.", "B) São dispensadas quando o sindicado confessa a transgressão perante o encarregado."),
+("C) O prazo é de 24 horas, sem vista dos autos.", "C) O prazo é de 24 horas, sem vista dos autos ao sindicado."),
+("D) Se o sindicado não as apresenta, a sindicância fica paralisada até que ele o faça.", "D) Se o sindicado não as apresenta, a sindicância fica paralisada até que ele resolva fazê-lo."),
+("A) 20 dias corridos, prorrogáveis por decisão fundamentada, abrindo-se depois prazo de 48 horas para alegações finais complementares.",
+ "A) 20 dias corridos, prorrogáveis por decisão fundamentada, seguindo-se 48 horas para alegações finais complementares."),
+("B) 5 dias corridos, improrrogáveis, sem nova oportunidade de manifestação do sindicado.", "B) 5 dias corridos, improrrogáveis, sem nova oportunidade de manifestação do sindicado depois."),
+("C) 30 dias corridos, prorrogáveis por mais 30, com alegações finais em 5 dias.", "C) 30 dias corridos, prorrogáveis por mais 30, com alegações finais complementares em 5 dias."),
+("D) 10 dias úteis, dispensadas novas alegações do sindicado.", "D) 10 dias úteis, dispensadas novas alegações finais do sindicado após o término."),
+("E) 48 horas, prazo também previsto para as alegações finais complementares.", "E) 48 horas, o mesmo prazo previsto para as alegações finais complementares do sindicado."),
+("C) É deferida ou não por despacho nos autos, e os atos praticados entre o pedido e a decisão são convalidados se não prejudicarem a defesa.",
+ "C) É decidida por despacho nos autos, convalidando-se os atos feitos até a decisão que não prejudiquem a defesa."),
+("A) É automática, dispensando manifestação da autoridade instauradora.", "A) É automática, dispensando qualquer manifestação da autoridade que instaurou a sindicância."),
+("B) É deferida por ato verbal do encarregado, sem registro nos autos.", "B) É deferida por ato verbal do encarregado, sem qualquer registro nos autos do procedimento."),
+("D) Torna nulos todos os atos praticados entre o pedido e a decisão da autoridade.", "D) Torna nulos todos os atos praticados entre o pedido e a decisão da autoridade instauradora."),
+("E) Pode ser concedida várias vezes, enquanto houver diligências pendentes.", "E) Pode ser concedida várias vezes, enquanto houver diligências ainda pendentes de cumprimento."),
+("D) 48 horas da publicação, enviando também o relatório e a decisão no mesmo prazo ao final.", "D) 48 horas da publicação, enviando-se ao final também o relatório e a decisão, no mesmo prazo."),
+("A) 24 horas da assinatura do relatório.", "A) 24 horas da assinatura do relatório pelo encarregado."),
+("B) 5 dias corridos da citação do sindicado.", "B) 5 dias corridos da citação do sindicado para a defesa."),
+("C) 30 dias da publicação, juntamente com o relatório.", "C) 30 dias da publicação, juntamente com o relatório final."),
+("E) 10 dias úteis da publicação, sendo dispensado o envio do relatório.", "E) 10 dias úteis da publicação, sendo dispensado o envio do relatório e da decisão."),
+("D) a legislação processual penal militar, com aplicação subsidiária da Lei nº 11.781/2000, que regula o processo administrativo estadual.",
+ "D) a legislação processual penal militar, subsidiada pela Lei nº 11.781/2000 (processo administrativo estadual)."),
+("A) exclusivamente o Código Civil, por ser a norma geral de processo.", "A) exclusivamente o Código Civil, por ser a norma geral de processo no ordenamento."),
+("C) apenas a analogia, vedada a aplicação de lei processual.", "C) apenas a analogia, vedada a aplicação de qualquer lei processual."),
+("A) documento ou conjunto de documentos que comunica, por qualquer meio, fato supostamente ilegal ou irregular atribuído a servidor ou militar, ou de autoria incerta.",
+ "A) comunicação, por qualquer meio, de fato supostamente irregular atribuído a servidor ou militar, ou de autoria incerta."),
+("B) decisão da autoridade que impõe sanção disciplinar a servidor, após o devido processo legal.", "B) decisão da autoridade que impõe sanção disciplinar ao servidor, após o devido processo legal e o trânsito."),
+("C) relatório final da Investigação Preliminar, que conclui pelo arquivamento ou pelo PAD.", "C) relatório final da Investigação Preliminar, que conclui pelo arquivamento ou pela instauração do PAD."),
+("D) procedimento sigiloso de coleta de elementos instaurado após a admissibilidade da notícia.", "D) procedimento sigiloso de coleta de elementos, instaurado após a admissibilidade da notícia."),
+("E) denúncia formal oferecida pelo Ministério Público contra o militar estadual.", "E) denúncia formal oferecida pelo Ministério Público contra o militar estadual perante a Justiça."),
+("D) certifica no SEI o fim do prazo e envia o processo ao bloco \"NFND inadmitidas – Ano\", concluindo-o na unidade e mantendo o registro para controle e inspeção.",
+ "D) certifica no SEI o fim do prazo e envia o processo ao bloco \"NFND inadmitidas – Ano\", mantido o registro."),
+("A) instaura de imediato Processo Administrativo Disciplinar contra o noticiante.", "A) instaura de imediato Processo Administrativo Disciplinar contra o noticiante que não colaborou."),
+("B) arquiva o processo sem registro algum, apagando-o dos sistemas.", "B) arquiva o processo sem registro algum, apagando-o dos sistemas SIGPAD e SEI."),
+("C) remete a notícia ao Ministério Público para ação penal.", "C) remete a notícia ao Ministério Público para o oferecimento de ação penal."),
+("E) prorroga o prazo indefinidamente, até a complementação.", "E) prorroga o prazo indefinidamente, até que haja a complementação pelo noticiante."),
+("A) pode ser revista a qualquer tempo, desde que não prescrita, diante de fatos novos ou por despacho fundamentado, em razão da autotutela.",
+ "A) pode ser revista a qualquer tempo, se não prescrita, diante de fatos novos ou por despacho fundamentado."),
+("B) torna-se imutável após o arquivamento, vedada nova apreciação.", "B) torna-se imutável após o arquivamento, vedada nova apreciação pela Administração."),
+("C) só pode ser revista pelo Poder Judiciário.", "C) só pode ser revista pelo Poder Judiciário, mediante provocação."),
+("D) pode ser revista apenas dentro de 30 dias do arquivamento.", "D) pode ser revista apenas dentro de 30 dias contados do arquivamento."),
+("E) pode ser revista mesmo prescrita a pretensão punitiva.", "E) pode ser revista mesmo estando prescrita a pretensão punitiva."),
+("E) Corregedor Geral, ao Corregedor Geral Adjunto e ao Chefe do Departamento de Inspeção (DEPINSP).", "E) Corregedor Geral, ao Corregedor Geral Adjunto e ao Chefe do DEPINSP."),
+("A) Secretário de Defesa Social, exclusivamente.", "A) Secretário de Defesa Social, exclusivamente, vedada a delegação."),
+("C) Governador do Estado, por decreto.", "C) Governador do Estado, por decreto publicado."),
+("D) encarregado designado pela unidade de origem do militar.", "D) encarregado designado pela unidade de origem do militar investigado."),
+("B) a videoconferência e o registro audiovisual digital das oitivas, evitando deslocamentos que onerem a Administração e terceiros.",
+ "B) a videoconferência e o registro audiovisual digital das oitivas, evitando deslocamentos onerosos."),
+("A) o deslocamento do encarregado até os depoentes, para o contato pessoal.", "A) o deslocamento do encarregado até os depoentes, para o contato pessoal direto."),
+("C) o depoimento escrito, vedada a gravação de áudio ou vídeo.", "C) o depoimento escrito, vedada a gravação de áudio ou de vídeo das oitivas."),
+("D) opinativo, devendo analisar a prescrição da pretensão punitiva e concluir fundamentadamente pelo arquivamento ou por outro procedimento cabível.",
+ "D) opinativo, devendo analisar a prescrição e concluir fundamentadamente pelo arquivamento ou por outro procedimento."),
+("A) vinculante, obrigando a autoridade a instaurar o processo sugerido.", "A) vinculante, obrigando a autoridade a instaurar o processo sugerido no relatório."),
+("B) decisório, aplicando desde logo a sanção disciplinar.", "B) decisório, aplicando desde logo a sanção disciplinar ao investigado."),
+("C) sigiloso apenas para o investigado, mas público para qualquer interessado.", "C) sigiloso apenas para o investigado, mas público para qualquer interessado externo."),
+("E) facultativo, podendo ser substituído por mera anotação no sistema.", "E) facultativo, podendo ser substituído por mera anotação no sistema de controle."),
+],
+"direito-constitucional": [
+("C) É permitida, havendo compatibilidade de horários, a de dois cargos de professor, a de um cargo de professor com outro técnico ou científico e a de dois cargos ou empregos privativos de profissionais de saúde com profissões regulamentadas.",
+ "C) Havendo compatibilidade de horários, é permitida a de dois cargos de professor, a de professor com cargo técnico ou científico e a de dois cargos privativos de profissionais de saúde."),
+("A) É permitida a acumulação de quaisquer dois cargos, desde que haja compatibilidade de horários.", "A) É permitida a acumulação de quaisquer dois cargos públicos, desde que haja compatibilidade de horários entre eles."),
+("B) É vedada a acumulação de dois cargos de professor, ainda que haja compatibilidade de horários.", "B) É vedada a acumulação de dois cargos de professor, ainda que haja compatibilidade de horários entre eles."),
+("D) É permitida a acumulação de dois cargos privativos de médico, mesmo sem compatibilidade de horários.", "D) É permitida a acumulação de dois cargos privativos de médico, mesmo sem compatibilidade de horários entre eles."),
+("E) São estáveis, após três anos de efetivo exercício, os servidores nomeados para cargo de provimento efetivo em virtude de concurso público, sendo obrigatória a avaliação especial de desempenho por comissão instituída para essa finalidade.",
+ "E) São estáveis, após três anos de efetivo exercício, os nomeados para cargo efetivo por concurso público, condicionada a estabilidade à avaliação especial de desempenho."),
+("A) São estáveis, após dois anos de efetivo exercício, os servidores nomeados para cargo de provimento em comissão.", "A) São estáveis, após dois anos de efetivo exercício, os servidores nomeados para cargo de provimento em comissão, por livre nomeação."),
+("D) O servidor estável que perde o cargo por insuficiência de desempenho é afastado sem direito à ampla defesa.", "D) O servidor estável que perde o cargo por insuficiência de desempenho é afastado sem direito algum à ampla defesa."),
+],
+}
+for f, pairs in R.items():
+    p = f"content/questoes/ineditas/mc/{f}.txt"
+    s = open(p, encoding="utf-8", newline="").read()
+    crlf = "\r\n" in s
+    s = s.replace("\r\n", "\n")
+    for a, b in pairs:
+        if a not in s:
+            print("NAO ACHEI", a[:60])
+            continue
+        s = s.replace(a, b, 1)
+    open(p, "w", encoding="utf-8", newline="\r\n" if crlf else "\n").write(s)
