@@ -46,6 +46,23 @@ Rodar de novo sem PDF novo não faz nada (≈ 2 s). O índice do classificador f
 (`pipeline/.cache/questoes/catalog.pkl`). Ele é refeito sozinho, em ≈ 3 a 4 min, quando o conteúdo
 do curso muda.
 
+## 1.1. Rotina automática de cadernos novos (`processar_cadernos.py`, 21/11/2026)
+
+```bash
+pipeline/.venv/Scripts/python pipeline/questoes/processar_cadernos.py            # processa o que estiver na pasta e termina
+pipeline/.venv/Scripts/python pipeline/questoes/processar_cadernos.py --vigiar   # vigia a pasta (60 s) e processa cada caderno novo
+pipeline/.venv/Scripts/python pipeline/questoes/processar_cadernos.py --simular  # só confere (nada gravado, arquivado ou renomeado)
+```
+
+Para cada PDF que ainda não começa com `EXTRAÍDO - `: backup remoto verificado (reaproveita o de menos de 20 h) → `importar.py`
+(local e produção) → comentários versionados na produção → conferência de que **toda questão esperada do caderno existe na produção**
+(`web/scripts/questoes-existem.ts`; anuladas, fora do edital e quarentena não são esperadas) → arquivo compacto em
+`docs/questoes/acervo/` (`extraidas-AAAA-MM-DD.tar.xz` com todos os cadernos extraídos + manifesto, e `imagens.zip`; relidos e
+conferidos por hash) → renomeia o PDF para `EXTRAÍDO - <nome>.pdf` (o dono apaga depois). Para na primeira falha sem renomear.
+PDF com questão em quarentena ou anomalia de leitura **não** é renomeado (só ele permite corrigir; `--renomear-com-pendencia` força).
+`importar.py` ignora PDFs com o prefixo e grava `.extraidas/_estado.json` (o que se espera no banco por caderno).
+Restauração do acervo: `docs/questoes/acervo/LEIA-ME.md`.
+
 Para conferir o banco, só leitura: `npx tsx scripts/questoes-contagem.ts [--remoto]`, rodado em `web/`.
 
 ## 2. Anatomia do PDF

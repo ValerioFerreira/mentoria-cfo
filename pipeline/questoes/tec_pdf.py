@@ -10,16 +10,19 @@ import hashlib
 import io
 import re
 import unicodedata
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 
 import pymupdf
 
 # Muda quando a lógica de extração muda: o importador reextrai os cadernos de versão anterior.
-EXTRACTOR_VERSION = "2026.10.16-1"
+EXTRACTOR_VERSION = "2026.11.21-2"
 
 URL_RE = re.compile(r"^www\.tecconcursos\.com\.br/questoes/(\d+)\s*$")
 LABEL_RE = re.compile(r"^(\d+)\)\s*$")
+# "3652) Texto 1": o rótulo e o título do texto-base vêm no mesmo span (questão que abre a página). Só números de questão (≥ 100),
+# para não confundir com itens numerados em negrito do enunciado.
+LABEL_MERGED_RE = re.compile(r"^(\d{3,5})\)[\s ]+(\S.*)$", re.S)
 OPT_RE = re.compile(r"^([a-e])\)\s*")
 GAB_ENTRY_RE = re.compile(r"(\d+)\)\s*([A-Za-zÀ-ú]+)")
 YEAR_TAIL_RE = re.compile(r"/(\d{4})\s*$")
@@ -161,7 +164,10 @@ def _is_control(ch: str) -> bool:
 def _is_chrome(span: dict) -> bool:
     """Cabeçalho/rodapé do navegador (ArialMT 8) e capa (SourceSansPro)."""
     f = span["font"]
-    return f.startswith("ArialMT") or f.startswith("SourceSansPro")
+    if f.startswith("ArialMT"):
+        # o cabeçalho/rodapé do navegador é ArialMT 8,0; ArialMT menor (7,0–7,3) é conteúdo colado de HTML (ex.: enunciado de questão FCC)
+        return abs(span["size"] - 8.0) < 0.15
+    return f.startswith("SourceSansPro")
 
 
 def page_frags(page: pymupdf.Page, pno: int) -> list[Frag]:
@@ -255,7 +261,17 @@ def _split_label(f: Frag) -> tuple[int, Frag | None] | None:
         return None
     m = LABEL_RE.match(f.spans[0].text.strip())
     if not m:
-        return None
+        mm = LABEL_MERGED_RE.match(f.spans[0].text)
+        if not mm:
+            return None
+        s0 = f.spans[0]
+        k = len(s0.text) - len(mm.group(2))
+        chars = s0.chars[k:] if len(s0.chars) == len(s0.text) else s0.chars
+        x0 = chars[0][1] if chars and len(s0.chars) == len(s0.text) else s0.bbox[0]
+        resto = replace(s0, text=mm.group(2), chars=chars, bbox=(x0, s0.bbox[1], s0.bbox[2], s0.bbox[3]), ul={i - k for i in s0.ul if i >= k})
+        rest = [resto] + [s for s in f.spans[1:] if s.text.strip()]
+        bbox = (min(s.bbox[0] for s in rest), min(s.bbox[1] for s in rest), max(s.bbox[2] for s in rest), max(s.bbox[3] for s in rest))
+        return int(mm.group(1)), Frag("text", f.page, bbox, rest)
     rest = [s for s in f.spans[1:] if s.text.strip()]
     if not rest:
         return int(m.group(1)), None
@@ -597,7 +613,9 @@ def _char_style(s: Span, k: int, big: float, base: float) -> tuple[str, ...]:
         st.append("b")
     if s.is_mono:
         st.append("code")
-    if s.color not in (0,) and not s.is_math and not URL_TEXT_RE.search(s.text):
+    # ArialMT menor que 8 é texto colado de HTML em cinza escuro (0x434343): é texto normal, não destaque
+    cinza_normal = s.font.startswith("ArialMT") and ((s.color >> 16) & 255) == ((s.color >> 8) & 255) == (s.color & 255) and (s.color & 255) <= 0x70
+    if s.color not in (0,) and not s.is_math and not URL_TEXT_RE.search(s.text) and not cinza_normal:
         st.append("mark")
     if k in s.ul:
         st.append("u")

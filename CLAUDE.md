@@ -23,6 +23,7 @@ pipeline/.venv/Scripts/python pipeline/build_complements.py  # RODAR DEPOIS de s
 pipeline/.venv/Scripts/python pipeline/corpus.py && pipeline/.venv/Scripts/python pipeline/style_stats.py  # corpus/estilo AOCP
 pipeline/.venv/Scripts/python pipeline/validate_content.py  # valida content/items (bizus: esquema, ORIGINALIDADE); --coverage mostra trechos sem bizu
 pipeline/.venv/Scripts/python pipeline/questoes/importar.py [--remoto] [--reclassificar] [--so-extrair]  # cadernos novos de docs/questoes -> banco local (+ Neon com --remoto; URL em web/.env.remote)
+pipeline/.venv/Scripts/python pipeline/questoes/processar_cadernos.py [--vigiar|--simular]  # ROTINA COMPLETA do caderno novo: backup remoto → importar (local+Neon) → confere na produção → arquivo compacto em docs/questoes/acervo → renomeia o PDF para "EXTRAÍDO - …" (o dono apaga)
 pipeline/.venv/Scripts/python pipeline/questoes/auditoria.py [--backup DIR] [--extraidas DIR]  # auditoria SÓ LEITURA: PDF × extração × classificação × banco (docs/questoes/auditoria/<data>/)
 # Comentários das questões (fonte: content/questoes/comentarios/<disc>/<lote>.json; briefings pipeline/briefs/questoes-comentarios*.md)
 # (em web/) npx tsx scripts/questoes-fila-comentarios.ts [--remoto] [--pacotes P1|P2|P3|P4|todas|nenhum]  # fila SÓ LEITURA (P1 planos dos alunos → P2 CFOA → P3 CFO BM → P4 resto) + pacotes em pipeline/.cache/questoes-comentar/

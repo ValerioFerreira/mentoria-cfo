@@ -41,6 +41,7 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
 DOC_SRC = Path(__file__).resolve().parent / "EXTRACAO.md"
+PREFIXO_EXTRAIDO = "EXTRAÍDO - "  # processar_cadernos.py renomeia assim o PDF já extraído, gravado e arquivado (o dono apaga depois)
 WEB = ROOT / "web"
 
 
@@ -50,6 +51,11 @@ def sha256_file(p: Path) -> str:
         for chunk in iter(lambda: f.read(1 << 20), b""):
             h.update(chunk)
     return h.hexdigest()
+
+
+def em_quarentena(q: dict) -> bool:
+    """Extração com problema. Questão anulada nunca é importada, então o problema dela não conta."""
+    return bool(q["problems"]) and not q["anulada"]
 
 
 def now_iso() -> str:
@@ -302,6 +308,8 @@ def main() -> None:
     # 1. extração dos PDFs novos (ou de versão antiga do extrator)
     novos: list[dict] = []
     for pdf in sorted(folder.glob("*.pdf"), key=lambda p: p.stat().st_mtime):
+        if pdf.name.startswith(PREFIXO_EXTRAIDO):
+            continue
         sha = sha256_file(pdf)
         e = store.entry(sha)
         if e and not args.forcar and e.get("extrator") == EXTRACTOR_VERSION and store.data_path(sha).exists():
@@ -336,11 +344,14 @@ def main() -> None:
         for q in d["questoes"]:
             total += 1
             q["_arquivo"] = d["arquivo"]
+            anterior = acervo.get(q["tecId"])
+            if anterior is not None and not em_quarentena(anterior) and em_quarentena(q):
+                continue  # a versão mais recente veio com problema de leitura: fica a boa que já temos
             acervo[q["tecId"]] = q
             origem[q["tecId"]] = d["sha256"]
             imgs_dims.update(q.get("images", {}))
-    quarentena = [q for q in acervo.values() if q["problems"]]
-    valid = {k: q for k, q in acervo.items() if not q["problems"]}
+    quarentena = [q for q in acervo.values() if em_quarentena(q)]
+    valid = {k: q for k, q in acervo.items() if not em_quarentena(q)}
     print(f"acervo: {len(acervo)} questões únicas ({total} no total) · quarentena {len(quarentena)}", flush=True)
 
     # 3. classificação
@@ -374,6 +385,29 @@ def main() -> None:
             sug = ", ".join(f"{a} ({s:.2f})" for a, s in sugs[:3])
             sem_mapa[(q["materia"], q["assunto"])] = (n + 1, r.status, sug)
 
+    # estado por caderno (lido por processar_cadernos.py): o que se espera encontrar no banco e o que ficou de fora
+    estado: dict[str, dict] = {}
+    for d in cadernos:
+        esp: list[str] = []
+        n_an = n_qr = n_sk = 0
+        for q in d["questoes"]:
+            a = acervo.get(q["tecId"], q)
+            if em_quarentena(a):
+                n_qr += 1
+            elif a["anulada"]:
+                n_an += 1
+            else:
+                r = cls.get(q["tecId"])
+                if r is None or r.status == "SKIP":
+                    n_sk += 1
+                else:
+                    esp.append(q["tecId"])
+        estado[d["sha256"]] = {
+            "arquivo": d["arquivo"], "questoes": len(d["questoes"]), "anuladas": n_an, "quarentena": n_qr, "foraDoEdital": n_sk,
+            "anomalias": d["anomalias"], "esperadasNoBanco": esp,
+        }
+    (store.dir / "_estado.json").write_text(json.dumps({"geradoEm": now_iso(), "extrator": EXTRACTOR_VERSION, "cadernos": estado}, ensure_ascii=False), encoding="utf-8")
+
     # 4. gravação
     sync_results: list[dict] = []
     targets: list[str] = []
@@ -389,7 +423,7 @@ def main() -> None:
         else:
             pend = {sha for sha, e in store.manifest["cadernos"].items() if not e.get(target)}
             ids = {k for k, sha in origem.items() if sha in pend}
-        sub = {k: acervo[k] for k in ids if k in acervo and not acervo[k]["problems"]}
+        sub = {k: acervo[k] for k in ids if k in acervo and not em_quarentena(acervo[k])}
         if not sub and not args.limpar_estrategia:
             print(f"{target}: nada a gravar", flush=True)
             continue
